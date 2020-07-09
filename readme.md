@@ -2,7 +2,12 @@
 
 Get dynamically generated github stats on your readmes!
 
-## How to use
+# Features
+
+- [Github Stats Card](#github-stats-card)
+- [Github Extra Pins](#github-extra-pins)
+
+## Github Stats Card
 
 Copy paste this into your markdown content and thats it. simple!
 
@@ -35,7 +40,7 @@ Other options:
 - `&hide_border=true` hide the border box if you don't like it :D.
 - `&line_height=30` control the line-height between text.
 
-## Demo
+### Demo
 
 - Default
 
@@ -48,6 +53,24 @@ Other options:
 - Showing icons
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["issues"]&show_icons=true)
+
+## Github Extra Pins
+
+Github extra pins allows you to pin more than 4 repositories in your profile by using github readme profile.
+
+### Usage
+
+Copy paste this code into your readme and change the links.
+
+Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
+
+```md
+[![ReadMe Card](https://github-readme-stats.anuraghazra1.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Demo
+
+[![ReadMe Card](https://github-readme-stats.anuraghazra1.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
 Contributions are welcomed! <3
 
