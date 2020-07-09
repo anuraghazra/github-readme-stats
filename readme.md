@@ -72,6 +72,19 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 [![ReadMe Card](https://github-readme-stats.anuraghazra1.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
+### Quick Tip (Align The Repo Cards)
+
+Normally you won't be able to layout the images side by side to do that you can use this approach
+
+```md
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img align="left" src="https://github-readme-stats.anuraghazra1.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+</a>
+<a href="https://github.com/anuraghazra/convoychat">
+  <img align="left" src="https://github-readme-stats.anuraghazra1.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+</a>
+```
+
 Contributions are welcomed! <3
 
 Made with :heart: and javascript.
