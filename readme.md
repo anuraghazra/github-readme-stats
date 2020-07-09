@@ -7,7 +7,7 @@ Get dynamically generated github stats on your readmes!
 - [Github Stats Card](#github-stats-card)
 - [Github Extra Pins](#github-extra-pins)
 
-## Github Stats Card
+# Github Stats Card
 
 Copy paste this into your markdown content and thats it. simple!
 
@@ -54,9 +54,11 @@ Other options:
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["issues"]&show_icons=true)
 
-## Github Extra Pins
+# Github Extra Pins
 
-Github extra pins allows you to pin more than 4 repositories in your profile by using github readme profile.
+Github extra pins allows you to pin more than 6 repositories in your profile by using github readme profile.
+
+Yey! you are no longer limited to 6 pinned repos
 
 ### Usage
 
