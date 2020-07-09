@@ -30,6 +30,10 @@ To enable icons you can pass `show_icons=true` in the query param like so
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
+Other options:
+
+- `&hide_border=true` hide the border box if you don't like it :D.
+
 ## Demo
 
 - Default
