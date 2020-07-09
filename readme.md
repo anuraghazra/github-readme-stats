@@ -33,6 +33,7 @@ To enable icons you can pass `show_icons=true` in the query param like so
 Other options:
 
 - `&hide_border=true` hide the border box if you don't like it :D.
+- `&line_height=30` control the line-height between text.
 
 ## Demo
 

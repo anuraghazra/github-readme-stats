@@ -66,6 +66,16 @@ async function fetchStats(username) {
   return stats;
 }
 
+const createTextNode = (icon, label, value, lheight) => {
+  return `
+    <tspan x="25" dy="${lheight}" class="stat bold">
+    <tspan class="icon ${
+      icon === "★" && "star-icon"
+    }" fill="#4C71F2">${icon}</tspan> ${label}:</tspan>
+    <tspan x="155" dy="0" class="stat">${value}</tspan>
+  `;
+};
+
 const renderSVG = (stats, options) => {
   const {
     name,
@@ -75,51 +85,34 @@ const renderSVG = (stats, options) => {
     totalPRs,
     contributedTo,
   } = stats;
-  const { hide, show_icons, hide_border } = options || {};
+  const { hide, show_icons, hide_border, line_height } = options || {};
+
+  const lheight = line_height || 25;
 
   const STAT_MAP = {
-    stars: `
-      <tspan x="25" dy="25" class="stat bold">
-      <tspan class="icon star-icon" fill="#4C71F2">★</tspan> Total Stars:</tspan>
-      <tspan x="155" dy="0" class="stat">${totalStars}</tspan>
-    `,
-    commits: `
-      <tspan x="25" dy="25" class="stat bold">
-      <tspan class="icon" fill="#4C71F2">🕗</tspan> Total Commits:</tspan>
-      <tspan x="155" dy="0" class="stat">${totalCommits}</tspan>
-    `,
-    prs: `
-      <tspan x="25" dy="25" class="stat bold">
-      <tspan class="icon" fill="#4C71F2">🔀</tspan> Total PRs:</tspan>
-      <tspan x="155" dy="0" class="stat">${totalPRs}</tspan>
-    `,
-    issues: `
-      <tspan x="25" dy="25" class="stat bold">
-      <tspan class="icon" fill="#4C71F2">ⓘ</tspan> Total Issues:</tspan>
-      <tspan x="155" dy="0" class="stat">${totalIssues}</tspan>
-    `,
-    contribs: `
-      <tspan x="25" dy="25" class="stat bold"><tspan class="icon" fill="#4C71F2">📕</tspan> Contributed to:</tspan>
-      <tspan x="155" dy="0" class="stat">${contributedTo} repos</tspan> 
-    `,
+    stars: createTextNode("★", "Total Stars", totalStars, lheight),
+    commits: createTextNode("🕗", "Total Commits", totalCommits, lheight),
+    prs: createTextNode("🔀", "Total PRs", totalPRs, lheight),
+    issues: createTextNode("ⓘ", "Total Issues", totalIssues, lheight),
+    contribs: createTextNode("📕", "Contributed to", contributedTo, lheight),
   };
 
   const statItems = Object.keys(STAT_MAP)
     .filter((key) => !hide.includes(key))
     .map((key) => STAT_MAP[key]);
 
-  const height = 45 + (statItems.length + 1) * 25;
+  const height = 45 + (statItems.length + 1) * lheight;
 
   return `
     <svg width="495" height="${height}" viewBox="0 0 495 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
       <style>
       .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2F80ED }
       .stat { font: 600 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333 }
-      .star-icon { font: 600 17px 'Segoe UI', Ubuntu, Sans-Serif; }
+      .star-icon { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; }
       .bold { font-weight: 700 }
       .icon {
         display: none;
-        ${show_icons && "display: block"}
+        ${!!show_icons && "display: block"}
       }
       </style>
       ${
@@ -140,28 +133,17 @@ module.exports = async (req, res) => {
   const hide = req.query.hide;
   const hide_border = req.query.hide_border;
   const show_icons = req.query.show_icons;
+  const line_height = req.query.line_height;
 
-  let {
-    name,
-    totalPRs,
-    totalCommits,
-    totalStars,
-    totalIssues,
-    contributedTo,
-  } = await fetchStats(username);
+  const stats = await fetchStats(username);
 
   res.setHeader("Content-Type", "image/svg+xml");
   res.send(
-    renderSVG(
-      {
-        name,
-        totalStars,
-        totalCommits,
-        totalIssues,
-        totalPRs,
-        contributedTo,
-      },
-      { hide: JSON.parse(hide || "[]"), show_icons, hide_border }
-    )
+    renderSVG(stats, {
+      hide: JSON.parse(hide || "[]"),
+      show_icons,
+      hide_border,
+      line_height,
+    })
   );
 };
