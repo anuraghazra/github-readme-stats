@@ -1,0 +1,17 @@
+{
+  "name": "github-readme-stats",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Anurag Hazra",
+  "license": "MIT",
+  "devDependencies": {
+    "axios": "^0.19.2"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
