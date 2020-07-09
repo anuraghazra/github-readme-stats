@@ -124,7 +124,7 @@ const renderSVG = (stats, options) => {
       </style>
       <rect x="0.5" y="0.5" width="494" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
      
-      <text x="25" y="35" class="header">${name}'s github stats</text>
+      <text x="25" y="35" class="header">${name}'s GitHub Stats</text>
       <text y="45">
         ${statItems}
       </text>
