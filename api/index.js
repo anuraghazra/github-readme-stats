@@ -59,8 +59,8 @@ module.exports = async (req, res) => {
   res.send(`
     <svg width="495" height="130" viewBox="0 0 495 130" fill="none" xmlns="http://www.w3.org/2000/svg">
     <style>
-    .header { font: 600 18px 'Segoe UI'; fill: #2F80ED }
-    .stat { font: 600 14px 'Segoe UI'; fill: #333 }
+    .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2F80ED }
+    .stat { font: 600 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333 }
     .bold { font-weight: 700 }
     </style>
     <rect x="0.5" y="0.5" width="494" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
