@@ -75,7 +75,7 @@ const renderSVG = (stats, options) => {
     totalPRs,
     contributedTo,
   } = stats;
-  const { hide, show_icons } = options || {};
+  const { hide, show_icons, hide_border } = options || {};
 
   const STAT_MAP = {
     stars: `
@@ -122,7 +122,10 @@ const renderSVG = (stats, options) => {
         ${show_icons && "display: block"}
       }
       </style>
-      <rect x="0.5" y="0.5" width="494" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
+      ${
+        !hide_border &&
+        `<rect x="0.5" y="0.5" width="494" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>`
+      }
      
       <text x="25" y="35" class="header">${name}'s GitHub Stats</text>
       <text y="45">
@@ -135,7 +138,9 @@ const renderSVG = (stats, options) => {
 module.exports = async (req, res) => {
   const username = req.query.username;
   const hide = req.query.hide;
+  const hide_border = req.query.hide_border;
   const show_icons = req.query.show_icons;
+
   let {
     name,
     totalPRs,
@@ -156,7 +161,7 @@ module.exports = async (req, res) => {
         totalPRs,
         contributedTo,
       },
-      { hide: JSON.parse(hide || "[]"), show_icons }
+      { hide: JSON.parse(hide || "[]"), show_icons, hide_border }
     )
   );
 };
