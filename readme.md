@@ -22,13 +22,27 @@ To hide any specific stats you can pass a query parameter `?hide=` with an array
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","prs"])
 ```
 
+### Showing icons
+
+To enable icons you can pass `show_icons=true` in the query param like so
+
+```md
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+```
+
 ## Demo
+
+- Default
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - Hiding specific stats
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","issues"])
+
+- Showing icons
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["issues"]&show_icons=true)
 
 Contributions are welcomed! <3
 
