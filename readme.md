@@ -28,7 +28,7 @@ To hide any specific stats you can pass a query parameter `?hide=` with an array
 
 - Hiding specific stats
 
-![Anurag's github stats](https://github-readme-stats.anuraghazra1.vercel.app/api?username=anuraghazra&hide=["contribs","issues"])
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","issues"])
 
 Contributions are welcomed! <3
 
