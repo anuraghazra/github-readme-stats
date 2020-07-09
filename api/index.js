@@ -16,6 +16,9 @@ async function fetchStats(username) {
             repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
               totalCount
             }
+            contributionsCollection {
+              totalCommitContributions
+            }
             pullRequests(first: 100) {
               totalCount
             }
@@ -41,6 +44,7 @@ async function fetchStats(username) {
   const stats = {
     name: "",
     totalPRs: 0,
+    totalCommits: 0,
     totalIssues: 0,
     totalStars: 0,
     contributedTo: 0,
@@ -51,6 +55,7 @@ async function fetchStats(username) {
 
   stats.name = user.name;
   stats.totalIssues = user.issues.totalCount;
+  stats.totalCommits = user.contributionsCollection.totalCommitContributions;
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
@@ -62,43 +67,66 @@ async function fetchStats(username) {
 }
 
 const renderSVG = (stats, options) => {
-  const { name, totalStars, totalIssues, totalPRs, contributedTo } = stats;
-  const { hide } = options || {};
-  const height = 150 - hide.length * 20;
+  const {
+    name,
+    totalStars,
+    totalCommits,
+    totalIssues,
+    totalPRs,
+    contributedTo,
+  } = stats;
+  const { hide, show_icons } = options || {};
 
   const STAT_MAP = {
     stars: `
-      <tspan x="25" dy="20" class="stat bold"> Total Stars:</tspan>
-      <tspan x="135" dy="0" class="stat">${totalStars}</tspan>
+      <tspan x="25" dy="25" class="stat bold">
+      <tspan class="icon star-icon" fill="#4C71F2">★</tspan> Total Stars:</tspan>
+      <tspan x="155" dy="0" class="stat">${totalStars}</tspan>
+    `,
+    commits: `
+      <tspan x="25" dy="25" class="stat bold">
+      <tspan class="icon" fill="#4C71F2">🕗</tspan> Total Commits:</tspan>
+      <tspan x="155" dy="0" class="stat">${totalCommits}</tspan>
     `,
     prs: `
-      <tspan x="25" dy="20" class="stat bold">Total PRs:</tspan>
-      <tspan x="135" dy="0" class="stat">${totalPRs}</tspan>
+      <tspan x="25" dy="25" class="stat bold">
+      <tspan class="icon" fill="#4C71F2">🔀</tspan> Total PRs:</tspan>
+      <tspan x="155" dy="0" class="stat">${totalPRs}</tspan>
     `,
     issues: `
-      <tspan x="25" dy="20" class="stat bold">Total Issues:</tspan>
-      <tspan x="135" dy="0" class="stat">${totalIssues}</tspan>
+      <tspan x="25" dy="25" class="stat bold">
+      <tspan class="icon" fill="#4C71F2">ⓘ</tspan> Total Issues:</tspan>
+      <tspan x="155" dy="0" class="stat">${totalIssues}</tspan>
     `,
     contribs: `
-      <tspan x="25" dy="20" class="stat bold">Contributed to:</tspan>
-      <tspan x="135" dy="0" class="stat">${contributedTo} repos</tspan> 
+      <tspan x="25" dy="25" class="stat bold"><tspan class="icon" fill="#4C71F2">📕</tspan> Contributed to:</tspan>
+      <tspan x="155" dy="0" class="stat">${contributedTo} repos</tspan> 
     `,
   };
+
+  const statItems = Object.keys(STAT_MAP)
+    .filter((key) => !hide.includes(key))
+    .map((key) => STAT_MAP[key]);
+
+  const height = 45 + (statItems.length + 1) * 25;
 
   return `
     <svg width="495" height="${height}" viewBox="0 0 495 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
       <style>
       .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2F80ED }
       .stat { font: 600 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333 }
+      .star-icon { font: 600 17px 'Segoe UI', Ubuntu, Sans-Serif; }
       .bold { font-weight: 700 }
+      .icon {
+        display: none;
+        ${show_icons && "display: block"}
+      }
       </style>
       <rect x="0.5" y="0.5" width="494" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
-
+     
       <text x="25" y="35" class="header">${name}'s github stats</text>
       <text y="45">
-        ${Object.keys(STAT_MAP)
-          .filter((key) => !hide.includes(key))
-          .map((key) => STAT_MAP[key])}
+        ${statItems}
       </text>
     </svg>
   `;
@@ -107,9 +135,11 @@ const renderSVG = (stats, options) => {
 module.exports = async (req, res) => {
   const username = req.query.username;
   const hide = req.query.hide;
+  const show_icons = req.query.show_icons;
   let {
     name,
     totalPRs,
+    totalCommits,
     totalStars,
     totalIssues,
     contributedTo,
@@ -121,11 +151,12 @@ module.exports = async (req, res) => {
       {
         name,
         totalStars,
+        totalCommits,
         totalIssues,
         totalPRs,
         contributedTo,
       },
-      { hide: JSON.parse(hide || "[]") }
+      { hide: JSON.parse(hide || "[]"), show_icons }
     )
   );
 };
