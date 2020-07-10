@@ -17,6 +17,12 @@ change the `?username=` value to your GitHubs's username
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 ```
 
+**_Psst, you can also use this code so that `github-readme-stats` gets proper credit :D and other people can also try it out!_**
+
+```md
+[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+```
+
 ### Hiding certain stats
 
 To hide any specific stats you can pass a query parameter `?hide=` with an array of items you wanna hide.
