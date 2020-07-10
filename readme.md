@@ -1,6 +1,6 @@
 ## Github Readme stats
 
-Get dynamically generated github stats on your readmes!
+Get dynamically generated GitHub stats on your readmes!
 
 # Features
 
@@ -9,7 +9,7 @@ Get dynamically generated github stats on your readmes!
 
 # Github Stats Card
 
-Copy paste this into your markdown content and thats it. simple!
+Copy paste this into your markdown content, and that's it. Simple!
 
 change the `?username=` value to your GitHubs's username
 
@@ -23,9 +23,9 @@ change the `?username=` value to your GitHubs's username
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Hiding certain stats
+### Hiding individual stats
 
-To hide any specific stats you can pass a query parameter `?hide=` with an array of items you wanna hide.
+To hide any specific stats, you can pass a query parameter `?hide=` with an array of items, you wanna hide.
 
 > Options: `&hide=["stars","prs","issues","contribs"]`
 
@@ -35,7 +35,7 @@ To hide any specific stats you can pass a query parameter `?hide=` with an array
 
 ### Showing icons
 
-To enable icons you can pass `show_icons=true` in the query param like so
+To enable icons, you can pass `show_icons=true` in the query param like so
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -62,13 +62,13 @@ Other options:
 
 # Github Extra Pins
 
-Github extra pins allows you to pin more than 6 repositories in your profile by using github readme profile.
+Github extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
 
-Yey! you are no longer limited to 6 pinned repos
+Yey! you are no longer limited to 6 pinned repositories.
 
 ### Usage
 
-Copy paste this code into your readme and change the links.
+Copy-paste this code into your readme and change the links.
 
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
@@ -82,7 +82,7 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ### Quick Tip (Align The Repo Cards)
 
-Normally you won't be able to layout the images side by side to do that you can use this approach
+You usually won't be able to layout the images side by side to do that you can use this approach
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
