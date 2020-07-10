@@ -135,11 +135,7 @@ const renderSVG = (stats, options) => {
 };
 
 module.exports = async (req, res) => {
-  const username = req.query.username;
-  const hide = req.query.hide;
-  const hide_border = req.query.hide_border;
-  const show_icons = req.query.show_icons;
-  const line_height = req.query.line_height;
+  const { username, hide, hide_border, show_icons, line_height } = req.query;
   let stats;
 
   res.setHeader("Content-Type", "image/svg+xml");
