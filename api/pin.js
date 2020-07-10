@@ -63,6 +63,7 @@ async function fetchRepo(username, reponame) {
 const renderRepoCard = (repo) => {
   const { name, description, primaryLanguage, stargazers, forkCount } = repo;
   const height = 120;
+
   return `
   <svg width="400" height="${height}" viewBox="0 0 400 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
       <style>
@@ -79,10 +80,9 @@ const renderRepoCard = (repo) => {
       </svg>
 
       <text x="50" y="38" class="header">${name}</text>
-      <text class="description" x="25" y="70">${description.slice(
-        0,
-        60
-      )}..</text>
+      <text class="description" x="25" y="70">${
+        description ? description.slice(0, 60) : "No description provided"
+      }..</text>
       
       <circle cx="30" cy="95" r="6" fill="${primaryLanguage.color}" />
       <svg x="120" y="88" viewBox="0 0 16 16" version="1.1" width="16" height="16" fill="#586069">
