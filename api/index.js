@@ -56,11 +56,17 @@ async function fetchStats(username) {
   // FETCH ALL COMMITS
   let commitPromises = user.contributionsCollection.contributionYears.map(
     async (year) => {
-      let currentDate = new Date();
+      // Don't fetch contributions older than 2008 (Perf optimization)
+      if (year < 2008) {
+        return {
+          user: { contributionsCollection: { totalCommitContributions: 0 } },
+        };
+      }
+
+      const currentDate = new Date();
       currentDate.setFullYear(year, 0, 0);
-      let nextDate = new Date();
-      nextDate.setFullYear(year + 1, 0, 0);
-      let res = await axios({
+
+      const res = await axios({
         url: "https://api.github.com/graphql",
         method: "post",
         headers: {
@@ -68,9 +74,9 @@ async function fetchStats(username) {
         },
         data: {
           query: `
-          query userInfo($login: String!, $from: DateTime!, $to: DateTime!) {
+          query userInfo($login: String!, $from: DateTime!) {
             user(login: $login) {
-              contributionsCollection(from: $from, to: $to) {
+              contributionsCollection(from: $from) {
                 totalCommitContributions
               }
             }
@@ -79,10 +85,10 @@ async function fetchStats(username) {
           variables: {
             login: username,
             from: currentDate.toISOString(),
-            to: nextDate.toISOString(),
           },
         },
       });
+
       console.log(
         currentDate.toDateString(),
         res.data.data.user.contributionsCollection.totalCommitContributions
