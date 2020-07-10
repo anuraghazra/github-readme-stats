@@ -1,11 +1,6 @@
 const axios = require("axios");
+const { renderError, kFormatter } = require("../utils");
 require("dotenv").config();
-
-function kFormatter(num) {
-  return Math.abs(num) > 999
-    ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
-    : Math.sign(num) * Math.abs(num);
-}
 
 async function fetchRepo(username, reponame) {
   const res = await axios({
@@ -56,14 +51,26 @@ async function fetchRepo(username, reponame) {
     },
   });
 
-  if (res.data.error && res.data.error.type !== "NOT_FOUND") return {};
-  if (!res.data.data.organization && res.data.data.user)
-    return res.data.data.user.repository;
+  const data = res.data.data;
 
-  const isOrg = res.data.data.organization && !res.data.data.user;
-  if (isOrg) return res.data.data.organization.repository;
+  console.log(res.data);
+  if (!data.user && !data.organization) {
+    throw new Error("Not found");
+  }
 
-  return res.data.data.user.repository;
+  if (data.organization === null && data.user) {
+    if (!data.user.repository) {
+      throw new Error("User Repository Not found");
+    }
+    return data.user.repository;
+  }
+
+  if (data.user === null && data.organization) {
+    if (!data.organization.repository) {
+      throw new Error("Organization Repository Not found");
+    }
+    return data.organization.repository;
+  }
 }
 
 const renderRepoCard = (repo) => {
@@ -72,7 +79,7 @@ const renderRepoCard = (repo) => {
 
   const shiftText = primaryLanguage.name.length > 15 ? 0 : 30;
   return `
-  <svg width="400" height="${height}" viewBox="0 0 400 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="400" height="${height}" viewBox="0 0 400 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
       <style>
       .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2F80ED }
       .stat { font: 600 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333 }
@@ -118,8 +125,15 @@ module.exports = async (req, res) => {
   const username = req.query.username;
   const repo = req.query.repo;
 
-  const repoData = await fetchRepo(username, repo);
-
+  let repoData;
   res.setHeader("Content-Type", "image/svg+xml");
+
+  try {
+    repoData = await fetchRepo(username, repo);
+  } catch (err) {
+    console.log(err);
+    return res.send(renderError(err.message));
+  }
+
   res.send(renderRepoCard(repoData));
 };

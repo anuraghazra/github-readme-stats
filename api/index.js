@@ -1,7 +1,10 @@
 const axios = require("axios");
+const { renderError, kFormatter } = require("../utils");
 require("dotenv").config();
 
 async function fetchStats(username) {
+  if (!username) throw Error("Invalid username");
+
   const res = await axios({
     url: "https://api.github.com/graphql",
     method: "post",
@@ -49,7 +52,11 @@ async function fetchStats(username) {
     totalStars: 0,
     contributedTo: 0,
   };
-  if (res.data.error) return stats;
+
+  if (res.data.errors) {
+    console.log(res.data.errors);
+    throw Error("Could not fetch user");
+  }
 
   const user = res.data.data.user;
 
@@ -67,12 +74,11 @@ async function fetchStats(username) {
 }
 
 const createTextNode = (icon, label, value, lheight) => {
+  const classname = icon === "★" && "star-icon";
   return `
     <tspan x="25" dy="${lheight}" class="stat bold">
-    <tspan class="icon ${
-      icon === "★" && "star-icon"
-    }" fill="#4C71F2">${icon}</tspan> ${label}:</tspan>
-    <tspan x="155" dy="0" class="stat">${value}</tspan>
+    <tspan class="icon ${classname}" fill="#4C71F2">${icon}</tspan> ${label}:</tspan>
+    <tspan x="155" dy="0" class="stat">${kFormatter(value)}</tspan>
   `;
 };
 
@@ -134,10 +140,15 @@ module.exports = async (req, res) => {
   const hide_border = req.query.hide_border;
   const show_icons = req.query.show_icons;
   const line_height = req.query.line_height;
-
-  const stats = await fetchStats(username);
+  let stats;
 
   res.setHeader("Content-Type", "image/svg+xml");
+  try {
+    stats = await fetchStats(username);
+  } catch (err) {
+    return res.send(renderError(err.message));
+  }
+
   res.send(
     renderSVG(stats, {
       hide: JSON.parse(hide || "[]"),
