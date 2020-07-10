@@ -17,7 +17,7 @@ async function fetchStats(username) {
               totalCount
             }
             contributionsCollection {
-              totalCommitContributions
+              contributionYears
             }
             pullRequests(first: 100) {
               totalCount
@@ -53,9 +53,55 @@ async function fetchStats(username) {
 
   const user = res.data.data.user;
 
+  // FETCH ALL COMMITS
+  let commitPromises = user.contributionsCollection.contributionYears.map(
+    async (year) => {
+      let currentDate = new Date();
+      currentDate.setFullYear(year, 0, 0);
+      let nextDate = new Date();
+      nextDate.setFullYear(year + 1, 0, 0);
+      let res = await axios({
+        url: "https://api.github.com/graphql",
+        method: "post",
+        headers: {
+          Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
+        },
+        data: {
+          query: `
+          query userInfo($login: String!, $from: DateTime!, $to: DateTime!) {
+            user(login: $login) {
+              contributionsCollection(from: $from, to: $to) {
+                totalCommitContributions
+              }
+            }
+          }
+        `,
+          variables: {
+            login: username,
+            from: currentDate.toISOString(),
+            to: nextDate.toISOString(),
+          },
+        },
+      });
+      console.log(
+        currentDate.toDateString(),
+        res.data.data.user.contributionsCollection.totalCommitContributions
+      );
+      return res.data.data;
+    }
+  );
+
+  const allCommits = await Promise.all(commitPromises);
+
+  const totalCommits = allCommits.reduce((preYear, currYear) => {
+    return (
+      preYear + currYear.user.contributionsCollection.totalCommitContributions
+    );
+  }, 0);
+
   stats.name = user.name;
   stats.totalIssues = user.issues.totalCount;
-  stats.totalCommits = user.contributionsCollection.totalCommitContributions;
+  stats.totalCommits = totalCommits;
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
