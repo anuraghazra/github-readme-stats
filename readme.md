@@ -6,6 +6,7 @@ Get dynamically generated GitHub stats on your readmes!
 
 - [Github Stats Card](#github-stats-card)
 - [Github Extra Pins](#github-extra-pins)
+- [Deploy Yourself](#deploy-on-your-own-vercel-instance)
 
 # Github Stats Card
 
@@ -86,6 +87,15 @@ You usually won't be able to layout the images side by side to do that you can u
   <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
+
+## Deploy on your own vercel instance
+
+Since Github API only allows 5k requests per hour it is possible that my `https://github-readme-stats.vercel.app/api` could hit the rate limiter thats why if you want to host it on your own vercel server then you don't have to worry about anything. click on the deploy button to get started
+
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
+
+Make sure to add your own `GITHUB_TOKEN` in `Environment Variables`  
+[Github Docs: Creating a github personal token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 
 Contributions are welcomed! <3
 
