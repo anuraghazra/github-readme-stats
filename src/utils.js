@@ -25,4 +25,10 @@ function kFormatter(num) {
     : Math.sign(num) * Math.abs(num);
 }
 
-module.exports = { renderError, kFormatter, encodeHTML };
+function isValidHexColor(hexColor) {
+  return new RegExp(
+    /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/
+  ).test(hexColor);
+}
+
+module.exports = { renderError, kFormatter, encodeHTML, isValidHexColor };
