@@ -1,5 +1,9 @@
 ## Github Readme stats
 
+[![Test](https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg)](https://github.com/anuraghazra/github-readme-stats/actions)
+[![GitHub issues](https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff)](https://github.com/anuraghazra/github-readme-stats/issues)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff)](https://github.com/anuraghazra/github-readme-stats/pulls)
+
 Get dynamically generated GitHub stats on your readmes!
 
 # Features
