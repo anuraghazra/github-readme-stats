@@ -1,7 +1,7 @@
+require("dotenv").config();
 const { renderError } = require("../src/utils");
 const fetchRepo = require("../src/fetchRepo");
 const renderRepoCard = require("../src/renderRepoCard");
-require("dotenv").config();
 
 module.exports = async (req, res) => {
   const { username, repo } = req.query;
