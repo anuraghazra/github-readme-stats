@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { renderError, kFormatter } = require("../utils");
+const { renderError, kFormatter, encodeHTML } = require("../utils");
 require("dotenv").config();
 
 async function fetchRepo(username, reponame) {
@@ -11,35 +11,28 @@ async function fetchRepo(username, reponame) {
     },
     data: {
       query: `
+        fragment RepoInfo on Repository {
+          name
+          stargazers {
+            totalCount
+          }
+          description
+          primaryLanguage {
+            color
+            id
+            name
+          }
+          forkCount
+        }
         query getRepo($login: String!, $repo: String!) {
           user(login: $login) {
             repository(name: $repo) {
-              name
-              stargazers {
-                totalCount
-              }
-              description
-              primaryLanguage {
-                color
-                id
-                name
-              }
-              forkCount
+              ...RepoInfo
             }
           }
           organization(login: $login) {
             repository(name: $repo) {
-              name
-              stargazers {
-                totalCount
-              }
-              description
-              primaryLanguage {
-                color
-                id
-                name
-              }
-              forkCount
+              ...RepoInfo
             }
           }
         }
@@ -53,7 +46,6 @@ async function fetchRepo(username, reponame) {
 
   const data = res.data.data;
 
-  console.log(res.data);
   if (!data.user && !data.organization) {
     throw new Error("Not found");
   }
@@ -76,8 +68,13 @@ async function fetchRepo(username, reponame) {
 const renderRepoCard = (repo) => {
   const { name, description, primaryLanguage, stargazers, forkCount } = repo;
   const height = 120;
-
   const shiftText = primaryLanguage.name.length > 15 ? 0 : 30;
+
+  let desc = description || "No description provided";
+  if (desc.length > 55) {
+    desc = `${description.slice(0, 55)}..`;
+  }
+
   return `
     <svg width="400" height="${height}" viewBox="0 0 400 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
       <style>
@@ -94,11 +91,8 @@ const renderRepoCard = (repo) => {
       </svg>
 
       <text x="50" y="38" class="header">${name}</text>
-      <text class="description" x="25" y="70">${
-        description ? description.slice(0, 60) : "No description provided"
-      }..</text>
+      <text class="description" x="25" y="70">${encodeHTML(desc)}</text>
       
-
       <g transform="translate(30, 100)">
         <circle cx="0" cy="-5" r="6" fill="${primaryLanguage.color}" />
         <text class="gray" x="15">${primaryLanguage.name}</text>
@@ -122,8 +116,7 @@ const renderRepoCard = (repo) => {
 };
 
 module.exports = async (req, res) => {
-  const username = req.query.username;
-  const repo = req.query.repo;
+  const { username, repo } = req.query;
 
   let repoData;
   res.setHeader("Content-Type", "image/svg+xml");

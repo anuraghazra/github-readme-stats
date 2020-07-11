@@ -12,10 +12,17 @@ const renderError = (message) => {
   `;
 };
 
+// https://stackoverflow.com/a/48073476/10629172
+function encodeHTML(str) {
+  return str.replace(/[\u00A0-\u9999<>&](?!#)/gim, function (i) {
+    return "&#" + i.charCodeAt(0) + ";";
+  });
+}
+
 function kFormatter(num) {
   return Math.abs(num) > 999
     ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
     : Math.sign(num) * Math.abs(num);
 }
 
-module.exports = { renderError, kFormatter };
+module.exports = { renderError, kFormatter, encodeHTML };
