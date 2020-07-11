@@ -7,7 +7,7 @@ const renderError = (message) => {
     </style>
     <rect x="0.5" y="0.5" width="494" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
     <text x="25" y="45" class="text">Something went wrong! file an issue at https://git.io/JJmN9</text>
-    <text x="25" y="65" class="text small">${message}</text>
+    <text id="message" x="25" y="65" class="text small">${message}</text>
     </svg>
   `;
 };

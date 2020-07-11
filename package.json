@@ -1,15 +1,20 @@
 {
   "name": "github-readme-stats",
   "version": "1.0.0",
-  "description": "",
+  "description": "Dynamically generate stats for your github readmes",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "author": "Anurag Hazra",
   "license": "MIT",
   "devDependencies": {
-    "axios": "^0.19.2"
+    "@testing-library/dom": "^7.20.0",
+    "@testing-library/jest-dom": "^5.11.0",
+    "axios": "^0.19.2",
+    "axios-mock-adapter": "^1.18.1",
+    "jest": "^26.1.0"
   },
   "dependencies": {
     "dotenv": "^8.2.0"
