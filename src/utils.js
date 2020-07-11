@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 const renderError = (message) => {
   return `
     <svg width="495" height="100" viewBox="0 0 495 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,4 +27,22 @@ function kFormatter(num) {
     : Math.sign(num) * Math.abs(num);
 }
 
-module.exports = { renderError, kFormatter, encodeHTML };
+function request(query, variables) {
+  return new Promise((resolve, reject) => {
+    axios({
+      url: "https://api.github.com/graphql",
+      method: "post",
+      headers: {
+        Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
+      },
+      data: {
+        query,
+        variables,
+      },
+    })
+      .then((response) => resolve(response))
+      .catch((error) => reject(error));
+  });
+}
+
+module.exports = { renderError, kFormatter, encodeHTML, request };
