@@ -16,9 +16,8 @@ const renderRepoCard = (repo, options = {}) => {
     (isValidHexColor(title_color) && `#${title_color}`) || "#2f80ed";
   const iconColor =
     (isValidHexColor(icon_color) && `#${icon_color}`) || "#586069";
-  const bgColor =
-    (isValidHexColor(bg_color) && `#${bg_color}`) || "rgba(255, 255, 255, 0)";
   const textColor = (isValidHexColor(text_color) && `#${text_color}`) || "#333";
+  const bgColor = (isValidHexColor(bg_color) && `#${bg_color}`) || "#FFFEFE";
 
   const totalStars = kFormatter(stargazers.totalCount);
   const totalForks = kFormatter(forkCount);

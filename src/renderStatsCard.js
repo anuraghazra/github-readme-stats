@@ -37,8 +37,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const iconColor =
     (isValidHexColor(icon_color) && `#${icon_color}`) || "#4c71f2";
   const textColor = (isValidHexColor(text_color) && `#${text_color}`) || "#333";
-  const bgColor =
-    (isValidHexColor(bg_color) && `#${bg_color}`) || "rgba(255, 255, 255, 0)";
+  const bgColor = (isValidHexColor(bg_color) && `#${bg_color}`) || "#FFFEFE";
 
   const STAT_MAP = {
     stars: createTextNode({
