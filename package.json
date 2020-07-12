@@ -14,6 +14,7 @@
     "@testing-library/jest-dom": "^5.11.0",
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",
+    "css-to-object": "^1.1.0",
     "jest": "^26.1.0"
   },
   "dependencies": {
