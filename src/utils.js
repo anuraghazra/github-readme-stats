@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 const renderError = (message) => {
   return `
     <svg width="495" height="100" viewBox="0 0 495 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -31,4 +33,19 @@ function isValidHexColor(hexColor) {
   ).test(hexColor);
 }
 
-module.exports = { renderError, kFormatter, encodeHTML, isValidHexColor };
+function request(data) {
+  return new Promise((resolve, reject) => {
+    axios({
+      url: "https://api.github.com/graphql",
+      method: "post",
+      headers: {
+        Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
+      },
+      data,
+    })
+      .then((response) => resolve(response))
+      .catch((error) => reject(error));
+  });
+}
+
+module.exports = { renderError, kFormatter, encodeHTML, isValidHexColor, request };

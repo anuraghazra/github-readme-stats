@@ -1,46 +1,37 @@
-const axios = require("axios");
+const { request } = require("./utils");
 require("dotenv").config();
 
 async function fetchStats(username) {
   if (!username) throw Error("Invalid username");
 
-  const res = await axios({
-    url: "https://api.github.com/graphql",
-    method: "post",
-    headers: {
-      Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
-    },
-    data: {
-      query: `
-        query userInfo($login: String!) {
-          user(login: $login) {
-            name
-            repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
-              totalCount
-            }
-            contributionsCollection {
-              totalCommitContributions
-            }
-            pullRequests(first: 100) {
-              totalCount
-            }
-            issues(first: 100) {
-              totalCount
-            }
-            repositories(first: 100) {
-              nodes {
-                stargazers {
-                  totalCount
-                }
+  const res = await request({
+    query: `
+      query userInfo($login: String!) {
+        user(login: $login) {
+          name
+          repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
+            totalCount
+          }
+          contributionsCollection {
+            totalCommitContributions
+          }
+          pullRequests(first: 100) {
+            totalCount
+          }
+          issues(first: 100) {
+            totalCount
+          }
+          repositories(first: 100) {
+            nodes {
+              stargazers {
+                totalCount
               }
             }
           }
         }
-      `,
-      variables: {
-        login: username,
-      },
-    },
+      }
+    `,
+    variables: { login: username }
   });
 
   const stats = {
