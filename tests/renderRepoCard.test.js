@@ -1,4 +1,5 @@
 require("@testing-library/jest-dom");
+const cssToObject = require("css-to-object");
 const renderRepoCard = require("../src/renderRepoCard");
 
 const { queryByTestId } = require("@testing-library/dom");
@@ -86,6 +87,53 @@ describe("Test renderRepoCard", () => {
     expect(document.getElementsByTagName("g")[1]).toHaveAttribute(
       "transform",
       "translate(125, 100)"
+    );
+  });
+
+  it("should render default colors properly", () => {
+    document.body.innerHTML = renderRepoCard(data_repo.repository);
+
+    const styleTag = document.querySelector("style");
+    const stylesObject = cssToObject(styleTag.innerHTML);
+
+    const headerClassStyles = stylesObject[".header"];
+    const statClassStyles = stylesObject[".description"];
+    const iconClassStyles = stylesObject[".icon"];
+
+    expect(headerClassStyles.fill).toBe("#2f80ed");
+    expect(statClassStyles.fill).toBe("#333");
+    expect(iconClassStyles.fill).toBe("#586069");
+    expect(queryByTestId(document.body, "card-border")).toHaveAttribute(
+      "fill",
+      "rgba(255, 255, 255, 0)"
+    );
+  });
+
+  it("should render custom colors properly", () => {
+    const customColors = {
+      title_color: "5a0",
+      icon_color: "1b998b",
+      text_color: "9991",
+      bg_color: "252525",
+    };
+
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      ...customColors,
+    });
+
+    const styleTag = document.querySelector("style");
+    const stylesObject = cssToObject(styleTag.innerHTML);
+
+    const headerClassStyles = stylesObject[".header"];
+    const statClassStyles = stylesObject[".description"];
+    const iconClassStyles = stylesObject[".icon"];
+
+    expect(headerClassStyles.fill).toBe(`#${customColors.title_color}`);
+    expect(statClassStyles.fill).toBe(`#${customColors.text_color}`);
+    expect(iconClassStyles.fill).toBe(`#${customColors.icon_color}`);
+    expect(queryByTestId(document.body, "card-border")).toHaveAttribute(
+      "fill",
+      "#252525"
     );
   });
 });
