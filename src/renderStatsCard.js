@@ -27,6 +27,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     title_color,
     icon_color,
     text_color,
+    bg_color,
   } = options;
 
   const lheight = parseInt(line_height);
@@ -36,6 +37,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const iconColor =
     (isValidHexColor(icon_color) && `#${icon_color}`) || "#4c71f2";
   const textColor = (isValidHexColor(text_color) && `#${text_color}`) || "#333";
+  const bgColor =
+    (isValidHexColor(bg_color) && `#${bg_color}`) || "rgba(255, 255, 255, 0)";
 
   const STAT_MAP = {
     stars: createTextNode({
@@ -81,7 +84,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const height = 45 + (statItems.length + 1) * lheight;
 
-  const border = `<rect data-testid="card-border" x="0.5" y="0.5" width="494" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>`;
+  const border = `<rect data-testid="card-border" x="0.5" y="0.5" width="494" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>`;
   return `
     <svg width="495" height="${height}" viewBox="0 0 495 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
       <style>

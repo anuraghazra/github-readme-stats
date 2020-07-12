@@ -66,6 +66,10 @@ describe("Test renderStatsCard", () => {
     expect(headerClassStyles.fill).toBe("#2f80ed");
     expect(statClassStyles.fill).toBe("#333");
     expect(iconClassStyles.fill).toBe("#4c71f2");
+    expect(queryByTestId(document.body, "card-border")).toHaveAttribute(
+      "fill",
+      "rgba(255, 255, 255, 0)"
+    );
   });
 
   it("should render custom colors properly", () => {
@@ -73,6 +77,7 @@ describe("Test renderStatsCard", () => {
       title_color: "5a0",
       icon_color: "1b998b",
       text_color: "9991",
+      bg_color: "252525",
     };
 
     document.body.innerHTML = renderStatsCard(stats, { ...customColors });
@@ -87,5 +92,9 @@ describe("Test renderStatsCard", () => {
     expect(headerClassStyles.fill).toBe(`#${customColors.title_color}`);
     expect(statClassStyles.fill).toBe(`#${customColors.text_color}`);
     expect(iconClassStyles.fill).toBe(`#${customColors.icon_color}`);
+    expect(queryByTestId(document.body, "card-border")).toHaveAttribute(
+      "fill",
+      "#252525"
+    );
   });
 });

@@ -13,6 +13,7 @@ module.exports = async (req, res) => {
     title_color,
     icon_color,
     text_color,
+    bg_color,
   } = req.query;
   let stats;
 
@@ -32,6 +33,7 @@ module.exports = async (req, res) => {
       title_color,
       icon_color,
       text_color,
+      bg_color,
     })
   );
 };
