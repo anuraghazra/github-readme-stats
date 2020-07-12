@@ -10,6 +10,7 @@ Get dynamically generated GitHub stats on your readmes!
 
 - [Github Stats Card](#github-stats-card)
 - [Github Extra Pins](#github-extra-pins)
+- [Customization](#customization)
 - [Deploy Yourself](#deploy-on-your-own-vercel-instance)
 
 # Github Stats Card
@@ -45,6 +46,25 @@ Other options:
 - `&hide_border=true` hide the border box if you don't like it :D.
 - `&line_height=30` control the line-height between text.
 
+### Customization
+
+You can customize the appearance of your `Stats Card` or `Repo Card` however you want with url params.
+
+Customization Options:
+
+| Option      | type      | Stats Card (default)   | Repo Card (default)    |
+| ----------- | --------- | ---------------------- | ---------------------- |
+| title_color | hex color | #2f80ed                | #2f80ed                |
+| text_color  | hex color | #333                   | #333                   |
+| icon_color  | hex color | #4c71f2                | #586069                |
+| bg_color    | hex color | rgba(255, 255, 255, 0) | rgba(255, 255, 255, 0) |
+
+- You can also customize the cards to be compatible with dark mode
+
+```md
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515])
+```
+
 ### Demo
 
 - Default
@@ -58,6 +78,14 @@ Other options:
 - Showing icons
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["issues"]&show_icons=true)
+
+- Customizing stats card
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&repo=github-readme-stats&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515])
+
+- Customizing repo card
+
+![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515])
 
 # Github Extra Pins
 
