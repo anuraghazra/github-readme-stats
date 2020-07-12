@@ -27,7 +27,7 @@ function kFormatter(num) {
     : Math.sign(num) * Math.abs(num);
 }
 
-function request(query, variables) {
+function request(data) {
   return new Promise((resolve, reject) => {
     axios({
       url: "https://api.github.com/graphql",
@@ -35,10 +35,7 @@ function request(query, variables) {
       headers: {
         Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
       },
-      data: {
-        query,
-        variables,
-      },
+      data,
     })
       .then((response) => resolve(response))
       .catch((error) => reject(error));

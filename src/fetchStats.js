@@ -4,32 +4,35 @@ require("dotenv").config();
 async function fetchStats(username) {
   if (!username) throw Error("Invalid username");
 
-  const res = await request(`
-    query userInfo($login: String!) {
-      user(login: $login) {
-        name
-        repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
-          totalCount
-        }
-        contributionsCollection {
-          totalCommitContributions
-        }
-        pullRequests(first: 100) {
-          totalCount
-        }
-        issues(first: 100) {
-          totalCount
-        }
-        repositories(first: 100) {
-          nodes {
-            stargazers {
-              totalCount
+  const res = await request({
+    query: `
+      query userInfo($login: String!) {
+        user(login: $login) {
+          name
+          repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
+            totalCount
+          }
+          contributionsCollection {
+            totalCommitContributions
+          }
+          pullRequests(first: 100) {
+            totalCount
+          }
+          issues(first: 100) {
+            totalCount
+          }
+          repositories(first: 100) {
+            nodes {
+              stargazers {
+                totalCount
+              }
             }
           }
         }
       }
-    }
-  `, { login: username });
+    `,
+    variables: { login: username }
+  });
 
   const stats = {
     name: "",

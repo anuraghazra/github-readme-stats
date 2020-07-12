@@ -5,35 +5,38 @@ async function fetchRepo(username, reponame) {
     throw new Error("Invalid username or reponame");
   }
 
-  const res = await request(`
-    fragment RepoInfo on Repository {
-      name
-      stargazers {
-        totalCount
-      }
-      description
-      primaryLanguage {
-        color
-        id
+  const res = await request({
+    query: `
+      fragment RepoInfo on Repository {
         name
+        stargazers {
+          totalCount
+        }
+        description
+        primaryLanguage {
+          color
+          id
+          name
+        }
+        forkCount
       }
-      forkCount
-    }
-    query getRepo($login: String!, $repo: String!) {
-      user(login: $login) {
-        repository(name: $repo) {
-          ...RepoInfo
+      query getRepo($login: String!, $repo: String!) {
+        user(login: $login) {
+          repository(name: $repo) {
+            ...RepoInfo
+          }
+        }
+        organization(login: $login) {
+          repository(name: $repo) {
+            ...RepoInfo
+          }
         }
       }
-      organization(login: $login) {
-        repository(name: $repo) {
-          ...RepoInfo
-        }
-      }
-    }
-  `, {
-    login: username,
-    repo: reponame,
+    `,
+    variables: {
+      login: username,
+      repo: reponame,
+    },
   });
 
   const data = res.data.data;
