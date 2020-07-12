@@ -21,7 +21,7 @@ async function fetchStats(username) {
           issues(first: 100) {
             totalCount
           }
-          repositories(first: 100) {
+          repositories(first: 100, orderBy: { direction: DESC, field: STARGAZERS }) {
             nodes {
               stargazers {
                 totalCount
@@ -31,7 +31,7 @@ async function fetchStats(username) {
         }
       }
     `,
-    variables: { login: username }
+    variables: { login: username },
   });
 
   const stats = {
