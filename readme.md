@@ -1,10 +1,27 @@
-## Github Readme stats
+<p align="center">
+ <h2 align="center">Github Readme Stats</h2>
+ <p align="center">Get dynamically generated GitHub stats on your readmes!</p>
 
-[![Test](https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg)](https://github.com/anuraghazra/github-readme-stats/actions)
-[![GitHub issues](https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff)](https://github.com/anuraghazra/github-readme-stats/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff)](https://github.com/anuraghazra/github-readme-stats/pulls)
+  <p align="center">
+    <a href="https://github.com/anuraghazra/github-readme-stats/actions">
+      <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
+    </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
+    </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
+      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
+    </a>
+  </p>
 
-Get dynamically generated GitHub stats on your readmes!
+  <p align="center">
+    <a href="#demo">View Demo</a>
+    ·
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues">Request Feature</a>
+  </p>
+</p>
 
 # Features
 
