@@ -1,12 +1,20 @@
 const { kFormatter, isValidHexColor } = require("../src/utils");
 
-const createTextNode = ({ icon, label, value, lineHeight, id }) => {
+const createTextNode = ({ isFirefox, lineHeight }) => ({
+  icon,
+  label,
+  value,
+  id,
+}) => {
   const classname = icon === "★" && "star-icon";
   const kValue = kFormatter(value);
   return `
-    <tspan x="25" dy="${lineHeight}" class="stat bold">
-    <tspan data-testid="icon" class="icon ${classname}">${icon}</tspan> ${label}:</tspan>
-    <tspan data-testid="${id}" x="155" dy="0" class="stat">${kValue}</tspan>
+  <tspan x="${isFirefox ? "25" : "155"}" dy="${lineHeight}">
+    <tspan data-testid="${id}" class="stat">${kValue}</tspan>
+    <tspan x="${isFirefox ? "-100" : "25"}" class="stat bold">
+      <tspan data-testid="icon" class="icon ${classname}">${icon}</tspan> ${label}:
+    </tspan>
+  </tspan>
   `;
 };
 
@@ -21,6 +29,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     rank,
   } = stats;
   const {
+    isFirefox = false,
     hide = [],
     show_icons = false,
     hide_border = false,
@@ -41,40 +50,37 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const textColor = (isValidHexColor(text_color) && `#${text_color}`) || "#333";
   const bgColor = (isValidHexColor(bg_color) && `#${bg_color}`) || "#FFFEFE";
 
+  // higher order function to set default values at once.
+  const createText = createTextNode({ isFirefox, lineHeight: lheight });
   const STAT_MAP = {
-    stars: createTextNode({
+    stars: createText({
       icon: "★",
       label: "Total Stars",
       value: totalStars,
-      lineHeight: lheight,
       id: "stars",
     }),
-    commits: createTextNode({
+    commits: createText({
       icon: "🕗",
       label: "Total Commits",
       value: totalCommits,
-      lineHeight: lheight,
       id: "commits",
     }),
-    prs: createTextNode({
+    prs: createText({
       icon: "🔀",
       label: "Total PRs",
       value: totalPRs,
-      lineHeight: lheight,
       id: "prs",
     }),
-    issues: createTextNode({
+    issues: createText({
       icon: "ⓘ",
       label: "Total Issues",
       value: totalIssues,
-      lineHeight: lheight,
       id: "issues",
     }),
-    contribs: createTextNode({
+    contribs: createText({
       icon: "📕",
       label: "Contributed to",
       value: contributedTo,
-      lineHeight: lheight,
       id: "contribs",
     }),
   };
@@ -152,9 +158,12 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       ${rankCircle}
       
       <text x="25" y="35" class="header">${name}'s GitHub Stats</text>
-      <text y="45">
-        ${statItems.toString().replace(/\,/gm, "")}
-      </text>
+
+      <g>
+        <text y="45">
+          ${statItems.toString().replace(/\,/gm, "")}
+        </text>
+      </g>
     </svg>
   `;
 };
