@@ -1,20 +1,18 @@
 const { kFormatter, isValidHexColor } = require("../src/utils");
 
-const createTextNode = ({ isFirefox, lineHeight }) => ({
-  icon,
-  label,
-  value,
-  id,
-}) => {
+const createTextNode = ({ icon, label, value, id, index, lineHeight }) => {
   const classname = icon === "★" && "star-icon";
   const kValue = kFormatter(value);
+  // manually calculating lineHeight based on index instead of using <tspan dy="" />
+  // to fix firefox layout bug
   return `
-  <tspan x="${isFirefox ? "25" : "155"}" dy="${lineHeight}">
-    <tspan data-testid="${id}" class="stat">${kValue}</tspan>
-    <tspan x="${isFirefox ? "-100" : "25"}" class="stat bold">
-      <tspan data-testid="icon" class="icon ${classname}">${icon}</tspan> ${label}:
-    </tspan>
-  </tspan>
+    <text x="25" y="${lineHeight * (index + 1)}">
+      <tspan dx="0" data-testid="icon" class="icon ${classname}">${icon}</tspan>   
+      <tspan dx="0" class="stat bold">
+       ${label}:
+      </tspan>
+      <tspan x="160" data-testid="${id}" class="stat">${kValue}</tspan>
+    </text>
   `;
 };
 
@@ -29,7 +27,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     rank,
   } = stats;
   const {
-    isFirefox = false,
     hide = [],
     show_icons = false,
     hide_border = false,
@@ -50,44 +47,45 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const textColor = (isValidHexColor(text_color) && `#${text_color}`) || "#333";
   const bgColor = (isValidHexColor(bg_color) && `#${bg_color}`) || "#FFFEFE";
 
-  // higher order function to set default values at once.
-  const createText = createTextNode({ isFirefox, lineHeight: lheight });
-  const STAT_MAP = {
-    stars: createText({
+  const STATS = {
+    stars: {
       icon: "★",
       label: "Total Stars",
       value: totalStars,
       id: "stars",
-    }),
-    commits: createText({
+    },
+    commits: {
       icon: "🕗",
       label: "Total Commits",
       value: totalCommits,
       id: "commits",
-    }),
-    prs: createText({
+    },
+    prs: {
       icon: "🔀",
       label: "Total PRs",
       value: totalPRs,
       id: "prs",
-    }),
-    issues: createText({
+    },
+    issues: {
       icon: "ⓘ",
       label: "Total Issues",
       value: totalIssues,
       id: "issues",
-    }),
-    contribs: createText({
+    },
+    contribs: {
       icon: "📕",
       label: "Contributed to",
       value: contributedTo,
       id: "contribs",
-    }),
+    },
   };
 
-  const statItems = Object.keys(STAT_MAP)
+  const statItems = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
-    .map((key) => STAT_MAP[key]);
+    .map((key, index) =>
+      // create the text nodes, and pass index so that we can calculate the line spacing 
+      createTextNode({ ...STATS[key], index, lineHeight: lheight })
+    );
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
@@ -159,11 +157,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       
       <text x="25" y="35" class="header">${name}'s GitHub Stats</text>
 
-      <g>
-        <text y="45">
-          ${statItems.toString().replace(/\,/gm, "")}
-        </text>
-      </g>
+      <svg x="0" y="45">
+        ${statItems.toString().replace(/\,/gm, "")}
+      </svg>
     </svg>
   `;
 };

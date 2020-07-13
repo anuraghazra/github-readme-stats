@@ -19,9 +19,6 @@ module.exports = async (req, res) => {
   } = req.query;
   let stats;
 
-  const uaHeader = req.headers && req.headers["user-agent"];
-  const isFirefox = useragent.is(uaHeader).firefox;
-
   res.setHeader("Content-Type", "image/svg+xml");
   try {
     stats = await fetchStats(username);
@@ -31,7 +28,6 @@ module.exports = async (req, res) => {
 
   res.send(
     renderStatsCard(stats, {
-      isFirefox,
       hide: JSON.parse(hide || "[]"),
       show_icons,
       hide_border,
