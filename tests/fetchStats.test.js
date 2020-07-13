@@ -2,6 +2,7 @@ require("@testing-library/jest-dom");
 const axios = require("axios");
 const MockAdapter = require("axios-mock-adapter");
 const fetchStats = require("../src/fetchStats");
+const calculateRank = require("../src/calculateRank");
 
 const data = {
   data: {
@@ -11,7 +12,9 @@ const data = {
       contributionsCollection: { totalCommitContributions: 100 },
       pullRequests: { totalCount: 300 },
       issues: { totalCount: 200 },
+      followers: { totalCount: 100 },
       repositories: {
+        totalCount: 5,
         nodes: [
           { stargazers: { totalCount: 100 } },
           { stargazers: { totalCount: 100 } },
@@ -46,6 +49,16 @@ describe("Test fetchStats", () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data);
 
     let stats = await fetchStats("anuraghazra");
+    const rank = calculateRank({
+      totalCommits: 100,
+      totalRepos: 5,
+      followers: 100,
+      contributions: 61,
+      stargazers: 400,
+      prs: 300,
+      issues: 200,
+    });
+
     expect(stats).toStrictEqual({
       contributedTo: 61,
       name: "Anurag Hazra",
@@ -53,6 +66,7 @@ describe("Test fetchStats", () => {
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
+      rank,
     });
   });
 

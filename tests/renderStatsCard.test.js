@@ -12,6 +12,7 @@ describe("Test renderStatsCard", () => {
     totalIssues: 300,
     totalPRs: 400,
     contributedTo: 500,
+    rank: { level: "A+", score: 100 },
   };
 
   it("should render correctly", () => {
@@ -30,6 +31,7 @@ describe("Test renderStatsCard", () => {
     expect(getByTestId(document.body, "prs").textContent).toBe("400");
     expect(getByTestId(document.body, "contribs").textContent).toBe("500");
     expect(queryByTestId(document.body, "card-border")).toBeInTheDocument();
+    expect(queryByTestId(document.body, "rank-circle")).toBeInTheDocument();
   });
 
   it("should hide individual stats", () => {
@@ -39,7 +41,8 @@ describe("Test renderStatsCard", () => {
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height")
-    ).toBe("120");
+    ).toBe("150"); // height should be 150 because we clamped it.
+
     expect(queryByTestId(document.body, "stars")).toBeDefined();
     expect(queryByTestId(document.body, "commits")).toBeDefined();
     expect(queryByTestId(document.body, "issues")).toBeNull();
@@ -51,6 +54,12 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard(stats, { hide_border: true });
 
     expect(queryByTestId(document.body, "card-border")).not.toBeInTheDocument();
+  });
+
+  it("should hide_rank", () => {
+    document.body.innerHTML = renderStatsCard(stats, { hide_rank: true });
+
+    expect(queryByTestId(document.body, "rank-circle")).not.toBeInTheDocument();
   });
 
   it("should render default colors properly", () => {
