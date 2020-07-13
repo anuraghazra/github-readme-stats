@@ -40,6 +40,8 @@ change the `?username=` value to your GitHubs's username
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
+_Note: Ranks are calculated based on users stats, see [src/calculateRank.js](./src/calculateRank.js)_
+
 ### Hiding individual stats
 
 To hide any specific stats, you can pass a query parameter `?hide=` with an array of items, you wanna hide.
@@ -62,6 +64,7 @@ Other options:
 
 - `&hide_border=true` hide the border box if you don't like it :D.
 - `&line_height=30` control the line-height between text.
+- `&hide_rank=true` hides the ranking
 
 ### Customization
 
