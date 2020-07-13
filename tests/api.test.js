@@ -4,6 +4,7 @@ const MockAdapter = require("axios-mock-adapter");
 const api = require("../api/index");
 const renderStatsCard = require("../src/renderStatsCard");
 const { renderError } = require("../src/utils");
+const calculateRank = require("../src/calculateRank");
 
 const stats = {
   name: "Anurag Hazra",
@@ -12,7 +13,17 @@ const stats = {
   totalIssues: 300,
   totalPRs: 400,
   contributedTo: 500,
+  rank: null,
 };
+stats.rank = calculateRank({
+  totalCommits: stats.totalCommits,
+  totalRepos: 1,
+  followers: 0,
+  contributions: stats.contributedTo,
+  stargazers: stats.totalStars,
+  prs: stats.totalPRs,
+  issues: stats.totalIssues,
+});
 
 const data = {
   data: {
@@ -22,7 +33,9 @@ const data = {
       contributionsCollection: { totalCommitContributions: stats.totalCommits },
       pullRequests: { totalCount: stats.totalPRs },
       issues: { totalCount: stats.totalIssues },
+      followers: { totalCount: 0 },
       repositories: {
+        totalCount: 1,
         nodes: [{ stargazers: { totalCount: 100 } }],
       },
     },

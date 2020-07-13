@@ -1,4 +1,5 @@
 const { request } = require("./utils");
+const calculateRank = require("./calculateRank");
 require("dotenv").config();
 
 async function fetchStats(username) {
@@ -22,7 +23,11 @@ async function fetchStats(username) {
           issues(first: 100) {
             totalCount
           }
+          followers {
+            totalCount
+          }
           repositories(first: 100, orderBy: { direction: DESC, field: STARGAZERS }) {
+            totalCount
             nodes {
               stargazers {
                 totalCount
@@ -42,6 +47,7 @@ async function fetchStats(username) {
     totalIssues: 0,
     totalStars: 0,
     contributedTo: 0,
+    rank: "C",
   };
 
   if (res.data.errors) {
@@ -60,6 +66,16 @@ async function fetchStats(username) {
   stats.totalStars = user.repositories.nodes.reduce((prev, curr) => {
     return prev + curr.stargazers.totalCount;
   }, 0);
+
+  stats.rank = calculateRank({
+    totalCommits: stats.totalCommits,
+    totalRepos: user.repositories.totalCount,
+    followers: user.followers.totalCount,
+    contributions: stats.contributedTo,
+    stargazers: stats.totalStars,
+    prs: stats.totalPRs,
+    issues: stats.totalIssues,
+  });
 
   return stats;
 }
