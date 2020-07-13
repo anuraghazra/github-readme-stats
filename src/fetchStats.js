@@ -9,6 +9,7 @@ async function fetchStats(username) {
       query userInfo($login: String!) {
         user(login: $login) {
           name
+          login
           repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
             totalCount
           }
@@ -50,7 +51,7 @@ async function fetchStats(username) {
 
   const user = res.data.data.user;
 
-  stats.name = user.name;
+  stats.name = user.name || user.login;
   stats.totalIssues = user.issues.totalCount;
   stats.totalCommits = user.contributionsCollection.totalCommitContributions;
   stats.totalPRs = user.pullRequests.totalCount;
