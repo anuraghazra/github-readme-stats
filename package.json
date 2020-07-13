@@ -18,7 +18,6 @@
     "jest": "^26.1.0"
   },
   "dependencies": {
-    "dotenv": "^8.2.0",
-    "useragent": "^2.3.0"
+    "dotenv": "^8.2.0"
   }
 }

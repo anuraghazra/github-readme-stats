@@ -1,5 +1,4 @@
 require("dotenv").config();
-const useragent = require("useragent");
 const { renderError } = require("../src/utils");
 const fetchStats = require("../src/fetchStats");
 const renderStatsCard = require("../src/renderStatsCard");
