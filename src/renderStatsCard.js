@@ -6,7 +6,7 @@ const createTextNode = ({ icon, label, value, lineHeight, id }) => {
   return `
     <tspan x="25" dy="${lineHeight}" class="stat bold">
     <tspan data-testid="icon" class="icon ${classname}">${icon}</tspan> ${label}:</tspan>
-    <tspan data-testid="${id}" x="155" dy="0" class="stat">${kValue}</tspan>
+    <tspan data-testid="${id}" x="165" dy="0" class="stat">${kValue}</tspan>
   `;
 };
 
