@@ -120,6 +120,7 @@ module.exports = async (req, res) => {
 
   const repoData = await fetchRepo(username, repo);
 
+  res.setHeader('Cache-Control', 'public, max-age=300');
   res.setHeader("Content-Type", "image/svg+xml");
   res.send(renderRepoCard(repoData));
 };
