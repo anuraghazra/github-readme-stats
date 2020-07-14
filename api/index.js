@@ -189,7 +189,7 @@ module.exports = async (req, res) => {
 
   const stats = await fetchStats(username);
 
-  res.setHeader('Cache-Control', 's-maxage=3600');
+  res.setHeader('Cache-Control', 's-maxage=300');
   res.setHeader("Content-Type", "image/svg+xml");
   res.send(
     renderSVG(stats, {
