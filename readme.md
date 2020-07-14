@@ -156,7 +156,7 @@ Since Github API only allows 5k requests per hour it is possible that my `https:
 1. Fork this repo
 1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
 1. Select `Import project`  
-![](https://files.catbox.moe/why170.png)
+![](https://files.catbox.moe/qckos0.png)
 1. Select `Import Git Repository`  
 ![](https://files.catbox.moe/pqub9q.png)
 1. Select root and keep everything as is, just add your environment variable named GITHUB_TOKEN (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, can be anything you want.)  
