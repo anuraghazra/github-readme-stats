@@ -140,15 +140,29 @@ You usually won't be able to layout the images side by side to do that you can u
 </a>
 ```
 
-## Deploy on your own vercel instance
+## Deploy on your own Vercel instance
 
 Since Github API only allows 5k requests per hour it is possible that my `https://github-readme-stats.vercel.app/api` could hit the rate limiter thats why if you want to host it on your own vercel server then you don't have to worry about anything. click on the deploy button to get started
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
-Make sure to add your own `GITHUB_TOKEN` in `Environment Variables`  
-[Github Docs: Creating a github personal token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+### Guide on setting up Vercel
+1. Go to [vercel.com](https://vercel.com/)
+1. Click on `Log in`  
+![](https://files.catbox.moe/tct1wg.png)
+1. Sign in with GitHub by pressing `Continue with GitHub`  
+![](https://files.catbox.moe/btd78j.jpeg)
+1. Sign into GitHub and allow access to all repositories, if prompted
+1. Fork this repo
+1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
+1. Select `Import project`  
+![](https://files.catbox.moe/qckos0.png)
+1. Select `Import Git Repository`  
+![](https://files.catbox.moe/pqub9q.png)
+1. Select root and keep everything as is, just add your environment variable named GITHUB_TOKEN (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, can be anything you want.)  
+![](https://files.catbox.moe/caem5b.png)
+1. Click deploy, and you're good to go. See your domains to use the API!
 
 Contributions are welcomed! <3
 
-Made with :heart: and javascript.
+Made with :heart: and JavaScript.
