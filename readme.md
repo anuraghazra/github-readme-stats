@@ -148,18 +148,18 @@ Since Github API only allows 5k requests per hour it is possible that my `https:
 
 ### Guide on setting up Vercel
 1. Go to [vercel.com](https://vercel.com/)
-1. Click on `Log in`
+1. Click on `Log in`  
 ![](https://files.catbox.moe/tct1wg.png)
-1. Sign in with GitHub by pressing `Continue with GitHub`
+1. Sign in with GitHub by pressing `Continue with GitHub`  
 ![](https://files.catbox.moe/btd78j.jpeg)
 1. Sign into GitHub and allow access to all repositories, if prompted
 1. Fork this repo
 1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
-1. Select `Import project`
+1. Select `Import project`  
 ![](https://files.catbox.moe/why170.png)
-1. Select `Import Git Repository`
+1. Select `Import Git Repository`  
 ![](https://files.catbox.moe/pqub9q.png)
-1. Select root and keep everything as is, just add your environment variable named GITHUB_TOKEN (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, can be anything you want.)
+1. Select root and keep everything as is, just add your environment variable named GITHUB_TOKEN (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, can be anything you want.)  
 ![](https://files.catbox.moe/caem5b.png)
 1. Click deploy, and you're good to go. See your domains to use the API!
 
