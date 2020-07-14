@@ -83,7 +83,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const statItems = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
     .map((key, index) =>
-      // create the text nodes, and pass index so that we can calculate the line spacing 
+      // create the text nodes, and pass index so that we can calculate the line spacing
       createTextNode({ ...STATS[key], index, lineHeight: lheight })
     );
 
@@ -113,6 +113,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     : `<g data-testid="rank-circle" transform="translate(400, ${
         height / 1.85
       })">
+        <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <text
           x="0"
@@ -138,6 +139,12 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       .icon {
         fill: ${iconColor};
         display: ${!!show_icons ? "block" : "none"};
+      }
+      .rank-circle-rim {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 6;
+        opacity: 0.2;
       }
       .rank-circle {
         stroke-dashoffset: 30;
