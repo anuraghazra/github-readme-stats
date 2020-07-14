@@ -7,18 +7,19 @@ function calculateRank({
   issues,
   stargazers,
 }) {
-  const COMMITS_OFFSET = 1.65;
   const CONTRIBS_OFFSET = 1.65;
+  const STARS_OFFSET = 1.25;
+  const REPPO_OFFSET = 1.10;
   const ISSUES_OFFSET = 1;
-  const STARS_OFFSET = 0.75;
-  const PRS_OFFSET = 0.5;
+  const PRS_OFFSET = 0.99;
+  const COMMITS_OFFSET = 0.75;
   const FOLLOWERS_OFFSET = 0.45;
 
   const FIRST_STEP = 0;
-  const SECOND_STEP = 5;
-  const THIRD_STEP = 20;
-  const FOURTH_STEP = 50;
-  const FIFTH_STEP = 130;
+  const SECOND_STEP = 7;
+  const THIRD_STEP = 23;
+  const FOURTH_STEP = 45;
+  const FIFTH_STEP = 120;
 
   // prettier-ignore
   const score = (
@@ -27,7 +28,8 @@ function calculateRank({
     issues * ISSUES_OFFSET +
     stargazers * STARS_OFFSET +
     prs * PRS_OFFSET +
-    followers * FOLLOWERS_OFFSET
+    followers * FOLLOWERS_OFFSET +
+    totalRepos * REPPO_OFFSET
   ) / totalRepos;
 
   let level = "";
