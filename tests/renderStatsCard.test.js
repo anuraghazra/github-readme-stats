@@ -12,7 +12,7 @@ describe("Test renderStatsCard", () => {
     totalIssues: 300,
     totalPRs: 400,
     contributedTo: 500,
-    rank: { level: "A+", score: 100 },
+    rank: { level: "A+", score: 40 },
   };
 
   it("should render correctly", () => {
@@ -66,7 +66,8 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard(stats);
 
     const styleTag = document.querySelector("style");
-    const stylesObject = cssToObject(styleTag.innerHTML);
+    console.log(styleTag.textContent);
+    const stylesObject = cssToObject(styleTag.textContent);
 
     const headerClassStyles = stylesObject[".header"];
     const statClassStyles = stylesObject[".stat"];
