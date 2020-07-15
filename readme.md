@@ -1,5 +1,5 @@
 <p align="center">
- <h2 align="center">Github Readme Stats</h2>
+ <h2 align="center">GitHub Readme Stats</h2>
  <p align="center">Get dynamically generated GitHub stats on your readmes!</p>
 
   <p align="center">
@@ -25,26 +25,26 @@
 
 # Features
 
-- [Github Stats Card](#github-stats-card)
-- [Github Extra Pins](#github-extra-pins)
+- [GitHub Stats Card](#github-stats-card)
+- [GitHub Extra Pins](#github-extra-pins)
 - [Customization](#customization)
 - [Deploy Yourself](#deploy-on-your-own-vercel-instance)
 
-# Github Stats Card
+# GitHub Stats Card
 
 Copy paste this into your markdown content, and that's it. Simple!
 
-change the `?username=` value to your GitHubs's username
+Change the `?username=` value to your GitHub's username.
 
 ```md
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Note: Ranks are calculated based on users stats, see [src/calculateRank.js](./src/calculateRank.js)_
+_Note: Ranks are calculated based on user's stats, see [src/calculateRank.js](./src/calculateRank.js)_
 
 ### Hiding individual stats
 
-To hide any specific stats, you can pass a query parameter `?hide=` with an array of items, you wanna hide.
+To hide any specific stats, you can pass a query parameter `?hide=` with an array of items you wanna hide.
 
 > Options: `&hide=["stars","prs","issues","contribs"]`
 
@@ -54,7 +54,7 @@ To hide any specific stats, you can pass a query parameter `?hide=` with an arra
 
 ### Showing icons
 
-To enable icons, you can pass `show_icons=true` in the query param like so
+To enable icons, you can pass `show_icons=true` in the query param, like so:
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -62,13 +62,13 @@ To enable icons, you can pass `show_icons=true` in the query param like so
 
 Other options:
 
-- `&hide_border=true` hide the border box if you don't like it :D.
-- `&line_height=30` control the line-height between text.
+- `&hide_border=true` hide the border box if you don't like it :D
+- `&line_height=30` control the line-height between text
 - `&hide_rank=true` hides the ranking
 
 ### Customization
 
-You can customize the appearance of your `Stats Card` or `Repo Card` however you want with url params.
+You can customize the appearance of your `Stats Card` or `Repo Card` however you want with URL params.
 
 Customization Options:
 
@@ -107,11 +107,11 @@ Customization Options:
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
-# Github Extra Pins
+# GitHub Extra Pins
 
-Github extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
+GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
 
-Yey! you are no longer limited to 6 pinned repositories.
+Yey! You are no longer limited to 6 pinned repositories.
 
 ### Usage
 
@@ -129,7 +129,7 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ### Quick Tip (Align The Repo Cards)
 
-You usually won't be able to layout the images side by side to do that you can use this approach
+You usually won't be able to layout the images side by side. To do that you can use this approach:
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -140,15 +140,32 @@ You usually won't be able to layout the images side by side to do that you can u
 </a>
 ```
 
-## Deploy on your own vercel instance
+## Deploy on your own Vercel instance
 
-Since Github API only allows 5k requests per hour it is possible that my `https://github-readme-stats.vercel.app/api` could hit the rate limiter thats why if you want to host it on your own vercel server then you don't have to worry about anything. click on the deploy button to get started
+Since the GitHub API only allows 5k requests per hour, it is possible that my `https://github-readme-stats.vercel.app/api` could hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
-Make sure to add your own `GITHUB_TOKEN` in `Environment Variables`  
-[Github Docs: Creating a github personal token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+<details>
+ <summary>Guide on setting up Vercel</summary>
+
+1. Go to [vercel.com](https://vercel.com/)
+1. Click on `Log in`  
+![](https://files.catbox.moe/tct1wg.png)
+1. Sign in with GitHub by pressing `Continue with GitHub`  
+![](https://files.catbox.moe/btd78j.jpeg)
+1. Sign into GitHub and allow access to all repositories, if prompted
+1. Fork this repo
+1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
+1. Select `Import Project`  
+![](https://files.catbox.moe/qckos0.png)
+1. Select `Import Git Repository`  
+![](https://files.catbox.moe/pqub9q.png)
+1. Select root and keep everything as is, just add your environment variable named GITHUB_TOKEN (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)  
+![](https://files.catbox.moe/caem5b.png)
+1. Click deploy, and you're good to go. See your domains to use the API!
+</details>
 
 Contributions are welcomed! <3
 
-Made with :heart: and javascript.
+Made with :heart: and JavaScript.

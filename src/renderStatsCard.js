@@ -1,12 +1,15 @@
-const { kFormatter, isValidHexColor } = require("../src/utils");
+const { kFormatter, fallbackColor } = require("../src/utils");
+const getStyles = require("./getStyles");
 
 const createTextNode = ({ icon, label, value, id, index, lineHeight }) => {
   const classname = icon === "★" && "star-icon";
   const kValue = kFormatter(value);
+  const staggerDelay = (index + 3) * 150;
   // manually calculating lineHeight based on index instead of using <tspan dy="" />
   // to fix firefox layout bug
+  const lheight = lineHeight * (index + 1);
   return `
-    <text x="25" y="${lineHeight * (index + 1)}">
+    <text class="stagger" style="animation-delay: ${staggerDelay}ms" x="25" y="${lheight}">
       <tspan dx="0" data-testid="icon" class="icon ${classname}">${icon}</tspan>   
       <tspan dx="0" class="stat bold">
        ${label}:
@@ -40,12 +43,10 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const lheight = parseInt(line_height);
 
-  const titleColor =
-    (isValidHexColor(title_color) && `#${title_color}`) || "#2f80ed";
-  const iconColor =
-    (isValidHexColor(icon_color) && `#${icon_color}`) || "#4c71f2";
-  const textColor = (isValidHexColor(text_color) && `#${text_color}`) || "#333";
-  const bgColor = (isValidHexColor(bg_color) && `#${bg_color}`) || "#FFFEFE";
+  const titleColor = fallbackColor(title_color, "#2f80ed");
+  const iconColor = fallbackColor(icon_color, "#4c71f2");
+  const textColor = fallbackColor(text_color, "#333");
+  const bgColor = fallbackColor(bg_color, "#FFFEFE");
 
   const STATS = {
     stars: {
@@ -107,7 +108,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     />
   `;
 
-  const rankProgress = 180 + rank.score * 0.8;
   const rankCircle = hide_rank
     ? ""
     : `<g data-testid="rank-circle" transform="translate(400, ${
@@ -116,48 +116,40 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <text
-          x="0"
+          x="${rank.level.length === 1 ? "-4" : "0"}"
           y="0"
           alignment-baseline="central"
           dominant-baseline="central"
           text-anchor="middle"
           class="rank-text"
-          transform="translate(-5, 5)"
         >
           ${rank.level}
         </text>
       </g>`;
 
+  // re-adjust circle progressbar's value until the ranking algo is improved
+  let progress = rank.score;
+  if (rank.score > 86) {
+    progress = (40 + rank.score) * 0.6;
+  }
+  if (rank.score < 40) {
+    progress = 40 + rank.score;
+  }
+
+  const styles = getStyles({
+    titleColor,
+    textColor,
+    iconColor,
+    show_icons,
+    progress,
+  });
+
   return `
     <svg width="495" height="${height}" viewBox="0 0 495 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
       <style>
-      .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor}; }
-      .stat { font: 600 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; }
-      .rank-text { font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; }
-      .star-icon { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; }
-      .bold { font-weight: 700 }
-      .icon {
-        fill: ${iconColor};
-        display: ${!!show_icons ? "block" : "none"};
-      }
-      .rank-circle-rim {
-        stroke: ${titleColor};
-        fill: none;
-        stroke-width: 6;
-        opacity: 0.2;
-      }
-      .rank-circle {
-        stroke-dashoffset: 30;
-        stroke-dasharray: ${rankProgress};
-        stroke: ${titleColor};
-        fill: none;
-        stroke-width: 6;
-        stroke-linecap: round;
-        opacity: 0.8;
-        transform-origin: -10px 8px;
-        transform: rotate(-90deg);
-      }
+        ${styles}
       </style>
+      
       ${hide_border ? "" : border}
 
       ${rankCircle}
