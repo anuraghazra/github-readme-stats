@@ -43,13 +43,11 @@ function parseBoolean(value) {
   }
 }
 
-function request(data) {
+function request(data, headers) {
   return axios({
     url: "https://api.github.com/graphql",
     method: "post",
-    headers: {
-      Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
-    },
+    headers,
     data,
   });
 }
