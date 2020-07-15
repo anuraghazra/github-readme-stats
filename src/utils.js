@@ -33,13 +33,13 @@ function isValidHexColor(hexColor) {
   ).test(hexColor);
 }
 
-function request(data) {
+function request(data, headers) {
   return new Promise((resolve, reject) => {
     axios({
       url: "https://api.github.com/graphql",
       method: "post",
       headers: {
-        Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
+        ...headers,
       },
       data,
     })
@@ -48,4 +48,10 @@ function request(data) {
   });
 }
 
-module.exports = { renderError, kFormatter, encodeHTML, isValidHexColor, request };
+module.exports = {
+  renderError,
+  kFormatter,
+  encodeHTML,
+  isValidHexColor,
+  request,
+};

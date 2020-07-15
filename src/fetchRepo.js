@@ -5,8 +5,9 @@ async function fetchRepo(username, reponame) {
     throw new Error("Invalid username or reponame");
   }
 
-  const res = await request({
-    query: `
+  const res = await request(
+    {
+      query: `
       fragment RepoInfo on Repository {
         name
         stargazers {
@@ -33,11 +34,15 @@ async function fetchRepo(username, reponame) {
         }
       }
     `,
-    variables: {
-      login: username,
-      repo: reponame,
+      variables: {
+        login: username,
+        repo: reponame,
+      },
     },
-  });
+    {
+      Authorization: `bearer ${process.env.PAT_1}`,
+    }
+  );
 
   const data = res.data.data;
 
