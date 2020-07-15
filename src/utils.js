@@ -33,6 +33,16 @@ function isValidHexColor(hexColor) {
   ).test(hexColor);
 }
 
+function parseBoolean(value) {
+  if (value === "true") {
+    return true;
+  } else if (value === "false") {
+    return false;
+  } else {
+    return value;
+  }
+}
+
 function request(data, headers) {
   return new Promise((resolve, reject) => {
     axios({
@@ -54,4 +64,5 @@ module.exports = {
   encodeHTML,
   isValidHexColor,
   request,
+  parseBoolean,
 };
