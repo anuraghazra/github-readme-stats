@@ -1,9 +1,9 @@
 const { request } = require("./utils");
+const retryer = require("./retryer");
 const calculateRank = require("./calculateRank");
 require("dotenv").config();
 
-// creating a fetcher function to reduce duplication
-const fetcher = (username, token) => {
+const fetcher = (variables, token) => {
   return request(
     {
       query: `
@@ -37,43 +37,15 @@ const fetcher = (username, token) => {
         }
       }
       `,
-      variables: { login: username },
+      variables,
     },
     {
-      // set the token
       Authorization: `bearer ${token}`,
     }
   );
 };
 
-async function retryer(username, RETRIES) {
-  try {
-    console.log(`Trying PAT_${RETRIES + 1}`);
-
-    // try to fetch with the first token since RETRIES is 0 index i'm adding +1
-    let response = await fetcher(username, process.env[`PAT_${RETRIES + 1}`]);
-
-    // if rate limit is hit increase the RETRIES and recursively call the retryer
-    // with username, and current RETRIES
-    if (
-      response.data.errors &&
-      response.data.errors[0].type === "RATE_LIMITED"
-    ) {
-      console.log(`PAT_${RETRIES} Failed`);
-      RETRIES++;
-      // directly return from the function
-      return await retryer(username, RETRIES);
-    }
-
-    // finally return the response
-    return response;
-  } catch (err) {
-    console.log(err);
-  }
-}
-
 async function fetchStats(username) {
-  let RETRIES = 0;
   if (!username) throw Error("Invalid username");
 
   const stats = {
@@ -86,7 +58,7 @@ async function fetchStats(username) {
     rank: { level: "C", score: 0 },
   };
 
-  let res = await retryer(username, RETRIES);
+  let res = await retryer(fetcher, { login: username });
 
   if (res.data.errors) {
     console.log(res.data.errors);

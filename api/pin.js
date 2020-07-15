@@ -15,7 +15,7 @@ module.exports = async (req, res) => {
 
   let repoData;
   
-  res.setHeader("Cache-Control", "public, max-age=300");
+  res.setHeader("Cache-Control", "public, max-age=1800");
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
