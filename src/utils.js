@@ -33,6 +33,16 @@ function isValidHexColor(hexColor) {
   ).test(hexColor);
 }
 
+function parseBoolean(value) {
+  if (value === "true") {
+    return true;
+  } else if (value === "false") {
+    return false;
+  } else {
+    return value;
+  }
+}
+
 function request(data) {
   return axios({
     url: "https://api.github.com/graphql",
@@ -44,4 +54,11 @@ function request(data) {
   });
 }
 
-module.exports = { renderError, kFormatter, encodeHTML, isValidHexColor, request };
+module.exports = {
+  renderError,
+  kFormatter,
+  encodeHTML,
+  isValidHexColor,
+  request,
+  parseBoolean,
+};

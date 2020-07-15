@@ -1,26 +1,26 @@
 const { request } = require("./utils");
+const retryer = require("./retryer");
 const calculateRank = require("./calculateRank");
 require("dotenv").config();
 
-async function fetchStats(username) {
-  if (!username) throw Error("Invalid username");
-
-  const res = await request({
-    query: `
+const fetcher = (variables, token) => {
+  return request(
+    {
+      query: `
       query userInfo($login: String!) {
         user(login: $login) {
           name
           login
-          repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
-            totalCount
-          }
           contributionsCollection {
             totalCommitContributions
           }
-          pullRequests(first: 100) {
+          repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
             totalCount
           }
-          issues(first: 100) {
+          pullRequests(first: 1) {
+            totalCount
+          }
+          issues(first: 1) {
             totalCount
           }
           followers {
@@ -36,9 +36,17 @@ async function fetchStats(username) {
           }
         }
       }
-    `,
-    variables: { login: username },
-  });
+      `,
+      variables,
+    },
+    {
+      Authorization: `bearer ${token}`,
+    }
+  );
+};
+
+async function fetchStats(username) {
+  if (!username) throw Error("Invalid username");
 
   const stats = {
     name: "",
@@ -47,12 +55,14 @@ async function fetchStats(username) {
     totalIssues: 0,
     totalStars: 0,
     contributedTo: 0,
-    rank: "C",
+    rank: { level: "C", score: 0 },
   };
+
+  let res = await retryer(fetcher, { login: username });
 
   if (res.data.errors) {
     console.log(res.data.errors);
-    throw Error("Could not fetch user");
+    throw Error(res.data.errors[0].message || "Could not fetch user");
   }
 
   const user = res.data.data.user;
