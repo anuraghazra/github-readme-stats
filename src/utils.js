@@ -48,17 +48,11 @@ function fallbackColor(color, fallbackColor) {
 }
 
 function request(data, headers) {
-  return new Promise((resolve, reject) => {
-    axios({
-      url: "https://api.github.com/graphql",
-      method: "post",
-      headers: {
-        ...headers,
-      },
-      data,
-    })
-      .then((response) => resolve(response))
-      .catch((error) => reject(error));
+  return axios({
+    url: "https://api.github.com/graphql",
+    method: "post",
+    headers,
+    data,
   });
 }
 
