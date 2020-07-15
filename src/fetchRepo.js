@@ -1,12 +1,10 @@
 const { request } = require("./utils");
+const retryer = require("./retryer");
 
-async function fetchRepo(username, reponame) {
-  if (!username || !reponame) {
-    throw new Error("Invalid username or reponame");
-  }
-
-  const res = await request({
-    query: `
+const fetcher = (variables, token) => {
+  return request(
+    {
+      query: `
       fragment RepoInfo on Repository {
         name
         stargazers {
@@ -33,11 +31,20 @@ async function fetchRepo(username, reponame) {
         }
       }
     `,
-    variables: {
-      login: username,
-      repo: reponame,
+      variables,
     },
-  });
+    {
+      Authorization: `bearer ${token}`,
+    }
+  );
+};
+
+async function fetchRepo(username, reponame) {
+  if (!username || !reponame) {
+    throw new Error("Invalid username or reponame");
+  }
+
+  let res = await retryer(fetcher, { login: username, repo: reponame });
 
   const data = res.data.data;
 

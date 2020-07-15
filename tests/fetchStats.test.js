@@ -74,7 +74,7 @@ describe("Test fetchStats", () => {
     mock.onPost("https://api.github.com/graphql").reply(200, error);
 
     await expect(fetchStats("anuraghazra")).rejects.toThrow(
-      "Could not fetch user"
+      "Could not resolve to a User with the login of 'noname'."
     );
   });
 });
