@@ -1,17 +1,18 @@
 const { kFormatter, isValidHexColor } = require("../src/utils");
 const getStyles = require("./getStyles");
 
-const createTextNode = ({ icon, label, value, id, index, lineHeight }) => {
+const createTextNode = ({ icon, label, value, id, index, lineHeight, showIcons }) => {
   const classname = icon === "★" && "star-icon";
   const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
   // manually calculating lineHeight based on index instead of using <tspan dy="" />
   // to fix firefox layout bug
   const lheight = lineHeight * (index + 1);
+  const labelOffset = showIcons ? `x="50"` : ''
   return `
     <text class="stagger" style="animation-delay: ${staggerDelay}ms" x="25" y="${lheight}">
       <tspan dx="0" data-testid="icon" class="icon ${classname}">${icon}</tspan>   
-      <tspan dx="0" class="stat bold">
+      <tspan dx="0" ${labelOffset} class="stat bold">
        ${label}:
       </tspan>
       <tspan x="160" data-testid="${id}" class="stat">${kValue}</tspan>
@@ -87,7 +88,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     .filter((key) => !hide.includes(key))
     .map((key, index) =>
       // create the text nodes, and pass index so that we can calculate the line spacing
-      createTextNode({ ...STATS[key], index, lineHeight: lheight })
+      createTextNode({ ...STATS[key], index, lineHeight: lheight, showIcons: show_icons })
     );
 
   // Calculate the card height depending on how many items there are
