@@ -149,7 +149,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
       ${rankCircle}
       
-      <text x="25" y="35" class="header">${name}'s GitHub Stats</text>
+      <text x="25" y="35" class="header">${name}'${
+		name.slice(-1) === "s" ? "" : "s"
+	} GitHub Stats</text>
 
       <svg x="0" y="45">
         ${statItems.toString().replace(/\,/gm, "")}
