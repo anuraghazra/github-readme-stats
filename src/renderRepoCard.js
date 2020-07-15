@@ -1,23 +1,24 @@
-const { kFormatter, encodeHTML, isValidHexColor } = require("../src/utils");
+const { kFormatter, encodeHTML, fallbackColor } = require("../src/utils");
 
 const renderRepoCard = (repo, options = {}) => {
   const { name, description, primaryLanguage, stargazers, forkCount } = repo;
   const { title_color, icon_color, text_color, bg_color } = options;
 
+  const langName = primaryLanguage ? primaryLanguage.name : "Unspecified";
+  const langColor = primaryLanguage ? primaryLanguage.color : "#333";
+
   const height = 120;
-  const shiftText = primaryLanguage.name.length > 15 ? 0 : 30;
+  const shiftText = langName.length > 15 ? 0 : 30;
 
   let desc = description || "No description provided";
   if (desc.length > 55) {
     desc = `${description.slice(0, 55)}..`;
   }
 
-  const titleColor =
-    (isValidHexColor(title_color) && `#${title_color}`) || "#2f80ed";
-  const iconColor =
-    (isValidHexColor(icon_color) && `#${icon_color}`) || "#586069";
-  const textColor = (isValidHexColor(text_color) && `#${text_color}`) || "#333";
-  const bgColor = (isValidHexColor(bg_color) && `#${bg_color}`) || "#FFFEFE";
+  const titleColor = fallbackColor(title_color, "#2f80ed");
+  const iconColor = fallbackColor(icon_color, "#586069");
+  const textColor = fallbackColor(text_color, "#333");
+  const bgColor = fallbackColor(bg_color, "#FFFEFE");
 
   const totalStars = kFormatter(stargazers.totalCount);
   const totalForks = kFormatter(forkCount);
@@ -38,12 +39,8 @@ const renderRepoCard = (repo, options = {}) => {
       <text class="description" x="25" y="70">${encodeHTML(desc)}</text>
       
       <g transform="translate(30, 100)">
-        <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${
-          primaryLanguage.color
-        }" />
-        <text data-testid="lang" class="gray" x="15">${
-          primaryLanguage.name
-        }</text>
+        <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
+        <text data-testid="lang" class="gray" x="15">${langName}</text>
       </g>
 
       <g transform="translate(${155 - shiftText}, 100)">
