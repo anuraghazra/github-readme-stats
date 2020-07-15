@@ -35,6 +35,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_border = false,
     hide_rank = false,
     line_height = 25,
+    orientation = 'horizontal',
     title_color,
     icon_color,
     text_color,
@@ -47,6 +48,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const iconColor = fallbackColor(icon_color, "#4c71f2");
   const textColor = fallbackColor(text_color, "#333");
   const bgColor = fallbackColor(bg_color, "#FFFEFE");
+  const isVertical = orientation === 'vertical';
 
   const STATS = {
     stars: {
@@ -100,7 +102,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       data-testid="card-border"
       x="0.5"
       y="0.5"
-      width="494"
+      width="${isVertical ? 224 : 494}"
       height="99%"
       rx="4.5"
       fill="${bgColor}"
@@ -110,9 +112,10 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const rankCircle = hide_rank
     ? ""
-    : `<g data-testid="rank-circle" transform="translate(400, ${
-        height / 1.85
-      })">
+    : `<g
+        data-testid="rank-circle"
+        transform="translate(${isVertical ? 114 : 400}, ${(isVertical ? height + 170 : height) / 1.85})"
+      >
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <text
@@ -140,7 +143,13 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   });
 
   return `
-    <svg width="495" height="${height}" viewBox="0 0 495 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      width="${isVertical ? 225 : 495}"
+      height="${isVertical ? height + 170 : height}"
+      viewBox="0 0 ${isVertical ? 225 : 495} ${isVertical ? height + 170 : height}"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <style>
         ${styles}
       </style>
@@ -149,7 +158,12 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
       ${rankCircle}
       
-      <text x="25" y="35" class="header">${name}'s GitHub Stats</text>
+      ${isVertical ? `
+        <text x="25" y="35" class="header">${name}'s</text>
+        <text x="25" y="60" class="header">GitHub Stats</text>      
+      ` : `
+        <text x="25" y="35" class="header">${name}'s GitHub Stats</text>
+      `}
 
       <svg x="0" y="45">
         ${statItems.toString().replace(/\,/gm, "")}
