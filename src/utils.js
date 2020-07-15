@@ -34,17 +34,13 @@ function isValidHexColor(hexColor) {
 }
 
 function request(data) {
-  return new Promise((resolve, reject) => {
-    axios({
-      url: "https://api.github.com/graphql",
-      method: "post",
-      headers: {
-        Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
-      },
-      data,
-    })
-      .then((response) => resolve(response))
-      .catch((error) => reject(error));
+  return axios({
+    url: "https://api.github.com/graphql",
+    method: "post",
+    headers: {
+      Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
+    },
+    data,
   });
 }
 
