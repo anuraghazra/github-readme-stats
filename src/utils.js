@@ -43,6 +43,10 @@ function parseBoolean(value) {
   }
 }
 
+function fallbackColor(color, fallbackColor) {
+  return (isValidHexColor(color) && `#${color}`) || fallbackColor;
+}
+
 function request(data, headers) {
   return new Promise((resolve, reject) => {
     axios({
@@ -65,4 +69,5 @@ module.exports = {
   isValidHexColor,
   request,
   parseBoolean,
+  fallbackColor,
 };

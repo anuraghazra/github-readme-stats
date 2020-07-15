@@ -1,4 +1,4 @@
-const { kFormatter, isValidHexColor } = require("../src/utils");
+const { kFormatter, fallbackColor } = require("../src/utils");
 const getStyles = require("./getStyles");
 
 const createTextNode = ({ icon, label, value, id, index, lineHeight }) => {
@@ -43,12 +43,10 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const lheight = parseInt(line_height);
 
-  const titleColor =
-    (isValidHexColor(title_color) && `#${title_color}`) || "#2f80ed";
-  const iconColor =
-    (isValidHexColor(icon_color) && `#${icon_color}`) || "#4c71f2";
-  const textColor = (isValidHexColor(text_color) && `#${text_color}`) || "#333";
-  const bgColor = (isValidHexColor(bg_color) && `#${bg_color}`) || "#FFFEFE";
+  const titleColor = fallbackColor(title_color, "#2f80ed");
+  const iconColor = fallbackColor(icon_color, "#4c71f2");
+  const textColor = fallbackColor(text_color, "#333");
+  const bgColor = fallbackColor(bg_color, "#FFFEFE");
 
   const STATS = {
     stars: {
