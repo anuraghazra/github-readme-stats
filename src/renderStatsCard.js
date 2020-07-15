@@ -127,14 +127,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         </text>
       </g>`;
 
-  // re-adjust circle progressbar's value until the ranking algo is improved
-  let progress = rank.score;
-  if (rank.score > 86) {
-    progress = (40 + rank.score) * 0.6;
-  }
-  if (rank.score < 40) {
-    progress = 40 + rank.score;
-  }
+  // the better user's score the the rank will be closer to zero so
+  // subtracting 100 to get the progress in 100%
+  let progress = 100 - rank.score;
 
   const styles = getStyles({
     titleColor,
