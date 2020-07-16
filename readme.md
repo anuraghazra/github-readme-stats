@@ -74,12 +74,13 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 Customization Options:
 
-| Option      | type      | Stats Card (default)   | Repo Card (default)    |
-| ----------- | --------- | ---------------------- | ---------------------- |
-| title_color | hex color | #2f80ed                | #2f80ed                |
-| text_color  | hex color | #333                   | #333                   |
-| icon_color  | hex color | #4c71f2                | #586069                |
-| bg_color    | hex color | rgba(255, 255, 255, 0) | rgba(255, 255, 255, 0) |
+| Option      | type         | Stats Card (default)   | Repo Card (default)    |
+| ------------| ------------ | ---------------------- | ---------------------- |
+| title_color | hex color    | #2f80ed                | #2f80ed                |
+| text_color  | hex color    | #333                   | #333                   |
+| icon_color  | hex color    | #4c71f2                | #586069                |
+| bg_color    | hex color    | rgba(255, 255, 255, 0) | rgba(255, 255, 255, 0) |
+| full_name   | truthy/empty | not applicable         | empty                  |
 
 - You can also customize the cards to be compatible with dark mode
 
@@ -128,6 +129,10 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 ### Demo
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+
+Use [full_name](#customization) variable to include the repo username
+
+[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&full_name=1)](https://github.com/anuraghazra/github-readme-stats)
 
 ### Quick Tip (Align The Repo Cards)
 
