@@ -6,6 +6,7 @@ const { queryByTestId } = require("@testing-library/dom");
 
 const data_repo = {
   repository: {
+    username: "anuraghazra",
     name: "convoychat",
     stargazers: { totalCount: 38000 },
     description: "Help us take over the world! React + TS + GraphQL Chat App",
@@ -22,9 +23,10 @@ describe("Test renderRepoCard", () => {
   it("should render correctly", () => {
     document.body.innerHTML = renderRepoCard(data_repo.repository);
 
-    expect(document.getElementsByClassName("header")[0]).toHaveTextContent(
-      "convoychat"
-    );
+    const [ header ] = document.getElementsByClassName("header");
+
+    expect(header).toHaveTextContent("convoychat");
+    expect(header).not.toHaveTextContent("anuraghazra");
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
       "Help us take over the world! React + TS + GraphQL Chat .."
     );
@@ -37,6 +39,13 @@ describe("Test renderRepoCard", () => {
       "fill",
       "#2b7489"
     );
+  });
+
+  it("should display username in title (full repo name)", () => {
+    document.body.innerHTML = renderRepoCard(data_repo.repository, { full_name: true });
+    expect(document.getElementsByClassName("header")[0]).toHaveTextContent(
+          "anuraghazra/convoychat"
+        );
   });
 
   it("should trim description", () => {

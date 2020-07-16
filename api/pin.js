@@ -11,6 +11,7 @@ module.exports = async (req, res) => {
     icon_color,
     text_color,
     bg_color,
+    full_name,
   } = req.query;
 
   let repoData;
@@ -31,6 +32,7 @@ module.exports = async (req, res) => {
       icon_color,
       text_color,
       bg_color,
+      full_name,
     })
   );
 };

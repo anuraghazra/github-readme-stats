@@ -7,6 +7,7 @@ const { renderError } = require("../src/utils");
 
 const data_repo = {
   repository: {
+    username: "anuraghazra",
     name: "convoychat",
     stargazers: { totalCount: 38000 },
     description: "Help us take over the world! React + TS + GraphQL Chat App",
@@ -61,6 +62,7 @@ describe("Test /api/pin", () => {
         icon_color: "fff",
         text_color: "fff",
         bg_color: "fff",
+        full_name: "1",
       },
     };
     const res = {

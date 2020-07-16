@@ -2,9 +2,10 @@ const { kFormatter, encodeHTML, fallbackColor } = require("../src/utils");
 const icons = require("./icons");
 
 const renderRepoCard = (repo, options = {}) => {
-  const { name, description, primaryLanguage, stargazers, forkCount } = repo;
-  const { title_color, icon_color, text_color, bg_color } = options;
+  const { username, name, description, primaryLanguage, stargazers, forkCount } = repo;
+  const { title_color, icon_color, text_color, bg_color, full_name } = options;
 
+  const header = full_name ? [username, name].join('/') : name;
   const langName = primaryLanguage ? primaryLanguage.name : "Unspecified";
   const langColor = primaryLanguage ? primaryLanguage.color : "#333";
 
@@ -36,7 +37,7 @@ const renderRepoCard = (repo, options = {}) => {
         ${icons.contribs}
       </svg>
 
-      <text x="50" y="38" class="header">${name}</text>
+      <text x="50" y="38" class="header">${header}</text>
       <text class="description" x="25" y="70">${encodeHTML(desc)}</text>
       
       <g transform="translate(30, 100)">
