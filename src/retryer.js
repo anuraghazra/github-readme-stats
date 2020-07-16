@@ -1,6 +1,6 @@
 const retryer = async (fetcher, variables, retries = 0) => {
   if (retries > 7) {
-    throw new Error("Maximum retries with PAT_{1...8} exceeded");
+    throw new Error("Maximum retries exceeded");
   }
   try {
     console.log(`Trying PAT_${retries + 1}`);
