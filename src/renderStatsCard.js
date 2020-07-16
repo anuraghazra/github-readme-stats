@@ -1,21 +1,36 @@
 const { kFormatter, fallbackColor } = require("../src/utils");
 const getStyles = require("./getStyles");
+const icons = require("./icons");
 
-const createTextNode = ({ icon, label, value, id, index, lineHeight }) => {
-  const classname = icon === "★" && "star-icon";
+const createTextNode = ({
+  icon,
+  label,
+  value,
+  id,
+  index,
+  lineHeight,
+  showIcons,
+}) => {
   const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
   // manually calculating lineHeight based on index instead of using <tspan dy="" />
   // to fix firefox layout bug
   const lheight = lineHeight * (index + 1);
+  const translateY = lheight - lineHeight / 2;
+  const labelOffset = showIcons ? `x="25"` : "";
+  const iconSvg = showIcons
+    ? `
+    <svg data-testid="icon" class="icon" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+      ${icon}
+    </svg>
+  `
+    : "";
   return `
-    <text class="stagger" style="animation-delay: ${staggerDelay}ms" x="25" y="${lheight}">
-      <tspan dx="0" data-testid="icon" class="icon ${classname}">${icon}</tspan>   
-      <tspan dx="0" class="stat bold">
-       ${label}:
-      </tspan>
-      <tspan x="160" data-testid="${id}" class="stat">${kValue}</tspan>
-    </text>
+    <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, ${translateY})">
+      ${iconSvg}
+      <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
+      <text class="stat" x="135" y="12.5" data-testid="${id}">${kValue}</text>
+    </g>
   `;
 };
 
@@ -50,31 +65,31 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const STATS = {
     stars: {
-      icon: "★",
+      icon: icons.star,
       label: "Total Stars",
       value: totalStars,
       id: "stars",
     },
     commits: {
-      icon: "🕗",
+      icon: icons.commits,
       label: "Total Commits",
       value: totalCommits,
       id: "commits",
     },
     prs: {
-      icon: "🔀",
+      icon: icons.prs,
       label: "Total PRs",
       value: totalPRs,
       id: "prs",
     },
     issues: {
-      icon: "ⓘ",
+      icon: icons.issues,
       label: "Total Issues",
       value: totalIssues,
       id: "issues",
     },
     contribs: {
-      icon: "📕",
+      icon: icons.contribs,
       label: "Contributed to",
       value: contributedTo,
       id: "contribs",
@@ -85,7 +100,12 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     .filter((key) => !hide.includes(key))
     .map((key, index) =>
       // create the text nodes, and pass index so that we can calculate the line spacing
-      createTextNode({ ...STATS[key], index, lineHeight: lheight })
+      createTextNode({
+        ...STATS[key],
+        index,
+        lineHeight: lheight,
+        showIcons: show_icons,
+      })
     );
 
   // Calculate the card height depending on how many items there are

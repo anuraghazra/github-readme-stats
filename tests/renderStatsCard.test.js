@@ -2,7 +2,11 @@ require("@testing-library/jest-dom");
 const cssToObject = require("css-to-object");
 const renderStatsCard = require("../src/renderStatsCard");
 
-const { getByTestId, queryByTestId } = require("@testing-library/dom");
+const {
+  getByTestId,
+  queryByTestId,
+  queryAllByTestId,
+} = require("@testing-library/dom");
 
 describe("Test renderStatsCard", () => {
   const stats = {
@@ -106,5 +110,28 @@ describe("Test renderStatsCard", () => {
       "fill",
       "#252525"
     );
+  });
+
+  it("should render icons correctly", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      show_icons: "true",
+    });
+
+    expect(queryAllByTestId(document.body, "icon")[0]).toBeDefined();
+    expect(queryByTestId(document.body, "stars")).toBeDefined();
+    expect(
+      queryByTestId(document.body, "stars").previousElementSibling // the label
+    ).toHaveAttribute("x", "25");
+  });
+
+  it("should not have icons if show_icons is false", () => {
+    document.body.innerHTML = renderStatsCard(stats, { show_icons: false });
+
+    console.log(queryAllByTestId(document.body, "icon"));
+    expect(queryAllByTestId(document.body, "icon")[0]).not.toBeDefined();
+    expect(queryByTestId(document.body, "stars")).toBeDefined();
+    expect(
+      queryByTestId(document.body, "stars").previousElementSibling // the label
+    ).not.toHaveAttribute("x");
   });
 });
