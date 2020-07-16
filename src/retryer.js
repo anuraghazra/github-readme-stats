@@ -1,6 +1,6 @@
 const retryer = async (fetcher, variables, retries = 0) => {
   if (retries > 7) {
-    throw new Error("Maximum retries exceeded");
+    throw new Error("Maximum retries with PAT_{1...8} exceeded");
   }
   try {
     console.log(`Trying PAT_${retries + 1}`);
@@ -8,7 +8,9 @@ const retryer = async (fetcher, variables, retries = 0) => {
     // try to fetch with the first token since RETRIES is 0 index i'm adding +1
     let response = await fetcher(
       variables,
-      process.env[`PAT_${retries + 1}`],
+      retries && typeof process.env["GITHUB_TOKEN"] === "undefined"
+        ? process.env[`PAT_${retries + 1}`] 
+        : process.env["GITHUB_TOKEN"],
       retries
     );
 
