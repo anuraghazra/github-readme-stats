@@ -50,6 +50,7 @@ describe("Test fetchStats", () => {
 
     let stats = await fetchStats("anuraghazra");
     const rank = calculateRank({
+      ghIndex: 4,
       totalCommits: 100,
       totalRepos: 5,
       followers: 100,

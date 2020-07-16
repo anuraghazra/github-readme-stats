@@ -17,6 +17,7 @@ function normalcdf(mean, sigma, to) {
 }
 
 function calculateRank({
+  ghIndex,
   totalRepos,
   totalCommits,
   contributions,
@@ -25,6 +26,7 @@ function calculateRank({
   issues,
   stargazers,
 }) {
+  const GHINDEX_OFFSET = 12;
   const COMMITS_OFFSET = 1.65;
   const CONTRIBS_OFFSET = 1.65;
   const ISSUES_OFFSET = 1;
@@ -34,6 +36,7 @@ function calculateRank({
   const REPO_OFFSET = 1;
 
   const ALL_OFFSETS =
+    GHINDEX_OFFSET +
     CONTRIBS_OFFSET +
     ISSUES_OFFSET +
     STARS_OFFSET +
@@ -52,6 +55,7 @@ function calculateRank({
 
   // prettier-ignore
   const score = (
+    ghIndex * ghIndex * GHINDEX_OFFSET +
     totalCommits * COMMITS_OFFSET +
     contributions * CONTRIBS_OFFSET +
     issues * ISSUES_OFFSET +

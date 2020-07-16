@@ -17,6 +17,7 @@ const stats = {
   rank: null,
 };
 stats.rank = calculateRank({
+  ghIndex: stats.ghIndex,
   totalCommits: stats.totalCommits,
   totalRepos: 1,
   followers: 0,
