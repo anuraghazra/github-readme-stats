@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { renderError } = require("../src/utils");
+const { renderError, parseBoolean } = require("../src/utils");
 const fetchRepo = require("../src/fetchRepo");
 const renderRepoCard = require("../src/renderRepoCard");
 
@@ -11,11 +11,11 @@ module.exports = async (req, res) => {
     icon_color,
     text_color,
     bg_color,
-    full_name,
+    show_owner,
   } = req.query;
 
   let repoData;
-  
+
   res.setHeader("Cache-Control", "public, max-age=1800");
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
       icon_color,
       text_color,
       bg_color,
-      full_name,
+      show_owner: parseBoolean(show_owner),
     })
   );
 };

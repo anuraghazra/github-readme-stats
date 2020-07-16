@@ -2,10 +2,17 @@ const { kFormatter, encodeHTML, fallbackColor } = require("../src/utils");
 const icons = require("./icons");
 
 const renderRepoCard = (repo, options = {}) => {
-  const { username, name, description, primaryLanguage, stargazers, forkCount } = repo;
-  const { title_color, icon_color, text_color, bg_color, full_name } = options;
+  const {
+    name,
+    nameWithOwner,
+    description,
+    primaryLanguage,
+    stargazers,
+    forkCount,
+  } = repo;
+  const { title_color, icon_color, text_color, bg_color, show_owner } = options;
 
-  const header = full_name ? [username, name].join('/') : name;
+  const header = show_owner ? nameWithOwner : name;
   const langName = primaryLanguage ? primaryLanguage.name : "Unspecified";
   const langColor = primaryLanguage ? primaryLanguage.color : "#333";
 
