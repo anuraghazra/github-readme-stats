@@ -2,6 +2,7 @@ const { request } = require("./utils");
 const retryer = require("./retryer");
 const calculateRank = require("./calculateRank");
 require("dotenv").config();
+const hIndex = require("h-index");
 
 const fetcher = (variables, token) => {
   return request(
@@ -50,6 +51,7 @@ async function fetchStats(username) {
 
   const stats = {
     name: "",
+    ghIndex: 0,
     totalPRs: 0,
     totalCommits: 0,
     totalIssues: 0,
@@ -68,6 +70,7 @@ async function fetchStats(username) {
   const user = res.data.data.user;
 
   stats.name = user.name || user.login;
+  stats.ghIndex = hIndex(user.repositories.nodes.map((n) => n.stargazers.totalCount)).h;
   stats.totalIssues = user.issues.totalCount;
   stats.totalCommits = user.contributionsCollection.totalCommitContributions;
   stats.totalPRs = user.pullRequests.totalCount;

@@ -16,11 +16,11 @@ const data = {
       repositories: {
         totalCount: 5,
         nodes: [
-          { stargazers: { totalCount: 100 } },
+          { stargazers: { totalCount: 146 } },
           { stargazers: { totalCount: 100 } },
           { stargazers: { totalCount: 100 } },
           { stargazers: { totalCount: 50 } },
-          { stargazers: { totalCount: 50 } },
+          { stargazers: { totalCount: 4 } },
         ],
       },
     },
@@ -62,6 +62,7 @@ describe("Test fetchStats", () => {
     expect(stats).toStrictEqual({
       contributedTo: 61,
       name: "Anurag Hazra",
+      ghIndex: 4,
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,

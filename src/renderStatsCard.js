@@ -22,6 +22,7 @@ const createTextNode = ({ icon, label, value, id, index, lineHeight }) => {
 const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const {
     name,
+    ghIndex,
     totalStars,
     totalCommits,
     totalIssues,
@@ -49,6 +50,12 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const bgColor = fallbackColor(bg_color, "#FFFEFE");
 
   const STATS = {
+    index: {
+      icon: "ｈ",
+      label: "h-index",
+      value: ghIndex,
+      id: "index",
+    },
     stars: {
       icon: "★",
       label: "Total Stars",
