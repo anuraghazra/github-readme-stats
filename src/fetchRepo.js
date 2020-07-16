@@ -7,6 +7,7 @@ const fetcher = (variables, token) => {
       query: `
       fragment RepoInfo on Repository {
         name
+        nameWithOwner
         stargazers {
           totalCount
         }
