@@ -74,7 +74,9 @@ async function fetchStats(username) {
 
   if (res.data.errors) {
     console.log(res.data.errors);
-    throw Error(res.data.errors[0].message || "Could not fetch user");
+    if(res.data.errors[0].message!=="You don't have permission to see gists."){
+      throw Error(res.data.errors[0].message || "Could not fetch user");
+    }
   }
 
   const user = res.data.data.user;
