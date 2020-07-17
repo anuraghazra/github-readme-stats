@@ -64,9 +64,6 @@ const getStyles = ({
     }
     
     .bold { font-weight: 700 }
-    .star-icon { 
-      font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
-    }
     .icon {
       fill: ${iconColor};
       display: ${!!show_icons ? "block" : "none"};

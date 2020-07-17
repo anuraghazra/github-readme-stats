@@ -2,7 +2,11 @@ require("@testing-library/jest-dom");
 const cssToObject = require("css-to-object");
 const renderStatsCard = require("../src/renderStatsCard");
 
-const { getByTestId, queryByTestId } = require("@testing-library/dom");
+const {
+  getByTestId,
+  queryByTestId,
+  queryAllByTestId,
+} = require("@testing-library/dom");
 
 describe("Test renderStatsCard", () => {
   const stats = {
@@ -106,5 +110,58 @@ describe("Test renderStatsCard", () => {
       "fill",
       "#252525"
     );
+  });
+
+  it("should hide the title", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      hide_title: true,
+    });
+
+    expect(document.getElementsByClassName("header")[0]).toBeUndefined();
+    expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
+      "height",
+      "165"
+    );
+    expect(queryByTestId(document.body, "card-body-content")).toHaveAttribute(
+      "transform",
+      "translate(0, -30)"
+    );
+  });
+
+  it("should not hide the title", () => {
+    document.body.innerHTML = renderStatsCard(stats, {});
+
+    expect(document.getElementsByClassName("header")[0]).toBeDefined();
+    expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
+      "height",
+      "195"
+    );
+    expect(queryByTestId(document.body, "card-body-content")).toHaveAttribute(
+      "transform",
+      "translate(0, 0)"
+    );
+  });
+
+  it("should render icons correctly", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      show_icons: true,
+    });
+
+    expect(queryAllByTestId(document.body, "icon")[0]).toBeDefined();
+    expect(queryByTestId(document.body, "stars")).toBeDefined();
+    expect(
+      queryByTestId(document.body, "stars").previousElementSibling // the label
+    ).toHaveAttribute("x", "25");
+  });
+
+  it("should not have icons if show_icons is false", () => {
+    document.body.innerHTML = renderStatsCard(stats, { show_icons: false });
+
+    console.log(queryAllByTestId(document.body, "icon"));
+    expect(queryAllByTestId(document.body, "icon")[0]).not.toBeDefined();
+    expect(queryByTestId(document.body, "stars")).toBeDefined();
+    expect(
+      queryByTestId(document.body, "stars").previousElementSibling // the label
+    ).not.toHaveAttribute("x");
   });
 });

@@ -1,21 +1,36 @@
 const { kFormatter, fallbackColor } = require("../src/utils");
 const getStyles = require("./getStyles");
+const icons = require("./icons");
 
-const createTextNode = ({ icon, label, value, id, index, lineHeight }) => {
-  const classname = icon === "★" && "star-icon";
+const createTextNode = ({
+  icon,
+  label,
+  value,
+  id,
+  index,
+  lineHeight,
+  showIcons,
+}) => {
   const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
   // manually calculating lineHeight based on index instead of using <tspan dy="" />
   // to fix firefox layout bug
   const lheight = lineHeight * (index + 1);
+  const translateY = lheight - lineHeight / 2;
+  const labelOffset = showIcons ? `x="25"` : "";
+  const iconSvg = showIcons
+    ? `
+    <svg data-testid="icon" class="icon" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+      ${icon}
+    </svg>
+  `
+    : "";
   return `
-    <text class="stagger" style="animation-delay: ${staggerDelay}ms" x="25" y="${lheight}">
-      <tspan dx="0" data-testid="icon" class="icon ${classname}">${icon}</tspan>   
-      <tspan dx="0" class="stat bold">
-       ${label}:
-      </tspan>
-      <tspan x="160" data-testid="${id}" class="stat">${kValue}</tspan>
-    </text>
+    <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, ${translateY})">
+      ${iconSvg}
+      <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
+      <text class="stat" x="135" y="12.5" data-testid="${id}">${kValue}</text>
+    </g>
   `;
 };
 
@@ -32,6 +47,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const {
     hide = [],
     show_icons = false,
+    hide_title = false,
     hide_border = false,
     hide_rank = false,
     line_height = 25,
@@ -50,54 +66,87 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const bgColor = fallbackColor(bg_color, "#FFFEFE");
   const isVertical = orientation === 'vertical';
 
+  // Meta data for creating text nodes with createTextNode function
   const STATS = {
     stars: {
-      icon: "★",
+      icon: icons.star,
       label: "Total Stars",
       value: totalStars,
       id: "stars",
     },
     commits: {
-      icon: "🕗",
+      icon: icons.commits,
       label: "Total Commits",
       value: totalCommits,
       id: "commits",
     },
     prs: {
-      icon: "🔀",
+      icon: icons.prs,
       label: "Total PRs",
       value: totalPRs,
       id: "prs",
     },
     issues: {
-      icon: "ⓘ",
+      icon: icons.issues,
       label: "Total Issues",
       value: totalIssues,
       id: "issues",
     },
     contribs: {
-      icon: "📕",
+      icon: icons.contribs,
       label: "Contributed to",
       value: contributedTo,
       id: "contribs",
     },
   };
 
+  // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
     .map((key, index) =>
       // create the text nodes, and pass index so that we can calculate the line spacing
-      createTextNode({ ...STATS[key], index, lineHeight: lheight })
+      createTextNode({
+        ...STATS[key],
+        index,
+        lineHeight: lheight,
+        showIcons: show_icons,
+      })
     );
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  const height = Math.max(
+  let height = Math.max(
     45 + (statItems.length + 1) * lheight,
     hide_rank ? 0 : 150
   );
 
-  const border = `
+  // the better user's score the the rank will be closer to zero so
+  // subtracting 100 to get the progress in 100%
+  const progress = 100 - rank.score;
+
+  const styles = getStyles({
+    titleColor,
+    textColor,
+    iconColor,
+    show_icons,
+    progress,
+  });
+
+  // Conditionally rendered elements
+  const title = hide_title
+    ? ""
+    : (
+      isVertical ? `
+        <text x="25" y="35" class="header">${name}'s</text>
+        <text x="25" y="60" class="header">GitHub Stats</text>      
+      ` : `
+        <text x="25" y="35" class="header">${name}'s GitHub Stats</text>
+      `
+    );
+
+  const border = hide_border
+    ? ""
+    : `
     <rect 
       data-testid="card-border"
       x="0.5"
@@ -130,17 +179,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         </text>
       </g>`;
 
-  // the better user's score the the rank will be closer to zero so
-  // subtracting 100 to get the progress in 100%
-  let progress = 100 - rank.score;
-
-  const styles = getStyles({
-    titleColor,
-    textColor,
-    iconColor,
-    show_icons,
-    progress,
-  });
+  if (hide_title) {
+    height -= 30;
+  }
 
   return `
     <svg
@@ -154,20 +195,18 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         ${styles}
       </style>
       
-      ${hide_border ? "" : border}
+      ${border}
+      ${title}
 
-      ${rankCircle}
-      
-      ${isVertical ? `
-        <text x="25" y="35" class="header">${name}'s</text>
-        <text x="25" y="60" class="header">GitHub Stats</text>      
-      ` : `
-        <text x="25" y="35" class="header">${name}'s GitHub Stats</text>
-      `}
+      <g data-testid="card-body-content" transform="translate(0, ${
+        hide_title ? -30 : 0
+      })">
+        ${rankCircle}
 
-      <svg x="0" y="45">
-        ${statItems.toString().replace(/\,/gm, "")}
-      </svg>
+        <svg x="0" y="45">
+          ${statItems.toString().replace(/\,/gm, "")}
+        </svg>
+      </g>
     </svg>
   `;
 };

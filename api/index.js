@@ -7,6 +7,7 @@ module.exports = async (req, res) => {
   const {
     username,
     hide,
+    hide_title,
     hide_border,
     hide_rank,
     show_icons,
@@ -32,6 +33,7 @@ module.exports = async (req, res) => {
     renderStatsCard(stats, {
       hide: JSON.parse(hide || "[]"),
       show_icons: parseBoolean(show_icons),
+      hide_title: parseBoolean(hide_title),
       hide_border: parseBoolean(hide_border),
       hide_rank: parseBoolean(hide_rank),
       line_height,
