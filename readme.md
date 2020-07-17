@@ -63,25 +63,24 @@ To enable icons, you can pass `show_icons=true` in the query param, like so:
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
-Other options:
-
-- `&hide_border=true` hide the border box if you don't like it :D
-- `&line_height=30` control the line-height between text
-- `&hide_rank=true` hides the ranking
-
 ### Customization
 
 You can customize the appearance of your `Stats Card` or `Repo Card` however you want with URL params.
 
 Customization Options:
 
-| Option      | type      | Stats Card (default)   | Repo Card (default)    |
-| ----------- | --------- | ---------------------- | ---------------------- |
-| title_color | hex color | #2f80ed                | #2f80ed                |
-| text_color  | hex color | #333                   | #333                   |
-| icon_color  | hex color | #4c71f2                | #586069                |
-| bg_color    | hex color | rgba(255, 255, 255, 0) | rgba(255, 255, 255, 0) |
-| show_owner  | boolean   | not applicable         | false                  |
+| Option      | type      | description                          | Stats Card (default)   | Repo Card (default)    |
+| ----------- | --------- | ------------------------------------ | ---------------------- | ---------------------- |
+| title_color | hex color | title color                          | #2f80ed                | #2f80ed                |
+| text_color  | hex color | body color                           | #333                   | #333                   |
+| icon_color  | hex color | icon color                           | #4c71f2                | #586069                |
+| bg_color    | hex color | card bg color                        | rgba(255, 255, 255, 0) | rgba(255, 255, 255, 0) |
+| line_height | number    | control the line-height between text | 30                     | N/A                    |
+| hide_rank   | boolean   | hides the ranking                    | false                  | N/A                    |
+| hide_title  | boolean   | hides the stats title                | false                  | N/A                    |
+| hide_border | boolean   | hides the stats card border          | false                  | N/A                    |
+| show_owner  | boolean   | shows owner name in repo card        | N/A                    | false                  |
+| show_icons  | boolean   | shows icons                          | false                  | N/A                    |
 
 - You can also customize the cards to be compatible with dark mode
 
@@ -176,7 +175,6 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 1. Click deploy, and you're good to go. See your domains to use the API!
 </details>
 
-
 ## :sparkling_heart: Support the project
 
 I open-source almost everything I can, and I try to reply to everyone needing help using these projects. Obviously,
@@ -190,8 +188,8 @@ However, if you are using this project and happy with it or just want to encoura
 
 Thanks! :heart:
 
---------
+---
 
 Contributions are welcomed! <3
 
-Made with :heart: and JavaScript. 
+Made with :heart: and JavaScript.
