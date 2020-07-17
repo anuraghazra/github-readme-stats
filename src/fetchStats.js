@@ -7,12 +7,14 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!,$startDate: DateTime!,$endDate: DateTime!) {
         user(login: $login) {
           name
           login
-          contributionsCollection {
-            totalCommitContributions
+          contributionsCollection(from: $startDate, to: $endDate) {
+            contributionCalendar {
+              totalContributions
+            }
           }
           repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
             totalCount
@@ -58,7 +60,12 @@ async function fetchStats(username) {
     rank: { level: "C", score: 0 },
   };
 
-  let res = await retryer(fetcher, { login: username });
+  // Contribution start and end date
+  var currDate=new Date()
+  var endDate=currDate.toISOString();
+  var startDate=new Date(currDate.setYear(currDate.getUTCFullYear() - 1)).toISOString();
+
+  let res = await retryer(fetcher, { login: username, startDate: startDate, endDate: endDate });
 
   if (res.data.errors) {
     console.log(res.data.errors);
@@ -69,7 +76,9 @@ async function fetchStats(username) {
 
   stats.name = user.name || user.login;
   stats.totalIssues = user.issues.totalCount;
-  stats.totalCommits = user.contributionsCollection.totalCommitContributions;
+  stats.totalCommits = user.contributionsCollection.contributionCalendar.totalContributions;
+
+  user.contributionsCollection.contributionCalendar.totalContributions;
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
