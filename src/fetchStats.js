@@ -77,8 +77,6 @@ async function fetchStats(username) {
   stats.name = user.name || user.login;
   stats.totalIssues = user.issues.totalCount;
   stats.totalCommits = user.contributionsCollection.contributionCalendar.totalContributions;
-
-  user.contributionsCollection.contributionCalendar.totalContributions;
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
