@@ -77,10 +77,10 @@ Customization Options:
 
 | Option      | type      | Stats Card (default)   | Repo Card (default)    |
 | ----------- | --------- | ---------------------- | ---------------------- |
-| title_color | hex color | 2f80ed                 | 2f80ed                 |
+| title_color | hex color | 2F80ED                 | 2F80ED                 |
 | text_color  | hex color | 333                    | 333                    |
-| icon_color  | hex color | 4c71f2                 | 586069                 |
-| bg_color    | hex color | ffffff                 | ffffff                 |
+| icon_color  | hex color | 4C71F2                 | 586069                 |
+| bg_color    | hex color | FFFEFE                 | FFFEFE                 |
 | show_owner  | boolean   | not applicable         | false                  |
 
 - You can also customize the cards to be compatible with dark mode
