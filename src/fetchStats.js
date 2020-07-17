@@ -34,6 +34,18 @@ const fetcher = (variables, token) => {
               }
             }
           }
+          publicOwnedRepo:repositories(privacy: PUBLIC,ownerAffiliations:OWNER,isFork: false) {
+            totalCount
+          }
+          privateOwnedRepo:repositories(privacy: PRIVATE,ownerAffiliations:OWNER,isFork: false) {
+            totalCount
+          }
+          publicGist:gists(privacy: PUBLIC) {
+            totalCount
+          }
+          secretGist:gists(privacy: SECRET) {
+            totalCount
+          }
         }
       }
       `,
@@ -72,6 +84,10 @@ async function fetchStats(username) {
   stats.totalCommits = user.contributionsCollection.totalCommitContributions;
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
+  stats.publicRepos = user.publicOwnedRepo.totalCount;
+  stats.privateRepos = user.privateOwnedRepo.totalCount;
+  stats.publicGists = user.publicGist.totalCount;
+  stats.secretGists = user.secretGist.totalCount;
 
   stats.totalStars = user.repositories.nodes.reduce((prev, curr) => {
     return prev + curr.stargazers.totalCount;
