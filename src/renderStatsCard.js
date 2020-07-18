@@ -135,16 +135,17 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       })">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
-        <text
-          x="${rank.level.length === 1 ? "-4" : "0"}"
-          y="0"
-          alignment-baseline="central"
-          dominant-baseline="central"
-          text-anchor="middle"
-          class="rank-text"
-        >
-          ${rank.level}
-        </text>
+        <g class="rank-text">
+          <text
+            x="${rank.level.length === 1 ? "-4" : "0"}"
+            y="0"
+            alignment-baseline="central"
+            dominant-baseline="central"
+            text-anchor="middle"
+          >
+            ${rank.level}
+          </text>
+        </g>
       </g>`;
 
   // the better user's score the the rank will be closer to zero so
