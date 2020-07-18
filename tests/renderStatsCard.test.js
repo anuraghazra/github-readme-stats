@@ -120,7 +120,7 @@ describe("Test renderStatsCard", () => {
     expect(document.getElementsByClassName("header")[0]).toBeUndefined();
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
       "height",
-      "165"
+      "265"
     );
     expect(queryByTestId(document.body, "card-body-content")).toHaveAttribute(
       "transform",
@@ -134,7 +134,7 @@ describe("Test renderStatsCard", () => {
     expect(document.getElementsByClassName("header")[0]).toBeDefined();
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
       "height",
-      "195"
+      "295"
     );
     expect(queryByTestId(document.body, "card-body-content")).toHaveAttribute(
       "transform",
