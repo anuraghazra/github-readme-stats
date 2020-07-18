@@ -67,19 +67,23 @@ const renderRepoCard = (repo, options = {}) => {
         <text data-testid="lang" class="gray" x="15">${langName}</text>
       </g>
 
-      <g transform="translate(${155 - shiftText}, 100)">
-        <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-          ${icons.star}
-        </svg>
-        <text data-testid="stargazers" class="gray" x="25">${totalStars}</text>
-      </g>
+      ${(stargazers.totalCount > 0) ? `
+        <g transform="translate(${155 - shiftText}, 100)">
+          <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+            ${icons.star}
+          </svg>
+          <text data-testid="stargazers" class="gray" x="25">${totalStars}</text>
+        </g>
+      ` : ''}
 
-      <g transform="translate(${220 - shiftText}, 100)">
-        <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-          ${icons.fork}
-        </svg>
-        <text data-testid="forkcount" class="gray" x="25">${totalForks}</text>
-      </g>
+      ${(totalForks > 0) ? `
+        <g transform="translate(${stargazers.totalCount === 0 ? 155 - shiftText : 220 - shiftText}, 100)">
+          <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+            ${icons.fork}
+          </svg>
+          <text data-testid="forkcount" class="gray" x="25">${totalForks}</text>
+        </g>
+      ` : ''}
     </svg>
   `;
 };
