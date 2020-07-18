@@ -36,8 +36,8 @@ const renderRepoCard = (repo, options = {}) => {
   const archiveBadge = isArchived
     ? `
     <g data-testid="archive-badge" class="archive-badge" transform="translate(320, 38)">
-      <rect stroke="#e1e4e8" stroke-width="1.2" width="70" height="20" x="-12" y="-14" ry="10" rx="10"></rect>
-      <text fill="#586069">Archived</text>
+      <rect stroke="${textColor}" stroke-width="1" width="70" height="20" x="-12" y="-14" ry="10" rx="10"></rect>
+      <text fill="${textColor}">Archived</text>
     </g>
     `
     : "";
@@ -50,6 +50,7 @@ const renderRepoCard = (repo, options = {}) => {
       .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
       .icon { fill: ${iconColor} }
       .archive-badge { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; }
+      .archive-badge rect { opacity: 0.2 }
       </style>
       <rect data-testid="card-border" x="0.5" y="0.5" width="399" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
       <svg class="icon" x="25" y="25" viewBox="0 0 16 16" version="1.1" width="16" height="16">
