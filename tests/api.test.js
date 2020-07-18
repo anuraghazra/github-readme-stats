@@ -13,6 +13,10 @@ const stats = {
   totalIssues: 300,
   totalPRs: 400,
   contributedTo: 500,
+  publicRepos: 100,
+  privateRepos: 50,
+  publicGists: 10,
+  secretGists: 5,
   rank: null,
 };
 stats.rank = calculateRank({
@@ -37,6 +41,18 @@ const data = {
       repositories: {
         totalCount: 1,
         nodes: [{ stargazers: { totalCount: 100 } }],
+      },
+      publicOwnedRepo: {
+        totalCount: stats.publicRepos
+      },
+      privateOwnedRepo: {
+        totalCount: stats.privateRepos
+      },
+      publicGist: {
+        totalCount: stats.publicGists
+      },
+      secretGist: {
+        totalCount: stats.secretGists
       },
     },
   },

@@ -23,6 +23,18 @@ const data = {
           { stargazers: { totalCount: 50 } },
         ],
       },
+      publicOwnedRepo: {
+        totalCount: 100
+      },
+      privateOwnedRepo: {
+        totalCount: 50
+      },
+      publicGist: {
+        totalCount: 10
+      },
+      secretGist: {
+        totalCount: 5
+      },
     },
   },
 };
@@ -48,7 +60,7 @@ describe("Test fetchStats", () => {
   it("should fetch correct stats", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data);
 
-    let stats = await fetchStats("anuraghazra");
+    let stats = await fetchStats("anuraghara");
     const rank = calculateRank({
       totalCommits: 100,
       totalRepos: 5,
@@ -66,6 +78,10 @@ describe("Test fetchStats", () => {
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
+      publicRepos: 100,
+      privateRepos: 50,
+      publicGists: 10,
+      secretGists: 5,
       rank,
     });
   });
