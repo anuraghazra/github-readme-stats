@@ -1,22 +1,11 @@
-const { kFormatter, fallbackColor } = require("../src/utils");
+const { kFormatter, fallbackColor, FlexLayout } = require("../src/utils");
 const getStyles = require("./getStyles");
 const icons = require("./icons");
 
-const createTextNode = ({
-  icon,
-  label,
-  value,
-  id,
-  index,
-  lineHeight,
-  showIcons,
-}) => {
+const createTextNode = ({ icon, label, value, id, index, showIcons }) => {
   const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
-  // manually calculating lineHeight based on index instead of using <tspan dy="" />
-  // to fix firefox layout bug
-  const lheight = lineHeight * (index + 1);
-  const translateY = lheight - lineHeight / 2;
+
   const labelOffset = showIcons ? `x="25"` : "";
   const iconSvg = showIcons
     ? `
@@ -26,7 +15,7 @@ const createTextNode = ({
   `
     : "";
   return `
-    <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, ${translateY})">
+    <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       ${iconSvg}
       <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
       <text class="stat" x="135" y="12.5" data-testid="${id}">${kValue}</text>
@@ -106,7 +95,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       createTextNode({
         ...STATS[key],
         index,
-        lineHeight: lheight,
         showIcons: show_icons,
       })
     );
@@ -188,8 +176,12 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       })">
         ${rankCircle}
 
-        <svg x="0" y="45">
-          ${statItems.toString().replace(/\,/gm, "")}
+        <svg x="0" y="55">
+          ${FlexLayout({
+            items: statItems,
+            gap: lheight,
+            direction: "column",
+          }).join("")}
         </svg>
       </g>
     </svg>

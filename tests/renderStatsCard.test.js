@@ -70,7 +70,6 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard(stats);
 
     const styleTag = document.querySelector("style");
-    console.log(styleTag.textContent);
     const stylesObject = cssToObject(styleTag.textContent);
 
     const headerClassStyles = stylesObject[".header"];
@@ -157,7 +156,6 @@ describe("Test renderStatsCard", () => {
   it("should not have icons if show_icons is false", () => {
     document.body.innerHTML = renderStatsCard(stats, { show_icons: false });
 
-    console.log(queryAllByTestId(document.body, "icon"));
     expect(queryAllByTestId(document.body, "icon")[0]).not.toBeDefined();
     expect(queryByTestId(document.body, "stars")).toBeDefined();
     expect(

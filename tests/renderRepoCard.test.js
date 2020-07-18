@@ -158,4 +158,32 @@ describe("Test renderRepoCard", () => {
       "Archived"
     );
   });
+
+  it("should not render star count or fork count if either of the are zero", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      stargazers: { totalCount: 0 },
+    });
+
+    expect(queryByTestId(document.body, "stargazers")).toBeNull();
+    expect(queryByTestId(document.body, "forkcount")).toBeDefined();
+
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      stargazers: { totalCount: 1 },
+      forkCount: 0,
+    });
+
+    expect(queryByTestId(document.body, "stargazers")).toBeDefined();
+    expect(queryByTestId(document.body, "forkcount")).toBeNull();
+    
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      stargazers: { totalCount: 0 },
+      forkCount: 0,
+    });
+
+    expect(queryByTestId(document.body, "stargazers")).toBeNull();
+    expect(queryByTestId(document.body, "forkcount")).toBeNull();
+  });
 });
