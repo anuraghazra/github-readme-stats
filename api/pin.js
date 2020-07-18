@@ -12,6 +12,7 @@ module.exports = async (req, res) => {
     text_color,
     bg_color,
     show_owner,
+    show_icons,
   } = req.query;
 
   let repoData;
@@ -33,6 +34,7 @@ module.exports = async (req, res) => {
       text_color,
       bg_color,
       show_owner: parseBoolean(show_owner),
+      show_icons,
     })
   );
 };

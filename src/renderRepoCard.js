@@ -10,7 +10,7 @@ const renderRepoCard = (repo, options = {}) => {
     stargazers,
     forkCount,
   } = repo;
-  const { title_color, icon_color, text_color, bg_color, show_owner } = options;
+  const { title_color, icon_color, text_color, bg_color, show_owner, show_icons = true } = options;
 
   const header = show_owner ? nameWithOwner : name;
   const langName = primaryLanguage ? primaryLanguage.name : "Unspecified";
@@ -52,19 +52,21 @@ const renderRepoCard = (repo, options = {}) => {
         <text data-testid="lang" class="gray" x="15">${langName}</text>
       </g>
 
-      <g transform="translate(${155 - shiftText}, 100)">
-        <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-          ${icons.star}
-        </svg>
-        <text data-testid="stargazers" class="gray" x="25">${totalStars}</text>
-      </g>
+      ${show_icons && `
+        <g transform="translate(${155 - shiftText}, 100)">
+          <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+            ${icons.star}
+          </svg>
+          <text data-testid="stargazers" class="gray" x="25">${totalStars}</text>
+        </g>
 
-      <g transform="translate(${220 - shiftText}, 100)">
-        <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-          ${icons.fork}
-        </svg>
-        <text data-testid="forkcount" class="gray" x="25">${totalForks}</text>
-      </g>
+        <g transform="translate(${220 - shiftText}, 100)">
+          <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+            ${icons.fork}
+          </svg>
+          <text data-testid="forkcount" class="gray" x="25">${totalForks}</text>
+        </g>
+      `}
     </svg>
   `;
 };
