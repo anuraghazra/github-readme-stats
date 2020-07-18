@@ -8,6 +8,7 @@ const renderRepoCard = (repo, options = {}) => {
     description,
     primaryLanguage,
     stargazers,
+    isArchived,
     forkCount,
   } = repo;
   const { title_color, icon_color, text_color, bg_color, show_owner } = options;
@@ -31,18 +32,31 @@ const renderRepoCard = (repo, options = {}) => {
 
   const totalStars = kFormatter(stargazers.totalCount);
   const totalForks = kFormatter(forkCount);
+
+  const archiveBadge = isArchived
+    ? `
+    <g data-testid="archive-badge" class="archive-badge" transform="translate(320, 38)">
+      <rect stroke="#e1e4e8" stroke-width="1.2" width="70" height="20" x="-12" y="-14" ry="10" rx="10"></rect>
+      <text fill="#586069">Archived</text>
+    </g>
+    `
+    : "";
+
   return `
-    <svg width="400" height="${height}" viewBox="0 0 400 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg version="1.1" width="400" height="${height}" viewBox="0 0 400 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
       <style>
       .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
       .description { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
       .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
       .icon { fill: ${iconColor} }
+      .archive-badge { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; }
       </style>
       <rect data-testid="card-border" x="0.5" y="0.5" width="399" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
       <svg class="icon" x="25" y="25" viewBox="0 0 16 16" version="1.1" width="16" height="16">
         ${icons.contribs}
       </svg>
+
+      ${archiveBadge}
 
       <text x="50" y="38" class="header">${header}</text>
       <text class="description" x="25" y="70">${encodeHTML(desc)}</text>

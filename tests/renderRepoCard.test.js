@@ -147,4 +147,15 @@ describe("Test renderRepoCard", () => {
       "#252525"
     );
   });
+
+  it("should render archive badge if repo is archived", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      isArchived: true,
+    });
+
+    expect(queryByTestId(document.body, "archive-badge")).toHaveTextContent(
+      "Archived"
+    );
+  });
 });
