@@ -1,4 +1,9 @@
-const { kFormatter, encodeHTML, renderError } = require("../src/utils");
+const {
+  kFormatter,
+  encodeHTML,
+  renderError,
+  FlexLayout,
+} = require("../src/utils");
 
 describe("Test utils.js", () => {
   it("should test kFormatter", () => {
@@ -21,6 +26,27 @@ describe("Test utils.js", () => {
     document.body.innerHTML = renderError("Something went wrong");
     expect(document.getElementById("message").textContent).toBe(
       "Something went wrong"
+    );
+  });
+
+  it("should test FlexLayout", () => {
+    const layout = FlexLayout({
+      items: ["<text>1</text>", "<text>2</text>"],
+      gap: 60,
+    }).join("");
+
+    expect(layout).toBe(
+      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(60, 0)\"><text>2</text></g>`
+    );
+
+    const columns = FlexLayout({
+      items: ["<text>1</text>", "<text>2</text>"],
+      gap: 60,
+      direction: "column",
+    }).join("");
+
+    expect(columns).toBe(
+      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(0, 60)\"><text>2</text></g>`
     );
   });
 });
