@@ -52,7 +52,7 @@ const renderRepoCard = (repo, options = {}) => {
         <text data-testid="lang" class="gray" x="15">${langName}</text>
       </g>
 
-      ${totalStars > 0 && `
+      ${stargazers.totalCount > 0 && `
         <g transform="translate(${155 - shiftText}, 100)">
           <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
             ${icons.star}
