@@ -112,9 +112,39 @@ describe("Test renderStatsCard", () => {
     );
   });
 
+  it("should hide the title", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      hide_title: true,
+    });
+
+    expect(document.getElementsByClassName("header")[0]).toBeUndefined();
+    expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
+      "height",
+      "165"
+    );
+    expect(queryByTestId(document.body, "card-body-content")).toHaveAttribute(
+      "transform",
+      "translate(0, -30)"
+    );
+  });
+
+  it("should not hide the title", () => {
+    document.body.innerHTML = renderStatsCard(stats, {});
+
+    expect(document.getElementsByClassName("header")[0]).toBeDefined();
+    expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
+      "height",
+      "195"
+    );
+    expect(queryByTestId(document.body, "card-body-content")).toHaveAttribute(
+      "transform",
+      "translate(0, 0)"
+    );
+  });
+
   it("should render icons correctly", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      show_icons: "true",
+      show_icons: true,
     });
 
     expect(queryAllByTestId(document.body, "icon")[0]).toBeDefined();

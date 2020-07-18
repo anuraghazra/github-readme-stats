@@ -8,6 +8,7 @@ const fetcher = (variables, token) => {
       fragment RepoInfo on Repository {
         name
         nameWithOwner
+        isPrivate
         stargazers {
           totalCount
         }
@@ -53,15 +54,21 @@ async function fetchRepo(username, reponame) {
     throw new Error("Not found");
   }
 
-  if (data.organization === null && data.user) {
-    if (!data.user.repository) {
+  const isUser = data.organization === null && data.user;
+  const isOrg = data.user === null && data.organization;
+
+  if (isUser) {
+    if (!data.user.repository || data.user.repository.isPrivate) {
       throw new Error("User Repository Not found");
     }
     return data.user.repository;
   }
 
-  if (data.user === null && data.organization) {
-    if (!data.organization.repository) {
+  if (isOrg) {
+    if (
+      !data.organization.repository ||
+      data.organization.repository.isPrivate
+    ) {
       throw new Error("Organization Repository Not found");
     }
     return data.organization.repository;

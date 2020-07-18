@@ -51,6 +51,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const {
     hide = [],
     show_icons = false,
+    hide_title = false,
     hide_border = false,
     hide_rank = false,
     line_height = 25,
@@ -67,6 +68,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const textColor = fallbackColor(text_color, "#333");
   const bgColor = fallbackColor(bg_color, "#FFFEFE");
 
+  // Meta data for creating text nodes with createTextNode function
   const STATS = {
     stars: {
       icon: icons.star,
@@ -124,6 +126,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
   };
 
+  // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
     .map((key, index) =>
@@ -138,12 +141,31 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  const height = Math.max(
+  let height = Math.max(
     45 + (statItems.length + 1) * lheight,
     hide_rank ? 0 : 150
   );
 
-  const border = `
+  // the better user's score the the rank will be closer to zero so
+  // subtracting 100 to get the progress in 100%
+  const progress = 100 - rank.score;
+
+  const styles = getStyles({
+    titleColor,
+    textColor,
+    iconColor,
+    show_icons,
+    progress,
+  });
+
+  // Conditionally rendered elements
+  const title = hide_title
+    ? ""
+    : `<text x="25" y="35" class="header">${name}'s GitHub Stats</text>`;
+
+  const border = hide_border
+    ? ""
+    : `
     <rect 
       data-testid="card-border"
       x="0.5"
@@ -175,17 +197,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         </text>
       </g>`;
 
-  // the better user's score the the rank will be closer to zero so
-  // subtracting 100 to get the progress in 100%
-  let progress = 100 - rank.score;
-
-  const styles = getStyles({
-    titleColor,
-    textColor,
-    iconColor,
-    show_icons,
-    progress,
-  });
+  if (hide_title) {
+    height -= 30;
+  }
 
   return `
     <svg width="495" height="${height}" viewBox="0 0 495 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -193,15 +207,18 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         ${styles}
       </style>
       
-      ${hide_border ? "" : border}
+      ${border}
+      ${title}
 
-      ${rankCircle}
-      
-      <text x="25" y="35" class="header">${name}'s GitHub Stats</text>
+      <g data-testid="card-body-content" transform="translate(0, ${
+        hide_title ? -30 : 0
+      })">
+        ${rankCircle}
 
-      <svg x="0" y="45">
-        ${statItems.toString().replace(/\,/gm, "")}
-      </svg>
+        <svg x="0" y="45">
+          ${statItems.toString().replace(/\,/gm, "")}
+        </svg>
+      </g>
     </svg>
   `;
 };
