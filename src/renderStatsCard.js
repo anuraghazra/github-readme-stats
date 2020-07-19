@@ -40,7 +40,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_border = false,
     hide_rank = false,
     line_height = 25,
-    orientation = 'horizontal',
+    layout = 'horizontal',
     title_color,
     icon_color,
     text_color,
@@ -53,7 +53,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const iconColor = fallbackColor(icon_color, "#4c71f2");
   const textColor = fallbackColor(text_color, "#333");
   const bgColor = fallbackColor(bg_color, "#FFFEFE");
-  const isVertical = orientation === 'vertical';
+  const isVertical = layout === 'vertical';
 
   // Meta data for creating text nodes with createTextNode function
   const STATS = {
