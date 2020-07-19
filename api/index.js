@@ -16,6 +16,7 @@ module.exports = async (req, res) => {
     icon_color,
     text_color,
     bg_color,
+    theme,
   } = req.query;
   let stats;
 
@@ -40,6 +41,7 @@ module.exports = async (req, res) => {
       icon_color,
       text_color,
       bg_color,
+      theme,
     })
   );
 };

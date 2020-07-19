@@ -1,7 +1,7 @@
 const {
   kFormatter,
   encodeHTML,
-  fallbackColor,
+  getCardColors,
   FlexLayout,
 } = require("../src/utils");
 const icons = require("./icons");
@@ -16,7 +16,14 @@ const renderRepoCard = (repo, options = {}) => {
     isArchived,
     forkCount,
   } = repo;
-  const { title_color, icon_color, text_color, bg_color, show_owner } = options;
+  const {
+    title_color,
+    icon_color,
+    text_color,
+    bg_color,
+    show_owner,
+    theme = "default_repocard",
+  } = options;
 
   const header = show_owner ? nameWithOwner : name;
   const langName = primaryLanguage ? primaryLanguage.name : "Unspecified";
@@ -30,10 +37,14 @@ const renderRepoCard = (repo, options = {}) => {
     desc = `${description.slice(0, 55)}..`;
   }
 
-  const titleColor = fallbackColor(title_color, "#2f80ed");
-  const iconColor = fallbackColor(icon_color, "#586069");
-  const textColor = fallbackColor(text_color, "#333");
-  const bgColor = fallbackColor(bg_color, "#FFFEFE");
+  // returns theme based colors with proper overrides and defaults
+  const { titleColor, textColor, iconColor, bgColor } = getCardColors({
+    title_color,
+    icon_color,
+    text_color,
+    bg_color,
+    theme,
+  });
 
   const totalStars = kFormatter(stargazers.totalCount);
   const totalForks = kFormatter(forkCount);
@@ -82,7 +93,7 @@ const renderRepoCard = (repo, options = {}) => {
       .archive-badge { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; }
       .archive-badge rect { opacity: 0.2 }
       </style>
-      <rect data-testid="card-border" x="0.5" y="0.5" width="399" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
+      <rect data-testid="card-bg" x="0.5" y="0.5" width="399" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
       <svg class="icon" x="25" y="25" viewBox="0 0 16 16" version="1.1" width="16" height="16">
         ${icons.contribs}
       </svg>

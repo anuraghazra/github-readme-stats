@@ -3,6 +3,7 @@ const cssToObject = require("css-to-object");
 const renderRepoCard = require("../src/renderRepoCard");
 
 const { queryByTestId } = require("@testing-library/dom");
+const themes = require("../themes");
 
 const data_repo = {
   repository: {
@@ -108,13 +109,13 @@ describe("Test renderRepoCard", () => {
     const stylesObject = cssToObject(styleTag.innerHTML);
 
     const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".description"];
+    const descClassStyles = stylesObject[".description"];
     const iconClassStyles = stylesObject[".icon"];
 
     expect(headerClassStyles.fill).toBe("#2f80ed");
-    expect(statClassStyles.fill).toBe("#333");
+    expect(descClassStyles.fill).toBe("#333");
     expect(iconClassStyles.fill).toBe("#586069");
-    expect(queryByTestId(document.body, "card-border")).toHaveAttribute(
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#FFFEFE"
     );
@@ -136,15 +137,60 @@ describe("Test renderRepoCard", () => {
     const stylesObject = cssToObject(styleTag.innerHTML);
 
     const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".description"];
+    const descClassStyles = stylesObject[".description"];
     const iconClassStyles = stylesObject[".icon"];
 
     expect(headerClassStyles.fill).toBe(`#${customColors.title_color}`);
-    expect(statClassStyles.fill).toBe(`#${customColors.text_color}`);
+    expect(descClassStyles.fill).toBe(`#${customColors.text_color}`);
     expect(iconClassStyles.fill).toBe(`#${customColors.icon_color}`);
-    expect(queryByTestId(document.body, "card-border")).toHaveAttribute(
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#252525"
+    );
+  });
+
+  it("should render custom colors with themes", () => {
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      title_color: "5a0",
+      theme: "radical",
+    });
+
+    const styleTag = document.querySelector("style");
+    const stylesObject = cssToObject(styleTag.innerHTML);
+
+    const headerClassStyles = stylesObject[".header"];
+    const descClassStyles = stylesObject[".description"];
+    const iconClassStyles = stylesObject[".icon"];
+
+    expect(headerClassStyles.fill).toBe("#5a0");
+    expect(descClassStyles.fill).toBe(`#${themes.radical.text_color}`);
+    expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "fill",
+      `#${themes.radical.bg_color}`
+    );
+  });
+
+  it("should render custom colors with themes and fallback to default colors if invalid", () => {
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      title_color: "invalid color",
+      text_color: "invalid color",
+      theme: "radical",
+    });
+
+    const styleTag = document.querySelector("style");
+    const stylesObject = cssToObject(styleTag.innerHTML);
+
+    const headerClassStyles = stylesObject[".header"];
+    const descClassStyles = stylesObject[".description"];
+    const iconClassStyles = stylesObject[".icon"];
+
+    expect(headerClassStyles.fill).toBe(`#${themes.default.title_color}`);
+    expect(descClassStyles.fill).toBe(`#${themes.default.text_color}`);
+    expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "fill",
+      `#${themes.radical.bg_color}`
     );
   });
 
@@ -176,7 +222,7 @@ describe("Test renderRepoCard", () => {
 
     expect(queryByTestId(document.body, "stargazers")).toBeDefined();
     expect(queryByTestId(document.body, "forkcount")).toBeNull();
-    
+
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
       stargazers: { totalCount: 0 },
