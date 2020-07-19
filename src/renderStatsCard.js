@@ -124,9 +124,11 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   });
 
   // Conditionally rendered elements
+
+  const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
   const title = hide_title
     ? ""
-    : `<text x="25" y="35" class="header">${name}'s GitHub Stats</text>`;
+    : `<text x="25" y="35" class="header">${name}'${apostrophe} GitHub Stats</text>`;
 
   const border = hide_border
     ? ""

@@ -39,6 +39,20 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "rank-circle")).toBeInTheDocument();
   });
 
+  it("should have proper name apostrophe", () => {
+    document.body.innerHTML = renderStatsCard({ ...stats, name: "Anil Das" });
+
+    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+      "Anil Das' GitHub Stats"
+    );
+
+    document.body.innerHTML = renderStatsCard({ ...stats, name: "Felix" });
+
+    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+      "Felix' GitHub Stats"
+    );
+  });
+
   it("should hide individual stats", () => {
     document.body.innerHTML = renderStatsCard(stats, {
       hide: "['issues', 'prs', 'contribs']",
