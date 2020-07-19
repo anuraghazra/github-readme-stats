@@ -1,7 +1,7 @@
 <p align="center">
- <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="Github Readme Stats" /> 
+ <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="Github Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">Get dynamically generated GitHub stats on your readmes!</p>
+ <p align="center">在你的 README 中 获取动态生成的GitHub统计信息！</p>
 </p>
 
   <p align="center">
@@ -17,60 +17,56 @@
   </p>
 
   <p align="center">
-    <a href="#demo">View Demo</a>
+    <a href="#demo">查看 Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues">Report Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues">报告 bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues">Request Feature</a>
-  </p>
-  <p align="center">
-    <a href="readme_cn.md">简体中文</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues">请求增加功能</a>
   </p>
 </p>
-<p align="center">Loved the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
+<p align="center">喜欢这个项目? 请考虑<a href="https://www.paypal.me/anuraghazra">捐赠</a>来帮助它完善！
 
-# Features
+# 特性
 
-- [GitHub Stats Card](#github-stats-card)
+- [GitHub 统计卡片](#GitHub-统计卡片)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Customization](#customization)
-- [Deploy Yourself](#deploy-on-your-own-vercel-instance)
+- [自定义](#自定义)
+- [自己部署](#自己部署)
 
-# GitHub Stats Card
+# GitHub 统计卡片
 
-Copy paste this into your markdown content, and that's it. Simple!
-
-Change the `?username=` value to your GitHub's username.
+将这复制到你的 markdown 中，就这样，非常简单！
+更改 `?username=` 的值为你的用户名。
 
 ```md
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Note: Ranks are calculated based on user's stats, see [src/calculateRank.js](./src/calculateRank.js)_
+_Note: 排名是基于用户的统计信息计算得出的，详见 [src/calculateRank.js](./src/calculateRank.js)_
 
-### Hiding individual stats
+### 隐藏个人统计信息
 
-To hide any specific stats, you can pass a query parameter `?hide=` with an array of items you wanna hide.
+想要隐藏某个统计信息, 你可以传递参数 `?hide=`，并将你想要隐藏的项目用数组进行传递。
 
-> Options: `&hide=["stars","prs","issues","contribs"]`
+> 选项: `&hide=["stars","prs","issues","contribs"]`
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","prs"])
 ```
 
-### Showing icons
+### 显示图标
 
-To enable icons, you can pass `show_icons=true` in the query param, like so:
+想要显示图标, 你可以传递 `show_icons=true`，像这样:
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
-### Customization
+### 自定义
 
-You can customize the appearance of your `Stats Card` or `Repo Card` however you want with URL params.
+你可以为你的 `Stats Card` 或 `Repo Card` 自定义样式，however you want with URL params.
 
-Customization Options:
+自定义选项:
 
 | Option      | type      | description                          | Stats Card (default) | Repo Card (default) |
 | ----------- | --------- | ------------------------------------ | -------------------- | ------------------- |
@@ -85,7 +81,7 @@ Customization Options:
 | show_owner  | boolean   | shows owner name in repo card        | N/A                  | false               |
 | show_icons  | boolean   | shows icons                          | false                | N/A                 |
 
-- You can also customize the cards to be compatible with dark mode
+- 你也可以通过自定义来兼容暗黑模式
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
@@ -93,23 +89,23 @@ Customization Options:
 
 ### Demo
 
-- Default
+- 默认
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
-- Hiding specific stats
+- 隐藏某个项目
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","issues"])
 
-- Showing icons
+- 显示图标
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["issues"]&show_icons=true)
 
-- Customizing stats card
+- 自定义添加卡片
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- Customizing repo card
+- 自定义仓库卡片
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
@@ -133,13 +129,13 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
-Use [show_owner](#customization) variable to include the repo's owner username
+Use [show_owner](#自定义) variable to include the repo's owner username
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
-### Quick Tip (Align The Repo Cards)
+### 提示 (Align The Repo Cards)
 
-You usually won't be able to layout the images side by side. To do that you can use this approach:
+你通常无法将图片靠边显示，为此，您可以使用以下方法：
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -150,49 +146,49 @@ You usually won't be able to layout the images side by side. To do that you can 
 </a>
 ```
 
-## Deploy on your own Vercel instance
+## 自己部署
 
-Since the GitHub API only allows 5k requests per hour, it is possible that my `https://github-readme-stats.vercel.app/api` could hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
+自从 GitHub 的 API 每个小时只允许 5 千的请求，我都 `https://github-readme-stats.vercel.app/api` 很有可能会触发限制
+如果你将其托管在自己的 Vercel 服务商，那么你就不用担心任何事了。点击 deploy 按钮来开始
 
-NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we should be able to handle more than 5k requests and have no issues with downtime :D
+注意: 从 [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 开始，我们应该能够处理超过 5千 的请求，并且不会出现宕机问题 :D
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
  <summary>Guide on setting up Vercel</summary>
 
-1. Go to [vercel.com](https://vercel.com/)
-1. Click on `Log in`  
+1. 前往 [vercel.com](https://vercel.com/)
+1. 点击 `Log in`  
    ![](https://files.catbox.moe/tct1wg.png)
-1. Sign in with GitHub by pressing `Continue with GitHub`  
+1. 点击 `Continue with GitHub` 通过 GitHub 进行登录
    ![](https://files.catbox.moe/btd78j.jpeg)
-1. Sign into GitHub and allow access to all repositories, if prompted
-1. Fork this repo
-1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
-1. Select `Import Project`  
+1. 登录 GitHub 并允许访问所有存储库（如果系统提示）
+1. Fork 这个仓库
+1. 返回到你的 [Vercel dashboard](https://vercel.com/dashboard)
+1. 选择 `Import Project`  
    ![](https://files.catbox.moe/qckos0.png)
-1. Select `Import Git Repository`  
+1. 选择 `Import Git Repository`  
    ![](https://files.catbox.moe/pqub9q.png)
-1. Select root and keep everything as is, just add your environment variable named PAT_1 (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)
+1. 选择 root 并将所有内容保持不变，并且只需添加名为 PAT_1 的环境变量（如图所示），其中将包含一个个人访问令牌（PAT），你可以在[这里](https://github.com/settings/tokens/new)轻松创建（保留默认，并且只需要命名下，名字随便）
    ![](https://files.catbox.moe/caem5b.png)
-1. Click deploy, and you're good to go. See your domains to use the API!
+1. 点击 deploy, 这就完成了，查看你的域名就可使用 API 了！
 </details>
 
-## :sparkling_heart: Support the project
+## :sparkling_heart: 支持这个项目
 
-I open-source almost everything I can, and I try to reply to everyone needing help using these projects. Obviously,
-this takes time. You can use this service for free.
+我几乎将我所能的进行开源，并且我试着回复每个在使用这些项目时需要帮助的人。很明显，这需要时间，但你可以免费享受此服务。
 
-However, if you are using this project and happy with it or just want to encourage me to continue creating stuff, there are few ways you can do it :-
+然而, 如果你正在使用这个项目并且感觉挺开心或者只是想要支持我继续开发，这里有一些方法：
 
-- Giving proper credit when you use github-readme-stats on your readme, linking back to it :D
-- Starring and sharing the project :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - You can make one-time donations via PayPal. I'll probably buy a ~~coffee~~ tea. :tea:
+- 在你的 README 中使用 github-readme-stats 时，链接指向会这里 :D
+- Star 并 分享这个项目 :rocket:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - 你可以通过 PayPal 一次性捐款. 我可能会买一杯~~咖啡~~茶. :tea:
 
-Thanks! :heart:
+谢谢！ :heart:
 
 ---
 
-Contributions are welcomed! <3
+欢迎贡献！ <3
 
-Made with :heart: and JavaScript.
+用 :heart: 发电，用 JavaScript 制作。
