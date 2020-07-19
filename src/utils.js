@@ -1,4 +1,5 @@
 const axios = require("axios");
+const themes = require("../themes");
 
 const renderError = (message) => {
   return `
@@ -77,6 +78,40 @@ function FlexLayout({ items, gap, direction }) {
   });
 }
 
+// returns theme based colors with proper overrides and defaults
+function getCardColors({
+  title_color,
+  text_color,
+  icon_color,
+  bg_color,
+  theme,
+  fallbackTheme = "default",
+}) {
+  const defaultTheme = themes[fallbackTheme];
+  const selectedTheme = themes[theme] || defaultTheme;
+
+  // get the color provided by the user else the theme color
+  // finally if both colors are invalid fallback to default theme
+  const titleColor = fallbackColor(
+    title_color || selectedTheme.title_color,
+    "#" + defaultTheme.title_color
+  );
+  const iconColor = fallbackColor(
+    icon_color || selectedTheme.icon_color,
+    "#" + defaultTheme.icon_color
+  );
+  const textColor = fallbackColor(
+    text_color || selectedTheme.text_color,
+    "#" + defaultTheme.text_color
+  );
+  const bgColor = fallbackColor(
+    bg_color || selectedTheme.bg_color,
+    "#" + defaultTheme.bg_color
+  );
+
+  return { titleColor, iconColor, textColor, bgColor };
+}
+
 module.exports = {
   renderError,
   kFormatter,
@@ -86,4 +121,5 @@ module.exports = {
   parseBoolean,
   fallbackColor,
   FlexLayout,
+  getCardColors,
 };

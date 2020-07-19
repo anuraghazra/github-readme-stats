@@ -11,6 +11,7 @@ module.exports = async (req, res) => {
     icon_color,
     text_color,
     bg_color,
+    theme,
     show_owner,
   } = req.query;
 
@@ -32,6 +33,7 @@ module.exports = async (req, res) => {
       icon_color,
       text_color,
       bg_color,
+      theme,
       show_owner: parseBoolean(show_owner),
     })
   );

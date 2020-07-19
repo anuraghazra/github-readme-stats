@@ -1,4 +1,4 @@
-const { kFormatter, fallbackColor, FlexLayout } = require("../src/utils");
+const { kFormatter, getCardColors, FlexLayout } = require("../src/utils");
 const getStyles = require("./getStyles");
 const icons = require("./icons");
 
@@ -45,14 +45,19 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     icon_color,
     text_color,
     bg_color,
+    theme = "default",
   } = options;
 
   const lheight = parseInt(line_height);
 
-  const titleColor = fallbackColor(title_color, "#2f80ed");
-  const iconColor = fallbackColor(icon_color, "#4c71f2");
-  const textColor = fallbackColor(text_color, "#333");
-  const bgColor = fallbackColor(bg_color, "#FFFEFE");
+  // returns theme based colors with proper overrides and defaults
+  const { titleColor, textColor, iconColor, bgColor } = getCardColors({
+    title_color,
+    icon_color,
+    text_color,
+    bg_color,
+    theme,
+  });
   const isVertical = layout === 'vertical';
 
   // Meta data for creating text nodes with createTextNode function
@@ -136,7 +141,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     ? ""
     : `
     <rect 
-      data-testid="card-border"
+      data-testid="card-bg"
       x="0.5"
       y="0.5"
       width="${isVertical ? 224 : 494}"
