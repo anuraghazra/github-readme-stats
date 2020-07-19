@@ -33,6 +33,7 @@
 
 - [GitHub Stats Card](#github-stats-card)
 - [GitHub Extra Pins](#github-extra-pins)
+- [Themes](#themes)
 - [Customization](#customization)
 - [Deploy Yourself](#deploy-on-your-own-vercel-instance)
 
@@ -66,6 +67,22 @@ To enable icons, you can pass `show_icons=true` in the query param, like so:
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
+### Themes
+
+With inbuilt themes you can customize the look of the card without doing any [manual customization](#customization).
+
+Use `?theme=THEME_NAME` parameter like so :-
+
+```md
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+```
+
+#### All inbuilt themes :-
+
+dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
+
+Check out more themes at [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
+
 ### Customization
 
 You can customize the appearance of your `Stats Card` or `Repo Card` however you want with URL params.
@@ -84,12 +101,9 @@ Customization Options:
 | hide_border | boolean   | hides the stats card border          | false                | N/A                 |
 | show_owner  | boolean   | shows owner name in repo card        | N/A                  | false               |
 | show_icons  | boolean   | shows icons                          | false                | N/A                 |
+| theme       | string    | sets inbuilt theme                   | 'default'            | 'default_repocard'  |
 
-- You can also customize the cards to be compatible with dark mode
-
-```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
-```
+---
 
 ### Demo
 
@@ -105,6 +119,12 @@ Customization Options:
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["issues"]&show_icons=true)
 
+- Themes
+
+Choose from any of the [default themes](#themes)
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+
 - Customizing stats card
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
@@ -112,6 +132,8 @@ Customization Options:
 - Customizing repo card
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+
+---
 
 # GitHub Extra Pins
 
