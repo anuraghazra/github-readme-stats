@@ -49,7 +49,7 @@ _Note: Ranks are calculated based on user's stats, see [src/calculateRank.js](./
 
 To hide any specific stats, you can pass a query parameter `?hide=` with an array of items you wanna hide.
 
-> Options: `&hide=["stars","prs","issues","contribs"]`
+> Options: `&hide=["stars","commits","prs","issues","contribs"]`
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","prs"])
