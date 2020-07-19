@@ -69,7 +69,9 @@ To enable icons, you can pass `show_icons=true` in the query param, like so:
 
 ### Themes
 
-With inbuilt themes you can customize the look of the card without doing any [manual customization](#customization) with the `?theme=THEME_NAME` parameter like so :-
+With inbuilt themes you can customize the look of the card without doing any [manual customization](#customization).
+
+Use `?theme=THEME_NAME` parameter like so :-
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
@@ -101,6 +103,8 @@ Customization Options:
 | show_icons  | boolean   | shows icons                          | false                | N/A                 |
 | theme       | string    | sets inbuilt theme                   | 'default'            | 'default_repocard'  |
 
+---
+
 ### Demo
 
 - Default
@@ -128,6 +132,8 @@ Choose from any of the [default themes](#themes)
 - Customizing repo card
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+
+---
 
 # GitHub Extra Pins
 
