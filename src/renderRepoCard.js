@@ -22,6 +22,7 @@ const renderRepoCard = (repo, options = {}) => {
     text_color,
     bg_color,
     show_owner,
+    remove_emojis,
     theme = "default_repocard",
   } = options;
 

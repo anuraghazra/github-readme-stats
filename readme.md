@@ -106,6 +106,7 @@ Customization Options:
 | hide_border      | boolean   | hides the stats card border                    | false                | N/A                 | N/A                     |
 | show_owner       | boolean   | shows owner name in repo card                  | N/A                  | false               | N/A                     |
 | show_icons       | boolean   | shows icons                                    | false                | N/A                 | N/A                     |
+| remove_emojis | boolean   | remove emojis in repo card description | N/A                  | false               |
 | theme            | string    | sets inbuilt theme                             | 'default'            | 'default_repocard'  | 'default                |
 | cache_seconds    | number    | manually set custom cache control              | 1800                 | 1800                | '1800'                  |
 | hide_langs_below | number    | hide langs below certain threshold (lang card) | N/A                  | N/A                 | undefined               |
