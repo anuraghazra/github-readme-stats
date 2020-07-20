@@ -31,6 +31,7 @@
 - [GitHub 统计卡片](#GitHub-统计卡片)
 - [GitHub 更多置顶](#GitHub-更多置顶)
 - [主题](#主题)
+- [自定义](#自定义)
 - [自己部署](#自己部署)
 
 # GitHub 统计卡片
@@ -135,7 +136,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 GitHub 更多置顶 让你使用 README Profile，在个人页面中置顶多于 6 个 repo 。
 
-这波可以！你再也不用受限于最多 6 个置顶。
+这波可以！你再也不用受限于最多 6 个置顶了。
 
 ### 使用细则
 
@@ -205,7 +206,7 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 - 在你的 README 中使用 github-readme-stats 时，链接指向会这里 :D
 - Star 并 分享这个项目 :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - 你可以通过 PayPal 一次性捐款. 我多半会买一杯 ~~咖啡~~ 茶. :tea:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - 你可以通过 PayPal 一次性捐款. 我多半会买一杯 ~~咖啡~~ 茶。:tea:
 
 谢谢！ :heart:
 
