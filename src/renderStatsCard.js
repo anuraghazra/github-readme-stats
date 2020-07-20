@@ -111,6 +111,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_rank ? 0 : 150
   );
 
+  // Calculate the card width based on whether the rank is displayed or not
+  let width = hide_rank ? name.width : 495;
+
   // the better user's score the the rank will be closer to zero so
   // subtracting 100 to get the progress in 100%
   const progress = 100 - rank.score;
@@ -137,7 +140,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       data-testid="card-bg"
       x="0.5"
       y="0.5"
-      width="494"
+      width="${width - 1}"
       height="99%"
       rx="4.5"
       fill="${bgColor}"
@@ -170,7 +173,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   }
 
   return `
-    <svg width="495" height="${height}" viewBox="0 0 495 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
       <style>
         ${styles}
       </style>
