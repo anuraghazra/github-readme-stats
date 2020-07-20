@@ -31,7 +31,7 @@
 - [Tarjeta de estadísticas de GitHub](#tarjeta-de-estadísticas-de-github)
 - [Pins extra de GitHub](#pins-extra-de-github)
 - [Temas](#temas)
-- [Customización](#customización)
+- [Personalización](#personalización)
 - [Despliega por tu cuenta](#despliega-tu-propia-instancia-de-vercel)
 
 # Tarjeta de estadísticas de GitHub
@@ -66,7 +66,7 @@ Para habilitar los íconos, puedes utilizar `show_icons=true` como parámetro, d
 
 ### Temas
 
-Puedes customizar el aspecto de la tarjeta sin realizar ninguna [customización manual](#customización) con los temas incorporados.
+Puedes personalizar el aspecto de la tarjeta sin realizar ninguna [personalización manual](#personalización) con los temas incorporados.
 
 Utiliza el parámetro `?theme=THEME_NAME`, de esta manera:
 
@@ -80,13 +80,13 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="Github Readme Stat Themes" width="600px"/>
 
-Descubre más temas en el [archivo de configuración](./themes/index.js). También, **puedes contribuir añadiendo más temas** si lo deseas :D
+Puedes ver una vista previa de [todos los temas disponibles](./themes/README.md) o ver el [archivo de configuración](./themes/index.js) del tema y también **puedes contribuir con nuevos temas** si lo deseas :D
 
-### Customización
+### Personalización
 
-Puedes customizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que desees con los parámetros URL.
+Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que desees con los parámetros URL.
 
-Opciones de customización:
+Opciones de personalización:
 
 | Option      | type      | description                          | Stats Card (default) | Repo Card (default) |
 | ----------- | --------- | ------------------------------------ | -------------------- | ------------------- |
@@ -124,11 +124,11 @@ Elige uno de los [temas predeterminados](#temas)
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
-- Customizando la tarjeta de estadísticas
+- Personalizando la tarjeta de estadísticas
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- Customizando la tarjeta de repositorio
+- Personalizando la tarjeta de repositorio
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
@@ -154,7 +154,7 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
-Utiliza la variable [show_owner](#customización) para incluir el nombre de usuario del propietario del repositorio.
+Utiliza la variable [show_owner](#personalización) para incluir el nombre de usuario del propietario del repositorio.
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
