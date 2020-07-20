@@ -75,7 +75,7 @@ const renderRepoCard = (repo, options = {}) => {
   `;
 
   const svgForks =
-    totalForks > 0 &&
+    forkCount > 0 &&
     `
     <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
       ${icons.fork}
