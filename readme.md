@@ -203,7 +203,7 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 1. Select `Import Git Repository`  
    ![](https://files.catbox.moe/pqub9q.png)
 1. Select root and keep everything as is, just add your environment variable named PAT_1 (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)
-   ![](https://files.catbox.moe/caem5b.png)
+   ![](https://files.catbox.moe/0ez4g7.png)
 1. Click deploy, and you're good to go. See your domains to use the API!
 </details>
 
