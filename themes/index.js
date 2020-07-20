@@ -71,6 +71,12 @@ const themes = {
     text_color: "f8f8f2",
     bg_color: "282a36",
   },
+  oddextension: {
+    title_color: "EE0BF5",
+    icon_color: "145A32",
+    text_color: "641E16",
+    bg_color: "EAECEE",
+  },
 };
 
 module.exports = themes;
