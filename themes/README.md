@@ -8,18 +8,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=dark&show_icons=true
 ```
 
-## Table Of Content
-
-- [Stats](#stats)
-  - [Dark](#dark)
-  - [Light](#light)
-- [Repo Card](#repo-card)
-  - [Dark](#dark-1)
-  - [Light](#light-1)
-
 ## Stats
-
-### Dark
 
 > These themes work both for the Stats Card and Repo Card.
 
@@ -28,32 +17,18 @@ Use `?theme=THEME_NAME` parameter like so :-
 |     `dark` ![dark][dark]      |     `radical` ![radical][radical]      |           `merko` ![merko][merko]            |
 | `gruvbox` ![gruvbox][gruvbox] | `tokyonight` ![tokyonight][tokyonight] |        `onedark` ![onedark][onedark]         |
 |  `cobalt` ![cobalt][cobalt]   |  `synthwave` ![synthwave][synthwave]   | `highcontrast` ![highcontrast][highcontrast] |
-| `dracula` ![dracula][dracula] |      [Add your theme][add-theme]       |                                              |
-
-### Light
-
-|                                     |                             |     |
-| :---------------------------------: | :-------------------------: | :-: |
-| `default` <br/> ![default][default] | [Add your theme][add-theme] |     |
+| `dracula` ![dracula][dracula] |     `default` ![default][default]      |         [Add your theme][add-theme]          |
 
 ## Repo Card
 
-### Dark
-
 > These themes work both for the Stats Card and Repo Card.
 
-|                                        |                                                 |                                                       |
-| :------------------------------------: | :---------------------------------------------: | :---------------------------------------------------: |
-| `dark` ![dark_repocard][dark_repocard] |     `radical` ![radical][radical_repocard]      |           `merko` ![merko][merko_repocard]            |
-| `gruvbox` ![gruvbox][gruvbox_repocard] | `tokyonight` ![tokyonight][tokyonight_repocard] |        `onedark` ![onedark][onedark_repocard]         |
-|  `cobalt` ![cobalt][cobalt_repocard]   |  `synthwave` ![synthwave][synthwave_repocard]   | `highcontrast` ![highcontrast][highcontrast_repocard] |
-| `dracula` ![dracula][dracula_repocard] |           [Add your theme][add-theme]           |                                                       |
-
-### Light
-
-|                                                                |                             |     |
-| :------------------------------------------------------------: | :-------------------------: | :-: |
-| `default_repocard` <br/> ![default_repocard][default_repocard] | [Add your theme][add-theme] |     |
+|                                        |                                                          |                                                       |
+| :------------------------------------: | :------------------------------------------------------: | :---------------------------------------------------: |
+| `dark` ![dark_repocard][dark_repocard] |          `radical` ![radical][radical_repocard]          |           `merko` ![merko][merko_repocard]            |
+| `gruvbox` ![gruvbox][gruvbox_repocard] |     `tokyonight` ![tokyonight][tokyonight_repocard]      |        `onedark` ![onedark][onedark_repocard]         |
+|  `cobalt` ![cobalt][cobalt_repocard]   |       `synthwave` ![synthwave][synthwave_repocard]       | `highcontrast` ![highcontrast][highcontrast_repocard] |
+| `dracula` ![dracula][dracula_repocard] | `default_repocard` ![default_repocard][default_repocard] |              [Add your theme][add-theme]              |
 
 <!-- Repo Card Theme previews -->
 
