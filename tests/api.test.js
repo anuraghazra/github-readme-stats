@@ -3,7 +3,7 @@ const axios = require("axios");
 const MockAdapter = require("axios-mock-adapter");
 const api = require("../api/index");
 const renderStatsCard = require("../src/renderStatsCard");
-const { renderError } = require("../src/utils");
+const { renderError, CONSTANTS } = require("../src/utils");
 const calculateRank = require("../src/calculateRank");
 
 const stats = {
@@ -55,22 +55,29 @@ const error = {
 
 const mock = new MockAdapter(axios);
 
+const faker = (query, data) => {
+  const req = {
+    query: {
+      username: "anuraghazra",
+      ...query,
+    },
+  };
+  const res = {
+    setHeader: jest.fn(),
+    send: jest.fn(),
+  };
+  mock.onPost("https://api.github.com/graphql").reply(200, data);
+
+  return { req, res };
+};
+
 afterEach(() => {
   mock.reset();
 });
 
 describe("Test /api/", () => {
   it("should test the request", async () => {
-    const req = {
-      query: {
-        username: "anuraghazra",
-      },
-    };
-    const res = {
-      setHeader: jest.fn(),
-      send: jest.fn(),
-    };
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
+    const { req, res } = faker({}, data);
 
     await api(req, res);
 
@@ -79,16 +86,7 @@ describe("Test /api/", () => {
   });
 
   it("should render error card on error", async () => {
-    const req = {
-      query: {
-        username: "anuraghazra",
-      },
-    };
-    const res = {
-      setHeader: jest.fn(),
-      send: jest.fn(),
-    };
-    mock.onPost("https://api.github.com/graphql").reply(200, error);
+    const { req, res } = faker({}, error);
 
     await api(req, res);
 
@@ -97,8 +95,8 @@ describe("Test /api/", () => {
   });
 
   it("should get the query options", async () => {
-    const req = {
-      query: {
+    const { req, res } = faker(
+      {
         username: "anuraghazra",
         hide: `["issues","prs","contribs"]`,
         show_icons: true,
@@ -109,12 +107,8 @@ describe("Test /api/", () => {
         text_color: "fff",
         bg_color: "fff",
       },
-    };
-    const res = {
-      setHeader: jest.fn(),
-      send: jest.fn(),
-    };
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
+      data
+    );
 
     await api(req, res);
 
@@ -131,5 +125,60 @@ describe("Test /api/", () => {
         bg_color: "fff",
       })
     );
+  });
+
+  it("should have proper cache", async () => {
+    const { req, res } = faker({}, data);
+    mock.onPost("https://api.github.com/graphql").reply(200, data);
+
+    await api(req, res);
+
+    expect(res.setHeader.mock.calls).toEqual([
+      ["Content-Type", "image/svg+xml"],
+      ["Cache-Control", `public, max-age=${CONSTANTS.THIRTY_MINUTES}`],
+    ]);
+  });
+
+  it("should set proper cache", async () => {
+    const { req, res } = faker({ cache_seconds: 2000 }, data);
+    await api(req, res);
+
+    expect(res.setHeader.mock.calls).toEqual([
+      ["Content-Type", "image/svg+xml"],
+      ["Cache-Control", `public, max-age=${2000}`],
+    ]);
+  });
+
+  it("should set proper cache with clamped values", async () => {
+    {
+      let { req, res } = faker({ cache_seconds: 200000 }, data);
+      await api(req, res);
+
+      expect(res.setHeader.mock.calls).toEqual([
+        ["Content-Type", "image/svg+xml"],
+        ["Cache-Control", `public, max-age=${CONSTANTS.ONE_DAY}`],
+      ]);
+    }
+
+    // note i'm using block scoped vars
+    {
+      let { req, res } = faker({ cache_seconds: 0 }, data);
+      await api(req, res);
+
+      expect(res.setHeader.mock.calls).toEqual([
+        ["Content-Type", "image/svg+xml"],
+        ["Cache-Control", `public, max-age=${CONSTANTS.THIRTY_MINUTES}`],
+      ]);
+    }
+
+    {
+      let { req, res } = faker({ cache_seconds: -10000 }, data);
+      await api(req, res);
+
+      expect(res.setHeader.mock.calls).toEqual([
+        ["Content-Type", "image/svg+xml"],
+        ["Cache-Control", `public, max-age=${CONSTANTS.THIRTY_MINUTES}`],
+      ]);
+    }
   });
 });
