@@ -3,13 +3,13 @@ const themes = {
     title_color: "2f80ed",
     icon_color: "4c71f2",
     text_color: "333",
-    bg_color: "FFFEFE",
+    bg_color: "fffefe",
   },
   default_repocard: {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
     text_color: "333",
-    bg_color: "FFFEFE",
+    bg_color: "fffefe",
   },
   dark: {
     title_color: "fff",
@@ -72,10 +72,10 @@ const themes = {
     bg_color: "282a36",
   },
   oddextension: {
-    title_color: "EE0BF5",
-    icon_color: "145A32",
-    text_color: "641E16",
-    bg_color: "EAECEE",
+    title_color: "ee0bf5",
+    icon_color: "145a32",
+    text_color: "641e16",
+    bg_color: "eaecee",
   },
 };
 
