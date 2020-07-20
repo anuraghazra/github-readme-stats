@@ -111,8 +111,10 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_rank ? 0 : 150
   );
 
-  // Calculate the card width based on whether the rank is displayed or not
-  let width = hide_rank ? name.length * 5 : 495;
+  // Calculate the card width based on whether the rank and or title is displayed or not
+  let width = 495;
+  if (hide_rank) width = name.length * 2 + 295;
+  if (hide_rank && hide_title) width = 220;
 
   // the better user's score the the rank will be closer to zero so
   // subtracting 100 to get the progress in 100%
