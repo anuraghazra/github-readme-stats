@@ -84,7 +84,7 @@ Descubre más temas en el [archivo de configuración](./themes/index.js). Tambi�
 
 ### Customización
 
-Puedes customizar la el aspecto de tu `Stats Card` o `Repo Card` de la manera que desees con los parámetros URL.
+Puedes customizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que desees con los parámetros URL.
 
 Opciones de customización:
 
@@ -194,20 +194,20 @@ Nota: debido a esto [#58](https://github.com/anuraghazra/github-readme-stats/pul
    ![](https://files.catbox.moe/qckos0.png)
 1. Selecciona `Import Git Repository`  
    ![](https://files.catbox.moe/pqub9q.png)
-1. Selecciona "root" y matén todo como está, simplemente añade tu variable de entorno llamada PAT_1(como se muestra), la cual contendrá un token de acceso personal (PAT), el cual puedes crear fácilmente [aquí](https://github.com/settings/tokens/new) (mantén todo como está, simplemente asígnale un nombre, puede ser cualquiera que desees)
+1. Selecciona "root" y matén todo como está, simplemente añade tu variable de entorno llamada PAT_1 (como se muestra), la cual contendrá un token de acceso personal (PAT), el cual puedes crear fácilmente [aquí](https://github.com/settings/tokens/new) (mantén todo como está, simplemente asígnale un nombre, puede ser cualquiera que desees)
    ![](https://files.catbox.moe/caem5b.png)
 1. Clickea "Deploy" y ya está listo. ¡Ve tus dominios para usar la API!
 </details>
 
 ## :sparkling_heart: Apoya al proyecto
 
-Casi todos mis proyectos son código-abierto, he intento responder a todos los usuarios que necesiten ayuda con alguno de estos proyectos, Obviamente,
+Casi todos mis proyectos son código-abierto e intento responder a todos los usuarios que necesiten ayuda con alguno de estos proyectos, Obviamente,
 esto toma tiempo. Puedes usar este servicio gratis.
 
 No obstante, si estás utilizando este proyecto y estás feliz con él o simplemente quieres animarme a que siga creando cosas, aquí tienes algunas maneras de hacerlo:
 
 - Darme créditos cuando estés utilizando github-readme-stats en tu README, añadiendo un link a este repositorio :D
-- Dándole una estrella (starring) y compartiéndo el proyecto :rocket:
+- Dándole una estrella (starring) y compartiendo el proyecto :rocket:
 - [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - Puedes hacerme una única donación a través de PayPal. Probablemente me compraré un ~~café~~ té. :tea:
 
 ¡Gracias! :heart:
