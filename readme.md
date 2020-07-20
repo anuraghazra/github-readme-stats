@@ -25,6 +25,8 @@
   </p>
   <p align="center">
     <a href="readme_cn.md">简体中文</a>
+    ·
+    <a href="readme_es.md">Español</a>
   </p>
 </p>
 <p align="center">Loved the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
