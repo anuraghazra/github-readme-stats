@@ -59,4 +59,4 @@ Use `?theme=THEME_NAME` parameter like so :-
 [highcontrast]: https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=highcontrast&hide=["contribs","prs"]
 [dracula]: https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=dracula&hide=["contribs","prs"]
 
-[add-theme]: https://github.com/anuraghazra/github-readme-stats/blob/master/themes/index.js
+[add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
