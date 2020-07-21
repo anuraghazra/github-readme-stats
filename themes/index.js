@@ -1,3 +1,25 @@
+let randTheme = [
+  "default",
+  "default_repocard",
+  "dark",
+  "radical",
+  "merco",
+  "gruvbox",
+  "tokyonight",
+  "onedark",
+  "cobalt",
+  "syntwave",
+  "highcontrast",
+  "dracula",
+  "monokai",
+];
+
+function randomizeTheme() {
+  shuffel(randTheme);
+  console.log(randTheme[0]);
+  return randTheme[0];
+}
+
 const themes = {
   default: {
     title_color: "2f80ed",
@@ -76,6 +98,12 @@ const themes = {
     icon_color: "ffd866",
     text_color: "71d3e2",
     bg_color: "2c292d",
+  },
+  random: {
+    title_color: randomizeTheme().title_color,
+    icon_color: randomizeTheme().iconcolor,
+    text_color: randomizeTheme().text_color,
+    bg_color: randomizeTheme().bg_color,
   },
 };
 
