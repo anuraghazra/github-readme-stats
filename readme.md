@@ -35,6 +35,7 @@
 
 - [GitHub Stats Card](#github-stats-card)
 - [GitHub Extra Pins](#github-extra-pins)
+- [Top Languages Card](#top-languages-card)
 - [Themes](#themes)
 - [Customization](#customization)
 - [Deploy Yourself](#deploy-on-your-own-vercel-instance)
@@ -93,26 +94,79 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 Customization Options:
 
-| Option        | type      | description                          | Stats Card (default) | Repo Card (default) |
-| ------------- | --------- | ------------------------------------ | -------------------- | ------------------- |
-| title_color   | hex color | title color                          | 2f80ed               | 2f80ed              |
-| text_color    | hex color | body color                           | 333                  | 333                 |
-| icon_color    | hex color | icon color                           | 4c71f2               | 586069              |
-| bg_color      | hex color | card bg color                        | FFFEFE               | FFFEFE              |
-| line_height   | number    | control the line-height between text | 30                   | N/A                 |
-| hide_rank     | boolean   | hides the ranking                    | false                | N/A                 |
-| hide_title    | boolean   | hides the stats title                | false                | N/A                 |
-| hide_border   | boolean   | hides the stats card border          | false                | N/A                 |
-| show_owner    | boolean   | shows owner name in repo card        | N/A                  | false               |
-| show_icons    | boolean   | shows icons                          | false                | N/A                 |
-| theme         | string    | sets inbuilt theme                   | 'default'            | 'default_repocard'  |
-| cache_seconds | number    | manually set custom cache control    | 1800                 | 1800                |
+| Option           | type      | description                                    | Stats Card (default) | Repo Card (default) | Top Lang Card (default) |
+| ---------------- | --------- | ---------------------------------------------- | -------------------- | ------------------- | ----------------------- |
+| title_color      | hex color | title color                                    | 2f80ed               | 2f80ed              | 2f80ed                  |
+| text_color       | hex color | body color                                     | 333                  | 333                 | 333                     |
+| icon_color       | hex color | icon color                                     | 4c71f2               | 586069              | 586069                  |
+| bg_color         | hex color | card bg color                                  | FFFEFE               | FFFEFE              | FFFEFE                  |
+| line_height      | number    | control the line-height between text           | 30                   | N/A                 | N/A                     |
+| hide_rank        | boolean   | hides the ranking                              | false                | N/A                 | N/A                     |
+| hide_title       | boolean   | hides the stats title                          | false                | N/A                 | false                   |
+| hide_border      | boolean   | hides the stats card border                    | false                | N/A                 | N/A                     |
+| show_owner       | boolean   | shows owner name in repo card                  | N/A                  | false               | N/A                     |
+| show_icons       | boolean   | shows icons                                    | false                | N/A                 | N/A                     |
+| theme            | string    | sets inbuilt theme                             | 'default'            | 'default_repocard'  | 'default                |
+| cache_seconds    | number    | manually set custom cache control              | 1800                 | 1800                | '1800'                  |
+| hide_langs_below | number    | hide langs below certain threshold (lang card) | N/A                  | N/A                 | undefined               |
 
 > Note on cache: Repo cards have default cache of 30mins (1800 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 30min and maximum of 24hours
 
----
+# GitHub Extra Pins
+
+GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
+
+Yey! You are no longer limited to 6 pinned repositories.
+
+### Usage
+
+Copy-paste this code into your readme and change the links.
+
+Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
+
+```md
+[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+```
 
 ### Demo
+
+[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+
+Use [show_owner](#customization) variable to include the repo's owner username
+
+[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+
+# Top Languages Card
+
+Top languages card shows github user's top langauges which has been mostly used.
+
+_NOTE: Top languages does not indicate my skill level or something like that, it's a github metric of which languages i have the most code on github, it's a new feature of github-readme-stats_
+
+### Usage
+
+Copy-paste this code into your readme and change the links.
+
+Endpoint: `api/top-langs?username=anuraghazra`
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Hide languages below certain threshold
+
+You can use `?hide_langs_below=NUMBER` parameter to hide languages below a specified threshold percentage.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_langs_below=1)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Demo
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+---
+
+### All Demos
 
 - Default
 
@@ -140,31 +194,11 @@ Choose from any of the [default themes](#themes)
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
+- Top languages
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
 ---
-
-# GitHub Extra Pins
-
-GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
-
-Yey! You are no longer limited to 6 pinned repositories.
-
-### Usage
-
-Copy-paste this code into your readme and change the links.
-
-Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
-
-```md
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
-```
-
-### Demo
-
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
-
-Use [show_owner](#customization) variable to include the repo's owner username
-
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ### Quick Tip (Align The Repo Cards)
 
