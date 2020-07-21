@@ -72,10 +72,10 @@ const themes = {
     bg_color: "282a36",
   },
   monokai: {
-    title_color: "a9dc76",
-    icon_color: "ffd866",
-    text_color: "71d3e2",
-    bg_color: "2c292d",
+    title_color: "eb1f6a",
+    icon_color: "e28905",
+    text_color: "f1f1eb",
+    bg_color: "272822",
   },
 };
 
