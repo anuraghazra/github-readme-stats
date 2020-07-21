@@ -25,6 +25,8 @@
   </p>
   <p align="center">
     <a href="readme_cn.md">简体中文</a>
+    ·
+    <a href="readme_es.md">Español</a>
   </p>
 </p>
 <p align="center">Loved the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
@@ -81,7 +83,9 @@ Use `?theme=THEME_NAME` parameter like so :-
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
-Check out more themes at [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
+<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="Github Readme Stat Themes" width="600px"/>
+
+You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
 
 ### Customization
 
@@ -89,19 +93,22 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 Customization Options:
 
-| Option      | type      | description                          | Stats Card (default) | Repo Card (default) |
-| ----------- | --------- | ------------------------------------ | -------------------- | ------------------- |
-| title_color | hex color | title color                          | 2f80ed               | 2f80ed              |
-| text_color  | hex color | body color                           | 333                  | 333                 |
-| icon_color  | hex color | icon color                           | 4c71f2               | 586069              |
-| bg_color    | hex color | card bg color                        | FFFEFE               | FFFEFE              |
-| line_height | number    | control the line-height between text | 30                   | N/A                 |
-| hide_rank   | boolean   | hides the ranking                    | false                | N/A                 |
-| hide_title  | boolean   | hides the stats title                | false                | N/A                 |
-| hide_border | boolean   | hides the stats card border          | false                | N/A                 |
-| show_owner  | boolean   | shows owner name in repo card        | N/A                  | false               |
-| show_icons  | boolean   | shows icons                          | false                | N/A                 |
-| theme       | string    | sets inbuilt theme                   | 'default'            | 'default_repocard'  |
+| Option        | type      | description                          | Stats Card (default) | Repo Card (default) |
+| ------------- | --------- | ------------------------------------ | -------------------- | ------------------- |
+| title_color   | hex color | title color                          | 2f80ed               | 2f80ed              |
+| text_color    | hex color | body color                           | 333                  | 333                 |
+| icon_color    | hex color | icon color                           | 4c71f2               | 586069              |
+| bg_color      | hex color | card bg color                        | FFFEFE               | FFFEFE              |
+| line_height   | number    | control the line-height between text | 30                   | N/A                 |
+| hide_rank     | boolean   | hides the ranking                    | false                | N/A                 |
+| hide_title    | boolean   | hides the stats title                | false                | N/A                 |
+| hide_border   | boolean   | hides the stats card border          | false                | N/A                 |
+| show_owner    | boolean   | shows owner name in repo card        | N/A                  | false               |
+| show_icons    | boolean   | shows icons                          | false                | N/A                 |
+| theme         | string    | sets inbuilt theme                   | 'default'            | 'default_repocard'  |
+| cache_seconds | number    | manually set custom cache control    | 1800                 | 1800                |
+
+> Note on cache: Repo cards have default cache of 30mins (1800 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 30min and maximum of 24hours
 
 ---
 

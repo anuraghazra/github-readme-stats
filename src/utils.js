@@ -44,6 +44,10 @@ function parseBoolean(value) {
   }
 }
 
+function clampValue(number, min, max) {
+  return Math.max(min, Math.min(number, max));
+}
+
 function fallbackColor(color, fallbackColor) {
   return (isValidHexColor(color) && `#${color}`) || fallbackColor;
 }
@@ -112,6 +116,12 @@ function getCardColors({
   return { titleColor, iconColor, textColor, bgColor };
 }
 
+const CONSTANTS = {
+  THIRTY_MINUTES: 1800,
+  TWO_HOURS: 7200,
+  ONE_DAY: 86400,
+};
+
 module.exports = {
   renderError,
   kFormatter,
@@ -122,4 +132,6 @@ module.exports = {
   fallbackColor,
   FlexLayout,
   getCardColors,
+  clampValue,
+  CONSTANTS,
 };

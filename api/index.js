@@ -1,5 +1,10 @@
 require("dotenv").config();
-const { renderError, parseBoolean } = require("../src/utils");
+const {
+  renderError,
+  parseBoolean,
+  clampValue,
+  CONSTANTS,
+} = require("../src/utils");
 const fetchStats = require("../src/fetchStats");
 const renderStatsCard = require("../src/renderStatsCard");
 
@@ -17,10 +22,10 @@ module.exports = async (req, res) => {
     text_color,
     bg_color,
     theme,
+    cache_seconds,
   } = req.query;
   let stats;
 
-  res.setHeader("Cache-Control", "public, max-age=1800");
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
@@ -28,6 +33,14 @@ module.exports = async (req, res) => {
   } catch (err) {
     return res.send(renderError(err.message));
   }
+
+  const cacheSeconds = clampValue(
+    parseInt(cache_seconds || CONSTANTS.THIRTY_MINUTES, 10),
+    CONSTANTS.THIRTY_MINUTES,
+    CONSTANTS.ONE_DAY
+  );
+
+  res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
   res.send(
     renderStatsCard(stats, {
