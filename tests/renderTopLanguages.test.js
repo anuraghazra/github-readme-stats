@@ -58,6 +58,20 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
+  it("should hide_langs_below", () => {
+    document.body.innerHTML = renderTopLanguages(langs, {
+      hide_langs_below: 34,
+    });
+
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
+      "HTML"
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toBeInTheDocument(
+      "javascript"
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[2]).not.toBeDefined();
+  });
+
   it("should resize the height correctly depending on langs", () => {
     document.body.innerHTML = renderTopLanguages(langs, {});
     expect(document.querySelector("svg")).toHaveAttribute("height", "205");

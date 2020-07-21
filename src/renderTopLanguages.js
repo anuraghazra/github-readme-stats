@@ -30,14 +30,21 @@ const renderTopLanguages = (topLangs, options = {}) => {
     title_color,
     text_color,
     bg_color,
+    hide_langs_below,
     theme,
   } = options;
 
-  const langs = Object.values(topLangs);
+  let langs = Object.values(topLangs);
 
   const totalSize = langs.reduce((acc, curr) => {
     return acc + curr.size;
   }, 0);
+
+  // hide langs
+  langs = langs.filter((lang) => {
+    if (!hide_langs_below) return true;
+    return (lang.size / totalSize) * 100 > hide_langs_below;
+  });
 
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, bgColor } = getCardColors({
