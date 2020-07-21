@@ -18,6 +18,7 @@ async function randomizeTheme() {
   const randomTheme = await arrThemes[
     Math.floor(Math.random() * arrThemes.length)
   ];
+  console.log(randomTheme);
   return randomTheme;
 }
 
