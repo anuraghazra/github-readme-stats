@@ -149,6 +149,29 @@ describe("Test renderRepoCard", () => {
     );
   });
 
+  it("should render with all the themes", () => {
+    Object.keys(themes).forEach((name) => {
+      document.body.innerHTML = renderRepoCard(data_repo.repository, {
+        theme: name,
+      });
+
+      const styleTag = document.querySelector("style");
+      const stylesObject = cssToObject(styleTag.innerHTML);
+
+      const headerClassStyles = stylesObject[".header"];
+      const descClassStyles = stylesObject[".description"];
+      const iconClassStyles = stylesObject[".icon"];
+
+      expect(headerClassStyles.fill).toBe(`#${themes[name].title_color}`);
+      expect(descClassStyles.fill).toBe(`#${themes[name].text_color}`);
+      expect(iconClassStyles.fill).toBe(`#${themes[name].icon_color}`);
+      expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+        "fill",
+        `#${themes[name].bg_color}`
+      );
+    });
+  });
+
   it("should render custom colors with themes", () => {
     document.body.innerHTML = renderRepoCard(data_repo.repository, {
       title_color: "5a0",
