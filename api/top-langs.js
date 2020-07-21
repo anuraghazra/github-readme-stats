@@ -1,11 +1,17 @@
 require("dotenv").config();
-const { renderError, clampValue, CONSTANTS } = require("../src/utils");
+const {
+  renderError,
+  clampValue,
+  parseBoolean,
+  CONSTANTS,
+} = require("../src/utils");
 const fetchTopLanguages = require("../src/fetchTopLanguages");
 const renderTopLanguages = require("../src/renderTopLanguages");
 
 module.exports = async (req, res) => {
   const {
     username,
+    hide_title,
     card_width,
     title_color,
     text_color,
@@ -34,6 +40,7 @@ module.exports = async (req, res) => {
   res.send(
     renderTopLanguages(topLangs, {
       theme,
+      hide_title: parseBoolean(hide_title),
       card_width: parseInt(card_width, 10),
       title_color,
       text_color,
