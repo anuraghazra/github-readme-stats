@@ -77,6 +77,18 @@ const themes = {
     text_color: "6e93b5",
     bg_color: "172f45",
   },
+  rgbasic: {
+    title_color: "da291c",
+    icon_color: "53a567",
+    text_color: "56a8cb",
+    bg_color: "000000",
+  },
+  greys: {
+    title_color: "111111",
+    icon_color: "656565",
+    text_color: "373737",
+    bg_color: "999999",
+  },
 };
 
 module.exports = themes;
