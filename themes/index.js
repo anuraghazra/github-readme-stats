@@ -1,4 +1,4 @@
-let randTheme = [
+let arrThemes = [
   "default",
   "default_repocard",
   "dark",
@@ -14,10 +14,11 @@ let randTheme = [
   "monokai",
 ];
 
-function randomizeTheme() {
-  shuffel(randTheme);
-  console.log(randTheme[0]);
-  return randTheme[0];
+async function randomizeTheme() {
+  const randomTheme = await arrThemes[
+    Math.floor(Math.random() * arrThemes.length)
+  ];
+  return randomTheme;
 }
 
 const themes = {
@@ -100,10 +101,10 @@ const themes = {
     bg_color: "2c292d",
   },
   random: {
-    title_color: randomizeTheme().title_color,
-    icon_color: randomizeTheme().iconcolor,
-    text_color: randomizeTheme().text_color,
-    bg_color: randomizeTheme().bg_color,
+    title_color: await randomizeTheme().title_color,
+    icon_color: await randomizeTheme().iconcolor,
+    text_color: await randomizeTheme().text_color,
+    bg_color: await randomizeTheme().bg_color,
   },
 };
 
