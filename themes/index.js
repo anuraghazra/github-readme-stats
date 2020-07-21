@@ -1,27 +1,3 @@
-let arrThemes = [
-  "default",
-  "default_repocard",
-  "dark",
-  "radical",
-  "merco",
-  "gruvbox",
-  "tokyonight",
-  "onedark",
-  "cobalt",
-  "syntwave",
-  "highcontrast",
-  "dracula",
-  "monokai",
-];
-
-async function randomizeTheme() {
-  const randomTheme = await arrThemes[
-    Math.floor(Math.random() * arrThemes.length)
-  ];
-  console.log(randomTheme);
-  return randomTheme;
-}
-
 const themes = {
   default: {
     title_color: "2f80ed",
@@ -100,12 +76,6 @@ const themes = {
     icon_color: "ffd866",
     text_color: "71d3e2",
     bg_color: "2c292d",
-  },
-  random: {
-    title_color: await randomizeTheme().title_color,
-    icon_color: await randomizeTheme().iconcolor,
-    text_color: await randomizeTheme().text_color,
-    bg_color: await randomizeTheme().bg_color,
   },
 };
 
