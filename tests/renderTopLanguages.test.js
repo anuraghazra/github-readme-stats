@@ -111,11 +111,11 @@ describe("Test renderTopLanguages", () => {
 
   it("should hide_border", () => {
     document.body.innerHTML = renderTopLanguages(langs, { hide_border: false });
-    expect(queryByTestId(document.body, "card-bg")).toBeInTheDocument();
+    expect(document.querySelector("rect")).toHaveAttribute("stroke", "#E4E2E2")
 
     // Lets hide now
     document.body.innerHTML = renderTopLanguages(langs, { hide_border: true });
-    expect(queryByTestId(document.body, "card-bg")).not.toBeInTheDocument();
+    expect(document.querySelector("rect")).toHaveAttribute("stroke", "#FFFFFF")
   });
 
   it("should render with custom width set", () => {
