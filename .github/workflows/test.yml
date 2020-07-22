@@ -36,5 +36,4 @@ jobs:
           npm run test
 
       - name: Code Coverage
-        uses: actions/checkout@master
         uses: codecov/codecov-action@v1
