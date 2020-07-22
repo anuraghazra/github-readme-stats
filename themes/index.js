@@ -78,9 +78,9 @@ const themes = {
     bg_color: "172f45",
   },
   pythonice:{
-    title_color: "4B8BBE",
-    icon_color: "FFD43B",
-    text_color: "646464",
+    title_color: "2a87d2",
+    icon_color: "fdd030",
+    text_color: "525252",
     bg_color: "fff",
   }
 };
