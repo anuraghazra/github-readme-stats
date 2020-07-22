@@ -34,6 +34,22 @@ const renderRepoCard = (repo, options = {}) => {
   const shiftText = langName.length > 15 ? 0 : 30;
 
   let desc = description || "No description provided";
+
+  const emojiRegex = /:\w+:/gm;
+  if (remove_emojis) {
+    desc = desc.replace(emojiRegex, '');
+  } else {
+    const toEmoji = require("emoji-name-map");
+    for (const emoji of (desc.match(emojiRegex) || [])) {
+      const emojiChar = toEmoji.get(emoji);
+      if (emojiChar === undefined) {
+        desc = desc.replace(emoji, '');
+      } else {
+        desc = desc.replace(emoji, emojiChar);
+      }
+    }
+  }
+
   if (desc.length > 55) {
     desc = `${description.slice(0, 55)}..`;
   }

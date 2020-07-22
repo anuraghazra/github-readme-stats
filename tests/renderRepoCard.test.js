@@ -73,6 +73,49 @@ describe("Test renderRepoCard", () => {
     );
   });
 
+  it("should parse emojis", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      description:
+        "This is a text with a :poop: poo emoji",
+    });
+
+
+    // poop emoji may not show in all editors but it's there between "a" and "poo"
+    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
+      "This is a text with a 💩 poo emoji"
+    );
+
+    // should remove emojis if remove_emojis set
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      description:
+        "This is a text with a :poop: poo emoji",
+    }, {
+      remove_emojis: true
+    });
+
+    // poop emoji not between "a" and "poo"
+    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
+      "This is a text with a poo emoji"
+    );
+  });
+
+  it("should remove emojis if remove_emojis option is set", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      description:
+        "This is a text with a :poop: poo emoji",
+    }, {
+      remove_emojis: true
+    });
+
+    // poop emoji not between "a" and "poo"
+    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
+      "This is a text with a poo emoji"
+    );
+  });
+
   it("should shift the text position depending on language length", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
