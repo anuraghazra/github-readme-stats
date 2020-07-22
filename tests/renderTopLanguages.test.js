@@ -72,6 +72,29 @@ describe("Test renderTopLanguages", () => {
     expect(queryAllByTestId(document.body, "lang-name")[2]).not.toBeDefined();
   });
 
+  it("should hide languages when hide_langs is passed", () => {
+    document.body.innerHTML = renderTopLanguages(langs, {
+      hide_langs: "HTML",
+    });
+    expect(document.querySelector(`.lang-item-HTML`)).toBe(null);
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
+      "javascript"
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toBeInTheDocument(
+      "css"
+    );
+
+    // multiple languages passed
+    document.body.innerHTML = renderTopLanguages(langs, {
+      hide_langs: "HTML,css",
+    });
+    expect(document.querySelector(`.lang-item-HTML`)).toBe(null);
+    expect(document.querySelector(`.lang-item-css`)).toBe(null);
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
+      "javascript"
+    );
+  });
+
   it("should resize the height correctly depending on langs", () => {
     document.body.innerHTML = renderTopLanguages(langs, {});
     expect(document.querySelector("svg")).toHaveAttribute("height", "205");

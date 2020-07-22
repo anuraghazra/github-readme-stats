@@ -12,6 +12,7 @@ module.exports = async (req, res) => {
   const {
     username,
     hide_langs_below,
+    hide_langs,
     hide_title,
     card_width,
     title_color,
@@ -44,6 +45,7 @@ module.exports = async (req, res) => {
       hide_title: parseBoolean(hide_title),
       card_width: parseInt(card_width, 10),
       hide_langs_below: parseFloat(hide_langs_below, 10),
+      hide_langs,
       title_color,
       text_color,
       bg_color,
