@@ -19,9 +19,9 @@
   <p align="center">
     <a href="#ejemplo">Ve un ejemplo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues?q=is%3Aissue+is%3Aopen+label%3Abug">Reporta un bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Reporta un bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues?q=is%3Aissue+is%3Aopen+label%3Afeature">Solicita una mejora</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicita una mejora</a>
   </p>
 </p>
 <p align="center">¿Te gusta este proyecto? ¡Por favor considera <a href="https://www.paypal.me/anuraghazra">donar</a> para ayudar a mejorarlo!

@@ -19,9 +19,9 @@
   <p align="center">
     <a href="#demo">查看 Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues?q=is%3Aissue+is%3Aopen+label%3Abug">报告 bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">报告 bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues?q=is%3Aissue+is%3Aopen+label%3Afeature">请求增加功能</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">请求增加功能</a>
   </p>
 </p>
 <p align="center">喜欢这个项目？请考虑<a href="https://www.paypal.me/anuraghazra">捐赠</a>来帮助它完善！
