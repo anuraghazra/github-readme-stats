@@ -16,6 +16,7 @@ module.exports = async (req, res) => {
     hide_border,
     hide_rank,
     show_icons,
+    count_private,
     line_height,
     title_color,
     icon_color,
@@ -29,7 +30,7 @@ module.exports = async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    stats = await fetchStats(username);
+    stats = await fetchStats(username, count_private);
   } catch (err) {
     return res.send(renderError(err.message));
   }
@@ -46,6 +47,7 @@ module.exports = async (req, res) => {
     renderStatsCard(stats, {
       hide: JSON.parse(hide || "[]"),
       show_icons: parseBoolean(show_icons),
+      count_private: parseBoolean(count_private),
       hide_title: parseBoolean(hide_title),
       hide_border: parseBoolean(hide_border),
       hide_rank: parseBoolean(hide_rank),

@@ -13,6 +13,7 @@ const fetcher = (variables, token) => {
           login
           contributionsCollection {
             totalCommitContributions
+            restrictedContributionsCount
           }
           repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
             totalCount
@@ -45,7 +46,7 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchStats(username) {
+async function fetchStats(username, count_private) {
   if (!username) throw Error("Invalid username");
 
   const stats = {
@@ -66,10 +67,11 @@ async function fetchStats(username) {
   }
 
   const user = res.data.data.user;
+  const contributionCount = user.contributionsCollection;
 
   stats.name = user.name || user.login;
   stats.totalIssues = user.issues.totalCount;
-  stats.totalCommits = user.contributionsCollection.totalCommitContributions;
+  stats.totalCommits = count_private ? contributionCount.totalCommitContributions + contributionCount.restrictedContributionsCount : contributionCount.totalCommitContributions;
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
