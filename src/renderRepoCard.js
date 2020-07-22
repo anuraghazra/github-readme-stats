@@ -50,22 +50,12 @@ const renderRepoCard = (repo, options = {}) => {
   const totalStars = kFormatter(stargazers.totalCount);
   const totalForks = kFormatter(forkCount);
 
-  const templateBadge = `
-    <g data-testid="template-badge" class="badge" transform="translate(320, 24)">
-      <rect rx="10" ry="20" width="62" height="20" stroke="${textColor}" stroke-width="1">
-      </rect>
-    <text x="31" y="11" alignment-baseline="middle" text-anchor="middle" font-weight="600" font-size="12" fill="${textColor}">Template</text>
-    </g>
-  `
-
-  const archiveBadge = isArchived
-    ? `
-    <g data-testid="archive-badge" class="badge" transform="translate(320, 38)">
-      <rect stroke="${textColor}" stroke-width="1" width="70" height="20" x="-12" y="-14" ry="10" rx="10"></rect>
-      <text fill="${textColor}">Archived</text>
-    </g>
-    `
-    : "";
+  const getBadgeSVGstring = (str) => `
+  <g data-testid="archive-badge" class="badge" transform="translate(320, 38)">
+    <rect stroke="${textColor}" stroke-width="1" width="70" height="20" x="-12" y="-14" ry="10" rx="10"></rect>
+    <text fill="${textColor}">${str}</text>
+  </g>
+  `;
 
   const svgLanguage = `
     <g transform="translate(30, 100)">
@@ -110,7 +100,7 @@ const renderRepoCard = (repo, options = {}) => {
 
       <text x="50" y="38" class="header">${header}</text>
 
-      ${isTemplate ? templateBadge: archiveBadge}
+      ${isTemplate ? getBadgeSVGstring("Template"): isArchived ? getBadgeSVGstring("Archived"): ""}
       
       <text class="description" x="25" y="70">${encodeHTML(desc)}</text>
       
