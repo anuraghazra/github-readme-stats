@@ -156,6 +156,70 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
+# 热门语言卡片
+
+热门语言卡片显示了Github用户常用的编程语言。
+
+*注意：热门语言并不表示我的技能水平或类似的水平，它是用户在Github上拥有最多代码的一项指标，它是github-readme-stats的新功能*
+
+### 使用细则
+
+将此代码复制粘贴到您的`README.md`文件中，并改变链接。
+
+Endpoint: `api/top-langs?username=anuraghazra`
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### 隐藏低于特定阈值的语言
+
+可以使用`?hide_langs_below=NUMBER`参数来隐藏低于指定百分比阈值的语言。
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_langs_below=1)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Demo
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+---
+
+### 全部Demo
+
+- Default
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+
+- Hiding specific stats
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","issues"])
+
+- Showing icons
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["issues"]&show_icons=true)
+
+- Themes
+
+Choose from any of the [default themes](#themes)
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+
+- Customizing stats card
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+
+- Customizing repo card
+
+![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+
+- Top languages
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+---
+
 ### 提示 (对齐 Repo 卡片)
 
 你通常无法将图片靠边显示。为此，您可以使用以下方法：
