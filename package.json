@@ -4,7 +4,7 @@
   "description": "Dynamically generate stats for your github readmes",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
   "author": "Anurag Hazra",
