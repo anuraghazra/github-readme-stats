@@ -52,9 +52,9 @@ const renderRepoCard = (repo, options = {}) => {
 
   const templateBadge = `
     <g data-testid="template-badge" class="template-badge" transform="translate(320, 24)">
-      <rect rx="10" ry="20" width="62" height="20" stroke="#e1e4e8" stroke-width="1">
+      <rect rx="10" ry="20" width="62" height="20" stroke="${textColor}" stroke-width="1">
       </rect>
-    <text x="31" y="11" alignment-baseline="middle" text-anchor="middle" font-weight="600" font-size="12" fill="#586069" font-family="400 13px 'Segoe UI', Ubuntu, Sans-Serif">Template</text>
+    <text x="31" y="11" alignment-baseline="middle" text-anchor="middle" font-weight="600" font-size="12" fill="${textColor}">Template</text>
     </g>
   `
 
