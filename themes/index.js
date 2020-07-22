@@ -77,6 +77,12 @@ const themes = {
     text_color: "6e93b5",
     bg_color: "172f45",
   },
+  pythonice:{
+    title_color: "4B8BBE",
+    icon_color: "FFD43B",
+    text_color: "646464",
+    bg_color: "fff",
+  }
 };
 
 module.exports = themes;
