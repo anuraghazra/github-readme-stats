@@ -261,7 +261,7 @@ describe("Test renderRepoCard", () => {
       ...data_repo.repository,
       isTemplate: true
     });
-    expect(queryByTestId(document.body, "template")).toBeDefined();
+    expect(queryByTestId(document.body, "template-badge")).toBeDefined();
   });
 
   it("should not render template", () => {
@@ -269,6 +269,6 @@ describe("Test renderRepoCard", () => {
       ...data_repo.repository,
       isTemplate: false
     });
-    expect(queryByTestId(document.body, "template")).toBeNull();
+    expect(queryByTestId(document.body, "template-badge")).toBeNull();
   });
 });

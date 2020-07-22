@@ -50,8 +50,8 @@ const renderRepoCard = (repo, options = {}) => {
   const totalStars = kFormatter(stargazers.totalCount);
   const totalForks = kFormatter(forkCount);
 
-  const template = `
-    <g data-testid="template" transform="translate(320, 24)">
+  const templateBadge = `
+    <g data-testid="template-badge" transform="translate(320, 24)">
       <rect rx="10" ry="20" width="60" height="20" fill="rgb(255, 255, 255, 0)" stroke="#e1e4e8" >
       </rect>
     <text x="30" y="11" alignment-baseline="middle" text-anchor="middle" font-weight="600" font-size="12" fill="#586069" font-family="400 13px 'Segoe UI', Ubuntu, Sans-Serif">Template</text>
@@ -108,11 +108,9 @@ const renderRepoCard = (repo, options = {}) => {
         ${icons.contribs}
       </svg>
 
-      ${archiveBadge}
-
       <text x="50" y="38" class="header">${header}</text>
 
-      ${isTemplate ? template: ""}
+      ${isTemplate ? templateBadge: archiveBadge}
       
       <text class="description" x="25" y="70">${encodeHTML(desc)}</text>
       
