@@ -51,10 +51,10 @@ const renderRepoCard = (repo, options = {}) => {
   const totalForks = kFormatter(forkCount);
 
   const templateBadge = `
-    <g data-testid="template-badge" transform="translate(320, 24)">
-      <rect rx="10" ry="20" width="60" height="20" fill="rgb(255, 255, 255, 0)" stroke="#e1e4e8" >
+    <g data-testid="template-badge" class="template-badge" transform="translate(320, 24)">
+      <rect rx="10" ry="20" width="62" height="20" stroke="#e1e4e8" stroke-width="1">
       </rect>
-    <text x="30" y="11" alignment-baseline="middle" text-anchor="middle" font-weight="600" font-size="12" fill="#586069" font-family="400 13px 'Segoe UI', Ubuntu, Sans-Serif">Template</text>
+    <text x="31" y="11" alignment-baseline="middle" text-anchor="middle" font-weight="600" font-size="12" fill="#586069" font-family="400 13px 'Segoe UI', Ubuntu, Sans-Serif">Template</text>
     </g>
   `
 
@@ -100,7 +100,7 @@ const renderRepoCard = (repo, options = {}) => {
       .template { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; font-weight: 500 }
       .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
       .icon { fill: ${iconColor} }
-      .archive-badge { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; }
+      .archive-badge, .template-badge { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; }
       .archive-badge rect { opacity: 0.2 }
       </style>
       <rect data-testid="card-bg" x="0.5" y="0.5" width="399" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
