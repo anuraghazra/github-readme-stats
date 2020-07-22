@@ -26,6 +26,7 @@ const createProgressNode = ({ width, color, name, progress }) => {
 const renderTopLanguages = (topLangs, options = {}) => {
   const {
     hide_title,
+    hide_border,
     card_width,
     title_color,
     text_color,
@@ -68,8 +69,12 @@ const renderTopLanguages = (topLangs, options = {}) => {
         .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
         .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
       </style>
-      <rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
 
+      ${
+        hide_border
+          ? ""
+          : `<rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>`
+      }
       
       ${
         hide_title

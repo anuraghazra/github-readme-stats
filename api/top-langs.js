@@ -13,6 +13,7 @@ module.exports = async (req, res) => {
     username,
     hide_langs_below,
     hide_title,
+    hide_border,
     card_width,
     title_color,
     text_color,
@@ -42,6 +43,7 @@ module.exports = async (req, res) => {
     renderTopLanguages(topLangs, {
       theme,
       hide_title: parseBoolean(hide_title),
+      hide_border: parseBoolean(hide_border),
       card_width: parseInt(card_width, 10),
       hide_langs_below: parseFloat(hide_langs_below, 10),
       title_color,
