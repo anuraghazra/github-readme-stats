@@ -77,6 +77,12 @@ const themes = {
     text_color: "6e93b5",
     bg_color: "172f45",
   },
+  vue: {
+    title_color: "42b983",
+    icon_color: "42b983",
+    text_color: "273849",
+    bg_color: "FFFEFE",
+  },
 };
 
 module.exports = themes;
