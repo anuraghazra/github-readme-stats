@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
     theme,
     show_owner,
     cache_seconds,
-    remove_emojis,
+    show_emojis = '1',
   } = req.query;
 
   let repoData;
@@ -61,7 +61,7 @@ module.exports = async (req, res) => {
       text_color,
       bg_color,
       theme,
-      remove_emojis,
+      show_emojis,
       show_owner: parseBoolean(show_owner),
     })
   );

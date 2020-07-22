@@ -22,7 +22,7 @@ const renderRepoCard = (repo, options = {}) => {
     text_color,
     bg_color,
     show_owner,
-    remove_emojis,
+    show_emojis,
     theme = "default_repocard",
   } = options;
 
@@ -36,7 +36,7 @@ const renderRepoCard = (repo, options = {}) => {
   let desc = description || "No description provided";
 
   const emojiRegex = /:\w+:/gm;
-  if (remove_emojis) {
+  if (parseInt(show_emojis) === 0 || show_emojis === 'false') {
     desc = desc.replace(emojiRegex, '');
   } else {
     const toEmoji = require("emoji-name-map");
@@ -51,7 +51,7 @@ const renderRepoCard = (repo, options = {}) => {
   }
 
   if (desc.length > 55) {
-    desc = `${description.slice(0, 55)}..`;
+    desc = `${desc.slice(0, 55)}..`;
   }
 
   // returns theme based colors with proper overrides and defaults

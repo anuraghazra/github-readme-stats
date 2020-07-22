@@ -85,29 +85,15 @@ describe("Test renderRepoCard", () => {
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
       "This is a text with a 💩 poo emoji"
     );
-
-    // should remove emojis if remove_emojis set
-    document.body.innerHTML = renderRepoCard({
-      ...data_repo.repository,
-      description:
-        "This is a text with a :poop: poo emoji",
-    }, {
-      remove_emojis: true
-    });
-
-    // poop emoji not between "a" and "poo"
-    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
-      "This is a text with a poo emoji"
-    );
   });
 
-  it("should remove emojis if remove_emojis option is set", () => {
+  it("should remove emojis if show_emojis option is not set", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
       description:
         "This is a text with a :poop: poo emoji",
     }, {
-      remove_emojis: true
+      show_emojis: 0
     });
 
     // poop emoji not between "a" and "poo"
