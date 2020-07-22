@@ -51,7 +51,7 @@ const renderRepoCard = (repo, options = {}) => {
   const totalForks = kFormatter(forkCount);
 
   const templateBadge = `
-    <g data-testid="template-badge" class="template-badge" transform="translate(320, 24)">
+    <g data-testid="template-badge" class="badge" transform="translate(320, 24)">
       <rect rx="10" ry="20" width="62" height="20" stroke="${textColor}" stroke-width="1">
       </rect>
     <text x="31" y="11" alignment-baseline="middle" text-anchor="middle" font-weight="600" font-size="12" fill="${textColor}">Template</text>
@@ -60,7 +60,7 @@ const renderRepoCard = (repo, options = {}) => {
 
   const archiveBadge = isArchived
     ? `
-    <g data-testid="archive-badge" class="archive-badge" transform="translate(320, 38)">
+    <g data-testid="archive-badge" class="badge" transform="translate(320, 38)">
       <rect stroke="${textColor}" stroke-width="1" width="70" height="20" x="-12" y="-14" ry="10" rx="10"></rect>
       <text fill="${textColor}">Archived</text>
     </g>
@@ -100,8 +100,8 @@ const renderRepoCard = (repo, options = {}) => {
       .template { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; font-weight: 500 }
       .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
       .icon { fill: ${iconColor} }
-      .archive-badge, .template-badge { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; }
-      .archive-badge rect { opacity: 0.2 }
+      .badge { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; }
+      .badge rect { opacity: 0.2 }
       </style>
       <rect data-testid="card-bg" x="0.5" y="0.5" width="399" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
       <svg class="icon" x="25" y="25" viewBox="0 0 16 16" version="1.1" width="16" height="16">
