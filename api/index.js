@@ -47,7 +47,6 @@ module.exports = async (req, res) => {
     renderStatsCard(stats, {
       hide: JSON.parse(hide || "[]"),
       show_icons: parseBoolean(show_icons),
-      count_private: parseBoolean(count_private),
       hide_title: parseBoolean(hide_title),
       hide_border: parseBoolean(hide_border),
       hide_rank: parseBoolean(hide_rank),

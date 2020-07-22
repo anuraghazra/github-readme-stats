@@ -46,7 +46,7 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchStats(username, count_private) {
+async function fetchStats(username, count_private=false) {
   if (!username) throw Error("Invalid username");
 
   const stats = {
