@@ -109,6 +109,15 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
+  it("should hide_border", () => {
+    document.body.innerHTML = renderTopLanguages(langs, { hide_border: false });
+    expect(queryByTestId(document.body, "card-bg")).toBeInTheDocument();
+
+    // Lets hide now
+    document.body.innerHTML = renderTopLanguages(langs, { hide_border: true });
+    expect(queryByTestId(document.body, "card-bg")).not.toBeInTheDocument();
+  });
+
   it("should render with custom width set", () => {
     document.body.innerHTML = renderTopLanguages(langs, {});
 
