@@ -116,6 +116,10 @@ function getCardColors({
   return { titleColor, iconColor, textColor, bgColor };
 }
 
+const fn = () => {};
+// return console instance based on the environment
+const logger = process.env.NODE_ENV !== "test" ? console : { log: fn, error: fn };
+
 const CONSTANTS = {
   THIRTY_MINUTES: 1800,
   TWO_HOURS: 7200,
@@ -133,5 +137,6 @@ module.exports = {
   FlexLayout,
   getCardColors,
   clampValue,
+  logger,
   CONSTANTS,
 };

@@ -4,6 +4,7 @@ const {
   parseBoolean,
   clampValue,
   CONSTANTS,
+  logger,
 } = require("../src/utils");
 const fetchRepo = require("../src/fetchRepo");
 const renderRepoCard = require("../src/renderRepoCard");
@@ -28,7 +29,7 @@ module.exports = async (req, res) => {
   try {
     repoData = await fetchRepo(username, repo);
   } catch (err) {
-    console.log(err);
+    logger.error(err);
     return res.send(renderError(err.message));
   }
 
@@ -52,7 +53,7 @@ module.exports = async (req, res) => {
   }
 
   res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
-
+  
   res.send(
     renderRepoCard(repoData, {
       title_color,

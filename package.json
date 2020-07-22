@@ -15,9 +15,15 @@
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",
     "css-to-object": "^1.1.0",
+    "husky": "^4.2.5",
     "jest": "^26.1.0"
   },
   "dependencies": {
     "dotenv": "^8.2.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
   }
 }

@@ -14,6 +14,7 @@ const renderRepoCard = (repo, options = {}) => {
     primaryLanguage,
     stargazers,
     isArchived,
+    isTemplate,
     forkCount,
   } = repo;
   const {
@@ -48,6 +49,14 @@ const renderRepoCard = (repo, options = {}) => {
 
   const totalStars = kFormatter(stargazers.totalCount);
   const totalForks = kFormatter(forkCount);
+
+  const template = `
+    <g data-testid="template" transform="translate(320, 24)">
+      <rect rx="10" ry="20" width="60" height="20" fill="rgb(255, 255, 255, 0)" stroke="#e1e4e8" >
+      </rect>
+    <text x="30" y="11" alignment-baseline="middle" text-anchor="middle" font-weight="600" font-size="12" fill="#586069" font-family="400 13px 'Segoe UI', Ubuntu, Sans-Serif">Template</text>
+    </g>
+  `
 
   const archiveBadge = isArchived
     ? `
@@ -88,6 +97,7 @@ const renderRepoCard = (repo, options = {}) => {
       <style>
       .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
       .description { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+      .template { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; font-weight: 500 }
       .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
       .icon { fill: ${iconColor} }
       .archive-badge { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; }
@@ -101,6 +111,9 @@ const renderRepoCard = (repo, options = {}) => {
       ${archiveBadge}
 
       <text x="50" y="38" class="header">${header}</text>
+
+      ${isTemplate ? template: ""}
+      
       <text class="description" x="25" y="70">${encodeHTML(desc)}</text>
       
       ${svgLanguage}

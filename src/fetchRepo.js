@@ -10,6 +10,7 @@ const fetcher = (variables, token) => {
         nameWithOwner
         isPrivate
         isArchived
+        isTemplate
         stargazers {
           totalCount
         }

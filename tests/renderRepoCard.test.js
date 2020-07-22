@@ -16,7 +16,7 @@ const data_repo = {
       id: "MDg6TGFuZ3VhZ2UyODc=",
       name: "TypeScript",
     },
-    forkCount: 100,
+    forkCount: 100
   },
 };
 
@@ -254,5 +254,21 @@ describe("Test renderRepoCard", () => {
 
     expect(queryByTestId(document.body, "stargazers")).toBeNull();
     expect(queryByTestId(document.body, "forkcount")).toBeNull();
+  });
+  
+  it("should render template", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      isTemplate: true
+    });
+    expect(queryByTestId(document.body, "template")).toBeDefined();
+  });
+
+  it("should not render template", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      isTemplate: false
+    });
+    expect(queryByTestId(document.body, "template")).toBeNull();
   });
 });
