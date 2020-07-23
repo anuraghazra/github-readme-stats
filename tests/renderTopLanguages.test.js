@@ -74,25 +74,24 @@ describe("Test renderTopLanguages", () => {
 
   it("should hide languages when hide_langs is passed", () => {
     document.body.innerHTML = renderTopLanguages(langs, {
-      hide_langs: "HTML",
+      hide: ["HTML"],
     });
-    expect(document.querySelector(`.lang-item-HTML`)).toBe(null);
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
       "javascript"
     );
     expect(queryAllByTestId(document.body, "lang-name")[1]).toBeInTheDocument(
       "css"
     );
+    expect(queryAllByTestId(document.body, "lang-name")[2]).not.toBeDefined();
 
     // multiple languages passed
     document.body.innerHTML = renderTopLanguages(langs, {
-      hide_langs: "HTML,css",
+      hide: ["HTML","css"],
     });
-    expect(document.querySelector(`.lang-item-HTML`)).toBe(null);
-    expect(document.querySelector(`.lang-item-css`)).toBe(null);
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
       "javascript"
     );
+    expect(queryAllByTestId(document.body, "lang-name")[1]).not.toBeDefined();
   });
 
   it("should resize the height correctly depending on langs", () => {
