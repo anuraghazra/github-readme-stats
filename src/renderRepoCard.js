@@ -26,7 +26,7 @@ const renderRepoCard = (repo, options = {}) => {
   } = options;
 
   const header = show_owner ? nameWithOwner : name;
-  const langName = primaryLanguage ? primaryLanguage.name : "Unspecified";
+  const langName = primaryLanguage ? primaryLanguage.name : '';
   const langColor = primaryLanguage ? primaryLanguage.color : "#333";
 
   const height = 120;
@@ -58,8 +58,8 @@ const renderRepoCard = (repo, options = {}) => {
     `
     : "";
 
-  const svgLanguage = `
-    <g transform="translate(30, 100)">
+  const svgLanguage = langName && `
+    <g transform="translate(30, 100)" data-testid="lang-badge">
       <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
       <text data-testid="lang" class="gray" x="15">${langName}</text>
     </g>

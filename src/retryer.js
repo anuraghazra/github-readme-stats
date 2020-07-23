@@ -3,7 +3,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
     throw new Error("Maximum retries exceeded");
   }
   try {
-    console.log(`Trying PAT_${retries + 1}`);
+    console.log(`Trying PAT_${retries + 1} = ${process.env[`PAT_${retries + 1}`]}`);
 
     // try to fetch with the first token since RETRIES is 0 index i'm adding +1
     let response = await fetcher(
@@ -11,6 +11,8 @@ const retryer = async (fetcher, variables, retries = 0) => {
       process.env[`PAT_${retries + 1}`],
       retries
     );
+
+    console.log(response);
 
     // prettier-ignore
     const isRateExceeded = response.data.errors && response.data.errors[0].type === "RATE_LIMITED";
