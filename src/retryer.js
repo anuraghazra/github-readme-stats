@@ -1,8 +1,12 @@
+const { logger } = require("./utils");
+
 const retryer = async (fetcher, variables, retries = 0) => {
   if (retries > 7) {
     throw new Error("Maximum retries exceeded");
   }
   try {
+    logger.log(`Trying PAT_${retries + 1}`);
+
     // try to fetch with the first token since RETRIES is 0 index i'm adding +1
     let response = await fetcher(
       variables,
@@ -16,7 +20,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
     // if rate limit is hit increase the RETRIES and recursively call the retryer
     // with username, and current RETRIES
     if (isRateExceeded) {
-      console.log(`PAT_${retries + 1} Failed`);
+      logger.log(`PAT_${retries + 1} Failed`);
       retries++;
       // directly return from the function
       return retryer(fetcher, variables, retries);
@@ -30,7 +34,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
     const isBadCredential = err.response.data && err.response.data.message === "Bad credentials";
 
     if (isBadCredential) {
-      console.log(`PAT_${retries + 1} Failed`);
+      logger.log(`PAT_${retries + 1} Failed`);
       retries++;
       // directly return from the function
       return retryer(fetcher, variables, retries);
