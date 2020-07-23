@@ -14,6 +14,7 @@ const renderRepoCard = (repo, options = {}) => {
     primaryLanguage,
     stargazers,
     isArchived,
+    isTemplate,
     forkCount,
   } = repo;
   const {
@@ -49,14 +50,20 @@ const renderRepoCard = (repo, options = {}) => {
   const totalStars = kFormatter(stargazers.totalCount);
   const totalForks = kFormatter(forkCount);
 
-  const archiveBadge = isArchived
-    ? `
-    <g data-testid="archive-badge" class="archive-badge" transform="translate(320, 38)">
+  const getBadgeSVG = (label) => `
+    <g data-testid="badge" class="badge" transform="translate(320, 38)">
       <rect stroke="${textColor}" stroke-width="1" width="70" height="20" x="-12" y="-14" ry="10" rx="10"></rect>
-      <text fill="${textColor}">Archived</text>
+      <text 
+        x="23" y="-5"
+        alignment-baseline="central" 
+        dominant-baseline="central" 
+        text-anchor="middle" 
+        fill="${textColor}"
+      >
+        ${label}
+      </text>
     </g>
-    `
-    : "";
+  `;
 
   const svgLanguage = `
     <g transform="translate(30, 100)">
@@ -90,17 +97,25 @@ const renderRepoCard = (repo, options = {}) => {
       .description { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
       .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
       .icon { fill: ${iconColor} }
-      .archive-badge { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; }
-      .archive-badge rect { opacity: 0.2 }
+      .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
+      .badge rect { opacity: 0.2 }
       </style>
+
       <rect data-testid="card-bg" x="0.5" y="0.5" width="399" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
       <svg class="icon" x="25" y="25" viewBox="0 0 16 16" version="1.1" width="16" height="16">
         ${icons.contribs}
       </svg>
 
-      ${archiveBadge}
-
       <text x="50" y="38" class="header">${header}</text>
+
+      ${
+        isTemplate
+          ? getBadgeSVG("Template")
+          : isArchived
+          ? getBadgeSVG("Archived")
+          : ""
+      }
+      
       <text class="description" x="25" y="70">${encodeHTML(desc)}</text>
       
       ${svgLanguage}
