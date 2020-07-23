@@ -65,6 +65,18 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma s
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs])
 ```
 
+### Adding private contributions count to total commits count
+
+You can add the count of all your private contributions to the total commits count by using the query parameter `?count_private=true`.
+
+_Note: If you are deploying this project yourself, the private contributions will be counted by default otherwise you need to chose to share your private contribution counts._
+
+> Options: `&count_private=true`
+
+```md
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+```
+
 ### Showing icons
 
 To enable icons, you can pass `show_icons=true` in the query param, like so:
