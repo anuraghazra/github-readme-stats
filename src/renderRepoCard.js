@@ -27,8 +27,8 @@ const renderRepoCard = (repo, options = {}) => {
   } = options;
 
   const header = show_owner ? nameWithOwner : name;
-  const langName = primaryLanguage ? primaryLanguage.name : "Unspecified";
-  const langColor = primaryLanguage ? primaryLanguage.color : "#333";
+  const langName = (primaryLanguage && primaryLanguage.name) || "Unspecified";
+  const langColor = (primaryLanguage && primaryLanguage.color) || "#333";
 
   const height = 120;
   const shiftText = langName.length > 15 ? 0 : 30;
@@ -65,12 +65,14 @@ const renderRepoCard = (repo, options = {}) => {
     </g>
   `;
 
-  const svgLanguage = `
-    <g transform="translate(30, 100)">
+  const svgLanguage = primaryLanguage
+    ? `
+    <g data-testid="primary-lang" transform="translate(30, 100)">
       <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
-      <text data-testid="lang" class="gray" x="15">${langName}</text>
+      <text data-testid="lang-name" class="gray" x="15">${langName}</text>
     </g>
-  `;
+    `
+    : "";
 
   const svgStars =
     stargazers.totalCount > 0 &&
@@ -120,7 +122,7 @@ const renderRepoCard = (repo, options = {}) => {
       
       ${svgLanguage}
       
-      <g transform="translate(${155 - shiftText}, 100)">
+      <g transform="translate(${primaryLanguage ? 155 - shiftText : 25}, 100)">
         ${FlexLayout({ items: [svgStars, svgForks], gap: 65 }).join("")}
       </g>
 
