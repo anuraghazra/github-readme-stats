@@ -31,14 +31,14 @@
 
 # Funktionalitäten
 
-- [GitHub Statistik](#github-stats-card)
-- [GitHub Repo Pins](#github-extra-pins)
+- [GitHub Stats Card](#github-stats-card)
+- [GitHub Extra Pins](#github-extra-pins)
 - [Top Sprachen](#top-languages-card)
 - [Aussehen/Themes](#themes)
 - [Anpassungen/Personalisierung](#customization)
 - [Selber bereitstellen](#deploy-on-your-own-vercel-instance)
 
-# GitHub Statistik
+# GitHub Stats Card
 
 Kopiere einfach folgendes in dein Markdown und das wars. Echt simpel!
 
@@ -62,7 +62,7 @@ Um eine spezifische Statistik auszublenden, kann dem Query-Parameter `?hide=` mi
 
 ### Icons anzeigen
 
-To enable icons, you can pass `show_icons=true` in the query param, like so:
+Um Icons anzuzeigen kann der URL-Paramter `show_icons=true` wie folgt verwendet werden:
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -113,25 +113,25 @@ Anpassungsoptionen:
 
 # GitHub Extra Pins
 
-GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
+GitHub extra pins ermöglicht es, mit Hilfe eines GitHub-Readme-Profiles, mehr als 6 Repositories in deinen Profil anzuzeigen.
 
-Yey! You are no longer limited to 6 pinned repositories.
+Bääm! Du bist nicht mehr auf 6 pinned Repositories limitiert.
 
-### Usage
+### Benutzung
 
-Copy-paste this code into your readme and change the links.
+Copy-paste diesen Code in deine Readme-Datei und passe die Links an.
 
-Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
+Endpunkt: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Demo
+### Beispiele
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
-Use [show_owner](#customization) variable to include the repo's owner username
+Benutze die [show_owner](#customization) Variable, um den Usernamen des Repo Eigentümers anzuzeigen.
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -199,9 +199,9 @@ Choose from any of the [default themes](#themes)
 
 ---
 
-### Quick Tip (Align The Repo Cards)
+### Quick Tip (Ausrichten der Repo Cards)
 
-You usually won't be able to layout the images side by side. To do that you can use this approach:
+Üblicherweise ist es in `.md`-Dateien nicht möglich Bilder nebeneinander anzuzeigen. Um dies zu erreichen kann folgender Ansatz gewählt werden:
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -212,32 +212,33 @@ You usually won't be able to layout the images side by side. To do that you can 
 </a>
 ```
 
-## Deploy on your own Vercel instance
+## Betreibe es auf deiner eigenen Vercel-Instanz
 
-Since the GitHub API only allows 5k requests per hour, it is possible that my `https://github-readme-stats.vercel.app/api` could hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
+Da die GitHub API nur 5tsd Aufrufe pro Stunde zulässt, kann es passieren, dass meine `https://github-readme-stats.vercel.app/api` dieses Limit erreicht.
+If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
 
-NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we should be able to handle more than 5k requests and have no issues with downtime :D
+Hinweis: Seit [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) sollte es möglich sein mehr als 5tsd Aufrufe pro Stunde ohne Downtimes zu verkraften :D
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
  <summary>Guide on setting up Vercel</summary>
 
-1. Go to [vercel.com](https://vercel.com/)
-1. Click on `Log in`  
+1. Gehe zu [vercel.com](https://vercel.com/)
+1. Klicke auf `Log in`  
    ![](https://files.catbox.moe/tct1wg.png)
-1. Sign in with GitHub by pressing `Continue with GitHub`  
+1. Melde dich mit deinem GitHub-account an, indem du `Continue with GitHub` klickst
    ![](https://files.catbox.moe/btd78j.jpeg)
-1. Sign into GitHub and allow access to all repositories, if prompted
-1. Fork this repo
-1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
-1. Select `Import Project`  
+1. Verbinde dich mit GitHub und erlaube den Zugriff auf alle Repositories, wenn gefordert
+1. Forke dieses Repository
+1. Gehe zurück zu deinem [Vercel dashboard](https://vercel.com/dashboard)
+1. Klick `Import Project`  
    ![](https://files.catbox.moe/qckos0.png)
-1. Select `Import Git Repository`  
+1. Klick `Import Git Repository`  
    ![](https://files.catbox.moe/pqub9q.png)
-1. Select root and keep everything as is, just add your environment variable named PAT_1 (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)
+1. Wähle root und füge eine Umgebungsvariable namens PAT_1 (siehe Abbildung) die als Wert deinen persönlichen Access Token (PAT) hat hinzu, den du einfach [hier](https://github.com/settings/tokens/new) erzeugen kannst (lasse alles wie es ist, vergebe einen beliebigen Namen)
    ![](https://files.catbox.moe/0ez4g7.png)
-1. Click deploy, and you're good to go. See your domains to use the API!
+1. Klicke deploy, und das wars. Besuche deine domains um die API zu benutzen!
 </details>
 
 ## :sparkling_heart: Support the project
