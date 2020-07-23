@@ -97,21 +97,21 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 Customization Options:
 
-| Option           | type      | description                                    | Stats Card (default) | Repo Card (default) | Top Lang Card (default) |
-| ---------------- | --------- | ---------------------------------------------- | -------------------- | ------------------- | ----------------------- |
-| title_color      | hex color | title color                                    | 2f80ed               | 2f80ed              | 2f80ed                  |
-| text_color       | hex color | body color                                     | 333                  | 333                 | 333                     |
-| icon_color       | hex color | icon color                                     | 4c71f2               | 586069              | 586069                  |
-| bg_color         | hex color | card bg color                                  | FFFEFE               | FFFEFE              | FFFEFE                  |
-| line_height      | number    | control the line-height between text           | 30                   | N/A                 | N/A                     |
-| hide_rank        | boolean   | hides the ranking                              | false                | N/A                 | N/A                     |
-| hide_title       | boolean   | hides the stats title                          | false                | N/A                 | false                   |
-| hide_border      | boolean   | hides the stats card border                    | false                | N/A                 | N/A                     |
-| show_owner       | boolean   | shows owner name in repo card                  | N/A                  | false               | N/A                     |
-| show_icons       | boolean   | shows icons                                    | false                | N/A                 | N/A                     |
-| theme            | string    | sets inbuilt theme                             | 'default'            | 'default_repocard'  | 'default                |
-| cache_seconds    | number    | manually set custom cache control              | 1800                 | 1800                | '1800'                  |
-| hide_langs_below | number    | hide langs below certain threshold (lang card) | N/A                  | N/A                 | undefined               |
+| Option        | type       | description                            | Stats Card (default) | Repo Card (default) | Top Lang Card (default) |
+| ------------- | ---------- | -------------------------------------- | -------------------- | ------------------- | ----------------------- |
+| title_color   | hex color  | title color                            | 2f80ed               | 2f80ed              | 2f80ed                  |
+| text_color    | hex color  | body color                             | 333                  | 333                 | 333                     |
+| icon_color    | hex color  | icon color                             | 4c71f2               | 586069              | 586069                  |
+| bg_color      | hex color  | card bg color                          | FFFEFE               | FFFEFE              | FFFEFE                  |
+| line_height   | number     | control the line-height between text   | 30                   | N/A                 | N/A                     |
+| hide          | JSON array | hides the items specified on the array | []                   | N/A                 | []                      |
+| hide_rank     | boolean    | hides the ranking                      | false                | N/A                 | N/A                     |
+| hide_title    | boolean    | hides the stats title                  | false                | N/A                 | false                   |
+| hide_border   | boolean    | hides the stats card border            | false                | N/A                 | N/A                     |
+| show_owner    | boolean    | shows owner name in repo card          | N/A                  | false               | N/A                     |
+| show_icons    | boolean    | shows icons                            | false                | N/A                 | N/A                     |
+| theme         | string     | sets inbuilt theme                     | 'default'            | 'default_repocard'  | 'default                |
+| cache_seconds | number     | manually set custom cache control      | 1800                 | 1800                | '1800'                  |
 
 > Note on cache: Repo cards have default cache of 30mins (1800 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 30min and maximum of 24hours
 
@@ -155,12 +155,12 @@ Endpoint: `api/top-langs?username=anuraghazra`
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Hide languages below certain threshold
+### Hide individual languages
 
-You can use `?hide_langs_below=NUMBER` parameter to hide languages below a specified threshold percentage.
+You can use `?hide=["language1","language2"]` parameter to hide languages below a specified threshold percentage.
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_langs_below=1)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=["javascript","html"])](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
