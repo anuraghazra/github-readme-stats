@@ -45,7 +45,7 @@ function parseBoolean(value) {
 }
 
 function parseArray(str) {
-  if (typeof str !== "string") return [];
+  if (!str) return [];
   return str.split(",");
 }
 
