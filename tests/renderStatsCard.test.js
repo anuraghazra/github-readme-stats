@@ -55,7 +55,7 @@ describe("Test renderStatsCard", () => {
 
   it("should hide individual stats", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      hide: "['issues', 'prs', 'contribs']",
+      hide: ["issues", "prs", "contribs"],
     });
 
     expect(

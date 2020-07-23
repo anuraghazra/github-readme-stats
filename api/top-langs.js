@@ -3,7 +3,7 @@ const {
   renderError,
   clampValue,
   parseBoolean,
-  parseJSON,
+  parseArray,
   CONSTANTS,
 } = require("../src/utils");
 const fetchTopLanguages = require("../src/fetchTopLanguages");
@@ -44,7 +44,7 @@ module.exports = async (req, res) => {
       theme,
       hide_title: parseBoolean(hide_title),
       card_width: parseInt(card_width, 10),
-      hide: parseJSON(hide),
+      hide: parseArray(hide),
       title_color,
       text_color,
       bg_color,
