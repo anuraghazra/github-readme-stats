@@ -98,7 +98,7 @@ describe("Test /api/", () => {
     const { req, res } = faker(
       {
         username: "anuraghazra",
-        hide: `["issues","prs","contribs"]`,
+        hide: "issues,prs,contribs",
         show_icons: true,
         hide_border: true,
         line_height: 100,

@@ -44,12 +44,9 @@ function parseBoolean(value) {
   }
 }
 
-function parseJSON(str) {
-  try {
-    return JSON.parse(str);
-  } catch (err) {
-    return [];
-  }
+function parseArray(str) {
+  if (!str) return [];
+  return str.split(",");
 }
 
 function clampValue(number, min, max) {
@@ -141,7 +138,7 @@ module.exports = {
   encodeHTML,
   isValidHexColor,
   request,
-  parseJSON,
+  parseArray,
   parseBoolean,
   fallbackColor,
   FlexLayout,
