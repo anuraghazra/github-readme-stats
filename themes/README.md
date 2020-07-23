@@ -18,6 +18,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `gruvbox` ![gruvbox][gruvbox] | `tokyonight` ![tokyonight][tokyonight] |        `onedark` ![onedark][onedark]         |
 |  `cobalt` ![cobalt][cobalt]   |  `synthwave` ![synthwave][synthwave]   | `highcontrast` ![highcontrast][highcontrast] |
 | `dracula` ![dracula][dracula] |          `dark` ![dark][dark]          |      `prussian` ![prussian][prussian]        |
+| `eclipse` ![eclipse][dracula] | | |
 | [Add your theme][add-theme]   |||
 
 ## Repo Card
@@ -30,6 +31,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 |          `gruvbox` ![gruvbox][gruvbox_repocard]          | `tokyonight` ![tokyonight][tokyonight_repocard] |        `onedark` ![onedark][onedark_repocard]         |
 |           `cobalt` ![cobalt][cobalt_repocard]            |  `synthwave` ![synthwave][synthwave_repocard]   | `highcontrast` ![highcontrast][highcontrast_repocard] |
 |          `dracula` ![dracula][dracula_repocard]          |     `dark` ![dark_repocard][dark_repocard]      |  `prussian` ![prussian_repocard][prussian_repocard]         |
+|  `eclipse` ![eclipse_repocard][eclipse_repocard]         | | |
 | [Add your theme][add-theme]   |||
 
 
@@ -48,6 +50,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [onedark_repocard]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=onedark
 [highcontrast_repocard]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=highcontrast
 [prussian_repocard]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=prussian
+[eclipse_repocard]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=eclipse
 
 <!-- Stats Theme previews -->
 
@@ -63,6 +66,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [highcontrast]: https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=highcontrast&hide=["contribs","prs"]&cache_seconds=86400
 [dracula]: https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=dracula&hide=["contribs","prs"]&cache_seconds=86400
 [prussian]: https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=prussian&hide=["contribs","prs"]&cache_seconds=86400
+[eclipse]: https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=prussian&hide=["contribs","prs"]&cache_seconds=86400
 
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
