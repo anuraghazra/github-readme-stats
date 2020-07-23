@@ -8,6 +8,14 @@ const {
 const fetchTopLanguages = require("../src/fetchTopLanguages");
 const renderTopLanguages = require("../src/renderTopLanguages");
 
+const parseJSON = (str) => {
+  try {
+    return JSON.parse(str);
+  } catch(err) {
+    return [];
+  }
+}
+
 module.exports = async (req, res) => {
   const {
     username,
@@ -45,7 +53,7 @@ module.exports = async (req, res) => {
       hide_title: parseBoolean(hide_title),
       card_width: parseInt(card_width, 10),
       hide_langs_below: parseFloat(hide_langs_below, 10),
-      hide: (typeof hide == 'string') ? [hide] : (hide || []),
+      hide: parseJSON(hide),
       title_color,
       text_color,
       bg_color,
