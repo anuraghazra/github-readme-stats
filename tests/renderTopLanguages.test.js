@@ -58,21 +58,7 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
-  it("should hide_langs_below", () => {
-    document.body.innerHTML = renderTopLanguages(langs, {
-      hide_langs_below: 34,
-    });
-
-    expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
-      "HTML"
-    );
-    expect(queryAllByTestId(document.body, "lang-name")[1]).toBeInTheDocument(
-      "javascript"
-    );
-    expect(queryAllByTestId(document.body, "lang-name")[2]).not.toBeDefined();
-  });
-
-  it("should hide languages when hide_langs is passed", () => {
+  it("should hide languages when hide is passed", () => {
     document.body.innerHTML = renderTopLanguages(langs, {
       hide: ["HTML"],
     });

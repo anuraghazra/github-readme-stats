@@ -23,7 +23,7 @@ const createProgressNode = ({ width, color, name, progress }) => {
   `;
 };
 
-const cleanLangName = name => name.toLowerCase().trim();
+const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 const renderTopLanguages = (topLangs, options = {}) => {
   const {
@@ -32,39 +32,31 @@ const renderTopLanguages = (topLangs, options = {}) => {
     title_color,
     text_color,
     bg_color,
-    hide_langs_below,
     hide,
     theme,
   } = options;
 
   let langs = Object.values(topLangs);
-  let langsToHide =  {};
+  let langsToHide = {};
 
   // populate langsToHide map for quick lookup
   // while filtering out
   if (hide) {
-    hide.forEach(lang => {
-      langsToHide[cleanLangName(lang)] = true
-    })
+    hide.forEach((langName) => {
+      langsToHide[lowercaseTrim(langName)] = true;
+    });
   }
 
   // filter out langauges to be hidden
   langs = langs
     .sort((a, b) => b.size - a.size)
     .filter((lang) => {
-      return !langsToHide[cleanLangName(lang.name)];
+      return !langsToHide[lowercaseTrim(lang.name)];
     });
 
   const totalSize = langs.reduce((acc, curr) => {
     return acc + curr.size;
   }, 0);
-
-  // hide langs below a certain percentage
-  langs = langs
-    .filter((lang) => {
-      if (!hide_langs_below) return true;
-      return (lang.size / totalSize) * 100 > hide_langs_below;
-    });
 
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, bgColor } = getCardColors({
