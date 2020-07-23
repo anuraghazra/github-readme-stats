@@ -228,6 +228,15 @@ describe("Test renderRepoCard", () => {
     );
   });
 
+  fit("should not render language badge if language not specified", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      primaryLanguage: null,
+    });
+
+    expect(queryByTestId(document.body, "lang-badge")).not.toBeInTheDOM();
+  });
+
   it("should not render star count or fork count if either of the are zero", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
