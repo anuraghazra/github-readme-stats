@@ -7,7 +7,7 @@ const createProgressNode = ({ width, color, name, progress }) => {
   const progressPercentage = clampValue(progress, 2, 100);
 
   return `
-    <text data-testid="lang-name" x="2" y="15" class="lang-name lang-name-${name}">${name}</text>
+    <text data-testid="lang-name" x="2" y="15" class="lang-name lang-name-${cleanLangName(name)}">${name}</text>
     <text x="${progressTextX}" y="34" class="lang-name">${progress}%</text>
     <svg width="${progressWidth}">
       <rect rx="5" ry="5" x="0" y="25" width="${progressWidth}" height="8" fill="#ddd"></rect>
@@ -22,6 +22,8 @@ const createProgressNode = ({ width, color, name, progress }) => {
     </svg>
   `;
 };
+
+const cleanLangName = name => name.toLowerCase().trim();
 
 const renderTopLanguages = (topLangs, options = {}) => {
   const {
@@ -45,7 +47,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
   // populate langsToHide map for quick lookup later on
   if (hide_langs) {
     hide_langs.split(",").forEach(lang => {
-      langsToHide[lang] = true
+      langsToHide[cleanLangName(lang)] = true
     })
   }
 
@@ -53,7 +55,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
   langs = langs
     .sort((a, b) => b.size - a.size)
     .filter((lang) => {
-      if (langsToHide[lang]) return false;
+      if (langsToHide[cleanLangName(lang.name)]) return false;
       if (!hide_langs_below) return true;
       return (lang.size / totalSize) * 100 > hide_langs_below;
     });
