@@ -33,7 +33,7 @@ describe("Test renderRepoCard", () => {
     );
     expect(queryByTestId(document.body, "stargazers")).toHaveTextContent("38k");
     expect(queryByTestId(document.body, "forkcount")).toHaveTextContent("100");
-    expect(queryByTestId(document.body, "lang")).toHaveTextContent(
+    expect(queryByTestId(document.body, "lang-name")).toHaveTextContent(
       "TypeScript"
     );
     expect(queryByTestId(document.body, "lang-color")).toHaveAttribute(
@@ -82,6 +82,7 @@ describe("Test renderRepoCard", () => {
       },
     });
 
+    expect(queryByTestId(document.body, "primary-lang")).toBeInTheDocument();
     expect(document.getElementsByTagName("g")[1]).toHaveAttribute(
       "transform",
       "translate(155, 100)"
@@ -99,6 +100,30 @@ describe("Test renderRepoCard", () => {
     expect(document.getElementsByTagName("g")[1]).toHaveAttribute(
       "transform",
       "translate(125, 100)"
+    );
+  });
+
+  it("should hide language if primaryLanguage is null & fallback to correct values", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      primaryLanguage: null,
+    });
+
+    expect(queryByTestId(document.body, "primary-lang")).toBeNull();
+
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      primaryLanguage: { color: null, name: null },
+    });
+
+    expect(queryByTestId(document.body, "primary-lang")).toBeInTheDocument();
+    expect(queryByTestId(document.body, "lang-color")).toHaveAttribute(
+      "fill",
+      "#333"
+    );
+
+    expect(queryByTestId(document.body, "lang-name")).toHaveTextContent(
+      "Unspecified"
     );
   });
 
