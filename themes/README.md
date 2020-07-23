@@ -18,7 +18,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `gruvbox` ![gruvbox][gruvbox] | `tokyonight` ![tokyonight][tokyonight] |        `onedark` ![onedark][onedark]         |
 |  `cobalt` ![cobalt][cobalt]   |  `synthwave` ![synthwave][synthwave]   | `highcontrast` ![highcontrast][highcontrast] |
 | `dracula` ![dracula][dracula] |          `dark` ![dark][dark]          |      `prussian` ![prussian][prussian]        |
-| `eclipse` ![eclipse][dracula] | | |
+| `eclipse` ![eclipse][eclipse] | | |
 | [Add your theme][add-theme]   |||
 
 ## Repo Card
