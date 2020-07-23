@@ -77,6 +77,12 @@ const themes = {
     text_color: "6e93b5",
     bg_color: "172f45",
   },
+  eclipse: {
+    title_color: "ffffff",
+    icon_color: "dc143c",
+    text_color: "e6e3e3",
+    bg_color: "383838",
+  },
 };
 
 module.exports = themes;
