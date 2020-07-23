@@ -30,7 +30,10 @@ const data = {
     user: {
       name: stats.name,
       repositoriesContributedTo: { totalCount: stats.contributedTo },
-      contributionsCollection: { totalCommitContributions: stats.totalCommits, restrictedContributionsCount: 0 },
+      contributionsCollection: {
+        totalCommitContributions: stats.totalCommits,
+        restrictedContributionsCount: 100,
+      },
       pullRequests: { totalCount: stats.totalPRs },
       issues: { totalCount: stats.totalIssues },
       followers: { totalCount: 0 },
@@ -186,15 +189,7 @@ describe("Test /api/", () => {
     const { req, res } = faker(
       {
         username: "anuraghazra",
-        hide: `["issues","prs","contribs"]`,
         count_private: true,
-        show_icons: true,
-        hide_border: true,
-        line_height: 100,
-        title_color: "fff",
-        icon_color: "fff",
-        text_color: "fff",
-        bg_color: "fff",
       },
       data
     );
@@ -203,16 +198,22 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderStatsCard(stats, {
-        hide: ["issues", "prs", "contribs"],
-        show_icons: true,
-        hide_border: true,
-        line_height: 100,
-        title_color: "fff",
-        icon_color: "fff",
-        text_color: "fff",
-        bg_color: "fff",
-      })
+      renderStatsCard(
+        {
+          ...stats,
+          totalCommits: stats.totalCommits + 100,
+          rank: calculateRank({
+            totalCommits: stats.totalCommits + 100,
+            totalRepos: 1,
+            followers: 0,
+            contributions: stats.contributedTo,
+            stargazers: stats.totalStars,
+            prs: stats.totalPRs,
+            issues: stats.totalIssues,
+          }),
+        },
+        {}
+      )
     );
   });
 });

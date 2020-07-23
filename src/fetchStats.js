@@ -46,7 +46,7 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchStats(username, count_private=false) {
+async function fetchStats(username, count_private = false) {
   if (!username) throw Error("Invalid username");
 
   const stats = {
@@ -71,7 +71,14 @@ async function fetchStats(username, count_private=false) {
 
   stats.name = user.name || user.login;
   stats.totalIssues = user.issues.totalCount;
-  stats.totalCommits = count_private ? contributionCount.totalCommitContributions + contributionCount.restrictedContributionsCount : contributionCount.totalCommitContributions;
+
+  stats.totalCommits = contributionCount.totalCommitContributions;
+  if (count_private) {
+    stats.totalCommits =
+      contributionCount.totalCommitContributions +
+      contributionCount.restrictedContributionsCount;
+  }
+
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 

@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    stats = await fetchStats(username, count_private);
+    stats = await fetchStats(username, parseBoolean(count_private));
   } catch (err) {
     return res.send(renderError(err.message));
   }
