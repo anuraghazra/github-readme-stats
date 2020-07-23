@@ -2,6 +2,7 @@ require("dotenv").config();
 const {
   renderError,
   parseBoolean,
+  parseJSON,
   clampValue,
   CONSTANTS,
 } = require("../src/utils");
@@ -44,7 +45,7 @@ module.exports = async (req, res) => {
 
   res.send(
     renderStatsCard(stats, {
-      hide: JSON.parse(hide || "[]"),
+      hide: parseJSON(hide),
       show_icons: parseBoolean(show_icons),
       hide_title: parseBoolean(hide_title),
       hide_border: parseBoolean(hide_border),

@@ -44,6 +44,14 @@ function parseBoolean(value) {
   }
 }
 
+function parseJSON(str) {
+  try {
+    return JSON.parse(str);
+  } catch (err) {
+    return [];
+  }
+}
+
 function clampValue(number, min, max) {
   return Math.max(min, Math.min(number, max));
 }
@@ -118,7 +126,8 @@ function getCardColors({
 
 const fn = () => {};
 // return console instance based on the environment
-const logger = process.env.NODE_ENV !== "test" ? console : { log: fn, error: fn };
+const logger =
+  process.env.NODE_ENV !== "test" ? console : { log: fn, error: fn };
 
 const CONSTANTS = {
   THIRTY_MINUTES: 1800,
@@ -132,6 +141,7 @@ module.exports = {
   encodeHTML,
   isValidHexColor,
   request,
+  parseJSON,
   parseBoolean,
   fallbackColor,
   FlexLayout,
