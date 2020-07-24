@@ -1,15 +1,16 @@
 require("dotenv").config();
-const {
+import renderToString from "preact-render-to-string";
+import {
   renderError,
   parseBoolean,
   clampValue,
   CONSTANTS,
   logger,
-} = require("../src/utils");
-const fetchRepo = require("../src/fetchRepo");
-const renderRepoCard = require("../src/renderRepoCard");
+} from "../src/utils";
+import fetchRepo from "../src/fetch/repo";
+import repoCard from "../src/components/repoCard";
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const {
     username,
     repo,
@@ -30,7 +31,7 @@ module.exports = async (req, res) => {
     repoData = await fetchRepo(username, repo);
   } catch (err) {
     logger.error(err);
-    return res.send(renderError(err.message));
+    return res.send(renderToString(renderError(err.message)));
   }
 
   let cacheSeconds = clampValue(
@@ -55,13 +56,15 @@ module.exports = async (req, res) => {
   res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
   
   res.send(
-    renderRepoCard(repoData, {
-      title_color,
-      icon_color,
-      text_color,
-      bg_color,
-      theme,
-      show_owner: parseBoolean(show_owner),
-    })
+    renderToString(
+      repoCard(repoData, {
+        title_color,
+        icon_color,
+        text_color,
+        bg_color,
+        theme,
+        show_owner: parseBoolean(show_owner),
+      })
+    )
   );
 };

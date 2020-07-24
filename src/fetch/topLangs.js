@@ -1,41 +1,39 @@
-const { request, logger } = require("./utils");
-const retryer = require("./retryer");
 require("dotenv").config();
+import { request, logger } from "../utils";
+import retryer from "../utils/retryer";
 
-const fetcher = (variables, token) => {
-  return request(
-    {
-      query: `
-      query userInfo($login: String!) {
-        user(login: $login) {
-          repositories(isFork: false, first: 100) {
-            nodes {
-              languages(first: 1) {
-                edges {
-                  size
-                  node {
-                    color
-                    name
+export default async function fetchTopLanguages(username) {
+  if (!username) throw Error("Invalid username");
+
+  let res = await retryer((variables, token) => {
+    return request(
+      {
+        query: `
+        query userInfo($login: String!) {
+          user(login: $login) {
+            repositories(isFork: false, first: 100) {
+              nodes {
+                languages(first: 1) {
+                  edges {
+                    size
+                    node {
+                      color
+                      name
+                    }
                   }
                 }
               }
             }
           }
         }
+        `,
+        variables,
+      },
+      {
+        Authorization: `bearer ${token}`,
       }
-      `,
-      variables,
-    },
-    {
-      Authorization: `bearer ${token}`,
-    }
-  );
-};
-
-async function fetchTopLanguages(username) {
-  if (!username) throw Error("Invalid username");
-
-  let res = await retryer(fetcher, { login: username });
+    );
+  }, { login: username });
 
   if (res.data.errors) {
     logger.error(res.data.errors);
@@ -80,5 +78,3 @@ async function fetchTopLanguages(username) {
 
   return topLangs;
 }
-
-module.exports = fetchTopLanguages;

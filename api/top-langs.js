@@ -1,15 +1,17 @@
 require("dotenv").config();
-const {
+import renderToString from "preact-render-to-string";
+import {
+  logger,
   renderError,
   clampValue,
   parseBoolean,
   parseArray,
   CONSTANTS,
-} = require("../src/utils");
-const fetchTopLanguages = require("../src/fetchTopLanguages");
-const renderTopLanguages = require("../src/renderTopLanguages");
+} from "../src/utils";
+import fetchTopLangs from "../src/fetch/topLangs";
+import topLangs from "../src/components/topLangs";
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const {
     username,
     hide,
@@ -21,14 +23,15 @@ module.exports = async (req, res) => {
     theme,
     cache_seconds,
   } = req.query;
-  let topLangs;
+  let topLangsData;
 
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    topLangs = await fetchTopLanguages(username);
+    topLangsData = await fetchTopLangs(username);
   } catch (err) {
-    return res.send(renderError(err.message));
+    logger.error(err);
+    return res.send(renderToString(renderError(err.message)));
   }
 
   const cacheSeconds = clampValue(
@@ -38,17 +41,19 @@ module.exports = async (req, res) => {
   );
 
   res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
-
+  
   res.send(
-    renderTopLanguages(topLangs, {
-      theme,
-      hide_title: parseBoolean(hide_title),
-      card_width: parseInt(card_width, 10),
-      hide: parseArray(hide),
-      title_color,
-      text_color,
-      bg_color,
-      theme,
-    })
+    renderToString(
+      topLangs(topLangsData, {
+        theme,
+        hide_title: parseBoolean(hide_title),
+        card_width: parseInt(card_width, 10),
+        hide: parseArray(hide),
+        title_color,
+        text_color,
+        bg_color,
+        theme,
+      })
+    )
   );
 };

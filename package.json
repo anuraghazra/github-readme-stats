@@ -19,7 +19,9 @@
     "jest": "^26.1.0"
   },
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "preact": "^10.4.6",
+    "preact-render-to-string": "^5.1.10"
   },
   "husky": {
     "hooks": {

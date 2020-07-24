@@ -1,7 +1,7 @@
 require("@testing-library/jest-dom");
 const axios = require("axios");
 const MockAdapter = require("axios-mock-adapter");
-const fetchRepo = require("../src/fetchRepo");
+const fetchRepo = require("../src/fetch/repo");
 
 const data_repo = {
   repository: {

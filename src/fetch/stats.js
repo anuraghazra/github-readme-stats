@@ -1,7 +1,7 @@
-const { request, logger } = require("./utils");
-const retryer = require("./retryer");
-const calculateRank = require("./calculateRank");
 require("dotenv").config();
+import { request, logger } from "../utils";
+import retryer from "../utils/retryer";
+import calculateRank from "../utils/calculateRank";
 
 const fetcher = (variables, token) => {
   return request(
@@ -90,4 +90,4 @@ async function fetchStats(username) {
   return stats;
 }
 
-module.exports = fetchStats;
+export default fetchStats;

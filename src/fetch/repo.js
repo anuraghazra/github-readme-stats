@@ -1,5 +1,5 @@
-const { request } = require("./utils");
-const retryer = require("./retryer");
+import { request } from "../utils";
+import retryer from "../utils/retryer";
 
 const fetcher = (variables, token) => {
   return request(
@@ -77,4 +77,4 @@ async function fetchRepo(username, reponame) {
   }
 }
 
-module.exports = fetchRepo;
+export default fetchRepo;
