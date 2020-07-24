@@ -30,6 +30,7 @@
 
 - [GitHub 统计卡片](#GitHub-统计卡片)
 - [GitHub 更多置顶](#GitHub-更多置顶)
+- [热门语言卡片](#热门语言卡片)
 - [主题](#主题)
 - [自定义](#自定义)
 - [自己部署](#自己部署)
@@ -122,11 +123,11 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
-- 自定义添加卡片
+- 自定义统计卡片
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- 自定义 Repo 卡片
+- 自定义代码库卡片
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
@@ -188,33 +189,33 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ### 全部Demo
 
-- Default
+- 默认
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
-- Hiding specific stats
+- 隐藏特定数据
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","issues"])
 
-- Showing icons
+- 显示图标
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["issues"]&show_icons=true)
 
-- Themes
+- 主题
 
-Choose from any of the [default themes](#themes)
+从 [默认主题](#主题) 中进行选择
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
-- Customizing stats card
+- 自定义统计卡片
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- Customizing repo card
+- 自定义代码库卡片
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
-- Top languages
+- 热门语言
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
