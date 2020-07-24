@@ -19,9 +19,9 @@
   <p align="center">
     <a href="#demo">查看 Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues">报告 bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">报告 bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues">请求增加功能</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">请求增加功能</a>
   </p>
 </p>
 <p align="center">喜欢这个项目？请考虑<a href="https://www.paypal.me/anuraghazra">捐赠</a>来帮助它完善！
@@ -64,6 +64,7 @@ _Note: 排名基于用户的统计信息计算得出，详见 [src/calculateRank
 ```
 
 ### 主题
+
 你可以通过现有的主题进行卡片个性化，省去[手动自定义](#自定义)的麻烦。
 
 调用 `?theme=THEME_NAME` 参数，如下：
@@ -72,7 +73,7 @@ _Note: 排名基于用户的统计信息计算得出，详见 [src/calculateRank
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
-#### 所有现有主题：
+#### 所有现有主题
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
@@ -260,6 +261,7 @@ Choose from any of the [default themes](#themes)
 1. 选择 root 并将所有内容保持不变，并且只需添加名为 PAT_1 的环境变量（如图所示），其中将包含一个个人访问令牌（PAT），你可以在[这里](https://github.com/settings/tokens/new)轻松创建（保留默认，并且只需要命名下，名字随便）
    ![](https://files.catbox.moe/caem5b.png)
 1. 点击 deploy，这就完成了，查看你的域名就可使用 API 了！
+
 </details>
 
 ## :sparkling_heart: 支持这个项目
