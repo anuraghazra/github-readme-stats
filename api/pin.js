@@ -53,7 +53,7 @@ module.exports = async (req, res) => {
   }
 
   res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
-  
+
   res.send(
     renderRepoCard(repoData, {
       title_color,

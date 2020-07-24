@@ -88,19 +88,20 @@ Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que
 
 Opciones de personalización:
 
-| Option      | type      | description                   | Stats Card (default) | Repo Card (default) |
-| ----------- | --------- | ----------------------------- | -------------------- | ------------------- |
-| title_color | hex color | color del título              | 2f80ed               | 2f80ed              |
-| text_color  | hex color | color del contenido           | 333                  | 333                 |
-| icon_color  | hex color | color del ícono               | 4c71f2               | 586069              |
-| bg_color    | hex color | color de fondo                | FFFEFE               | FFFEFE              |
-| line_height | number    | controla el line_height       | 30                   | N/A                 |
-| hide_rank   | boolean   | oculta la clasificación       | false                | N/A                 |
-| hide_title  | boolean   | oculta el título              | false                | N/A                 |
-| hide_border | boolean   | oculta el borde               | false                | N/A                 |
-| show_owner  | boolean   | muestra el propietario        | N/A                  | false               |
-| show_icons  | boolean   | muestra los íconos            | false                | N/A                 |
-| theme       | string    | establece un tema incorporado | 'default'            | 'default_repocard'  |
+| Option      | type      | description                          | Stats Card (default) | Repo Card (default) |
+| ----------- | --------- | ------------------------------------ | -------------------- | ------------------- |
+| title_color | hex color | color del título                     | 2f80ed               | 2f80ed              |
+| text_color  | hex color | color del contenido                  | 333                  | 333                 |
+| icon_color  | hex color | color del ícono                      | 4c71f2               | 586069              |
+| bg_color    | hex color | color de fondo                       | FFFEFE               | FFFEFE              |
+| line_height | number    | controla el line_height              | 30                   | N/A                 |
+| hide_rank   | boolean   | oculta la clasificación              | false                | N/A                 |
+| hide_title  | boolean   | oculta el título                     | false                | N/A                 |
+| hide_border | boolean   | oculta el borde                      | false                | N/A                 |
+| show_owner  | boolean   | muestra el propietario               | N/A                  | false               |
+| show_icons  | boolean   | muestra los íconos                   | false                | N/A                 |
+| show_emojis | boolean   | show emojis in repo card description | N/A                  | true                |
+| theme       | string    | establece un tema incorporado        | 'default'            | 'default_repocard'  |
 
 ---
 
