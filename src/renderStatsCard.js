@@ -140,7 +140,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       height="99%"
       rx="4.5"
       fill="${bgColor}"
-      stroke="#FFFFFF"
+      stroke="#E4E2E2"
+      stroke-opacity="0"
     />
   `
     : `
@@ -153,6 +154,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       rx="4.5"
       fill="${bgColor}"
       stroke="#E4E2E2"
+      stroke-opacity="1"
     />
   `;
 
