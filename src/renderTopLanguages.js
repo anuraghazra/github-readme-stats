@@ -29,6 +29,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
   const {
     hide_title,
     card_width,
+    top,
     title_color,
     text_color,
     bg_color,
@@ -53,6 +54,10 @@ const renderTopLanguages = (topLangs, options = {}) => {
     .filter((lang) => {
       return !langsToHide[lowercaseTrim(lang.name)];
     });
+
+  if (!isNaN(top)) {
+    langs = langs.slice(0, top);
+  }
 
   const totalSize = langs.reduce((acc, curr) => {
     return acc + curr.size;
