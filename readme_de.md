@@ -33,9 +33,9 @@
 
 - [GitHub Stats Card](#github-stats-card)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Top Sprachen](#top-languages-card)
-- [Aussehen/Themes](#themes)
-- [Anpassungen/Personalisierung](#customization)
+- [Top Programmiersprachen Card](#top-languages-card)
+- [Erscheinungsbild/Themes](#erscheinungsbild-themes)
+- [Anpassungen](#customization)
 - [Selber bereitstellen](#deploy-on-your-own-vercel-instance)
 
 # GitHub Stats Card
@@ -68,7 +68,7 @@ Um Icons anzuzeigen kann der URL-Paramter `show_icons=true` wie folgt verwendet 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
-### Aussehen/Themes
+### Erscheinungsbild
 
 Mithilfe der eingebauten Themes kannst das Aussehen der Karten verändern ohne manuelle Anpassungen vornehmen zu müssen.
 
@@ -93,7 +93,7 @@ Du kannst das Erscheinungsbild deiner `Stats Card` oder `Repo Card`, mithilfe vo
 
 Anpassungsoptionen:
 
-| Option           | Type      | Beschreibung                                         | Statistiken (default) | Repo (default)      | Top Sprachen (default)  |
+| Option           | Type      | Beschreibung                                         | Statistiken (default) | Repo (default)      | Top Programmiersprachen (default)  |
 | ---------------- | --------- | -----------------------------------------------------| --------------------- | ------------------- | ----------------------- |
 | title_color      | hex color | Titelfarbe                                          | 2f80ed                | 2f80ed              | 2f80ed                  |
 | text_color       | hex color | Textkörperfarbe                                     | 333                   | 333                 | 333                     |
@@ -115,11 +115,11 @@ Anpassungsoptionen:
 
 GitHub extra pins ermöglicht es, mit Hilfe eines GitHub-Readme-Profiles, mehr als 6 Repositories in deinen Profil anzuzeigen.
 
-Bääm! Du bist nicht mehr auf 6 pinned Repositories limitiert.
+Und Bääm! Du bist nicht mehr auf 6 pinned Repositories limitiert.
 
 ### Benutzung
 
-Copy-paste diesen Code in deine Readme-Datei und passe die Links an.
+Füge diesen Code in deine Readme-Datei ein und passe die Links an.
 
 Endpunkt: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
@@ -135,65 +135,65 @@ Benutze die [show_owner](#customization) Variable, um den Usernamen des Repo Eig
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
-# Top Languages Card
+# Top Programmiersprachen Card
 
-Top languages card shows github user's top langauges which has been mostly used.
+Die Top Programmiersprachen Card visualisiert die am meisten benutzten Programmiersprachen eines GitHub-Nutzers.
 
-_NOTE: Top languages does not indicate my skill level or something like that, it's a github metric of which languages i have the most code on github, it's a new feature of github-readme-stats_
+_HINWEIS: Die Top Programmiersprachen treffen keine Aussage über persönliche Fähigkeiten oder der gleichen, es ist lediglich eine auf den GitHub-Statistiken des Nutzers basierende Kennzahl welche Programmiersprache wie häufig verwendet wurde._
 
-### Usage
+### Benutzung
 
-Copy-paste this code into your readme and change the links.
+Füge diesen Code in deine Readme-Datei ein und passe die Links an.
 
-Endpoint: `api/top-langs?username=anuraghazra`
+Endpunkt: `api/top-langs?username=anuraghazra`
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Hide languages below certain threshold
+### Verberge Programmiersprachen unter einem bestimmten Schwellwert
 
-You can use `?hide_langs_below=NUMBER` parameter to hide languages below a specified threshold percentage.
+Benutze den `?hide_langs_below=NUMBER` URL-Parameter um Programmiersprachen unter einem bestimmten prozentualen Schwellwert auszublenden.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_langs_below=1)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Demo
+### Beispiel
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
-### All Demos
+### Alle Beispiele
 
 - Default
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
-- Hiding specific stats
+- Ausblenden bestimmter Statistiken
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","issues"])
 
-- Showing icons
+- Icons anzeigen
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["issues"]&show_icons=true)
 
-- Themes
+- Erscheinungsbild/Themes
 
 Choose from any of the [default themes](#themes)
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
-- Customizing stats card
+- Stats Card anpassen
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- Customizing repo card
+- Repo Card anpassen
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
-- Top languages
+- Top Programmiersprachen
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
