@@ -243,19 +243,18 @@ Hinweis: Seit [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 
 
 ## :sparkling_heart: Support the project
 
-I open-source almost everything I can, and I try to reply to everyone needing help using these projects. Obviously,
-this takes time. You can use this service for free.
+Ich versuche alles was ich kann als Open-Source zur Verfügung zu stellen, als auch jedem der Hilfe bei der Benutzung dieses Projektes braucht zu antworten. Natürlich beansprucht sowas Zeit und Du kannst diesen Dienst kostenlos benutzen.
 
-However, if you are using this project and happy with it or just want to encourage me to continue creating stuff, there are few ways you can do it :-
+Dennoch, wenn Du dieses Projekt benutzt und damit zufrieden bist oder mich einfach nur motivieren möchtest weiterhin daran zu arbeiten, gibt es verschiedene Sachen die Du machen kannst:-
 
-- Giving proper credit when you use github-readme-stats on your readme, linking back to it :D
-- Starring and sharing the project :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - You can make one-time donations via PayPal. I'll probably buy a ~~coffee~~ tea. :tea:
+- Erwähne und verlinke das Projekt in deiner Readme wenn du es benutzt :D
+- Geb dem Projekt einen Stern hier auf GitHub und teile es :rocket:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - Du kannst einmalige Spenden via PayPal tätigen. Ich kaufe mir wahrscheinlich einen ~~Kaffee~~ Tee davon. :tea:
 
-Thanks! :heart:
+Vielen Dank! :heart:
 
 ---
 
-Contributions are welcomed! <3
+Mitarbeit an dem Projekt is immer Willkommen! <3
 
-Made with :heart: and JavaScript.
+Gebaut mit :heart: und JavaScript.
