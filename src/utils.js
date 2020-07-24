@@ -17,9 +17,11 @@ const renderError = (message) => {
 
 // https://stackoverflow.com/a/48073476/10629172
 function encodeHTML(str) {
-  return str.replace(/[\u00A0-\u9999<>&](?!#)/gim, function (i) {
-    return "&#" + i.charCodeAt(0) + ";";
-  });
+  return str
+    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
+      return "&#" + i.charCodeAt(0) + ";";
+    })
+    .replace(/\u0008/gim, "");
 }
 
 function kFormatter(num) {
