@@ -98,7 +98,6 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 | hide_border | boolean   | 隐藏卡片边框                           | false                | N/A                 |
 | show_owner  | boolean   | 显示 Repo 卡片所属账户用户名             | N/A                  | false               |
 | show_icons  | boolean   | 显示图标                              | false                | N/A                 |
-| show_emojis | boolean   | show emojis in repo card description | N/A                  | true               |
 | theme       | string    | 设置主题                              | 'default'            | 'default_repocard'  |
 
 ---
