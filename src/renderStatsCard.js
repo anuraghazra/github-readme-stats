@@ -131,7 +131,19 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     : `<text x="25" y="35" class="header">${name}'${apostrophe} GitHub Stats</text>`;
 
   const border = hide_border
-    ? ""
+    ? `
+    <rect 
+      data-testid="card-bg"
+      x="0.5"
+      y="0.5"
+      width="494"
+      height="99%"
+      rx="4.5"
+      fill="${bgColor}"
+      stroke="#E4E2E2"
+      stroke-opacity="0"
+    />
+  `
     : `
     <rect 
       data-testid="card-bg"
@@ -142,6 +154,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       rx="4.5"
       fill="${bgColor}"
       stroke="#E4E2E2"
+      stroke-opacity="1"
     />
   `;
 
