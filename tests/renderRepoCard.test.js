@@ -73,6 +73,18 @@ describe("Test renderRepoCard", () => {
     );
   });
 
+  it("should render emojis", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      description: "This is a text with a :poop: poo emoji",
+    });
+
+    // poop emoji may not show in all editors but it's there between "a" and "poo"
+    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
+      "This is a text with a 💩 poo emoji"
+    );
+  });
+
   it("should shift the text position depending on language length", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
