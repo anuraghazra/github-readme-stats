@@ -81,7 +81,7 @@ const themes = {
     title_color: "#3e5c64",
     icon_color: "#4d4b4f",
     text_color: "#cac5c1",
-    bg_color: "#121212",
+    bg_color: "#2b2b2b",
   },
 };
 
