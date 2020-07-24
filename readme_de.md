@@ -33,10 +33,10 @@
 
 - [GitHub Stats Card](#github-stats-card)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Top Programmiersprachen Card](#top-languages-card)
-- [Erscheinungsbild/Themes](#erscheinungsbild-themes)
-- [Anpassungen](#customization)
-- [Selber bereitstellen](#deploy-on-your-own-vercel-instance)
+- [Top Programmiersprachen Card](#top-programmiersprachen-card)
+- [Erscheinungsbild/Themes](#erscheinungsbildthemes)
+- [Anpassungen](#anpassungenpersonalisierung)
+- [Selber betreiben](#betreibe-es-auf-deiner-eigenen-vercel-instanz)
 
 # GitHub Stats Card
 
@@ -68,7 +68,7 @@ Um Icons anzuzeigen kann der URL-Paramter `show_icons=true` wie folgt verwendet 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
-### Erscheinungsbild
+### Erscheinungsbild/Themes
 
 Mithilfe der eingebauten Themes kannst das Aussehen der Karten verändern ohne manuelle Anpassungen vornehmen zu müssen.
 
