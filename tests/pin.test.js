@@ -17,6 +17,7 @@ const data_repo = {
       name: "TypeScript",
     },
     forkCount: 100,
+    isTemplate: false
   },
 };
 
