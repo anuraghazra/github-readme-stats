@@ -77,6 +77,12 @@ const themes = {
     text_color: "6e93b5",
     bg_color: "172f45",
   },
+  monokai: {
+    title_color: "eb1f6a",
+    icon_color: "e28905",
+    text_color: "f1f1eb",
+    bg_color: "272822",
+  }
 };
 
 module.exports = themes;
