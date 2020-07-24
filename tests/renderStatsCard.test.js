@@ -71,8 +71,16 @@ describe("Test renderStatsCard", () => {
 
   it("should hide_border", () => {
     document.body.innerHTML = renderStatsCard(stats, { hide_border: true });
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "stroke-opacity",
+      "0"
+    );
 
-    expect(document.querySelector("rect")).toHaveAttribute("stroke-opacity", "0")
+    document.body.innerHTML = renderStatsCard(stats, { hide_border: false });
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "stroke-opacity",
+      "1"
+    );
   });
 
   it("should hide_rank", () => {
