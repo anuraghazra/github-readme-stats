@@ -77,6 +77,12 @@ const themes = {
     text_color: "6e93b5",
     bg_color: "172f45",
   },
+  amiyaa: {
+    title_color: "#3e5c64",
+    icon_color: "#4d4b4f",
+    text_color: "#cac5c1",
+    bg_color: "#121212",
+  },
 };
 
 module.exports = themes;
