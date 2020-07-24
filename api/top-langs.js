@@ -20,6 +20,7 @@ module.exports = async (req, res) => {
     bg_color,
     theme,
     cache_seconds,
+    layout
   } = req.query;
   let topLangs;
 
@@ -49,6 +50,7 @@ module.exports = async (req, res) => {
       text_color,
       bg_color,
       theme,
+      layout
     })
   );
 };
