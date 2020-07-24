@@ -111,11 +111,11 @@ describe("Test renderTopLanguages", () => {
 
   it("should hide_border", () => {
     document.body.innerHTML = renderTopLanguages(langs, { hide_border: false });
-    expect(document.querySelector("rect")).toHaveAttribute("stroke", "#E4E2E2")
+    expect(document.querySelector("rect")).toHaveAttribute("stroke-opacity", "1")
 
     // Lets hide now
     document.body.innerHTML = renderTopLanguages(langs, { hide_border: true });
-    expect(document.querySelector("rect")).toHaveAttribute("stroke", "#FFFFFF")
+    expect(document.querySelector("rect")).toHaveAttribute("stroke-opacity", "0")
   });
 
   it("should render with custom width set", () => {

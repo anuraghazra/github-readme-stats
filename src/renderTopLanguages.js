@@ -72,8 +72,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
       
       ${
         hide_border
-          ? `<rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="99%" rx="4.5" fill="${bgColor}" stroke="#FFFFFF"/>`
-          : `<rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>`
+          ? `<rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2" stroke-opacity="0"/>`
+          : `<rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2" stroke-opacity="1"/>`
       }
       
       ${
