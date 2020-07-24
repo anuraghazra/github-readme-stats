@@ -20,7 +20,7 @@
   </p>
 
   <p align="center">
-    <a href="#demo">Beispiel ansehen</a>
+    <a href="#alle-beispiele">Beispiel ansehen</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">Fehler melden</a>
     ·
@@ -52,7 +52,7 @@ _Hinweis: Die Berechnung des Ranges basiert auf den jeweiligen Benutzerstatistik
 
 ### Verbergen individueller Statistiken
 
-Um eine spezifische Statistik auszublenden, kann dem Query-Parameter `?hide=` mit einem Array an Dingen die nicht angezeigt werden sollen übergeben werden.
+Um eine spezifische Statistik auszublenden, kann dem Query-Parameter `?hide=` ein Array an Dingen die nicht angezeigt werden sollen übergeben werden.
 
 > Optionen: `&hide=["stars","commits","prs","issues","contribs"]`
 
@@ -70,7 +70,7 @@ Um Icons anzuzeigen kann der URL-Paramter `show_icons=true` wie folgt verwendet 
 
 ### Erscheinungsbild/Themes
 
-Mithilfe der eingebauten Themes kannst das Aussehen der Karten verändern ohne manuelle Anpassungen vornehmen zu müssen.
+Mithilfe der eingebauten Themes kann das Aussehen der Karten verändern werden ohne manuelle Anpassungen vornehmen zu müssen.
 
 Benutze den `?theme=THEME_NAME`-Parameter wie folgt :-
 
@@ -89,7 +89,7 @@ Außerdem **kannst du neue Themes beisteuern** wenn du möchtest, contributions 
 
 ### Anpassungen/Personalisierung
 
-Du kannst das Erscheinungsbild deiner `Stats Card` oder `Repo Card`, mithilfe von URL-Parameters, nach deinen Vorlieben anpassen.
+Du kannst das Erscheinungsbild deiner `Stats Card` oder `Repo Card`, mithilfe von URL-Parametern, nach deinen Vorlieben anpassen.
 
 Anpassungsoptionen:
 
@@ -131,7 +131,7 @@ Endpunkt: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
-Benutze die [show_owner](#customization) Variable, um den Usernamen des Repo Eigentümers anzuzeigen.
+Benutze die [show_owner](#anpassungenpersonalisierung) Variable, um den Usernamen des Repo Eigentümers anzuzeigen.
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -199,7 +199,7 @@ Choose from any of the [default themes](#themes)
 
 ---
 
-### Quick Tip (Ausrichten der Repo Cards)
+### Kleiner Tip (Ausrichten der Repo Cards)
 
 Üblicherweise ist es in `.md`-Dateien nicht möglich Bilder nebeneinander anzuzeigen. Um dies zu erreichen kann folgender Ansatz gewählt werden:
 
