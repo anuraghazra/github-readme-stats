@@ -5,6 +5,7 @@ const {
   FlexLayout,
 } = require("../src/utils");
 const icons = require("./icons");
+const toEmoji = require("emoji-name-map");
 
 const renderRepoCard = (repo, options = {}) => {
   const {
@@ -34,8 +35,14 @@ const renderRepoCard = (repo, options = {}) => {
   const shiftText = langName.length > 15 ? 0 : 30;
 
   let desc = description || "No description provided";
+
+  // parse emojis to unicode
+  desc = desc.replace(/:\w+:/gm, (emoji) => {
+    return toEmoji.get(emoji) || "";
+  });
+
   if (desc.length > 55) {
-    desc = `${description.slice(0, 55)}..`;
+    desc = `${desc.slice(0, 55)}..`;
   }
 
   // returns theme based colors with proper overrides and defaults

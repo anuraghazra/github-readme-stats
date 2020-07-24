@@ -2,6 +2,7 @@ require("dotenv").config();
 const {
   renderError,
   parseBoolean,
+  parseArray,
   clampValue,
   CONSTANTS,
 } = require("../src/utils");
@@ -16,6 +17,7 @@ module.exports = async (req, res) => {
     hide_border,
     hide_rank,
     show_icons,
+    count_private,
     line_height,
     title_color,
     icon_color,
@@ -29,7 +31,7 @@ module.exports = async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    stats = await fetchStats(username);
+    stats = await fetchStats(username, parseBoolean(count_private));
   } catch (err) {
     return res.send(renderError(err.message));
   }
@@ -44,7 +46,7 @@ module.exports = async (req, res) => {
 
   res.send(
     renderStatsCard(stats, {
-      hide: JSON.parse(hide || "[]"),
+      hide: parseArray(hide),
       show_icons: parseBoolean(show_icons),
       hide_title: parseBoolean(hide_title),
       hide_border: parseBoolean(hide_border),

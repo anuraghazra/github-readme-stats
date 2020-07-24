@@ -17,9 +17,11 @@ const renderError = (message) => {
 
 // https://stackoverflow.com/a/48073476/10629172
 function encodeHTML(str) {
-  return str.replace(/[\u00A0-\u9999<>&](?!#)/gim, function (i) {
-    return "&#" + i.charCodeAt(0) + ";";
-  });
+  return str
+    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
+      return "&#" + i.charCodeAt(0) + ";";
+    })
+    .replace(/\u0008/gim, "");
 }
 
 function kFormatter(num) {
@@ -42,6 +44,11 @@ function parseBoolean(value) {
   } else {
     return value;
   }
+}
+
+function parseArray(str) {
+  if (!str) return [];
+  return str.split(",");
 }
 
 function clampValue(number, min, max) {
@@ -118,7 +125,8 @@ function getCardColors({
 
 const fn = () => {};
 // return console instance based on the environment
-const logger = process.env.NODE_ENV !== "test" ? console : { log: fn, error: fn };
+const logger =
+  process.env.NODE_ENV !== "test" ? console : { log: fn, error: fn };
 
 const CONSTANTS = {
   THIRTY_MINUTES: 1800,
@@ -132,6 +140,7 @@ module.exports = {
   encodeHTML,
   isValidHexColor,
   request,
+  parseArray,
   parseBoolean,
   fallbackColor,
   FlexLayout,

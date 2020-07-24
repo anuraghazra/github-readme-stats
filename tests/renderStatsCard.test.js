@@ -55,7 +55,7 @@ describe("Test renderStatsCard", () => {
 
   it("should hide individual stats", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      hide: "['issues', 'prs', 'contribs']",
+      hide: ["issues", "prs", "contribs"],
     });
 
     expect(
@@ -71,8 +71,16 @@ describe("Test renderStatsCard", () => {
 
   it("should hide_border", () => {
     document.body.innerHTML = renderStatsCard(stats, { hide_border: true });
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "stroke-opacity",
+      "0"
+    );
 
-    expect(queryByTestId(document.body, "card-bg")).not.toBeInTheDocument();
+    document.body.innerHTML = renderStatsCard(stats, { hide_border: false });
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "stroke-opacity",
+      "1"
+    );
   });
 
   it("should hide_rank", () => {
