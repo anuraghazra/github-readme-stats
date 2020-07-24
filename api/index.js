@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
     hide_border,
     hide_rank,
     show_icons,
+    count_private,
     line_height,
     title_color,
     icon_color,
@@ -30,7 +31,7 @@ module.exports = async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    stats = await fetchStats(username);
+    stats = await fetchStats(username, parseBoolean(count_private));
   } catch (err) {
     return res.send(renderError(err.message));
   }

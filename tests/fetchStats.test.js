@@ -9,7 +9,7 @@ const data = {
     user: {
       name: "Anurag Hazra",
       repositoriesContributedTo: { totalCount: 61 },
-      contributionsCollection: { totalCommitContributions: 100 },
+      contributionsCollection: { totalCommitContributions: 100, restrictedContributionsCount: 50 },
       pullRequests: { totalCount: 300 },
       issues: { totalCount: 200 },
       followers: { totalCount: 100 },
@@ -76,5 +76,30 @@ describe("Test fetchStats", () => {
     await expect(fetchStats("anuraghazra")).rejects.toThrow(
       "Could not resolve to a User with the login of 'noname'."
     );
+  });
+
+  it("should fetch and add private contributions", async () => {
+    mock.onPost("https://api.github.com/graphql").reply(200, data);
+
+    let stats = await fetchStats("anuraghazra", true);
+    const rank = calculateRank({
+      totalCommits: 150,
+      totalRepos: 5,
+      followers: 100,
+      contributions: 61,
+      stargazers: 400,
+      prs: 300,
+      issues: 200,
+    });
+
+    expect(stats).toStrictEqual({
+      contributedTo: 61,
+      name: "Anurag Hazra",
+      totalCommits: 150,
+      totalIssues: 200,
+      totalPRs: 300,
+      totalStars: 400,
+      rank,
+    });
   });
 });
