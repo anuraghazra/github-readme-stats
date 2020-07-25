@@ -89,6 +89,12 @@ const themes = {
     text_color: "273849",
     bg_color: "FFFEFE",
   },
+  github: {
+    title_color: "FFFFFF",
+    icon_color: "B3DABA",
+    text_color: "FFFFFF",
+    bg_color: "2EA44F",
+  }
 };
 
 module.exports = themes;
