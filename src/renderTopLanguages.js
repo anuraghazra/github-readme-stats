@@ -23,23 +23,19 @@ const createProgressNode = ({ width, color, name, progress }) => {
   `;
 };
 
-const createLanguageTextNode = ({langs, totalSize}) => {
+const createLanguageTextNode = ({langs, totalSize,x,y}) => {
   let output = ``
 
   for (let i = 0; i < langs.length; i = i+2) {
     output+= `
       <g transform="translate(0, ${12.5 * i})">
-        <svg>
-          <circle cx="5" cy="6" r="5" fill="${langs[i].color || '#858585'}" />
-          <text x="15" y="12" class='lang-name'>${langs[i].name} ${((langs[i].size / totalSize) * 100).toFixed(2)}%</text>
-        </svg>
+        <circle cx="${5+x}" cy="${6+y}" r="5" fill="${langs[i].color || '#858585'}" />
+        <text data-testid="lang-name" x="${15+x}" y="${12+y}" class='lang-name'>${langs[i].name} ${((langs[i].size / totalSize) * 100).toFixed(2)}%</text>
       </g>
       ${langs[i+1] && `
         <g transform="translate(150, ${12.5 * i})">
-          <svg>
-            <circle cx="5" cy="6" r="5" fill="${langs[i+1].color || '#858585'}" />
-            <text x="15" y="12" fill='#333' class='lang-name'>${langs[i+1].name} ${((langs[i+1].size / totalSize) * 100).toFixed(2)}%</text>
-          </svg>
+          <circle cx="${5+x}" cy="${6+y}" r="5" fill="${langs[i+1].color || '#858585'}" />
+          <text data-testid="lang-name" x="${15+x}" y="${12+y}" fill='#333' class='lang-name'>${langs[i+1].name} ${((langs[i+1].size / totalSize) * 100).toFixed(2)}%</text>
         </g>
       `}
     `
@@ -100,20 +96,26 @@ const renderTopLanguages = (topLangs, options = {}) => {
   }
 
   if(layout === 'compact') {
+    let offset = 25
+    height -= 120;
+
     return `
       <svg width="${width+50}" height="${height}" viewBox="0 0 ${width+50} ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
         <style>
           .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
           .lang-name { font: 400 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
         </style>
-        <rect width="${width+50}" height="${height}" fill='#fff' stroke="#E4E2E2" />
-        ${hide_title ? '' : `<text x="25" y="35" fill='#333' class='header'>Top Languages</text>`}
-        <svg x='25' y='${hide_title ? 25 : 50}'>
-          ${langs.map(lang => `<rect width='${((lang.size / totalSize) * width).toFixed(2)}' height='10' fill='${lang.color}' rx='5'/>`).join('')}
-        </svg>
-        <svg x="25" y="${hide_title ? 50 : 75}">
-          ${createLanguageTextNode({langs, totalSize})}
-        </svg>
+        <rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2" />
+        ${hide_title ? '' : `<text data-testid="header" x="25" y="35" class='header'>Top Languages</text>`}
+        <g>
+          ${langs.map(lang => {
+            const percentage = ((lang.size / totalSize) * width).toFixed(2)
+            const output = `<rect data-testid="lang-progress" x='${offset}' y='${hide_title ? 25 : 50}' width='${percentage}' height='8' fill='${lang.color}'/>`
+            offset += +percentage
+            return output
+          }).join('')}
+        </g>
+        ${createLanguageTextNode({langs, totalSize, x: 25, y: hide_title ? 50 : 75})}
       </svg>
     `;
   }
