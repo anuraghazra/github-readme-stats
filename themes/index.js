@@ -91,7 +91,7 @@ const themes = {
   },
   "shades-of-purple": {
     title_color: "FAD000",
-    icon_color: "FB94FF",
+    icon_color: "B362FF",
     text_color: "A599E9",
     bg_color: "2D2B55",
   },
