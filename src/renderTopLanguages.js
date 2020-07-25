@@ -23,6 +23,31 @@ const createProgressNode = ({ width, color, name, progress }) => {
   `;
 };
 
+const createLanguageTextNode = ({langs, totalSize}) => {
+  let output = ``
+
+  for (let i = 0; i < langs.length; i = i+2) {
+    output+= `
+      <g transform="translate(0, ${12.5 * i})">
+        <svg>
+          <circle cx="5" cy="6" r="5" fill="${langs[i].color || '#858585'}" />
+          <text x="15" y="12" class='lang-name'>${langs[i].name} ${((langs[i].size / totalSize) * 100).toFixed(2)}%</text>
+        </svg>
+      </g>
+      ${langs[i+1] && `
+        <g transform="translate(150, ${12.5 * i})">
+          <svg>
+            <circle cx="5" cy="6" r="5" fill="${langs[i+1].color || '#858585'}" />
+            <text x="15" y="12" fill='#333' class='lang-name'>${langs[i+1].name} ${((langs[i+1].size / totalSize) * 100).toFixed(2)}%</text>
+          </svg>
+        </g>
+      `}
+    `
+  }
+
+  return output
+}
+
 const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 const renderTopLanguages = (topLangs, options = {}) => {
@@ -34,6 +59,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     bg_color,
     hide,
     theme,
+    layout
   } = options;
 
   let langs = Object.values(topLangs);
@@ -72,6 +98,26 @@ const renderTopLanguages = (topLangs, options = {}) => {
   if (hide_title) {
     height -= 30;
   }
+
+  if(layout === 'compact') {
+    return `
+      <svg width="${width+50}" height="${height}" viewBox="0 0 ${width+50} ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <style>
+          .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
+          .lang-name { font: 400 14px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+        </style>
+        <rect width="${width+50}" height="${height}" fill='#fff' stroke="#E4E2E2" />
+        ${hide_title ? '' : `<text x="25" y="35" fill='#333' class='header'>Top Languages</text>`}
+        <svg x='25' y='${hide_title ? 25 : 50}'>
+          ${langs.map(lang => `<rect width='${((lang.size / totalSize) * width).toFixed(2)}' height='10' fill='${lang.color}' rx='5'/>`).join('')}
+        </svg>
+        <svg x="25" y="${hide_title ? 50 : 75}">
+          ${createLanguageTextNode({langs, totalSize})}
+        </svg>
+      </svg>
+    `;
+  }
+
   return `
     <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
       <style>
