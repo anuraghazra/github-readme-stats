@@ -98,14 +98,6 @@ const getStatsCardStyles = ({
     animation: rankAnimation 1s forwards ease-in-out;
   }
 
-  @media (prefers-color-scheme: dark) {
-    .stat { fill: white; }
-    .rank-text { fill: white; }
-    [data-testid="card-bg"] {
-      fill: black;
-    }
-  }
-
   ${process.env.NODE_ENV === "test" ? "" : getAnimations({ progress })}
   `;
 
