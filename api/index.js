@@ -33,7 +33,12 @@ module.exports = async (req, res) => {
   try {
     stats = await fetchStats(username, parseBoolean(count_private));
   } catch (err) {
-    return res.send(renderError(err.message));
+    return res.send(
+      renderError(
+        err.message,
+        "Make sure the provided username is not an organization"
+      )
+    );
   }
 
   const cacheSeconds = clampValue(
