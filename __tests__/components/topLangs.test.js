@@ -1,12 +1,9 @@
 import "@testing-library/jest-dom";
+import renderToString from "preact-render-to-string";
 import cssToObject from "css-to-object";
 import topLangs from "../../src/components/topLangs";
 
-import {
-  getByTestId,
-  queryByTestId,
-  queryAllByTestId,
-} from "@testing-library/dom";
+import { queryByTestId, queryAllByTestId } from "@testing-library/dom";
 import themes from "../../themes";
 
 describe("Test topLangs", () => {
@@ -28,10 +25,8 @@ describe("Test topLangs", () => {
     },
   };
 
-  it("toLangs", () => {});
-
-  /* it("should render correctly", () => {
-    document.body.innerHTML = topLangs(langs);
+  it("should render correctly", () => {
+    document.body.innerHTML = renderToString(topLangs(langs));
 
     expect(queryByTestId(document.body, "header")).toHaveTextContent(
       "Top Languages"
@@ -61,9 +56,11 @@ describe("Test topLangs", () => {
   });
 
   it("should hide languages when hide is passed", () => {
-    document.body.innerHTML = topLangs(langs, {
-      hide: ["HTML"],
-    });
+    document.body.innerHTML = renderToString(
+      topLangs(langs, {
+        hide: ["HTML"],
+      })
+    );
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
       "javascript"
     );
@@ -73,9 +70,11 @@ describe("Test topLangs", () => {
     expect(queryAllByTestId(document.body, "lang-name")[2]).not.toBeDefined();
 
     // multiple languages passed
-    document.body.innerHTML = topLangs(langs, {
-      hide: ["HTML","css"],
-    });
+    document.body.innerHTML = renderToString(
+      topLangs(langs, {
+        hide: ["HTML", "css"],
+      })
+    );
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
       "javascript"
     );
@@ -83,25 +82,29 @@ describe("Test topLangs", () => {
   });
 
   it("should resize the height correctly depending on langs", () => {
-    document.body.innerHTML = topLangs(langs, {});
+    document.body.innerHTML = renderToString(topLangs(langs, {}));
     expect(document.querySelector("svg")).toHaveAttribute("height", "205");
 
-    document.body.innerHTML = topLangs(
-      {
-        ...langs,
-        python: {
-          color: "#ff0",
-          name: "python",
-          size: 100,
+    document.body.innerHTML = renderToString(
+      topLangs(
+        {
+          ...langs,
+          python: {
+            color: "#ff0",
+            name: "python",
+            size: 100,
+          },
         },
-      },
-      {}
+        {}
+      )
     );
     expect(document.querySelector("svg")).toHaveAttribute("height", "245");
   });
 
   it("should hide_title", () => {
-    document.body.innerHTML = topLangs(langs, { hide_title: false });
+    document.body.innerHTML = renderToString(
+      topLangs(langs, { hide_title: false })
+    );
     expect(document.querySelector("svg")).toHaveAttribute("height", "205");
     expect(queryByTestId(document.body, "lang-items")).toHaveAttribute(
       "y",
@@ -109,7 +112,9 @@ describe("Test topLangs", () => {
     );
 
     // Lets hide now
-    document.body.innerHTML = topLangs(langs, { hide_title: true });
+    document.body.innerHTML = renderToString(
+      topLangs(langs, { hide_title: true })
+    );
     expect(document.querySelector("svg")).toHaveAttribute("height", "175");
 
     expect(queryByTestId(document.body, "header")).not.toBeInTheDocument();
@@ -120,16 +125,18 @@ describe("Test topLangs", () => {
   });
 
   it("should render with custom width set", () => {
-    document.body.innerHTML = topLangs(langs, {});
+    document.body.innerHTML = renderToString(topLangs(langs, {}));
 
     expect(document.querySelector("svg")).toHaveAttribute("width", "300");
 
-    document.body.innerHTML = topLangs(langs, { card_width: 400 });
+    document.body.innerHTML = renderToString(
+      topLangs(langs, { card_width: 400 })
+    );
     expect(document.querySelector("svg")).toHaveAttribute("width", "400");
   });
 
   it("should render default colors properly", () => {
-    document.body.innerHTML = topLangs(langs);
+    document.body.innerHTML = renderToString(topLangs(langs));
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.textContent);
@@ -153,7 +160,9 @@ describe("Test topLangs", () => {
       bg_color: "252525",
     };
 
-    document.body.innerHTML = topLangs(langs, { ...customColors });
+    document.body.innerHTML = renderToString(
+      topLangs(langs, { ...customColors })
+    );
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
@@ -170,10 +179,12 @@ describe("Test topLangs", () => {
   });
 
   it("should render custom colors with themes", () => {
-    document.body.innerHTML = topLangs(langs, {
-      title_color: "5a0",
-      theme: "radical",
-    });
+    document.body.innerHTML = renderToString(
+      topLangs(langs, {
+        title_color: "5a0",
+        theme: "radical",
+      })
+    );
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
@@ -191,9 +202,11 @@ describe("Test topLangs", () => {
 
   it("should render with all the themes", () => {
     Object.keys(themes).forEach((name) => {
-      document.body.innerHTML = topLangs(langs, {
-        theme: name,
-      });
+      document.body.innerHTML = renderToString(
+        topLangs(langs, {
+          theme: name,
+        })
+      );
 
       const styleTag = document.querySelector("style");
       const stylesObject = cssToObject(styleTag.innerHTML);
@@ -208,5 +221,5 @@ describe("Test topLangs", () => {
         `#${themes[name].bg_color}`
       );
     });
-  }); */
+  });
 });

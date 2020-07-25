@@ -4,13 +4,17 @@
   "description": "Dynamically generate stats for your github readmes",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage",
-    "test:watch": "jest --watch",
-    "test:ci": "jest --ci"
+    "format:write": "prettier --write **/*.js",
+    "format:check": "prettier --check **/*.js",
+    "lint": "eslint **/*.js",
+    "lint:fix": "eslint --fix **/*.js",
+    "test": "jest --ci --coverage",
+    "test:watch": "jest --watch"
   },
   "author": "Anurag Hazra",
   "license": "MIT",
   "devDependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
     "@testing-library/dom": "^7.20.0",
     "@testing-library/jest-dom": "^5.11.0",
     "@testing-library/preact": "^2.0.0",
@@ -18,18 +22,24 @@
     "axios-mock-adapter": "^1.18.1",
     "babel-jest": "^26.1.0",
     "css-to-object": "^1.1.0",
+    "dotenv": "^8.2.0",
+    "eslint": "^7.5.0",
+    "eslint-config-preact": "^1.1.1",
+    "eslint-config-standard-jsx": "^8.1.0",
+    "eslint-plugin-jest": "^23.18.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "husky": "^4.2.5",
-    "jest": "^26.1.0"
+    "jest": "^26.1.0",
+    "prettier": "^2.0.5"
   },
   "dependencies": {
-    "dotenv": "^8.2.0",
     "next": "^9.4.4",
     "preact": "^10.4.6",
     "preact-render-to-string": "^5.1.10"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test"
+      "pre-commit": "npm run format:write && npm run lint:fix && npm test"
     }
   }
 }

@@ -54,7 +54,7 @@ export default async (req, res) => {
   }
 
   res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
-  
+
   res.send(
     renderToString(
       repoCard(repoData, {

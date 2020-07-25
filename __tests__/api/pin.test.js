@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom";
+import renderToString from "preact-render-to-string";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import pin from "../../api/pin";
@@ -17,7 +18,7 @@ const data_repo = {
       name: "TypeScript",
     },
     forkCount: 100,
-    isTemplate: false
+    isTemplate: false,
   },
 };
 
@@ -51,7 +52,9 @@ describe("Test /api/pin", () => {
     await pin(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    // expect(res.send).toBeCalledWith(repoCard(data_repo.repository));
+    expect(res.send).toBeCalledWith(
+      renderToString(repoCard(data_repo.repository))
+    );
   });
 
   it("should get the query options", async () => {
@@ -75,9 +78,9 @@ describe("Test /api/pin", () => {
     await pin(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    /* expect(res.send).toBeCalledWith(
-      repoCard(data_repo.repository, { ...req.query })
-    ); */
+    expect(res.send).toBeCalledWith(
+      renderToString(repoCard(data_repo.repository, { ...req.query }))
+    );
   });
 
   it("should render error card if user repo not found", async () => {
@@ -98,7 +101,9 @@ describe("Test /api/pin", () => {
     await pin(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    // expect(res.send).toBeCalledWith(renderError("User Repository Not found"));
+    expect(res.send).toBeCalledWith(
+      renderToString(renderError("User Repository Not found"))
+    );
   });
 
   it("should render error card if org repo not found", async () => {
@@ -119,8 +124,8 @@ describe("Test /api/pin", () => {
     await pin(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-   /*  expect(res.send).toBeCalledWith(
-      renderError("Organization Repository Not found")
-    ); */
+    expect(res.send).toBeCalledWith(
+      renderToString(renderError("Organization Repository Not found"))
+    );
   });
 });

@@ -1,0 +1,3 @@
+.vercel/
+coverage/
+node_modules/

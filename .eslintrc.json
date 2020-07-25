@@ -1,0 +1,10 @@
+{
+  "plugins": ["prettier", "jest"],
+  "extends": ["preact"],
+  "rules": {
+    "prettier/prettier": "error"
+  },
+  "env": {
+    "jest/globals": true
+  }
+}

@@ -5,10 +5,11 @@ import retryer from "../utils/retryer";
 export default async function fetchTopLanguages(username) {
   if (!username) throw Error("Invalid username");
 
-  let res = await retryer((variables, token) => {
-    return request(
-      {
-        query: `
+  let res = await retryer(
+    (variables, token) => {
+      return request(
+        {
+          query: `
         query userInfo($login: String!) {
           user(login: $login) {
             repositories(isFork: false, first: 100) {
@@ -27,13 +28,15 @@ export default async function fetchTopLanguages(username) {
           }
         }
         `,
-        variables,
-      },
-      {
-        Authorization: `bearer ${token}`,
-      }
-    );
-  }, { login: username });
+          variables,
+        },
+        {
+          Authorization: `bearer ${token}`,
+        }
+      );
+    },
+    { login: username }
+  );
 
   if (res.data.errors) {
     logger.error(res.data.errors);

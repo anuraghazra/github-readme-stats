@@ -1,7 +1,9 @@
+// eslint-disable-next-line no-unused-vars
 import React from "preact";
 import { getStatsCardStyles } from "../styles";
 import icons from "../icons";
-import { kFormatter, getCardColors, FlexLayout } from "../utils";
+import { kFormatter, getCardColors } from "../utils";
+import FlexLayout from "./flexLayout";
 
 const createTextNode = ({ icon, label, value, id, index, showIcons }) => {
   return (
@@ -58,7 +60,7 @@ export default (stats = {}, options = { hide: [] }) => {
     theme = "default",
   } = options;
 
-  const lheight = parseInt(line_height);
+  const lheight = parseInt(line_height, 10);
 
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor } = getCardColors({

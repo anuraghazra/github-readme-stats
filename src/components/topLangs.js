@@ -1,6 +1,8 @@
+// eslint-disable-next-line no-unused-vars
 import React from "preact";
-import { getCardColors, FlexLayout, clampValue } from "../utils";
+import { getCardColors, clampValue } from "../utils";
 import { getTopLangsStyles } from "../styles";
+import FlexLayout from "./flexLayout";
 
 const createProgressNode = ({ width, color, name, progress }) => {
   const paddingRight = 95;
@@ -24,7 +26,7 @@ const createProgressNode = ({ width, color, name, progress }) => {
           width={progressWidth}
           height="8"
           fill="#ddd"
-        ></rect>
+        />
         <rect
           height="8"
           fill={color}
@@ -34,7 +36,7 @@ const createProgressNode = ({ width, color, name, progress }) => {
           y="25"
           data-testid="lang-progress"
           width={`${clampValue(progress, 2, 100)}%`}
-        ></rect>
+        />
       </svg>
     </>
   );
@@ -120,7 +122,7 @@ export default (topLangs, options = {}) => {
         {FlexLayout({
           items: langs.map((lang) => {
             return createProgressNode({
-              width: width,
+              width,
               name: lang.name,
               color: lang.color || "#858585",
               progress: ((lang.size / totalSize) * 100).toFixed(2),

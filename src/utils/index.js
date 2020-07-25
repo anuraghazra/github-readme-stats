@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React from "preact";
 import axios from "axios";
 import themes from "../../themes";
@@ -11,7 +12,8 @@ const renderError = (message) => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <style>{`
+      <style>
+        {`
         .text {
           font: 600 16px "Segoe UI", Ubuntu, Sans-Serif;
           fill: #2f80ed;
@@ -20,7 +22,8 @@ const renderError = (message) => {
           font: 600 12px "Segoe UI", Ubuntu, Sans-Serif;
           fill: #252525;
         }
-      `}</style>
+      `}
+      </style>
       <rect
         x="0.5"
         y="0.5"
@@ -30,19 +33,31 @@ const renderError = (message) => {
         fill="#FFFEFE"
         stroke="#E4E2E2"
       />
-      <text x="25" y="45" class="text">
+      <text x="25" y="45" className="text">
         Something went wrong! file an issue at https://git.io/JJmN9
       </text>
-      <text id="message" x="25" y="65" class="text small">
+      <text id="message" x="25" y="65" className="text small">
         {message}
       </text>
     </svg>
   );
 };
 
+// https://stackoverflow.com/a/48073476/10629172
+function encodeHTML(str) {
+  return str.replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
+    return `&#${i.charCodeAt(0)};`;
+  });
+}
+function decodeHTML(str) {
+  return str.replace(/&#([0-9]{1,3});/gi, (match, num) => {
+    return String.fromCharCode(parseInt(num, 10));
+  });
+}
+
 function kFormatter(num) {
   return Math.abs(num) > 999
-    ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
+    ? `${Math.sign(num) * (Math.abs(num) / 1000).toFixed(1)}k`
     : Math.sign(num) * Math.abs(num);
 }
 
@@ -57,9 +72,8 @@ function parseBoolean(value) {
     return true;
   } else if (value === "false") {
     return false;
-  } else {
-    return value;
   }
+  return value;
 }
 
 function parseArray(str) {
@@ -84,27 +98,6 @@ function request(data, headers) {
   });
 }
 
-/**
- *
- * @param {String[]} items
- * @param {Number} gap
- * @param {string} direction
- *
- * @description
- * Auto layout utility, allows us to layout things
- * vertically or horizontally with proper gaping
- */
-function FlexLayout({ items, gap, direction }) {
-  // filter() for filtering out empty strings
-  return items.filter(Boolean).map((item, i) => {
-    let transform = `translate(${gap * i}, 0)`;
-    if (direction === "column") {
-      transform = `translate(0, ${gap * i})`;
-    }
-    return <g transform={transform} dangerouslySetInnerHTML={{__html: item}} />;
-  });
-}
-
 // returns theme based colors with proper overrides and defaults
 function getCardColors({
   title_color,
@@ -121,19 +114,19 @@ function getCardColors({
   // finally if both colors are invalid fallback to default theme
   const titleColor = fallbackColor(
     title_color || selectedTheme.title_color,
-    "#" + defaultTheme.title_color
+    `#${defaultTheme.title_color}`
   );
   const iconColor = fallbackColor(
     icon_color || selectedTheme.icon_color,
-    "#" + defaultTheme.icon_color
+    `#${defaultTheme.icon_color}`
   );
   const textColor = fallbackColor(
     text_color || selectedTheme.text_color,
-    "#" + defaultTheme.text_color
+    `#${defaultTheme.text_color}`
   );
   const bgColor = fallbackColor(
     bg_color || selectedTheme.bg_color,
-    "#" + defaultTheme.bg_color
+    `#${defaultTheme.bg_color}`
   );
 
   return { titleColor, iconColor, textColor, bgColor };
@@ -152,13 +145,14 @@ const CONSTANTS = {
 
 export {
   renderError,
+  encodeHTML,
+  decodeHTML,
   kFormatter,
   isValidHexColor,
   request,
   parseArray,
   parseBoolean,
   fallbackColor,
-  FlexLayout,
   getCardColors,
   clampValue,
   logger,

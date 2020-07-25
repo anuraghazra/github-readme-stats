@@ -1,7 +1,6 @@
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/jest-dom";
+import renderToString from "preact-render-to-string";
 import axios from "axios";
-import { h } from "preact";
-import { render } from "@testing-library/preact";
 import MockAdapter from "axios-mock-adapter";
 import api from "../../api/index";
 import statsCard from "../../src/components/statsCard";
@@ -84,7 +83,9 @@ describe("Test /api/", () => {
     await api(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    // expect(res.send).toBeCalledWith(render(statsCard(stats, { ...req.query })));
+    expect(res.send).toBeCalledWith(
+      renderToString(statsCard(stats, { ...req.query }))
+    );
   });
 
   it("should render error card on error", async () => {
@@ -93,7 +94,9 @@ describe("Test /api/", () => {
     await api(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    // expect(res.send).toBeCalledWith(renderError(error.errors[0].message));
+    expect(res.send).toBeCalledWith(
+      renderToString(renderError(error.errors[0].message))
+    );
   });
 
   it("should get the query options", async () => {
@@ -115,18 +118,20 @@ describe("Test /api/", () => {
     await api(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    /* expect(res.send).toBeCalledWith(
-      statsCard(stats, {
-        hide: ["issues", "prs", "contribs"],
-        show_icons: true,
-        hide_border: true,
-        line_height: 100,
-        title_color: "fff",
-        icon_color: "fff",
-        text_color: "fff",
-        bg_color: "fff",
-      })
-    ); */
+    expect(res.send).toBeCalledWith(
+      renderToString(
+        statsCard(stats, {
+          hide: ["issues", "prs", "contribs"],
+          show_icons: true,
+          hide_border: true,
+          line_height: 100,
+          title_color: "fff",
+          icon_color: "fff",
+          text_color: "fff",
+          bg_color: "fff",
+        })
+      )
+    );
   });
 
   it("should have proper cache", async () => {

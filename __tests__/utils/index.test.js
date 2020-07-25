@@ -1,11 +1,12 @@
-import "@testing-library/jest-dom/extend-expect";
-import { render } from "@testing-library/preact";
+import "@testing-library/jest-dom";
+import renderToString from "preact-render-to-string";
 import {
   kFormatter,
+  encodeHTML,
   renderError,
-  FlexLayout,
   getCardColors,
 } from "../../src/utils";
+import FlexLayout from "../../src/components/flexLayout";
 
 describe("Test utils.js", () => {
   it("should test kFormatter", () => {
@@ -18,24 +19,34 @@ describe("Test utils.js", () => {
     expect(kFormatter(9900000)).toBe("9900k");
   });
 
+  it("should test encodeHTML", () => {
+    expect(encodeHTML(`<html>hello world<,.#4^&^@%!))`)).toBe(
+      "&#60;html&#62;hello world&#60;,.#4^&#38;^@%!))"
+    );
+  });
+
   it("should test renderError", () => {
-    const testMessage = "Something went wrong";
-    const { getByText } = render(renderError(testMessage));
-    expect(getByText(testMessage)).toBeInTheDocument();
+    document.body.innerHTML = renderToString(
+      renderError("Something went wrong")
+    );
+    expect(document.getElementById("message").textContent).toBe(
+      "Something went wrong"
+    );
   });
 
   it("should test FlexLayout", () => {
-    const render1 = render(
+    const layout = renderToString(
       FlexLayout({
         items: ["<text>1</text>", "<text>2</text>"],
         gap: 60,
       })
     );
-    expect(render1.container.innerHTML).toMatchInlineSnapshot(
-      `"<g transform=\\"translate(0, 0)\\" __source=\\"[object Object]\\"><text>1</text></g><g transform=\\"translate(60, 0)\\" __source=\\"[object Object]\\"><text>2</text></g>"`
+
+    expect(layout).toBe(
+      `<g transform="translate(0, 0)">&lt;text&gt;1&lt;/text&gt;</g><g transform="translate(60, 0)">&lt;text&gt;2&lt;/text&gt;</g>`
     );
 
-    const render2 = render(
+    const columns = renderToString(
       FlexLayout({
         items: ["<text>1</text>", "<text>2</text>"],
         gap: 60,
@@ -43,8 +54,8 @@ describe("Test utils.js", () => {
       })
     );
 
-    expect(render2.container.innerHTML).toMatchInlineSnapshot(
-      `"<g transform=\\"translate(0, 0)\\" __source=\\"[object Object]\\"><text>1</text></g><g transform=\\"translate(0, 60)\\" __source=\\"[object Object]\\"><text>2</text></g>"`
+    expect(columns).toBe(
+      `<g transform="translate(0, 0)">&lt;text&gt;1&lt;/text&gt;</g><g transform="translate(0, 60)">&lt;text&gt;2&lt;/text&gt;</g>`
     );
   });
 

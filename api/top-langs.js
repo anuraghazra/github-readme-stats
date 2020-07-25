@@ -41,7 +41,7 @@ export default async (req, res) => {
   );
 
   res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
-  
+
   res.send(
     renderToString(
       topLangs(topLangsData, {
@@ -52,7 +52,6 @@ export default async (req, res) => {
         title_color,
         text_color,
         bg_color,
-        theme,
       })
     )
   );

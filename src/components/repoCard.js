@@ -1,7 +1,9 @@
+// eslint-disable-next-line no-unused-vars
 import React from "preact";
-import { kFormatter, getCardColors, FlexLayout } from "../utils";
+import { kFormatter, getCardColors } from "../utils";
 import { getRepoCardStyles } from "../styles";
 import icons from "../icons";
+import FlexLayout from "./flexLayout";
 
 export default (repo, options = {}) => {
   const {
@@ -129,10 +131,11 @@ export default (repo, options = {}) => {
         version="1.1"
         width="16"
         height="16"
+        data-testid="card-icons"
       >
         {icons.contribs}
       </svg>
-      <text x="50" y="38" class="header">
+      <text x="50" y="38" class="header" data-testid="card-header">
         {show_owner ? nameWithOwner : name}
       </text>
       {isTemplate
@@ -140,7 +143,7 @@ export default (repo, options = {}) => {
         : isArchived
         ? getBadgeSVG("Archived")
         : ""}
-      <text class="description" x="25" y="70">
+      <text class="description" x="25" y="70" data-testid="card-desc">
         {desc}
       </text>
       {primaryLanguage ? (
@@ -160,6 +163,7 @@ export default (repo, options = {}) => {
         ""
       )}
       <g
+        data-testid="card-flex-wrapper"
         transform={`translate(${primaryLanguage ? 155 - shiftText : 25}, 100)`}
       >
         {FlexLayout({ items: [svgStars, svgForks], gap: 65 })}

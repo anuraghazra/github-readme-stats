@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom";
+import renderToString from "preact-render-to-string";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import topLangsApi from "../../api/top-langs";
@@ -86,7 +87,7 @@ describe("Test /api/top-langs", () => {
     await topLangsApi(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    // expect(res.send).toBeCalledWith(renderTopLanguages(langs));
+    expect(res.send).toBeCalledWith(renderToString(topLangs(langs)));
   });
 
   it("should work with the query options", async () => {
@@ -110,16 +111,18 @@ describe("Test /api/top-langs", () => {
     await topLangsApi(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    /* expect(res.send).toBeCalledWith(
-      topLangs(langs, {
-        hide_title: true,
-        card_width: 100,
-        title_color: "fff",
-        icon_color: "fff",
-        text_color: "fff",
-        bg_color: "fff",
-      })
-    ); */
+    expect(res.send).toBeCalledWith(
+      renderToString(
+        topLangs(langs, {
+          hide_title: true,
+          card_width: 100,
+          title_color: "fff",
+          icon_color: "fff",
+          text_color: "fff",
+          bg_color: "fff",
+        })
+      )
+    );
   });
 
   it("should render error card on error", async () => {
@@ -137,6 +140,8 @@ describe("Test /api/top-langs", () => {
     await topLangsApi(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    // expect(res.send).toBeCalledWith(renderError(error.errors[0].message));
+    expect(res.send).toBeCalledWith(
+      renderToString(renderError(error.errors[0].message))
+    );
   });
 });

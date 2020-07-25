@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
+import renderToString from "preact-render-to-string";
 import cssToObject from "css-to-object";
 import statsCard from "../../src/components/statsCard";
-
 import {
   getByTestId,
   queryByTestId,
@@ -20,10 +20,8 @@ describe("Test statsCard", () => {
     rank: { level: "A+", score: 40 },
   };
 
-  it("statsCard", () => {});
-
-  /* it("should render correctly", () => {
-    document.body.innerHTML = statsCard(stats);
+  it("should render correctly", () => {
+    document.body.innerHTML = renderToString(statsCard(stats));
 
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
       "Anurag Hazra's GitHub Stats"
@@ -42,13 +40,17 @@ describe("Test statsCard", () => {
   });
 
   it("should have proper name apostrophe", () => {
-    document.body.innerHTML = statsCard({ ...stats, name: "Anil Das" });
+    document.body.innerHTML = renderToString(
+      statsCard({ ...stats, name: "Anil Das" })
+    );
 
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
       "Anil Das' GitHub Stats"
     );
 
-    document.body.innerHTML = statsCard({ ...stats, name: "Felix" });
+    document.body.innerHTML = renderToString(
+      statsCard({ ...stats, name: "Felix" })
+    );
 
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
       "Felix' GitHub Stats"
@@ -56,9 +58,11 @@ describe("Test statsCard", () => {
   });
 
   it("should hide individual stats", () => {
-    document.body.innerHTML = statsCard(stats, {
-      hide: ["issues", "prs", "contribs"],
-    });
+    document.body.innerHTML = renderToString(
+      statsCard(stats, {
+        hide: ["issues", "prs", "contribs"],
+      })
+    );
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height")
@@ -72,19 +76,23 @@ describe("Test statsCard", () => {
   });
 
   it("should hide_border", () => {
-    document.body.innerHTML = statsCard(stats, { hide_border: true });
+    document.body.innerHTML = renderToString(
+      statsCard(stats, { hide_border: true })
+    );
 
     expect(queryByTestId(document.body, "card-bg")).not.toBeInTheDocument();
   });
 
   it("should hide_rank", () => {
-    document.body.innerHTML = statsCard(stats, { hide_rank: true });
+    document.body.innerHTML = renderToString(
+      statsCard(stats, { hide_rank: true })
+    );
 
     expect(queryByTestId(document.body, "rank-circle")).not.toBeInTheDocument();
   });
 
   it("should render default colors properly", () => {
-    document.body.innerHTML = statsCard(stats);
+    document.body.innerHTML = renderToString(statsCard(stats));
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.textContent);
@@ -110,7 +118,11 @@ describe("Test statsCard", () => {
       bg_color: "252525",
     };
 
-    document.body.innerHTML = statsCard(stats, { ...customColors });
+    document.body.innerHTML = renderToString(
+      statsCard(stats, {
+        ...customColors,
+      })
+    );
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
@@ -129,10 +141,12 @@ describe("Test statsCard", () => {
   });
 
   it("should render custom colors with themes", () => {
-    document.body.innerHTML = statsCard(stats, {
-      title_color: "5a0",
-      theme: "radical",
-    });
+    document.body.innerHTML = renderToString(
+      statsCard(stats, {
+        title_color: "5a0",
+        theme: "radical",
+      })
+    );
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
@@ -152,9 +166,11 @@ describe("Test statsCard", () => {
 
   it("should render with all the themes", () => {
     Object.keys(themes).forEach((name) => {
-      document.body.innerHTML = statsCard(stats, {
-        theme: name,
-      });
+      document.body.innerHTML = renderToString(
+        statsCard(stats, {
+          theme: name,
+        })
+      );
 
       const styleTag = document.querySelector("style");
       const stylesObject = cssToObject(styleTag.innerHTML);
@@ -174,11 +190,13 @@ describe("Test statsCard", () => {
   });
 
   it("should render custom colors with themes and fallback to default colors if invalid", () => {
-    document.body.innerHTML = statsCard(stats, {
-      title_color: "invalid color",
-      text_color: "invalid color",
-      theme: "radical",
-    });
+    document.body.innerHTML = renderToString(
+      statsCard(stats, {
+        title_color: "invalid color",
+        text_color: "invalid color",
+        theme: "radical",
+      })
+    );
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
@@ -197,9 +215,11 @@ describe("Test statsCard", () => {
   });
 
   it("should hide the title", () => {
-    document.body.innerHTML = statsCard(stats, {
-      hide_title: true,
-    });
+    document.body.innerHTML = renderToString(
+      statsCard(stats, {
+        hide_title: true,
+      })
+    );
 
     expect(document.getElementsByClassName("header")[0]).toBeUndefined();
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
@@ -213,7 +233,7 @@ describe("Test statsCard", () => {
   });
 
   it("should not hide the title", () => {
-    document.body.innerHTML = statsCard(stats, {});
+    document.body.innerHTML = renderToString(statsCard(stats, {}));
 
     expect(document.getElementsByClassName("header")[0]).toBeDefined();
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
@@ -227,9 +247,11 @@ describe("Test statsCard", () => {
   });
 
   it("should render icons correctly", () => {
-    document.body.innerHTML = statsCard(stats, {
-      show_icons: true,
-    });
+    document.body.innerHTML = renderToString(
+      statsCard(stats, {
+        show_icons: true,
+      })
+    );
 
     expect(queryAllByTestId(document.body, "icon")[0]).toBeDefined();
     expect(queryByTestId(document.body, "stars")).toBeDefined();
@@ -239,12 +261,14 @@ describe("Test statsCard", () => {
   });
 
   it("should not have icons if show_icons is false", () => {
-    document.body.innerHTML = statsCard(stats, { show_icons: false });
+    document.body.innerHTML = renderToString(
+      statsCard(stats, { show_icons: false })
+    );
 
     expect(queryAllByTestId(document.body, "icon")[0]).not.toBeDefined();
     expect(queryByTestId(document.body, "stars")).toBeDefined();
     expect(
       queryByTestId(document.body, "stars").previousElementSibling // the label
     ).not.toHaveAttribute("x");
-  }); */
+  });
 });

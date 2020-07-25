@@ -1,4 +1,5 @@
 import "dotenv/config";
+// eslint-disable-next-line no-unused-vars
 import React from "preact";
 import renderToString from "preact-render-to-string";
 import {

@@ -11,3 +11,7 @@ coverage:
       default:
         threshold: 5
     patch: false
+
+ignore:
+  - coverage
+  - jest.config.js
