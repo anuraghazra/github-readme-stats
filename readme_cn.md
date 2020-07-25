@@ -174,12 +174,12 @@ Endpoint: `api/top-langs?username=anuraghazra`
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### 隐藏低于特定阈值的语言
+### 隐藏特定语言
 
-可以使用`?hide_langs_below=NUMBER`参数来隐藏低于指定百分比阈值的语言。
+可以使用`?hide=语言1,语言2`参数来隐藏指定的语言。
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_langs_below=1)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=语言1,语言2)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo

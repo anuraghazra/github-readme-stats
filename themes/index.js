@@ -77,12 +77,24 @@ const themes = {
     text_color: "6e93b5",
     bg_color: "172f45",
   },
+  monokai: {
+    title_color: "eb1f6a",
+    icon_color: "e28905",
+    text_color: "f1f1eb",
+    bg_color: "272822",
+  },
+  vue: {
+    title_color: "41b883",
+    icon_color: "41b883",
+    text_color: "273849",
+    bg_color: "FFFEFE",
+  },
   'shade-of-purple': {
     title_color: "FAD000",
     icon_color: "A599E9",
     text_color: "A599E9",
     bg_color: "2D2B55",
-  },
+  }
 };
 
 module.exports = themes;
