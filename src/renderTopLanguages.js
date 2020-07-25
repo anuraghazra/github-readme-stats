@@ -30,12 +30,12 @@ const createLanguageTextNode = ({langs, totalSize,x,y}) => {
     output+= `
       <g transform="translate(0, ${12.5 * i})">
         <circle cx="${5+x}" cy="${6+y}" r="5" fill="${langs[i].color || '#858585'}" />
-        <text data-testid="lang-name" x="${15+x}" y="${12+y}" class='lang-name'>${langs[i].name} ${((langs[i].size / totalSize) * 100).toFixed(2)}%</text>
+        <text data-testid="lang-name" x="${15+x}" y="${10+y}" class='lang-name'>${langs[i].name} ${((langs[i].size / totalSize) * 100).toFixed(2)}%</text>
       </g>
       ${langs[i+1] ? `
         <g transform="translate(150, ${12.5 * i})">
           <circle cx="${5+x}" cy="${6+y}" r="5" fill="${langs[i+1].color || '#858585'}" />
-          <text data-testid="lang-name" x="${15+x}" y="${12+y}" fill='#333' class='lang-name'>${langs[i+1].name} ${((langs[i+1].size / totalSize) * 100).toFixed(2)}%</text>
+          <text data-testid="lang-name" x="${15+x}" y="${10+y}" fill='#333' class='lang-name'>${langs[i+1].name} ${((langs[i+1].size / totalSize) * 100).toFixed(2)}%</text>
         </g>
       ` : ''}
     `
@@ -118,9 +118,9 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
       <svg data-testid="lang-items" x="25" y="${hide_title ? 25 : 55}">
       ${layout === 'compact' ? `
-        ${langs.map(lang => {
+        ${langs.map((lang, idx) => {
           const percentage = ((lang.size / totalSize) * (width - 50)).toFixed(2)
-          const output = `<rect data-testid="lang-progress" x='${offset}' y='0' width='${percentage}' height='8' fill='${lang.color}' />`
+          const output = `<rect data-testid="lang-progress" x='${offset}' y='0' width='${idx === 0 ? parseFloat(+percentage + 5).toFixed(2): percentage}' height='8' fill='${lang.color}' ${idx === 0 || idx === langs.length - 1 ? "rx='5'": ''} />`
           offset += +percentage
           return output
         }).join('')}

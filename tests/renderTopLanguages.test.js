@@ -214,7 +214,7 @@ describe("Test renderTopLanguages", () => {
     expect(queryByTestId(document.body, "header")).toHaveTextContent("Top Languages");
 
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent("HTML 40.00%");
-    expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute("width","120.00");
+    expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute("width","125.00");
 
     expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent("javascript 40.00%");
     expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute("width","120.00");
