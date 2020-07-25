@@ -32,6 +32,8 @@ Use `?theme=THEME_NAME` parameter like so :-
 |          `gruvbox` ![gruvbox][gruvbox_repocard]          | `tokyonight` ![tokyonight][tokyonight_repocard] |        `onedark` ![onedark][onedark_repocard]         |
 |           `cobalt` ![cobalt][cobalt_repocard]            |  `synthwave` ![synthwave][synthwave_repocard]   | `highcontrast` ![highcontrast][highcontrast_repocard] |
 |          `dracula` ![dracula][dracula_repocard]          |     `dark` ![dark_repocard][dark_repocard]      |  `prussian` ![prussian_repocard][prussian_repocard]         |
+|          `monokai` ![monokai][monokai_repocard]          |     `vue` ![vue][vue_repocard]      |  `shades-of-purple` ![shades-of-purple][shades-of-purple_repocard]         |
+|          `nightowl` ![nightowl][nightowl_repocard]          |           |   |
 | [Add your theme][add-theme]   |||
 
 
@@ -50,6 +52,10 @@ Use `?theme=THEME_NAME` parameter like so :-
 [onedark_repocard]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=onedark
 [highcontrast_repocard]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=highcontrast
 [prussian_repocard]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=prussian
+[monokai_repocard]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=monokai
+[vue_repocard]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=vue
+[shades-of-purple_repocard]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=shades-of-purple
+[nightowl_repocard]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=nightowl
 
 <!-- Stats Theme previews -->
 
