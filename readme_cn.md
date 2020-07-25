@@ -76,7 +76,7 @@ _Note: 排名基于用户的统计信息计算得出，详见 [src/calculateRank
 
 #### 所有现有主题
 
-dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
+dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula, github
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="Github Readme Stat Themes" width="600px"/>
 
