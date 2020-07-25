@@ -89,12 +89,18 @@ const themes = {
     text_color: "273849",
     bg_color: "FFFEFE",
   },
-  'shades-of-purple': {
+  "shades-of-purple": {
     title_color: "FAD000",
     icon_color: "FB94FF",
     text_color: "A599E9",
     bg_color: "2D2B55",
-  }
+  },
+  nightowl: {
+    title_color: "C792EA",
+    icon_color: "FFEB95",
+    text_color: "7FDBCA",
+    bg_color: "011627",
+  },
 };
 
 module.exports = themes;
