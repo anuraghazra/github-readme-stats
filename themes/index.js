@@ -101,6 +101,12 @@ const themes = {
     text_color: "7FDBCA",
     bg_color: "011627",
   },
+  buefy: {
+    title_color: "7957d5",
+    icon_color: "ff3860",
+    text_color: "363636",
+    bg_color: "ffffff",
+  },
 };
 
 module.exports = themes;
