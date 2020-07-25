@@ -18,6 +18,8 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `gruvbox` ![gruvbox][gruvbox] | `tokyonight` ![tokyonight][tokyonight] |        `onedark` ![onedark][onedark]         |
 |  `cobalt` ![cobalt][cobalt]   |  `synthwave` ![synthwave][synthwave]   | `highcontrast` ![highcontrast][highcontrast] |
 | `dracula` ![dracula][dracula] |          `dark` ![dark][dark]          |      `prussian` ![prussian][prussian]        |
+| `monokai` ![monokai][monokai] |          `vue` ![vue][vue]             | `shades-of-purple` ![shades-of-purple][shades-of-purple] |
+| `nightowl` ![nightowl][nightowl] |   |   |
 | [Add your theme][add-theme]   |||
 
 ## Repo Card
@@ -63,6 +65,10 @@ Use `?theme=THEME_NAME` parameter like so :-
 [highcontrast]: https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=highcontrast&hide=["contribs","prs"]&cache_seconds=86400
 [dracula]: https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=dracula&hide=["contribs","prs"]&cache_seconds=86400
 [prussian]: https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=prussian&hide=["contribs","prs"]&cache_seconds=86400
+[monokai]: https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=monokai&hide=["contribs","prs"]&cache_seconds=86400
+[vue]: https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=vue&hide=["contribs","prs"]&cache_seconds=86400
+[shades-of-purple]: https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=shades-of-purple&hide=["contribs","prs"]&cache_seconds=86400
+[nightowl]: https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=nightowl&hide=["contribs","prs"]&cache_seconds=86400
 
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
