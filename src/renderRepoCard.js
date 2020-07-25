@@ -108,6 +108,16 @@ const renderRepoCard = (repo, options = {}) => {
       .icon { fill: ${iconColor} }
       .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
       .badge rect { opacity: 0.2 }
+      @media (prefers-color-scheme: dark) {
+        .gray { fill: white; }
+        .description { fill: white; }
+        .badge rect { opacity: 1; }
+        .badge text { fill: white; }
+        .icon { fill: white; }
+        [data-testid="card-bg"] {
+          fill: black;
+        }
+      }
       </style>
 
       <rect data-testid="card-bg" x="0.5" y="0.5" width="399" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>

@@ -77,6 +77,12 @@ const renderTopLanguages = (topLangs, options = {}) => {
       <style>
         .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
         .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+        @media (prefers-color-scheme: dark) {
+          .lang-name { fill: white; }
+          [data-testid="card-bg"] {
+            fill: black;
+          }
+        }
       </style>
       <rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
 
