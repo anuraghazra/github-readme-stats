@@ -1,5 +1,4 @@
 import "@testing-library/jest-dom/extend-expect";
-import { h } from "preact";
 import { render } from "@testing-library/preact";
 import {
   kFormatter,
@@ -19,33 +18,35 @@ describe("Test utils.js", () => {
     expect(kFormatter(9900000)).toBe("9900k");
   });
 
-  /* it("should test renderError", () => {
-    document.body.innerHTML = renderError("Something went wrong");
-    expect(document.getElementById("message").textContent).toBe(
-      "Something went wrong"
+  it("should test renderError", () => {
+    const testMessage = "Something went wrong";
+    const { getByText } = render(renderError(testMessage));
+    expect(getByText(testMessage)).toBeInTheDocument();
+  });
+
+  it("should test FlexLayout", () => {
+    const render1 = render(
+      FlexLayout({
+        items: ["<text>1</text>", "<text>2</text>"],
+        gap: 60,
+      })
     );
-  }); */
-
-  /* it("should test FlexLayout", () => {
-    const layout = FlexLayout({
-      items: ["<text>1</text>", "<text>2</text>"],
-      gap: 60,
-    }).join("");
-
-    expect(layout).toBe(
-      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(60, 0)\"><text>2</text></g>`
+    expect(render1.container.innerHTML).toMatchInlineSnapshot(
+      `"<g transform=\\"translate(0, 0)\\" __source=\\"[object Object]\\"><text>1</text></g><g transform=\\"translate(60, 0)\\" __source=\\"[object Object]\\"><text>2</text></g>"`
     );
 
-    const columns = FlexLayout({
-      items: ["<text>1</text>", "<text>2</text>"],
-      gap: 60,
-      direction: "column",
-    }).join("");
-
-    expect(columns).toBe(
-      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(0, 60)\"><text>2</text></g>`
+    const render2 = render(
+      FlexLayout({
+        items: ["<text>1</text>", "<text>2</text>"],
+        gap: 60,
+        direction: "column",
+      })
     );
-  }); */
+
+    expect(render2.container.innerHTML).toMatchInlineSnapshot(
+      `"<g transform=\\"translate(0, 0)\\" __source=\\"[object Object]\\"><text>1</text></g><g transform=\\"translate(0, 60)\\" __source=\\"[object Object]\\"><text>2</text></g>"`
+    );
+  });
 
   it("getCardColors: should return expected values", () => {
     let colors = getCardColors({
@@ -78,7 +79,7 @@ describe("Test utils.js", () => {
       bgColor: "#fff",
     });
   });
-  
+
   it("getCardColors: should fallback to specified theme colors if is not defined", () => {
     let colors = getCardColors({
       theme: "dark",

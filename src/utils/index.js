@@ -101,7 +101,7 @@ function FlexLayout({ items, gap, direction }) {
     if (direction === "column") {
       transform = `translate(0, ${gap * i})`;
     }
-    return <g transform={transform}>{item}</g>;
+    return <g transform={transform} dangerouslySetInnerHTML={{__html: item}} />;
   });
 }
 
