@@ -55,7 +55,14 @@ const getTopLangsStyles = ({
   weight: 400,
   size: 11,
   fillColor: textColor,
-})} }`;
+})} }
+@media (prefers-color-scheme: dark) {
+  .lang-name { fill: white; }
+  [data-testid="card-bg"] {
+    fill: black;
+  }
+}
+`;
 
 const getRepoCardStyles = ({
   titleColor,
@@ -72,9 +79,20 @@ const getRepoCardStyles = ({
   fillColor: textColor,
 })} }
 .gray { ${getFontFillStyle({ weight: 400, size: 12, fillColor: textColor })} }
-.icon { fill: ${iconColor} }
+.icon { fill: ${iconColor}; }
 .badge { ${getFontStyle({ weight: 600, size: 11 })} }
-.badge rect { opacity: 0.2 }`;
+.badge rect { opacity: 0.2; }
+@media (prefers-color-scheme: dark) {
+  .gray { fill: white; }
+  .description { fill: white; }
+  .badge rect { opacity: 1; }
+  .badge text { fill: white; }
+  .icon { fill: white; }
+  [data-testid="card-bg"] {
+    fill: black;
+  }
+}
+`;
 
 const getStatsCardStyles = ({
   titleColor,
@@ -83,47 +101,51 @@ const getStatsCardStyles = ({
   show_icons,
   progress,
 }) => `
-  .header {
-    ${getFontFillStyle({ weight: 600, size: 18, fillColor: titleColor })}
-    animation: fadeIn 0.8s ease-in-out forwards;
+.header {
+  ${getFontFillStyle({ weight: 600, size: 18, fillColor: titleColor })}
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+.stat { 
+  ${getFontFillStyle({ weight: 600, size: 14, fillColor: textColor })}
+}
+.stagger { 
+  opacity: 0;
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+.rank-text { 
+  ${getFontFillStyle({ weight: 800, size: 24, fillColor: textColor })} 
+  animation: scaleIn 0.3s ease-in-out forwards;
+}
+.bold { font-weight: 700 }
+.icon {
+  fill: ${iconColor};
+  display: ${!!show_icons ? "block" : "none"};
+}
+.rank-circle-rim {
+  stroke: ${titleColor};
+  fill: none;
+  stroke-width: 6;
+  opacity: 0.2;
+}
+.rank-circle {
+  stroke: ${titleColor};
+  stroke-dasharray: 250;
+  fill: none;
+  stroke-width: 6;
+  stroke-linecap: round;
+  opacity: 0.8;
+  transform-origin: -10px 8px;
+  transform: rotate(-90deg);
+  animation: rankAnimation 1s forwards ease-in-out;
+}
+@media (prefers-color-scheme: dark) {
+  .stat { fill: white; }
+  .rank-text { fill: white; }
+  [data-testid="card-bg"] {
+    fill: black;
   }
-  .stat { 
-    ${getFontFillStyle({ weight: 600, size: 14, fillColor: textColor })}
-  }
-  .stagger { 
-    opacity: 0;
-    animation: fadeIn 0.3s ease-in-out forwards;
-  }
-  .rank-text { 
-    ${getFontFillStyle({ weight: 800, size: 24, fillColor: textColor })} 
-    animation: scaleIn 0.3s ease-in-out forwards;
-  }
-  
-  .bold { font-weight: 700 }
-  .icon {
-    fill: ${iconColor};
-    display: ${!!show_icons ? "block" : "none"};
-  }
-  
-  .rank-circle-rim {
-    stroke: ${titleColor};
-    fill: none;
-    stroke-width: 6;
-    opacity: 0.2;
-  }
-  .rank-circle {
-    stroke: ${titleColor};
-    stroke-dasharray: 250;
-    fill: none;
-    stroke-width: 6;
-    stroke-linecap: round;
-    opacity: 0.8;
-    transform-origin: -10px 8px;
-    transform: rotate(-90deg);
-    animation: rankAnimation 1s forwards ease-in-out;
-  }
-
-  ${process.env.NODE_ENV === "test" ? "" : getAnimations({ progress })}
-  `;
+}
+${process.env.NODE_ENV === "test" ? "" : getAnimations({ progress })}
+`;
 
 export { getTopLangsStyles, getStatsCardStyles, getRepoCardStyles };

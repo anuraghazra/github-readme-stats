@@ -117,7 +117,7 @@ export default (topLangs, options = {}) => {
         </text>
       )}
       <svg data-testid="lang-items" x="25" y={hide_title ? 25 : 55}>
-        {...FlexLayout({
+        {FlexLayout({
           items: langs.map((lang) => {
             return createProgressNode({
               width: width,

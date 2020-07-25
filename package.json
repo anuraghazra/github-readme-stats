@@ -5,21 +5,25 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:ci": "jest --ci"
   },
   "author": "Anurag Hazra",
   "license": "MIT",
   "devDependencies": {
     "@testing-library/dom": "^7.20.0",
     "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/preact": "^2.0.0",
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",
+    "babel-jest": "^26.1.0",
     "css-to-object": "^1.1.0",
     "husky": "^4.2.5",
     "jest": "^26.1.0"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
+    "next": "^9.4.4",
     "preact": "^10.4.6",
     "preact-render-to-string": "^5.1.10"
   },

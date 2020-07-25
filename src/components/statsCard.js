@@ -196,7 +196,7 @@ export default (stats = {}, options = { hide: [] }) => {
           </g>
         )}
         <svg x="0" y="55">
-          {...FlexLayout({
+          {FlexLayout({
             items: statItems,
             gap: lheight,
             direction: "column",

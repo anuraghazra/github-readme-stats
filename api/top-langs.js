@@ -1,4 +1,4 @@
-require("dotenv").config();
+import "dotenv/config";
 import renderToString from "preact-render-to-string";
 import {
   logger,

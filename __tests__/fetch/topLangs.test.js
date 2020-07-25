@@ -1,7 +1,7 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const fetchTopLanguages = require("../src/fetchTopLanguages");
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import topLangs from "../../src/fetch/topLangs";
 
 const mock = new MockAdapter(axios);
 
@@ -55,11 +55,11 @@ const error = {
   ],
 };
 
-describe("FetchTopLanguages", () => {
+describe("topLangs", () => {
   it("should fetch correct language data", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
-    let repo = await fetchTopLanguages("anuraghazra");
+    let repo = await topLangs("anuraghazra");
     expect(repo).toStrictEqual({
       HTML: {
         color: "#0f0",
@@ -77,7 +77,7 @@ describe("FetchTopLanguages", () => {
   it("should throw error", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, error);
 
-    await expect(fetchTopLanguages("anuraghazra")).rejects.toThrow(
+    await expect(topLangs("anuraghazra")).rejects.toThrow(
       "Could not resolve to a User with the login of 'noname'."
     );
   });
