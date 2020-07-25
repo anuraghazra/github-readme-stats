@@ -37,18 +37,43 @@ const getAnimations = ({ progress }) => `
   }
 `;
 
-const getTopLangsStyles = ({textColor, titleColor}) => `.header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
-.lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }`;
+const getFontStyle = ({ weight, size }) =>
+  `font: ${weight} ${size}px 'Segoe UI', Ubuntu, Sans-Serif;`;
+
+const getFontFillStyle = ({ weight, size, fillColor }) =>
+  `${getFontStyle({ weight, size })} fill: ${fillColor};`;
+
+const getTopLangsStyles = ({
+  textColor,
+  titleColor,
+}) => `.header { ${getFontFillStyle({
+  weight: 600,
+  size: 18,
+  fillColor: titleColor,
+})} }
+.lang-name { ${getFontFillStyle({
+  weight: 400,
+  size: 11,
+  fillColor: textColor,
+})} }`;
 
 const getRepoCardStyles = ({
   titleColor,
   textColor,
   iconColor,
-}) => `.header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
-.description { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
-.gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+}) => `.header { ${getFontFillStyle({
+  weight: 600,
+  size: 18,
+  fillColor: titleColor,
+})} }
+.description { ${getFontFillStyle({
+  weight: 400,
+  size: 13,
+  fillColor: textColor,
+})} }
+.gray { ${getFontFillStyle({ weight: 400, size: 12, fillColor: textColor })} }
 .icon { fill: ${iconColor} }
-.badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
+.badge { ${getFontStyle({ weight: 600, size: 11 })} }
 .badge rect { opacity: 0.2 }`;
 
 const getStatsCardStyles = ({
@@ -59,18 +84,18 @@ const getStatsCardStyles = ({
   progress,
 }) => `
   .header {
-    font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor}; 
+    ${getFontFillStyle({ weight: 600, size: 18, fillColor: titleColor })}
     animation: fadeIn 0.8s ease-in-out forwards;
   }
   .stat { 
-    font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
+    ${getFontFillStyle({ weight: 600, size: 14, fillColor: textColor })}
   }
   .stagger { 
     opacity: 0;
     animation: fadeIn 0.3s ease-in-out forwards;
   }
   .rank-text { 
-    font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; 
+    ${getFontFillStyle({ weight: 800, size: 24, fillColor: textColor })} 
     animation: scaleIn 0.3s ease-in-out forwards;
   }
   
