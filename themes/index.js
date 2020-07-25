@@ -77,6 +77,12 @@ const themes = {
     text_color: "6e93b5",
     bg_color: "172f45",
   },
+  'shade-of-purple': {
+    title_color: "FAD000",
+    icon_color: "A599E9",
+    text_color: "A599E9",
+    bg_color: "2D2B55",
+  },
 };
 
 module.exports = themes;
