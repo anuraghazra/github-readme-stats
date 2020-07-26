@@ -62,7 +62,7 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma s
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs])
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
 ### Adding private contributions count to total commits count
@@ -190,7 +190,7 @@ You can use `?hide=language1,language2` parameter to hide individual languages.
 
 - Hiding specific stats
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues])
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
 
 - Showing icons
 
