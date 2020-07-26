@@ -29,7 +29,7 @@ describe("Test renderRepoCard", () => {
     expect(header).toHaveTextContent("convoychat");
     expect(header).not.toHaveTextContent("anuraghazra");
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
-      "Help us take over the world! React + TS + GraphQL Chat .."
+      "Help us take over the world! React + TS + GraphQL ChatApp"
     );
     expect(queryByTestId(document.body, "stargazers")).toHaveTextContent("38k");
     expect(queryByTestId(document.body, "forkcount")).toHaveTextContent("100");
@@ -55,11 +55,14 @@ describe("Test renderRepoCard", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
       description:
-        "Very long long long long long long long long text it should trim it",
+        "Very long long long long long long long long long long long long long long long long text it should trim it",
     });
 
-    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
-      "Very long long long long long long long long text it sh.."
+    expect(document.getElementsByClassName("description")[0].childNodes[0].textContent).toBe(
+      "Very long long long long long long long long long long"
+    );
+    expect(document.getElementsByClassName("description")[0].childNodes[1].textContent).toBe(
+      "long long long long long long text it should trim it"
     );
 
     // Should not trim
@@ -97,7 +100,7 @@ describe("Test renderRepoCard", () => {
     expect(queryByTestId(document.body, "primary-lang")).toBeInTheDocument();
     expect(document.getElementsByTagName("g")[1]).toHaveAttribute(
       "transform",
-      "translate(155, 100)"
+      "translate(155, 120)"
     );
 
     // Small lang
@@ -111,7 +114,7 @@ describe("Test renderRepoCard", () => {
 
     expect(document.getElementsByTagName("g")[1]).toHaveAttribute(
       "transform",
-      "translate(125, 100)"
+      "translate(125, 120)"
     );
   });
 
