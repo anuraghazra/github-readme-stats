@@ -33,7 +33,7 @@ describe("Test renderRepoCard", () => {
     );
     expect(queryByTestId(document.body, "stargazers")).toHaveTextContent("38k");
     expect(queryByTestId(document.body, "forkcount")).toHaveTextContent("100");
-    expect(queryByTestId(document.body, "lang")).toHaveTextContent(
+    expect(queryByTestId(document.body, "lang-name")).toHaveTextContent(
       "TypeScript"
     );
     expect(queryByTestId(document.body, "lang-color")).toHaveAttribute(
@@ -73,6 +73,18 @@ describe("Test renderRepoCard", () => {
     );
   });
 
+  it("should render emojis", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      description: "This is a text with a :poop: poo emoji",
+    });
+
+    // poop emoji may not show in all editors but it's there between "a" and "poo"
+    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
+      "This is a text with a 💩 poo emoji"
+    );
+  });
+
   it("should shift the text position depending on language length", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
@@ -82,6 +94,7 @@ describe("Test renderRepoCard", () => {
       },
     });
 
+    expect(queryByTestId(document.body, "primary-lang")).toBeInTheDocument();
     expect(document.getElementsByTagName("g")[1]).toHaveAttribute(
       "transform",
       "translate(155, 100)"
@@ -99,6 +112,30 @@ describe("Test renderRepoCard", () => {
     expect(document.getElementsByTagName("g")[1]).toHaveAttribute(
       "transform",
       "translate(125, 100)"
+    );
+  });
+
+  it("should hide language if primaryLanguage is null & fallback to correct values", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      primaryLanguage: null,
+    });
+
+    expect(queryByTestId(document.body, "primary-lang")).toBeNull();
+
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      primaryLanguage: { color: null, name: null },
+    });
+
+    expect(queryByTestId(document.body, "primary-lang")).toBeInTheDocument();
+    expect(queryByTestId(document.body, "lang-color")).toHaveAttribute(
+      "fill",
+      "#333"
+    );
+
+    expect(queryByTestId(document.body, "lang-name")).toHaveTextContent(
+      "Unspecified"
     );
   });
 
@@ -217,17 +254,6 @@ describe("Test renderRepoCard", () => {
     );
   });
 
-  it("should render archive badge if repo is archived", () => {
-    document.body.innerHTML = renderRepoCard({
-      ...data_repo.repository,
-      isArchived: true,
-    });
-
-    expect(queryByTestId(document.body, "archive-badge")).toHaveTextContent(
-      "Archived"
-    );
-  });
-
   it("should not render star count or fork count if either of the are zero", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
@@ -235,7 +261,7 @@ describe("Test renderRepoCard", () => {
     });
 
     expect(queryByTestId(document.body, "stargazers")).toBeNull();
-    expect(queryByTestId(document.body, "forkcount")).toBeDefined();
+    expect(queryByTestId(document.body, "forkcount")).toBeInTheDocument();
 
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
@@ -243,7 +269,7 @@ describe("Test renderRepoCard", () => {
       forkCount: 0,
     });
 
-    expect(queryByTestId(document.body, "stargazers")).toBeDefined();
+    expect(queryByTestId(document.body, "stargazers")).toBeInTheDocument();
     expect(queryByTestId(document.body, "forkcount")).toBeNull();
 
     document.body.innerHTML = renderRepoCard({
@@ -254,5 +280,27 @@ describe("Test renderRepoCard", () => {
 
     expect(queryByTestId(document.body, "stargazers")).toBeNull();
     expect(queryByTestId(document.body, "forkcount")).toBeNull();
+  });
+
+  it("should render badges", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      isArchived: true,
+    });
+
+    expect(queryByTestId(document.body, "badge")).toHaveTextContent("Archived");
+
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      isTemplate: true,
+    });
+    expect(queryByTestId(document.body, "badge")).toHaveTextContent("Template");
+  });
+
+  it("should not render template", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+    });
+    expect(queryByTestId(document.body, "badge")).toBeNull();
   });
 });

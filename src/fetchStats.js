@@ -1,4 +1,4 @@
-const { request } = require("./utils");
+const { request, logger } = require("./utils");
 const retryer = require("./retryer");
 const calculateRank = require("./calculateRank");
 require("dotenv").config();
@@ -13,6 +13,7 @@ const fetcher = (variables, token) => {
           login
           contributionsCollection {
             totalCommitContributions
+            restrictedContributionsCount
           }
           repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
             totalCount
@@ -45,7 +46,7 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchStats(username) {
+async function fetchStats(username, count_private = false) {
   if (!username) throw Error("Invalid username");
 
   const stats = {
@@ -61,15 +62,23 @@ async function fetchStats(username) {
   let res = await retryer(fetcher, { login: username });
 
   if (res.data.errors) {
-    console.log(res.data.errors);
+    logger.error(res.data.errors);
     throw Error(res.data.errors[0].message || "Could not fetch user");
   }
 
   const user = res.data.data.user;
+  const contributionCount = user.contributionsCollection;
 
   stats.name = user.name || user.login;
   stats.totalIssues = user.issues.totalCount;
-  stats.totalCommits = user.contributionsCollection.totalCommitContributions;
+
+  stats.totalCommits = contributionCount.totalCommitContributions;
+  if (count_private) {
+    stats.totalCommits =
+      contributionCount.totalCommitContributions +
+      contributionCount.restrictedContributionsCount;
+  }
+
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 

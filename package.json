@@ -4,7 +4,7 @@
   "description": "Dynamically generate stats for your github readmes",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
   "author": "Anurag Hazra",
@@ -15,9 +15,16 @@
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",
     "css-to-object": "^1.1.0",
+    "husky": "^4.2.5",
     "jest": "^26.1.0"
   },
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "emoji-name-map": "^1.2.8"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
   }
 }

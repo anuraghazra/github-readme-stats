@@ -1,4 +1,9 @@
-const { kFormatter, getCardColors, FlexLayout } = require("../src/utils");
+const {
+  kFormatter,
+  getCardColors,
+  FlexLayout,
+  encodeHTML,
+} = require("../src/utils");
 const getStyles = require("./getStyles");
 const icons = require("./icons");
 
@@ -128,11 +133,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
   const title = hide_title
     ? ""
-    : `<text x="25" y="35" class="header">${name}'${apostrophe} GitHub Stats</text>`;
+    : `<text x="25" y="35" class="header">${encodeHTML(name)}'${apostrophe} GitHub Stats</text>`;
 
-  const border = hide_border
-    ? ""
-    : `
+  const border = `
     <rect 
       data-testid="card-bg"
       x="0.5"
@@ -142,6 +145,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       rx="4.5"
       fill="${bgColor}"
       stroke="#E4E2E2"
+      stroke-opacity="${hide_border ? 0 : 1}"
     />
   `;
 

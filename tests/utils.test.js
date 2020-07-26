@@ -1,3 +1,4 @@
+require("@testing-library/jest-dom");
 const {
   kFormatter,
   encodeHTML,
@@ -5,6 +6,8 @@ const {
   FlexLayout,
   getCardColors,
 } = require("../src/utils");
+
+const { queryByTestId } = require("@testing-library/dom");
 
 describe("Test utils.js", () => {
   it("should test kFormatter", () => {
@@ -25,9 +28,19 @@ describe("Test utils.js", () => {
 
   it("should test renderError", () => {
     document.body.innerHTML = renderError("Something went wrong");
-    expect(document.getElementById("message").textContent).toBe(
-      "Something went wrong"
+    expect(
+      queryByTestId(document.body, "message").children[0]
+    ).toHaveTextContent(/Something went wrong/gim);
+    expect(queryByTestId(document.body, "message").children[1]).toBeEmpty(2);
+
+    // Secondary message
+    document.body.innerHTML = renderError(
+      "Something went wrong",
+      "Secondary Message"
     );
+    expect(
+      queryByTestId(document.body, "message").children[1]
+    ).toHaveTextContent(/Secondary Message/gim);
   });
 
   it("should test FlexLayout", () => {
@@ -82,7 +95,7 @@ describe("Test utils.js", () => {
       bgColor: "#fff",
     });
   });
-  
+
   it("getCardColors: should fallback to specified theme colors if is not defined", () => {
     let colors = getCardColors({
       theme: "dark",

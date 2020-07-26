@@ -30,7 +30,10 @@ const data = {
     user: {
       name: stats.name,
       repositoriesContributedTo: { totalCount: stats.contributedTo },
-      contributionsCollection: { totalCommitContributions: stats.totalCommits },
+      contributionsCollection: {
+        totalCommitContributions: stats.totalCommits,
+        restrictedContributionsCount: 100,
+      },
       pullRequests: { totalCount: stats.totalPRs },
       issues: { totalCount: stats.totalIssues },
       followers: { totalCount: 0 },
@@ -91,14 +94,19 @@ describe("Test /api/", () => {
     await api(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(renderError(error.errors[0].message));
+    expect(res.send).toBeCalledWith(
+      renderError(
+        error.errors[0].message,
+        "Make sure the provided username is not an organization"
+      )
+    );
   });
 
   it("should get the query options", async () => {
     const { req, res } = faker(
       {
         username: "anuraghazra",
-        hide: `["issues","prs","contribs"]`,
+        hide: "issues,prs,contribs",
         show_icons: true,
         hide_border: true,
         line_height: 100,
@@ -180,5 +188,37 @@ describe("Test /api/", () => {
         ["Cache-Control", `public, max-age=${CONSTANTS.THIRTY_MINUTES}`],
       ]);
     }
+  });
+
+  it("should add private contributions", async () => {
+    const { req, res } = faker(
+      {
+        username: "anuraghazra",
+        count_private: true,
+      },
+      data
+    );
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderStatsCard(
+        {
+          ...stats,
+          totalCommits: stats.totalCommits + 100,
+          rank: calculateRank({
+            totalCommits: stats.totalCommits + 100,
+            totalRepos: 1,
+            followers: 0,
+            contributions: stats.contributedTo,
+            stargazers: stats.totalStars,
+            prs: stats.totalPRs,
+            issues: stats.totalIssues,
+          }),
+        },
+        {}
+      )
+    );
   });
 });

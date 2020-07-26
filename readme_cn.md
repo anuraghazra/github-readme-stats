@@ -19,9 +19,9 @@
   <p align="center">
     <a href="#demo">查看 Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues">报告 bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">报告 bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues">请求增加功能</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">请求增加功能</a>
   </p>
 </p>
 <p align="center">喜欢这个项目？请考虑<a href="https://www.paypal.me/anuraghazra">捐赠</a>来帮助它完善！
@@ -30,6 +30,7 @@
 
 - [GitHub 统计卡片](#GitHub-统计卡片)
 - [GitHub 更多置顶](#GitHub-更多置顶)
+- [热门语言卡片](#热门语言卡片)
 - [主题](#主题)
 - [自定义](#自定义)
 - [自己部署](#自己部署)
@@ -64,6 +65,7 @@ _Note: 排名基于用户的统计信息计算得出，详见 [src/calculateRank
 ```
 
 ### 主题
+
 你可以通过现有的主题进行卡片个性化，省去[手动自定义](#自定义)的麻烦。
 
 调用 `?theme=THEME_NAME` 参数，如下：
@@ -72,7 +74,7 @@ _Note: 排名基于用户的统计信息计算得出，详见 [src/calculateRank
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
-#### 所有现有主题：
+#### 所有现有主题
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
@@ -122,11 +124,11 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
-- 自定义添加卡片
+- 自定义统计卡片
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- 自定义 Repo 卡片
+- 自定义代码库卡片
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
@@ -155,6 +157,70 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 使用 [show_owner](#自定义) 变量将 Repo 所属账户的用户名包含在内。
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+
+# 热门语言卡片
+
+热门语言卡片显示了Github用户常用的编程语言。
+
+*注意：热门语言并不表示我的技能水平或类似的水平，它是用户在Github上拥有最多代码的一项指标，它是github-readme-stats的新功能*
+
+### 使用细则
+
+将此代码复制粘贴到您的`README.md`文件中，并改变链接。
+
+Endpoint: `api/top-langs?username=anuraghazra`
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### 隐藏特定语言
+
+可以使用`?hide=语言1,语言2`参数来隐藏指定的语言。
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=语言1,语言2)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Demo
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+---
+
+### 全部Demo
+
+- 默认
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+
+- 隐藏特定数据
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","issues"])
+
+- 显示图标
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["issues"]&show_icons=true)
+
+- 主题
+
+从 [默认主题](#主题) 中进行选择
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+
+- 自定义统计卡片
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+
+- 自定义代码库卡片
+
+![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+
+- 热门语言
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+---
 
 ### 提示 (对齐 Repo 卡片)
 
@@ -196,6 +262,7 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 1. 选择 root 并将所有内容保持不变，并且只需添加名为 PAT_1 的环境变量（如图所示），其中将包含一个个人访问令牌（PAT），你可以在[这里](https://github.com/settings/tokens/new)轻松创建（保留默认，并且只需要命名下，名字随便）
    ![](https://files.catbox.moe/caem5b.png)
 1. 点击 deploy，这就完成了，查看你的域名就可使用 API 了！
+
 </details>
 
 ## :sparkling_heart: 支持这个项目
