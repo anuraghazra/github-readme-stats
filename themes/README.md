@@ -16,12 +16,12 @@ Use `?theme=THEME_NAME` parameter like so :-
 
 | | | |
 | :--: | :--: | :--: |
-| `default` ![default][default] | `dark` ![dark][dark] | `radical` ![radical][radical] |
-| `merko` ![merko][merko] | `gruvbox` ![gruvbox][gruvbox] | `tokyonight` ![tokyonight][tokyonight] |
-| `onedark` ![onedark][onedark] | `cobalt` ![cobalt][cobalt] | `synthwave` ![synthwave][synthwave] |
-| `highcontrast` ![highcontrast][highcontrast] | `dracula` ![dracula][dracula] | `prussian` ![prussian][prussian] |
-| `monokai` ![monokai][monokai] | `vue` ![vue][vue] | `shades-of-purple` ![shades-of-purple][shades-of-purple] |
-| `nightowl` ![nightowl][nightowl] | `buefy` ![buefy][buefy] | `undefined` ![undefined][undefined] |
+| `default` ![default][default] | `dark` ![dark][dark] | `default` ![default][default] |
+| `merko` ![merko][merko] | `gruvbox` ![gruvbox][gruvbox] | `merko` ![merko][merko] |
+| `onedark` ![onedark][onedark] | `cobalt` ![cobalt][cobalt] | `onedark` ![onedark][onedark] |
+| `highcontrast` ![highcontrast][highcontrast] | `dracula` ![dracula][dracula] | `highcontrast` ![highcontrast][highcontrast] |
+| `monokai` ![monokai][monokai] | `vue` ![vue][vue] | `monokai` ![monokai][monokai] |
+| `nightowl` ![nightowl][nightowl] | `buefy` ![buefy][buefy] | [Add your theme][add-theme] |
 
 ## Repo Card
 
@@ -29,12 +29,12 @@ Use `?theme=THEME_NAME` parameter like so :-
 
 | | | |
 | :--: | :--: | :--: |
-| `default_repocard` ![default_repocard][default_repocard] | `dark` ![dark][dark] | `radical` ![radical][radical] |
-| `merko` ![merko][merko] | `gruvbox` ![gruvbox][gruvbox] | `tokyonight` ![tokyonight][tokyonight] |
-| `onedark` ![onedark][onedark] | `cobalt` ![cobalt][cobalt] | `synthwave` ![synthwave][synthwave] |
-| `highcontrast` ![highcontrast][highcontrast] | `dracula` ![dracula][dracula] | `prussian` ![prussian][prussian] |
-| `monokai` ![monokai][monokai] | `vue` ![vue][vue] | `shades-of-purple` ![shades-of-purple][shades-of-purple] |
-| `nightowl` ![nightowl][nightowl] | `buefy` ![buefy][buefy] | `undefined` ![undefined][undefined] |
+| `default_repocard` ![default_repocard][default_repocard] | `dark` ![dark][dark] | `default_repocard` ![default_repocard][default_repocard] |
+| `merko` ![merko][merko] | `gruvbox` ![gruvbox][gruvbox] | `merko` ![merko][merko] |
+| `onedark` ![onedark][onedark] | `cobalt` ![cobalt][cobalt] | `onedark` ![onedark][onedark] |
+| `highcontrast` ![highcontrast][highcontrast] | `dracula` ![dracula][dracula] | `highcontrast` ![highcontrast][highcontrast] |
+| `monokai` ![monokai][monokai] | `vue` ![vue][vue] | `monokai` ![monokai][monokai] |
+| `nightowl` ![nightowl][nightowl] | `buefy` ![buefy][buefy] | [Add your theme][add-theme] |
 
 
 [default]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
@@ -75,5 +75,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [shades-of-purple]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=shades-of-purple
 [nightowl]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=nightowl
 [buefy]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=buefy
+
+[add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
 
 Wanted to add a new theme? Consider reading the [contribution guidelines](../CONTRIBUTING.md#themes-contribution) :D

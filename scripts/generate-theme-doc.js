@@ -40,6 +40,8 @@ ${REPO_CARD_LINKS_FLAG}
 
 ${STAT_CARD_LINKS_FLAG}
 
+[add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
+
 Wanted to add a new theme? Consider reading the [contribution guidelines](../CONTRIBUTING.md#themes-contribution) :D
 `;
 
@@ -56,6 +58,9 @@ const generateLinks = (fn) => {
     .join("");
 };
 
+const createTableItem = ({ link, label }) => {
+  return `\`${label}\` ![${link}][${link}]`;
+};
 const generateTable = ({ isRepoCard }) => {
   const rows = [];
   const themes = Object.keys(theme).filter(
@@ -66,9 +71,15 @@ const generateTable = ({ isRepoCard }) => {
     const one = themes[i];
     const two = themes[i + 1];
     const three = themes[i + 2];
-    rows.push(
-      `| \`${one}\` ![${one}][${one}] | \`${two}\` ![${two}][${two}] | \`${three}\` ![${three}][${three}] |`
-    );
+
+    let tableItem1 = createTableItem({ link: one, label: one });
+    let tableItem2 = createTableItem({ link: two, label: two });
+    let tableItem3 = createTableItem({ link: one, label: one });
+
+    if (three === undefined) {
+      tableItem3 = `[Add your theme][add-theme]`;
+    }
+    rows.push(`| ${tableItem1} | ${tableItem2} | ${tableItem3} |`);
   }
 
   return rows.join("\n");
