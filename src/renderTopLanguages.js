@@ -29,8 +29,8 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
 
   return `
     <g transform="translate(${x}, ${y})">
-      <circle cx="${5}" cy="${6}" r="5" fill="${color}" />
-      <text data-testid="lang-name" x="${15}" y="${10}" class='lang-name'>
+      <circle cx="5" cy="6" r="5" fill="${color}" />
+      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
         ${lang.name} ${percentage}%
       </text>
     </g>
