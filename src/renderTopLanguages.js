@@ -23,26 +23,40 @@ const createProgressNode = ({ width, color, name, progress }) => {
   `;
 };
 
-const createLanguageTextNode = ({langs, totalSize,x,y}) => {
-  let output = ``
+const createCompactLangNode = ({ lang, totalSize, x, y }) => {
+  const percentage = ((lang.size / totalSize) * 100).toFixed(2);
+  const color = lang.color || "#858585";
 
-  for (let i = 0; i < langs.length; i = i+2) {
-    output+= `
-      <g transform="translate(0, ${12.5 * i})">
-        <circle cx="${5+x}" cy="${6+y}" r="5" fill="${langs[i].color || '#858585'}" />
-        <text data-testid="lang-name" x="${15+x}" y="${10+y}" class='lang-name'>${langs[i].name} ${((langs[i].size / totalSize) * 100).toFixed(2)}%</text>
-      </g>
-      ${langs[i+1] ? `
-        <g transform="translate(150, ${12.5 * i})">
-          <circle cx="${5+x}" cy="${6+y}" r="5" fill="${langs[i+1].color || '#858585'}" />
-          <text data-testid="lang-name" x="${15+x}" y="${10+y}" fill='#333' class='lang-name'>${langs[i+1].name} ${((langs[i+1].size / totalSize) * 100).toFixed(2)}%</text>
-        </g>
-      ` : ''}
-    `
-  }
+  return `
+    <g transform="translate(${x}, ${y})">
+      <circle cx="${5}" cy="${6}" r="5" fill="${color}" />
+      <text data-testid="lang-name" x="${15}" y="${10}" class='lang-name'>
+        ${lang.name} ${percentage}%
+      </text>
+    </g>
+  `;
+};
 
-  return output
-}
+const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
+  return langs.map((lang, index) => {
+    if (index % 2 === 0) {
+      return createCompactLangNode({
+        lang,
+        x,
+        y: 12.5 * index + y,
+        totalSize,
+        index,
+      });
+    }
+    return createCompactLangNode({
+      lang,
+      x: 150,
+      y: 12.5 + 12.5 * index,
+      totalSize,
+      index,
+    });
+  });
+};
 
 const lowercaseTrim = (name) => name.toLowerCase().trim();
 
@@ -55,7 +69,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     bg_color,
     hide,
     theme,
-    layout
+    layout,
   } = options;
 
   let langs = Object.values(topLangs);
@@ -90,15 +104,61 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   let width = isNaN(card_width) ? 300 : card_width;
   let height = 45 + (langs.length + 1) * 40;
-  let offset = 0
+
+  let finalLayout = "";
+  if (layout === "compact") {
+    width = width + 50;
+    height = 30 + (langs.length / 2 + 1) * 40;
+
+    let progressOffset = 0;
+    const compactLangs = langs
+      .map((lang) => {
+        const percentage = ((lang.size / totalSize) * (width - 50)).toFixed(2);
+        const progress =
+          percentage < 10 ? parseFloat(percentage) + 10 : percentage;
+
+        const output = `
+          <rect
+            mask="url(#rect-mask)" 
+            data-testid="lang-progress"
+            x="${progressOffset}" 
+            y="0"
+            width="${progress}" 
+            height="8"
+            fill="${lang.color}"
+          />
+        `;
+        progressOffset += parseFloat(percentage);
+        return output;
+      })
+      .join("");
+
+    finalLayout = `
+      <mask id="rect-mask">
+        <rect x="0" y="0" width="${
+          width - 45
+        }" height="8" fill="white" rx="5" />
+      </mask>
+      ${compactLangs}
+      ${createLanguageTextNode({ langs, totalSize, x: 0, y: 25 }).join("")}
+    `;
+  } else {
+    finalLayout = FlexLayout({
+      items: langs.map((lang) => {
+        return createProgressNode({
+          width: width,
+          name: lang.name,
+          color: lang.color || "#858585",
+          progress: ((lang.size / totalSize) * 100).toFixed(2),
+        });
+      }),
+      gap: 40,
+      direction: "column",
+    }).join("");
+  }
 
   if (hide_title) {
     height -= 30;
-  }
-
-  if (layout === 'compact') {
-    width = width + 50
-    height = height - 120
   }
 
   return `
@@ -109,7 +169,6 @@ const renderTopLanguages = (topLangs, options = {}) => {
       </style>
       <rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
 
-
       ${
         hide_title
           ? ""
@@ -117,26 +176,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
       }
 
       <svg data-testid="lang-items" x="25" y="${hide_title ? 25 : 55}">
-      ${layout === 'compact' ? `
-        ${langs.map((lang, idx) => {
-          const percentage = ((lang.size / totalSize) * (width - 50)).toFixed(2)
-          const output = `<rect data-testid="lang-progress" x='${offset}' y='0' width='${idx === 0 ? parseFloat(+percentage + 5).toFixed(2): percentage}' height='8' fill='${lang.color}' ${idx === 0 || idx === langs.length - 1 ? "rx='5'": ''} />`
-          offset += +percentage
-          return output
-        }).join('')}
-        ${createLanguageTextNode({langs, totalSize, x: 0, y: 25})}
-      ` : FlexLayout({
-        items: langs.map((lang) => {
-          return createProgressNode({
-            width: width,
-            name: lang.name,
-            color: lang.color || "#858585",
-            progress: ((lang.size / totalSize) * 100).toFixed(2),
-          });
-        }),
-        gap: 40,
-        direction: "column",
-      }).join("")}
+        ${finalLayout}
       </svg>
     </svg>
   `;
