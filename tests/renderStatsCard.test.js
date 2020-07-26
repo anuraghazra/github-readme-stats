@@ -104,7 +104,7 @@ describe("Test renderStatsCard", () => {
     expect(iconClassStyles.fill).toBe("#4c71f2");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#FFFEFE"
+      "#fffefe"
     );
   });
 
