@@ -125,6 +125,7 @@ Customization Options:
 | theme         | string    | sets inbuilt theme                          | 'default'            | 'default_repocard'  | 'default                |
 | cache_seconds | number    | manually set custom cache control           | 1800                 | 1800                | '1800'                  |
 | count_private | boolean   | counts private contributions too if enabled | false                | N/A                 | N/A                     |
+| layout        | string    | choose a layout option                      | N/A                  | N/A                 | "default"               |
 
 > Note on cache: Repo cards have default cache of 30mins (1800 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 30min and maximum of 24hours
 
@@ -176,9 +177,21 @@ You can use `?hide=language1,language2` parameter to hide individual languages.
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
+### Compact Language Card Layout
+
+You can use the `&layout=compact` option to change the card design.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+```
+
 ### Demo
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+- Compact layout
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
