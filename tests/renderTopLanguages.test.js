@@ -139,7 +139,7 @@ describe("Test renderTopLanguages", () => {
     expect(langNameStyles.fill).toBe("#333");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#FFFEFE"
+      "#fffefe"
     );
   });
 
