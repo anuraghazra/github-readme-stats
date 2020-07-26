@@ -90,7 +90,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
       return !langsToHide[lowercaseTrim(lang.name)];
     });
 
-  const totalSize = langs.reduce((acc, curr) => {
+  const totalLanguageSize = langs.reduce((acc, curr) => {
     return acc + curr.size;
   }, 0);
 
@@ -106,14 +106,22 @@ const renderTopLanguages = (topLangs, options = {}) => {
   let height = 45 + (langs.length + 1) * 40;
 
   let finalLayout = "";
+
+  // RENDER COMPACT LAYOUT
   if (layout === "compact") {
     width = width + 50;
     height = 30 + (langs.length / 2 + 1) * 40;
 
+    // progressOffset holds the previous language's width and used to offset the next language
+    // so that we can stack them one after another, like this: [--][----][---]
     let progressOffset = 0;
-    const compactLangs = langs
+    const compactProgressBar = langs
       .map((lang) => {
-        const percentage = ((lang.size / totalSize) * (width - 50)).toFixed(2);
+        const percentage = (
+          (lang.size / totalLanguageSize) *
+          (width - 50)
+        ).toFixed(2);
+
         const progress =
           percentage < 10 ? parseFloat(percentage) + 10 : percentage;
 
@@ -125,7 +133,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
             y="0"
             width="${progress}" 
             height="8"
-            fill="${lang.color}"
+            fill="${lang.color || "#858585"}"
           />
         `;
         progressOffset += parseFloat(percentage);
@@ -136,11 +144,16 @@ const renderTopLanguages = (topLangs, options = {}) => {
     finalLayout = `
       <mask id="rect-mask">
         <rect x="0" y="0" width="${
-          width - 45
+          width - 50
         }" height="8" fill="white" rx="5" />
       </mask>
-      ${compactLangs}
-      ${createLanguageTextNode({ langs, totalSize, x: 0, y: 25 }).join("")}
+      ${compactProgressBar}
+      ${createLanguageTextNode({
+        x: 0,
+        y: 25,
+        langs,
+        totalSize: totalLanguageSize,
+      }).join("")}
     `;
   } else {
     finalLayout = FlexLayout({
@@ -149,7 +162,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
           width: width,
           name: lang.name,
           color: lang.color || "#858585",
-          progress: ((lang.size / totalSize) * 100).toFixed(2),
+          progress: ((lang.size / totalLanguageSize) * 100).toFixed(2),
         });
       }),
       gap: 40,
