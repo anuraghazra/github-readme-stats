@@ -119,7 +119,7 @@ Customization Options:
 | hide          | CSV       | hides the items specified                   | undefined            | N/A                 | undefined               |
 | hide_rank     | boolean   | hides the ranking                           | false                | N/A                 | N/A                     |
 | hide_title    | boolean   | hides the stats title                       | false                | N/A                 | false                   |
-| hide_border   | boolean   | hides the stats card border                 | false                | N/A                 | N/A                     |
+| hide_border   | boolean   | hides the stats card border                 | false                | N/A                 | false                   |
 | show_owner    | boolean   | shows owner name in repo card               | N/A                  | false               | N/A                     |
 | show_icons    | boolean   | shows icons                                 | false                | N/A                 | N/A                     |
 | theme         | string    | sets inbuilt theme                          | 'default'            | 'default_repocard'  | 'default                |
