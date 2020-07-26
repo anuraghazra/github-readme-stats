@@ -6,6 +6,7 @@ const {
 } = require("../src/utils");
 const icons = require("./icons");
 const toEmoji = require("emoji-name-map");
+const wrap = require("word-wrap");
 
 const renderRepoCard = (repo, options = {}) => {
   const {
@@ -31,7 +32,6 @@ const renderRepoCard = (repo, options = {}) => {
   const langName = (primaryLanguage && primaryLanguage.name) || "Unspecified";
   const langColor = (primaryLanguage && primaryLanguage.color) || "#333";
 
-  const height = 120;
   const shiftText = langName.length > 15 ? 0 : 30;
 
   let desc = description || "No description provided";
@@ -41,9 +41,11 @@ const renderRepoCard = (repo, options = {}) => {
     return toEmoji.get(emoji) || "";
   });
 
-  if (desc.length > 55) {
-    desc = `${desc.slice(0, 55)}..`;
-  }
+  const multiLineDescription = getMultiLineDescription(desc);
+  const descriptionLines = multiLineDescription.length;
+  const lineHeight = 10;
+
+  const height = 120 + descriptionLines * lineHeight;
 
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor } = getCardColors({
@@ -60,11 +62,11 @@ const renderRepoCard = (repo, options = {}) => {
   const getBadgeSVG = (label) => `
     <g data-testid="badge" class="badge" transform="translate(320, 38)">
       <rect stroke="${textColor}" stroke-width="1" width="70" height="20" x="-12" y="-14" ry="10" rx="10"></rect>
-      <text 
+      <text
         x="23" y="-5"
-        alignment-baseline="central" 
-        dominant-baseline="central" 
-        text-anchor="middle" 
+        alignment-baseline="central"
+        dominant-baseline="central"
+        text-anchor="middle"
         fill="${textColor}"
       >
         ${label}
@@ -74,7 +76,7 @@ const renderRepoCard = (repo, options = {}) => {
 
   const svgLanguage = primaryLanguage
     ? `
-    <g data-testid="primary-lang" transform="translate(30, 100)">
+    <g data-testid="primary-lang" transform="translate(30, ${100 + descriptionLines * lineHeight})">
       <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
       <text data-testid="lang-name" class="gray" x="15">${langName}</text>
     </g>
@@ -124,17 +126,36 @@ const renderRepoCard = (repo, options = {}) => {
           ? getBadgeSVG("Archived")
           : ""
       }
-      
-      <text class="description" x="25" y="70">${encodeHTML(desc)}</text>
-      
+
+      <text class="description" x="25" y="70"
+      >${multiLineDescription.reduce((acc, cur) => acc + `<tspan dy="1.2em" x="25">${encodeHTML(cur)}</tspan>`)}
+      </text>
+
       ${svgLanguage}
-      
-      <g transform="translate(${primaryLanguage ? 155 - shiftText : 25}, 100)">
+
+      <g transform="translate(${primaryLanguage ? 155 - shiftText : 25}, ${100 + descriptionLines * lineHeight})">
         ${FlexLayout({ items: [svgStars, svgForks], gap: 65 }).join("")}
       </g>
 
     </svg>
   `;
 };
+
+function getMultiLineDescription(description, width = 55, maxLines = 3) {
+  const wrapped = wrap(description, { width })
+    .split("\n") // Split wrapped lines to get an array of lines
+    .map(line => line.trim()); // Remove leading and trailing whitespace of each line
+
+  const lines = wrapped.slice(0, maxLines); // Only consider maxLines lines
+
+  // Add "..." to the last line if the description exceeds maxLines
+  if (wrapped.length > maxLines) {
+    lines[maxLines - 1] += "...";
+  }
+
+  // Remove empty lines if description fits in less than maxLines lines
+  const multiLineDescription = lines.filter(Boolean);
+  return multiLineDescription;
+}
 
 module.exports = renderRepoCard;
