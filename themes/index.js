@@ -3,13 +3,13 @@ const themes = {
     title_color: "2f80ed",
     icon_color: "4c71f2",
     text_color: "333",
-    bg_color: "FFFEFE",
+    bg_color: "fffefe",
   },
   default_repocard: {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
     text_color: "333",
-    bg_color: "FFFEFE",
+    bg_color: "fffefe",
   },
   dark: {
     title_color: "fff",
@@ -87,18 +87,18 @@ const themes = {
     title_color: "41b883",
     icon_color: "41b883",
     text_color: "273849",
-    bg_color: "FFFEFE",
+    bg_color: "fffefe",
   },
   "shades-of-purple": {
-    title_color: "FAD000",
-    icon_color: "B362FF",
-    text_color: "A599E9",
-    bg_color: "2D2B55",
+    title_color: "fad000",
+    icon_color: "b362ff",
+    text_color: "a599e9",
+    bg_color: "2d2b55",
   },
   nightowl: {
-    title_color: "C792EA",
-    icon_color: "FFEB95",
-    text_color: "7FDBCA",
+    title_color: "c792ea",
+    icon_color: "ffeb95",
+    text_color: "7fdbca",
     bg_color: "011627",
   },
   buefy: {
@@ -108,10 +108,10 @@ const themes = {
     bg_color: "ffffff",
   },
   "blue-green": {
-    title_color: "2F97C1",
-    icon_color: "F5B700",
-    text_color: "0CF574",
-    bg_color: "040F0F",
+    title_color: "2f97c1",
+    icon_color: "f5b700",
+    text_color: "0cf574",
+    bg_color: "040f0f",
   },
 };
 
