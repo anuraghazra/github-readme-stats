@@ -58,9 +58,6 @@ describe("Test renderRepoCard", () => {
         "The quick brown fox jumps over the lazy dog is an English-language pangram—a sentence that contains all of the letters of the English alphabet",
     });
 
-    console.log({
-      t: document.getElementsByClassName("description")[0].textContent,
-    });
     expect(
       document.getElementsByClassName("description")[0].children[0].textContent
     ).toBe("The quick brown fox jumps over the lazy dog is an");
