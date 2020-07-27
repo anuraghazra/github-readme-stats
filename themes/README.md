@@ -16,11 +16,11 @@ Use `?theme=THEME_NAME` parameter like so :-
 
 | | | |
 | :--: | :--: | :--: |
-| `default` ![default][default] | `dark` ![dark][dark] | `default` ![default][default] |
-| `merko` ![merko][merko] | `gruvbox` ![gruvbox][gruvbox] | `merko` ![merko][merko] |
-| `onedark` ![onedark][onedark] | `cobalt` ![cobalt][cobalt] | `onedark` ![onedark][onedark] |
-| `highcontrast` ![highcontrast][highcontrast] | `dracula` ![dracula][dracula] | `highcontrast` ![highcontrast][highcontrast] |
-| `monokai` ![monokai][monokai] | `vue` ![vue][vue] | `monokai` ![monokai][monokai] |
+| `default` ![default][default] | `dark` ![dark][dark] | `radical` ![radical][radical] |
+| `merko` ![merko][merko] | `gruvbox` ![gruvbox][gruvbox] | `tokyonight` ![tokyonight][tokyonight] |
+| `onedark` ![onedark][onedark] | `cobalt` ![cobalt][cobalt] | `synthwave` ![synthwave][synthwave] |
+| `highcontrast` ![highcontrast][highcontrast] | `dracula` ![dracula][dracula] | `prussian` ![prussian][prussian] |
+| `monokai` ![monokai][monokai] | `vue` ![vue][vue] | `shades-of-purple` ![shades-of-purple][shades-of-purple] |
 | `nightowl` ![nightowl][nightowl] | `buefy` ![buefy][buefy] | [Add your theme][add-theme] |
 
 ## Repo Card
@@ -29,32 +29,12 @@ Use `?theme=THEME_NAME` parameter like so :-
 
 | | | |
 | :--: | :--: | :--: |
-| `default_repocard` ![default_repocard][default_repocard] | `dark` ![dark][dark] | `default_repocard` ![default_repocard][default_repocard] |
-| `merko` ![merko][merko] | `gruvbox` ![gruvbox][gruvbox] | `merko` ![merko][merko] |
-| `onedark` ![onedark][onedark] | `cobalt` ![cobalt][cobalt] | `onedark` ![onedark][onedark] |
-| `highcontrast` ![highcontrast][highcontrast] | `dracula` ![dracula][dracula] | `highcontrast` ![highcontrast][highcontrast] |
-| `monokai` ![monokai][monokai] | `vue` ![vue][vue] | `monokai` ![monokai][monokai] |
-| `nightowl` ![nightowl][nightowl] | `buefy` ![buefy][buefy] | [Add your theme][add-theme] |
-
-
-[default]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
-[default_repocard]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default_repocard
-[dark]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=dark
-[radical]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=radical
-[merko]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=merko
-[gruvbox]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=gruvbox
-[tokyonight]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=tokyonight
-[onedark]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=onedark
-[cobalt]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=cobalt
-[synthwave]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=synthwave
-[highcontrast]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=highcontrast
-[dracula]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=dracula
-[prussian]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=prussian
-[monokai]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=monokai
-[vue]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=vue
-[shades-of-purple]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=shades-of-purple
-[nightowl]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=nightowl
-[buefy]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=buefy
+| `default_repocard` ![default_repocard][default_repocard_repo] | `dark` ![dark][dark_repo] | `radical` ![radical][radical_repo] |
+| `merko` ![merko][merko_repo] | `gruvbox` ![gruvbox][gruvbox_repo] | `tokyonight` ![tokyonight][tokyonight_repo] |
+| `onedark` ![onedark][onedark_repo] | `cobalt` ![cobalt][cobalt_repo] | `synthwave` ![synthwave][synthwave_repo] |
+| `highcontrast` ![highcontrast][highcontrast_repo] | `dracula` ![dracula][dracula_repo] | `prussian` ![prussian][prussian_repo] |
+| `monokai` ![monokai][monokai_repo] | `vue` ![vue][vue_repo] | `shades-of-purple` ![shades-of-purple][shades-of-purple_repo] |
+| `nightowl` ![nightowl][nightowl_repo] | `buefy` ![buefy][buefy_repo] | [Add your theme][add-theme] |
 
 
 [default]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
@@ -75,6 +55,27 @@ Use `?theme=THEME_NAME` parameter like so :-
 [shades-of-purple]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=shades-of-purple
 [nightowl]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=nightowl
 [buefy]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=buefy
+
+
+[default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
+[default_repocard_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default_repocard
+[dark_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=dark
+[radical_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=radical
+[merko_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=merko
+[gruvbox_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=gruvbox
+[tokyonight_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=tokyonight
+[onedark_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=onedark
+[cobalt_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=cobalt
+[synthwave_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=synthwave
+[highcontrast_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=highcontrast
+[dracula_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=dracula
+[prussian_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=prussian
+[monokai_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=monokai
+[vue_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=vue
+[shades-of-purple_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=shades-of-purple
+[nightowl_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=nightowl
+[buefy_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=buefy
+
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
 
