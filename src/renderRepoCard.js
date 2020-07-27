@@ -45,7 +45,8 @@ const renderRepoCard = (repo, options = {}) => {
   const descriptionLines = multiLineDescription.length;
   const lineHeight = 10;
 
-  const height = 120 + descriptionLines * lineHeight;
+  const height =
+    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
 
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor } = getCardColors({
