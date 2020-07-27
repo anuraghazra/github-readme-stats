@@ -36,9 +36,10 @@ ${STAT_CARD_TABLE_FLAG}
 | :--: | :--: | :--: |
 ${REPO_CARD_TABLE_FLAG}
 
+${STAT_CARD_LINKS_FLAG}
+
 ${REPO_CARD_LINKS_FLAG}
 
-${STAT_CARD_LINKS_FLAG}
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
 
@@ -46,7 +47,7 @@ Wanted to add a new theme? Consider reading the [contribution guidelines](../CON
 `;
 
 const createRepoMdLink = (theme) => {
-  return `\n[${theme}]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=${theme}`;
+  return `\n[${theme}_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=${theme}`;
 };
 const createStatMdLink = (theme) => {
   return `\n[${theme}]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=${theme}`;
@@ -58,8 +59,9 @@ const generateLinks = (fn) => {
     .join("");
 };
 
-const createTableItem = ({ link, label }) => {
-  return `\`${label}\` ![${link}][${link}]`;
+const createTableItem = ({ link, label, isRepoCard }) => {
+  if (!link || !label) return "";
+  return `\`${label}\` ![${link}][${link}${isRepoCard ? "_repo" : ""}]`;
 };
 const generateTable = ({ isRepoCard }) => {
   const rows = [];
@@ -72,14 +74,19 @@ const generateTable = ({ isRepoCard }) => {
     const two = themes[i + 1];
     const three = themes[i + 2];
 
-    let tableItem1 = createTableItem({ link: one, label: one });
-    let tableItem2 = createTableItem({ link: two, label: two });
-    let tableItem3 = createTableItem({ link: one, label: one });
+    let tableItem1 = createTableItem({ link: one, label: one, isRepoCard });
+    let tableItem2 = createTableItem({ link: two, label: two, isRepoCard });
+    let tableItem3 = createTableItem({ link: three, label: three, isRepoCard });
 
     if (three === undefined) {
       tableItem3 = `[Add your theme][add-theme]`;
     }
     rows.push(`| ${tableItem1} | ${tableItem2} | ${tableItem3} |`);
+
+    // if it's the last row & the row has no empty space push a new row
+    if (three && i + 3 === themes.length) {
+      rows.push(`| [Add your theme][add-theme] | | |`);
+    }
   }
 
   return rows.join("\n");
