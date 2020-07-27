@@ -57,7 +57,7 @@ _Note: Ranks are calculated based on user's stats, see [src/calculateRank.js](./
 
 ### Hiding individual stats
 
-To hide any specific stats, you can pass a query parameter `?hide=` with comma seperated values.
+To hide any specific stats, you can pass a query parameter `?hide=` with comma separated values.
 
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
