@@ -113,6 +113,12 @@ const themes = {
     text_color: "0cf574",
     bg_color: "040f0f",
   },
+  "algolia": {
+    title_color: "00AEFF",
+    icon_color: "2DDE98",
+    text_color: "FFFFFF",
+    bg_color: "050F2C",
+  },
 };
 
 module.exports = themes;
