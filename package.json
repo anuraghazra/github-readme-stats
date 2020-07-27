@@ -21,7 +21,8 @@
   },
   "dependencies": {
     "dotenv": "^8.2.0",
-    "emoji-name-map": "^1.2.8"
+    "emoji-name-map": "^1.2.8",
+    "word-wrap": "^1.2.3"
   },
   "husky": {
     "hooks": {
