@@ -21,7 +21,8 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `onedark` ![onedark][onedark] | `cobalt` ![cobalt][cobalt] | `synthwave` ![synthwave][synthwave] |
 | `highcontrast` ![highcontrast][highcontrast] | `dracula` ![dracula][dracula] | `prussian` ![prussian][prussian] |
 | `monokai` ![monokai][monokai] | `vue` ![vue][vue] | `shades-of-purple` ![shades-of-purple][shades-of-purple] |
-| `nightowl` ![nightowl][nightowl] | `buefy` ![buefy][buefy] | [Add your theme][add-theme] |
+| `nightowl` ![nightowl][nightowl] | `buefy` ![buefy][buefy] | `blue-green` ![blue-green][blue-green] |
+| `algolia` ![algolia][algolia] |  | [Add your theme][add-theme] |
 
 ## Repo Card
 
@@ -34,7 +35,8 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `onedark` ![onedark][onedark_repo] | `cobalt` ![cobalt][cobalt_repo] | `synthwave` ![synthwave][synthwave_repo] |
 | `highcontrast` ![highcontrast][highcontrast_repo] | `dracula` ![dracula][dracula_repo] | `prussian` ![prussian][prussian_repo] |
 | `monokai` ![monokai][monokai_repo] | `vue` ![vue][vue_repo] | `shades-of-purple` ![shades-of-purple][shades-of-purple_repo] |
-| `nightowl` ![nightowl][nightowl_repo] | `buefy` ![buefy][buefy_repo] | [Add your theme][add-theme] |
+| `nightowl` ![nightowl][nightowl_repo] | `buefy` ![buefy][buefy_repo] | `blue-green` ![blue-green][blue-green_repo] |
+| `algolia` ![algolia][algolia_repo] |  | [Add your theme][add-theme] |
 
 
 [default]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
@@ -55,6 +57,8 @@ Use `?theme=THEME_NAME` parameter like so :-
 [shades-of-purple]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=shades-of-purple
 [nightowl]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=nightowl
 [buefy]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=buefy
+[blue-green]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=blue-green
+[algolia]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=algolia
 
 
 [default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
@@ -75,6 +79,8 @@ Use `?theme=THEME_NAME` parameter like so :-
 [shades-of-purple_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=shades-of-purple
 [nightowl_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=nightowl
 [buefy_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=buefy
+[blue-green_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=blue-green
+[algolia_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=algolia
 
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
