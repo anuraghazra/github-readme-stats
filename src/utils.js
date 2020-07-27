@@ -1,4 +1,5 @@
 const axios = require("axios");
+const wrap = require("word-wrap");
 const themes = require("../themes");
 
 const renderError = (message, secondaryMessage = "") => {
@@ -127,10 +128,27 @@ function getCardColors({
   return { titleColor, iconColor, textColor, bgColor };
 }
 
-const fn = () => {};
+function wrapTextMultiline(text, width = 60, maxLines = 3) {
+  const wrapped = wrap(encodeHTML(text), { width })
+    .split("\n") // Split wrapped lines to get an array of lines
+    .map((line) => line.trim()); // Remove leading and trailing whitespace of each line
+
+  const lines = wrapped.slice(0, maxLines); // Only consider maxLines lines
+
+  // Add "..." to the last line if the text exceeds maxLines
+  if (wrapped.length > maxLines) {
+    lines[maxLines - 1] += "...";
+  }
+
+  // Remove empty lines if text fits in less than maxLines lines
+  const multiLineText = lines.filter(Boolean);
+  return multiLineText;
+}
+
+const noop = () => {};
 // return console instance based on the environment
 const logger =
-  process.env.NODE_ENV !== "test" ? console : { log: fn, error: fn };
+  process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
 
 const CONSTANTS = {
   THIRTY_MINUTES: 1800,
@@ -150,6 +168,7 @@ module.exports = {
   FlexLayout,
   getCardColors,
   clampValue,
+  wrapTextMultiline,
   logger,
   CONSTANTS,
 };

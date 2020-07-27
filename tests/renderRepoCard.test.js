@@ -29,7 +29,7 @@ describe("Test renderRepoCard", () => {
     expect(header).toHaveTextContent("convoychat");
     expect(header).not.toHaveTextContent("anuraghazra");
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
-      "Help us take over the world! React + TS + GraphQL ChatApp"
+      "Help us take over the world! React + TS + GraphQL Chat App"
     );
     expect(queryByTestId(document.body, "stargazers")).toHaveTextContent("38k");
     expect(queryByTestId(document.body, "forkcount")).toHaveTextContent("100");
@@ -55,15 +55,19 @@ describe("Test renderRepoCard", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
       description:
-        "Very long long long long long long long long long long long long long long long long text it should trim it",
+        "The quick brown fox jumps over the lazy dog is an English-language pangram—a sentence that contains all of the letters of the English alphabet",
     });
 
-    expect(document.getElementsByClassName("description")[0].childNodes[0].textContent).toBe(
-      "Very long long long long long long long long long long"
-    );
-    expect(document.getElementsByClassName("description")[0].childNodes[1].textContent).toBe(
-      "long long long long long long text it should trim it"
-    );
+    console.log({
+      t: document.getElementsByClassName("description")[0].textContent,
+    });
+    expect(
+      document.getElementsByClassName("description")[0].children[0].textContent
+    ).toBe("The quick brown fox jumps over the lazy dog is an");
+
+    expect(
+      document.getElementsByClassName("description")[0].children[1].textContent
+    ).toBe("English-language pangram—a sentence that contains all");
 
     // Should not trim
     document.body.innerHTML = renderRepoCard({
@@ -98,9 +102,9 @@ describe("Test renderRepoCard", () => {
     });
 
     expect(queryByTestId(document.body, "primary-lang")).toBeInTheDocument();
-    expect(document.getElementsByTagName("g")[1]).toHaveAttribute(
+    expect(queryByTestId(document.body, "star-fork-group")).toHaveAttribute(
       "transform",
-      "translate(155, 120)"
+      "translate(155, 0)"
     );
 
     // Small lang
@@ -112,9 +116,9 @@ describe("Test renderRepoCard", () => {
       },
     });
 
-    expect(document.getElementsByTagName("g")[1]).toHaveAttribute(
+    expect(queryByTestId(document.body, "star-fork-group")).toHaveAttribute(
       "transform",
-      "translate(125, 120)"
+      "translate(125, 0)"
     );
   });
 

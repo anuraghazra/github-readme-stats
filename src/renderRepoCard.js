@@ -3,10 +3,10 @@ const {
   encodeHTML,
   getCardColors,
   FlexLayout,
+  wrapTextMultiline,
 } = require("../src/utils");
 const icons = require("./icons");
 const toEmoji = require("emoji-name-map");
-const wrap = require("word-wrap");
 
 const renderRepoCard = (repo, options = {}) => {
   const {
@@ -41,7 +41,7 @@ const renderRepoCard = (repo, options = {}) => {
     return toEmoji.get(emoji) || "";
   });
 
-  const multiLineDescription = getMultiLineDescription(desc);
+  const multiLineDescription = wrapTextMultiline(desc);
   const descriptionLines = multiLineDescription.length;
   const lineHeight = 10;
 
@@ -76,7 +76,7 @@ const renderRepoCard = (repo, options = {}) => {
 
   const svgLanguage = primaryLanguage
     ? `
-    <g data-testid="primary-lang" transform="translate(30, ${100 + descriptionLines * lineHeight})">
+    <g data-testid="primary-lang" transform="translate(30, 0)">
       <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
       <text data-testid="lang-name" class="gray" x="15">${langName}</text>
     </g>
@@ -127,35 +127,24 @@ const renderRepoCard = (repo, options = {}) => {
           : ""
       }
 
-      <text class="description" x="25" y="70"
-      >${multiLineDescription.reduce((acc, cur) => acc + `<tspan dy="1.2em" x="25">${encodeHTML(cur)}</tspan>`)}
+      <text class="description" x="25" y="50">
+        ${multiLineDescription
+          .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
+          .join("")}
       </text>
 
-      ${svgLanguage}
+      <g transform="translate(0, ${height - 20})">
+        ${svgLanguage}
 
-      <g transform="translate(${primaryLanguage ? 155 - shiftText : 25}, ${100 + descriptionLines * lineHeight})">
-        ${FlexLayout({ items: [svgStars, svgForks], gap: 65 }).join("")}
+        <g 
+          data-testid="star-fork-group" 
+          transform="translate(${primaryLanguage ? 155 - shiftText : 25}, 0)"
+        >
+          ${FlexLayout({ items: [svgStars, svgForks], gap: 65 }).join("")}
+        </g>
       </g>
-
     </svg>
   `;
 };
-
-function getMultiLineDescription(description, width = 55, maxLines = 3) {
-  const wrapped = wrap(description, { width })
-    .split("\n") // Split wrapped lines to get an array of lines
-    .map(line => line.trim()); // Remove leading and trailing whitespace of each line
-
-  const lines = wrapped.slice(0, maxLines); // Only consider maxLines lines
-
-  // Add "..." to the last line if the description exceeds maxLines
-  if (wrapped.length > maxLines) {
-    lines[maxLines - 1] += "...";
-  }
-
-  // Remove empty lines if description fits in less than maxLines lines
-  const multiLineDescription = lines.filter(Boolean);
-  return multiLineDescription;
-}
 
 module.exports = renderRepoCard;
