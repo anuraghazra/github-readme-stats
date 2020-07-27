@@ -54,7 +54,6 @@ const totalCommitsFetcher = async (username) => {
     logger.log("Invalid username");
     return 0;
   }
-  logger.log({ username });
 
   // application/vnd.github.cloak-preview
   const fetchTotalCommits = (variables, token) => {
@@ -71,8 +70,6 @@ const totalCommitsFetcher = async (username) => {
 
   try {
     let res = await retryer(fetchTotalCommits, { login: username });
-    logger.log({ res });
-
     if (res.data.total_count) {
       return res.data.total_count;
     }
