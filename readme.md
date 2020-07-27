@@ -109,23 +109,24 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 Customization Options:
 
-| Option        | type      | description                                 | Stats Card (default) | Repo Card (default) | Top Lang Card (default) |
-| ------------- | --------- | ------------------------------------------- | -------------------- | ------------------- | ----------------------- |
-| title_color   | hex color | title color                                 | 2f80ed               | 2f80ed              | 2f80ed                  |
-| text_color    | hex color | body color                                  | 333                  | 333                 | 333                     |
-| icon_color    | hex color | icon color                                  | 4c71f2               | 586069              | 586069                  |
-| bg_color      | hex color | card bg color                               | FFFEFE               | FFFEFE              | FFFEFE                  |
-| line_height   | number    | control the line-height between text        | 30                   | N/A                 | N/A                     |
-| hide          | CSV       | hides the items specified                   | undefined            | N/A                 | undefined               |
-| hide_rank     | boolean   | hides the ranking                           | false                | N/A                 | N/A                     |
-| hide_title    | boolean   | hides the stats title                       | false                | N/A                 | false                   |
-| hide_border   | boolean   | hides the stats card border                 | false                | N/A                 | N/A                     |
-| show_owner    | boolean   | shows owner name in repo card               | N/A                  | false               | N/A                     |
-| show_icons    | boolean   | shows icons                                 | false                | N/A                 | N/A                     |
-| theme         | string    | sets inbuilt theme                          | 'default'            | 'default_repocard'  | 'default                |
-| cache_seconds | number    | manually set custom cache control           | 1800                 | 1800                | '1800'                  |
-| count_private | boolean   | counts private contributions too if enabled | false                | N/A                 | N/A                     |
-| layout        | string    | choose a layout option                      | N/A                  | N/A                 | "default"               |
+| Option              | type      | description                                        | Stats Card (default) | Repo Card (default) | Top Lang Card (default) |
+| ------------------- | --------- | -------------------------------------------------- | -------------------- | ------------------- | ----------------------- |
+| title_color         | hex color | title color                                        | 2f80ed               | 2f80ed              | 2f80ed                  |
+| text_color          | hex color | body color                                         | 333                  | 333                 | 333                     |
+| icon_color          | hex color | icon color                                         | 4c71f2               | 586069              | 586069                  |
+| bg_color            | hex color | card bg color                                      | FFFEFE               | FFFEFE              | FFFEFE                  |
+| line_height         | number    | control the line-height between text               | 30                   | N/A                 | N/A                     |
+| hide                | CSV       | hides the items specified                          | undefined            | N/A                 | undefined               |
+| hide_rank           | boolean   | hides the ranking                                  | false                | N/A                 | N/A                     |
+| hide_title          | boolean   | hides the stats title                              | false                | N/A                 | false                   |
+| hide_border         | boolean   | hides the stats card border                        | false                | N/A                 | N/A                     |
+| show_owner          | boolean   | shows owner name in repo card                      | N/A                  | false               | N/A                     |
+| show_icons          | boolean   | shows icons                                        | false                | N/A                 | N/A                     |
+| theme               | string    | sets inbuilt theme                                 | 'default'            | 'default_repocard'  | 'default                |
+| cache_seconds       | number    | manually set custom cache control                  | 1800                 | 1800                | '1800'                  |
+| count_private       | boolean   | counts private contributions too if enabled        | false                | N/A                 | N/A                     |
+| layout              | string    | choose a layout option                             | N/A                  | N/A                 | "default"               |
+| include_all_commits | boolean   | includes all commits since joining github in stats | false                | N/A                 | N/A                     |
 
 > Note on cache: Repo cards have default cache of 30mins (1800 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 30min and maximum of 24hours
 
@@ -208,6 +209,10 @@ You can use the `&layout=compact` option to change the card design.
 - Showing icons
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
+
+- Include All Commits
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
 
 - Themes
 
