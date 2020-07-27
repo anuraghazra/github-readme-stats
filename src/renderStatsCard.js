@@ -23,7 +23,7 @@ const createTextNode = ({ icon, label, value, id, index, showIcons }) => {
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       ${iconSvg}
       <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
-      <text class="stat" x="135" y="12.5" data-testid="${id}">${kValue}</text>
+      <text class="stat" x="165" y="12.5" data-testid="${id}">${kValue}</text>
     </g>
   `;
 };
@@ -44,6 +44,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_title = false,
     hide_border = false,
     hide_rank = false,
+    include_all_commits = false,
     line_height = 25,
     title_color,
     icon_color,
@@ -73,7 +74,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     commits: {
       icon: icons.commits,
-      label: "Total Commits",
+      label: `Total Commits${
+        include_all_commits ? "" : ` (${new Date().getFullYear()})`
+      }`,
       value: totalCommits,
       id: "commits",
     },
@@ -133,7 +136,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
   const title = hide_title
     ? ""
-    : `<text x="25" y="35" class="header">${encodeHTML(name)}'${apostrophe} GitHub Stats</text>`;
+    : `<text x="25" y="35" class="header">${encodeHTML(
+        name
+      )}'${apostrophe} GitHub Stats</text>`;
 
   const border = `
     <rect 

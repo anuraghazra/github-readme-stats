@@ -1,4 +1,5 @@
 const { request, logger } = require("./utils");
+const axios = require("axios");
 const retryer = require("./retryer");
 const calculateRank = require("./calculateRank");
 require("dotenv").config();
@@ -46,7 +47,36 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchStats(username, count_private = false) {
+const totalCommitsFetcher = async (username) => {
+  // application/vnd.github.cloak-preview
+  const fetchTotalCommits = (variables, token) => {
+    return axios({
+      method: "get",
+      url: `https://api.github.com/search/commits?q=author:${variables.login}`,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/vnd.github.cloak-preview",
+        Authorization: `bearer ${token}`,
+      },
+    });
+  };
+
+  try {
+    let res = await retryer(fetchTotalCommits, { login: username });
+    if (res.data.total_count) {
+      return res.data.total_count;
+    }
+  } catch (err) {
+    console.log(err);
+    return 0;
+  }
+};
+
+async function fetchStats(
+  username,
+  count_private = false,
+  include_all_commits = false
+) {
   if (!username) throw Error("Invalid username");
 
   const stats = {
@@ -61,6 +91,11 @@ async function fetchStats(username, count_private = false) {
 
   let res = await retryer(fetcher, { login: username });
 
+  let experimental_totalCommits = 0;
+  if (include_all_commits) {
+    experimental_totalCommits = await totalCommitsFetcher(username);
+  }
+
   if (res.data.errors) {
     logger.error(res.data.errors);
     throw Error(res.data.errors[0].message || "Could not fetch user");
@@ -72,7 +107,9 @@ async function fetchStats(username, count_private = false) {
   stats.name = user.name || user.login;
   stats.totalIssues = user.issues.totalCount;
 
-  stats.totalCommits = contributionCount.totalCommitContributions;
+  stats.totalCommits =
+    contributionCount.totalCommitContributions + experimental_totalCommits;
+
   if (count_private) {
     stats.totalCommits =
       contributionCount.totalCommitContributions +
