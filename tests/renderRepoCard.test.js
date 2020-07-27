@@ -29,7 +29,7 @@ describe("Test renderRepoCard", () => {
     expect(header).toHaveTextContent("convoychat");
     expect(header).not.toHaveTextContent("anuraghazra");
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
-      "Help us take over the world! React + TS + GraphQL ChatApp"
+      "Help us take over the world! React + TS + GraphQLChat App" // GraphQLChat is fine here since they are in different tspans
     );
     expect(queryByTestId(document.body, "stargazers")).toHaveTextContent("38k");
     expect(queryByTestId(document.body, "forkcount")).toHaveTextContent("100");
@@ -59,10 +59,13 @@ describe("Test renderRepoCard", () => {
     });
 
     expect(document.getElementsByClassName("description")[0].childNodes[0].textContent).toBe(
-      "Very long long long long long long long long long long"
+      "Very long long long long long long long long long"
     );
     expect(document.getElementsByClassName("description")[0].childNodes[1].textContent).toBe(
-      "long long long long long long text it should trim it"
+      "long long long long long long long text it should"
+    );
+    expect(document.getElementsByClassName("description")[0].childNodes[2].textContent).toBe(
+      "trim it"
     );
 
     // Should not trim

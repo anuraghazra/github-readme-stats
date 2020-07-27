@@ -141,7 +141,7 @@ const renderRepoCard = (repo, options = {}) => {
   `;
 };
 
-function getMultiLineDescription(description, width = 55, maxLines = 3) {
+function getMultiLineDescription(description, width = 50, maxLines = 3) {
   const wrapped = wrap(description, { width })
     .split("\n") // Split wrapped lines to get an array of lines
     .map(line => line.trim()); // Remove leading and trailing whitespace of each line
