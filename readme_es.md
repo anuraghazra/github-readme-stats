@@ -56,6 +56,18 @@ Para ocultar alguna estadística específica, puedes utilizar el parámetro `?hi
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","prs"])
 ```
 
+### Agregar contribuciones privadas al total de commits contados
+
+Puede agregar el recuento de todas sus contribuciones privadas al recuento total de confirmaciones utilizando el parámetro de consulta `?count_private=true`.
+
+_Nota: Si está desplegando este proyecto usted mismo, las contribuciones privadas se contarán de manera predeterminada; de lo contrario, deberá elegir compartir sus recuentos de contribuciones privadas._
+
+> Opciones: `&count_private=true`
+
+```md
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+```
+
 ### Mostrar íconos
 
 Para habilitar los íconos, puedes utilizar `show_icons=true` como parámetro, de esta manera:
