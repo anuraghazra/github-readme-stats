@@ -7,7 +7,15 @@ const {
 const getStyles = require("./getStyles");
 const icons = require("./icons");
 
-const createTextNode = ({ icon, label, value, id, index, showIcons }) => {
+const createTextNode = ({
+  icon,
+  label,
+  value,
+  id,
+  index,
+  showIcons,
+  shiftValuePos,
+}) => {
   const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
 
@@ -23,7 +31,12 @@ const createTextNode = ({ icon, label, value, id, index, showIcons }) => {
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       ${iconSvg}
       <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
-      <text class="stat" x="165" y="12.5" data-testid="${id}">${kValue}</text>
+      <text 
+        class="stat" 
+        x="${shiftValuePos ? 165 : 140}" 
+        y="12.5" 
+        data-testid="${id}"
+      >${kValue}</text>
     </g>
   `;
 };
@@ -109,6 +122,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         ...STATS[key],
         index,
         showIcons: show_icons,
+        shiftValuePos: !include_all_commits,
       })
     );
 

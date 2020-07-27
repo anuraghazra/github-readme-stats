@@ -2,6 +2,8 @@ const { request, logger } = require("./utils");
 const axios = require("axios");
 const retryer = require("./retryer");
 const calculateRank = require("./calculateRank");
+const githubUsernameRegex = require("github-username-regex");
+
 require("dotenv").config();
 
 const fetcher = (variables, token) => {
@@ -48,6 +50,12 @@ const fetcher = (variables, token) => {
 };
 
 const totalCommitsFetcher = async (username) => {
+  if (!githubUsernameRegex.test(username)) {
+    logger.log("Invalid username");
+    return 0;
+  }
+  logger.log({ username });
+
   // application/vnd.github.cloak-preview
   const fetchTotalCommits = (variables, token) => {
     return axios({
@@ -63,11 +71,15 @@ const totalCommitsFetcher = async (username) => {
 
   try {
     let res = await retryer(fetchTotalCommits, { login: username });
+    logger.log({ res });
+
     if (res.data.total_count) {
       return res.data.total_count;
     }
   } catch (err) {
-    console.log(err);
+    logger.log(err);
+    // just return 0 if there is something wrong so that
+    // we don't break the whole app
     return 0;
   }
 };
@@ -111,9 +123,7 @@ async function fetchStats(
     contributionCount.totalCommitContributions + experimental_totalCommits;
 
   if (count_private) {
-    stats.totalCommits =
-      contributionCount.totalCommitContributions +
-      contributionCount.restrictedContributionsCount;
+    stats.totalCommits += contributionCount.restrictedContributionsCount;
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
