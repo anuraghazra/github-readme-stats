@@ -1,5 +1,5 @@
 <p align="center">
- <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="Github Readme Stats" />
+ <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
  <p align="center">在你的 README 中获取动态生成的 GitHub 统计信息！</p>
 </p>
@@ -101,7 +101,7 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
-<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="Github Readme Stat Themes" width="600px"/>
+<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
 在 [theme config 文件](./themes/index.js) 中查看更多主题，或者 **贡献新的主题** :D
 
@@ -125,7 +125,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 | show_owner  | boolean   | 显示 Repo 卡片所属账户用户名  | N/A                  | false               | N/A                |
 | show_icons  | boolean   | 显示图标                   | false                | N/A                 | N/A                 |
 | theme       | string    | 设置主题                   | 'default'            | 'default_repocard'  | 'default'          |
-| cache_seconds | number  | 手动设置自定义缓存控制        | 1800                 | 1800               |'1800'            |
+| cache_seconds | number  | 手动设置自定义缓存控制        | 1800                 | 1800               | 1800             |
 | count_private | boolean   | 统计私人贡献计数           | false                | N/A                 | N/A                |
 | layout        | string    | 布局方式                  | N/A                  | N/A                 | 'default'          |
 
@@ -158,9 +158,9 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 # 热门语言卡片
 
-热门语言卡片显示了Github用户常用的编程语言。
+热门语言卡片显示了GitHub用户常用的编程语言。
 
-*注意：热门语言并不表示我的技能水平或类似的水平，它是用户在Github上拥有最多代码的一项指标，它是github-readme-stats的新功能*
+*注意：热门语言并不表示我的技能水平或类似的水平，它是用户在GitHub上拥有最多代码的一项指标，它是github-readme-stats的新功能*
 
 ### 使用细则
 

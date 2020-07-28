@@ -1,5 +1,5 @@
 <p align="center">
- <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="Github Readme Stats" /> 
+ <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" /> 
  <h2 align="center">GitHub Readme Stats</h2>
  <p align="center">Zeige dynamisch generierte GitHub-Statistiken in deinen Readmes!</p>
 </p>
@@ -82,7 +82,7 @@ Benutze den `?theme=THEME_NAME`-Parameter wie folgt :-
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
-<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="Github Readme Stat Themes" width="600px"/>
+<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
 Du kannst dir eine Vorschau [aller verfügbaren Themes](./themes/README.md) ansehen oder die [theme config Datei](./themes/index.js) auschecken.
 Außerdem **kannst du neue Themes beisteuern** wenn du möchtest, contributions sind gern gesehen :D
@@ -106,7 +106,7 @@ Anpassungsoptionen:
 | show_owner       | boolean   | zeigt den Namen des Besitzers in der Repo-Karte      | N/A                   | false               | N/A                     |
 | show_icons       | boolean   | zeige Icons an                                       | false                 | N/A                 | N/A                     |
 | theme            | string    | setze eingebaute themes                              | 'default'             | 'default_repocard'  | 'default'               |
-| cache_seconds    | number    | manuelles setzen der Cachezeiten                     | 1800                  | 1800                | '1800'                  |
+| cache_seconds    | number    | manuelles setzen der Cachezeiten                     | 1800                  | 1800                | 1800                    |
 | hide_langs_below | number    | verberge Sprachen unter einem bestimmten Schwellwert | N/A                   | N/A                 | undefined               |
 
 > Hinweis bzgl. des Caches: Wenn die Anzahl der Forks und Stars geringer als 1Tsd ist, haben die Repo-Cards eine default Cachezeit von 30 Minuten (1800 Sekunden), ansonsten beträgt diese 2 Stunden (7200 Sekunden). Außerdem ist der Cache auf eine Minimum von 30 Minuten und ein Maximum von 24 Stunden begrenzt.
