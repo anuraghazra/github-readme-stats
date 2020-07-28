@@ -45,15 +45,20 @@ async function fetchTopLanguages(username) {
 
   let repoNodes = res.data.data.user.repositories.nodes;
 
-  // TODO: perf improvement
   repoNodes = repoNodes
     .filter((node) => {
       return node.languages.edges.length > 0;
     })
+    // flatten the list of language nodes 
     .reduce((acc, curr) => curr.languages.edges.concat(acc), [])
     .sort((a, b) => b.size - a.size)
     .reduce((acc, prev) => {
+      // get the size of the language (bytes)
       let langSize = prev.size;
+
+      // if we already have the language in the accumulator 
+      // & the current language name is same as previous name
+      // add the size to the language size.
       if (acc[prev.node.name] && prev.node.name === acc[prev.node.name].name) {
         langSize = prev.size + acc[prev.node.name].size;
       }
