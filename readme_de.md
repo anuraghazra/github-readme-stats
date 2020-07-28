@@ -241,7 +241,7 @@ Hinweis: Seit [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 
 1. Klicke deploy, und das wars. Besuche deine domains um die API zu benutzen!
 </details>
 
-## :sparkling_heart: Support the project
+## :sparkling_heart: Unterstütze das Projekt
 
 Ich versuche alles was ich kann als Open-Source zur Verfügung zu stellen, als auch jedem der Hilfe bei der Benutzung dieses Projektes braucht zu antworten. Natürlich beansprucht sowas Zeit und Du kannst diesen Dienst kostenlos benutzen.
 
