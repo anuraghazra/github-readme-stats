@@ -23,6 +23,13 @@
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicita una mejora</a>
   </p>
+  <p align="center">
+    <a href="readme.md">English</a>
+    ·
+    <a href="readme_cn.md">简体中文</a>
+    ·
+    <a href="readme_ja.md">日本語</a>
+  </p>
 </p>
 <p align="center">¿Te gusta este proyecto? ¡Por favor considera <a href="https://www.paypal.me/anuraghazra">donar</a> para ayudar a mejorarlo!
 
