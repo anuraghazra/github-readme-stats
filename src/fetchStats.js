@@ -32,6 +32,9 @@ const fetcher = (variables, token) => {
             nodes {
               stargazers {
                 totalCount
+              }  
+              primaryLanguage {
+                name
               }
             }
           }
@@ -57,9 +60,16 @@ async function fetchStats(username, count_private = false) {
     totalStars: 0,
     contributedTo: 0,
     rank: { level: "C", score: 0 },
+    primaryLanguages: []
   };
 
   let res = await retryer(fetcher, { login: username });
+  stats.primaryLanguages = new Set([
+    ...res.data.data.user.repositories.nodes
+      .map((n) => n.primaryLanguage)
+      .filter((n) => n)
+      .map((n) => n["name"].toLowerCase()),
+  ]);
 
   if (res.data.errors) {
     logger.error(res.data.errors);

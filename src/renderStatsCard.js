@@ -6,6 +6,7 @@ const {
 } = require("../src/utils");
 const getStyles = require("./getStyles");
 const icons = require("./icons");
+const logos = require("./logos");
 
 const createTextNode = ({ icon, label, value, id, index, showIcons }) => {
   const kValue = kFormatter(value);
@@ -28,6 +29,8 @@ const createTextNode = ({ icon, label, value, id, index, showIcons }) => {
   `;
 };
 
+const getSVGLogo = (lang) => require(`../logos/${lang}.svg`);
+
 const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const {
     name,
@@ -37,6 +40,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     totalPRs,
     contributedTo,
     rank,
+    primaryLanguages,
   } = stats;
   const {
     hide = [],
@@ -53,7 +57,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   } = options;
 
   const lheight = parseInt(line_height);
-
+  // console.log(primaryLanguages)
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor } = getCardColors({
     title_color,
@@ -112,7 +116,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
   let height = Math.max(
-    45 + (statItems.length + 1) * lheight,
+    75 + (statItems.length + 1) * lheight,
     hide_rank ? 0 : 150
   );
 
@@ -133,7 +137,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
   const title = hide_title
     ? ""
-    : `<text x="25" y="35" class="header">${encodeHTML(name)}'${apostrophe} GitHub Stats</text>`;
+    : `<text x="25" y="35" class="header">${encodeHTML(
+        name
+      )}'${apostrophe} GitHub Stats</text>`;
 
   const border = `
     <rect 
@@ -194,6 +200,13 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
             direction: "column",
           }).join("")}
         </svg>
+
+        <g transform="translate(0, 175)">
+        ${FlexLayout({
+          items: Array.from(primaryLanguages).map((lang) => logos[lang]),
+          gap: 45,
+        }).join("")}
+        </g>
       </g>
     </svg>
   `;
