@@ -48,18 +48,18 @@ const getStyles = ({
 }) => {
   return `
     .header {
-      font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor}; 
+      font: 600 18px -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; fill: ${titleColor}; 
       animation: fadeIn 0.8s ease-in-out forwards;
     }
     .stat { 
-      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
+      font: 600 14px -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; fill: ${textColor};
     }
     .stagger { 
       opacity: 0;
       animation: fadeIn 0.3s ease-in-out forwards;
     }
     .rank-text { 
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; 
+      font: 800 24px -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji; fill: ${textColor}; 
       animation: scaleIn 0.3s ease-in-out forwards;
     }
     
