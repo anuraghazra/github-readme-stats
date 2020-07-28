@@ -51,6 +51,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     bg_color,
     theme = "default",
     custom_title,
+    custom_name,
   } = options;
 
   const lheight = parseInt(line_height);
@@ -131,13 +132,19 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 var title;
   // Conditionally rendered elements
   if (custom_title) {
-    title = `<text x="25" y="35" class="header">${encodeHTML(custom_title)}</text>`
+    title = hide_title
+    ? ""
+    : `<text x="25" y="35" class="header">${encodeHTML(custom_title)}</text>`;
+  } else if (custom_name) {
+    const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
+    title = hide_title
+    ? ""
+    : `<text x="25" y="35" class="header">${encodeHTML(custom_name)}'${apostrophe} GitHub Stats</text>`;
   } else {
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
   title = hide_title
     ? ""
     : `<text x="25" y="35" class="header">${encodeHTML(name)}'${apostrophe} GitHub Stats</text>`;
-    
   }
   const border = `
     <rect 

@@ -26,6 +26,7 @@ module.exports = async (req, res) => {
     theme,
     cache_seconds,
     custom_title,
+    custom_name,
   } = req.query;
   let stats;
 
@@ -64,6 +65,7 @@ module.exports = async (req, res) => {
       bg_color,
       theme,
       custom_title,
+      custom_name,
     })
   );
 };
