@@ -50,6 +50,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     text_color,
     bg_color,
     theme = "default",
+    custom_title,
   } = options;
 
   const lheight = parseInt(line_height);
@@ -127,14 +128,17 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     show_icons,
     progress,
   });
-
+var title;
   // Conditionally rendered elements
-
+  if (custom_title) {
+    title = `<text x="25" y="35" class="header">${encodeHTML(custom_title)}</text>`
+  } else {
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
-  const title = hide_title
+  title = hide_title
     ? ""
     : `<text x="25" y="35" class="header">${encodeHTML(name)}'${apostrophe} GitHub Stats</text>`;
-
+    
+  }
   const border = `
     <rect 
       data-testid="card-bg"
