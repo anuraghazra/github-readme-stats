@@ -12,7 +12,7 @@ const data_langs = {
         nodes: [
           {
             languages: {
-              edges: [{ size: 100, node: { color: "#0f0", name: "HTML" } }],
+              edges: [{ size: 150, node: { color: "#0f0", name: "HTML" } }],
             },
           },
           {
@@ -55,7 +55,7 @@ const langs = {
   HTML: {
     color: "#0f0",
     name: "HTML",
-    size: 200,
+    size: 250,
   },
   javascript: {
     color: "#0ff",

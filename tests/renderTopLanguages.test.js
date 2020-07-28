@@ -32,7 +32,7 @@ describe("Test renderTopLanguages", () => {
     document.body.innerHTML = renderTopLanguages(langs);
 
     expect(queryByTestId(document.body, "header")).toHaveTextContent(
-      "Top Languages"
+      "Most Used Languages"
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
@@ -211,7 +211,7 @@ describe("Test renderTopLanguages", () => {
   it('should render with layout compact', () => {
     document.body.innerHTML = renderTopLanguages(langs, {layout: 'compact'});
 
-    expect(queryByTestId(document.body, "header")).toHaveTextContent("Top Languages");
+    expect(queryByTestId(document.body, "header")).toHaveTextContent("Most Used Languages");
 
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent("HTML 40.00%");
     expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute("width","120.00");
