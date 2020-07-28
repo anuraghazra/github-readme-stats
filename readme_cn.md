@@ -122,7 +122,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 | hide_border | boolean   | 隐藏卡片边框                | false                | N/A                 | N/A                 |
 | show_owner  | boolean   | 显示 Repo 卡片所属账户用户名  | N/A                  | false               | N/A                |
 | show_icons  | boolean   | 显示图标                   | false                | N/A                 | N/A                 |
-| theme       | string    | 设置主题                   | 'default'            | 'default_repocard'  | 'defaultt'          |
+| theme       | string    | 设置主题                   | 'default'            | 'default_repocard'  | 'default'          |
 | cache_seconds | number  | 手动设置自定义缓存控制        | 1800                 | 1800               |'1800'            |
 | count_private | boolean   | 统计私人贡献计数           | false                | N/A                 | N/A                |
 | layout        | string    | 布局方式                  | N/A                  | N/A                 | 'default'          |
