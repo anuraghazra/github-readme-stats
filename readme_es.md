@@ -1,5 +1,5 @@
 <p align="center">
- <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="Github Readme Stats" /> 
+ <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="Github Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
  <p align="center">¡Obtén tus estadísticas de GitHub generadas dinámicamente en tu README!</p>
 </p>
@@ -19,9 +19,16 @@
   <p align="center">
     <a href="#ejemplo">Ve un ejemplo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues">Reporta un bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Reporta un bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues">Solicita una mejora</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicita una mejora</a>
+  </p>
+  <p align="center">
+    <a href="readme.md">English</a>
+    ·
+    <a href="readme_cn.md">简体中文</a>
+    ·
+    <a href="readme_ja.md">日本語</a>
   </p>
 </p>
 <p align="center">¿Te gusta este proyecto? ¡Por favor considera <a href="https://www.paypal.me/anuraghazra">donar</a> para ayudar a mejorarlo!
@@ -56,6 +63,18 @@ Para ocultar alguna estadística específica, puedes utilizar el parámetro `?hi
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","prs"])
 ```
 
+### Agregar contribuciones privadas al total de commits contados
+
+Puede agregar el recuento de todas sus contribuciones privadas al recuento total de confirmaciones utilizando el parámetro de consulta `?count_private=true`.
+
+_Nota: Si está desplegando este proyecto usted mismo, las contribuciones privadas se contarán de manera predeterminada; de lo contrario, deberá elegir compartir sus recuentos de contribuciones privadas._
+
+> Opciones: `&count_private=true`
+
+```md
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+```
+
 ### Mostrar íconos
 
 Para habilitar los íconos, puedes utilizar `show_icons=true` como parámetro, de esta manera:
@@ -74,7 +93,7 @@ Utiliza el parámetro `?theme=THEME_NAME`, de esta manera:
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
-#### Todos los temas incorporados:
+#### Todos los temas incorporados
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
@@ -197,6 +216,7 @@ Nota: debido a esto [#58](https://github.com/anuraghazra/github-readme-stats/pul
 1. Selecciona "root" y matén todo como está, simplemente añade tu variable de entorno llamada PAT_1 (como se muestra), la cual contendrá un token de acceso personal (PAT), el cual puedes crear fácilmente [aquí](https://github.com/settings/tokens/new) (mantén todo como está, simplemente asígnale un nombre, puede ser cualquiera que desees)
    ![](https://files.catbox.moe/caem5b.png)
 1. Clickea "Deploy" y ya está listo. ¡Ve tus dominios para usar la API!
+
 </details>
 
 ## :sparkling_heart: Apoya al proyecto

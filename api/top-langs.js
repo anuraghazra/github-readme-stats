@@ -3,6 +3,7 @@ const {
   renderError,
   clampValue,
   parseBoolean,
+  parseArray,
   CONSTANTS,
 } = require("../src/utils");
 const fetchTopLanguages = require("../src/fetchTopLanguages");
@@ -11,7 +12,7 @@ const renderTopLanguages = require("../src/renderTopLanguages");
 module.exports = async (req, res) => {
   const {
     username,
-    hide_langs_below,
+    hide,
     hide_title,
     card_width,
     title_color,
@@ -19,6 +20,7 @@ module.exports = async (req, res) => {
     bg_color,
     theme,
     cache_seconds,
+    layout
   } = req.query;
   let topLangs;
 
@@ -43,11 +45,12 @@ module.exports = async (req, res) => {
       theme,
       hide_title: parseBoolean(hide_title),
       card_width: parseInt(card_width, 10),
-      hide_langs_below: parseFloat(hide_langs_below, 10),
+      hide: parseArray(hide),
       title_color,
       text_color,
       bg_color,
       theme,
+      layout
     })
   );
 };

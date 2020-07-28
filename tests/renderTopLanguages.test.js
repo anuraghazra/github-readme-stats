@@ -58,18 +58,26 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
-  it("should hide_langs_below", () => {
+  it("should hide languages when hide is passed", () => {
     document.body.innerHTML = renderTopLanguages(langs, {
-      hide_langs_below: 34,
+      hide: ["HTML"],
     });
-
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
-      "HTML"
-    );
-    expect(queryAllByTestId(document.body, "lang-name")[1]).toBeInTheDocument(
       "javascript"
     );
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toBeInTheDocument(
+      "css"
+    );
     expect(queryAllByTestId(document.body, "lang-name")[2]).not.toBeDefined();
+
+    // multiple languages passed
+    document.body.innerHTML = renderTopLanguages(langs, {
+      hide: ["HTML","css"],
+    });
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
+      "javascript"
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[1]).not.toBeDefined();
   });
 
   it("should resize the height correctly depending on langs", () => {
@@ -131,7 +139,7 @@ describe("Test renderTopLanguages", () => {
     expect(langNameStyles.fill).toBe("#333");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#FFFEFE"
+      "#fffefe"
     );
   });
 
@@ -199,4 +207,19 @@ describe("Test renderTopLanguages", () => {
       );
     });
   });
+
+  it('should render with layout compact', () => {
+    document.body.innerHTML = renderTopLanguages(langs, {layout: 'compact'});
+
+    expect(queryByTestId(document.body, "header")).toHaveTextContent("Top Languages");
+
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent("HTML 40.00%");
+    expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute("width","120.00");
+
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent("javascript 40.00%");
+    expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute("width","120.00");
+
+    expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent("css 20.00%");
+    expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute("width","60.00");
+  })
 });

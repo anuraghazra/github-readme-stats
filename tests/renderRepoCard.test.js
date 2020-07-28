@@ -29,7 +29,7 @@ describe("Test renderRepoCard", () => {
     expect(header).toHaveTextContent("convoychat");
     expect(header).not.toHaveTextContent("anuraghazra");
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
-      "Help us take over the world! React + TS + GraphQL Chat .."
+      "Help us take over the world! React + TS + GraphQL Chat App"
     );
     expect(queryByTestId(document.body, "stargazers")).toHaveTextContent("38k");
     expect(queryByTestId(document.body, "forkcount")).toHaveTextContent("100");
@@ -55,12 +55,16 @@ describe("Test renderRepoCard", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
       description:
-        "Very long long long long long long long long text it should trim it",
+        "The quick brown fox jumps over the lazy dog is an English-language pangram—a sentence that contains all of the letters of the English alphabet",
     });
 
-    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
-      "Very long long long long long long long long text it sh.."
-    );
+    expect(
+      document.getElementsByClassName("description")[0].children[0].textContent
+    ).toBe("The quick brown fox jumps over the lazy dog is an");
+
+    expect(
+      document.getElementsByClassName("description")[0].children[1].textContent
+    ).toBe("English-language pangram—a sentence that contains all");
 
     // Should not trim
     document.body.innerHTML = renderRepoCard({
@@ -70,6 +74,18 @@ describe("Test renderRepoCard", () => {
 
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
       "Small text should not trim"
+    );
+  });
+
+  it("should render emojis", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      description: "This is a text with a :poop: poo emoji",
+    });
+
+    // poop emoji may not show in all editors but it's there between "a" and "poo"
+    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
+      "This is a text with a 💩 poo emoji"
     );
   });
 
@@ -83,9 +99,9 @@ describe("Test renderRepoCard", () => {
     });
 
     expect(queryByTestId(document.body, "primary-lang")).toBeInTheDocument();
-    expect(document.getElementsByTagName("g")[1]).toHaveAttribute(
+    expect(queryByTestId(document.body, "star-fork-group")).toHaveAttribute(
       "transform",
-      "translate(155, 100)"
+      "translate(155, 0)"
     );
 
     // Small lang
@@ -97,9 +113,9 @@ describe("Test renderRepoCard", () => {
       },
     });
 
-    expect(document.getElementsByTagName("g")[1]).toHaveAttribute(
+    expect(queryByTestId(document.body, "star-fork-group")).toHaveAttribute(
       "transform",
-      "translate(125, 100)"
+      "translate(125, 0)"
     );
   });
 
@@ -142,7 +158,7 @@ describe("Test renderRepoCard", () => {
     expect(iconClassStyles.fill).toBe("#586069");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#FFFEFE"
+      "#fffefe"
     );
   });
 

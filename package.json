@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --coverage",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "theme-readme-gen": "node scripts/generate-theme-doc"
   },
   "author": "Anurag Hazra",
   "license": "MIT",
@@ -19,7 +20,9 @@
     "jest": "^26.1.0"
   },
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "emoji-name-map": "^1.2.8",
+    "word-wrap": "^1.2.3"
   },
   "husky": {
     "hooks": {

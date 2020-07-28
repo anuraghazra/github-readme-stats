@@ -1,25 +1,32 @@
 const axios = require("axios");
+const wrap = require("word-wrap");
 const themes = require("../themes");
 
-const renderError = (message) => {
+const renderError = (message, secondaryMessage = "") => {
   return `
-    <svg width="495" height="100" viewBox="0 0 495 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="495" height="120" viewBox="0 0 495 120" fill="none" xmlns="http://www.w3.org/2000/svg">
     <style>
     .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2F80ED }
     .small { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #252525 }
+    .gray { fill: #858585 }
     </style>
     <rect x="0.5" y="0.5" width="494" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
     <text x="25" y="45" class="text">Something went wrong! file an issue at https://git.io/JJmN9</text>
-    <text id="message" x="25" y="65" class="text small">${message}</text>
+    <text data-testid="message" x="25" y="55" class="text small">
+      <tspan x="25" dy="18">${message}</tspan>
+      <tspan x="25" dy="18"  class="gray">${secondaryMessage}</tspan>
+    </text>
     </svg>
   `;
 };
 
 // https://stackoverflow.com/a/48073476/10629172
 function encodeHTML(str) {
-  return str.replace(/[\u00A0-\u9999<>&](?!#)/gim, function (i) {
-    return "&#" + i.charCodeAt(0) + ";";
-  });
+  return str
+    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
+      return "&#" + i.charCodeAt(0) + ";";
+    })
+    .replace(/\u0008/gim, "");
 }
 
 function kFormatter(num) {
@@ -42,6 +49,11 @@ function parseBoolean(value) {
   } else {
     return value;
   }
+}
+
+function parseArray(str) {
+  if (!str) return [];
+  return str.split(",");
 }
 
 function clampValue(number, min, max) {
@@ -116,9 +128,27 @@ function getCardColors({
   return { titleColor, iconColor, textColor, bgColor };
 }
 
-const fn = () => {};
+function wrapTextMultiline(text, width = 60, maxLines = 3) {
+  const wrapped = wrap(encodeHTML(text), { width })
+    .split("\n") // Split wrapped lines to get an array of lines
+    .map((line) => line.trim()); // Remove leading and trailing whitespace of each line
+
+  const lines = wrapped.slice(0, maxLines); // Only consider maxLines lines
+
+  // Add "..." to the last line if the text exceeds maxLines
+  if (wrapped.length > maxLines) {
+    lines[maxLines - 1] += "...";
+  }
+
+  // Remove empty lines if text fits in less than maxLines lines
+  const multiLineText = lines.filter(Boolean);
+  return multiLineText;
+}
+
+const noop = () => {};
 // return console instance based on the environment
-const logger = process.env.NODE_ENV !== "test" ? console : { log: fn, error: fn };
+const logger =
+  process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
 
 const CONSTANTS = {
   THIRTY_MINUTES: 1800,
@@ -132,11 +162,13 @@ module.exports = {
   encodeHTML,
   isValidHexColor,
   request,
+  parseArray,
   parseBoolean,
   fallbackColor,
   FlexLayout,
   getCardColors,
   clampValue,
+  wrapTextMultiline,
   logger,
   CONSTANTS,
 };
