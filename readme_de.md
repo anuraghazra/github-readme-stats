@@ -215,7 +215,7 @@ Choose from any of the [default themes](#themes)
 ## Betreibe es auf deiner eigenen Vercel-Instanz
 
 Da die GitHub API nur 5tsd Aufrufe pro Stunde zulässt, kann es passieren, dass meine `https://github-readme-stats.vercel.app/api` dieses Limit erreicht.
-If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
+Wenn du es auf deinem eigenen Vercel-Server hostest, brauchst du dich darum nicht zu kümmern. Klicke auf den Deploy-Button um loszulegen!
 
 Hinweis: Seit [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) sollte es möglich sein mehr als 5tsd Aufrufe pro Stunde ohne Downtimes zu verkraften :D
 
