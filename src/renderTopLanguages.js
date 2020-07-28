@@ -111,7 +111,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
   if (layout === "compact") {
     width = width + 50;
     height = 30 + (langs.length / 2 + 1) * 40;
-
+    
     // progressOffset holds the previous language's width and used to offset the next language
     // so that we can stack them one after another, like this: [--][----][---]
     let progressOffset = 0;
@@ -180,15 +180,17 @@ const renderTopLanguages = (topLangs, options = {}) => {
         .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
         .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
       </style>
-      <rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
+      <rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="${
+        langs.length === 1 ? "98.6" : layout === "compact" ? "88": "90.7"
+      }%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
 
       ${
         hide_title
           ? ""
-          : `<text data-testid="header" x="25" y="35" class="header">Top Languages</text>`
+          : `<text data-testid="header" x="25" y="30" class="header">Top Languages</text>`
       }
 
-      <svg data-testid="lang-items" x="25" y="${hide_title ? 25 : 55}">
+      <svg data-testid="lang-items" x="25" y="${hide_title ? 25 : 40}">
         ${finalLayout}
       </svg>
     </svg>

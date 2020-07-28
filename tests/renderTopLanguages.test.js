@@ -103,7 +103,7 @@ describe("Test renderTopLanguages", () => {
     expect(document.querySelector("svg")).toHaveAttribute("height", "205");
     expect(queryByTestId(document.body, "lang-items")).toHaveAttribute(
       "y",
-      "55"
+      "40"
     );
 
     // Lets hide now
