@@ -122,7 +122,7 @@ Customization Options:
 | hide_border   | boolean   | hides the stats card border                 | false                | N/A                 | N/A                     |
 | show_owner    | boolean   | shows owner name in repo card               | N/A                  | false               | N/A                     |
 | show_icons    | boolean   | shows icons                                 | false                | N/A                 | N/A                     |
-| theme         | string    | sets inbuilt theme                          | 'default'            | 'default_repocard'  | 'default                |
+| theme         | string    | sets inbuilt theme                          | 'default'            | 'default_repocard'  | 'default'               |
 | cache_seconds | number    | manually set custom cache control           | 1800                 | 1800                | '1800'                  |
 | count_private | boolean   | counts private contributions too if enabled | false                | N/A                 | N/A                     |
 | layout        | string    | choose a layout option                      | N/A                  | N/A                 | "default"               |
