@@ -31,6 +31,8 @@
     ·
     <a href="readme_es.md">Español</a>
     ·
+    <a href="readme_de.md">Deutsch</a>
+    ·
     <a href="readme_ja.md">日本語</a>
   </p>
 </p>
