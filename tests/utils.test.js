@@ -5,6 +5,7 @@ const {
   renderError,
   FlexLayout,
   getCardColors,
+  wrapTextMultiline,
 } = require("../src/utils");
 
 const { queryByTestId } = require("@testing-library/dom");
@@ -106,5 +107,30 @@ describe("Test utils.js", () => {
       iconColor: "#79ff97",
       bgColor: "#151515",
     });
+  });
+});
+
+describe("wrapTextMultiline", () => {
+  it("should not wrap small texts", () => {
+    {
+      let multiLineText = wrapTextMultiline("Small text should not wrap");
+      expect(multiLineText).toEqual(["Small text should not wrap"]);
+    }
+  });
+  it("should wrap large texts", () => {
+    let multiLineText = wrapTextMultiline(
+      "Hello world long long long text",
+      20,
+      3
+    );
+    expect(multiLineText).toEqual(["Hello world long", "long long text"]);
+  });
+  it("should wrap large texts and limit max lines", () => {
+    let multiLineText = wrapTextMultiline(
+      "Hello world long long long text",
+      10,
+      2
+    );
+    expect(multiLineText).toEqual(["Hello", "world long..."]);
   });
 });
