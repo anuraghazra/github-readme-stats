@@ -238,7 +238,7 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary>Guide on setting up Vercel</summary>
+ <summary><b> Guide on setting up Vercel  🔨 </b></summary>
 
 1. Go to [vercel.com](https://vercel.com/)
 1. Click on `Log in`  
