@@ -8,9 +8,10 @@ const fetcher = (variables, token) => {
       query: `
       query userInfo($login: String!) {
         user(login: $login) {
-          repositories(isFork: false, first: 100, orderBy: {field: UPDATED_AT, direction: DESC}) {
+          # fetch only owner repos & not forks
+          repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
             nodes {
-              languages(first: 1, orderBy: {field: SIZE, direction: DESC}) {
+              languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
                 edges {
                   size
                   node {
@@ -49,18 +50,13 @@ async function fetchTopLanguages(username) {
     .filter((node) => {
       return node.languages.edges.length > 0;
     })
-    .sort((a, b) => {
-      return b.languages.edges[0].size - a.languages.edges[0].size;
-    })
-    .map((node) => {
-      return node.languages.edges[0];
-    })
+    .reduce((acc, curr) => curr.languages.edges.concat(acc), [])
+    .sort((a, b) => b.size - a.size)
     .reduce((acc, prev) => {
       let langSize = prev.size;
       if (acc[prev.node.name] && prev.node.name === acc[prev.node.name].name) {
         langSize = prev.size + acc[prev.node.name].size;
       }
-
       return {
         ...acc,
         [prev.node.name]: {

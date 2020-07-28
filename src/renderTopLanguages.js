@@ -185,7 +185,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
       ${
         hide_title
           ? ""
-          : `<text data-testid="header" x="25" y="35" class="header">Top Languages</text>`
+          : `<text data-testid="header" x="25" y="35" class="header">Most Used Languages</text>`
       }
 
       <svg data-testid="lang-items" x="25" y="${hide_title ? 25 : 55}">
