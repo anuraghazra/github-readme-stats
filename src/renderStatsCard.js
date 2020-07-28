@@ -54,6 +54,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const lheight = parseInt(line_height);
 
+  const isGradient = !(bg_color == undefined || bg_color.length == 6 || bg_color.length == 3)
+
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor } = getCardColors({
     title_color,
@@ -63,6 +65,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     theme,
   });
 
+const gradientBgColor = isGradient ? bg_color.split(',') : undefined;
   // Meta data for creating text nodes with createTextNode function
   const STATS = {
     stars: {
@@ -143,12 +146,20 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       width="494"
       height="99%"
       rx="4.5"
-      fill="${bgColor}"
+      fill="${isGradient ? "url('#gradient')" : bgColor}"
       stroke="#E4E2E2"
       stroke-opacity="${hide_border ? 0 : 1}"
     />
   `;
 
+  const gradient = isGradient ? `
+    <defs>
+      <linearGradient id="gradient" gradientTransform="rotate(${gradientBgColor[0]})">
+        <stop offset="0%"  stop-color="#${gradientBgColor[1]}" />
+        <stop offset="100%" stop-color="#${gradientBgColor[2]}" />
+      </linearGradient>
+    </defs>`
+    : undefined
   const rankCircle = hide_rank
     ? ""
     : `<g data-testid="rank-circle" transform="translate(400, ${
@@ -179,6 +190,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         ${styles}
       </style>
       
+      ${isGradient ? gradient : ""}
       ${border}
       ${title}
 
