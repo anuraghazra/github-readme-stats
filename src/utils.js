@@ -61,7 +61,7 @@ function clampValue(number, min, max) {
 }
 
 function fallbackColor(color, fallbackColor) {
-  return (isValidHexColor(color) && `#${color}`) || fallbackColor;
+  return (isValidHexColor(color) && `#${color}`) || (color.includes(',') && color.split(',')) || fallbackColor;
 }
 
 function request(data, headers) {

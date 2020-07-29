@@ -54,7 +54,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const lheight = parseInt(line_height);
 
-  const isGradient = !(bg_color == undefined || bg_color.length == 6 || bg_color.length == 3)
 
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor } = getCardColors({
@@ -65,7 +64,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     theme,
   });
 
-const gradientBgColor = isGradient ? bg_color.split(',') : undefined;
+  const isGradient = typeof bgColor == 'object';
   // Meta data for creating text nodes with createTextNode function
   const STATS = {
     stars: {
@@ -154,9 +153,9 @@ const gradientBgColor = isGradient ? bg_color.split(',') : undefined;
 
   const gradient = isGradient ? `
     <defs>
-      <linearGradient id="gradient" gradientTransform="rotate(${gradientBgColor[0]})">
-        <stop offset="0%"  stop-color="#${gradientBgColor[1]}" />
-        <stop offset="100%" stop-color="#${gradientBgColor[2]}" />
+      <linearGradient id="gradient" gradientTransform="rotate(${bgColor[0]})">
+        <stop offset="0%"  stop-color="#${bgColor[1]}" />
+        <stop offset="100%" stop-color="#${bgColor[2]}" />
       </linearGradient>
     </defs>`
     : undefined
