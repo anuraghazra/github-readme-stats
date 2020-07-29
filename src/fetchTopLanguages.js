@@ -51,7 +51,6 @@ async function fetchTopLanguages(username) {
     })
     // flatten the list of language nodes 
     .reduce((acc, curr) => curr.languages.edges.concat(acc), [])
-    .sort((a, b) => b.size - a.size)
     .reduce((acc, prev) => {
       // get the size of the language (bytes)
       let langSize = prev.size;
@@ -72,11 +71,12 @@ async function fetchTopLanguages(username) {
       };
     }, {});
 
-  const topLangs = Object.keys(repoNodes)
+  const topLangs = Object.values(repoNodes)
+    .sort((a, b) => b.size - a.size)
     .slice(0, 5)
-    .reduce((result, key) => {
-      result[key] = repoNodes[key];
-      return result;
+    .reduce((acc, cur) => {
+      acc[cur.name] = cur;
+      return acc;
     }, {});
 
   return topLangs;
