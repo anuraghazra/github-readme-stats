@@ -70,6 +70,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     hide,
     theme,
     layout,
+    card_height,
   } = options;
 
   let langs = Object.values(topLangs);
@@ -103,14 +104,18 @@ const renderTopLanguages = (topLangs, options = {}) => {
   });
 
   let width = isNaN(card_width) ? 300 : card_width;
-  let height = 45 + (langs.length + 1) * 40;
+  let height = isNaN(card_height)
+    ? 45 + (langs.length / 2 + 1) * 40
+    : card_height + (langs.length / 2 + 1) * 40;
 
   let finalLayout = "";
 
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
     width = width + 50;
-    height = 55 + (langs.length / 2 + 1) * 40;
+    height = isNaN(card_height)
+      ? 30 + (langs.length / 2 + 1) * 40
+      : card_height + (langs.length / 2 + 1) * 40;
 
     // progressOffset holds the previous language's width and used to offset the next language
     // so that we can stack them one after another, like this: [--][----][---]

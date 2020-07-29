@@ -20,7 +20,8 @@ module.exports = async (req, res) => {
     bg_color,
     theme,
     cache_seconds,
-    layout
+    layout,
+    card_height,
   } = req.query;
   let topLangs;
 
@@ -50,7 +51,8 @@ module.exports = async (req, res) => {
       text_color,
       bg_color,
       theme,
-      layout
+      layout,
+      card_height: parseInt(card_height, 10),
     })
   );
 };
