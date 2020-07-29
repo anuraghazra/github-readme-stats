@@ -44,7 +44,7 @@ const renderRepoCard = (repo, options = {}) => {
   const multiLineDescription = wrapTextMultiline(desc);
   const descriptionLines = multiLineDescription.length;
   const lineHeight = 10;
-
+  const isGradient = !(bg_color == undefined || bg_color.length == 6 || bg_color.length == 3)
   const height =
     (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
 
@@ -56,7 +56,7 @@ const renderRepoCard = (repo, options = {}) => {
     bg_color,
     theme,
   });
-
+  const gradientBgColor = isGradient ? bg_color.split(',') : undefined;
   const totalStars = kFormatter(stargazers.totalCount);
   const totalForks = kFormatter(forkCount);
 
@@ -74,7 +74,14 @@ const renderRepoCard = (repo, options = {}) => {
       </text>
     </g>
   `;
-
+  const gradient = isGradient ? `
+    <defs>
+      <linearGradient id="gradient" gradientTransform="rotate(${gradientBgColor[0]})">
+        <stop offset="0%"  stop-color="#${gradientBgColor[1]}" />
+        <stop offset="100%" stop-color="#${gradientBgColor[2]}" />
+      </linearGradient>
+    </defs>`
+    : undefined
   const svgLanguage = primaryLanguage
     ? `
     <g data-testid="primary-lang" transform="translate(30, 0)">
@@ -112,8 +119,8 @@ const renderRepoCard = (repo, options = {}) => {
       .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
       .badge rect { opacity: 0.2 }
       </style>
-
-      <rect data-testid="card-bg" x="0.5" y="0.5" width="399" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
+      ${isGradient ? gradient : ""}
+      <rect data-testid="card-bg" x="0.5" y="0.5" width="399" height="99%" rx="4.5" fill="${isGradient ? "url('#gradient')" : bgColor}" stroke="#E4E2E2"/>
       <svg class="icon" x="25" y="25" viewBox="0 0 16 16" version="1.1" width="16" height="16">
         ${icons.contribs}
       </svg>

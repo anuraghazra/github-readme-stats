@@ -93,7 +93,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
   const totalLanguageSize = langs.reduce((acc, curr) => {
     return acc + curr.size;
   }, 0);
-
+  const isGradient = !(bg_color == undefined || bg_color.length == 6 || bg_color.length == 3)
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, bgColor } = getCardColors({
     title_color,
@@ -101,7 +101,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     bg_color,
     theme,
   });
-
+  const gradientBgColor = isGradient ? bg_color.split(',') : undefined;
   let width = isNaN(card_width) ? 300 : card_width;
   let height = 45 + (langs.length + 1) * 40;
 
@@ -173,14 +173,22 @@ const renderTopLanguages = (topLangs, options = {}) => {
   if (hide_title) {
     height -= 30;
   }
-
+  const gradient = isGradient ? `
+  <defs>
+    <linearGradient id="gradient" gradientTransform="rotate(${gradientBgColor[0]})">
+      <stop offset="0%"  stop-color="#${gradientBgColor[1]}" />
+      <stop offset="100%" stop-color="#${gradientBgColor[2]}" />
+    </linearGradient>
+  </defs>`
+  : undefined
   return `
     <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
       <style>
         .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
         .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
       </style>
-      <rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
+      ${isGradient ? gradient : ""}
+      <rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="99%" rx="4.5" fill="${isGradient ? "url('#gradient')" : bgColor}" stroke="#E4E2E2"/>
 
       ${
         hide_title
