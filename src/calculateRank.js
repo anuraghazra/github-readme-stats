@@ -68,22 +68,16 @@ function calculateRank({
   if (normalizedScore < RANK_S_VALUE) {
     level = "S+";
   }
-  if (
-    normalizedScore >= RANK_S_VALUE &&
-    normalizedScore < RANK_DOUBLE_A_VALUE
-  ) {
+  else if (normalizedScore < RANK_DOUBLE_A_VALUE) {
     level = "S";
   }
-  if (
-    normalizedScore >= RANK_DOUBLE_A_VALUE &&
-    normalizedScore < RANK_A2_VALUE
-  ) {
+  else if (normalizedScore < RANK_A2_VALUE) {
     level = "A++";
   }
-  if (normalizedScore >= RANK_A2_VALUE && normalizedScore < RANK_A3_VALUE) {
+  else if (normalizedScore < RANK_A3_VALUE) {
     level = "A+";
   }
-  if (normalizedScore >= RANK_A3_VALUE && normalizedScore < RANK_B_VALUE) {
+  else if (normalizedScore < RANK_B_VALUE) {
     level = "B+";
   }
 
