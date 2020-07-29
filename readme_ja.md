@@ -17,6 +17,14 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
+    <br />
+    <br />
+    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
+      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
+    </a>
+    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
+      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
+    </a>
   </p>
 
   <p align="center">
@@ -47,7 +55,7 @@
 
 # GitHub Stats Card
 
-以下の構文をコピーして、あなたのMarkdownファイルに貼り付けるだけです。
+以下の構文をコピーして、あなたの Markdown ファイルに貼り付けるだけです。
 簡単ですね！
 
 `?username=` の値は、あなたの GitHub アカウントのユーザー名に変更してください。
@@ -112,31 +120,31 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 Customization Options:
 
-| Option        | type      | description                                 | Stats Card (default) | Repo Card (default) | Top Lang Card (default) |
-| ------------- | --------- | ------------------------------------------- | -------------------- | ------------------- | ----------------------- |
+| Option        | type      | description                                  | Stats Card (default) | Repo Card (default) | Top Lang Card (default) |
+| ------------- | --------- | -------------------------------------------- | -------------------- | ------------------- | ----------------------- |
 | title_color   | hex color | タイトルの色                                 | 2f80ed               | 2f80ed              | 2f80ed                  |
 | text_color    | hex color | 文字の色                                     | 333                  | 333                 | 333                     |
 | icon_color    | hex color | アイコンの色                                 | 4c71f2               | 586069              | 586069                  |
 | bg_color      | hex color | カードの背景色                               | FFFEFE               | FFFEFE              | FFFEFE                  |
 | line_height   | number    | 字間距離                                     | 30                   | N/A                 | N/A                     |
 | hide          | CSV       | 項目の非表示                                 | undefined            | N/A                 | undefined               |
-| hide_rank     | boolean   | rankingの非表示                              | false                | N/A                 | N/A                     |
+| hide_rank     | boolean   | ranking の非表示                             | false                | N/A                 | N/A                     |
 | hide_title    | boolean   | タイトルの非表示                             | false                | N/A                 | false                   |
 | hide_border   | boolean   | 枠線の非表示                                 | false                | N/A                 | N/A                     |
 | show_owner    | boolean   | オーナー名の表示                             | N/A                  | false               | N/A                     |
 | show_icons    | boolean   | アイコンの表示                               | false                | N/A                 | N/A                     |
-| theme         | string    | 用意されているテーマ                          | 'default'            | 'default_repocard'  | 'default'               |
-| cache_seconds | number    | キャッシュコントロール                        | 1800                 | 1800                | 1800                    |
-| count_private | boolean   | private contributions 数をコミット総数に追加  | false                | N/A                 | N/A                     |
-| layout        | string    | レイアウトのオプション選択                    | N/A                  | N/A                 | 'default'               |
+| theme         | string    | 用意されているテーマ                         | 'default'            | 'default_repocard'  | 'default'               |
+| cache_seconds | number    | キャッシュコントロール                       | 1800                 | 1800                | 1800                    |
+| count_private | boolean   | private contributions 数をコミット総数に追加 | false                | N/A                 | N/A                     |
+| layout        | string    | レイアウトのオプション選択                   | N/A                  | N/A                 | 'default'               |
 
-> キャッシュに関する注意点: Repo cards のデフォルトのキャッシュは、フォーク数とスター数が 1k 未満の場合は 30分(1800秒) で、それ以外の場合は 2時間(7200) です。また、キャッシュは最低でも 30分、最大でも 24時間に制限されていることに注意してください。
+> キャッシュに関する注意点: Repo cards のデフォルトのキャッシュは、フォーク数とスター数が 1k 未満の場合は 30 分(1800 秒) で、それ以外の場合は 2 時間(7200) です。また、キャッシュは最低でも 30 分、最大でも 24 時間に制限されていることに注意してください。
 
 # GitHub Extra Pins
 
-GitHub extra pins を使うと、GitHub の readme プロフィールを使って、自分のプロフィールに 6つ以上のリポジトリをピン留めすることができます。
+GitHub extra pins を使うと、GitHub の readme プロフィールを使って、自分のプロフィールに 6 つ以上のリポジトリをピン留めすることができます。
 
-イェーイ! もはや6つのピン留めされたリポジトリに制限されることはありません。
+イェーイ! もはや 6 つのピン留めされたリポジトリに制限されることはありません。
 
 ### Usage
 
@@ -152,7 +160,7 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
-リポジトリのオーナーのユーザー名を含める場合は、show_owner変数を使用します。
+リポジトリのオーナーのユーザー名を含める場合は、show_owner 変数を使用します。
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -160,7 +168,7 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 Top languages card には、その GitHub ユーザーが最も利用している Top languages が表示されます。
 
-_NOTE: Top languagesは、ユーザのスキルレベルを示すものではなく、GitHub上でどの言語で最も多くのコードを書いているかを示すGitHubの指標です。_
+_NOTE: Top languages は、ユーザのスキルレベルを示すものではなく、GitHub 上でどの言語で最も多くのコードを書いているかを示す GitHub の指標です。_
 
 ### Usage
 
@@ -249,7 +257,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 GitHub API は 1 時間あたり 5k リクエストしか受け付けていないので、私の `https://github-readme-stats.vercel.app/api` がレートリミッターを超えてしまう可能性があります。自分の Vercel サーバーでホストしているのであれば、何も心配する必要はありません。デプロイボタンをクリックして始めましょう！
 
-NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降は5k以上のリクエストに対応できるようになり、ダウンタイムの問題もなくなりました (´∀` )
+NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降は 5k 以上のリクエストに対応できるようになり、ダウンタイムの問題もなくなりました (´∀` )
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
@@ -259,7 +267,7 @@ NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降�
 1. [vercel.com](https://vercel.com/)に行きます。
 1. `Log in`をクリックします。  
    ![](https://files.catbox.moe/tct1wg.png)
-1. `Continue with GitHub` を押してGitHubにサインインします。  
+1. `Continue with GitHub` を押して GitHub にサインインします。  
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. GitHub にサインインし、すべてのリポジトリへのアクセスを許可します。
 1. このリポジトリをフォークします。
@@ -270,7 +278,7 @@ NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降�
    ![](https://files.catbox.moe/pqub9q.png)
 1. root を選択して、すべてをそのままにしておき、PAT_1 という名前の環境変数を（下図のように）追加します。これには個人アクセストークン (PAT) が含まれており、[ここ](https://github.com/settings/tokens/new)で簡単に作成することができます (すべてをそのままにしておいて、何かに名前を付けてください。)
    ![](https://files.catbox.moe/0ez4g7.png)
-1. デプロイをクリックすれば完了です。APIを使用するためにあなたのドメインを参照してください!
+1. デプロイをクリックすれば完了です。API を使用するためにあなたのドメインを参照してください!
 
 </details>
 
@@ -283,7 +291,7 @@ NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降�
 
 - あなたの readme で github-readme-stats を使用して適切なクレジットを付与し、それにリンクします (´∀` )
 - 主演とプロジェクトの共有 :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - PayPalを介して1回限りの寄付を行うことができます。私はおそらく ~~コーヒー~~ お茶買うでしょう。 :tea:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - PayPal を介して 1 回限りの寄付を行うことができます。私はおそらく ~~コーヒー~~ お茶買うでしょう。 :tea:
 
 Thanks! :heart:
 

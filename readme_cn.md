@@ -17,6 +17,14 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
+    <br />
+    <br />
+    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
+      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
+    </a>
+    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
+      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
+    </a>
   </p>
 
   <p align="center">
@@ -111,26 +119,25 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 自定义选项：
 
-| Option      | type      | description               | Stats Card (default) | Repo Card (default) | Top Lang Card (default) |
-| ----------- | --------- | --------------------------| -------------------- | ------------------- | -------------------  |
-| title_color | hex color | 标题颜色                   | 2f80ed               | 2f80ed              | 2f80ed              |
-| text_color  | hex color | 字体颜色                   | 333                  | 333                 | 333                 |
-| icon_color  | hex color | 图标颜色                   | 4c71f2               | 586069              | 586069              |
-| bg_color    | hex color | 卡片背景颜色                | FFFEFE               | FFFEFE              | FFFEFE              |
-| line_height | number    | 文字行高                   | 30                   | N/A                 | N/A                 |
-| hide        | CSV       | 隐藏指定统计项              | undfined             | N/A                 | undefined          |
-| hide_rank   | boolean   | 隐藏评分等级                | false                | N/A                 | N/A                 |
-| hide_title  | boolean   | 隐藏卡片标题                | false                | N/A                 | false               |
-| hide_border | boolean   | 隐藏卡片边框                | false                | N/A                 | N/A                 |
-| show_owner  | boolean   | 显示 Repo 卡片所属账户用户名  | N/A                  | false               | N/A                |
-| show_icons  | boolean   | 显示图标                   | false                | N/A                 | N/A                 |
-| theme       | string    | 设置主题                   | 'default'            | 'default_repocard'  | 'default'          |
-| cache_seconds | number  | 手动设置自定义缓存控制        | 1800                 | 1800               | 1800             |
-| count_private | boolean   | 统计私人贡献计数           | false                | N/A                 | N/A                |
-| layout        | string    | 布局方式                  | N/A                  | N/A                 | 'default'          |
+| Option        | type      | description                  | Stats Card (default) | Repo Card (default) | Top Lang Card (default) |
+| ------------- | --------- | ---------------------------- | -------------------- | ------------------- | ----------------------- |
+| title_color   | hex color | 标题颜色                     | 2f80ed               | 2f80ed              | 2f80ed                  |
+| text_color    | hex color | 字体颜色                     | 333                  | 333                 | 333                     |
+| icon_color    | hex color | 图标颜色                     | 4c71f2               | 586069              | 586069                  |
+| bg_color      | hex color | 卡片背景颜色                 | FFFEFE               | FFFEFE              | FFFEFE                  |
+| line_height   | number    | 文字行高                     | 30                   | N/A                 | N/A                     |
+| hide          | CSV       | 隐藏指定统计项               | undfined             | N/A                 | undefined               |
+| hide_rank     | boolean   | 隐藏评分等级                 | false                | N/A                 | N/A                     |
+| hide_title    | boolean   | 隐藏卡片标题                 | false                | N/A                 | false                   |
+| hide_border   | boolean   | 隐藏卡片边框                 | false                | N/A                 | N/A                     |
+| show_owner    | boolean   | 显示 Repo 卡片所属账户用户名 | N/A                  | false               | N/A                     |
+| show_icons    | boolean   | 显示图标                     | false                | N/A                 | N/A                     |
+| theme         | string    | 设置主题                     | 'default'            | 'default_repocard'  | 'default'               |
+| cache_seconds | number    | 手动设置自定义缓存控制       | 1800                 | 1800                | 1800                    |
+| count_private | boolean   | 统计私人贡献计数             | false                | N/A                 | N/A                     |
+| layout        | string    | 布局方式                     | N/A                  | N/A                 | 'default'               |
 
-
-> 注意缓存：Repo 卡片默认缓存 30 分钟，如果 fork 数和 star 数小于 1k ，则默认为 2小时。缓存被限制为最少30分钟，最长24小时。
+> 注意缓存：Repo 卡片默认缓存 30 分钟，如果 fork 数和 star 数小于 1k ，则默认为 2 小时。缓存被限制为最少 30 分钟，最长 24 小时。
 
 # GitHub 更多置顶
 
@@ -158,9 +165,9 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 # 热门语言卡片
 
-热门语言卡片显示了GitHub用户常用的编程语言。
+热门语言卡片显示了 GitHub 用户常用的编程语言。
 
-*注意：热门语言并不表示我的技能水平或类似的水平，它是用户在GitHub上拥有最多代码的一项指标，它是github-readme-stats的新功能*
+_注意：热门语言并不表示我的技能水平或类似的水平，它是用户在 GitHub 上拥有最多代码的一项指标，它是 github-readme-stats 的新功能_
 
 ### 使用细则
 
@@ -198,7 +205,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ---
 
-### 全部Demo
+### 全部 Demo
 
 - 默认
 
@@ -250,7 +257,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 因为 GitHub 的 API 每个小时只允许 5 千次请求，我的 `https://github-readme-stats.vercel.app/api` 很有可能会触发限制
 如果你将其托管在自己的 Vercel 服务器上，那么你就不必为此担心。点击 deploy 按钮来开始你的部署！
 
-注意: 从 [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 开始，我们应该能够处理超过 5千 的请求，并且不会出现宕机问题 :D
+注意: 从 [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 开始，我们应该能够处理超过 5 千 的请求，并且不会出现宕机问题 :D
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
