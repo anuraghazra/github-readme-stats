@@ -1,5 +1,5 @@
 <p align="center">
- <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="Github Readme Stats" />
+ <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
  <p align="center">Get dynamically generated GitHub stats on your readmes!</p>
 </p>
@@ -103,7 +103,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
-<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="Github Readme Stat Themes" width="600px"/>
+<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
 You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
 
@@ -127,9 +127,9 @@ Customization Options:
 | show_owner    | boolean   | shows owner name in repo card               | N/A                  | false               | N/A                     |
 | show_icons    | boolean   | shows icons                                 | false                | N/A                 | N/A                     |
 | theme         | string    | sets inbuilt theme                          | 'default'            | 'default_repocard'  | 'default'               |
-| cache_seconds | number    | manually set custom cache control           | 1800                 | 1800                | '1800'                  |
+| cache_seconds | number    | manually set custom cache control           | 1800                 | 1800                | 1800                    |
 | count_private | boolean   | counts private contributions too if enabled | false                | N/A                 | N/A                     |
-| layout        | string    | choose a layout option                      | N/A                  | N/A                 | "default"               |
+| layout        | string    | choose a layout option                      | N/A                  | N/A                 | 'default'               |
 
 > Note on cache: Repo cards have default cache of 30mins (1800 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 30min and maximum of 24hours
 

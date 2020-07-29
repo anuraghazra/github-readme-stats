@@ -1,5 +1,5 @@
 <p align="center">
- <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="Github Readme Stats" />
+ <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
  <p align="center">あなたのREADMEに動的に生成されたGitHubの統計情報を載せましょう！</p>
 </p>
@@ -102,7 +102,7 @@ _Note: このプロジェクトを自分でデプロイしている場合、デ�
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
-<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="Github Readme Stat Themes" width="600px"/>
+<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
 用意されている全てのテーマの[プレビュー](./themes/README.md)や[設定ファイル](./themes/index.js)を見ることができます。もしよろしければ、**新しいテーマを投稿してみてください** (´∀` )
 
@@ -126,9 +126,9 @@ Customization Options:
 | show_owner    | boolean   | オーナー名の表示                             | N/A                  | false               | N/A                     |
 | show_icons    | boolean   | アイコンの表示                               | false                | N/A                 | N/A                     |
 | theme         | string    | 用意されているテーマ                          | 'default'            | 'default_repocard'  | 'default'               |
-| cache_seconds | number    | キャッシュコントロール                        | 1800                 | 1800                | '1800'                  |
+| cache_seconds | number    | キャッシュコントロール                        | 1800                 | 1800                | 1800                    |
 | count_private | boolean   | private contributions 数をコミット総数に追加  | false                | N/A                 | N/A                     |
-| layout        | string    | レイアウトのオプション選択                    | N/A                  | N/A                 | "default"               |
+| layout        | string    | レイアウトのオプション選択                    | N/A                  | N/A                 | 'default'               |
 
 > キャッシュに関する注意点: Repo cards のデフォルトのキャッシュは、フォーク数とスター数が 1k 未満の場合は 30分(1800秒) で、それ以外の場合は 2時間(7200) です。また、キャッシュは最低でも 30分、最大でも 24時間に制限されていることに注意してください。
 
