@@ -17,6 +17,14 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
+    <br />
+    <br />
+    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
+      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
+    </a>
+    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
+      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
+    </a>
   </p>
 
   <p align="center">
@@ -93,21 +101,21 @@ Du kannst das Erscheinungsbild deiner `Stats Card` oder `Repo Card`, mithilfe vo
 
 Anpassungsoptionen:
 
-| Option           | Type      | Beschreibung                                         | Statistiken (default) | Repo (default)      | Top Programmiersprachen (default)  |
-| ---------------- | --------- | -----------------------------------------------------| --------------------- | ------------------- | ----------------------- |
-| title_color      | hex color | Titelfarbe                                          | 2f80ed                | 2f80ed              | 2f80ed                  |
-| text_color       | hex color | Textkörperfarbe                                     | 333                   | 333                 | 333                     |
-| icon_color       | hex color | Iconfarbe                                           | 4c71f2                | 586069              | 586069                  |
-| bg_color         | hex color | Hintergrundfarbe                                     | FFFEFE                | FFFEFE              | FFFEFE                  |
-| line_height      | number    | kontrolliert die Zeilenhöhe zwischen dem Text        | 30                    | N/A                 | N/A                     |
-| hide_rank        | boolean   | blendet das Ranking aus                              | false                 | N/A                 | N/A                     |
-| hide_title       | boolean   | blendet den Statistik-Titel aus                      | false                 | N/A                 | false                   |
-| hide_border      | boolean   | blendet den Rahmen aus                               | false                 | N/A                 | N/A                     |
-| show_owner       | boolean   | zeigt den Namen des Besitzers in der Repo-Karte      | N/A                   | false               | N/A                     |
-| show_icons       | boolean   | zeige Icons an                                       | false                 | N/A                 | N/A                     |
-| theme            | string    | setze eingebaute themes                              | 'default'             | 'default_repocard'  | 'default'               |
-| cache_seconds    | number    | manuelles setzen der Cachezeiten                     | 1800                  | 1800                | 1800                    |
-| hide_langs_below | number    | verberge Sprachen unter einem bestimmten Schwellwert | N/A                   | N/A                 | undefined               |
+| Option           | Type      | Beschreibung                                         | Statistiken (default) | Repo (default)     | Top Programmiersprachen (default) |
+| ---------------- | --------- | ---------------------------------------------------- | --------------------- | ------------------ | --------------------------------- |
+| title_color      | hex color | Titelfarbe                                           | 2f80ed                | 2f80ed             | 2f80ed                            |
+| text_color       | hex color | Textkörperfarbe                                      | 333                   | 333                | 333                               |
+| icon_color       | hex color | Iconfarbe                                            | 4c71f2                | 586069             | 586069                            |
+| bg_color         | hex color | Hintergrundfarbe                                     | FFFEFE                | FFFEFE             | FFFEFE                            |
+| line_height      | number    | kontrolliert die Zeilenhöhe zwischen dem Text        | 30                    | N/A                | N/A                               |
+| hide_rank        | boolean   | blendet das Ranking aus                              | false                 | N/A                | N/A                               |
+| hide_title       | boolean   | blendet den Statistik-Titel aus                      | false                 | N/A                | false                             |
+| hide_border      | boolean   | blendet den Rahmen aus                               | false                 | N/A                | N/A                               |
+| show_owner       | boolean   | zeigt den Namen des Besitzers in der Repo-Karte      | N/A                   | false              | N/A                               |
+| show_icons       | boolean   | zeige Icons an                                       | false                 | N/A                | N/A                               |
+| theme            | string    | setze eingebaute themes                              | 'default'             | 'default_repocard' | 'default'                         |
+| cache_seconds    | number    | manuelles setzen der Cachezeiten                     | 1800                  | 1800               | 1800                              |
+| hide_langs_below | number    | verberge Sprachen unter einem bestimmten Schwellwert | N/A                   | N/A                | undefined                         |
 
 > Hinweis bzgl. des Caches: Wenn die Anzahl der Forks und Stars geringer als 1Tsd ist, haben die Repo-Cards eine default Cachezeit von 30 Minuten (1800 Sekunden), ansonsten beträgt diese 2 Stunden (7200 Sekunden). Außerdem ist der Cache auf eine Minimum von 30 Minuten und ein Maximum von 24 Stunden begrenzt.
 
