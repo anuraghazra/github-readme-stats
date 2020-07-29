@@ -137,8 +137,8 @@ const renderRepoCard = (repo, options = {}) => {
       <g transform="translate(0, ${height - 20})">
         ${svgLanguage}
 
-        <g 
-          data-testid="star-fork-group" 
+        <g
+          data-testid="star-fork-group"
           transform="translate(${primaryLanguage ? 155 - shiftText : 25}, 0)"
         >
           ${FlexLayout({ items: [svgStars, svgForks], gap: 65 }).join("")}

@@ -48,27 +48,27 @@ const getStyles = ({
 }) => {
   return `
     .header {
-      font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor}; 
+      font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor};
       animation: fadeIn 0.8s ease-in-out forwards;
     }
-    .stat { 
+    .stat {
       font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
     }
-    .stagger { 
+    .stagger {
       opacity: 0;
       animation: fadeIn 0.3s ease-in-out forwards;
     }
-    .rank-text { 
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; 
+    .rank-text {
+      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor};
       animation: scaleIn 0.3s ease-in-out forwards;
     }
-    
+
     .bold { font-weight: 700 }
     .icon {
       fill: ${iconColor};
       display: ${!!show_icons ? "block" : "none"};
     }
-    
+
     .rank-circle-rim {
       stroke: ${titleColor};
       fill: none;

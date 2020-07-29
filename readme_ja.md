@@ -257,16 +257,16 @@ NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降�
  <summary>Vercelの設定ガイド</summary>
 
 1. [vercel.com](https://vercel.com/)に行きます。
-1. `Log in`をクリックします。  
+1. `Log in`をクリックします。
    ![](https://files.catbox.moe/tct1wg.png)
-1. `Continue with GitHub` を押してGitHubにサインインします。  
+1. `Continue with GitHub` を押してGitHubにサインインします。
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. GitHub にサインインし、すべてのリポジトリへのアクセスを許可します。
 1. このリポジトリをフォークします。
 1. [Vercel dashboard](https://vercel.com/dashboard)に戻ります。
-1. `Import Project` を選択します。  
+1. `Import Project` を選択します。
    ![](https://files.catbox.moe/qckos0.png)
-1. `Import Git Repository` を選択します。  
+1. `Import Git Repository` を選択します。
    ![](https://files.catbox.moe/pqub9q.png)
 1. root を選択して、すべてをそのままにしておき、PAT_1 という名前の環境変数を（下図のように）追加します。これには個人アクセストークン (PAT) が含まれており、[ここ](https://github.com/settings/tokens/new)で簡単に作成することができます (すべてをそのままにしておいて、何かに名前を付けてください。)
    ![](https://files.catbox.moe/0ez4g7.png)

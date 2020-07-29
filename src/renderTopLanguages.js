@@ -127,11 +127,11 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
         const output = `
           <rect
-            mask="url(#rect-mask)" 
+            mask="url(#rect-mask)"
             data-testid="lang-progress"
-            x="${progressOffset}" 
+            x="${progressOffset}"
             y="0"
-            width="${progress}" 
+            width="${progress}"
             height="8"
             fill="${lang.color || "#858585"}"
           />

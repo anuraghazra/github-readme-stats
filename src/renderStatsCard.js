@@ -136,7 +136,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     : `<text x="25" y="35" class="header">${encodeHTML(name)}'${apostrophe} GitHub Stats</text>`;
 
   const border = `
-    <rect 
+    <rect
       data-testid="card-bg"
       x="0.5"
       y="0.5"
@@ -178,7 +178,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       <style>
         ${styles}
       </style>
-      
+
       ${border}
       ${title}
 

@@ -1,5 +1,5 @@
 <p align="center">
- <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="Github Readme Stats" /> 
+ <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="Github Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
  <p align="center">Zeige dynamisch generierte GitHub-Statistiken in deinen Readmes!</p>
 </p>
@@ -225,16 +225,16 @@ Hinweis: Seit [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 
  <summary>Anleitung zum Einrichten von Vercel</summary>
 
 1. Gehe zu [vercel.com](https://vercel.com/)
-1. Klicke auf `Log in`  
+1. Klicke auf `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
 1. Melde dich mit deinem GitHub-account an, indem du `Continue with GitHub` klickst
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. Verbinde dich mit GitHub und erlaube den Zugriff auf alle Repositories, wenn gefordert
 1. Forke dieses Repository
 1. Gehe zurück zu deinem [Vercel dashboard](https://vercel.com/dashboard)
-1. Klick `Import Project`  
+1. Klick `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
-1. Klick `Import Git Repository`  
+1. Klick `Import Git Repository`
    ![](https://files.catbox.moe/pqub9q.png)
 1. Wähle root und füge eine Umgebungsvariable namens PAT_1 (siehe Abbildung) die als Wert deinen persönlichen Access Token (PAT) hat hinzu, den du einfach [hier](https://github.com/settings/tokens/new) erzeugen kannst (lasse alles wie es ist, vergebe einen beliebigen Namen)
    ![](https://files.catbox.moe/0ez4g7.png)

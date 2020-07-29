@@ -202,16 +202,16 @@ Nota: debido a esto [#58](https://github.com/anuraghazra/github-readme-stats/pul
  <summary>Guía para comenzar en Vercel</summary>
 
 1. Ve a [vercel.com](https://vercel.com/)
-1. Clickea en `Log in`  
+1. Clickea en `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
-1. Inicia sesión con GitHub presionando `Continue with GitHub`  
+1. Inicia sesión con GitHub presionando `Continue with GitHub`
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. Permite el acceso a todos los repositorios (si se te pregunta)
 1. Haz un Fork de este repositorio
 1. Dirígete de nuevo a tu [Vercel dashboard](https://vercel.com/dashboard)
-1. Selecciona `Import Project`  
+1. Selecciona `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
-1. Selecciona `Import Git Repository`  
+1. Selecciona `Import Git Repository`
    ![](https://files.catbox.moe/pqub9q.png)
 1. Selecciona "root" y matén todo como está, simplemente añade tu variable de entorno llamada PAT_1 (como se muestra), la cual contendrá un token de acceso personal (PAT), el cual puedes crear fácilmente [aquí](https://github.com/settings/tokens/new) (mantén todo como está, simplemente asígnale un nombre, puede ser cualquiera que desees)
    ![](https://files.catbox.moe/caem5b.png)
