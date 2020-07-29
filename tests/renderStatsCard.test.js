@@ -29,7 +29,7 @@ describe("Test renderStatsCard", () => {
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height")
-    ).toBe("195");
+    ).toBe("205");
     expect(getByTestId(document.body, "stars").textContent).toBe("100");
     expect(getByTestId(document.body, "commits").textContent).toBe("200");
     expect(getByTestId(document.body, "issues").textContent).toBe("300");
@@ -210,7 +210,7 @@ describe("Test renderStatsCard", () => {
     expect(document.getElementsByClassName("header")[0]).toBeUndefined();
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
       "height",
-      "165"
+      "175"
     );
     expect(queryByTestId(document.body, "card-body-content")).toHaveAttribute(
       "transform",
@@ -224,7 +224,7 @@ describe("Test renderStatsCard", () => {
     expect(document.getElementsByClassName("header")[0]).toBeDefined();
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
       "height",
-      "195"
+      "205"
     );
     expect(queryByTestId(document.body, "card-body-content")).toHaveAttribute(
       "transform",

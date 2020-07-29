@@ -16,11 +16,15 @@ const data = {
       repositories: {
         totalCount: 5,
         nodes: [
-          { stargazers: { totalCount: 100 } },
-          { stargazers: { totalCount: 100 } },
-          { stargazers: { totalCount: 100 } },
-          { stargazers: { totalCount: 50 } },
-          { stargazers: { totalCount: 50 } },
+          { stargazers: { totalCount: 100 }, primaryLanguage: {
+            name: "JavaScript" } },
+          { stargazers: { totalCount: 100 }, primaryLanguage: {
+            name: "TypeScript" } },
+          { stargazers: { totalCount: 100 }, primaryLanguage: {
+            name: "go" } },
+          { stargazers: { totalCount: 50 }, primaryLanguage: null },
+          { stargazers: { totalCount: 50 }, primaryLanguage: {
+            name: "JavaScript" } },
         ],
       },
     },
@@ -67,6 +71,11 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalStars: 400,
       rank,
+      primaryLanguages: [
+        "javascript",
+        "typescript",
+        "go",
+      ],
     });
   });
 
@@ -100,6 +109,11 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalStars: 400,
       rank,
+      primaryLanguages: [
+        "javascript",
+        "typescript",
+        "go",
+      ],
     });
   });
 });

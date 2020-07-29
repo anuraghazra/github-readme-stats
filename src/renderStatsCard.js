@@ -1,4 +1,5 @@
 const {
+  chunk,
   kFormatter,
   getCardColors,
   FlexLayout,
@@ -29,8 +30,6 @@ const createTextNode = ({ icon, label, value, id, index, showIcons }) => {
   `;
 };
 
-const getSVGLogo = (lang) => require(`../logos/${lang}.svg`);
-
 const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const {
     name,
@@ -40,7 +39,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     totalPRs,
     contributedTo,
     rank,
-    primaryLanguages,
+    primaryLanguages = [],
   } = stats;
   const {
     hide = [],
@@ -49,15 +48,19 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_border = false,
     hide_rank = false,
     line_height = 25,
+    hide_plang = false,
+    plang_chunk_size = 13,
     title_color,
     icon_color,
     text_color,
     bg_color,
     theme = "default",
   } = options;
-
+  const pLangs =
+    !hide_plang && primaryLanguages.length
+      ? chunk(primaryLanguages, plang_chunk_size)
+      : [];
   const lheight = parseInt(line_height);
-  // console.log(primaryLanguages)
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor } = getCardColors({
     title_color,
@@ -116,7 +119,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
   let height = Math.max(
-    75 + (statItems.length + 1) * lheight,
+    pLangs.length * 40 + 55 + (statItems.length + 1) * lheight,
     hide_rank ? 0 : 150
   );
 
@@ -157,9 +160,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const rankCircle = hide_rank
     ? ""
-    : `<g data-testid="rank-circle" transform="translate(400, ${
-        height / 1.85
-      })">
+    : `<g data-testid="rank-circle" transform="translate(400, 100)">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
@@ -201,11 +202,19 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
           }).join("")}
         </svg>
 
-        <g transform="translate(0, 175)">
-        ${FlexLayout({
-          items: Array.from(primaryLanguages).map((lang) => logos[lang]),
-          gap: 45,
-        }).join("")}
+        <g transform="translate(20, 185)">
+        ${
+          pLangs &&
+          pLangs
+            .map(
+              (_, i) =>
+                `<g transform="translate(0, ${i * 45})">${FlexLayout({
+                  items: pLangs[i].map((lang) => logos[lang]),
+                  gap: 35,
+                }).join("")}</g>`
+            )
+            .join("")
+        }
         </g>
       </g>
     </svg>

@@ -1,4 +1,4 @@
-const { request, logger } = require("./utils");
+const { request, logger, testPrimaryLanguage } = require("./utils");
 const retryer = require("./retryer");
 const calculateRank = require("./calculateRank");
 require("dotenv").config();
@@ -60,16 +60,10 @@ async function fetchStats(username, count_private = false) {
     totalStars: 0,
     contributedTo: 0,
     rank: { level: "C", score: 0 },
-    primaryLanguages: []
+    primaryLanguages: [],
   };
 
   let res = await retryer(fetcher, { login: username });
-  stats.primaryLanguages = new Set([
-    ...res.data.data.user.repositories.nodes
-      .map((n) => n.primaryLanguage)
-      .filter((n) => n)
-      .map((n) => n["name"].toLowerCase()),
-  ]);
 
   if (res.data.errors) {
     logger.error(res.data.errors);
@@ -95,6 +89,15 @@ async function fetchStats(username, count_private = false) {
   stats.totalStars = user.repositories.nodes.reduce((prev, curr) => {
     return prev + curr.stargazers.totalCount;
   }, 0);
+  stats.primaryLanguages = Array.from(
+    new Set([
+      // ...testPrimaryLanguage  // comment out for testing
+      ...user.repositories.nodes
+        .map((n) => n.primaryLanguage && n.primaryLanguage)
+        .filter((n) => n)
+        .map((n) => n["name"] && n["name"].toLowerCase()),
+    ])
+  ) || [];
 
   stats.rank = calculateRank({
     totalCommits: stats.totalCommits,

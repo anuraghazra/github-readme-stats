@@ -16,6 +16,7 @@ module.exports = async (req, res) => {
     hide_title,
     hide_border,
     hide_rank,
+    hide_plang,
     show_icons,
     count_private,
     line_height,
@@ -25,6 +26,7 @@ module.exports = async (req, res) => {
     bg_color,
     theme,
     cache_seconds,
+    plang_chunk_size,
   } = req.query;
   let stats;
 
@@ -56,12 +58,14 @@ module.exports = async (req, res) => {
       hide_title: parseBoolean(hide_title),
       hide_border: parseBoolean(hide_border),
       hide_rank: parseBoolean(hide_rank),
+      hide_plang: parseBoolean(hide_plang),
       line_height,
       title_color,
       icon_color,
       text_color,
       bg_color,
       theme,
+      plang_chunk_size: parseInt(plang_chunk_size, 10)
     })
   );
 };

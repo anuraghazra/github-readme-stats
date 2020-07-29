@@ -156,6 +156,57 @@ const CONSTANTS = {
   ONE_DAY: 86400,
 };
 
+function chunk(array, size) {
+  const chunked_arr = [];
+  let index = 0;
+  while (index < array.length) {
+    chunked_arr.push(array.slice(index, size + index));
+    index += size;
+  }
+  return chunked_arr;
+}
+
+const testPrimaryLanguage = [
+  /* {
+    stargazers: { totalCount: 41 },
+    primaryLanguage: null
+  } // comment out this when you need for empty list of promary language */
+  { primaryLanguage: { name: "c-plusplus" } },
+  { primaryLanguage: { name: "go" } },
+  { primaryLanguage: { name: "javascript" } },
+  { primaryLanguage: { name: "shell" } },
+  { primaryLanguage: { name: "c" } },
+  { primaryLanguage: { name: "java" } },
+  { primaryLanguage: { name: "ruby" } },
+  { primaryLanguage: { name: "dotnet" } },
+  { primaryLanguage: { name: "haskell" } },
+  { primaryLanguage: { name: "html" } },
+  { primaryLanguage: { name: "swift" } },
+  { primaryLanguage: { name: "css" } },
+  { primaryLanguage: { name: "scala" } },
+  { primaryLanguage: { name: "matlab" } },
+  { primaryLanguage: { name: "python" } },
+  { primaryLanguage: { name: "coffeescript" } },
+  { primaryLanguage: { name: "erlang" } },
+  { primaryLanguage: { name: "php" } },
+  { primaryLanguage: { name: "powershell" } },
+  { primaryLanguage: { name: "dart" } },
+  { primaryLanguage: { name: "julia" } },
+  { primaryLanguage: { name: "lua" } },
+  { primaryLanguage: { name: "elixir" } },
+  { primaryLanguage: { name: "elm" } },
+  { primaryLanguage: { name: "f-sharp" } },
+  { primaryLanguage: { name: "ocaml" } },
+  { primaryLanguage: { name: "perl" } },
+  { primaryLanguage: { name: "prolog" } },
+  { primaryLanguage: { name: "r" } },
+  { primaryLanguage: { name: "racket" } },
+  { primaryLanguage: { name: "racket" } },
+  { primaryLanguage: { name: "smalltalk" } },
+  { primaryLanguage: { name: "tcl" } },
+  { primaryLanguage: { name: "vbscript" } },
+];
+
 module.exports = {
   renderError,
   kFormatter,
@@ -169,6 +220,8 @@ module.exports = {
   getCardColors,
   clampValue,
   wrapTextMultiline,
+  chunk,
   logger,
   CONSTANTS,
+  testPrimaryLanguage,
 };
