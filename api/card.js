@@ -7,7 +7,7 @@ const {
           logger,
       } = require("../src/utils");
 const fetchRepo = require("../src/fetchRepo");
-const renderRepoCard = require("../src/renderRepoCard");
+const renderRepoCard = require("../src/renderCustomCard");
 
 module.exports = async (req, res) => {
     const {
