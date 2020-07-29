@@ -105,8 +105,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   let width = isNaN(card_width) ? 300 : card_width;
   let height = isNaN(card_height)
-    ? 45 + (langs.length / 2 + 1) * 40
-    : card_height + (langs.length / 2 + 1) * 40;
+    ? 45 + (langs.length + 1) * 40
+    : card_height + (langs.length + 1) * 40;
 
   let finalLayout = "";
 
