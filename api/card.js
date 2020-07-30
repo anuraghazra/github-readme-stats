@@ -7,7 +7,7 @@ const {
           logger,
       } = require("../src/utils");
 const fetchRepo = require("../src/fetchRepo");
-const renderRepoCard = require("../src/renderCustomCard");
+const renderCustomCard = require("../src/renderCustomCard");
 
 module.exports = async (req, res) => {
     const {
@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
     res.send(
-        renderRepoCard(repoData, {
+        renderCustomCard(repoData, {
             title_color,
             icon_color,
             text_color,
