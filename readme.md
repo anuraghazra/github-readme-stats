@@ -118,28 +118,42 @@ You can look at a preview for [all available themes](./themes/README.md) or chec
 
 You can customize the appearance of your `Stats Card` or `Repo Card` however you want with URL params.
 
-Customization Options:
+#### Common Options:
 
-| Option        | type      | description                                 | Stats Card (default) | Repo Card (default) | Top Lang Card (default) |
-| ------------- | --------- | ------------------------------------------- | -------------------- | ------------------- | ----------------------- |
-| title_color   | hex color | title color                                 | 2f80ed               | 2f80ed              | 2f80ed                  |
-| text_color    | hex color | body color                                  | 333                  | 333                 | 333                     |
-| icon_color    | hex color | icon color                                  | 4c71f2               | 586069              | 586069                  |
-| bg_color      | hex color | card bg color                               | FFFEFE               | FFFEFE              | FFFEFE                  |
-| line_height   | number    | control the line-height between text        | 30                   | N/A                 | N/A                     |
-| hide          | CSV       | hides the items specified                   | undefined            | N/A                 | undefined               |
-| hide_rank     | boolean   | hides the ranking                           | false                | N/A                 | N/A                     |
-| hide_title    | boolean   | hides the stats title                       | false                | N/A                 | false                   |
-| hide_border   | boolean   | hides the stats card border                 | false                | N/A                 | N/A                     |
-| show_owner    | boolean   | shows owner name in repo card               | N/A                  | false               | N/A                     |
-| show_icons    | boolean   | shows icons                                 | false                | N/A                 | N/A                     |
-| theme         | string    | sets inbuilt theme                          | 'default'            | 'default_repocard'  | 'default'               |
-| cache_seconds | number    | manually set custom cache control           | 1800                 | 1800                | 1800                    |
-| count_private | boolean   | counts private contributions too if enabled | false                | N/A                 | N/A                     |
-| layout        | string    | choose a layout option                      | N/A                  | N/A                 | 'default'               |
-| card_width    | number    | set the card width                          | N/A                  | N/A                 | 300                     |
+- `title_color` - Card's title color _(hex color)_
+- `text_color` - Body text color _(hex color)_
+- `icon_color` - Icons color if available _(hex color)_
+- `bg_color` - Card's background color _(hex color)_
+- `theme` - name of the theme, choose from [all available themes](./themes/README.md)
+- `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
 
 > Note on cache: Repo cards have default cache of 30mins (1800 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 30min and maximum of 24hours
+
+#### Stats Card Exclusive Options:
+
+- `hide` - Hide's the specified items from stats _(Comma seperated values)_
+- `hide_title` - _(boolean)_
+- `hide_rank` - _(boolean)_
+- `show_icons` - _(boolean)_
+- `count_private` - Count private commits _(boolean)_
+- `line_height` - Sets the line-height betweent text _(number)_
+
+#### Repo Card Exclusive Options:
+
+- `show_owner` - Show the owner name of the repo _(boolean)_
+
+#### Language Card Exclusive Options:
+
+- `hide` - Hide the languages specified from the card _(Comma seperated values)_
+- `hide_title` - _(boolean)_
+- `layout` - Switch between two available layouts `default` & `compact`
+- `card_width` - Set the card's width manually _(number)_
+
+> :warning: **Important:**  
+> Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)  
+> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.)
+
+---
 
 # GitHub Extra Pins
 
@@ -188,10 +202,6 @@ You can use `?hide=language1,language2` parameter to hide individual languages.
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
 ```
-
-> :warning: **Important:**  
-> Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)  
-> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.)
 
 ### Compact Language Card Layout
 
