@@ -38,6 +38,8 @@
     <a href="readme.md">English</a>
     ·
     <a href="readme_es.md">Español</a>
+     ·
+    <a href="readme_de.md">Deutsch</a>
     ·
     <a href="readme_ja.md">日本語</a>
   </p>
@@ -186,6 +188,11 @@ Endpoint: `api/top-langs?username=anuraghazra`
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=语言1,语言2)](https://github.com/anuraghazra/github-readme-stats)
 ```
+
+> :warning: **重要:**  
+> 语言名字应采用URL编码风格，参考 [百分号编码](https://zh.wikipedia.org/wiki/%E7%99%BE%E5%88%86%E5%8F%B7%E7%BC%96%E7%A0%81)  
+> (例： `c++` 应转码为 `c%2B%2B`，`jupyter notebook` 应转码为 `jupyter%20notebook`，等等...)
+
 
 ### 紧凑的语言卡片布局
 
