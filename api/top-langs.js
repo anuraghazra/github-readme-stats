@@ -43,12 +43,11 @@ module.exports = async (req, res) => {
 
   res.send(
     renderTopLanguages(topLangs, {
-      theme,
       hide_title: parseBoolean(hide_title),
+      hide_border: parseBoolean(hide_border),
       card_width: parseInt(card_width, 10),
       hide: parseArray(hide),
       title_color,
-      hide_border,
       text_color,
       bg_color,
       theme,

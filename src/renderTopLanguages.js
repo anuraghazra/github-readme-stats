@@ -191,7 +191,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
   `);
 
   return card.render(`
-    <svg data-testid="lang-items" x="25" y="${hide_title ? 0 : 55}">
+    <svg data-testid="lang-items" x="25">
       ${finalLayout}
     </svg>
   `);
