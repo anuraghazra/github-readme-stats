@@ -26,7 +26,8 @@ module.exports = async (req, res) => {
     bg_color,
     theme,
     cache_seconds,
-    plang_chunk_size,
+    plang_row_items,
+    show_plang_color,
   } = req.query;
   let stats;
 
@@ -65,7 +66,8 @@ module.exports = async (req, res) => {
       text_color,
       bg_color,
       theme,
-      plang_chunk_size: parseInt(plang_chunk_size, 10)
+      plang_row_items: parseInt(plang_row_items, 10),
+      show_plang_color: parseBoolean(show_plang_color)
     })
   );
 };

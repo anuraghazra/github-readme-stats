@@ -7,7 +7,7 @@ const {
 } = require("../src/utils");
 const getStyles = require("./getStyles");
 const icons = require("./icons");
-const logos = require("./logos");
+const getLogos = require("./logos");
 
 const createTextNode = ({ icon, label, value, id, index, showIcons }) => {
   const kValue = kFormatter(value);
@@ -49,18 +49,19 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_rank = false,
     line_height = 25,
     hide_plang = false,
-    plang_chunk_size = 13,
+    plang_row_items = 14,
+    show_plang_color,
     title_color,
     icon_color,
     text_color,
     bg_color,
     theme = "default",
   } = options;
+  const lheight = parseInt(line_height);
   const pLangs =
     !hide_plang && primaryLanguages.length
-      ? chunk(primaryLanguages, plang_chunk_size)
+      ? chunk(primaryLanguages, plang_row_items)
       : [];
-  const lheight = parseInt(line_height);
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor } = getCardColors({
     title_color,
@@ -119,7 +120,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
   let height = Math.max(
-    pLangs.length * 40 + 55 + (statItems.length + 1) * lheight,
+    pLangs.length * 30 + 55 + (statItems.length + 1) * lheight,
     hide_rank ? 0 : 150
   );
 
@@ -136,7 +137,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   });
 
   // Conditionally rendered elements
-
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
   const title = hide_title
     ? ""
@@ -209,7 +209,13 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
             .map(
               (_, i) =>
                 `<g transform="translate(0, ${i * 45})">${FlexLayout({
-                  items: pLangs[i].map((lang) => logos[lang]),
+                  items: pLangs[i].map((lang) =>
+                    getLogos({
+                      name: lang.name,
+                      color: icon_color ? icon_color : lang.color,
+                      show_plang_color,
+                    })
+                  ),
                   gap: 35,
                 }).join("")}</g>`
             )

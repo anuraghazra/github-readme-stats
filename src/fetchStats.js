@@ -35,6 +35,7 @@ const fetcher = (variables, token) => {
               }  
               primaryLanguage {
                 name
+                color
               }
             }
           }
@@ -89,16 +90,16 @@ async function fetchStats(username, count_private = false) {
   stats.totalStars = user.repositories.nodes.reduce((prev, curr) => {
     return prev + curr.stargazers.totalCount;
   }, 0);
-  stats.primaryLanguages = Array.from(
-    new Set([
+  stats.primaryLanguages = Array.from([
+    ...new Map([
       // ...testPrimaryLanguage  // comment out for testing
       ...user.repositories.nodes
         .map((n) => n.primaryLanguage && n.primaryLanguage)
         .filter((n) => n)
-        .map((n) => n["name"] && n["name"].toLowerCase()),
-    ])
-  ) || [];
-
+        .map((n) => ({ ...n, name: n.name.toLowerCase() }))
+        .map((item) => [item["name"], item]),
+    ]).values(),
+  ]);
   stats.rank = calculateRank({
     totalCommits: stats.totalCommits,
     totalRepos: user.repositories.totalCount,
