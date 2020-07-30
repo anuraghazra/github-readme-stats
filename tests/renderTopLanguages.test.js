@@ -98,25 +98,6 @@ describe("Test renderTopLanguages", () => {
     expect(document.querySelector("svg")).toHaveAttribute("height", "245");
   });
 
-  it("should hide_title", () => {
-    document.body.innerHTML = renderTopLanguages(langs, { hide_title: false });
-    expect(document.querySelector("svg")).toHaveAttribute("height", "205");
-    expect(queryByTestId(document.body, "lang-items")).toHaveAttribute(
-      "y",
-      "55"
-    );
-
-    // Lets hide now
-    document.body.innerHTML = renderTopLanguages(langs, { hide_title: true });
-    expect(document.querySelector("svg")).toHaveAttribute("height", "175");
-
-    expect(queryByTestId(document.body, "header")).not.toBeInTheDocument();
-    expect(queryByTestId(document.body, "lang-items")).toHaveAttribute(
-      "y",
-      "25"
-    );
-  });
-
   it("should render with custom width set", () => {
     document.body.innerHTML = renderTopLanguages(langs, {});
 
