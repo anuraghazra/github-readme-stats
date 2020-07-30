@@ -55,7 +55,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const lheight = parseInt(line_height, 10);
 
-
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor } = getCardColors({
     title_color,
@@ -65,7 +64,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     theme,
   });
 
-  const isGradient = typeof bgColor == 'object';
   // Meta data for creating text nodes with createTextNode function
   const STATS = {
     stars: {

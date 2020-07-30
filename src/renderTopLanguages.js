@@ -95,6 +95,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
   const totalLanguageSize = langs.reduce((acc, curr) => {
     return acc + curr.size;
   }, 0);
+
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, bgColor } = getCardColors({
     title_color,
@@ -102,7 +103,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     bg_color,
     theme,
   });
-  const isGradient = typeof bgColor == 'object';
+
   let width = isNaN(card_width) ? 300 : card_width;
   let height = 45 + (langs.length + 1) * 40;
 

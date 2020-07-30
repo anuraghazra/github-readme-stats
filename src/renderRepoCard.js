@@ -45,6 +45,7 @@ const renderRepoCard = (repo, options = {}) => {
   const multiLineDescription = wrapTextMultiline(desc);
   const descriptionLines = multiLineDescription.length;
   const lineHeight = 10;
+
   const height =
     (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
 
@@ -56,7 +57,7 @@ const renderRepoCard = (repo, options = {}) => {
     bg_color,
     theme,
   });
-  const isGradient = typeof bgColor == 'object';
+
   const totalStars = kFormatter(stargazers.totalCount);
   const totalForks = kFormatter(forkCount);
 
@@ -74,14 +75,7 @@ const renderRepoCard = (repo, options = {}) => {
       </text>
     </g>
   `;
-  const gradient = isGradient ? `
-    <defs>
-      <linearGradient id="gradient" gradientTransform="rotate(${bgColor[0]})">
-        <stop offset="0%"  stop-color="#${bgColor[1]}" />
-        <stop offset="100%" stop-color="#${bgColor[2]}" />
-      </linearGradient>
-    </defs>`
-    : undefined
+
   const svgLanguage = primaryLanguage
     ? `
     <g data-testid="primary-lang" transform="translate(30, 0)">
