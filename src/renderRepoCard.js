@@ -7,6 +7,7 @@ const {
 } = require("../src/utils");
 const icons = require("./icons");
 const toEmoji = require("emoji-name-map");
+const Card = require("./Card");
 
 const renderRepoCard = (repo, options = {}) => {
   const {
@@ -90,68 +91,75 @@ const renderRepoCard = (repo, options = {}) => {
     `
     : "";
 
+  const iconWithLabel = (icon, label, testid) => {
+    return `
+      <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+        ${icon}
+      </svg>
+      <text data-testid="${testid}" class="gray" x="25">${label}</text>
+    `;
+  };
   const svgStars =
     stargazers.totalCount > 0 &&
-    `
-    <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-      ${icons.star}
-    </svg>
-    <text data-testid="stargazers" class="gray" x="25">${totalStars}</text>
-  `;
-
+    iconWithLabel(icons.star, totalStars, "stargazers");
   const svgForks =
-    forkCount > 0 &&
-    `
-    <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-      ${icons.fork}
-    </svg>
-    <text data-testid="forkcount" class="gray" x="25">${totalForks}</text>
-  `;
+    forkCount > 0 && iconWithLabel(icons.fork, totalForks, "forkcount");
 
-  return `
-    <svg version="1.1" width="400" height="${height}" viewBox="0 0 400 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <style>
-      .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
-      .description { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
-      .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
-      .icon { fill: ${iconColor} }
-      .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
-      .badge rect { opacity: 0.2 }
-      </style>
-      ${isGradient ? gradient : ""}
-      <rect data-testid="card-bg" x="0.5" y="0.5" width="399" height="99%" rx="4.5" fill="${isGradient ? "url('#gradient')" : bgColor}" stroke="#E4E2E2"/>
-      <svg class="icon" x="25" y="25" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-        ${icons.contribs}
-      </svg>
+  const starAndForkCount = FlexLayout({
+    items: [svgStars, svgForks],
+    gap: 65,
+  }).join("");
 
-      <text x="50" y="38" class="header">${header}</text>
+  const card = new Card({
+    title: header,
+    titlePrefixIcon: icons.contribs,
+    width: 400,
+    height,
+    colors: {
+      titleColor,
+      textColor,
+      iconColor,
+      bgColor,
+    },
+  });
 
-      ${
-        isTemplate
-          ? getBadgeSVG("Template")
-          : isArchived
-          ? getBadgeSVG("Archived")
-          : ""
-      }
+  card.disableAnimations();
+  card.setHideBorder(false);
+  card.setHideTitle(false);
+  card.setCSS(`
+    .description { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+    .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+    .icon { fill: ${iconColor} }
+    .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
+    .badge rect { opacity: 0.2 }
+  `);
 
-      <text class="description" x="25" y="50">
-        ${multiLineDescription
-          .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
-          .join("")}
-      </text>
+  return card.render(`
+    ${
+      isTemplate
+        ? getBadgeSVG("Template")
+        : isArchived
+        ? getBadgeSVG("Archived")
+        : ""
+    }
 
-      <g transform="translate(0, ${height - 20})">
-        ${svgLanguage}
+    <text class="description" x="25" y="-5">
+      ${multiLineDescription
+        .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
+        .join("")}
+    </text>
 
-        <g 
-          data-testid="star-fork-group" 
-          transform="translate(${primaryLanguage ? 155 - shiftText : 25}, 0)"
-        >
-          ${FlexLayout({ items: [svgStars, svgForks], gap: 65 }).join("")}
-        </g>
+    <g transform="translate(0, ${height - 75})">
+      ${svgLanguage}
+
+      <g
+        data-testid="star-fork-group" 
+        transform="translate(${primaryLanguage ? 155 - shiftText : 25}, 0)"
+      >
+        ${starAndForkCount}
       </g>
-    </svg>
-  `;
+    </g>
+  `);
 };
 
 module.exports = renderRepoCard;
