@@ -119,11 +119,17 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "050F2C",
   },
-  "great-gatsby":{
+  "great-gatsby": {
     title_color: "ffa726",
     icon_color: "ffb74d",
     text_color: "ffd95b",
     bg_color: "000000",
+  },
+  "gitcolor": {
+    title_color: "0366d6",
+    icon_color: "0366d6",
+    text_color: "fff",
+    bg_color: "24292e",
   },
 };
 
