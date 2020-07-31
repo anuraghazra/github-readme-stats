@@ -126,8 +126,8 @@ const themes = {
     bg_color: "000000",
   },
   "gitcolor": {
-    title_color: "0366d6",
-    icon_color: "0366d6",
+    title_color: "40c463",
+    icon_color: "40c463",
     text_color: "fff",
     bg_color: "24292e",
   },
