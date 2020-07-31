@@ -49,7 +49,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_rank = false,
     line_height = 25,
     hide_plang = false,
-    plang_row_items = 14,
+    plang_row_items,
     show_plang_color,
     title_color,
     icon_color,
@@ -60,8 +60,12 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const lheight = parseInt(line_height);
   const pLangs =
     !hide_plang && primaryLanguages.length
-      ? chunk(primaryLanguages, plang_row_items)
+      ? chunk(
+          primaryLanguages,
+          isNaN(plang_row_items) || plang_row_items > 13 ? 13 : plang_row_items
+        )
       : [];
+
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor } = getCardColors({
     title_color,
@@ -209,6 +213,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
             .map(
               (_, i) =>
                 `<g transform="translate(0, ${i * 45})">${FlexLayout({
+                  gap: 35,
                   items: pLangs[i].map((lang) =>
                     getLogos({
                       name: lang.name,
@@ -216,7 +221,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
                       show_plang_color,
                     })
                   ),
-                  gap: 35,
                 }).join("")}</g>`
             )
             .join("")

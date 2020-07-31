@@ -145,66 +145,73 @@ function wrapTextMultiline(text, width = 60, maxLines = 3) {
   return multiLineText;
 }
 
+const isTest = process.env.NODE_ENV === "test";
 const noop = () => {};
 // return console instance based on the environment
-const logger =
-  process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
-
+const logger = isTest ? console : { log: noop, error: noop };
+const getPrimaryLangSlug = (text) =>
+  text
+    .toString()
+    .toLowerCase()
+    .replace(/\s+/g, "-") // Replace spaces with -
+    .replace(/[^\w[+#]\-]+/g, "") // Remove all non-word chars
+    .replace(/\-\-+/g, "-") // Replace multiple - with single -
+    .replace(/^-+/, "") // Trim - from start of text
+    .replace(/-+$/, "");
 const CONSTANTS = {
   THIRTY_MINUTES: 1800,
   TWO_HOURS: 7200,
   ONE_DAY: 86400,
 };
 
-function chunk(array, size) {
-  const chunked_arr = [];
-  let index = 0;
-  while (index < array.length) {
-    chunked_arr.push(array.slice(index, size + index));
-    index += size;
-  }
-  return chunked_arr;
-}
+const chunk = (arr, size) =>
+  arr.reduceRight((r, i, _, s) => (r.push(s.splice(0, size)), r), []);
 
 const testPrimaryLanguage = [
   /* {
     stargazers: { totalCount: 41 },
     primaryLanguage: null
-  } // comment out this when you need for empty list of promary language */
-  { primaryLanguage: { name: "c-plusplus", color: "#cccccc" } },
-  { primaryLanguage: { name: "go", color: "#cccccc"  } },
-  { primaryLanguage: { name: "javascript", color: "#cccccc"  } },
-  { primaryLanguage: { name: "shell", color: "#cccccc"  } },
-  { primaryLanguage: { name: "c", color: "#cccccc"  } },
-  { primaryLanguage: { name: "java", color: "#cccccc"  } },
-  { primaryLanguage: { name: "ruby", color: "#cccccc"  } },
-  { primaryLanguage: { name: "dotnet", color: "#cccccc"  } },
-  { primaryLanguage: { name: "haskell", color: "#cccccc"  } },
-  { primaryLanguage: { name: "html", color: "#cccccc"  } },
-  { primaryLanguage: { name: "swift", color: "#cccccc"  } },
-  { primaryLanguage: { name: "css", color: "#cccccc"  } },
-  { primaryLanguage: { name: "scala", color: "#cccccc"  } },
-  { primaryLanguage: { name: "matlab", color: "#cccccc"  } },
-  { primaryLanguage: { name: "python", color: "#cccccc"  } },
-  { primaryLanguage: { name: "coffeescript", color: "#cccccc"  } },
-  { primaryLanguage: { name: "erlang", color: "#cccccc"  } },
-  { primaryLanguage: { name: "php", color: "#cccccc"  } },
-  { primaryLanguage: { name: "powershell", color: "#cccccc"  } },
-  { primaryLanguage: { name: "dart", color: "#cccccc"  } },
-  { primaryLanguage: { name: "julia", color: "#cccccc"  } },
-  { primaryLanguage: { name: "lua", color: "#cccccc"  } },
-  { primaryLanguage: { name: "elixir", color: "#cccccc"  } },
-  { primaryLanguage: { name: "elm", color: "#cccccc"  } },
-  { primaryLanguage: { name: "f-sharp", color: "#cccccc"  } },
-  { primaryLanguage: { name: "ocaml", color: "#cccccc"  } },
-  { primaryLanguage: { name: "perl", color: "#cccccc"  } },
-  { primaryLanguage: { name: "prolog", color: "#cccccc"  } },
-  { primaryLanguage: { name: "r", color: "#cccccc"  } },
-  { primaryLanguage: { name: "racket", color: "#cccccc"  } },
-  { primaryLanguage: { name: "racket", color: "#cccccc"  } },
-  { primaryLanguage: { name: "smalltalk", color: "#cccccc"  } },
-  { primaryLanguage: { name: "tcl", color: "#cccccc"  } },
-  { primaryLanguage: { name: "vbscript", color: "#cccccc"  } },
+  } // comment out this when you need for empty list of primary language */
+  { primaryLanguage: { name: "c++", color: "#f34b7d" } },
+  { primaryLanguage: { name: "go", color: "#00ADD8" } },
+  { primaryLanguage: { name: "javascript", color: "#f1e05a" } },
+  { primaryLanguage: { name: "shell", color: "#89e051" } },
+  { primaryLanguage: { name: "r", color: "#198CE7" } },
+  { primaryLanguage: { name: "c", color: "#555555" } },
+  { primaryLanguage: { name: "c#", color: "#178600" } },
+  { primaryLanguage: { name: "java", color: "#b07219" } },
+  { primaryLanguage: { name: "ruby", color: "#701516" } },
+  { primaryLanguage: { name: "dotnet", color: "#cccccc" } },
+  { primaryLanguage: { name: "haskell", color: "#5e5086" } },
+  { primaryLanguage: { name: "html", color: "#e34c26" } },
+  { primaryLanguage: { name: "swift", color: "#ffac45" } },
+  { primaryLanguage: { name: "css", color: "#563d7c" } },
+  { primaryLanguage: { name: "scala", color: "#c22d40" } },
+  { primaryLanguage: { name: "matlab", color: "#e16737" } },
+  { primaryLanguage: { name: "python", color: "#3572A5" } },
+  { primaryLanguage: { name: "coffeescript", color: "#244776" } },
+  { primaryLanguage: { name: "erlang", color: "#B83998" } },
+  { primaryLanguage: { name: "php", color: "#4F5D95" } },
+  { primaryLanguage: { name: "powershell", color: "#012456" } },
+  { primaryLanguage: { name: "dart", color: "#00B4AB" } },
+  { primaryLanguage: { name: "julia", color: "#a270ba" } },
+  { primaryLanguage: { name: "docker", color: "#cccccc" } },
+  { primaryLanguage: { name: "ngnix", color: "#cccccc" } },
+  { primaryLanguage: { name: "jenkins", color: "#cccccc" } },
+  { primaryLanguage: { name: "markdown", color: "#cccccc" } },
+  { primaryLanguage: { name: "vim-script", color: "#199f4b" } },
+  { primaryLanguage: { name: "common-lisp", color: "#3fb68b" } },
+  { primaryLanguage: { name: "emacs-lisp", color: "#c065db" } },
+  { primaryLanguage: { name: "groovy", color: "#e69f56" } },
+  { primaryLanguage: { name: "perl", color: "#0298c3" } },
+  { primaryLanguage: { name: "prolog", color: "#74283c" } },
+  { primaryLanguage: { name: "lua", color: "#000080" } },
+  { primaryLanguage: { name: "elixir", color: "#6e4a7e" } },
+  { primaryLanguage: { name: "elm", color: "#60B5CC" } },
+  { primaryLanguage: { name: "f#", color: "#b845fc" } },
+  { primaryLanguage: { name: "ocaml", color: "#3be133" } },
+  { primaryLanguage: { name: "racket", color: "#3c5caa" } },
+  { primaryLanguage: { name: "smalltalk", color: "#596706" } },
 ];
 
 module.exports = {
@@ -220,6 +227,7 @@ module.exports = {
   getCardColors,
   clampValue,
   wrapTextMultiline,
+  getPrimaryLangSlug,
   chunk,
   logger,
   CONSTANTS,

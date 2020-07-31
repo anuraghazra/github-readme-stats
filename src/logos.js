@@ -2,7 +2,9 @@ const fs = require("fs");
 const path = require("path");
 
 const replaceFillColor = (svg, color) =>
-  svg.replace(/fill="#[a-zA-Z0-9]+"/, `fill="${color}"`);
+  svg
+    .replace(/fill="#[a-zA-Z0-9]+"/g, `fill="${color}"`)
+    .replace(/fill:(\s)?#[a-zA-Z0-9]+;/g, `fill:${color}`);
 
 const readFile = (name) => {
   const logoFilePath = path.join(__dirname, "..", "logos", `${name}.svg`);
@@ -23,48 +25,44 @@ const getSVG = (name) =>
 
 const logos = {
   c: getSVG("c"),
-  csharp: getSVG("csharp"),
+  "c++": getSVG("c++"),
+  "c#": getSVG("csharp"),
   coffeescript: getSVG("coffeescript"),
   clojure: getSVG("clojure"),
   css: getSVG("css3"),
   dart: getSVG("dart"),
-  dotnet: getSVG("dotnet"),
-  elm: getSVG("elm"),
+  elm: getSVG("elm"), // no-logo
   erlang: getSVG("erlang"),
-  fsharp: getSVG("fsharp"),
+  "f#": getSVG("fsharp"),
   go: getSVG("go"),
   golang: getSVG("go"),
   haskell: getSVG("haskell"),
   html: getSVG("html5"),
   java: getSVG("java"),
   javascript: getSVG("javascript"),
-  julia: getSVG("julia"),
-  lua: getSVG("lua"),
+  julia: getSVG("julia"), // no-logo
+  "jupyter-notebook": getSVG("default"), // no-logo
+  lua: getSVG("lua"), // no-logo
+  "common-lisp": getSVG("lisp"), // no-logo
+  "emacs-lisp": getSVG("lisp"), // no-logo
+  makefile: getSVG("default"), // no-logo
   matlab: getSVG("matlab"),
-  ocaml: getSVG("ocaml"),
+  ocaml: getSVG("ocaml"), // no-logo
   perl: getSVG("perl"),
   php: getSVG("php"),
-  powershell: getSVG("shell"),
+  powershell: getSVG("powershell"),
   prolog: getSVG("prolog"),
   python: getSVG("python"),
   r: getSVG("r"),
-  racket: getSVG("racket"),
   ruby: getSVG("ruby"),
   rust: getSVG("rust"),
   scala: getSVG("scala"),
-  smalltalk: getSVG("smalltalk"),
-  sql: getSVG("sqllite"),
-  shell: getSVG("shell"),
+  sql: getSVG("database"),
+  shell: getSVG("terminal"),
   swift: getSVG("swift"),
-  tcl: getSVG("tcl"),
   typescript: getSVG("typescript"),
-  vbscript: getSVG("vbscript"),
-  markdown: getSVG("markdown"),
-  docker: getSVG("docker"),
-  jenkins: getSVG("jenkins"),
+  "vim-script": getSVG("vim"),
   groovy: getSVG("groovy"),
-  nginx: getSVG("nginx"),
-  nginx: getSVG("nginx"),
   default: getSVG("default"),
 };
 

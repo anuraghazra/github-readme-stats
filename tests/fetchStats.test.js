@@ -9,22 +9,45 @@ const data = {
     user: {
       name: "Anurag Hazra",
       repositoriesContributedTo: { totalCount: 61 },
-      contributionsCollection: { totalCommitContributions: 100, restrictedContributionsCount: 50 },
+      contributionsCollection: {
+        totalCommitContributions: 100,
+        restrictedContributionsCount: 50,
+      },
       pullRequests: { totalCount: 300 },
       issues: { totalCount: 200 },
       followers: { totalCount: 100 },
       repositories: {
         totalCount: 5,
         nodes: [
-          { stargazers: { totalCount: 100 }, primaryLanguage: {
-            name: "JavaScript" } },
-          { stargazers: { totalCount: 100 }, primaryLanguage: {
-            name: "TypeScript" } },
-          { stargazers: { totalCount: 100 }, primaryLanguage: {
-            name: "go" } },
+          {
+            stargazers: { totalCount: 100 },
+            primaryLanguage: {
+              name: "JavaScript",
+              color: "#f1e05a",
+            },
+          },
+          {
+            stargazers: { totalCount: 100 },
+            primaryLanguage: {
+              name: "c++",
+              color: "#f34b7d",
+            },
+          },
+          {
+            stargazers: { totalCount: 100 },
+            primaryLanguage: {
+              name: "go",
+              color: "#00ADD8",
+            },
+          },
           { stargazers: { totalCount: 50 }, primaryLanguage: null },
-          { stargazers: { totalCount: 50 }, primaryLanguage: {
-            name: "JavaScript" } },
+          {
+            stargazers: { totalCount: 50 },
+            primaryLanguage: {
+              name: "JavaScript",
+              color: "#f1e05a",
+            },
+          },
         ],
       },
     },
@@ -62,7 +85,7 @@ describe("Test fetchStats", () => {
       prs: 300,
       issues: 200,
     });
-
+    console.log(stats);
     expect(stats).toStrictEqual({
       contributedTo: 61,
       name: "Anurag Hazra",
@@ -72,9 +95,9 @@ describe("Test fetchStats", () => {
       totalStars: 400,
       rank,
       primaryLanguages: [
-        "javascript",
-        "typescript",
-        "go",
+        { name: "javascript", color: "#f1e05a" },
+        { name: "c++", color: "#f34b7d" },
+        { name: "go", color: "#00ADD8" },
       ],
     });
   });
@@ -110,9 +133,9 @@ describe("Test fetchStats", () => {
       totalStars: 400,
       rank,
       primaryLanguages: [
-        "javascript",
-        "typescript",
-        "go",
+        { name: "javascript", color: "#f1e05a" },
+        { name: "c++", color: "#f34b7d" },
+        { name: "go", color: "#00ADD8" },
       ],
     });
   });
