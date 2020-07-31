@@ -34,7 +34,7 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
   </p>
   <p align="center">
-    <a href=".github/README-cn.md">简体中文</a>
+    <a href=".github/README-zh-CN.md">简体中文</a>
     ·
     <a href=".github/README-es.md">Español</a>
     ·
