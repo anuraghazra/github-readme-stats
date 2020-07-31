@@ -19,6 +19,7 @@ module.exports = async (req, res) => {
     hide_plang,
     show_icons,
     count_private,
+    include_all_commits,
     line_height,
     title_color,
     icon_color,
@@ -34,7 +35,11 @@ module.exports = async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    stats = await fetchStats(username, parseBoolean(count_private));
+    stats = await fetchStats(
+      username,
+      parseBoolean(count_private),
+      parseBoolean(include_all_commits)
+    );
   } catch (err) {
     return res.send(
       renderError(
@@ -60,6 +65,7 @@ module.exports = async (req, res) => {
       hide_border: parseBoolean(hide_border),
       hide_rank: parseBoolean(hide_rank),
       hide_plang: parseBoolean(hide_plang),
+      include_all_commits: parseBoolean(include_all_commits),
       line_height,
       title_color,
       icon_color,

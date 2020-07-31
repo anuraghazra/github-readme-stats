@@ -1,5 +1,5 @@
 <p align="center">
- <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="Github Readme Stats" />
+ <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
  <p align="center">¡Obtén tus estadísticas de GitHub generadas dinámicamente en tu README!</p>
 </p>
@@ -14,6 +14,14 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
+    <br />
+    <br />
+    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
+      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
+    </a>
+    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
+      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
+    </a>
   </p>
 
   <p align="center">
@@ -22,6 +30,13 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Reporta un bug</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicita una mejora</a>
+  </p>
+  <p align="center">
+    <a href="readme.md">English</a>
+    ·
+    <a href="readme_cn.md">简体中文</a>
+    ·
+    <a href="readme_ja.md">日本語</a>
   </p>
 </p>
 <p align="center">¿Te gusta este proyecto? ¡Por favor considera <a href="https://www.paypal.me/anuraghazra">donar</a> para ayudar a mejorarlo!
@@ -90,7 +105,7 @@ Utiliza el parámetro `?theme=THEME_NAME`, de esta manera:
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
-<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="Github Readme Stat Themes" width="600px"/>
+<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
 Puedes ver una vista previa de [todos los temas disponibles](./themes/README.md) o ver el [archivo de configuración](./themes/index.js) del tema y también **puedes contribuir con nuevos temas** si lo deseas: D
 

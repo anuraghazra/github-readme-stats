@@ -85,7 +85,7 @@ describe("Test fetchStats", () => {
       prs: 300,
       issues: 200,
     });
-    console.log(stats);
+
     expect(stats).toStrictEqual({
       contributedTo: 61,
       name: "Anurag Hazra",
@@ -128,6 +128,39 @@ describe("Test fetchStats", () => {
       contributedTo: 61,
       name: "Anurag Hazra",
       totalCommits: 150,
+      totalIssues: 200,
+      totalPRs: 300,
+      totalStars: 400,
+      rank,
+      primaryLanguages: [
+        { name: "javascript", color: "#f1e05a" },
+        { name: "c++", color: "#f34b7d" },
+        { name: "go", color: "#00ADD8" },
+      ],
+    });
+  });
+
+  it("should fetch total commits", async () => {
+    mock.onPost("https://api.github.com/graphql").reply(200, data);
+    mock
+      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .reply(200, { total_count: 1000 });
+
+    let stats = await fetchStats("anuraghazra", true, true);
+    const rank = calculateRank({
+      totalCommits: 1000 + 150,
+      totalRepos: 5,
+      followers: 100,
+      contributions: 61,
+      stargazers: 400,
+      prs: 300,
+      issues: 200,
+    });
+
+    expect(stats).toStrictEqual({
+      contributedTo: 61,
+      name: "Anurag Hazra",
+      totalCommits: 1000 + 150,
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
