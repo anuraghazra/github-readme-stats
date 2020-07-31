@@ -135,6 +135,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
 - `show_icons` - _(boolean)_
+- `include_total_commits` - Count total commits instead of just the current year commits _(boolean)_
 - `count_private` - Count private commits _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
 
