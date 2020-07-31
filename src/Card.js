@@ -1,12 +1,12 @@
-const { FlexLayout } = require("./utils");
-const { getAnimations } = require("./getStyles");
+const { FlexLayout } = require('./utils');
+const { getAnimations } = require('./getStyles');
 
 class Card {
   constructor({
     width = 100,
     height = 100,
     colors = {},
-    title = "",
+    title = '',
     titlePrefixIcon,
   }) {
     this.width = width;
@@ -18,7 +18,7 @@ class Card {
     // returns theme based colors with proper overrides and defaults
     this.colors = colors;
     this.title = title;
-    this.css = "";
+    this.css = '';
 
     this.paddingX = 25;
     this.paddingY = 35;
@@ -78,9 +78,9 @@ class Card {
         transform="translate(${this.paddingX}, ${this.paddingY})"
       >
         ${FlexLayout({
-          items: [this.titlePrefixIcon && prefixIcon, titleText],
-          gap: 25,
-        }).join("")}
+    items: [this.titlePrefixIcon && prefixIcon, titleText],
+    gap: 25,
+  }).join('')}
       </g>
     `;
   }
@@ -103,10 +103,10 @@ class Card {
           ${this.css}
 
           ${
-            process.env.NODE_ENV === "test" || !this.animations
-              ? ""
-              : getAnimations()
-          }
+  process.env.NODE_ENV === 'test' || !this.animations
+    ? ''
+    : getAnimations()
+}
         </style>
 
         <rect
@@ -121,13 +121,13 @@ class Card {
           stroke-opacity="${this.hideBorder ? 0 : 1}"
         />
 
-        ${this.hideTitle ? "" : this.renderTitle()}
+        ${this.hideTitle ? '' : this.renderTitle()}
 
         <g
           data-testid="main-card-body"
           transform="translate(0, ${
-            this.hideTitle ? this.paddingX : this.paddingY + 20
-          })"
+  this.hideTitle ? this.paddingX : this.paddingY + 20
+})"
         >
           ${body}
         </g>

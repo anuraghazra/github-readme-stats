@@ -1,11 +1,10 @@
-const { request, logger } = require("./utils");
-const retryer = require("./retryer");
-require("dotenv").config();
+const { request, logger } = require('./utils');
+const retryer = require('./retryer');
+require('dotenv').config();
 
-const fetcher = (variables, token) => {
-  return request(
-    {
-      query: `
+const fetcher = (variables, token) => request(
+  {
+    query: `
       query userInfo($login: String!) {
         user(login: $login) {
           # fetch only owner repos & not forks
@@ -25,38 +24,35 @@ const fetcher = (variables, token) => {
         }
       }
       `,
-      variables,
-    },
-    {
-      Authorization: `bearer ${token}`,
-    }
-  );
-};
+    variables,
+  },
+  {
+    Authorization: `bearer ${token}`,
+  },
+);
 
 async function fetchTopLanguages(username) {
-  if (!username) throw Error("Invalid username");
+  if (!username) throw Error('Invalid username');
 
-  let res = await retryer(fetcher, { login: username });
+  const res = await retryer(fetcher, { login: username });
 
   if (res.data.errors) {
     logger.error(res.data.errors);
-    throw Error(res.data.errors[0].message || "Could not fetch user");
+    throw Error(res.data.errors[0].message || 'Could not fetch user');
   }
 
   let repoNodes = res.data.data.user.repositories.nodes;
 
   repoNodes = repoNodes
-    .filter((node) => {
-      return node.languages.edges.length > 0;
-    })
-    // flatten the list of language nodes 
+    .filter((node) => node.languages.edges.length > 0)
+    // flatten the list of language nodes
     .reduce((acc, curr) => curr.languages.edges.concat(acc), [])
     .sort((a, b) => b.size - a.size)
     .reduce((acc, prev) => {
       // get the size of the language (bytes)
       let langSize = prev.size;
 
-      // if we already have the language in the accumulator 
+      // if we already have the language in the accumulator
       // & the current language name is same as previous name
       // add the size to the language size.
       if (acc[prev.node.name] && prev.node.name === acc[prev.node.name].name) {

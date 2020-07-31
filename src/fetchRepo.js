@@ -1,10 +1,9 @@
-const { request } = require("./utils");
-const retryer = require("./retryer");
+const { request } = require('./utils');
+const retryer = require('./retryer');
 
-const fetcher = (variables, token) => {
-  return request(
-    {
-      query: `
+const fetcher = (variables, token) => request(
+  {
+    query: `
       fragment RepoInfo on Repository {
         name
         nameWithOwner
@@ -35,25 +34,24 @@ const fetcher = (variables, token) => {
         }
       }
     `,
-      variables,
-    },
-    {
-      Authorization: `bearer ${token}`,
-    }
-  );
-};
+    variables,
+  },
+  {
+    Authorization: `bearer ${token}`,
+  },
+);
 
 async function fetchRepo(username, reponame) {
   if (!username || !reponame) {
-    throw new Error("Invalid username or reponame");
+    throw new Error('Invalid username or reponame');
   }
 
-  let res = await retryer(fetcher, { login: username, repo: reponame });
+  const res = await retryer(fetcher, { login: username, repo: reponame });
 
-  const data = res.data.data;
+  const { data } = res.data;
 
   if (!data.user && !data.organization) {
-    throw new Error("Not found");
+    throw new Error('Not found');
   }
 
   const isUser = data.organization === null && data.user;
@@ -61,17 +59,17 @@ async function fetchRepo(username, reponame) {
 
   if (isUser) {
     if (!data.user.repository || data.user.repository.isPrivate) {
-      throw new Error("User Repository Not found");
+      throw new Error('User Repository Not found');
     }
     return data.user.repository;
   }
 
   if (isOrg) {
     if (
-      !data.organization.repository ||
-      data.organization.repository.isPrivate
+      !data.organization.repository
+      || data.organization.repository.isPrivate
     ) {
-      throw new Error("Organization Repository Not found");
+      throw new Error('Organization Repository Not found');
     }
     return data.organization.repository;
   }

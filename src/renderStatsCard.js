@@ -3,10 +3,10 @@ const {
   getCardColors,
   FlexLayout,
   encodeHTML,
-} = require("../src/utils");
-const { getStyles } = require("./getStyles");
-const icons = require("./icons");
-const Card = require("./Card");
+} = require('./utils');
+const { getStyles } = require('./getStyles');
+const icons = require('./icons');
+const Card = require('./Card');
 
 const createTextNode = ({
   icon,
@@ -20,14 +20,14 @@ const createTextNode = ({
   const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
 
-  const labelOffset = showIcons ? `x="25"` : "";
+  const labelOffset = showIcons ? 'x="25"' : '';
   const iconSvg = showIcons
     ? `
     <svg data-testid="icon" class="icon" viewBox="0 0 16 16" version="1.1" width="16" height="16">
       ${icon}
     </svg>
   `
-    : "";
+    : '';
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       ${iconSvg}
@@ -64,13 +64,15 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     icon_color,
     text_color,
     bg_color,
-    theme = "default",
+    theme = 'default',
   } = options;
 
   const lheight = parseInt(line_height, 10);
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, iconColor, bgColor } = getCardColors({
+  const {
+    titleColor, textColor, iconColor, bgColor,
+  } = getCardColors({
     title_color,
     icon_color,
     text_color,
@@ -82,35 +84,35 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const STATS = {
     stars: {
       icon: icons.star,
-      label: "Total Stars",
+      label: 'Total Stars',
       value: totalStars,
-      id: "stars",
+      id: 'stars',
     },
     commits: {
       icon: icons.commits,
       label: `Total Commits${
-        include_all_commits ? "" : ` (${new Date().getFullYear()})`
+        include_all_commits ? '' : ` (${new Date().getFullYear()})`
       }`,
       value: totalCommits,
-      id: "commits",
+      id: 'commits',
     },
     prs: {
       icon: icons.prs,
-      label: "Total PRs",
+      label: 'Total PRs',
       value: totalPRs,
-      id: "prs",
+      id: 'prs',
     },
     issues: {
       icon: icons.issues,
-      label: "Total Issues",
+      label: 'Total Issues',
       value: totalIssues,
-      id: "issues",
+      id: 'issues',
     },
     contribs: {
       icon: icons.contribs,
-      label: "Contributed to",
+      label: 'Contributed to',
       value: contributedTo,
-      id: "contribs",
+      id: 'contribs',
     },
   };
 
@@ -124,26 +126,25 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         index,
         showIcons: show_icons,
         shiftValuePos: !include_all_commits,
-      })
-    );
+      }));
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  let height = Math.max(
+  const height = Math.max(
     45 + (statItems.length + 1) * lheight,
-    hide_rank ? 0 : 150
+    hide_rank ? 0 : 150,
   );
 
   // Conditionally rendered elements
   const rankCircle = hide_rank
-    ? ""
+    ? ''
     : `<g data-testid="rank-circle" 
           transform="translate(400, ${height / 2 - 50})">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
           <text
-            x="${rank.level.length === 1 ? "-4" : "0"}"
+            x="${rank.level.length === 1 ? '-4' : '0'}"
             y="0"
             alignment-baseline="central"
             dominant-baseline="central"
@@ -165,7 +166,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     progress,
   });
 
-  const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
+  const apostrophe = ['x', 's'].includes(name.slice(-1)) ? '' : 's';
   const card = new Card({
     title: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
     width: 495,
@@ -187,10 +188,10 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
     <svg x="0" y="0">
       ${FlexLayout({
-        items: statItems,
-        gap: lheight,
-        direction: "column",
-      }).join("")}
+    items: statItems,
+    gap: lheight,
+    direction: 'column',
+  }).join('')}
     </svg> 
   `);
 };

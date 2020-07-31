@@ -1,9 +1,8 @@
-const axios = require("axios");
-const wrap = require("word-wrap");
-const themes = require("../themes");
+const axios = require('axios');
+const wrap = require('word-wrap');
+const themes = require('../themes');
 
-const renderError = (message, secondaryMessage = "") => {
-  return `
+const renderError = (message, secondaryMessage = '') => `
     <svg width="495" height="120" viewBox="0 0 495 120" fill="none" xmlns="http://www.w3.org/2000/svg">
     <style>
     .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2F80ED }
@@ -18,42 +17,38 @@ const renderError = (message, secondaryMessage = "") => {
     </text>
     </svg>
   `;
-};
 
 // https://stackoverflow.com/a/48073476/10629172
 function encodeHTML(str) {
   return str
-    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
-      return "&#" + i.charCodeAt(0) + ";";
-    })
-    .replace(/\u0008/gim, "");
+    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => `&#${i.charCodeAt(0)};`)
+    .replace(/\u0008/gim, '');
 }
 
 function kFormatter(num) {
   return Math.abs(num) > 999
-    ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
+    ? `${Math.sign(num) * (Math.abs(num) / 1000).toFixed(1)}k`
     : Math.sign(num) * Math.abs(num);
 }
 
 function isValidHexColor(hexColor) {
   return new RegExp(
-    /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/
+    /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/,
   ).test(hexColor);
 }
 
 function parseBoolean(value) {
-  if (value === "true") {
+  if (value === 'true') {
     return true;
-  } else if (value === "false") {
+  } if (value === 'false') {
     return false;
-  } else {
-    return value;
   }
+  return value;
 }
 
 function parseArray(str) {
   if (!str) return [];
-  return str.split(",");
+  return str.split(',');
 }
 
 function clampValue(number, min, max) {
@@ -66,8 +61,8 @@ function fallbackColor(color, fallbackColor) {
 
 function request(data, headers) {
   return axios({
-    url: "https://api.github.com/graphql",
-    method: "post",
+    url: 'https://api.github.com/graphql',
+    method: 'post',
     headers,
     data,
   });
@@ -87,7 +82,7 @@ function FlexLayout({ items, gap, direction }) {
   // filter() for filtering out empty strings
   return items.filter(Boolean).map((item, i) => {
     let transform = `translate(${gap * i}, 0)`;
-    if (direction === "column") {
+    if (direction === 'column') {
       transform = `translate(0, ${gap * i})`;
     }
     return `<g transform="${transform}">${item}</g>`;
@@ -101,7 +96,7 @@ function getCardColors({
   icon_color,
   bg_color,
   theme,
-  fallbackTheme = "default",
+  fallbackTheme = 'default',
 }) {
   const defaultTheme = themes[fallbackTheme];
   const selectedTheme = themes[theme] || defaultTheme;
@@ -110,34 +105,36 @@ function getCardColors({
   // finally if both colors are invalid fallback to default theme
   const titleColor = fallbackColor(
     title_color || selectedTheme.title_color,
-    "#" + defaultTheme.title_color
+    `#${defaultTheme.title_color}`,
   );
   const iconColor = fallbackColor(
     icon_color || selectedTheme.icon_color,
-    "#" + defaultTheme.icon_color
+    `#${defaultTheme.icon_color}`,
   );
   const textColor = fallbackColor(
     text_color || selectedTheme.text_color,
-    "#" + defaultTheme.text_color
+    `#${defaultTheme.text_color}`,
   );
   const bgColor = fallbackColor(
     bg_color || selectedTheme.bg_color,
-    "#" + defaultTheme.bg_color
+    `#${defaultTheme.bg_color}`,
   );
 
-  return { titleColor, iconColor, textColor, bgColor };
+  return {
+    titleColor, iconColor, textColor, bgColor,
+  };
 }
 
 function wrapTextMultiline(text, width = 60, maxLines = 3) {
   const wrapped = wrap(encodeHTML(text), { width })
-    .split("\n") // Split wrapped lines to get an array of lines
+    .split('\n') // Split wrapped lines to get an array of lines
     .map((line) => line.trim()); // Remove leading and trailing whitespace of each line
 
   const lines = wrapped.slice(0, maxLines); // Only consider maxLines lines
 
   // Add "..." to the last line if the text exceeds maxLines
   if (wrapped.length > maxLines) {
-    lines[maxLines - 1] += "...";
+    lines[maxLines - 1] += '...';
   }
 
   // Remove empty lines if text fits in less than maxLines lines
@@ -147,8 +144,7 @@ function wrapTextMultiline(text, width = 60, maxLines = 3) {
 
 const noop = () => {};
 // return console instance based on the environment
-const logger =
-  process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
+const logger = process.env.NODE_ENV !== 'test' ? console : { log: noop, error: noop };
 
 const CONSTANTS = {
   THIRTY_MINUTES: 1800,

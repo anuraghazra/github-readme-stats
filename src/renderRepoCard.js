@@ -1,13 +1,13 @@
+const toEmoji = require('emoji-name-map');
 const {
   kFormatter,
   encodeHTML,
   getCardColors,
   FlexLayout,
   wrapTextMultiline,
-} = require("../src/utils");
-const icons = require("./icons");
-const toEmoji = require("emoji-name-map");
-const Card = require("./Card");
+} = require('./utils');
+const icons = require('./icons');
+const Card = require('./Card');
 
 const renderRepoCard = (repo, options = {}) => {
   const {
@@ -26,31 +26,30 @@ const renderRepoCard = (repo, options = {}) => {
     text_color,
     bg_color,
     show_owner,
-    theme = "default_repocard",
+    theme = 'default_repocard',
   } = options;
 
   const header = show_owner ? nameWithOwner : name;
-  const langName = (primaryLanguage && primaryLanguage.name) || "Unspecified";
-  const langColor = (primaryLanguage && primaryLanguage.color) || "#333";
+  const langName = (primaryLanguage && primaryLanguage.name) || 'Unspecified';
+  const langColor = (primaryLanguage && primaryLanguage.color) || '#333';
 
   const shiftText = langName.length > 15 ? 0 : 30;
 
-  let desc = description || "No description provided";
+  let desc = description || 'No description provided';
 
   // parse emojis to unicode
-  desc = desc.replace(/:\w+:/gm, (emoji) => {
-    return toEmoji.get(emoji) || "";
-  });
+  desc = desc.replace(/:\w+:/gm, (emoji) => toEmoji.get(emoji) || '');
 
   const multiLineDescription = wrapTextMultiline(desc);
   const descriptionLines = multiLineDescription.length;
   const lineHeight = 10;
 
-  const height =
-    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+  const height = (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, iconColor, bgColor } = getCardColors({
+  const {
+    titleColor, textColor, iconColor, bgColor,
+  } = getCardColors({
     title_color,
     icon_color,
     text_color,
@@ -83,26 +82,22 @@ const renderRepoCard = (repo, options = {}) => {
       <text data-testid="lang-name" class="gray" x="15">${langName}</text>
     </g>
     `
-    : "";
+    : '';
 
-  const iconWithLabel = (icon, label, testid) => {
-    return `
+  const iconWithLabel = (icon, label, testid) => `
       <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
         ${icon}
       </svg>
       <text data-testid="${testid}" class="gray" x="25">${label}</text>
     `;
-  };
-  const svgStars =
-    stargazers.totalCount > 0 &&
-    iconWithLabel(icons.star, totalStars, "stargazers");
-  const svgForks =
-    forkCount > 0 && iconWithLabel(icons.fork, totalForks, "forkcount");
+  const svgStars = stargazers.totalCount > 0
+    && iconWithLabel(icons.star, totalStars, 'stargazers');
+  const svgForks = forkCount > 0 && iconWithLabel(icons.fork, totalForks, 'forkcount');
 
   const starAndForkCount = FlexLayout({
     items: [svgStars, svgForks],
     gap: 65,
-  }).join("");
+  }).join('');
 
   const card = new Card({
     title: header,
@@ -130,17 +125,17 @@ const renderRepoCard = (repo, options = {}) => {
 
   return card.render(`
     ${
-      isTemplate
-        ? getBadgeSVG("Template")
-        : isArchived
-        ? getBadgeSVG("Archived")
-        : ""
-    }
+  isTemplate
+    ? getBadgeSVG('Template')
+    : isArchived
+      ? getBadgeSVG('Archived')
+      : ''
+}
 
     <text class="description" x="25" y="-5">
       ${multiLineDescription
-        .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
-        .join("")}
+    .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
+    .join('')}
     </text>
 
     <g transform="translate(0, ${height - 75})">

@@ -1,16 +1,15 @@
 const calculateCircleProgress = (value) => {
-  let radius = 40;
-  let c = Math.PI * (radius * 2);
+  const radius = 40;
+  const c = Math.PI * (radius * 2);
 
   if (value < 0) value = 0;
   if (value > 100) value = 100;
 
-  let percentage = ((100 - value) / 100) * c;
+  const percentage = ((100 - value) / 100) * c;
   return percentage;
 };
 
-const getProgressAnimation = ({ progress }) => {
-  return `
+const getProgressAnimation = ({ progress }) => `
     @keyframes rankAnimation {
       from {
         stroke-dashoffset: ${calculateCircleProgress(0)};
@@ -20,10 +19,8 @@ const getProgressAnimation = ({ progress }) => {
       }
     }
   `;
-};
 
-const getAnimations = () => {
-  return `
+const getAnimations = () => `
     /* Animations */
     @keyframes scaleInAnimation {
       from {
@@ -42,7 +39,6 @@ const getAnimations = () => {
       }
     }
   `;
-};
 
 const getStyles = ({
   titleColor,
@@ -50,8 +46,7 @@ const getStyles = ({
   iconColor,
   show_icons,
   progress,
-}) => {
-  return `
+}) => `
     .stat {
       font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
     }
@@ -67,7 +62,7 @@ const getStyles = ({
     .bold { font-weight: 700 }
     .icon {
       fill: ${iconColor};
-      display: ${!!show_icons ? "block" : "none"};
+      display: ${show_icons ? 'block' : 'none'};
     }
     
     .rank-circle-rim {
@@ -87,8 +82,7 @@ const getStyles = ({
       transform: rotate(-90deg);
       animation: rankAnimation 1s forwards ease-in-out;
     }
-    ${process.env.NODE_ENV === "test" ? "" : getProgressAnimation({ progress })}
+    ${process.env.NODE_ENV === 'test' ? '' : getProgressAnimation({ progress })}
   `;
-};
 
 module.exports = { getStyles, getAnimations };
