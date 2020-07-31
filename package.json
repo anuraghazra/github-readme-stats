@@ -4,6 +4,7 @@
   "description": "Dynamically generate stats for your github readmes",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint ./src --fix",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "theme-readme-gen": "node scripts/generate-theme-doc"
@@ -16,6 +17,9 @@
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",
     "css-to-object": "^1.1.0",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
     "husky": "^4.2.5",
     "jest": "^26.1.0"
   },
