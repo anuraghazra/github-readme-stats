@@ -35,11 +35,11 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
   </p>
   <p align="center">
-    <a href="readme.md">English</a>
+    <a href="../README.md">English</a>
     ·
-    <a href="readme_cn.md">简体中文</a>
+    <a href="README-zh-CN.md">简体中文</a>
     ·
-    <a href="readme_es.md">Español</a>
+    <a href="README-es.md">Español</a>
   </p>
 </p>
 <p align="center">このプロジェクトを気に入っていただけましたか？<br>もしよろしければ、プロジェクトのさらなる改善のために<a href="https://www.paypal.me/anuraghazra">寄付</a>を検討して頂けると嬉しいです！</p>
