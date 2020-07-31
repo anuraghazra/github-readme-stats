@@ -102,7 +102,7 @@ describe("Test utils.js", () => {
       theme: "dark",
     });
     expect(colors).toStrictEqual({
-      titleColor: "#fff",
+      titleColor: "#ffffff",
       textColor: "#9f9f9f",
       iconColor: "#79ff97",
       bgColor: "#151515",

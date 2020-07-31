@@ -86,7 +86,7 @@ describe("Test renderStatsCard", () => {
     const iconClassStyles = stylesObject[".icon"];
 
     expect(headerClassStyles.fill).toBe("#2f80ed");
-    expect(statClassStyles.fill).toBe("#333");
+    expect(statClassStyles.fill).toBe("#333333");
     expect(iconClassStyles.fill).toBe("#4c71f2");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",

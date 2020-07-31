@@ -154,7 +154,7 @@ describe("Test renderRepoCard", () => {
     const iconClassStyles = stylesObject[".icon"];
 
     expect(headerClassStyles.fill).toBe("#2f80ed");
-    expect(descClassStyles.fill).toBe("#333");
+    expect(descClassStyles.fill).toBe("#333333");
     expect(iconClassStyles.fill).toBe("#586069");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",

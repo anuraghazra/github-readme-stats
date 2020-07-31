@@ -2,17 +2,17 @@ const themes = {
   default: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
-    text_color: "333",
+    text_color: "333333",
     bg_color: "fffefe",
   },
   default_repocard: {
     title_color: "2f80ed",
-    icon_color: "586069", // icon color is different
-    text_color: "333",
+    icon_color: "586069",
+    text_color: "333333",
     bg_color: "fffefe",
   },
   dark: {
-    title_color: "fff",
+    title_color: "ffffff",
     icon_color: "79ff97",
     text_color: "9f9f9f",
     bg_color: "151515",
@@ -62,8 +62,8 @@ const themes = {
   highcontrast: {
     title_color: "e7f216",
     icon_color: "00ffff",
-    text_color: "fff",
-    bg_color: "000",
+    text_color: "ffffff",
+    bg_color: "000000",
   },
   dracula: {
     title_color: "ff6e96",
@@ -113,17 +113,23 @@ const themes = {
     text_color: "0cf574",
     bg_color: "040f0f",
   },
-  "algolia": {
-    title_color: "00AEFF",
-    icon_color: "2DDE98",
-    text_color: "FFFFFF",
-    bg_color: "050F2C",
+  algolia: {
+    title_color: "00aeff",
+    icon_color: "2dde98",
+    text_color: "ffffff",
+    bg_color: "050f2c",
   },
-  "great-gatsby":{
+  "great-gatsby": {
     title_color: "ffa726",
     icon_color: "ffb74d",
     text_color: "ffd95b",
     bg_color: "000000",
+  },
+  "nebular-cosmic": {
+    title_color: "ceceeb",
+    icon_color: "b18aff",
+    text_color: "ffffff",
+    bg_color: "323259",
   },
 };
 
