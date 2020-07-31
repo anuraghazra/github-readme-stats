@@ -49,13 +49,15 @@ const fetcher = (variables, token) => {
   );
 };
 
+// https://github.com/anuraghazra/github-readme-stats/issues/92#issuecomment-661026467
+// https://github.com/anuraghazra/github-readme-stats/pull/211/
 const totalCommitsFetcher = async (username) => {
   if (!githubUsernameRegex.test(username)) {
     logger.log("Invalid username");
     return 0;
   }
 
-  // application/vnd.github.cloak-preview
+  // https://developer.github.com/v3/search/#search-commits
   const fetchTotalCommits = (variables, token) => {
     return axios({
       method: "get",
