@@ -110,7 +110,7 @@ async function fetchStats(
   if (include_all_commits) {
     experimental_totalCommits = await totalCommitsFetcher(username);
   }
-
+  
   if (res.data.errors) {
     logger.error(res.data.errors);
     throw Error(res.data.errors[0].message || "Could not fetch user");

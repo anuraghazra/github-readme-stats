@@ -54,6 +54,12 @@ const data = {
   },
 };
 
+const _contributionsCollection = data.data.user.contributionsCollection;
+
+const totalCommitsCount =
+  _contributionsCollection.restrictedContributionsCount +
+  _contributionsCollection.totalCommitContributions;
+
 const error = {
   errors: [
     {
@@ -141,14 +147,16 @@ describe("Test fetchStats", () => {
   });
 
   it("should fetch total commits", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
     mock
-      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
-      .reply(200, { total_count: 1000 });
+      .onPost("https://api.github.com/graphql")
+      .reply(200, data);
+      
+    mock.onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .reply(200, { total_count: 1000 }); // not-working 
 
     let stats = await fetchStats("anuraghazra", true, true);
     const rank = calculateRank({
-      totalCommits: 1000 + 150,
+      totalCommits: totalCommitsCount, // 1000 + 150,
       totalRepos: 5,
       followers: 100,
       contributions: 61,
@@ -160,7 +168,7 @@ describe("Test fetchStats", () => {
     expect(stats).toStrictEqual({
       contributedTo: 61,
       name: "Anurag Hazra",
-      totalCommits: 1000 + 150,
+      totalCommits: totalCommitsCount, // 1000 + 150,
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,

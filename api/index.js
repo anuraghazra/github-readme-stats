@@ -16,7 +16,6 @@ module.exports = async (req, res) => {
     hide_title,
     hide_border,
     hide_rank,
-    hide_plang,
     show_icons,
     count_private,
     include_all_commits,
@@ -27,13 +26,22 @@ module.exports = async (req, res) => {
     bg_color,
     theme,
     cache_seconds,
+    // plang
+    hide_plang,
     plang_row_items,
     show_plang_color,
   } = req.query;
   let stats;
 
-  res.setHeader("Content-Type", "image/svg+xml");
+  const cacheSeconds = clampValue(
+    parseInt(cache_seconds || CONSTANTS.THIRTY_MINUTES, 10),
+    CONSTANTS.THIRTY_MINUTES,
+    CONSTANTS.ONE_DAY
+  );
 
+  res.setHeader("Content-Type", "image/svg+xml");
+  res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+  
   try {
     stats = await fetchStats(
       username,
@@ -49,14 +57,6 @@ module.exports = async (req, res) => {
     );
   }
 
-  const cacheSeconds = clampValue(
-    parseInt(cache_seconds || CONSTANTS.THIRTY_MINUTES, 10),
-    CONSTANTS.THIRTY_MINUTES,
-    CONSTANTS.ONE_DAY
-  );
-
-  res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
-
   res.send(
     renderStatsCard(stats, {
       hide: parseArray(hide),
@@ -64,7 +64,6 @@ module.exports = async (req, res) => {
       hide_title: parseBoolean(hide_title),
       hide_border: parseBoolean(hide_border),
       hide_rank: parseBoolean(hide_rank),
-      hide_plang: parseBoolean(hide_plang),
       include_all_commits: parseBoolean(include_all_commits),
       line_height,
       title_color,
@@ -72,8 +71,10 @@ module.exports = async (req, res) => {
       text_color,
       bg_color,
       theme,
+      // plang
+      hide_plang: parseBoolean(hide_plang),
       plang_row_items: parseInt(plang_row_items, 10),
-      show_plang_color: parseBoolean(show_plang_color)
+      show_plang_color: parseBoolean(show_plang_color),
     })
   );
 };

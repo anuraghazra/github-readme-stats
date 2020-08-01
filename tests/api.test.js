@@ -42,11 +42,8 @@ const data = {
         nodes: [
           {
             stargazers: { totalCount: 100 },
-            primaryLanguage: {
-              name: "JavaScript",
-              color: "#f1e05a",
-            },
           },
+          { stargazers: { totalCount: 0 } },
         ],
       },
     },
@@ -93,7 +90,7 @@ describe("Test /api/", () => {
     await api(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    // expect(res.send).toBeCalledWith(renderStatsCard(stats, { ...req.query }));
+    expect(res.send).toBeCalledWith(renderStatsCard(stats, { ...req.query }));
   });
 
   it("should render error card on error", async () => {
@@ -129,7 +126,7 @@ describe("Test /api/", () => {
     await api(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    /* expect(res.send).toBeCalledWith(
+    expect(res.send).toBeCalledWith(
       renderStatsCard(stats, {
         hide: ["issues", "prs", "contribs"],
         show_icons: true,
@@ -140,7 +137,7 @@ describe("Test /api/", () => {
         text_color: "fff",
         bg_color: "fff",
       })
-    ); */
+    );
   });
 
   it("should have proper cache", async () => {
@@ -210,7 +207,7 @@ describe("Test /api/", () => {
     await api(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    /* expect(res.send).toBeCalledWith(
+    expect(res.send).toBeCalledWith(
       renderStatsCard(
         {
           ...stats,
@@ -227,6 +224,6 @@ describe("Test /api/", () => {
         },
         {}
       )
-    ); */
+    );
   });
 });

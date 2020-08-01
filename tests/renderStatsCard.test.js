@@ -6,6 +6,7 @@ const {
   getByTestId,
   queryByTestId,
   queryAllByTestId,
+  queryByAttribute,
 } = require("@testing-library/dom");
 const themes = require("../themes");
 
@@ -18,6 +19,11 @@ describe("Test renderStatsCard", () => {
     totalPRs: 400,
     contributedTo: 500,
     rank: { level: "A+", score: 40 },
+    primaryLanguages: [
+      { name: "javascript", color: "#f1e05a" },
+      { name: "c++", color: "#f34b7d" },
+      { name: "go", color: "#00ADD8" },
+    ],
   };
 
   it("should render correctly", () => {
@@ -29,7 +35,7 @@ describe("Test renderStatsCard", () => {
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height")
-    ).toBe("205");
+    ).toBe("235");
     expect(getByTestId(document.body, "stars").textContent).toBe("100");
     expect(getByTestId(document.body, "commits").textContent).toBe("200");
     expect(getByTestId(document.body, "issues").textContent).toBe("300");
@@ -208,5 +214,18 @@ describe("Test renderStatsCard", () => {
     expect(
       queryByTestId(document.body, "stars").previousElementSibling // the label
     ).not.toHaveAttribute("x");
+  });
+
+  it("should render primary language correctly", () => {
+    document.body.innerHTML = renderStatsCard(stats, {});
+    expect(queryByTestId(document.body, "p-lang")).toBeDefined();
+  });
+
+  it("should render primary language if hide_plang is true", () => {
+    document.body.innerHTML = renderStatsCard(stats, { hide_plang: true });
+    expect(
+      document.body.getElementsByTagName("svg")[0].getAttribute("height")
+    ).toBe("205");
+    expect(queryByTestId(document.body, "p-lang")).not.toBeInTheDocument();
   });
 });

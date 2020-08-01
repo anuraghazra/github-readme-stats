@@ -148,7 +148,7 @@ function wrapTextMultiline(text, width = 60, maxLines = 3) {
 const isTest = process.env.NODE_ENV === "test";
 const noop = () => {};
 // return console instance based on the environment
-const logger = isTest ? console : { log: noop, error: noop };
+const logger = !isTest ? console : { log: noop, error: noop };
 const getPrimaryLangSlug = (text) =>
   text
     .toString()

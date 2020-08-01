@@ -63,14 +63,15 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_rank = false,
     include_all_commits = false,
     line_height = 25,
-    hide_plang = false,
-    plang_row_items,
-    show_plang_color,
     title_color,
     icon_color,
     text_color,
     bg_color,
     theme = "default",
+    // plang
+    hide_plang = false,
+    plang_row_items,
+    show_plang_color,
   } = options;
   const pLangs =
     !hide_plang && primaryLanguages.length
@@ -165,13 +166,14 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
           </text>
         </g>
       </g>`;
-
-  const renderPrimaryLang = `
-    <g transform="translate(20, 130)">
+  const renderPrimaryLang = hide_plang
+    ? ""
+    : `
+    <g data-testid="p-lang" transform="translate(20, 130)">
     ${pLangs
       .map(
         (_, i) =>
-          `<g transform="translate(0, ${i * 45})">${FlexLayout({
+          `<g transform="translate(0, ${i * 35})">${FlexLayout({
             gap: 35,
             items: pLangs[i].map((lang) =>
               getLogos({
