@@ -28,6 +28,7 @@ module.exports = async (req, res) => {
     cache_seconds,
     // plang
     hide_plang,
+    plang_animation,
     plang_row_items,
     show_plang_color,
   } = req.query;
@@ -73,6 +74,7 @@ module.exports = async (req, res) => {
       theme,
       // plang
       hide_plang: parseBoolean(hide_plang),
+      plang_animation: parseBoolean(plang_animation),
       plang_row_items: parseInt(plang_row_items, 10),
       show_plang_color: parseBoolean(show_plang_color),
     })

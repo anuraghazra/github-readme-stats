@@ -70,6 +70,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     theme = "default",
     // plang
     hide_plang = false,
+    plang_animation = false,
     plang_row_items,
     show_plang_color,
   } = options;
@@ -166,21 +167,32 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
           </text>
         </g>
       </g>`;
+
+  const pLanAnimation = (i, duration, offset = 3) =>
+    plang_animation
+      ? `class="stagger" style="animation-delay: ${(i + offset) * duration}ms"`
+      : "";
+
   const renderPrimaryLang = hide_plang
     ? ""
     : `
-    <g data-testid="p-lang" transform="translate(20, 130)">
+    <g data-testid="p-lang-container" transform="translate(20, 130)">
     ${pLangs
       .map(
         (_, i) =>
-          `<g transform="translate(0, ${i * 35})">${FlexLayout({
+          `<g data-testid="p-lang-row" ${pLanAnimation(i, i + 3, 150)} transform="translate(0, ${
+            i * 35
+          })">${FlexLayout({
             gap: 35,
-            items: pLangs[i].map((lang) =>
-              getLogos({
-                name: lang.name,
-                color: icon_color ? icon_color : lang.color,
-                show_plang_color,
-              })
+            items: pLangs[i].map(
+              (lang, j) =>
+                `<g data-testid="p-lang-logo" ${pLanAnimation(j, i + 5, 300)}>
+                ${getLogos({
+                  name: lang.name,
+                  color: icon_color ? icon_color : lang.color,
+                  show_plang_color,
+                })}
+              </g>`
             ),
           }).join("")}</g>`
       )

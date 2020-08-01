@@ -218,7 +218,7 @@ describe("Test renderStatsCard", () => {
 
   it("should render primary language correctly", () => {
     document.body.innerHTML = renderStatsCard(stats, {});
-    expect(queryByTestId(document.body, "p-lang")).toBeDefined();
+    expect(queryByTestId(document.body, "p-lang-container")).toBeDefined();
   });
 
   it("should render primary language if hide_plang is true", () => {
@@ -226,6 +226,6 @@ describe("Test renderStatsCard", () => {
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height")
     ).toBe("205");
-    expect(queryByTestId(document.body, "p-lang")).not.toBeInTheDocument();
+    expect(queryByTestId(document.body, "p-lang-container")).not.toBeInTheDocument();
   });
 });
