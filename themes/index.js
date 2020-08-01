@@ -113,17 +113,23 @@ const themes = {
     text_color: "0cf574",
     bg_color: "040f0f",
   },
-  "algolia": {
+  algolia: {
     title_color: "00AEFF",
     icon_color: "2DDE98",
     text_color: "FFFFFF",
     bg_color: "050F2C",
   },
-  "great-gatsby":{
+  "great-gatsby": {
     title_color: "ffa726",
     icon_color: "ffb74d",
     text_color: "ffd95b",
     bg_color: "000000",
+  },
+  darcula: {
+    title_color: "BA5F17",
+    icon_color: "84628F",
+    text_color: "BEBEBE",
+    bg_color: "242424",
   },
 };
 
