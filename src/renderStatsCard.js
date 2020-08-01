@@ -70,7 +70,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     theme = "default",
     // plang
     hide_plang = false,
-    plang_animation = false,
+    plang_animation = true,
     plang_row_items,
     show_plang_color,
   } = options;
