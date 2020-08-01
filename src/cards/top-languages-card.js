@@ -1,5 +1,5 @@
-const { getCardColors, FlexLayout, clampValue } = require("../src/utils");
-const Card = require("./Card");
+const { getCardColors, FlexLayout, clampValue } = require("../common/utils");
+const Card = require("../common/Card");
 
 const createProgressNode = ({ width, color, name, progress }) => {
   const paddingRight = 95;
