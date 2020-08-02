@@ -1,0 +1,29 @@
+name: Theme preview
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - master
+      - theme-preview-script
+    paths:
+      - "themes/index.js"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "12.x"
+
+      - name: npm install, preview theme
+        run: |
+          npm install
+          npm run preview-theme
+        env:
+          CI: true
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
