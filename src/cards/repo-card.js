@@ -4,10 +4,10 @@ const {
   getCardColors,
   FlexLayout,
   wrapTextMultiline,
-} = require("../src/utils");
-const icons = require("./icons");
+} = require("../common/utils");
+const icons = require("../common/icons");
+const Card = require("../common/Card");
 const toEmoji = require("emoji-name-map");
-const Card = require("./Card");
 
 const renderRepoCard = (repo, options = {}) => {
   const {

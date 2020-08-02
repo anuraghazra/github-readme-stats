@@ -3,10 +3,10 @@ const {
   getCardColors,
   FlexLayout,
   encodeHTML,
-} = require("../src/utils");
-const { getStyles } = require("./getStyles");
-const icons = require("./icons");
-const Card = require("./Card");
+} = require("../common/utils");
+const { getStyles } = require("../getStyles");
+const icons = require("../common/icons");
+const Card = require("../common/Card");
 
 const createTextNode = ({
   icon,

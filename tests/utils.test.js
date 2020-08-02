@@ -6,7 +6,7 @@ const {
   FlexLayout,
   getCardColors,
   wrapTextMultiline,
-} = require("../src/utils");
+} = require("../src/common/utils");
 
 const { queryByTestId } = require("@testing-library/dom");
 

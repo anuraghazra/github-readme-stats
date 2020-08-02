@@ -5,9 +5,9 @@ const {
   parseBoolean,
   parseArray,
   CONSTANTS,
-} = require("../src/utils");
-const fetchTopLanguages = require("../src/fetchTopLanguages");
-const renderTopLanguages = require("../src/renderTopLanguages");
+} = require("../src/common/utils");
+const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
+const renderTopLanguages = require("../src/cards/top-languages-card");
 
 module.exports = async (req, res) => {
   const {

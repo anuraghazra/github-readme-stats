@@ -1,5 +1,5 @@
-const { request } = require("./utils");
-const retryer = require("./retryer");
+const { request } = require("../common/utils");
+const retryer = require("../common/retryer");
 
 const fetcher = (variables, token) => {
   return request(
