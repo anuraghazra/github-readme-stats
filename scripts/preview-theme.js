@@ -2,15 +2,6 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 const parse = require("parse-diff");
 require("dotenv").config();
-const fs = require("fs");
-
-try {
-  const ev = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, "utf8"));
-  const prNum = ev.pull_request.number;
-  console.log({ prNum });
-} catch (err) {
-  console.log(err);
-}
 
 const parsePullRequestId = (githubRef) => {
   const result = /refs\/pull\/(\d+)\/merge/g.exec(githubRef);
@@ -22,15 +13,12 @@ const parsePullRequestId = (githubRef) => {
 async function run() {
   try {
     const octokit = github.getOctokit(process.env.PERSONAL_TOKEN);
-
-    console.log(github.event);
     const pullRequestId = parsePullRequestId(process.env.GITHUB_REF);
-    console.log(pullRequestId);
 
     let res = await octokit.pulls.get({
       owner: "anuraghazra",
       repo: "github-readme-stats",
-      pull_number: 185,
+      pull_number: pullRequestId,
       mediaType: {
         format: "diff",
       },
@@ -57,7 +45,15 @@ async function run() {
     let bgColor = colors[3];
     const url = `https://github-readme-stats.vercel.app/api?username=anuraghazra&title_color=${titleColor}&icon_color=${iconColor}&text_color=${textColor}&bg_color=${bgColor}&show_icons=true`;
 
-    console.log(url);
+    await octokit.issues.createComment({
+      owner: "anuraghazra",
+      repo: "github-readme-stats",
+      body: `
+      \rTheme preview (bot)  
+      \r![](${url})
+      `,
+      issue_number: pullRequestId,
+    });
   } catch (error) {
     core.setFailed(error.message);
   }
