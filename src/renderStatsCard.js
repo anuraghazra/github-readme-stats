@@ -51,6 +51,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     totalPRs,
     contributedTo,
     rank,
+    totalForkRepositories
   } = stats;
   const {
     hide = [],
@@ -111,6 +112,12 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       label: "Contributed to",
       value: contributedTo,
       id: "contribs",
+    },
+    forks: {
+      icon: icons.fork,
+      label: "Total Forks",
+      value: totalForkRepositories,
+      id: "forks",
     },
   };
 

@@ -16,6 +16,7 @@ const data = {
       pullRequests: { totalCount: 300 },
       issues: { totalCount: 200 },
       followers: { totalCount: 100 },
+      forkRepositories: { totalCount: 3 },
       repositories: {
         totalCount: 5,
         nodes: [
@@ -70,6 +71,7 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalStars: 400,
       rank,
+      totalForkRepositories: 3
     });
   });
 
@@ -103,6 +105,7 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalStars: 400,
       rank,
+      totalForkRepositories: 3
     });
   });
 
@@ -131,6 +134,7 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalStars: 400,
       rank,
+      totalForkRepositories: 3
     });
   });
 });

@@ -14,6 +14,7 @@ const stats = {
   totalPRs: 400,
   contributedTo: 500,
   rank: null,
+  totalForkRepositories: 3
 };
 stats.rank = calculateRank({
   totalCommits: stats.totalCommits,
@@ -37,6 +38,7 @@ const data = {
       pullRequests: { totalCount: stats.totalPRs },
       issues: { totalCount: stats.totalIssues },
       followers: { totalCount: 0 },
+      forkRepositories: { totalCount: stats.totalForkRepositories },
       repositories: {
         totalCount: 1,
         nodes: [{ stargazers: { totalCount: 100 } }],
@@ -106,7 +108,7 @@ describe("Test /api/", () => {
     const { req, res } = faker(
       {
         username: "anuraghazra",
-        hide: "issues,prs,contribs",
+        hide: "issues,prs,contribs,forks",
         show_icons: true,
         hide_border: true,
         line_height: 100,
@@ -123,7 +125,7 @@ describe("Test /api/", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
       renderStatsCard(stats, {
-        hide: ["issues", "prs", "contribs"],
+        hide: ["issues", "prs", "contribs", "forks"],
         show_icons: true,
         hide_border: true,
         line_height: 100,
@@ -207,6 +209,7 @@ describe("Test /api/", () => {
         {
           ...stats,
           totalCommits: stats.totalCommits + 100,
+          totalForkRepositories: 3,
           rank: calculateRank({
             totalCommits: stats.totalCommits + 100,
             totalRepos: 1,

@@ -18,6 +18,7 @@ describe("Test renderStatsCard", () => {
     totalPRs: 400,
     contributedTo: 500,
     rank: { level: "A+", score: 40 },
+    totalForkRepositories: 3
   };
 
   it("should render correctly", () => {
@@ -29,11 +30,12 @@ describe("Test renderStatsCard", () => {
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height")
-    ).toBe("195");
+    ).toBe("220");
     expect(getByTestId(document.body, "stars").textContent).toBe("100");
     expect(getByTestId(document.body, "commits").textContent).toBe("200");
     expect(getByTestId(document.body, "issues").textContent).toBe("300");
     expect(getByTestId(document.body, "prs").textContent).toBe("400");
+    expect(getByTestId(document.body, "forks").textContent).toBe("3");
     expect(getByTestId(document.body, "contribs").textContent).toBe("500");
     expect(queryByTestId(document.body, "card-bg")).toBeInTheDocument();
     expect(queryByTestId(document.body, "rank-circle")).toBeInTheDocument();
@@ -55,7 +57,7 @@ describe("Test renderStatsCard", () => {
 
   it("should hide individual stats", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      hide: ["issues", "prs", "contribs"],
+      hide: ["issues", "prs", "contribs", "forks"],
     });
 
     expect(
@@ -67,6 +69,7 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "issues")).toBeNull();
     expect(queryByTestId(document.body, "prs")).toBeNull();
     expect(queryByTestId(document.body, "contribs")).toBeNull();
+    expect(queryByTestId(document.body, "forks")).toBeNull();
   });
 
   it("should hide_rank", () => {

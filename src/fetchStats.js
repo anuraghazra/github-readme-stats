@@ -6,6 +6,9 @@ const githubUsernameRegex = require("github-username-regex");
 
 require("dotenv").config();
 
+const getRepositoriesArgs = (isFork = false) =>
+  `first: 100, ownerAffiliations: OWNER, isFork: ${isFork}, orderBy: {direction: DESC, field: STARGAZERS}`;
+
 const fetcher = (variables, token) => {
   return request(
     {
@@ -30,7 +33,10 @@ const fetcher = (variables, token) => {
           followers {
             totalCount
           }
-          repositories(first: 100, ownerAffiliations: OWNER, isFork: false, orderBy: {direction: DESC, field: STARGAZERS}) {
+          forkRepositories: repositories(${getRepositoriesArgs(true)}) {
+            totalCount
+          }
+          repositories(${getRepositoriesArgs()}) {
             totalCount
             nodes {
               stargazers {
@@ -98,6 +104,7 @@ async function fetchStats(
     totalStars: 0,
     contributedTo: 0,
     rank: { level: "C", score: 0 },
+    totalForkRepositories: 0
   };
 
   let res = await retryer(fetcher, { login: username });
@@ -117,6 +124,7 @@ async function fetchStats(
 
   stats.name = user.name || user.login;
   stats.totalIssues = user.issues.totalCount;
+  stats.totalForkRepositories = user.forkRepositories.totalCount;
 
   stats.totalCommits =
     contributionCount.totalCommitContributions + experimental_totalCommits;
