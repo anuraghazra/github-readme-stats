@@ -1,7 +1,7 @@
-const { request, logger } = require("./utils");
+const { request, logger } = require("../common/utils");
 const axios = require("axios");
-const retryer = require("./retryer");
-const calculateRank = require("./calculateRank");
+const retryer = require("../common/retryer");
+const calculateRank = require("../calculateRank");
 const githubUsernameRegex = require("github-username-regex");
 
 require("dotenv").config();

@@ -5,9 +5,9 @@ const {
   clampValue,
   CONSTANTS,
   logger,
-} = require("../src/utils");
-const fetchRepo = require("../src/fetchRepo");
-const renderRepoCard = require("../src/renderRepoCard");
+} = require("../src/common/utils");
+const fetchRepo = require("../src/fetchers/repo-fetcher");
+const renderRepoCard = require("../src/cards/repo-card");
 
 module.exports = async (req, res) => {
   const {
