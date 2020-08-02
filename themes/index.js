@@ -143,6 +143,12 @@ const themes = {
     text_color: "859900",
     bg_color: "fdf6e3",
   },
+  "Another one": {
+    title_color: "ff0",
+    icon_color: "f00",
+    text_color: "f0f",
+    bg_color: "0f0",
+  },
   "new theme": {
     title_color: "ff0",
     icon_color: "b58900",
