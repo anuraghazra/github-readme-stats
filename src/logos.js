@@ -3,8 +3,7 @@ const path = require("path");
 
 const replaceFillColor = (svg, color) =>
   svg
-    .replace(/fill="#[a-zA-Z0-9]+"/g, `fill="${color}"`)
-    .replace(/fill:(\s)?#[a-zA-Z0-9]+;/g, `fill:${color}`);
+    .replace(/fill="#[a-zA-Z0-9]+"/g, `fill="${color}"`);
 
 const readFile = (name) => {
   const logoFilePath = path.join(__dirname, "..", "logos", `${name}.svg`);

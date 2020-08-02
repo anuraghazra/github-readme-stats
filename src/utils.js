@@ -169,7 +169,7 @@ const chunk = (arr, size) =>
 
 const testPrimaryLanguage = [
   /* {
-    stargazers: { totalCount: 41 },
+    stargazers: { totalCount: 0 },
     primaryLanguage: null
   } // comment out this when you need for empty list of primary language */
   { primaryLanguage: { name: "c++", color: "#f34b7d" } },
@@ -181,7 +181,6 @@ const testPrimaryLanguage = [
   { primaryLanguage: { name: "c#", color: "#178600" } },
   { primaryLanguage: { name: "java", color: "#b07219" } },
   { primaryLanguage: { name: "ruby", color: "#701516" } },
-  { primaryLanguage: { name: "dotnet", color: "#cccccc" } },
   { primaryLanguage: { name: "haskell", color: "#5e5086" } },
   { primaryLanguage: { name: "html", color: "#e34c26" } },
   { primaryLanguage: { name: "swift", color: "#ffac45" } },
@@ -195,10 +194,6 @@ const testPrimaryLanguage = [
   { primaryLanguage: { name: "powershell", color: "#012456" } },
   { primaryLanguage: { name: "dart", color: "#00B4AB" } },
   { primaryLanguage: { name: "julia", color: "#a270ba" } },
-  { primaryLanguage: { name: "docker", color: "#cccccc" } },
-  { primaryLanguage: { name: "ngnix", color: "#cccccc" } },
-  { primaryLanguage: { name: "jenkins", color: "#cccccc" } },
-  { primaryLanguage: { name: "markdown", color: "#cccccc" } },
   { primaryLanguage: { name: "vim-script", color: "#199f4b" } },
   { primaryLanguage: { name: "common-lisp", color: "#3fb68b" } },
   { primaryLanguage: { name: "emacs-lisp", color: "#c065db" } },
@@ -210,8 +205,6 @@ const testPrimaryLanguage = [
   { primaryLanguage: { name: "elm", color: "#60B5CC" } },
   { primaryLanguage: { name: "f#", color: "#b845fc" } },
   { primaryLanguage: { name: "ocaml", color: "#3be133" } },
-  { primaryLanguage: { name: "racket", color: "#3c5caa" } },
-  { primaryLanguage: { name: "smalltalk", color: "#596706" } },
 ];
 
 module.exports = {
