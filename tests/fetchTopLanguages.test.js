@@ -1,7 +1,7 @@
 require("@testing-library/jest-dom");
 const axios = require("axios");
 const MockAdapter = require("axios-mock-adapter");
-const fetchTopLanguages = require("../src/fetchTopLanguages");
+const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 
 const mock = new MockAdapter(axios);
 

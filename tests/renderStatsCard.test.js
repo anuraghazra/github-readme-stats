@@ -1,6 +1,6 @@
 require("@testing-library/jest-dom");
 const cssToObject = require("css-to-object");
-const renderStatsCard = require("../src/renderStatsCard");
+const renderStatsCard = require("../src/cards/stats-card");
 
 const {
   getByTestId,
@@ -187,7 +187,6 @@ describe("Test renderStatsCard", () => {
       `#${themes.radical.bg_color}`
     );
   });
-
 
   it("should render icons correctly", () => {
     document.body.innerHTML = renderStatsCard(stats, {

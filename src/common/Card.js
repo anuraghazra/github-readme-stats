@@ -1,5 +1,5 @@
-const { FlexLayout } = require("./utils");
-const { getAnimations } = require("./getStyles");
+const { FlexLayout } = require("../common/utils");
+const { getAnimations } = require("../getStyles");
 
 class Card {
   constructor({

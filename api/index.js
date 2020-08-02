@@ -5,9 +5,9 @@ const {
   parseArray,
   clampValue,
   CONSTANTS,
-} = require("../src/utils");
-const fetchStats = require("../src/fetchStats");
-const renderStatsCard = require("../src/renderStatsCard");
+} = require("../src/common/utils");
+const fetchStats = require("../src/fetchers/stats-fetcher");
+const renderStatsCard = require("../src/cards/stats-card");
 
 module.exports = async (req, res) => {
   const {
@@ -18,6 +18,7 @@ module.exports = async (req, res) => {
     hide_rank,
     show_icons,
     count_private,
+    include_all_commits,
     line_height,
     title_color,
     icon_color,
@@ -31,7 +32,11 @@ module.exports = async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    stats = await fetchStats(username, parseBoolean(count_private));
+    stats = await fetchStats(
+      username,
+      parseBoolean(count_private),
+      parseBoolean(include_all_commits)
+    );
   } catch (err) {
     return res.send(
       renderError(
@@ -56,6 +61,7 @@ module.exports = async (req, res) => {
       hide_title: parseBoolean(hide_title),
       hide_border: parseBoolean(hide_border),
       hide_rank: parseBoolean(hide_rank),
+      include_all_commits: parseBoolean(include_all_commits),
       line_height,
       title_color,
       icon_color,

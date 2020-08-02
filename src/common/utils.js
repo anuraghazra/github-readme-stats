@@ -1,6 +1,6 @@
 const axios = require("axios");
 const wrap = require("word-wrap");
-const themes = require("../themes");
+const themes = require("../../themes");
 
 const renderError = (message, secondaryMessage = "") => {
   return `

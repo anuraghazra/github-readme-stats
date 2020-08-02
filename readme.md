@@ -41,6 +41,8 @@
     <a href="readme_de.md">Deutsch</a>
     ·
     <a href="readme_ja.md">日本語</a>
+     ·
+    <a href="readme_pt-BR.md">Português Brasileiro</a>
   </p>
 </p>
 <p align="center">Loved the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
@@ -135,8 +137,9 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
 - `show_icons` - _(boolean)_
+- `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
 - `count_private` - Count private commits _(boolean)_
-- `line_height` - Sets the line-height betweent text _(number)_
+- `line_height` - Sets the line-height between text _(number)_
 
 #### Repo Card Exclusive Options:
 
@@ -235,6 +238,10 @@ You can use the `&layout=compact` option to change the card design.
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
+- Include All Commits
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+
 - Themes
 
 Choose from any of the [default themes](#themes)
@@ -277,7 +284,7 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary>Guide on setting up Vercel</summary>
+ <summary><b> Guide on setting up Vercel  🔨 </b></summary>
 
 1. Go to [vercel.com](https://vercel.com/)
 1. Click on `Log in`  

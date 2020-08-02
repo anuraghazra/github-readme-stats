@@ -3,12 +3,20 @@ const {
   getCardColors,
   FlexLayout,
   encodeHTML,
-} = require("../src/utils");
-const { getStyles } = require("./getStyles");
-const icons = require("./icons");
-const Card = require("./Card");
+} = require("../common/utils");
+const { getStyles } = require("../getStyles");
+const icons = require("../common/icons");
+const Card = require("../common/Card");
 
-const createTextNode = ({ icon, label, value, id, index, showIcons }) => {
+const createTextNode = ({
+  icon,
+  label,
+  value,
+  id,
+  index,
+  showIcons,
+  shiftValuePos,
+}) => {
   const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
 
@@ -24,7 +32,12 @@ const createTextNode = ({ icon, label, value, id, index, showIcons }) => {
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       ${iconSvg}
       <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
-      <text class="stat" x="135" y="12.5" data-testid="${id}">${kValue}</text>
+      <text 
+        class="stat" 
+        x="${shiftValuePos ? (showIcons ? 200 : 170) : 150}" 
+        y="12.5" 
+        data-testid="${id}"
+      >${kValue}</text>
     </g>
   `;
 };
@@ -45,6 +58,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_title = false,
     hide_border = false,
     hide_rank = false,
+    include_all_commits = false,
     line_height = 25,
     title_color,
     icon_color,
@@ -74,7 +88,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     commits: {
       icon: icons.commits,
-      label: "Total Commits",
+      label: `Total Commits${
+        include_all_commits ? "" : ` (${new Date().getFullYear()})`
+      }`,
       value: totalCommits,
       id: "commits",
     },
@@ -107,6 +123,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         ...STATS[key],
         index,
         showIcons: show_icons,
+        shiftValuePos: !include_all_commits,
       })
     );
 
