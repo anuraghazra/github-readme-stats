@@ -41,6 +41,8 @@
     <a href=".github/README-de.md">Deutsch</a>
     ·
     <a href=".github/README-jp.md">日本語</a>
+     ·
+    <a href=".github/README-pt-BR.md">Português Brasileiro</a>
   </p>
 </p>
 <p align="center">Loved the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
@@ -282,7 +284,7 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary>Guide on setting up Vercel</summary>
+ <summary><b> Guide on setting up Vercel  🔨 </b></summary>
 
 1. Go to [vercel.com](https://vercel.com/)
 1. Click on `Log in`  
