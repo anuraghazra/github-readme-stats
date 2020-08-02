@@ -44,7 +44,7 @@
 # Características
 
 - [Tarjeta de estadísticas de GitHub](#tarjeta-de-estadísticas-de-github)
-- [Pins extra de GitHub](#pins-extra-de-github)
+- [Pins adicionales de GitHub](#pines-adicionales-de-github)
 - [Temas](#temas)
 - [Personalización](#personalización)
 - [Despliega por tu cuenta](#despliega-tu-propia-instancia-de-vercel)
@@ -107,69 +107,59 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-Puedes ver una vista previa de [todos los temas disponibles](./themes/README.md) o ver el [archivo de configuración](./themes/index.js) del tema y también **puedes contribuir con nuevos temas** si lo deseas: D
+Puedes ver una vista previa de [todos los temas disponibles](./themes/README.md) o ver el [archivo de configuración](./themes/index.js) del tema y también **puedes contribuir con nuevos temas** si lo deseas :D
 
 ### Personalización
 
 Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que desees con los parámetros URL.
 
-Opciones de personalización:
+#### Opciones Comunes:
 
-| Option      | type      | description                   | Stats Card (default) | Repo Card (default) |
-| ----------- | --------- | ----------------------------- | -------------------- | ------------------- |
-| title_color | hex color | color del título              | 2f80ed               | 2f80ed              |
-| text_color  | hex color | color del contenido           | 333                  | 333                 |
-| icon_color  | hex color | color del ícono               | 4c71f2               | 586069              |
-| bg_color    | hex color | color de fondo                | FFFEFE               | FFFEFE              |
-| line_height | number    | controla el line_height       | 30                   | N/A                 |
-| hide_rank   | boolean   | oculta la clasificación       | false                | N/A                 |
-| hide_title  | boolean   | oculta el título              | false                | N/A                 |
-| hide_border | boolean   | oculta el borde               | false                | N/A                 |
-| show_owner  | boolean   | muestra el propietario        | N/A                  | false               |
-| show_icons  | boolean   | muestra los íconos            | false                | N/A                 |
-| theme       | string    | establece un tema incorporado | 'default'            | 'default_repocard'  |
+- `title_color` - Color del título _(hex color)_
+- `text_color` - Color del contenido _(hex color)_
+- `icon_color` - Color de icono si esta disponible _(hex color)_
+- `bg_color` - Color de fondo _(hex color)_
+- `theme` - Nombre del tema, elige uno de [todos los temas disponible ](./themes/README.md)
+- `cache_seconds` - Cache _(min: 1800, max: 86400)_
 
----
+> Nota sobre la caché: las tarjetas de Repo tienen un caché predeterminado de 30 minutos (1800 segundos) si el recuento forks y el recuento de estrellas es inferior a 1k; de lo contrario, son 2 horas (7200). También tenga en cuenta que el caché está sujeto a un mínimo de 30 minutos y un máximo de 24 horas
 
-### Ejemplo
+#### Opciones exclusivas de la tarjeta de estadísticas:
 
-- Predeterminado
+- `hide` - Ocultar los elementos especificados de las estadísticas _ (valores separados por comas) _
+- `hide_title` - _(boolean)_
+- `hide_rank` - _(boolean)_
+- `show_icons` - _(boolean)_
+- `include_all_commits` - Cuente los commits totales en lugar de solo los commits del año actual _(boolean)_
+- `count_private` - Cuenta los commits privadas _(boolean)_
+- `line_height` - Establece el alto de línea entre texto _(number)_
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+#### Opciones exclusivas de la tarjeta Repo:
 
-- Ocultando estadísticas específicas
+- `show_owner` - Mostrar el nombre del propietario del repositorio _(boolean)_
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","issues"])
+#### Opciones exclusivas de la tarjeta de lenguajes:
 
-- Mostrando íconos
+- `hide` - Ocultar los lenguajes especificados de la tarjeta _(valores separados por comas)_
+- `hide_title` - _(boolean)_
+- `layout` - Cambiar entre dos diseños disponibles `default` & `compact`
+- `card_width` - Establecer el ancho de la tarjeta manualmente _(number)_
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["issues"]&show_icons=true)
-
-- Temas
-
-Elige uno de los [temas predeterminados](#temas)
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
-
-- Personalizando la tarjeta de estadísticas
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
-
-- Personalizando la tarjeta de repositorio
-
-![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+> :warning: **Importante:**  
+> Los nombres de los idiomas deben tener escape de uri, como se especifica en [Código porciento](https://es.wikipedia.org/wiki/C%C3%B3digo_porciento)  
+> (es decir: `c++` debería convertirse en `c%2B%2B`,`jupyter notebook` debería convertirse en `jupyter%20notebook`, etc.)
 
 ---
 
-# Pins extra de GitHub
+# Pines adicionales de GitHub
 
-Los pins extra de GitHub te permiten anclar más de 6 repositorios en tu perfil utilizando el archivo README.md.
+Los pines adicionales de GitHub le permiten fijar más de 6 repositorios en su perfil utilizando un readme de perfil de GitHub.
 
-¡Bien! Ya no estás limitado a 6 repositorios anclados.
+Yey! Ya no está limitado a 6 repositorios anclados.
 
 ### Utilización
 
-Copia y pega este código en tu README.md y cambia los links.
+Copie y pegue este código en su archivo Léame y cambie los enlaces.
 
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
@@ -185,9 +175,89 @@ Utiliza la variable [show_owner](#customización) para incluir el nombre de usua
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
-### Pequeño consejo (alinear las tarjetas de repositorios)
+# Tarjeta de lenguajes principales
 
-Usualmente no serías capaz de alinear las imágenes una al lado de otra. Para lograrlo, puedes realizar esto:
+La tarjeta de lenguajes principales muestra los lenguajes principales del usuario de github que se han utilizado principalmente.
+
+_NOTA: los lenguajes principales no indican mi nivel de habilidad o algo así, es una métrica de github de los lenguajes que tengo más código en github, es una nueva característica de github-readme-stats_
+
+### Utilización
+
+Copie y pegue este código en su readme y cambie los enlaces.
+
+Endpoint: `api/top-langs?username=anuraghazra`
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Ocultar lenguajes individuales
+
+Puede usar el parámetro `? Hide = language1, language2` para ocultar lenguajes individuales.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Diseño de tarjeta de lenguaje compacta
+
+Puede usar la opción `& layout = compact` para cambiar el diseño de la tarjeta.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Ejemplo
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+- Diseño compacto
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
+---
+
+### Todos los ejemplos
+
+- Por Defecto
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+
+- Ocultar estadísticas específicas
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
+
+- Mostrando iconos
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
+
+- Incluir todos los Commits
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+
+- Temas
+
+Elija entre cualquiera de los [temas predeterminados](#themes)
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+
+- Personalizando tarjeta de estadísticas
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+
+- Personalizar la tarjeta de repositorio
+
+![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+
+- Lenguajes Principales
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+---
+
+### Consejo rápido (alinee las tarjetas de repositorio)
+
+Por lo general, no podrá diseñar las imágenes una al lado de la otra. Para hacerlo, puede usar este enfoque:
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -222,7 +292,7 @@ Nota: debido a esto [#58](https://github.com/anuraghazra/github-readme-stats/pul
 1. Selecciona `Import Git Repository`  
    ![](https://files.catbox.moe/pqub9q.png)
 1. Selecciona "root" y matén todo como está, simplemente añade tu variable de entorno llamada PAT_1 (como se muestra), la cual contendrá un token de acceso personal (PAT), el cual puedes crear fácilmente [aquí](https://github.com/settings/tokens/new) (mantén todo como está, simplemente asígnale un nombre, puede ser cualquiera que desees)
-   ![](https://files.catbox.moe/caem5b.png)
+   ![](https://files.catbox.moe/0ez4g7.png)
 1. Clickea "Deploy" y ya está listo. ¡Ve tus dominios para usar la API!
 
 </details>
