@@ -14,29 +14,33 @@ Use `?theme=THEME_NAME` parameter like so :-
 
 > These themes work both for the Stats Card and Repo Card.
 
-|                                              |                                              |                                                          |
-| :------------------------------------------: | :------------------------------------------: | :------------------------------------------------------: |
-|        `default` ![default][default]         |             `dark` ![dark][dark]             |              `radical` ![radical][radical]               |
-|           `merko` ![merko][merko]            |        `gruvbox` ![gruvbox][gruvbox]         |          `tokyonight` ![tokyonight][tokyonight]          |
-|        `onedark` ![onedark][onedark]         |          `cobalt` ![cobalt][cobalt]          |           `synthwave` ![synthwave][synthwave]            |
-| `highcontrast` ![highcontrast][highcontrast] |        `dracula` ![dracula][dracula]         |             `prussian` ![prussian][prussian]             |
-|        `monokai` ![monokai][monokai]         |              `vue` ![vue][vue]               | `shades-of-purple` ![shades-of-purple][shades-of-purple] |
-|       `nightowl` ![nightowl][nightowl]       |           `buefy` ![buefy][buefy]            |          `blue-green` ![blue-green][blue-green]          |
-|        `algolia` ![algolia][algolia]         | `great-gatsby` ![great-gatsby][great-gatsby] |               [Add your theme][add-theme]                |
+
+| | | |
+| :--: | :--: | :--: |
+| `default` ![default][default] | `dark` ![dark][dark] | `radical` ![radical][radical] |
+| `merko` ![merko][merko] | `gruvbox` ![gruvbox][gruvbox] | `tokyonight` ![tokyonight][tokyonight] |
+| `onedark` ![onedark][onedark] | `cobalt` ![cobalt][cobalt] | `synthwave` ![synthwave][synthwave] |
+| `highcontrast` ![highcontrast][highcontrast] | `dracula` ![dracula][dracula] | `prussian` ![prussian][prussian] |
+| `monokai` ![monokai][monokai] | `vue` ![vue][vue] | `shades-of-purple` ![shades-of-purple][shades-of-purple] |
+| `nightowl` ![nightowl][nightowl] | `buefy` ![buefy][buefy] | `blue-green` ![blue-green][blue-green] |
+| `algolia` ![algolia][algolia] | `great-gatsby` ![great-gatsby][great-gatsby] | `solarized-dark` ![solarized-dark][solarized-dark] |
+| `solarized-light` ![solarized-light][solarized-light] |  | [Add your theme][add-theme] |
 
 ## Repo Card
 
 > These themes work both for the Stats Card and Repo Card.
 
-|                                                               |                                                   |                                                               |
-| :-----------------------------------------------------------: | :-----------------------------------------------: | :-----------------------------------------------------------: |
-| `default_repocard` ![default_repocard][default_repocard_repo] |             `dark` ![dark][dark_repo]             |              `radical` ![radical][radical_repo]               |
-|                 `merko` ![merko][merko_repo]                  |        `gruvbox` ![gruvbox][gruvbox_repo]         |          `tokyonight` ![tokyonight][tokyonight_repo]          |
-|              `onedark` ![onedark][onedark_repo]               |          `cobalt` ![cobalt][cobalt_repo]          |           `synthwave` ![synthwave][synthwave_repo]            |
-|       `highcontrast` ![highcontrast][highcontrast_repo]       |        `dracula` ![dracula][dracula_repo]         |             `prussian` ![prussian][prussian_repo]             |
-|              `monokai` ![monokai][monokai_repo]               |              `vue` ![vue][vue_repo]               | `shades-of-purple` ![shades-of-purple][shades-of-purple_repo] |
-|             `nightowl` ![nightowl][nightowl_repo]             |           `buefy` ![buefy][buefy_repo]            |          `blue-green` ![blue-green][blue-green_repo]          |
-|              `algolia` ![algolia][algolia_repo]               | `great-gatsby` ![great-gatsby][great-gatsby_repo] |                  [Add your theme][add-theme]                  |
+
+| | | |
+| :--: | :--: | :--: |
+| `default_repocard` ![default_repocard][default_repocard_repo] | `dark` ![dark][dark_repo] | `radical` ![radical][radical_repo] |
+| `merko` ![merko][merko_repo] | `gruvbox` ![gruvbox][gruvbox_repo] | `tokyonight` ![tokyonight][tokyonight_repo] |
+| `onedark` ![onedark][onedark_repo] | `cobalt` ![cobalt][cobalt_repo] | `synthwave` ![synthwave][synthwave_repo] |
+| `highcontrast` ![highcontrast][highcontrast_repo] | `dracula` ![dracula][dracula_repo] | `prussian` ![prussian][prussian_repo] |
+| `monokai` ![monokai][monokai_repo] | `vue` ![vue][vue_repo] | `shades-of-purple` ![shades-of-purple][shades-of-purple_repo] |
+| `nightowl` ![nightowl][nightowl_repo] | `buefy` ![buefy][buefy_repo] | `blue-green` ![blue-green][blue-green_repo] |
+| `algolia` ![algolia][algolia_repo] | `great-gatsby` ![great-gatsby][great-gatsby_repo] | `solarized-dark` ![solarized-dark][solarized-dark_repo] |
+| `solarized-light` ![solarized-light][solarized-light_repo] |  | [Add your theme][add-theme] |
 
 [default]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
 [default_repocard]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default_repocard
@@ -59,27 +63,9 @@ Use `?theme=THEME_NAME` parameter like so :-
 [blue-green]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=blue-green
 [algolia]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=algolia
 [great-gatsby]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=great-gatsby
-[default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
-[default_repocard_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default_repocard
-[dark_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=dark
-[radical_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=radical
-[merko_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=merko
-[gruvbox_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=gruvbox
-[tokyonight_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=tokyonight
-[onedark_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=onedark
-[cobalt_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=cobalt
-[synthwave_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=synthwave
-[highcontrast_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=highcontrast
-[dracula_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=dracula
-[prussian_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=prussian
-[monokai_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=monokai
-[vue_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=vue
-[shades-of-purple_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=shades-of-purple
-[nightowl_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=nightowl
-[buefy_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=buefy
-[blue-green_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=blue-green
-[algolia_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=algolia
-[great-gatsby_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=great-gatsby
+[solarized-dark]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=solarized-dark
+[solarized-light]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=solarized-light
+
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
 
 Wanted to add a new theme? Consider reading the [contribution guidelines](../CONTRIBUTING.md#themes-contribution) :D

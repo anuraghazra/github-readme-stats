@@ -130,6 +130,17 @@ const themes = {
     icon_color: "84628F",
     text_color: "BEBEBE",
     bg_color: "242424",
+  "solarized-dark": {
+    title_color: "268bd2",
+    icon_color: "b58900",
+    text_color: "859900",
+    bg_color: "002b36",
+  },
+  "solarized-light": {
+    title_color: "268bd2",
+    icon_color: "b58900",
+    text_color: "859900",
+    bg_color: "fdf6e3",
   },
 };
 

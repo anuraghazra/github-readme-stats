@@ -1,6 +1,6 @@
 require("@testing-library/jest-dom");
 const cssToObject = require("css-to-object");
-const renderRepoCard = require("../src/renderRepoCard");
+const renderRepoCard = require("../src/cards/repo-card");
 
 const { queryByTestId } = require("@testing-library/dom");
 const themes = require("../themes");
