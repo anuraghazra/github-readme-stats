@@ -125,6 +125,24 @@ const themes = {
     text_color: "ffd95b",
     bg_color: "000000",
   },
+  "bear": {
+    title_color: "e03c8a",
+    icon_color: "00AEFF",
+    text_color: "bcb28d",
+    bg_color: "1f2023",
+  },
+  "solarized-dark": {
+    title_color: "268bd2",
+    icon_color: "b58900",
+    text_color: "859900",
+    bg_color: "002b36",
+  },
+  "solarized-light": {
+    title_color: "268bd2",
+    icon_color: "b58900",
+    text_color: "859900",
+    bg_color: "fdf6e3",
+  },
 };
 
 module.exports = themes;

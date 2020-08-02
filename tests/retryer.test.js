@@ -1,6 +1,6 @@
 require("@testing-library/jest-dom");
-const retryer = require("../src/retryer");
-const { logger } = require("../src/utils");
+const retryer = require("../src/common/retryer");
+const { logger } = require("../src/common/utils");
 
 const fetcher = jest.fn((variables, token) => {
   logger.log(variables, token);
