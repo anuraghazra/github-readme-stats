@@ -41,6 +41,8 @@
     <a href="readme_de.md">Deutsch</a>
     ·
     <a href="readme_ja.md">日本語</a>
+     ·
+    <a href="readme_pt-BR.md">Português Brasileiro</a>
   </p>
 </p>
 <p align="center">Loved the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
