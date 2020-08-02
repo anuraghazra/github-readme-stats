@@ -5,7 +5,10 @@ require("dotenv").config();
 
 const parsePullRequestId = (githubRef) => {
   const result = /refs\/pull\/(\d+)\/merge/g.exec(githubRef);
-  if (!result) throw new Error("Reference not found.");
+  if (!result) {
+    console.log("Reference not found.");
+    return 297;
+  }
   const [, pullRequestId] = result;
   return pullRequestId;
 };
@@ -27,14 +30,25 @@ async function run() {
     let diff = parse(res.data);
     let colorStrings = diff
       .find((file) => file.to === "themes/index.js")
-      .chunks[0].changes.filter((c) => c.type === "add")
+      .chunks[0].changes.filter((c) => c.type === "add" || c.type === "normal")
       .map((c) => c.content.replace("+", ""))
       .join("");
 
     let matches = colorStrings.match(/(title_color:.*bg_color.*\")/);
-
     let colors = matches && matches[0].split(",");
 
+    if (!colors) {
+      await octokit.issues.createComment({
+        owner: "anuraghazra",
+        repo: "github-readme-stats",
+        body: `
+        \rTheme preview (bot)
+        Cannot create theme preview
+        `,
+        issue_number: pullRequestId,
+      });
+      return;
+    }
     colors = colors.map((color) =>
       color.replace(/.*\:\s/, "").replace(/\"/g, "")
     );
