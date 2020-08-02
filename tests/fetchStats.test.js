@@ -152,11 +152,11 @@ describe("Test fetchStats", () => {
       .reply(200, data);
       
     mock.onGet("https://api.github.com/search/commits?q=author:anuraghazra")
-      .reply(200, { total_count: 1000 }); // not-working 
+      .reply(200, { total_count: 1000 });
 
     let stats = await fetchStats("anuraghazra", true, true);
     const rank = calculateRank({
-      totalCommits: totalCommitsCount, // 1000 + 150,
+      totalCommits: 1000 + totalCommitsCount,
       totalRepos: 5,
       followers: 100,
       contributions: 61,
@@ -168,7 +168,7 @@ describe("Test fetchStats", () => {
     expect(stats).toStrictEqual({
       contributedTo: 61,
       name: "Anurag Hazra",
-      totalCommits: totalCommitsCount, // 1000 + 150,
+      totalCommits: 1000 + totalCommitsCount,
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
