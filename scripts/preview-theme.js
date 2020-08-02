@@ -30,7 +30,7 @@ async function run() {
     let diff = parse(res.data);
     let colorStrings = diff
       .find((file) => file.to === "themes/index.js")
-      .chunks[0].changes.filter((c) => c.type === "add" || c.type === "normal")
+      .chunks[0].changes.filter((c) => c.type === "add")
       .map((c) => c.content.replace("+", ""))
       .join("");
 
