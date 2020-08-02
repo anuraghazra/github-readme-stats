@@ -138,8 +138,8 @@ async function fetchStats(
 
   stats.primaryLanguages = Array.from([
     ...new Map([
-      // ...testPrimaryLanguage  // comment out for testing
-      ...user.repositories.nodes
+      // ...testPrimaryLanguage  // comment out to check all primary language
+      ...user.repositories.nodes // keep enable repository nodes during development/deplyment otherwise test will failed 
         .map((n) => n.primaryLanguage && n.primaryLanguage)
         .filter((n) => n)
         .map((n) => ({ ...n, name: getPrimaryLangSlug(n.name) }))

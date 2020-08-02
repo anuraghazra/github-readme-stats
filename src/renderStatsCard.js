@@ -74,11 +74,12 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     plang_row_items,
     show_plang_color,
   } = options;
+  const _width = 495, plang_icon_width = 36, default_plang_size = Math.floor(_width / plang_icon_width);
   const pLangs =
     !hide_plang && primaryLanguages.length
       ? chunk(
           primaryLanguages,
-          isNaN(plang_row_items) || plang_row_items > 13 ? 13 : plang_row_items
+          isNaN(plang_row_items) || plang_row_items > default_plang_size ? default_plang_size : plang_row_items
         )
       : [];
   const lheight = parseInt(line_height, 10);
@@ -214,7 +215,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
   const card = new Card({
     title: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
-    width: 495,
+    width: _width,
     height,
     colors: {
       titleColor,
