@@ -5,9 +5,9 @@ const {
   parseArray,
   clampValue,
   CONSTANTS,
-} = require("../src/utils");
-const fetchStats = require("../src/fetchStats");
-const renderStatsCard = require("../src/renderStatsCard");
+} = require("../src/common/utils");
+const fetchStats = require("../src/fetchers/stats-fetcher");
+const renderStatsCard = require("../src/cards/stats-card");
 
 module.exports = async (req, res) => {
   const {

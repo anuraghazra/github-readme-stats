@@ -1,6 +1,7 @@
-const { request, logger, testPrimaryLanguage, getPrimaryLangSlug } = require("./utils");
-const retryer = require("./retryer");
-const calculateRank = require("./calculateRank");
+const { request, logger, testPrimaryLanguage, getPrimaryLangSlug } = require("../common/utils");
+const axios = require("axios");
+const retryer = require("../common/retryer");
+const calculateRank = require("../calculateRank");
 const githubUsernameRegex = require("github-username-regex");
 
 require("dotenv").config();

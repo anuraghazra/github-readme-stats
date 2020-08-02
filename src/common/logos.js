@@ -1,16 +1,18 @@
 const fs = require("fs");
 const path = require("path");
 
+const logoDir = path.join(__dirname, "..", '..', "logos")
+
 const replaceFillColor = (svg, color) =>
   svg
     .replace(/fill="#[a-zA-Z0-9]+"/g, `fill="${color}"`);
 
 const readFile = (name) => {
-  const logoFilePath = path.join(__dirname, "..", "logos", `${name}.svg`);
+  const logoFilePath = path.join(logoDir, `${name}.svg`);
   return fs.readFileSync(
     fs.existsSync(logoFilePath)
       ? logoFilePath
-      : path.join(__dirname, "..", "logos", `default.svg`),
+      : path.join(logoDir, `default.svg`),
     {
       encoding: "utf8",
     }

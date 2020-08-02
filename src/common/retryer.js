@@ -1,4 +1,4 @@
-const { logger } = require("./utils");
+const { logger } = require("../common/utils");
 
 const retryer = async (fetcher, variables, retries = 0) => {
   if (retries > 7) {
