@@ -113,19 +113,19 @@ const themes = {
     text_color: "0cf574",
     bg_color: "040f0f",
   },
-  "algolia": {
+  algolia: {
     title_color: "00AEFF",
     icon_color: "2DDE98",
     text_color: "FFFFFF",
     bg_color: "050F2C",
   },
-  "great-gatsby":{
+  "great-gatsby": {
     title_color: "ffa726",
     icon_color: "ffb74d",
     text_color: "ffd95b",
     bg_color: "000000",
   },
-  "bear": {
+  bear: {
     title_color: "e03c8a",
     icon_color: "00AEFF",
     text_color: "bcb28d",
@@ -139,6 +139,12 @@ const themes = {
   },
   "solarized-light": {
     title_color: "268bd2",
+    icon_color: "b58900",
+    text_color: "859900",
+    bg_color: "fdf6e3",
+  },
+  "new theme": {
+    title_color: "ff0",
     icon_color: "b58900",
     text_color: "859900",
     bg_color: "fdf6e3",
