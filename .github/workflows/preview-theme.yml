@@ -1,4 +1,4 @@
-name: Validate Theme Order
+name: Theme preview
 
 on:
   pull_request:
@@ -24,7 +24,6 @@ jobs:
         run: |
           npm install
           npm run preview-theme
-        inputs:
-          token: ${{ secrets.PERSONAL_TOKEN }}
         env:
           CI: true
+          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}

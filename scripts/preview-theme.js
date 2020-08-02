@@ -5,8 +5,7 @@ require("dotenv").config();
 
 async function run() {
   try {
-    const token = core.getInput("token");
-    const octokit = github.getOctokit(token || process.env.GITHUB_TOKEN);
+    const octokit = github.getOctokit(process.env.PERSONAL_TOKEN);
 
     let res = await octokit.pulls.get({
       owner: "anuraghazra",
