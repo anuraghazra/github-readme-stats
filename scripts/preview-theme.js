@@ -2,10 +2,30 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 const parse = require("parse-diff");
 require("dotenv").config();
+const fs = require("fs");
+
+try {
+  const ev = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH, "utf8"));
+  const prNum = ev.pull_request.number;
+  console.log({ prNum });
+} catch (err) {
+  console.log(err);
+}
+
+const parsePullRequestId = (githubRef) => {
+  const result = /refs\/pull\/(\d+)\/merge/g.exec(githubRef);
+  if (!result) throw new Error("Reference not found.");
+  const [, pullRequestId] = result;
+  return pullRequestId;
+};
 
 async function run() {
   try {
     const octokit = github.getOctokit(process.env.PERSONAL_TOKEN);
+
+    console.log(github.event);
+    const pullRequestId = parsePullRequestId(process.env.GITHUB_REF);
+    console.log(pullRequestId);
 
     let res = await octokit.pulls.get({
       owner: "anuraghazra",
