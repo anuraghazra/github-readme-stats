@@ -209,4 +209,15 @@ describe("Test renderStatsCard", () => {
       queryByTestId(document.body, "stars").previousElementSibling // the label
     ).not.toHaveAttribute("x");
   });
+
+  it("should change width if hide_rank is true/false", () => {
+    document.body.innerHTML = renderStatsCard(stats, { hide_rank: false });
+    expect(
+      document.body.getElementsByTagName("svg")[0].getAttribute("width")
+    ).toBe("495");
+    document.body.innerHTML = renderStatsCard(stats, { hide_rank: true });
+    expect(
+      document.body.getElementsByTagName("svg")[0].getAttribute("width")
+    ).toBe("295");
+  });
 });

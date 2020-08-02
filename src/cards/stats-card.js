@@ -129,10 +129,11 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  let height = Math.max(
-    45 + (statItems.length + 1) * lheight,
-    hide_rank ? 0 : 150
-  );
+  const height = Math.max(
+      45 + (statItems.length + 1) * lheight,
+      hide_rank ? 0 : 150
+    ),
+    width = 495 - (hide_rank ? 200 : 0);
 
   // Conditionally rendered elements
   const rankCircle = hide_rank
@@ -168,7 +169,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
   const card = new Card({
     title: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
-    width: 495,
+    width,
     height,
     colors: {
       titleColor,
