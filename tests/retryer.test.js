@@ -1,8 +1,9 @@
 require("@testing-library/jest-dom");
-const retryer = require("../src/retryer");
+const retryer = require("../src/common/retryer");
+const { logger } = require("../src/common/utils");
 
 const fetcher = jest.fn((variables, token) => {
-  console.log(variables, token);
+  logger.log(variables, token);
   return new Promise((res, rej) => res({ data: "ok" }));
 });
 

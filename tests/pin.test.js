@@ -2,8 +2,8 @@ require("@testing-library/jest-dom");
 const axios = require("axios");
 const MockAdapter = require("axios-mock-adapter");
 const pin = require("../api/pin");
-const renderRepoCard = require("../src/renderRepoCard");
-const { renderError } = require("../src/utils");
+const renderRepoCard = require("../src/cards/repo-card");
+const { renderError } = require("../src/common/utils");
 
 const data_repo = {
   repository: {
@@ -17,6 +17,7 @@ const data_repo = {
       name: "TypeScript",
     },
     forkCount: 100,
+    isTemplate: false,
   },
 };
 
