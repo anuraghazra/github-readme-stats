@@ -1,4 +1,4 @@
-const { request, logger, testPrimaryLanguage, getPrimaryLangSlug } = require("../common/utils");
+const { request, logger, svgFetcher, getPrimaryLangSlug } = require("../common/utils");
 const axios = require("axios");
 const retryer = require("../common/retryer");
 const calculateRank = require("../calculateRank");
@@ -38,7 +38,6 @@ const fetcher = (variables, token) => {
               }  
               primaryLanguage {
                 name
-                color
               }
             }
           }
@@ -111,7 +110,7 @@ async function fetchStats(
   if (include_all_commits) {
     experimental_totalCommits = await totalCommitsFetcher(username);
   }
-  
+
   if (res.data.errors) {
     logger.error(res.data.errors);
     throw Error(res.data.errors[0].message || "Could not fetch user");
@@ -137,17 +136,28 @@ async function fetchStats(
     return prev + curr.stargazers.totalCount;
   }, 0);
 
-  stats.primaryLanguages = Array.from([
-    ...new Map([
-      // ...testPrimaryLanguage  // comment out to check all primary language
-      ...user.repositories.nodes // keep enable repository nodes during development/deplyment otherwise test will failed 
-        .map((n) => n.primaryLanguage && n.primaryLanguage)
-        .filter((n) => n)
-        .map((n) => ({ ...n, name: getPrimaryLangSlug(n.name) }))
-        .map((item) => [item["name"], item]),
-    ]).values(),
-  ]);
-  
+  stats.primaryLanguages = await Promise.all(
+    Array.from([
+      ...new Map([
+        ...user.repositories.nodes
+          .map((n) => n.primaryLanguage && n.primaryLanguage)
+          .filter((n) => n)
+          .map((n) => ({ ...n, name: getPrimaryLangSlug(n.name) }))
+          .map((item) => [item["name"], item]),
+      ]).values(),
+    ])
+      .slice(0, 10)
+      .map(async (i) => {
+        let svg = "";
+        try {
+          svg = (await svgFetcher(i.name)).data;
+        } catch (_) {
+          svg = (await svgFetcher("github")).data;
+        }
+        return svg;
+      })
+  );
+
   stats.rank = calculateRank({
     totalCommits: stats.totalCommits,
     totalRepos: user.repositories.totalCount,

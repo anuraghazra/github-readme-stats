@@ -73,6 +73,16 @@ function request(data, headers) {
   });
 }
 
+const svgFetcher = async (lang) => {
+  return axios({
+    method: "get",
+    url: `https://devicons.github.io/devicon/devicon.git/icons/${lang}/${lang}-original.svg`,
+    headers: {
+      "Content-Type": "application/xml",
+    },
+  });
+};
+
 /**
  *
  * @param {String[]} items
@@ -167,46 +177,6 @@ const CONSTANTS = {
 const chunk = (arr, size) =>
   arr.reduceRight((r, i, _, s) => (r.push(s.splice(0, size)), r), []);
 
-const testPrimaryLanguage = [
-  /* {
-    stargazers: { totalCount: 0 },
-    primaryLanguage: null
-  } // comment out this when you need for empty list of primary language */
-  { primaryLanguage: { name: "c++", color: "#f34b7d" } },
-  { primaryLanguage: { name: "go", color: "#00ADD8" } },
-  { primaryLanguage: { name: "javascript", color: "#f1e05a" } },
-  { primaryLanguage: { name: "shell", color: "#89e051" } },
-  { primaryLanguage: { name: "r", color: "#198CE7" } },
-  { primaryLanguage: { name: "c", color: "#555555" } },
-  { primaryLanguage: { name: "c#", color: "#178600" } },
-  { primaryLanguage: { name: "java", color: "#b07219" } },
-  { primaryLanguage: { name: "ruby", color: "#701516" } },
-  { primaryLanguage: { name: "haskell", color: "#5e5086" } },
-  { primaryLanguage: { name: "html", color: "#e34c26" } },
-  { primaryLanguage: { name: "swift", color: "#ffac45" } },
-  { primaryLanguage: { name: "css", color: "#563d7c" } },
-  { primaryLanguage: { name: "scala", color: "#c22d40" } },
-  { primaryLanguage: { name: "matlab", color: "#e16737" } },
-  { primaryLanguage: { name: "python", color: "#3572A5" } },
-  { primaryLanguage: { name: "coffeescript", color: "#244776" } },
-  { primaryLanguage: { name: "erlang", color: "#B83998" } },
-  { primaryLanguage: { name: "php", color: "#4F5D95" } },
-  { primaryLanguage: { name: "powershell", color: "#012456" } },
-  { primaryLanguage: { name: "dart", color: "#00B4AB" } },
-  { primaryLanguage: { name: "julia", color: "#a270ba" } },
-  { primaryLanguage: { name: "vim-script", color: "#199f4b" } },
-  { primaryLanguage: { name: "common-lisp", color: "#3fb68b" } },
-  { primaryLanguage: { name: "emacs-lisp", color: "#c065db" } },
-  { primaryLanguage: { name: "groovy", color: "#e69f56" } },
-  { primaryLanguage: { name: "perl", color: "#0298c3" } },
-  { primaryLanguage: { name: "prolog", color: "#74283c" } },
-  { primaryLanguage: { name: "lua", color: "#000080" } },
-  { primaryLanguage: { name: "elixir", color: "#6e4a7e" } },
-  { primaryLanguage: { name: "elm", color: "#60B5CC" } },
-  { primaryLanguage: { name: "f#", color: "#b845fc" } },
-  { primaryLanguage: { name: "ocaml", color: "#3be133" } },
-];
-
 module.exports = {
   renderError,
   kFormatter,
@@ -222,7 +192,7 @@ module.exports = {
   wrapTextMultiline,
   getPrimaryLangSlug,
   chunk,
+  svgFetcher,
   logger,
   CONSTANTS,
-  testPrimaryLanguage,
 };

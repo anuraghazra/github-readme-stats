@@ -3,6 +3,7 @@ const axios = require("axios");
 const MockAdapter = require("axios-mock-adapter");
 const fetchStats = require("../src/fetchers/stats-fetcher");
 const calculateRank = require("../src/calculateRank");
+const { svgFetcher } = require("../src/common/utils");
 
 const data = {
   data: {
@@ -22,30 +23,26 @@ const data = {
           {
             stargazers: { totalCount: 100 },
             primaryLanguage: {
-              name: "JavaScript",
-              color: "#f1e05a",
+              name: "lang1",
             },
           },
           {
             stargazers: { totalCount: 100 },
             primaryLanguage: {
-              name: "c++",
-              color: "#f34b7d",
+              name: "lang2",
             },
           },
           {
             stargazers: { totalCount: 100 },
             primaryLanguage: {
-              name: "go",
-              color: "#00ADD8",
+              name: "lang3",
             },
           },
           { stargazers: { totalCount: 50 }, primaryLanguage: null },
           {
             stargazers: { totalCount: 50 },
             primaryLanguage: {
-              name: "JavaScript",
-              color: "#f1e05a",
+              name: "lang1",
             },
           },
         ],
@@ -77,10 +74,34 @@ afterEach(() => {
   mock.reset();
 });
 
+async function primaryLanguagesMockData() {
+  return [
+    (await svgFetcher("lang1")).data,
+    (await svgFetcher("lang2")).data,
+    (await svgFetcher("lang3")).data,
+  ]
+}
+
+function callMockSVGFetcherApi() {
+  mock
+    .onGet(
+      `https://devicons.github.io/devicon/devicon.git/icons/lang1/lang1-original.svg`
+    )
+    .reply(200, "<svg><Text></Text></svg>")
+    .onGet(
+      `https://devicons.github.io/devicon/devicon.git/icons/lang2/lang2-original.svg`
+    )
+    .reply(200, "<svg><Text></Text></svg>")
+    .onGet(
+      `https://devicons.github.io/devicon/devicon.git/icons/lang3/lang3-original.svg`
+    )
+    .reply(200, "<svg><Text></Text></svg>");
+}
+
 describe("Test fetchStats", () => {
   it("should fetch correct stats", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data);
-
+    callMockSVGFetcherApi();
     let stats = await fetchStats("anuraghazra");
     const rank = calculateRank({
       totalCommits: 100,
@@ -100,11 +121,7 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalStars: 400,
       rank,
-      primaryLanguages: [
-        { name: "javascript", color: "#f1e05a" },
-        { name: "c++", color: "#f34b7d" },
-        { name: "go", color: "#00ADD8" },
-      ],
+      primaryLanguages: await primaryLanguagesMockData(),
     });
   });
 
@@ -118,7 +135,7 @@ describe("Test fetchStats", () => {
 
   it("should fetch and add private contributions", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data);
-
+    callMockSVGFetcherApi();
     let stats = await fetchStats("anuraghazra", true);
     const rank = calculateRank({
       totalCommits: 150,
@@ -138,20 +155,15 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalStars: 400,
       rank,
-      primaryLanguages: [
-        { name: "javascript", color: "#f1e05a" },
-        { name: "c++", color: "#f34b7d" },
-        { name: "go", color: "#00ADD8" },
-      ],
+      primaryLanguages: await primaryLanguagesMockData(),
     });
   });
 
   it("should fetch total commits", async () => {
+    callMockSVGFetcherApi();
+    mock.onPost("https://api.github.com/graphql").reply(200, data);
     mock
-      .onPost("https://api.github.com/graphql")
-      .reply(200, data);
-      
-    mock.onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
     let stats = await fetchStats("anuraghazra", true, true);
@@ -173,11 +185,7 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalStars: 400,
       rank,
-      primaryLanguages: [
-        { name: "javascript", color: "#f1e05a" },
-        { name: "c++", color: "#f34b7d" },
-        { name: "go", color: "#00ADD8" },
-      ],
+      primaryLanguages: await primaryLanguagesMockData(),
     });
   });
 });

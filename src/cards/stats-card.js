@@ -6,7 +6,6 @@ const {
   encodeHTML,
 } = require("../common/utils");
 const { getStyles } = require("../getStyles");
-const getLogos = require("../common/logos");
 const icons = require("../common/icons");
 const Card = require("../common/Card");
 
@@ -74,12 +73,16 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     plang_row_items,
     show_plang_color,
   } = options;
-  const _width = 495, plang_icon_width = 36, default_plang_size = Math.floor(_width / plang_icon_width);
+  const _width = 495,
+    plang_icon_width = 36,
+    default_plang_size = Math.floor(_width / plang_icon_width);
   const pLangs =
     !hide_plang && primaryLanguages.length
       ? chunk(
           primaryLanguages,
-          isNaN(plang_row_items) || plang_row_items > default_plang_size ? default_plang_size : plang_row_items
+          isNaN(plang_row_items) || plang_row_items > default_plang_size
+            ? default_plang_size
+            : plang_row_items
         )
       : [];
   const lheight = parseInt(line_height, 10);
@@ -177,22 +180,20 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const renderPrimaryLang = hide_plang
     ? ""
     : `
-    <g data-testid="p-lang-container" transform="translate(20, 130)">
+    <g transform="translate(15, 130)">
     ${pLangs
       .map(
         (_, i) =>
-          `<g data-testid="p-lang-row" ${pLanAnimation(i, i + 3, 150)} transform="translate(0, ${
-            i * 35
-          })">${FlexLayout({
+          `<g data-testid="p-lang-row" ${pLanAnimation(
+            i,
+            i + 3,
+            150
+          )} transform="translate(0, ${i * 35})">${FlexLayout({
             gap: 35,
             items: pLangs[i].map(
               (lang, j) =>
-                `<g data-testid="p-lang-logo" ${pLanAnimation(j, i + 5, 300)}>
-                ${getLogos({
-                  name: lang.name,
-                  color: icon_color ? icon_color : lang.color,
-                  show_plang_color,
-                })}
+                `<g transform="scale(0.1)" data-testid="p-lang-logo" ${pLanAnimation(j, i + 5, 300)}>
+                ${lang}
               </g>`
             ),
           }).join("")}</g>`
