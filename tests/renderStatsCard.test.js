@@ -35,7 +35,7 @@ describe("Test renderStatsCard", () => {
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height")
-    ).toBe("235");
+    ).toBe("225");
     expect(getByTestId(document.body, "stars").textContent).toBe("100");
     expect(getByTestId(document.body, "commits").textContent).toBe("200");
     expect(getByTestId(document.body, "issues").textContent).toBe("300");
@@ -225,7 +225,7 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard(stats, { hide_plang: true });
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height")
-    ).toBe("205");
+    ).toBe("225");
     expect(queryByTestId(document.body, "p-lang-container")).not.toBeInTheDocument();
   });
 });
