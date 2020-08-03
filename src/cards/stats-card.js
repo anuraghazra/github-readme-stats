@@ -69,22 +69,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     theme = "default",
     // plang
     hide_plang = false,
-    plang_animation = true,
-    plang_row_items,
-    show_plang_color,
   } = options;
-  const _width = 495,
-    plang_icon_width = 36,
-    default_plang_size = Math.floor(_width / plang_icon_width);
-  const pLangs =
-    !hide_plang && primaryLanguages.length
-      ? chunk(
-          primaryLanguages,
-          isNaN(plang_row_items) || plang_row_items > default_plang_size
-            ? default_plang_size
-            : plang_row_items
-        )
-      : [];
   const lheight = parseInt(line_height, 10);
 
   // returns theme based colors with proper overrides and defaults
@@ -148,7 +133,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
   let height = Math.max(
-    pLangs.length * 30 + 55 + (statItems.length + 1) * lheight,
+    75 + (statItems.length + 1) * lheight,
     hide_rank ? 0 : 150
   );
 
@@ -173,32 +158,27 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       </g>`;
 
   const pLanAnimation = (i, duration, offset = 3) =>
-    plang_animation
-      ? `class="stagger" style="animation-delay: ${(i + offset) * duration}ms"`
-      : "";
+    `class="stagger" style="animation-delay: ${(i + offset) * duration}ms"`;
 
   const renderPrimaryLang = hide_plang
     ? ""
     : `
     <g transform="translate(15, 130)">
-    ${pLangs
-      .map(
-        (_, i) =>
-          `<g data-testid="p-lang-row" ${pLanAnimation(
-            i,
-            i + 3,
-            150
-          )} transform="translate(0, ${i * 35})">${FlexLayout({
-            gap: 35,
-            items: pLangs[i].map(
-              (lang, j) =>
-                `<g transform="scale(0.1)" data-testid="p-lang-logo" ${pLanAnimation(j, i + 5, 300)}>
-                ${lang}
-              </g>`
+    ${
+      hide_plang
+        ? ""
+        : FlexLayout({
+            gap: 22,
+            items: primaryLanguages.map(
+              (icon, i) =>
+                `<g transform="scale(0.08)" ${pLanAnimation(
+                  i,
+                  i + 2,
+                  200
+                )}>${icon}</g>`
             ),
-          }).join("")}</g>`
-      )
-      .join("")}
+          }).join("")
+    }
     </g>
   `;
 
@@ -216,7 +196,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
   const card = new Card({
     title: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
-    width: _width,
+    width: 495,
     height,
     colors: {
       titleColor,

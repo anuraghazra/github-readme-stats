@@ -174,9 +174,6 @@ const CONSTANTS = {
   ONE_DAY: 86400,
 };
 
-const chunk = (arr, size) =>
-  arr.reduceRight((r, i, _, s) => (r.push(s.splice(0, size)), r), []);
-
 module.exports = {
   renderError,
   kFormatter,
@@ -191,7 +188,6 @@ module.exports = {
   clampValue,
   wrapTextMultiline,
   getPrimaryLangSlug,
-  chunk,
   svgFetcher,
   logger,
   CONSTANTS,
