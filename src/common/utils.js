@@ -159,15 +159,29 @@ const isTest = process.env.NODE_ENV === "test";
 const noop = () => {};
 // return console instance based on the environment
 const logger = !isTest ? console : { log: noop, error: noop };
-const getPrimaryLangSlug = (text) =>
-  text
-    .toString()
-    .toLowerCase()
-    .replace(/\s+/g, "-") // Replace spaces with -
-    .replace(/[^\w[+#]\-]+/g, "") // Remove all non-word chars
-    .replace(/\-\-+/g, "-") // Replace multiple - with single -
-    .replace(/^-+/, "") // Trim - from start of text
-    .replace(/-+$/, "");
+const getLanguageMap = (lang) => {
+  const langLowerCase = lang.toLowerCase();
+  switch (langLowerCase) {
+    case "c#":
+      return "csharp";
+      break;
+    case "c++":
+      return "cplusplus";
+      break;
+    case "css":
+      return "css3";
+      break;
+    case "html":
+      return "html5";
+      break;
+    case "dockerfile":
+      return "docker";
+      break;
+    default:
+      return langLowerCase;
+  }
+};
+
 const CONSTANTS = {
   THIRTY_MINUTES: 1800,
   TWO_HOURS: 7200,
@@ -187,7 +201,7 @@ module.exports = {
   getCardColors,
   clampValue,
   wrapTextMultiline,
-  getPrimaryLangSlug,
+  getLanguageMap,
   svgFetcher,
   logger,
   CONSTANTS,

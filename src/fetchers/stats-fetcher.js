@@ -1,4 +1,9 @@
-const { request, logger, svgFetcher, getPrimaryLangSlug } = require("../common/utils");
+const {
+  request,
+  logger,
+  svgFetcher,
+  getLanguageMap,
+} = require("../common/utils");
 const axios = require("axios");
 const retryer = require("../common/retryer");
 const calculateRank = require("../calculateRank");
@@ -136,27 +141,27 @@ async function fetchStats(
     return prev + curr.stargazers.totalCount;
   }, 0);
 
-  stats.primaryLanguages = await Promise.all(
-    Array.from([
-      ...new Map([
-        ...user.repositories.nodes
-          .map((n) => n.primaryLanguage && n.primaryLanguage)
-          .filter((n) => n)
-          .map((n) => ({ ...n, name: getPrimaryLangSlug(n.name) }))
-          .map((item) => [item["name"], item]),
-      ]).values(),
-    ])
-      .slice(0, 10)
-      .map(async (i) => {
-        let svg = "";
-        try {
-          svg = (await svgFetcher(i.name)).data;
-        } catch (_) {
-          svg = (await svgFetcher("github")).data;
-        }
-        return svg;
-      })
-  );
+  const getLanguages = [
+    ...new Map([
+      ...user.repositories.nodes
+        .map((n) => n.primaryLanguage && n.primaryLanguage)
+        .filter((n) => n)
+        .map((n) => ({ ...n, name: getLanguageMap(n.name) }))
+        .map((item) => [item["name"], item]),
+    ]).values(),
+  ];
+
+  stats.primaryLanguages = await Promise.all([
+    ...getLanguages.slice(0, 10).map(async (i) => {
+      let svg = "";
+      try {
+        svg = (await svgFetcher(i.name)).data;
+      } catch (_) {
+        svg = (await svgFetcher("github")).data;
+      }
+      return svg;
+    }),
+  ]);
 
   stats.rank = calculateRank({
     totalCommits: stats.totalCommits,
