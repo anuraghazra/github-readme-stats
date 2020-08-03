@@ -143,7 +143,7 @@ const themes = {
     text_color: "859900",
     bg_color: "fdf6e3",
   },
-   "pastel": {
+   "grape-pastel": {
     title_color: "b569db",
     icon_color: "37f093",
     text_color: "636263",
