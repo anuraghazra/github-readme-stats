@@ -136,6 +136,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `hide` - Hide's the specified items from stats _(Comma seperated values)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
+- `hide_plang` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
 - `count_private` - Count private commits _(boolean)_
@@ -155,6 +156,30 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 > :warning: **Important:**  
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)  
 > (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.)
+
+---
+
+# Primary language covered
+
+- [X] C
+- [X] C++
+- [X] C#
+- [X] Coffeescript
+- [X] CSS
+- [X] Elm
+- [X] Erlang
+- [X] Go
+- [X] Groovy
+- [X] HTML
+- [X] Java 
+- [X] JavaScript
+- [X] PHP
+- [X] Python
+- [X] Ruby
+- [X] Rust
+- [X] Scala
+- [X] Swift
+- [X] Typescript
 
 ---
 
