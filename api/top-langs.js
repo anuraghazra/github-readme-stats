@@ -20,15 +20,17 @@ module.exports = async (req, res) => {
     text_color,
     bg_color,
     theme,
+    ignore_lang = "",
     cache_seconds,
     layout,
   } = req.query;
   let topLangs;
+  let ignoreLangs = ignore_lang.split(",");
 
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    topLangs = await fetchTopLanguages(username);
+    topLangs = await fetchTopLanguages(username,ignoreLangs);
   } catch (err) {
     return res.send(renderError(err.message));
   }

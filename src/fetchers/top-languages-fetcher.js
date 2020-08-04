@@ -33,7 +33,7 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchTopLanguages(username) {
+async function fetchTopLanguages(username, ignore_langs=[]) {
   if (!username) throw Error("Invalid username");
 
   let res = await retryer(fetcher, { login: username });
@@ -47,6 +47,13 @@ async function fetchTopLanguages(username) {
 
   repoNodes = repoNodes
     .filter((node) => {
+      if(ignore_langs.length){ //speed up check ignore languages
+        for(edge of node.languages.edges){
+            if(ignore_langs.includes(edge.node.name)){
+                return false;
+            }
+        }
+      }
       return node.languages.edges.length > 0;
     })
     // flatten the list of language nodes
