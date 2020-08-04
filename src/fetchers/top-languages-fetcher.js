@@ -33,7 +33,7 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchTopLanguages(username, ignore_langs=[]) {
+async function fetchTopLanguages(username, ignore_langs = []) {
   if (!username) throw Error("Invalid username");
 
   let res = await retryer(fetcher, { login: username });
@@ -47,12 +47,15 @@ async function fetchTopLanguages(username, ignore_langs=[]) {
 
   repoNodes = repoNodes
     .filter((node) => {
-      if(ignore_langs.length){ //speed up check ignore languages
-        for(edge of node.languages.edges){
-            if(ignore_langs.includes(edge.node.name.trim().toLowerCase())){
-                return false;
-            }
+      //speed up check ignore languages
+      if (ignore_langs.length) {
+        let new_edges = [];
+        for (edge of node.languages.edges) {
+          if (!ignore_langs.includes(edge.node.name.trim().toLowerCase())) {
+            new_edges.push(edge);
+          }
         }
+        node.languages.edges = new_edges;
       }
       return node.languages.edges.length > 0;
     })
