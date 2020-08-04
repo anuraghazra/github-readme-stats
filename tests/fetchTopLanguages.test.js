@@ -81,4 +81,27 @@ describe("FetchTopLanguages", () => {
       "Could not resolve to a User with the login of 'noname'."
     );
   });
+
+  describe("FetchTopLanguages", () => {
+    it("should only contain javascript", async () => {
+      mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
+
+      let repo = await fetchTopLanguages("anuraghazra", ["html"]);
+      expect(repo).toStrictEqual({
+        javascript: {
+          color: "#0ff",
+          name: "javascript",
+          size: 200,
+        },
+      });
+    });
+
+    it("should throw error", async () => {
+      mock.onPost("https://api.github.com/graphql").reply(200, error);
+
+      await expect(fetchTopLanguages("anuraghazra")).rejects.toThrow(
+        "Could not resolve to a User with the login of 'noname'."
+      );
+    });
+  });
 });
