@@ -20,20 +20,39 @@ module.exports = async (req, res) => {
     text_color,
     bg_color,
     theme,
-    ignore_lang = "",
+    include_lang = "",
+    exclude_lang = "",
     cache_seconds,
     layout,
   } = req.query;
   let topLangs;
-  let ignoreLangs = ignore_lang.split(" ");
-  ignoreLangs.forEach(function (lang, index, langs) {
-    langs[index] = lang.toLowerCase().replace("plusplus", "++").replace("sharp","#");
-  });
 
+  let includeLangs = include_lang == "" ? [] : include_lang.split(" ");
+  let excludeLangs = exclude_lang == "" ? [] : exclude_lang.split(" ");
+
+  if (includeLangs.length) {
+    includeLangs.forEach(function (lang, index, langs) {
+      langs[index] = lang
+        .toLowerCase()
+        .replace("plusplus", "++")
+        .replace("sharp", "#");
+    });
+  } else if (excludeLangs.length) {
+    excludeLangs.forEach(function (lang, index, langs) {
+      langs[index] = lang
+        .toLowerCase()
+        .replace("plusplus", "++")
+        .replace("sharp", "#");
+    });
+  }
   res.setHeader("Content-Type", "image/svg+xml");
 
+  let isInclude = includeLangs.length > excludeLangs.length;
   try {
-    topLangs = await fetchTopLanguages(username, ignoreLangs);
+    topLangs = await fetchTopLanguages(username, {
+      names: isInclude ? includeLangs : excludeLangs,
+      include: isInclude,
+    });
   } catch (err) {
     return res.send(renderError(err.message));
   }

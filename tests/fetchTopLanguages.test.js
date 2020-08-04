@@ -86,11 +86,40 @@ describe("FetchTopLanguages", () => {
     it("should only contain javascript", async () => {
       mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
-      let repo = await fetchTopLanguages("anuraghazra", ["html"]);
+      let repo = await fetchTopLanguages("anuraghazra", {
+        names: ["javascript"],
+        include: true,
+      });
       expect(repo).toStrictEqual({
         javascript: {
           color: "#0ff",
           name: "javascript",
+          size: 200,
+        },
+      });
+    });
+
+    it("should throw error", async () => {
+      mock.onPost("https://api.github.com/graphql").reply(200, error);
+
+      await expect(fetchTopLanguages("anuraghazra")).rejects.toThrow(
+        "Could not resolve to a User with the login of 'noname'."
+      );
+    });
+  });
+
+  describe("FetchTopLanguages", () => {
+    it("should only contain html", async () => {
+      mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
+
+      let repo = await fetchTopLanguages("anuraghazra", {
+        names: ["javascript"],
+        include: false,
+      });
+      expect(repo).toStrictEqual({
+        HTML: {
+          color: "#0f0",
+          name: "HTML",
           size: 200,
         },
       });
