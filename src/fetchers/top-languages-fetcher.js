@@ -49,7 +49,7 @@ async function fetchTopLanguages(username, ignore_langs=[]) {
     .filter((node) => {
       if(ignore_langs.length){ //speed up check ignore languages
         for(edge of node.languages.edges){
-            if(ignore_langs.includes(edge.node.name)){
+            if(ignore_langs.includes(edge.node.name.trim().toLowerCase())){
                 return false;
             }
         }

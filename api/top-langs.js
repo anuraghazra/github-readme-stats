@@ -25,12 +25,15 @@ module.exports = async (req, res) => {
     layout,
   } = req.query;
   let topLangs;
-  let ignoreLangs = ignore_lang.split(",");
+  let ignoreLangs = ignore_lang.split(" ");
+  ignoreLangs.forEach(function (lang, index, langs) {
+    langs[index] = lang.toLowerCase().replace("plusplus", "++").replace("sharp","#");
+  });
 
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    topLangs = await fetchTopLanguages(username,ignoreLangs);
+    topLangs = await fetchTopLanguages(username, ignoreLangs);
   } catch (err) {
     return res.send(renderError(err.message));
   }
