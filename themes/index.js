@@ -143,6 +143,12 @@ const themes = {
     text_color: "859900",
     bg_color: "fdf6e3",
   },
+  "Dark-Night": {
+    title_color: "#000000, #3a2f3f, #4a658c, #00a7cb, #12ebdc",
+    icon_color: "b58900",
+    text_color: "859900",
+    bg_color: "fdf6e3",
+  },
 };
 
 module.exports = themes;
