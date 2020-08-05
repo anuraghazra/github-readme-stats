@@ -143,6 +143,12 @@ const themes = {
     text_color: "859900",
     bg_color: "fdf6e3",
   },
+  "Bright": {
+    title_color: "007184",
+    icon_color: "000000",
+    text_color: "052666",
+    bg_color: "fff200",
+  },
 };
 
 module.exports = themes;
