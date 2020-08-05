@@ -148,6 +148,7 @@ const themes = {
     text_color: "d8dee9",
     icon_color: "88c0d0",
     bg_color: "2e3440",
+  },
 };
 
 module.exports = themes;
