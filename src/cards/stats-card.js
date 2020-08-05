@@ -51,7 +51,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     totalPRs,
     contributedTo,
     rank,
-    totalForkRepositories
+    totalForkRepositories,
   } = stats;
   const {
     hide = [],
@@ -60,6 +60,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_border = false,
     hide_rank = false,
     include_all_commits = false,
+    show_forks = false,
     line_height = 25,
     title_color,
     icon_color,
@@ -86,6 +87,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       label: "Total Stars",
       value: totalStars,
       id: "stars",
+      isShowEnable: true,
     },
     commits: {
       icon: icons.commits,
@@ -94,40 +96,45 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       }`,
       value: totalCommits,
       id: "commits",
+      isShowEnable: true,
     },
     prs: {
       icon: icons.prs,
       label: "Total PRs",
       value: totalPRs,
       id: "prs",
+      isShowEnable: true,
     },
     issues: {
       icon: icons.issues,
       label: "Total Issues",
       value: totalIssues,
       id: "issues",
+      isShowEnable: true,
     },
     contribs: {
       icon: icons.contribs,
       label: "Contributed to",
       value: contributedTo,
       id: "contribs",
+      isShowEnable: true,
     },
     forks: {
       icon: icons.fork,
       label: "Total Forks",
       value: totalForkRepositories,
       id: "forks",
+      isShowEnable: show_forks,
     },
   };
 
   // filter out hidden stats defined by user & create the text nodes
-  const statItems = Object.keys(STATS)
-    .filter((key) => !hide.includes(key))
-    .map((key, index) =>
+  const statItems = Object.entries(STATS)
+    .filter((item) => !hide.includes(item[0]) && item[1].isShowEnable)
+    .map((item, index) =>
       // create the text nodes, and pass index so that we can calculate the line spacing
       createTextNode({
-        ...STATS[key],
+        ...STATS[item[0]],
         index,
         showIcons: show_icons,
         shiftValuePos: !include_all_commits,

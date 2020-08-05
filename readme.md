@@ -78,6 +78,14 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma s
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
+### Show total forked repository count
+
+To show forked repository count, you can pass a query parameter `show_forks=true`.
+
+```md
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_forks=true)
+```
+
 ### Adding private contributions count to total commits count
 
 You can add the count of all your private contributions to the total commits count by using the query parameter `?count_private=true`.
@@ -120,7 +128,7 @@ You can look at a preview for [all available themes](./themes/README.md) or chec
 
 You can customize the appearance of your `Stats Card` or `Repo Card` however you want with URL params.
 
-#### Common Options:
+#### Common Options
 
 - `title_color` - Card's title color _(hex color)_
 - `text_color` - Body text color _(hex color)_
@@ -131,7 +139,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 > Note on cache: Repo cards have default cache of 30mins (1800 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 30min and maximum of 24hours
 
-#### Stats Card Exclusive Options:
+#### Stats Card Exclusive Options
 
 - `hide` - Hide's the specified items from stats _(Comma seperated values)_
 - `hide_title` - _(boolean)_
@@ -141,11 +149,11 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `count_private` - Count private commits _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
 
-#### Repo Card Exclusive Options:
+#### Repo Card Exclusive Options
 
 - `show_owner` - Show the owner name of the repo _(boolean)_
 
-#### Language Card Exclusive Options:
+#### Language Card Exclusive Options
 
 - `hide` - Hide the languages specified from the card _(Comma seperated values)_
 - `hide_title` - _(boolean)_
