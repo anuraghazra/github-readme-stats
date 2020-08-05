@@ -140,6 +140,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
 - `count_private` - Count private commits _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
+- `custom_title` - Sets a custom title for the card
 
 #### Repo Card Exclusive Options:
 
