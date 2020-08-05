@@ -143,11 +143,17 @@ const themes = {
     text_color: "859900",
     bg_color: "fdf6e3",
   },
-  "solarized-light2": {
-    title_color: "268bd2",
-    icon_color: "b58900",
-    text_color: "859900",
-    bg_color: "fdf6e3",
+  nord: {
+    title_color: "81a1c1",
+    text_color: "d8dee9",
+    icon_color: "88c0d0",
+    bg_color: "2e3440",
+  },
+  nord2: {
+    title_color: "f00",
+    text_color: "d8dee9",
+    icon_color: "88c0d0",
+    bg_color: "2e3440",
   },
 };
 
