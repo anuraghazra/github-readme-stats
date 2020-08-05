@@ -110,7 +110,7 @@ Utilize o parâmetro `?theme=THEME_NAME`, da seguinte forma:
 
 #### Todos os temas predefinidos :
 
-dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
+dark, radical, merko, [gruvbox](https://github.com/morhetz/gruvbox), tokyonight, onedark, cobalt, synthwave, highcontrast, [dracula](https://github.com/dracula/dracula-theme)
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
