@@ -6,7 +6,6 @@ on:
     branches:
       - master
       - theme-preview-script
-    paths:
       - "themes/index.js"
 
 jobs:
@@ -27,3 +26,5 @@ jobs:
         env:
           CI: true
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
