@@ -143,6 +143,12 @@ const themes = {
     text_color: "859900",
     bg_color: "fdf6e3",
   },
+  "chartreuse-dark": {
+    title_color: "7fff00",
+    icon_color: "00AEFF",
+    text_color: "fff",
+    bg_color: "000",
+  },
 };
 
 module.exports = themes;
