@@ -4,20 +4,34 @@
   "description": "Dynamically generate stats for your github readmes",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "test:watch": "jest --watch"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
+    "theme-readme-gen": "node scripts/generate-theme-doc",
+    "preview-theme": "node scripts/preview-theme"
   },
   "author": "Anurag Hazra",
   "license": "MIT",
   "devDependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0",
     "@testing-library/dom": "^7.20.0",
     "@testing-library/jest-dom": "^5.11.0",
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",
     "css-to-object": "^1.1.0",
-    "jest": "^26.1.0"
+    "husky": "^4.2.5",
+    "jest": "^26.1.0",
+    "parse-diff": "^0.7.0"
   },
   "dependencies": {
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "emoji-name-map": "^1.2.8",
+    "github-username-regex": "^1.0.0",
+    "word-wrap": "^1.2.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
   }
 }

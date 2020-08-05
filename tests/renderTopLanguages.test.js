@@ -1,12 +1,8 @@
 require("@testing-library/jest-dom");
 const cssToObject = require("css-to-object");
-const renderTopLanguages = require("../src/renderTopLanguages");
+const renderTopLanguages = require("../src/cards/top-languages-card");
 
-const {
-  getByTestId,
-  queryByTestId,
-  queryAllByTestId,
-} = require("@testing-library/dom");
+const { queryByTestId, queryAllByTestId } = require("@testing-library/dom");
 const themes = require("../themes");
 
 describe("Test renderTopLanguages", () => {
@@ -32,7 +28,7 @@ describe("Test renderTopLanguages", () => {
     document.body.innerHTML = renderTopLanguages(langs);
 
     expect(queryByTestId(document.body, "header")).toHaveTextContent(
-      "Top Languages"
+      "Most Used Languages"
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
@@ -58,18 +54,26 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
-  it("should hide_langs_below", () => {
+  it("should hide languages when hide is passed", () => {
     document.body.innerHTML = renderTopLanguages(langs, {
-      hide_langs_below: 34,
+      hide: ["HTML"],
     });
-
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
-      "HTML"
-    );
-    expect(queryAllByTestId(document.body, "lang-name")[1]).toBeInTheDocument(
       "javascript"
     );
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toBeInTheDocument(
+      "css"
+    );
     expect(queryAllByTestId(document.body, "lang-name")[2]).not.toBeDefined();
+
+    // multiple languages passed
+    document.body.innerHTML = renderTopLanguages(langs, {
+      hide: ["HTML", "css"],
+    });
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
+      "javascript"
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[1]).not.toBeDefined();
   });
 
   it("should resize the height correctly depending on langs", () => {
@@ -88,25 +92,6 @@ describe("Test renderTopLanguages", () => {
       {}
     );
     expect(document.querySelector("svg")).toHaveAttribute("height", "245");
-  });
-
-  it("should hide_title", () => {
-    document.body.innerHTML = renderTopLanguages(langs, { hide_title: false });
-    expect(document.querySelector("svg")).toHaveAttribute("height", "205");
-    expect(queryByTestId(document.body, "lang-items")).toHaveAttribute(
-      "y",
-      "55"
-    );
-
-    // Lets hide now
-    document.body.innerHTML = renderTopLanguages(langs, { hide_title: true });
-    expect(document.querySelector("svg")).toHaveAttribute("height", "175");
-
-    expect(queryByTestId(document.body, "header")).not.toBeInTheDocument();
-    expect(queryByTestId(document.body, "lang-items")).toHaveAttribute(
-      "y",
-      "25"
-    );
   });
 
   it("should render with custom width set", () => {
@@ -131,7 +116,7 @@ describe("Test renderTopLanguages", () => {
     expect(langNameStyles.fill).toBe("#333");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#FFFEFE"
+      "#fffefe"
     );
   });
 
@@ -198,5 +183,37 @@ describe("Test renderTopLanguages", () => {
         `#${themes[name].bg_color}`
       );
     });
+  });
+
+  it("should render with layout compact", () => {
+    document.body.innerHTML = renderTopLanguages(langs, { layout: "compact" });
+
+    expect(queryByTestId(document.body, "header")).toHaveTextContent(
+      "Most Used Languages"
+    );
+
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
+      "HTML 40.00%"
+    );
+    expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
+      "width",
+      "120.00"
+    );
+
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
+      "javascript 40.00%"
+    );
+    expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
+      "width",
+      "120.00"
+    );
+
+    expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
+      "css 20.00%"
+    );
+    expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
+      "width",
+      "60.00"
+    );
   });
 });

@@ -4,9 +4,10 @@ const {
   parseBoolean,
   clampValue,
   CONSTANTS,
-} = require("../src/utils");
-const fetchRepo = require("../src/fetchRepo");
-const renderRepoCard = require("../src/renderRepoCard");
+  logger,
+} = require("../src/common/utils");
+const fetchRepo = require("../src/fetchers/repo-fetcher");
+const renderRepoCard = require("../src/cards/repo-card");
 
 module.exports = async (req, res) => {
   const {
@@ -28,7 +29,7 @@ module.exports = async (req, res) => {
   try {
     repoData = await fetchRepo(username, repo);
   } catch (err) {
-    console.log(err);
+    logger.error(err);
     return res.send(renderError(err.message));
   }
 

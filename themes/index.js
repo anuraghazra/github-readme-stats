@@ -3,13 +3,13 @@ const themes = {
     title_color: "2f80ed",
     icon_color: "4c71f2",
     text_color: "333",
-    bg_color: "FFFEFE",
+    bg_color: "fffefe",
   },
   default_repocard: {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
     text_color: "333",
-    bg_color: "FFFEFE",
+    bg_color: "fffefe",
   },
   dark: {
     title_color: "fff",
@@ -76,6 +76,72 @@ const themes = {
     icon_color: "38a0ff",
     text_color: "6e93b5",
     bg_color: "172f45",
+  },
+  monokai: {
+    title_color: "eb1f6a",
+    icon_color: "e28905",
+    text_color: "f1f1eb",
+    bg_color: "272822",
+  },
+  vue: {
+    title_color: "41b883",
+    icon_color: "41b883",
+    text_color: "273849",
+    bg_color: "fffefe",
+  },
+  "shades-of-purple": {
+    title_color: "fad000",
+    icon_color: "b362ff",
+    text_color: "a599e9",
+    bg_color: "2d2b55",
+  },
+  nightowl: {
+    title_color: "c792ea",
+    icon_color: "ffeb95",
+    text_color: "7fdbca",
+    bg_color: "011627",
+  },
+  buefy: {
+    title_color: "7957d5",
+    icon_color: "ff3860",
+    text_color: "363636",
+    bg_color: "ffffff",
+  },
+  "blue-green": {
+    title_color: "2f97c1",
+    icon_color: "f5b700",
+    text_color: "0cf574",
+    bg_color: "040f0f",
+  },
+  "algolia": {
+    title_color: "00AEFF",
+    icon_color: "2DDE98",
+    text_color: "FFFFFF",
+    bg_color: "050F2C",
+  },
+  "great-gatsby":{
+    title_color: "ffa726",
+    icon_color: "ffb74d",
+    text_color: "ffd95b",
+    bg_color: "000000",
+  },
+  "bear": {
+    title_color: "e03c8a",
+    icon_color: "00AEFF",
+    text_color: "bcb28d",
+    bg_color: "1f2023",
+  },
+  "solarized-dark": {
+    title_color: "268bd2",
+    icon_color: "b58900",
+    text_color: "859900",
+    bg_color: "002b36",
+  },
+  "solarized-light": {
+    title_color: "268bd2",
+    icon_color: "b58900",
+    text_color: "859900",
+    bg_color: "fdf6e3",
   },
 };
 

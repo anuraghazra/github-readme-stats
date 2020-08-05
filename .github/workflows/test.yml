@@ -34,3 +34,6 @@ jobs:
         run: |
           npm install
           npm run test
+
+      - name: Code Coverage
+        uses: codecov/codecov-action@v1
