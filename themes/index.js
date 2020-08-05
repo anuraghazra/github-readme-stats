@@ -143,6 +143,12 @@ const themes = {
     text_color: "859900",
     bg_color: "fdf6e3",
   },
+  chartreuse: {
+    title_color: "7fff00",
+    icon_color: "00AEFF",
+    text_color: "333",
+    bg_color: "ffffff",
+  },
 };
 
 module.exports = themes;
