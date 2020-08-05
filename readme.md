@@ -125,7 +125,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `title_color` - Card's title color _(hex color)_
 - `text_color` - Body text color _(hex color)_
 - `icon_color` - Icons color if available _(hex color)_
-- `bg_color` - Card's background color _(hex color)_
+- `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
 - `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
 
