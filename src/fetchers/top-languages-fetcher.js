@@ -6,10 +6,10 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!,$endCursor: String) {
         user(login: $login) {
           # fetch only owner repos & not forks
-          repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
+          repositories(ownerAffiliations: OWNER, isFork: false, first: 100, after: $endCursor) {
             nodes {
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
                 edges {
@@ -20,6 +20,10 @@ const fetcher = (variables, token) => {
                   }
                 }
               }
+            }
+            pageInfo{
+                endCursor
+                hasNextPage
             }
           }
         }
@@ -36,14 +40,22 @@ const fetcher = (variables, token) => {
 async function fetchTopLanguages(username) {
   if (!username) throw Error("Invalid username");
 
-  let res = await retryer(fetcher, { login: username });
+  let hasNextPage = true;
+  let cursor = null;
+  let repoNodes = [];
 
-  if (res.data.errors) {
-    logger.error(res.data.errors);
-    throw Error(res.data.errors[0].message || "Could not fetch user");
+  while (hasNextPage) {
+    let res = await retryer(fetcher, { login: username, endCursor: cursor });
+
+    if (res.data.errors) {
+      logger.error(res.data.errors);
+      throw Error(res.data.errors[0].message || "Could not fetch user");
+    }
+    cursor = res.data.data.user.repositories.pageInfo.endCursor;
+    hasNextPage = res.data.data.user.repositories.pageInfo.hasNextPage;
+
+    repoNodes.push(...res.data.data.user.repositories.nodes);
   }
-
-  let repoNodes = res.data.data.user.repositories.nodes;
 
   repoNodes = repoNodes
     .filter((node) => {
