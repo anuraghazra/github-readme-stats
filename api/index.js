@@ -13,11 +13,11 @@ module.exports = async (req, res) => {
   const {
     username,
     hide,
+    show_stats,
     hide_title,
     hide_border,
     hide_rank,
     show_icons,
-    show_forks,
     count_private,
     include_all_commits,
     line_height,
@@ -58,11 +58,11 @@ module.exports = async (req, res) => {
   res.send(
     renderStatsCard(stats, {
       hide: parseArray(hide),
+      show_stats: parseArray(show_stats),
       show_icons: parseBoolean(show_icons),
       hide_title: parseBoolean(hide_title),
       hide_border: parseBoolean(hide_border),
       hide_rank: parseBoolean(hide_rank),
-      show_forks: parseBoolean(show_forks),
       include_all_commits: parseBoolean(include_all_commits),
       line_height,
       title_color,

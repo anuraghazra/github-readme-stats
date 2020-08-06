@@ -211,10 +211,10 @@ describe("Test renderStatsCard", () => {
     ).not.toHaveAttribute("x");
   });
 
-  it("should render properly with show_forks flag", () => {
-    document.body.innerHTML = renderStatsCard(stats, { show_forks: false });
+  it("should render properly with show_stats flag", () => {
+    document.body.innerHTML = renderStatsCard(stats, {});
     expect(queryByTestId(document.body, "forks")).toBeNull();
-    document.body.innerHTML = renderStatsCard(stats, { show_forks: true });
+    document.body.innerHTML = renderStatsCard(stats, { show_stats: "forks,others" });
     expect(queryByTestId(document.body, "forks")).toBeDefined();
   });
 });

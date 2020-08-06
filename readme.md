@@ -70,7 +70,7 @@ _Note: Ranks are calculated based on user's stats, see [src/calculateRank.js](./
 
 ### Hiding individual stats
 
-To hide any specific stats, you can pass a query parameter `?hide=` with comma separated values.
+To hide any specific stats, you can pass a query parameter `hide=` with comma separated values.
 
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
@@ -78,13 +78,17 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma s
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
-### Show total forked repository count
+### Showing individual stats
 
-To show forked repository count, you can pass a query parameter `show_forks=true`.
+To hide any specific stats, you can pass a query parameter `show_stats=` with comma separated values.
+
+> Options: `&show_stats=stars,commits,prs,issues,contribs`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_forks=true)
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_stats=forks)
 ```
+
+Note: `show_stats` is more prioritize than `hide`. That means if you add `prs` in both `&hide=prs` and `show_stats=prs` then pull request status will display.
 
 ### Adding private contributions count to total commits count
 
