@@ -155,6 +155,12 @@ const themes = {
     text_color: "99d1ce",
     bg_color: "0c1014",
   },
+  "gory": {
+    title_color: "f67280",
+    icon_color: "fc5185",
+    text_color: "e84545",
+    bg_color: "212121",
+  },
 };
 
 module.exports = themes;
