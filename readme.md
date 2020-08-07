@@ -1,9 +1,8 @@
 <p align="center">
- <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="Github Readme Stats" />
+ <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
  <p align="center">Get dynamically generated GitHub stats on your readmes!</p>
 </p>
-
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
@@ -16,6 +15,14 @@
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
+    </a>
+    <br />
+    <br />
+    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
+      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
+    </a>
+    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
+      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
     </a>
   </p>
 
@@ -30,6 +37,12 @@
     <a href="readme_cn.md">简体中文</a>
     ·
     <a href="readme_es.md">Español</a>
+    ·
+    <a href="readme_de.md">Deutsch</a>
+    ·
+    <a href="readme_ja.md">日本語</a>
+     ·
+    <a href="readme_pt-BR.md">Português Brasileiro</a>
   </p>
 </p>
 <p align="center">Loved the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
@@ -99,7 +112,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
-<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="Github Readme Stat Themes" width="600px"/>
+<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
 You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
 
@@ -107,27 +120,43 @@ You can look at a preview for [all available themes](./themes/README.md) or chec
 
 You can customize the appearance of your `Stats Card` or `Repo Card` however you want with URL params.
 
-Customization Options:
+#### Common Options:
 
-| Option        | type      | description                                 | Stats Card (default) | Repo Card (default) | Top Lang Card (default) |
-| ------------- | --------- | ------------------------------------------- | -------------------- | ------------------- | ----------------------- |
-| title_color   | hex color | title color                                 | 2f80ed               | 2f80ed              | 2f80ed                  |
-| text_color    | hex color | body color                                  | 333                  | 333                 | 333                     |
-| icon_color    | hex color | icon color                                  | 4c71f2               | 586069              | 586069                  |
-| bg_color      | hex color | card bg color                               | FFFEFE               | FFFEFE              | FFFEFE                  |
-| line_height   | number    | control the line-height between text        | 30                   | N/A                 | N/A                     |
-| hide          | CSV       | hides the items specified                   | undefined            | N/A                 | undefined               |
-| hide_rank     | boolean   | hides the ranking                           | false                | N/A                 | N/A                     |
-| hide_title    | boolean   | hides the stats title                       | false                | N/A                 | false                   |
-| hide_border   | boolean   | hides the stats card border                 | false                | N/A                 | N/A                     |
-| show_owner    | boolean   | shows owner name in repo card               | N/A                  | false               | N/A                     |
-| show_icons    | boolean   | shows icons                                 | false                | N/A                 | N/A                     |
-| theme         | string    | sets inbuilt theme                          | 'default'            | 'default_repocard'  | 'default'               |
-| cache_seconds | number    | manually set custom cache control           | 1800                 | 1800                | '1800'                  |
-| count_private | boolean   | counts private contributions too if enabled | false                | N/A                 | N/A                     |
-| layout        | string    | choose a layout option                      | N/A                  | N/A                 | "default"               |
+- `title_color` - Card's title color _(hex color)_
+- `text_color` - Body text color _(hex color)_
+- `icon_color` - Icons color if available _(hex color)_
+- `bg_color` - Card's background color _(hex color)_
+- `theme` - name of the theme, choose from [all available themes](./themes/README.md)
+- `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
 
 > Note on cache: Repo cards have default cache of 30mins (1800 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 30min and maximum of 24hours
+
+#### Stats Card Exclusive Options:
+
+- `hide` - Hide's the specified items from stats _(Comma seperated values)_
+- `hide_title` - _(boolean)_
+- `hide_rank` - _(boolean)_
+- `show_icons` - _(boolean)_
+- `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
+- `count_private` - Count private commits _(boolean)_
+- `line_height` - Sets the line-height between text _(number)_
+
+#### Repo Card Exclusive Options:
+
+- `show_owner` - Show the owner name of the repo _(boolean)_
+
+#### Language Card Exclusive Options:
+
+- `hide` - Hide the languages specified from the card _(Comma seperated values)_
+- `hide_title` - _(boolean)_
+- `layout` - Switch between two available layouts `default` & `compact`
+- `card_width` - Set the card's width manually _(number)_
+
+> :warning: **Important:**  
+> Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)  
+> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.)
+
+---
 
 # GitHub Extra Pins
 
@@ -209,6 +238,10 @@ You can use the `&layout=compact` option to change the card design.
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
+- Include All Commits
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+
 - Themes
 
 Choose from any of the [default themes](#themes)
@@ -251,7 +284,7 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary>Guide on setting up Vercel</summary>
+ <summary><b> Guide on setting up Vercel  🔨 </b></summary>
 
 1. Go to [vercel.com](https://vercel.com/)
 1. Click on `Log in`  

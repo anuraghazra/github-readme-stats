@@ -9,10 +9,23 @@ const calculateCircleProgress = (value) => {
   return percentage;
 };
 
-const getAnimations = ({ progress }) => {
+const getProgressAnimation = ({ progress }) => {
+  return `
+    @keyframes rankAnimation {
+      from {
+        stroke-dashoffset: ${calculateCircleProgress(0)};
+      }
+      to {
+        stroke-dashoffset: ${calculateCircleProgress(progress)};
+      }
+    }
+  `;
+};
+
+const getAnimations = () => {
   return `
     /* Animations */
-    @keyframes scaleIn {
+    @keyframes scaleInAnimation {
       from {
         transform: translate(-5px, 5px) scale(0);
       }
@@ -20,20 +33,12 @@ const getAnimations = ({ progress }) => {
         transform: translate(-5px, 5px) scale(1);
       }
     }
-    @keyframes fadeIn {
+    @keyframes fadeInAnimation {
       from {
         opacity: 0;
       }
       to {
         opacity: 1;
-      }
-    }
-    @keyframes rankAnimation {
-      from {
-        stroke-dashoffset: ${calculateCircleProgress(0)};
-      }
-      to {
-        stroke-dashoffset: ${calculateCircleProgress(progress)};
       }
     }
   `;
@@ -47,20 +52,16 @@ const getStyles = ({
   progress,
 }) => {
   return `
-    .header {
-      font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor}; 
-      animation: fadeIn 0.8s ease-in-out forwards;
-    }
-    .stat { 
+    .stat {
       font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
     }
-    .stagger { 
+    .stagger {
       opacity: 0;
-      animation: fadeIn 0.3s ease-in-out forwards;
+      animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
-    .rank-text { 
+    .rank-text {
       font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; 
-      animation: scaleIn 0.3s ease-in-out forwards;
+      animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
     
     .bold { font-weight: 700 }
@@ -86,9 +87,8 @@ const getStyles = ({
       transform: rotate(-90deg);
       animation: rankAnimation 1s forwards ease-in-out;
     }
-
-    ${process.env.NODE_ENV === "test" ? "" : getAnimations({ progress })}
+    ${process.env.NODE_ENV === "test" ? "" : getProgressAnimation({ progress })}
   `;
 };
 
-module.exports = getStyles;
+module.exports = { getStyles, getAnimations };
