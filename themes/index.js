@@ -130,6 +130,11 @@ const themes = {
     icon_color: "84628F",
     text_color: "BEBEBE",
     bg_color: "242424",
+  bear: {
+    title_color: "e03c8a",
+    icon_color: "00AEFF",
+    text_color: "bcb28d",
+    bg_color: "1f2023",
   },
   "solarized-dark": {
     title_color: "268bd2",
@@ -142,6 +147,18 @@ const themes = {
     icon_color: "b58900",
     text_color: "859900",
     bg_color: "fdf6e3",
+  },
+  nord: {
+    title_color: "81a1c1",
+    text_color: "d8dee9",
+    icon_color: "88c0d0",
+    bg_color: "2e3440",
+  },
+  "gotham": {
+    title_color: "2aa889",
+    icon_color: "599cab",
+    text_color: "99d1ce",
+    bg_color: "0c1014",
   },
 };
 
