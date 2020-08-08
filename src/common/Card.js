@@ -109,6 +109,13 @@ class Card {
           }
         </style>
 
+        ${typeof this.colors.bgColor == 'object' ? `<defs>
+          <linearGradient id="gradient" gradientTransform="rotate(${this.colors.bgColor[0]})">
+            <stop offset="0%"  stop-color="#${this.colors.bgColor[1]}" />
+            <stop offset="100%" stop-color="#${this.colors.bgColor[2]}" />
+          </linearGradient>
+        </defs>` : ""}
+
         <rect
           data-testid="card-bg"
           x="0.5"
@@ -117,7 +124,7 @@ class Card {
           height="99%"
           stroke="#E4E2E2"
           width="${this.width - 1}"
-          fill="${this.colors.bgColor}"
+          fill="${typeof this.colors.bgColor == 'object' ? "url(#gradient)" : this.colors.bgColor}"
           stroke-opacity="${this.hideBorder ? 0 : 1}"
         />
 
