@@ -24,7 +24,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `nightowl` ![nightowl][nightowl] | `buefy` ![buefy][buefy] | `blue-green` ![blue-green][blue-green] |
 | `algolia` ![algolia][algolia] | `great-gatsby` ![great-gatsby][great-gatsby] | `bear` ![bear][bear] |
 | `solarized-dark` ![solarized-dark][solarized-dark] | `solarized-light` ![solarized-light][solarized-light] | `nord` ![nord][nord] |
-| `gotham` ![gotham][gotham] |  | [Add your theme][add-theme] |
+| `gotham` ![gotham][gotham] | `material-palenight` ![material-palenight][material-palenight] | [Add your theme][add-theme] |
 
 ## Repo Card
 
@@ -40,7 +40,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `nightowl` ![nightowl][nightowl_repo] | `buefy` ![buefy][buefy_repo] | `blue-green` ![blue-green][blue-green_repo] |
 | `algolia` ![algolia][algolia_repo] | `great-gatsby` ![great-gatsby][great-gatsby_repo] | `bear` ![bear][bear_repo] |
 | `solarized-dark` ![solarized-dark][solarized-dark_repo] | `solarized-light` ![solarized-light][solarized-light_repo] | `nord` ![nord][nord_repo] |
-| `gotham` ![gotham][gotham_repo] |  | [Add your theme][add-theme] |
+| `gotham` ![gotham][gotham_repo] | `material-palenight` ![material-palenight][material-palenight_repo] | [Add your theme][add-theme] |
 
 
 [default]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
@@ -69,6 +69,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [solarized-light]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=solarized-light
 [nord]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=nord
 [gotham]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gotham
+[material-palenight]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=material-palenight
 
 
 [default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
@@ -97,6 +98,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [solarized-light_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=solarized-light
 [nord_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=nord
 [gotham_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=gotham
+[material-palenight_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=material-palenight
 
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
