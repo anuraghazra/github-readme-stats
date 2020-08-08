@@ -149,13 +149,19 @@ const themes = {
     icon_color: "88c0d0",
     bg_color: "2e3440",
   },
-  "gotham": {
+  gotham: {
     title_color: "2aa889",
     icon_color: "599cab",
     text_color: "99d1ce",
     bg_color: "0c1014",
   },
   "material-palenight": {
+    title_color: "c792ea",
+    icon_color: "89ddff",
+    text_color: "a6accd",
+    bg_color: "292d3e",
+  },
+  test: {
     title_color: "c792ea",
     icon_color: "89ddff",
     text_color: "a6accd",
