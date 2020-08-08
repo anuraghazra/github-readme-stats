@@ -23,6 +23,10 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `monokai` ![monokai][monokai] | `vue` ![vue][vue] | `shades-of-purple` ![shades-of-purple][shades-of-purple] |
 | `nightowl` ![nightowl][nightowl] | `buefy` ![buefy][buefy] | `blue-green` ![blue-green][blue-green] |
 | `algolia` ![algolia][algolia] | `great-gatsby` ![great-gatsby][great-gatsby] | `gitcolor` ![gitcolor][gitcolor] | [Add your theme][add-theme] |
+| `algolia` ![algolia][algolia] | `great-gatsby` ![great-gatsby][great-gatsby] | `bear` ![bear][bear] |
+| `solarized-dark` ![solarized-dark][solarized-dark] | `solarized-light` ![solarized-light][solarized-light] | `nord` ![nord][nord] |
+| `gotham` ![gotham][gotham] | `material-palenight` ![material-palenight][material-palenight] | `graywhite` ![graywhite][graywhite] |
+| [Add your theme][add-theme] | | |
 
 ## Repo Card
 
@@ -37,7 +41,10 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `monokai` ![monokai][monokai_repo] | `vue` ![vue][vue_repo] | `shades-of-purple` ![shades-of-purple][shades-of-purple_repo] |
 | `nightowl` ![nightowl][nightowl_repo] | `buefy` ![buefy][buefy_repo] | `blue-green` ![blue-green][blue-green_repo] |
 | `algolia` ![algolia][algolia_repo] | `great-gatsby` ![great-gatsby][great-gatsby_repo] | `gitcolor` ![gitcolor][gitcolor] | [Add your theme][add-theme] |
-
+| `algolia` ![algolia][algolia_repo] | `great-gatsby` ![great-gatsby][great-gatsby_repo] | `bear` ![bear][bear_repo] |
+| `solarized-dark` ![solarized-dark][solarized-dark_repo] | `solarized-light` ![solarized-light][solarized-light_repo] | `nord` ![nord][nord_repo] |
+| `gotham` ![gotham][gotham_repo] | `material-palenight` ![material-palenight][material-palenight_repo] | `graywhite` ![graywhite][graywhite_repo] |
+| [Add your theme][add-theme] | | |
 
 [default]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
 [default_repocard]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default_repocard
@@ -61,6 +68,13 @@ Use `?theme=THEME_NAME` parameter like so :-
 [algolia]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=algolia
 [great-gatsby]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=great-gatsby
 [gitcolor]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gitcolor
+[bear]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=bear
+[solarized-dark]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=solarized-dark
+[solarized-light]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=solarized-light
+[nord]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=nord
+[gotham]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gotham
+[material-palenight]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=material-palenight
+[graywhite]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=graywhite
 
 
 [default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
@@ -85,7 +99,13 @@ Use `?theme=THEME_NAME` parameter like so :-
 [algolia_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=algolia
 [great-gatsby_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=great-gatsby
 [gitcolor_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=gitcolor
-
+[bear_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=bear
+[solarized-dark_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=solarized-dark
+[solarized-light_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=solarized-light
+[nord_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=nord
+[gotham_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=gotham
+[material-palenight_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=material-palenight
+[graywhite_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=graywhite
 
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
