@@ -161,6 +161,12 @@ const themes = {
     text_color: "a6accd",
     bg_color: "292d3e",
   },
+  "match-with-readme": {
+    title_color: "24292e",
+    icon_color: "24292e",
+    text_color: "24292e",
+    bg_color: "ffffff",
+  },
 };
 
 module.exports = themes;
