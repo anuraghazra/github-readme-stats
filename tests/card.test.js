@@ -138,9 +138,10 @@ describe("Card", () => {
       title_color: "f00",
       icon_color: "0f0",
       text_color: "00f",
-      bg_color: "90,fff,000",
+      bg_color: "90,fff,000,f00",
       theme: "default",
     });
+
     const card = new Card({
       height: 200,
       colors: {
@@ -155,17 +156,18 @@ describe("Card", () => {
       "fill",
       "url(#gradient)"
     );
-    expect(document.querySelector('defs linearGradient')).toHaveAttribute(
+    expect(document.querySelector("defs linearGradient")).toHaveAttribute(
       "gradientTransform",
       "rotate(90)"
     );
-    expect(document.querySelector('defs linearGradient stop:nth-child(1)')).toHaveAttribute(
-      "stop-color",
-      "#fff"
-    );
-    expect(document.querySelector('defs linearGradient stop:nth-child(2)')).toHaveAttribute(
-      "stop-color",
-      "#000"
-    );
+    expect(
+      document.querySelector("defs linearGradient stop:nth-child(1)")
+    ).toHaveAttribute("stop-color", "#fff");
+    expect(
+      document.querySelector("defs linearGradient stop:nth-child(2)")
+    ).toHaveAttribute("stop-color", "#000");
+    expect(
+      document.querySelector("defs linearGradient stop:nth-child(3)")
+    ).toHaveAttribute("stop-color", "#f00");
   });
 });

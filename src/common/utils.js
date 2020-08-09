@@ -60,8 +60,22 @@ function clampValue(number, min, max) {
   return Math.max(min, Math.min(number, max));
 }
 
+function isValidGradient(colors) {
+  return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
+}
+
 function fallbackColor(color, fallbackColor) {
-  return (isValidHexColor(color) && `#${color}`) || (color.includes(',') && isValidHexColor(color.split(',')[1]) && isValidHexColor(color.split(',')[2]) && color.split(',')) || fallbackColor;
+  let colors = color.split(",");
+  let gradient = null;
+
+  if (colors.length > 1 && isValidGradient(colors)) {
+    gradient = colors;
+  }
+
+  return (
+    (gradient ? gradient : isValidHexColor(color) && `#${color}`) ||
+    fallbackColor
+  );
 }
 
 function request(data, headers) {
