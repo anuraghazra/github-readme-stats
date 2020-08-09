@@ -34,17 +34,17 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
   </p>
   <p align="center">
-    <a href="docs/readme_cn.md">简体中文</a>
+    <a href="/docs/readme_cn.md">简体中文</a>
     ·
-    <a href="docs/readme_es.md">Español</a>
+    <a href="/docs/readme_es.md">Español</a>
     ·
-    <a href="docs/readme_de.md">Deutsch</a>
+    <a href="/docs/readme_de.md">Deutsch</a>
     ·
-    <a href="docs/readme_ja.md">日本語</a>
+    <a href="/docs/readme_ja.md">日本語</a>
     ·
-    <a href="docs/readme_pt-BR.md">Português Brasileiro</a>
+    <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
     ·
-    <a href="docs/readme_kr.md">한국어</a>
+    <a href="/docs/readme_kr.md">한국어</a>
   </p>
 </p>
 <p align="center">이 프로젝트가 마음에 드나요? 괜찮으시다면 더 나은 개선을 위해 <a href="https://www.paypal.me/anuraghazra">기부</a>를 고려해주세요!
@@ -84,7 +84,7 @@ _참고: 순위는 사용자의 통계를 기반으로 계산됩니다. [src/cal
 
 `?count_private=true` 쿼리 파라미터를 사용하면 총 커밋 수에 private 컨트리뷰트 개수를 추가할 수 있습니다.
 
-_참고: 이 프로젝트를 직접 배포하는 경우 private 컨트리뷰트는 기본적으로 계산된다. 그렇지 않은 경우 private 컨트리뷰트 개수를 추가하도록 설정해야 합니다.
+\_참고: 이 프로젝트를 직접 배포하는 경우 private 컨트리뷰트는 기본적으로 계산된다. 그렇지 않은 경우 private 컨트리뷰트 개수를 추가하도록 설정해야 합니다.
 
 _Note: If you are deploying this project yourself, the private contributions will be counted by default otherwise you need to chose to share your private contribution counts._
 
