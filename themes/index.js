@@ -130,6 +130,7 @@ const themes = {
     icon_color: "84628F",
     text_color: "BEBEBE",
     bg_color: "242424",
+  },
   bear: {
     title_color: "e03c8a",
     icon_color: "00AEFF",
