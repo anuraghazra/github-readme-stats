@@ -34,17 +34,17 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
   </p>
   <p align="center">
-    <a href="readme_cn.md">简体中文</a>
+    <a href="docs/readme_cn.md">简体中文</a>
     ·
-    <a href="readme_es.md">Español</a>
+    <a href="docs/readme_es.md">Español</a>
     ·
-    <a href="readme_de.md">Deutsch</a>
+    <a href="docs/readme_de.md">Deutsch</a>
     ·
-    <a href="readme_ja.md">日本語</a>
+    <a href="docs/readme_ja.md">日本語</a>
     ·
-    <a href="readme_pt-BR.md">Português Brasileiro</a>
+    <a href="docs/readme_pt-BR.md">Português Brasileiro</a>
     ·
-    <a href="readme_kr.md">한국어</a>
+    <a href="docs/readme_kr.md">한국어</a>
   </p>
 </p>
 <p align="center">이 프로젝트가 마음에 드나요? 괜찮으시다면 더 나은 개선을 위해 <a href="https://www.paypal.me/anuraghazra">기부</a>를 고려해주세요!
