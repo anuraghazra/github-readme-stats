@@ -167,6 +167,12 @@ const themes = {
     text_color: "24292e",
     bg_color: "ffffff",
   },
+  "vue-dark":{
+    title_color: "19f9d8",
+    icon_color: "19f9d8",
+    text_color: "ffffff",
+    bg_color: "002b36",
+  }
 };
 
 module.exports = themes;
