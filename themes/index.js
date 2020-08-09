@@ -125,6 +125,12 @@ const themes = {
     text_color: "ffd95b",
     bg_color: "000000",
   },
+  darcula: {
+    title_color: "BA5F17",
+    icon_color: "84628F",
+    text_color: "BEBEBE",
+    bg_color: "242424",
+  },
   bear: {
     title_color: "e03c8a",
     icon_color: "00AEFF",
