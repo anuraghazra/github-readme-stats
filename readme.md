@@ -131,6 +131,14 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
 - `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
 
+##### Gradient in bg_color
+
+You can provide multiple comma saperated values in bg_color option to render a gradient, the format of the gradient is :-
+
+```
+&bg_color=DEG,COLOR1,COLRO2,COLOR3...COLOR10
+```
+
 > Note on cache: Repo cards have default cache of 30mins (1800 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 30min and maximum of 24hours
 
 #### Stats Card Exclusive Options:
@@ -249,6 +257,10 @@ You can use the `&layout=compact` option to change the card design.
 Choose from any of the [default themes](#themes)
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+
+- Gradient
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
 - Customizing stats card
 

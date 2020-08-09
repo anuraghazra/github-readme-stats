@@ -85,6 +85,27 @@ class Card {
     `;
   }
 
+  renderGradient() {
+    if (typeof this.colors.bgColor !== "object") return;
+
+    const gradients = this.colors.bgColor.slice(1);
+    return typeof this.colors.bgColor === "object"
+      ? `
+        <defs>
+          <linearGradient
+            id="gradient" 
+            gradientTransform="rotate(${this.colors.bgColor[0]})"
+          >
+            ${gradients.map((grad, index) => {
+              let offset = (index * 100) / (gradients.length - 1);
+              return `<stop offset="${offset}%" stop-color="#${grad}" />`;
+            })}
+          </linearGradient>
+        </defs>
+        `
+      : "";
+  }
+
   render(body) {
     return `
       <svg
@@ -109,12 +130,7 @@ class Card {
           }
         </style>
 
-        ${typeof this.colors.bgColor == 'object' ? `<defs>
-          <linearGradient id="gradient" gradientTransform="rotate(${this.colors.bgColor[0]})">
-            <stop offset="0%"  stop-color="#${this.colors.bgColor[1]}" />
-            <stop offset="100%" stop-color="#${this.colors.bgColor[2]}" />
-          </linearGradient>
-        </defs>` : ""}
+        ${this.renderGradient()}
 
         <rect
           data-testid="card-bg"
@@ -124,7 +140,11 @@ class Card {
           height="99%"
           stroke="#E4E2E2"
           width="${this.width - 1}"
-          fill="${typeof this.colors.bgColor == 'object' ? "url(#gradient)" : this.colors.bgColor}"
+          fill="${
+            typeof this.colors.bgColor === "object"
+              ? "url(#gradient)"
+              : this.colors.bgColor
+          }"
           stroke-opacity="${this.hideBorder ? 0 : 1}"
         />
 
