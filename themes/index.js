@@ -178,6 +178,12 @@ const themes = {
     icon_color: "19f9d8",
     text_color: "ffffff",
     bg_color: "002b36",
+  },
+  "vue-dark-2":{
+    title_color: "f00",
+    icon_color: "19f9d8",
+    text_color: "ffffff",
+    bg_color: "002b36",
   }
 };
 
