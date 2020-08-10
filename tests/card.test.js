@@ -133,4 +133,41 @@ describe("Card", () => {
       "#fff"
     );
   });
+  it("should render gradient backgrounds", () => {
+    const { titleColor, textColor, iconColor, bgColor } = getCardColors({
+      title_color: "f00",
+      icon_color: "0f0",
+      text_color: "00f",
+      bg_color: "90,fff,000,f00",
+      theme: "default",
+    });
+
+    const card = new Card({
+      height: 200,
+      colors: {
+        titleColor,
+        textColor,
+        iconColor,
+        bgColor,
+      },
+    });
+    document.body.innerHTML = card.render(``);
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "fill",
+      "url(#gradient)"
+    );
+    expect(document.querySelector("defs linearGradient")).toHaveAttribute(
+      "gradientTransform",
+      "rotate(90)"
+    );
+    expect(
+      document.querySelector("defs linearGradient stop:nth-child(1)")
+    ).toHaveAttribute("stop-color", "#fff");
+    expect(
+      document.querySelector("defs linearGradient stop:nth-child(2)")
+    ).toHaveAttribute("stop-color", "#000");
+    expect(
+      document.querySelector("defs linearGradient stop:nth-child(3)")
+    ).toHaveAttribute("stop-color", "#f00");
+  });
 });

@@ -34,15 +34,17 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicitar recursos</a>
   </p>
   <p align="center">
-    <a href="readme_cn.md">简体中文</a>
+    <a href="/docs/readme_cn.md">简体中文</a>
     ·
-    <a href="readme_es.md">Español</a>
+    <a href="/docs/readme_es.md">Español</a>
     ·
-    <a href="readme_de.md">Deutsch</a>
+    <a href="/docs/readme_de.md">Deutsch</a>
     ·
-    <a href="readme_ja.md">日本語</a>
+    <a href="/docs/readme_ja.md">日本語</a>
     ·
-    <a href="readme_pt-BR.md">Português Brasileiro</a>
+    <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
+    ·
+    <a href="/docs/readme_kr.md">한국어</a>
   </p>
 </p>
 <p align="center">Gostou do projeto? Por favor considere <a href="https://www.paypal.me/anuraghazra">fazer uma doação</a> para ajudar a melhorá-lo!
@@ -305,7 +307,6 @@ Nota: Desde [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) h�
 </details>
 
 ## :sparkling_heart: Apoie o projeto
-
 
 Disponibilizo como código aberto quase tudo o que posso e tento responder a todos que precisam de ajuda para utilizar esses projetos. Claro,
 isso demanda tempo. Utilize este serviço gratuitamente.
