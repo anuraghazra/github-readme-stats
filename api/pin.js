@@ -4,7 +4,6 @@ const {
   parseBoolean,
   clampValue,
   CONSTANTS,
-  logger,
 } = require("../src/common/utils");
 const fetchRepo = require("../src/fetchers/repo-fetcher");
 const renderRepoCard = require("../src/cards/repo-card");
@@ -29,8 +28,7 @@ module.exports = async (req, res) => {
   try {
     repoData = await fetchRepo(username, repo);
   } catch (err) {
-    logger.error(err);
-    return res.send(renderError(err.message));
+    return res.send(renderError(err.message, err.secondaryMessage));
   }
 
   let cacheSeconds = clampValue(

@@ -1,8 +1,8 @@
-const { logger } = require("../common/utils");
+const { logger, CustomError } = require("../common/utils");
 
 const retryer = async (fetcher, variables, retries = 0) => {
   if (retries > 7) {
-    throw new Error("Maximum retries exceeded");
+    throw new CustomError("Maximum retries exceeded", CustomError.MAX_RETRY);
   }
   try {
     logger.log(`Trying PAT_${retries + 1}`);
