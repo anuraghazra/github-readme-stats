@@ -27,7 +27,7 @@
   </p>
 
   <p align="center">
-    <a href="#demo">View Demo</a>
+    <a href="#데모">View Demo</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Report Bug</a>
     ·
@@ -84,9 +84,7 @@ _참고: 순위는 사용자의 통계를 기반으로 계산됩니다. [src/cal
 
 `?count_private=true` 쿼리 파라미터를 사용하면 총 커밋 수에 private 컨트리뷰트 개수를 추가할 수 있습니다.
 
-\_참고: 이 프로젝트를 직접 배포하는 경우 private 컨트리뷰트는 기본적으로 계산된다. 그렇지 않은 경우 private 컨트리뷰트 개수를 추가하도록 설정해야 합니다.
-
-_Note: If you are deploying this project yourself, the private contributions will be counted by default otherwise you need to chose to share your private contribution counts._
+_참고: 이 프로젝트를 직접 배포하는 경우 private 컨트리뷰트는 기본적으로 계산됩니다. 그렇지 않은 경우 private 컨트리뷰트 개수를 추가하도록 설정해야 합니다._
 
 > 예시: `&count_private=true`
 
@@ -167,9 +165,6 @@ URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card`
 GitHub extra pins을 사용하면 Github readme 프로필에 6개 이상의 저장소를 고정할 수 있습니다.
 그렇습니다! 더 이상 고정된 6개의 저장소로 제한되지 않습니다.
 
-GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
-
-Yey! You are no longer limited to 6 pinned repositories.
 
 ### 사용법
 
