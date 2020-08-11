@@ -69,7 +69,7 @@
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.js](./src/calculateRank.js)_
+_注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.js](../src/calculateRank.js)_
 
 ### 隐藏个别统计项
 
@@ -117,7 +117,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-在 [theme config 文件](./themes/index.js) 中查看更多主题，或者你可以 **贡献新的主题** :D
+在 [theme config 文件](../themes/index.js) 中查看更多主题，或者你可以 **贡献新的主题** :D
 
 ### 自定义
 

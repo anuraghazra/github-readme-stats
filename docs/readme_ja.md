@@ -70,7 +70,7 @@
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Note: カードに表示されるランクはユーザの統計情報に基づいて計算されています。詳しくは、[src/calculateRank.js](./src/calculateRank.js)を見てください。_
+_Note: カードに表示されるランクはユーザの統計情報に基づいて計算されています。詳しくは、[src/calculateRank.js](../src/calculateRank.js)を見てください。_
 
 ### Hiding individual stats
 
@@ -118,7 +118,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-用意されている全てのテーマの[プレビュー](./themes/README.md)や[設定ファイル](./themes/index.js)を見ることができます。もしよろしければ、**新しいテーマを投稿してみてください** (´∀` )
+用意されている全てのテーマの[プレビュー](../themes/README.md)や[設定ファイル](../themes/index.js)を見ることができます。もしよろしければ、**新しいテーマを投稿してみてください** (´∀` )
 
 ### Customization
 
