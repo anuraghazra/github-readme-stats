@@ -70,7 +70,7 @@
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Note: カードに表示されるランクはユーザの統計情報に基づいて計算されています。詳しくは、[src/calculateRank.js](./src/calculateRank.js)を見てください。_
+_Note: カードに表示されるランクはユーザの統計情報に基づいて計算されています。詳しくは、[src/calculateRank.js](../src/calculateRank.js)を見てください。_
 
 ### Hiding individual stats
 
@@ -118,7 +118,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-用意されている全てのテーマの[プレビュー](./themes/README.md)や[設定ファイル](./themes/index.js)を見ることができます。もしよろしければ、**新しいテーマを投稿してみてください** (´∀` )
+用意されている全てのテーマの[プレビュー](../themes/README.md)や[設定ファイル](../themes/index.js)を見ることができます。もしよろしければ、**新しいテーマを投稿してみてください** (´∀` )
 
 ### Customization
 
@@ -290,14 +290,14 @@ NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降�
 
 ## :sparkling_heart: Support the project
 
-私はできる限りのことをオープンソースで行い、これらのプロジェクトを利用して支援を必要としている皆さんに返信するようにしています。もちろんです。
-これは時間がかかります。無料でご利用いただけます。
+私はできる限りのことをオープンソースで行い、これらのプロジェクトを利用して支援を必要としている皆さんに返信するようにしています。
+もちろんそれには時間が掛かる場合がありますが、無料でご利用いただけます。
 
 しかし、もしあなたがこのプロジェクトを使っていて、それに満足しているのであれば、あるいは単に私にものを作り続けることを奨励したいのであれば、いくつかの方法があります。
 
 - あなたの readme で github-readme-stats を使用して適切なクレジットを付与し、それにリンクします (´∀` )
-- 主演とプロジェクトの共有 :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - PayPal を介して 1 回限りの寄付を行うことができます。私はおそらく ~~コーヒー~~ お茶買うでしょう。 :tea:
+- このプロジェクトにスターを贈り、他の人達にもシェアしてください :rocket:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - PayPal を介して 1 回限りの寄付を行うことができます。私はおそらく ~~コーヒー~~ お茶を買うでしょう。 :tea:
 
 Thanks! :heart:
 

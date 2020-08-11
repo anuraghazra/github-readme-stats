@@ -14,7 +14,7 @@ const renderError = (message, secondaryMessage = "") => {
     <text x="25" y="45" class="text">Something went wrong! file an issue at https://git.io/JJmN9</text>
     <text data-testid="message" x="25" y="55" class="text small">
       <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
-      <tspan x="25" dy="18"  class="gray">${secondaryMessage}</tspan>
+      <tspan x="25" dy="18" class="gray">${secondaryMessage}</tspan>
     </text>
     </svg>
   `;
@@ -170,6 +170,23 @@ const CONSTANTS = {
   ONE_DAY: 86400,
 };
 
+const SECONDARY_ERROR_MESSAGES = {
+  MAX_RETRY:
+    "Please add an env variable called PAT_1 with your github token in vercel",
+  USER_NOT_FOUND: "Make sure the provided username is not an organization",
+};
+
+class CustomError extends Error {
+  constructor(message, type) {
+    super(message);
+    this.type = type;
+    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || "adsad";
+  }
+
+  static MAX_RETRY = "MAX_RETRY";
+  static USER_NOT_FOUND = "USER_NOT_FOUND";
+}
+
 module.exports = {
   renderError,
   kFormatter,
@@ -185,4 +202,5 @@ module.exports = {
   wrapTextMultiline,
   logger,
   CONSTANTS,
+  CustomError,
 };

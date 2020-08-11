@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
   try {
     topLangs = await fetchTopLanguages(username);
   } catch (err) {
-    return res.send(renderError(err.message));
+    return res.send(renderError(err.message, err.secondaryMessage));
   }
 
   const cacheSeconds = clampValue(

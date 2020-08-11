@@ -38,12 +38,7 @@ module.exports = async (req, res) => {
       parseBoolean(include_all_commits)
     );
   } catch (err) {
-    return res.send(
-      renderError(
-        err.message,
-        "Make sure the provided username is not an organization"
-      )
-    );
+    return res.send(renderError(err.message, err.secondaryMessage));
   }
 
   const cacheSeconds = clampValue(
