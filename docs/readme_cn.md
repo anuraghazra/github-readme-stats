@@ -117,7 +117,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-在 [theme config 文件](./themes/index.js) 中查看更多主题，或者你可以 **贡献新的主题** :D
+在 [全部可用主题](https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md) 或 [theme config 文件](https://github.com/anuraghazra/github-readme-stats/blob/master/themes/index.js) 中查看更多主题，或者你可以 **贡献新的主题** :D
 
 ### 自定义
 
