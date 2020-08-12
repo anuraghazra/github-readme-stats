@@ -180,9 +180,9 @@ const themes = {
     bg_color: "002b36",
   },
   "ayu-mirage": {
-    title_color: "f4cd7c",
-    text_color: "c7c8c2",
-    icon_color: "f4cd7c",
+    title_color: "bae67e",
+    icon_color: "73d0ff",
+    text_color: "f4cd7c",
     bg_color: "1f2430",
   }
 };
