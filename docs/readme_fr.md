@@ -171,13 +171,13 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 # GitHub Extra Pins
 
-GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
+Les épingles supplémentaires GitHub vous permettent d'épingler plus de 6 repos dans votre profil en utilisant un profil GitHub readme.
 
-Yey! You are no longer limited to 6 pinned repositories.
+et OUI ! Vous n'êtes plus limité à 6 dépôts épinglés.
 
 ### Usage
 
-Copy-paste this code into your readme and change the links.
+Copiez-collez ce code dans votre readme et modifiez les liens.
 
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
@@ -193,15 +193,15 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
-# Top Languages Card
+# Carte des langages les + utilisés
 
-Top languages card shows github user's top langauges which has been mostly used.
+La carte des langages principaux montre les langages les plus utilisées par les utilisateurs de GitHub.
 
 _NOTE: Top languages does not indicate my skill level or something like that, it's a github metric of which languages i have the most code on github, it's a new feature of github-readme-stats_
 
 ### Usage
 
-Copy-paste this code into your readme and change the links.
+Copiez-collez ce code dans votre readme et modifiez les liens.
 
 Endpoint: `api/top-langs?username=anuraghazra`
 
@@ -209,9 +209,9 @@ Endpoint: `api/top-langs?username=anuraghazra`
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Hide individual languages
+### Cacher certaines langages 
 
-You can use `?hide=language1,language2` parameter to hide individual languages.
+Tu peux utiliser le paramètre `?hide=language1,language2` pour masquer les langages individuels.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
@@ -219,13 +219,13 @@ You can use `?hide=language1,language2` parameter to hide individual languages.
 
 ### Compact Language Card Layout
 
-You can use the `&layout=compact` option to change the card design.
+Tu peux utiliser l'option `&layout=compact` pour changer le style de la carte.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Demo
+### Démo
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -235,52 +235,51 @@ You can use the `&layout=compact` option to change the card design.
 
 ---
 
-### All Demos
+### Toutes les démos
 
 - Default
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
-- Hiding specific stats
+- Ne pas afficher des stats spécifiques 
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
 
-- Showing icons
+- Afficher les icônes 
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
-- Include All Commits
+- Inclure tous les Commits
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
 
 - Themes
 
-Choose from any of the [default themes](#themes)
+Choisissez parmi l'une des [default themes](#themes)
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
-- Gradient
+- Dégradé 
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
-- Customizing stats card
+- Personnaliser stats card
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- Customizing repo card
+- Personnaliser repo card
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
-- Top languages
+- Top languages 
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
-### Quick Tip (Align The Repo Cards)
+### Conseil rapide  (Aligner Repo Cards)
 
-You usually won't be able to layout the images side by side. To do that you can use this approach:
-
+En général, vous ne pourrez pas mettre les images côte à côte. Pour ce faire, vous pouvez utiliser cette approche :
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
@@ -290,16 +289,16 @@ You usually won't be able to layout the images side by side. To do that you can 
 </a>
 ```
 
-## Deploy on your own Vercel instance
+## Déployer sur votre propre instance Vercel
 
-Since the GitHub API only allows 5k requests per hour, it is possible that my `https://github-readme-stats.vercel.app/api` could hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
+Comme l'API GitHub ne permet que 5k requêtes par heure, il est possible que mon  `https://github-readme-stats.vercel.app/api` puisse atteindre le limiteur de débit. Si vous l'hébergez sur votre propre serveur Vercel, alors vous n'avez pas à vous soucier de quoi que ce soit. Cliquez sur le bouton de déploiement pour commencer !
 
-NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we should be able to handle more than 5k requests and have no issues with downtime :D
+NOTE: Depuis [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) nous devrions être en mesure de traiter plus de 5 000 demandes et ne pas avoir de problèmes de temps d'arrêt :D
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
+[![Deployer avec Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary><b> Guide on setting up Vercel  🔨 </b></summary>
+ <summary><b> Guide pour la mise en place de Vercel  🔨 </b></summary>
 
 1. Go to [vercel.com](https://vercel.com/)
 1. Click on `Log in`  
@@ -315,20 +314,20 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
    ![](https://files.catbox.moe/pqub9q.png)
 1. Select root and keep everything as is, just add your environment variable named PAT_1 (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)
    ![](https://files.catbox.moe/0ez4g7.png)
-1. Click deploy, and you're good to go. See your domains to use the API!
+1. Cliquez sur "déployer" et vous êtes prêt à partir. Voir vos domaines pour utiliser l'API !
 
 </details>
 
 ## :sparkling_heart: Support the project
 
-I open-source almost everything I can, and I try to reply to everyone needing help using these projects. Obviously,
-this takes time. You can use this service for free.
+Je mets open-source presque tout ce que je peux, et j'essaie de répondre à tous ceux qui ont besoin d'aide en utilisant ces projets. Évidemment,
+cela prend du temps. Vous pouvez utiliser ce service gratuitement.
 
-However, if you are using this project and happy with it or just want to encourage me to continue creating stuff, there are few ways you can do it :-
+Cependant, si vous utilisez ce projet et que vous en êtes satisfait ou si vous voulez simplement m'encourager à continuer à créer, il y a quelques façons de le faire :-
 
-- Giving proper credit when you use github-readme-stats on your readme, linking back to it :D
-- Starring and sharing the project :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - You can make one-time donations via PayPal. I'll probably buy a ~~coffee~~ tea. :tea:
+- Donner un crédit approprié lorsque vous utilisez github-readme-stats sur votre readme, avec un lien vers celui-ci :D
+- Mettre une étoile et partager le projet :rocket:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - Vous pouvez faire des dons uniques via PayPal. Je vais probablement acheter un ~~café~~ thé. :tea:
 
 Merci! :heart:
 
