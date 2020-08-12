@@ -167,7 +167,7 @@ const themes = {
     text_color: "24292e",
     bg_color: "ffffff",
   },
-  "color-blind-friendly-dark": {
+  "vision-friendly-dark": {
   title_color: "ffb000",
   icon_color: "785ef0",
   text_color: "ffffff",
