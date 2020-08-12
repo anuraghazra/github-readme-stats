@@ -1,12 +1,11 @@
 name: Theme preview
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened]
     branches:
       - master
       - theme-preview-script
-    paths:
       - "themes/index.js"
 
 jobs:

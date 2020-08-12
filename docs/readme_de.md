@@ -28,11 +28,17 @@
   </p>
 
   <p align="center">
-    <a href="#alle-beispiele">Beispiel ansehen</a>
+    <a href="/docs/readme_cn.md">简体中文</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues">Fehler melden</a>
+    <a href="/docs/readme_es.md">Español</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues">Funktionalität anfragen</a>
+    <a href="/docs/readme_de.md">Deutsch</a>
+    ·
+    <a href="/docs/readme_ja.md">日本語</a>
+    ·
+    <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
+    ·
+    <a href="/docs/readme_kr.md">한국어</a>
   </p>
 </p>
 <p align="center">Du magst das Projekt? Wie wäre es mit einer kleinen <a href="https://www.paypal.me/anuraghazra">Spende</a> um es weiterhin am Leben zu erhalten?
@@ -56,7 +62,7 @@ Passe den Wert des URL-Paramters `?username=` so an, dass dort dein GitHub Usern
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Hinweis: Die Berechnung des Ranges basiert auf den jeweiligen Benutzerstatistiken, siehe [src/calculateRank.js](./src/calculateRank.js)_
+_Hinweis: Die Berechnung des Ranges basiert auf den jeweiligen Benutzerstatistiken, siehe [src/calculateRank.js](../src/calculateRank.js)_
 
 ### Verbergen individueller Statistiken
 
@@ -92,7 +98,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-Du kannst dir eine Vorschau [aller verfügbaren Themes](./themes/README.md) ansehen oder die [theme config Datei](./themes/index.js) auschecken.
+Du kannst dir eine Vorschau [aller verfügbaren Themes](../themes/README.md) ansehen oder die [theme config Datei](../themes/index.js) auschecken.
 Außerdem **kannst du neue Themes beisteuern** wenn du möchtest, contributions sind gern gesehen :D
 
 ### Anpassungen/Personalisierung

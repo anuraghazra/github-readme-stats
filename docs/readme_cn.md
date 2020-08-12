@@ -35,11 +35,17 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">请求增加功能</a>
   </p>
   <p align="center">
-    <a href="readme.md">English</a>
+    <a href="/docs/readme_cn.md">简体中文</a>
     ·
-    <a href="readme_es.md">Español</a>
+    <a href="/docs/readme_es.md">Español</a>
     ·
-    <a href="readme_ja.md">日本語</a>
+    <a href="/docs/readme_de.md">Deutsch</a>
+    ·
+    <a href="/docs/readme_ja.md">日本語</a>
+    ·
+    <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
+    ·
+    <a href="/docs/readme_kr.md">한국어</a>
   </p>
 </p>
 <p align="center">喜欢这个项目？请考虑<a href="https://www.paypal.me/anuraghazra">捐赠</a>来帮助它完善！
@@ -55,7 +61,7 @@
 
 # GitHub 统计卡片
 
-将这行代码复制到你的 markdown 文件中，简单如此！
+将这行代码复制到你的 markdown 文件中，就是如此简单！
 
 更改 `?username=` 的值为你的 GitHub 用户名。
 
@@ -63,7 +69,7 @@
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_注: 排名基于用户的统计信息计算得出，详见 [src/calculateRank.js](./src/calculateRank.js)_
+_注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.js](../src/calculateRank.js)_
 
 ### 隐藏个别统计项
 
@@ -75,9 +81,9 @@ _注: 排名基于用户的统计信息计算得出，详见 [src/calculateRank.
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
-### 把私人贡献计数添加到总提交计数中
+### 将私人项目贡献添加到总提交计数中
 
-你可以用参数 `?count_private=true` 把私人贡献计数添加到总提交计数中。
+你可以使用参数 `?count_private=true` 把私人贡献计数添加到总提交计数中。
 
 _注：如果你是自己部署本项目，私人贡献将会默认被计数，如果不是自己部署，你需要分享你的私人贡献计数。_
 
@@ -89,7 +95,7 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 
 ### 显示图标
 
-想要显示图标，你可以调用 `show_icons=true` 参数，如下：
+如果想要显示图标，你可以调用 `show_icons=true` 参数，如下：
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -99,7 +105,7 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 
 你可以通过现有的主题进行卡片个性化，省去[手动自定义](#自定义)的麻烦。
 
-调用 `?theme=THEME_NAME` 参数，如下：
+通过调用 `?theme=THEME_NAME` 参数，像这样：
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
@@ -111,7 +117,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-在 [theme config 文件](./themes/index.js) 中查看更多主题，或者 **贡献新的主题** :D
+在 [theme config 文件](../themes/index.js) 中查看更多主题，或者你可以 **贡献新的主题** :D
 
 ### 自定义
 
@@ -171,7 +177,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ### 使用细则
 
-将此代码复制粘贴到您的`README.md`文件中，并改变链接。
+将此代码复制粘贴到您的`README.md`文件中，并修改链接。
 
 Endpoint: `api/top-langs?username=anuraghazra`
 

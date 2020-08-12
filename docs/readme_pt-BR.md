@@ -34,15 +34,17 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicitar recursos</a>
   </p>
   <p align="center">
-    <a href="readme_cn.md">简体中文</a>
+    <a href="/docs/readme_cn.md">简体中文</a>
     ·
-    <a href="readme_es.md">Español</a>
+    <a href="/docs/readme_es.md">Español</a>
     ·
-    <a href="readme_de.md">Deutsch</a>
+    <a href="/docs/readme_de.md">Deutsch</a>
     ·
-    <a href="readme_ja.md">日本語</a>
+    <a href="/docs/readme_ja.md">日本語</a>
     ·
-    <a href="readme_pt-BR.md">Português Brasileiro</a>
+    <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
+    ·
+    <a href="/docs/readme_kr.md">한국어</a>
   </p>
 </p>
 <p align="center">Gostou do projeto? Por favor considere <a href="https://www.paypal.me/anuraghazra">fazer uma doação</a> para ajudar a melhorá-lo!
@@ -66,7 +68,7 @@ Mude o valor de `?username=` para o seu nome de usuário no GitHub.
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Nota: As classificações são baseadas nas estatísticas do usuário, veja [src/calculateRank.js](./src/calculateRank.js)_
+_Nota: As classificações são baseadas nas estatísticas do usuário, veja [src/calculateRank.js](../src/calculateRank.js)_
 
 ### Ocultando estatísticas específicas
 
@@ -114,7 +116,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-Visualize [todos o temas disponíveis](./themes/README.md) ou o [arquivo de configuração de tema](./themes/index.js), além de **também poder contribuir com novos temas**, se desejar :D
+Visualize [todos o temas disponíveis](../themes/README.md) ou o [arquivo de configuração de tema](../themes/index.js), além de **também poder contribuir com novos temas**, se desejar :D
 
 ### Personalização
 
@@ -126,7 +128,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 - `text_color` - Cor de texto do conteúdo _(hex color)_
 - `icon_color` - Cor dos ícones (se disponível) _(hex color)_
 - `bg_color` - Cor de fundo do cartão _(hex color)_
-- `theme` - Nome do tema, escolha em [todos os temas disponíveis](./themes/README.md)
+- `theme` - Nome do tema, escolha em [todos os temas disponíveis](../themes/README.md)
 - `cache_seconds` - Defina o cabeçalho do cache manualmente _(min: 1800, max: 86400)_
 
 > Nota sobre o cache: Cartões de repositório tem um cache padrão de 30 minutos (1800 segundos), se o número a contagem de forks e contagem de estrelas é menor que 1 mil o padrão é 2 horas (7200). Note também que o cache é limitado a um mínimo de 30 minutos e um máximo de 24 horas.
@@ -305,7 +307,6 @@ Nota: Desde [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) h�
 </details>
 
 ## :sparkling_heart: Apoie o projeto
-
 
 Disponibilizo como código aberto quase tudo o que posso e tento responder a todos que precisam de ajuda para utilizar esses projetos. Claro,
 isso demanda tempo. Utilize este serviço gratuitamente.
