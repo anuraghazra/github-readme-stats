@@ -184,7 +184,7 @@ const themes = {
     text_color: "c7c8c2",
     icon_color: "f4cd7c",
     bg_color: "1f2430",
-  },
+  }
 };
 
 module.exports = themes;
