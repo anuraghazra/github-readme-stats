@@ -178,7 +178,13 @@ const themes = {
     icon_color: "19f9d8",
     text_color: "ffffff",
     bg_color: "002b36",
-  }
+  },
+  "jedi": {
+    title_color: "F5241E",
+    icon_color: "F5241E",
+    text_color: "3F66F5",
+    bg_color: "2C2C2E",
+  },
 };
 
 module.exports = themes;
