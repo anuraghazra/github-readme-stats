@@ -1,3 +1,4 @@
+
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
@@ -51,12 +52,12 @@
 
 # Features
 
-- [GitHub Stats Card](#github-stats-card)
+- [Carte des stats GitHub](#github-stats-card)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Top Languages Card](#top-languages-card)
+- [Carte des meilleurs langages](#top-languages-card)
 - [Themes](#themes)
-- [Customization](#customization)
-- [Deploy Yourself](#deploy-on-your-own-vercel-instance)
+- [Personnalisation](#customization)
+- [Deployer toi-même](#deploy-on-your-own-vercel-instance)
 
 # GitHub Stats Card
 
@@ -65,19 +66,19 @@ Copiez-collez ceci dans votre Markdown, et c'est tout. C'est simple !
 Remplacez la valeur  `?username=` par le nom d'utilisateur de votre GitHub.
 
 ```md
-[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 _Note: Les rangs sont calculés sur la base des statistiques de l'utilisateur, voir [src/calculateRank.js](./src/calculateRank.js)_
 
-### Hiding individual stats
+### Cacher les statistiques individuelles
 
 Pour masquer des statistiques spécifiques, vous pouvez passer un paramètre de requête `?hide=` avec des valeurs séparées par des virgules.
 
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
+![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
 ### Ajouter le compte des contributions privées au compte des commits totaux
@@ -89,7 +90,7 @@ _Note: Si vous déployez vous-même ce projet, les contributions privées seront
 > Options: `&count_private=true`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
 ### Afficher les icônes
@@ -97,7 +98,7 @@ _Note: Si vous déployez vous-même ce projet, les contributions privées seront
 Pour activer les icônes, vous pouvez passer  `show_icons=true` dans le paramètre de requête, comme ceci :
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
 ### Themes
@@ -107,7 +108,7 @@ Avec les thèmes intégrés, vous pouvez personnaliser l'apparence de la carte s
 Use `?theme=THEME_NAME` parameter like so :-
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
 #### Tous les thèmes intégrés :-
@@ -182,14 +183,14 @@ Copiez-collez ce code dans votre readme et modifiez les liens.
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Carte ReadMe](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
-Use [show_owner](#customization) variable to include the repo's owner username
+Utiliser la variable [show_owner](#customization) pour inclure l'username du propriétaire du repo.
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -197,13 +198,13 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 La carte des langages principaux montre les langages les plus utilisées par les utilisateurs de GitHub.
 
-_NOTE: Top languages does not indicate my skill level or something like that, it's a github metric of which languages i have the most code on github, it's a new feature of github-readme-stats_
+_NOTE: Les langages affichés n'indiquent pas mon niveau de compétence ou quelque chose comme ça, c'est une métrique GitHub de quelles langages j'ai le plus de code sur GitHub, c'est une nouvelle fonctionnalité de github-readme-stats_
 
 ### Usage
 
 Copiez-collez ce code dans votre readme et modifiez les liens.
 
-Endpoint: `api/top-langs?username=anuraghazra`
+Extrémité: `api/top-langs?username=anuraghazra`
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
@@ -217,7 +218,7 @@ Tu peux utiliser le paramètre `?hide=language1,language2` pour masquer les lang
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Compact Language Card Layout
+### Carte compacte des langages
 
 Tu peux utiliser l'option `&layout=compact` pour changer le style de la carte.
 
@@ -229,7 +230,7 @@ Tu peux utiliser l'option `&layout=compact` pour changer le style de la carte.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- Compact layout
+- Carte compacte
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -249,7 +250,7 @@ Tu peux utiliser l'option `&layout=compact` pour changer le style de la carte.
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
-- Inclure tous les Commits
+- Inclure tous les commits
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
 
@@ -263,21 +264,21 @@ Choisissez parmi l'une des [default themes](#themes)
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
-- Personnaliser stats card
+- Personnaliser la carte des stats
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- Personnaliser repo card
+- Personnaliser la carte repo
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
-- Top languages 
+- Top Langages
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
-### Conseil rapide  (Aligner Repo Cards)
+### Conseil rapide  (Aligner les cartes des repos)
 
 En général, vous ne pourrez pas mettre les images côte à côte. Pour ce faire, vous pouvez utiliser cette approche :
 ```md
@@ -300,25 +301,25 @@ NOTE: Depuis [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) n
 <details>
  <summary><b> Guide pour la mise en place de Vercel  🔨 </b></summary>
 
-1. Go to [vercel.com](https://vercel.com/)
-1. Click on `Log in`  
+1. Allez sur [vercel.com](https://vercel.com/)
+1. Cliquez sur `Log in`  
    ![](https://files.catbox.moe/tct1wg.png)
-1. Sign in with GitHub by pressing `Continue with GitHub`  
+1. Connectez-vous avec GitHub en cliquant `Continue with GitHub`  
    ![](https://files.catbox.moe/btd78j.jpeg)
-1. Sign into GitHub and allow access to all repositories, if prompted
-1. Fork this repo
-1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
-1. Select `Import Project`  
+1. Connectez-vous à GitHub et autorisez l'accès à tous les dépôts, si vous y êtes invité
+1. Fork ce repo
+1. Retournez au [dashboard Vercel](https://vercel.com/dashboard)
+1. Selectez `Import Project`  
    ![](https://files.catbox.moe/qckos0.png)
-1. Select `Import Git Repository`  
+1. Selectez `Import Git Repository`  
    ![](https://files.catbox.moe/pqub9q.png)
-1. Select root and keep everything as is, just add your environment variable named PAT_1 (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)
+1. choisissez root et gardez tout tel quel, ajoutez simplement votre variable d'environnement nommée PAT_1 (comme indiqué), qui contiendra un jeton d'accès personnel (PAT), que vous pouvez facilement créer [ici](https://github.com/settings/tokens/new) (laissez tout tel quel, nommez le simplement quelque chose, cela peut être tout ce que vous voulez)
    ![](https://files.catbox.moe/0ez4g7.png)
 1. Cliquez sur "déployer" et vous êtes prêt à partir. Voir vos domaines pour utiliser l'API !
 
 </details>
 
-## :sparkling_heart: Support the project
+## :sparkling_heart: Supporter le project
 
 Je mets open-source presque tout ce que je peux, et j'essaie de répondre à tous ceux qui ont besoin d'aide en utilisant ces projets. Évidemment,
 cela prend du temps. Vous pouvez utiliser ce service gratuitement.
