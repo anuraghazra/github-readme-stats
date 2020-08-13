@@ -174,9 +174,9 @@ const themes = {
     bg_color: "ffffff",
   },
   "blackred": {
-    title_color: "ffffff",
-    icon_color: "e9333c",
-    text_color: "e8212b",
+    title_color: "e9333c",
+    icon_color: "e8212b",
+    text_color: "e9333c",
     bg_color: "000000",
   },
   "vue-dark":{
