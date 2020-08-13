@@ -139,7 +139,7 @@ You can provide multiple comma saperated values in bg_color option to render a g
 &bg_color=DEG,COLOR1,COLRO2,COLOR3...COLOR10
 ```
 
-> Note on cache: Repo cards have default cache of 30mins (1800 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 30min and maximum of 24hours
+> Note on cache: Repo cards have default cache of 4hours (14400 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 2hours and maximum of 24hours
 
 #### Stats Card Exclusive Options:
 
