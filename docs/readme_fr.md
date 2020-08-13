@@ -145,13 +145,13 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 #### Stats Card Exclusive Options:
 
-- `hide` - Hide's the specified items from stats _(Comma seperated values)_
+- `hide` - Cacher les éléments spécifiés dans les statistiques _(Comma seperated values)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
 - `show_icons` - _(boolean)_
-- `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
-- `count_private` - Count private commits _(boolean)_
-- `line_height` - Sets the line-height between text _(number)_
+- `include_all_commits` - Compter le total de commits au lieu de ne compter que les commits de l'année en cours _(boolean)_
+- `count_private` - Compter les commits privés _(boolean)_
+- `line_height` - Fixer la hauteur de la ligne entre les textes _(number)_
 
 #### Repo Card Exclusive Options:
 
@@ -159,14 +159,14 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 #### Language Card Exclusive Options:
 
-- `hide` - Hide the languages specified from the card _(Comma seperated values)_
+- `hide` - Masquer les langages spécifiés sur la carte _(Comma seperated values)_
 - `hide_title` - _(boolean)_
-- `layout` - Switch between two available layouts `default` & `compact`
-- `card_width` - Set the card's width manually _(number)_
+- `layout` - Switcher entre 2 mise en page `default` & `compact`
+- `card_width` - Fixer la width de la carte manuellement _(number)_
 
 > :warning: **Important:**  
-> Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)  
-> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.)
+> Les noms des langages doivent être en format uri, comme spécifié dans [Percent Encoding](https://fr.wikipedia.org/wiki/Percent-encoding)  
+> (c'est-à-dire que: `c++` devrait devenir `c%2B%2B`, `jupyter notebook` devrait devenir `jupyter%20notebook`, etc.)
 
 ---
 
@@ -180,7 +180,7 @@ et OUI ! Vous n'êtes plus limité à 6 dépôts épinglés.
 
 Copiez-collez ce code dans votre readme et modifiez les liens.
 
-Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
+Extrémité: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
 [![Carte ReadMe](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
@@ -313,7 +313,7 @@ NOTE: Depuis [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) n
    ![](https://files.catbox.moe/qckos0.png)
 1. Selectez `Import Git Repository`  
    ![](https://files.catbox.moe/pqub9q.png)
-1. choisissez root et gardez tout tel quel, ajoutez simplement votre variable d'environnement nommée PAT_1 (comme indiqué), qui contiendra un jeton d'accès personnel (PAT), que vous pouvez facilement créer [ici](https://github.com/settings/tokens/new) (laissez tout tel quel, nommez le simplement quelque chose, cela peut être tout ce que vous voulez)
+1. Choisissez root et gardez tout tel quel, ajoutez simplement votre variable d'environnement nommée PAT_1 (comme indiqué), qui contiendra un jeton d'accès personnel (PAT), que vous pouvez facilement créer [ici](https://github.com/settings/tokens/new) (laissez tout tel quel, nommez le simplement quelque chose, cela peut être tout ce que vous voulez)
    ![](https://files.catbox.moe/0ez4g7.png)
 1. Cliquez sur "déployer" et vous êtes prêt à partir. Voir vos domaines pour utiliser l'API !
 
