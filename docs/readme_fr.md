@@ -59,7 +59,7 @@
 - [Personnalisation](#customization)
 - [Deployer toi-même](#deploy-on-your-own-vercel-instance)
 
-# GitHub Stats Card
+# Carte des Stats GitHub
 
 Copiez-collez ceci dans votre Markdown, et c'est tout. C'est simple !
 
