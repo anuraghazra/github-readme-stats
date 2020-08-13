@@ -32,8 +32,8 @@ module.exports = async (req, res) => {
   }
 
   let cacheSeconds = clampValue(
-    parseInt(cache_seconds || CONSTANTS.THIRTY_MINUTES, 10),
-    CONSTANTS.THIRTY_MINUTES,
+    parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
+    CONSTANTS.TWO_HOURS,
     CONSTANTS.ONE_DAY
   );
 
@@ -47,7 +47,7 @@ module.exports = async (req, res) => {
   const isBothOver1K = stars > 1000 && forks > 1000;
   const isBothUnder1 = stars < 1 && forks < 1;
   if (!cache_seconds && (isBothOver1K || isBothUnder1)) {
-    cacheSeconds = CONSTANTS.TWO_HOURS;
+    cacheSeconds = CONSTANTS.FOUR_HOURS;
   }
 
   res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
