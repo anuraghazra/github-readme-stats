@@ -178,6 +178,12 @@ const themes = {
     icon_color: "19f9d8",
     text_color: "ffffff",
     bg_color: "002b36",
+  },
+  "chill-ebony":{
+    title_color: "222831",
+    icon_color: "222831",
+    text_color: "0F9B8E",
+    bg_color: "eeeeee",
   }
 };
 
