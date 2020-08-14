@@ -74,7 +74,7 @@ async function run() {
       issue_number: pullRequestId,
     });
   } catch (error) {
-    core.setFailed(error.message);
+    console.log(error);
   }
 }
 
