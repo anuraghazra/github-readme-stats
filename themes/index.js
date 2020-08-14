@@ -184,7 +184,13 @@ const themes = {
     icon_color: "19f9d8",
     text_color: "ffffff",
     bg_color: "002b36",
-  }
+  },
+  calm: {
+    title_color: "e07a5f",
+    icon_color: "edae49",
+    text_color: "ebcfb2",
+    bg_color: "373f51",
+  },
 };
 
 module.exports = themes;
