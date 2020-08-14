@@ -69,10 +69,11 @@ async function run() {
       repo: "github-readme-stats",
       body: `
       \rTheme preview (bot)  
-      \rtitle-color: <code>#${titleColor}</code>
-      \ricon-color: <code>#${iconColor}</code>
-      \rtext-color: <code>#${textColor}</code>
-      \rbg-color: <code>#${bgColor}</code>
+      
+      \ntitle-color: <code>#${titleColor}</code>
+      \nicon-color: <code>#${iconColor}</code>
+      \ntext-color: <code>#${textColor}</code>
+      \nbg-color: <code>#${bgColor}</code>
       
       \r[![](${url})](${url})
       `,
