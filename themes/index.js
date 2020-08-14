@@ -178,6 +178,18 @@ const themes = {
     icon_color: "19f9d8",
     text_color: "ffffff",
     bg_color: "002b36",
+  },
+  "fuji-light":{
+    title_color: "8aa2d3",
+    icon_color: "8aa2d3",
+    text_color: "9ea1a3",
+    bg_color: "ffffff",
+  },
+  "fuji-dark":{
+    title_color: "8aa2d3",
+    icon_color: "8aa2d3",
+    text_color: "c0c0c0",
+    bg_color: "4d5158",
   }
 };
 
