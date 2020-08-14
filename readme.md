@@ -34,15 +34,17 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
   </p>
   <p align="center">
-    <a href="readme_cn.md">简体中文</a>
+    <a href="/docs/readme_cn.md">简体中文</a>
     ·
-    <a href="readme_es.md">Español</a>
+    <a href="/docs/readme_es.md">Español</a>
     ·
-    <a href="readme_de.md">Deutsch</a>
+    <a href="/docs/readme_de.md">Deutsch</a>
     ·
-    <a href="readme_ja.md">日本語</a>
-     ·
-    <a href="readme_pt-BR.md">Português Brasileiro</a>
+    <a href="/docs/readme_ja.md">日本語</a>
+    ·
+    <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
+    ·
+    <a href="/docs/readme_kr.md">한국어</a>
   </p>
 </p>
 <p align="center">Loved the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
@@ -125,15 +127,23 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `title_color` - Card's title color _(hex color)_
 - `text_color` - Body text color _(hex color)_
 - `icon_color` - Icons color if available _(hex color)_
-- `bg_color` - Card's background color _(hex color)_
+- `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
 - `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
 
-> Note on cache: Repo cards have default cache of 30mins (1800 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 30min and maximum of 24hours
+##### Gradient in bg_color
+
+You can provide multiple comma separated values in bg_color option to render a gradient, the format of the gradient is :-
+
+```
+&bg_color=DEG,COLOR1,COLRO2,COLOR3...COLOR10
+```
+
+> Note on cache: Repo cards have default cache of 4hours (14400 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 2hours and maximum of 24hours
 
 #### Stats Card Exclusive Options:
 
-- `hide` - Hide's the specified items from stats _(Comma seperated values)_
+- `hide` - Hides the specified items from stats _(Comma seperated values)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
 - `show_icons` - _(boolean)_
@@ -184,7 +194,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 # Top Languages Card
 
-Top languages card shows github user's top langauges which has been mostly used.
+Top languages card shows github user's top languages which has been mostly used.
 
 _NOTE: Top languages does not indicate my skill level or something like that, it's a github metric of which languages i have the most code on github, it's a new feature of github-readme-stats_
 
@@ -247,6 +257,10 @@ You can use the `&layout=compact` option to change the card design.
 Choose from any of the [default themes](#themes)
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+
+- Gradient
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
 - Customizing stats card
 

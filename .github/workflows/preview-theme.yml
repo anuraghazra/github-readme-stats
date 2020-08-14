@@ -1,7 +1,7 @@
 name: Theme preview
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened, synchronize, reopened]
     branches:
       - master
@@ -26,5 +26,3 @@ jobs:
         env:
           CI: true
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
