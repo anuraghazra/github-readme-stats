@@ -173,6 +173,12 @@ const themes = {
     text_color: "24292e",
     bg_color: "ffffff",
   },
+  "vision-friendly-dark": {
+    title_color: "ffb000",
+    icon_color: "785ef0",
+    text_color: "ffffff",
+    bg_color: "000000",
+  },
   "vue-dark":{
     title_color: "19f9d8",
     icon_color: "19f9d8",
@@ -184,7 +190,13 @@ const themes = {
     icon_color: "73d0ff",
     text_color: "c7c8c2",
     bg_color: "1f2430",
-  }
+  },
+  calm: {
+    title_color: "e07a5f",
+    icon_color: "edae49",
+    text_color: "ebcfb2",
+    bg_color: "373f51",
+  },
 };
 
 module.exports = themes;

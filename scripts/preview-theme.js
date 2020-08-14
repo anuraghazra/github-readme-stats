@@ -69,12 +69,17 @@ async function run() {
       repo: "github-readme-stats",
       body: `
       \rTheme preview (bot)  
-      \r![](${url})
+      \rtitle-color: <code>#${titleColor}</code>
+      \ricon-color: <code>#${iconColor}</code>
+      \rtext-color: <code>#${textColor}</code>
+      \rbg-color: <code>#${bgColor}</code>
+      
+      \r[![](${url})](${url})
       `,
       issue_number: pullRequestId,
     });
   } catch (error) {
-    core.setFailed(error.message);
+    console.log(error);
   }
 }
 
