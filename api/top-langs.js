@@ -14,6 +14,7 @@ module.exports = async (req, res) => {
     username,
     hide,
     hide_title,
+    from_date,
     hide_border,
     card_width,
     title_color,
@@ -28,7 +29,11 @@ module.exports = async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    topLangs = await fetchTopLanguages(username);
+    const fetchFromDate = new Date(from_date);
+    topLangs = await fetchTopLanguages(
+      username,
+      !isNaN(fetchFromDate.getTime()) ? fetchFromDate : null
+    );
 
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),

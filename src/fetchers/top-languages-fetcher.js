@@ -11,6 +11,7 @@ const fetcher = (variables, token) => {
           # fetch only owner repos & not forks
           repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
             nodes {
+              pushedAt
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
                 edges {
                   size
@@ -33,7 +34,7 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchTopLanguages(username) {
+async function fetchTopLanguages(username, fromDate) {
   if (!username) throw Error("Invalid username");
 
   let res = await retryer(fetcher, { login: username });
@@ -46,9 +47,12 @@ async function fetchTopLanguages(username) {
   let repoNodes = res.data.data.user.repositories.nodes;
 
   repoNodes = repoNodes
-    .filter((node) => {
-      return node.languages.edges.length > 0;
-    })
+    .filter((node) => (
+      node.languages.edges.length > 0 &&
+      // include only repositories that were updated after specified fromDate
+      // skip if parameter not set (is null)
+      fromDate ? new Date(node.pushedAt).getTime() - fromDate.getTime() > 0 : true)
+    )
     // flatten the list of language nodes
     .reduce((acc, curr) => curr.languages.edges.concat(acc), [])
     .sort((a, b) => b.size - a.size)

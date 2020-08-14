@@ -157,6 +157,7 @@ You can provide multiple comma separated values in bg_color option to render a g
 
 #### Language Card Exclusive Options:
 
+- `from_date` - Include only languages in repos that you pushed to after specified date
 - `hide` - Hide the languages specified from the card _(Comma seperated values)_
 - `hide_title` - _(boolean)_
 - `layout` - Switch between two available layouts `default` & `compact`

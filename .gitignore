@@ -1,5 +1,6 @@
 .vercel
 .env
+.idea
 node_modules
 package-lock.json
 *.lock

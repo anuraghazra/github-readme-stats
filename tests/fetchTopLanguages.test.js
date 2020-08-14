@@ -15,16 +15,19 @@ const data_langs = {
       repositories: {
         nodes: [
           {
+            pushedAt: "2020-06-04T06:32:05Z",
             languages: {
               edges: [{ size: 100, node: { color: "#0f0", name: "HTML" } }],
             },
           },
           {
+            pushedAt: "2020-06-05T06:32:05Z",
             languages: {
               edges: [{ size: 100, node: { color: "#0f0", name: "HTML" } }],
             },
           },
           {
+            pushedAt: "2020-07-05T06:32:05Z",
             languages: {
               edges: [
                 { size: 100, node: { color: "#0ff", name: "javascript" } },
@@ -32,6 +35,7 @@ const data_langs = {
             },
           },
           {
+            pushedAt: "2020-07-06T06:32:05Z",
             languages: {
               edges: [
                 { size: 100, node: { color: "#0ff", name: "javascript" } },
@@ -66,6 +70,19 @@ describe("FetchTopLanguages", () => {
         name: "HTML",
         size: 200,
       },
+      javascript: {
+        color: "#0ff",
+        name: "javascript",
+        size: 200,
+      },
+    });
+  });
+
+  it('should fetch correct language data after given date', async () => {
+    mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
+
+    let repo = await fetchTopLanguages("anuraghazra", new Date("2020-06-05T07:32:05Z"));
+    expect(repo).toStrictEqual({
       javascript: {
         color: "#0ff",
         name: "javascript",
