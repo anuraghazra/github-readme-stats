@@ -185,6 +185,12 @@ const themes = {
     text_color: "ffffff",
     bg_color: "002b36",
   },
+  "ayu-mirage": {
+    title_color: "f4cd7c",
+    icon_color: "73d0ff",
+    text_color: "c7c8c2",
+    bg_color: "1f2430",
+  },
   calm: {
     title_color: "e07a5f",
     icon_color: "edae49",
