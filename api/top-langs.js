@@ -53,29 +53,29 @@ module.exports = async (req, res) => {
       names: isInclude ? includeLangs : excludeLangs,
       include: isInclude,
     });
+
+    const cacheSeconds = clampValue(
+      parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
+      CONSTANTS.TWO_HOURS,
+      CONSTANTS.ONE_DAY
+    );
+
+    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+
+    return res.send(
+      renderTopLanguages(topLangs, {
+        hide_title: parseBoolean(hide_title),
+        hide_border: parseBoolean(hide_border),
+        card_width: parseInt(card_width, 10),
+        hide: parseArray(hide),
+        title_color,
+        text_color,
+        bg_color,
+        theme,
+        layout,
+      })
+    );
   } catch (err) {
-    return res.send(renderError(err.message));
+    return res.send(renderError(err.message, err.secondaryMessage));
   }
-
-  const cacheSeconds = clampValue(
-    parseInt(cache_seconds || CONSTANTS.THIRTY_MINUTES, 10),
-    CONSTANTS.THIRTY_MINUTES,
-    CONSTANTS.ONE_DAY
-  );
-
-  res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
-
-  res.send(
-    renderTopLanguages(topLangs, {
-      hide_title: parseBoolean(hide_title),
-      hide_border: parseBoolean(hide_border),
-      card_width: parseInt(card_width, 10),
-      hide: parseArray(hide),
-      title_color,
-      text_color,
-      bg_color,
-      theme,
-      layout,
-    })
-  );
 };

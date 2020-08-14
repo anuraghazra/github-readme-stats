@@ -113,19 +113,25 @@ const themes = {
     text_color: "0cf574",
     bg_color: "040f0f",
   },
-  "algolia": {
+  algolia: {
     title_color: "00AEFF",
     icon_color: "2DDE98",
     text_color: "FFFFFF",
     bg_color: "050F2C",
   },
-  "great-gatsby":{
+  "great-gatsby": {
     title_color: "ffa726",
     icon_color: "ffb74d",
     text_color: "ffd95b",
     bg_color: "000000",
   },
-  "bear": {
+  darcula: {
+    title_color: "BA5F17",
+    icon_color: "84628F",
+    text_color: "BEBEBE",
+    bg_color: "242424",
+  },
+  bear: {
     title_color: "e03c8a",
     icon_color: "00AEFF",
     text_color: "bcb28d",
@@ -143,6 +149,36 @@ const themes = {
     text_color: "859900",
     bg_color: "fdf6e3",
   },
+  nord: {
+    title_color: "81a1c1",
+    text_color: "d8dee9",
+    icon_color: "88c0d0",
+    bg_color: "2e3440",
+  },
+  "gotham": {
+    title_color: "2aa889",
+    icon_color: "599cab",
+    text_color: "99d1ce",
+    bg_color: "0c1014",
+  },
+  "material-palenight": {
+    title_color: "c792ea",
+    icon_color: "89ddff",
+    text_color: "a6accd",
+    bg_color: "292d3e",
+  },
+  "graywhite": {
+    title_color: "24292e",
+    icon_color: "24292e",
+    text_color: "24292e",
+    bg_color: "ffffff",
+  },
+  "vue-dark":{
+    title_color: "19f9d8",
+    icon_color: "19f9d8",
+    text_color: "ffffff",
+    bg_color: "002b36",
+  }
 };
 
 module.exports = themes;

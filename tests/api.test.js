@@ -143,17 +143,17 @@ describe("Test /api/", () => {
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${CONSTANTS.THIRTY_MINUTES}`],
+      ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
     ]);
   });
 
   it("should set proper cache", async () => {
-    const { req, res } = faker({ cache_seconds: 2000 }, data);
+    const { req, res } = faker({ cache_seconds: 8000 }, data);
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${2000}`],
+      ["Cache-Control", `public, max-age=${8000}`],
     ]);
   });
 
@@ -175,7 +175,7 @@ describe("Test /api/", () => {
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.THIRTY_MINUTES}`],
+        ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
       ]);
     }
 
@@ -185,7 +185,7 @@ describe("Test /api/", () => {
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.THIRTY_MINUTES}`],
+        ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
       ]);
     }
   });

@@ -32,11 +32,17 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicita una mejora</a>
   </p>
   <p align="center">
-    <a href="readme.md">English</a>
+    <a href="/docs/readme_cn.md">简体中文</a>
     ·
-    <a href="readme_cn.md">简体中文</a>
+    <a href="/docs/readme_es.md">Español</a>
     ·
-    <a href="readme_ja.md">日本語</a>
+    <a href="/docs/readme_de.md">Deutsch</a>
+    ·
+    <a href="/docs/readme_ja.md">日本語</a>
+    ·
+    <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
+    ·
+    <a href="/docs/readme_kr.md">한국어</a>
   </p>
 </p>
 <p align="center">¿Te gusta este proyecto? ¡Por favor considera <a href="https://www.paypal.me/anuraghazra">donar</a> para ayudar a mejorarlo!
@@ -59,7 +65,7 @@ Cambia el valor `?username=` al nombre de tu usuario de GitHub.
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Nota: las clasificaciones se calculan basándose en las estadísticas del usuario. Ve [src/calculateRank.js](./src/calculateRank.js)._
+_Nota: las clasificaciones se calculan basándose en las estadísticas del usuario. Ve [src/calculateRank.js](../src/calculateRank.js)._
 
 ### Ocultar estadísticas individualmente
 
@@ -107,7 +113,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-Puedes ver una vista previa de [todos los temas disponibles](./themes/README.md) o ver el [archivo de configuración](./themes/index.js) del tema y también **puedes contribuir con nuevos temas** si lo deseas :D
+Puedes ver una vista previa de [todos los temas disponibles](../themes/README.md) o ver el [archivo de configuración](../themes/index.js) del tema y también **puedes contribuir con nuevos temas** si lo deseas :D
 
 ### Personalización
 
@@ -119,7 +125,7 @@ Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que
 - `text_color` - Color del contenido _(hex color)_
 - `icon_color` - Color de icono si esta disponible _(hex color)_
 - `bg_color` - Color de fondo _(hex color)_
-- `theme` - Nombre del tema, elige uno de [todos los temas disponible ](./themes/README.md)
+- `theme` - Nombre del tema, elige uno de [todos los temas disponible ](../themes/README.md)
 - `cache_seconds` - Cache _(min: 1800, max: 86400)_
 
 > Nota sobre la caché: las tarjetas de Repo tienen un caché predeterminado de 30 minutos (1800 segundos) si el recuento forks y el recuento de estrellas es inferior a 1k; de lo contrario, son 2 horas (7200). También tenga en cuenta que el caché está sujeto a un mínimo de 30 minutos y un máximo de 24 horas
