@@ -139,7 +139,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Zähle alle Beiträge anstatt nur das aktuelle Jahr _(boolean)_
 - `count_private` - Zähle private Beiträge _(boolean)_
-- `line_height` - Legt die Zeilenhöhe zwischen Text fest  _(Zahl)_
+- `line_height` - Legt die Zeilenhöhe zwischen Text fest _(Zahl)_
 
 #### Exklusive Optionen der Repo-Karte:
 
@@ -280,6 +280,8 @@ Wähle Eines von den [Standard-Themes](#themes)
 ```
 
 ## Betreibe es auf deiner eigenen Vercel-Instanz
+
+#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
 Da die GitHub API nur 5 Tsd Aufrufe pro Stunde zulässt, kann es passieren, dass meine `https://github-readme-stats.vercel.app/api` dieses Limit erreicht.
 Wenn du es auf deinem eigenen Vercel-Server hostest, brauchst du dich darum nicht zu kümmern. Klicke auf den Deploy-Knopf um loszulegen!

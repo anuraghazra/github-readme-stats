@@ -1,4 +1,3 @@
-
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
@@ -63,7 +62,7 @@
 
 Copiez-collez ceci dans votre Markdown, et c'est tout. C'est simple !
 
-Remplacez la valeur  `?username=` par le nom d'utilisateur de votre GitHub.
+Remplacez la valeur `?username=` par le nom d'utilisateur de votre GitHub.
 
 ```md
 [![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
@@ -95,7 +94,7 @@ _Note: Si vous déployez vous-même ce projet, les contributions privées seront
 
 ### Afficher les icônes
 
-Pour activer les icônes, vous pouvez passer  `show_icons=true` dans le paramètre de requête, comme ceci :
+Pour activer les icônes, vous pouvez passer `show_icons=true` dans le paramètre de requête, comme ceci :
 
 ```md
 ![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -121,8 +120,7 @@ Vous pouvez consulter un aperçu de [tous les thèmes disponibles](./themes/READ
 
 ### Personnalisation
 
-Vous pouvez personnaliser l'apparence de votre  `Stats Card` ou `Repo Card` comme vous le souhaitez avec les paramètres d'URL.
-
+Vous pouvez personnaliser l'apparence de votre `Stats Card` ou `Repo Card` comme vous le souhaitez avec les paramètres d'URL.
 
 #### Common Options:
 
@@ -210,7 +208,7 @@ Extrémité: `api/top-langs?username=anuraghazra`
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Cacher certaines langages 
+### Cacher certaines langages
 
 Tu peux utiliser le paramètre `?hide=language1,language2` pour masquer les langages individuels.
 
@@ -242,11 +240,11 @@ Tu peux utiliser l'option `&layout=compact` pour changer le style de la carte.
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
-- Ne pas afficher des stats spécifiques 
+- Ne pas afficher des stats spécifiques
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
 
-- Afficher les icônes 
+- Afficher les icônes
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
@@ -260,7 +258,7 @@ Choisissez parmi l'une des [default themes](#themes)
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
-- Dégradé 
+- Dégradé
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
@@ -278,9 +276,10 @@ Choisissez parmi l'une des [default themes](#themes)
 
 ---
 
-### Conseil rapide  (Aligner les cartes des repos)
+### Conseil rapide (Aligner les cartes des repos)
 
 En général, vous ne pourrez pas mettre les images côte à côte. Pour ce faire, vous pouvez utiliser cette approche :
+
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
@@ -292,7 +291,9 @@ En général, vous ne pourrez pas mettre les images côte à côte. Pour ce fair
 
 ## Déployer sur votre propre instance Vercel
 
-Comme l'API GitHub ne permet que 5k requêtes par heure, il est possible que mon  `https://github-readme-stats.vercel.app/api` puisse atteindre le limiteur de débit. Si vous l'hébergez sur votre propre serveur Vercel, alors vous n'avez pas à vous soucier de quoi que ce soit. Cliquez sur le bouton de déploiement pour commencer !
+#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+
+Comme l'API GitHub ne permet que 5k requêtes par heure, il est possible que mon `https://github-readme-stats.vercel.app/api` puisse atteindre le limiteur de débit. Si vous l'hébergez sur votre propre serveur Vercel, alors vous n'avez pas à vous soucier de quoi que ce soit. Cliquez sur le bouton de déploiement pour commencer !
 
 NOTE: Depuis [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) nous devrions être en mesure de traiter plus de 5 000 demandes et ne pas avoir de problèmes de temps d'arrêt :D
 
