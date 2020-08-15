@@ -7,6 +7,12 @@ const { getStyles } = require("../getStyles");
 const icons = require("../common/icons");
 const Card = require("../common/Card");
 
+const noCodingActivityNode = ({ color }) => {
+  return `
+    <text x="25" y="11" class="stat bold" fill="${color}">No coding activity this week</text>
+  `;
+};
+
 const createProgressNode = ({ width, color, progress, progressBarBackgroundColor }) => {
   const progressPercentage = clampValue(progress, 2, 100);
 
@@ -89,8 +95,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     theme,
   });
 
-  const statItems = languages
-    .filter(language => language.hours || language.minutes)
+  const statItems = languages ? languages.filter(language => language.hours || language.minutes)
     .map(language => {
       return createTextNode({
         icon: icons.contribs,
@@ -102,7 +107,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
         progressBarBackgroundColor: textColor,
         hideProgress: hide_progress,
       })
-    })
+    }) : [];
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
@@ -138,7 +143,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   return card.render(`
     <svg x="0" y="0" width="100%">
       ${FlexLayout({
-    items: statItems,
+    items: statItems.length ? statItems : [noCodingActivityNode({ color: textColor })],
     gap: lheight,
     direction: "column",
   }).join("")}
