@@ -102,11 +102,6 @@ async function fetchStats(
 
   let res = await retryer(fetcher, { login: username });
 
-  let experimental_totalCommits = 0;
-  if (include_all_commits) {
-    experimental_totalCommits = await totalCommitsFetcher(username);
-  }
-
   if (res.data.errors) {
     logger.error(res.data.errors);
     throw new CustomError(
@@ -116,16 +111,18 @@ async function fetchStats(
   }
 
   const user = res.data.data.user;
-  const contributionCount = user.contributionsCollection;
 
   stats.name = user.name || user.login;
   stats.totalIssues = user.issues.totalCount;
 
-  stats.totalCommits =
-    contributionCount.totalCommitContributions + experimental_totalCommits;
+  stats.totalCommits = user.contributionsCollection.totalCommitContributions;
 
   if (count_private) {
-    stats.totalCommits += contributionCount.restrictedContributionsCount;
+    stats.totalCommits += user.contributionsCollection.restrictedContributionsCount;
+  }
+
+  if (include_all_commits) {
+    stats.totalCommits = await totalCommitsFetcher(username);
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
