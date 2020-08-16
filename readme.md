@@ -141,7 +141,7 @@ You can provide multiple comma separated values in bg_color option to render a g
 &bg_color=DEG,COLOR1,COLRO2,COLOR3...COLOR10
 ```
 
-> Note on cache: Repo cards have default cache of 4hours (14400 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to minimum of 2hours and maximum of 24hours
+> Note on cache: Repo cards have default cache of 4hours (14400 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to a minimum of 2hours and maximum of 24hours
 
 #### Stats Card Exclusive Options:
 
@@ -159,7 +159,7 @@ You can provide multiple comma separated values in bg_color option to render a g
 
 #### Language Card Exclusive Options:
 
-- `hide` - Hide the languages specified from the card _(Comma seperated values)_
+- `hide` - Hide the languages specified from the card _(Comma separated values)_
 - `hide_title` - _(boolean)_
 - `layout` - Switch between two available layouts `default` & `compact`
 - `card_width` - Set the card's width manually _(number)_
@@ -196,7 +196,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 # Top Languages Card
 
-Top languages card shows github user's top languages which has been mostly used.
+Top languages card shows github user's top languages which have been mostly used.
 
 _NOTE: Top languages does not indicate my skill level or something like that, it's a github metric of which languages i have the most code on github, it's a new feature of github-readme-stats_
 
