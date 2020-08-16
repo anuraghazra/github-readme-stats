@@ -5,6 +5,12 @@ const themes = {
     text_color: "333",
     bg_color: "fffefe",
   },
+  "dark-and-light" : {
+    title_color: "#00fbff",
+    icon_color: "#42f2f5",
+    text_color: "#ffffff",
+    bg_color: "#000000",
+  },
   default_repocard: {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
