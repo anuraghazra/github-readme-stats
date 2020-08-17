@@ -28,7 +28,6 @@ const createProgressNode = ({ width, color, progress, progressBarBackgroundColor
       >
       </rect>
     </svg>
-    <text x="300" y="11" class="lang-name" fill="${color}">${progress}%</text>
   `;
 };
 
@@ -49,7 +48,7 @@ const createTextNode = ({
     : createProgressNode({
       progress: percent,
       color: progressBarColor,
-      width: 185,
+      width: 220,
       name: label,
       progressBarBackgroundColor,
     });
