@@ -203,10 +203,10 @@ const themes = {
     text_color: "ebcfb2",
     bg_color: "373f51",
   },
-  indian: {
-    title_color: "ff9933",
-    icon_color: "000080",
-    text_color: "138808",
+  flag_india: {
+    title_color: "ff8f1c",
+    icon_color: "250E62",
+    text_color: "509E2F",
     bg_color: "ffffff",
   },
 };
