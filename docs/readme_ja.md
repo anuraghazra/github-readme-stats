@@ -58,7 +58,7 @@
 - [Top Languages Card](#top-languages-card)
 - [Themes](#テーマの変更)
 - [Customization](#テーマを自分でカスタマイズする)
-- [Deploy Yourself](#自分の Vercel インスタンスにデプロイする)
+- [Deploy Yourself](#自分の-Vercel-インスタンスにデプロイする)
 
 # GitHub Stats Card
 
