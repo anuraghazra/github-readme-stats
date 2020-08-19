@@ -1,9 +1,8 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">あなたのREADMEに動的に生成されたGitHubの統計情報を載せましょう！</p>
+ <p align="center">あなたの README に自動生成された GitHub の統計情報を載せましょう！</p>
 </p>
-
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
@@ -35,6 +34,8 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
   </p>
   <p align="center">
+    <a href="/docs/readme_fr.md">Français </a>
+    ·
     <a href="/docs/readme_cn.md">简体中文</a>
     ·
     <a href="/docs/readme_es.md">Español</a>
@@ -50,7 +51,7 @@
 </p>
 <p align="center">このプロジェクトを気に入っていただけましたか？<br>もしよろしければ、プロジェクトのさらなる改善のために<a href="https://www.paypal.me/anuraghazra">寄付</a>を検討して頂けると嬉しいです！</p>
 
-# Features
+# 主な機能
 
 - [GitHub Stats Card](#github-stats-card)
 - [GitHub Extra Pins](#github-extra-pins)
@@ -61,7 +62,7 @@
 
 # GitHub Stats Card
 
-以下の構文をコピーして、あなたの Markdown ファイルに貼り付けるだけです。
+以下のコードをコピーして、あなたの Markdown ファイルに貼り付けるだけです。
 簡単ですね！
 
 `?username=` の値は、あなたの GitHub アカウントのユーザー名に変更してください。
@@ -70,11 +71,11 @@
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Note: カードに表示されるランクはユーザの統計情報に基づいて計算されています。詳しくは、[src/calculateRank.js](../src/calculateRank.js)を見てください。_
+_Note: カードに表示されるランクはユーザの統計情報に基づいて計算されています。詳しくは、[src/calculateRank.js](../src/calculateRank.js)をご覧ください。_
 
-### Hiding individual stats
+### 特定の統計情報を隠す
 
-クエリパラメータ `?hide=` にカンマ区切りの値を渡すことで、特定の統計情報を隠すことができます。
+クエリパラメータ `?hide=` に値をカンマ区切りで渡すことで、特定の統計情報を隠すことができます。
 
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
@@ -82,11 +83,11 @@ _Note: カードに表示されるランクはユーザの統計情報に基づ�
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
-### Adding private contributions count to total commits count
+### プライベートリポジトリへのコミットをカウントする
 
-クエリパラメータ `?count_private=true` を使用することで、private contributions の数をコミット総数に追加することができます。
+クエリパラメータ `?count_private=true` を使用することで、プライベートリポジトリへのコミット数を総数に追加することができます。
 
-_Note: このプロジェクトを自分でデプロイしている場合、デフォルトでは非公開の貢献がカウントされます。_
+_Note: このプロジェクトを自分でデプロイしている場合、デフォルトではプライベートリポジトリへのコミットがカウントされます。_
 
 > Options: `&count_private=true`
 
@@ -94,17 +95,17 @@ _Note: このプロジェクトを自分でデプロイしている場合、デ�
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
-### Showing icons
+### アイコンを表示する
 
-クエリパラメータ `?show_icons=true` を使用することで、アイコンが表示が有効になります。
+クエリパラメータ `?show_icons=true` を使用することで、アイコンの表示が有効になります。
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
-### Themes
+### テーマの変更
 
-内蔵されているテーマを使用することで、任意の[手動のカスタマイズ](#customization)を行うことなく、カードの外観をカスタマイズすることができます。
+内蔵されているテーマを使用すれば、[手動のカスタマイズ](#customization)を行うことなくカードの外観を変更することができます。
 
 `?theme=THEME_NAME` は以下のように使います。
 
@@ -112,57 +113,81 @@ _Note: このプロジェクトを自分でデプロイしている場合、デ�
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
-#### All inbuilt themes :-
+#### 内蔵テーマの一覧
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-用意されている全てのテーマの[プレビュー](../themes/README.md)や[設定ファイル](../themes/index.js)を見ることができます。もしよろしければ、**新しいテーマを投稿してみてください** (´∀` )
+その他の使用可能なテーマの[プレビュー](../themes/README.md)や[設定ファイル](../themes/index.js)もご覧ください。もしよろしければ、**新しいテーマを投稿してみてください** :smile:
 
-### Customization
+### テーマを自分でカスタマイズする
 
-`Stats Card` や `Repo Card` の外観を URL パラメーターを使って好きなようにカスタマイズすることができます。
+`Stats Card` や `Repo Card` の外観を URL パラメータを使って好きなようにカスタマイズすることができます。
 
-Customization Options:
+#### 共通のオプション
 
-| Option        | type      | description                                  | Stats Card (default) | Repo Card (default) | Top Lang Card (default) |
-| ------------- | --------- | -------------------------------------------- | -------------------- | ------------------- | ----------------------- |
-| title_color   | hex color | タイトルの色                                 | 2f80ed               | 2f80ed              | 2f80ed                  |
-| text_color    | hex color | 文字の色                                     | 333                  | 333                 | 333                     |
-| icon_color    | hex color | アイコンの色                                 | 4c71f2               | 586069              | 586069                  |
-| bg_color      | hex color | カードの背景色                               | FFFEFE               | FFFEFE              | FFFEFE                  |
-| line_height   | number    | 字間距離                                     | 30                   | N/A                 | N/A                     |
-| hide          | CSV       | 項目の非表示                                 | undefined            | N/A                 | undefined               |
-| hide_rank     | boolean   | ranking の非表示                             | false                | N/A                 | N/A                     |
-| hide_title    | boolean   | タイトルの非表示                             | false                | N/A                 | false                   |
-| hide_border   | boolean   | 枠線の非表示                                 | false                | N/A                 | N/A                     |
-| show_owner    | boolean   | オーナー名の表示                             | N/A                  | false               | N/A                     |
-| show_icons    | boolean   | アイコンの表示                               | false                | N/A                 | N/A                     |
-| theme         | string    | 用意されているテーマ                         | 'default'            | 'default_repocard'  | 'default'               |
-| cache_seconds | number    | キャッシュコントロール                       | 1800                 | 1800                | 1800                    |
-| count_private | boolean   | private contributions 数をコミット総数に追加 | false                | N/A                 | N/A                     |
-| layout        | string    | レイアウトのオプション選択                   | N/A                  | N/A                 | 'default'               |
+- `title_color` - タイトルの色 _(16 進数カラーコード)_
+- `text_color` - 中身のテキストの色 _(16 進数カラーコード)_
+- `icon_color` - アイコンの色（変更可能な場合のみ） _(16 進数カラーコード)_
+- `bg_color` - 背景の色 _(16 進数カラーコード)_ **または** _angle,start,end_ の形式でグラデーションを指定することも可
+- `theme` - [使用可能なテーマ一覧](./themes/README.md) から選んだテーマ名
+- `cache_seconds` - キャッシュ時間の秒数 _(最小値: 1800, 最大値: 86400)_
+
+##### bg_color の グラデーション指定
+
+bg_color オプションで複数のカンマ区切りの値を指定してグラデーションをレンダリングすることができます。フォーマットは以下の通りになります。
+
+```
+&bg_color=DEG,COLOR1,COLRO2,COLOR3...COLOR10
+```
 
 > キャッシュに関する注意点: Repo cards のデフォルトのキャッシュは、フォーク数とスター数が 1k 未満の場合は 30 分(1800 秒) で、それ以外の場合は 2 時間(7200) です。また、キャッシュは最低でも 30 分、最大でも 24 時間に制限されていることに注意してください。
+
+#### Stats Card だけに存在するオプション
+
+- `hide` - 特定の統計情報を隠す _(カンマ区切りで指定)_
+- `hide_title` - _(boolean)_
+- `hide_rank` - _(boolean)_
+- `show_icons` - _(boolean)_
+- `include_all_commits` - 今年度のコミット数だけでなく、コミット数の総数をカウントする _(boolean)_
+- `count_private` - プライベートリポジトリへのコミットをカウントする _(boolean)_
+- `line_height` - テキストの行の高さ _(number)_
+
+#### Repo Card だけに存在するオプション
+
+- `show_owner` - リポジトリのオーナーを表示する _(boolean)_
+
+#### Language Card だけに存在するオプション
+
+- `hide` - 特定の言語を隠す _(カンマ区切りで指定)_
+- `hide_title` - _(boolean)_
+- `layout` - `default` か `compact` のいずれかのレイアウトに切り替える
+- `card_width` - カードの横幅 _(number)_
+
+> :warning: **重要:**  
+> [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) で指定されているように、プログラミング言語の名前は URL エンコードされている必要があります。
+> (例: `c++` は `c%2B%2B`, `jupyter notebook` は `jupyter%20notebook`, など)
+
+---
 
 # GitHub Extra Pins
 
 GitHub extra pins を使うと、GitHub の readme プロフィールを使って、自分のプロフィールに 6 つ以上のリポジトリをピン留めすることができます。
 
-イェーイ! もはや 6 つのピン留めされたリポジトリに制限されることはありません。
+やったー! もはや、リポジトリをピン留めできる数が 6 つに制限されることはありません。
 
-### Usage
+### 使い方
 
 以下のコードをあなたの readme にコピー & ペーストし、リンクを変更してください。
 
-Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
+エンドポイント: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Demo
+### デモ
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -176,25 +201,25 @@ Top languages card には、その GitHub ユーザーが最も利用してい�
 
 _NOTE: Top languages は、ユーザのスキルレベルを示すものではなく、GitHub 上でどの言語で最も多くのコードを書いているかを示す GitHub の指標です。_
 
-### Usage
+### 使い方
 
 以下のコードをあなたの readme にコピー & ペーストし、リンクを変更してください。
 
-Endpoint: `api/top-langs?username=anuraghazra`
+エンドポイント: `api/top-langs?username=anuraghazra`
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Hide individual languages
+### 特定の言語を隠す
 
-クエリパラメータ `?hide=language1,language2` 使用することで、個々の言語を非表示にすることができます。
+クエリパラメータ `?hide=language1,language2` 使用することで、特定の言語を非表示にすることができます。
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Compact Language Card Layout
+### レイアウトをコンパクトにする
 
 クエリパラメータ `&layout=compact` を使用することで、カードのデザインを変更することができます。
 
@@ -202,41 +227,49 @@ Endpoint: `api/top-langs?username=anuraghazra`
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Demo
+### デモ
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- Compact layout
+- Compact layout の場合
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
-### All Demos
+### 全てのデモ
 
-- Default
+- デフォルト
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
-- Hiding specific stats
+- 特定の統計情報を隠す
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
 
-- Showing icons
+- アイコンを表示する
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
-- Themes
+- コミット数の総数をカウントする
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+
+- テーマの変更
 
 任意の[テーマ](#themes)を選択できます。
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
-- Customizing stats card
+- グラデーション
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
+
+- stats card のカスタマイズ
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- Customizing repo card
+- repo card のカスタマイズ
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
@@ -246,9 +279,9 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ---
 
-### Quick Tip (Align The Repo Cards)
+### クイックヒント (カードを並べる)
 
-通常、画像を並べてレイアウトすることはできません。そのためには、次のような方法があります。
+通常、画像を並べてレイアウトすることはできません。画像を並べるには、以下のような方法があります。
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -259,13 +292,13 @@ Endpoint: `api/top-langs?username=anuraghazra`
 </a>
 ```
 
-## Deploy on your own Vercel instance
+## 自分の Vercel インスタンスにデプロイする
 
-#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+#### [@codeSTACKr によるチュートリアルはこちら](https://youtu.be/n6d4KHSKqGk?t=107)
 
 GitHub API は 1 時間あたり 5k リクエストしか受け付けていないので、私の `https://github-readme-stats.vercel.app/api` がレートリミッターを超えてしまう可能性があります。自分の Vercel サーバーでホストしているのであれば、何も心配する必要はありません。デプロイボタンをクリックして始めましょう！
 
-NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降は 5k 以上のリクエストに対応できるようになり、ダウンタイムの問題もなくなりました (´∀` )
+NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降は 5k 以上のリクエストに対応できるようになり、ダウンタイムの問題もなくなりました :smile:
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
@@ -290,14 +323,14 @@ NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降�
 
 </details>
 
-## :sparkling_heart: Support the project
+## :sparkling_heart: このプロジェクトを支援する
 
-私はできる限りのことをオープンソースで行い、これらのプロジェクトを利用して支援を必要としている皆さんに返信するようにしています。
-もちろんそれには時間が掛かる場合がありますが、無料でご利用いただけます。
+私はできる限りのことをオープンソースで行い、また、このプロジェクトを利用する上で困っている皆さん全員に返信するようにしています。もちろん返信には時間が掛かる場合がありますが。  
+このプロジェクトは無料でご利用いただけます。
 
-しかし、もしあなたがこのプロジェクトを使っていて、それに満足しているのであれば、あるいは単に私にものを作り続けることを奨励したいのであれば、いくつかの方法があります。
+しかしながら、もしあなたがこのプロジェクトに満足しているのであれば、あるいはただ、私がソフトウェアを作り続けるよう励ましたいのであれば、いくつかの方法があります。
 
-- あなたの readme で github-readme-stats を使用して適切なクレジットを付与し、それにリンクします (´∀` )
+- あなたの readme で github-readme-stats を使用して適切なクレジットを付与し、それにリンクします :smile:
 - このプロジェクトにスターを贈り、他の人達にもシェアしてください :rocket:
 - [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - PayPal を介して 1 回限りの寄付を行うことができます。私はおそらく ~~コーヒー~~ お茶を買うでしょう。 :tea:
 
@@ -305,6 +338,8 @@ Thanks! :heart:
 
 ---
 
-Contributions を歓迎します！ <3
+![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
+
+コントリビュートは大歓迎です！ :heart_eyes:
 
 このプロジェクトは :heart: と JavaScript で作られています。
