@@ -51,9 +51,9 @@
 
 # Features
 
-- [Carte des stats GitHub](#carte-des-stats-gitHub)
+- [Carte des stats GitHub](#carte-des-stats-github)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Carte des meilleurs langages](#carte-des-langages-les-+-utilisés)
+- [Carte des meilleurs langages](#carte-des-langages-les--utilisés)
 - [Themes](#themes)
 - [Personnalisation](#personnalisation)
 - [Deployer toi-même](#déployer-sur-votre-propre-instance-vercel)
