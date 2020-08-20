@@ -56,6 +56,7 @@
 - [GitHub Stats Card](#github-stats-card)
 - [GitHub Extra Pins](#github-extra-pins)
 - [Top Languages Card](#top-languages-card)
+- [Top Topics Card](#top-topics-card)
 - [Themes](#themes)
 - [Customization](#customization)
 - [Deploy Yourself](#deploy-on-your-own-vercel-instance)
@@ -234,6 +235,44 @@ You can use the `&layout=compact` option to change the card design.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
+# Top Topics Card
+
+Top topics card shows github user's top topics which has been mostly used.
+
+### Usage
+
+Copy-paste this code into your readme and change the links.
+
+Endpoint: `api/top-topics?username=anuraghazra`
+
+```md
+[![Top Topics](https://github-readme-stats.vercel.app/api/top-topics/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Hide individual languages
+
+You can use `?hide=topic1,topic2` parameter to hide individual topics.
+
+```md
+[![Top Topics](https://github-readme-stats.vercel.app/api/top-topics/?username=anuraghazra&hide=foo,bar)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Compact Topic Card Layout
+
+You can use the `&layout=compact` option to change the card design.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-topics/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Demo
+
+[![Top Topics](https://github-readme-stats.vercel.app/api/top-topics/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+- Compact layout
+
+[![Top Topics](https://github-readme-stats.vercel.app/api/top-topics/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
 ---
 
 ### All Demos
@@ -275,6 +314,10 @@ Choose from any of the [default themes](#themes)
 - Top languages
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+- Top topics
+
+[![Top Topics](https://github-readme-stats.vercel.app/api/top-topics/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
