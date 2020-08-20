@@ -1,4 +1,4 @@
-const { request, logger } = require("../common/utils");
+const { request, logger, identiconColor } = require("../common/utils");
 const retryer = require("../common/retryer");
 require("dotenv").config();
 
@@ -62,6 +62,7 @@ async function fetchTopTopics(username) {
         ...acc,
         [topicName]: {
           name: topicName,
+          color: identiconColor(topicName),
           count: count,
         }
       };

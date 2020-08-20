@@ -9,14 +9,17 @@ describe("Test renderTopTopics", () => {
   const topics = {
     "javascript-library": {
       name: "javascript-library",
+      color: "#7da4d5",
       count: 3,
     },
     "physics-engine": {
       name: "physics-engine",
+      color: "#88e4e3",
       count: 2,
     },
     "react": {
       name: "react",
+      color: "#5e6dc4",
       count: 1,
     },
   };
