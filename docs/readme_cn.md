@@ -304,6 +304,8 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ---
 
+![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
+
 欢迎贡献！ <3
 
 用 :heart: 发电，用 JavaScript 制作。
