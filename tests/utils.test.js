@@ -6,6 +6,7 @@ const {
   FlexLayout,
   getCardColors,
   wrapTextMultiline,
+  identiconColor,
 } = require("../src/common/utils");
 
 const { queryByTestId } = require("@testing-library/dom");
@@ -132,5 +133,12 @@ describe("wrapTextMultiline", () => {
       2
     );
     expect(multiLineText).toEqual(["Hello", "world long..."]);
+  });
+});
+
+describe("identiconColor", () => {
+  it("should returns color with identicon", () => {
+    expect(identiconColor("anuraghazra")).toEqual("#d5b672");
+    expect(identiconColor("octocat")).toEqual("#5ecf53");
   });
 });

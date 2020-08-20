@@ -27,6 +27,8 @@
     "dotenv": "^8.2.0",
     "emoji-name-map": "^1.2.8",
     "github-username-regex": "^1.0.0",
+    "hsl-rgb": "^1.0.0",
+    "md5": "^2.3.0",
     "word-wrap": "^1.2.3"
   },
   "husky": {

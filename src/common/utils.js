@@ -1,5 +1,7 @@
 const axios = require("axios");
 const wrap = require("word-wrap");
+const md5 = require("md5");
+const hslRgb = require('hsl-rgb');
 const themes = require("../../themes");
 
 const renderError = (message, secondaryMessage = "") => {
@@ -188,6 +190,22 @@ class CustomError extends Error {
   static USER_NOT_FOUND = "USER_NOT_FOUND";
 }
 
+function identiconColor(str){
+  // ref. https://github.com/dgraham/identicon/blob/0127639a1abee39c5867aeea2e928922162deda9/src/lib.rs#L28-L40
+  const md5Str = md5(str);
+  const hue = parseInt(md5Str.substr(25, 3), 16) * 360 / 4095;
+  const saturation = (65 - parseInt(md5Str.substr(28, 2), 16) * 20 / 255) / 100;
+  const luminance = (75 - parseInt(md5Str.substr(30, 2), 16) * 20 / 255) / 100;
+
+  const rgb = hslRgb(hue, saturation, luminance);
+
+  const red = rgb[0].toString(16).padStart(2, "0");
+  const green = rgb[1].toString(16).padStart(2, "0");
+  const blue = rgb[2].toString(16).padStart(2, "0");
+
+  return "#" + red + green + blue;
+}
+
 module.exports = {
   renderError,
   kFormatter,
@@ -204,4 +222,5 @@ module.exports = {
   logger,
   CONSTANTS,
   CustomError,
+  identiconColor,
 };
