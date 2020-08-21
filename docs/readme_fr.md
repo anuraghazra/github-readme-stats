@@ -53,12 +53,12 @@
 
 # Features
 
-- [Carte des stats GitHub](#github-stats-card)
+- [Carte des stats GitHub](#carte-des-stats-github)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Carte des meilleurs langages](#top-languages-card)
+- [Carte des meilleurs langages](#carte-des-langages-les--utilisés)
 - [Themes](#themes)
-- [Personnalisation](#customization)
-- [Deployer toi-même](#deploy-on-your-own-vercel-instance)
+- [Personnalisation](#personnalisation)
+- [Deployer toi-même](#déployer-sur-votre-propre-instance-vercel)
 
 # Carte des Stats GitHub
 

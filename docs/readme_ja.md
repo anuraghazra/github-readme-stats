@@ -56,9 +56,9 @@
 - [GitHub Stats Card](#github-stats-card)
 - [GitHub Extra Pins](#github-extra-pins)
 - [Top Languages Card](#top-languages-card)
-- [Themes](#themes)
-- [Customization](#customization)
-- [Deploy Yourself](#deploy-on-your-own-vercel-instance)
+- [Themes](#テーマの変更)
+- [Customization](#テーマを自分でカスタマイズする)
+- [Deploy Yourself](#自分の-Vercel-インスタンスにデプロイする)
 
 # GitHub Stats Card
 
