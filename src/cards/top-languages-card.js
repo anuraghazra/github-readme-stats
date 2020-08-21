@@ -1,4 +1,5 @@
-const { getCardColors, FlexLayout, clampValue } = require("../src/utils");
+const { getCardColors, FlexLayout, clampValue } = require("../common/utils");
+const Card = require("../common/Card");
 
 const createProgressNode = ({ width, color, name, progress }) => {
   const paddingRight = 95;
@@ -63,6 +64,7 @@ const lowercaseTrim = (name) => name.toLowerCase().trim();
 const renderTopLanguages = (topLangs, options = {}) => {
   const {
     hide_title,
+    hide_border,
     card_width,
     title_color,
     text_color,
@@ -170,29 +172,29 @@ const renderTopLanguages = (topLangs, options = {}) => {
     }).join("");
   }
 
-  if (hide_title) {
-    height -= 30;
-  }
+  const card = new Card({
+    title: "Most Used Languages",
+    width,
+    height,
+    colors: {
+      titleColor,
+      textColor,
+      bgColor,
+    },
+  });
 
-  return `
-    <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <style>
-        .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
-        .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
-      </style>
-      <rect data-testid="card-bg" x="0.5" y="0.5" width="99.7%" height="99%" rx="4.5" fill="${bgColor}" stroke="#E4E2E2"/>
+  card.disableAnimations();
+  card.setHideBorder(hide_border);
+  card.setHideTitle(hide_title);
+  card.setCSS(`
+    .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+  `);
 
-      ${
-        hide_title
-          ? ""
-          : `<text data-testid="header" x="25" y="35" class="header">Top Languages</text>`
-      }
-
-      <svg data-testid="lang-items" x="25" y="${hide_title ? 25 : 55}">
-        ${finalLayout}
-      </svg>
+  return card.render(`
+    <svg data-testid="lang-items" x="25">
+      ${finalLayout}
     </svg>
-  `;
+  `);
 };
 
 module.exports = renderTopLanguages;

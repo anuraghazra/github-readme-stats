@@ -113,17 +113,95 @@ const themes = {
     text_color: "0cf574",
     bg_color: "040f0f",
   },
-  "algolia": {
+  algolia: {
     title_color: "00AEFF",
     icon_color: "2DDE98",
     text_color: "FFFFFF",
     bg_color: "050F2C",
   },
-  "great-gatsby":{
+  "great-gatsby": {
     title_color: "ffa726",
     icon_color: "ffb74d",
     text_color: "ffd95b",
     bg_color: "000000",
+  },
+  darcula: {
+    title_color: "BA5F17",
+    icon_color: "84628F",
+    text_color: "BEBEBE",
+    bg_color: "242424",
+  },
+  bear: {
+    title_color: "e03c8a",
+    icon_color: "00AEFF",
+    text_color: "bcb28d",
+    bg_color: "1f2023",
+  },
+  "solarized-dark": {
+    title_color: "268bd2",
+    icon_color: "b58900",
+    text_color: "859900",
+    bg_color: "002b36",
+  },
+  "solarized-light": {
+    title_color: "268bd2",
+    icon_color: "b58900",
+    text_color: "859900",
+    bg_color: "fdf6e3",
+  },
+  "chartreuse-dark": {
+    title_color: "7fff00",
+    icon_color: "00AEFF",
+    text_color: "fff",
+    bg_color: "000",
+  },
+  "nord": {
+    title_color: "81a1c1",
+    text_color: "d8dee9",
+    icon_color: "88c0d0",
+    bg_color: "2e3440",
+  },
+  "gotham": {
+    title_color: "2aa889",
+    icon_color: "599cab",
+    text_color: "99d1ce",
+    bg_color: "0c1014",
+  },
+  "material-palenight": {
+    title_color: "c792ea",
+    icon_color: "89ddff",
+    text_color: "a6accd",
+    bg_color: "292d3e",
+  },
+  "graywhite": {
+    title_color: "24292e",
+    icon_color: "24292e",
+    text_color: "24292e",
+    bg_color: "ffffff",
+  },
+  "vision-friendly-dark": {
+    title_color: "ffb000",
+    icon_color: "785ef0",
+    text_color: "ffffff",
+    bg_color: "000000",
+  },
+  "vue-dark":{
+    title_color: "19f9d8",
+    icon_color: "19f9d8",
+    text_color: "ffffff",
+    bg_color: "002b36",
+  },
+  "ayu-mirage": {
+    title_color: "f4cd7c",
+    icon_color: "73d0ff",
+    text_color: "c7c8c2",
+    bg_color: "1f2430",
+  },
+  calm: {
+    title_color: "e07a5f",
+    icon_color: "edae49",
+    text_color: "ebcfb2",
+    bg_color: "373f51",
   },
 };
 

@@ -3,11 +3,20 @@ const {
   getCardColors,
   FlexLayout,
   encodeHTML,
-} = require("../src/utils");
-const getStyles = require("./getStyles");
-const icons = require("./icons");
+} = require("../common/utils");
+const { getStyles } = require("../getStyles");
+const icons = require("../common/icons");
+const Card = require("../common/Card");
 
-const createTextNode = ({ icon, label, value, id, index, showIcons }) => {
+const createTextNode = ({
+  icon,
+  label,
+  value,
+  id,
+  index,
+  showIcons,
+  shiftValuePos,
+}) => {
   const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
 
@@ -23,7 +32,12 @@ const createTextNode = ({ icon, label, value, id, index, showIcons }) => {
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       ${iconSvg}
       <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
-      <text class="stat" x="135" y="12.5" data-testid="${id}">${kValue}</text>
+      <text 
+        class="stat" 
+        x="${shiftValuePos ? (showIcons ? 200 : 170) : 150}" 
+        y="12.5" 
+        data-testid="${id}"
+      >${kValue}</text>
     </g>
   `;
 };
@@ -44,6 +58,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_title = false,
     hide_border = false,
     hide_rank = false,
+    include_all_commits = false,
     line_height = 25,
     title_color,
     icon_color,
@@ -52,7 +67,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     theme = "default",
   } = options;
 
-  const lheight = parseInt(line_height);
+  const lheight = parseInt(line_height, 10);
 
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor } = getCardColors({
@@ -73,7 +88,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     commits: {
       icon: icons.commits,
-      label: "Total Commits",
+      label: `Total Commits${
+        include_all_commits ? "" : ` (${new Date().getFullYear()})`
+      }`,
       value: totalCommits,
       id: "commits",
     },
@@ -106,6 +123,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         ...STATS[key],
         index,
         showIcons: show_icons,
+        shiftValuePos: !include_all_commits,
       })
     );
 
@@ -116,44 +134,11 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_rank ? 0 : 150
   );
 
-  // the better user's score the the rank will be closer to zero so
-  // subtracting 100 to get the progress in 100%
-  const progress = 100 - rank.score;
-
-  const styles = getStyles({
-    titleColor,
-    textColor,
-    iconColor,
-    show_icons,
-    progress,
-  });
-
   // Conditionally rendered elements
-
-  const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
-  const title = hide_title
-    ? ""
-    : `<text x="25" y="35" class="header">${encodeHTML(name)}'${apostrophe} GitHub Stats</text>`;
-
-  const border = `
-    <rect 
-      data-testid="card-bg"
-      x="0.5"
-      y="0.5"
-      width="494"
-      height="99%"
-      rx="4.5"
-      fill="${bgColor}"
-      stroke="#E4E2E2"
-      stroke-opacity="${hide_border ? 0 : 1}"
-    />
-  `;
-
   const rankCircle = hide_rank
     ? ""
-    : `<g data-testid="rank-circle" transform="translate(400, ${
-        height / 1.85
-      })">
+    : `<g data-testid="rank-circle" 
+          transform="translate(400, ${height / 2 - 50})">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
@@ -169,34 +154,45 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         </g>
       </g>`;
 
-  if (hide_title) {
-    height -= 30;
-  }
+  // the better user's score the the rank will be closer to zero so
+  // subtracting 100 to get the progress in 100%
+  const progress = 100 - rank.score;
+  const cssStyles = getStyles({
+    titleColor,
+    textColor,
+    iconColor,
+    show_icons,
+    progress,
+  });
 
-  return `
-    <svg width="495" height="${height}" viewBox="0 0 495 ${height}" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <style>
-        ${styles}
-      </style>
-      
-      ${border}
-      ${title}
+  const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
+  const card = new Card({
+    title: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
+    width: 495,
+    height,
+    colors: {
+      titleColor,
+      textColor,
+      iconColor,
+      bgColor,
+    },
+  });
 
-      <g data-testid="card-body-content" transform="translate(0, ${
-        hide_title ? -30 : 0
-      })">
-        ${rankCircle}
+  card.setHideBorder(hide_border);
+  card.setHideTitle(hide_title);
+  card.setCSS(cssStyles);
 
-        <svg x="0" y="55">
-          ${FlexLayout({
-            items: statItems,
-            gap: lheight,
-            direction: "column",
-          }).join("")}
-        </svg>
-      </g>
-    </svg>
-  `;
+  return card.render(`
+    ${rankCircle}
+
+    <svg x="0" y="0">
+      ${FlexLayout({
+        items: statItems,
+        gap: lheight,
+        direction: "column",
+      }).join("")}
+    </svg> 
+  `);
 };
 
 module.exports = renderStatsCard;

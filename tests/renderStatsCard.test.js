@@ -1,6 +1,6 @@
 require("@testing-library/jest-dom");
 const cssToObject = require("css-to-object");
-const renderStatsCard = require("../src/renderStatsCard");
+const renderStatsCard = require("../src/cards/stats-card");
 
 const {
   getByTestId,
@@ -67,20 +67,6 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "issues")).toBeNull();
     expect(queryByTestId(document.body, "prs")).toBeNull();
     expect(queryByTestId(document.body, "contribs")).toBeNull();
-  });
-
-  it("should hide_border", () => {
-    document.body.innerHTML = renderStatsCard(stats, { hide_border: true });
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "stroke-opacity",
-      "0"
-    );
-
-    document.body.innerHTML = renderStatsCard(stats, { hide_border: false });
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "stroke-opacity",
-      "1"
-    );
   });
 
   it("should hide_rank", () => {
@@ -199,36 +185,6 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       `#${themes.radical.bg_color}`
-    );
-  });
-
-  it("should hide the title", () => {
-    document.body.innerHTML = renderStatsCard(stats, {
-      hide_title: true,
-    });
-
-    expect(document.getElementsByClassName("header")[0]).toBeUndefined();
-    expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
-      "height",
-      "165"
-    );
-    expect(queryByTestId(document.body, "card-body-content")).toHaveAttribute(
-      "transform",
-      "translate(0, -30)"
-    );
-  });
-
-  it("should not hide the title", () => {
-    document.body.innerHTML = renderStatsCard(stats, {});
-
-    expect(document.getElementsByClassName("header")[0]).toBeDefined();
-    expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
-      "height",
-      "195"
-    );
-    expect(queryByTestId(document.body, "card-body-content")).toHaveAttribute(
-      "transform",
-      "translate(0, 0)"
     );
   });
 
