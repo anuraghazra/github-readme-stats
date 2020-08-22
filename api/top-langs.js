@@ -8,6 +8,7 @@ const {
 } = require("../src/common/utils");
 const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 const renderTopLanguages = require("../src/cards/top-languages-card");
+const blacklist = require("../src/common/blacklist");
 
 module.exports = async (req, res) => {
   const {
@@ -47,7 +48,12 @@ module.exports = async (req, res) => {
   }
   res.setHeader("Content-Type", "image/svg+xml");
 
+  if (blacklist.includes(username)) {
+    return res.send(renderError("Something went wrong"));
+  }
+  
   let isInclude = includeLangs.length > excludeLangs.length;
+
   try {
     topLangs = await fetchTopLanguages(username, {
       names: isInclude ? includeLangs : excludeLangs,

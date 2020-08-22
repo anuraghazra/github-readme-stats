@@ -8,6 +8,9 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
+      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+    </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
@@ -275,6 +278,8 @@ Por lo general, no podrá diseñar las imágenes una al lado de la otra. Para ha
 ```
 
 ## Despliega tu propia instancia de vercel
+
+#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
 Desde que la API de GitHub permite solo 5 mil peticiones por hora, es posible que mi `https://github-readme-stats.vercel.app/api` pueda llegar al límite. Si lo alojas en tu propio servidor de Vercel, no tendrás que preocuparte de nada. ¡Clickea en el botón "Deploy" para comenzar!
 

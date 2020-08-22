@@ -34,6 +34,8 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
   </p>
   <p align="center">
+    <a href="/docs/readme_fr.md">Français </a>
+    ·
     <a href="/docs/readme_cn.md">简体中文</a>
     ·
     <a href="/docs/readme_es.md">Español</a>
@@ -282,14 +284,16 @@ You usually won't be able to layout the images side by side. To do that you can 
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 
 ## Deploy on your own Vercel instance
+
+#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
 Since the GitHub API only allows 5k requests per hour, it is possible that my `https://github-readme-stats.vercel.app/api` could hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
 
@@ -332,6 +336,8 @@ However, if you are using this project and happy with it or just want to encoura
 Thanks! :heart:
 
 ---
+
+![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
 
 Contributions are welcomed! <3
 

@@ -56,7 +56,7 @@
 - [Cartão de principais linguagens de programação](#cartão-de-principais-linguagens-de-programação)
 - [Temas](#temas)
 - [Personalização](#personalização)
-- [Faça suas próprias implantações](#faça-suas-próprias-implantações)
+- [Faça suas próprias implantações](#implante-em-sua-própria-instância-do-vercel)
 
 # Cartão de estatísticas do GitHub
 
@@ -278,6 +278,8 @@ Por padrão, você não poderá organizar as imagens lado a lado. Para fazer iss
 ```
 
 ## Implante em sua própria instância do Vercel
+
+#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
 Como a API do GitHub permite apenas 5 mil solicitações por hora, é possível que minha `https://github-readme-stats.vercel.app/api` atinja a cota limite. Se hospedar em seu próprio servidor Vercel, não precisará se preocupar com nada. Clique no botão de implantação para começar!
 

@@ -149,7 +149,13 @@ const themes = {
     text_color: "859900",
     bg_color: "fdf6e3",
   },
-  nord: {
+  "chartreuse-dark": {
+    title_color: "7fff00",
+    icon_color: "00AEFF",
+    text_color: "fff",
+    bg_color: "000",
+  },
+  "nord": {
     title_color: "81a1c1",
     text_color: "d8dee9",
     icon_color: "88c0d0",
@@ -173,12 +179,30 @@ const themes = {
     text_color: "24292e",
     bg_color: "ffffff",
   },
+  "vision-friendly-dark": {
+    title_color: "ffb000",
+    icon_color: "785ef0",
+    text_color: "ffffff",
+    bg_color: "000000",
+  },
   "vue-dark":{
     title_color: "19f9d8",
     icon_color: "19f9d8",
     text_color: "ffffff",
     bg_color: "002b36",
-  }
+  },
+  "ayu-mirage": {
+    title_color: "f4cd7c",
+    icon_color: "73d0ff",
+    text_color: "c7c8c2",
+    bg_color: "1f2430",
+  },
+  calm: {
+    title_color: "e07a5f",
+    icon_color: "edae49",
+    text_color: "ebcfb2",
+    bg_color: "373f51",
+  },
 };
 
 module.exports = themes;
