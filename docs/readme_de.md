@@ -118,7 +118,7 @@ Du kannst das Erscheinungsbild deiner `Stats Card` oder `Repo Card`, mithilfe vo
 - `text_color` - Textkörperfarbe _(hex color)_
 - `icon_color` - Symbolfarbe (falls verfügbar) _(hex color)_
 - `bg_color` - Hintergrundfarbe _(hex color)_ **oder** ein Farbverlauf in der Form von _winkel,start,ende_
-- `theme` - Name des Erscheinungsbildes/Themes [alle verfügbaren Themes](./themes/README.md)
+- `theme` - Name des Erscheinungsbildes/Themes [alle verfügbaren Themes](../themes/README.md)
 - `cache_seconds` - manuelles festlegen der Cachezeiten _(min: 1800, max: 86400)_
 
 ##### Farbverlauf in bg_color
