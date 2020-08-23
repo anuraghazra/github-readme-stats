@@ -203,6 +203,12 @@ const themes = {
     text_color: "ebcfb2",
     bg_color: "373f51",
   },
+  react: {
+    title_color: "61dafb",
+    icon_color: "61dafb",
+    text_color: "ffffff",
+    bg_color: "20232a",
+  },
 };
 
 module.exports = themes;
