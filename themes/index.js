@@ -203,6 +203,12 @@ const themes = {
     text_color: "ebcfb2",
     bg_color: "373f51",
   },
+  omni: {
+    title_color: "FF79C6",
+    icon_color: "e7de79",
+    text_color: "E1E1E6",
+    bg_color: "191622"
+  }
 };
 
 module.exports = themes;
