@@ -89,6 +89,12 @@ const themes = {
     text_color: "273849",
     bg_color: "fffefe",
   },
+  'dark-vue': {
+    title_color: "41b883",
+    icon_color: "41b883",
+    text_color: "fffefe",
+    bg_color: "273849",
+  },
   "shades-of-purple": {
     title_color: "fad000",
     icon_color: "b362ff",
