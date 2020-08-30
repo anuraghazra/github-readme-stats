@@ -1,100 +1,69 @@
-# Contributing to [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
+# :construction_worker: Contributor's Guide
 
-We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
+Below is the guidance for how to report issues, propose new features, and submit contributions via Pull Requests.
 
-- Reporting a issue
-- Discussing the current state of the code
-- Submitting a fix
-- Proposing new features
-- Becoming a maintainer
+## :beetle: Before you start, file an issue
 
-## All Changes Happen Through Pull Requests
+Please follow this simple rule to help me stop any unnecessary effort and frustration, so we all can ensure an efficient and effective use of everyone's time - yours, mine, and the time of other community members.
 
-Pull requests are the best way to propose changes. We actively welcome your pull requests:
-
-1. Fork the repo and create your branch from `master`.
-1. If you've added code that should be tested, add some tests' example.
-1. If you've changed APIs, update the documentation.
-1. Issue that pull request!
-
-## Local Development
-
-To run & test github-readme-stats you need to follow few simple steps :-
-_(make sure you already have a [vercel](https://vercel.com/) account)_
-
-1. Install [Vercel CLI](https://vercel.com/download)
-1. Fork the repository and clone the code to your local machine
-1. Run the command "vercel" in the root and follow the steps there
-1. Create a `.env` file in the root of the directory
-1. In the .env file add a new variable named "PAT" with your [github Personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
-1. Run the command "vercel dev" to start a development server at https://localhost:3000
-
-## Themes Contribution
-
-GitHub Readme Stats supports custom theming and you can also contribute new themes!
-
-All you need to do is edit [themes/index.js](./themes/index.js) file and add your theme at the end of the file.
-
-While creating the Pull request to add a new theme **don't forget to add a screenshot of how your theme looks**, you can also test how it looks using custom url parameters like `title_color`, `icon_color`, `bg_color`, `text_color`
-
-> NOTE: If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
-
-## Any contributions you make will be under the MIT Software License
-
-In short, when you submit changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
-
-## Report issues/bugs using GitHub's [issues](https://github.com/anuraghazra/github-readme-stats/issues)
-
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/anuraghazra/github-readme-stats/issues/new/choose); it's that easy!
-
-## Frequently Asked Questions (FAQs)
-
-**Q:** How to hide jupyter Notebook?
-
-> **Ans:** &hide=jupyter%20notebook
-
-**Q:** I could not figure out how to deploy on my own vercel instance
-
-> **Ans:**
+> If you have a question, or do you think you have discovered an issue, or would you like to propose a new feature, etc., then find/file an issue before starting work to fix or implement it.
 >
-> - docs: https://github.com/anuraghazra/github-readme-stats/#deploy-on-your-own-vercel-instance
-> - YT tutorial by codeSTACKr: https://www.youtube.com/watch?v=n6d4KHSKqGk&feature=youtu.be&t=107
+>:exclamation: **For security issues please have a look at my [Security Policy](SECURITY.md)** :exclamation:
 
-**Q:** Language Card is incorrect
+### :mag_right: Search existing issues first
 
-> **Ans:** Please read all the related issues / comments before opening any issues regarding language card stats:
->
-> - https://github.com/anuraghazra/github-readme-stats/issues/136#issuecomment-665164174
->
-> - https://github.com/anuraghazra/github-readme-stats/issues/136#issuecomment-665172181
+Before filing a new issue, search existing open and closed issues first. Perhaps someone else has found the problem you are seeing, and someone may be working on or have already contributed a fix.
 
-**Q:** How to count private stats?
+If no existing item describes your issue/feature, great - please file a new issue.
 
-> **Ans:** We can only count private commits & we cannot access any other private info of any users, so it's not possible. only way is to deploy on your own instance & use your own PAT (Personal Access Token)
+### :keyboard: File a new Issue
 
-### Bug Reports
+- You found a security issue and you want to report it? Please have a look at the [Security Policy](SECURITY.md)
+- You have found a bug and you want to report it? Please file an issue with the tag "bug"
+- You have found something critical, perhaps a bug where data can be lost, etc.? Please file an issue with the tag "critical"
+- You got a great idea for a new feature? Please file an issue with the tag "feature"
+- You have a question that you do not see answered in docs, videos, etc.? Please file an issue with the tag "documentation"
+- You found an existing issue that describes yours? Great - please upvote and add additional commentary / info / repro-steps / etc.
 
-**Great Bug Reports** tend to have:
+### :pencil: Complete the template
 
-- A quick summary and/or background
-- Steps to reproduce
-  - Be specific!
-  - Share the snapshot, if possible.
-  - GitHub Readme Stats' live link
-- What actually happens
-- What you expected would happen
-- Notes (possibly including why you think this might be happening, or stuff you tried that didn't work)
+Please include as much information as possible in your issue. The more information you provide, the more likely your issue/ask will be understood, accepted, and implemented.
 
-People _love_ thorough bug reports. I'm not even kidding.
+- Do not assume somebody other than you is an expert in setting up your environment and do not assume somebody else is an expert in your workflow. Please tell me as much details you can, so I can help you as good as possible!
+- What steps are needed to reproduce the issue? Assume  love to read repro steps. As much detail as you can stand is probably barely enough detail for me.
+- I prefer error message text where possible, or screenshots of errors if the error text cannot be captured.
+- If you intend to implement the fix/feature yourself, please say so! If you do not indicate you want to contribute, I assume that the issue is mine to solve.
 
-### Feature Request
+### :+1: Do not post "+1" comments
 
-**Great Feature Requests** tend to have:
+> Please do not post "+1", "me too", or similar comments - these comments just add noise to an issue.
 
-- A quick idea summary
-- What & why you wanted to add the specific feature
-- Additional Context like images, links to resources to implement the feature etc etc.
+If you do not have any additional information to add but would like to indicate that you are affected by the issue, upvote the original issue by clicking its :smiley:-button and hitting :+1: (+1) icon. This way it is much easier to measure how impactful an issue is.
 
-## License
+---
 
-By contributing, you agree that your contributions will be licensed under its [MIT License](./LICENSE).
+## :man_technologist: Development
+
+### :toolbox: Fork, Clone, Branch and Create your PR
+
+Once you have filed an issue and discussed your proposed feature/fix, it is time to start development:
+
+1. Fork the repo if you have not already
+2. Clone your fork locally
+3. Create & push a feature branch
+4. Create a [Draft Pull Request](https://github.blog/2019-02-14-introducing-draft-pull-requests/)
+5. Work on your changes
+
+### :eyeglasses: Code Review
+
+When you would like me to take a look, (even if the work is not yet fully-complete), mark the Pull Request as 'Ready For Review' so that I can review your work and provide comments, suggestions, and request changes. I would like to encourage you to use the Pull Request as tool to start a conversation around your ideas and recruit people to help if necessary. It may take several cycles, but the result will be solid, testable, conformant code that is safe to merge.
+
+### :jigsaw: Merge
+
+Once your code has been reviewed and approved, it will be merged. Once merged, your Pull Request will be automatically closed.
+
+---
+
+## :balloon: Thank you
+
+Thank you in advance for your contribution!

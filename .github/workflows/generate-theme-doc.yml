@@ -3,7 +3,7 @@ name: Generate Theme Readme
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - "themes/index.js"
 
