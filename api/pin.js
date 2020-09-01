@@ -7,7 +7,7 @@ const {
 } = require("../src/common/utils");
 const fetchRepo = require("../src/fetchers/repo-fetcher");
 const renderRepoCard = require("../src/cards/repo-card");
-const blacklist = require("../src/common/blacklist");
+const allowlist = require("../src/common/allowlist");
 
 module.exports = async (req, res) => {
   const {
@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
 
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (blacklist.includes(username)) {
+  if (!allowlist.includes(username)) {
     return res.send(renderError("Something went wrong"));
   }
 

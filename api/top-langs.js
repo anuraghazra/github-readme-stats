@@ -8,9 +8,9 @@ const {
 } = require("../src/common/utils");
 const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 const renderTopLanguages = require("../src/cards/top-languages-card");
-const blacklist = require("../src/common/blacklist");
+const allowlist = require("../src/common/allowlist");
 
-module.exports = async (req, res) => {
+module.exports = async (req, res, strings = allowlist) => {
   const {
     username,
     hide,
@@ -28,7 +28,7 @@ module.exports = async (req, res) => {
 
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (blacklist.includes(username)) {
+  if (!strings.includes(username)) {
     return res.send(renderError("Something went wrong"));
   }
 

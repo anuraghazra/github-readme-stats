@@ -8,7 +8,7 @@ const {
 } = require("../src/common/utils");
 const fetchStats = require("../src/fetchers/stats-fetcher");
 const renderStatsCard = require("../src/cards/stats-card");
-const blacklist = require("../src/common/blacklist");
+const allowlist = require("../src/common/allowlist");
 
 module.exports = async (req, res) => {
   const {
@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
 
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (blacklist.includes(username)) {
+  if (!allowlist.includes(username)) {
     return res.send(renderError("Something went wrong"));
   }
 
