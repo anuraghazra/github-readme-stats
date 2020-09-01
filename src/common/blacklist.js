@@ -1,3 +1,3 @@
-const blacklist = ["renovate-bot", "technote-space", "sw-yx"];
+const blacklist = ["renovate-bot", "sw-yx"];
 
 module.exports = blacklist;
