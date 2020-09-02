@@ -222,10 +222,10 @@ const themes = {
     bg_color: "20232a",
   },
   pastel: {
-    title_color: "AFC2D5",
-    icon_color: "FFF9A5",
-    text_color: "DFEFCA",
-    bg_color: "CCDDD3"
+    title_color: "c3aed6",
+    icon_color: "efbbcf",
+    text_color: "ffd5cd",
+    bg_color: "8675a9"
   },
 };
 
