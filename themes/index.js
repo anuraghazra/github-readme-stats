@@ -89,6 +89,12 @@ const themes = {
     text_color: "273849",
     bg_color: "fffefe",
   },
+  'vue-dark': {
+    title_color: "41b883",
+    icon_color: "41b883",
+    text_color: "fffefe",
+    bg_color: "273849",
+  },
   "shades-of-purple": {
     title_color: "fad000",
     icon_color: "b362ff",
@@ -184,12 +190,6 @@ const themes = {
     icon_color: "785ef0",
     text_color: "ffffff",
     bg_color: "000000",
-  },
-  "vue-dark":{
-    title_color: "19f9d8",
-    icon_color: "19f9d8",
-    text_color: "ffffff",
-    bg_color: "002b36",
   },
   "ayu-mirage": {
     title_color: "f4cd7c",
