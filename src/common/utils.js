@@ -11,7 +11,7 @@ const renderError = (message, secondaryMessage = "") => {
     .gray { fill: #858585 }
     </style>
     <rect x="0.5" y="0.5" width="494" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
-    <text x="25" y="45" class="text">Something went wrong! file an issue <a href="https://git.io/JJmN9" target="_blank">here</a></text>
+    <text x="25" y="45" class="text">Something went wrong! file an issue at <a href="https://git.io/JJmN9" target="_blank">https://git.io/JJmN9</a></text>
     <text data-testid="message" x="25" y="55" class="text small">
       <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
       <tspan x="25" dy="18" class="gray">${secondaryMessage}</tspan>
