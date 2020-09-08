@@ -141,7 +141,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 bg_color オプションで複数のカンマ区切りの値を指定してグラデーションをレンダリングすることができます。フォーマットは以下の通りになります。
 
 ```
-&bg_color=DEG,COLOR1,COLRO2,COLOR3...COLOR10
+&bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
 > キャッシュに関する注意点: Repo cards のデフォルトのキャッシュは、フォーク数とスター数が 1k 未満の場合は 30 分(1800 秒) で、それ以外の場合は 2 時間(7200) です。また、キャッシュは最低でも 30 分、最大でも 24 時間に制限されていることに注意してください。
