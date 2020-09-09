@@ -33,8 +33,11 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchTopLanguages(username) {
+async function fetchTopLanguages(username, amount=5) {
   if (!username) throw Error("Invalid username");
+
+  amount = parseInt(amount)
+  if (amount > 10 || amount < 1) throw Error("Invalid number of languages")
 
   let res = await retryer(fetcher, { login: username });
 
@@ -73,7 +76,7 @@ async function fetchTopLanguages(username) {
     }, {});
 
   const topLangs = Object.keys(repoNodes)
-    .slice(0, 5)
+    .slice(0, amount)
     .reduce((result, key) => {
       result[key] = repoNodes[key];
       return result;

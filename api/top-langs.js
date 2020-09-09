@@ -23,6 +23,7 @@ module.exports = async (req, res) => {
     theme,
     cache_seconds,
     layout,
+    num_langs
   } = req.query;
   let topLangs;
 
@@ -33,7 +34,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    topLangs = await fetchTopLanguages(username);
+    topLangs = await fetchTopLanguages(username, num_langs);
 
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
