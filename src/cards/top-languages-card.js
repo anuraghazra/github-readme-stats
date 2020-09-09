@@ -112,7 +112,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
     width = width + 50;
-    height = 30 + (langs.length / 2 + 1) * 40;
+    height = 90 + Math.round(langs.length / 2) * 25;
 
     // progressOffset holds the previous language's width and used to offset the next language
     // so that we can stack them one after another, like this: [--][----][---]
