@@ -4,7 +4,7 @@
       "source": "/",
       "destination": "https://github.com/anuraghazra/github-readme-stats"
     }
-  ]
+  ],
   "cleanUrls": true,
   "trailingSlash": false
 }
