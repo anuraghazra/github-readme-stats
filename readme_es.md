@@ -63,7 +63,7 @@ _Nota: las clasificaciones se calculan basándose en las estadísticas del usuar
 
 ### Ocultar estadísticas individualmente
 
-Para ocultar alguna estadística específica, puedes utilizar el parámetro `?hide=` con un arreglo de items que quieras ocultar.
+Para ocultar alguna estadística específica, puedes utilizar el parámetro `&hide=` con un arreglo de items que quieras ocultar.
 
 > Opciones: `&hide=["stars","commits","prs","issues","contribs"]`
 
@@ -73,7 +73,7 @@ Para ocultar alguna estadística específica, puedes utilizar el parámetro `?hi
 
 ### Agregar contribuciones privadas al total de commits contados
 
-Puede agregar el recuento de todas sus contribuciones privadas al recuento total de confirmaciones utilizando el parámetro de consulta `?count_private=true`.
+Puede agregar el recuento de todas sus contribuciones privadas al recuento total de confirmaciones utilizando el parámetro de consulta `&count_private=true`.
 
 _Nota: Si está desplegando este proyecto usted mismo, las contribuciones privadas se contarán de manera predeterminada; de lo contrario, deberá elegir compartir sus recuentos de contribuciones privadas._
 
@@ -95,7 +95,7 @@ Para habilitar los íconos, puedes utilizar `show_icons=true` como parámetro, d
 
 Puedes personalizar el aspecto de la tarjeta sin realizar ninguna [personalización manual](#personalización) con los temas incorporados.
 
-Utiliza el parámetro `?theme=THEME_NAME`, de esta manera:
+Utiliza el parámetro `&theme=THEME_NAME`, de esta manera:
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
@@ -193,7 +193,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ### Ocultar lenguajes individuales
 
-Puede usar el parámetro `? Hide = language1, language2` para ocultar lenguajes individuales.
+Puede usar el parámetro `&hide=language1, language2` para ocultar lenguajes individuales.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
@@ -201,7 +201,7 @@ Puede usar el parámetro `? Hide = language1, language2` para ocultar lenguajes 
 
 ### Diseño de tarjeta de lenguaje compacta
 
-Puede usar la opción `& layout = compact` para cambiar el diseño de la tarjeta.
+Puede usar la opción `&layout=compact` para cambiar el diseño de la tarjeta.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)

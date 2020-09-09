@@ -181,7 +181,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ### 隐藏特定语言
 
-可以使用`?hide=语言1,语言2`参数来隐藏指定的语言。
+可以使用`&hide=语言1,语言2`参数来隐藏指定的语言。
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=语言1,语言2)](https://github.com/anuraghazra/github-readme-stats)

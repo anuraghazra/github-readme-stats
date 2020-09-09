@@ -70,7 +70,7 @@ _Nota: As classificações são baseadas nas estatísticas do usuário, veja [sr
 
 ### Ocultando estatísticas específicas
 
-Para ocultar estatísticas individualmente, você pode passar um parâmetro de consulta `?hide=` com valores separados por vírgula.
+Para ocultar estatísticas individualmente, você pode passar um parâmetro de consulta `&hide=` com valores separados por vírgula.
 
 > Opções: `&hide=stars,commits,prs,issues,contribs`
 
@@ -80,7 +80,7 @@ Para ocultar estatísticas individualmente, você pode passar um parâmetro de c
 
 ### Adicionando contagem de contribuições privadas à contagem total de commits
 
-Adicione a contagem de todas as suas contribuições privadas à contagem total de confirmações usando o parâmetro de consulta `?count_private=true`.
+Adicione a contagem de todas as suas contribuições privadas à contagem total de confirmações usando o parâmetro de consulta `&count_private=true`.
 
 _Nota: Se você estiver implantando este projeto, as contribuições privadas serão contadas por padrão; caso contrário, você precisará compartilhar suas contagens de contribuições privadas._
 
@@ -102,7 +102,7 @@ Para habilitar ícones, basta utilizar o parâmetro `show_icons=true` na sua req
 
 Com temas predefinidos, pode personalizar a aparência dos cartões sem precisar fazer nenhuma [configuração manual](#personalização).
 
-Utilize o parâmetro `?theme=THEME_NAME`, da seguinte forma:
+Utilize o parâmetro `&theme=THEME_NAME`, da seguinte forma:
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
@@ -200,7 +200,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ### Ocultar linguagens individualmente
 
-Utilize o parâmetro `?hide=language1,language2` para ocultar linguagens específicas.
+Utilize o parâmetro `&hide=language1,language2` para ocultar linguagens específicas.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)

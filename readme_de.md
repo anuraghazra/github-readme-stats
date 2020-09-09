@@ -60,7 +60,7 @@ _Hinweis: Die Berechnung des Ranges basiert auf den jeweiligen Benutzerstatistik
 
 ### Verbergen individueller Statistiken
 
-Um eine spezifische Statistik auszublenden, kann dem Query-Parameter `?hide=` ein Array an Dingen die nicht angezeigt werden sollen übergeben werden.
+Um eine spezifische Statistik auszublenden, kann dem Query-Parameter `&hide=` ein Array an Dingen die nicht angezeigt werden sollen übergeben werden.
 
 > Optionen: `&hide=["stars","commits","prs","issues","contribs"]`
 
@@ -80,7 +80,7 @@ Um Icons anzuzeigen kann der URL-Paramter `show_icons=true` wie folgt verwendet 
 
 Mithilfe der eingebauten Themes kann das Aussehen der Karten verändern werden ohne manuelle Anpassungen vornehmen zu müssen.
 
-Benutze den `?theme=THEME_NAME`-Parameter wie folgt :-
+Benutze den `&theme=THEME_NAME`-Parameter wie folgt :-
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
@@ -161,7 +161,7 @@ Endpunkt: `api/top-langs?username=anuraghazra`
 
 ### Verberge Programmiersprachen unter einem bestimmten Schwellwert
 
-Benutze den `?hide_langs_below=NUMBER` URL-Parameter um Programmiersprachen unter einem bestimmten prozentualen Schwellwert auszublenden.
+Benutze den `&hide_langs_below=NUMBER` URL-Parameter um Programmiersprachen unter einem bestimmten prozentualen Schwellwert auszublenden.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_langs_below=1)](https://github.com/anuraghazra/github-readme-stats)

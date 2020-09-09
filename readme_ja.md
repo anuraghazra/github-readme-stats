@@ -68,7 +68,7 @@ _Note: カードに表示されるランクはユーザの統計情報に基づ�
 
 ### Hiding individual stats
 
-クエリパラメータ `?hide=` にカンマ区切りの値を渡すことで、特定の統計情報を隠すことができます。
+クエリパラメータ `&hide=` にカンマ区切りの値を渡すことで、特定の統計情報を隠すことができます。
 
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
@@ -78,7 +78,7 @@ _Note: カードに表示されるランクはユーザの統計情報に基づ�
 
 ### Adding private contributions count to total commits count
 
-クエリパラメータ `?count_private=true` を使用することで、private contributions の数をコミット総数に追加することができます。
+クエリパラメータ `&count_private=true` を使用することで、private contributions の数をコミット総数に追加することができます。
 
 _Note: このプロジェクトを自分でデプロイしている場合、デフォルトでは非公開の貢献がカウントされます。_
 
@@ -90,7 +90,7 @@ _Note: このプロジェクトを自分でデプロイしている場合、デ�
 
 ### Showing icons
 
-クエリパラメータ `?show_icons=true` を使用することで、アイコンが表示が有効になります。
+クエリパラメータ `&show_icons=true` を使用することで、アイコンが表示が有効になります。
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -100,7 +100,7 @@ _Note: このプロジェクトを自分でデプロイしている場合、デ�
 
 内蔵されているテーマを使用することで、任意の[手動のカスタマイズ](#customization)を行うことなく、カードの外観をカスタマイズすることができます。
 
-`?theme=THEME_NAME` は以下のように使います。
+`&theme=THEME_NAME` は以下のように使います。
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
@@ -182,7 +182,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ### Hide individual languages
 
-クエリパラメータ `?hide=language1,language2` 使用することで、個々の言語を非表示にすることができます。
+クエリパラメータ `&hide=language1,language2` 使用することで、個々の言語を非表示にすることができます。
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)

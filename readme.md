@@ -80,7 +80,7 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma s
 
 ### Adding private contributions count to total commits count
 
-You can add the count of all your private contributions to the total commits count by using the query parameter `?count_private=true`.
+You can add the count of all your private contributions to the total commits count by using the query parameter `&count_private=true`.
 
 _Note: If you are deploying this project yourself, the private contributions will be counted by default otherwise you need to chose to share your private contribution counts._
 
@@ -102,7 +102,7 @@ To enable icons, you can pass `show_icons=true` in the query param, like so:
 
 With inbuilt themes you can customize the look of the card without doing any [manual customization](#customization).
 
-Use `?theme=THEME_NAME` parameter like so :-
+Use `&theme=THEME_NAME` parameter like so :-
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
