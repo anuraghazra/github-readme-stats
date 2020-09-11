@@ -1,4 +1,4 @@
-const { request, logger } = require("../common/utils");
+const { request, logger, clampValue } = require("../common/utils");
 const retryer = require("../common/retryer");
 require("dotenv").config();
 
@@ -36,8 +36,7 @@ const fetcher = (variables, token) => {
 async function fetchTopLanguages(username, amount=5) {
   if (!username) throw Error("Invalid username");
 
-  amount = parseInt(amount)
-  if (amount > 10 || amount < 1) throw Error("Invalid number of languages")
+  amount = clampValue(parseInt(amount) || 5, 1, 10)
 
   let res = await retryer(fetcher, { login: username });
 
