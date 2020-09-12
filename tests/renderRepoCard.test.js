@@ -202,13 +202,14 @@ describe("Test renderRepoCard", () => {
       const headerClassStyles = stylesObject[".header"];
       const descClassStyles = stylesObject[".description"];
       const iconClassStyles = stylesObject[".icon"];
+      const isGradient = themes[name].bg_color.includes(",");
 
       expect(headerClassStyles.fill).toBe(`#${themes[name].title_color}`);
       expect(descClassStyles.fill).toBe(`#${themes[name].text_color}`);
       expect(iconClassStyles.fill).toBe(`#${themes[name].icon_color}`);
       expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
         "fill",
-        `#${themes[name].bg_color}`
+        isGradient? "url(#gradient)" : `#${themes[name].bg_color}`
       );
     });
   });
