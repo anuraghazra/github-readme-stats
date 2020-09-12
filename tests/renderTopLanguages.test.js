@@ -175,12 +175,13 @@ describe("Test renderTopLanguages", () => {
 
       const headerStyles = stylesObject[".header"];
       const langNameStyles = stylesObject[".lang-name"];
+      const isGradient = themes[name].bg_color.includes(",");
 
       expect(headerStyles.fill).toBe(`#${themes[name].title_color}`);
       expect(langNameStyles.fill).toBe(`#${themes[name].text_color}`);
       expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
         "fill",
-        `#${themes[name].bg_color}`
+        isGradient? "url(#gradient)" : `#${themes[name].bg_color}`
       );
     });
   });
