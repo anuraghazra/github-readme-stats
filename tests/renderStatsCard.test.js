@@ -155,8 +155,11 @@ describe("Test renderStatsCard", () => {
       const headerClassStyles = stylesObject[".header"];
       const statClassStyles = stylesObject[".stat"];
       const iconClassStyles = stylesObject[".icon"];
+      console.log(themes[name].bg_color);
       const bgColor = fallbackColor(themes[name].bg_color);
+      console.log(bgColor);
       const isGradient = typeof bgColor === "object";
+      console.log(isGradient);
 
       expect(headerClassStyles.fill).toBe(`#${themes[name].title_color}`);
       expect(statClassStyles.fill).toBe(`#${themes[name].text_color}`);
