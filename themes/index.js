@@ -224,7 +224,7 @@ const themes = {
   "gradient-purple": {
     title_color: "ffffffbb",
     icon_color: "ffffffbb",
-    text_color: "ffffff",
+    text_color: "fff",
     bg_color: "30,690EB0,9B2189",
   },
 };
