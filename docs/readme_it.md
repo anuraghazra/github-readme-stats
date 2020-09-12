@@ -140,7 +140,7 @@ Puoi personalizzare l'aspetto delle tue `Stats Card` o delle `Repo Card` in qual
 Puoi fornire valori separati da virgola nel parametro bg_color per creare un gradiente, il cui formato è:-
 
 ```
-&bg_color=DEG,COLOR1,COLRO2,COLOR3...COLOR10
+&bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
 > Nota sulla cache: le card hanno un valore di cache di 4 ore (14400 seconds) di default se il numero di fork & il numero di stelle è inferiore a 1000; altrimenti è pari a 2 ore (7200).

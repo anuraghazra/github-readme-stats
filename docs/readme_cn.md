@@ -34,7 +34,7 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">请求增加功能</a>
   </p>
   <p align="center">
-    <a href="/docs/readme_fr.md">Français </a>
+    <a href="/docs/readme_fr.md">Français</a>
     ·
     <a href="/docs/readme_cn.md">简体中文</a>
     ·
@@ -140,7 +140,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 你可以在 bg_color 选项中提供多个逗号分隔的值来呈现渐变，渐变的格式是 :-
 
 ```
-&bg_color=DEG,COLOR1,COLRO2,COLOR3...COLOR10
+&bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
 > 缓存的注意事项: 如果 fork 数和 star 数 少于 1k , Repo 卡片默认缓存是 4 小时 （14400 秒） ，否则是 2 小时（7200）。另请注意缓存被限制为最短 2 小时，最长 24 小时。
@@ -286,10 +286,10 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 

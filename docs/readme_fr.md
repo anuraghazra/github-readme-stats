@@ -34,6 +34,8 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Demander une nouveauté</a>
   </p>
   <p align="center">
+    <a href="/docs/readme_fr.md">Français</a>
+    ·
     <a href="/docs/readme_cn.md">简体中文</a>
     ·
     <a href="/docs/readme_es.md">Español</a>
@@ -138,7 +140,7 @@ Vous pouvez personnaliser l'apparence de votre `Carte des stats` ou `Carte de r�
 Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_color pour rendre un degradé, le format du degradé est :-
 
 ```
-&bg_color=DEG,COLOR1,COLRO2,COLOR3...COLOR10
+&bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
 > Note relative: Les cartes répo ont un cache par défaut de 30 minutes (1800 secondes) si le nombre de bifurcations et d'étoiles est inférieur à 1K, alors il est de 2 heures (7200). Notez également que la mémoire cache est limitée à 30 minutes au minimum et à 24 heures au maximum.
@@ -284,10 +286,10 @@ En général, vous ne pourrez pas mettre les images côte à côte. Pour ce fair
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 
