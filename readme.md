@@ -350,6 +350,6 @@ Thanks! :heart:
 
 ![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
 
-Contributions are welcomed! <3
+Contributions are welcome! <3
 
 Made with :heart: and JavaScript.
