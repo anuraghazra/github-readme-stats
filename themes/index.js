@@ -221,6 +221,12 @@ const themes = {
     text_color: "ffffff",
     bg_color: "20232a",
   },
+  buefyDark: {
+    title_color: "C96AE7",
+    icon_color: "6b83ff",
+    text_color: "f1f1f1",
+    bg_color: "2C2B2B",
+  },
 };
 
 module.exports = themes;
