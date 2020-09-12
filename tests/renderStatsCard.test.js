@@ -1,6 +1,7 @@
 require("@testing-library/jest-dom");
 const cssToObject = require("css-to-object");
 const renderStatsCard = require("../src/cards/stats-card");
+const { fallbackColor } = require("../src/common/utils");
 
 const {
   getByTestId,
@@ -154,7 +155,8 @@ describe("Test renderStatsCard", () => {
       const headerClassStyles = stylesObject[".header"];
       const statClassStyles = stylesObject[".stat"];
       const iconClassStyles = stylesObject[".icon"];
-      const isGradient = themes[name].bg_color === "url(#gradient)";
+      const bgColor = fallbackColor(themes[name].bg_color);
+      const isGradient = typeof bgColor === "object";
 
       expect(headerClassStyles.fill).toBe(`#${themes[name].title_color}`);
       expect(statClassStyles.fill).toBe(`#${themes[name].text_color}`);
