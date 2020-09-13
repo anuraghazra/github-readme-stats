@@ -95,6 +95,12 @@ const themes = {
     text_color: "fffefe",
     bg_color: "273849",
   },
+  "red-velvet": {
+    title_color: "fa1f17",
+    icon_color: "fa1f17",
+    text_color: "fd544e",
+    bg_color: "fffefe",
+  },
   "shades-of-purple": {
     title_color: "fad000",
     icon_color: "b362ff",
