@@ -64,7 +64,7 @@
 
 # GitHub Stats Card
 
-Copy paste this into your markdown content, and that's it. Simple!
+Copy-paste this into your markdown content, and that's it. Simple!
 
 Change the `?username=` value to your GitHub's username.
 
@@ -76,7 +76,7 @@ _Note: Ranks are calculated based on user's stats, see [src/calculateRank.js](./
 
 ### Hiding individual stats
 
-To hide any specific stats, you can pass a query parameter `?hide=` with comma separated values.
+To hide any specific stats, you can pass a query parameter `?hide=` with comma-separated values.
 
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
@@ -106,7 +106,7 @@ To enable icons, you can pass `show_icons=true` in the query param, like so:
 
 ### Themes
 
-With inbuilt themes you can customize the look of the card without doing any [manual customization](#customization).
+With inbuilt themes, you can customize the look of the card without doing any [manual customization](#customization).
 
 Use `?theme=THEME_NAME` parameter like so :-
 
@@ -137,17 +137,17 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 ##### Gradient in bg_color
 
-You can provide multiple comma separated values in bg_color option to render a gradient, the format of the gradient is :-
+You can provide multiple comma-separated values in bg_color option to render a gradient, the format of the gradient is :-
 
 ```
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
-> Note on cache: Repo cards have default cache of 4hours (14400 seconds) if the fork count & star count is less than 1k otherwise it's 2hours (7200). Also note that cache is clamped to a minimum of 2hours and maximum of 24hours
+> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k, otherwise, it's 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours
 
 #### Stats Card Exclusive Options:
 
-- `hide` - Hides the specified items from stats _(Comma seperated values)_
+- `hide` - Hides the specified items from stats _(Comma-separated values)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
 - `show_icons` - _(boolean)_
@@ -161,7 +161,7 @@ You can provide multiple comma separated values in bg_color option to render a g
 
 #### Language Card Exclusive Options:
 
-- `hide` - Hide the languages specified from the card _(Comma separated values)_
+- `hide` - Hide the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
 - `layout` - Switch between two available layouts `default` & `compact`
 - `card_width` - Set the card's width manually _(number)_
@@ -177,7 +177,7 @@ You can provide multiple comma separated values in bg_color option to render a g
 
 GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
 
-Yey! You are no longer limited to 6 pinned repositories.
+Yay! You are no longer limited to 6 pinned repositories.
 
 ### Usage
 
@@ -199,9 +199,9 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 # Top Languages Card
 
-Top languages card shows github user's top languages which have been mostly used.
+The top languages card shows a GitHub user's top languages which have used the most.
 
-_NOTE: Top languages does not indicate my skill level or something like that, it's a github metric of which languages have the most code on github, it's a new feature of github-readme-stats_
+_NOTE: Top Languages does not indicate my skill level or anything like that, it's a GitHub metric of which languages have the most code on GitHub. It's a new feature of github-readme-stats._
 
 ### Usage
 
@@ -306,7 +306,7 @@ You usually won't be able to layout the images side by side. To do that you can 
 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-Since the GitHub API only allows 5k requests per hour, it is possible that my `https://github-readme-stats.vercel.app/api` could hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
+Since the GitHub API only allows 5k requests per hour, my `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
 
 NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we should be able to handle more than 5k requests and have no issues with downtime :D
 
