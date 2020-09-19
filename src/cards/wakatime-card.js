@@ -120,7 +120,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   });
 
   const card = new Card({
-    title: "Wakatime week stats",
+    title: "Wakatime Week Stats",
     width: 495,
     height,
     colors: {
