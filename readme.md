@@ -247,6 +247,27 @@ You can use the `&layout=compact` option to change the card design.
 
 ---
 
+# Last Updated Repositories
+
+The last updated repositories card shows a GitHub user's last updated X repositories. Default number for shown repositories is 5, with a query parameter _&top=10_ any number can be passed into card. 
+
+
+
+### Usage
+
+Copy-paste this code into your readme and change the links.
+
+Endpoint: `api/repos?username=anuraghazra`
+
+```md
+[![Repositories](https://{host}/api/repos/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Demo
+
+[![Repositories](https://ardacetinkaya-github-readme-stats.vercel.app/api/repos/?username=ardacetinkaya)](https://github.com/ardacetinkaya/github-readme-stats)
+
+
 ### All Demos
 
 - Default
