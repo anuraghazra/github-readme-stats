@@ -197,6 +197,12 @@ const themes = {
     text_color: "c7c8c2",
     bg_color: "1f2430",
   },
+    "cyan gradient": {
+    title_color: "fafbfc",
+    icon_color: "28a745",
+    text_color: "fafbfc",
+    bg_color: "45,0366d6,c5f015",
+  },
   "midnight-purple":{
     title_color: "9745f5",
     icon_color: "9f4bff",
