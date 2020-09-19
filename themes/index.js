@@ -203,6 +203,12 @@ const themes = {
     text_color: "ffffff",
     bg_color: "000000",
   },
+   "Gradient-green-blue":{
+    title_color: "fafbfc",
+    icon_color: "28a745",
+    text_color: "fafbfc",
+    bg_color: [45,"0366d6","c5f015"],
+  },
   calm: {
     title_color: "e07a5f",
     icon_color: "edae49",
