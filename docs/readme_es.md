@@ -78,7 +78,7 @@ _Nota: las clasificaciones se calculan basándose en las estadísticas del usuar
 
 Para ocultar alguna estadística específica, puedes utilizar el parámetro `?hide=` con un arreglo de items que quieras ocultar.
 
-> Opciones: `&hide=["stars","commits","prs","issues","contribs"]`
+> Opciones: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","prs"])
