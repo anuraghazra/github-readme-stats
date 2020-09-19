@@ -13,6 +13,7 @@ module.exports = async (req, res) => {
   const {
     username,
     top=5,
+    date_format='DD-MM-YYYY',
     title_color,
     icon_color,
     text_color,
@@ -39,6 +40,7 @@ module.exports = async (req, res) => {
 
     return res.send(
       renderReposCard(repoData, {
+        date_format,
         title_color,
         icon_color,
         text_color,

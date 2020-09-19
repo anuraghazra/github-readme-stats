@@ -14,6 +14,7 @@ const renderReposCard = (repo, options = {}) => {
     edges
   } = repo;
   const {
+    date_format,
     title_color,
     icon_color,
     text_color,
@@ -65,7 +66,7 @@ const renderReposCard = (repo, options = {}) => {
   `);
 
   return card.render(`
-
+  
   ${edges
       .map((repo, index) => `
         <svg data-testid="icon" class="icon" x="30" y="${(index * 25)}" 
@@ -81,13 +82,33 @@ const renderReposCard = (repo, options = {}) => {
 
           </tspan>
           <tspan dy="0em" x="300">
-            @ ${ new Date(Date.parse(repo.node.updatedAt)).toLocaleDateString("en-US").padEnd(20)}
+            @ ${ formatDate(repo.node.updatedAt,date_format)}
           </tspan>
         </text>
         `)
       .join("")}
 
   `);
+};
+
+const formatDate = (d, format = 'DD-MM-YYYY') => {
+  var asTimeStamp = Date.parse(d);
+  var date = new Date(asTimeStamp),
+    month = '' + (date.getMonth() + 1),
+    day = '' + date.getDate(),
+    year = date.getFullYear();
+
+  if (month.length < 2)
+    month = '0' + month;
+  if (day.length < 2)
+    day = '0' + day;
+  if (format.toUpperCase() == 'DD-MM-YYYY')
+    return [day, month, year].join('/');
+  if (format.toUpperCase() == 'MM-DD-YYYY')
+    return [month, day, year].join('/');
+
+  return [day, month, year].join('/'); 
+  
 };
 
 module.exports = renderReposCard;
