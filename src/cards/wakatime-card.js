@@ -1,8 +1,4 @@
-const {
-  getCardColors,
-  FlexLayout,
-  clampValue,
-} = require("../common/utils");
+const { getCardColors, FlexLayout, clampValue } = require("../common/utils");
 const { getStyles } = require("../getStyles");
 const icons = require("../common/icons");
 const Card = require("../common/Card");
@@ -13,7 +9,12 @@ const noCodingActivityNode = ({ color }) => {
   `;
 };
 
-const createProgressNode = ({ width, color, progress, progressBarBackgroundColor }) => {
+const createProgressNode = ({
+  width,
+  color,
+  progress,
+  progressBarBackgroundColor,
+}) => {
   const progressPercentage = clampValue(progress, 2, 100);
 
   return `
@@ -46,12 +47,12 @@ const createTextNode = ({
   const cardProgress = hideProgress
     ? null
     : createProgressNode({
-      progress: percent,
-      color: progressBarColor,
-      width: 220,
-      name: label,
-      progressBarBackgroundColor,
-    });
+        progress: percent,
+        color: progressBarColor,
+        width: 220,
+        name: label,
+        progressBarBackgroundColor,
+      });
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
@@ -68,9 +69,7 @@ const createTextNode = ({
 };
 
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  const {
-    languages,
-  } = stats;
+  const { languages } = stats;
   const {
     hide_title = false,
     hide_border = false,
@@ -94,26 +93,25 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     theme,
   });
 
-  const statItems = languages ? languages.filter(language => language.hours || language.minutes)
-    .map(language => {
-      return createTextNode({
-        icon: icons.contribs,
-        label: language.name,
-        value: language.text,
-        id: language.name,
-        percent: language.percent,
-        progressBarColor: titleColor,
-        progressBarBackgroundColor: textColor,
-        hideProgress: hide_progress,
-      })
-    }) : [];
+  const statItems = languages
+    ? languages
+        .filter((language) => language.hours || language.minutes)
+        .map((language) => {
+          return createTextNode({
+            id: language.name,
+            label: language.name,
+            value: language.text,
+            percent: language.percent,
+            progressBarColor: titleColor,
+            progressBarBackgroundColor: textColor,
+            hideProgress: hide_progress,
+          });
+        })
+    : [];
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  let height = Math.max(
-    45 + (statItems.length + 1) * lheight,
-    150
-  );
+  let height = Math.max(45 + (statItems.length + 1) * lheight, 150);
 
   const cssStyles = getStyles({
     titleColor,
@@ -122,7 +120,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   });
 
   const card = new Card({
-    title: 'Wakatime week stats',
+    title: "Wakatime week stats",
     width: 495,
     height,
     colors: {
@@ -135,17 +133,22 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
-  card.setCSS(cssStyles + `
+  card.setCSS(
+    `
+    ${cssStyles}
     .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
-  `);
+    `
+  );
 
   return card.render(`
     <svg x="0" y="0" width="100%">
       ${FlexLayout({
-    items: statItems.length ? statItems : [noCodingActivityNode({ color: textColor })],
-    gap: lheight,
-    direction: "column",
-  }).join("")}
+        items: statItems.length
+          ? statItems
+          : [noCodingActivityNode({ color: textColor })],
+        gap: lheight,
+        direction: "column",
+      }).join("")}
     </svg> 
   `);
 };

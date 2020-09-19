@@ -58,7 +58,7 @@
 - [GitHub Stats Card](#github-stats-card)
 - [GitHub Extra Pins](#github-extra-pins)
 - [Top Languages Card](#top-languages-card)
-- [Wakatime week stats](#wakatime-week-stats)
+- [Wakatime Week Stats](#wakatime-week-stats)
 - [Themes](#themes)
 - [Customization](#customization)
 - [Deploy Yourself](#deploy-on-your-own-vercel-instance)
@@ -172,6 +172,13 @@ You can provide multiple comma-separated values in bg_color option to render a g
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)  
 > (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.)
 
+#### Wakatime Card Exclusive Options:
+
+- `hide_title` - _(boolean)_
+- `hide_border` - _(boolean)_
+- `line_height` - Sets the line-height between text _(number)_
+- `hide_progress` - Hides the progress bar and percentage _(boolean)_
+
 ---
 
 # GitHub Extra Pins
@@ -246,22 +253,13 @@ You can use the `&layout=compact` option to change the card design.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Wakatime week stats
-
-Copy paste this into your markdown content, and that's it. Simple!
+# Wakatime Week Stats
 
 Change the `?username=` value to your Wakatime username.
 
 ```md
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 ```
-
-#### Wakatime Card Exclusive Options:
-
-- `hide_title` - _(boolean)_
-- `hide_border` - _(boolean)_
-- `line_height` - Sets the line-height between text _(number)_
-- `hide_progress` - Hides the progress bar and percentage _(boolean)_
 
 ### Demo
 
