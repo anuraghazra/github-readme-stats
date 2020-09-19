@@ -203,6 +203,13 @@ const themes = {
     text_color: "ffffff",
     bg_color: "000000",
   },
+    "Blue":{
+    title_color: "fafbfc",
+    icon_color: "28a745",
+    text_color: "fafbfc",
+    bg_color: "0366d6",
+  },
+  
   calm: {
     title_color: "e07a5f",
     icon_color: "edae49",
