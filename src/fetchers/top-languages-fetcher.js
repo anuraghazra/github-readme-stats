@@ -2,8 +2,8 @@ const { request, logger, clampValue } = require("../common/utils");
 const retryer = require("../common/retryer");
 require("dotenv").config();
 
-const fetcher = (variables, token, retries, countForks) => {
-	const forks = countForks == "true" ? `` : `isFork: false, `;
+const fetcher = (variables, token, retries, count_forks) => {
+	const forks = count_forks == "true" ? `` : `isFork: false, `;
 	return request(
 		{
 			query: `
@@ -34,12 +34,16 @@ const fetcher = (variables, token, retries, countForks) => {
 	);
 };
 
-async function fetchTopLanguages(username, langsCount = 5, countForks = false) {
+async function fetchTopLanguages(
+	username,
+	langsCount = 5,
+	count_forks = false
+) {
 	if (!username) throw Error("Invalid username");
 
 	langsCount = clampValue(parseInt(langsCount), 1, 10);
 
-	const res = await retryer(fetcher, { login: username }, 0, countForks);
+	const res = await retryer(fetcher, { login: username }, 0, count_forks);
 
 	if (res.data.errors) {
 		logger.error(res.data.errors);
