@@ -12,6 +12,7 @@ const fetcher = (variables, token, retries, count_forks) => {
           # fetch only owner repos
           repositories(ownerAffiliations: OWNER, ${forks}first: 100) {
             nodes {
+              name
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
                 edges {
                   size
@@ -37,7 +38,8 @@ const fetcher = (variables, token, retries, count_forks) => {
 async function fetchTopLanguages(
   username,
   langsCount = 5,
-  count_forks = false
+  count_forks = false,
+  exclude_repo = []
 ) {
   if (!username) throw Error("Invalid username");
 
@@ -51,6 +53,22 @@ async function fetchTopLanguages(
   }
 
   let repoNodes = res.data.data.user.repositories.nodes;
+  let repoToHide = {};
+
+  // populate repoToHide map for quick lookup
+  // while filtering out
+  if (exclude_repo) {
+    exclude_repo.forEach((langName) => {
+      repoToHide[langName] = true;
+    });
+  }
+
+  // filter out repositories to be hidden
+  repoNodes = repoNodes
+    .sort((a, b) => b.size - a.size)
+    .filter((name) => {
+      return !repoToHide[name.name];
+    });
 
   repoNodes = repoNodes
     .filter((node) => {

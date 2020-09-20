@@ -24,7 +24,8 @@ module.exports = async (req, res) => {
     cache_seconds,
     layout,
     langs_count,
-    count_forks
+    count_forks,
+    exclude_repo
   } = req.query;
   let topLangs;
   res.setHeader("Content-Type", "image/svg+xml");
@@ -34,7 +35,12 @@ module.exports = async (req, res) => {
   }
 
   try {
-    topLangs = await fetchTopLanguages(username, langs_count, count_forks);
+    topLangs = await fetchTopLanguages(
+      username,
+      langs_count,
+      count_forks,
+      parseArray(exclude_repo)
+    );
 
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
