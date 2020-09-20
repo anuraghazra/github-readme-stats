@@ -168,6 +168,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `layout` - Switch between two available layouts `default` & `compact`
 - `card_width` - Set the card's width manually _(number)_
 - `count_forks` - Whether to count languages of forks, default: false _(boolean)_
+- `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
 
 > :warning: **Important:**
@@ -228,6 +229,14 @@ You can use `?count_forks=true` parameter to count languages of forks.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&count_forks=true)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Exclude individual repositories
+
+You can use `?exclude_repo=repo1,repo2` parameter to exclude individual repositories.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=reakit,gatsby)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Hide individual languages
