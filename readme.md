@@ -224,7 +224,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ### Count languages of forks
 
-You can use `?count_fork=true` parameter to count languages of forks.
+You can use `?count_forks=true` parameter to count languages of forks.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&count_forks=true)](https://github.com/anuraghazra/github-readme-stats)
