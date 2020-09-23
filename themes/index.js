@@ -89,6 +89,12 @@ const themes = {
     text_color: "273849",
     bg_color: "fffefe",
   },
+  'vue-dark': {
+    title_color: "41b883",
+    icon_color: "41b883",
+    text_color: "fffefe",
+    bg_color: "273849",
+  },
   "shades-of-purple": {
     title_color: "fad000",
     icon_color: "b362ff",
@@ -149,7 +155,13 @@ const themes = {
     text_color: "859900",
     bg_color: "fdf6e3",
   },
-  nord: {
+  "chartreuse-dark": {
+    title_color: "7fff00",
+    icon_color: "00AEFF",
+    text_color: "fff",
+    bg_color: "000",
+  },
+  "nord": {
     title_color: "81a1c1",
     text_color: "d8dee9",
     icon_color: "88c0d0",
@@ -173,12 +185,42 @@ const themes = {
     text_color: "24292e",
     bg_color: "ffffff",
   },
-  "vue-dark":{
-    title_color: "19f9d8",
-    icon_color: "19f9d8",
+  "vision-friendly-dark": {
+    title_color: "ffb000",
+    icon_color: "785ef0",
     text_color: "ffffff",
-    bg_color: "002b36",
-  }
+    bg_color: "000000",
+  },
+  "ayu-mirage": {
+    title_color: "f4cd7c",
+    icon_color: "73d0ff",
+    text_color: "c7c8c2",
+    bg_color: "1f2430",
+  },
+  "midnight-purple":{
+    title_color: "9745f5",
+    icon_color: "9f4bff",
+    text_color: "ffffff",
+    bg_color: "000000",
+  },
+  calm: {
+    title_color: "e07a5f",
+    icon_color: "edae49",
+    text_color: "ebcfb2",
+    bg_color: "373f51",
+  },
+  omni: {
+    title_color: "FF79C6",
+    icon_color: "e7de79",
+    text_color: "E1E1E6",
+    bg_color: "191622"
+  },
+  react: {
+    title_color: "61dafb",
+    icon_color: "61dafb",
+    text_color: "ffffff",
+    bg_color: "20232a",
+  },
 };
 
 module.exports = themes;

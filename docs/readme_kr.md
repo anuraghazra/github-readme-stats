@@ -27,13 +27,15 @@
   </p>
 
   <p align="center">
-    <a href="#demo">View Demo</a>
+    <a href="#데모">View Demo</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Report Bug</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
   </p>
   <p align="center">
+    <a href="/docs/readme_fr.md">Français</a>
+    ·
     <a href="/docs/readme_cn.md">简体中文</a>
     ·
     <a href="/docs/readme_es.md">Español</a>
@@ -43,6 +45,8 @@
     <a href="/docs/readme_ja.md">日本語</a>
     ·
     <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
+    ·
+    <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
   </p>
@@ -68,7 +72,7 @@
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_참고: 순위는 사용자의 통계를 기반으로 계산됩니다. [src/calculateRank.js](./src/calculateRank.js) 참고_
+_참고: 순위는 사용자의 통계를 기반으로 계산됩니다. [src/calculateRank.js](../src/calculateRank.js) 참고_
 
 ### 개별 통계 숨기기
 
@@ -84,9 +88,7 @@ _참고: 순위는 사용자의 통계를 기반으로 계산됩니다. [src/cal
 
 `?count_private=true` 쿼리 파라미터를 사용하면 총 커밋 수에 private 컨트리뷰트 개수를 추가할 수 있습니다.
 
-\_참고: 이 프로젝트를 직접 배포하는 경우 private 컨트리뷰트는 기본적으로 계산된다. 그렇지 않은 경우 private 컨트리뷰트 개수를 추가하도록 설정해야 합니다.
-
-_Note: If you are deploying this project yourself, the private contributions will be counted by default otherwise you need to chose to share your private contribution counts._
+_참고: 이 프로젝트를 직접 배포하는 경우 private 컨트리뷰트는 기본적으로 계산됩니다. 그렇지 않은 경우 private 컨트리뷰트 개수를 추가하도록 설정해야 합니다._
 
 > 예시: `&count_private=true`
 
@@ -118,7 +120,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-[사용 가능한 모든 테마](./themes/README.md)의 미리보기와 [테마 설정 파일](./themes/index.js)을 확인할 수 있습니다. 괜찮으시다면 **새로운 테마를 만드셔서, 코드를 기여** 해주세요 :D
+[사용 가능한 모든 테마](../themes/README.md)의 미리보기와 [테마 설정 파일](../themes/index.js)을 확인할 수 있습니다. 괜찮으시다면 **새로운 테마를 만드셔서, 코드를 기여** 해주세요 :D
 
 ### 사용자정의
 
@@ -130,7 +132,7 @@ URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card`
 - `text_color` - 본문 글자 색상 _(hex color)_
 - `icon_color` - 아이콘 색상(활성화된 경우) _(hex color)_
 - `bg_color` - 카드 배경 색상 _(hex color)_
-- `theme` - 테마의 이름, [사용 가능한 모든 테마](./themes/README.md)에서 선택
+- `theme` - 테마의 이름, [사용 가능한 모든 테마](../themes/README.md)에서 선택
 - `cache_seconds` - 캐시 헤더를 수동으로 설정 _(min: 1800, max: 86400)_
 
 > 캐시 관련 참고: Repo 카드는 fork 개수와 star 카운트가 1천 개 미만인 경우 기본 캐시가 30분(1800초)이고, 그렇지 않은 경우 2시간(7200초) 입니다. 또한 캐시는 최소 30분 및 최대 24시간으로 고정됩니다.
@@ -166,10 +168,6 @@ URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card`
 
 GitHub extra pins을 사용하면 Github readme 프로필에 6개 이상의 저장소를 고정할 수 있습니다.
 그렇습니다! 더 이상 고정된 6개의 저장소로 제한되지 않습니다.
-
-GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
-
-Yey! You are no longer limited to 6 pinned repositories.
 
 ### 사용법
 
@@ -275,14 +273,16 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 
 ## 자체 Vercel 인스턴스에 배포하기
+
+#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
 Github API는 시간당 5k 요청만을 허용하기 때문에, 이 `https://github-readme-stats.vercel.app/api`이 제한에 도달할 수 있습니다.
 물론 자신의 Vercel 서버에서 호스팅하는 것이라면 아무것도 걱정할 필요가 없습니다. 시작하려면 배포 버튼을 클릭하세요!

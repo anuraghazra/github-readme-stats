@@ -3,21 +3,25 @@ const github = require("@actions/github");
 const parse = require("parse-diff");
 require("dotenv").config();
 
-const parsePullRequestId = (githubRef) => {
-  const result = /refs\/pull\/(\d+)\/merge/g.exec(githubRef);
-  if (!result) {
-    console.log("Reference not found.");
-    return 297;
+function getPrNumber() {
+  const pullRequest = github.context.payload.pull_request;
+  if (!pullRequest) {
+    return undefined;
   }
-  const [, pullRequestId] = result;
-  return pullRequestId;
-};
+
+  return pullRequest.number;
+}
 
 async function run() {
   try {
     const token = core.getInput("token");
     const octokit = github.getOctokit(token || process.env.PERSONAL_TOKEN);
-    const pullRequestId = parsePullRequestId(process.env.GITHUB_REF);
+    const pullRequestId = getPrNumber();
+
+    if (!pullRequestId) {
+      console.log("PR not found");
+      return;
+    }
 
     let res = await octokit.pulls.get({
       owner: "anuraghazra",
@@ -65,12 +69,18 @@ async function run() {
       repo: "github-readme-stats",
       body: `
       \rTheme preview (bot)  
-      \r![](${url})
+      
+      \ntitle-color: <code>#${titleColor}</code>
+      \nicon-color: <code>#${iconColor}</code>
+      \ntext-color: <code>#${textColor}</code>
+      \nbg-color: <code>#${bgColor}</code>
+      
+      \r[![](${url})](${url})
       `,
       issue_number: pullRequestId,
     });
   } catch (error) {
-    core.setFailed(error.message);
+    console.log(error);
   }
 }
 

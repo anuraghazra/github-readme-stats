@@ -1,4 +1,4 @@
-const { request, logger } = require("../common/utils");
+const { request, logger, CustomError } = require("../common/utils");
 const axios = require("axios");
 const retryer = require("../common/retryer");
 const calculateRank = require("../calculateRank");
@@ -30,7 +30,7 @@ const fetcher = (variables, token) => {
           followers {
             totalCount
           }
-          repositories(first: 100, ownerAffiliations: OWNER, isFork: false, orderBy: {direction: DESC, field: STARGAZERS}) {
+          repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}) {
             totalCount
             nodes {
               stargazers {
@@ -109,7 +109,10 @@ async function fetchStats(
 
   if (res.data.errors) {
     logger.error(res.data.errors);
-    throw Error(res.data.errors[0].message || "Could not fetch user");
+    throw new CustomError(
+      res.data.errors[0].message || "Could not fetch user",
+      CustomError.USER_NOT_FOUND
+    );
   }
 
   const user = res.data.data.user;
