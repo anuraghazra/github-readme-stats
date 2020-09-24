@@ -3,7 +3,7 @@ const {
   renderError,
   parseBoolean,
   clampValue,
-  CONSTANTS,
+  CONSTANTS
 } = require("../src/common/utils");
 const fetchRepo = require("../src/fetchers/repo-fetcher");
 const renderRepoCard = require("../src/cards/repo-card");
@@ -13,13 +13,14 @@ module.exports = async (req, res) => {
   const {
     username,
     repo,
+    hide_border,
     title_color,
     icon_color,
     text_color,
     bg_color,
     theme,
     show_owner,
-    cache_seconds,
+    cache_seconds
   } = req.query;
 
   let repoData;
@@ -56,12 +57,13 @@ module.exports = async (req, res) => {
 
     return res.send(
       renderRepoCard(repoData, {
+        hide_border,
         title_color,
         icon_color,
         text_color,
         bg_color,
         theme,
-        show_owner: parseBoolean(show_owner),
+        show_owner: parseBoolean(show_owner)
       })
     );
   } catch (err) {

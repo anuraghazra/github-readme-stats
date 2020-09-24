@@ -3,7 +3,7 @@ const {
   encodeHTML,
   getCardColors,
   FlexLayout,
-  wrapTextMultiline,
+  wrapTextMultiline
 } = require("../common/utils");
 const icons = require("../common/icons");
 const Card = require("../common/Card");
@@ -18,15 +18,16 @@ const renderRepoCard = (repo, options = {}) => {
     stargazers,
     isArchived,
     isTemplate,
-    forkCount,
+    forkCount
   } = repo;
   const {
+    hide_border,
     title_color,
     icon_color,
     text_color,
     bg_color,
     show_owner,
-    theme = "default_repocard",
+    theme = "default_repocard"
   } = options;
 
   const header = show_owner ? nameWithOwner : name;
@@ -55,7 +56,7 @@ const renderRepoCard = (repo, options = {}) => {
     icon_color,
     text_color,
     bg_color,
-    theme,
+    theme
   });
 
   const totalStars = kFormatter(stargazers.totalCount);
@@ -101,7 +102,7 @@ const renderRepoCard = (repo, options = {}) => {
 
   const starAndForkCount = FlexLayout({
     items: [svgStars, svgForks],
-    gap: 65,
+    gap: 65
   }).join("");
 
   const card = new Card({
@@ -113,12 +114,12 @@ const renderRepoCard = (repo, options = {}) => {
       titleColor,
       textColor,
       iconColor,
-      bgColor,
-    },
+      bgColor
+    }
   });
 
   card.disableAnimations();
-  card.setHideBorder(false);
+  card.setHideBorder(hide_border);
   card.setHideTitle(false);
   card.setCSS(`
     .description { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
@@ -147,7 +148,7 @@ const renderRepoCard = (repo, options = {}) => {
       ${svgLanguage}
 
       <g
-        data-testid="star-fork-group" 
+        data-testid="star-fork-group"
         transform="translate(${primaryLanguage ? 155 - shiftText : 25}, 0)"
       >
         ${starAndForkCount}
