@@ -115,14 +115,19 @@ async function fetchStats(
   stats.name = user.name || user.login;
   stats.totalIssues = user.issues.totalCount;
 
+  // normal commits
   stats.totalCommits = user.contributionsCollection.totalCommitContributions;
 
-  if (count_private) {
-    stats.totalCommits += user.contributionsCollection.restrictedContributionsCount;
-  }
-
+  // if include_all_commits then just get that,
+  // since totalCommitsFetcher already sends totalCommits no need to +=
   if (include_all_commits) {
     stats.totalCommits = await totalCommitsFetcher(username);
+  }
+
+  // if count_private then add private commits to totalCommits so far.
+  if (count_private) {
+    stats.totalCommits +=
+      user.contributionsCollection.restrictedContributionsCount;
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
