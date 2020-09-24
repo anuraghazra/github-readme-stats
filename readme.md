@@ -168,6 +168,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `layout` - Switch between two available layouts `default` & `compact`
 - `card_width` - Set the card's width manually _(number)_
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
+- `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
 
 > :warning: **Important:**
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
@@ -219,6 +220,14 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Exclude individual repositories
+
+You can use `?exclude_repo=repo1,repo2` parameter to exclude individual repositories.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Hide individual languages
