@@ -4,7 +4,7 @@ const {
   clampValue,
   parseBoolean,
   parseArray,
-  CONSTANTS
+  CONSTANTS,
 } = require("../src/common/utils");
 const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 const renderTopLanguages = require("../src/cards/top-languages-card");
@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
     theme,
     cache_seconds,
     layout,
-    langs_count
+    langs_count,
   } = req.query;
   let topLangs;
 
@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       CONSTANTS.TWO_HOURS,
-      CONSTANTS.ONE_DAY
+      CONSTANTS.ONE_DAY,
     );
 
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
@@ -54,8 +54,8 @@ module.exports = async (req, res) => {
         text_color,
         bg_color,
         theme,
-        layout
-      })
+        layout,
+      }),
     );
   } catch (err) {
     return res.send(renderError(err.message, err.secondaryMessage));

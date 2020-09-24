@@ -11,8 +11,8 @@ describe("Test calculateRank", () => {
         contributions: 61,
         stargazers: 400,
         prs: 300,
-        issues: 200
-      })
+        issues: 200,
+      }),
     ).toStrictEqual({ level: "A+", score: 49.16605417270399 });
   });
 });

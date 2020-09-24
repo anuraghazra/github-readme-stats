@@ -28,8 +28,8 @@ async function run() {
       repo: "github-readme-stats",
       pull_number: pullRequestId,
       mediaType: {
-        format: "diff"
-      }
+        format: "diff",
+      },
     });
 
     let diff = parse(res.data);
@@ -50,12 +50,12 @@ async function run() {
         \rTheme preview (bot)
         Cannot create theme preview
         `,
-        issue_number: pullRequestId
+        issue_number: pullRequestId,
       });
       return;
     }
     colors = colors.map((color) =>
-      color.replace(/.*\:\s/, "").replace(/\"/g, "")
+      color.replace(/.*\:\s/, "").replace(/\"/g, ""),
     );
 
     let titleColor = colors[0];
@@ -77,7 +77,7 @@ async function run() {
       
       \r[![](${url})](${url})
       `,
-      issue_number: pullRequestId
+      issue_number: pullRequestId,
     });
   } catch (error) {
     console.log(error);

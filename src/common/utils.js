@@ -37,7 +37,7 @@ function kFormatter(num) {
 
 function isValidHexColor(hexColor) {
   return new RegExp(
-    /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/
+    /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/,
   ).test(hexColor);
 }
 
@@ -83,7 +83,7 @@ function request(data, headers) {
     url: "https://api.github.com/graphql",
     method: "post",
     headers,
-    data
+    data,
   });
 }
 
@@ -115,7 +115,7 @@ function getCardColors({
   icon_color,
   bg_color,
   theme,
-  fallbackTheme = "default"
+  fallbackTheme = "default",
 }) {
   const defaultTheme = themes[fallbackTheme];
   const selectedTheme = themes[theme] || defaultTheme;
@@ -124,19 +124,19 @@ function getCardColors({
   // finally if both colors are invalid fallback to default theme
   const titleColor = fallbackColor(
     title_color || selectedTheme.title_color,
-    "#" + defaultTheme.title_color
+    "#" + defaultTheme.title_color,
   );
   const iconColor = fallbackColor(
     icon_color || selectedTheme.icon_color,
-    "#" + defaultTheme.icon_color
+    "#" + defaultTheme.icon_color,
   );
   const textColor = fallbackColor(
     text_color || selectedTheme.text_color,
-    "#" + defaultTheme.text_color
+    "#" + defaultTheme.text_color,
   );
   const bgColor = fallbackColor(
     bg_color || selectedTheme.bg_color,
-    "#" + defaultTheme.bg_color
+    "#" + defaultTheme.bg_color,
   );
 
   return { titleColor, iconColor, textColor, bgColor };
@@ -168,13 +168,13 @@ const CONSTANTS = {
   THIRTY_MINUTES: 1800,
   TWO_HOURS: 7200,
   FOUR_HOURS: 14400,
-  ONE_DAY: 86400
+  ONE_DAY: 86400,
 };
 
 const SECONDARY_ERROR_MESSAGES = {
   MAX_RETRY:
     "Please add an env variable called PAT_1 with your github token in vercel",
-  USER_NOT_FOUND: "Make sure the provided username is not an organization"
+  USER_NOT_FOUND: "Make sure the provided username is not an organization",
 };
 
 class CustomError extends Error {
@@ -203,5 +203,5 @@ module.exports = {
   wrapTextMultiline,
   logger,
   CONSTANTS,
-  CustomError
+  CustomError,
 };

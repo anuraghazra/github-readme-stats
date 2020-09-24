@@ -3,7 +3,7 @@ const {
   renderError,
   parseBoolean,
   clampValue,
-  CONSTANTS
+  CONSTANTS,
 } = require("../src/common/utils");
 const fetchRepo = require("../src/fetchers/repo-fetcher");
 const renderRepoCard = require("../src/cards/repo-card");
@@ -20,7 +20,7 @@ module.exports = async (req, res) => {
     bg_color,
     theme,
     show_owner,
-    cache_seconds
+    cache_seconds,
   } = req.query;
 
   let repoData;
@@ -37,7 +37,7 @@ module.exports = async (req, res) => {
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       CONSTANTS.TWO_HOURS,
-      CONSTANTS.ONE_DAY
+      CONSTANTS.ONE_DAY,
     );
 
     /*
@@ -63,8 +63,8 @@ module.exports = async (req, res) => {
         text_color,
         bg_color,
         theme,
-        show_owner: parseBoolean(show_owner)
-      })
+        show_owner: parseBoolean(show_owner),
+      }),
     );
   } catch (err) {
     return res.send(renderError(err.message, err.secondaryMessage));

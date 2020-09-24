@@ -13,7 +13,7 @@ const stats = {
   totalIssues: 300,
   totalPRs: 400,
   contributedTo: 500,
-  rank: null
+  rank: null,
 };
 stats.rank = calculateRank({
   totalCommits: stats.totalCommits,
@@ -22,7 +22,7 @@ stats.rank = calculateRank({
   contributions: stats.contributedTo,
   stargazers: stats.totalStars,
   prs: stats.totalPRs,
-  issues: stats.totalIssues
+  issues: stats.totalIssues,
 });
 
 const data = {
@@ -32,17 +32,17 @@ const data = {
       repositoriesContributedTo: { totalCount: stats.contributedTo },
       contributionsCollection: {
         totalCommitContributions: stats.totalCommits,
-        restrictedContributionsCount: 100
+        restrictedContributionsCount: 100,
       },
       pullRequests: { totalCount: stats.totalPRs },
       issues: { totalCount: stats.totalIssues },
       followers: { totalCount: 0 },
       repositories: {
         totalCount: 1,
-        nodes: [{ stargazers: { totalCount: 100 } }]
-      }
-    }
-  }
+        nodes: [{ stargazers: { totalCount: 100 } }],
+      },
+    },
+  },
 };
 
 const error = {
@@ -51,9 +51,9 @@ const error = {
       type: "NOT_FOUND",
       path: ["user"],
       locations: [],
-      message: "Could not fetch user"
-    }
-  ]
+      message: "Could not fetch user",
+    },
+  ],
 };
 
 const mock = new MockAdapter(axios);
@@ -62,12 +62,12 @@ const faker = (query, data) => {
   const req = {
     query: {
       username: "anuraghazra",
-      ...query
-    }
+      ...query,
+    },
   };
   const res = {
     setHeader: jest.fn(),
-    send: jest.fn()
+    send: jest.fn(),
   };
   mock.onPost("https://api.github.com/graphql").reply(200, data);
 
@@ -97,8 +97,8 @@ describe("Test /api/", () => {
     expect(res.send).toBeCalledWith(
       renderError(
         error.errors[0].message,
-        "Make sure the provided username is not an organization"
-      )
+        "Make sure the provided username is not an organization",
+      ),
     );
   });
 
@@ -113,9 +113,9 @@ describe("Test /api/", () => {
         title_color: "fff",
         icon_color: "fff",
         text_color: "fff",
-        bg_color: "fff"
+        bg_color: "fff",
       },
-      data
+      data,
     );
 
     await api(req, res);
@@ -130,8 +130,8 @@ describe("Test /api/", () => {
         title_color: "fff",
         icon_color: "fff",
         text_color: "fff",
-        bg_color: "fff"
-      })
+        bg_color: "fff",
+      }),
     );
   });
 
@@ -143,7 +143,7 @@ describe("Test /api/", () => {
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`]
+      ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
     ]);
   });
 
@@ -153,7 +153,7 @@ describe("Test /api/", () => {
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${8000}`]
+      ["Cache-Control", `public, max-age=${8000}`],
     ]);
   });
 
@@ -164,7 +164,7 @@ describe("Test /api/", () => {
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.ONE_DAY}`]
+        ["Cache-Control", `public, max-age=${CONSTANTS.ONE_DAY}`],
       ]);
     }
 
@@ -175,7 +175,7 @@ describe("Test /api/", () => {
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`]
+        ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
       ]);
     }
 
@@ -185,7 +185,7 @@ describe("Test /api/", () => {
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`]
+        ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
       ]);
     }
   });
@@ -194,9 +194,9 @@ describe("Test /api/", () => {
     const { req, res } = faker(
       {
         username: "anuraghazra",
-        count_private: true
+        count_private: true,
       },
-      data
+      data,
     );
 
     await api(req, res);
@@ -214,11 +214,11 @@ describe("Test /api/", () => {
             contributions: stats.contributedTo,
             stargazers: stats.totalStars,
             prs: stats.totalPRs,
-            issues: stats.totalIssues
-          })
+            issues: stats.totalIssues,
+          }),
         },
-        {}
-      )
+        {},
+      ),
     );
   });
 });

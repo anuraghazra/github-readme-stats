@@ -41,11 +41,11 @@ const fetcher = (variables, token) => {
         }
       }
       `,
-      variables
+      variables,
     },
     {
-      Authorization: `bearer ${token}`
-    }
+      Authorization: `bearer ${token}`,
+    },
   );
 };
 
@@ -65,8 +65,8 @@ const totalCommitsFetcher = async (username) => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/vnd.github.cloak-preview",
-        Authorization: `bearer ${token}`
-      }
+        Authorization: `bearer ${token}`,
+      },
     });
   };
 
@@ -86,7 +86,7 @@ const totalCommitsFetcher = async (username) => {
 async function fetchStats(
   username,
   count_private = false,
-  include_all_commits = false
+  include_all_commits = false,
 ) {
   if (!username) throw Error("Invalid username");
 
@@ -97,7 +97,7 @@ async function fetchStats(
     totalIssues: 0,
     totalStars: 0,
     contributedTo: 0,
-    rank: { level: "C", score: 0 }
+    rank: { level: "C", score: 0 },
   };
 
   let res = await retryer(fetcher, { login: username });
@@ -106,7 +106,7 @@ async function fetchStats(
     logger.error(res.data.errors);
     throw new CustomError(
       res.data.errors[0].message || "Could not fetch user",
-      CustomError.USER_NOT_FOUND
+      CustomError.USER_NOT_FOUND,
     );
   }
 
@@ -144,7 +144,7 @@ async function fetchStats(
     contributions: stats.contributedTo,
     stargazers: stats.totalStars,
     prs: stats.totalPRs,
-    issues: stats.totalIssues
+    issues: stats.totalIssues,
   });
 
   return stats;

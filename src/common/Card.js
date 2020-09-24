@@ -7,7 +7,7 @@ class Card {
     height = 100,
     colors = {},
     title = "",
-    titlePrefixIcon
+    titlePrefixIcon,
   }) {
     this.width = width;
     this.height = height;
@@ -79,7 +79,7 @@ class Card {
       >
         ${FlexLayout({
           items: [this.titlePrefixIcon && prefixIcon, titleText],
-          gap: 25
+          gap: 25,
         }).join("")}
       </g>
     `;

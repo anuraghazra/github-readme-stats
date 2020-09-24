@@ -16,7 +16,7 @@ const createProgressTextNode = ({ width, color, name, progress }) => {
       color,
       width: progressWidth,
       progress,
-      progressBarBackgroundColor: "#ddd"
+      progressBarBackgroundColor: "#ddd",
     })}
   `;
 };
@@ -43,7 +43,7 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
         x,
         y: 12.5 * index + y,
         totalSize,
-        index
+        index,
       });
     }
     return createCompactLangNode({
@@ -51,7 +51,7 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
       x: 150,
       y: 12.5 + 12.5 * index,
       totalSize,
-      index
+      index,
     });
   });
 };
@@ -68,7 +68,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     bg_color,
     hide,
     theme,
-    layout
+    layout,
   } = options;
 
   let langs = Object.values(topLangs);
@@ -98,7 +98,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     title_color,
     text_color,
     bg_color,
-    theme
+    theme,
   });
 
   let width = isNaN(card_width) ? 300 : card_width;
@@ -151,7 +151,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
         x: 0,
         y: 25,
         langs,
-        totalSize: totalLanguageSize
+        totalSize: totalLanguageSize,
       }).join("")}
     `;
   } else {
@@ -161,11 +161,11 @@ const renderTopLanguages = (topLangs, options = {}) => {
           width: width,
           name: lang.name,
           color: lang.color || "#858585",
-          progress: ((lang.size / totalLanguageSize) * 100).toFixed(2)
+          progress: ((lang.size / totalLanguageSize) * 100).toFixed(2),
         });
       }),
       gap: 40,
-      direction: "column"
+      direction: "column",
     }).join("");
   }
 
@@ -176,8 +176,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     colors: {
       titleColor,
       textColor,
-      bgColor
-    }
+      bgColor,
+    },
   });
 
   card.disableAnimations();

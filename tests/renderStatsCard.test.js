@@ -5,7 +5,7 @@ const renderStatsCard = require("../src/cards/stats-card");
 const {
   getByTestId,
   queryByTestId,
-  queryAllByTestId
+  queryAllByTestId,
 } = require("@testing-library/dom");
 const themes = require("../themes");
 
@@ -17,18 +17,18 @@ describe("Test renderStatsCard", () => {
     totalIssues: 300,
     totalPRs: 400,
     contributedTo: 500,
-    rank: { level: "A+", score: 40 }
+    rank: { level: "A+", score: 40 },
   };
 
   it("should render correctly", () => {
     document.body.innerHTML = renderStatsCard(stats);
 
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Anurag Hazra's GitHub Stats"
+      "Anurag Hazra's GitHub Stats",
     );
 
     expect(
-      document.body.getElementsByTagName("svg")[0].getAttribute("height")
+      document.body.getElementsByTagName("svg")[0].getAttribute("height"),
     ).toBe("195");
     expect(getByTestId(document.body, "stars").textContent).toBe("100");
     expect(getByTestId(document.body, "commits").textContent).toBe("200");
@@ -43,23 +43,23 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard({ ...stats, name: "Anil Das" });
 
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Anil Das' GitHub Stats"
+      "Anil Das' GitHub Stats",
     );
 
     document.body.innerHTML = renderStatsCard({ ...stats, name: "Felix" });
 
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Felix' GitHub Stats"
+      "Felix' GitHub Stats",
     );
   });
 
   it("should hide individual stats", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      hide: ["issues", "prs", "contribs"]
+      hide: ["issues", "prs", "contribs"],
     });
 
     expect(
-      document.body.getElementsByTagName("svg")[0].getAttribute("height")
+      document.body.getElementsByTagName("svg")[0].getAttribute("height"),
     ).toBe("150"); // height should be 150 because we clamped it.
 
     expect(queryByTestId(document.body, "stars")).toBeDefined();
@@ -90,7 +90,7 @@ describe("Test renderStatsCard", () => {
     expect(iconClassStyles.fill).toBe("#4c71f2");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#fffefe"
+      "#fffefe",
     );
   });
 
@@ -99,7 +99,7 @@ describe("Test renderStatsCard", () => {
       title_color: "5a0",
       icon_color: "1b998b",
       text_color: "9991",
-      bg_color: "252525"
+      bg_color: "252525",
     };
 
     document.body.innerHTML = renderStatsCard(stats, { ...customColors });
@@ -116,14 +116,14 @@ describe("Test renderStatsCard", () => {
     expect(iconClassStyles.fill).toBe(`#${customColors.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#252525"
+      "#252525",
     );
   });
 
   it("should render custom colors with themes", () => {
     document.body.innerHTML = renderStatsCard(stats, {
       title_color: "5a0",
-      theme: "radical"
+      theme: "radical",
     });
 
     const styleTag = document.querySelector("style");
@@ -138,14 +138,14 @@ describe("Test renderStatsCard", () => {
     expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      `#${themes.radical.bg_color}`
+      `#${themes.radical.bg_color}`,
     );
   });
 
   it("should render with all the themes", () => {
     Object.keys(themes).forEach((name) => {
       document.body.innerHTML = renderStatsCard(stats, {
-        theme: name
+        theme: name,
       });
 
       const styleTag = document.querySelector("style");
@@ -160,7 +160,7 @@ describe("Test renderStatsCard", () => {
       expect(iconClassStyles.fill).toBe(`#${themes[name].icon_color}`);
       expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
         "fill",
-        `#${themes[name].bg_color}`
+        `#${themes[name].bg_color}`,
       );
     });
   });
@@ -169,7 +169,7 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard(stats, {
       title_color: "invalid color",
       text_color: "invalid color",
-      theme: "radical"
+      theme: "radical",
     });
 
     const styleTag = document.querySelector("style");
@@ -184,19 +184,19 @@ describe("Test renderStatsCard", () => {
     expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      `#${themes.radical.bg_color}`
+      `#${themes.radical.bg_color}`,
     );
   });
 
   it("should render icons correctly", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      show_icons: true
+      show_icons: true,
     });
 
     expect(queryAllByTestId(document.body, "icon")[0]).toBeDefined();
     expect(queryByTestId(document.body, "stars")).toBeDefined();
     expect(
-      queryByTestId(document.body, "stars").previousElementSibling // the label
+      queryByTestId(document.body, "stars").previousElementSibling, // the label
     ).toHaveAttribute("x", "25");
   });
 
@@ -206,7 +206,7 @@ describe("Test renderStatsCard", () => {
     expect(queryAllByTestId(document.body, "icon")[0]).not.toBeDefined();
     expect(queryByTestId(document.body, "stars")).toBeDefined();
     expect(
-      queryByTestId(document.body, "stars").previousElementSibling // the label
+      queryByTestId(document.body, "stars").previousElementSibling, // the label
     ).not.toHaveAttribute("x");
   });
 });

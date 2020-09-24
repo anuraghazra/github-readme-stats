@@ -49,7 +49,7 @@ const getStyles = ({
   textColor,
   iconColor,
   show_icons,
-  progress
+  progress,
 }) => {
   return `
     .stat {

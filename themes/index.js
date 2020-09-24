@@ -3,230 +3,230 @@ const themes = {
     title_color: "2f80ed",
     icon_color: "4c71f2",
     text_color: "333",
-    bg_color: "fffefe"
+    bg_color: "fffefe",
   },
   default_repocard: {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
     text_color: "333",
-    bg_color: "fffefe"
+    bg_color: "fffefe",
   },
   dark: {
     title_color: "fff",
     icon_color: "79ff97",
     text_color: "9f9f9f",
-    bg_color: "151515"
+    bg_color: "151515",
   },
   radical: {
     title_color: "fe428e",
     icon_color: "f8d847",
     text_color: "a9fef7",
-    bg_color: "141321"
+    bg_color: "141321",
   },
   merko: {
     title_color: "abd200",
     icon_color: "b7d364",
     text_color: "68b587",
-    bg_color: "0a0f0b"
+    bg_color: "0a0f0b",
   },
   gruvbox: {
     title_color: "fabd2f",
     icon_color: "fe8019",
     text_color: "8ec07c",
-    bg_color: "282828"
+    bg_color: "282828",
   },
   tokyonight: {
     title_color: "70a5fd",
     icon_color: "bf91f3",
     text_color: "38bdae",
-    bg_color: "1a1b27"
+    bg_color: "1a1b27",
   },
   onedark: {
     title_color: "e4bf7a",
     icon_color: "8eb573",
     text_color: "df6d74",
-    bg_color: "282c34"
+    bg_color: "282c34",
   },
   cobalt: {
     title_color: "e683d9",
     icon_color: "0480ef",
     text_color: "75eeb2",
-    bg_color: "193549"
+    bg_color: "193549",
   },
   synthwave: {
     title_color: "e2e9ec",
     icon_color: "ef8539",
     text_color: "e5289e",
-    bg_color: "2b213a"
+    bg_color: "2b213a",
   },
   highcontrast: {
     title_color: "e7f216",
     icon_color: "00ffff",
     text_color: "fff",
-    bg_color: "000"
+    bg_color: "000",
   },
   dracula: {
     title_color: "ff6e96",
     icon_color: "79dafa",
     text_color: "f8f8f2",
-    bg_color: "282a36"
+    bg_color: "282a36",
   },
   prussian: {
     title_color: "bddfff",
     icon_color: "38a0ff",
     text_color: "6e93b5",
-    bg_color: "172f45"
+    bg_color: "172f45",
   },
   monokai: {
     title_color: "eb1f6a",
     icon_color: "e28905",
     text_color: "f1f1eb",
-    bg_color: "272822"
+    bg_color: "272822",
   },
   vue: {
     title_color: "41b883",
     icon_color: "41b883",
     text_color: "273849",
-    bg_color: "fffefe"
+    bg_color: "fffefe",
   },
   "vue-dark": {
     title_color: "41b883",
     icon_color: "41b883",
     text_color: "fffefe",
-    bg_color: "273849"
+    bg_color: "273849",
   },
   "shades-of-purple": {
     title_color: "fad000",
     icon_color: "b362ff",
     text_color: "a599e9",
-    bg_color: "2d2b55"
+    bg_color: "2d2b55",
   },
   nightowl: {
     title_color: "c792ea",
     icon_color: "ffeb95",
     text_color: "7fdbca",
-    bg_color: "011627"
+    bg_color: "011627",
   },
   buefy: {
     title_color: "7957d5",
     icon_color: "ff3860",
     text_color: "363636",
-    bg_color: "ffffff"
+    bg_color: "ffffff",
   },
   "blue-green": {
     title_color: "2f97c1",
     icon_color: "f5b700",
     text_color: "0cf574",
-    bg_color: "040f0f"
+    bg_color: "040f0f",
   },
   algolia: {
     title_color: "00AEFF",
     icon_color: "2DDE98",
     text_color: "FFFFFF",
-    bg_color: "050F2C"
+    bg_color: "050F2C",
   },
   "great-gatsby": {
     title_color: "ffa726",
     icon_color: "ffb74d",
     text_color: "ffd95b",
-    bg_color: "000000"
+    bg_color: "000000",
   },
   darcula: {
     title_color: "BA5F17",
     icon_color: "84628F",
     text_color: "BEBEBE",
-    bg_color: "242424"
+    bg_color: "242424",
   },
   bear: {
     title_color: "e03c8a",
     icon_color: "00AEFF",
     text_color: "bcb28d",
-    bg_color: "1f2023"
+    bg_color: "1f2023",
   },
   "solarized-dark": {
     title_color: "268bd2",
     icon_color: "b58900",
     text_color: "859900",
-    bg_color: "002b36"
+    bg_color: "002b36",
   },
   "solarized-light": {
     title_color: "268bd2",
     icon_color: "b58900",
     text_color: "859900",
-    bg_color: "fdf6e3"
+    bg_color: "fdf6e3",
   },
   "chartreuse-dark": {
     title_color: "7fff00",
     icon_color: "00AEFF",
     text_color: "fff",
-    bg_color: "000"
+    bg_color: "000",
   },
   nord: {
     title_color: "81a1c1",
     text_color: "d8dee9",
     icon_color: "88c0d0",
-    bg_color: "2e3440"
+    bg_color: "2e3440",
   },
   gotham: {
     title_color: "2aa889",
     icon_color: "599cab",
     text_color: "99d1ce",
-    bg_color: "0c1014"
+    bg_color: "0c1014",
   },
   "material-palenight": {
     title_color: "c792ea",
     icon_color: "89ddff",
     text_color: "a6accd",
-    bg_color: "292d3e"
+    bg_color: "292d3e",
   },
   graywhite: {
     title_color: "24292e",
     icon_color: "24292e",
     text_color: "24292e",
-    bg_color: "ffffff"
+    bg_color: "ffffff",
   },
   "vision-friendly-dark": {
     title_color: "ffb000",
     icon_color: "785ef0",
     text_color: "ffffff",
-    bg_color: "000000"
+    bg_color: "000000",
   },
   "ayu-mirage": {
     title_color: "f4cd7c",
     icon_color: "73d0ff",
     text_color: "c7c8c2",
-    bg_color: "1f2430"
+    bg_color: "1f2430",
   },
   "midnight-purple": {
     title_color: "9745f5",
     icon_color: "9f4bff",
     text_color: "ffffff",
-    bg_color: "000000"
+    bg_color: "000000",
   },
   calm: {
     title_color: "e07a5f",
     icon_color: "edae49",
     text_color: "ebcfb2",
-    bg_color: "373f51"
+    bg_color: "373f51",
   },
   "flag-india": {
     title_color: "ff8f1c",
     icon_color: "250E62",
     text_color: "509E2F",
-    bg_color: "ffffff"
+    bg_color: "ffffff",
   },
   omni: {
     title_color: "FF79C6",
     icon_color: "e7de79",
     text_color: "E1E1E6",
-    bg_color: "191622"
+    bg_color: "191622",
   },
   react: {
     title_color: "61dafb",
     icon_color: "61dafb",
     text_color: "ffffff",
-    bg_color: "20232a"
-  }
+    bg_color: "20232a",
+  },
 };
 
 module.exports = themes;

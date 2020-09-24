@@ -13,7 +13,7 @@ describe("Card", () => {
     document.body.innerHTML = card.render(``);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "stroke-opacity",
-      "0"
+      "0",
     );
   });
 
@@ -24,7 +24,7 @@ describe("Card", () => {
     document.body.innerHTML = card.render(``);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "stroke-opacity",
-      "1"
+      "1",
     );
   });
 
@@ -63,11 +63,11 @@ describe("Card", () => {
     document.body.innerHTML = card.render(``);
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
       "height",
-      "200"
+      "200",
     );
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
       "height",
-      "200"
+      "200",
     );
   });
 
@@ -78,7 +78,7 @@ describe("Card", () => {
     document.body.innerHTML = card.render(``);
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
       "height",
-      "170"
+      "170",
     );
   });
 
@@ -87,7 +87,7 @@ describe("Card", () => {
     document.body.innerHTML = card.render(``);
     expect(queryByTestId(document.body, "main-card-body")).toHaveAttribute(
       "transform",
-      "translate(0, 55)"
+      "translate(0, 55)",
     );
   });
 
@@ -98,7 +98,7 @@ describe("Card", () => {
     document.body.innerHTML = card.render(``);
     expect(queryByTestId(document.body, "main-card-body")).toHaveAttribute(
       "transform",
-      "translate(0, 25)"
+      "translate(0, 25)",
     );
   });
 
@@ -109,7 +109,7 @@ describe("Card", () => {
       icon_color: "0f0",
       text_color: "00f",
       bg_color: "fff",
-      theme: "default"
+      theme: "default",
     });
 
     const card = new Card({
@@ -118,8 +118,8 @@ describe("Card", () => {
         titleColor,
         textColor,
         iconColor,
-        bgColor
-      }
+        bgColor,
+      },
     });
     document.body.innerHTML = card.render(``);
 
@@ -130,7 +130,7 @@ describe("Card", () => {
     expect(headerClassStyles.fill).toBe("#f00");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#fff"
+      "#fff",
     );
   });
   it("should render gradient backgrounds", () => {
@@ -139,7 +139,7 @@ describe("Card", () => {
       icon_color: "0f0",
       text_color: "00f",
       bg_color: "90,fff,000,f00",
-      theme: "default"
+      theme: "default",
     });
 
     const card = new Card({
@@ -148,26 +148,26 @@ describe("Card", () => {
         titleColor,
         textColor,
         iconColor,
-        bgColor
-      }
+        bgColor,
+      },
     });
     document.body.innerHTML = card.render(``);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "url(#gradient)"
+      "url(#gradient)",
     );
     expect(document.querySelector("defs linearGradient")).toHaveAttribute(
       "gradientTransform",
-      "rotate(90)"
+      "rotate(90)",
     );
     expect(
-      document.querySelector("defs linearGradient stop:nth-child(1)")
+      document.querySelector("defs linearGradient stop:nth-child(1)"),
     ).toHaveAttribute("stop-color", "#fff");
     expect(
-      document.querySelector("defs linearGradient stop:nth-child(2)")
+      document.querySelector("defs linearGradient stop:nth-child(2)"),
     ).toHaveAttribute("stop-color", "#000");
     expect(
-      document.querySelector("defs linearGradient stop:nth-child(3)")
+      document.querySelector("defs linearGradient stop:nth-child(3)"),
     ).toHaveAttribute("stop-color", "#f00");
   });
 });

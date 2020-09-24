@@ -11,23 +11,23 @@ const data_repo = {
     primaryLanguage: {
       color: "#2b7489",
       id: "MDg6TGFuZ3VhZ2UyODc=",
-      name: "TypeScript"
+      name: "TypeScript",
     },
-    forkCount: 100
-  }
+    forkCount: 100,
+  },
 };
 
 const data_user = {
   data: {
     user: { repository: data_repo },
-    organization: null
-  }
+    organization: null,
+  },
 };
 const data_org = {
   data: {
     user: null,
-    organization: { repository: data_repo }
-  }
+    organization: { repository: data_repo },
+  },
 };
 
 const mock = new MockAdapter(axios);
@@ -57,7 +57,7 @@ describe("Test fetchRepo", () => {
       .reply(200, { data: { user: { repository: null }, organization: null } });
 
     await expect(fetchRepo("anuraghazra", "convoychat")).rejects.toThrow(
-      "User Repository Not found"
+      "User Repository Not found",
     );
   });
 
@@ -67,7 +67,7 @@ describe("Test fetchRepo", () => {
       .reply(200, { data: { user: null, organization: { repository: null } } });
 
     await expect(fetchRepo("anuraghazra", "convoychat")).rejects.toThrow(
-      "Organization Repository Not found"
+      "Organization Repository Not found",
     );
   });
 
@@ -77,7 +77,7 @@ describe("Test fetchRepo", () => {
       .reply(200, { data: { user: null, organization: null } });
 
     await expect(fetchRepo("anuraghazra", "convoychat")).rejects.toThrow(
-      "Not found"
+      "Not found",
     );
   });
 
@@ -85,12 +85,12 @@ describe("Test fetchRepo", () => {
     mock.onPost("https://api.github.com/graphql").reply(200, {
       data: {
         user: { repository: { ...data_repo, isPrivate: true } },
-        organization: null
-      }
+        organization: null,
+      },
     });
 
     await expect(fetchRepo("anuraghazra", "convoychat")).rejects.toThrow(
-      "User Repository Not found"
+      "User Repository Not found",
     );
   });
 });

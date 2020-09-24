@@ -6,7 +6,7 @@ const createProgressNode = ({
   width,
   color,
   progress,
-  progressBarBackgroundColor
+  progressBarBackgroundColor,
 }) => {
   const progressPercentage = clampValue(progress, 2, 100);
 

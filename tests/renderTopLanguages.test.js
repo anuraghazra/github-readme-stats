@@ -10,68 +10,68 @@ describe("Test renderTopLanguages", () => {
     HTML: {
       color: "#0f0",
       name: "HTML",
-      size: 200
+      size: 200,
     },
     javascript: {
       color: "#0ff",
       name: "javascript",
-      size: 200
+      size: 200,
     },
     css: {
       color: "#ff0",
       name: "css",
-      size: 100
-    }
+      size: 100,
+    },
   };
 
   it("should render correctly", () => {
     document.body.innerHTML = renderTopLanguages(langs);
 
     expect(queryByTestId(document.body, "header")).toHaveTextContent(
-      "Most Used Languages"
+      "Most Used Languages",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
-      "HTML"
+      "HTML",
     );
     expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
-      "javascript"
+      "javascript",
     );
     expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
-      "css"
+      "css",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
       "width",
-      "40%"
+      "40%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
       "width",
-      "40%"
+      "40%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
       "width",
-      "20%"
+      "20%",
     );
   });
 
   it("should hide languages when hide is passed", () => {
     document.body.innerHTML = renderTopLanguages(langs, {
-      hide: ["HTML"]
+      hide: ["HTML"],
     });
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
-      "javascript"
+      "javascript",
     );
     expect(queryAllByTestId(document.body, "lang-name")[1]).toBeInTheDocument(
-      "css"
+      "css",
     );
     expect(queryAllByTestId(document.body, "lang-name")[2]).not.toBeDefined();
 
     // multiple languages passed
     document.body.innerHTML = renderTopLanguages(langs, {
-      hide: ["HTML", "css"]
+      hide: ["HTML", "css"],
     });
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
-      "javascript"
+      "javascript",
     );
     expect(queryAllByTestId(document.body, "lang-name")[1]).not.toBeDefined();
   });
@@ -86,10 +86,10 @@ describe("Test renderTopLanguages", () => {
         python: {
           color: "#ff0",
           name: "python",
-          size: 100
-        }
+          size: 100,
+        },
       },
-      {}
+      {},
     );
     expect(document.querySelector("svg")).toHaveAttribute("height", "245");
   });
@@ -116,7 +116,7 @@ describe("Test renderTopLanguages", () => {
     expect(langNameStyles.fill).toBe("#333");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#fffefe"
+      "#fffefe",
     );
   });
 
@@ -125,7 +125,7 @@ describe("Test renderTopLanguages", () => {
       title_color: "5a0",
       icon_color: "1b998b",
       text_color: "9991",
-      bg_color: "252525"
+      bg_color: "252525",
     };
 
     document.body.innerHTML = renderTopLanguages(langs, { ...customColors });
@@ -140,14 +140,14 @@ describe("Test renderTopLanguages", () => {
     expect(langNameStyles.fill).toBe(`#${customColors.text_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#252525"
+      "#252525",
     );
   });
 
   it("should render custom colors with themes", () => {
     document.body.innerHTML = renderTopLanguages(langs, {
       title_color: "5a0",
-      theme: "radical"
+      theme: "radical",
     });
 
     const styleTag = document.querySelector("style");
@@ -160,14 +160,14 @@ describe("Test renderTopLanguages", () => {
     expect(langNameStyles.fill).toBe(`#${themes.radical.text_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      `#${themes.radical.bg_color}`
+      `#${themes.radical.bg_color}`,
     );
   });
 
   it("should render with all the themes", () => {
     Object.keys(themes).forEach((name) => {
       document.body.innerHTML = renderTopLanguages(langs, {
-        theme: name
+        theme: name,
       });
 
       const styleTag = document.querySelector("style");
@@ -180,7 +180,7 @@ describe("Test renderTopLanguages", () => {
       expect(langNameStyles.fill).toBe(`#${themes[name].text_color}`);
       expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
         "fill",
-        `#${themes[name].bg_color}`
+        `#${themes[name].bg_color}`,
       );
     });
   });
@@ -189,31 +189,31 @@ describe("Test renderTopLanguages", () => {
     document.body.innerHTML = renderTopLanguages(langs, { layout: "compact" });
 
     expect(queryByTestId(document.body, "header")).toHaveTextContent(
-      "Most Used Languages"
+      "Most Used Languages",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
-      "HTML 40.00%"
+      "HTML 40.00%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
       "width",
-      "120.00"
+      "120.00",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
-      "javascript 40.00%"
+      "javascript 40.00%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
       "width",
-      "120.00"
+      "120.00",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
-      "css 20.00%"
+      "css 20.00%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
       "width",
-      "60.00"
+      "60.00",
     );
   });
 });
