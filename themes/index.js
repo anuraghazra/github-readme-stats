@@ -209,11 +209,17 @@ const themes = {
     text_color: "ebcfb2",
     bg_color: "373f51",
   },
+  "flag-india": {
+    title_color: "ff8f1c",
+    icon_color: "250E62",
+    text_color: "509E2F",
+    bg_color: "ffffff",
+  },
   omni: {
     title_color: "FF79C6",
     icon_color: "e7de79",
     text_color: "E1E1E6",
-    bg_color: "191622"
+    bg_color: "191622",
   },
   react: {
     title_color: "61dafb",
