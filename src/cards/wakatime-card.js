@@ -1,34 +1,11 @@
-const { getCardColors, FlexLayout, clampValue } = require("../common/utils");
-const { getStyles } = require("../getStyles");
-const icons = require("../common/icons");
 const Card = require("../common/Card");
+const { getStyles } = require("../getStyles");
+const { getCardColors, FlexLayout } = require("../common/utils");
+const { createProgressNode } = require("../common/createProgressNode");
 
 const noCodingActivityNode = ({ color }) => {
   return `
     <text x="25" y="11" class="stat bold" fill="${color}">No coding activity this week</text>
-  `;
-};
-
-const createProgressNode = ({
-  width,
-  color,
-  progress,
-  progressBarBackgroundColor,
-}) => {
-  const progressPercentage = clampValue(progress, 2, 100);
-
-  return `
-    <svg width="${width}" overflow="auto">
-      <rect rx="5" ry="5" x="110" y="4" width="${width}" height="8" fill="${progressBarBackgroundColor}"></rect>
-      <rect
-        height="8"
-        fill="${color}"
-        rx="5" ry="5" x="110" y="4"
-        data-testid="lang-progress"
-        width="${progressPercentage}%"
-      >
-      </rect>
-    </svg>
   `;
 };
 
@@ -47,6 +24,8 @@ const createTextNode = ({
   const cardProgress = hideProgress
     ? null
     : createProgressNode({
+        x: 110,
+        y: 4,
         progress: percent,
         color: progressBarColor,
         width: 220,
@@ -154,3 +133,4 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 };
 
 module.exports = renderWakatimeCard;
+exports.createProgressNode = createProgressNode;
