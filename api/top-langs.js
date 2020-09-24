@@ -39,7 +39,7 @@ module.exports = async (req, res) => {
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       CONSTANTS.TWO_HOURS,
-      CONSTANTS.ONE_DAY
+      CONSTANTS.ONE_DAY,
     );
 
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         layout,
-      })
+      }),
     );
   } catch (err) {
     return res.send(renderError(err.message, err.secondaryMessage));

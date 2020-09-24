@@ -29,7 +29,7 @@ const fetcher = (variables, token) => {
     },
     {
       Authorization: `bearer ${token}`,
-    }
+    },
   );
 };
 

@@ -116,7 +116,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     `
     ${cssStyles}
     .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
-    `
+    `,
   );
 
   return card.render(`

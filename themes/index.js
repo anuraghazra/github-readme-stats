@@ -89,7 +89,7 @@ const themes = {
     text_color: "273849",
     bg_color: "fffefe",
   },
-  'vue-dark': {
+  "vue-dark": {
     title_color: "41b883",
     icon_color: "41b883",
     text_color: "fffefe",
@@ -161,13 +161,13 @@ const themes = {
     text_color: "fff",
     bg_color: "000",
   },
-  "nord": {
+  nord: {
     title_color: "81a1c1",
     text_color: "d8dee9",
     icon_color: "88c0d0",
     bg_color: "2e3440",
   },
-  "gotham": {
+  gotham: {
     title_color: "2aa889",
     icon_color: "599cab",
     text_color: "99d1ce",
@@ -179,7 +179,7 @@ const themes = {
     text_color: "a6accd",
     bg_color: "292d3e",
   },
-  "graywhite": {
+  graywhite: {
     title_color: "24292e",
     icon_color: "24292e",
     text_color: "24292e",
@@ -197,7 +197,7 @@ const themes = {
     text_color: "c7c8c2",
     bg_color: "1f2430",
   },
-  "midnight-purple":{
+  "midnight-purple": {
     title_color: "9745f5",
     icon_color: "9f4bff",
     text_color: "ffffff",

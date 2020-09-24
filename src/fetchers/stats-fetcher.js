@@ -45,7 +45,7 @@ const fetcher = (variables, token) => {
     },
     {
       Authorization: `bearer ${token}`,
-    }
+    },
   );
 };
 
@@ -86,7 +86,7 @@ const totalCommitsFetcher = async (username) => {
 async function fetchStats(
   username,
   count_private = false,
-  include_all_commits = false
+  include_all_commits = false,
 ) {
   if (!username) throw Error("Invalid username");
 
@@ -106,7 +106,7 @@ async function fetchStats(
     logger.error(res.data.errors);
     throw new CustomError(
       res.data.errors[0].message || "Could not fetch user",
-      CustomError.USER_NOT_FOUND
+      CustomError.USER_NOT_FOUND,
     );
   }
 
