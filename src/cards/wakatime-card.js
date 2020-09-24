@@ -17,7 +17,7 @@ const createTextNode = ({
   percent,
   hideProgress,
   progressBarColor,
-  progressBarBackgroundColor,
+  progressBarBackgroundColor
 }) => {
   const staggerDelay = (index + 3) * 150;
 
@@ -30,7 +30,7 @@ const createTextNode = ({
         color: progressBarColor,
         width: 220,
         name: label,
-        progressBarBackgroundColor,
+        progressBarBackgroundColor
       });
 
   return `
@@ -58,7 +58,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     text_color,
     bg_color,
     theme = "default",
-    hide_progress,
+    hide_progress
   } = options;
 
   const lheight = parseInt(line_height, 10);
@@ -69,7 +69,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     icon_color,
     text_color,
     bg_color,
-    theme,
+    theme
   });
 
   const statItems = languages
@@ -83,7 +83,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
             percent: language.percent,
             progressBarColor: titleColor,
             progressBarBackgroundColor: textColor,
-            hideProgress: hide_progress,
+            hideProgress: hide_progress
           });
         })
     : [];
@@ -95,7 +95,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const cssStyles = getStyles({
     titleColor,
     textColor,
-    iconColor,
+    iconColor
   });
 
   const card = new Card({
@@ -106,8 +106,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       titleColor,
       textColor,
       iconColor,
-      bgColor,
-    },
+      bgColor
+    }
   });
 
   card.setHideBorder(hide_border);
@@ -126,7 +126,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
           ? statItems
           : [noCodingActivityNode({ color: textColor })],
         gap: lheight,
-        direction: "column",
+        direction: "column"
       }).join("")}
     </svg> 
   `);

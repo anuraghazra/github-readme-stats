@@ -16,32 +16,32 @@ const data_langs = {
         nodes: [
           {
             languages: {
-              edges: [{ size: 100, node: { color: "#0f0", name: "HTML" } }],
-            },
+              edges: [{ size: 100, node: { color: "#0f0", name: "HTML" } }]
+            }
           },
           {
             languages: {
-              edges: [{ size: 100, node: { color: "#0f0", name: "HTML" } }],
-            },
-          },
-          {
-            languages: {
-              edges: [
-                { size: 100, node: { color: "#0ff", name: "javascript" } },
-              ],
-            },
+              edges: [{ size: 100, node: { color: "#0f0", name: "HTML" } }]
+            }
           },
           {
             languages: {
               edges: [
-                { size: 100, node: { color: "#0ff", name: "javascript" } },
-              ],
-            },
+                { size: 100, node: { color: "#0ff", name: "javascript" } }
+              ]
+            }
           },
-        ],
-      },
-    },
-  },
+          {
+            languages: {
+              edges: [
+                { size: 100, node: { color: "#0ff", name: "javascript" } }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
 };
 
 const error = {
@@ -50,9 +50,9 @@ const error = {
       type: "NOT_FOUND",
       path: ["user"],
       locations: [],
-      message: "Could not resolve to a User with the login of 'noname'.",
-    },
-  ],
+      message: "Could not resolve to a User with the login of 'noname'."
+    }
+  ]
 };
 
 describe("FetchTopLanguages", () => {
@@ -64,13 +64,13 @@ describe("FetchTopLanguages", () => {
       HTML: {
         color: "#0f0",
         name: "HTML",
-        size: 200,
+        size: 200
       },
       javascript: {
         color: "#0ff",
         name: "javascript",
-        size: 200,
-      },
+        size: 200
+      }
     });
   });
 
@@ -82,8 +82,8 @@ describe("FetchTopLanguages", () => {
       javascript: {
         color: "#0ff",
         name: "javascript",
-        size: 200,
-      },
+        size: 200
+      }
     });
   });
 

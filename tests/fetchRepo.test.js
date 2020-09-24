@@ -11,23 +11,23 @@ const data_repo = {
     primaryLanguage: {
       color: "#2b7489",
       id: "MDg6TGFuZ3VhZ2UyODc=",
-      name: "TypeScript",
+      name: "TypeScript"
     },
-    forkCount: 100,
-  },
+    forkCount: 100
+  }
 };
 
 const data_user = {
   data: {
     user: { repository: data_repo },
-    organization: null,
-  },
+    organization: null
+  }
 };
 const data_org = {
   data: {
     user: null,
-    organization: { repository: data_repo },
-  },
+    organization: { repository: data_repo }
+  }
 };
 
 const mock = new MockAdapter(axios);
@@ -85,8 +85,8 @@ describe("Test fetchRepo", () => {
     mock.onPost("https://api.github.com/graphql").reply(200, {
       data: {
         user: { repository: { ...data_repo, isPrivate: true } },
-        organization: null,
-      },
+        organization: null
+      }
     });
 
     await expect(fetchRepo("anuraghazra", "convoychat")).rejects.toThrow(

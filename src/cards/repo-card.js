@@ -21,7 +21,7 @@ const renderRepoCard = (repo, options = {}) => {
     forkCount
   } = repo;
   const {
-    hide_border,
+    hide_border = false,
     title_color,
     icon_color,
     text_color,

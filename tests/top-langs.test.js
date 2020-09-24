@@ -12,32 +12,32 @@ const data_langs = {
         nodes: [
           {
             languages: {
-              edges: [{ size: 150, node: { color: "#0f0", name: "HTML" } }],
-            },
+              edges: [{ size: 150, node: { color: "#0f0", name: "HTML" } }]
+            }
           },
           {
             languages: {
-              edges: [{ size: 100, node: { color: "#0f0", name: "HTML" } }],
-            },
-          },
-          {
-            languages: {
-              edges: [
-                { size: 100, node: { color: "#0ff", name: "javascript" } },
-              ],
-            },
+              edges: [{ size: 100, node: { color: "#0f0", name: "HTML" } }]
+            }
           },
           {
             languages: {
               edges: [
-                { size: 100, node: { color: "#0ff", name: "javascript" } },
-              ],
-            },
+                { size: 100, node: { color: "#0ff", name: "javascript" } }
+              ]
+            }
           },
-        ],
-      },
-    },
-  },
+          {
+            languages: {
+              edges: [
+                { size: 100, node: { color: "#0ff", name: "javascript" } }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
 };
 
 const error = {
@@ -46,22 +46,22 @@ const error = {
       type: "NOT_FOUND",
       path: ["user"],
       locations: [],
-      message: "Could not fetch user",
-    },
-  ],
+      message: "Could not fetch user"
+    }
+  ]
 };
 
 const langs = {
   HTML: {
     color: "#0f0",
     name: "HTML",
-    size: 250,
+    size: 250
   },
   javascript: {
     color: "#0ff",
     name: "javascript",
-    size: 200,
-  },
+    size: 200
+  }
 };
 
 const mock = new MockAdapter(axios);
@@ -74,12 +74,12 @@ describe("Test /api/top-langs", () => {
   it("should test the request", async () => {
     const req = {
       query: {
-        username: "anuraghazra",
-      },
+        username: "anuraghazra"
+      }
     };
     const res = {
       setHeader: jest.fn(),
-      send: jest.fn(),
+      send: jest.fn()
     };
     mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
@@ -98,12 +98,12 @@ describe("Test /api/top-langs", () => {
         title_color: "fff",
         icon_color: "fff",
         text_color: "fff",
-        bg_color: "fff",
-      },
+        bg_color: "fff"
+      }
     };
     const res = {
       setHeader: jest.fn(),
-      send: jest.fn(),
+      send: jest.fn()
     };
     mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
@@ -117,7 +117,7 @@ describe("Test /api/top-langs", () => {
         title_color: "fff",
         icon_color: "fff",
         text_color: "fff",
-        bg_color: "fff",
+        bg_color: "fff"
       })
     );
   });
@@ -125,12 +125,12 @@ describe("Test /api/top-langs", () => {
   it("should render error card on error", async () => {
     const req = {
       query: {
-        username: "anuraghazra",
-      },
+        username: "anuraghazra"
+      }
     };
     const res = {
       setHeader: jest.fn(),
-      send: jest.fn(),
+      send: jest.fn()
     };
     mock.onPost("https://api.github.com/graphql").reply(200, error);
 

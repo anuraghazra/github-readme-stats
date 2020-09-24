@@ -109,7 +109,7 @@ describe("Card", () => {
       icon_color: "0f0",
       text_color: "00f",
       bg_color: "fff",
-      theme: "default",
+      theme: "default"
     });
 
     const card = new Card({
@@ -118,8 +118,8 @@ describe("Card", () => {
         titleColor,
         textColor,
         iconColor,
-        bgColor,
-      },
+        bgColor
+      }
     });
     document.body.innerHTML = card.render(``);
 
@@ -139,7 +139,7 @@ describe("Card", () => {
       icon_color: "0f0",
       text_color: "00f",
       bg_color: "90,fff,000,f00",
-      theme: "default",
+      theme: "default"
     });
 
     const card = new Card({
@@ -148,8 +148,8 @@ describe("Card", () => {
         titleColor,
         textColor,
         iconColor,
-        bgColor,
-      },
+        bgColor
+      }
     });
     document.body.innerHTML = card.render(``);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(

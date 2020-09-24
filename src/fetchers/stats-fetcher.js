@@ -41,10 +41,10 @@ const fetcher = (variables, token) => {
         }
       }
       `,
-      variables,
+      variables
     },
     {
-      Authorization: `bearer ${token}`,
+      Authorization: `bearer ${token}`
     }
   );
 };
@@ -65,8 +65,8 @@ const totalCommitsFetcher = async (username) => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/vnd.github.cloak-preview",
-        Authorization: `bearer ${token}`,
-      },
+        Authorization: `bearer ${token}`
+      }
     });
   };
 
@@ -97,7 +97,7 @@ async function fetchStats(
     totalIssues: 0,
     totalStars: 0,
     contributedTo: 0,
-    rank: { level: "C", score: 0 },
+    rank: { level: "C", score: 0 }
   };
 
   let res = await retryer(fetcher, { login: username });
@@ -144,7 +144,7 @@ async function fetchStats(
     contributions: stats.contributedTo,
     stargazers: stats.totalStars,
     prs: stats.totalPRs,
-    issues: stats.totalIssues,
+    issues: stats.totalIssues
   });
 
   return stats;

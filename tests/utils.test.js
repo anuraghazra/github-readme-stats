@@ -5,7 +5,7 @@ const {
   renderError,
   FlexLayout,
   getCardColors,
-  wrapTextMultiline,
+  wrapTextMultiline
 } = require("../src/common/utils");
 
 const { queryByTestId } = require("@testing-library/dom");
@@ -47,7 +47,7 @@ describe("Test utils.js", () => {
   it("should test FlexLayout", () => {
     const layout = FlexLayout({
       items: ["<text>1</text>", "<text>2</text>"],
-      gap: 60,
+      gap: 60
     }).join("");
 
     expect(layout).toBe(
@@ -57,7 +57,7 @@ describe("Test utils.js", () => {
     const columns = FlexLayout({
       items: ["<text>1</text>", "<text>2</text>"],
       gap: 60,
-      direction: "column",
+      direction: "column"
     }).join("");
 
     expect(columns).toBe(
@@ -71,13 +71,13 @@ describe("Test utils.js", () => {
       text_color: "0f0",
       icon_color: "00f",
       bg_color: "fff",
-      theme: "dark",
+      theme: "dark"
     });
     expect(colors).toStrictEqual({
       titleColor: "#f00",
       textColor: "#0f0",
       iconColor: "#00f",
-      bgColor: "#fff",
+      bgColor: "#fff"
     });
   });
 
@@ -87,25 +87,25 @@ describe("Test utils.js", () => {
       text_color: "0f0",
       icon_color: "00f",
       bg_color: "fff",
-      theme: "dark",
+      theme: "dark"
     });
     expect(colors).toStrictEqual({
       titleColor: "#2f80ed",
       textColor: "#0f0",
       iconColor: "#00f",
-      bgColor: "#fff",
+      bgColor: "#fff"
     });
   });
 
   it("getCardColors: should fallback to specified theme colors if is not defined", () => {
     let colors = getCardColors({
-      theme: "dark",
+      theme: "dark"
     });
     expect(colors).toStrictEqual({
       titleColor: "#fff",
       textColor: "#9f9f9f",
       iconColor: "#79ff97",
-      bgColor: "#151515",
+      bgColor: "#151515"
     });
   });
 });

@@ -23,7 +23,7 @@ function calculateRank({
   followers,
   prs,
   issues,
-  stargazers,
+  stargazers
 }) {
   const COMMITS_OFFSET = 1.65;
   const CONTRIBS_OFFSET = 1.65;

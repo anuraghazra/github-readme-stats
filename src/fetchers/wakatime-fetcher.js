@@ -9,5 +9,5 @@ const fetchLast7Days = async ({ username }) => {
 };
 
 module.exports = {
-  fetchLast7Days,
+  fetchLast7Days
 };

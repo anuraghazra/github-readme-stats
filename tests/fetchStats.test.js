@@ -11,7 +11,7 @@ const data = {
       repositoriesContributedTo: { totalCount: 61 },
       contributionsCollection: {
         totalCommitContributions: 100,
-        restrictedContributionsCount: 50,
+        restrictedContributionsCount: 50
       },
       pullRequests: { totalCount: 300 },
       issues: { totalCount: 200 },
@@ -23,11 +23,11 @@ const data = {
           { stargazers: { totalCount: 100 } },
           { stargazers: { totalCount: 100 } },
           { stargazers: { totalCount: 50 } },
-          { stargazers: { totalCount: 50 } },
-        ],
-      },
-    },
-  },
+          { stargazers: { totalCount: 50 } }
+        ]
+      }
+    }
+  }
 };
 
 const error = {
@@ -36,9 +36,9 @@ const error = {
       type: "NOT_FOUND",
       path: ["user"],
       locations: [],
-      message: "Could not resolve to a User with the login of 'noname'.",
-    },
-  ],
+      message: "Could not resolve to a User with the login of 'noname'."
+    }
+  ]
 };
 
 const mock = new MockAdapter(axios);
@@ -59,7 +59,7 @@ describe("Test fetchStats", () => {
       contributions: 61,
       stargazers: 400,
       prs: 300,
-      issues: 200,
+      issues: 200
     });
 
     expect(stats).toStrictEqual({
@@ -69,7 +69,7 @@ describe("Test fetchStats", () => {
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
-      rank,
+      rank
     });
   });
 
@@ -92,7 +92,7 @@ describe("Test fetchStats", () => {
       contributions: 61,
       stargazers: 400,
       prs: 300,
-      issues: 200,
+      issues: 200
     });
 
     expect(stats).toStrictEqual({
@@ -102,7 +102,7 @@ describe("Test fetchStats", () => {
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
-      rank,
+      rank
     });
   });
 
@@ -120,7 +120,7 @@ describe("Test fetchStats", () => {
       contributions: 61,
       stargazers: 400,
       prs: 300,
-      issues: 200,
+      issues: 200
     });
 
     expect(stats).toStrictEqual({
@@ -130,7 +130,7 @@ describe("Test fetchStats", () => {
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
-      rank,
+      rank
     });
   });
 });

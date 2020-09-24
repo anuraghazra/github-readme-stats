@@ -10,18 +10,18 @@ describe("Test renderTopLanguages", () => {
     HTML: {
       color: "#0f0",
       name: "HTML",
-      size: 200,
+      size: 200
     },
     javascript: {
       color: "#0ff",
       name: "javascript",
-      size: 200,
+      size: 200
     },
     css: {
       color: "#ff0",
       name: "css",
-      size: 100,
-    },
+      size: 100
+    }
   };
 
   it("should render correctly", () => {
@@ -56,7 +56,7 @@ describe("Test renderTopLanguages", () => {
 
   it("should hide languages when hide is passed", () => {
     document.body.innerHTML = renderTopLanguages(langs, {
-      hide: ["HTML"],
+      hide: ["HTML"]
     });
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
       "javascript"
@@ -68,7 +68,7 @@ describe("Test renderTopLanguages", () => {
 
     // multiple languages passed
     document.body.innerHTML = renderTopLanguages(langs, {
-      hide: ["HTML", "css"],
+      hide: ["HTML", "css"]
     });
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
       "javascript"
@@ -86,8 +86,8 @@ describe("Test renderTopLanguages", () => {
         python: {
           color: "#ff0",
           name: "python",
-          size: 100,
-        },
+          size: 100
+        }
       },
       {}
     );
@@ -125,7 +125,7 @@ describe("Test renderTopLanguages", () => {
       title_color: "5a0",
       icon_color: "1b998b",
       text_color: "9991",
-      bg_color: "252525",
+      bg_color: "252525"
     };
 
     document.body.innerHTML = renderTopLanguages(langs, { ...customColors });
@@ -147,7 +147,7 @@ describe("Test renderTopLanguages", () => {
   it("should render custom colors with themes", () => {
     document.body.innerHTML = renderTopLanguages(langs, {
       title_color: "5a0",
-      theme: "radical",
+      theme: "radical"
     });
 
     const styleTag = document.querySelector("style");
@@ -167,7 +167,7 @@ describe("Test renderTopLanguages", () => {
   it("should render with all the themes", () => {
     Object.keys(themes).forEach((name) => {
       document.body.innerHTML = renderTopLanguages(langs, {
-        theme: name,
+        theme: name
       });
 
       const styleTag = document.querySelector("style");

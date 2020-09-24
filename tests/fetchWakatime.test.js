@@ -18,8 +18,8 @@ const wakaTimeData = {
         name: "Coding",
         percent: 100,
         text: "22 hrs 40 mins",
-        total_seconds: 81643.570077,
-      },
+        total_seconds: 81643.570077
+      }
     ],
     daily_average: 16095,
     daily_average_including_other_language: 16329,
@@ -33,8 +33,8 @@ const wakaTimeData = {
         name: "VS Code",
         percent: 100,
         text: "22 hrs 40 mins",
-        total_seconds: 81643.570077,
-      },
+        total_seconds: 81643.570077
+      }
     ],
     holidays: 2,
     human_readable_daily_average: "4 hrs 28 mins",
@@ -56,7 +56,7 @@ const wakaTimeData = {
         name: "Other",
         percent: 1.43,
         text: "19 mins",
-        total_seconds: 1170.434361,
+        total_seconds: 1170.434361
       },
       {
         digital: "0:01",
@@ -65,7 +65,7 @@ const wakaTimeData = {
         name: "TypeScript",
         percent: 0.1,
         text: "1 min",
-        total_seconds: 83.293809,
+        total_seconds: 83.293809
       },
       {
         digital: "0:00",
@@ -74,8 +74,8 @@ const wakaTimeData = {
         name: "YAML",
         percent: 0.07,
         text: "0 secs",
-        total_seconds: 54.975151,
-      },
+        total_seconds: 54.975151
+      }
     ],
     operating_systems: [
       {
@@ -85,8 +85,8 @@ const wakaTimeData = {
         name: "Mac",
         percent: 100,
         text: "22 hrs 40 mins",
-        total_seconds: 81643.570077,
-      },
+        total_seconds: 81643.570077
+      }
     ],
     percent_calculated: 100,
     range: "last_7_days",
@@ -96,8 +96,8 @@ const wakaTimeData = {
     total_seconds_including_other_language: 81643.570077,
     user_id: "random hash",
     username: "anuraghazra",
-    writes_only: false,
-  },
+    writes_only: false
+  }
 };
 
 describe("Wakatime fetcher", () => {

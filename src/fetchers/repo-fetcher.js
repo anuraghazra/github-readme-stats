@@ -35,10 +35,10 @@ const fetcher = (variables, token) => {
         }
       }
     `,
-      variables,
+      variables
     },
     {
-      Authorization: `bearer ${token}`,
+      Authorization: `bearer ${token}`
     }
   );
 };

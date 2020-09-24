@@ -5,7 +5,7 @@ const renderStatsCard = require("../src/cards/stats-card");
 const {
   getByTestId,
   queryByTestId,
-  queryAllByTestId,
+  queryAllByTestId
 } = require("@testing-library/dom");
 const themes = require("../themes");
 
@@ -17,7 +17,7 @@ describe("Test renderStatsCard", () => {
     totalIssues: 300,
     totalPRs: 400,
     contributedTo: 500,
-    rank: { level: "A+", score: 40 },
+    rank: { level: "A+", score: 40 }
   };
 
   it("should render correctly", () => {
@@ -55,7 +55,7 @@ describe("Test renderStatsCard", () => {
 
   it("should hide individual stats", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      hide: ["issues", "prs", "contribs"],
+      hide: ["issues", "prs", "contribs"]
     });
 
     expect(
@@ -99,7 +99,7 @@ describe("Test renderStatsCard", () => {
       title_color: "5a0",
       icon_color: "1b998b",
       text_color: "9991",
-      bg_color: "252525",
+      bg_color: "252525"
     };
 
     document.body.innerHTML = renderStatsCard(stats, { ...customColors });
@@ -123,7 +123,7 @@ describe("Test renderStatsCard", () => {
   it("should render custom colors with themes", () => {
     document.body.innerHTML = renderStatsCard(stats, {
       title_color: "5a0",
-      theme: "radical",
+      theme: "radical"
     });
 
     const styleTag = document.querySelector("style");
@@ -145,7 +145,7 @@ describe("Test renderStatsCard", () => {
   it("should render with all the themes", () => {
     Object.keys(themes).forEach((name) => {
       document.body.innerHTML = renderStatsCard(stats, {
-        theme: name,
+        theme: name
       });
 
       const styleTag = document.querySelector("style");
@@ -169,7 +169,7 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard(stats, {
       title_color: "invalid color",
       text_color: "invalid color",
-      theme: "radical",
+      theme: "radical"
     });
 
     const styleTag = document.querySelector("style");
@@ -190,7 +190,7 @@ describe("Test renderStatsCard", () => {
 
   it("should render icons correctly", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      show_icons: true,
+      show_icons: true
     });
 
     expect(queryAllByTestId(document.body, "icon")[0]).toBeDefined();

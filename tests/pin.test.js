@@ -14,18 +14,18 @@ const data_repo = {
     primaryLanguage: {
       color: "#2b7489",
       id: "MDg6TGFuZ3VhZ2UyODc=",
-      name: "TypeScript",
+      name: "TypeScript"
     },
     forkCount: 100,
-    isTemplate: false,
-  },
+    isTemplate: false
+  }
 };
 
 const data_user = {
   data: {
     user: { repository: data_repo.repository },
-    organization: null,
-  },
+    organization: null
+  }
 };
 
 const mock = new MockAdapter(axios);
@@ -39,12 +39,12 @@ describe("Test /api/pin", () => {
     const req = {
       query: {
         username: "anuraghazra",
-        repo: "convoychat",
-      },
+        repo: "convoychat"
+      }
     };
     const res = {
       setHeader: jest.fn(),
-      send: jest.fn(),
+      send: jest.fn()
     };
     mock.onPost("https://api.github.com/graphql").reply(200, data_user);
 
@@ -63,12 +63,12 @@ describe("Test /api/pin", () => {
         icon_color: "fff",
         text_color: "fff",
         bg_color: "fff",
-        full_name: "1",
-      },
+        full_name: "1"
+      }
     };
     const res = {
       setHeader: jest.fn(),
-      send: jest.fn(),
+      send: jest.fn()
     };
     mock.onPost("https://api.github.com/graphql").reply(200, data_user);
 
@@ -84,12 +84,12 @@ describe("Test /api/pin", () => {
     const req = {
       query: {
         username: "anuraghazra",
-        repo: "convoychat",
-      },
+        repo: "convoychat"
+      }
     };
     const res = {
       setHeader: jest.fn(),
-      send: jest.fn(),
+      send: jest.fn()
     };
     mock
       .onPost("https://api.github.com/graphql")
@@ -105,12 +105,12 @@ describe("Test /api/pin", () => {
     const req = {
       query: {
         username: "anuraghazra",
-        repo: "convoychat",
-      },
+        repo: "convoychat"
+      }
     };
     const res = {
       setHeader: jest.fn(),
-      send: jest.fn(),
+      send: jest.fn()
     };
     mock
       .onPost("https://api.github.com/graphql")

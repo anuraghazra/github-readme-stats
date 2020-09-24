@@ -4,7 +4,7 @@ const {
   clampValue,
   parseBoolean,
   parseArray,
-  CONSTANTS,
+  CONSTANTS
 } = require("../src/common/utils");
 const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 const renderTopLanguages = require("../src/cards/top-languages-card");
@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
     theme,
     cache_seconds,
     layout,
-    langs_count,
+    langs_count
   } = req.query;
   let topLangs;
 
@@ -54,7 +54,7 @@ module.exports = async (req, res) => {
         text_color,
         bg_color,
         theme,
-        layout,
+        layout
       })
     );
   } catch (err) {

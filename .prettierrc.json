@@ -1,6 +1,6 @@
 {
   "trailingComma": "none",
   "useTabs": false,
-  "endOfLine": "lf",
+  "endOfLine": "auto",
   "proseWrap": "always"
 }

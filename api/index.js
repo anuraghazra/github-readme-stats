@@ -4,7 +4,7 @@ const {
   parseBoolean,
   parseArray,
   clampValue,
-  CONSTANTS,
+  CONSTANTS
 } = require("../src/common/utils");
 const fetchStats = require("../src/fetchers/stats-fetcher");
 const renderStatsCard = require("../src/cards/stats-card");
@@ -26,7 +26,7 @@ module.exports = async (req, res) => {
     text_color,
     bg_color,
     theme,
-    cache_seconds,
+    cache_seconds
   } = req.query;
   let stats;
 
@@ -64,7 +64,7 @@ module.exports = async (req, res) => {
         icon_color,
         text_color,
         bg_color,
-        theme,
+        theme
       })
     );
   } catch (err) {

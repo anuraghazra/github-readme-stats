@@ -2,7 +2,7 @@ const {
   kFormatter,
   getCardColors,
   FlexLayout,
-  encodeHTML,
+  encodeHTML
 } = require("../common/utils");
 const { getStyles } = require("../getStyles");
 const icons = require("../common/icons");
@@ -15,7 +15,7 @@ const createTextNode = ({
   id,
   index,
   showIcons,
-  shiftValuePos,
+  shiftValuePos
 }) => {
   const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
@@ -50,7 +50,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     totalIssues,
     totalPRs,
     contributedTo,
-    rank,
+    rank
   } = stats;
   const {
     hide = [],
@@ -64,7 +64,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     icon_color,
     text_color,
     bg_color,
-    theme = "default",
+    theme = "default"
   } = options;
 
   const lheight = parseInt(line_height, 10);
@@ -75,7 +75,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     icon_color,
     text_color,
     bg_color,
-    theme,
+    theme
   });
 
   // Meta data for creating text nodes with createTextNode function
@@ -84,7 +84,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       icon: icons.star,
       label: "Total Stars",
       value: totalStars,
-      id: "stars",
+      id: "stars"
     },
     commits: {
       icon: icons.commits,
@@ -92,26 +92,26 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         include_all_commits ? "" : ` (${new Date().getFullYear()})`
       }`,
       value: totalCommits,
-      id: "commits",
+      id: "commits"
     },
     prs: {
       icon: icons.prs,
       label: "Total PRs",
       value: totalPRs,
-      id: "prs",
+      id: "prs"
     },
     issues: {
       icon: icons.issues,
       label: "Total Issues",
       value: totalIssues,
-      id: "issues",
+      id: "issues"
     },
     contribs: {
       icon: icons.contribs,
       label: "Contributed to",
       value: contributedTo,
-      id: "contribs",
-    },
+      id: "contribs"
+    }
   };
 
   // filter out hidden stats defined by user & create the text nodes
@@ -123,7 +123,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         ...STATS[key],
         index,
         showIcons: show_icons,
-        shiftValuePos: !include_all_commits,
+        shiftValuePos: !include_all_commits
       })
     );
 
@@ -162,7 +162,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     textColor,
     iconColor,
     show_icons,
-    progress,
+    progress
   });
 
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
@@ -174,8 +174,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       titleColor,
       textColor,
       iconColor,
-      bgColor,
-    },
+      bgColor
+    }
   });
 
   card.setHideBorder(hide_border);
@@ -189,7 +189,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       ${FlexLayout({
         items: statItems,
         gap: lheight,
-        direction: "column",
+        direction: "column"
       }).join("")}
     </svg> 
   `);

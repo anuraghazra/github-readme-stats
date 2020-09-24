@@ -25,10 +25,10 @@ const fetcher = (variables, token) => {
         }
       }
       `,
-      variables,
+      variables
     },
     {
-      Authorization: `bearer ${token}`,
+      Authorization: `bearer ${token}`
     }
   );
 };
@@ -68,8 +68,8 @@ async function fetchTopLanguages(username, langsCount = 5) {
         [prev.node.name]: {
           name: prev.node.name,
           color: prev.node.color,
-          size: langSize,
-        },
+          size: langSize
+        }
       };
     }, {});
 
