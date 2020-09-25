@@ -29,7 +29,7 @@ const fetcher = (variables, token) => {
     },
     {
       Authorization: `bearer ${token}`,
-    }
+    },
   );
 };
 
@@ -53,7 +53,6 @@ async function fetchTopLanguages(username, langsCount = 5) {
     })
     // flatten the list of language nodes
     .reduce((acc, curr) => curr.languages.edges.concat(acc), [])
-    .sort((a, b) => b.size - a.size)
     .reduce((acc, prev) => {
       // get the size of the language (bytes)
       let langSize = prev.size;
@@ -75,6 +74,7 @@ async function fetchTopLanguages(username, langsCount = 5) {
     }, {});
 
   const topLangs = Object.keys(repoNodes)
+    .sort((a, b) => repoNodes[b].size - repoNodes[a].size)
     .slice(0, langsCount)
     .reduce((result, key) => {
       result[key] = repoNodes[key];

@@ -21,6 +21,7 @@ const renderRepoCard = (repo, options = {}) => {
     forkCount,
   } = repo;
   const {
+    hide_border = false,
     title_color,
     icon_color,
     text_color,
@@ -118,7 +119,7 @@ const renderRepoCard = (repo, options = {}) => {
   });
 
   card.disableAnimations();
-  card.setHideBorder(false);
+  card.setHideBorder(hide_border);
   card.setHideTitle(false);
   card.setCSS(`
     .description { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
@@ -147,7 +148,7 @@ const renderRepoCard = (repo, options = {}) => {
       ${svgLanguage}
 
       <g
-        data-testid="star-fork-group" 
+        data-testid="star-fork-group"
         transform="translate(${primaryLanguage ? 155 - shiftText : 25}, 0)"
       >
         ${starAndForkCount}

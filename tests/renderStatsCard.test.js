@@ -24,11 +24,11 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard(stats);
 
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Anurag Hazra's GitHub Stats"
+      "Anurag Hazra's GitHub Stats",
     );
 
     expect(
-      document.body.getElementsByTagName("svg")[0].getAttribute("height")
+      document.body.getElementsByTagName("svg")[0].getAttribute("height"),
     ).toBe("195");
     expect(getByTestId(document.body, "stars").textContent).toBe("100");
     expect(getByTestId(document.body, "commits").textContent).toBe("200");
@@ -43,13 +43,13 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard({ ...stats, name: "Anil Das" });
 
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Anil Das' GitHub Stats"
+      "Anil Das' GitHub Stats",
     );
 
     document.body.innerHTML = renderStatsCard({ ...stats, name: "Felix" });
 
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Felix' GitHub Stats"
+      "Felix' GitHub Stats",
     );
   });
 
@@ -67,7 +67,7 @@ describe("Test renderStatsCard", () => {
     });
 
     expect(
-      document.body.getElementsByTagName("svg")[0].getAttribute("height")
+      document.body.getElementsByTagName("svg")[0].getAttribute("height"),
     ).toBe("150"); // height should be 150 because we clamped it.
 
     expect(queryByTestId(document.body, "stars")).toBeDefined();
@@ -98,7 +98,7 @@ describe("Test renderStatsCard", () => {
     expect(iconClassStyles.fill).toBe("#4c71f2");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#fffefe"
+      "#fffefe",
     );
   });
 
@@ -124,7 +124,7 @@ describe("Test renderStatsCard", () => {
     expect(iconClassStyles.fill).toBe(`#${customColors.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#252525"
+      "#252525",
     );
   });
 
@@ -146,7 +146,7 @@ describe("Test renderStatsCard", () => {
     expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      `#${themes.radical.bg_color}`
+      `#${themes.radical.bg_color}`,
     );
   });
 
@@ -168,7 +168,7 @@ describe("Test renderStatsCard", () => {
       expect(iconClassStyles.fill).toBe(`#${themes[name].icon_color}`);
       expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
         "fill",
-        `#${themes[name].bg_color}`
+        `#${themes[name].bg_color}`,
       );
     });
   });
@@ -192,7 +192,7 @@ describe("Test renderStatsCard", () => {
     expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      `#${themes.radical.bg_color}`
+      `#${themes.radical.bg_color}`,
     );
   });
 
@@ -204,7 +204,7 @@ describe("Test renderStatsCard", () => {
     expect(queryAllByTestId(document.body, "icon")[0]).toBeDefined();
     expect(queryByTestId(document.body, "stars")).toBeDefined();
     expect(
-      queryByTestId(document.body, "stars").previousElementSibling // the label
+      queryByTestId(document.body, "stars").previousElementSibling, // the label
     ).toHaveAttribute("x", "25");
   });
 
@@ -214,7 +214,7 @@ describe("Test renderStatsCard", () => {
     expect(queryAllByTestId(document.body, "icon")[0]).not.toBeDefined();
     expect(queryByTestId(document.body, "stars")).toBeDefined();
     expect(
-      queryByTestId(document.body, "stars").previousElementSibling // the label
+      queryByTestId(document.body, "stars").previousElementSibling, // the label
     ).not.toHaveAttribute("x");
   });
 });
