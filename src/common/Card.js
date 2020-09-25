@@ -49,6 +49,10 @@ class Card {
     this.title = text;
   }
 
+  setFont(font) {
+    this.font = font
+  }
+
   renderTitle() {
     const titleText = `
       <text
@@ -114,10 +118,10 @@ class Card {
         viewBox="0 0 ${this.width} ${this.height}"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-      >
+      >${ this.font ? '<defs><style>@import url(\'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(this.font) + ':wght@400;600;700;800;900\')</style></defs>' : ''}
         <style>
           .header {
-            font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
+            font: 600 18px ${this.font ? '\'' + this.font + '\', ' : ''}'Segoe UI', Ubuntu, Sans-Serif;
             fill: ${this.colors.titleColor};
             animation: fadeInAnimation 0.8s ease-in-out forwards;
           }

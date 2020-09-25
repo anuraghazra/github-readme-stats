@@ -65,6 +65,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     text_color,
     bg_color,
     theme = "default",
+    font,
   } = options;
 
   const lheight = parseInt(line_height, 10);
@@ -163,6 +164,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     iconColor,
     show_icons,
     progress,
+    font,
   });
 
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
@@ -180,6 +182,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
+  card.setFont(font ? encodeURIComponent(font).replace('%20', ' ') : '')
   card.setCSS(cssStyles);
 
   return card.render(`
