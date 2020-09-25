@@ -58,6 +58,7 @@
 - [Cartão de estatísticas do GitHub](#cartão-de-estatísticas-do-github)
 - [Pins extras do GitHub](#pins-extras-do-github)
 - [Cartão de principais linguagens de programação](#cartão-de-principais-linguagens-de-programação)
+- [Estatística semanal Wakatime](#cartão-estatisticas-semanal-wakatime)
 - [Temas](#temas)
 - [Personalização](#personalização)
 - [Faça suas próprias implantações](#implante-em-sua-própria-instância-do-vercel)
@@ -228,7 +229,23 @@ Utilize a opção `&layout=compact` para mudar o layout do cartão.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
+# Estatística semanal Wakatime
+
+Change the `?username=` value to your Wakatime username.
+
+```md
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Demo
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
 ---
+
+
 
 ### Todas as demonstrações
 
