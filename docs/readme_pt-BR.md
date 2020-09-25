@@ -231,13 +231,13 @@ Utilize a opção `&layout=compact` para mudar o layout do cartão.
 
 # Estatística semanal Wakatime
 
-Change the `?username=` value to your Wakatime username.
+Altere o valor de `?username=` para o seu username do Wakatime.
 
 ```md
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Demo
+### Demonstração
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
