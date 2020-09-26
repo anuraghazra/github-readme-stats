@@ -105,7 +105,7 @@ describe("Wakatime fetcher", () => {
     const username = "anuraghazra";
     mock
       .onGet(
-        `https://wakatime.com/api/v1/users/${username}/stats/last_7_days?is_including_today=true`
+        `https://wakatime.com/api/v1/users/${username}/stats/last_7_days?is_including_today=true`,
       )
       .reply(200, wakaTimeData);
 
@@ -207,7 +207,7 @@ describe("Wakatime fetcher", () => {
     mock.onGet(/\/https:\/\/wakatime\.com\/api/).reply(404, wakaTimeData);
 
     await expect(fetchLast7Days("noone")).rejects.toThrow(
-      "Request failed with status code 404"
+      "Wakatime user not found, make sure you have a wakatime profile",
     );
   });
 });

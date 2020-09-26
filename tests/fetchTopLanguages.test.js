@@ -91,7 +91,7 @@ describe("FetchTopLanguages", () => {
     mock.onPost("https://api.github.com/graphql").reply(200, error);
 
     await expect(fetchTopLanguages("anuraghazra")).rejects.toThrow(
-      "Could not resolve to a User with the login of 'noname'."
+      "Could not resolve to a User with the login of 'noname'.",
     );
   });
 });

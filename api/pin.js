@@ -14,6 +14,7 @@ module.exports = async (req, res) => {
   const {
     username,
     repo,
+    hide_border,
     title_color,
     icon_color,
     text_color,
@@ -42,7 +43,7 @@ module.exports = async (req, res) => {
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       CONSTANTS.TWO_HOURS,
-      CONSTANTS.ONE_DAY
+      CONSTANTS.ONE_DAY,
     );
 
     /*
@@ -62,6 +63,7 @@ module.exports = async (req, res) => {
 
     return res.send(
       renderRepoCard(repoData, {
+        hide_border,
         title_color,
         icon_color,
         text_color,
@@ -69,7 +71,7 @@ module.exports = async (req, res) => {
         theme,
         show_owner: parseBoolean(show_owner),
         font: font ? font.toLowerCase() : null,
-      })
+      }),
     );
   } catch (err) {
     return res.send(renderError(err.message, err.secondaryMessage));

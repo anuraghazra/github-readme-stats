@@ -92,7 +92,7 @@ describe("Test Render Wakatime Card", () => {
               y=\\"0\\"
               class=\\"header\\"
               data-testid=\\"header\\"
-            >Wakatime week stats</text>
+            >Wakatime Week Stats</text>
           </g>
             </g>
           

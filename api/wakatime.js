@@ -37,7 +37,7 @@ module.exports = async (req, res) => {
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       CONSTANTS.TWO_HOURS,
-      CONSTANTS.ONE_DAY
+      CONSTANTS.ONE_DAY,
     );
 
     if (!cache_seconds) {
@@ -58,7 +58,7 @@ module.exports = async (req, res) => {
         theme,
         hide_progress,
         font: font ? font.toLowerCase() : null,
-      })
+      }),
     );
   } catch (err) {
     return res.send(renderError(err.message, err.secondaryMessage));

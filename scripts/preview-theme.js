@@ -55,7 +55,7 @@ async function run() {
       return;
     }
     colors = colors.map((color) =>
-      color.replace(/.*\:\s/, "").replace(/\"/g, "")
+      color.replace(/.*\:\s/, "").replace(/\"/g, ""),
     );
 
     let titleColor = colors[0];
