@@ -207,7 +207,7 @@ describe("Wakatime fetcher", () => {
     mock.onGet(/\/https:\/\/wakatime\.com\/api/).reply(404, wakaTimeData);
 
     await expect(fetchLast7Days("noone")).rejects.toThrow(
-      "Request failed with status code 404",
+      "Wakatime user not found, make sure you have a wakatime profile",
     );
   });
 });
