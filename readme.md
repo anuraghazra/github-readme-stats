@@ -255,7 +255,7 @@ You can use the `&layout=compact` option to change the card design.
 
 # Wakatime Week Stats
 
-Change the `?username=` value to your Wakatime username.
+Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ```md
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
