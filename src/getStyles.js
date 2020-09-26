@@ -52,7 +52,7 @@ const getStyles = ({
   progress,
   font,
 }) => {
-  return `
+  return `${font ? require('./common/fonts')[font] : ''}
     .stat {
       font: 600 14px ${font ? "'" + encodeURIComponent(font).replace('%20', ' ')+ "', " : ''}'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
     }

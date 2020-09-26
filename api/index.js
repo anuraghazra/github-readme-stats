@@ -9,6 +9,7 @@ const {
 const fetchStats = require("../src/fetchers/stats-fetcher");
 const renderStatsCard = require("../src/cards/stats-card");
 const blacklist = require("../src/common/blacklist");
+const fonts = require("../src/common/fonts")
 
 module.exports = async (req, res) => {
   const {
@@ -35,6 +36,10 @@ module.exports = async (req, res) => {
 
   if (blacklist.includes(username)) {
     return res.send(renderError("Something went wrong"));
+  }
+
+  if (font && !fonts[font]) {
+    return res.send(renderError("Font not found"));
   }
 
   try {
