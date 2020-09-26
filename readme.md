@@ -136,6 +136,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `hide_border` - Hides the card's border _(boolean)_
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
 - `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
+- `font` - Sets the card's font. See [./fonts/readme.md](./fonts/readme.md).
 
 ##### Gradient in bg_color
 

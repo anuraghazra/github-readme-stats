@@ -1,4 +1,7 @@
 module.exports = [
   'roboto',
-  'lobster',
+  'open sans',
+  'lato',
+  'oswald',
+  'montserrat'
 ]
