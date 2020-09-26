@@ -14,6 +14,8 @@ module.exports = async (req, res) => {
     username,
     top=5,
     date_format='DD-MM-YYYY',
+    hide_title,
+    hide_border,
     title_color,
     icon_color,
     text_color,
@@ -41,6 +43,8 @@ module.exports = async (req, res) => {
     return res.send(
       renderReposCard(repoData, {
         date_format,
+        hide_title: parseBoolean(hide_title),
+        hide_border: parseBoolean(hide_border),
         title_color,
         icon_color,
         text_color,

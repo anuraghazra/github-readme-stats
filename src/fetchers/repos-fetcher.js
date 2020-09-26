@@ -15,10 +15,6 @@ const fetcher = (variables, token) => {
                   name
                   url
                   updatedAt
-                  forkCount
-                  stargazers{
-                    totalCount
-                  }
                 }
             }
           }
@@ -32,10 +28,6 @@ const fetcher = (variables, token) => {
                   name
                   url
                   updatedAt
-                  forkCount
-                  stargazers{
-                    totalCount
-                  }
                 }
             }
           }
