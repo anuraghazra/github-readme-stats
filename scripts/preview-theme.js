@@ -55,7 +55,7 @@ async function run() {
       return;
     }
     colors = colors.map((color) =>
-      color.replace(/.*\:\s/, "").replace(/\"/g, "")
+      color.replace(/.*\:\s/, "").replace(/\"/g, ""),
     );
 
     let titleColor = colors[0];
@@ -69,12 +69,18 @@ async function run() {
       repo: "github-readme-stats",
       body: `
       \rTheme preview (bot)  
-      \r![](${url})
+      
+      \ntitle-color: <code>#${titleColor}</code>
+      \nicon-color: <code>#${iconColor}</code>
+      \ntext-color: <code>#${textColor}</code>
+      \nbg-color: <code>#${bgColor}</code>
+      
+      \r[![](${url})](${url})
       `,
       issue_number: pullRequestId,
     });
   } catch (error) {
-    core.setFailed(error.message);
+    console.log(error);
   }
 }
 

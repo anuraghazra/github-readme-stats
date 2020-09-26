@@ -34,6 +34,8 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
   </p>
   <p align="center">
+    <a href="/docs/readme_fr.md">Français</a>
+    ·
     <a href="/docs/readme_cn.md">简体中文</a>
     ·
     <a href="/docs/readme_es.md">Español</a>
@@ -43,6 +45,8 @@
     <a href="/docs/readme_ja.md">日本語</a>
     ·
     <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
+    ·
+    <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
   </p>
@@ -165,7 +169,6 @@ URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card`
 GitHub extra pins을 사용하면 Github readme 프로필에 6개 이상의 저장소를 고정할 수 있습니다.
 그렇습니다! 더 이상 고정된 6개의 저장소로 제한되지 않습니다.
 
-
 ### 사용법
 
 이 코드를 복사해서 readme에 넣고 링크를 변경해주세요.
@@ -270,14 +273,16 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 
 ## 자체 Vercel 인스턴스에 배포하기
+
+#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
 Github API는 시간당 5k 요청만을 허용하기 때문에, 이 `https://github-readme-stats.vercel.app/api`이 제한에 도달할 수 있습니다.
 물론 자신의 Vercel 서버에서 호스팅하는 것이라면 아무것도 걱정할 필요가 없습니다. 시작하려면 배포 버튼을 클릭하세요!

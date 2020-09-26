@@ -1,26 +1,23 @@
-const { getCardColors, FlexLayout, clampValue } = require("../common/utils");
 const Card = require("../common/Card");
+const { getCardColors, FlexLayout } = require("../common/utils");
+const { createProgressNode } = require("../common/createProgressNode");
 
-const createProgressNode = ({ width, color, name, progress }) => {
+const createProgressTextNode = ({ width, color, name, progress }) => {
   const paddingRight = 95;
   const progressTextX = width - paddingRight + 10;
   const progressWidth = width - paddingRight;
-  const progressPercentage = clampValue(progress, 2, 100);
 
   return `
     <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
     <text x="${progressTextX}" y="34" class="lang-name">${progress}%</text>
-    <svg width="${progressWidth}">
-      <rect rx="5" ry="5" x="0" y="25" width="${progressWidth}" height="8" fill="#ddd"></rect>
-      <rect
-        height="8"
-        fill="${color}"
-        rx="5" ry="5" x="0" y="25"
-        data-testid="lang-progress"
-        width="${progressPercentage}%"
-      >
-      </rect>
-    </svg>
+    ${createProgressNode({
+      x: 0,
+      y: 25,
+      color,
+      width: progressWidth,
+      progress,
+      progressBarBackgroundColor: "#ddd",
+    })}
   `;
 };
 
@@ -112,7 +109,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
     width = width + 50;
-    height = 30 + (langs.length / 2 + 1) * 40;
+    height = 90 + Math.round(langs.length / 2) * 25;
 
     // progressOffset holds the previous language's width and used to offset the next language
     // so that we can stack them one after another, like this: [--][----][---]
@@ -160,7 +157,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
   } else {
     finalLayout = FlexLayout({
       items: langs.map((lang) => {
-        return createProgressNode({
+        return createProgressTextNode({
           width: width,
           name: lang.name,
           color: lang.color || "#858585",

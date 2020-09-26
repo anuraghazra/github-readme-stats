@@ -97,8 +97,8 @@ describe("Test /api/", () => {
     expect(res.send).toBeCalledWith(
       renderError(
         error.errors[0].message,
-        "Make sure the provided username is not an organization"
-      )
+        "Make sure the provided username is not an organization",
+      ),
     );
   });
 
@@ -115,7 +115,7 @@ describe("Test /api/", () => {
         text_color: "fff",
         bg_color: "fff",
       },
-      data
+      data,
     );
 
     await api(req, res);
@@ -131,7 +131,7 @@ describe("Test /api/", () => {
         icon_color: "fff",
         text_color: "fff",
         bg_color: "fff",
-      })
+      }),
     );
   });
 
@@ -143,17 +143,17 @@ describe("Test /api/", () => {
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${CONSTANTS.THIRTY_MINUTES}`],
+      ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
     ]);
   });
 
   it("should set proper cache", async () => {
-    const { req, res } = faker({ cache_seconds: 2000 }, data);
+    const { req, res } = faker({ cache_seconds: 8000 }, data);
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${2000}`],
+      ["Cache-Control", `public, max-age=${8000}`],
     ]);
   });
 
@@ -175,7 +175,7 @@ describe("Test /api/", () => {
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.THIRTY_MINUTES}`],
+        ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
       ]);
     }
 
@@ -185,7 +185,7 @@ describe("Test /api/", () => {
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.THIRTY_MINUTES}`],
+        ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
       ]);
     }
   });
@@ -196,7 +196,7 @@ describe("Test /api/", () => {
         username: "anuraghazra",
         count_private: true,
       },
-      data
+      data,
     );
 
     await api(req, res);
@@ -217,8 +217,8 @@ describe("Test /api/", () => {
             issues: stats.totalIssues,
           }),
         },
-        {}
-      )
+        {},
+      ),
     );
   });
 });

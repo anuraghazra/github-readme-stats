@@ -124,14 +124,14 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         index,
         showIcons: show_icons,
         shiftValuePos: !include_all_commits,
-      })
+      }),
     );
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
   let height = Math.max(
     45 + (statItems.length + 1) * lheight,
-    hide_rank ? 0 : 150
+    hide_rank ? 0 : 150,
   );
 
   // Conditionally rendered elements

@@ -1,60 +1,56 @@
 require("dotenv").config();
 const {
   renderError,
-  clampValue,
   parseBoolean,
-  parseArray,
+  clampValue,
   CONSTANTS,
 } = require("../src/common/utils");
-const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
-const renderTopLanguages = require("../src/cards/top-languages-card");
-const blacklist = require("../src/common/blacklist");
+const { fetchLast7Days } = require("../src/fetchers/wakatime-fetcher");
+const wakatimeCard = require("../src/cards/wakatime-card");
 
 module.exports = async (req, res) => {
   const {
     username,
-    hide,
-    hide_title,
-    hide_border,
-    card_width,
     title_color,
+    icon_color,
+    hide_border,
+    line_height,
     text_color,
     bg_color,
     theme,
     cache_seconds,
-    layout,
-    langs_count,
+    hide_title,
+    hide_progress,
   } = req.query;
-  let topLangs;
 
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (blacklist.includes(username)) {
-    return res.send(renderError("Something went wrong"));
-  }
-
   try {
-    topLangs = await fetchTopLanguages(username, langs_count);
+    const last7Days = await fetchLast7Days({ username });
 
-    const cacheSeconds = clampValue(
+    let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       CONSTANTS.TWO_HOURS,
       CONSTANTS.ONE_DAY,
     );
 
+    if (!cache_seconds) {
+      cacheSeconds = CONSTANTS.FOUR_HOURS;
+    }
+
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
     return res.send(
-      renderTopLanguages(topLangs, {
+      wakatimeCard(last7Days, {
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
-        card_width: parseInt(card_width, 10),
-        hide: parseArray(hide),
+        line_height,
         title_color,
+        icon_color,
         text_color,
         bg_color,
         theme,
-        layout,
+        hide_progress,
       }),
     );
   } catch (err) {

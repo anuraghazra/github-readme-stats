@@ -30,7 +30,7 @@ const fetcher = (variables, token) => {
           followers {
             totalCount
           }
-          repositories(first: 100, ownerAffiliations: OWNER, isFork: false, orderBy: {direction: DESC, field: STARGAZERS}) {
+          repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}) {
             totalCount
             nodes {
               stargazers {
@@ -45,7 +45,7 @@ const fetcher = (variables, token) => {
     },
     {
       Authorization: `bearer ${token}`,
-    }
+    },
   );
 };
 
@@ -86,7 +86,7 @@ const totalCommitsFetcher = async (username) => {
 async function fetchStats(
   username,
   count_private = false,
-  include_all_commits = false
+  include_all_commits = false,
 ) {
   if (!username) throw Error("Invalid username");
 
@@ -102,30 +102,32 @@ async function fetchStats(
 
   let res = await retryer(fetcher, { login: username });
 
-  let experimental_totalCommits = 0;
-  if (include_all_commits) {
-    experimental_totalCommits = await totalCommitsFetcher(username);
-  }
-
   if (res.data.errors) {
     logger.error(res.data.errors);
     throw new CustomError(
       res.data.errors[0].message || "Could not fetch user",
-      CustomError.USER_NOT_FOUND
+      CustomError.USER_NOT_FOUND,
     );
   }
 
   const user = res.data.data.user;
-  const contributionCount = user.contributionsCollection;
 
   stats.name = user.name || user.login;
   stats.totalIssues = user.issues.totalCount;
 
-  stats.totalCommits =
-    contributionCount.totalCommitContributions + experimental_totalCommits;
+  // normal commits
+  stats.totalCommits = user.contributionsCollection.totalCommitContributions;
 
+  // if include_all_commits then just get that,
+  // since totalCommitsFetcher already sends totalCommits no need to +=
+  if (include_all_commits) {
+    stats.totalCommits = await totalCommitsFetcher(username);
+  }
+
+  // if count_private then add private commits to totalCommits so far.
   if (count_private) {
-    stats.totalCommits += contributionCount.restrictedContributionsCount;
+    stats.totalCommits +=
+      user.contributionsCollection.restrictedContributionsCount;
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
