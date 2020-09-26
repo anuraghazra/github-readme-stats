@@ -8,6 +8,7 @@ const {
 const fetchRepo = require("../src/fetchers/repo-fetcher");
 const renderRepoCard = require("../src/cards/repo-card");
 const blacklist = require("../src/common/blacklist");
+const fonts = require('../fonts');
 
 module.exports = async (req, res) => {
   const {
@@ -20,6 +21,7 @@ module.exports = async (req, res) => {
     theme,
     show_owner,
     cache_seconds,
+    font,
   } = req.query;
 
   let repoData;
@@ -28,6 +30,10 @@ module.exports = async (req, res) => {
 
   if (blacklist.includes(username)) {
     return res.send(renderError("Something went wrong"));
+  }
+
+  if (font && !fonts.includes(font.toLowerCase())) {
+    return res.send(renderError("Font not found"));
   }
 
   try {
@@ -62,6 +68,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         show_owner: parseBoolean(show_owner),
+        font: font ? font.toLowerCase() : null,
       })
     );
   } catch (err) {

@@ -80,6 +80,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     bg_color,
     theme = "default",
     hide_progress,
+    font,
   } = options;
 
   const lheight = parseInt(line_height, 10);
@@ -117,6 +118,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     titleColor,
     textColor,
     iconColor,
+    font,
   });
 
   const card = new Card({
@@ -136,7 +138,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   card.setCSS(
     `
     ${cssStyles}
-    .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+    .lang-name { font: 400 11px ${font ? "'" + encodeURIComponent(font).replace('%20', ' ')+ "', " : ''}'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
     `
   );
 

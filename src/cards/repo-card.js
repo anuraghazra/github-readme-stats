@@ -27,6 +27,7 @@ const renderRepoCard = (repo, options = {}) => {
     bg_color,
     show_owner,
     theme = "default_repocard",
+    font,
   } = options;
 
   const header = show_owner ? nameWithOwner : name;
@@ -121,10 +122,11 @@ const renderRepoCard = (repo, options = {}) => {
   card.setHideBorder(false);
   card.setHideTitle(false);
   card.setCSS(`
-    .description { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
-    .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+    ${font ? require('../../fonts/' + font) : ''}
+    .description { font: 400 13px ${font ? "'" + encodeURIComponent(font).replace('%20', ' ')+ "', " : ''}'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+    .gray { font: 400 12px ${font ? "'" + encodeURIComponent(font).replace('%20', ' ')+ "', " : ''}'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
     .icon { fill: ${iconColor} }
-    .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
+    .badge { font: 600 11px ${font ? "'" + encodeURIComponent(font).replace('%20', ' ')+ "', " : ''}'Segoe UI', Ubuntu, Sans-Serif; }
     .badge rect { opacity: 0.2 }
   `);
 

@@ -7,6 +7,7 @@ const {
 } = require("../src/common/utils");
 const { fetchLast7Days } = require("../src/fetchers/wakatime-fetcher");
 const wakatimeCard = require("../src/cards/wakatime-card");
+const fonts = require('../fonts');
 
 module.exports = async (req, res) => {
   const {
@@ -21,9 +22,14 @@ module.exports = async (req, res) => {
     cache_seconds,
     hide_title,
     hide_progress,
+    font,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
+
+  if (font && !fonts.includes(font.toLowerCase())) {
+    return res.send(renderError("Font not found"));
+  }
 
   try {
     const last7Days = await fetchLast7Days({ username });
@@ -51,6 +57,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         hide_progress,
+        font: font ? font.toLowerCase() : null,
       })
     );
   } catch (err) {

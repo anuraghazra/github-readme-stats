@@ -72,6 +72,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     hide,
     theme,
     layout,
+    font,
   } = options;
 
   let langs = Object.values(topLangs);
@@ -187,7 +188,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
   card.setCSS(`
-    .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+    ${font ? require('../../fonts/' + font) : ''}
+    .lang-name { font: 400 11px ${font ? "'" + encodeURIComponent(font).replace('%20', ' ')+ "', " : ''}'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
   `);
 
   return card.render(`

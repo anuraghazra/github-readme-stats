@@ -9,6 +9,7 @@ const {
 const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 const renderTopLanguages = require("../src/cards/top-languages-card");
 const blacklist = require("../src/common/blacklist");
+const fonts = require('../fonts')
 
 module.exports = async (req, res) => {
   const {
@@ -24,6 +25,7 @@ module.exports = async (req, res) => {
     cache_seconds,
     layout,
     langs_count,
+    font,
   } = req.query;
   let topLangs;
 
@@ -31,6 +33,10 @@ module.exports = async (req, res) => {
 
   if (blacklist.includes(username)) {
     return res.send(renderError("Something went wrong"));
+  }
+
+  if (font && !fonts.includes(font.toLowerCase())) {
+    return res.send(renderError("Font not found"));
   }
 
   try {
@@ -55,6 +61,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         layout,
+        font: font ? font.toLowerCase() : null,
       })
     );
   } catch (err) {

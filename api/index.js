@@ -9,7 +9,7 @@ const {
 const fetchStats = require("../src/fetchers/stats-fetcher");
 const renderStatsCard = require("../src/cards/stats-card");
 const blacklist = require("../src/common/blacklist");
-const fonts = require("../src/common/fonts")
+const fonts = require("../fonts");
 
 module.exports = async (req, res) => {
   const {
@@ -38,7 +38,7 @@ module.exports = async (req, res) => {
     return res.send(renderError("Something went wrong"));
   }
 
-  if (font && !fonts[font]) {
+  if (font && !fonts.includes(font.toLowerCase())) {
     return res.send(renderError("Font not found"));
   }
 
@@ -71,7 +71,7 @@ module.exports = async (req, res) => {
         text_color,
         bg_color,
         theme,
-        font,
+        font: font ? font.toLowerCase() : null,
       })
     );
   } catch (err) {
