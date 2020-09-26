@@ -184,6 +184,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   card.setHideTitle(hide_title);
   card.setFont(font ? encodeURIComponent(font).replace('%20', ' ') : '')
   card.setCSS(cssStyles);
+  card.setFont(font)
 
   return card.render(`
     ${rankCircle}

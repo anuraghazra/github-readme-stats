@@ -141,6 +141,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     .lang-name { font: 400 11px ${font ? "'" + encodeURIComponent(font).replace('%20', ' ')+ "', " : ''}'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
     `
   );
+  card.setFont(font)
 
   return card.render(`
     <svg x="0" y="0" width="100%">

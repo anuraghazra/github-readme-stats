@@ -122,7 +122,7 @@ class Card {
       >
         <style>
           .header {
-            font: 600 18px ${this.font ? '\'' + this.font + '\', ' : ''}'Segoe UI', Ubuntu, Sans-Serif;
+            font: 600 18px ${this.font ? "'" + encodeURIComponent(this.font).replace('%20', ' ')+ "', " : ''}'Segoe UI', Ubuntu, Sans-Serif;
             fill: ${this.colors.titleColor};
             animation: fadeInAnimation 0.8s ease-in-out forwards;
           }

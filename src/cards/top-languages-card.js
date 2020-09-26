@@ -191,6 +191,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     ${font ? require('../../fonts/' + font) : ''}
     .lang-name { font: 400 11px ${font ? "'" + encodeURIComponent(font).replace('%20', ' ')+ "', " : ''}'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
   `);
+  card.setFont(font)
 
   return card.render(`
     <svg data-testid="lang-items" x="25">

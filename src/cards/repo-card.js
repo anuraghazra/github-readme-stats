@@ -129,6 +129,7 @@ const renderRepoCard = (repo, options = {}) => {
     .badge { font: 600 11px ${font ? "'" + encodeURIComponent(font).replace('%20', ' ')+ "', " : ''}'Segoe UI', Ubuntu, Sans-Serif; }
     .badge rect { opacity: 0.2 }
   `);
+  card.setFont(font)
 
   return card.render(`
     ${
