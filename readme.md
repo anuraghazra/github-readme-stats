@@ -156,6 +156,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
 - `count_private` - Count private commits _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
+- `custom_title` - Sets a custom title for the card
 
 #### Repo Card Exclusive Options:
 

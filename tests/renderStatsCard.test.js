@@ -53,6 +53,14 @@ describe("Test renderStatsCard", () => {
     );
   });
 
+  it("should have a custom title", () => {
+    document.body.innerHTML = renderStatsCard(stats, { custom_title: "Custom Title" });
+
+    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+      "Custom Title"
+    );
+  });
+
   it("should hide individual stats", () => {
     document.body.innerHTML = renderStatsCard(stats, {
       hide: ["issues", "prs", "contribs"],
