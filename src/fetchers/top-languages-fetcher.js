@@ -9,9 +9,10 @@ const fetcher = (variables, token) => {
       query userInfo($login: String!) {
         user(login: $login) {
           # fetch only owner repos & not forks
-          repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
+          repositories(ownerAffiliations: OWNER, first: 100) {
             nodes {
               name
+              isFork
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
                 edges {
                   size
@@ -34,7 +35,12 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchTopLanguages(username, langsCount = 5, exclude_repo = []) {
+async function fetchTopLanguages(
+  username,
+  langsCount = 5,
+  exclude_repo = [],
+  exclude_forks = false,
+) {
   if (!username) throw Error("Invalid username");
 
   langsCount = clampValue(parseInt(langsCount), 1, 10);
@@ -47,6 +53,13 @@ async function fetchTopLanguages(username, langsCount = 5, exclude_repo = []) {
   }
 
   let repoNodes = res.data.data.user.repositories.nodes;
+
+  if (exclude_forks) {
+    repoNodes = repoNodes.filter((isFork) => {
+      return !isFork.isFork;
+    });
+  }
+
   let repoToHide = {};
 
   // populate repoToHide map for quick lookup

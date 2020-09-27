@@ -172,6 +172,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `card_width` - Set the card's width manually _(number)_
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
 - `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
+- `exclude_forks` - _(boolean)_
 - `custom_title` - Sets a custom title for the card
 
 > :warning: **Important:**
@@ -225,6 +226,14 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Exclude forks
+
+You can use `&exclude_forks=true` parameter to exclude forks.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_forks=true)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Exclude individual repositories
