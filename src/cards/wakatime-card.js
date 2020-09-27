@@ -59,6 +59,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     bg_color,
     theme = "default",
     hide_progress,
+    custom_title,
   } = options;
 
   const lheight = parseInt(line_height, 10);
@@ -99,7 +100,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   });
 
   const card = new Card({
-    title: "Wakatime Week Stats",
+    customTitle: custom_title,
+    defaultTitle: "Wakatime Week Stats",
     width: 495,
     height,
     colors: {

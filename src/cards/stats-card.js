@@ -65,6 +65,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     text_color,
     bg_color,
     theme = "default",
+    custom_title,
   } = options;
 
   const lheight = parseInt(line_height, 10);
@@ -167,7 +168,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
   const card = new Card({
-    title: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
+    customTitle: custom_title,
+    defaultTitle: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
     width: 495,
     height,
     colors: {
