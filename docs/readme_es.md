@@ -142,6 +142,7 @@ Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que
 - `hide` - Ocultar los elementos especificados de las estadísticas _ (valores separados por comas) _
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Cuente los commits totales en lugar de solo los commits del año actual _(boolean)_
 - `count_private` - Cuenta los commits privadas _(boolean)_
@@ -155,6 +156,7 @@ Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que
 
 - `hide` - Ocultar los lenguajes especificados de la tarjeta _(valores separados por comas)_
 - `hide_title` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `layout` - Cambiar entre dos diseños disponibles `default` & `compact`
 - `card_width` - Establecer el ancho de la tarjeta manualmente _(number)_
 

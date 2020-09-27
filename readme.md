@@ -152,6 +152,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `hide` - Hides the specified items from stats _(Comma-separated values)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
 - `count_private` - Count private commits _(boolean)_
@@ -165,6 +166,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 - `hide` - Hide the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `layout` - Switch between two available layouts `default` & `compact`
 - `card_width` - Set the card's width manually _(number)_
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
