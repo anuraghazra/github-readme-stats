@@ -168,7 +168,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
   const card = new Card({
-    title: (custom_title !== undefined ? encodeHTML(custom_title) : `${encodeHTML(name)}'${apostrophe} GitHub Stats`),
+    customTitle: custom_title,
+    defaultTitle: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
     width: 495,
     height,
     colors: {
