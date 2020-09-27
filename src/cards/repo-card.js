@@ -107,7 +107,7 @@ const renderRepoCard = (repo, options = {}) => {
   }).join("");
 
   const card = new Card({
-    title: header,
+    defaultTitle: header,
     titlePrefixIcon: icons.contribs,
     width: 400,
     height,

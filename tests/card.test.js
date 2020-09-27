@@ -28,6 +28,18 @@ describe("Card", () => {
     );
   });
 
+  it("should have a custom title", () => {
+    const card = new Card({
+      customTitle: "custom title",
+      defaultTitle: "default title",
+    });
+
+    document.body.innerHTML = card.render(``);
+    expect(queryByTestId(document.body, "card-title")).toHaveTextContent(
+      "custom title",
+    );
+  });
+
   it("should hide title", () => {
     const card = new Card({});
     card.setHideTitle(true);

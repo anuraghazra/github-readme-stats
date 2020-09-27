@@ -142,6 +142,7 @@ URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card`
 - `hide` - 통계에서 특정 항목을 제외한다. _(콤마로 구분된 값)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - 현재 년도 대신 전체 커밋 개수 카운트 _(boolean)_
 - `count_private` - private 커밋도 카운트 _(boolean)_
@@ -155,6 +156,7 @@ URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card`
 
 - `hide` - 카드에서 특정 언어 숨기기 _(콤마로 구분된 값)_
 - `hide_title` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `layout` - `default` & `compact` 레이아웃 간의 전환
 - `card_width` - 카드의 너비를 수동으로 설정 _(숫자)_
 

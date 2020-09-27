@@ -22,6 +22,7 @@ module.exports = async (req, res) => {
     cache_seconds,
     hide_title,
     hide_progress,
+    custom_title,
     font,
   } = req.query;
 
@@ -48,6 +49,7 @@ module.exports = async (req, res) => {
 
     return res.send(
       wakatimeCard(last7Days, {
+        custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
         line_height,

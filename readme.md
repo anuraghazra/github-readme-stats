@@ -153,10 +153,12 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `hide` - Hides the specified items from stats _(Comma-separated values)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
 - `count_private` - Count private commits _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
+- `custom_title` - Sets a custom title for the card
 
 #### Repo Card Exclusive Options:
 
@@ -166,9 +168,12 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 - `hide` - Hide the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `layout` - Switch between two available layouts `default` & `compact`
 - `card_width` - Set the card's width manually _(number)_
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
+- `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
+- `custom_title` - Sets a custom title for the card
 
 > :warning: **Important:**
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
@@ -179,6 +184,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `hide_title` - _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
 - `hide_progress` - Hides the progress bar and percentage _(boolean)_
+- `custom_title` - Sets a custom title for the card
 
 ---
 
@@ -220,6 +226,14 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Exclude individual repositories
+
+You can use `?exclude_repo=repo1,repo2` parameter to exclude individual repositories.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Hide individual languages

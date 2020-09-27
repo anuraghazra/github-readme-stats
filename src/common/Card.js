@@ -1,4 +1,4 @@
-const { FlexLayout } = require("../common/utils");
+const { FlexLayout, encodeHTML } = require("../common/utils");
 const { getAnimations } = require("../getStyles");
 const fs = require('fs');
 
@@ -7,7 +7,8 @@ class Card {
     width = 100,
     height = 100,
     colors = {},
-    title = "",
+    customTitle,
+    defaultTitle = "",
     titlePrefixIcon,
   }) {
     this.width = width;
@@ -18,7 +19,11 @@ class Card {
 
     // returns theme based colors with proper overrides and defaults
     this.colors = colors;
-    this.title = title;
+    this.title =
+      customTitle !== undefined
+        ? encodeHTML(customTitle)
+        : encodeHTML(defaultTitle);
+
     this.css = "";
 
     this.paddingX = 25;

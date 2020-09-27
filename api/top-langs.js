@@ -25,6 +25,8 @@ module.exports = async (req, res) => {
     cache_seconds,
     layout,
     langs_count,
+    exclude_repo,
+    custom_title,
     font,
   } = req.query;
   let topLangs;
@@ -40,7 +42,11 @@ module.exports = async (req, res) => {
   }
 
   try {
-    topLangs = await fetchTopLanguages(username, langs_count);
+    topLangs = await fetchTopLanguages(
+      username,
+      langs_count,
+      parseArray(exclude_repo),
+    );
 
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
@@ -52,6 +58,7 @@ module.exports = async (req, res) => {
 
     return res.send(
       renderTopLanguages(topLangs, {
+        custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
         card_width: parseInt(card_width, 10),
