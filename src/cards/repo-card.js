@@ -38,7 +38,7 @@ const renderRepoCard = (repo, options = {}) => {
       en: "Template",
       es: "Modelo",
       fr: "Modèle",
-      it: "Modella",
+      it: "Template",
       ja: "テンプレート",
       kr: "주형",
       "pt-br": "Modelo",
@@ -156,18 +156,17 @@ const renderRepoCard = (repo, options = {}) => {
   `);
 
   return card.render(`
-    ${
-      isTemplate
-        ? getBadgeSVG(translations.template[lang] || "Template")
-        : isArchived
+    ${isTemplate
+      ? getBadgeSVG(translations.template[lang] || "Template")
+      : isArchived
         ? getBadgeSVG(translations.archived[lang] || "Archived")
         : ""
     }
 
     <text class="description" x="25" y="-5">
       ${multiLineDescription
-        .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
-        .join("")}
+      .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
+      .join("")}
     </text>
 
     <g transform="translate(0, ${height - 75})">

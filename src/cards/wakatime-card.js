@@ -24,14 +24,14 @@ const createTextNode = ({
   const cardProgress = hideProgress
     ? null
     : createProgressNode({
-        x: 110,
-        y: 4,
-        progress: percent,
-        color: progressBarColor,
-        width: 220,
-        name: label,
-        progressBarBackgroundColor,
-      });
+      x: 110,
+      y: 4,
+      progress: percent,
+      color: progressBarColor,
+      width: 220,
+      name: label,
+      progressBarBackgroundColor,
+    });
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
@@ -81,7 +81,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       en: "No coding activity this week",
       es: "No hay actividad de codificación esta semana",
       fr: "Aucune activité de codage cette semaine",
-      it: "Nessuna attività di codifica questa settimana",
+      it: "Nessuna attività in questa settimana",
       ja: "今週のコーディング活動はありません",
       kr: "이번 주 코딩 활동 없음",
       "pt-br": "Nenhuma atividade de codificação esta semana",
@@ -101,18 +101,18 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const statItems = languages
     ? languages
-        .filter((language) => language.hours || language.minutes)
-        .map((language) => {
-          return createTextNode({
-            id: language.name,
-            label: language.name,
-            value: language.text,
-            percent: language.percent,
-            progressBarColor: titleColor,
-            progressBarBackgroundColor: textColor,
-            hideProgress: hide_progress,
-          });
-        })
+      .filter((language) => language.hours || language.minutes)
+      .map((language) => {
+        return createTextNode({
+          id: language.name,
+          label: language.name,
+          value: language.text,
+          percent: language.percent,
+          progressBarColor: titleColor,
+          progressBarBackgroundColor: textColor,
+          hideProgress: hide_progress,
+        });
+      })
     : [];
 
   // Calculate the card height depending on how many items there are
@@ -150,12 +150,12 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   return card.render(`
     <svg x="0" y="0" width="100%">
       ${FlexLayout({
-        items: statItems.length
-          ? statItems
-          : [noCodingActivityNode({ color: textColor, text: translations.noCodingActivity[lang] || "No coding activity this week" })],
-        gap: lheight,
-        direction: "column",
-      }).join("")}
+    items: statItems.length
+      ? statItems
+      : [noCodingActivityNode({ color: textColor, text: translations.noCodingActivity[lang] || "No coding activity this week" })],
+    gap: lheight,
+    direction: "column",
+  }).join("")}
     </svg> 
   `);
 };

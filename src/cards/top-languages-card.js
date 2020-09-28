@@ -11,13 +11,13 @@ const createProgressTextNode = ({ width, color, name, progress }) => {
     <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
     <text x="${progressTextX}" y="34" class="lang-name">${progress}%</text>
     ${createProgressNode({
-      x: 0,
-      y: 25,
-      color,
-      width: progressWidth,
-      progress,
-      progressBarBackgroundColor: "#ddd",
-    })}
+    x: 0,
+    y: 25,
+    color,
+    width: progressWidth,
+    progress,
+    progressBarBackgroundColor: "#ddd",
+  })}
   `;
 };
 
@@ -70,7 +70,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     theme,
     layout,
     custom_title,
-    lang= "en",
+    lang = "en",
   } = options;
 
   let langs = Object.values(topLangs);
@@ -83,7 +83,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
       en: "Most Used Languages",
       es: "Idiomas más usados",
       fr: "Langues les plus utilisées",
-      it: "Lingue più utilizzate",
+      it: "Linguaggi più utilizzati",
       ja: "最もよく使われる言語",
       kr: "가장 많이 사용되는 언어",
       "pt-br": "Línguas Mais Usadas",
@@ -158,9 +158,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
     finalLayout = `
       <mask id="rect-mask">
-        <rect x="0" y="0" width="${
-          width - 50
-        }" height="8" fill="white" rx="5" />
+        <rect x="0" y="0" width="${width - 50
+      }" height="8" fill="white" rx="5" />
       </mask>
       ${compactProgressBar}
       ${createLanguageTextNode({

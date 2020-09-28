@@ -110,7 +110,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       en: "Total Commits",
       es: "Compromisos totales",
       fr: "Total des engagements",
-      it: "Impegni totali",
+      it: "Commit totali",
       ja: "総コミット",
       kr: "총 커밋",
       "pt-br": "Total de compromissos",
@@ -132,7 +132,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       en: "Total Issues",
       es: "Problemas totales",
       fr: "Nombre total de problèmes",
-      it: "Problemi totali",
+      it: "Segnalazioni totali",
       ja: "総問題",
       kr: "총 문제",
       "pt-br": "Total de problemas",
@@ -160,9 +160,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     commits: {
       icon: icons.commits,
-      label: `${translations.commits[lang] || "Total Commits"}${
-        include_all_commits ? "" : ` (${new Date().getFullYear()})`
-      }`,
+      label: `${translations.commits[lang] || "Total Commits"}${include_all_commits ? "" : ` (${new Date().getFullYear()})`
+        }`,
       value: totalCommits,
       id: "commits",
     },
@@ -259,10 +258,10 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
     <svg x="0" y="0">
       ${FlexLayout({
-        items: statItems,
-        gap: lheight,
-        direction: "column",
-      }).join("")}
+    items: statItems,
+    gap: lheight,
+    direction: "column",
+  }).join("")}
     </svg> 
   `);
 };
