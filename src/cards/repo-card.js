@@ -54,7 +54,7 @@ const renderRepoCard = (repo, options = {}) => {
       kr: "보관 됨",
       "pt-br": "Arquivada",
     },
-  }
+  };
 
   const header = show_owner ? nameWithOwner : name;
   const langName = (primaryLanguage && primaryLanguage.name) || "Unspecified";
@@ -156,17 +156,18 @@ const renderRepoCard = (repo, options = {}) => {
   `);
 
   return card.render(`
-    ${isTemplate
-      ? getBadgeSVG(translations.template[lang] || "Template")
-      : isArchived
+    ${
+      isTemplate
+        ? getBadgeSVG(translations.template[lang] || "Template")
+        : isArchived
         ? getBadgeSVG(translations.archived[lang] || "Archived")
         : ""
     }
 
     <text class="description" x="25" y="-5">
       ${multiLineDescription
-      .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
-      .join("")}
+        .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
+        .join("")}
     </text>
 
     <g transform="translate(0, ${height - 75})">

@@ -147,8 +147,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       ja: "に貢献しました",
       kr: "에 기여하다",
       "pt-br": "Contribuiu para",
-    }
-  }
+    },
+  };
 
   // Meta data for creating text nodes with createTextNode function
   const STATS = {
@@ -160,8 +160,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     commits: {
       icon: icons.commits,
-      label: `${translations.commits[lang] || "Total Commits"}${include_all_commits ? "" : ` (${new Date().getFullYear()})`
-        }`,
+      label: `${translations.commits[lang] || "Total Commits"}${
+        include_all_commits ? "" : ` (${new Date().getFullYear()})`
+      }`,
       value: totalCommits,
       id: "commits",
     },
@@ -238,7 +239,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: translations.title[lang] || `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
+    defaultTitle:
+      translations.title[lang] ||
+      `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
     width: 495,
     height,
     colors: {
@@ -258,10 +261,10 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
     <svg x="0" y="0">
       ${FlexLayout({
-    items: statItems,
-    gap: lheight,
-    direction: "column",
-  }).join("")}
+        items: statItems,
+        gap: lheight,
+        direction: "column",
+      }).join("")}
     </svg> 
   `);
 };
