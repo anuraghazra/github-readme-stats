@@ -70,10 +70,25 @@ const renderTopLanguages = (topLangs, options = {}) => {
     theme,
     layout,
     custom_title,
+    lang= "en",
   } = options;
 
   let langs = Object.values(topLangs);
   let langsToHide = {};
+
+  const translations = {
+    title: {
+      cn: "最常用的语言",
+      de: "Meist verwendete Sprachen",
+      en: "Most Used Languages",
+      es: "Idiomas más usados",
+      fr: "Langues les plus utilisées",
+      it: "Lingue più utilizzate",
+      ja: "最もよく使われる言語",
+      kr: "가장 많이 사용되는 언어",
+      "pt-br": "Línguas Mais Usadas",
+    },
+  }
 
   // populate langsToHide map for quick lookup
   // while filtering out
@@ -172,7 +187,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: "Most Used Languages",
+    defaultTitle: translations.title[lang] || "Most Used Languages",
     width,
     height,
     colors: {

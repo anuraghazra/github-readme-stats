@@ -28,7 +28,33 @@ const renderRepoCard = (repo, options = {}) => {
     bg_color,
     show_owner,
     theme = "default_repocard",
+    lang = "en",
   } = options;
+
+  const translations = {
+    template: {
+      cn: "模板",
+      de: "Vorlage",
+      en: "Template",
+      es: "Modelo",
+      fr: "Modèle",
+      it: "Modella",
+      ja: "テンプレート",
+      kr: "주형",
+      "pt-br": "Modelo",
+    },
+    archived: {
+      cn: "已封存",
+      de: "Archiviert",
+      en: "Archived",
+      es: "Archivé",
+      fr: "Archivé",
+      it: "Archiviata",
+      ja: "アーカイブ済み",
+      kr: "보관 됨",
+      "pt-br": "Arquivada",
+    },
+  }
 
   const header = show_owner ? nameWithOwner : name;
   const langName = (primaryLanguage && primaryLanguage.name) || "Unspecified";
@@ -132,9 +158,9 @@ const renderRepoCard = (repo, options = {}) => {
   return card.render(`
     ${
       isTemplate
-        ? getBadgeSVG("Template")
+        ? getBadgeSVG(translations.template[lang] || "Template")
         : isArchived
-        ? getBadgeSVG("Archived")
+        ? getBadgeSVG(translations.archived[lang] || "Archived")
         : ""
     }
 

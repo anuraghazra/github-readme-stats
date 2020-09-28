@@ -22,9 +22,14 @@ module.exports = async (req, res) => {
     hide_title,
     hide_progress,
     custom_title,
+    lang,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
+
+  if (lang && ![ "cn", "de", "en", "es", "fr", "it", "ja", "kr", "pt-br" ].includes(lang.toLowerCase())) {
+    return res.send(renderError("Something went wrong", "Language not found"));
+  }
 
   try {
     const last7Days = await fetchLast7Days({ username });
@@ -53,6 +58,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         hide_progress,
+        lang: lang ? lang.toLowerCase() : null,
       }),
     );
   } catch (err) {

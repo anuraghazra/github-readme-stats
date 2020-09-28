@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
     theme,
     show_owner,
     cache_seconds,
+    lang,
   } = req.query;
 
   let repoData;
@@ -29,6 +30,10 @@ module.exports = async (req, res) => {
 
   if (blacklist.includes(username)) {
     return res.send(renderError("Something went wrong"));
+  }
+
+  if (lang && ![ "cn", "de", "en", "es", "fr", "it", "ja", "kr", "pt-br" ].includes(lang.toLowerCase())) {
+    return res.send(renderError("Something went wrong", "Language not found"));
   }
 
   try {
@@ -64,6 +69,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         show_owner: parseBoolean(show_owner),
+        lang: lang ? lang.toLowerCase() : null,
       }),
     );
   } catch (err) {

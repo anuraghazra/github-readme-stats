@@ -26,6 +26,7 @@ module.exports = async (req, res) => {
     langs_count,
     exclude_repo,
     custom_title,
+    lang,
   } = req.query;
   let topLangs;
 
@@ -33,6 +34,10 @@ module.exports = async (req, res) => {
 
   if (blacklist.includes(username)) {
     return res.send(renderError("Something went wrong"));
+  }
+
+  if (lang && ![ "cn", "de", "en", "es", "fr", "it", "ja", "kr", "pt-br" ].includes(lang.toLowerCase())) {
+    return res.send(renderError("Something went wrong", "Language not found"));
   }
 
   try {
@@ -62,6 +67,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         layout,
+        lang: lang ? lang.toLowerCase() : null,
       }),
     );
   } catch (err) {

@@ -3,9 +3,9 @@ const { getStyles } = require("../getStyles");
 const { getCardColors, FlexLayout } = require("../common/utils");
 const { createProgressNode } = require("../common/createProgressNode");
 
-const noCodingActivityNode = ({ color }) => {
+const noCodingActivityNode = ({ color, text }) => {
   return `
-    <text x="25" y="11" class="stat bold" fill="${color}">No coding activity this week</text>
+    <text x="25" y="11" class="stat bold" fill="${color}">${text}</text>
   `;
 };
 
@@ -60,7 +60,33 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     theme = "default",
     hide_progress,
     custom_title,
+    lang = "en",
   } = options;
+
+  const translations = {
+    title: {
+      cn: "Wakatime周统计",
+      de: "Wakatime Week Stats",
+      en: "Wakatime Week Stats",
+      es: "Estadísticas de la semana de Wakatime",
+      fr: "Statistiques de la semaine Wakatime",
+      it: "Statistiche della settimana di Wakatime",
+      ja: "ワカタイムウィーク統計",
+      kr: "Wakatime 주간 통계",
+      "pt-br": "Estatísticas da semana Wakatime",
+    },
+    noCodingActivity: {
+      cn: "本周没有编码活动",
+      de: "Keine Codierungsaktivität diese Woche",
+      en: "No coding activity this week",
+      es: "No hay actividad de codificación esta semana",
+      fr: "Aucune activité de codage cette semaine",
+      it: "Nessuna attività di codifica questa settimana",
+      ja: "今週のコーディング活動はありません",
+      kr: "이번 주 코딩 활동 없음",
+      "pt-br": "Nenhuma atividade de codificação esta semana",
+    },
+  }
 
   const lheight = parseInt(line_height, 10);
 
@@ -101,7 +127,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: "Wakatime Week Stats",
+    defaultTitle: translations.title[lang] || "Wakatime Week Stats",
     width: 495,
     height,
     colors: {
@@ -126,7 +152,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       ${FlexLayout({
         items: statItems.length
           ? statItems
-          : [noCodingActivityNode({ color: textColor })],
+          : [noCodingActivityNode({ color: textColor, text: translations.noCodingActivity[lang] || "No coding activity this week" })],
         gap: lheight,
         direction: "column",
       }).join("")}
