@@ -28,7 +28,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `gotham` ![gotham][gotham] | `material-palenight` ![material-palenight][material-palenight] | `graywhite` ![graywhite][graywhite] |
 | `vision-friendly-dark` ![vision-friendly-dark][vision-friendly-dark] | `ayu-mirage` ![ayu-mirage][ayu-mirage] | `midnight-purple` ![midnight-purple][midnight-purple] |
 | `calm` ![calm][calm] | `flag-india` ![flag-india][flag-india] | `omni` ![omni][omni] |
-| `react` ![react][react] |  | [Add your theme][add-theme] |
+| `react` ![react][react] | `mr-green` ![mr-green][mr-green] | [Add your theme][add-theme] |
 
 ## Repo Card
 
@@ -89,6 +89,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [flag-india]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=flag-india
 [omni]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=omni
 [react]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=react
+[mr-green]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=mr-green
 
 
 [default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default

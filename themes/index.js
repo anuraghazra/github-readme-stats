@@ -227,6 +227,12 @@ const themes = {
     text_color: "ffffff",
     bg_color: "20232a",
   },
+  "mr-green": {
+    title_color: "008000",
+    icon_color: "008000",
+    text_color: "008000",
+    bg_color: "ffffff",
+  },
 };
 
 module.exports = themes;
