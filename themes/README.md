@@ -48,7 +48,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `gotham` ![gotham][gotham_repo] | `material-palenight` ![material-palenight][material-palenight_repo] | `graywhite` ![graywhite][graywhite_repo] |
 | `vision-friendly-dark` ![vision-friendly-dark][vision-friendly-dark_repo] | `ayu-mirage` ![ayu-mirage][ayu-mirage_repo] | `midnight-purple` ![midnight-purple][midnight-purple_repo] |
 | `calm` ![calm][calm_repo] | `flag-india` ![flag-india][flag-india_repo] | `omni` ![omni][omni_repo] |
-| `react` ![react][react_repo] |  | [Add your theme][add-theme] |
+| `react` ![react][react_repo] | `mr-green` ![mr-green][mr-green_repo] | [Add your theme][add-theme] |
 
 
 [default]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
@@ -130,6 +130,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [flag-india_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=flag-india
 [omni_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=omni
 [react_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=react
+[mr-green_repo]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=mr-green
 
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
