@@ -216,4 +216,9 @@ describe("Test renderTopLanguages", () => {
       "60.00",
     );
   });
+
+  it("should render a translated title", () => {
+    document.body.innerHTML = renderTopLanguages(langs, { lang: "cn" })
+    expect(document.getElementsByClassName("header")[0].textContent).toBe("最常用的语言")
+  });
 });

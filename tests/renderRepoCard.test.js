@@ -307,4 +307,23 @@ describe("Test renderRepoCard", () => {
     });
     expect(queryByTestId(document.body, "badge")).toBeNull();
   });
+
+  it("should render translated badges", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      isArchived: true,
+    }, {
+      lang: 'cn'
+    });
+
+    expect(queryByTestId(document.body, "badge")).toHaveTextContent("已封存");
+
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      isTemplate: true,
+    }, {
+      lang: 'cn'
+    });
+    expect(queryByTestId(document.body, "badge")).toHaveTextContent("模板");
+  });
 });
