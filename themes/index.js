@@ -228,9 +228,9 @@ const themes = {
     bg_color: "20232a",
   },
   "mr-green": {
-    title_color: "green",
-    icon_color: "green",
-    text_color: "green",
+    title_color: "008000",
+    icon_color: "008000",
+    text_color: "008000",
     bg_color: "ffffff",
   },
 };
