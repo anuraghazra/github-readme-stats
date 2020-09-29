@@ -215,6 +215,12 @@ const themes = {
     text_color: "509E2F",
     bg_color: "ffffff",
   },
+  redfire: {
+    title_color: "#fc5185",
+    icon_color: "#fc5185",
+    text_color: "#fc5185",
+    bg_color: "#303a52",
+  },
   omni: {
     title_color: "FF79C6",
     icon_color: "e7de79",
