@@ -122,16 +122,13 @@ const renderTopLanguages = (topLangs, options = {}) => {
           (width - 50)
         ).toFixed(2);
 
-        const progress =
-          percentage < 10 ? parseFloat(percentage) + 10 : percentage;
-
         const output = `
           <rect
             mask="url(#rect-mask)" 
             data-testid="lang-progress"
             x="${progressOffset}" 
             y="0"
-            width="${progress}" 
+            width="${percentage}" 
             height="8"
             fill="${lang.color || "#858585"}"
           />
