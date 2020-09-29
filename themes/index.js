@@ -221,6 +221,12 @@ const themes = {
     text_color: "E1E1E6",
     bg_color: "191622",
   },
+  redfire: {
+    title_color: "#ff304f",
+    icon_color: "#f0f0f0",
+    text_color: "#fc5c9c",
+    bg_color: "#303a52",
+  },
   react: {
     title_color: "61dafb",
     icon_color: "61dafb",
