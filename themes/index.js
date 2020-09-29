@@ -221,6 +221,12 @@ const themes = {
     text_color: "E1E1E6",
     bg_color: "191622",
   },
+  "bloody-mary": {
+    title_color: "#f9ff21";
+    icon_color: "#feff89";
+    text_color: "#002651";
+    bg_color: "#fc5185";
+  },
   react: {
     title_color: "61dafb",
     icon_color: "61dafb",
