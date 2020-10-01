@@ -227,6 +227,12 @@ const themes = {
     text_color: "ffffff",
     bg_color: "20232a",
   },
+  "random-colors": {
+    title_color: Math.floor(Math.random()*16777215).toString(16),
+    icon_color: Math.floor(Math.random()*16777215).toString(16),
+    text_color: Math.floor(Math.random()*16777215).toString(16),
+    bg_color: Math.floor(Math.random()*16777215).toString(16),
+  },
 };
 
 module.exports = themes;
