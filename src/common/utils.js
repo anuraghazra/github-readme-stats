@@ -118,7 +118,12 @@ function getCardColors({
   fallbackTheme = "default",
 }) {
   const defaultTheme = themes[fallbackTheme];
-  const selectedTheme = themes[theme] || defaultTheme;
+  const selectedTheme = theme !== 'random-colors'? themes[theme] || defaultTheme : {
+    title_color: Math.floor(Math.random()*16777215).toString(16),
+    icon_color: Math.floor(Math.random()*16777215).toString(16),
+    text_color: Math.floor(Math.random()*16777215).toString(16),
+    bg_color: Math.floor(Math.random()*16777215).toString(16),
+  };
 
   // get the color provided by the user else the theme color
   // finally if both colors are invalid fallback to default theme
