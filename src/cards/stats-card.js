@@ -95,7 +95,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     stars: {
       cn: "总星数",
-      de: "Insgesamt Sterne",
+      de: "Sterne Insgesamt",
       en: "Total Stars",
       es: "Estrellas totales",
       fr: "Total d'étoiles",
@@ -106,7 +106,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     commits: {
       cn: "总承诺",
-      de: "Total Commits",
+      de: "Anzahl Commits",
       en: "Total Commits",
       es: "Compromisos totales",
       fr: "Total des engagements",
@@ -117,7 +117,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     prs: {
       cn: "总公关",
-      de: "PRs insgesamt",
+      de: "PRs Insgesamt",
       en: "Total PRs",
       es: "RP totales",
       fr: "Total des PR",
@@ -128,7 +128,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     issues: {
       cn: "总发行量",
-      de: "Gesamtausgaben",
+      de: "Anzahl Issues",
       en: "Total Issues",
       es: "Problemas totales",
       fr: "Nombre total de problèmes",

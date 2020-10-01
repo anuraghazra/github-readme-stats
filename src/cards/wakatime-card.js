@@ -66,7 +66,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const translations = {
     title: {
       cn: "Wakatime周统计",
-      de: "Wakatime Week Stats",
+      de: "Wakatime Wochen Status",
       en: "Wakatime Week Stats",
       es: "Estadísticas de la semana de Wakatime",
       fr: "Statistiques de la semaine Wakatime",
