@@ -57,16 +57,16 @@
 # Características
 
 - [Tarjeta de estadísticas de GitHub](#tarjeta-de-estadísticas-de-github)
-- [Pins adicionales de GitHub](#pines-adicionales-de-github)
+- [Pines adicionales de GitHub](#pines-adicionales-de-github)
 - [Temas](#temas)
 - [Personalización](#personalización)
 - [Despliega por tu cuenta](#despliega-tu-propia-instancia-de-vercel)
 
 # Tarjeta de estadísticas de GitHub
 
-Copia y pega esto en el contenido de tu README.md y listo. ¡Simple!
+Copie y pegue esto en el contenido de su README.md y listo. ¡Simple!
 
-Cambia el valor `?username=` al nombre de tu usuario de GitHub.
+Cambie el valor `?username=` por el nombre de tu usuario de GitHub.
 
 ```md
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
@@ -76,7 +76,7 @@ _Nota: las clasificaciones se calculan basándose en las estadísticas del usuar
 
 ### Ocultar estadísticas individualmente
 
-Para ocultar alguna estadística específica, puedes utilizar el parámetro `?hide=` con un arreglo de items que quieras ocultar.
+Para ocultar alguna estadística específica, puede utilizar el parámetro `?hide=` con un arreglo de los items que quieras ocultar.
 
 > Opciones: `&hide=stars,commits,prs,issues,contribs`
 
@@ -98,7 +98,7 @@ _Nota: Si está desplegando este proyecto usted mismo, las contribuciones privad
 
 ### Mostrar íconos
 
-Para habilitar los íconos, puedes utilizar `show_icons=true` como parámetro, de esta manera:
+Para habilitar los íconos, puede utilizar `show_icons=true` como parámetro, de esta manera:
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -106,9 +106,9 @@ Para habilitar los íconos, puedes utilizar `show_icons=true` como parámetro, d
 
 ### Temas
 
-Puedes personalizar el aspecto de la tarjeta sin realizar ninguna [personalización manual](#personalización) con los temas incorporados.
+Puede personalizar el aspecto de la tarjeta sin realizar ninguna [personalización manual](#personalización) con los temas incorporados.
 
-Utiliza el parámetro `?theme=THEME_NAME`, de esta manera:
+Utilice el parámetro `?theme=THEME_NAME`, de esta manera:
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
@@ -120,19 +120,19 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-Puedes ver una vista previa de [todos los temas disponibles](../themes/README.md) o ver el [archivo de configuración](../themes/index.js) del tema y también **puedes contribuir con nuevos temas** si lo deseas :D
+Puede ver una vista previa de [todos los temas disponibles](../themes/README.md) o ver el [archivo de configuración](../themes/index.js) del tema y también **puede contribuir con nuevos temas** si lo deseas :D
 
 ### Personalización
 
-Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que desees con los parámetros URL.
+Puede personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que desees con los parámetros URL.
 
 #### Opciones Comunes:
 
 - `title_color` - Color del título _(hex color)_
 - `text_color` - Color del contenido _(hex color)_
-- `icon_color` - Color de icono si esta disponible _(hex color)_
+- `icon_color` - Color de icono si está disponible _(hex color)_
 - `bg_color` - Color de fondo _(hex color)_
-- `theme` - Nombre del tema, elige uno de [todos los temas disponible ](../themes/README.md)
+- `theme` - Nombre del tema, elige uno de [todos los temas disponibles](../themes/README.md)
 - `cache_seconds` - Cache _(min: 1800, max: 86400)_
 
 > Nota sobre la caché: las tarjetas de Repo tienen un caché predeterminado de 30 minutos (1800 segundos) si el recuento forks y el recuento de estrellas es inferior a 1k; de lo contrario, son 2 horas (7200). También tenga en cuenta que el caché está sujeto a un mínimo de 30 minutos y un máximo de 24 horas
@@ -145,7 +145,7 @@ Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que
 - `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Cuente los commits totales en lugar de solo los commits del año actual _(boolean)_
-- `count_private` - Cuenta los commits privadas _(boolean)_
+- `count_private` - Cuenta los commits privados _(boolean)_
 - `line_height` - Establece el alto de línea entre texto _(number)_
 - `custom_title` - Establece un título personalizado
 
@@ -288,7 +288,7 @@ Por lo general, no podrá diseñar las imágenes una al lado de la otra. Para ha
 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-Desde que la API de GitHub permite solo 5 mil peticiones por hora, es posible que mi `https://github-readme-stats.vercel.app/api` pueda llegar al límite. Si lo alojas en tu propio servidor de Vercel, no tendrás que preocuparte de nada. ¡Clickea en el botón "Deploy" para comenzar!
+Desde que la API de GitHub permite solo 5 mil peticiones por hora, es posible que mi `https://github-readme-stats.vercel.app/api` pueda llegar al límite. Si lo alojas en tu propio servidor de Vercel, no tendrás que preocuparte de nada. ¡Clic en el botón "Deploy" para comenzar!
 
 Nota: debido a esto [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) podríamos manejar más de 5 mil peticiones sin tener ningún problema con el downtime :D
 
@@ -298,9 +298,9 @@ Nota: debido a esto [#58](https://github.com/anuraghazra/github-readme-stats/pul
  <summary>Guía para comenzar en Vercel</summary>
 
 1. Ve a [vercel.com](https://vercel.com/)
-1. Clickea en `Log in`  
+1. Clic en `Log in`  
    ![](https://files.catbox.moe/tct1wg.png)
-1. Inicia sesión con GitHub presionando `Continue with GitHub`  
+1. Inicie sesión con GitHub presionando `Continue with GitHub`  
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. Permite el acceso a todos los repositorios (si se te pregunta)
 1. Haz un Fork de este repositorio
@@ -309,9 +309,9 @@ Nota: debido a esto [#58](https://github.com/anuraghazra/github-readme-stats/pul
    ![](https://files.catbox.moe/qckos0.png)
 1. Selecciona `Import Git Repository`  
    ![](https://files.catbox.moe/pqub9q.png)
-1. Selecciona "root" y matén todo como está, simplemente añade tu variable de entorno llamada PAT_1 (como se muestra), la cual contendrá un token de acceso personal (PAT), el cual puedes crear fácilmente [aquí](https://github.com/settings/tokens/new) (mantén todo como está, simplemente asígnale un nombre, puede ser cualquiera que desees)
+1. Selecciona "root" y mantén todo como está, simplemente añade tu variable de entorno llamada PAT_1 (como se muestra), la cual contendrá un token de acceso personal (PAT), el cual puedes crear fácilmente [aquí](https://github.com/settings/tokens/new) (mantén todo como está, simplemente asígnale un nombre, puede ser cualquiera que desees)
    ![](https://files.catbox.moe/0ez4g7.png)
-1. Clickea "Deploy" y ya está listo. ¡Ve tus dominios para usar la API!
+1. Clic sobre "Deploy" y ya está listo. ¡Ve tus dominios para usar la API!
 
 </details>
 
