@@ -227,6 +227,12 @@ const themes = {
     text_color: "ffffff",
     bg_color: "20232a",
   },
+  "all-hallows-eve": {
+    title_color: "ff9a00",
+    icon_color: "09ff00",
+    text_color: "c900ff",
+    bg_color: "000000",
+  },
 };
 
 module.exports = themes;
