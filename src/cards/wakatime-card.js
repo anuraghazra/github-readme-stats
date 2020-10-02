@@ -1,5 +1,7 @@
 const Card = require("../common/Card");
+const I18n = require("../common/I18n");
 const { getStyles } = require("../getStyles");
+const { wakatimeCardLocales } = require("../translations");
 const { getCardColors, FlexLayout } = require("../common/utils");
 const { createProgressNode } = require("../common/createProgressNode");
 
@@ -60,33 +62,13 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     theme = "default",
     hide_progress,
     custom_title,
-    lang = "en",
+    locale,
   } = options;
 
-  const translations = {
-    title: {
-      cn: "Wakatime周统计",
-      de: "Wakatime Wochen Status",
-      en: "Wakatime Week Stats",
-      es: "Estadísticas de la semana de Wakatime",
-      fr: "Statistiques de la semaine Wakatime",
-      it: "Statistiche della settimana di Wakatime",
-      ja: "ワカタイムウィーク統計",
-      kr: "Wakatime 주간 통계",
-      "pt-br": "Estatísticas da semana Wakatime",
-    },
-    noCodingActivity: {
-      cn: "本周没有编码活动",
-      de: "Keine Codierungsaktivität diese Woche",
-      en: "No coding activity this week",
-      es: "No hay actividad de codificación esta semana",
-      fr: "Aucune activité de codage cette semaine",
-      it: "Nessuna attività in questa settimana",
-      ja: "今週のコーディング活動はありません",
-      kr: "이번 주 코딩 활동 없음",
-      "pt-br": "Nenhuma atividade de codificação esta semana",
-    },
-  };
+  const i18n = new I18n({
+    locale,
+    translations: wakatimeCardLocales,
+  });
 
   const lheight = parseInt(line_height, 10);
 
@@ -127,7 +109,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: translations.title[lang] || "Wakatime Week Stats",
+    defaultTitle: i18n.t("wakatimecard.title"),
     width: 495,
     height,
     colors: {
@@ -155,9 +137,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
           : [
               noCodingActivityNode({
                 color: textColor,
-                text:
-                  translations.noCodingActivity[lang] ||
-                  "No coding activity this week",
+                text: i18n.t("wakatimecard.nocodingactivity"),
               }),
             ],
         gap: lheight,

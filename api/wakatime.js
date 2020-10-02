@@ -4,6 +4,7 @@ const {
   parseBoolean,
   clampValue,
   CONSTANTS,
+  isLocaleAvailable,
 } = require("../src/common/utils");
 const { fetchLast7Days } = require("../src/fetchers/wakatime-fetcher");
 const wakatimeCard = require("../src/cards/wakatime-card");
@@ -22,12 +23,12 @@ module.exports = async (req, res) => {
     hide_title,
     hide_progress,
     custom_title,
-    lang,
+    locale,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (lang && ![ "cn", "de", "en", "es", "fr", "it", "ja", "kr", "pt-br" ].includes(lang.toLowerCase())) {
+  if (locale && !isLocaleAvailable(locale)) {
     return res.send(renderError("Something went wrong", "Language not found"));
   }
 
@@ -58,7 +59,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         hide_progress,
-        lang: lang ? lang.toLowerCase() : null,
+        locale: locale ? locale.toLowerCase() : null,
       }),
     );
   } catch (err) {

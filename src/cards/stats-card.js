@@ -1,12 +1,9 @@
-const {
-  kFormatter,
-  getCardColors,
-  FlexLayout,
-  encodeHTML,
-} = require("../common/utils");
-const { getStyles } = require("../getStyles");
-const icons = require("../common/icons");
+const I18n = require("../common/I18n");
 const Card = require("../common/Card");
+const icons = require("../common/icons");
+const { getStyles } = require("../getStyles");
+const { statCardLocales } = require("../translations");
+const { kFormatter, getCardColors, FlexLayout } = require("../common/utils");
 
 const createTextNode = ({
   icon,
@@ -66,7 +63,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     bg_color,
     theme = "default",
     custom_title,
-    lang = "en",
+    locale,
   } = options;
 
   const lheight = parseInt(line_height, 10);
@@ -81,86 +78,22 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   });
 
   const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
-  const translations = {
-    title: {
-      cn: `${encodeHTML(name)}的GitHub统计`,
-      de: `${encodeHTML(name) + apostrophe} GitHub-Statistiken`,
-      en: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
-      es: `Estadísticas de GitHub de ${encodeHTML(name)}`,
-      fr: `Statistiques GitHub de ${encodeHTML(name)}`,
-      it: `Statistiche GitHub di ${encodeHTML(name)}`,
-      ja: `${encodeHTML(name)}のGitHub統計`,
-      kr: `${encodeHTML(name)}의 GitHub 통계`,
-      "pt-br": `Estatísticas do GitHub de ${encodeHTML(name)}`,
-    },
-    stars: {
-      cn: "总星数",
-      de: "Sterne Insgesamt",
-      en: "Total Stars",
-      es: "Estrellas totales",
-      fr: "Total d'étoiles",
-      it: "Stelle totali",
-      ja: "星の合計",
-      kr: "총 별",
-      "pt-br": "Total de estrelas",
-    },
-    commits: {
-      cn: "总承诺",
-      de: "Anzahl Commits",
-      en: "Total Commits",
-      es: "Compromisos totales",
-      fr: "Total des engagements",
-      it: "Commit totali",
-      ja: "総コミット",
-      kr: "총 커밋",
-      "pt-br": "Total de compromissos",
-    },
-    prs: {
-      cn: "总公关",
-      de: "PRs Insgesamt",
-      en: "Total PRs",
-      es: "RP totales",
-      fr: "Total des PR",
-      it: "PR totali",
-      ja: "合計PR",
-      kr: "총 PR",
-      "pt-br": "Total de PRs",
-    },
-    issues: {
-      cn: "总发行量",
-      de: "Anzahl Issues",
-      en: "Total Issues",
-      es: "Problemas totales",
-      fr: "Nombre total de problèmes",
-      it: "Segnalazioni totali",
-      ja: "総問題",
-      kr: "총 문제",
-      "pt-br": "Total de problemas",
-    },
-    contribs: {
-      cn: "有助于",
-      de: "Beigetragen zu",
-      en: "Contributed to",
-      es: "Contribuido a",
-      fr: "Contribué à",
-      it: "Ha contribuito a",
-      ja: "に貢献しました",
-      kr: "에 기여하다",
-      "pt-br": "Contribuiu para",
-    },
-  };
+  const i18n = new I18n({
+    locale,
+    translations: statCardLocales({ name, apostrophe }),
+  });
 
   // Meta data for creating text nodes with createTextNode function
   const STATS = {
     stars: {
       icon: icons.star,
-      label: translations.stars[lang] || "Total Stars",
+      label: i18n.t("statcard.totalstars"),
       value: totalStars,
       id: "stars",
     },
     commits: {
       icon: icons.commits,
-      label: `${translations.commits[lang] || "Total Commits"}${
+      label: `${i18n.t("statcard.commits")}${
         include_all_commits ? "" : ` (${new Date().getFullYear()})`
       }`,
       value: totalCommits,
@@ -168,19 +101,19 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     prs: {
       icon: icons.prs,
-      label: translations.prs[lang] || "Total PRs",
+      label: i18n.t("statcard.prs"),
       value: totalPRs,
       id: "prs",
     },
     issues: {
       icon: icons.issues,
-      label: translations.issues[lang] || "Total Issues",
+      label: i18n.t("statcard.issues"),
       value: totalIssues,
       id: "issues",
     },
     contribs: {
       icon: icons.contribs,
-      label: translations.contribs[lang] || "Contributed to",
+      label: i18n.t("statcard.contribs"),
       value: contributedTo,
       id: "contribs",
     },
@@ -239,9 +172,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle:
-      translations.title[lang] ||
-      `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
+    defaultTitle: i18n.t("statcard.title"),
     width: 495,
     height,
     colors: {

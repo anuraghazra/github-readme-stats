@@ -5,6 +5,7 @@ const {
   parseBoolean,
   parseArray,
   CONSTANTS,
+  isLocaleAvailable,
 } = require("../src/common/utils");
 const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 const renderTopLanguages = require("../src/cards/top-languages-card");
@@ -26,7 +27,7 @@ module.exports = async (req, res) => {
     langs_count,
     exclude_repo,
     custom_title,
-    lang,
+    locale,
   } = req.query;
   let topLangs;
 
@@ -36,7 +37,7 @@ module.exports = async (req, res) => {
     return res.send(renderError("Something went wrong"));
   }
 
-  if (lang && ![ "cn", "de", "en", "es", "fr", "it", "ja", "kr", "pt-br" ].includes(lang.toLowerCase())) {
+  if (locale && !isLocaleAvailable(locale)) {
     return res.send(renderError("Something went wrong", "Language not found"));
   }
 
@@ -67,7 +68,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         layout,
-        lang: lang ? lang.toLowerCase() : null,
+        locale: locale ? locale.toLowerCase() : null,
       }),
     );
   } catch (err) {
