@@ -124,7 +124,7 @@ const wakatimeCardLocales = {
   },
   "nocodingactivity": {
     cn: "本周没有编码活动",
-    de: "Keine Codierungsaktivität diese Woche",
+    de: "Keine Aktivitäten in dieser Woche",
     en: "No coding activity this week",
     es: "No hay actividad de codificación esta semana",
     fr: "Aucune activité de codage cette semaine",
