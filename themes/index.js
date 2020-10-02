@@ -230,7 +230,7 @@ const themes = {
   blueberry: {
     title_color: "82aaff",
     icon_color: "89ddff",
-    text_color: "a6accd",
+    text_color: "27e8a7",
     bg_color: "242938"
   }
 };
