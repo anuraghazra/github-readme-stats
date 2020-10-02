@@ -227,6 +227,12 @@ const themes = {
     text_color: "ffffff",
     bg_color: "20232a",
   },
+  jolly: {
+    title_color: "BA409C",
+    icon_color: "5A2499",
+    text_color: "ffffff",
+    bg_color: "291B3E",
+  },
 };
 
 module.exports = themes;
