@@ -227,6 +227,12 @@ const themes = {
     text_color: "ffffff",
     bg_color: "20232a",
   },
+  blueberry: {
+    title_color: "82aaff",
+    icon_color: "89ddff",
+    text_color: "a6accd",
+    bg_color: "242938"
+  }
 };
 
 module.exports = themes;
