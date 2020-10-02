@@ -215,6 +215,13 @@ const themes = {
     text_color: "509E2F",
     bg_color: "ffffff",
   },
+  "Cool-Pink":
+  {
+    title_color: "d73a49",
+    icon_color: "d73a49",
+    text_color: "d73a49",
+    bg_color: "ffdce0",
+  },
   omni: {
     title_color: "FF79C6",
     icon_color: "e7de79",
