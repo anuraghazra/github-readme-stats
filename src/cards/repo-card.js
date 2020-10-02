@@ -140,9 +140,9 @@ const renderRepoCard = (repo, options = {}) => {
   return card.render(`
     ${
       isTemplate
-        ? getBadgeSVG(i18n.t("repocard.template"))
+        ? getBadgeSVG(i18n.t("template"))
         : isArchived
-        ? getBadgeSVG(i18n.t("repocard.archived"))
+        ? getBadgeSVG(i18n.t("archived"))
         : ""
     }
 

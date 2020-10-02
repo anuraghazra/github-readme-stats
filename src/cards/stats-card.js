@@ -87,13 +87,13 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const STATS = {
     stars: {
       icon: icons.star,
-      label: i18n.t("statcard.totalstars"),
+      label: i18n.t("totalstars"),
       value: totalStars,
       id: "stars",
     },
     commits: {
       icon: icons.commits,
-      label: `${i18n.t("statcard.commits")}${
+      label: `${i18n.t("commits")}${
         include_all_commits ? "" : ` (${new Date().getFullYear()})`
       }`,
       value: totalCommits,
@@ -101,19 +101,19 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     prs: {
       icon: icons.prs,
-      label: i18n.t("statcard.prs"),
+      label: i18n.t("prs"),
       value: totalPRs,
       id: "prs",
     },
     issues: {
       icon: icons.issues,
-      label: i18n.t("statcard.issues"),
+      label: i18n.t("issues"),
       value: totalIssues,
       id: "issues",
     },
     contribs: {
       icon: icons.contribs,
-      label: i18n.t("statcard.contribs"),
+      label: i18n.t("contribs"),
       value: contributedTo,
       id: "contribs",
     },
@@ -172,7 +172,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: i18n.t("statcard.title"),
+    defaultTitle: i18n.t("title"),
     width: 495,
     height,
     colors: {
