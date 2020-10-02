@@ -227,6 +227,12 @@ const themes = {
     text_color: "ffffff",
     bg_color: "20232a",
   },
+  yeblu: {
+    title_color: "ffff00",
+    icon_color: "ffff00",
+    text_color: "ffffff",
+    bg_color: "002046",
+  },
 };
 
 module.exports = themes;
