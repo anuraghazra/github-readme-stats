@@ -109,7 +109,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: i18n.t("title"),
+    defaultTitle: i18n.t("wakatimecard.title"),
     width: 495,
     height,
     colors: {
@@ -137,7 +137,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
           : [
               noCodingActivityNode({
                 color: textColor,
-                text: i18n.t("nocodingactivity"),
+                text: i18n.t("wakatimecard.nocodingactivity"),
               }),
             ],
         gap: lheight,

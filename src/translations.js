@@ -2,7 +2,7 @@ const { encodeHTML } = require("./common/utils");
 
 const statCardLocales = ({ name, apostrophe }) => {
   return {
-    "title": {
+    "statcard.title": {
       cn: `${encodeHTML(name)}的GitHub统计`,
       de: `${encodeHTML(name) + apostrophe} GitHub-Statistiken`,
       en: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
@@ -13,7 +13,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       kr: `${encodeHTML(name)}의 GitHub 통계`,
       "pt-br": `Estatísticas do GitHub de ${encodeHTML(name)}`,
     },
-    "totalstars": {
+    "statcard.totalstars": {
       cn: "总星数",
       de: "Sterne Insgesamt",
       en: "Total Stars",
@@ -24,7 +24,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       kr: "총 별",
       "pt-br": "Total de estrelas",
     },
-    "commits": {
+    "statcard.commits": {
       cn: "总承诺",
       de: "Anzahl Commits",
       en: "Total Commits",
@@ -35,7 +35,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       kr: "총 커밋",
       "pt-br": "Total de compromissos",
     },
-    "prs": {
+    "statcard.prs": {
       cn: "总公关",
       de: "PRs Insgesamt",
       en: "Total PRs",
@@ -46,7 +46,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       kr: "총 PR",
       "pt-br": "Total de PRs",
     },
-    "issues": {
+    "statcard.issues": {
       cn: "总发行量",
       de: "Anzahl Issues",
       en: "Total Issues",
@@ -57,7 +57,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       kr: "총 문제",
       "pt-br": "Total de problemas",
     },
-    "contribs": {
+    "statcard.contribs": {
       cn: "有助于",
       de: "Beigetragen zu",
       en: "Contributed to",
@@ -72,7 +72,7 @@ const statCardLocales = ({ name, apostrophe }) => {
 };
 
 const repoCardLocales = {
-  "template": {
+  "repocard.template": {
     cn: "模板",
     de: "Vorlage",
     en: "Template",
@@ -83,7 +83,7 @@ const repoCardLocales = {
     kr: "주형",
     "pt-br": "Modelo",
   },
-  "archived": {
+  "repocard.archived": {
     cn: "已封存",
     de: "Archiviert",
     en: "Archived",
@@ -97,7 +97,7 @@ const repoCardLocales = {
 };
 
 const langCardLocales = {
-  "title": {
+  "langcard.title": {
     cn: "最常用的语言",
     de: "Meist verwendete Sprachen",
     en: "Most Used Languages",
@@ -111,7 +111,7 @@ const langCardLocales = {
 };
 
 const wakatimeCardLocales = {
-  "title": {
+  "wakatimecard.title": {
     cn: "Wakatime周统计",
     de: "Wakatime Wochen Status",
     en: "Wakatime Week Stats",
@@ -122,7 +122,7 @@ const wakatimeCardLocales = {
     kr: "Wakatime 주간 통계",
     "pt-br": "Estatísticas da semana Wakatime",
   },
-  "nocodingactivity": {
+  "wakatimecard.nocodingactivity": {
     cn: "本周没有编码活动",
     de: "Keine Aktivitäten in dieser Woche",
     en: "No coding activity this week",

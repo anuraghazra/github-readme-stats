@@ -180,7 +180,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: i18n.t("title"),
+    defaultTitle: i18n.t("langcard.title"),
     width,
     height,
     colors: {
