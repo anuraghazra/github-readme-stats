@@ -238,7 +238,12 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
-  }
+  },
+  Ultraviolet: {
+  title_color: "fcefee",
+  icon_color:  "9c1de7",
+  text_color: "e2f3f5",
+  bg_color: "581b98"
 };
 
 module.exports = themes;
