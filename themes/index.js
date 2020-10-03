@@ -244,6 +244,12 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
+  },
+  jolly: {
+    title_color: "C6D211",
+    icon_color: "F94C29",
+    text_color: "ffffff",
+    bg_color: "291B3E"
   }
 };
 
