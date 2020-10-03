@@ -238,6 +238,12 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
+  },
+  ultraviolet: {
+    title_color: "e2f3f5",
+    icon_color: "9c1de7",
+    text_color: "fcefee",
+    bg_color: "581b98"
   }
 };
 
