@@ -227,6 +227,12 @@ const themes = {
     text_color: "ffffff",
     bg_color: "20232a",
   },
+  maroongold: {
+    title_color: "F7EF8A",
+    icon_color: "F7EF8A",
+    text_color: "E0AA3E",
+    bg_color: "260000",
+  },
   yeblu: {
     title_color: "ffff00",
     icon_color: "ffff00",
