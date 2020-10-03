@@ -244,6 +244,12 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
+  },
+  "slack-purple": {
+    title_color: "660077",
+    icon_color: "6a5287",
+    text_color: "9f0fef",
+    bg_color: "f8f8f9"
   }
 };
 
