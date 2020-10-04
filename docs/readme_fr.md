@@ -128,12 +128,14 @@ Vous pouvez personnaliser l'apparence de votre `Carte des stats` ou `Carte de r�
 
 #### Options principales:
 
--   `title_color` - Couleur du titre de la carte _(hex color)_
--   `text_color` - Couleur du texte _(hex color)_
--   `icon_color` - Couleur des icônes si disponibles _(hex color)_
--   `bg_color` - Couleur du fond de la carte _(hex color)_ **ou** un gradiant de la forme _angle,start,end_
--   `theme` - Nom du thème, parmis [tous les thèmes disponibles](./themes/README.md)
--   `cache_seconds` - Paramétrer le cache manuellement _(min: 1800, max: 86400)_
+- `title_color` - Couleur du titre de la carte _(hex color)_
+- `text_color` - Couleur du texte _(hex color)_
+- `icon_color` - Couleur des icônes si disponibles _(hex color)_
+- `bg_color` - Couleur du fond de la carte _(hex color)_ **ou** un gradiant de la forme _angle,start,end_
+- `hide_border` - Cache la bordure de la carte _(booléen)_
+- `theme` - Nom du thème, parmis [tous les thèmes disponibles](./themes/README.md)
+- `cache_seconds` - Paramétrer le cache manuellement _(min: 1800, max: 86400)_
+- `locale` - définir la langue de la carte _(par exemple. cn, de, es, etc.)_
 
 ##### Gradient in bg_color
 
