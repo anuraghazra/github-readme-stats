@@ -117,11 +117,11 @@ describe("Test Render Wakatime Card", () => {
   it("should render translations", () => {
     document.body.innerHTML = renderWakatimeCard({}, { locale: "cn" });
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Wakatime周统计",
+      "Wakatime 周统计",
     );
     expect(
       document.querySelector('g[transform="translate(0, 0)"]>text.stat.bold')
         .textContent,
-    ).toBe("本周没有编码活动");
+    ).toBe("本周没有编程活动");
   });
 });
