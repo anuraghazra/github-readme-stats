@@ -12,6 +12,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ja: `${encodeHTML(name)}のGitHub統計`,
       kr: `${encodeHTML(name)}의 GitHub 통계`,
       "pt-br": `Estatísticas do GitHub de ${encodeHTML(name)}`,
+      np: `${encodeHTML(name)}'${apostrophe} गिटहब तथ्याङ्क`,
     },
     "statcard.totalstars": {
       cn: "总星数",
@@ -23,6 +24,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ja: "星の合計",
       kr: "총 별",
       "pt-br": "Total de estrelas",
+      np: "कुल ताराहरू",
     },
     "statcard.commits": {
       cn: "总承诺",
@@ -34,6 +36,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ja: "総コミット",
       kr: "총 커밋",
       "pt-br": "Total de compromissos",
+      np: "कुल Commits",
     },
     "statcard.prs": {
       cn: "总公关",
@@ -45,6 +48,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ja: "合計PR",
       kr: "총 PR",
       "pt-br": "Total de PRs",
+      np: "कुल PRs",
     },
     "statcard.issues": {
       cn: "总发行量",
@@ -56,6 +60,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ja: "総問題",
       kr: "총 문제",
       "pt-br": "Total de problemas",
+      np: "कुल मुद्दाहरू",
     },
     "statcard.contribs": {
       cn: "有助于",
@@ -67,6 +72,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ja: "に貢献しました",
       kr: "에 기여하다",
       "pt-br": "Contribuiu para",
+      np: "कुल योगदानहरू",
     },
   };
 };
@@ -82,6 +88,7 @@ const repoCardLocales = {
     ja: "テンプレート",
     kr: "주형",
     "pt-br": "Modelo",
+    np: "टेम्पलेट",
   },
   "repocard.archived": {
     cn: "已封存",
@@ -93,6 +100,7 @@ const repoCardLocales = {
     ja: "アーカイブ済み",
     kr: "보관 됨",
     "pt-br": "Arquivada",
+    np: "अभिलेख राखियो",
   },
 };
 
@@ -107,6 +115,7 @@ const langCardLocales = {
     ja: "最もよく使われる言語",
     kr: "가장 많이 사용되는 언어",
     "pt-br": "Línguas Mais Usadas",
+    np: "अधिक प्रयोग गरिएको भाषाहरू",
   },
 };
 
@@ -121,6 +130,7 @@ const wakatimeCardLocales = {
     ja: "ワカタイムウィーク統計",
     kr: "Wakatime 주간 통계",
     "pt-br": "Estatísticas da semana Wakatime",
+    np: "Wakatime हप्ता तथ्याङ्क",
   },
   "wakatimecard.nocodingactivity": {
     cn: "本周没有编码活动",
@@ -132,6 +142,7 @@ const wakatimeCardLocales = {
     ja: "今週のコーディング活動はありません",
     kr: "이번 주 코딩 활동 없음",
     "pt-br": "Nenhuma atividade de codificação esta semana",
+    np: "यस हप्ता कुनै कोडिंग गतिविधि छैन",
   },
 };
 
