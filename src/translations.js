@@ -3,7 +3,7 @@ const { encodeHTML } = require("./common/utils");
 const statCardLocales = ({ name, apostrophe }) => {
   return {
     "statcard.title": {
-      cn: `${encodeHTML(name)}的GitHub统计`,
+      cn: `${encodeHTML(name)} 的 GitHub 统计`,
       de: `${encodeHTML(name) + apostrophe} GitHub-Statistiken`,
       en: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
       es: `Estadísticas de GitHub de ${encodeHTML(name)}`,
@@ -14,7 +14,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-br": `Estatísticas do GitHub de ${encodeHTML(name)}`,
     },
     "statcard.totalstars": {
-      cn: "总星数",
+      cn: "总 Star",
       de: "Sterne Insgesamt",
       en: "Total Stars",
       es: "Estrellas totales",
@@ -25,7 +25,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-br": "Total de estrelas",
     },
     "statcard.commits": {
-      cn: "总承诺",
+      cn: "总提交",
       de: "Anzahl Commits",
       en: "Total Commits",
       es: "Compromisos totales",
@@ -36,7 +36,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-br": "Total de compromissos",
     },
     "statcard.prs": {
-      cn: "总公关",
+      cn: "总 PR",
       de: "PRs Insgesamt",
       en: "Total PRs",
       es: "RP totales",
@@ -47,7 +47,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-br": "Total de PRs",
     },
     "statcard.issues": {
-      cn: "总发行量",
+      cn: "总 Issue",
       de: "Anzahl Issues",
       en: "Total Issues",
       es: "Problemas totales",
@@ -58,7 +58,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-br": "Total de problemas",
     },
     "statcard.contribs": {
-      cn: "有助于",
+      cn: "总贡献",
       de: "Beigetragen zu",
       en: "Contributed to",
       es: "Contribuido a",
@@ -84,7 +84,7 @@ const repoCardLocales = {
     "pt-br": "Modelo",
   },
   "repocard.archived": {
-    cn: "已封存",
+    cn: "已归档",
     de: "Archiviert",
     en: "Archived",
     es: "Archivé",
@@ -112,7 +112,7 @@ const langCardLocales = {
 
 const wakatimeCardLocales = {
   "wakatimecard.title": {
-    cn: "Wakatime周统计",
+    cn: "Wakatime 周统计",
     de: "Wakatime Wochen Status",
     en: "Wakatime Week Stats",
     es: "Estadísticas de la semana de Wakatime",
@@ -123,7 +123,7 @@ const wakatimeCardLocales = {
     "pt-br": "Estatísticas da semana Wakatime",
   },
   "wakatimecard.nocodingactivity": {
-    cn: "本周没有编码活动",
+    cn: "本周没有编程活动",
     de: "Keine Aktivitäten in dieser Woche",
     en: "No coding activity this week",
     es: "No hay actividad de codificación esta semana",
