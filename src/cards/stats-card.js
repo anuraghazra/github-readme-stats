@@ -31,7 +31,7 @@ const createTextNode = ({
       <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
       <text 
         class="stat" 
-        x="${shiftValuePos ? (showIcons ? 200 : 170) : 150}" 
+        x="${(showIcons ? 140 : 120) + shiftValuePos}" 
         y="12.5" 
         data-testid="${id}"
       >${kValue}</text>
@@ -119,6 +119,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
   };
 
+  const isLongLocale = ["fr", "pt-br", "es"].includes(locale) === true;
+
   // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
@@ -128,7 +130,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         ...STATS[key],
         index,
         showIcons: show_icons,
-        shiftValuePos: !include_all_commits,
+        shiftValuePos:
+          (!include_all_commits ? 50 : 20) + (isLongLocale ? 50 : 0),
       }),
     );
 
