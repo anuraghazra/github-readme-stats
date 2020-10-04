@@ -213,32 +213,32 @@ describe("Test renderStatsCard", () => {
   it("should render translations", () => {
     document.body.innerHTML = renderStatsCard(stats, { locale: "cn" });
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Anurag Hazra的GitHub统计",
+      "Anurag Hazra 的 GitHub 统计",
     );
     expect(
       document.querySelector(
         'g[transform="translate(0, 0)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总星数:");
+    ).toBe("总 Star:");
     expect(
       document.querySelector(
         'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总承诺 (2020):");
+    ).toBe("总提交 (2020):");
     expect(
       document.querySelector(
         'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总公关:");
+    ).toBe("总 PR:");
     expect(
       document.querySelector(
         'g[transform="translate(0, 75)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总发行量:");
+    ).toBe("总 Issue:");
     expect(
       document.querySelector(
         'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("有助于:");
+    ).toBe("总贡献:");
   });
 });
