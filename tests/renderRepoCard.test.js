@@ -319,7 +319,7 @@ describe("Test renderRepoCard", () => {
       },
     );
 
-    expect(queryByTestId(document.body, "badge")).toHaveTextContent("已封存");
+    expect(queryByTestId(document.body, "badge")).toHaveTextContent("已归档");
 
     document.body.innerHTML = renderRepoCard(
       {
