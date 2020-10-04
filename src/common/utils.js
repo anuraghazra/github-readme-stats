@@ -37,7 +37,7 @@ function kFormatter(num) {
 
 function isValidHexColor(hexColor) {
   return new RegExp(
-    /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/
+    /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/,
   ).test(hexColor);
 }
 
@@ -124,19 +124,19 @@ function getCardColors({
   // finally if both colors are invalid fallback to default theme
   const titleColor = fallbackColor(
     title_color || selectedTheme.title_color,
-    "#" + defaultTheme.title_color
+    "#" + defaultTheme.title_color,
   );
   const iconColor = fallbackColor(
     icon_color || selectedTheme.icon_color,
-    "#" + defaultTheme.icon_color
+    "#" + defaultTheme.icon_color,
   );
   const textColor = fallbackColor(
     text_color || selectedTheme.text_color,
-    "#" + defaultTheme.text_color
+    "#" + defaultTheme.text_color,
   );
   const bgColor = fallbackColor(
     bg_color || selectedTheme.bg_color,
-    "#" + defaultTheme.bg_color
+    "#" + defaultTheme.bg_color,
   );
 
   return { titleColor, iconColor, textColor, bgColor };

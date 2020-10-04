@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
     cache_seconds,
     hide_title,
     hide_progress,
+    custom_title,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -31,7 +32,7 @@ module.exports = async (req, res) => {
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       CONSTANTS.TWO_HOURS,
-      CONSTANTS.ONE_DAY
+      CONSTANTS.ONE_DAY,
     );
 
     if (!cache_seconds) {
@@ -42,6 +43,7 @@ module.exports = async (req, res) => {
 
     return res.send(
       wakatimeCard(last7Days, {
+        custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
         line_height,
@@ -51,7 +53,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         hide_progress,
-      })
+      }),
     );
   } catch (err) {
     return res.send(renderError(err.message, err.secondaryMessage));

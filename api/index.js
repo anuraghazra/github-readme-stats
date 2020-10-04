@@ -27,6 +27,7 @@ module.exports = async (req, res) => {
     bg_color,
     theme,
     cache_seconds,
+    custom_title,
   } = req.query;
   let stats;
 
@@ -40,13 +41,13 @@ module.exports = async (req, res) => {
     stats = await fetchStats(
       username,
       parseBoolean(count_private),
-      parseBoolean(include_all_commits)
+      parseBoolean(include_all_commits),
     );
 
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       CONSTANTS.TWO_HOURS,
-      CONSTANTS.ONE_DAY
+      CONSTANTS.ONE_DAY,
     );
 
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
@@ -65,7 +66,8 @@ module.exports = async (req, res) => {
         text_color,
         bg_color,
         theme,
-      })
+        custom_title,
+      }),
     );
   } catch (err) {
     return res.send(renderError(err.message, err.secondaryMessage));

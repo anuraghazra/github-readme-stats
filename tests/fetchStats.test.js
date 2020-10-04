@@ -77,7 +77,7 @@ describe("Test fetchStats", () => {
     mock.onPost("https://api.github.com/graphql").reply(200, error);
 
     await expect(fetchStats("anuraghazra")).rejects.toThrow(
-      "Could not resolve to a User with the login of 'noname'."
+      "Could not resolve to a User with the login of 'noname'.",
     );
   });
 
@@ -114,7 +114,7 @@ describe("Test fetchStats", () => {
 
     let stats = await fetchStats("anuraghazra", true, true);
     const rank = calculateRank({
-      totalCommits: 1000 + 150,
+      totalCommits: 1050,
       totalRepos: 5,
       followers: 100,
       contributions: 61,
@@ -126,7 +126,7 @@ describe("Test fetchStats", () => {
     expect(stats).toStrictEqual({
       contributedTo: 61,
       name: "Anurag Hazra",
-      totalCommits: 1000 + 150,
+      totalCommits: 1050,
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
