@@ -136,6 +136,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `hide_border` - Hides the card's border _(boolean)_
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
 - `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
+- `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
 
 ##### Gradient in bg_color
 
@@ -314,6 +315,10 @@ Choose from any of the [default themes](#themes)
 - Customizing stats card
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+
+- Setting card locale
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=es)
 
 - Customizing repo card
 
