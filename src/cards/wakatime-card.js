@@ -1,11 +1,13 @@
 const Card = require("../common/Card");
+const I18n = require("../common/I18n");
 const { getStyles } = require("../getStyles");
+const { wakatimeCardLocales } = require("../translations");
 const { getCardColors, FlexLayout } = require("../common/utils");
 const { createProgressNode } = require("../common/createProgressNode");
 
-const noCodingActivityNode = ({ color }) => {
+const noCodingActivityNode = ({ color, text }) => {
   return `
-    <text x="25" y="11" class="stat bold" fill="${color}">No coding activity this week</text>
+    <text x="25" y="11" class="stat bold" fill="${color}">${text}</text>
   `;
 };
 
@@ -60,7 +62,13 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     theme = "default",
     hide_progress,
     custom_title,
+    locale,
   } = options;
+
+  const i18n = new I18n({
+    locale,
+    translations: wakatimeCardLocales,
+  });
 
   const lheight = parseInt(line_height, 10);
 
@@ -101,7 +109,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: "Wakatime Week Stats",
+    defaultTitle: i18n.t("wakatimecard.title"),
     width: 495,
     height,
     colors: {
@@ -126,7 +134,12 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       ${FlexLayout({
         items: statItems.length
           ? statItems
-          : [noCodingActivityNode({ color: textColor })],
+          : [
+              noCodingActivityNode({
+                color: textColor,
+                text: i18n.t("wakatimecard.nocodingactivity"),
+              }),
+            ],
         gap: lheight,
         direction: "column",
       }).join("")}

@@ -5,6 +5,7 @@ const {
   parseArray,
   clampValue,
   CONSTANTS,
+  isLocaleAvailable,
 } = require("../src/common/utils");
 const fetchStats = require("../src/fetchers/stats-fetcher");
 const renderStatsCard = require("../src/cards/stats-card");
@@ -28,6 +29,7 @@ module.exports = async (req, res) => {
     theme,
     cache_seconds,
     custom_title,
+    locale,
   } = req.query;
   let stats;
 
@@ -35,6 +37,10 @@ module.exports = async (req, res) => {
 
   if (blacklist.includes(username)) {
     return res.send(renderError("Something went wrong"));
+  }
+
+  if (locale && !isLocaleAvailable(locale)) {
+    return res.send(renderError("Something went wrong", "Language not found"));
   }
 
   try {
@@ -67,6 +73,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         custom_title,
+        locale: locale ? locale.toLowerCase() : null,
       }),
     );
   } catch (err) {

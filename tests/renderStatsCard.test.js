@@ -209,4 +209,36 @@ describe("Test renderStatsCard", () => {
       queryByTestId(document.body, "stars").previousElementSibling, // the label
     ).not.toHaveAttribute("x");
   });
+
+  it("should render translations", () => {
+    document.body.innerHTML = renderStatsCard(stats, { locale: "cn" });
+    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+      "Anurag Hazra的GitHub统计",
+    );
+    expect(
+      document.querySelector(
+        'g[transform="translate(0, 0)"]>.stagger>.stat.bold',
+      ).textContent,
+    ).toBe("总星数:");
+    expect(
+      document.querySelector(
+        'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
+      ).textContent,
+    ).toBe("总承诺 (2020):");
+    expect(
+      document.querySelector(
+        'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
+      ).textContent,
+    ).toBe("总公关:");
+    expect(
+      document.querySelector(
+        'g[transform="translate(0, 75)"]>.stagger>.stat.bold',
+      ).textContent,
+    ).toBe("总发行量:");
+    expect(
+      document.querySelector(
+        'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
+      ).textContent,
+    ).toBe("有助于:");
+  });
 });
