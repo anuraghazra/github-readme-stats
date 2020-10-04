@@ -228,8 +228,8 @@ const themes = {
     bg_color: "20232a",
   },
   jolly: {
-    title_color: "BA409C",
-    icon_color: "5A2499",
+    title_color: "ff64da",
+    icon_color: "a960ff",
     text_color: "ffffff",
     bg_color: "291B3E",
   },
