@@ -182,7 +182,7 @@ GitHub 更多置顶 允许你在使用 GitHub readme profile 时，在个人资�
 
 是的！你不再受限于置顶最多 6 个存储库了。
 
-### 使用细则
+### 使用方法
 
 复制粘贴这段代码到你的 README 文件中，并更改链接。
 
@@ -204,9 +204,9 @@ GitHub 更多置顶 允许你在使用 GitHub readme profile 时，在个人资�
 
 热门语言卡片显示了 GitHub 用户常用的编程语言。
 
-_注意：热门语言并不表示我的技能水平或类似的水平，它是用来衡量用户在 github 上拥有最多代码的语言的一项指标，它是 github-readme-stats 的新特性_
+_注意：热门语言并不表示我的技能水平或类似的东西，它是一项指标，用于衡量用户在GitHub上哪些语言的代码量最多，是 github-readme-stats 的新功能_
 
-### 使用细则
+### 使用方法
 
 将此代码复制粘贴到您的 `README.md` 文件中，并修改链接。
 
@@ -286,7 +286,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ### 快速提示 (对齐 Repo 卡片)
 
-你通常无法将图片靠边显示。为此，您可以使用以下方法：
+通常，你无法将图片靠边显示。为此，您可以使用以下方法：
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -322,7 +322,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
    ![](https://files.catbox.moe/qckos0.png)
 1. 选择 `Import Git Repository`  
    ![](https://files.catbox.moe/pqub9q.png)
-1. 选择 root 并将所有内容保持不变，并且只需添加名为 PAT_1 的环境变量（如图所示），其中将包含一个个人访问令牌（PAT），你可以在[这里](https://github.com/settings/tokens/new)轻松创建（保留默认，并且只需要命名下，名字随便）
+1. 选择 root 确保所有内容保持不变，然后只需添加名为 PAT_1 的环境变量（如图所示），其中将包含一个个人访问令牌（PAT），你可以在[这里](https://github.com/settings/tokens/new)轻松创建（保留默认，并且只需要命名下，名字随便）
    ![](https://files.catbox.moe/caem5b.png)
 1. 点击 deploy，这就完成了，查看你的域名就可使用 API 了！
 
