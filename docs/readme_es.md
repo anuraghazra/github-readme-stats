@@ -132,8 +132,10 @@ Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que
 - `text_color` - Color del contenido _(hex color)_
 - `icon_color` - Color de icono si esta disponible _(hex color)_
 - `bg_color` - Color de fondo _(hex color)_
+- `hide_border` - Oculta el borde de la tarjeta _(booleano)_
 - `theme` - Nombre del tema, elige uno de [todos los temas disponible ](../themes/README.md)
 - `cache_seconds` - Cache _(min: 1800, max: 86400)_
+- `locale` - configurar el idioma en la tarjeta _(p.ej. cn, de, es, etc.)_
 
 > Nota sobre la caché: las tarjetas de Repo tienen un caché predeterminado de 30 minutos (1800 segundos) si el recuento forks y el recuento de estrellas es inferior a 1k; de lo contrario, son 2 horas (7200). También tenga en cuenta que el caché está sujeto a un mínimo de 30 minutos y un máximo de 24 horas
 
