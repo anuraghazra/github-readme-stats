@@ -176,7 +176,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const card = new Card({
     customTitle: custom_title,
     defaultTitle: i18n.t("statcard.title"),
-    width: 495,
+    width: (hide_rank && hide_title) ? 260 : hide_rank ? 340 : 495,
     height,
     colors: {
       titleColor,
