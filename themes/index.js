@@ -250,6 +250,12 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
+  },
+  sweet: {
+    title_color: "A6CFD5",
+    icon_color: "DE3F82",
+    text_color: "7F96FF",
+    bg_color: "1C0821"
   }
 };
 
