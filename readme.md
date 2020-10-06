@@ -185,6 +185,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `line_height` - Sets the line-height between text _(number)_
 - `hide_progress` - Hides the progress bar and percentage _(boolean)_
 - `custom_title` - Sets a custom title for the card
+- `langs_count` - Sets the maximum no of languages displayed on the card
 
 ---
 

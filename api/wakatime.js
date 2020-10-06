@@ -24,6 +24,7 @@ module.exports = async (req, res) => {
     hide_progress,
     custom_title,
     locale,
+    langs_count
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -60,6 +61,7 @@ module.exports = async (req, res) => {
         theme,
         hide_progress,
         locale: locale ? locale.toLowerCase() : null,
+        langs_count
       }),
     );
   } catch (err) {

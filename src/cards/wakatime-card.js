@@ -49,7 +49,7 @@ const createTextNode = ({
   `;
 };
 
-const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
+const renderWakatimeCard = (stats = {}, options = { hide: [], langs_count: null }) => {
   const { languages } = stats;
   const {
     hide_title = false,
@@ -63,6 +63,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     hide_progress,
     custom_title,
     locale,
+    langs_count
   } = options;
 
   const i18n = new I18n({
@@ -81,7 +82,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     theme,
   });
 
-  const statItems = languages
+  let statItems = languages
     ? languages
         .filter((language) => language.hours || language.minutes)
         .map((language) => {
@@ -97,6 +98,10 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
         })
     : [];
 
+  // Slice if langs_count is set
+  if (langs_count) {
+    statItems = statItems.slice(0, langs_count);
+  }
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
   let height = Math.max(45 + (statItems.length + 1) * lheight, 150);
