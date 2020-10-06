@@ -1,7 +1,7 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">Krijg dynamische gegenererde GitHub statestieken op je readme's!</p>
+ <p align="center">Krijg dynamische gegenereerde GitHub statestieken op je readme's!</p>
 </p>
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
@@ -53,14 +53,14 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
   </p>
 </p>
-<p align="center">Bevalt het project? <a href="https://www.paypal.me/anuraghazra">Doneer</a> om het te verbeten!
+<p align="center">Bevalt het project? <a href="https://www.paypal.me/anuraghazra">Doneer</a> om het te verbeteren!
 
 # Functionaliteiten
 
 - [GitHub Statistieken Kaart](#github-stats-card)
 - [GitHub Extra Pins](#github-extra-pins)
 - [Top Programeertalen Kaart](#top-languages-card)
-- [Wakatime Week Statestieken](#wakatime-week-stats)
+- [Wekelijkse Wakatime Statestieken](#wakatime-week-stats)
 - [Thema\'s](#themes)
 - [Opmaak](#customization)
 - [Zelf deployen](#deploy-on-your-own-vercel-instance)
@@ -90,7 +90,7 @@ Om specifieke statestieken te verbergen, kan je een `?hide=` query parameter toe
 
 ### Voeg privé contributies toe aan totale commits.
 
-Je kan de hoeveelheid privé commits toevoegen aan je totale hoeveelheid commits door de query parameter `? count_private=true` te gebruiken.
+Je kan de hoeveelheid privé commits toevoegen aan je totale hoeveelheid commits door de query parameter `?count_private=true` te gebruiken.
 
 _Notitie: Als je dit project zelf deployt, zullen de privé contributies standaard toegevoegt worden aan je totaal, omdat anders je hoeveelheid privé contributies moet delen._
 
@@ -133,7 +133,6 @@ Je kan het uiterlijk van je `Statistieken kaart` of `Repo kaart` aanpassen hoe j
 #### Veel gebruikte opties:
 
 - `title_color` - De kleur van de titel van de kaart _(hex kleur)_
-
 - `text_color` - Tekst kleur _(hex kleur)_
 - `icon_color` - Icoontjes kleur, wanneer beschikbaar _(hex kleur)_
 - `bg_color` - Achtergrond kleur van de kaart _(hex kleur)_ **of** een verloop van kleuren in het formaat van _graden,start,einde_
@@ -273,7 +272,7 @@ Je kan de `&layout=compact` optie gebruiken om het kaart ontwerp aan te passen.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Wakatime Week Statestieken
+# Wekelijkse Wakatime Statestieken
 
 Verander de `?username=` waarde naar je [Wakatime](https://wakatime.com) gebruikersnaam.
 
@@ -370,7 +369,7 @@ NOTITIE: Sinds [#58](https://github.com/anuraghazra/github-readme-stats/pull/58)
    ![](https://files.catbox.moe/tct1wg.png)
 3. Meld je aan met je GitHub door op `Continue with GitHub` te klikken.
    ![](https://files.catbox.moe/btd78j.jpeg)
-4. Meld je in op GitHub en sta toegang tot alle repositories toe, wanneer dat gevraagt wordt.
+4. Log in op GitHub en sta toegang tot alle repositories toe, wanneer dat gevraagt wordt.
 5. Fork deze repo
 6. Ga terug naar je [Vercel dashboard](https://vercel.com/dashboard)
 7. Selecteer `Import Project`

@@ -138,7 +138,7 @@ const wakatimeCardLocales = {
     it: "Statistiche della settimana di Wakatime",
     ja: "ワカタイムウィーク統計",
     kr: "Wakatime 주간 통계",
-    nl: "Wakatime Week Status",
+    nl: "Wekelijkse Wakatime Status",
     "pt-br": "Estatísticas da semana Wakatime",
     np: "Wakatime हप्ता तथ्याङ्क",
   },
