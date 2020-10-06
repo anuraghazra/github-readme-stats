@@ -137,7 +137,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [maroongold_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=maroongold
 [yeblu_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=yeblu
 [blueberry_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=blueberry
-
+[ant_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=ant
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
 

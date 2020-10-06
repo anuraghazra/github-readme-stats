@@ -250,6 +250,12 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
+  },
+  ant: {
+    title_color: "5D1D15",
+    icon_color: "5D1D15",
+    text_color: "FFFEF4",
+    bg_color: "150C0B"
   }
 };
 
