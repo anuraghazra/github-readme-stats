@@ -63,6 +63,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     hide_progress,
     custom_title,
     locale,
+    langs_count
   } = options;
 
   const i18n = new I18n({
@@ -83,7 +84,10 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const statItems = languages
     ? languages
-        .filter((language) => language.hours || language.minutes)
+        .filter((language, index) => {
+          if (!langs_count || index < langs_count)
+            return languages.hours || language.minutes
+        })
         .map((language) => {
           return createTextNode({
             id: language.name,

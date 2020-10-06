@@ -268,12 +268,31 @@ You can use the `&layout=compact` option to change the card design.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Wakatime Week Stats
+# Wakatime
+
+## Week Stats
 
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ```md
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+## Custom Time Stats
+
+Change the `?username=` value to your [Wakatime](https://wakatime.com) username and `time` to [allowed time ranges](https://wakatime.com/developers#stats).
+To use this functionality you should fork or clone this repository to your github account and [deploy it on your own Vercel instance](#deploy-on-your-own-vercel-instance) and set WAKATIME_API_KEY on ENV file with your Wakatime API Key encoded as base64.
+
+```md
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&time=last_year)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+## Limit Languages Quantity
+
+You can use the `langs_count=` option to limit the number of languages shown on the card. 
+
+```md
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&langs_count=3)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
