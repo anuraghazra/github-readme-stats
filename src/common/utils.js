@@ -29,8 +29,10 @@ function encodeHTML(str) {
     .replace(/\u0008/gim, "");
 }
 
-function kFormatter(num) {
-  return Math.abs(num) > 999
+function kmFormatter(num) {
+  return Math.abs(num) > 999999
+    ? Math.sign(num) * (Math.abs(num) / 1000000).toFixed(1) + "M"
+    : Math.abs(num) > 999
     ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
     : Math.sign(num) * Math.abs(num);
 }
@@ -196,7 +198,7 @@ function isLocaleAvailable(locale) {
 
 module.exports = {
   renderError,
-  kFormatter,
+  kmFormatter,
   encodeHTML,
   isValidHexColor,
   request,

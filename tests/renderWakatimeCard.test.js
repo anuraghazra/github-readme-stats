@@ -68,7 +68,6 @@ describe("Test Render Wakatime Card", () => {
               </style>
 
               undefined
-
               <rect
                 data-testid=\\"card-bg\\"
                 x=\\"0.5\\"

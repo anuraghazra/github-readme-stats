@@ -1,6 +1,6 @@
 const toEmoji = require("emoji-name-map");
 const {
-  kFormatter,
+  kmFormatter,
   encodeHTML,
   getCardColors,
   FlexLayout,
@@ -67,8 +67,8 @@ const renderRepoCard = (repo, options = {}) => {
     theme,
   });
 
-  const totalStars = kFormatter(stargazers.totalCount);
-  const totalForks = kFormatter(forkCount);
+  const totalStars = kmFormatter(stargazers.totalCount);
+  const totalForks = kmFormatter(forkCount);
 
   const getBadgeSVG = (label) => `
     <g data-testid="badge" class="badge" transform="translate(320, -18)">

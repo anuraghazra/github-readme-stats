@@ -136,7 +136,6 @@ class Card {
         </style>
 
         ${this.renderGradient()}
-
         <rect
           data-testid="card-bg"
           x="0.5"

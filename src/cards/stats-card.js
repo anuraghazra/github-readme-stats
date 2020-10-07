@@ -3,7 +3,7 @@ const Card = require("../common/Card");
 const icons = require("../common/icons");
 const { getStyles } = require("../getStyles");
 const { statCardLocales } = require("../translations");
-const { kFormatter, getCardColors, FlexLayout } = require("../common/utils");
+const { kmFormatter, getCardColors, FlexLayout } = require("../common/utils");
 
 const createTextNode = ({
   icon,
@@ -14,7 +14,7 @@ const createTextNode = ({
   showIcons,
   shiftValuePos,
 }) => {
-  const kValue = kFormatter(value);
+  const kValue = kmFormatter(value);
   const staggerDelay = (index + 3) * 150;
 
   const labelOffset = showIcons ? `x="25"` : "";

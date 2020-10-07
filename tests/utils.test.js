@@ -1,6 +1,6 @@
 require("@testing-library/jest-dom");
 const {
-  kFormatter,
+  kmFormatter,
   encodeHTML,
   renderError,
   FlexLayout,
@@ -11,14 +11,14 @@ const {
 const { queryByTestId } = require("@testing-library/dom");
 
 describe("Test utils.js", () => {
-  it("should test kFormatter", () => {
-    expect(kFormatter(1)).toBe(1);
-    expect(kFormatter(-1)).toBe(-1);
-    expect(kFormatter(500)).toBe(500);
-    expect(kFormatter(1000)).toBe("1k");
-    expect(kFormatter(10000)).toBe("10k");
-    expect(kFormatter(12345)).toBe("12.3k");
-    expect(kFormatter(9900000)).toBe("9900k");
+  it("should test kmFormatter", () => {
+    expect(kmFormatter(1)).toBe(1);
+    expect(kmFormatter(-1)).toBe(-1);
+    expect(kmFormatter(500)).toBe(500);
+    expect(kmFormatter(1000)).toBe("1k");
+    expect(kmFormatter(10000)).toBe("10k");
+    expect(kmFormatter(12345)).toBe("12.3k");
+    expect(kmFormatter(9900000)).toBe("9.9M");
   });
 
   it("should test encodeHTML", () => {
@@ -32,7 +32,7 @@ describe("Test utils.js", () => {
     expect(
       queryByTestId(document.body, "message").children[0],
     ).toHaveTextContent(/Something went wrong/gim);
-    expect(queryByTestId(document.body, "message").children[1]).toBeEmpty(2);
+    expect(queryByTestId(document.body, "message").children[1]).toBeEmptyDOMElement(2);
 
     // Secondary message
     document.body.innerHTML = renderError(
