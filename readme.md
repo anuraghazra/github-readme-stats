@@ -185,6 +185,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `line_height` - Sets the line-height between text _(number)_
 - `hide_progress` - Hides the progress bar and percentage _(boolean)_
 - `custom_title` - Sets a custom title for the card
+- `layout` - Switch between two available layouts `default` & `compact`
 
 ---
 
@@ -281,6 +282,10 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
+- Compact layout
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
