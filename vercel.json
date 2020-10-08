@@ -3,6 +3,10 @@
     {
       "source": "/",
       "destination": "https://github.com/anuraghazra/github-readme-stats"
+    },
+    {
+      "source": "/(.*).svg",
+      "destination": "/$1"
     }
   ]
 }
