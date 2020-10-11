@@ -250,6 +250,12 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
+  },
+  lolipop: {
+    title_color: "ff3377",
+    icon_color: "ffffff",
+    text_color: "a6ff4d",
+    bg_color: "000000"
   }
 };
 
