@@ -79,7 +79,7 @@ _Hinweis: Die Berechnung des Ranges basiert auf den jeweiligen Benutzerstatistik
 
 Um eine spezifische Statistik auszublenden, kann dem Query-Parameter `?hide=` ein Array an Optionen, die nicht angezeigt werden sollen, übergeben werden.
 
-> Optionen: `&hide=["stars","commits","prs","issues","contribs"]`
+> Optionen: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","prs"])
@@ -122,8 +122,10 @@ Du kannst das Erscheinungsbild deiner `Stats Card` oder `Repo Card`, mithilfe vo
 - `text_color` - Textkörperfarbe _(hex color)_
 - `icon_color` - Symbolfarbe (falls verfügbar) _(hex color)_
 - `bg_color` - Hintergrundfarbe _(hex color)_ **oder** ein Farbverlauf in der Form von _winkel,start,ende_
+- `hide_border` - Blendet den Rand der Karte aus _(Boolescher Wert)_
 - `theme` - Name des Erscheinungsbildes/Themes [alle verfügbaren Themes](../themes/README.md)
 - `cache_seconds` - manuelles festlegen der Cachezeiten _(min: 1800, max: 86400)_
+- `locale` - Stellen Sie die Sprache auf der Karte ein _(z.B. cn, de, es, etc.)_
 
 ##### Farbverlauf in bg_color
 
@@ -140,6 +142,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 - `hide` - Verbirgt die angegeben Elemente _(mit Komma abgegrenzte Werte)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Zähle alle Beiträge anstatt nur das aktuelle Jahr _(boolean)_
 - `count_private` - Zähle private Beiträge _(boolean)_
@@ -153,6 +156,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 
 - `hide` - Verbirgt die angegebenen Sprachen von der Karte _(Komma separierte Werte)_
 - `hide_title` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `layout` - Wechsel zwischen den zwei verfügbaren Layouts `default` & `compact`
 - `card_width` - Lege die Breite der Karte manuell fest _(Zahl)_
 
