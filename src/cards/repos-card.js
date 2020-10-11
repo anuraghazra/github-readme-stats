@@ -44,7 +44,7 @@ const renderReposCard = (repo, options = {}) => {
 
 
   const card = new Card({
-    title: `Updated Last ${edges.length} Repositories`,
+    customTitle: `Updated Last ${edges.length} Repositories`,
     width: 400,
     height,
     colors: {
