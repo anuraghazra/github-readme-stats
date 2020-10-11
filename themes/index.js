@@ -250,6 +250,12 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
+  },
+  joker: {
+    title_color: "084605",
+    icon_color: "710a03",
+    text_color: "270e42",
+    bg_color: "fcfcfc"
   }
 };
 
