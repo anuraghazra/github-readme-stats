@@ -1,6 +1,8 @@
 const Card = require("../common/Card");
 const { getCardColors, FlexLayout } = require("../common/utils");
 const { createProgressNode } = require("../common/createProgressNode");
+const { langCardLocales } = require("../translations");
+const I18n = require("../common/I18n");
 
 const createProgressTextNode = ({ width, color, name, progress }) => {
   const paddingRight = 95;
@@ -69,7 +71,14 @@ const renderTopLanguages = (topLangs, options = {}) => {
     hide,
     theme,
     layout,
+    custom_title,
+    locale,
   } = options;
+
+  const i18n = new I18n({
+    locale,
+    translations: langCardLocales,
+  });
 
   let langs = Object.values(topLangs);
   let langsToHide = {};
@@ -170,7 +179,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
   }
 
   const card = new Card({
-    title: "Most Used Languages",
+    customTitle: custom_title,
+    defaultTitle: i18n.t("langcard.title"),
     width,
     height,
     colors: {

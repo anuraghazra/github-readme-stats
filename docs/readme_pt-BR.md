@@ -133,8 +133,10 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 - `text_color` - Cor de texto do conteúdo _(hex color)_
 - `icon_color` - Cor dos ícones (se disponível) _(hex color)_
 - `bg_color` - Cor de fundo do cartão _(hex color)_
+- `hide_border` - Esconde a borda do cartão _(boleano)_
 - `theme` - Nome do tema, escolha em [todos os temas disponíveis](../themes/README.md)
 - `cache_seconds` - Defina o cabeçalho do cache manualmente _(min: 1800, max: 86400)_
+- `locale` - defina o idioma no cartão _(por exemplo. cn, de, es, etc.)_
 
 > Nota sobre o cache: Cartões de repositório tem um cache padrão de 30 minutos (1800 segundos), se o número a contagem de forks e contagem de estrelas é menor que 1 mil o padrão é 2 horas (7200). Note também que o cache é limitado a um mínimo de 30 minutos e um máximo de 24 horas.
 
@@ -143,6 +145,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 - `hide` - Oculta itens específicos das estatísticas _(Valores separados por vírgulas)_
 - `hide_title` - Ocutar o título _(boolean)_
 - `hide_rank` - Ocultar a classificação _(boolean)_
+- `hide_border` - _(boolean)_
 - `show_icons` - Mostrar ícones _(boolean)_
 - `include_all_commits` - Contabiliza todos os commits ao invés de apenas os atual ano _(boolean)_
 - `count_private` - Contabiliza commits privados _(boolean)_
@@ -156,6 +159,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 
 - `hide` - Oculta linguagens específicas _(Valores separados por vírgulas)_
 - `hide_title` - Oculta o título _(boolean)_
+- `hide_border` - _(boolean)_
 - `layout` - Alterna entre os dois layouts disponíveis `default` & `compact`
 - `card_width` - Define a largura do cartão manualmente _(number)_
 

@@ -227,6 +227,30 @@ const themes = {
     text_color: "ffffff",
     bg_color: "20232a",
   },
+  jolly: {
+    title_color: "ff64da",
+    icon_color: "a960ff",
+    text_color: "ffffff",
+    bg_color: "291B3E",
+  },
+  maroongold: {
+    title_color: "F7EF8A",
+    icon_color: "F7EF8A",
+    text_color: "E0AA3E",
+    bg_color: "260000",
+  },
+  yeblu: {
+    title_color: "ffff00",
+    icon_color: "ffff00",
+    text_color: "ffffff",
+    bg_color: "002046",
+  },
+  blueberry: {
+    title_color: "82aaff",
+    icon_color: "89ddff",
+    text_color: "27e8a7",
+    bg_color: "242938"
+  }
 };
 
 module.exports = themes;
