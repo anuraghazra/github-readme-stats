@@ -250,6 +250,12 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
+  },
+  cobalt: {
+    title_color: "efb752",
+    icon_color: "efb752",
+    text_color: "70bed9",
+    bg_color: "192133"
   }
 };
 
