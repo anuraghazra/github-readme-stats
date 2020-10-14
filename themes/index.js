@@ -250,6 +250,12 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
+  },
+  ubuntu: {
+    title_color: "e95420",
+    icon_color: "000000",
+    text_color: "d3d3dd",
+    bg_color: "5e2750"
   }
 };
 
