@@ -11,7 +11,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       it: `Statistiche GitHub di ${encodeHTML(name)}`,
       ja: `${encodeHTML(name)}の GitHub 統計`,
       kr: `${encodeHTML(name)}의 GitHub 통계`,
-      "pt-br": `Estatísticas do GitHub de ${encodeHTML(name)}`,
+      pt-br: `Estatísticas do GitHub de ${encodeHTML(name)}`,
       np: `${encodeHTML(name)}'${apostrophe} गिटहब तथ्याङ्क`,
     },
     "statcard.totalstars": {
@@ -23,7 +23,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       it: "Stelle totali",
       ja: "スターされた数",
       kr: "총 별",
-      "pt-br": "Total de estrelas",
+      pt-br: "Total de estrelas",
       np: "कुल ताराहरू",
     },
     "statcard.commits": {
@@ -35,7 +35,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       it: "Commit totali",
       ja: "合計コミット数",
       kr: "총 커밋",
-      "pt-br": "Total de compromissos",
+      pt-br: "Total de commits",
       np: "कुल Commits",
     },
     "statcard.prs": {
@@ -47,7 +47,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       it: "PR totali",
       ja: "合計 PR",
       kr: "총 PR",
-      "pt-br": "Total de PRs",
+      pt-br: "Total de PRs",
       np: "कुल PRs",
     },
     "statcard.issues": {
@@ -59,7 +59,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       it: "Segnalazioni totali",
       ja: "合計 issue",
       kr: "총 문제",
-      "pt-br": "Total de problemas",
+      pt-br: "Total de problemas",
       np: "कुल मुद्दाहरू",
     },
     "statcard.contribs": {
@@ -71,7 +71,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       it: "Ha contribuito a",
       ja: "コントリビュートしたリポジトリ",
       kr: "에 기여하다",
-      "pt-br": "Contribuiu para",
+      pt-br: "Contribuiu para",
       np: "कुल योगदानहरू",
     },
   };
@@ -87,7 +87,7 @@ const repoCardLocales = {
     it: "Template",
     ja: "テンプレート",
     kr: "주형",
-    "pt-br": "Modelo",
+    pt-br: "Modelo",
     np: "टेम्पलेट",
   },
   "repocard.archived": {
@@ -99,7 +99,7 @@ const repoCardLocales = {
     it: "Archiviata",
     ja: "アーカイブ済み",
     kr: "보관 됨",
-    "pt-br": "Arquivada",
+    pt-br: "Arquivado",
     np: "अभिलेख राखियो",
   },
 };
@@ -114,7 +114,7 @@ const langCardLocales = {
     it: "Linguaggi più utilizzati",
     ja: "最もよく使っている言語",
     kr: "가장 많이 사용되는 언어",
-    "pt-br": "Línguas Mais Usadas",
+    pt-br: "Idiomas mais usados",
     np: "अधिक प्रयोग गरिएको भाषाहरू",
   },
 };
@@ -129,7 +129,7 @@ const wakatimeCardLocales = {
     it: "Statistiche della settimana di Wakatime",
     ja: "Wakatime ウィーク統計",
     kr: "Wakatime 주간 통계",
-    "pt-br": "Estatísticas da semana Wakatime",
+    pt-br: "Estatísticas da semana Wakatime",
     np: "Wakatime हप्ता तथ्याङ्क",
   },
   "wakatimecard.nocodingactivity": {
@@ -141,7 +141,7 @@ const wakatimeCardLocales = {
     it: "Nessuna attività in questa settimana",
     ja: "今週のコーディング活動はありません",
     kr: "이번 주 코딩 활동 없음",
-    "pt-br": "Nenhuma atividade de codificação esta semana",
+    pt-br: "Nenhuma atividade de codificação esta semana",
     np: "यस हप्ता कुनै कोडिंग गतिविधि छैन",
   },
 };
