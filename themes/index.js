@@ -250,6 +250,12 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
+  },
+  VetsWhoCode: {
+    title_color: "c5203e",
+    icon_color: "c5203e",
+    text_color: "f6f6f6",
+    bg_color: "091f40"
   }
 };
 
