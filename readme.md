@@ -179,7 +179,8 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 > :warning: **Important:**
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
-> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.)
+> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
+> [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
 
 #### Wakatime Card Exclusive Options:
 
