@@ -9,7 +9,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
     let response = await fetcher(
       variables,
       process.env[`PAT_${retries + 1}`],
-      retries
+      retries,
     );
 
     // prettier-ignore

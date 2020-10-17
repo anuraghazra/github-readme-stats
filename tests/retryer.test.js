@@ -9,7 +9,7 @@ const fetcher = jest.fn((variables, token) => {
 
 const fetcherFail = jest.fn(() => {
   return new Promise((res, rej) =>
-    res({ data: { errors: [{ type: "RATE_LIMITED" }] } })
+    res({ data: { errors: [{ type: "RATE_LIMITED" }] } }),
   );
 });
 

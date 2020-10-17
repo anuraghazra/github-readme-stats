@@ -34,6 +34,8 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Demander une nouveauté</a>
   </p>
   <p align="center">
+    <a href="/docs/readme_fr.md">Français</a>
+    ·
     <a href="/docs/readme_cn.md">简体中文</a>
     ·
     <a href="/docs/readme_es.md">Español</a>
@@ -44,6 +46,8 @@
     ·
     <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
     ·
+    <a href="/docs/readme_it.md">Italiano</a>
+    ·
     <a href="/docs/readme_kr.md">한국어</a>
   </p>
 </p>
@@ -51,12 +55,12 @@
 
 # Features
 
-- [Carte des stats GitHub](#github-stats-card)
+- [Carte des stats GitHub](#carte-des-stats-github)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Carte des meilleurs langages](#top-languages-card)
-- [Themes](#themes)
-- [Personnalisation](#customization)
-- [Deployer toi-même](#deploy-on-your-own-vercel-instance)
+- [Carte des meilleurs langages](#carte-des-langages-les--utilisés)
+- [Themes](#thèmes)
+- [Personnalisation](#personnalisation)
+- [Deployer toi-même](#déployer-sur-votre-propre-instance-vercel)
 
 # Carte des Stats GitHub
 
@@ -100,7 +104,7 @@ Pour activer les icônes, vous pouvez passer `show_icons=true` dans le paramètr
 ![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
-### Themes
+### Thèmes
 
 Avec les thèmes intégrés, vous pouvez personnaliser l'apparence de la carte sans faire de [personnalisation manuelle](#customization).
 
@@ -120,47 +124,51 @@ Vous pouvez consulter un aperçu de [tous les thèmes disponibles](./themes/READ
 
 ### Personnalisation
 
-Vous pouvez personnaliser l'apparence de votre `Stats Card` ou `Repo Card` comme vous le souhaitez avec les paramètres d'URL.
+Vous pouvez personnaliser l'apparence de votre `Carte des stats` ou `Carte de répo` comme vous le souhaitez avec les paramètres d'URL.
 
-#### Common Options:
+#### Options principales:
 
-- `title_color` - Card's title color _(hex color)_
-- `text_color` - Body text color _(hex color)_
-- `icon_color` - Icons color if available _(hex color)_
-- `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_
-- `theme` - name of the theme, choose from [all available themes](./themes/README.md)
-- `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
+- `title_color` - Couleur du titre de la carte _(hex color)_
+- `text_color` - Couleur du texte _(hex color)_
+- `icon_color` - Couleur des icônes si disponibles _(hex color)_
+- `bg_color` - Couleur du fond de la carte _(hex color)_ **ou** un gradiant de la forme _angle,start,end_
+- `hide_border` - Cache la bordure de la carte _(booléen)_
+- `theme` - Nom du thème, parmis [tous les thèmes disponibles](./themes/README.md)
+- `cache_seconds` - Paramétrer le cache manuellement _(min: 1800, max: 86400)_
+- `locale` - définir la langue de la carte _(par exemple. cn, de, es, etc.)_
 
 ##### Gradient in bg_color
 
 Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_color pour rendre un degradé, le format du degradé est :-
 
 ```
-&bg_color=DEG,COLOR1,COLRO2,COLOR3...COLOR10
+&bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
 > Note relative: Les cartes répo ont un cache par défaut de 30 minutes (1800 secondes) si le nombre de bifurcations et d'étoiles est inférieur à 1K, alors il est de 2 heures (7200). Notez également que la mémoire cache est limitée à 30 minutes au minimum et à 24 heures au maximum.
 
 #### Stats Card Exclusive Options:
 
-- `hide` - Cacher les éléments spécifiés dans les statistiques _(Comma seperated values)_
-- `hide_title` - _(boolean)_
-- `hide_rank` - _(boolean)_
-- `show_icons` - _(boolean)_
-- `include_all_commits` - Compter le total de commits au lieu de ne compter que les commits de l'année en cours _(boolean)_
-- `count_private` - Compter les commits privés _(boolean)_
-- `line_height` - Fixer la hauteur de la ligne entre les textes _(number)_
+-   `hide` - Masquer les éléments spécifiés dans les statistiques _(Comma seperated values)_
+-   `hide_title` - Masquer le titre _(boolean)_
+-   `hide_rank` - Masquer le rang _(boolean)_
+-   `hide_border` - _(boolean)_
+-   `show_icons` - Afficher les icônes _(boolean)_
+-   `include_all_commits` - Compter le total de commits au lieu de ne compter que les commits de l'année en cours _(boolean)_
+-   `count_private` - Compter les commits privés _(boolean)_
+-   `line_height` - Fixer la hauteur de la ligne entre les textes _(number)_
 
 #### Repo Card Exclusive Options:
 
-- `show_owner` - Affiche le nom du propriétaire du répo _(boolean)_
+-   `show_owner` - Affiche le nom du propriétaire du répo _(boolean)_
 
 #### Language Card Exclusive Options:
 
-- `hide` - Masquer les langages spécifiés sur la carte _(Comma seperated values)_
-- `hide_title` - _(boolean)_
-- `layout` - Switcher entre 2 mise en page `default` & `compact`
-- `card_width` - Fixer la width de la carte manuellement _(number)_
+-   `hide` - Masquer les langages spécifiés sur la carte _(Comma seperated values)_
+-   `hide_title` - Masquer le titre _(boolean)_
+-   `hide_border` - _(boolean)_
+-   `layout` - Alterner entre 2 mise en page `default` & `compact`
+-   `card_width` - Fixer la largeur de la carte manuellement _(number)_
 
 > :warning: **Important:**  
 > Les noms des langages doivent être en format uri, comme spécifié dans [Percent Encoding](https://fr.wikipedia.org/wiki/Percent-encoding)  
@@ -172,7 +180,7 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 Les épingles supplémentaires GitHub vous permettent d'épingler plus de 6 repos dans votre profil en utilisant un profil GitHub readme.
 
-et OUI ! Vous n'êtes plus limité à 6 dépôts épinglés.
+Et OUI ! Vous n'êtes plus limité à 6 dépôts épinglés.
 
 ### Usage
 
@@ -184,7 +192,7 @@ Extrémité: `api/pin?username=anuraghazra&repo=github-readme-stats`
 [![Carte ReadMe](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Demo
+### Démo
 
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -236,7 +244,7 @@ Tu peux utiliser l'option `&layout=compact` pour changer le style de la carte.
 
 ### Toutes les démos
 
-- Default
+- Défaut
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
@@ -252,9 +260,9 @@ Tu peux utiliser l'option `&layout=compact` pour changer le style de la carte.
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
 
-- Themes
+- Thèmes
 
-Choisissez parmi l'une des [default themes](#themes)
+Choisissez parmi l'un des [thèmes par défaut](#themes)
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
@@ -282,10 +290,10 @@ En général, vous ne pourrez pas mettre les images côte à côte. Pour ce fair
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 

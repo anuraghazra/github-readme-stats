@@ -34,6 +34,8 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
   </p>
   <p align="center">
+    <a href="/docs/readme_fr.md">Français</a>
+    ·
     <a href="/docs/readme_cn.md">简体中文</a>
     ·
     <a href="/docs/readme_es.md">Español</a>
@@ -43,6 +45,8 @@
     <a href="/docs/readme_ja.md">日本語</a>
     ·
     <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
+    ·
+    <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
   </p>
@@ -128,8 +132,10 @@ URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card`
 - `text_color` - 본문 글자 색상 _(hex color)_
 - `icon_color` - 아이콘 색상(활성화된 경우) _(hex color)_
 - `bg_color` - 카드 배경 색상 _(hex color)_
+- `hide_border` - 카드의 테두리를 숨 깁니다 _(부울)_
 - `theme` - 테마의 이름, [사용 가능한 모든 테마](../themes/README.md)에서 선택
 - `cache_seconds` - 캐시 헤더를 수동으로 설정 _(min: 1800, max: 86400)_
+- `locale` - 카드에 언어 설정 _(예 : cn, de, es, 기타)_
 
 > 캐시 관련 참고: Repo 카드는 fork 개수와 star 카운트가 1천 개 미만인 경우 기본 캐시가 30분(1800초)이고, 그렇지 않은 경우 2시간(7200초) 입니다. 또한 캐시는 최소 30분 및 최대 24시간으로 고정됩니다.
 
@@ -138,6 +144,7 @@ URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card`
 - `hide` - 통계에서 특정 항목을 제외한다. _(콤마로 구분된 값)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - 현재 년도 대신 전체 커밋 개수 카운트 _(boolean)_
 - `count_private` - private 커밋도 카운트 _(boolean)_
@@ -151,6 +158,7 @@ URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card`
 
 - `hide` - 카드에서 특정 언어 숨기기 _(콤마로 구분된 값)_
 - `hide_title` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `layout` - `default` & `compact` 레이아웃 간의 전환
 - `card_width` - 카드의 너비를 수동으로 설정 _(숫자)_
 
@@ -269,10 +277,10 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 

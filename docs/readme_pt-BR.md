@@ -34,6 +34,8 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicitar recursos</a>
   </p>
   <p align="center">
+    <a href="/docs/readme_fr.md">Français</a>
+    ·
     <a href="/docs/readme_cn.md">简体中文</a>
     ·
     <a href="/docs/readme_es.md">Español</a>
@@ -43,6 +45,8 @@
     <a href="/docs/readme_ja.md">日本語</a>
     ·
     <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
+    ·
+    <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
   </p>
@@ -54,9 +58,10 @@
 - [Cartão de estatísticas do GitHub](#cartão-de-estatísticas-do-github)
 - [Pins extras do GitHub](#pins-extras-do-github)
 - [Cartão de principais linguagens de programação](#cartão-de-principais-linguagens-de-programação)
+- [Estatística semanal Wakatime](#estatística-semanal-wakatime)
 - [Temas](#temas)
 - [Personalização](#personalização)
-- [Faça suas próprias implantações](#faça-suas-próprias-implantações)
+- [Faça suas próprias implantações](#implante-em-sua-própria-instância-do-vercel)
 
 # Cartão de estatísticas do GitHub
 
@@ -128,8 +133,10 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 - `text_color` - Cor de texto do conteúdo _(hex color)_
 - `icon_color` - Cor dos ícones (se disponível) _(hex color)_
 - `bg_color` - Cor de fundo do cartão _(hex color)_
+- `hide_border` - Esconde a borda do cartão _(boleano)_
 - `theme` - Nome do tema, escolha em [todos os temas disponíveis](../themes/README.md)
 - `cache_seconds` - Defina o cabeçalho do cache manualmente _(min: 1800, max: 86400)_
+- `locale` - defina o idioma no cartão _(por exemplo. cn, de, es, etc.)_
 
 > Nota sobre o cache: Cartões de repositório tem um cache padrão de 30 minutos (1800 segundos), se o número a contagem de forks e contagem de estrelas é menor que 1 mil o padrão é 2 horas (7200). Note também que o cache é limitado a um mínimo de 30 minutos e um máximo de 24 horas.
 
@@ -138,6 +145,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 - `hide` - Oculta itens específicos das estatísticas _(Valores separados por vírgulas)_
 - `hide_title` - Ocutar o título _(boolean)_
 - `hide_rank` - Ocultar a classificação _(boolean)_
+- `hide_border` - _(boolean)_
 - `show_icons` - Mostrar ícones _(boolean)_
 - `include_all_commits` - Contabiliza todos os commits ao invés de apenas os atual ano _(boolean)_
 - `count_private` - Contabiliza commits privados _(boolean)_
@@ -151,6 +159,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 
 - `hide` - Oculta linguagens específicas _(Valores separados por vírgulas)_
 - `hide_title` - Oculta o título _(boolean)_
+- `hide_border` - _(boolean)_
 - `layout` - Alterna entre os dois layouts disponíveis `default` & `compact`
 - `card_width` - Define a largura do cartão manualmente _(number)_
 
@@ -224,7 +233,23 @@ Utilize a opção `&layout=compact` para mudar o layout do cartão.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
+# Estatística semanal Wakatime
+
+Altere o valor de `?username=` para o seu username do Wakatime.
+
+```md
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Demonstração
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
 ---
+
+
 
 ### Todas as demonstrações
 
@@ -270,10 +295,10 @@ Por padrão, você não poderá organizar as imagens lado a lado. Para fazer iss
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 
