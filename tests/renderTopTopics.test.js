@@ -40,15 +40,15 @@ describe("Test renderTopTopics", () => {
     expect(queryAllByTestId(document.body, "topic-name")[2]).toHaveTextContent(
       "react"
     );
-    expect(queryAllByTestId(document.body, "topic-progress")[0]).toHaveAttribute(
+    expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
       "width",
       "50%"
     );
-    expect(queryAllByTestId(document.body, "topic-progress")[1]).toHaveAttribute(
+    expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
       "width",
       "33.33%"
     );
-    expect(queryAllByTestId(document.body, "topic-progress")[2]).toHaveAttribute(
+    expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
       "width",
       "16.67%"
     );
@@ -195,7 +195,7 @@ describe("Test renderTopTopics", () => {
     expect(queryAllByTestId(document.body, "topic-name")[0]).toHaveTextContent(
       "javascript-library 50.00%"
     );
-    expect(queryAllByTestId(document.body, "topic-progress")[0]).toHaveAttribute(
+    expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
       "width",
       "150.00"
     );
@@ -203,7 +203,7 @@ describe("Test renderTopTopics", () => {
     expect(queryAllByTestId(document.body, "topic-name")[1]).toHaveTextContent(
       "physics-engine 33.33%"
     );
-    expect(queryAllByTestId(document.body, "topic-progress")[1]).toHaveAttribute(
+    expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
       "width",
       "100.00"
     );
@@ -211,7 +211,7 @@ describe("Test renderTopTopics", () => {
     expect(queryAllByTestId(document.body, "topic-name")[2]).toHaveTextContent(
       "react 16.67%"
     );
-    expect(queryAllByTestId(document.body, "topic-progress")[2]).toHaveAttribute(
+    expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
       "width",
       "50.00"
     );

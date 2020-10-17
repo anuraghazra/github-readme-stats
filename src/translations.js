@@ -119,6 +119,13 @@ const langCardLocales = {
   },
 };
 
+const topicCardLocales = {
+  "topiccard.title": {
+    en: "Most Used Topics",
+    ja: "最もよく使っているトピック",
+  },
+};
+
 const wakatimeCardLocales = {
   "wakatimecard.title": {
     cn: "Wakatime 周统计",
@@ -150,5 +157,6 @@ module.exports = {
   statCardLocales,
   repoCardLocales,
   langCardLocales,
+  topicCardLocales,
   wakatimeCardLocales,
 };
