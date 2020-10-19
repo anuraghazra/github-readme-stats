@@ -250,7 +250,13 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
-  }
+  }, 
+  fadedrose: {
+    title_color: "#a15773",
+    icon_color: "#ccb4cb",
+    text_color: "#bc8a9d",
+    bg_color: "#ebeaf5"
+  },
 };
 
 module.exports = themes;
