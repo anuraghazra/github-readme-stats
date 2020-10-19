@@ -38,10 +38,10 @@ const createTextNode = ({
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       <text class="stat bold" y="12.5">${label}:</text>
-      <text 
-        class="stat" 
-        x="${hideProgress ? 170 : 350}" 
-        y="12.5" 
+      <text
+        class="stat"
+        x="${hideProgress ? 170 : 350}"
+        y="12.5"
         data-testid="${id}"
       >${value}</text>
       ${cardProgress}
@@ -72,6 +72,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const lheight = parseInt(line_height, 10);
 
+  const lowercaseTrim = (name) => name.toLowerCase().trim();
+
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor } = getCardColors({
     title_color,
@@ -79,11 +81,24 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     text_color,
     bg_color,
     theme,
+    hide,
   });
+
+  let langsToHide = {};
+
+  // populate langsToHide map for quick lookup
+  // while filtering out
+  if (hide) {
+    hide.forEach((langName) => {
+      langsToHide[lowercaseTrim(langName)] = true;
+    });
+  }
 
   const statItems = languages
     ? languages
-        .filter((language) => language.hours || language.minutes)
+        .filter((language) =>
+             (language.hours || language.minutes)
+          && !langsToHide[lowercaseTrim(language.name)])
         .map((language) => {
           return createTextNode({
             id: language.name,
@@ -143,7 +158,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
         gap: lheight,
         direction: "column",
       }).join("")}
-    </svg> 
+    </svg>
   `);
 };
 
