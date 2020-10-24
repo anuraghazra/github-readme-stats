@@ -250,7 +250,7 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
-  }
+  },
   kacho-ga: {
     title_color: "bf4a3f",
     icon_color: "a64833",
