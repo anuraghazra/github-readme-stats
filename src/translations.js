@@ -14,6 +14,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-pt": `Estatísticas do GitHub de ${encodeHTML(name)}`,
       "pt-br": `Estatísticas do GitHub de ${encodeHTML(name)}`,
       np: `${encodeHTML(name)}'${apostrophe} गिटहब तथ्याङ्क`,
+      el: `Στατιστικά GitHub του ${encodeHTML(name)}`,
     },
     "statcard.totalstars": {
       cn: "总 Star",
@@ -27,6 +28,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-pt": "Total de estrelas",
       "pt-br": "Total de estrelas",
       np: "कुल ताराहरू",
+      el: 'Σύνολο Αστεριών',
     },
     "statcard.commits": {
       cn: "总提交",
@@ -40,6 +42,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-pt": "Total de Commits",
       "pt-br": "Total de compromissos",
       np: "कुल Commits",
+      el: "Σύνολο Commits",
     },
     "statcard.prs": {
       cn: "总 PR",
@@ -53,6 +56,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-pt": "Total de PRs",
       "pt-br": "Total de PRs",
       np: "कुल PRs",
+      el: "Σύνολο PRs",
     },
     "statcard.issues": {
       cn: "总 Issue",
@@ -66,6 +70,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-pt": "Total de Issues",
       "pt-br": "Total de problemas",
       np: "कुल मुद्दाहरू",
+      el: "Σύνολο Ζητημάτων",
     },
     "statcard.contribs": {
       cn: "总贡献",
@@ -79,6 +84,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-pt": "Contribuiu em",
       "pt-br": "Contribuiu para",
       np: "कुल योगदानहरू",
+      el: "Συνεισφέρθηκε σε",
     },
   };
 };
@@ -96,6 +102,7 @@ const repoCardLocales = {
     "pt-pt": "Modelo",
     "pt-br": "Modelo",
     np: "टेम्पलेट",
+    el: "Πρότυπο",
   },
   "repocard.archived": {
     cn: "已归档",
@@ -109,6 +116,7 @@ const repoCardLocales = {
     "pt-pt": "Arquivados",
     "pt-br": "Arquivada",
     np: "अभिलेख राखियो",
+    el: "Αρχειοθετημένα",
   },
 };
 
@@ -125,6 +133,7 @@ const langCardLocales = {
     "pt-pt": "Idiomas mais usados",
     "pt-br": "Línguas Mais Usadas",
     np: "अधिक प्रयोग गरिएको भाषाहरू",
+    el: "Οι περισσότερο χρησιμοποιούμενες γλώσσες",
   },
 };
 
@@ -141,6 +150,7 @@ const wakatimeCardLocales = {
     "pt-pt": "Estatísticas semanais Wakatime",
     "pt-br": "Estatísticas da semana Wakatime",
     np: "Wakatime हप्ता तथ्याङ्क",
+    el: "Εβδομαδιαία Στατιστικά από Wakatime",
   },
   "wakatimecard.nocodingactivity": {
     cn: "本周没有编程活动",
@@ -154,6 +164,7 @@ const wakatimeCardLocales = {
     "pt-pt": "Sem atividade esta semana",
     "pt-br": "Nenhuma atividade de codificação esta semana",
     np: "यस हप्ता कुनै कोडिंग गतिविधि छैन",
+    el: "Δεν υπάρχει δραστηριότητα κώδικα γι' αυτή την εβδομάδα",
   },
 };
 
