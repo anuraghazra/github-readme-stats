@@ -252,9 +252,9 @@ const themes = {
     bg_color: "242938"
   },
   ios_dark: {
-    title_color: "2D8FFF",
+    title_color: "FFFFFF",
     icon_color: "2D8FFF",
-    text_color: "2D8FFF",
+    text_color: "FFFFFF",
     bg_color: "050505",
   },
 };
