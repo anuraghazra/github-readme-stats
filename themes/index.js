@@ -250,6 +250,12 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
+  },
+  goldbar: {
+    title_color: "c2a11e",
+    icon_color: "c2a11e",
+    text_color: "d8b52a",
+    bg_color: "403f3e"
   }
 };
 
