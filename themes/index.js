@@ -250,6 +250,12 @@ const themes = {
     icon_color: "89ddff",
     text_color: "27e8a7",
     bg_color: "242938"
+  },
+  lapisLazuli: {
+    title_color: "ffffff",
+    icon_color: "ffff00",
+    text_color: "d9ecf2",
+    bg_color: "0acffe"
   }
 };
 
