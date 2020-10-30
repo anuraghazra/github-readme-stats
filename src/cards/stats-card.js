@@ -151,8 +151,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
           <text
-            x="${rank.level.length === 1 ? "-4" : "0"}"
-            y="0"
+            x="-4"
+            y="4"
             alignment-baseline="central"
             dominant-baseline="central"
             text-anchor="middle"
