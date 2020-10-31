@@ -5,11 +5,11 @@ const {
   parseArray,
   clampValue,
   CONSTANTS,
-  isLocaleAvailable,
 } = require("../src/common/utils");
 const fetchStats = require("../src/fetchers/stats-fetcher");
 const renderStatsCard = require("../src/cards/stats-card");
 const blacklist = require("../src/common/blacklist");
+const { isLocaleAvailable } = require("../src/translations");
 
 module.exports = async (req, res) => {
   const {

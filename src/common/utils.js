@@ -188,12 +188,6 @@ class CustomError extends Error {
   static USER_NOT_FOUND = "USER_NOT_FOUND";
 }
 
-function isLocaleAvailable(locale) {
-  return ["cn", "de", "en", "es", "fr", "it", "ja", "kr", "pt-br"].includes(
-    locale.toLowerCase(),
-  );
-}
-
 module.exports = {
   renderError,
   kFormatter,
@@ -207,7 +201,6 @@ module.exports = {
   getCardColors,
   clampValue,
   wrapTextMultiline,
-  isLocaleAvailable,
   logger,
   CONSTANTS,
   CustomError,

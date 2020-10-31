@@ -32,7 +32,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-pt": "Total de estrelas",
       "pt-br": "Total de estrelas",
       np: "कुल ताराहरू",
-      el: 'Σύνολο Αστεριών',
+      el: "Σύνολο Αστεριών",
     },
     "statcard.commits": {
       cn: "总提交",
@@ -190,7 +190,15 @@ const wakatimeCardLocales = {
   },
 };
 
+const availableLocales = Object.keys(repoCardLocales["repocard.archived"]);
+
+function isLocaleAvailable(locale) {
+  return availableLocales.includes(locale.toLowerCase());
+}
+
 module.exports = {
+  isLocaleAvailable,
+  availableLocales,
   statCardLocales,
   repoCardLocales,
   langCardLocales,
