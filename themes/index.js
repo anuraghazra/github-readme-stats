@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+  exotic: {
+    title_color: "f2a104",
+    icon_color: "00743f",
+    text_color: "72a2c0",
+    bg_color: "1d65a6"
   }
 };
 
