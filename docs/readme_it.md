@@ -134,8 +134,10 @@ Puoi personalizzare l'aspetto delle tue `Stats Card` o delle `Repo Card` in qual
 - `text_color` - Colore del testo _(in esadecimale)_
 - `icon_color` - Colore delle icone, se disponibili _(in esadecimale)_
 - `bg_color` - Colore dello sfondo _(in esadecimale)_ **oppure** un gradiente nella forma _angolo,inizio,fine_
+- `hide_border` - Nasconde il bordo della carta _(booleano)_
 - `theme` - Nome del tema, dai un'occhiata a [tutti i temi disponibili](./themes/README.md)
 - `cache_seconds` - Specifica manualmente il valore di cache, in secondi _(min: 1800, max: 86400)_
+- `locale` - Impostare la lingua nella scheda _(per esempio. cn, de, es, eccetera.)_
 
 ##### Gradiente nello sfondo
 

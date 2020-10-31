@@ -134,8 +134,10 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `text_color` - 内容文本颜色 _（十六进制色码）_
 - `icon_color` - 图标颜色（如果可用）_（十六进制色码）_
 - `bg_color` - 卡片背景颜色 _（十六进制色码）_ **或者** 以 _angle,start,end_ 的形式渐变
+- `hide_border` - 隐藏卡的边框 _(布尔值)_
 - `theme` - 主题名称，从[所有可用主题](../themes/README.md)中选择
 - `cache_seconds` - 手动设置缓存头 _（最小值: 1800，最大值: 86400）_
+- `locale` - 在卡片中设置语言 _(例如 cn, de, es, 等等)_
 
 ##### bg_color 渐变
 
