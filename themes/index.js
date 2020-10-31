@@ -252,10 +252,10 @@ const themes = {
     bg_color: "242938"
   }, 
   fadedrose: {
-    title_color: "a15773",
-    icon_color: "ccb4cb",
-    text_color: "bc8a9d",
-    bg_color: "ebeaf5"
+    title_color: "e1417e",
+    icon_color: "96156a",
+    text_color: "a52858",
+    bg_color: "fefafb"
   }
 };
 
