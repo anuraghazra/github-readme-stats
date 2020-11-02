@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+  azure: {
+    title_color: "19d3da",
+    icon_color: "29a19c",
+    text_color: "222831",
+    bg_color: "eeeeee"
   }
 };
 
