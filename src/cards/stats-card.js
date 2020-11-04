@@ -77,7 +77,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     theme,
   });
 
-  const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
+  const apostrophe = ["x", "s", "X", "S"].includes(name.slice(-1)) ? "" : "s";
   const i18n = new I18n({
     locale,
     translations: statCardLocales({ name, apostrophe }),
