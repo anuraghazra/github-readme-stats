@@ -4,7 +4,7 @@ const { getStyles } = require("../getStyles");
 const { wakatimeCardLocales } = require("../translations");
 const { getCardColors, FlexLayout } = require("../common/utils");
 const { createProgressNode } = require("../common/createProgressNode");
-const languageColors = require('../common/languageColors.json');
+const languageColors = require("../common/languageColors.json");
 
 const noCodingActivityNode = ({ color, text }) => {
   return `
@@ -61,14 +61,14 @@ const createTextNode = ({
   const cardProgress = hideProgress
     ? null
     : createProgressNode({
-      x: 110,
-      y: 4,
-      progress: percent,
-      color: progressBarColor,
-      width: 220,
-      name: label,
-      progressBarBackgroundColor,
-    });
+        x: 110,
+        y: 4,
+        progress: percent,
+        color: progressBarColor,
+        width: 220,
+        name: label,
+        progressBarBackgroundColor,
+      });
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
@@ -119,18 +119,18 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const statItems = languages
     ? languages
-      .filter((language) => language.hours || language.minutes)
-      .map((language) => {
-        return createTextNode({
-          id: language.name,
-          label: language.name,
-          value: language.text,
-          percent: language.percent,
-          progressBarColor: titleColor,
-          progressBarBackgroundColor: textColor,
-          hideProgress: hide_progress,
-        });
-      })
+        .filter((language) => language.hours || language.minutes)
+        .map((language) => {
+          return createTextNode({
+            id: language.name,
+            label: language.name,
+            value: language.text,
+            percent: language.percent,
+            progressBarColor: titleColor,
+            progressBarBackgroundColor: textColor,
+            hideProgress: hide_progress,
+          });
+        })
     : [];
 
   // Calculate the card height depending on how many items there are
@@ -147,7 +147,6 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   let width = 440;
 
-
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
     width = width + 50;
@@ -158,11 +157,10 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     let progressOffset = 0;
     const compactProgressBar = languages
       .map((lang) => {
-
         // const progress = (width * lang.percent) / 100;
         const progress = ((width - 50) * lang.percent) / 100;
 
-        const languageColor = languageColors[lang.name] || '#858585';
+        const languageColor = languageColors[lang.name] || "#858585";
 
         const output = `
           <rect
@@ -179,11 +177,10 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
         return output;
       })
       .join("");
-    
+
     finalLayout = `
       <mask id="rect-mask">
-      <rect x="25" y="0" width="${width - 50
-      }" height="8" fill="white" rx="5" />
+      <rect x="25" y="0" width="${width - 50}" height="8" fill="white" rx="5" />
       </mask>
       ${compactProgressBar}
       ${createLanguageTextNode({
@@ -198,11 +195,11 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       items: statItems.length
         ? statItems
         : [
-          noCodingActivityNode({
-            color: textColor,
-            text: i18n.t("wakatimecard.nocodingactivity"),
-          }),
-        ],
+            noCodingActivityNode({
+              color: textColor,
+              text: i18n.t("wakatimecard.nocodingactivity"),
+            }),
+          ],
       gap: lheight,
       direction: "column",
     }).join("");
