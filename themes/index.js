@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+  alduin: {
+    title_color: "dfd7af",
+    icon_color: "e3e3e3",
+    text_color: "dfd7af",
+    bg_color: "1c1c1c"
   }
 };
 
