@@ -1,23 +1,25 @@
 const { encodeHTML } = require("./common/utils");
 
 const statCardLocales = ({ name, apostrophe }) => {
+  let name = encodeHTML(name);
+
   return {
     "statcard.title": {
-      cn: `${encodeHTML(name)} 的 GitHub 统计`,
-      de: `${encodeHTML(name) + apostrophe} GitHub-Statistiken`,
-      en: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
-      es: `Estadísticas de GitHub de ${encodeHTML(name)}`,
-      fr: `Statistiques GitHub de ${encodeHTML(name)}`,
-      hu: `${encodeHTML(name)} GitHub statisztika`,
-      it: `Statistiche GitHub di ${encodeHTML(name)}`,
-      ja: `${encodeHTML(name)}の GitHub 統計`,
-      kr: `${encodeHTML(name)}의 GitHub 통계`,
-      nl: `${encodeHTML(name)}'${apostrophe} GitHub Statistieken`,
-      "pt-pt": `Estatísticas do GitHub de ${encodeHTML(name)}`,
-      "pt-br": `Estatísticas do GitHub de ${encodeHTML(name)}`,
-      np: `${encodeHTML(name)}'${apostrophe} गिटहब तथ्याङ्क`,
-      el: `Στατιστικά GitHub του ${encodeHTML(name)}`,
-      ru: `Статистика GitHub пользователя ${encodeHTML(name)}`,
+      cn: `${name} 的 GitHub 统计`,
+      de: `${name + apostrophe} GitHub-Statistiken`,
+      en: `${name}'${apostrophe} GitHub Stats`,
+      es: `Estadísticas de GitHub de ${name}`,
+      fr: `Statistiques GitHub de ${name}`,
+      hu: `${name} GitHub statisztika`,
+      it: `Statistiche GitHub di ${name}`,
+      ja: `${name}の GitHub 統計`,
+      kr: `${name}의 GitHub 통계`,
+      nl: `${name}'${apostrophe} GitHub Statistieken`,
+      "pt-pt": `Estatísticas do GitHub de ${name}`,
+      "pt-br": `Estatísticas do GitHub de ${name}`,
+      np: `${name}'${apostrophe} गिटहब तथ्याङ्क`,
+      el: `Στατιστικά GitHub του ${name}`,
+      ru: `Статистика GitHub пользователя ${name}`,
     },
     "statcard.totalstars": {
       cn: "总 Star",
