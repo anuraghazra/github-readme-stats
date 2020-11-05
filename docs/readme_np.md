@@ -123,11 +123,12 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
+
+तपैले सबै थेम्सहरु  प्रेविउ गर्न सक्नु हुनेछ । [all available themes](./themes/README.md) नत्र थेम्सहरुको config [theme config file](./themes/index.js) पनि हेर्न सक्नु हुनेछ र **थेम्सहरुमा योगदान पनि गर्नु सक्नु हुनेछ** :D ।
 
 ### अनुकूलन
 
-You can customize the appearance of your `Stats Card` or `Repo Card` however you want with URL params.
+तपैले `Stats Card` or `Repo Card` को अपपेअरंस कस्टमेज गर्न सक्नु हुनेछ  जसमा तपैले URL  params  पनि प्रयोग गर्नु सक्नु हुनेछ ।
 
 #### साधारण विकल्पहरू:
 
