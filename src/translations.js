@@ -19,6 +19,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       el: `Στατιστικά GitHub του ${encodeHTML(name)}`,
       ru: `Статистика GitHub пользователя ${encodeHTML(name)}`,
       id: `Statistik GitHub ${encodeHTML(name)}`,
+      my: `Statistik GitHub ${encodeHTML(name)}`,
     },
     "statcard.totalstars": {
       cn: "总 Star",
@@ -37,6 +38,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       el: "Σύνολο Αστεριών",
       ru: "Всего звезд",
       id: "Total Bintang",
+      my: "Jumlah Bintang",
     },
     "statcard.commits": {
       cn: "总提交",
@@ -55,6 +57,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       el: "Σύνολο Commits",
       ru: "Всего коммитов",
       id: "Total Komitmen",
+      my: "Jumlah Komitmen",
     },
     "statcard.prs": {
       cn: "总 PR",
@@ -73,6 +76,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       el: "Σύνολο PRs",
       ru: "Всего pull request`ов",
       id: "Total Permintaan Tarik",
+      my: "Jumlah PR",
     },
     "statcard.issues": {
       cn: "总 Issue",
@@ -91,6 +95,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       el: "Σύνολο Ζητημάτων",
       ru: "Всего issue",
       id: "Total Masalah Dilaporkan",
+      my: "Jumlah Isu Dilaporkan",
     },
     "statcard.contribs": {
       cn: "总贡献",
@@ -109,6 +114,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       el: "Συνεισφέρθηκε σε",
       ru: "Внёс вклад в",
       id: "Berkontribusi ke",
+      my: "Menyumbang kepada",
     },
   };
 };
@@ -131,6 +137,7 @@ const repoCardLocales = {
     el: "Πρότυπο",
     ru: "Шаблон",
     id: "Pola",
+    my: "Templat",
   },
   "repocard.archived": {
     cn: "已归档",
@@ -149,6 +156,7 @@ const repoCardLocales = {
     el: "Αρχειοθετημένα",
     ru: "Архивирован",
     id: "Arsip",
+    my: "Arkib",
   },
 };
 
@@ -170,6 +178,7 @@ const langCardLocales = {
     el: "Οι περισσότερο χρησιμοποιούμενες γλώσσες",
     ru: "Наиболее часто используемые языки",
     id: "Bahasa Yang Paling Banyak Digunakan",
+    my: "Bahasa Paling Digunakan",
   },
 };
 
@@ -191,6 +200,7 @@ const wakatimeCardLocales = {
     el: "Εβδομαδιαία Στατιστικά από Wakatime",
     ru: "Статистика недели Wakatime",
     id: "Status Mingguan Wakatime",
+    my: "Statistik Minggu Wakatime",
   },
   "wakatimecard.nocodingactivity": {
     cn: "本周没有编程活动",
@@ -209,6 +219,7 @@ const wakatimeCardLocales = {
     el: "Δεν υπάρχει δραστηριότητα κώδικα γι' αυτή την εβδομάδα",
     ru: "На этой неделе не было акивности",
     id: "Tidak ada aktivitas perkodingan minggu ini",
+    my: "Tiada aktiviti pengekodan minggu ini",
   },
 };
 
