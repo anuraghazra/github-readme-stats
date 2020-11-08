@@ -195,11 +195,13 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
 
-Yay! You are no longer limited to 6 pinned repositories.
+GitHub फाल्तु पिनले तपाइँलाए GitHub रीडमी प्रोफाइल प्रयोग गरी तपाइँको प्रोफाइलमा छ ओटा भन्दा बढि प्रोजेक्टहरु पिन गर्न अनुमति दिन्छ ।
 
-### रयोग 
+हो! तपाईं अब pin पिन गरीएको छ ओटा प्रोजेक्ट सीमित हुनुहुन्छ ।
 
-Copy-paste this code into your readme and change the links.
+### प्रयोग
+
+कोदलाए  कपी- पेसेत  readme मा गर्नु होला र लिंक परिवतन गर्नु होला |
 
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
@@ -217,13 +219,12 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 # टोप भाषा कार्ड 
 
-The top languages card shows a GitHub user's top languages which have used the most.
+टोप भाषाकार्डले github परयोग गर्नेहरुको प्रोग्रम्मिंग भाषाहरु देखाऊने गर्दछ |. 
 
-_NOTE: Top Languages does not indicate my skill level or anything like that, it's a GitHub metric of which languages have the most code on GitHub. It's a new feature of github-readme-stats._
-
+_NOTE: टोप भाषाहरुले आफ्नो सिपलाए संकेत गरेको होईन | योचै Github  Metricबाट धेरै कुन भाषा परयोग भाकोलाए संकेत गरेको हो |
 ### प्रयोग 
 
-Copy-paste this code into your readme and change the links.
+कोदलाए  कपी- पेसेत  readme मा गर्नु होला र लिंक परिवतन गर्नु होला |
 
 Endpoint: `api/top-langs?username=anuraghazra`
 
