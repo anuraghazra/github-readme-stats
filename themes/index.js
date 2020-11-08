@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+  red_lovers_dream: {
+    title_color: "ff0000",
+    icon_color: "ff0000",
+    text_color: "ff0000",
+    bg_color: "0000000"
   }
 };
 
