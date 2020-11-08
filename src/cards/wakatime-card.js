@@ -85,7 +85,7 @@ const createTextNode = ({
 };
 
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  const { languages } = stats;
+  let { languages } = stats;
   const {
     hide_title = false,
     hide_border = false,
@@ -99,8 +99,9 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     custom_title,
     locale,
     layout,
+    count = 10,
   } = options;
-
+  languages = languages ? languages.slice(0, count) : null;
   const i18n = new I18n({
     locale,
     translations: wakatimeCardLocales,
