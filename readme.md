@@ -282,11 +282,20 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
+Sometimes this chart may be [too long](https://github.com/anuraghazra/github-readme-stats/pull/560#issuecomment-714911667). We provide `?count=` value to solve this problem.
+
 ### Demo
+- default
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
+- hide progress
+
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
+- set count=1
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&count=1)](https://github.com/anuraghazra/github-readme-stats)
 
 - Compact layout
 
