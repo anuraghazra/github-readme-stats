@@ -6,10 +6,13 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!, $cursor: String) {
         user(login: $login) {
           # fetch only owner repos & not forks
-          repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
+          repositories(ownerAffiliations: OWNER, isFork: false, first: 100, after: $cursor) {
+            pageInfo {
+              endCursor
+            }
             nodes {
               name
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
@@ -39,7 +42,11 @@ async function fetchTopLanguages(username, langsCount = 5, exclude_repo = []) {
 
   langsCount = clampValue(parseInt(langsCount), 1, 10);
 
-  const res = await retryer(fetcher, { login: username });
+  const res = await retryer(fetcher, {
+    login: username,
+    cursor: null,
+    cursor_path: ["user", "repositories"]
+  });
 
   if (res.data.errors) {
     logger.error(res.data.errors);

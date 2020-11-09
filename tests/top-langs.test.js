@@ -9,6 +9,9 @@ const data_langs = {
   data: {
     user: {
       repositories: {
+        pageInfo: {
+          endCursor: null,
+        },
         nodes: [
           {
             languages: {

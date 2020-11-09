@@ -24,6 +24,37 @@ const retryer = async (fetcher, variables, retries = 0) => {
       return retryer(fetcher, variables, retries);
     }
 
+    if (response.data.errors) {
+      // We can't paginate on an erroneous response.
+      return response;
+    }
+
+    if ("cursor" in variables) {
+      // If we're trying to paginate, we might need to make more requests.
+      // the "cursor_path" variable tells us which fields are paginated and
+      // and how to access the cursor items.
+      let data = response.data.data;
+      for (const path of variables["cursor_path"])
+        data = data[path];
+
+      if (data.pageInfo.endCursor !== null) {
+        // Make another request starting where the previous request left off.
+        variables["cursor"] = data.pageInfo.endCursor;
+        const additional_response = await retryer(fetcher, variables)
+        if (additional_response.data.errors) {
+          // If a subsequent request fails, the whole thing should fail.
+          return additional_response;
+        }
+
+        let additional_data = additional_response.data.data;
+        for (const path of variables["cursor_path"])
+          additional_data = additional_data[path];
+
+        // Append the additional data to our existing data.
+        data.nodes = data.nodes.concat(additional_data.nodes);
+      }
+    }
+
     // finally return the response
     return response;
   } catch (err) {
