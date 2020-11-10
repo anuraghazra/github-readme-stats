@@ -66,7 +66,7 @@ const createTableItem = ({ link, label, isRepoCard }) => {
 const generateTable = ({ isRepoCard }) => {
   const rows = [];
   const themes = Object.keys(theme).filter(
-    (name) => name !== (!isRepoCard ? "default_repocard" : "default")
+    (name) => name !== (!isRepoCard ? "default_repocard" : "default"),
   );
 
   for (let i = 0; i < themes.length; i += 3) {

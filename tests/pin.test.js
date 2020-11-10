@@ -76,7 +76,7 @@ describe("Test /api/pin", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderRepoCard(data_repo.repository, { ...req.query })
+      renderRepoCard(data_repo.repository, { ...req.query }),
     );
   });
 
@@ -120,7 +120,7 @@ describe("Test /api/pin", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Organization Repository Not found")
+      renderError("Organization Repository Not found"),
     );
   });
 });
