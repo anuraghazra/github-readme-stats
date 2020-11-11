@@ -268,7 +268,7 @@ const themes = {
     icon_color: "ffffff",
     text_color: "ffffff",
     bg_color: "000000"
-  },
+  }
 };
 
 module.exports = themes;
