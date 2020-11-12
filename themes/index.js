@@ -267,12 +267,12 @@ const themes = {
     title_color: "458488",
     icon_color: "b16286",
     text_color: "ebdbb2",
-    bg_color: "282828"  
+    bg_color: "1f1e1e"  
   },
   retro_light: {
     title_color: "076678",
     icon_color: "b16286",
-    text_color: "282828",
+    text_color: "1f1e1e",
     bg_color: "d5c4a1"
   }
 };
