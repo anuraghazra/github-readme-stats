@@ -263,7 +263,7 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23"
   },
-    retro_dark: {
+  retro_dark: {
     title_color: "458488",
     icon_color: "b16286",
     text_color: "ebdbb2",
