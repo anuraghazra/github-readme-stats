@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+    nord: {
+    title_color: "8fbcbb",
+    icon_color: "e5e9f0",
+    text_color: "eceff4",
+    bg_color: "2e3440"
   }
 };
 
