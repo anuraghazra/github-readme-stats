@@ -266,7 +266,7 @@ const themes = {
   retro_dark: {
     title_color: "458488",
     icon_color: "b16286",
-    text_color: "ebdbb2",
+    text_color: "ebe5d8",
     bg_color: "1f1e1e"  
   }
 };
