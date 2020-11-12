@@ -262,6 +262,18 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+    retro_dark: {
+    title_color: "458488",
+    icon_color: "b16286",
+    text_color: "ebdbb2",
+    bg_color: "282828"  
+  },
+  retro_light: {
+    title_color: "076678",
+    icon_color: "b16286",
+    text_color: "282828",
+    bg_color: "d5c4a1"
   }
 };
 
