@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
     cache_seconds,
     custom_title,
     locale,
+    disable_animations,
   } = req.query;
   let stats;
 
@@ -74,6 +75,7 @@ module.exports = async (req, res) => {
         theme,
         custom_title,
         locale: locale ? locale.toLowerCase() : null,
+        disable_animations: parseBoolean(disable_animations),
       }),
     );
   } catch (err) {
