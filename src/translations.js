@@ -18,6 +18,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       np: `${encodeHTML(name)}'${apostrophe} गिटहब तथ्याङ्क`,
       el: `Στατιστικά GitHub του ${encodeHTML(name)}`,
       ru: `Статистика GitHub пользователя ${encodeHTML(name)}`,
+      mg: `Statistika ny GitHub n'i ${encodeHTML(name)}`
     },
     "statcard.totalstars": {
       cn: "总 Star",
@@ -35,6 +36,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       np: "कुल ताराहरू",
       el: "Σύνολο Αστεριών",
       ru: "Всего звезд",
+      mg: "Isa totalin'ny Kintana"
     },
     "statcard.commits": {
       cn: "总提交",
@@ -52,6 +54,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       np: "कुल Commits",
       el: "Σύνολο Commits",
       ru: "Всего коммитов",
+      "mg" : "Isa totalin'ny asa natao"
     },
     "statcard.prs": {
       cn: "总 PR",
@@ -69,6 +72,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       np: "कुल PRs",
       el: "Σύνολο PRs",
       ru: "Всего pull request`ов",
+      mg: "Isa totalin'ny PR"
     },
     "statcard.issues": {
       cn: "总 Issue",
@@ -86,6 +90,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       np: "कुल मुद्दाहरू",
       el: "Σύνολο Ζητημάτων",
       ru: "Всего issue",
+      mg: "Isa totalin'ny Olana"
     },
     "statcard.contribs": {
       cn: "总贡献",
@@ -103,6 +108,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       np: "कुल योगदानहरू",
       el: "Συνεισφέρθηκε σε",
       ru: "Внёс вклад в",
+      mg: "Isan'ny fandraisana anjara"
     },
   };
 };
@@ -124,6 +130,7 @@ const repoCardLocales = {
     np: "टेम्पलेट",
     el: "Πρότυπο",
     ru: "Шаблон",
+    mg : "Modely"
   },
   "repocard.archived": {
     cn: "已归档",
@@ -141,6 +148,7 @@ const repoCardLocales = {
     np: "अभिलेख राखियो",
     el: "Αρχειοθετημένα",
     ru: "Архивирован",
+    mg: "Notahirizina",
   },
 };
 
@@ -161,6 +169,7 @@ const langCardLocales = {
     np: "अधिक प्रयोग गरिएको भाषाहरू",
     el: "Οι περισσότερο χρησιμοποιούμενες γλώσσες",
     ru: "Наиболее часто используемые языки",
+    mg: "Fiteny tena nampiasaina"
   },
 };
 
@@ -181,6 +190,7 @@ const wakatimeCardLocales = {
     np: "Wakatime हप्ता तथ्याङ्क",
     el: "Εβδομαδιαία Στατιστικά από Wakatime",
     ru: "Статистика недели Wakatime",
+    mg : "Statistikan'ny herinandro ny Wakatime"
   },
   "wakatimecard.nocodingactivity": {
     cn: "本周没有编程活动",
@@ -198,6 +208,7 @@ const wakatimeCardLocales = {
     np: "यस हप्ता कुनै कोडिंग गतिविधि छैन",
     el: "Δεν υπάρχει δραστηριότητα κώδικα γι' αυτή την εβδομάδα",
     ru: "На этой неделе не было акивности",
+    mg: "Tisy ficodiavana natao tamnin'ity herinandro ity"
   },
 };
 
