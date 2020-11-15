@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+  abyss: {
+    title_color: "27a8f7",
+    icon_color: "98d4ff",
+    text_color: "d1e1ff",
+    bg_color: "010c30"
   }
 };
 
