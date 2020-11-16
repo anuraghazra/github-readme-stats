@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+  synthwave2: {
+    title_color: "35edfb",
+    icon_color: "ffff00",
+    text_color: "ff66cc",
+    bg_color: "2a1739",
   }
 };
 
