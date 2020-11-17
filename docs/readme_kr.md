@@ -163,6 +163,9 @@ URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card`
 - `hide_border` - _(boolean)_
 - `layout` - `default` & `compact` 레이아웃 간의 전환
 - `card_width` - 카드의 너비를 수동으로 설정 _(숫자)_
+- `langs_count` - 기본 5개, 최대 10개 더 많은 언어를 표기 _(숫자)_
+- `exclude_repo` - 특정 repo 숨기기 _(콤마로 구분된 값)_
+- `custom_title` - 카드의 개인 제목 설정
 
 > :warning: **중요:**  
 > 언어 이름은 URI 이스케이프 처리되어야 합니다. [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)를 참고하세요.
