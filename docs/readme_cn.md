@@ -60,6 +60,7 @@
 - [GitHub 统计卡片](#GitHub-统计卡片)
 - [GitHub 更多置顶](#GitHub-更多置顶)
 - [热门语言卡片](#热门语言卡片)
+- [Wakatime 周统计数据](#Wakatime-周统计数据)
 - [主题](#主题)
 - [自定义](#自定义)
 - [自己部署](#自己部署)
@@ -75,7 +76,8 @@
 ```
 
 _注: 可用的 ranks 有 S+ (前 1%), S (前 25%), A++ (前 45%), A+ (前 60%), 以及 B+ (每个人)。
-Rank 值是通过你的 commits, contributions, issues, stars, pull requests, followers, 以及拥有的 repositories, 由[累积分布函数](https://en.wikipedia.org/wiki/Cumulative_distribution_function) 计算得出，详见 [src/calculateRank.js](../src/calculateRank.js)_
+Rank 值是通过你的 commits, contributions, issues, stars, pull requests, followers, 以及拥有的 repositories, 
+由[累积分布函数](https://en.wikipedia.org/wiki/Cumulative_distribution_function) 计算得出，详见 [src/calculateRank.js](../src/calculateRank.js)_
 
 ### 隐藏指定统计
 
@@ -160,6 +162,8 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `include_all_commits` - 统计总提交次数而不是仅统计今年的提交次数 _(boolean)_
 - `count_private` - 统计私人提交 _(boolean)_
 - `line_height` - 设置文本之间的行高 _(number)_
+- `custom_title` - 为卡片设置自定义标题
+- `disable_animations` - 禁用卡片中的所有动画 _(boolean)_
 
 #### Repo 卡片专属选项:
 
@@ -172,10 +176,14 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `hide_border` - _(boolean)_
 - `layout` - 在两个可用布局 `default` & `compact` 间切换
 - `card_width` - 手动设置卡片的宽度 _(number)_
+- `langs_count` - 在卡片上显示更多语言，介于1-10之间，默认为5 _(number)_
+- `exclude_repo` - 排除指定的 repo _(Comma-separated values)_
+- `custom_title` - 为卡片设置自定义标题
 
 > :warning: **重要:**  
 > 如 [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) 所指定，语言名称应使用 uri 转义。  
 > (例: `c++` 应该是 `c%2B%2B`, `jupyter notebook` 应该是 `jupyter%20notebook`, 等.)
+> 你能使用[urlencoder.org](https://www.urlencoder.org/) 来帮助你自动转换。
 
 #### Wakatime 卡片专属选项:
 
@@ -183,7 +191,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `line_height` - 设置文本之间的行高 _(number)_
 - `hide_progress` - 隐藏进度条和百分比 _(boolean)_
 - `custom_title` - 设置卡片的自定义标题
-- `layout` - 在两个可用布局之间切换 `default` & `compact`
+- `layout` - 在两个可用布局 `default` & `compact` 间切换
 
 ---
 
@@ -227,12 +235,28 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
+### 排除指定 repo
+
+可以使用 `?exclude_repo=repo1,repo2` 参数来排除指定的 repo。
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
+```
+
 ### 隐藏指定语言
 
 可以使用 `?hide=language1,language2` 参数来隐藏指定的语言。
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### 显示更多语言
+
+你可以使用 `&langs_count=` 选项来增加或减少卡片上显示的语言数量。有效值介于1和10(包含10)之间的整数，默认值为5。
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### 紧凑的语言卡片布局
@@ -250,6 +274,24 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 - 紧凑布局
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
+# Wakatime 周统计数据
+
+更改 `?username=` 的值为你的 [Wakatime](https://wakatime.com) 用户名。
+
+```md
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Demo
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
+- 紧凑布局
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -285,6 +327,10 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
+- 设置卡片本地化
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=cn)
+
 - 自定义 repo 卡片
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
@@ -292,6 +338,10 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 - 热门语言
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+- Wakatime 卡片
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
