@@ -74,7 +74,8 @@
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.js](../src/calculateRank.js)_
+_注: 可用的 ranks 有 S+ (前 1%), S (前 25%), A++ (前 45%), A+ (前 60%), 以及 B+ (每个人)。
+Rank 值是通过你的 commits, contributions, issues, stars, pull requests, followers, 以及拥有的 repositories, 由[累积分布函数](https://en.wikipedia.org/wiki/Cumulative_distribution_function) 计算得出，详见 [src/calculateRank.js](../src/calculateRank.js)_
 
 ### 隐藏指定统计
 
@@ -175,6 +176,14 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 > :warning: **重要:**  
 > 如 [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) 所指定，语言名称应使用 uri 转义。  
 > (例: `c++` 应该是 `c%2B%2B`, `jupyter notebook` 应该是 `jupyter%20notebook`, 等.)
+
+#### Wakatime 卡片专属选项:
+
+- `hide_title` - _(boolean)_
+- `line_height` - 设置文本之间的行高 _(number)_
+- `hide_progress` - 隐藏进度条和百分比 _(boolean)_
+- `custom_title` - 设置卡片的自定义标题
+- `layout` - 在两个可用布局之间切换 `default` & `compact`
 
 ---
 
