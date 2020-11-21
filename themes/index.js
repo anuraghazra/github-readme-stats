@@ -264,10 +264,10 @@ const themes = {
     bg_color: "402b23"
   },
   abyss: {
-    title_color: "27a8f7",
-    icon_color: "98d4ff",
-    text_color: "d1e1ff",
-    bg_color: "010c30"
+    title_color: "f280d0",
+    icon_color: "22aa44",
+    text_color: "6688cc",
+    bg_color: "000c18"
   }
 };
 
