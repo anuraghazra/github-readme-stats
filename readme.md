@@ -60,7 +60,7 @@
 - [GitHub Stats Card](#github-stats-card)
 - [GitHub Extra Pins](#github-extra-pins)
 - [Top Languages Card](#top-languages-card)
-- [Wakatime Week Stats](#wakatime-week-stats
+- [Wakatime Week Stats](#wakatime-week-stats)
 - [Themes](#themes)
 - [Customization](#customization)
 - [Deploy Yourself](#deploy-on-your-own-vercel-instance)
