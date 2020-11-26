@@ -2,6 +2,7 @@ const axios = require("axios");
 const wrap = require("word-wrap");
 const themes = require("../../themes");
 const { safeDump: yamlSafeDump } = require("js-yaml");
+const { Builder: XmlBuilder } = require('xml2js')
 
 const renderError = (message, secondaryMessage = "") => {
   return `
@@ -191,11 +192,11 @@ class CustomError extends Error {
 
 function ResponseType(
   response_type = "svg",
-  { callback = "githubReadmeStats" },
+  { callback = "githubReadmeStats", svgRender = require("../cards/stats-card") },
 ) {
   const svg = {
     contentType: "image/svg+xml",
-    render: require("../cards/stats-card"),
+    render: svgRender,
     error: renderError,
   };
   const json = {
@@ -208,6 +209,12 @@ function ResponseType(
         : null,
     error: (message, secondaryMessage = "") =>
       JSON.stringify({ error: { message, secondaryMessage } }),
+  };
+  const xml = {
+    contentType: "application/xml",
+    render: (json) => (new XmlBuilder()).buildObject(json),
+    error: (message, secondaryMessage = "") =>
+      (new XmlBuilder()).buildObject({ error: { message, secondaryMessage } }),
   };
   const jsonp = {
     contentType: "application/javascript",
@@ -236,6 +243,8 @@ function ResponseType(
     return svg;
   } else if (response_type.toLocaleLowerCase() === "json") {
     return json;
+  } else if (response_type.toLocaleLowerCase() === "xml") {
+    return xml;
   } else if (response_type.toLocaleLowerCase() === "jsonp") {
     return jsonp;
   } else if (response_type.toLocaleLowerCase() === "yaml") {
