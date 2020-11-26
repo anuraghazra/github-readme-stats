@@ -224,4 +224,5 @@ module.exports = {
   logger,
   CONSTANTS,
   CustomError,
+  ResponseType,
 };
