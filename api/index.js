@@ -35,7 +35,9 @@ module.exports = async (req, res) => {
     callback,
   } = req.query;
   let stats;
-  const { contentType, error, render } = ResponseType(response_type, { callback })
+  const { contentType, error, render } = ResponseType(response_type, {
+    callback,
+  });
 
   res.setHeader("Content-Type", contentType);
 
