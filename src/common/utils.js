@@ -1,6 +1,7 @@
 const axios = require("axios");
 const wrap = require("word-wrap");
 const themes = require("../../themes");
+const { safeDump: yamlSafeDump } = require("js-yaml");
 
 const renderError = (message, secondaryMessage = "") => {
   return `
@@ -223,12 +224,22 @@ function ResponseType(
         error: { message, secondaryMessage },
       })})`,
   };
+  const yaml = {
+    contentType: "application/javascript",
+    render: (json) => yamlSafeDump(json),
+    error: (message, secondaryMessage = "") =>
+      yamlSafeDump({
+        error: { message, secondaryMessage },
+      }),
+  };
   if (response_type.toLocaleLowerCase() === "svg") {
     return svg;
   } else if (response_type.toLocaleLowerCase() === "json") {
     return json;
   } else if (response_type.toLocaleLowerCase() === "jsonp") {
     return jsonp;
+  } else if (response_type.toLocaleLowerCase() === "yaml") {
+    return yaml;
   } else {
     return svg;
   }

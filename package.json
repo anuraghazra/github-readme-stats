@@ -27,6 +27,7 @@
     "dotenv": "^8.2.0",
     "emoji-name-map": "^1.2.8",
     "github-username-regex": "^1.0.0",
+    "js-yaml": "^3.14.0",
     "prettier": "^2.1.2",
     "word-wrap": "^1.2.3"
   },
