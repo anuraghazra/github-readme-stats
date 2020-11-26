@@ -82,6 +82,6 @@ module.exports = async (req, res) => {
       }),
     );
   } catch (err) {
-    return res.send(res(err.message, err.secondaryMessage));
+    return res.send(error(err.message, err.secondaryMessage));
   }
 };
