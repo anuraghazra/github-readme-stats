@@ -1,10 +1,10 @@
 require("dotenv").config();
 const {
-  renderError,
   clampValue,
   parseBoolean,
   parseArray,
   CONSTANTS,
+  ResponseType,
 } = require("../src/common/utils");
 const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 const renderTopLanguages = require("../src/cards/top-languages-card");
@@ -28,17 +28,23 @@ module.exports = async (req, res) => {
     exclude_repo,
     custom_title,
     locale,
+    response_type,
+    callback,
   } = req.query;
   let topLangs;
+  const { contentType, error, render } = ResponseType(response_type, {
+    callback,
+    svg: { render: renderTopLanguages },
+  });
 
-  res.setHeader("Content-Type", "image/svg+xml");
+  res.setHeader("Content-Type", contentType);
 
   if (blacklist.includes(username)) {
-    return res.send(renderError("Something went wrong"));
+    return res.send(error("Something went wrong"));
   }
 
   if (locale && !isLocaleAvailable(locale)) {
-    return res.send(renderError("Something went wrong", "Language not found"));
+    return res.send(error("Something went wrong", "Language not found"));
   }
 
   try {
@@ -57,7 +63,7 @@ module.exports = async (req, res) => {
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
     return res.send(
-      renderTopLanguages(topLangs, {
+      render(topLangs, {
         custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
@@ -72,6 +78,6 @@ module.exports = async (req, res) => {
       }),
     );
   } catch (err) {
-    return res.send(renderError(err.message, err.secondaryMessage));
+    return res.send(error(err.message, err.secondaryMessage));
   }
 };

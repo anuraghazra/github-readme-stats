@@ -2,7 +2,7 @@ const axios = require("axios");
 const wrap = require("word-wrap");
 const themes = require("../../themes");
 const { safeDump: yamlSafeDump } = require("js-yaml");
-const { Builder: XmlBuilder } = require('xml2js')
+const { Builder: XmlBuilder } = require("xml2js");
 
 const renderError = (message, secondaryMessage = "") => {
   return `
@@ -192,14 +192,21 @@ class CustomError extends Error {
 
 function ResponseType(
   response_type = "svg",
-  { callback = "githubReadmeStats", svgRender = require("../cards/stats-card") },
+  {
+    callback = "githubReadmeStats",
+    svg = {},
+    json = {},
+    xml = {},
+    jsonp = {},
+    yaml = {},
+  },
 ) {
-  const svg = {
+  svg = {
     contentType: "image/svg+xml",
-    render: svgRender,
     error: renderError,
+    ...svg,
   };
-  const json = {
+  json = {
     contentType: "application/json",
     render: (json) =>
       typeof json === "object"
@@ -209,14 +216,16 @@ function ResponseType(
         : null,
     error: (message, secondaryMessage = "") =>
       JSON.stringify({ error: { message, secondaryMessage } }),
+    ...json,
   };
-  const xml = {
+  xml = {
     contentType: "application/xml",
-    render: (json) => (new XmlBuilder()).buildObject(json),
+    render: (json) => new XmlBuilder().buildObject(json),
     error: (message, secondaryMessage = "") =>
-      (new XmlBuilder()).buildObject({ error: { message, secondaryMessage } }),
+      new XmlBuilder().buildObject({ error: { message, secondaryMessage } }),
+    ...xml,
   };
-  const jsonp = {
+  jsonp = {
     contentType: "application/javascript",
     render: (json) =>
       `${callback}(${
@@ -230,14 +239,16 @@ function ResponseType(
       `${callback}(${JSON.stringify({
         error: { message, secondaryMessage },
       })})`,
+    ...jsonp,
   };
-  const yaml = {
+  yaml = {
     contentType: "application/javascript",
     render: (json) => yamlSafeDump(json),
     error: (message, secondaryMessage = "") =>
       yamlSafeDump({
         error: { message, secondaryMessage },
       }),
+    ...yaml,
   };
   if (response_type.toLocaleLowerCase() === "svg") {
     return svg;
