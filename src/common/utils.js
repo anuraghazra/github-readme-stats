@@ -188,6 +188,26 @@ class CustomError extends Error {
   static USER_NOT_FOUND = "USER_NOT_FOUND";
 }
 
+function ResponseType(response_type = "svg") {
+  const svg = {
+    contentType: "image/svg+xml",
+    render: require("../cards/stats-card"),
+    error: renderError,
+  }
+  const json = {
+    contentType: "application/json",
+    render: json => typeof json === 'object' ? JSON.stringify(json) : typeof json === 'string' ? JSON.stringify(JSON.parse(json)) : null,
+    error: (message, secondaryMessage = "") => JSON.stringify({ error: { message, secondaryMessage } }),
+  }
+  if (response_type.toLocaleLowerCase() === "svg") {
+    return svg
+  } else if (response_type.toLocaleLowerCase() === "json") {
+    return json
+  } else {
+    return svg
+  }
+}
+
 module.exports = {
   renderError,
   kFormatter,
