@@ -117,7 +117,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     contribs: {
       icon: icons.contribs,
       label: i18n.t("statcard.contribs"),
-      value: contributedTo,
+      value: contributedTo+ " projects" ,
       id: "contribs",
     },
   };
