@@ -321,7 +321,9 @@ Choose from any of the [default themes](#themes)
 
 - Gradient
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e1f6f7,bff1f5&title_color=fff&text_color=fff)
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,ffffff,c8faf8,a4fcf9,97e2fc&title_color=00729c&text_color=00729c)
 
 - Customizing stats card
 
