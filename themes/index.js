@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+  grogu: {
+    title_color: "ffffff",
+    icon_color: "00ba9d",
+    text_color: "ffffff",
+    bg_color: "001837"
   }
 };
 
