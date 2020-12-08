@@ -76,14 +76,14 @@ Github 계정의 사용자 명(닉네임)을 `?username=` 속성의 값으로 �
 ```
 
 _참고: 랭크는 S+ (상위 1%), S (상위 25%), A++ (상위 45%), A+ (상위 60%), 그리고 B+ (전체) 로 구성되어 있습니다.
-값은 커밋, 기여도, 이슈, 스타, PR, 팔로워, 그리고 보유 중인 저장소들과 같은 항목들에 대해 [누적 분포 함수](https://ko.wikipedia.org/wiki/%EB%88%84%EC%A0%81_%EB%B6%84%ED%8F%AC_%ED%95%A8%EC%88%98) 를 이용해 계산됩니다.
-The implementation is can be investigated at [src/calculateRank.js](./src/calculateRank.js)_
+값은 커밋의 수(commits), 기여도(contribution), 이슈의 수(issues), 즐겨찾기(star), 작업내용 반영 요청(Pull Request), 팔로워 수, 그리고 보유 중인 저장소 등의 항목들에 대해 [누적 분포 함수](https://ko.wikipedia.org/wiki/%EB%88%84%EC%A0%81_%EB%B6%84%ED%8F%AC_%ED%95%A8%EC%88%98) 를 이용해 계산됩니다.
+[src/calculateRank.js](./src/calculateRank.js) 에서 수행되는 계산 작업의 내용을 확인할 수 있습니다._
 
-### Hiding individual stats
+### 개별 통계 숨기기
 
-To hide any specific stats, you can pass a query parameter `?hide=` with comma-separated values.
+특정 통계를 숨기려면 `콤마(,)`로 구분된 값들을 `?hide=` 속성의 값으로 넣어주세요.
 
-> Options: `&hide=stars,commits,prs,issues,contribs`
+> 사용 가능한 항목들: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
