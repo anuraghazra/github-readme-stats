@@ -27,7 +27,7 @@
   </p>
 
   <p align="center">
-    <a href="#데모">데모 보기</a>
+    <a href="#미리보기">미리보기 확인</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">버그 제보하기</a>
     ·
@@ -63,7 +63,8 @@
 - [Wakatime 주간 통계](#wakatime-주간-통계)
 - [테마](#테마)
 - [커스터마이징](#커스터마이징)
-- [Deploy Yourself](#deploy-on-your-own-vercel-instance)
+- [직접 배포하기](#나만의-Vercel-인스턴스에-직접-배포하기)
+
 
 # GitHub 통계
 
@@ -75,9 +76,14 @@
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_참고: 랭크는 S+ (상위 1%), S (상위 25%), A++ (상위 45%), A+ (상위 60%), 그리고 B+ (전체) 로 구성되어 있습니다.
-값은 커밋의 수(commits), 기여도(contribution), 이슈의 수(issues), 즐겨찾기(star), 작업내용 반영 요청(Pull Request), 팔로워 수, 그리고 보유 중인 저장소 등의 항목들에 대해 [누적 분포 함수](https://ko.wikipedia.org/wiki/%EB%88%84%EC%A0%81_%EB%B6%84%ED%8F%AC_%ED%95%A8%EC%88%98) 를 이용해 계산됩니다.
-[src/calculateRank.js](./src/calculateRank.js) 에서 수행되는 계산 작업의 내용을 확인할 수 있습니다._
+_참고:_
+
+_랭크는 S+ (상위 1%), S (상위 25%), A++ (상위 45%), A+ (상위 60%), 그리고 B+ (전체) 로 구성되어 있습니다._
+
+_커밋의 수(commits), 기여도(contribution), 이슈의 수(issues), 즐겨찾기(star), 작업내용 반영 요청(Pull Request),  
+팔로워 수, 그리고 보유 중인 저장소 등의 항목들에 대해 [누적 분포 함수](https://ko.wikipedia.org/wiki/%EB%88%84%EC%A0%81_%EB%B6%84%ED%8F%AC_%ED%95%A8%EC%88%98) 를 이용해 계산됩니다._
+
+_[src/calculateRank.js](./src/calculateRank.js) 에서 수행되는 계산 작업의 내용을 확인할 수 있습니다._
 
 ### 개별 통계 숨기기
 
@@ -154,7 +160,10 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
-> 캐시에 대한 참고사항: 포크와 스타 수가 1,000 개 미만인 저장소의 카드는 기본적으로 4시간 (14,400초) 으로 설정되어 있습니다. 그 외에는, it's 2시간 (7,200초) 입니다. 또한, 캐시설정 시간의 범위는 최소 2시간, 최대 24시간입니다.
+> 캐시에 대한 참고사항:  
+> 포크와 스타 수가 1,000 개 미만인 저장소의 카드는 기본적으로 4시간 (14,400초) 으로 설정되어 있습니다.  
+> 그 외에는, it's 2시간 (7,200초) 입니다. 또한, 캐시설정 시간의 범위는 최소 2시간, 최대 24시간입니다.
+
 
 #### 통계 카드의 표시 제한 옵션:
 
@@ -184,9 +193,10 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `exclude_repo` - 통계에 제외할 저장소 지정 _(Comma-separated values)_
 - `custom_title` - 카드의 타이틀 값 설정
 
-> :경고: **매우 중요:**
-> 언어의 이름은 [퍼센트 인코딩](https://ko.wikipedia.org/wiki/%ED%8D%BC%EC%84%BC%ED%8A%B8_%EC%9D%B8%EC%BD%94%EB%94%A9) 에 지정된 URI 방식으로 표기되어야 합니다. 
-> (예를 들면, `c++` 는 `c%2B%2B`, `jupyter notebook` 는 `jupyter%20notebook`, 등등.)
+##### 경고! **매우 중요**
+>
+> 언어의 이름은 [퍼센트 인코딩](https://ko.wikipedia.org/wiki/%ED%8D%BC%EC%84%BC%ED%8A%B8_%EC%9D%B8%EC%BD%94%EB%94%A9) 에 지정된 URI 방식으로 표기되어야 합니다.  
+> ( 예를 들면, `c++` 는 `c%2B%2B`, `jupyter notebook` 는 `jupyter%20notebook`, 등등. )  
 > [urlencoder.org](https://www.urlencoder.org/) < 서비스를 이용하면 자동으로 생성할 수 있습니다.
 
 #### Wakatime 카드의 표시 제한 옵션:
@@ -203,7 +213,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 GitHub 저장소 여분 핀을 이용하면, 6개 이상의 저장소 핀을 여러분의 프로필에 추가할 수 있어요.
 
-맞아요! 이제 6개 이상의 핀을 사용할 수 있어요!
+맞아요! 이제 6개 이상의 핀을 사용할 수 있어요! (핀이 부족할 일이 없답니다!)
 
 ### 사용법
 
@@ -215,7 +225,7 @@ GitHub 저장소 여분 핀을 이용하면, 6개 이상의 저장소 핀을 여
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### 데모
+### 미리보기
 
 [![GitHub 저장소 핀 카드](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -227,8 +237,9 @@ GitHub 저장소 여분 핀을 이용하면, 6개 이상의 저장소 핀을 여
 
 언어 사용량 통계 카드는 Github 사용자가 가장 많이 사용한 언어가 표시됩니다.
 
-_NOTE: Top Languages does not indicate my skill level or anything like that, . It's a new feature of github-readme-stats._
-_참고: 언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어의 표기일 뿐입니다. 숙련도, 혹은 그와 비슷한 지표를 나타내진 않습니다. github-readme-stats 의 새로운 기능입니다._
+_참고:  
+언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어의 표기일 뿐입니다.  
+숙련도, 혹은 그와 비슷한 지표를 나타내진 않습니다. (새로 추가된 기능입니다!)_
 
 ### 사용법
 
@@ -258,7 +269,6 @@ _참고: 언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어
 
 ### 표시할 언어 수 지정하기
 
-`&langs_count=` option to increase or decrease the number of languages shown on the card. Valid values are integers between 1 and 10 (inclusive), and the default is 5.
 `&langs_count=` 속성을 통해 카드에 표시할 언어의 수를 지정할 수 있어요. (1-10 사이, 기본 값 : 5)
 
 ```md
@@ -273,7 +283,7 @@ _참고: 언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### 데모
+### 미리보기
 
 [![언어 사용량 통계](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -289,7 +299,7 @@ _참고: 언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### 데모
+### 미리보기
 
 [![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -301,7 +311,7 @@ _참고: 언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어
 
 ---
 
-### 전체 데모
+### 전체 미리보기
 
 - 기본
 
@@ -355,7 +365,7 @@ _참고: 언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어
 
 아마, 이미지들을 나란히 정렬할 수 없을거에요.
 
-그럴땐, 이렇게 해보세요.:
+그럴땐, 이렇게 해보세요!
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -370,8 +380,7 @@ _참고: 언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어
 
 #### [@codeSTACKr 님의 튜토리얼 영상 보기](https://youtu.be/n6d4KHSKqGk?t=107)
 
-GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,
-
+GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,  
 저의 `https://github-readme-stats.vercel.app/api` 가 사용량 제한에 걸릴 위험이 생겼어요.
 
 만약, 여러분이 Vercel server 에서 직접 호스트 하신다면, 걱정하실 일은 없을거에요.
@@ -392,7 +401,7 @@ GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. GitHub 에 로그인한 뒤, (권한을 요청한다면) 모든 저장소에 대한 권한을 허용해주세요!
 1. 이 저장소를 Fork!
-1. [Vercel 대시보드](https://vercel.com/dashboard) 로 돌아가기
+1. [Vercel 대시보드](https://vercel.com/dashboard) 로 돌아가세요!
 1. `Import Project` 항목 선택!
    ![](https://files.catbox.moe/qckos0.png)
 1. `Import Git Repository` 항목 선택!
@@ -405,13 +414,15 @@ GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,
 
 ## :sparkling_heart: 프로젝트 지원하기!
 
-저는 가능한 모든 요소들을 오픈소스로 공개하고, 이 서비스를 이용하는데 도움이 필요한 모두에게 도움을 드리려 노력하고 있어요.
+저는 가능한 모든 요소들을 오픈소스로 공개하고,  
+이 서비스를 이용하는데 도움이 필요한 모두에게 도움을 드리려 노력하고 있어요.
 
-솔직히 말하자면, 시간이 좀 걸린답니다.
-
+솔직히 말하자면, 시간이 좀 걸린답니다...  
 물론, 여러분이 이 서비스를 사용하는건 무료에요 ㅎ
 
-하지만, 만약 여러분이 이 서비스를 잘 이용하며 행복을 느끼시거나, 제가 이런 요소들을 만드는 데에 도움을 주고 싶으시다면, 여러분께서 도와주실 수 있는 것들이 있어요!
+하지만, 만약 여러분이 이 서비스를 잘 이용하시고,  
+만족하시거나, 제가 이런 요소들을 만드는 데에 도움을 주고 싶으시다면,  
+여러분께서 도와주실 수 있는 것들이 있어요!
 
 - github-readme-stats 를 README 에 표시하실 때 확실한 도움을 주세요! 이 저장소로 링크를 걸어주시면 되요! :D
 - 이 프로젝트를 많이 공유해주시고, 즐겨찾기 해주세요! :rocket:
