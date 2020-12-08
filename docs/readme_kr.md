@@ -69,7 +69,7 @@
 
 아래 코드를 복사해서 마크다운 파일에 붙여넣으면 끝이에요, 아주 간단해요!
 
-Github 계정의 사용자 명(닉네임)을 `?username=` 속성의 값으로 바꿔주세요.
+`?username=` 속성의 값을 Github 계정의 사용자 명(닉네임)으로 바꿔주세요.
 
 ```md
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
@@ -281,79 +281,81 @@ _참고: 언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어
 
 [![언어 사용량 통계](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Wakatime Week Stats
+# Wakatime 주간 통계
 
-Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
+`?username=` 속성의 값을 [Wakatime](https://wakatime.com) 계정의 사용자 명(닉네임)으로 바꿔주세요.
 
 ```md
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Demo
+### 데모
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
-- Compact layout
+- 컴팩트한 레이아웃
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
-
----
-
-### All Demos
-
-- Default
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
-
-- Hiding specific stats
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
-
-- Showing icons
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
-
-- Include All Commits
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
-
-- Themes
-
-Choose from any of the [default themes](#themes)
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
-
-- Gradient
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
-
-- Customizing stats card
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
-
-- Setting card locale
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=es)
-
-- Customizing repo card
-
-![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
-
-- Top languages
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
-
-- Wakatime card
-
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
-### Quick Tip (Align The Repo Cards)
+### 전체 데모
 
-You usually won't be able to layout the images side by side. To do that you can use this approach:
+- 기본
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+
+- 특정 통계 내용 숨김
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
+
+- 아이콘 표시
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
+
+- 전체 커밋 포함 시
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+
+- 테마들
+
+[내장 테마](#themes) 에서 직접 선택해보세요
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+
+- 그라데이션 주기
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
+
+- 통계 카드 커스터마이징하기
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+
+- 언어 사용 지역 설정하기
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=kr)
+
+- 저장소 핀 커스터마이징하기
+
+![Anurag 님의 GitHub 저장소 핀](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+
+- 언어 사용량 통계
+
+[![언어 사용량 통계](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+- Wakatime 카드
+
+[![willianrod 님의 Wakatime 카드](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+
+---
+
+### 꿀팁 (저장소 핀 정렬하기)
+
+아마, 이미지들을 나란히 정렬할 수 없을거에요.
+
+그럴땐, 이렇게 해보세요.:
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -364,54 +366,63 @@ You usually won't be able to layout the images side by side. To do that you can 
 </a>
 ```
 
-## Deploy on your own Vercel instance
+## 나만의 Vercel 인스턴스에 직접 배포하기
 
-#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+#### [@codeSTACKr 님의 튜토리얼 영상 보기](https://youtu.be/n6d4KHSKqGk?t=107)
 
-Since the GitHub API only allows 5k requests per hour, my `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
+GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,
 
-NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we should be able to handle more than 5k requests and have no issues with downtime :D
+저의 `https://github-readme-stats.vercel.app/api` 가 사용량 제한에 걸릴 위험이 생겼어요.
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
+만약, 여러분이 Vercel server 에서 직접 호스트 하신다면, 걱정하실 일은 없을거에요.
+
+아래의 버튼을 이용해 직접 배포해보세요!
+
+참고: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 풀 리퀘스트 이후로, 저희는 5,000 개 이상의 요청을 처리할 수 있게 됐어요. 더이상 서버 다운에 대한 걱정은 노놉! :D
+
+[![Vercel 에 배포하기](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary><b> Guide on setting up Vercel  🔨 </b></summary>
+ <summary><b> 🔨 Vercel 세팅 가이드!   </b></summary>
 
-1. Go to [vercel.com](https://vercel.com/)
-1. Click on `Log in`
+1. [vercel.com](https://vercel.com/) 으로 이동하기
+1. `Log in` 버튼 클릭!
    ![](https://files.catbox.moe/tct1wg.png)
-1. Sign in with GitHub by pressing `Continue with GitHub`
+1. `Continue with GitHub` 버튼을 이용해 GitHub 계정으로 가입하기
    ![](https://files.catbox.moe/btd78j.jpeg)
-1. Sign into GitHub and allow access to all repositories, if prompted
-1. Fork this repo
-1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
-1. Select `Import Project`
+1. GitHub 에 로그인한 뒤, (권한을 요청한다면) 모든 저장소에 대한 권한을 허용해주세요!
+1. 이 저장소를 Fork!
+1. [Vercel 대시보드](https://vercel.com/dashboard) 로 돌아가기
+1. `Import Project` 항목 선택!
    ![](https://files.catbox.moe/qckos0.png)
-1. Select `Import Git Repository`
+1. `Import Git Repository` 항목 선택!
    ![](https://files.catbox.moe/pqub9q.png)
-1. Select root and keep everything as is, just add your environment variable named PAT_1 (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)
+1. 'root' 를 선택하고 넘어간 후, 아래와 같이 개인용 엑세스 토큰 (PAT) 을 저장할 환경변수를 PAT_1 의 값으로 추가해주세요. [이 곳](https://github.com/settings/tokens/new)에서 쉽게 생성할 수 있어요. (모든 항목을 그대로 두고, 이 부분만 원하는 이름으로 변경해주세요.)
    ![](https://files.catbox.moe/0ez4g7.png)
-1. Click deploy, and you're good to go. See your domains to use the API!
+1. 마지막으로 'Deploy' 버튼을 클릭하면, 끝! => API 를 사용하기 위한 도메인 주소를 확인하세요!
 
 </details>
 
-## :sparkling_heart: Support the project
+## :sparkling_heart: 프로젝트 지원하기!
 
-I open-source almost everything I can, and I try to reply to everyone needing help using these projects. Obviously,
-this takes time. You can use this service for free.
+저는 가능한 모든 요소들을 오픈소스로 공개하고, 이 서비스를 이용하는데 도움이 필요한 모두에게 도움을 드리려 노력하고 있어요.
 
-However, if you are using this project and happy with it or just want to encourage me to continue creating stuff, there are few ways you can do it :-
+솔직히 말하자면, 시간이 좀 걸린답니다.
 
-- Giving proper credit when you use github-readme-stats on your readme, linking back to it :D
-- Starring and sharing the project :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - You can make one-time donations via PayPal. I'll probably buy a ~~coffee~~ tea. :tea:
+물론, 여러분이 이 서비스를 사용하는건 무료에요 ㅎ
 
-Thanks! :heart:
+하지만, 만약 여러분이 이 서비스를 잘 이용하며 행복을 느끼시거나, 제가 이런 요소들을 만드는 데에 도움을 주고 싶으시다면, 여러분께서 도와주실 수 있는 것들이 있어요!
+
+- github-readme-stats 를 README 에 표시하실 때 확실한 도움을 주세요! 이 저장소로 링크를 걸어주시면 되요! :D
+- 이 프로젝트를 많이 공유해주시고, 즐겨찾기 해주세요! :rocket:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - PayPal 을 이용해 1회성 도네이션을 해주실 수 있어요. 아마도 전 ~~커피, 아... 아니~~ 차를 사서 마시겠죠? ㅎ; :tea:
+
+감사합니다! :heart:
 
 ---
 
 ![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
 
-Contributions are welcome! <3
+프로젝트에 대한 기여는 언제나 환영이에요! <3
 
 Made with :heart: and JavaScript.
