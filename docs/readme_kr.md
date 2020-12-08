@@ -58,7 +58,7 @@
 # 기능들
 
 - [GitHub 통계](#github-통계)
-- [GitHub 저장소 핀](#github-저장소-핀)
+- [GitHub 저장소 여분 핀](#github-저장소-여분-핀)
 - [언어 사용량 통계](#언어-사용량-통계)
 - [Wakatime 주간 통계](#wakatime-주간-통계)
 - [테마](#테마)
@@ -89,113 +89,117 @@ _참고: 랭크는 S+ (상위 1%), S (상위 25%), A++ (상위 45%), A+ (상위 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
-### Adding private contributions count to total commits count
+### 총 커밋 수에 비공개 기여도 (private contribs) 수 추가하기
 
-You can add the count of all your private contributions to the total commits count by using the query parameter `?count_private=true`.
+`?count_private=true` 속성을 추가하시면, 여러분의 모든 비공개 기여도까지 반영됩니다.
 
-_Note: If you are deploying this project yourself, the private contributions will be counted by default otherwise you need to chose to share your private contribution counts._
+_참고: 프로젝트를 직접 배포하신 경우, 비공개 기여도는 기본적으로 반영됩니다. 원하지 않는 경우엔 직접 설정해야 합니다._
 
-> Options: `&count_private=true`
+> 예시: `&count_private=true`
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
-### Showing icons
+### 아이콘 표시하기
 
-To enable icons, you can pass `show_icons=true` in the query param, like so:
+아이콘 항목을 활성화 하기 위해선, 다음과 같이 `show_icons=true` 속성을 추가해주세요.
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
-### Themes
+### 테마 설정하기
 
-With inbuilt themes, you can customize the look of the card without doing any [manual customization](#customization).
+내장 테마를 사용하시면, 별도의 [커스터마이징](#커스터마이징) 없이 GitHub 통계 카드를 꾸미실 수 있어요.
 
-Use `?theme=THEME_NAME` parameter like so :-
+다음과 같이 `?theme=THEME_NAME` 속성을 이용해주세요.
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
-#### All inbuilt themes :-
+#### 지원하는 내장 테마 목록
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
+[사용 가능한 모든 테마](./themes/README.md) 에서 미리보기를 확인하실 수 있어요.
 
-### Customization
+원하신다면 [테마 설정하기](./themes/index.js) 항목에서  **새로운 테마를 직접 만드실수 있어요.** :D
 
-You can customize the appearance of your `Stats Card` or `Repo Card` however you want with URL params.
+### 커스터마이징
 
-#### Common Options:
+여러가지 추가 속성을 통해, 원하는대로 `Stats Card` 또는 `Repo Card` 모양을 커스터마이징할 수 있어요.
 
-- `title_color` - Card's title color _(hex color)_
-- `text_color` - Body text color _(hex color)_
-- `icon_color` - Icons color if available _(hex color)_
-- `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_
-- `hide_border` - Hides the card's border _(boolean)_
-- `theme` - name of the theme, choose from [all available themes](./themes/README.md)
-- `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
-- `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
+#### 기본 옵션:
 
-##### Gradient in bg_color
+- `title_color` - 카드 타이틀 색상 _(hex color)_
+- `text_color` - 카드 본문 글씨 색상 _(hex color)_
+- `icon_color` - 아이콘 색상 (활성화된 경우) _(hex color)_
+- `bg_color` - 카드의 배경 색상 _(hex color)_ **혹은** 다음 양식으로 그라데이션 주기 _angle,start,end_
+- `hide_border` - 카드의 테두리 표시 여부 _(boolean)_
+- `theme` - 테마의 이름, [사용 가능한 모든 테마](./themes/README.md) 에서 선택
+- `cache_seconds` - 수동으로 캐시 헤더 설정 _(min: 1800, max: 86400)_
+- `locale` - 카드에 표시할 언어 _(e.g. kr, cn, de, es, etc.)_
 
-You can provide multiple comma-separated values in bg_color option to render a gradient, the format of the gradient is :-
+##### 배경에 그라데이션 주기
+
+그라데이션이 적용된 카드를 표시하고 싶으시다면, 여러가지 쉼표(,) 로 구분된 값을 추가할 수 있어요.
+
+양식은 다음과 같습니다.
 
 ```
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
-> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k, otherwise, it's 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours
+> 캐시에 대한 참고사항: 포크와 스타 수가 1,000 개 미만인 저장소의 카드는 기본적으로 4시간 (14,400초) 으로 설정되어 있습니다. 그 외에는, it's 2시간 (7,200초) 입니다. 또한, 캐시설정 시간의 범위는 최소 2시간, 최대 24시간입니다.
 
-#### Stats Card Exclusive Options:
+#### 통계 카드의 표시 제한 옵션:
 
-- `hide` - Hides the specified items from stats _(Comma-separated values)_
-- `hide_title` - _(boolean)_
-- `hide_rank` - _(boolean)_
-- `hide_border` - _(boolean)_
-- `show_icons` - _(boolean)_
-- `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
-- `count_private` - Count private commits _(boolean)_
-- `line_height` - Sets the line-height between text _(number)_
-- `custom_title` - Sets a custom title for the card
-- `disable_animations` - Disables all animations in the card _(boolean)_
+- `hide` - 통계에서 특정한 값 제외 _(Comma-separated values)_
+- `hide_title` - 타이틀 표시 여부 _(boolean)_
+- `hide_rank` - 랭크 표시 여부 _(boolean)_
+- `hide_border` - 테두리 표시 여부 _(boolean)_
+- `show_icons` - 아이콘 표시 여부 _(boolean)_
+- `include_all_commits` - 올해가 아닌 전체 연도에 대한 커밋 포함 여부 _(boolean)_
+- `count_private` - 비공개 기여도 포함 여부 _(boolean)_
+- `line_height` - 텍스트 간 줄 높이 설정(자간) _(number)_
+- `custom_title` - 카드의 타이틀 값 설정
+- `disable_animations` - 카드의 모든 에니메이션 활성 여부 _(boolean)_
 
-#### Repo Card Exclusive Options:
+#### 저장소 카드의 표시 제한 옵션:
 
-- `show_owner` - Show the owner name of the repo _(boolean)_
+- `show_owner` - 저장소 소유자 닉네임 표기 여부 _(boolean)_
 
-#### Language Card Exclusive Options:
+#### 언어 사용량 통계 카드의 표시 제한 옵션:
 
-- `hide` - Hide the languages specified from the card _(Comma-separated values)_
-- `hide_title` - _(boolean)_
-- `hide_border` - _(boolean)_
-- `layout` - Switch between two available layouts `default` & `compact`
-- `card_width` - Set the card's width manually _(number)_
-- `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
-- `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
-- `custom_title` - Sets a custom title for the card
+- `hide` - 카드에서 특정 언어 제외 _(Comma-separated values)_
+- `hide_title` - 타이틀 제외 _(boolean)_
+- `hide_border` - 테두리 제외 _(boolean)_
+- `layout` - 사용 가능한 두 가지 값, `default` & `compact` 중 표시 형태 선택
+- `card_width` - 카드 너비 직접 설정 _(number)_
+- `langs_count` - 카드에 표시할 언어의 수 (1-10 사이, 기본 값 : 5) _(number)_
+- `exclude_repo` - 통계에 제외할 저장소 지정 _(Comma-separated values)_
+- `custom_title` - 카드의 타이틀 값 설정
 
-> :warning: **Important:**
-> Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
-> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
-> [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
+> :경고: **매우 중요:**
+> 언어의 이름은 [퍼센트 인코딩](https://ko.wikipedia.org/wiki/%ED%8D%BC%EC%84%BC%ED%8A%B8_%EC%9D%B8%EC%BD%94%EB%94%A9) 에 지정된 URI 방식으로 표기되어야 합니다. 
+> (예를 들면, `c++` 는 `c%2B%2B`, `jupyter notebook` 는 `jupyter%20notebook`, 등등.)
+> [urlencoder.org](https://www.urlencoder.org/) < 서비스를 이용하면 자동으로 생성할 수 있습니다.
 
-#### Wakatime Card Exclusive Options:
+#### Wakatime 카드의 표시 제한 옵션:
 
-- `hide_title` - _(boolean)_
-- `line_height` - Sets the line-height between text _(number)_
-- `hide_progress` - Hides the progress bar and percentage _(boolean)_
-- `custom_title` - Sets a custom title for the card
-- `layout` - Switch between two available layouts `default` & `compact`
+- `hide_title` - 타이틀 제외 _(boolean)_
+- `line_height` - 텍스트 간 줄 높이 설정(자간) _(number)_
+- `hide_progress` - 퍼센트와 표기바 표시 여부 _(boolean)_
+- `custom_title` - 카드의 타이틀 값 설정
+- `layout` - 사용 가능한 두 가지 값, `default` & `compact` 중 표시 형태 선택
 
 ---
 
-# GitHub Extra Pins
+# GitHub 저장소 여분 핀
 
 GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
 
