@@ -58,7 +58,7 @@
 # 기능들
 
 - [GitHub 통계](#github-통계)
-- [GitHub 저장소 여분 핀](#github-저장소-여분-핀)
+- [GitHub 저장소 핀](#github-저장소-핀)
 - [언어 사용량 통계](#언어-사용량-통계)
 - [Wakatime 주간 통계](#wakatime-주간-통계)
 - [테마](#테마)
@@ -199,85 +199,87 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 ---
 
-# GitHub 저장소 여분 핀
+# GitHub 저장소 핀
 
-GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
+GitHub 저장소 여분 핀을 이용하면, 6개 이상의 저장소 핀을 여러분의 프로필에 추가할 수 있어요.
 
-Yay! You are no longer limited to 6 pinned repositories.
+맞아요! 이제 6개 이상의 핀을 사용할 수 있어요!
 
-### Usage
+### 사용법
 
-Copy-paste this code into your readme and change the links.
+이 코드를 복사해서 여러분의 README 에 넣고 링크를 변경해주세요.
 
-Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
+엔드 포인트: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
 [![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Demo
+### 데모
 
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![GitHub 저장소 핀 카드](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
-Use [show_owner](#customization) variable to include the repo's owner username
+[show_owner](#커스터마이징) 속성을 통해 저장소 소유자의 닉네임 표시 여부를 설정할 수 있어요.
 
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+[![GitHub 저장소 핀 카드](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
-# Top Languages Card
+# 언어 사용량 통계
 
-The top languages card shows a GitHub user's top languages which have used the most.
+언어 사용량 통계 카드는 Github 사용자가 가장 많이 사용한 언어가 표시됩니다.
 
-_NOTE: Top Languages does not indicate my skill level or anything like that, it's a GitHub metric of which languages have the most code on GitHub. It's a new feature of github-readme-stats._
+_NOTE: Top Languages does not indicate my skill level or anything like that, . It's a new feature of github-readme-stats._
+_참고: 언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어의 표기일 뿐입니다. 숙련도, 혹은 그와 비슷한 지표를 나타내진 않습니다. github-readme-stats 의 새로운 기능입니다._
 
-### Usage
+### 사용법
 
-Copy-paste this code into your readme and change the links.
+이 코드를 복사해서 여러분의 README 에 넣고 링크를 변경해주세요.
 
-Endpoint: `api/top-langs?username=anuraghazra`
+엔드 포인트: `api/top-langs?username=anuraghazra`
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Exclude individual repositories
+### 통계에서 제외할 저장소 지정하기
 
-You can use `?exclude_repo=repo1,repo2` parameter to exclude individual repositories.
+`?exclude_repo=repo1,repo2` 속성을 통해 특정 저장소를 제외할 수 있어요.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Hide individual languages
+### 통계에서 특정 언어 제외하기
 
-You can use `?hide=language1,language2` parameter to hide individual languages.
+`?hide=language1,language2` 속성을 통해 특정 언어를 제외할 수 있어요.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Show more languages
+### 표시할 언어 수 지정하기
 
-You can use the `&langs_count=` option to increase or decrease the number of languages shown on the card. Valid values are integers between 1 and 10 (inclusive), and the default is 5.
+`&langs_count=` option to increase or decrease the number of languages shown on the card. Valid values are integers between 1 and 10 (inclusive), and the default is 5.
+`&langs_count=` 속성을 통해 카드에 표시할 언어의 수를 지정할 수 있어요. (1-10 사이, 기본 값 : 5)
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Compact Language Card Layout
+### 컴택트한 카드 레이아웃 설정하기
 
-You can use the `&layout=compact` option to change the card design.
+`&layout=compact` 속성을 통해 카드의 디자인을 변경할 수 있어요.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Demo
+### 데모
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![언어 사용량 통계](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- Compact layout
+- 컴팩트한 레이아웃
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![언어 사용량 통계](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 # Wakatime Week Stats
 
