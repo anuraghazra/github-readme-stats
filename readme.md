@@ -404,7 +404,8 @@ Thanks! :heart:
 
 ---
 
-![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
+[![https://vercel.com?utm_source=anuraghazra-team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=anuraghazra-team&utm_campaign=oss)
+
 
 Contributions are welcome! <3
 
