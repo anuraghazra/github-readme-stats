@@ -50,6 +50,8 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
   </p>
 </p>
 <p align="center">Du magst das Projekt? Wie wäre es mit einer kleinen <a href="https://www.paypal.me/anuraghazra">Spende</a> um es weiterhin am Leben zu erhalten?
@@ -122,8 +124,10 @@ Du kannst das Erscheinungsbild deiner `Stats Card` oder `Repo Card`, mithilfe vo
 - `text_color` - Textkörperfarbe _(hex color)_
 - `icon_color` - Symbolfarbe (falls verfügbar) _(hex color)_
 - `bg_color` - Hintergrundfarbe _(hex color)_ **oder** ein Farbverlauf in der Form von _winkel,start,ende_
+- `hide_border` - Blendet den Rand der Karte aus _(Boolescher Wert)_
 - `theme` - Name des Erscheinungsbildes/Themes [alle verfügbaren Themes](../themes/README.md)
 - `cache_seconds` - manuelles festlegen der Cachezeiten _(min: 1800, max: 86400)_
+- `locale` - Stellen Sie die Sprache auf der Karte ein _(z.B. cn, de, es, etc.)_
 
 ##### Farbverlauf in bg_color
 
