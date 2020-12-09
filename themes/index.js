@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+  cyberpunk_2077: {
+    title_color: "e72cd1",
+    icon_color: "59a1cf",
+    text_color: "221b17",
+    bg_color: "efe804"
   }
 };
 
