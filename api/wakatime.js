@@ -38,8 +38,6 @@ module.exports = async (req, res) => {
   try {
     const last7Days = await fetchLast7Days(username, top, hide);
 
-    console.log(last7Days)
-
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       CONSTANTS.TWO_HOURS,

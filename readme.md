@@ -277,10 +277,28 @@ You can use the `&layout=compact` option to change the card design.
 
 # Wakatime Week Stats
 
+### Usage
+
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ```md
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Hide individual languages
+
+You can use `?hide=language1,language2` parameter to hide individual languages.
+
+```md
+[![francis's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=francis&hide=other,html,scss,css,yaml,xml,toml)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Take Top N
+
+You can use `?top=5` to take top languages(`default top=5`).
+
+```md
+[![francis's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=francis&hide=other,html,scss,css,yaml,xml,toml&top=10)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo

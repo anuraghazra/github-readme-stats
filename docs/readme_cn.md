@@ -244,6 +244,44 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ---
 
+# Wakatime 周展示卡片
+
+### 用法
+
+修改 `?username=` 为你的 [Wakatime](https://wakatime.com) 用户名.
+
+```md
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### 隐藏不需要展示的语言
+
+你可以使用 `?hide=language1,language2` 来过滤你不需要展示的语言
+
+```md
+[![francis's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=francis&hide=other,html,scss,css,yaml,xml,toml)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Top N
+
+你可以使用 `?top=5`  来展示使用最频繁的几个语言(`默认 top=5`).
+
+```md
+[![francis's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=francis&hide=other,html,scss,css,yaml,xml,toml&top=10)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Demo
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
+- Compact layout
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
+---
+
 ### 全部 Demos
 
 - 默认
