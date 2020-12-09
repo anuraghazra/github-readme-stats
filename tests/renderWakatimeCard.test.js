@@ -12,7 +12,6 @@ describe("Test Render Wakatime Card", () => {
 
   it("should render correctly with compact layout", () => {
     const card = renderWakatimeCard(wakaTimeData.data, { layout: "compact" });
-    console.log(card)
     expect(card).toMatchSnapshot();
   });
 
