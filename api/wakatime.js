@@ -6,12 +6,14 @@ const {
   CONSTANTS,
   isLocaleAvailable,
 } = require("../src/common/utils");
-const { fetchLast7Days } = require("../src/fetchers/wakatime-fetcher");
+const fetchLast7Days = require("../src/fetchers/wakatime-fetcher");
 const wakatimeCard = require("../src/cards/wakatime-card");
 
 module.exports = async (req, res) => {
   const {
     username,
+    top,
+    hide,
     title_color,
     icon_color,
     hide_border,
@@ -34,7 +36,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const last7Days = await fetchLast7Days({ username });
+    const last7Days = await fetchLast7Days(username, top, hide);
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),

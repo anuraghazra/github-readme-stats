@@ -90,15 +90,13 @@ async function fetchTopLanguages(username, langsCount = 5, exclude_repo = []) {
       };
     }, {});
 
-  const topLangs = Object.keys(repoNodes)
+  return Object.keys(repoNodes)
     .sort((a, b) => repoNodes[b].size - repoNodes[a].size)
     .slice(0, langsCount)
     .reduce((result, key) => {
       result[key] = repoNodes[key];
       return result;
     }, {});
-
-  return topLangs;
 }
 
 module.exports = fetchTopLanguages;

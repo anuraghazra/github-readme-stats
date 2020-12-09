@@ -1,7 +1,7 @@
 require("@testing-library/jest-dom");
 const axios = require("axios");
 const MockAdapter = require("axios-mock-adapter");
-const { fetchLast7Days } = require("../src/fetchers/wakatime-fetcher");
+const fetchLast7Days = require("../src/fetchers/wakatime-fetcher");
 const mock = new MockAdapter(axios);
 
 afterEach(() => {
@@ -102,14 +102,14 @@ const wakaTimeData = {
 
 describe("Wakatime fetcher", () => {
   it("should fetch correct wakatime data", async () => {
-    const username = "anuraghazra";
+    const username = "francis";
     mock
       .onGet(
         `https://wakatime.com/api/v1/users/${username}/stats/last_7_days?is_including_today=true`,
       )
       .reply(200, wakaTimeData);
 
-    const repo = await fetchLast7Days({ username });
+    const repo = await fetchLast7Days(username, top = 5, "");
     expect(repo).toMatchInlineSnapshot(`
       Object {
         "categories": Array [
