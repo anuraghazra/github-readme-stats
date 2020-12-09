@@ -64,6 +64,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     theme = "default",
     custom_title,
     locale,
+    disable_animations = false,
   } = options;
 
   const lheight = parseInt(line_height, 10);
@@ -77,7 +78,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     theme,
   });
 
-  const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
+  const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
+    ? ""
+    : "s";
   const i18n = new I18n({
     locale,
     translations: statCardLocales({ name, apostrophe }),
@@ -189,6 +192,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
   card.setCSS(cssStyles);
+
+  if (disable_animations) card.disableAnimations();
 
   return card.render(`
     ${rankCircle}

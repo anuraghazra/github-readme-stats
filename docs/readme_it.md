@@ -49,6 +49,8 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
   </p>
 </p>
 <p align="center">Se ti piace questo progetto, considera la possibilità di <a href="https://www.paypal.me/anuraghazra">donare</a> per aiutare a renderlo migliore!

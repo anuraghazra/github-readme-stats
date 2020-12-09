@@ -256,6 +256,17 @@ const themes = {
     icon_color: "c2a11e",
     text_color: "d8b52a",
     bg_color: "403f3e"
+  slateorange: {
+    title_color: "faa627",
+    icon_color: "faa627",
+    text_color: "ffffff",
+    bg_color: "36393f"
+  },
+  kacho_ga: {
+    title_color: "bf4a3f",
+    icon_color: "a64833",
+    text_color: "d9c8a9",
+    bg_color: "402b23"
   }
 };
 
