@@ -215,6 +215,12 @@ const themes = {
     text_color: "509E2F",
     bg_color: "ffffff",
   },
+  "flag-india-dark": {
+    title_color: "ff8f1c",
+    icon_color: "f0f0f0",
+    text_color: "509E2F",
+    bg_color: "282828",
+  },
   omni: {
     title_color: "FF79C6",
     icon_color: "e7de79",
