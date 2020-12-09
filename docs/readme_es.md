@@ -50,6 +50,8 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
   </p>
 </p>
 <p align="center">¿Te gusta este proyecto? ¡Por favor considera <a href="https://www.paypal.me/anuraghazra">donar</a> para ayudar a mejorarlo!
@@ -78,7 +80,7 @@ _Nota: las clasificaciones se calculan basándose en las estadísticas del usuar
 
 Para ocultar alguna estadística específica, puedes utilizar el parámetro `?hide=` con un arreglo de items que quieras ocultar.
 
-> Opciones: `&hide=["stars","commits","prs","issues","contribs"]`
+> Opciones: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","prs"])
@@ -132,8 +134,10 @@ Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que
 - `text_color` - Color del contenido _(hex color)_
 - `icon_color` - Color de icono si esta disponible _(hex color)_
 - `bg_color` - Color de fondo _(hex color)_
+- `hide_border` - Oculta el borde de la tarjeta _(booleano)_
 - `theme` - Nombre del tema, elige uno de [todos los temas disponible ](../themes/README.md)
 - `cache_seconds` - Cache _(min: 1800, max: 86400)_
+- `locale` - configurar el idioma en la tarjeta _(p.ej. cn, de, es, etc.)_
 
 > Nota sobre la caché: las tarjetas de Repo tienen un caché predeterminado de 30 minutos (1800 segundos) si el recuento forks y el recuento de estrellas es inferior a 1k; de lo contrario, son 2 horas (7200). También tenga en cuenta que el caché está sujeto a un mínimo de 30 minutos y un máximo de 24 horas
 
@@ -142,10 +146,12 @@ Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que
 - `hide` - Ocultar los elementos especificados de las estadísticas _ (valores separados por comas) _
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Cuente los commits totales en lugar de solo los commits del año actual _(boolean)_
 - `count_private` - Cuenta los commits privadas _(boolean)_
 - `line_height` - Establece el alto de línea entre texto _(number)_
+- `custom_title` - Establece un título personalizado
 
 #### Opciones exclusivas de la tarjeta Repo:
 
@@ -155,6 +161,7 @@ Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que
 
 - `hide` - Ocultar los lenguajes especificados de la tarjeta _(valores separados por comas)_
 - `hide_title` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `layout` - Cambiar entre dos diseños disponibles `default` & `compact`
 - `card_width` - Establecer el ancho de la tarjeta manualmente _(number)_
 

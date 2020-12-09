@@ -49,6 +49,8 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
   </p>
 </p>
 <p align="center">이 프로젝트가 마음에 드나요? 괜찮으시다면 더 나은 개선을 위해 <a href="https://www.paypal.me/anuraghazra">기부</a>를 고려해주세요!
@@ -132,8 +134,10 @@ URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card`
 - `text_color` - 본문 글자 색상 _(hex color)_
 - `icon_color` - 아이콘 색상(활성화된 경우) _(hex color)_
 - `bg_color` - 카드 배경 색상 _(hex color)_
+- `hide_border` - 카드의 테두리를 숨 깁니다 _(부울)_
 - `theme` - 테마의 이름, [사용 가능한 모든 테마](../themes/README.md)에서 선택
 - `cache_seconds` - 캐시 헤더를 수동으로 설정 _(min: 1800, max: 86400)_
+- `locale` - 카드에 언어 설정 _(예 : cn, de, es, 기타)_
 
 > 캐시 관련 참고: Repo 카드는 fork 개수와 star 카운트가 1천 개 미만인 경우 기본 캐시가 30분(1800초)이고, 그렇지 않은 경우 2시간(7200초) 입니다. 또한 캐시는 최소 30분 및 최대 24시간으로 고정됩니다.
 
@@ -142,6 +146,7 @@ URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card`
 - `hide` - 통계에서 특정 항목을 제외한다. _(콤마로 구분된 값)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - 현재 년도 대신 전체 커밋 개수 카운트 _(boolean)_
 - `count_private` - private 커밋도 카운트 _(boolean)_
@@ -155,6 +160,7 @@ URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card`
 
 - `hide` - 카드에서 특정 언어 숨기기 _(콤마로 구분된 값)_
 - `hide_title` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `layout` - `default` & `compact` 레이아웃 간의 전환
 - `card_width` - 카드의 너비를 수동으로 설정 _(숫자)_
 

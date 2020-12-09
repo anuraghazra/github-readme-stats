@@ -12,7 +12,7 @@ describe("Test calculateRank", () => {
         stargazers: 400,
         prs: 300,
         issues: 200,
-      })
+      }),
     ).toStrictEqual({ level: "A+", score: 49.16605417270399 });
   });
 });

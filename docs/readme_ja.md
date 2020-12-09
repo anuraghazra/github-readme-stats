@@ -49,6 +49,8 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
   </p>
 </p>
 <p align="center">このプロジェクトを気に入っていただけましたか？<br>もしよろしければ、プロジェクトのさらなる改善のために<a href="https://www.paypal.me/anuraghazra">寄付</a>を検討して頂けると嬉しいです！</p>
@@ -133,8 +135,10 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `text_color` - 中身のテキストの色 _(16 進数カラーコード)_
 - `icon_color` - アイコンの色（変更可能な場合のみ） _(16 進数カラーコード)_
 - `bg_color` - 背景の色 _(16 進数カラーコード)_ **または** _angle,start,end_ の形式でグラデーションを指定することも可
+- `hide_border` - カードの境界線を非表示にします _(ブール値)_
 - `theme` - [使用可能なテーマ一覧](../themes/README.md) から選んだテーマ名
 - `cache_seconds` - キャッシュ時間の秒数 _(最小値: 1800, 最大値: 86400)_
+- `locale` - カードに言語を設定する _(例えば cn, de, es, 等)_
 
 ##### bg_color の グラデーション指定
 
@@ -151,6 +155,7 @@ bg_color オプションで複数のカンマ区切りの値を指定してグ�
 - `hide` - 特定の統計情報を隠す _(カンマ区切りで指定)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - 今年度のコミット数だけでなく、コミット数の総数をカウントする _(boolean)_
 - `count_private` - プライベートリポジトリへのコミットをカウントする _(boolean)_
@@ -164,6 +169,7 @@ bg_color オプションで複数のカンマ区切りの値を指定してグ�
 
 - `hide` - 特定の言語を隠す _(カンマ区切りで指定)_
 - `hide_title` - _(boolean)_
+- `hide_border` - _(boolean)_
 - `layout` - `default` か `compact` のいずれかのレイアウトに切り替える
 - `card_width` - カードの横幅 _(number)_
 
