@@ -12,7 +12,7 @@ describe("Test Render Wakatime Card", () => {
 
   it("should render correctly with compact layout", () => {
     const card = renderWakatimeCard(wakaTimeData.data, { layout: "compact" });
-
+    console.log(card)
     expect(card).toMatchSnapshot();
   });
 
@@ -22,7 +22,7 @@ describe("Test Render Wakatime Card", () => {
       "Wakatime 周统计",
     );
     expect(
-      document.querySelector('g[transform="translate(0, 0)"]>text.stat.bold')
+      document.querySelector("g[transform=\"translate(0, 0)\"]>text.stat.bold")
         .textContent,
     ).toBe("本周没有编程活动");
   });

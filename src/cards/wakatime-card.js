@@ -18,7 +18,7 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
   return `
     <g transform="translate(${x}, ${y})">
       <circle cx="5" cy="6" r="5" fill="${color}" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
+      <text data-testid="lang-name" x="15" y="10" class="lang-name">
         ${lang.name} - ${lang.text}
       </text>
     </g>
@@ -47,28 +47,28 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
 };
 
 const createTextNode = ({
-  id,
-  label,
-  value,
-  index,
-  percent,
-  hideProgress,
-  progressBarColor,
-  progressBarBackgroundColor,
-}) => {
+                          id,
+                          label,
+                          value,
+                          index,
+                          percent,
+                          hideProgress,
+                          progressBarColor,
+                          progressBarBackgroundColor,
+                        }) => {
   const staggerDelay = (index + 3) * 150;
 
   const cardProgress = hideProgress
     ? null
     : createProgressNode({
-        x: 110,
-        y: 4,
-        progress: percent,
-        color: progressBarColor,
-        width: 220,
-        name: label,
-        progressBarBackgroundColor,
-      });
+      x: 110,
+      y: 4,
+      progress: percent,
+      color: progressBarColor,
+      width: 220,
+      name: label,
+      progressBarBackgroundColor,
+    });
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
@@ -85,7 +85,10 @@ const createTextNode = ({
 };
 
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  const { languages } = stats;
+  let { languages } = stats;
+  if (!languages) {
+    languages = [];
+  }
   const {
     hide_title = false,
     hide_border = false,
@@ -117,21 +120,19 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     theme,
   });
 
-  const statItems = languages
-    ? languages
-        .filter((language) => language.hours || language.minutes)
-        .map((language) => {
-          return createTextNode({
-            id: language.name,
-            label: language.name,
-            value: language.text,
-            percent: language.percent,
-            progressBarColor: titleColor,
-            progressBarBackgroundColor: textColor,
-            hideProgress: hide_progress,
-          });
-        })
-    : [];
+  const statItems = languages ? languages
+    .filter((language) => language.hours || language.minutes)
+    .map((language) => {
+      return createTextNode({
+        id: language.name,
+        label: language.name,
+        value: language.text,
+        percent: language.percent,
+        progressBarColor: titleColor,
+        progressBarBackgroundColor: textColor,
+        hideProgress: hide_progress,
+      });
+    }) : [];
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
@@ -184,22 +185,22 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       </mask>
       ${compactProgressBar}
       ${createLanguageTextNode({
-        x: 0,
-        y: 25,
-        langs: languages,
-        totalSize: 100,
-      }).join("")}
+      x: 0,
+      y: 25,
+      langs: languages,
+      totalSize: 100,
+    }).join("")}
     `;
   } else {
     finalLayout = FlexLayout({
       items: statItems.length
         ? statItems
         : [
-            noCodingActivityNode({
-              color: textColor,
-              text: i18n.t("wakatimecard.nocodingactivity"),
-            }),
-          ],
+          noCodingActivityNode({
+            color: textColor,
+            text: i18n.t("wakatimecard.nocodingactivity"),
+          }),
+        ],
       gap: lheight,
       direction: "column",
     }).join("");

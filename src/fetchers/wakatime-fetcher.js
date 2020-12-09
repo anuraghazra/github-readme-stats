@@ -12,13 +12,13 @@ async function fetchLast7Days(username, top = 5, hide) {
     );
 
     // Filter hidden languages and take topN
-    let languages = data.data.languages
-      .filter(lang => !getHideLangs(hide).includes(lang.name.toLowerCase()))
+    const { languages } = data.data;
+    languages.filter(lang => !getHideLangs(hide).includes(lang.name.toLowerCase()))
       .sort(lang => lang.total_seconds);
 
     // Ensure that the languages array is not empty
     if (languages.length > 1) {
-      data.data.languages = languages.fill(
+      data.data.languages = languages.slice(
         0, clampValue(parseInt(top), 1, languages.length),
       );
     } else {
@@ -27,13 +27,15 @@ async function fetchLast7Days(username, top = 5, hide) {
 
     return data.data;
   } catch (error) {
-    logger.log(error);
-    if (error.response.status === 404) {
-      throw new Error(
-        "Wakatime user not found, make sure you have a wakatime profile",
-      );
+    if (error.response) {
+      if (error.response.status === 404) {
+        throw new Error(
+          "Wakatime user not found, make sure you have a wakatime profile",
+        );
+      } else {
+        throw error;
+      }
     }
-    throw error;
   }
 }
 
