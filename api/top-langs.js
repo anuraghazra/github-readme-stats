@@ -9,6 +9,7 @@ const {
 const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 const renderTopLanguages = require("../src/cards/top-languages-card");
 const blacklist = require("../src/common/blacklist");
+const { isLocaleAvailable } = require("../src/translations");
 
 module.exports = async (req, res) => {
   const {
@@ -27,6 +28,7 @@ module.exports = async (req, res) => {
     exclude_repo,
     exclude_forks,
     custom_title,
+    locale,
   } = req.query;
   let topLangs;
 
@@ -34,6 +36,10 @@ module.exports = async (req, res) => {
 
   if (blacklist.includes(username)) {
     return res.send(renderError("Something went wrong"));
+  }
+
+  if (locale && !isLocaleAvailable(locale)) {
+    return res.send(renderError("Something went wrong", "Language not found"));
   }
 
   try {
@@ -64,6 +70,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         layout,
+        locale: locale ? locale.toLowerCase() : null,
       }),
     );
   } catch (err) {

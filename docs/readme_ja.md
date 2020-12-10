@@ -49,6 +49,8 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
   </p>
 </p>
 <p align="center">このプロジェクトを気に入っていただけましたか？<br>もしよろしければ、プロジェクトのさらなる改善のために<a href="https://www.paypal.me/anuraghazra">寄付</a>を検討して頂けると嬉しいです！</p>
@@ -133,8 +135,10 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `text_color` - 中身のテキストの色 _(16 進数カラーコード)_
 - `icon_color` - アイコンの色（変更可能な場合のみ） _(16 進数カラーコード)_
 - `bg_color` - 背景の色 _(16 進数カラーコード)_ **または** _angle,start,end_ の形式でグラデーションを指定することも可
+- `hide_border` - カードの境界線を非表示にします _(ブール値)_
 - `theme` - [使用可能なテーマ一覧](../themes/README.md) から選んだテーマ名
 - `cache_seconds` - キャッシュ時間の秒数 _(最小値: 1800, 最大値: 86400)_
+- `locale` - カードに言語を設定する _(例えば cn, de, es, 等)_
 
 ##### bg_color の グラデーション指定
 
@@ -169,7 +173,7 @@ bg_color オプションで複数のカンマ区切りの値を指定してグ�
 - `layout` - `default` か `compact` のいずれかのレイアウトに切り替える
 - `card_width` - カードの横幅 _(number)_
 
-> :warning: **重要:**  
+> :warning: **重要:**
 > [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) で指定されているように、プログラミング言語の名前は URL エンコードされている必要があります。
 > (例: `c++` は `c%2B%2B`, `jupyter notebook` は `jupyter%20notebook`, など)
 
@@ -310,16 +314,16 @@ NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降�
  <summary>Vercelの設定ガイド</summary>
 
 1. [vercel.com](https://vercel.com/)に行きます。
-1. `Log in`をクリックします。  
+1. `Log in`をクリックします。
    ![](https://files.catbox.moe/tct1wg.png)
-1. `Continue with GitHub` を押して GitHub にサインインします。  
+1. `Continue with GitHub` を押して GitHub にサインインします。
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. GitHub にサインインし、すべてのリポジトリへのアクセスを許可します。
 1. このリポジトリをフォークします。
 1. [Vercel dashboard](https://vercel.com/dashboard)に戻ります。
-1. `Import Project` を選択します。  
+1. `Import Project` を選択します。
    ![](https://files.catbox.moe/qckos0.png)
-1. `Import Git Repository` を選択します。  
+1. `Import Git Repository` を選択します。
    ![](https://files.catbox.moe/pqub9q.png)
 1. root を選択して、すべてをそのままにしておき、PAT_1 という名前の環境変数を（下図のように）追加します。これには個人アクセストークン (PAT) が含まれており、[ここ](https://github.com/settings/tokens/new)で簡単に作成することができます (すべてをそのままにしておいて、何かに名前を付けてください。)
    ![](https://files.catbox.moe/0ez4g7.png)
@@ -329,7 +333,7 @@ NOTE: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以降�
 
 ## :sparkling_heart: このプロジェクトを支援する
 
-私はできる限りのことをオープンソースで行い、また、このプロジェクトを利用する上で困っている皆さん全員に返信するようにしています。もちろん返信には時間が掛かる場合がありますが。  
+私はできる限りのことをオープンソースで行い、また、このプロジェクトを利用する上で困っている皆さん全員に返信するようにしています。もちろん返信には時間が掛かる場合がありますが。
 このプロジェクトは無料でご利用いただけます。
 
 しかしながら、もしあなたがこのプロジェクトに満足しているのであれば、あるいはただ、私がソフトウェアを作り続けるよう励ましたいのであれば、いくつかの方法があります。
@@ -342,7 +346,7 @@ Thanks! :heart:
 
 ---
 
-![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 コントリビュートは大歓迎です！ :heart_eyes:
 

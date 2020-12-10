@@ -49,6 +49,8 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
   </p>
 </p>
 <p align="center">Loved the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
@@ -73,7 +75,9 @@ Change the `?username=` value to your GitHub's username.
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Note: Ranks are calculated based on user's stats, see [src/calculateRank.js](./src/calculateRank.js)_
+_Note: Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone).
+The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories.
+The implementation is can be investigated at [src/calculateRank.js](./src/calculateRank.js)_
 
 ### Hiding individual stats
 
@@ -136,6 +140,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `hide_border` - Hides the card's border _(boolean)_
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
 - `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
+- `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
 
 ##### Gradient in bg_color
 
@@ -158,6 +163,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `count_private` - Count private commits _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
 - `custom_title` - Sets a custom title for the card
+- `disable_animations` - Disables all animations in the card _(boolean)_
 
 #### Repo Card Exclusive Options:
 
@@ -177,7 +183,8 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 > :warning: **Important:**
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
-> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.)
+> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
+> [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
 
 #### Wakatime Card Exclusive Options:
 
@@ -185,6 +192,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `line_height` - Sets the line-height between text _(number)_
 - `hide_progress` - Hides the progress bar and percentage _(boolean)_
 - `custom_title` - Sets a custom title for the card
+- `layout` - Switch between two available layouts `default` & `compact`
 
 ---
 
@@ -290,6 +298,10 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
+- Compact layout
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
 ---
 
 ### All Demos
@@ -323,6 +335,10 @@ Choose from any of the [default themes](#themes)
 - Customizing stats card
 
 ![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+
+- Setting card locale
+
+![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=es)
 
 - Customizing repo card
 
@@ -397,7 +413,8 @@ Thanks! :heart:
 
 ---
 
-![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
+
 
 Contributions are welcome! <3
 

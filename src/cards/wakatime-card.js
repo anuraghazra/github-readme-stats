@@ -1,12 +1,49 @@
 const Card = require("../common/Card");
+const I18n = require("../common/I18n");
 const { getStyles } = require("../getStyles");
+const { wakatimeCardLocales } = require("../translations");
 const { getCardColors, FlexLayout } = require("../common/utils");
 const { createProgressNode } = require("../common/createProgressNode");
+const languageColors = require("../common/languageColors.json");
 
-const noCodingActivityNode = ({ color }) => {
+const noCodingActivityNode = ({ color, text }) => {
   return `
-    <text x="25" y="11" class="stat bold" fill="${color}">No coding activity this week</text>
+    <text x="25" y="11" class="stat bold" fill="${color}">${text}</text>
   `;
+};
+
+const createCompactLangNode = ({ lang, totalSize, x, y }) => {
+  const color = languageColors[lang.name] || "#858585";
+
+  return `
+    <g transform="translate(${x}, ${y})">
+      <circle cx="5" cy="6" r="5" fill="${color}" />
+      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
+        ${lang.name} - ${lang.text}
+      </text>
+    </g>
+  `;
+};
+
+const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
+  return langs.map((lang, index) => {
+    if (index % 2 === 0) {
+      return createCompactLangNode({
+        lang,
+        x: 25,
+        y: 12.5 * index + y,
+        totalSize,
+        index,
+      });
+    }
+    return createCompactLangNode({
+      lang,
+      x: 230,
+      y: 12.5 + 12.5 * index,
+      totalSize,
+      index,
+    });
+  });
 };
 
 const createTextNode = ({
@@ -60,7 +97,14 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     theme = "default",
     hide_progress,
     custom_title,
+    locale,
+    layout,
   } = options;
+
+  const i18n = new I18n({
+    locale,
+    translations: wakatimeCardLocales,
+  });
 
   const lheight = parseInt(line_height, 10);
 
@@ -99,9 +143,71 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     iconColor,
   });
 
+  let finalLayout = "";
+
+  let width = 440;
+
+  // RENDER COMPACT LAYOUT
+  if (layout === "compact") {
+    width = width + 50;
+    height = 90 + Math.round(languages.length / 2) * 25;
+
+    // progressOffset holds the previous language's width and used to offset the next language
+    // so that we can stack them one after another, like this: [--][----][---]
+    let progressOffset = 0;
+    const compactProgressBar = languages
+      .map((lang) => {
+        // const progress = (width * lang.percent) / 100;
+        const progress = ((width - 50) * lang.percent) / 100;
+
+        const languageColor = languageColors[lang.name] || "#858585";
+
+        const output = `
+          <rect
+            mask="url(#rect-mask)" 
+            data-testid="lang-progress"
+            x="${progressOffset}" 
+            y="0"
+            width="${progress}" 
+            height="8"
+            fill="${languageColor}"
+          />
+        `;
+        progressOffset += progress;
+        return output;
+      })
+      .join("");
+
+    finalLayout = `
+      <mask id="rect-mask">
+      <rect x="25" y="0" width="${width - 50}" height="8" fill="white" rx="5" />
+      </mask>
+      ${compactProgressBar}
+      ${createLanguageTextNode({
+        x: 0,
+        y: 25,
+        langs: languages,
+        totalSize: 100,
+      }).join("")}
+    `;
+  } else {
+    finalLayout = FlexLayout({
+      items: statItems.length
+        ? statItems
+        : [
+            noCodingActivityNode({
+              color: textColor,
+              text: i18n.t("wakatimecard.nocodingactivity"),
+            }),
+          ],
+      gap: lheight,
+      direction: "column",
+    }).join("");
+  }
+
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: "Wakatime Week Stats",
+    defaultTitle: i18n.t("wakatimecard.title"),
     width: 495,
     height,
     colors: {
@@ -123,13 +229,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   return card.render(`
     <svg x="0" y="0" width="100%">
-      ${FlexLayout({
-        items: statItems.length
-          ? statItems
-          : [noCodingActivityNode({ color: textColor })],
-        gap: lheight,
-        direction: "column",
-      }).join("")}
+      ${finalLayout}
     </svg> 
   `);
 };

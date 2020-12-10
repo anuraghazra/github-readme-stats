@@ -49,6 +49,8 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
   </p>
 </p>
 <p align="center">喜欢这个项目？请考虑<a href="https://www.paypal.me/anuraghazra">捐赠</a>来帮助它完善！
@@ -132,8 +134,10 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `text_color` - 内容文本颜色 _（十六进制色码）_
 - `icon_color` - 图标颜色（如果可用）_（十六进制色码）_
 - `bg_color` - 卡片背景颜色 _（十六进制色码）_ **或者** 以 _angle,start,end_ 的形式渐变
+- `hide_border` - 隐藏卡的边框 _(布尔值)_
 - `theme` - 主题名称，从[所有可用主题](../themes/README.md)中选择
 - `cache_seconds` - 手动设置缓存头 _（最小值: 1800，最大值: 86400）_
+- `locale` - 在卡片中设置语言 _(例如 cn, de, es, 等等)_
 
 ##### bg_color 渐变
 
@@ -168,8 +172,8 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `layout` - 在两个可用布局 `default` & `compact` 间切换
 - `card_width` - 手动设置卡片的宽度 _(number)_
 
-> :warning: **重要:**  
-> 如 [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) 所指定，语言名称应使用 uri 转义。  
+> :warning: **重要:**
+> 如 [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) 所指定，语言名称应使用 uri 转义。
 > (例: `c++` 应该是 `c%2B%2B`, `jupyter notebook` 应该是 `jupyter%20notebook`, 等.)
 
 ---
@@ -309,16 +313,16 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
  <summary>设置 Vercel 的指导</summary>
 
 1. 前往 [vercel.com](https://vercel.com/)
-1. 点击 `Log in`  
+1. 点击 `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
 1. 点击 `Continue with GitHub` 通过 GitHub 进行登录
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. 登录 GitHub 并允许访问所有存储库（如果系统这样提示）
 1. Fork 这个仓库
 1. 返回到你的 [Vercel dashboard](https://vercel.com/dashboard)
-1. 选择 `Import Project`  
+1. 选择 `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
-1. 选择 `Import Git Repository`  
+1. 选择 `Import Git Repository`
    ![](https://files.catbox.moe/pqub9q.png)
 1. 选择 root 并将所有内容保持不变，并且只需添加名为 PAT_1 的环境变量（如图所示），其中将包含一个个人访问令牌（PAT），你可以在[这里](https://github.com/settings/tokens/new)轻松创建（保留默认，并且只需要命名下，名字随便）
    ![](https://files.catbox.moe/caem5b.png)
@@ -340,7 +344,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ---
 
-![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 欢迎贡献！ <3
 

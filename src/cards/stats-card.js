@@ -1,12 +1,9 @@
-const {
-  kFormatter,
-  getCardColors,
-  FlexLayout,
-  encodeHTML,
-} = require("../common/utils");
-const { getStyles } = require("../getStyles");
-const icons = require("../common/icons");
+const I18n = require("../common/I18n");
 const Card = require("../common/Card");
+const icons = require("../common/icons");
+const { getStyles } = require("../getStyles");
+const { statCardLocales } = require("../translations");
+const { kFormatter, getCardColors, FlexLayout } = require("../common/utils");
 
 const createTextNode = ({
   icon,
@@ -34,7 +31,7 @@ const createTextNode = ({
       <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
       <text 
         class="stat" 
-        x="${shiftValuePos ? (showIcons ? 200 : 170) : 150}" 
+        x="${(showIcons ? 140 : 120) + shiftValuePos}" 
         y="12.5" 
         data-testid="${id}"
       >${kValue}</text>
@@ -66,6 +63,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     bg_color,
     theme = "default",
     custom_title,
+    locale,
+    disable_animations = false,
   } = options;
 
   const lheight = parseInt(line_height, 10);
@@ -79,17 +78,25 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     theme,
   });
 
+  const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
+    ? ""
+    : "s";
+  const i18n = new I18n({
+    locale,
+    translations: statCardLocales({ name, apostrophe }),
+  });
+
   // Meta data for creating text nodes with createTextNode function
   const STATS = {
     stars: {
       icon: icons.star,
-      label: "Total Stars",
+      label: i18n.t("statcard.totalstars"),
       value: totalStars,
       id: "stars",
     },
     commits: {
       icon: icons.commits,
-      label: `Total Commits${
+      label: `${i18n.t("statcard.commits")}${
         include_all_commits ? "" : ` (${new Date().getFullYear()})`
       }`,
       value: totalCommits,
@@ -97,23 +104,25 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     prs: {
       icon: icons.prs,
-      label: "Total PRs",
+      label: i18n.t("statcard.prs"),
       value: totalPRs,
       id: "prs",
     },
     issues: {
       icon: icons.issues,
-      label: "Total Issues",
+      label: i18n.t("statcard.issues"),
       value: totalIssues,
       id: "issues",
     },
     contribs: {
       icon: icons.contribs,
-      label: "Contributed to",
+      label: i18n.t("statcard.contribs"),
       value: contributedTo,
       id: "contribs",
     },
   };
+
+  const isLongLocale = ["fr", "pt-br", "es"].includes(locale) === true;
 
   // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
@@ -124,7 +133,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         ...STATS[key],
         index,
         showIcons: show_icons,
-        shiftValuePos: !include_all_commits,
+        shiftValuePos:
+          (!include_all_commits ? 50 : 20) + (isLongLocale ? 50 : 0),
       }),
     );
 
@@ -166,10 +176,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     progress,
   });
 
-  const apostrophe = ["x", "s"].includes(name.slice(-1)) ? "" : "s";
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
+    defaultTitle: i18n.t("statcard.title"),
     width: 495,
     height,
     colors: {
@@ -183,6 +192,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
   card.setCSS(cssStyles);
+
+  if (disable_animations) card.disableAnimations();
 
   return card.render(`
     ${rankCircle}
