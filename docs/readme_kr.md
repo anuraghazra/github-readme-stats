@@ -80,7 +80,7 @@ _참고:_
 
 _랭크는 S+ (상위 1%), S (상위 25%), A++ (상위 45%), A+ (상위 60%), 그리고 B+ (전체) 로 구성되어 있습니다._
 
-_커밋의 수(commits), 기여도(contribution), 이슈의 수(issues), 즐겨찾기(star), 작업내용 반영 요청(Pull Request),  
+_커밋의 수(commits), 기여도(contribution), 이슈의 수(issues), 즐겨찾기(star), 작업내용 반영 요청(Pull Request),
 팔로워 수, 그리고 보유 중인 저장소 등의 항목들에 대해 [누적 분포 함수](https://ko.wikipedia.org/wiki/%EB%88%84%EC%A0%81_%EB%B6%84%ED%8F%AC_%ED%95%A8%EC%88%98) 를 이용해 계산됩니다._
 
 _[src/calculateRank.js](./src/calculateRank.js) 에서 수행되는 계산 작업의 내용을 확인할 수 있습니다._
@@ -160,8 +160,8 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
-> 캐시에 대한 참고사항:  
-> 포크와 스타 수가 1,000 개 미만인 저장소의 카드는 기본적으로 4시간 (14,400초) 으로 설정되어 있습니다.  
+> 캐시에 대한 참고사항:
+> 포크와 스타 수가 1,000 개 미만인 저장소의 카드는 기본적으로 4시간 (14,400초) 으로 설정되어 있습니다.
 > 그 외에는, it's 2시간 (7,200초) 입니다. 또한, 캐시설정 시간의 범위는 최소 2시간, 최대 24시간입니다.
 
 
@@ -195,8 +195,8 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 ##### 경고! **매우 중요**
 >
-> 언어의 이름은 [퍼센트 인코딩](https://ko.wikipedia.org/wiki/%ED%8D%BC%EC%84%BC%ED%8A%B8_%EC%9D%B8%EC%BD%94%EB%94%A9) 에 지정된 URI 방식으로 표기되어야 합니다.  
-> ( 예를 들면, `c++` 는 `c%2B%2B`, `jupyter notebook` 는 `jupyter%20notebook`, 등등. )  
+> 언어의 이름은 [퍼센트 인코딩](https://ko.wikipedia.org/wiki/%ED%8D%BC%EC%84%BC%ED%8A%B8_%EC%9D%B8%EC%BD%94%EB%94%A9) 에 지정된 URI 방식으로 표기되어야 합니다.
+> ( 예를 들면, `c++` 는 `c%2B%2B`, `jupyter notebook` 는 `jupyter%20notebook`, 등등. )
 > [urlencoder.org](https://www.urlencoder.org/) < 서비스를 이용하면 자동으로 생성할 수 있습니다.
 
 #### Wakatime 카드의 표시 제한 옵션:
@@ -237,8 +237,8 @@ GitHub 저장소 여분 핀을 이용하면, 6개 이상의 저장소 핀을 여
 
 언어 사용량 통계 카드는 Github 사용자가 가장 많이 사용한 언어가 표시됩니다.
 
-_참고:  
-언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어의 표기일 뿐입니다.  
+_참고:
+언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어의 표기일 뿐입니다.
 숙련도, 혹은 그와 비슷한 지표를 나타내진 않습니다. (새로 추가된 기능입니다!)_
 
 ### 사용법
@@ -380,7 +380,7 @@ _참고:
 
 #### [@codeSTACKr 님의 튜토리얼 영상 보기](https://youtu.be/n6d4KHSKqGk?t=107)
 
-GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,  
+GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,
 저의 `https://github-readme-stats.vercel.app/api` 가 사용량 제한에 걸릴 위험이 생겼어요.
 
 만약, 여러분이 Vercel server 에서 직접 호스트 하신다면, 걱정하실 일은 없을거에요.
@@ -414,14 +414,14 @@ GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,
 
 ## :sparkling_heart: 프로젝트 지원하기!
 
-저는 가능한 모든 요소들을 오픈소스로 공개하고,  
+저는 가능한 모든 요소들을 오픈소스로 공개하고,
 이 서비스를 이용하는데 도움이 필요한 모두에게 도움을 드리려 노력하고 있어요.
 
-솔직히 말하자면, 시간이 좀 걸린답니다...  
+솔직히 말하자면, 시간이 좀 걸린답니다...
 물론, 여러분이 이 서비스를 사용하는건 무료에요 ㅎ
 
-하지만, 만약 여러분이 이 서비스를 잘 이용하시고,  
-만족하시거나, 제가 이런 요소들을 만드는 데에 도움을 주고 싶으시다면,  
+하지만, 만약 여러분이 이 서비스를 잘 이용하시고,
+만족하시거나, 제가 이런 요소들을 만드는 데에 도움을 주고 싶으시다면,
 여러분께서 도와주실 수 있는 것들이 있어요!
 
 - github-readme-stats 를 README 에 표시하실 때 확실한 도움을 주세요! 이 저장소로 링크를 걸어주시면 되요! :D
@@ -432,7 +432,7 @@ GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,
 
 ---
 
-![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 프로젝트에 대한 기여는 언제나 환영이에요! <3
 
