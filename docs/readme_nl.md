@@ -65,7 +65,7 @@
 - [Opmaak](#customization)
 - [Zelf deployen](#deploy-on-your-own-vercel-instance)
 
-# GitHub Statestieken Kaart
+# GitHub Statistieken Kaart
 
 Kopieer en plak dit in je markdown content, zo simpel is het!
 
