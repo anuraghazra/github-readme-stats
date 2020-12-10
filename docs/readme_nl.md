@@ -29,9 +29,9 @@
   <p align="center">
     <a href="#demo">Bekijk Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Rapporteer Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Rapporteer een Bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Vraag een feature aan</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Vraag een nieuwe toepassing aan</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français </a>
@@ -57,13 +57,13 @@
 
 # Functionaliteiten
 
-- [GitHub Statistieken Kaart](#github-stats-card)
+- [GitHub Statistieken Kaart](#github-statistieken-kaart)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Top Programeertalen Kaart](#top-languages-card)
-- [Wekelijkse Wakatime Statistieken](#wakatime-week-stats)
-- [Thema\'s](#themes)
-- [Opmaak](#customization)
-- [Zelf deployen](#deploy-on-your-own-vercel-instance)
+- [Top Programmeertalen Kaart](#top-Programmeertalen-kaart)
+- [Wekelijkse Wakatime Statistieken](#wekelijkse-wakatime-statistieken)
+- [Thema\'s](#themas)
+- [Opmaak](#opmaak)
+- [Zelf deployen](#deploy-je-eigen-vercel-instatie)
 
 # GitHub Statistieken Kaart
 
@@ -75,7 +75,9 @@ Verander de waarde `?username=` naar jou gebruikersnaam.
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Scores zijn berekend gebaseerd op gebruikers statestieken, zie [src/calculateRank.js](./src/calculateRank.js)_
+_Notitie: Beschikbare rangen zijn S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (iedereen).
+De waarden worden berekend met behulp van de zogeheten [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) met de waardes van de commits, bijdragens, issues, sterren, PR's, volgers en eigen repositories.
+De implementatie hiervan kan bekijken op [src/calculateRank.js](./src/calculateRank.js)_
 
 ### Verberg individueele statistieken
 
@@ -181,13 +183,15 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 > :Waarschuwing: **Belangrijk:**
 > Namen van programmeertalen moeten worden geuri-escaped, zoals gespecificeerd in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
 > (Oftewel: `c++` moet `c%2B%2B` worden, `jupyter notebook` moet `jupyter%20notebook` worden, enzovoort...)
+> Zie [urlencoder.org](https://www.urlencoder.org/) om dit automatisch te doen.
 
 #### Exclusieve opties voor Wakatime Kaart:
 
 - `hide_title` - _(boolean)_
 - `line_height` - Verandert de lijn hoogte tussen tekst _(nummer)_
-- `hide_progress` - Verbergt de progressiebalk en het percentage _(boolean)_ 
+- `hide_progress` - Verbergt de progressiebalk en het percentage _(boolean)_
 - `custom_title` - Stelt een eigen titel voor de kaart in
+- `layout` - Schakel tussen de twee beschikbare lay-outs `default` en `compact`
 
 ---
 
@@ -396,7 +400,7 @@ Bedankt! :heart:
 
 ---
 
-![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 Contributies zijn welkom! <3
 
