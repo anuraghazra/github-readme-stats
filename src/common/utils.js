@@ -134,10 +134,15 @@ function getCardColors({
     text_color || selectedTheme.text_color,
     "#" + defaultTheme.text_color,
   );
-  const bgColor = fallbackColor(
+
+  let bgColor = fallbackColor(
     bg_color || selectedTheme.bg_color,
     "#" + defaultTheme.bg_color,
   );
+
+  if (selectedTheme.bg_color === "transparent") {
+    bgColor = "transparent";
+  }
 
   return { titleColor, iconColor, textColor, bgColor };
 }
