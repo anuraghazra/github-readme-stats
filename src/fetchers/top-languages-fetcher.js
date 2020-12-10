@@ -39,7 +39,7 @@ async function fetchTopLanguages(
   username,
   langsCount = 5,
   exclude_repo = [],
-  exclude_forks = false,
+  include_forks = false,
 ) {
   if (!username) throw Error("Invalid username");
 
@@ -54,7 +54,7 @@ async function fetchTopLanguages(
 
   let repoNodes = res.data.data.user.repositories.nodes;
 
-  if (exclude_forks) {
+  if (!include_forks) {
     repoNodes = repoNodes.filter((isFork) => {
       return !isFork.isFork;
     });
