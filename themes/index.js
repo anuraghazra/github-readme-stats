@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+  pureGDark: {
+    title_color: "BEFFDD",
+    text_color: "81a1c7",
+    icon_color: "BEF3FE",
+    bg_color: "232931"
   }
 };
 
