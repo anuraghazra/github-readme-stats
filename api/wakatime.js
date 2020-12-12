@@ -24,6 +24,7 @@ module.exports = async (req, res) => {
     hide_progress,
     custom_title,
     locale,
+    layout,
     langs_count
   } = req.query;
 
@@ -61,6 +62,7 @@ module.exports = async (req, res) => {
         theme,
         hide_progress,
         locale: locale ? locale.toLowerCase() : null,
+        layout,
         langs_count
       }),
     );

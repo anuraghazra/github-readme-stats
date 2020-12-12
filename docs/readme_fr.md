@@ -49,6 +49,8 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
   </p>
 </p>
 <p align="center">Tu aimes ce projet? Penser <a href="https://www.paypal.me/anuraghazra">à faire un don</a> pour l'améliorer!
@@ -170,8 +172,8 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 -   `layout` - Alterner entre 2 mise en page `default` & `compact`
 -   `card_width` - Fixer la largeur de la carte manuellement _(number)_
 
-> :warning: **Important:**  
-> Les noms des langages doivent être en format uri, comme spécifié dans [Percent Encoding](https://fr.wikipedia.org/wiki/Percent-encoding)  
+> :warning: **Important:**
+> Les noms des langages doivent être en format uri, comme spécifié dans [Percent Encoding](https://fr.wikipedia.org/wiki/Percent-encoding)
 > (c'est-à-dire que: `c++` devrait devenir `c%2B%2B`, `jupyter notebook` devrait devenir `jupyter%20notebook`, etc.)
 
 ---
@@ -311,16 +313,16 @@ NOTE: Depuis [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) n
  <summary><b> Guide pour la mise en place de Vercel  🔨 </b></summary>
 
 1. Allez sur [vercel.com](https://vercel.com/)
-1. Cliquez sur `Log in`  
+1. Cliquez sur `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
-1. Connectez-vous avec GitHub en cliquant `Continue with GitHub`  
+1. Connectez-vous avec GitHub en cliquant `Continue with GitHub`
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. Connectez-vous à GitHub et autorisez l'accès à tous les dépôts, si vous y êtes invité
 1. Fork ce repo
 1. Retournez au [dashboard Vercel](https://vercel.com/dashboard)
-1. Selectez `Import Project`  
+1. Selectez `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
-1. Selectez `Import Git Repository`  
+1. Selectez `Import Git Repository`
    ![](https://files.catbox.moe/pqub9q.png)
 1. Choisissez root et gardez tout tel quel, ajoutez simplement votre variable d'environnement nommée PAT_1 (comme indiqué), qui contiendra un jeton d'accès personnel (PAT), que vous pouvez facilement créer [ici](https://github.com/settings/tokens/new) (laissez tout tel quel, nommez le simplement quelque chose, cela peut être tout ce que vous voulez)
    ![](https://files.catbox.moe/0ez4g7.png)
@@ -342,6 +344,9 @@ Cependant, si vous utilisez ce projet et que vous en êtes satisfait ou si vous 
 Merci! :heart:
 
 ---
+
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
+
 
 Les Contributions sont les bienvenus! <3
 

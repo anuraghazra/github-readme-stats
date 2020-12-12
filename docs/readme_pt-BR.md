@@ -49,6 +49,8 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
   </p>
 </p>
 <p align="center">Gostou do projeto? Por favor considere <a href="https://www.paypal.me/anuraghazra">fazer uma doação</a> para ajudar a melhorá-lo!
@@ -163,8 +165,8 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 - `layout` - Alterna entre os dois layouts disponíveis `default` & `compact`
 - `card_width` - Define a largura do cartão manualmente _(number)_
 
-> :warning: **Importante:**  
-> Nomes de linguagens devem ser uma sequência escapada de URI, como específicado em [Codificação por cento](https://pt.wikipedia.org/wiki/Codificação_por_cento)  
+> :warning: **Importante:**
+> Nomes de linguagens devem ser uma sequência escapada de URI, como específicado em [Codificação por cento](https://pt.wikipedia.org/wiki/Codificação_por_cento)
 > (Isso é: `c++` deve se tornar `c%2B%2B`, `jupyter notebook` deve se tornar `jupyter%20notebook`, etc.)
 
 ---
@@ -316,16 +318,16 @@ Nota: Desde [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) h�
  <summary>Guia de configuração do Vercel</summary>
 
 1. Acesse [vercel.com](https://vercel.com/)
-1. Clique em `Login`  
+1. Clique em `Login`
    ![](https://files.catbox.moe/tct1wg.png)
-1. Acesse com o GitHub clicando em `Continue with GitHub`  
+1. Acesse com o GitHub clicando em `Continue with GitHub`
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. Entre no GitHub e permita acesso a todos os repositórios, se solicitado
 1. Faça Fork neste repositório
 1. Volte ao seu [painel principal do Vercel](https://vercel.com/dashboard)
-1. Selecione `Import Project`  
+1. Selecione `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
-1. Selecione `Import Git Repository`  
+1. Selecione `Import Git Repository`
    ![](https://files.catbox.moe/pqub9q.png)
 1. Selecione a raiz e mantenha tudo como está, basta adicionar sua variável de ambiente chamada PAT_1 (que será exibida), que conterá um token de acesso pessoal (PAT), que você pode criar facilmente [aqui](https://github.com/settings/tokens/new) (deixe tudo como está, apenas dê um nome, que pode ser o que você quiser)
    ![](https://files.catbox.moe/0ez4g7.png)
@@ -347,6 +349,8 @@ No entanto, se você utilizar este projeto e estiver satisfeito com ele, ou apen
 Obrigado! :heart:
 
 ---
+
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 Contribuições são bem-vindas! <3
 
