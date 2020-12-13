@@ -18,6 +18,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       np: `${encodeHTML(name)}'${apostrophe} गिटहब तथ्याङ्क`,
       el: `Στατιστικά GitHub του ${encodeHTML(name)}`,
       ru: `Статистика GitHub пользователя ${encodeHTML(name)}`,
+      id: `Statistik GitHub ${encodeHTML(name)}`,
+      my: `Statistik GitHub ${encodeHTML(name)}`,
       sk: `GitHub štatistiky používateľa ${encodeHTML(name)}`,
     },
     "statcard.totalstars": {
@@ -36,6 +38,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       np: "कुल ताराहरू",
       el: "Σύνολο Αστεριών",
       ru: "Всего звезд",
+      id: "Total Bintang",
+      my: "Jumlah Bintang",
       sk: "Hviezdy",
     },
     "statcard.commits": {
@@ -54,6 +58,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       np: "कुल Commits",
       el: "Σύνολο Commits",
       ru: "Всего коммитов",
+      id: "Total Komitmen",
+      my: "Jumlah Komitmen",
       sk: "Všetky commity",
     },
     "statcard.prs": {
@@ -72,6 +78,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       np: "कुल PRs",
       el: "Σύνολο PRs",
       ru: "Всего pull request`ов",
+      id: "Total Permintaan Tarik",
+      my: "Jumlah PR",
       sk: "Všetky PR",
     },
     "statcard.issues": {
@@ -90,6 +98,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       np: "कुल मुद्दाहरू",
       el: "Σύνολο Ζητημάτων",
       ru: "Всего issue",
+      id: "Total Masalah Dilaporkan",
+      my: "Jumlah Isu Dilaporkan",
       sk: "Všetky problémy"
     },
     "statcard.contribs": {
@@ -108,6 +118,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       np: "कुल योगदानहरू",
       el: "Συνεισφέρθηκε σε",
       ru: "Внёс вклад в",
+      id: "Berkontribusi ke",
+      my: "Menyumbang kepada",
       sk: "Účasti",
     },
   };
@@ -130,6 +142,8 @@ const repoCardLocales = {
     np: "टेम्पलेट",
     el: "Πρότυπο",
     ru: "Шаблон",
+    id: "Pola",
+    my: "Templat",
     sk: "Šablóna",
   },
   "repocard.archived": {
@@ -148,6 +162,8 @@ const repoCardLocales = {
     np: "अभिलेख राखियो",
     el: "Αρχειοθετημένα",
     ru: "Архивирован",
+    id: "Arsip",
+    my: "Arkib",
     sk: "Archivované",
   },
 };
@@ -169,6 +185,8 @@ const langCardLocales = {
     np: "अधिक प्रयोग गरिएको भाषाहरू",
     el: "Οι περισσότερο χρησιμοποιούμενες γλώσσες",
     ru: "Наиболее часто используемые языки",
+    id: "Bahasa Yang Paling Banyak Digunakan",
+    my: "Bahasa Paling Digunakan",
     sk: "Najviac používané jazyky",
   },
 };
@@ -190,6 +208,8 @@ const wakatimeCardLocales = {
     np: "Wakatime हप्ता तथ्याङ्क",
     el: "Εβδομαδιαία Στατιστικά από Wakatime",
     ru: "Статистика недели Wakatime",
+    id: "Status Mingguan Wakatime",
+    my: "Statistik Minggu Wakatime",
     sk: "Týždenná Wakatime štatistika",
   },
   "wakatimecard.nocodingactivity": {
@@ -208,6 +228,8 @@ const wakatimeCardLocales = {
     np: "यस हप्ता कुनै कोडिंग गतिविधि छैन",
     el: "Δεν υπάρχει δραστηριότητα κώδικα γι' αυτή την εβδομάδα",
     ru: "На этой неделе не было акивности",
+    id: "Tidak ada aktivitas perkodingan minggu ini",
+    my: "Tiada aktiviti pengekodan minggu ini",
     sk: "Žiadna kódovacia aktivita tento týždeň",
   },
 };
