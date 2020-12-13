@@ -210,6 +210,27 @@ describe("Test renderStatsCard", () => {
     ).not.toHaveAttribute("x");
   });
 
+  it("should auto resize if hide_rank is true", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      hide_rank: true,
+    });
+
+    expect(
+      document.body.getElementsByTagName("svg")[0].getAttribute("width"),
+    ).toBe("305.81250000000006");
+  });
+
+  it("should auto resize if hide_rank is true & custom_title is set", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      hide_rank: true,
+      custom_title: "Hello world",
+    });
+
+    expect(
+      document.body.getElementsByTagName("svg")[0].getAttribute("width"),
+    ).toBe("270");
+  });
+
   it("should render translations", () => {
     document.body.innerHTML = renderStatsCard(stats, { locale: "cn" });
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
