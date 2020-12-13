@@ -263,6 +263,12 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23"
   }
+    githubdark: {
+    title_color: "388afc",
+    icon_color: "6e40c9",
+    text_color: "3fb950",
+    bg_color: "0d1117"
+  }
 };
 
 module.exports = themes;
