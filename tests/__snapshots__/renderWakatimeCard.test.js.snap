@@ -58,6 +58,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
     
 
           
+          
         </style>
 
         undefined
@@ -207,6 +208,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
     .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333 }
     
 
+          
           
         </style>
 

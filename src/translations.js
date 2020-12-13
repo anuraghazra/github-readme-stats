@@ -20,6 +20,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ru: `Статистика GitHub пользователя ${encodeHTML(name)}`,
       id: `Statistik GitHub ${encodeHTML(name)}`,
       my: `Statistik GitHub ${encodeHTML(name)}`,
+      sk: `GitHub štatistiky používateľa ${encodeHTML(name)}`,
     },
     "statcard.totalstars": {
       cn: "总 Star",
@@ -30,7 +31,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       hu: "Csillagok",
       it: "Stelle totali",
       ja: "スターされた数",
-      kr: "총 별",
+      kr: "받은 스타 수",
       nl: "Totale Sterren",
       "pt-pt": "Total de estrelas",
       "pt-br": "Total de estrelas",
@@ -39,6 +40,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ru: "Всего звезд",
       id: "Total Bintang",
       my: "Jumlah Bintang",
+      sk: "Hviezdy",
     },
     "statcard.commits": {
       cn: "总提交",
@@ -49,7 +51,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       hu: "Összes commit",
       it: "Commit totali",
       ja: "合計コミット数",
-      kr: "총 커밋",
+      kr: "전체 커밋 수",
       nl: "Totale Commits",
       "pt-pt": "Total de Commits",
       "pt-br": "Total de compromissos",
@@ -58,6 +60,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ru: "Всего коммитов",
       id: "Total Komitmen",
       my: "Jumlah Komitmen",
+      sk: "Všetky commity",
     },
     "statcard.prs": {
       cn: "总 PR",
@@ -68,7 +71,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       hu: "Összes PR",
       it: "PR totali",
       ja: "合計 PR",
-      kr: "총 PR",
+      kr: "PR 횟수",
       nl: "Totale PR's",
       "pt-pt": "Total de PRs",
       "pt-br": "Total de PRs",
@@ -77,6 +80,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ru: "Всего pull request`ов",
       id: "Total Permintaan Tarik",
       my: "Jumlah PR",
+      sk: "Všetky PR",
     },
     "statcard.issues": {
       cn: "总 Issue",
@@ -87,7 +91,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       hu: "Összes hibajegy",
       it: "Segnalazioni totali",
       ja: "合計 issue",
-      kr: "총 문제",
+      kr: "이슈 개수",
       nl: "Totale Issues",
       "pt-pt": "Total de Issues",
       "pt-br": "Total de problemas",
@@ -96,6 +100,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ru: "Всего issue",
       id: "Total Masalah Dilaporkan",
       my: "Jumlah Isu Dilaporkan",
+      sk: "Všetky problémy"
     },
     "statcard.contribs": {
       cn: "总贡献",
@@ -106,7 +111,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       hu: "Hozzájárulások",
       it: "Ha contribuito a",
       ja: "コントリビュートしたリポジトリ",
-      kr: "에 기여하다",
+      kr: "전체 기여도",
       nl: "Bijgedragen aan",
       "pt-pt": "Contribuiu em",
       "pt-br": "Contribuiu para",
@@ -115,6 +120,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ru: "Внёс вклад в",
       id: "Berkontribusi ke",
       my: "Menyumbang kepada",
+      sk: "Účasti",
     },
   };
 };
@@ -129,7 +135,7 @@ const repoCardLocales = {
     hu: "Sablon",
     it: "Template",
     ja: "テンプレート",
-    kr: "주형",
+    kr: "템플릿",
     nl: "Sjabloon",
     "pt-pt": "Modelo",
     "pt-br": "Modelo",
@@ -138,6 +144,7 @@ const repoCardLocales = {
     ru: "Шаблон",
     id: "Pola",
     my: "Templat",
+    sk: "Šablóna",
   },
   "repocard.archived": {
     cn: "已归档",
@@ -148,7 +155,7 @@ const repoCardLocales = {
     hu: "Archivált",
     it: "Archiviata",
     ja: "アーカイブ済み",
-    kr: "보관 됨",
+    kr: "보관됨",
     nl: "Gearchiveerd",
     "pt-pt": "Arquivados",
     "pt-br": "Arquivada",
@@ -157,6 +164,7 @@ const repoCardLocales = {
     ru: "Архивирован",
     id: "Arsip",
     my: "Arkib",
+    sk: "Archivované",
   },
 };
 
@@ -170,7 +178,7 @@ const langCardLocales = {
     hu: "Leggyakrabban használt nyelvek",
     it: "Linguaggi più utilizzati",
     ja: "最もよく使っている言語",
-    kr: "가장 많이 사용되는 언어",
+    kr: "가장 많이 사용된 언어",
     nl: "Meest gebruikte talen",
     "pt-pt": "Idiomas mais usados",
     "pt-br": "Línguas Mais Usadas",
@@ -179,6 +187,7 @@ const langCardLocales = {
     ru: "Наиболее часто используемые языки",
     id: "Bahasa Yang Paling Banyak Digunakan",
     my: "Bahasa Paling Digunakan",
+    sk: "Najviac používané jazyky",
   },
 };
 
@@ -201,6 +210,7 @@ const wakatimeCardLocales = {
     ru: "Статистика недели Wakatime",
     id: "Status Mingguan Wakatime",
     my: "Statistik Minggu Wakatime",
+    sk: "Týždenná Wakatime štatistika",
   },
   "wakatimecard.nocodingactivity": {
     cn: "本周没有编程活动",
@@ -211,7 +221,7 @@ const wakatimeCardLocales = {
     hu: "Nem volt aktivitás ezen a héten",
     it: "Nessuna attività in questa settimana",
     ja: "今週のコーディング活動はありません",
-    kr: "이번 주 코딩 활동 없음",
+    kr: "이번 주 작업내역 없음",
     nl: "Geen coderings activiet deze week",
     "pt-pt": "Sem atividade esta semana",
     "pt-br": "Nenhuma atividade de codificação esta semana",
@@ -220,6 +230,7 @@ const wakatimeCardLocales = {
     ru: "На этой неделе не было акивности",
     id: "Tidak ada aktivitas perkodingan minggu ini",
     my: "Tiada aktiviti pengekodan minggu ini",
+    sk: "Žiadna kódovacia aktivita tento týždeň",
   },
 };
 
