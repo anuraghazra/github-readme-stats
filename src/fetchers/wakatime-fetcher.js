@@ -4,7 +4,7 @@ const fetchLast7Days = async ({ username, api_domain }) => {
   try {
     const { data } = await axios.get(
       `https://${
-        api_domain || "wakatime.com"
+        api_domain && api_domain.replace(/[^a-z-.0-9]/gi, "") || "wakatime.com"
       }/api/v1/users/${username}/stats/last_7_days?is_including_today=true`,
     );
 
