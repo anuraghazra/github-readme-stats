@@ -264,8 +264,8 @@ const themes = {
     bg_color: "402b23"
   },
   "sakura": {
-    title_color: "ed9de",
-    icon_color: "ff66e",
+    title_color: "ed9de0",
+    icon_color: "ff66e6",
     text_color: "ffdbf9",
     bg_color: "2b2029"
   }
