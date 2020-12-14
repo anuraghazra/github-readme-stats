@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+  "sakura": {
+    title_color: "ed9de",
+    icon_color: "ff66e",
+    text_color: "ffdbf9",
+    bg_color: "2b2029"
   }
 };
 
