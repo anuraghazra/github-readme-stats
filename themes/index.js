@@ -264,7 +264,7 @@ const themes = {
     bg_color: "402b23"
   },
   nature: {
-    title_color: "0e5c17",
+    title_color: "0021a6",
     icon_color: "bb8a44",
     text_color: "bb8a44",
     bg_color: "286120"
