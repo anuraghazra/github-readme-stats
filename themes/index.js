@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+  nature: {
+    title_color: "486B00",
+    icon_color: "bb8a44",
+    text_color: "bb8a44",
+    bg_color: "286120"
   }
 };
 
