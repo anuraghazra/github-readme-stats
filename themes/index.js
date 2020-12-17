@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+   luotianyi:{
+    title_color: "66ccff",
+    icon_color: "ea549f",
+    text_color: "333",
+    bg_color: "0fffff"
   }
 };
 
