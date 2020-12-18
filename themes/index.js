@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+  pastel: {
+    title_color: "a4875a",
+    icon_color: "a4875a",
+    text_color: "c1ae8f",
+    bg_color: "d8cbb5"
   }
 };
 
