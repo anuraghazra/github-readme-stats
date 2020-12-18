@@ -262,6 +262,12 @@ const themes = {
     icon_color: "a64833",
     text_color: "d9c8a9",
     bg_color: "402b23"
+  },
+  githubdark: {
+    title_color: "58a6ff",
+    icon_color: "c9d1d9",
+    text_color: "8b949e",
+    bg_color: "0d1117"
   }
 };
 
