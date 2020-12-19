@@ -51,6 +51,8 @@
     <a href="/docs/readme_kr.md">한국어</a>
     .
     <a href="/docs/readme_nl.md">Nederlands</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">Loved the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
