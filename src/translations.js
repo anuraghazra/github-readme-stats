@@ -132,7 +132,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       id: "Berkontribusi ke",
       my: "Menyumbang kepada",
       sk: "Účasti",
-      tr: "Katkıda bulundu",
+      tr: "Katkıda Bulunmalar",
     },
   };
 };
