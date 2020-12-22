@@ -68,6 +68,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     title_color,
     text_color,
     bg_color,
+    border_color,
+    border_width,
     hide,
     theme,
     layout,
@@ -103,10 +105,11 @@ const renderTopLanguages = (topLangs, options = {}) => {
   }, 0);
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, bgColor } = getCardColors({
+  const { titleColor, textColor, bgColor, borderColor } = getCardColors({
     title_color,
     text_color,
     bg_color,
+    border_color,
     theme,
   });
 
@@ -183,10 +186,12 @@ const renderTopLanguages = (topLangs, options = {}) => {
     defaultTitle: i18n.t("langcard.title"),
     width,
     height,
+    borderWidth: parseFloat(border_width),
     colors: {
       titleColor,
       textColor,
       bgColor,
+      borderColor,
     },
   });
 

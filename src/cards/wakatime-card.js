@@ -94,6 +94,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     icon_color,
     text_color,
     bg_color,
+    border_color,
+    border_width,
     theme = "default",
     hide_progress,
     custom_title,
@@ -109,11 +111,12 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const lheight = parseInt(line_height, 10);
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, iconColor, bgColor } = getCardColors({
+  const { titleColor, textColor, iconColor, bgColor, borderColor } = getCardColors({
     title_color,
     icon_color,
     text_color,
     bg_color,
+    border_color,
     theme,
   });
 
@@ -210,11 +213,13 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     defaultTitle: i18n.t("wakatimecard.title"),
     width: 495,
     height,
+    borderWidth: parseFloat(border_width),
     colors: {
       titleColor,
       textColor,
       iconColor,
       bgColor,
+      borderColor,
     },
   });
 

@@ -78,7 +78,7 @@ describe("Test renderTopLanguages", () => {
 
   it("should resize the height correctly depending on langs", () => {
     document.body.innerHTML = renderTopLanguages(langs, {});
-    expect(document.querySelector("svg")).toHaveAttribute("height", "205");
+    expect(document.querySelector("svg")).toHaveAttribute("height", "207");
 
     document.body.innerHTML = renderTopLanguages(
       {
@@ -91,16 +91,16 @@ describe("Test renderTopLanguages", () => {
       },
       {},
     );
-    expect(document.querySelector("svg")).toHaveAttribute("height", "245");
+    expect(document.querySelector("svg")).toHaveAttribute("height", "247");
   });
 
   it("should render with custom width set", () => {
     document.body.innerHTML = renderTopLanguages(langs, {});
 
-    expect(document.querySelector("svg")).toHaveAttribute("width", "300");
+    expect(document.querySelector("svg")).toHaveAttribute("width", "302");
 
     document.body.innerHTML = renderTopLanguages(langs, { card_width: 400 });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "400");
+    expect(document.querySelector("svg")).toHaveAttribute("width", "402");
   });
 
   it("should render default colors properly", () => {

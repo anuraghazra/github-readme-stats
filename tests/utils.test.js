@@ -71,6 +71,7 @@ describe("Test utils.js", () => {
       text_color: "0f0",
       icon_color: "00f",
       bg_color: "fff",
+      border_color: "fff",
       theme: "dark",
     });
     expect(colors).toStrictEqual({
@@ -78,6 +79,7 @@ describe("Test utils.js", () => {
       textColor: "#0f0",
       iconColor: "#00f",
       bgColor: "#fff",
+      borderColor: "#fff",
     });
   });
 
@@ -87,6 +89,7 @@ describe("Test utils.js", () => {
       text_color: "0f0",
       icon_color: "00f",
       bg_color: "fff",
+      border_color: "fff",
       theme: "dark",
     });
     expect(colors).toStrictEqual({
@@ -94,6 +97,7 @@ describe("Test utils.js", () => {
       textColor: "#0f0",
       iconColor: "#00f",
       bgColor: "#fff",
+      borderColor: "#fff",
     });
   });
 
@@ -106,6 +110,7 @@ describe("Test utils.js", () => {
       textColor: "#9f9f9f",
       iconColor: "#79ff97",
       bgColor: "#151515",
+      borderColor: "#151515",
     });
   });
 });

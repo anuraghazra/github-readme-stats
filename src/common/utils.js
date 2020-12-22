@@ -65,6 +65,10 @@ function isValidGradient(colors) {
 }
 
 function fallbackColor(color, fallbackColor) {
+  if (!color) {
+    return fallbackColor;
+  }
+  
   let colors = color.split(",");
   let gradient = null;
 
@@ -114,6 +118,7 @@ function getCardColors({
   text_color,
   icon_color,
   bg_color,
+  border_color,
   theme,
   fallbackTheme = "default",
 }) {
@@ -138,8 +143,12 @@ function getCardColors({
     bg_color || selectedTheme.bg_color,
     "#" + defaultTheme.bg_color,
   );
+  const borderColor = fallbackColor(
+    border_color || selectedTheme.border_color,
+    "#" + defaultTheme.border_color,
+  )
 
-  return { titleColor, iconColor, textColor, bgColor };
+  return { titleColor, iconColor, textColor, bgColor, borderColor };
 }
 
 function wrapTextMultiline(text, width = 60, maxLines = 3) {

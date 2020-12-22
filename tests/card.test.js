@@ -75,11 +75,11 @@ describe("Card", () => {
     document.body.innerHTML = card.render(``);
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
       "height",
-      "200",
+      "202",
     );
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
       "height",
-      "200",
+      "202",
     );
   });
 
@@ -90,16 +90,16 @@ describe("Card", () => {
     document.body.innerHTML = card.render(``);
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
       "height",
-      "170",
+      "172",
     );
   });
 
-  it("main-card-body should have proper when title is visible", () => {
+  it("main-card-body should have proper position when title is visible", () => {
     const card = new Card({ height: 200 });
     document.body.innerHTML = card.render(``);
     expect(queryByTestId(document.body, "main-card-body")).toHaveAttribute(
       "transform",
-      "translate(0, 55)",
+      "translate(1, 56)",
     );
   });
 
@@ -110,17 +110,18 @@ describe("Card", () => {
     document.body.innerHTML = card.render(``);
     expect(queryByTestId(document.body, "main-card-body")).toHaveAttribute(
       "transform",
-      "translate(0, 25)",
+      "translate(1, 26)",
     );
   });
 
   it("should render with correct colors", () => {
     // returns theme based colors with proper overrides and defaults
-    const { titleColor, textColor, iconColor, bgColor } = getCardColors({
+    const { titleColor, textColor, iconColor, bgColor, borderColor } = getCardColors({
       title_color: "f00",
       icon_color: "0f0",
       text_color: "00f",
       bg_color: "fff",
+      border_color: "fff",
       theme: "default",
     });
 
@@ -131,6 +132,7 @@ describe("Card", () => {
         textColor,
         iconColor,
         bgColor,
+        borderColor,
       },
     });
     document.body.innerHTML = card.render(``);
@@ -144,13 +146,18 @@ describe("Card", () => {
       "fill",
       "#fff",
     );
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+        "stroke",
+        "#fff",
+    );
   });
-  it("should render gradient backgrounds", () => {
-    const { titleColor, textColor, iconColor, bgColor } = getCardColors({
+  it("should render gradient backgrounds and borders", () => {
+    const { titleColor, textColor, iconColor, bgColor, borderColor } = getCardColors({
       title_color: "f00",
       icon_color: "0f0",
       text_color: "00f",
       bg_color: "90,fff,000,f00",
+      border_color: "90,fff,000,f00",
       theme: "default",
     });
 
@@ -161,6 +168,7 @@ describe("Card", () => {
         textColor,
         iconColor,
         bgColor,
+        borderColor,
       },
     });
     document.body.innerHTML = card.render(``);
@@ -168,18 +176,41 @@ describe("Card", () => {
       "fill",
       "url(#gradient)",
     );
-    expect(document.querySelector("defs linearGradient")).toHaveAttribute(
+    expect(document.querySelector("defs linearGradient#gradient")).toHaveAttribute(
       "gradientTransform",
       "rotate(90)",
     );
     expect(
-      document.querySelector("defs linearGradient stop:nth-child(1)"),
+      document.querySelector("defs linearGradient#gradient stop:nth-child(1)"),
     ).toHaveAttribute("stop-color", "#fff");
     expect(
-      document.querySelector("defs linearGradient stop:nth-child(2)"),
+      document.querySelector("defs linearGradient#gradient stop:nth-child(2)"),
     ).toHaveAttribute("stop-color", "#000");
     expect(
-      document.querySelector("defs linearGradient stop:nth-child(3)"),
+      document.querySelector("defs linearGradient#gradient stop:nth-child(3)"),
     ).toHaveAttribute("stop-color", "#f00");
+    
+    expect(document.querySelector("defs linearGradient#strokeGradient")).toHaveAttribute(
+        "gradientTransform",
+        "rotate(90)",
+    );
+    expect(
+        document.querySelector("defs linearGradient#strokeGradient stop:nth-child(1)"),
+    ).toHaveAttribute("stop-color", "#fff");
+    expect(
+        document.querySelector("defs linearGradient#strokeGradient stop:nth-child(2)"),
+    ).toHaveAttribute("stop-color", "#000");
+    expect(
+        document.querySelector("defs linearGradient#strokeGradient stop:nth-child(3)"),
+    ).toHaveAttribute("stop-color", "#f00");
+  });
+  it("should render with custom border width", () => {
+    const card = new Card({ borderWidth: 4});
+    
+    document.body.innerHTML = card.render(``);
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+        "stroke-width",
+        "4",
+    );
   });
 });

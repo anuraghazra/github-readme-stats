@@ -3,9 +3,10 @@
 exports[`Test Render Wakatime Card should render correctly 1`] = `
 "
       <svg
-        width=\\"495\\"
-        height=\\"150\\"
-        viewBox=\\"0 0 495 150\\"
+        width=\\"497\\"
+        height=\\"152\\"
+
+        viewBox=\\"0 0 497 152\\"
         fill=\\"none\\"
         xmlns=\\"http://www.w3.org/2000/svg\\"
       >
@@ -61,16 +62,20 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
           
         </style>
 
-        undefined
+        <defs>
+            undefined
+            undefined
+        </defs>
 
         <rect
           data-testid=\\"card-bg\\"
           x=\\"0.5\\"
           y=\\"0.5\\"
           rx=\\"4.5\\"
-          height=\\"99%\\"
-          stroke=\\"#E4E2E2\\"
-          width=\\"494\\"
+          height=\\"151\\"
+          stroke=\\"#e4e2e2\\"
+          stroke-width=\\"1\\"
+          width=\\"495\\"
           fill=\\"#fffefe\\"
           stroke-opacity=\\"1\\"
         />
@@ -78,7 +83,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
         
       <g
         data-testid=\\"card-title\\"
-        transform=\\"translate(25, 35)\\"
+        transform=\\"translate(26, 36)\\"
       >
         <g transform=\\"translate(0, 0)\\">
       <text
@@ -93,7 +98,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
 
         <g
           data-testid=\\"main-card-body\\"
-          transform=\\"translate(0, 55)\\"
+          transform=\\"translate(1, 56)\\"
         >
           
     <svg x=\\"0\\" y=\\"0\\" width=\\"100%\\">
@@ -154,9 +159,10 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
 exports[`Test Render Wakatime Card should render correctly with compact layout 1`] = `
 "
       <svg
-        width=\\"495\\"
-        height=\\"140\\"
-        viewBox=\\"0 0 495 140\\"
+        width=\\"497\\"
+        height=\\"142\\"
+
+        viewBox=\\"0 0 497 142\\"
         fill=\\"none\\"
         xmlns=\\"http://www.w3.org/2000/svg\\"
       >
@@ -212,16 +218,20 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
           
         </style>
 
-        undefined
+        <defs>
+            undefined
+            undefined
+        </defs>
 
         <rect
           data-testid=\\"card-bg\\"
           x=\\"0.5\\"
           y=\\"0.5\\"
           rx=\\"4.5\\"
-          height=\\"99%\\"
-          stroke=\\"#E4E2E2\\"
-          width=\\"494\\"
+          height=\\"141\\"
+          stroke=\\"#e4e2e2\\"
+          stroke-width=\\"1\\"
+          width=\\"495\\"
           fill=\\"#fffefe\\"
           stroke-opacity=\\"1\\"
         />
@@ -229,7 +239,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
         
       <g
         data-testid=\\"card-title\\"
-        transform=\\"translate(25, 35)\\"
+        transform=\\"translate(26, 36)\\"
       >
         <g transform=\\"translate(0, 0)\\">
       <text
@@ -244,7 +254,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
 
         <g
           data-testid=\\"main-card-body\\"
-          transform=\\"translate(0, 55)\\"
+          transform=\\"translate(1, 56)\\"
         >
           
     <svg x=\\"0\\" y=\\"0\\" width=\\"100%\\">

@@ -5,6 +5,7 @@ class Card {
   constructor({
     width = 100,
     height = 100,
+    borderWidth = 1,
     colors = {},
     customTitle,
     defaultTitle = "",
@@ -12,6 +13,7 @@ class Card {
   }) {
     this.width = width;
     this.height = height;
+    this.borderWidth = isNaN(borderWidth) ? 1 : borderWidth;
 
     this.hideBorder = false;
     this.hideTitle = false;
@@ -80,7 +82,7 @@ class Card {
     return `
       <g
         data-testid="card-title"
-        transform="translate(${this.paddingX}, ${this.paddingY})"
+        transform="translate(${this.paddingX + this.borderWidth}, ${this.paddingY + this.borderWidth})"
       >
         ${FlexLayout({
           items: [this.titlePrefixIcon && prefixIcon, titleText],
@@ -96,27 +98,45 @@ class Card {
     const gradients = this.colors.bgColor.slice(1);
     return typeof this.colors.bgColor === "object"
       ? `
-        <defs>
-          <linearGradient
-            id="gradient" 
-            gradientTransform="rotate(${this.colors.bgColor[0]})"
-          >
-            ${gradients.map((grad, index) => {
-              let offset = (index * 100) / (gradients.length - 1);
-              return `<stop offset="${offset}%" stop-color="#${grad}" />`;
-            })}
-          </linearGradient>
-        </defs>
+      <linearGradient
+        id="gradient"
+        gradientTransform="rotate(${this.colors.bgColor[0]})"
+      >
+        ${gradients.map((grad, index) => {
+          let offset = (index * 100) / (gradients.length - 1);
+          return `<stop offset="${offset}%" stop-color="#${grad}" />`;
+        })}
+      </linearGradient>
         `
       : "";
+  }
+  
+  renderStrokeGradient() {
+    if (typeof this.colors.borderColor !== "object") return;
+    
+    const gradients = this.colors.borderColor.slice(1);
+    return typeof this.colors.borderColor === "object"
+        ? `
+        <linearGradient
+          id="strokeGradient"
+          gradientTransform="rotate(${this.colors.borderColor[0]})"
+        >
+          ${gradients.map((grad, index) => {
+            let offset = (index * 100) / (gradients.length - 1);
+            return `<stop offset="${offset}%" stop-color="#${grad}" />`;
+          })}
+        </linearGradient>
+        `
+        : "";
   }
 
   render(body) {
     return `
       <svg
-        width="${this.width}"
-        height="${this.height}"
-        viewBox="0 0 ${this.width} ${this.height}"
+        width="${this.width + this.borderWidth*2}"
+        height="${this.height + this.borderWidth*2}"
+
+        viewBox="0 0 ${this.width + this.borderWidth*2} ${this.height + this.borderWidth*2}"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
@@ -136,16 +156,24 @@ class Card {
           }
         </style>
 
-        ${this.renderGradient()}
+        <defs>
+            ${this.renderGradient()}
+            ${this.renderStrokeGradient()}
+        </defs>
 
         <rect
           data-testid="card-bg"
-          x="0.5"
-          y="0.5"
+          x="${this.borderWidth/2}"
+          y="${this.borderWidth/2}"
           rx="4.5"
-          height="99%"
-          stroke="#E4E2E2"
-          width="${this.width - 1}"
+          height="${this.height + this.borderWidth}"
+          stroke="${
+            typeof this.colors.borderColor === "object"
+              ? "url(#strokeGradient)"
+              : this.colors.borderColor
+          }"
+          stroke-width="${this.borderWidth}"
+          width="${this.width - 1 + this.borderWidth}"
           fill="${
             typeof this.colors.bgColor === "object"
               ? "url(#gradient)"
@@ -158,8 +186,8 @@ class Card {
 
         <g
           data-testid="main-card-body"
-          transform="translate(0, ${
-            this.hideTitle ? this.paddingX : this.paddingY + 20
+          transform="translate(${this.borderWidth}, ${
+                (this.hideTitle ? this.paddingX : this.paddingY + 20) + this.borderWidth
           })"
         >
           ${body}
