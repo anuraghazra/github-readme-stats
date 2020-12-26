@@ -105,7 +105,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ru: "Всего issue",
       id: "Total Masalah Dilaporkan",
       my: "Jumlah Isu Dilaporkan",
-      sk: "Všetky problémy"
+      sk: "Všetky problémy",
     },
     "statcard.contribs": {
       cn: "总贡献",

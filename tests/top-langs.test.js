@@ -66,22 +66,28 @@ const langs = {
 
 const mock = new MockAdapter(axios);
 
+const faker = (query, data) => {
+  const req = {
+    query: {
+      username: "anuraghazra",
+      ...query,
+    },
+  };
+  const res = {
+    setHeader: jest.fn(),
+    send: jest.fn(),
+  };
+  mock.onPost("https://api.github.com/graphql").reply(200, data);
+  return { req, res };
+};
+
 afterEach(() => {
   mock.reset();
 });
 
 describe("Test /api/top-langs", () => {
   it("should test the request", async () => {
-    const req = {
-      query: {
-        username: "anuraghazra",
-      },
-    };
-    const res = {
-      setHeader: jest.fn(),
-      send: jest.fn(),
-    };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
+    const { req, res } = faker({}, data_langs);
 
     await topLangs(req, res);
 
@@ -90,9 +96,8 @@ describe("Test /api/top-langs", () => {
   });
 
   it("should work with the query options", async () => {
-    const req = {
-      query: {
-        username: "anuraghazra",
+    const { req, res } = faker(
+      {
         hide_title: true,
         card_width: 100,
         title_color: "fff",
@@ -100,12 +105,8 @@ describe("Test /api/top-langs", () => {
         text_color: "fff",
         bg_color: "fff",
       },
-    };
-    const res = {
-      setHeader: jest.fn(),
-      send: jest.fn(),
-    };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
+      data_langs,
+    );
 
     await topLangs(req, res);
 
@@ -123,20 +124,66 @@ describe("Test /api/top-langs", () => {
   });
 
   it("should render error card on error", async () => {
-    const req = {
-      query: {
-        username: "anuraghazra",
-      },
-    };
-    const res = {
-      setHeader: jest.fn(),
-      send: jest.fn(),
-    };
-    mock.onPost("https://api.github.com/graphql").reply(200, error);
+    const { req, res } = faker({}, error);
 
     await topLangs(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(renderError(error.errors[0].message));
+  });
+
+  it("should handle response_type", async () => {
+    {
+      const { req, res } = faker({ response_type: "svg" }, data_langs);
+      await topLangs(req, res);
+      expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+      expect(res.send).toBeCalledWith(renderTopLanguages(langs, {}));
+    }
+
+    {
+      const { req, res } = faker({ response_type: "json" }, data_langs);
+      await topLangs(req, res);
+      expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
+      expect(JSON.parse(res.send.mock.calls[0][0])).toStrictEqual(langs);
+    }
+
+    // {
+    //   const { Parser } = require("xml2js");
+    //   const { parseStringPromise } = new Parser();
+    //   const { req, res } = faker({ response_type: "xml" }, data_langs);
+    //   await api(req, res);
+    //   const { root } = await parseStringPromise(res.send.mock.calls[0][0]);
+    //   expect(res.setHeader).toBeCalledWith("Content-Type", "application/xml");
+    //   expect(
+    //     root,
+    //   ).toStrictEqual(langs);
+    // }
+
+    {
+      const { req, res } = faker(
+        { response_type: "jsonp", callback: "topLangs" },
+        data_langs,
+      );
+      await topLangs(req, res);
+      expect(res.setHeader).toBeCalledWith(
+        "Content-Type",
+        "application/javascript",
+      );
+      expect(
+        JSON.parse(res.send.mock.calls[0][0].match(/^topLangs\((.*)\)$/)[1]),
+      ).toStrictEqual(langs);
+    }
+
+    {
+      const { safeLoad } = require("js-yaml");
+      const { req, res } = faker({ response_type: "yaml" }, data_langs);
+      await topLangs(req, res);
+      const parsed = safeLoad(res.send.mock.calls[0][0]);
+      expect(res.setHeader).toBeCalledWith(
+        "Content-Type",
+        "application/x-yaml",
+      );
+      expect(parsed).toStrictEqual(langs);
+    }
   });
 });

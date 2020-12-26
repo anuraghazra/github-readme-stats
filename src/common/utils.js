@@ -242,7 +242,7 @@ function ResponseType(
     ...jsonp,
   };
   yaml = {
-    contentType: "application/javascript",
+    contentType: "application/x-yaml",
     render: (json) => yamlSafeDump(json),
     error: (message, secondaryMessage = "") =>
       yamlSafeDump({
