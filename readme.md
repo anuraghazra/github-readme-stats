@@ -156,7 +156,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 - `hide` - Hides the specified items from stats _(Comma-separated values)_
 - `hide_title` - _(boolean)_
-- `hide_rank` - _(boolean)_
+- `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width
 - `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
@@ -404,7 +404,8 @@ Thanks! :heart:
 
 ---
 
-![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
+
 
 Contributions are welcome! <3
 

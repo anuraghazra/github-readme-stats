@@ -1,7 +1,7 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">Krijg dynamische gegenereerde GitHub statestieken op je readme's!</p>
+ <p align="center">Krijg dynamisch gegenereerde GitHub statistieken op je readme's!</p>
 </p>
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
@@ -29,9 +29,9 @@
   <p align="center">
     <a href="#demo">Bekijk Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Rapporteer Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Rapporteer een Bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Vraag een feature aan</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Vraag een nieuwe toepassing aan</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français </a>
@@ -57,35 +57,37 @@
 
 # Functionaliteiten
 
-- [GitHub Statistieken Kaart](#github-stats-card)
+- [GitHub Statistieken Kaart](#github-statistieken-kaart)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Top Programeertalen Kaart](#top-languages-card)
-- [Wekelijkse Wakatime Statestieken](#wakatime-week-stats)
-- [Thema\'s](#themes)
-- [Opmaak](#customization)
-- [Zelf deployen](#deploy-on-your-own-vercel-instance)
+- [Top Programmeertalen Kaart](#top-Programmeertalen-kaart)
+- [Wekelijkse Wakatime Statistieken](#wekelijkse-wakatime-statistieken)
+- [Thema\'s](#themas)
+- [Opmaak](#opmaak)
+- [Zelf deployen](#deploy-je-eigen-vercel-instatie)
 
-# GitHub Statestieken Kaart
+# GitHub Statistieken Kaart
 
 Kopieer en plak dit in je markdown content, zo simpel is het!
 
-Verander de `?username=` waarde naar jou gebruikersnaam.
+Verander de waarde `?username=` naar jou gebruikersnaam.
 
 ```md
-[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Scores zijn berekend gebaseerd op gebruikers statestieken, zie [src/calculateRank.js](./src/calculateRank.js)_
+_Notitie: Beschikbare rangen zijn S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (iedereen).
+De waarden worden berekend met behulp van de zogeheten [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) met de waardes van de commits, bijdragens, issues, sterren, PR's, volgers en eigen repositories.
+De implementatie hiervan kan bekijken op [src/calculateRank.js](./src/calculateRank.js)_
 
-### Verberg individueele statestieken
+### Verberg individueele statistieken
 
-Om specifieke statestieken te verbergen, kan je een `?hide=` query parameter toevogen, verdeeld met comma\'s.
+Om specifieke statistieken te verbergen, kan je een `?hide=` query parameter toevogen, verdeeld met komma\'s.
 
 
 > Opties: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
 ### Voeg privé contributies toe aan totale commits.
@@ -97,7 +99,7 @@ _Notitie: Als je dit project zelf deployt, zullen de privé contributies standaa
 > Opties: `&count_private=true`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
 ### Laat icoontjes zien
@@ -105,7 +107,7 @@ _Notitie: Als je dit project zelf deployt, zullen de privé contributies standaa
 Om icoontjes te gebruiken kan je `show_icons=true` gebruiken in de query parameter, zoals hier:
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
 ### Thema\'s
@@ -115,7 +117,7 @@ Met ingebouwde thema\'s kan je het uiterlijk van de kaart aanpassen zonder enige
 Gebruik `?theme=THEME_NAME` parameters zo :-
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
 #### Alle ingeboude thema\'s :-
@@ -128,13 +130,13 @@ Je kan een preview van alle [beschikbare thema\'s](./themes/README.md) bekijken,
 
 ### Opmaak
 
-Je kan het uiterlijk van je `Statistieken kaart` of `Repo kaart` aanpassen hoe je ook maar wilt met URL params.
+Je kan het uiterlijk van je `Statistieken kaart` of `Repo kaart` aanpassen hoe je ook maar wilt met URL parameters.
 
 #### Veel gebruikte opties:
 
 - `title_color` - De kleur van de titel van de kaart _(hex kleur)_
 - `text_color` - Tekst kleur _(hex kleur)_
-- `icon_color` - Icoontjes kleur, wanneer beschikbaar _(hex kleur)_
+- `icon_color` - Icoon kleuren, wanneer beschikbaar _(hex kleur)_
 - `bg_color` - Achtergrond kleur van de kaart _(hex kleur)_ **of** een verloop van kleuren in het formaat van _graden,start,einde_
 - `hide_border` - Verbergt de rand van de kaart _(boolean)_
 - `theme` - Naam van het thema, kies uit [alle beschikbare thema\'s](./themes/README.md)
@@ -143,7 +145,7 @@ Je kan het uiterlijk van je `Statistieken kaart` of `Repo kaart` aanpassen hoe j
 
 ##### Kleurenverloop in bg_color (achtergrond kleur):
 
-Je kan meerdere comma verdeelde waarden in de bg_color optie geven om een kleurenverloop te creeëren, het formaat van de kleurenverloop is:-
+Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleurenverloop te creeëren, het formaat van het kleurenverloop is:-
 
 ```
 &bg_color=GRADEN,KLEUR1,KLEUR2,KLEUR3...KLEUR10
@@ -151,14 +153,14 @@ Je kan meerdere comma verdeelde waarden in de bg_color optie geven om een kleure
 
 > Notities i.v.b.m. cache: Repo kaarten hebben een standaard cache van 4 uur (14400 seconden) als de fork hoeveelheid en de star hoeveelheid minder is dan 1k, anders is het 2 uur (7200 seconden). Daarnaast ligt de cache vast aan een minimum van 2 uur en een maximum van 24 uur.
 
-#### Exclusieve opties voor Statestieken Kaart:
+#### Exclusieve opties voor Statistieken Kaart:
 
-- `hide` - Verbergt gespecificeerde items van de statestieken. _(komma gescheiden waardes)_
+- `hide` - Verbergt gespecificeerde items van de statistieken. _(komma gescheiden waardes)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
 - `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
-- `include_all_commits` - Tel alle commits inplaats van alleen de commits van het momentele jaar _(boolean)_
+- `include_all_commits` - Tel alle commits inplaats van alleen de commits van het huidige jaar _(boolean)_
 - `count_private` - Tel privé commits mee _(boolean)_
 - `line_height` - Stel de lijn-hoogte tussen text in _(nummer)_
 - `custom_title` - Stel een aangepaste titel voor je kaart in
@@ -169,33 +171,35 @@ Je kan meerdere comma verdeelde waarden in de bg_color optie geven om een kleure
 
 #### Exclusieve opties voor Programmeertaal Kaart:
 
-- `hide` - Verberg de gespecificeerde talen van de kaart _(komma gescheiden waardes)_
+- `hide` - Verbergt specifieke talen van de kaart _(komma gescheiden waardes)_
 - `hide_title` - _(boolean)_
 - `hide_border` - _(boolean)_
-- `layout` - Verander tussen de twee beschikbarre layouts `default` & `compact`
-- `card_width` - Stel de breedte van de kaart handmatig in. _(nummer)_
+- `layout` - Keuze voor de twee beschikbare layouts `default` & `compact`
+- `card_width` - Stelt de breedte van de kaart handmatig in. _(nummer)_
 - `langs_count` - Laat meer talen op de kaart zien, waarde tussen 1-10, staat standaard op to 5 _(nummer)_
-- `exclude_repo` - Verberg gespecificeerde repositories _(komma gescheiden waardes)_
-- `custom_title` - Creeër een zelfgemaakte titel voor je kaart.
+- `exclude_repo` - Verbergt specifieke repositories _(komma gescheiden waardes)_
+- `custom_title` - Stelt een eigen titel voor de kaart in
 
 > :Waarschuwing: **Belangrijk:**
 > Namen van programmeertalen moeten worden geuri-escaped, zoals gespecificeerd in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
-> (Oftewel: `c++` moet `c%2B%2B` worden, `jupyter notebook` moet `jupyter%20notebook` worden, etc.)
+> (Oftewel: `c++` moet `c%2B%2B` worden, `jupyter notebook` moet `jupyter%20notebook` worden, enzovoort...)
+> Zie [urlencoder.org](https://www.urlencoder.org/) om dit automatisch te doen.
 
 #### Exclusieve opties voor Wakatime Kaart:
 
 - `hide_title` - _(boolean)_
-- `line_height` - Verander de lijn hoogte tussen tekst _(nummer)_
-- `hide_progress` - Verberg de progressie bar en het percentage _(boolean)_ 
-- `custom_title` - Stel een eigen titel neer voor de kaart in
+- `line_height` - Verandert de lijn hoogte tussen tekst _(nummer)_
+- `hide_progress` - Verbergt de progressiebalk en het percentage _(boolean)_
+- `custom_title` - Stelt een eigen titel voor de kaart in
+- `layout` - Schakel tussen de twee beschikbare lay-outs `default` en `compact`
 
 ---
 
 # GitHub Extra Pins
 
-Github extra pins geven je de mogelijkheid om meer dan 6 repositories op je profiel te pinnen, doormiddel van een GitHub readme profile.
+GitHub extra pins geven je de mogelijkheid om meer dan 6 repositories op je profiel te pinnen, doormiddel van een GitHub readme profile.
 
-Joepie! Je bent niet langer aan maar 6 pins gelimiteerd!
+Joepie! Je bent niet langer aan 6 pins gelimiteerd!
 
 ### Gebruik
 
@@ -217,7 +221,7 @@ Gebruikt [show_owner](#customization) variabele om de repo\'s eigenaar toe te vo
 
 # Top Programmeertalen Kaart
 
-De top programmeertalen kaart laat zien welke talen een github gebruiker het meest gebruikt.
+De top programmeertalen kaart laat zien welke talen een GitHub gebruiker het meest gebruikt.
 
 _Notitie: Top programmeertalen wijzen niet op een vaardigheids niveau, het is puur een GitHub metriek over welke talen de meeste code op GitHub hebben. Het is een nieuwe funktie van github-readme-stats._
 
@@ -266,25 +270,25 @@ Je kan de `&layout=compact` optie gebruiken om het kaart ontwerp aan te passen.
 
 ### Demo
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Top programmeertalen](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 - Compacte opmaak
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Top programmeertalen](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Wekelijkse Wakatime Statestieken
+# Wekelijkse Wakatime Statistieken
 
 Verander de `?username=` waarde naar je [Wakatime](https://wakatime.com) gebruikersnaam.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -292,37 +296,37 @@ Verander de `?username=` waarde naar je [Wakatime](https://wakatime.com) gebruik
 
 - Standaard
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - Verberg specifieke statestieken
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
 
 - Weergeef icoontjes
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
 - Voeg alle commits toe
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
 
 - Thema\'s
 
 Kies uit de [standaard thema\'s](#themes)
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
 - Kleurenverloop
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
-- Pas statestieken kaart aan
+- Pas statistieken kaart aan
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
 - Stel je kaart locale (taal) in
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=es)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=es)
 
 - Pas repo kaart aan.
 
@@ -330,17 +334,17 @@ Kies uit de [standaard thema\'s](#themes)
 
 - Top programmeertalen
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Programmeertalen](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 - Wakatime kaart
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
 ### Kleine tip (Verstel de repo kaart z\'n positie)
 
-Meestal kan je de afbeeldingen niet naast elkaar zetten, dat kan op deze manier wel:
+Meestal kan je de afbeeldingen niet naast elkaar zetten, op deze manier wel:
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -353,7 +357,7 @@ Meestal kan je de afbeeldingen niet naast elkaar zetten, dat kan op deze manier 
 
 ## Deploy je eigen Vercel instatie
 
-#### [Check de stapsgeweize video tutorial door @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+#### [Check de stapsgewijze video tutorial door @codeSTACKr (In het Engels)](https://youtu.be/n6d4KHSKqGk?t=107)
 
 Sinds de GitHub API alleen maar 5k verzoeken per uur toestaat, zou mijn `https://github-readme-stats.vercel.app/api` mogelijk de rate limiet behalen. Als je het op je eigen Vercel server host, dan hoef je je nergens zorgen om te maken. Klik op de deploy knop om te beginnen!
 
@@ -362,12 +366,12 @@ NOTITIE: Sinds [#58](https://github.com/anuraghazra/github-readme-stats/pull/58)
 [![Deploy naar Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary><b>Versel opzet gids:  🔨 </b></summary>
+ <summary><b>Versel deploy gids:  🔨 </b></summary>
 
 1. Ga naar [vercel.com](https://vercel.com/)
 2. Klik op `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
-3. Meld je aan met je GitHub door op `Continue with GitHub` te klikken.
+3. Meld je aan met GitHub door op `Continue with GitHub` te klikken.
    ![](https://files.catbox.moe/btd78j.jpeg)
 4. Log in op GitHub en sta toegang tot alle repositories toe, wanneer dat gevraagt wordt.
 5. Fork deze repo
@@ -384,11 +388,11 @@ NOTITIE: Sinds [#58](https://github.com/anuraghazra/github-readme-stats/pull/58)
 
 ## :sparkling_heart: Ondersteun het project
 
-Ik open-source bijna alles wat ik kan, en ik probeer iedereen te helpen die deze projecten gebruikt. Natuurlijk kost dit tijd, je mag deze services gratis gebruiken.
+Ik maak bijna alles open-source wat ik kan, en ik probeer iedereen te helpen die deze projecten gebruiken. Natuurlijk kost dit tijd, je mag deze services gratis gebruiken.
 
 Hoe dan ook, als je dit project gebruikt en er blij mee bent, of mij wilt aanmoedigen om dingen te blijven maken, zijn er een paar manieren om dit te doen; -
 
-- Behoorlijke credit aan github-readme-stats geven op je readme, die terug naar het project linkt :D
+- Credits geven aan github-readme-stats op je readme, die terug naar het project linkt :D
 - Sterren en delen van het project :rocket:
 - [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - Je kan eenmalig giften via PayPal, ik koop er waarschijnlijk ~~koffie~~ thee van. :tea:
 
@@ -396,7 +400,7 @@ Bedankt! :heart:
 
 ---
 
-![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 Contributies zijn welkom! <3
 
