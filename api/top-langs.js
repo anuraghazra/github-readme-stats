@@ -4,8 +4,8 @@ const {
   parseBoolean,
   parseArray,
   CONSTANTS,
-  ResponseType,
 } = require("../src/common/utils");
+const ResponseType = require("../src/common/responseType");
 const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 const renderTopLanguages = require("../src/cards/top-languages-card");
 const blacklist = require("../src/common/blacklist");
@@ -35,7 +35,7 @@ module.exports = async (req, res) => {
   const { contentType, error, render } = ResponseType({
     response_type,
     callback,
-    renderCard: renderTopLanguages
+    renderCard: renderTopLanguages,
   });
 
   res.setHeader("Content-Type", contentType);

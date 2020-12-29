@@ -4,8 +4,8 @@ const {
   parseArray,
   clampValue,
   CONSTANTS,
-  ResponseType,
 } = require("../src/common/utils");
+const ResponseType = require("../src/common/responseType");
 const fetchStats = require("../src/fetchers/stats-fetcher");
 const renderStatsCard = require("../src/cards/stats-card");
 const blacklist = require("../src/common/blacklist");

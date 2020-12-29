@@ -1,10 +1,6 @@
 require("dotenv").config();
-const {
-  parseBoolean,
-  clampValue,
-  CONSTANTS,
-  ResponseType,
-} = require("../src/common/utils");
+const { parseBoolean, clampValue, CONSTANTS } = require("../src/common/utils");
+const ResponseType = require("../src/common/responseType");
 const fetchRepo = require("../src/fetchers/repo-fetcher");
 const renderRepoCard = require("../src/cards/repo-card");
 const blacklist = require("../src/common/blacklist");

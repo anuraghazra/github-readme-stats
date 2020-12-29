@@ -21,14 +21,15 @@
     "css-to-object": "^1.1.0",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
-    "parse-diff": "^0.7.0"
+    "parse-diff": "^0.7.0",
+    "prettier": "^2.1.2"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "emoji-name-map": "^1.2.8",
     "github-username-regex": "^1.0.0",
     "js-yaml": "^3.14.0",
-    "prettier": "^2.1.2",
     "word-wrap": "^1.2.3",
     "xml2js": "^0.4.23"
   },

@@ -4,8 +4,8 @@ const {
   clampValue,
   CONSTANTS,
   isLocaleAvailable,
-  ResponseType,
 } = require("../src/common/utils");
+const ResponseType = require("../src/common/responseType");
 const { fetchLast7Days } = require("../src/fetchers/wakatime-fetcher");
 const wakatimeCard = require("../src/cards/wakatime-card");
 

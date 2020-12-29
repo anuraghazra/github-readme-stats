@@ -1,8 +1,6 @@
 const axios = require("axios");
 const wrap = require("word-wrap");
 const themes = require("../../themes");
-const { safeDump: yamlSafeDump } = require("js-yaml");
-const { Builder: XmlBuilder } = require("xml2js");
 
 const renderError = (message, secondaryMessage = "") => {
   return `
@@ -190,59 +188,6 @@ class CustomError extends Error {
   static USER_NOT_FOUND = "USER_NOT_FOUND";
 }
 
-/**
- * @param {String} [response_type = svg] The response type.
- * @param {String} [response_type = githubReadmeStats] A callback for jsonp.
- * @param {Function} renderCard A function to render the svg card
- * @returns {Object}
- */
-const ResponseType = ({
-  response_type = "svg",
-  callback = "githubReadmeStats",
-  renderCard,
-} = {}) => {
-  const responseTypes = {
-    svg: {
-      contentType: "image/svg+xml",
-      render: renderCard,
-      error: renderError,
-    },
-    json: {
-      contentType: "application/json",
-      render: (json) => JSON.stringify(json),
-      error: (message, secondaryMessage = "") =>
-        JSON.stringify({ error: { message, secondaryMessage } }),
-    },
-    xml: {
-      contentType: "application/xml",
-      render: (json) => new XmlBuilder().buildObject(json),
-      error: (message, secondaryMessage = "") =>
-        new XmlBuilder().buildObject({ error: { message, secondaryMessage } }),
-    },
-    jsonp: {
-      contentType: "application/javascript",
-      render: (json) =>
-        // https://stackoverflow.com/a/19782287
-        `${callback.replace(/^[^a-zA-Z_$]|[^\w$]/g, "_")}(${JSON.stringify(
-          json,
-        )})`,
-      error: (message, secondaryMessage = "") =>
-        `${callback}(${JSON.stringify({
-          error: { message, secondaryMessage },
-        })})`,
-    },
-    yaml: {
-      contentType: "application/x-yaml",
-      render: (json) => yamlSafeDump(json),
-      error: (message, secondaryMessage = "") =>
-        yamlSafeDump({
-          error: { message, secondaryMessage },
-        }),
-    },
-  };
-  return responseTypes[response_type] || responseTypes.svg;
-};
-
 // https://stackoverflow.com/a/48172630/10629172
 function measureText(str, fontSize = 10) {
   // prettier-ignore
@@ -295,5 +240,4 @@ module.exports = {
   logger,
   CONSTANTS,
   CustomError,
-  ResponseType,
 };
