@@ -190,80 +190,58 @@ class CustomError extends Error {
   static USER_NOT_FOUND = "USER_NOT_FOUND";
 }
 
-function ResponseType(
+/**
+ * @param {String} [response_type = svg] The response type.
+ * @param {String} [response_type = githubReadmeStats] A callback for jsonp.
+ * @param {Function} renderCard A function to render the svg card
+ * @returns {Object}
+ */
+const ResponseType = ({
   response_type = "svg",
-  {
-    callback = "githubReadmeStats",
-    svg = {},
-    json = {},
-    xml = {},
-    jsonp = {},
-    yaml = {},
-  },
-) {
-  svg = {
-    contentType: "image/svg+xml",
-    error: renderError,
-    ...svg,
+  callback = "githubReadmeStats",
+  renderCard,
+} = {}) => {
+  const responseTypes = {
+    svg: {
+      contentType: "image/svg+xml",
+      render: renderCard,
+      error: renderError,
+    },
+    json: {
+      contentType: "application/json",
+      render: (json) => JSON.stringify(json),
+      error: (message, secondaryMessage = "") =>
+        JSON.stringify({ error: { message, secondaryMessage } }),
+    },
+    xml: {
+      contentType: "application/xml",
+      render: (json) => new XmlBuilder().buildObject(json),
+      error: (message, secondaryMessage = "") =>
+        new XmlBuilder().buildObject({ error: { message, secondaryMessage } }),
+    },
+    jsonp: {
+      contentType: "application/javascript",
+      render: (json) =>
+        // https://stackoverflow.com/a/19782287
+        `${callback.replace(/^[^a-zA-Z_$]|[^\w$]/g, "_")}(${JSON.stringify(
+          json,
+        )})`,
+      error: (message, secondaryMessage = "") =>
+        `${callback}(${JSON.stringify({
+          error: { message, secondaryMessage },
+        })})`,
+    },
+    yaml: {
+      contentType: "application/x-yaml",
+      render: (json) => yamlSafeDump(json),
+      error: (message, secondaryMessage = "") =>
+        yamlSafeDump({
+          error: { message, secondaryMessage },
+        }),
+    },
   };
-  json = {
-    contentType: "application/json",
-    render: (json) =>
-      typeof json === "object"
-        ? JSON.stringify(json)
-        : typeof json === "string"
-        ? JSON.stringify(JSON.parse(json))
-        : null,
-    error: (message, secondaryMessage = "") =>
-      JSON.stringify({ error: { message, secondaryMessage } }),
-    ...json,
-  };
-  xml = {
-    contentType: "application/xml",
-    render: (json) => new XmlBuilder().buildObject(json),
-    error: (message, secondaryMessage = "") =>
-      new XmlBuilder().buildObject({ error: { message, secondaryMessage } }),
-    ...xml,
-  };
-  jsonp = {
-    contentType: "application/javascript",
-    render: (json) =>
-      `${callback}(${
-        typeof json === "object"
-          ? JSON.stringify(json)
-          : typeof json === "string"
-          ? JSON.stringify(JSON.parse(json))
-          : null
-      })`,
-    error: (message, secondaryMessage = "") =>
-      `${callback}(${JSON.stringify({
-        error: { message, secondaryMessage },
-      })})`,
-    ...jsonp,
-  };
-  yaml = {
-    contentType: "application/x-yaml",
-    render: (json) => yamlSafeDump(json),
-    error: (message, secondaryMessage = "") =>
-      yamlSafeDump({
-        error: { message, secondaryMessage },
-      }),
-    ...yaml,
-  };
-  if (response_type.toLocaleLowerCase() === "svg") {
-    return svg;
-  } else if (response_type.toLocaleLowerCase() === "json") {
-    return json;
-  } else if (response_type.toLocaleLowerCase() === "xml") {
-    return xml;
-  } else if (response_type.toLocaleLowerCase() === "jsonp") {
-    return jsonp;
-  } else if (response_type.toLocaleLowerCase() === "yaml") {
-    return yaml;
-  } else {
-    return svg;
-  }
-}
+  return responseTypes[response_type] || responseTypes.svg;
+};
 
 // https://stackoverflow.com/a/48172630/10629172
 function measureText(str, fontSize = 10) {

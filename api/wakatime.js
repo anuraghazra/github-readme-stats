@@ -28,9 +28,10 @@ module.exports = async (req, res) => {
     response_type,
     callback,
   } = req.query;
-  const { contentType, error, render } = ResponseType(response_type, {
+  const { contentType, error, render } = ResponseType({
+    response_type,
     callback,
-    svg: { render: wakatimeCard },
+    renderCard: wakatimeCard,
   });
 
   res.setHeader("Content-Type", contentType);

@@ -223,57 +223,12 @@ describe("Test /api/", () => {
   });
 
   it("should handle response_type", async () => {
-    {
-      const { req, res } = faker({ response_type: "svg" }, data);
-      await api(req, res);
-      expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-      expect(res.send).toBeCalledWith(renderStatsCard(stats, {}));
-    }
-
-    {
-      const { req, res } = faker({ response_type: "json" }, data);
-      await api(req, res);
-      expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-      expect(JSON.parse(res.send.mock.calls[0][0])).toStrictEqual(stats);
-    }
-
-    // {
-    //   const { Parser } = require("xml2js");
-    //   const { parseStringPromise } = new Parser();
-    //   const { req, res } = faker({ response_type: "xml" }, data);
-    //   await api(req, res);
-    //   const { root } = await parseStringPromise(res.send.mock.calls[0][0]);
-    //   expect(res.setHeader).toBeCalledWith("Content-Type", "application/xml");
-    //   expect(
-    //     root,
-    //   ).toStrictEqual(stats);
-    // }
-
-    {
-      const { req, res } = faker(
-        { response_type: "jsonp", callback: "stats" },
-        data,
-      );
-      await api(req, res);
-      expect(res.setHeader).toBeCalledWith(
-        "Content-Type",
-        "application/javascript",
-      );
-      expect(
-        JSON.parse(res.send.mock.calls[0][0].match(/^stats\((.*)\)$/)[1]),
-      ).toStrictEqual(stats);
-    }
-
-    {
-      const { safeLoad } = require("js-yaml");
-      const { req, res } = faker({ response_type: "yaml" }, data);
-      await api(req, res);
-      const parsed = safeLoad(res.send.mock.calls[0][0]);
-      expect(res.setHeader).toBeCalledWith(
-        "Content-Type",
-        "application/x-yaml",
-      );
-      expect(parsed).toStrictEqual(stats);
-    }
+    const TestResponseType = require("./ResponseType");
+    await TestResponseType({
+      faker: (query) => faker(query, data),
+      api,
+      data: stats,
+      renderCard: renderStatsCard,
+    });
   });
 });

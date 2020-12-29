@@ -32,9 +32,10 @@ module.exports = async (req, res) => {
     callback,
   } = req.query;
   let topLangs;
-  const { contentType, error, render } = ResponseType(response_type, {
+  const { contentType, error, render } = ResponseType({
+    response_type,
     callback,
-    svg: { render: renderTopLanguages },
+    renderCard: renderTopLanguages
   });
 
   res.setHeader("Content-Type", contentType);

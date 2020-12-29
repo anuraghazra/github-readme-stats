@@ -141,6 +141,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
 - `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
 - `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
+- `response_type` - set the response type of the card _(svg, json, xml, jsonp, yaml)_
 
 ##### Gradient in bg_color
 

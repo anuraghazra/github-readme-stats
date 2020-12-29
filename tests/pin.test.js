@@ -107,59 +107,12 @@ describe("Test /api/pin", () => {
   });
 
   it("should handle response_type", async () => {
-    {
-      const { req, res } = faker({ response_type: "svg" }, data_user);
-      await pin(req, res);
-      expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-      expect(res.send).toBeCalledWith(renderRepoCard(data_repo.repository, {}));
-    }
-
-    {
-      const { req, res } = faker({ response_type: "json" }, data_user);
-      await pin(req, res);
-      expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-      expect(JSON.parse(res.send.mock.calls[0][0])).toStrictEqual(
-        data_repo.repository,
-      );
-    }
-
-    // {
-    //   const { Parser } = require("xml2js");
-    //   const { parseStringPromise } = new Parser();
-    //   const { req, res } = faker({ response_type: "xml" }, data_user);
-    //   await api(req, res);
-    //   const { root } = await parseStringPromise(res.send.mock.calls[0][0]);
-    //   expect(res.setHeader).toBeCalledWith("Content-Type", "application/xml");
-    //   expect(
-    //     root,
-    //   ).toStrictEqual(data_repo.repository);
-    // }
-
-    {
-      const { req, res } = faker(
-        { response_type: "jsonp", callback: "pin" },
-        data_user,
-      );
-      await pin(req, res);
-      expect(res.setHeader).toBeCalledWith(
-        "Content-Type",
-        "application/javascript",
-      );
-      expect(
-        JSON.parse(res.send.mock.calls[0][0].match(/^pin\((.*)\)$/)[1]),
-      ).toStrictEqual(data_repo.repository);
-    }
-
-    {
-      const { safeLoad } = require("js-yaml");
-      const { req, res } = faker({ response_type: "yaml" }, data_user);
-      await pin(req, res);
-      const parsed = safeLoad(res.send.mock.calls[0][0]);
-      expect(res.setHeader).toBeCalledWith(
-        "Content-Type",
-        "application/x-yaml",
-      );
-      expect(parsed).toStrictEqual(data_repo.repository);
-    }
+    const TestResponseType = require("./ResponseType");
+    await TestResponseType({
+      faker: (query) => faker(query, data_user),
+      api: pin,
+      data: data_repo.repository,
+      renderCard: renderRepoCard,
+    });
   });
 });
