@@ -153,7 +153,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - `hide` - 隐藏特定统计信息 _(以逗号分隔)_
 - `hide_title` - _(boolean)_
-- `hide_rank` - _(boolean)_
+- `hide_rank` - _(boolean)_ 隐藏排名且自动调整卡片宽度
 - `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - 统计总提交次数而不是仅统计今年的提交次数 _(boolean)_
