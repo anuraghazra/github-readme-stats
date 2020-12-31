@@ -99,7 +99,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       kr: "이슈 개수",
       nl: "Totale Issues",
       "pt-pt": "Total de Issues",
-      "pt-br": "Total de problemas",
+      "pt-br": "Total de Issues",
       np: "कुल मुद्दाहरू",
       el: "Σύνολο Ζητημάτων",
       ru: "Всего issue",
