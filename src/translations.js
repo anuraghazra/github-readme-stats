@@ -166,7 +166,7 @@ const repoCardLocales = {
     kr: "보관됨",
     nl: "Gearchiveerd",
     "pt-pt": "Arquivados",
-    "pt-br": "Arquivada",
+    "pt-br": "Arquivados",
     np: "अभिलेख राखियो",
     el: "Αρχειοθετημένα",
     ru: "Архивирован",
