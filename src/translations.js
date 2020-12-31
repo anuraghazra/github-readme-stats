@@ -190,7 +190,7 @@ const langCardLocales = {
     kr: "가장 많이 사용된 언어",
     nl: "Meest gebruikte talen",
     "pt-pt": "Idiomas mais usados",
-    "pt-br": "Línguas Mais Usadas",
+    "pt-br": "Linguagens mais usadas",
     np: "अधिक प्रयोग गरिएको भाषाहरू",
     el: "Οι περισσότερο χρησιμοποιούμενες γλώσσες",
     ru: "Наиболее часто используемые языки",
