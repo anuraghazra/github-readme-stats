@@ -232,6 +232,7 @@ describe("Test renderStatsCard", () => {
   });
 
   it("should render translations", () => {
+    const year = new Date().getFullYear();
     document.body.innerHTML = renderStatsCard(stats, { locale: "cn" });
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
       "Anurag Hazra 的 GitHub 统计",
@@ -245,7 +246,7 @@ describe("Test renderStatsCard", () => {
       document.querySelector(
         'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总提交 (2021):");
+    ).toBe(`总提交 (${year}):`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
