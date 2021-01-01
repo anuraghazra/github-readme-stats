@@ -263,7 +263,7 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23"
   },
-  black-and-white: {
+  "black-and-white": {
     title_color: "f5f5f5",
     icon_color: "f5f5f5",
     text_color: "f5f5f5",
