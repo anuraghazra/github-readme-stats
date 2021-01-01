@@ -432,7 +432,7 @@ GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,
 
 ---
 
-[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 프로젝트에 대한 기여는 언제나 환영이에요! <3
 
