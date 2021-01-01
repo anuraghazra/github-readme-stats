@@ -264,9 +264,9 @@ const themes = {
     bg_color: "402b23"
   },
   black-and-white: {
-    title_color: "fafafa",
-    icon_color: "fafafa",
-    text_color: "fafafa",
+    title_color: "f5f5f5",
+    icon_color: "f5f5f5",
+    text_color: "f5f5f5",
     bg_color: "000000",
   }
 };
