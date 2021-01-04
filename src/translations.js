@@ -217,7 +217,8 @@ const wakatimeCardLocales = {
     "pt-br": "Estatísticas da semana Wakatime",
     np: "Wakatime हप्ता तथ्याङ्क",
     el: "Εβδομαδιαία Στατιστικά από Wakatime",
-    ru: "Статистика недели Wakatime",
+    
+    "Статистика недели Wakatime",
     id: "Status Mingguan Wakatime",
     my: "Statistik Minggu Wakatime",
     sk: "Týždenná Wakatime štatistika",
@@ -238,7 +239,7 @@ const wakatimeCardLocales = {
     "pt-br": "Nenhuma atividade de codificação esta semana",
     np: "यस हप्ता कुनै कोडिंग गतिविधि छैन",
     el: "Δεν υπάρχει δραστηριότητα κώδικα γι' αυτή την εβδομάδα",
-    ru: "На этой неделе не было акивности",
+    ru: "На этой неделе не было активности",
     id: "Tidak ada aktivitas perkodingan minggu ini",
     my: "Tiada aktiviti pengekodan minggu ini",
     sk: "Žiadna kódovacia aktivita tento týždeň",
