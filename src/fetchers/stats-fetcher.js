@@ -61,7 +61,7 @@ const totalCommitsFetcher = async (username) => {
   const fetchTotalCommits = (variables, token) => {
     return axios({
       method: "get",
-      url: `https://api.github.com/search/commits?q=author:${variables.login}`,
+      url: `https://api.github.com/search/commits?q=author:${variables.login} committer-date:>${new Date().getFullYear()}-01-01`,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/vnd.github.cloak-preview",
@@ -118,9 +118,9 @@ async function fetchStats(
   // normal commits
   stats.totalCommits = user.contributionsCollection.totalCommitContributions;
 
-  // if include_all_commits then just get that,
+  // if NOT include_all_commits then just get that,
   // since totalCommitsFetcher already sends totalCommits no need to +=
-  if (include_all_commits) {
+  if (!include_all_commits) {
     stats.totalCommits = await totalCommitsFetcher(username);
   }
 
