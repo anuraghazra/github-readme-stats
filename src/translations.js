@@ -268,7 +268,7 @@ const wakatimeCardLocales = {
     "pt-br": "Nenhuma atividade de codificação esta semana",
     np: "यस हप्ता कुनै कोडिंग गतिविधि छैन",
     el: "Δεν υπάρχει δραστηριότητα κώδικα γι' αυτή την εβδομάδα",
-    ru: "На этой неделе не было акивности",
+    ru: "На этой неделе не было активности",
     "uk-ua": "На цьому тижні не було активності",
     id: "Tidak ada aktivitas perkodingan minggu ini",
     my: "Tiada aktiviti pengekodan minggu ini",
