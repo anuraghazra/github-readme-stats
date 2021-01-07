@@ -240,26 +240,26 @@ describe("Test renderStatsCard", () => {
       document.querySelector(
         'g[transform="translate(0, 0)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总 Star:");
+    ).toBe("获标星（star）:");
     expect(
       document.querySelector(
         'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe(`总提交 (${new Date().getFullYear()}):`);
+    ).toBe(`累计提交（commit） (${new Date().getFullYear()}):`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总 PR:");
+    ).toBe("提案数（PR）:");
     expect(
       document.querySelector(
         'g[transform="translate(0, 75)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总 Issue:");
+    ).toBe("指出问题（issue）:");
     expect(
       document.querySelector(
         'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总贡献:");
+    ).toBe("参与项目数:");
   });
 });

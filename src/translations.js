@@ -27,7 +27,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: `Statystyki GitHub użytkownika ${encodeHTML(name)}`,
     },
     "statcard.totalstars": {
-      cn: "总 Star",
+      cn: "获标星（star）",
       cs: "Celkem hvězd",
       de: "Sterne Insgesamt",
       en: "Total Stars",
@@ -51,7 +51,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Liczba Gwiazdek",
     },
     "statcard.commits": {
-      cn: "总提交",
+      cn: "累计提交（commit）",
       cs: "Celkem commitů",
       de: "Anzahl Commits",
       en: "Total Commits",
@@ -75,7 +75,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie commity",
     },
     "statcard.prs": {
-      cn: "总 PR",
+      cn: "提案数（PR）",
       cs: "Celkem PRs",
       de: "PRs Insgesamt",
       en: "Total PRs",
@@ -99,7 +99,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie PR",
     },
     "statcard.issues": {
-      cn: "总 Issue",
+      cn: "指出问题（issue）",
       cs: "Celkem problémů",
       de: "Anzahl Issues",
       en: "Total Issues",
@@ -123,7 +123,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie problemy",
     },
     "statcard.contribs": {
-      cn: "总贡献",
+      cn: "参与项目数",
       cs: "Přispěl k",
       de: "Beigetragen zu",
       en: "Contributed to",
