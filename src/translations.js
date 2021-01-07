@@ -22,6 +22,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       id: `Statistik GitHub ${encodeHTML(name)}`,
       my: `Statistik GitHub ${encodeHTML(name)}`,
       sk: `GitHub štatistiky používateľa ${encodeHTML(name)}`,
+      tr: `${encodeHTML(name)} Hesabının GitHub Yıldızları`,
+      pl: `Statystyki GitHub użytkownika ${encodeHTML(name)}`,
     },
     "statcard.totalstars": {
       cn: "总 Star",
@@ -43,6 +45,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       id: "Total Bintang",
       my: "Jumlah Bintang",
       sk: "Hviezdy",
+      tr: "Toplam Yıldız",
+      pl: "Liczba Gwiazdek",
     },
     "statcard.commits": {
       cn: "总提交",
@@ -57,13 +61,15 @@ const statCardLocales = ({ name, apostrophe }) => {
       kr: "전체 커밋 수",
       nl: "Totale Commits",
       "pt-pt": "Total de Commits",
-      "pt-br": "Total de compromissos",
+      "pt-br": "Total de Commits",
       np: "कुल Commits",
       el: "Σύνολο Commits",
       ru: "Всего коммитов",
       id: "Total Komitmen",
       my: "Jumlah Komitmen",
       sk: "Všetky commity",
+      tr: "Toplam Commit",
+      pl: "Wszystkie commity",
     },
     "statcard.prs": {
       cn: "总 PR",
@@ -85,6 +91,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       id: "Total Permintaan Tarik",
       my: "Jumlah PR",
       sk: "Všetky PR",
+      tr: "Toplam PR",
+      pl: "Wszystkie PR",
     },
     "statcard.issues": {
       cn: "总 Issue",
@@ -99,13 +107,15 @@ const statCardLocales = ({ name, apostrophe }) => {
       kr: "이슈 개수",
       nl: "Totale Issues",
       "pt-pt": "Total de Issues",
-      "pt-br": "Total de problemas",
+      "pt-br": "Total de Issues",
       np: "कुल मुद्दाहरू",
       el: "Σύνολο Ζητημάτων",
       ru: "Всего issue",
       id: "Total Masalah Dilaporkan",
       my: "Jumlah Isu Dilaporkan",
       sk: "Všetky problémy",
+      tr: "Toplam Hata",
+      pl: "Wszystkie problemy",
     },
     "statcard.contribs": {
       cn: "总贡献",
@@ -127,6 +137,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       id: "Berkontribusi ke",
       my: "Menyumbang kepada",
       sk: "Účasti",
+      tr: "Katkı Verildi",
+      pl: "Udziały",
     },
   };
 };
@@ -152,6 +164,8 @@ const repoCardLocales = {
     id: "Pola",
     my: "Templat",
     sk: "Šablóna",
+    tr: "Şablon",
+    pl: "Szablony",
   },
   "repocard.archived": {
     cn: "已归档",
@@ -166,13 +180,15 @@ const repoCardLocales = {
     kr: "보관됨",
     nl: "Gearchiveerd",
     "pt-pt": "Arquivados",
-    "pt-br": "Arquivada",
+    "pt-br": "Arquivados",
     np: "अभिलेख राखियो",
     el: "Αρχειοθετημένα",
     ru: "Архивирован",
     id: "Arsip",
     my: "Arkib",
     sk: "Archivované",
+    tr: "Arşiv",
+    pl: "Zarchiwizowano",
   },
 };
 
@@ -190,13 +206,15 @@ const langCardLocales = {
     kr: "가장 많이 사용된 언어",
     nl: "Meest gebruikte talen",
     "pt-pt": "Idiomas mais usados",
-    "pt-br": "Línguas Mais Usadas",
+    "pt-br": "Linguagens mais usadas",
     np: "अधिक प्रयोग गरिएको भाषाहरू",
     el: "Οι περισσότερο χρησιμοποιούμενες γλώσσες",
     ru: "Наиболее часто используемые языки",
     id: "Bahasa Yang Paling Banyak Digunakan",
     my: "Bahasa Paling Digunakan",
     sk: "Najviac používané jazyky",
+    tr: "En Çok Kullanılan Diller",
+    pl: "Najczęściej używane języki",
   },
 };
 
@@ -221,6 +239,8 @@ const wakatimeCardLocales = {
     id: "Status Mingguan Wakatime",
     my: "Statistik Minggu Wakatime",
     sk: "Týždenná Wakatime štatistika",
+    tr: "Waketime Haftalık İstatistikler",
+    pl: "Tygodniowe statystyki Wakatime",
   },
   "wakatimecard.nocodingactivity": {
     cn: "本周没有编程活动",
@@ -242,6 +262,8 @@ const wakatimeCardLocales = {
     id: "Tidak ada aktivitas perkodingan minggu ini",
     my: "Tiada aktiviti pengekodan minggu ini",
     sk: "Žiadna kódovacia aktivita tento týždeň",
+    tr: "Bu hafta herhangi bir kod yazma aktivitesi olmadı",
+    pl: "Brak aktywności w tym tygodniu",
   },
 };
 
