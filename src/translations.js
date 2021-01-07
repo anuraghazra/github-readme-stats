@@ -22,6 +22,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       id: `Statistik GitHub ${encodeHTML(name)}`,
       my: `Statistik GitHub ${encodeHTML(name)}`,
       sk: `GitHub štatistiky používateľa ${encodeHTML(name)}`,
+      tr: `${encodeHTML(name)} Hesabının GitHub Yıldızları`,
       pl: `Statystyki GitHub użytkownika ${encodeHTML(name)}`,
     },
     "statcard.totalstars": {
@@ -44,6 +45,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       id: "Total Bintang",
       my: "Jumlah Bintang",
       sk: "Hviezdy",
+      tr: "Toplam Yıldız",
       pl: "Liczba Gwiazdek",
     },
     "statcard.commits": {
@@ -66,6 +68,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       id: "Total Komitmen",
       my: "Jumlah Komitmen",
       sk: "Všetky commity",
+      tr: "Toplam Commit",
       pl: "Wszystkie commity",
     },
     "statcard.prs": {
@@ -88,6 +91,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       id: "Total Permintaan Tarik",
       my: "Jumlah PR",
       sk: "Všetky PR",
+      tr: "Toplam PR",
       pl: "Wszystkie PR",
     },
     "statcard.issues": {
@@ -110,6 +114,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       id: "Total Masalah Dilaporkan",
       my: "Jumlah Isu Dilaporkan",
       sk: "Všetky problémy",
+      tr: "Toplam Hata",
       pl: "Wszystkie problemy",
     },
     "statcard.contribs": {
@@ -132,6 +137,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       id: "Berkontribusi ke",
       my: "Menyumbang kepada",
       sk: "Účasti",
+      tr: "Katkı Verildi",
       pl: "Udziały",
     },
   };
@@ -158,6 +164,7 @@ const repoCardLocales = {
     id: "Pola",
     my: "Templat",
     sk: "Šablóna",
+    tr: "Şablon",
     pl: "Szablony",
   },
   "repocard.archived": {
@@ -180,6 +187,7 @@ const repoCardLocales = {
     id: "Arsip",
     my: "Arkib",
     sk: "Archivované",
+    tr: "Arşiv",
     pl: "Zarchiwizowano",
   },
 };
@@ -205,6 +213,7 @@ const langCardLocales = {
     id: "Bahasa Yang Paling Banyak Digunakan",
     my: "Bahasa Paling Digunakan",
     sk: "Najviac používané jazyky",
+    tr: "En Çok Kullanılan Diller",
     pl: "Najczęściej używane języki",
   },
 };
@@ -230,6 +239,7 @@ const wakatimeCardLocales = {
     id: "Status Mingguan Wakatime",
     my: "Statistik Minggu Wakatime",
     sk: "Týždenná Wakatime štatistika",
+    tr: "Waketime Haftalık İstatistikler",
     pl: "Tygodniowe statystyki Wakatime",
   },
   "wakatimecard.nocodingactivity": {
@@ -252,6 +262,7 @@ const wakatimeCardLocales = {
     id: "Tidak ada aktivitas perkodingan minggu ini",
     my: "Tiada aktiviti pengekodan minggu ini",
     sk: "Žiadna kódovacia aktivita tento týždeň",
+    tr: "Bu hafta herhangi bir kod yazma aktivitesi olmadı",
     pl: "Brak aktywności w tym tygodniu",
   },
 };
