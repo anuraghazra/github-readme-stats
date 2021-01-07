@@ -83,7 +83,7 @@ _랭크는 S+ (상위 1%), S (상위 25%), A++ (상위 45%), A+ (상위 60%), �
 _커밋의 수(commits), 기여도(contribution), 이슈의 수(issues), 즐겨찾기(star), 작업내용 반영 요청(Pull Request),
 팔로워 수, 그리고 보유 중인 저장소 등의 항목들에 대해 [누적 분포 함수](https://ko.wikipedia.org/wiki/%EB%88%84%EC%A0%81_%EB%B6%84%ED%8F%AC_%ED%95%A8%EC%88%98) 를 이용해 계산됩니다._
 
-_[src/calculateRank.js](./src/calculateRank.js) 에서 수행되는 계산 작업의 내용을 확인할 수 있습니다._
+_[src/calculateRank.js](../src/calculateRank.js) 에서 수행되는 계산 작업의 내용을 확인할 수 있습니다._
 
 ### 개별 통계 숨기기
 
@@ -131,9 +131,9 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-[사용 가능한 모든 테마](./themes/README.md) 에서 미리보기를 확인하실 수 있어요.
+[사용 가능한 모든 테마](../themes/README.md) 에서 미리보기를 확인하실 수 있어요.
 
-원하신다면 [테마 설정하기](./themes/index.js) 항목에서  **새로운 테마를 직접 만드실수 있어요.** :D
+원하신다면 [테마 설정하기](../themes/index.js) 항목에서  **새로운 테마를 직접 만드실수 있어요.** :D
 
 ### 커스터마이징
 
@@ -146,7 +146,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `icon_color` - 아이콘 색상 (활성화된 경우) _(hex color)_
 - `bg_color` - 카드의 배경 색상 _(hex color)_ **혹은** 다음 양식으로 그라데이션 주기 _angle,start,end_
 - `hide_border` - 카드의 테두리 표시 여부 _(boolean)_
-- `theme` - 테마의 이름, [사용 가능한 모든 테마](./themes/README.md) 에서 선택
+- `theme` - 테마의 이름, [사용 가능한 모든 테마](../themes/README.md) 에서 선택
 - `cache_seconds` - 수동으로 캐시 헤더 설정 _(min: 1800, max: 86400)_
 - `locale` - 카드에 표시할 언어 _(e.g. kr, cn, de, es, etc.)_
 
@@ -432,7 +432,7 @@ GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,
 
 ---
 
-[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 프로젝트에 대한 기여는 언제나 환영이에요! <3
 
