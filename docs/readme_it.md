@@ -74,7 +74,7 @@ Ricorda di cambiare il valore `?username=` con il tuo nome utente GitHub.
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Nota: I punteggi sono calcolati sulla base delle tue statistiche, dai un'occhiata a [src/calculateRank.js](./src/calculateRank.js) per ulteriori informazioni_
+_Nota: I punteggi sono calcolati sulla base delle tue statistiche, dai un'occhiata a [src/calculateRank.js](../src/calculateRank.js) per ulteriori informazioni_
 
 ### Nascondere statistiche individuali
 
@@ -122,7 +122,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-Puoi avere un'anteprima di [tutti i temi supportati](./themes/README.md) o controllare il [file di configurazione dei temi](./themes/index.js) e **puoi anche contribuire creando un nuovo tema** se vuoi :D
+Puoi avere un'anteprima di [tutti i temi supportati](../themes/README.md) o controllare il [file di configurazione dei temi](../themes/index.js) e **puoi anche contribuire creando un nuovo tema** se vuoi :D
 
 ### Personalizzazione
 
@@ -135,7 +135,7 @@ Puoi personalizzare l'aspetto delle tue `Stats Card` o delle `Repo Card` in qual
 - `icon_color` - Colore delle icone, se disponibili _(in esadecimale)_
 - `bg_color` - Colore dello sfondo _(in esadecimale)_ **oppure** un gradiente nella forma _angolo,inizio,fine_
 - `hide_border` - Nasconde il bordo della carta _(booleano)_
-- `theme` - Nome del tema, dai un'occhiata a [tutti i temi disponibili](./themes/README.md)
+- `theme` - Nome del tema, dai un'occhiata a [tutti i temi disponibili](../themes/README.md)
 - `cache_seconds` - Specifica manualmente il valore di cache, in secondi _(min: 1800, max: 86400)_
 - `locale` - Impostare la lingua nella scheda _(per esempio. cn, de, es, eccetera.)_
 
@@ -172,8 +172,8 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 - `layout` - Specifica il tipo di layout, `default` (esteso) o `compact` (compatto)
 - `card_width` - Specifica il valore della larghezza _(numero)_
 
-> :warning: **Importante:**  
-> Per i nomi dei linguaggi, assicurati di effettuare l'encoding giusto nell'uri, come specificato in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)  
+> :warning: **Importante:**
+> Per i nomi dei linguaggi, assicurati di effettuare l'encoding giusto nell'uri, come specificato in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
 > (ad esempio: `c++` diventa `c%2B%2B`, `jupyter notebook` diventa `jupyter%20notebook`, ecc.)
 
 ---
@@ -311,16 +311,16 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
  <summary><b> Guide on setting up Vercel  🔨 </b></summary>
 
 1. Go to [vercel.com](https://vercel.com/)
-1. Click on `Log in`  
+1. Click on `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
-1. Sign in with GitHub by pressing `Continue with GitHub`  
+1. Sign in with GitHub by pressing `Continue with GitHub`
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. Sign into GitHub and allow access to all repositories, if prompted
 1. Fork this repo
 1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
-1. Select `Import Project`  
+1. Select `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
-1. Select `Import Git Repository`  
+1. Select `Import Git Repository`
    ![](https://files.catbox.moe/pqub9q.png)
 1. Select root and keep everything as is, just add your environment variable named PAT_1 (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)
    ![](https://files.catbox.moe/0ez4g7.png)
@@ -343,7 +343,7 @@ Grazie! :heart:
 
 ---
 
-![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 I contributi sono benvenuti! <3
 
