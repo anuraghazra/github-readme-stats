@@ -165,8 +165,8 @@ Puedes personalizar el aspecto de tu `Stats Card` o `Repo Card` de la manera que
 - `layout` - Cambiar entre dos diseños disponibles `default` & `compact`
 - `card_width` - Establecer el ancho de la tarjeta manualmente _(number)_
 
-> :warning: **Importante:**  
-> Los nombres de los idiomas deben tener escape de uri, como se especifica en [Código porciento](https://es.wikipedia.org/wiki/C%C3%B3digo_porciento)  
+> :warning: **Importante:**
+> Los nombres de los idiomas deben tener escape de uri, como se especifica en [Código porciento](https://es.wikipedia.org/wiki/C%C3%B3digo_porciento)
 > (es decir: `c++` debería convertirse en `c%2B%2B`,`jupyter notebook` debería convertirse en `jupyter%20notebook`, etc.)
 
 ---
@@ -302,16 +302,16 @@ Nota: debido a esto [#58](https://github.com/anuraghazra/github-readme-stats/pul
  <summary>Guía para comenzar en Vercel</summary>
 
 1. Ve a [vercel.com](https://vercel.com/)
-1. Clickea en `Log in`  
+1. Clickea en `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
-1. Inicia sesión con GitHub presionando `Continue with GitHub`  
+1. Inicia sesión con GitHub presionando `Continue with GitHub`
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. Permite el acceso a todos los repositorios (si se te pregunta)
 1. Haz un Fork de este repositorio
 1. Dirígete de nuevo a tu [Vercel dashboard](https://vercel.com/dashboard)
-1. Selecciona `Import Project`  
+1. Selecciona `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
-1. Selecciona `Import Git Repository`  
+1. Selecciona `Import Git Repository`
    ![](https://files.catbox.moe/pqub9q.png)
 1. Selecciona "root" y matén todo como está, simplemente añade tu variable de entorno llamada PAT_1 (como se muestra), la cual contendrá un token de acceso personal (PAT), el cual puedes crear fácilmente [aquí](https://github.com/settings/tokens/new) (mantén todo como está, simplemente asígnale un nombre, puede ser cualquiera que desees)
    ![](https://files.catbox.moe/0ez4g7.png)
@@ -333,6 +333,8 @@ No obstante, si estás utilizando este proyecto y estás feliz con él o simplem
 ¡Gracias! :heart:
 
 ---
+
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 ¡Las contribuciones son bienvenidas! <3
 

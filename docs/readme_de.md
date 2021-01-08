@@ -1,5 +1,5 @@
 <p align="center">
- <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" /> 
+ <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
  <p align="center">Zeige dynamisch generierte GitHub-Statistiken in deinen Readmes!</p>
 </p>
@@ -111,7 +111,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-Du kannst dir eine Vorschau [aller verfügbaren Themes](../themes/README.md) ansehen oder die [theme config Datei](../themes/index.js) ansehen.  
+Du kannst dir eine Vorschau [aller verfügbaren Themes](../themes/README.md) ansehen oder die [theme config Datei](../themes/index.js) ansehen.
 Außerdem **kannst du neue Themes beisteuern**, Beiträge sind gern gesehen :D
 
 ### Anpassungen/Personalisierung
@@ -162,8 +162,8 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 - `layout` - Wechsel zwischen den zwei verfügbaren Layouts `default` & `compact`
 - `card_width` - Lege die Breite der Karte manuell fest _(Zahl)_
 
-> :warning: **Wichtig:**  
-> Sprachennamen sollten uri-escaped sein, wie hier angegeben: [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)  
+> :warning: **Wichtig:**
+> Sprachennamen sollten uri-escaped sein, wie hier angegeben: [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
 > (z.B.: `c++` sollte zu `c%2B%2B` werden, `jupyter notebook` sollte zu `jupyter%20notebook` werden, usw.)
 
 ---
@@ -304,16 +304,16 @@ Hinweis: Seit [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 
  <summary><b>Anleitung zum Einrichten von Vercel 🔨 </b></summary>
 
 1. Gehe zu [vercel.com](https://vercel.com/)
-1. Klicke auf `Log in`  
+1. Klicke auf `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
 1. Melde dich mit deinem GitHub-account an, indem du `Continue with GitHub` klickst
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. Verbinde dich mit GitHub und erlaube den Zugriff auf alle Repositories (falls gefordert)
 1. Forke dieses Repository
 1. Gehe zurück zu deinem [Vercel dashboard](https://vercel.com/dashboard)
-1. Klick `Import Project`  
+1. Klick `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
-1. Klick `Import Git Repository`  
+1. Klick `Import Git Repository`
    ![](https://files.catbox.moe/pqub9q.png)
 1. Wähle root und füge eine Umgebungsvariable namens PAT_1 (siehe Abbildung) die als Wert deinen persönlichen Access Token (PAT) hat hinzu, den du einfach [hier](https://github.com/settings/tokens/new) erzeugen kannst (lasse alles wie es ist, vergebe einen beliebigen Namen)
    ![](https://files.catbox.moe/0ez4g7.png)
@@ -333,6 +333,9 @@ Dennoch, wenn Du dieses Projekt benutzt und damit zufrieden bist oder mich einfa
 Vielen Dank! :heart:
 
 ---
+
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
+
 
 Mitarbeit an dem Projekt ist immer Willkommen! <3
 
