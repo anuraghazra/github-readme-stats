@@ -87,7 +87,7 @@ async function run() {
       \ntext-color: <code>#${textColor}</code>
       \nbg-color: <code>#${bgColor}</code>
       
-      Link: ${url}
+      \rLink: ${url}
 
       \r[![](${url})](${url})
       
