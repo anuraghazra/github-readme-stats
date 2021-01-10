@@ -11,18 +11,12 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Install & Preview
 
     steps:
       - uses: actions/checkout@v1
-      - name: setup node
-        uses: actions/setup-node@v1
-        with:
-          node-version: "12.x"
-
-      - name: npm install, preview theme
-        run: |
-          npm install
-          npm run preview-theme
+      - uses: bahmutov/npm-install@v1
+      - run: npm run preview-theme
         env:
           CI: true
           PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
