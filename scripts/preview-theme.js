@@ -13,7 +13,7 @@ function getPrNumber() {
 }
 
 const themeContribGuidelines = `
-  \r> Hi thanks for opening the theme contribution, please read our theme contribution guidelines
+  \r> Hi thanks for the theme contribution, please read our theme contribution guidelines
 
   \r> We are currently only accepting color combinations from any vscode theme or which has good color combination to minimize bloating the themes collection.
 
@@ -82,10 +82,7 @@ async function run() {
       body: `
       \rTheme preview (bot)  
       
-      \ntitle-color: <code>#${titleColor}</code>
-      \nicon-color: <code>#${iconColor}</code>
-      \ntext-color: <code>#${textColor}</code>
-      \nbg-color: <code>#${bgColor}</code>
+      \ntitle_color: <code>#${titleColor}</code> | icon_color: <code>#${iconColor}</code> | text_color: <code>#${textColor}</code> | bg_color: <code>#${bgColor}</code>
       
       \rLink: ${url}
 
