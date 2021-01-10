@@ -11,11 +11,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    name: Install & Preview
 
     steps:
       - uses: actions/checkout@v1
-
-      - name: Install & Preview Theme
       - uses: bahmutov/npm-install@v1
       - run: npm run preview-theme
         env:
