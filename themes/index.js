@@ -249,25 +249,19 @@ const themes = {
     title_color: "82aaff",
     icon_color: "89ddff",
     text_color: "27e8a7",
-    bg_color: "242938"
+    bg_color: "242938",
   },
   slateorange: {
     title_color: "faa627",
     icon_color: "faa627",
     text_color: "ffffff",
-    bg_color: "36393f"
+    bg_color: "36393f",
   },
   kacho_ga: {
     title_color: "bf4a3f",
     icon_color: "a64833",
     text_color: "d9c8a9",
-    bg_color: "402b23"
-  },
-  test: {
-    title_color: "fff",
-    icon_color: "79ff97",
-    text_color: "9f9f9f",
-    bg_color: "151515",
+    bg_color: "402b23",
   },
 };
 
