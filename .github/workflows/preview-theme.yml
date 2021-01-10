@@ -16,6 +16,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: false
       - run: npm run preview-theme
         env:
           CI: true
