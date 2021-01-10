@@ -12,6 +12,15 @@ function getPrNumber() {
   return pullRequest.number;
 }
 
+const themeContribGuidelines = `
+  \r> Hi thanks for opening the theme contribution, please read our theme contribution guidelines
+
+  \r> We are currently only accepting color combinations from any vscode theme or which has good color combination to minimize bloating the themes collection.
+
+  \r> Also note that if this theme is exclusively for your personal use then instead of adding it to our theme collection you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization) 
+  \r> Read our [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md) for more info
+`;
+
 async function run() {
   try {
     const token = core.getInput("token");
@@ -48,7 +57,10 @@ async function run() {
         repo: "github-readme-stats",
         body: `
         \rTheme preview (bot)
-        Cannot create theme preview
+        
+        \rCannot create theme preview
+
+        ${themeContribGuidelines}
         `,
         issue_number: pullRequestId,
       });
@@ -58,10 +70,10 @@ async function run() {
       color.replace(/.*\:\s/, "").replace(/\"/g, ""),
     );
 
-    let titleColor = colors[0];
-    let iconColor = colors[1];
-    let textColor = colors[2];
-    let bgColor = colors[3];
+    const titleColor = colors[0];
+    const iconColor = colors[1];
+    const textColor = colors[2];
+    const bgColor = colors[3];
     const url = `https://github-readme-stats.vercel.app/api?username=anuraghazra&title_color=${titleColor}&icon_color=${iconColor}&text_color=${textColor}&bg_color=${bgColor}&show_icons=true`;
 
     await octokit.issues.createComment({
@@ -75,7 +87,11 @@ async function run() {
       \ntext-color: <code>#${textColor}</code>
       \nbg-color: <code>#${bgColor}</code>
       
+      Link: ${url}
+
       \r[![](${url})](${url})
+      
+      ${themeContribGuidelines}
       `,
       issue_number: pullRequestId,
     });
