@@ -263,6 +263,12 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23",
   },
+  kacho_ga2: {
+    title_color: "bf4a3f",
+    icon_color: "a64833",
+    text_color: "d9c8a9",
+    bg_color: "402b23",
+  },
 };
 
 module.exports = themes;
