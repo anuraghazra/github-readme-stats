@@ -19,7 +19,7 @@ Pull requests are the best way to propose changes. We actively welcome your pull
 
 ## Local Development
 
-To run & test github-readme-stats you need to follow few simple steps :-
+To run & test github-readme-stats you need to follow few simple steps :
 _(make sure you already have a [vercel](https://vercel.com/) account)_
 
 1. Install [Vercel CLI](https://vercel.com/download)
