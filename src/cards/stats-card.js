@@ -128,7 +128,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
   };
 
-  const isLongLocale = ["fr", "pt-br", "es"].includes(locale) === true;
+  const isLongLocale = ["fr", "pt-br", "es", "ru"].includes(locale) === true;
 
   // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
