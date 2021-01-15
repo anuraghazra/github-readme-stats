@@ -159,6 +159,8 @@ bg_color オプションで複数のカンマ区切りの値を指定してグ�
 - `include_all_commits` - 今年度のコミット数だけでなく、コミット数の総数をカウントする _(boolean)_
 - `count_private` - プライベートリポジトリへのコミットをカウントする _(boolean)_
 - `line_height` - テキストの行の高さ _(number)_
+- `custom_title` - タイトル文字列を変更する
+- `disable_animations` - カードのアニメーションを無効にする _(boolean)_
 
 #### Repo Card だけに存在するオプション
 
@@ -170,6 +172,9 @@ bg_color オプションで複数のカンマ区切りの値を指定してグ�
 - `hide_title` - _(boolean)_
 - `layout` - `default` か `compact` のいずれかのレイアウトに切り替える
 - `card_width` - カードの横幅 _(number)_
+- `langs_count` - 表示される言語の数　_(1 ~ 10, 初期値 5)_
+- `exclude_repo` - 指定されたリポジトリを除外する _(カンマ区切りで指定)_
+- `custom_title` - タイトル文字列を変更する
 
 > :warning: **重要:**
 > [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) で指定されているように、プログラミング言語の名前は URL エンコードされている必要があります。
