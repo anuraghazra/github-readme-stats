@@ -154,7 +154,6 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 -   `hide` - Masquer les éléments spécifiés dans les statistiques _(Comma seperated values)_
 -   `hide_title` - Masquer le titre _(boolean)_
 -   `hide_rank` - Masquer le rang _(boolean)_
--   `hide_border` - _(boolean)_
 -   `show_icons` - Afficher les icônes _(boolean)_
 -   `include_all_commits` - Compter le total de commits au lieu de ne compter que les commits de l'année en cours _(boolean)_
 -   `count_private` - Compter les commits privés _(boolean)_
@@ -168,7 +167,6 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 -   `hide` - Masquer les langages spécifiés sur la carte _(Comma seperated values)_
 -   `hide_title` - Masquer le titre _(boolean)_
--   `hide_border` - _(boolean)_
 -   `layout` - Alterner entre 2 mise en page `default` & `compact`
 -   `card_width` - Fixer la largeur de la carte manuellement _(number)_
 
