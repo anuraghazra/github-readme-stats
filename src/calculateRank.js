@@ -1,5 +1,6 @@
 const { erf } = require("mathjs");
 const sqrt2 = Math.sqrt(2);
+// https://en.wikipedia.org/wiki/Normal_distribution#Cumulative_distribution_function
 function normalcdf(mean, sigma, to) {
   const z = (to - mean) / (sigma * sqrt2);
   const erfZ = erf(z);
