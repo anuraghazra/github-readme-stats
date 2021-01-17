@@ -159,7 +159,6 @@ bg_color içerisinde birden fazla rengi gradient olarak göstermek için virgül
 - `hide` - Spesifik özellikleri istatistiklerden gizleyebilirsiniz.  _(Virgül ile ayırılmış değerlerle)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_ Sıralamayı gizler ve kartın genişliğini otomatik olarak tekrar düzenler
-- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - _(boolean)_ Sadece bu yılın değil tüm zamanlarda yaptığınız commit sayısını gösterir
 - `count_private` - _(boolean)_ Özel depolarda yaptığınız commitleri gösterir
@@ -175,7 +174,6 @@ bg_color içerisinde birden fazla rengi gradient olarak göstermek için virgül
 
 - `hide` - Belirli bir dili listede gizler _(Virgül ile ayırılmış değerlerle)_
 - `hide_title` - _(boolean)_
-- `hide_border` - _(boolean)_
 - `layout` - Uygun olan iki tasarım / layout arasında değişiklik yapar `default` & `compact`
 - `card_width` - Kartın genişliğini manuel olarak belirler _(number)_
 - `langs_count` - 1-10 arasında istediğiniz kadar dil gösterebilirsiniz. Varsayılan: 5 _(number)_
