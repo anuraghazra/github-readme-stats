@@ -264,7 +264,7 @@ const themes = {
     bg_color: "402b23",
   },
   vandi: {
-    title_color:"fff",
+    title_color: "fff",
     icon_color: "2f96c0",
     text_color: "D8AB4C",
     bg_color: "222222"
