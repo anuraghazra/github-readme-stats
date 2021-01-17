@@ -263,6 +263,12 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23",
   },
+  vandi: {
+    title_color:"fff",
+    icon_color: "2f96c0",
+    text_color: "D8AB4C",
+    bg_color: "222222"
+  }
 };
 
 module.exports = themes;
