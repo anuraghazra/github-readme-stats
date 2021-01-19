@@ -263,6 +263,12 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23",
   },
+  girl_code: {
+    title_color: "f7449b",
+    icon_color: "8808fa",
+    text_color: "000000",
+    bg_color: "fdd573",
+  },
 };
 
 module.exports = themes;
