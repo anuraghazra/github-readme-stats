@@ -263,6 +263,12 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23",
   },
+  supernova: {
+    title_color: "1A1719 ",
+    icon_color: "FF336A ",
+    text_color: "3C353C",
+    bg_color: "33FFB3",
+  },
 };
 
 module.exports = themes;
