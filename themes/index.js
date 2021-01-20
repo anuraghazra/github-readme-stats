@@ -263,6 +263,13 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23",
   },
+  bluepurple: {
+    title_color: "61dafb",
+    icon_color: "CB88FF",
+    text_color: "ffffff",
+    bg_color: " 000000",
+  },
+
 };
 
 module.exports = themes;
