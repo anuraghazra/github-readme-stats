@@ -1,11 +1,33 @@
-class I18n {
-  constructor({ locale, translations }) {
+export class I18n {
+  locale: string;
+  translations: {
+    [name: string]: {
+      [key: string]: string;
+    };
+  };
+  fallbackLocale: string;
+  /**
+   *
+   * @param {locale} locale
+   * @param {translations} translations
+   */
+  constructor({
+    locale,
+    translations,
+  }: {
+    locale: string;
+    translations: {
+      [name: string]: {
+        [key: string]: string;
+      };
+    };
+  }) {
     this.locale = locale;
     this.translations = translations;
     this.fallbackLocale = "en";
   }
 
-  t(str) {
+  t(str: string) {
     if (!this.translations[str]) {
       throw new Error(`${str} Translation string not found`);
     }
@@ -17,5 +39,3 @@ class I18n {
     return this.translations[str][this.locale || this.fallbackLocale];
   }
 }
-
-module.exports = I18n;
