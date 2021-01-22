@@ -1,15 +1,18 @@
-require("dotenv").config();
-const {
-  renderError,
-  parseBoolean,
-  parseArray,
-  clampValue,
+import {
   CONSTANTS,
-} = require("../src/common/utils");
-const fetchStats = require("../src/fetchers/stats-fetcher");
-const renderStatsCard = require("../src/cards/stats-card");
-const blacklist = require("../src/common/blacklist");
-const { isLocaleAvailable } = require("../src/translations");
+  clampValue,
+  parseArray,
+  parseBoolean,
+  renderError,
+} from "../src/common/utils";
+
+import { blacklist } from "../src/common/blacklist";
+import { config } from "dotenv";
+import { fetchStats } from "../src/fetchers/stats-fetcher";
+import { isLocaleAvailable } from "../src/translations";
+import { renderStatsCard } from "../src/cards/stats-card";
+
+config();
 
 module.exports = async (req, res) => {
   const {
