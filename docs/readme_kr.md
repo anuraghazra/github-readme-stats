@@ -170,7 +170,6 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `hide` - 통계에서 특정한 값 제외 _(Comma-separated values)_
 - `hide_title` - 타이틀 표시 여부 _(boolean)_
 - `hide_rank` - 랭크 표시 여부 _(boolean)_
-- `hide_border` - 테두리 표시 여부 _(boolean)_
 - `show_icons` - 아이콘 표시 여부 _(boolean)_
 - `include_all_commits` - 올해가 아닌 전체 연도에 대한 커밋 포함 여부 _(boolean)_
 - `count_private` - 비공개 기여도 포함 여부 _(boolean)_
@@ -186,7 +185,6 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - `hide` - 카드에서 특정 언어 제외 _(Comma-separated values)_
 - `hide_title` - 타이틀 제외 _(boolean)_
-- `hide_border` - 테두리 제외 _(boolean)_
 - `layout` - 사용 가능한 두 가지 값, `default` & `compact` 중 표시 형태 선택
 - `card_width` - 카드 너비 직접 설정 _(number)_
 - `langs_count` - 카드에 표시할 언어의 수 (1-10 사이, 기본 값 : 5) _(number)_
