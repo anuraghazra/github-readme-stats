@@ -1,13 +1,24 @@
-const Card = require("../common/Card");
-const { getCardColors, FlexLayout } = require("../common/utils");
-const { createProgressNode } = require("../common/createProgressNode");
-const { langCardLocales } = require("../translations");
-const I18n = require("../common/I18n");
+import { FlexLayout, getCardColors } from "../common/utils";
 
-const createProgressTextNode = ({ width, color, name, progress }) => {
-  const paddingRight = 95;
-  const progressTextX = width - paddingRight + 10;
-  const progressWidth = width - paddingRight;
+import { Card } from "../common/Card";
+import { I18n } from "../common/I18n";
+import { createProgressNode } from "../common/createProgressNode";
+import { langCardLocales } from "../translations";
+
+function createProgressTextNode({
+  width,
+  color,
+  name,
+  progress,
+}: {
+  width: number;
+  color: string;
+  name: string;
+  progress: string;
+}) {
+  const paddingRight = 95,
+    progressTextX = width - paddingRight + 10,
+    progressWidth = width - paddingRight;
 
   return `
     <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
@@ -21,11 +32,21 @@ const createProgressTextNode = ({ width, color, name, progress }) => {
       progressBarBackgroundColor: "#ddd",
     })}
   `;
-};
+}
 
-const createCompactLangNode = ({ lang, totalSize, x, y }) => {
-  const percentage = ((lang.size / totalSize) * 100).toFixed(2);
-  const color = lang.color || "#858585";
+function createCompactLangNode({
+  lang,
+  totalSize,
+  x,
+  y,
+}: {
+  lang: { name: string; size: number; color: string };
+  totalSize: number;
+  x: number;
+  y: number;
+}) {
+  const percentage = ((lang.size / totalSize) * 100).toFixed(2),
+    color = lang.color || "#858585";
 
   return `
     <g transform="translate(${x}, ${y})">
@@ -35,9 +56,19 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
       </text>
     </g>
   `;
-};
+}
 
-const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
+function createLanguageTextNode({
+  langs,
+  totalSize,
+  x,
+  y,
+}: {
+  langs: { name: string; size: number; color: string }[];
+  totalSize: number;
+  x: number;
+  y: number;
+}) {
   return langs.map((lang, index) => {
     if (index % 2 === 0) {
       return createCompactLangNode({
@@ -45,7 +76,6 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
         x,
         y: 12.5 * index + y,
         totalSize,
-        index,
       });
     }
     return createCompactLangNode({
@@ -53,14 +83,34 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
       x: 150,
       y: 12.5 + 12.5 * index,
       totalSize,
-      index,
     });
   });
-};
+}
 
-const lowercaseTrim = (name) => name.toLowerCase().trim();
+function lowercaseTrim(name: string) {
+  return name.toLowerCase().trim();
+}
 
-const renderTopLanguages = (topLangs, options = {}) => {
+export function renderTopLanguages(
+  topLangs: {
+    size: number;
+    name: string;
+    color: string;
+  }[],
+  options: {
+    hide_title?: boolean;
+    hide_border?: boolean;
+    card_width?: number;
+    title_color?: string;
+    text_color?: string;
+    bg_color?: string;
+    hide?: string[];
+    theme?: string;
+    layout?: string;
+    custom_title?: string;
+    locale?: string;
+  } = {},
+) {
   const {
     hide_title,
     hide_border,
@@ -76,22 +126,22 @@ const renderTopLanguages = (topLangs, options = {}) => {
   } = options;
 
   const i18n = new I18n({
-    locale,
-    translations: langCardLocales,
-  });
+      locale,
+      translations: langCardLocales,
+    }),
+    langsToHide = {};
 
   let langs = Object.values(topLangs);
-  let langsToHide = {};
 
-  // populate langsToHide map for quick lookup
-  // while filtering out
+  //* populate langsToHide map for quick lookup
+  //* while filtering out
   if (hide) {
     hide.forEach((langName) => {
       langsToHide[lowercaseTrim(langName)] = true;
     });
   }
 
-  // filter out langauges to be hidden
+  //* filter out langauges to be hidden
   langs = langs
     .sort((a, b) => b.size - a.size)
     .filter((lang) => {
@@ -99,52 +149,46 @@ const renderTopLanguages = (topLangs, options = {}) => {
     });
 
   const totalLanguageSize = langs.reduce((acc, curr) => {
-    return acc + curr.size;
-  }, 0);
+      return acc + curr.size;
+    }, 0),
+    //* returns theme based colors with proper overrides and defaults
+    { titleColor, textColor, bgColor } = getCardColors({
+      title_color,
+      text_color,
+      bg_color,
+      theme,
+    });
 
-  // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, bgColor } = getCardColors({
-    title_color,
-    text_color,
-    bg_color,
-    theme,
-  });
+  let width = isNaN(card_width) ? 300 : card_width,
+    height = 45 + (langs.length + 1) * 40,
+    finalLayout = "";
 
-  let width = isNaN(card_width) ? 300 : card_width;
-  let height = 45 + (langs.length + 1) * 40;
-
-  let finalLayout = "";
-
-  // RENDER COMPACT LAYOUT
+  //! RENDER COMPACT LAYOUT
   if (layout === "compact") {
     width = width + 50;
     height = 90 + Math.round(langs.length / 2) * 25;
 
-    // progressOffset holds the previous language's width and used to offset the next language
-    // so that we can stack them one after another, like this: [--][----][---]
+    //* progressOffset holds the previous language's width and used to offset the next language
+    //* so that we can stack them one after another, like this: [--][----][---]
     let progressOffset = 0;
     const compactProgressBar = langs
       .map((lang) => {
-        const percentage = (
-          (lang.size / totalLanguageSize) *
-          (width - 50)
-        ).toFixed(2);
-
-        const progress =
-          percentage < 10 ? parseFloat(percentage) + 10 : percentage;
-
-        const output = `
+        const percentage = parseFloat(
+            ((lang.size / totalLanguageSize) * (width - 50)).toFixed(2),
+          ),
+          progress = percentage < 10 ? percentage + 10 : percentage,
+          output = `
           <rect
-            mask="url(#rect-mask)" 
+            mask="url(#rect-mask)"
             data-testid="lang-progress"
-            x="${progressOffset}" 
+            x="${progressOffset}"
             y="0"
-            width="${progress}" 
+            width="${progress}"
             height="8"
             fill="${lang.color || "#858585"}"
           />
         `;
-        progressOffset += parseFloat(percentage);
+        progressOffset += percentage;
         return output;
       })
       .join("");
@@ -202,6 +246,4 @@ const renderTopLanguages = (topLangs, options = {}) => {
       ${finalLayout}
     </svg>
   `);
-};
-
-module.exports = renderTopLanguages;
+}
