@@ -1,14 +1,17 @@
-require("dotenv").config();
-const {
-  renderError,
-  parseBoolean,
-  clampValue,
+import {
   CONSTANTS,
-} = require("../src/common/utils");
-const fetchRepo = require("../src/fetchers/repo-fetcher");
-const renderRepoCard = require("../src/cards/repo-card");
-const blacklist = require("../src/common/blacklist");
-const { isLocaleAvailable } = require("../src/translations");
+  clampValue,
+  parseBoolean,
+  renderError,
+} from "../src/common/utils";
+
+import { blacklist } from "../src/common/blacklist";
+import { config } from "dotenv";
+import { fetchRepo } from "../src/fetchers/repo-fetcher";
+import { isLocaleAvailable } from "../src/translations";
+import { renderRepoCard } from "../src/cards/repo-card";
+
+config();
 
 module.exports = async (req, res) => {
   const {
@@ -50,11 +53,11 @@ module.exports = async (req, res) => {
     if star count & fork count is over 1k then we are kFormating the text
     and if both are zero we are not showing the stats
     so we can just make the cache longer, since there is no need to frequent updates
-  */
-    const stars = repoData.stargazers.totalCount;
-    const forks = repoData.forkCount;
-    const isBothOver1K = stars > 1000 && forks > 1000;
-    const isBothUnder1 = stars < 1 && forks < 1;
+    */
+    const stars = repoData.stargazers.totalCount,
+      forks = repoData.forkCount,
+      isBothOver1K = stars > 1000 && forks > 1000,
+      isBothUnder1 = stars < 1 && forks < 1;
     if (!cache_seconds && (isBothOver1K || isBothUnder1)) {
       cacheSeconds = CONSTANTS.FOUR_HOURS;
     }
