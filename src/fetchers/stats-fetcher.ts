@@ -1,12 +1,14 @@
-const { request, logger, CustomError } = require("../common/utils");
-const axios = require("axios");
-const retryer = require("../common/retryer");
-const calculateRank = require("../calculateRank");
-const githubUsernameRegex = require("github-username-regex");
+import { CustomError, logger, request } from "../common/utils";
 
-require("dotenv").config();
+import axios from "axios";
+import { calculateRank } from "../calculateRank";
+import { config } from "dotenv";
+import githubUsernameRegex from "github-username-regex";
+import { retryer } from "../common/retryer";
 
-const fetcher = (variables, token) => {
+config();
+
+function fetcher(variables: { login: string }, token: string) {
   return request(
     {
       query: `
@@ -47,18 +49,18 @@ const fetcher = (variables, token) => {
       Authorization: `bearer ${token}`,
     },
   );
-};
+}
 
-// https://github.com/anuraghazra/github-readme-stats/issues/92#issuecomment-661026467
-// https://github.com/anuraghazra/github-readme-stats/pull/211/
-const totalCommitsFetcher = async (username) => {
+//? https://github.com/anuraghazra/github-readme-stats/issues/92#issuecomment-661026467
+//? https://github.com/anuraghazra/github-readme-stats/pull/211/
+async function totalCommitsFetcher(username: string) {
   if (!githubUsernameRegex.test(username)) {
     logger.log("Invalid username");
     return 0;
   }
 
-  // https://developer.github.com/v3/search/#search-commits
-  const fetchTotalCommits = (variables, token) => {
+  //? https://developer.github.com/v3/search/#search-commits
+  function fetchTotalCommits(variables: { login: string }, token: string) {
     return axios({
       method: "get",
       url: `https://api.github.com/search/commits?q=author:${variables.login}`,
@@ -68,23 +70,23 @@ const totalCommitsFetcher = async (username) => {
         Authorization: `bearer ${token}`,
       },
     });
-  };
+  }
 
   try {
-    let res = await retryer(fetchTotalCommits, { login: username });
+    const res = await retryer(fetchTotalCommits, { login: username });
     if (res.data.total_count) {
       return res.data.total_count;
     }
   } catch (err) {
     logger.log(err);
-    // just return 0 if there is something wrong so that
-    // we don't break the whole app
+    //* just return 0 if there is something wrong so that
+    //* we don't break the whole app
     return 0;
   }
-};
+}
 
-async function fetchStats(
-  username,
+export async function fetchStats(
+  username: string,
   count_private = false,
   include_all_commits = false,
 ) {
@@ -100,7 +102,7 @@ async function fetchStats(
     rank: { level: "C", score: 0 },
   };
 
-  let res = await retryer(fetcher, { login: username });
+  const res = await retryer(fetcher, { login: username });
 
   if (res.data.errors) {
     logger.error(res.data.errors);
@@ -115,16 +117,16 @@ async function fetchStats(
   stats.name = user.name || user.login;
   stats.totalIssues = user.issues.totalCount;
 
-  // normal commits
+  //* normal commits
   stats.totalCommits = user.contributionsCollection.totalCommitContributions;
 
-  // if include_all_commits then just get that,
-  // since totalCommitsFetcher already sends totalCommits no need to +=
+  //* if include_all_commits then just get that,
+  //* since totalCommitsFetcher already sends totalCommits no need to +=
   if (include_all_commits) {
     stats.totalCommits = await totalCommitsFetcher(username);
   }
 
-  // if count_private then add private commits to totalCommits so far.
+  //* if count_private then add private commits to totalCommits so far.
   if (count_private) {
     stats.totalCommits +=
       user.contributionsCollection.restrictedContributionsCount;
@@ -149,5 +151,3 @@ async function fetchStats(
 
   return stats;
 }
-
-module.exports = fetchStats;
