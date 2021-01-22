@@ -1,8 +1,11 @@
-const { request, logger, clampValue } = require("../common/utils");
-const retryer = require("../common/retryer");
-require("dotenv").config();
+import { clampValue, logger, request } from "../common/utils";
 
-const fetcher = (variables, token) => {
+import { config } from "dotenv";
+import { retryer } from "../common/retryer";
+
+config();
+
+function fetcher(variables: { login: string }, token: string) {
   return request(
     {
       query: `
@@ -32,12 +35,16 @@ const fetcher = (variables, token) => {
       Authorization: `bearer ${token}`,
     },
   );
-};
+}
 
-async function fetchTopLanguages(username, langsCount = 5, exclude_repo = []) {
+export async function fetchTopLanguages(
+  username: string,
+  langsCount = 5,
+  exclude_repo = [],
+) {
   if (!username) throw Error("Invalid username");
 
-  langsCount = clampValue(parseInt(langsCount), 1, 10);
+  langsCount = clampValue(langsCount, 1, 10);
 
   const res = await retryer(fetcher, { login: username });
 
@@ -46,18 +53,18 @@ async function fetchTopLanguages(username, langsCount = 5, exclude_repo = []) {
     throw Error(res.data.errors[0].message || "Could not fetch user");
   }
 
+  const repoToHide = {};
   let repoNodes = res.data.data.user.repositories.nodes;
-  let repoToHide = {};
 
-  // populate repoToHide map for quick lookup
-  // while filtering out
+  //* populate repoToHide map for quick lookup
+  //* while filtering out
   if (exclude_repo) {
     exclude_repo.forEach((repoName) => {
       repoToHide[repoName] = true;
     });
   }
 
-  // filter out repositories to be hidden
+  //* filter out repositories to be hidden
   repoNodes = repoNodes
     .sort((a, b) => b.size - a.size)
     .filter((name) => {
@@ -68,15 +75,15 @@ async function fetchTopLanguages(username, langsCount = 5, exclude_repo = []) {
     .filter((node) => {
       return node.languages.edges.length > 0;
     })
-    // flatten the list of language nodes
+    //* flatten the list of language nodes
     .reduce((acc, curr) => curr.languages.edges.concat(acc), [])
     .reduce((acc, prev) => {
-      // get the size of the language (bytes)
+      //* get the size of the language (bytes)
       let langSize = prev.size;
 
-      // if we already have the language in the accumulator
-      // & the current language name is same as previous name
-      // add the size to the language size.
+      //* if we already have the language in the accumulator
+      //* & the current language name is same as previous name
+      //* add the size to the language size.
       if (acc[prev.node.name] && prev.node.name === acc[prev.node.name].name) {
         langSize = prev.size + acc[prev.node.name].size;
       }
@@ -100,5 +107,3 @@ async function fetchTopLanguages(username, langsCount = 5, exclude_repo = []) {
 
   return topLangs;
 }
-
-module.exports = fetchTopLanguages;

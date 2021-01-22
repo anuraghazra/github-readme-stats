@@ -1,8 +1,8 @@
-const axios = require("axios");
-const wrap = require("word-wrap");
-const themes = require("../../themes");
+import axios from "axios";
+import { themes } from "../../themes";
+import wrap from "word-wrap";
 
-const renderError = (message, secondaryMessage = "") => {
+export function renderError(message: string, secondaryMessage = ""): string {
   return `
     <svg width="495" height="120" viewBox="0 0 495 120" fill="none" xmlns="http://www.w3.org/2000/svg">
     <style>
@@ -18,10 +18,10 @@ const renderError = (message, secondaryMessage = "") => {
     </text>
     </svg>
   `;
-};
+}
 
-// https://stackoverflow.com/a/48073476/10629172
-function encodeHTML(str) {
+//? https://stackoverflow.com/a/48073476/10629172
+export function encodeHTML(str: string): string {
   return str
     .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
       return "&#" + i.charCodeAt(0) + ";";
@@ -29,44 +29,41 @@ function encodeHTML(str) {
     .replace(/\u0008/gim, "");
 }
 
-function kFormatter(num) {
+export function kFormatter(num: number): string {
   return Math.abs(num) > 999
-    ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
-    : Math.sign(num) * Math.abs(num);
+    ? Math.sign(num) * parseInt((Math.abs(num) / 1000).toFixed(1)) + "k"
+    : (Math.sign(num) * Math.abs(num)).toString();
 }
 
-function isValidHexColor(hexColor) {
+export function isValidHexColor(hexColor: string) {
   return new RegExp(
     /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/,
   ).test(hexColor);
 }
 
-function parseBoolean(value) {
-  if (value === "true") {
-    return true;
-  } else if (value === "false") {
-    return false;
-  } else {
-    return value;
-  }
+/**
+ * Returns false if the string did not match "true"
+ * @param value string to parse
+ */
+export function parseBoolean(value: string): boolean {
+  return value === "true" ? true : false;
 }
 
-function parseArray(str) {
-  if (!str) return [];
-  return str.split(",");
+export function parseArray(str: string): string[] {
+  return str ? str.split(",") : [];
 }
 
-function clampValue(number, min, max) {
+export function clampValue(number: number, min: number, max: number): number {
   return Math.max(min, Math.min(number, max));
 }
 
-function isValidGradient(colors) {
+function isValidGradient(colors: string[]): boolean {
   return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
 }
 
-function fallbackColor(color, fallbackColor) {
-  let colors = color.split(",");
-  let gradient = null;
+export function fallbackColor(color: string, fallbackColor: string) {
+  const colors = color.split(",");
+  let gradient: string[] = null;
 
   if (colors.length > 1 && isValidGradient(colors)) {
     gradient = colors;
@@ -78,7 +75,7 @@ function fallbackColor(color, fallbackColor) {
   );
 }
 
-function request(data, headers) {
+export function request(data, headers) {
   return axios({
     url: "https://api.github.com/graphql",
     method: "post",
@@ -88,17 +85,19 @@ function request(data, headers) {
 }
 
 /**
- *
- * @param {String[]} items
- * @param {Number} gap
- * @param {string} direction
- *
- * @description
  * Auto layout utility, allows us to layout things
  * vertically or horizontally with proper gaping
  */
-function FlexLayout({ items, gap, direction }) {
-  // filter() for filtering out empty strings
+export function FlexLayout({
+  items,
+  gap,
+  direction,
+}: {
+  items: string[];
+  gap: number;
+  direction?: string;
+}) {
+  //* filter() for filtering out empty strings
   return items.filter(Boolean).map((item, i) => {
     let transform = `translate(${gap * i}, 0)`;
     if (direction === "column") {
@@ -108,63 +107,69 @@ function FlexLayout({ items, gap, direction }) {
   });
 }
 
-// returns theme based colors with proper overrides and defaults
-function getCardColors({
+//* returns theme based colors with proper overrides and defaults
+export function getCardColors({
   title_color,
   text_color,
   icon_color,
   bg_color,
   theme,
   fallbackTheme = "default",
+}: {
+  title_color?: string;
+  text_color?: string;
+  icon_color?: string;
+  bg_color?: string;
+  theme?: string;
+  fallbackTheme?: string;
 }) {
-  const defaultTheme = themes[fallbackTheme];
-  const selectedTheme = themes[theme] || defaultTheme;
-
-  // get the color provided by the user else the theme color
-  // finally if both colors are invalid fallback to default theme
-  const titleColor = fallbackColor(
-    title_color || selectedTheme.title_color,
-    "#" + defaultTheme.title_color,
-  );
-  const iconColor = fallbackColor(
-    icon_color || selectedTheme.icon_color,
-    "#" + defaultTheme.icon_color,
-  );
-  const textColor = fallbackColor(
-    text_color || selectedTheme.text_color,
-    "#" + defaultTheme.text_color,
-  );
-  const bgColor = fallbackColor(
-    bg_color || selectedTheme.bg_color,
-    "#" + defaultTheme.bg_color,
-  );
+  const defaultTheme = themes[fallbackTheme],
+    selectedTheme = themes[theme] || defaultTheme,
+    //* get the color provided by the user else the theme color
+    //* finally if both colors are invalid fallback to default theme
+    titleColor = fallbackColor(
+      title_color || selectedTheme.title_color,
+      "#" + defaultTheme.title_color,
+    ),
+    iconColor = fallbackColor(
+      icon_color || selectedTheme.icon_color,
+      "#" + defaultTheme.icon_color,
+    ),
+    textColor = fallbackColor(
+      text_color || selectedTheme.text_color,
+      "#" + defaultTheme.text_color,
+    ),
+    bgColor = fallbackColor(
+      bg_color || selectedTheme.bg_color,
+      "#" + defaultTheme.bg_color,
+    );
 
   return { titleColor, iconColor, textColor, bgColor };
 }
 
-function wrapTextMultiline(text, width = 60, maxLines = 3) {
+export function wrapTextMultiline(text: string, width = 60, maxLines = 3) {
   const wrapped = wrap(encodeHTML(text), { width })
-    .split("\n") // Split wrapped lines to get an array of lines
-    .map((line) => line.trim()); // Remove leading and trailing whitespace of each line
+    .split("\n") //* Split wrapped lines to get an array of lines
+    .map((line) => line.trim()); //* Remove leading and trailing whitespace of each line
 
-  const lines = wrapped.slice(0, maxLines); // Only consider maxLines lines
+  const lines = wrapped.slice(0, maxLines); //* Only consider maxLines lines
 
-  // Add "..." to the last line if the text exceeds maxLines
+  //* Add "..." to the last line if the text exceeds maxLines
   if (wrapped.length > maxLines) {
     lines[maxLines - 1] += "...";
   }
 
-  // Remove empty lines if text fits in less than maxLines lines
+  //* Remove empty lines if text fits in less than maxLines lines
   const multiLineText = lines.filter(Boolean);
   return multiLineText;
 }
 
 const noop = () => {};
-// return console instance based on the environment
-const logger =
+//* return console instance based on the environment
+export const logger =
   process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
 
-const CONSTANTS = {
+export const CONSTANTS = {
   THIRTY_MINUTES: 1800,
   TWO_HOURS: 7200,
   FOUR_HOURS: 14400,
@@ -177,7 +182,10 @@ const SECONDARY_ERROR_MESSAGES = {
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
 };
 
-class CustomError extends Error {
+export class CustomError extends Error {
+  type: string;
+  secondaryMessage: string;
+
   constructor(message, type) {
     super(message);
     this.type = type;
@@ -188,8 +196,8 @@ class CustomError extends Error {
   static USER_NOT_FOUND = "USER_NOT_FOUND";
 }
 
-// https://stackoverflow.com/a/48172630/10629172
-function measureText(str, fontSize = 10) {
+//? https://stackoverflow.com/a/48172630/10629172
+export function measureText(str: string, fontSize = 10): number {
   // prettier-ignore
   const widths = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -222,22 +230,3 @@ function measureText(str, fontSize = 10) {
       .reduce((cur, acc) => acc + cur) * fontSize
   );
 }
-
-module.exports = {
-  renderError,
-  kFormatter,
-  encodeHTML,
-  isValidHexColor,
-  request,
-  parseArray,
-  parseBoolean,
-  fallbackColor,
-  FlexLayout,
-  getCardColors,
-  clampValue,
-  wrapTextMultiline,
-  measureText,
-  logger,
-  CONSTANTS,
-  CustomError,
-};

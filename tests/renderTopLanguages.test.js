@@ -1,9 +1,10 @@
 require("@testing-library/jest-dom");
-const cssToObject = require("css-to-object");
-const renderTopLanguages = require("../src/cards/top-languages-card");
 
-const { queryByTestId, queryAllByTestId } = require("@testing-library/dom");
-const themes = require("../themes");
+const { queryAllByTestId, queryByTestId } = require("@testing-library/dom");
+
+const { cssToObject } = require("css-to-object");
+const { renderTopLanguages } = require("../src/cards/top-languages-card");
+const { themes } = require("../themes");
 
 describe("Test renderTopLanguages", () => {
   const langs = {

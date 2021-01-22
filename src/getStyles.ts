@@ -1,15 +1,15 @@
-const calculateCircleProgress = (value) => {
-  let radius = 40;
-  let c = Math.PI * (radius * 2);
+function calculateCircleProgress(value: number) {
+  const radius = 40,
+    c = Math.PI * (radius * 2);
 
   if (value < 0) value = 0;
   if (value > 100) value = 100;
 
-  let percentage = ((100 - value) / 100) * c;
+  const percentage = ((100 - value) / 100) * c;
   return percentage;
-};
+}
 
-const getProgressAnimation = ({ progress }) => {
+function getProgressAnimation({ progress }: { progress: number }) {
   return `
     @keyframes rankAnimation {
       from {
@@ -20,9 +20,9 @@ const getProgressAnimation = ({ progress }) => {
       }
     }
   `;
-};
+}
 
-const getAnimations = () => {
+export function getAnimations() {
   return `
     /* Animations */
     @keyframes scaleInAnimation {
@@ -42,15 +42,21 @@ const getAnimations = () => {
       }
     }
   `;
-};
+}
 
-const getStyles = ({
+export function getStyles({
   titleColor,
   textColor,
   iconColor,
   show_icons,
   progress,
-}) => {
+}: {
+  titleColor: string | string[];
+  textColor: string | string[];
+  iconColor: string | string[];
+  show_icons?: boolean;
+  progress?: number;
+}) {
   return `
     .stat {
       font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
@@ -60,16 +66,16 @@ const getStyles = ({
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
     .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; 
+      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor};
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
-    
+
     .bold { font-weight: 700 }
     .icon {
       fill: ${iconColor};
       display: ${!!show_icons ? "block" : "none"};
     }
-    
+
     .rank-circle-rim {
       stroke: ${titleColor};
       fill: none;
@@ -89,6 +95,4 @@ const getStyles = ({
     }
     ${process.env.NODE_ENV === "test" ? "" : getProgressAnimation({ progress })}
   `;
-};
-
-module.exports = { getStyles, getAnimations };
+}

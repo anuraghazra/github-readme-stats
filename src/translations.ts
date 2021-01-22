@@ -1,6 +1,14 @@
-const { encodeHTML } = require("./common/utils");
+import { encodeHTML } from "./common/utils";
 
-const statCardLocales = ({ name, apostrophe }) => {
+// prettier-ignore
+export function statCardLocales({ name, apostrophe, }: {
+  name: string;
+  apostrophe: string;
+}): {
+  [name: string]: {
+    [lang: string]: string;
+  };
+} {
   return {
     "statcard.title": {
       cn: `${encodeHTML(name)} 的 GitHub 统计`,
@@ -147,9 +155,9 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Udziały",
     },
   };
-};
+}
 
-const repoCardLocales = {
+export const repoCardLocales = {
   "repocard.template": {
     cn: "模板",
     cs: "Šablona",
@@ -200,7 +208,7 @@ const repoCardLocales = {
   },
 };
 
-const langCardLocales = {
+export const langCardLocales = {
   "langcard.title": {
     cn: "最常用的语言",
     cs: "Nejpoužívanější jazyky",
@@ -227,7 +235,7 @@ const langCardLocales = {
   },
 };
 
-const wakatimeCardLocales = {
+export const wakatimeCardLocales = {
   "wakatimecard.title": {
     cn: "Wakatime 周统计",
     cs: "Statistiky týdne Wakatime",
@@ -280,15 +288,6 @@ const wakatimeCardLocales = {
 
 const availableLocales = Object.keys(repoCardLocales["repocard.archived"]);
 
-function isLocaleAvailable(locale) {
+export function isLocaleAvailable(locale: string) {
   return availableLocales.includes(locale.toLowerCase());
 }
-
-module.exports = {
-  isLocaleAvailable,
-  availableLocales,
-  statCardLocales,
-  repoCardLocales,
-  langCardLocales,
-  wakatimeCardLocales,
-};

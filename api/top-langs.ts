@@ -1,15 +1,18 @@
-require("dotenv").config();
-const {
-  renderError,
-  parseBoolean,
-  parseArray,
-  clampValue,
+import {
   CONSTANTS,
-} = require("../src/common/utils");
-const fetchStats = require("../src/fetchers/stats-fetcher");
-const renderStatsCard = require("../src/cards/stats-card");
-const blacklist = require("../src/common/blacklist");
-const { isLocaleAvailable } = require("../src/translations");
+  clampValue,
+  parseArray,
+  parseBoolean,
+  renderError,
+} from "../src/common/utils";
+
+import { blacklist } from "../src/common/blacklist";
+import { config } from "dotenv";
+import { fetchTopLanguages } from "../src/fetchers/top-languages-fetcher";
+import { isLocaleAvailable } from "../src/translations";
+import { renderTopLanguages } from "../src/cards/top-languages-card";
+
+config();
 
 module.exports = async (req, res) => {
   const {
@@ -17,22 +20,19 @@ module.exports = async (req, res) => {
     hide,
     hide_title,
     hide_border,
-    hide_rank,
-    show_icons,
-    count_private,
-    include_all_commits,
-    line_height,
+    card_width,
     title_color,
-    icon_color,
     text_color,
     bg_color,
     theme,
     cache_seconds,
+    layout,
+    langs_count,
+    exclude_repo,
     custom_title,
     locale,
-    disable_animations,
   } = req.query;
-  let stats;
+  let topLangs;
 
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -45,10 +45,10 @@ module.exports = async (req, res) => {
   }
 
   try {
-    stats = await fetchStats(
+    topLangs = await fetchTopLanguages(
       username,
-      parseBoolean(count_private),
-      parseBoolean(include_all_commits),
+      langs_count,
+      parseArray(exclude_repo),
     );
 
     const cacheSeconds = clampValue(
@@ -60,22 +60,18 @@ module.exports = async (req, res) => {
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
     return res.send(
-      renderStatsCard(stats, {
-        hide: parseArray(hide),
-        show_icons: parseBoolean(show_icons),
+      renderTopLanguages(topLangs, {
+        custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
-        hide_rank: parseBoolean(hide_rank),
-        include_all_commits: parseBoolean(include_all_commits),
-        line_height,
+        card_width: parseInt(card_width, 10),
+        hide: parseArray(hide),
         title_color,
-        icon_color,
         text_color,
         bg_color,
         theme,
-        custom_title,
+        layout,
         locale: locale ? locale.toLowerCase() : null,
-        disable_animations: parseBoolean(disable_animations),
       }),
     );
   } catch (err) {

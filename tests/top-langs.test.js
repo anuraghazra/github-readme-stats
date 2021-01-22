@@ -1,9 +1,10 @@
 require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const topLangs = require("../api/top-langs");
-const renderTopLanguages = require("../src/cards/top-languages-card");
+
+const { MockAdapter } = require("axios-mock-adapter");
+const { axios } = require("axios");
 const { renderError } = require("../src/common/utils");
+const { renderTopLanguages } = require("../src/cards/top-languages-card");
+const { topLangs } = require("../api/top-langs");
 
 const data_langs = {
   data: {

@@ -1,7 +1,9 @@
 require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
+
+const { MockAdapter } = require("axios-mock-adapter");
+const { axios } = require("axios");
 const { fetchLast7Days } = require("../src/fetchers/wakatime-fetcher");
+
 const mock = new MockAdapter(axios);
 
 afterEach(() => {

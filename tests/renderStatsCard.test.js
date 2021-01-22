@@ -1,13 +1,14 @@
 require("@testing-library/jest-dom");
-const cssToObject = require("css-to-object");
-const renderStatsCard = require("../src/cards/stats-card");
 
 const {
   getByTestId,
-  queryByTestId,
   queryAllByTestId,
+  queryByTestId,
 } = require("@testing-library/dom");
-const themes = require("../themes");
+
+const { cssToObject } = require("css-to-object");
+const { renderStatsCard } = require("../src/cards/stats-card");
+const { themes } = require("../themes");
 
 describe("Test renderStatsCard", () => {
   const stats = {

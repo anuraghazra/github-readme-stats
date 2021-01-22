@@ -1,9 +1,9 @@
 require("@testing-library/jest-dom");
-const cssToObject = require("css-to-object");
-const renderRepoCard = require("../src/cards/repo-card");
 
+const { cssToObject } = require("css-to-object");
 const { queryByTestId } = require("@testing-library/dom");
-const themes = require("../themes");
+const { renderRepoCard } = require("../src/cards/repo-card");
+const { themes } = require("../themes");
 
 const data_repo = {
   repository: {
