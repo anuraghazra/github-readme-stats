@@ -1,14 +1,30 @@
-const { FlexLayout, encodeHTML } = require("../common/utils");
-const { getAnimations } = require("../getStyles");
+import { FlexLayout, encodeHTML } from "../common/utils";
 
-class Card {
+import { getAnimations } from "../getStyles";
+
+export class Card {
+  width: number;
+  height: number;
+  hideBorder: boolean;
+  hideTitle: boolean;
+  colors: {
+    bgColor?: string | string[];
+    titleColor?: string;
+  };
+  title: string;
+  css: string;
+  paddingX: number;
+  paddingY: number;
+  titlePrefixIcon?: string;
+  animations: boolean;
+
   constructor({
     width = 100,
     height = 100,
     colors = {},
-    customTitle,
+    customTitle = undefined,
     defaultTitle = "",
-    titlePrefixIcon,
+    titlePrefixIcon = "",
   }) {
     this.width = width;
     this.height = height;
@@ -16,7 +32,7 @@ class Card {
     this.hideBorder = false;
     this.hideTitle = false;
 
-    // returns theme based colors with proper overrides and defaults
+    //* returns theme based colors with proper overrides and defaults
     this.colors = colors;
     this.title =
       customTitle !== undefined
@@ -35,22 +51,22 @@ class Card {
     this.animations = false;
   }
 
-  setCSS(value) {
+  setCSS(value: string) {
     this.css = value;
   }
 
-  setHideBorder(value) {
+  setHideBorder(value: boolean) {
     this.hideBorder = value;
   }
 
-  setHideTitle(value) {
+  setHideTitle(value: boolean) {
     this.hideTitle = value;
     if (value) {
       this.height -= 30;
     }
   }
 
-  setTitle(text) {
+  setTitle(text: string) {
     this.title = text;
   }
 
@@ -62,9 +78,8 @@ class Card {
         class="header"
         data-testid="header"
       >${this.title}</text>
-    `;
-
-    const prefixIcon = `
+    `,
+      prefixIcon = `
       <svg
         class="icon"
         x="0"
@@ -94,11 +109,10 @@ class Card {
     if (typeof this.colors.bgColor !== "object") return;
 
     const gradients = this.colors.bgColor.slice(1);
-    return typeof this.colors.bgColor === "object"
-      ? `
+    return `
         <defs>
           <linearGradient
-            id="gradient" 
+            id="gradient"
             gradientTransform="rotate(${this.colors.bgColor[0]})"
           >
             ${gradients.map((grad, index) => {
@@ -107,11 +121,10 @@ class Card {
             })}
           </linearGradient>
         </defs>
-        `
-      : "";
+        `;
   }
 
-  render(body) {
+  render(body: string) {
     return `
       <svg
         width="${this.width}"
@@ -168,5 +181,3 @@ class Card {
     `;
   }
 }
-
-module.exports = Card;
