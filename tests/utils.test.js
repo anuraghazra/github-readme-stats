@@ -32,7 +32,7 @@ describe("Test utils.js", () => {
     expect(
       queryByTestId(document.body, "message").children[0],
     ).toHaveTextContent(/Something went wrong/gim);
-    expect(queryByTestId(document.body, "message").children[1]).toBeEmpty(2);
+    expect(queryByTestId(document.body, "message").children[1]).toBeEmpty();
 
     // Secondary message
     document.body.innerHTML = renderError(

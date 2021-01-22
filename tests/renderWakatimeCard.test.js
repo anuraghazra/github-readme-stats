@@ -1,6 +1,6 @@
 require("@testing-library/jest-dom");
-const renderWakatimeCard = require("../src/cards/wakatime-card");
 
+const { renderWakatimeCard } = require("../src/cards/wakatime-card");
 const { wakaTimeData } = require("./fetchWakatime.test");
 
 describe("Test Render Wakatime Card", () => {

@@ -1,8 +1,9 @@
 require("@testing-library/jest-dom");
-const cssToObject = require("css-to-object");
-const Card = require("../src/common/Card");
-const icons = require("../src/common/icons");
+
+const { Card } = require("../src/common/Card");
+const { cssToObject } = require("css-to-object");
 const { getCardColors } = require("../src/common/utils");
+const { icons } = require("../src/common/icons");
 const { queryByTestId } = require("@testing-library/dom");
 
 describe("Card", () => {

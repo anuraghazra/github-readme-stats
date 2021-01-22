@@ -1,10 +1,10 @@
 require("@testing-library/jest-dom");
 const axios = require("axios");
 const MockAdapter = require("axios-mock-adapter");
-const api = require("../api/index");
-const renderStatsCard = require("../src/cards/stats-card");
+const { api } = require("../api/index");
+const { renderStatsCard } = require("../src/cards/stats-card");
 const { renderError, CONSTANTS } = require("../src/common/utils");
-const calculateRank = require("../src/calculateRank");
+const { calculateRank } = require("../src/calculateRank");
 
 const stats = {
   name: "Anurag Hazra",

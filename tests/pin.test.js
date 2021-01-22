@@ -1,9 +1,10 @@
 require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const pin = require("../api/pin");
-const renderRepoCard = require("../src/cards/repo-card");
+
+const { MockAdapter } = require("axios-mock-adapter");
+const { axios } = require("axios");
+const { pin } = require("../api/pin");
 const { renderError } = require("../src/common/utils");
+const { renderRepoCard } = require("../src/cards/repo-card");
 
 const data_repo = {
   repository: {
