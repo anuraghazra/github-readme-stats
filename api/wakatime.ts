@@ -1,13 +1,16 @@
-require("dotenv").config();
-const {
-  renderError,
-  parseBoolean,
-  clampValue,
+import {
   CONSTANTS,
-  isLocaleAvailable,
-} = require("../src/common/utils");
-const { fetchLast7Days } = require("../src/fetchers/wakatime-fetcher");
-const wakatimeCard = require("../src/cards/wakatime-card");
+  clampValue,
+  parseBoolean,
+  renderError,
+} from "../src/common/utils";
+
+import { config } from "dotenv";
+import { fetchLast7Days } from "../src/fetchers/wakatime-fetcher";
+import { isLocaleAvailable } from "../src/translations";
+import { renderWakatimeCard } from "../src/cards/wakatime-card";
+
+config();
 
 module.exports = async (req, res) => {
   const {
@@ -37,7 +40,7 @@ module.exports = async (req, res) => {
     const last7Days = await fetchLast7Days({ username });
 
     let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
+      parseInt(cache_seconds || CONSTANTS.TWO_HOURS.toString(), 10),
       CONSTANTS.TWO_HOURS,
       CONSTANTS.ONE_DAY,
     );
@@ -49,7 +52,7 @@ module.exports = async (req, res) => {
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
     return res.send(
-      wakatimeCard(last7Days, {
+      renderWakatimeCard(last7Days, {
         custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
