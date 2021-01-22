@@ -1,6 +1,6 @@
-const axios = require("axios");
+import axios from "axios";
 
-const fetchLast7Days = async ({ username }) => {
+export async function fetchLast7Days({ username }: { username: string }) {
   try {
     const { data } = await axios.get(
       `https://wakatime.com/api/v1/users/${username}/stats/last_7_days?is_including_today=true`,
@@ -15,8 +15,4 @@ const fetchLast7Days = async ({ username }) => {
     }
     throw err;
   }
-};
-
-module.exports = {
-  fetchLast7Days,
-};
+}
