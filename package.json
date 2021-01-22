@@ -2,7 +2,7 @@
   "name": "github-readme-stats",
   "version": "1.0.0",
   "description": "Dynamically generate stats for your github readmes",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "jest --coverage",
     "test:watch": "jest --watch",
@@ -16,6 +16,8 @@
     "@actions/github": "^4.0.0",
     "@testing-library/dom": "^7.20.0",
     "@testing-library/jest-dom": "^5.11.0",
+    "@types/github-username-regex": "^1.0.0",
+    "@types/word-wrap": "^1.2.1",
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",
     "css-to-object": "^1.1.0",
@@ -29,10 +31,5 @@
     "github-username-regex": "^1.0.0",
     "prettier": "^2.1.2",
     "word-wrap": "^1.2.3"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm test"
-    }
   }
 }
