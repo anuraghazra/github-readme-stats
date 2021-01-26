@@ -263,6 +263,12 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23",
   },
+  orange_teal_dark: {
+    title_color: "09a7a1",
+    icon_color: "ff790e",
+    text_color: "ffffff",
+    bg_color: "010101",    
+  },
 };
 
 module.exports = themes;
