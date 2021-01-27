@@ -131,7 +131,7 @@ const themes = {
     text_color: "ffd95b",
     bg_color: "000000",
   },
-  darcula: {
+  dracula: {
     title_color: "BA5F17",
     icon_color: "84628F",
     text_color: "BEBEBE",
