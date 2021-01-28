@@ -74,7 +74,7 @@ Ricorda di cambiare il valore `?username=` con il tuo nome utente GitHub.
 [![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Nota: I punteggi sono calcolati sulla base delle tue statistiche, dai un'occhiata a [src/calculateRank.js](./src/calculateRank.js) per ulteriori informazioni_
+_Nota: I punteggi sono calcolati sulla base delle tue statistiche, dai un'occhiata a [src/calculateRank.js](../src/calculateRank.js) per ulteriori informazioni_
 
 ### Nascondere statistiche individuali
 
@@ -122,7 +122,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-Puoi avere un'anteprima di [tutti i temi supportati](./themes/README.md) o controllare il [file di configurazione dei temi](./themes/index.js) e **puoi anche contribuire creando un nuovo tema** se vuoi :D
+Puoi avere un'anteprima di [tutti i temi supportati](../themes/README.md) o controllare il [file di configurazione dei temi](../themes/index.js) e **puoi anche contribuire creando un nuovo tema** se vuoi :D
 
 ### Personalizzazione
 
@@ -135,7 +135,7 @@ Puoi personalizzare l'aspetto delle tue `Stats Card` o delle `Repo Card` in qual
 - `icon_color` - Colore delle icone, se disponibili _(in esadecimale)_
 - `bg_color` - Colore dello sfondo _(in esadecimale)_ **oppure** un gradiente nella forma _angolo,inizio,fine_
 - `hide_border` - Nasconde il bordo della carta _(booleano)_
-- `theme` - Nome del tema, dai un'occhiata a [tutti i temi disponibili](./themes/README.md)
+- `theme` - Nome del tema, dai un'occhiata a [tutti i temi disponibili](../themes/README.md)
 - `cache_seconds` - Specifica manualmente il valore di cache, in secondi _(min: 1800, max: 86400)_
 - `locale` - Impostare la lingua nella scheda _(per esempio. cn, de, es, eccetera.)_
 
@@ -154,7 +154,6 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 - `hide` - Nasconde gli oggetti selezionati _(valori separati da virgola)_
 - `hide_title` - Nasconde il titolo _(booleano)_
 - `hide_rank` - Nasconde il punteggio _(booleano)_
-- `hide_border` - _(boolean)_
 - `show_icons` - Mostra le icone _(booleano)_
 - `include_all_commits` - Mostra tutti i commit e non solo quelli dell'anno corrente _(booleano)_
 - `count_private` - Include i contributi privati _(booleano)_
@@ -168,7 +167,6 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 
 - `hide` - Nasconde un linguaggio specifico _(valori separati da virgola)_
 - `hide_title` - Nasconde il titolo _(booleano)_
-- `hide_border` - _(boolean)_
 - `layout` - Specifica il tipo di layout, `default` (esteso) o `compact` (compatto)
 - `card_width` - Specifica il valore della larghezza _(numero)_
 
@@ -343,7 +341,7 @@ Grazie! :heart:
 
 ---
 
-[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 I contributi sono benvenuti! <3
 
