@@ -192,6 +192,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `hide_progress` - Hides the progress bar and percentage _(boolean)_
 - `custom_title` - Sets a custom title for the card
 - `layout` - Switch between two available layouts `default` & `compact`
+- `api_domain` - Set a custom api domain for the card
 
 ---
 
