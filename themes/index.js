@@ -263,6 +263,12 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23",
   },
+  simple_white: {
+    title_color: "000084",
+    icon_color: "feb729",
+    text_color: "D5331E",
+    bg_color: "f8f8ff",
+  },
 };
 
 module.exports = themes;
