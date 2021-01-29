@@ -74,7 +74,7 @@ Copy-paste this into your markdown content, and that's it. Simple!
 Change the `?username=` value to your GitHub's username.
 
 ```md
-[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 _Note: Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone).
@@ -88,7 +88,7 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma-s
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
 ### Adding private contributions count to total commits count
@@ -100,7 +100,7 @@ _Note: If you are deploying this project yourself, the private contributions wil
 > Options: `&count_private=true`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
 ### Showing icons
@@ -108,7 +108,7 @@ _Note: If you are deploying this project yourself, the private contributions wil
 To enable icons, you can pass `show_icons=true` in the query param, like so:
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
 ### Themes
@@ -118,14 +118,14 @@ With inbuilt themes, you can customize the look of the card without doing any [m
 Use `?theme=THEME_NAME` parameter like so :-
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
 #### All inbuilt themes :-
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
-<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
+<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stats Themes" width="600px"/>
 
 You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
 
@@ -159,7 +159,6 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `hide` - Hides the specified items from stats _(Comma-separated values)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width
-- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
 - `count_private` - Count private commits _(boolean)_
@@ -175,7 +174,6 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 - `hide` - Hide the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
-- `hide_border` - _(boolean)_
 - `layout` - Switch between two available layouts `default` & `compact`
 - `card_width` - Set the card's width manually _(number)_
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
@@ -210,16 +208,16 @@ Copy-paste this code into your readme and change the links.
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
 Use [show_owner](#customization) variable to include the repo's owner username
 
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
 # Top Languages Card
 
@@ -301,37 +299,37 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 - Default
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - Hiding specific stats
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
 
 - Showing icons
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
 - Include All Commits
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
 
 - Themes
 
 Choose from any of the [default themes](#themes)
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
 - Gradient
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
 - Customizing stats card
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
 - Setting card locale
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=es)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=es)
 
 - Customizing repo card
 

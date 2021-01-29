@@ -154,7 +154,6 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 - `hide` - Nasconde gli oggetti selezionati _(valori separati da virgola)_
 - `hide_title` - Nasconde il titolo _(booleano)_
 - `hide_rank` - Nasconde il punteggio _(booleano)_
-- `hide_border` - _(boolean)_
 - `show_icons` - Mostra le icone _(booleano)_
 - `include_all_commits` - Mostra tutti i commit e non solo quelli dell'anno corrente _(booleano)_
 - `count_private` - Include i contributi privati _(booleano)_
@@ -168,7 +167,6 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 
 - `hide` - Nasconde un linguaggio specifico _(valori separati da virgola)_
 - `hide_title` - Nasconde il titolo _(booleano)_
-- `hide_border` - _(boolean)_
 - `layout` - Specifica il tipo di layout, `default` (esteso) o `compact` (compatto)
 - `card_width` - Specifica il valore della larghezza _(numero)_
 
