@@ -26,6 +26,7 @@ module.exports = async (req, res) => {
     locale,
     layout,
     api_domain,
+    rx,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -61,6 +62,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         hide_progress,
+        rx,
         locale: locale ? locale.toLowerCase() : null,
         layout,
       }),

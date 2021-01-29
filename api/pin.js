@@ -23,6 +23,7 @@ module.exports = async (req, res) => {
     show_owner,
     cache_seconds,
     locale,
+    rx,
   } = req.query;
 
   let repoData;
@@ -69,6 +70,7 @@ module.exports = async (req, res) => {
         text_color,
         bg_color,
         theme,
+        rx,
         show_owner: parseBoolean(show_owner),
         locale: locale ? locale.toLowerCase() : null,
       }),

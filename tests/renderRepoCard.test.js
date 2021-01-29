@@ -332,4 +332,11 @@ describe("Test renderRepoCard", () => {
     );
     expect(queryByTestId(document.body, "badge")).toHaveTextContent("模板");
   });
+  
+  it("should render without rounding", () => {
+    document.body.innerHTML = renderRepoCard(data_repo.repository, { rx: "0" });
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
+    document.body.innerHTML = renderRepoCard(data_repo.repository, { });
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
+  });
 });

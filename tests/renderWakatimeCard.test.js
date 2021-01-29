@@ -26,4 +26,11 @@ describe("Test Render Wakatime Card", () => {
         .textContent,
     ).toBe("本周没有编程活动");
   });
+
+  it("should render without rounding", () => {
+    document.body.innerHTML = renderWakatimeCard(wakaTimeData.data, { rx: "0" });
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
+    document.body.innerHTML = renderWakatimeCard(wakaTimeData.data, { });
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
+  });
 });

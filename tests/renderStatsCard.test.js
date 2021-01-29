@@ -262,4 +262,11 @@ describe("Test renderStatsCard", () => {
       ).textContent,
     ).toBe("参与项目数:");
   });
+
+  it("should render without rounding", () => {
+    document.body.innerHTML = renderStatsCard(stats, { rx: "0" });
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
+    document.body.innerHTML = renderStatsCard(stats, { });
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
+  });
 });

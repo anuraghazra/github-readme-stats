@@ -28,6 +28,7 @@ module.exports = async (req, res) => {
     exclude_repo,
     custom_title,
     locale,
+    rx
   } = req.query;
   let topLangs;
 
@@ -68,6 +69,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         layout,
+        rx,
         locale: locale ? locale.toLowerCase() : null,
       }),
     );

@@ -30,6 +30,7 @@ const renderRepoCard = (repo, options = {}) => {
     bg_color,
     show_owner,
     theme = "default_repocard",
+    rx,
     locale,
   } = options;
 
@@ -118,6 +119,7 @@ const renderRepoCard = (repo, options = {}) => {
     titlePrefixIcon: icons.contribs,
     width: 400,
     height,
+    rx,
     colors: {
       titleColor,
       textColor,
