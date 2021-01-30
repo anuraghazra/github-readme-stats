@@ -264,9 +264,9 @@ const themes = {
     bg_color: "402b23"
   },
   github_dark: {
-    title_color: "c9d1d9",
-    icon_color: "c9d1d9",
-    text_color: "c9d1d9",
+    title_color: "199afc",
+    icon_color: "4b8dda",
+    text_color: "8a939d",
     bg_color: "0d1117"
   },
 };
