@@ -263,6 +263,13 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23",
   },
+    pinky: {
+    title_color: "19a3a3",
+    icon_color: "ad33d6",
+    text_color: "009999",
+    bg_color: "66004d",
+  },
+  
 };
 
 module.exports = themes;
