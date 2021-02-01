@@ -61,7 +61,7 @@
 - [GitHub 统计卡片](#GitHub-统计卡片)
 - [GitHub 更多置顶](#GitHub-更多置顶)
 - [热门语言卡片](#热门语言卡片)
-- [每周的 Wakatime 统计](#wakatime-week-stats)
+- [每周的 Wakatime 统计](#每周的Wakatime统计)
 - [主题](#主题)
 - [自定义](#自定义)
 - [自己部署](#自己部署)
@@ -76,9 +76,9 @@
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-*_注：可用的排名为S +（排名前1％），S（排名前25％），A ++（排名前45％），A +（排名前60％）和B +（所有人）。 通过使用 [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function)，使用提交，贡献，问题，星数，拉取请求，关注者和拥有的存储库来计算值。_*
+*_注：可用的等级为S +（排名前1％），S（排名前25％），A ++（排名前45％），A +（排名前60％）和B +（所有人）。 通过使用 [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function)，使用提交，贡献，问题，星数，拉取请求，关注者和拥有的存储库来计算等级。_*
 
-*实现详见 [src/calculateRank.js](./ src / calculateRank.js)* 
+*实现详见 [src/calculateRank.js](./src/calculateRank.js)* 
 
 ### 隐藏指定统计
 
@@ -273,7 +273,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 # 每周的Wakatime统计
 
-Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
+将`&username =`值更改为您 [Wakatime](https://wakatime.com) 的用户名。 
 
 ```md
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
