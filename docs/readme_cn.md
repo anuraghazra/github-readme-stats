@@ -53,6 +53,7 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
   </p>
 </p>
+
 <p align="center">喜欢这个项目？请考虑<a href="https://www.paypal.me/anuraghazra">捐赠</a>来帮助它完善！
 
 # 特性
@@ -60,6 +61,7 @@
 - [GitHub 统计卡片](#GitHub-统计卡片)
 - [GitHub 更多置顶](#GitHub-更多置顶)
 - [热门语言卡片](#热门语言卡片)
+- [每周的 Wakatime 统计](#wakatime-week-stats)
 - [主题](#主题)
 - [自定义](#自定义)
 - [自己部署](#自己部署)
@@ -74,7 +76,9 @@
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.js](../src/calculateRank.js)_
+*_注：可用的排名为S +（排名前1％），S（排名前25％），A ++（排名前45％），A +（排名前60％）和B +（所有人）。 通过使用 [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function)，使用提交，贡献，问题，星数，拉取请求，关注者和拥有的存储库来计算值。_*
+
+*实现详见 [src/calculateRank.js](./ src / calculateRank.js)* 
 
 ### 隐藏指定统计
 
@@ -172,7 +176,16 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 > :warning: **重要:**
 > 如 [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) 所指定，语言名称应使用 uri 转义。
-> (例: `c++` 应该是 `c%2B%2B`, `jupyter notebook` 应该是 `jupyter%20notebook`, 等.)
+> (例: `c++` 应该是 `c%2B%2B`, `jupyter notebook` 应该是 `jupyter%20notebook`, 等.)。您可以使用[urlencoder.org](https://www.urlencoder.org/)来自动化这个操作。 
+
+#### Wakatime 卡片专属选项:
+
+- `hide_title` - (boolean)
+- `line_height` - 设置文本之间的行高 (number)
+- `hide_progress` - 隐藏进度条和百分比 (boolean)
+- `custom_title` - 设置自定义的卡片标题
+- `layout` - 在`default` & `compact`这两个布局之间切换
+- `api_domain` - 为卡片设置自定义的API域名
 
 ---
 
@@ -216,12 +229,28 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
+### 排除指定仓库
+
+你课用使用 `?exclude_repo=repo1,repo2` 参数来隐藏指定仓库。
+
+```
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-re
+```
+
 ### 隐藏指定语言
 
 可以使用 `?hide=language1,language2` 参数来隐藏指定的语言。
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### 显示更多语言
+
+您可以使用 `＆langs_count =` 选项来增加或减少卡片显示的语言数量。 有效值为1到10（包括10）之间的整数，默认值为5。 
+
+```
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https
 ```
 
 ### 紧凑的语言卡片布局
@@ -239,6 +268,26 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 - 紧凑布局
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
+---
+
+# 每周的Wakatime统计
+
+Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
+
+```md
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Demo
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
+- 紧凑布局
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -274,6 +323,10 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
+- 设置卡片显示语言
+
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=es)
+
 - 自定义 repo 卡片
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
@@ -281,6 +334,10 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 - 热门语言
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+- Wakatime 卡片
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](
 
 ---
 
