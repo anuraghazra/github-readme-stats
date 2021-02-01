@@ -263,6 +263,12 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23",
   },
+  asl_theme: {
+    title_color: "FFFFFF",
+    icon_color: "4A3962",
+    text_color: "FFFFFF",
+    bg_color: "60102F",
+  },
 };
 
 module.exports = themes;
