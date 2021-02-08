@@ -69,7 +69,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     bg_color,
     theme = "default",
     custom_title,
-    rx,
+    border_radius,
     locale,
     disable_animations = false,
   } = options;
@@ -201,7 +201,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     defaultTitle: i18n.t("statcard.title"),
     width,
     height,
-    rx,
+    border_radius,
     colors: {
       titleColor,
       textColor,

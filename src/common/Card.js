@@ -5,7 +5,7 @@ class Card {
   constructor({
     width = 100,
     height = 100,
-    rx = 4.5,
+    border_radius = 4.5,
     colors = {},
     customTitle,
     defaultTitle = "",
@@ -17,7 +17,7 @@ class Card {
     this.hideBorder = false;
     this.hideTitle = false;
 
-    this.rx = rx;
+    this.border_radius = border_radius;
 
     // returns theme based colors with proper overrides and defaults
     this.colors = colors;
@@ -145,7 +145,7 @@ class Card {
           data-testid="card-bg"
           x="0.5"
           y="0.5"
-          rx="${this.rx}"
+          rx="${this.border_radius}"
           height="99%"
           stroke="#E4E2E2"
           width="${this.width - 1}"

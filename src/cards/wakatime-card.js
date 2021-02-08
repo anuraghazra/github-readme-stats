@@ -99,7 +99,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     custom_title,
     locale,
     layout,
-    rx
+    border_radius
   } = options;
 
   const i18n = new I18n({
@@ -211,7 +211,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     defaultTitle: i18n.t("wakatimecard.title"),
     width: 495,
     height,
-    rx,
+    border_radius,
     colors: {
       titleColor,
       textColor,

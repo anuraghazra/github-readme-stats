@@ -225,7 +225,7 @@ describe("Test renderTopLanguages", () => {
   });
 
   it("should render without rounding", () => {
-    document.body.innerHTML = renderTopLanguages(langs, { rx: "0" });
+    document.body.innerHTML = renderTopLanguages(langs, { border_radius: "0" });
     expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
     document.body.innerHTML = renderTopLanguages(langs, { });
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
