@@ -86,7 +86,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
         y=\\"0\\"
         class=\\"header\\"
         data-testid=\\"header\\"
-      >Wakatime Week Stats</text>
+      >Wakatime Stats</text>
     </g>
       </g>
     
@@ -237,7 +237,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
         y=\\"0\\"
         class=\\"header\\"
         data-testid=\\"header\\"
-      >Wakatime Week Stats</text>
+      >Wakatime Stats</text>
     </g>
       </g>
     
