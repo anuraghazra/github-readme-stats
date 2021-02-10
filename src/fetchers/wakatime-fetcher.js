@@ -1,11 +1,11 @@
 const axios = require("axios");
 
-const fetchLast7Days = async ({ username, api_domain }) => {
+const fetchWakatimeStats = async ({ username, api_domain }) => {
   try {
     const { data } = await axios.get(
       `https://${
         api_domain ? api_domain.replace(/[^a-z-.0-9]/gi, "") : "wakatime.com"
-      }/api/v1/users/${username}/stats/last_7_days?is_including_today=true`,
+      }/api/v1/users/${username}/stats?is_including_today=true`,
     );
 
     return data.data;
@@ -20,5 +20,5 @@ const fetchLast7Days = async ({ username, api_domain }) => {
 };
 
 module.exports = {
-  fetchLast7Days,
+  fetchWakatimeStats,
 };
