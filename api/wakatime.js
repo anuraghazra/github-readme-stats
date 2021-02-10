@@ -6,7 +6,7 @@ const {
   CONSTANTS,
   isLocaleAvailable,
 } = require("../src/common/utils");
-const { fetchLast7Days } = require("../src/fetchers/wakatime-fetcher");
+const { fetchWakatimeStats } = require("../src/fetchers/wakatime-fetcher");
 const wakatimeCard = require("../src/cards/wakatime-card");
 
 module.exports = async (req, res) => {
@@ -25,6 +25,7 @@ module.exports = async (req, res) => {
     custom_title,
     locale,
     layout,
+    api_domain,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -34,7 +35,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const last7Days = await fetchLast7Days({ username });
+    const stats = await fetchWakatimeStats({ username, api_domain });
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
@@ -49,7 +50,7 @@ module.exports = async (req, res) => {
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
     return res.send(
-      wakatimeCard(last7Days, {
+      wakatimeCard(stats, {
         custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
