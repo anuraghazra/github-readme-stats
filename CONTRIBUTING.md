@@ -26,7 +26,7 @@ _(make sure you already have a [vercel](https://vercel.com/) account)_
 1. Fork the repository and clone the code to your local machine
 1. Run the command "vercel" in the root and follow the steps there
 1. Create a `.env` file in the root of the directory
-1. In the .env file add a new variable named "PAT" with your [github Personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+1. In the .env file add a new variable named "PAT_1" with your [github Personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 1. Run the command "vercel dev" to start a development server at https://localhost:3000
 
 ## Themes Contribution

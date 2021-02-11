@@ -77,7 +77,7 @@ Verander de waarde `?username=` naar jou gebruikersnaam.
 
 _Notitie: Beschikbare rangen zijn S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (iedereen).
 De waarden worden berekend met behulp van de zogeheten [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) met de waardes van de commits, bijdragens, issues, sterren, PR's, volgers en eigen repositories.
-De implementatie hiervan kan bekijken op [src/calculateRank.js](./src/calculateRank.js)_
+De implementatie hiervan kan bekijken op [src/calculateRank.js](../src/calculateRank.js)_
 
 ### Verberg individueele statistieken
 
@@ -126,7 +126,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Statestieken Thema's" width="600px"/>
 
-Je kan een preview van alle [beschikbare thema\'s](./themes/README.md) bekijken, of zie het [thema configuratie bestand](./themes/index.js) en **je kan aan nieuwe thema\'s bijdragen** als je dat leuk lijkt :D
+Je kan een preview van alle [beschikbare thema\'s](../themes/README.md) bekijken, of zie het [thema configuratie bestand](../themes/index.js) en **je kan aan nieuwe thema\'s bijdragen** als je dat leuk lijkt :D
 
 ### Opmaak
 
@@ -139,7 +139,7 @@ Je kan het uiterlijk van je `Statistieken kaart` of `Repo kaart` aanpassen hoe j
 - `icon_color` - Icoon kleuren, wanneer beschikbaar _(hex kleur)_
 - `bg_color` - Achtergrond kleur van de kaart _(hex kleur)_ **of** een verloop van kleuren in het formaat van _graden,start,einde_
 - `hide_border` - Verbergt de rand van de kaart _(boolean)_
-- `theme` - Naam van het thema, kies uit [alle beschikbare thema\'s](./themes/README.md)
+- `theme` - Naam van het thema, kies uit [alle beschikbare thema\'s](../themes/README.md)
 - `cache_seconds` - Stel de cache header handmatig in _(min: 1800, max: 86400)_
 - `locale` - Stel taal van de kaart in _(e.g. cn, de, es, etc.)_
 
@@ -158,7 +158,6 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 - `hide` - Verbergt gespecificeerde items van de statistieken. _(komma gescheiden waardes)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
-- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Tel alle commits inplaats van alleen de commits van het huidige jaar _(boolean)_
 - `count_private` - Tel privé commits mee _(boolean)_
@@ -173,7 +172,6 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 
 - `hide` - Verbergt specifieke talen van de kaart _(komma gescheiden waardes)_
 - `hide_title` - _(boolean)_
-- `hide_border` - _(boolean)_
 - `layout` - Keuze voor de twee beschikbare layouts `default` & `compact`
 - `card_width` - Stelt de breedte van de kaart handmatig in. _(nummer)_
 - `langs_count` - Laat meer talen op de kaart zien, waarde tussen 1-10, staat standaard op to 5 _(nummer)_
@@ -208,16 +206,16 @@ Kopieer en plak deze code in je readme en verander de links.
 Eindpunt: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
 Gebruikt [show_owner](#customization) variabele om de repo\'s eigenaar toe te voegen
 
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
 # Top Programmeertalen Kaart
 
@@ -400,7 +398,7 @@ Bedankt! :heart:
 
 ---
 
-[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 Contributies zijn welkom! <3
 

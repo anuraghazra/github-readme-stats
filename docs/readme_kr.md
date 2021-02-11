@@ -73,7 +73,7 @@
 `?username=` 속성의 값을 Github 계정의 사용자 명(닉네임)으로 바꿔주세요.
 
 ```md
-[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 _참고:_
@@ -83,7 +83,7 @@ _랭크는 S+ (상위 1%), S (상위 25%), A++ (상위 45%), A+ (상위 60%), �
 _커밋의 수(commits), 기여도(contribution), 이슈의 수(issues), 즐겨찾기(star), 작업내용 반영 요청(Pull Request),
 팔로워 수, 그리고 보유 중인 저장소 등의 항목들에 대해 [누적 분포 함수](https://ko.wikipedia.org/wiki/%EB%88%84%EC%A0%81_%EB%B6%84%ED%8F%AC_%ED%95%A8%EC%88%98) 를 이용해 계산됩니다._
 
-_[src/calculateRank.js](./src/calculateRank.js) 에서 수행되는 계산 작업의 내용을 확인할 수 있습니다._
+_[src/calculateRank.js](../src/calculateRank.js) 에서 수행되는 계산 작업의 내용을 확인할 수 있습니다._
 
 ### 개별 통계 숨기기
 
@@ -92,7 +92,7 @@ _[src/calculateRank.js](./src/calculateRank.js) 에서 수행되는 계산 작�
 > 사용 가능한 항목들: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
 ### 총 커밋 수에 비공개 기여도 (private contribs) 수 추가하기
@@ -104,7 +104,7 @@ _참고: 프로젝트를 직접 배포하신 경우, 비공개 기여도는 기�
 > 예시: `&count_private=true`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
 ### 아이콘 표시하기
@@ -112,7 +112,7 @@ _참고: 프로젝트를 직접 배포하신 경우, 비공개 기여도는 기�
 아이콘 항목을 활성화 하기 위해선, 다음과 같이 `show_icons=true` 속성을 추가해주세요.
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
 ### 테마 설정하기
@@ -122,7 +122,7 @@ _참고: 프로젝트를 직접 배포하신 경우, 비공개 기여도는 기�
 다음과 같이 `?theme=THEME_NAME` 속성을 이용해주세요.
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
 #### 지원하는 내장 테마 목록
@@ -131,9 +131,9 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-[사용 가능한 모든 테마](./themes/README.md) 에서 미리보기를 확인하실 수 있어요.
+[사용 가능한 모든 테마](../themes/README.md) 에서 미리보기를 확인하실 수 있어요.
 
-원하신다면 [테마 설정하기](./themes/index.js) 항목에서  **새로운 테마를 직접 만드실수 있어요.** :D
+원하신다면 [테마 설정하기](../themes/index.js) 항목에서  **새로운 테마를 직접 만드실수 있어요.** :D
 
 ### 커스터마이징
 
@@ -146,7 +146,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `icon_color` - 아이콘 색상 (활성화된 경우) _(hex color)_
 - `bg_color` - 카드의 배경 색상 _(hex color)_ **혹은** 다음 양식으로 그라데이션 주기 _angle,start,end_
 - `hide_border` - 카드의 테두리 표시 여부 _(boolean)_
-- `theme` - 테마의 이름, [사용 가능한 모든 테마](./themes/README.md) 에서 선택
+- `theme` - 테마의 이름, [사용 가능한 모든 테마](../themes/README.md) 에서 선택
 - `cache_seconds` - 수동으로 캐시 헤더 설정 _(min: 1800, max: 86400)_
 - `locale` - 카드에 표시할 언어 _(e.g. kr, cn, de, es, etc.)_
 
@@ -170,7 +170,6 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `hide` - 통계에서 특정한 값 제외 _(Comma-separated values)_
 - `hide_title` - 타이틀 표시 여부 _(boolean)_
 - `hide_rank` - 랭크 표시 여부 _(boolean)_
-- `hide_border` - 테두리 표시 여부 _(boolean)_
 - `show_icons` - 아이콘 표시 여부 _(boolean)_
 - `include_all_commits` - 올해가 아닌 전체 연도에 대한 커밋 포함 여부 _(boolean)_
 - `count_private` - 비공개 기여도 포함 여부 _(boolean)_
@@ -186,7 +185,6 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - `hide` - 카드에서 특정 언어 제외 _(Comma-separated values)_
 - `hide_title` - 타이틀 제외 _(boolean)_
-- `hide_border` - 테두리 제외 _(boolean)_
 - `layout` - 사용 가능한 두 가지 값, `default` & `compact` 중 표시 형태 선택
 - `card_width` - 카드 너비 직접 설정 _(number)_
 - `langs_count` - 카드에 표시할 언어의 수 (1-10 사이, 기본 값 : 5) _(number)_
@@ -222,7 +220,7 @@ GitHub 저장소 여분 핀을 이용하면, 6개 이상의 저장소 핀을 여
 엔드 포인트: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### 미리보기
@@ -432,7 +430,7 @@ GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,
 
 ---
 
-[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 프로젝트에 대한 기여는 언제나 환영이에요! <3
 
