@@ -129,23 +129,21 @@ class Card {
     if (typeof this.colors.bgColor !== "object") return "";
 
     const gradients = this.colors.bgColor.slice(1);
-    return typeof this.colors.bgColor === "object"
-      ? `
-        <defs>
-          <linearGradient
-            id="gradient"
-            gradientTransform="rotate(${this.colors.bgColor[0]})"
-            gradientUnits="userSpaceOnUse"
-          >
-            ${gradients.map((grad, index) => {
-              let offset = (index * 100) / (gradients.length - 1);
-              return `<stop offset="${offset}%" stop-color="#${grad}" />`;
-            })}
-          </linearGradient>
-        </defs>
-        `
-      : "";
-  }
+    return  `
+      <defs>
+        <linearGradient
+          id="gradient"
+          gradientTransform="rotate(${this.colors.bgColor[0]})"
+          gradientUnits="userSpaceOnUse"
+        >
+          ${gradients.map((grad, index) => {
+            let offset = (index * 100) / (gradients.length - 1);
+            return `<stop offset="${offset}%" stop-color="#${grad}" />`;
+          })}
+        </linearGradient>
+      </defs>
+    `;
+ }
 
   /**
    * @param {string} body
