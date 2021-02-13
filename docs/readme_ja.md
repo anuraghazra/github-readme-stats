@@ -268,7 +268,7 @@ _NOTE: Top languages は、ユーザのスキルレベルを示すものでは�
 
 - テーマの変更
 
-任意の[テーマ](#themes)を選択できます。
+任意の[テーマ](#テーマの変更)を選択できます。
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
