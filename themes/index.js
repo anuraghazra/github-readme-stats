@@ -263,6 +263,12 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23",
   },
+    lasi: {
+    title_color: "27d545",
+    icon_color: "003820",
+    text_color: "ffffff",
+    bg_color: "000000",
+  },
 };
 
 module.exports = themes;
