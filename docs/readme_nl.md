@@ -158,7 +158,6 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 - `hide` - Verbergt gespecificeerde items van de statistieken. _(komma gescheiden waardes)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
-- `hide_border` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Tel alle commits inplaats van alleen de commits van het huidige jaar _(boolean)_
 - `count_private` - Tel privé commits mee _(boolean)_
@@ -173,7 +172,6 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 
 - `hide` - Verbergt specifieke talen van de kaart _(komma gescheiden waardes)_
 - `hide_title` - _(boolean)_
-- `hide_border` - _(boolean)_
 - `layout` - Keuze voor de twee beschikbare layouts `default` & `compact`
 - `card_width` - Stelt de breedte van de kaart handmatig in. _(nummer)_
 - `langs_count` - Laat meer talen op de kaart zien, waarde tussen 1-10, staat standaard op to 5 _(nummer)_
@@ -208,16 +206,16 @@ Kopieer en plak deze code in je readme en verander de links.
 Eindpunt: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
 Gebruikt [show_owner](#customization) variabele om de repo\'s eigenaar toe te voegen
 
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
 # Top Programmeertalen Kaart
 
