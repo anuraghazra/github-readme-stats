@@ -16,7 +16,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 
 | | | |
 | :--: | :--: | :--: |
-| `default` ![default][default] | `dark` ![dark][dark] | `radical` ![radical][radical] |
+| `default` ![default][default] | `outrun` ![outrun][outrun] | `dark` ![dark][dark] | `radical` ![radical][radical] |
 | `merko` ![merko][merko] | `gruvbox` ![gruvbox][gruvbox] | `tokyonight` ![tokyonight][tokyonight] |
 | `onedark` ![onedark][onedark] | `cobalt` ![cobalt][cobalt] | `synthwave` ![synthwave][synthwave] |
 | `highcontrast` ![highcontrast][highcontrast] | `dracula` ![dracula][dracula] | `prussian` ![prussian][prussian] |
@@ -56,6 +56,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 
 
 [default]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
+[outrun]:https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=outrun
 [default_repocard]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default_repocard
 [dark]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=dark
 [radical]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=radical
