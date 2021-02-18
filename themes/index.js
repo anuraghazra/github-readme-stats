@@ -286,7 +286,7 @@ const themes = {
     icon_color: "907aa9",
     text_color: "575279",
     bg_color: "FAF4ED",
-  },
+  }
 };
 
 module.exports = themes;
