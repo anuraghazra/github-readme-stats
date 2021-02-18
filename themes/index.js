@@ -268,7 +268,25 @@ const themes = {
     icon_color: "ff1aff",
     text_color: "8080ff",
     bg_color: "141439",
-  }
+  },
+  "rose-pine":{
+    title_color: "9CCFD8",
+    icon_color: "C3A6E6",
+    text_color: "FAF4ED",
+    bg_color: "1f1d29",
+  },
+  "rose-pine-moon":{
+    title_color: "9CCFD8",
+    icon_color: "C4A7E7",
+    text_color: "FAF4ED",
+    bg_color: "232136",
+  },
+  "rose-pine-dawn":{
+    title_color: "56949f",
+    icon_color: "907aa9",
+    text_color: "575279",
+    bg_color: "FAF4ED",
+  },
 };
 
 module.exports = themes;
