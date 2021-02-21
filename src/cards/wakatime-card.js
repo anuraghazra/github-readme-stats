@@ -19,7 +19,7 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
     <g transform="translate(${x}, ${y})">
       <circle cx="5" cy="6" r="5" fill="${color}" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        ${lang.name} - ${lang.text}
+        ${lang.name} - ${lang.text.split(' ').slice(0, 2).join(' ')} (${lang.percent}%)
       </text>
     </g>
   `;
@@ -85,7 +85,11 @@ const createTextNode = ({
 };
 
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  const { languages } = stats;
+  let { languages } = stats;
+  languages = languages
+    .filter((language) => language.name !== 'Text' && language.name !== 'Other' && language.name !== 'Markdown')
+    .slice(0, 8);
+
   const {
     hide_title = false,
     hide_border = false,
