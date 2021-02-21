@@ -86,9 +86,19 @@ const createTextNode = ({
 
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   let { languages } = stats;
+  let amountOfHours = 0;
   languages = languages
     .filter((language) => language.name !== 'Text' && language.name !== 'Other' && language.name !== 'Markdown')
-    .slice(0, 8);
+    .slice(0, 8)
+    .map((language) => {
+      language.hours = parseInt(language.text.substr(0, language.text.indexOf(' ')));
+      amountOfHours += language.hours;
+      return language;
+    })
+    .map((language) => {
+      language.percent = (language.hours/amountOfHours * 100).toFixed(2);
+      return language;
+    });
 
   const {
     hide_title = false,
@@ -153,7 +163,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
-    width = width + 50;
+    // width = (width + 50);
     height = 90 + Math.round(languages.length / 2) * 25;
 
     // progressOffset holds the previous language's width and used to offset the next language
@@ -184,7 +194,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
     finalLayout = `
       <mask id="rect-mask">
-      <rect x="25" y="0" width="${width - 50}" height="8" fill="white" rx="5" />
+      <rect x="25" y="0" width="${width - 75}" height="8" fill="white" rx="5" />
       </mask>
       ${compactProgressBar}
       ${createLanguageTextNode({
@@ -212,7 +222,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const card = new Card({
     customTitle: custom_title,
     defaultTitle: i18n.t("wakatimecard.title"),
-    width: 495,
+    width: 420,
     height,
     colors: {
       titleColor,

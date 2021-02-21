@@ -94,12 +94,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   // Meta data for creating text nodes with createTextNode function
   const STATS = {
-    stars: {
-      icon: icons.star,
-      label: i18n.t("statcard.totalstars"),
-      value: totalStars,
-      id: "stars",
-    },
     commits: {
       icon: icons.commits,
       label: `${i18n.t("statcard.commits")}${
@@ -114,17 +108,23 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       value: totalPRs,
       id: "prs",
     },
+    contribs: {
+      icon: icons.contribs,
+      label: i18n.t("statcard.contribs"),
+      value: contributedTo,
+      id: "contribs",
+    },
     issues: {
       icon: icons.issues,
       label: i18n.t("statcard.issues"),
       value: totalIssues,
       id: "issues",
     },
-    contribs: {
-      icon: icons.contribs,
-      label: i18n.t("statcard.contribs"),
-      value: contributedTo,
-      id: "contribs",
+    stars: {
+      icon: icons.star,
+      label: i18n.t("statcard.totalstars"),
+      value: totalStars,
+      id: "stars",
     },
   };
 
@@ -156,7 +156,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const rankCircle = hide_rank
     ? ""
     : `<g data-testid="rank-circle" 
-          transform="translate(400, ${height / 2 - 50})">
+          transform="translate(${400 - 75}, ${height / 2 - 50})">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
@@ -193,7 +193,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         270 /* min */,
         Infinity,
       )
-    : 495;
+    : 420;
 
   const card = new Card({
     customTitle: custom_title,
