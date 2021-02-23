@@ -269,6 +269,12 @@ const themes = {
     text_color: "8080ff",
     bg_color: "141439",
   }
+  TaiChi:{
+    title_color: "fffff",
+    icon_color: "000000",
+    text_color: "ffffff",
+    bg_color: "A9A9A9",
+  }
 };
 
 module.exports = themes;
