@@ -268,6 +268,12 @@ const themes = {
     icon_color: "ff1aff",
     text_color: "8080ff",
     bg_color: "141439",
+  },
+  viridis: {
+    title_color: "85D44A",
+    icon_color: "DFE318",
+    text_color: "2CB17D",
+    bg_color: "0,440154,345E8D",
   }
 };
 
