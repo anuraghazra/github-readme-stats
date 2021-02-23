@@ -39,7 +39,7 @@ While creating the Pull request to add a new theme **don't forget to add a scree
 
 > NOTE: If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
 
-## Any contributions you make will be under the MIT Software License
+## Any Contributions you make will be under the MIT Software License
 
 In short, when you submit changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
