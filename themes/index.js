@@ -270,10 +270,10 @@ const themes = {
     bg_color: "141439",
   },
   ocean_dark:{
-    title_color: "fe5e5e",
-    icon_color: "b08ecb",
-    text_color: "c8e0ab",
-    bg_color: "0e111a",
+    title_color: "24487f",
+    icon_color: "7F4DA8",
+    text_color: "9EE504",
+    bg_color: "24487f",
   }
 };
 
