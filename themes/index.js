@@ -268,6 +268,12 @@ const themes = {
     icon_color: "ff1aff",
     text_color: "8080ff",
     bg_color: "141439",
+  },
+  Bright:{
+    title_color: "000000",
+    icon_color: "804000",
+    text_color: "332200",
+    bg_color: "ff9933",
   }
 };
 
