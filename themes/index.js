@@ -268,6 +268,12 @@ const themes = {
     icon_color: "ff1aff",
     text_color: "8080ff",
     bg_color: "141439",
+  },
+  brazil:{
+   title_color: "ffdf00",
+   icon_color: "002776",
+   text_color: "ffdf00",
+   bg_color: "009c3b",
   }
 };
 
