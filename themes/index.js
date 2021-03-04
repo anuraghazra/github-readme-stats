@@ -269,6 +269,12 @@ const themes = {
     text_color: "8080ff",
     bg_color: "141439",
   }
+  "github-night-mode":{
+    title_color: "2f80ed",
+    icon_color: "4c71f2",
+    text_color: "c9d1d9",
+    bg_color: "0d1117",
+  }
 };
 
 module.exports = themes;
