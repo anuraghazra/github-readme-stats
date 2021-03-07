@@ -73,6 +73,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     layout,
     custom_title,
     locale,
+    border_radius
   } = options;
 
   const i18n = new I18n({
@@ -183,6 +184,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     defaultTitle: i18n.t("langcard.title"),
     width,
     height,
+    border_radius,
     colors: {
       titleColor,
       textColor,
