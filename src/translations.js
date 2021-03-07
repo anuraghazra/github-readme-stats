@@ -3,7 +3,7 @@ const { encodeHTML } = require("./common/utils");
 const statCardLocales = ({ name, apostrophe }) => {
   return {
     "statcard.title": {
-      cn: `${encodeHTML(name)} 的 GitHub 统计`,
+      cn: `${encodeHTML(name)} 的 GitHub 统计数据`,
       cs: `GitHub statistiky uživatele ${encodeHTML(name)}`,
       de: `${encodeHTML(name) + apostrophe} GitHub-Statistiken`,
       en: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
@@ -27,7 +27,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: `Statystyki GitHub użytkownika ${encodeHTML(name)}`,
     },
     "statcard.totalstars": {
-      cn: "获标星（star）",
+      cn: "获标星数（star）",
       cs: "Celkem hvězd",
       de: "Sterne Insgesamt",
       en: "Total Stars",
@@ -51,7 +51,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Liczba Gwiazdek",
     },
     "statcard.commits": {
-      cn: "累计提交（commit）",
+      cn: "累计提交数（commit）",
       cs: "Celkem commitů",
       de: "Anzahl Commits",
       en: "Total Commits",
@@ -75,7 +75,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie commity",
     },
     "statcard.prs": {
-      cn: "提案数（PR）",
+      cn: "拉取请求数（PR）",
       cs: "Celkem PRs",
       de: "PRs Insgesamt",
       en: "Total PRs",
@@ -99,7 +99,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie PR",
     },
     "statcard.issues": {
-      cn: "指出问题（issue）",
+      cn: "指出问题数（issue）",
       cs: "Celkem problémů",
       de: "Anzahl Issues",
       en: "Total Issues",
