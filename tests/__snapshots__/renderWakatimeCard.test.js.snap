@@ -86,7 +86,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
         y=\\"0\\"
         class=\\"header\\"
         data-testid=\\"header\\"
-      >Wakatime Week Stats</text>
+      >Wakatime Stats</text>
     </g>
       </g>
     
@@ -100,10 +100,10 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
       <g transform=\\"translate(0, 0)\\">
     <g class=\\"stagger\\" style=\\"animation-delay: NaNms\\" transform=\\"translate(25, 0)\\">
       <text class=\\"stat bold\\" y=\\"12.5\\">Other:</text>
-      <text 
-        class=\\"stat\\" 
-        x=\\"350\\" 
-        y=\\"12.5\\" 
+      <text
+        class=\\"stat\\"
+        x=\\"350\\"
+        y=\\"12.5\\"
         data-testid=\\"Other\\"
       >19 mins</text>
       
@@ -123,10 +123,10 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
   </g><g transform=\\"translate(0, 25)\\">
     <g class=\\"stagger\\" style=\\"animation-delay: NaNms\\" transform=\\"translate(25, 0)\\">
       <text class=\\"stat bold\\" y=\\"12.5\\">TypeScript:</text>
-      <text 
-        class=\\"stat\\" 
-        x=\\"350\\" 
-        y=\\"12.5\\" 
+      <text
+        class=\\"stat\\"
+        x=\\"350\\"
+        y=\\"12.5\\"
         data-testid=\\"TypeScript\\"
       >1 min</text>
       
@@ -144,7 +144,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
   
     </g>
   </g>
-    </svg> 
+    </svg>
   
         </g>
       </svg>
@@ -237,7 +237,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
         y=\\"0\\"
         class=\\"header\\"
         data-testid=\\"header\\"
-      >Wakatime Week Stats</text>
+      >Wakatime Stats</text>
     </g>
       </g>
     
@@ -254,31 +254,31 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
       </mask>
       
           <rect
-            mask=\\"url(#rect-mask)\\" 
+            mask=\\"url(#rect-mask)\\"
             data-testid=\\"lang-progress\\"
-            x=\\"0\\" 
+            x=\\"0\\"
             y=\\"0\\"
-            width=\\"6.291999999999999\\" 
+            width=\\"6.6495\\"
             height=\\"8\\"
             fill=\\"#858585\\"
           />
         
           <rect
-            mask=\\"url(#rect-mask)\\" 
+            mask=\\"url(#rect-mask)\\"
             data-testid=\\"lang-progress\\"
-            x=\\"6.291999999999999\\" 
+            x=\\"6.6495\\"
             y=\\"0\\"
-            width=\\"0.44\\" 
+            width=\\"0.465\\"
             height=\\"8\\"
             fill=\\"#2b7489\\"
           />
         
           <rect
-            mask=\\"url(#rect-mask)\\" 
+            mask=\\"url(#rect-mask)\\"
             data-testid=\\"lang-progress\\"
-            x=\\"6.731999999999999\\" 
+            x=\\"7.1145\\"
             y=\\"0\\"
-            width=\\"0.30800000000000005\\" 
+            width=\\"0.32550000000000007\\"
             height=\\"8\\"
             fill=\\"#cb171e\\"
           />
@@ -306,7 +306,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
     </g>
   
     
-    </svg> 
+    </svg>
   
         </g>
       </svg>
