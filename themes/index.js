@@ -268,6 +268,12 @@ const themes = {
     icon_color: "ff1aff",
     text_color: "8080ff",
     bg_color: "141439",
+  },
+   ocean_dark:{
+    title_color: "8957B2",
+    icon_color: "FFFFFF",
+    text_color: "92D534",
+    bg_color: "151A28",
   }
 };
 
