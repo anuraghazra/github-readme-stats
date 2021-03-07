@@ -30,7 +30,8 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `calm` ![calm][calm] | `flag-india` ![flag-india][flag-india] | `omni` ![omni][omni] |
 | `react` ![react][react] | `jolly` ![jolly][jolly] | `maroongold` ![maroongold][maroongold] |
 | `yeblu` ![yeblu][yeblu] | `blueberry` ![blueberry][blueberry] | `slateorange` ![slateorange][slateorange] |
-| `kacho_ga` ![kacho_ga][kacho_ga] | `outrun` ![outrun][outrun] | [Add your theme][add-theme] |
+| `kacho_ga` ![kacho_ga][kacho_ga] | `outrun` ![outrun][outrun] | `ocean_dark` ![ocean_dark][ocean_dark] |
+| [Add your theme][add-theme] | | |
 
 ## Repo Card
 
@@ -52,7 +53,8 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `calm` ![calm][calm_repo] | `flag-india` ![flag-india][flag-india_repo] | `omni` ![omni][omni_repo] |
 | `react` ![react][react_repo] | `jolly` ![jolly][jolly_repo] | `maroongold` ![maroongold][maroongold_repo] |
 | `yeblu` ![yeblu][yeblu_repo] | `blueberry` ![blueberry][blueberry_repo] | `slateorange` ![slateorange][slateorange_repo] |
-| `kacho_ga` ![kacho_ga][kacho_ga_repo] | `outrun` ![outrun][outrun_repo] | [Add your theme][add-theme] |
+| `kacho_ga` ![kacho_ga][kacho_ga_repo] | `outrun` ![outrun][outrun_repo] | `ocean_dark` ![ocean_dark][ocean_dark_repo] |
+| [Add your theme][add-theme] | | |
 
 
 [default]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
@@ -100,6 +102,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [slateorange]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=slateorange
 [kacho_ga]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=kacho_ga
 [outrun]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=outrun
+[ocean_dark]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=ocean_dark
 
 
 [default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
@@ -147,6 +150,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [slateorange_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=slateorange
 [kacho_ga_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=kacho_ga
 [outrun_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=outrun
+[ocean_dark_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=ocean_dark
 
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
