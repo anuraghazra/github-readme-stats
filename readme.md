@@ -131,7 +131,7 @@ You can look at a preview for [all available themes](./themes/README.md) or chec
 
 ### Customization
 
-You can customize the appearance of your `Stats Card` or `Repo Card` however you want with URL params.
+You can customize the appearance of your `Stats Card` or `Repo Card` however you wish with URL params.
 
 #### Common Options:
 
@@ -152,7 +152,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
-> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k, otherwise, it's 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours
+> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k, otherwise, it's 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours.
 
 #### Stats Card Exclusive Options:
 
@@ -168,7 +168,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 #### Repo Card Exclusive Options:
 
-- `show_owner` - Show the owner name of the repo _(boolean)_
+- `show_owner` - Show the repo's owner name _(boolean)_
 
 #### Language Card Exclusive Options:
 
@@ -222,7 +222,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 # Top Languages Card
 
-The top languages card shows a GitHub user's top languages which have used the most.
+The top languages card show a GitHub user's most frequently used top language.
 
 _NOTE: Top Languages does not indicate my skill level or anything like that, it's a GitHub metric of which languages have the most code on GitHub. It's a new feature of github-readme-stats._
 
@@ -395,7 +395,7 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 I open-source almost everything I can, and I try to reply to everyone needing help using these projects. Obviously,
 this takes time. You can use this service for free.
 
-However, if you are using this project and happy with it or just want to encourage me to continue creating stuff, there are few ways you can do it :-
+However, if you are using this project and are happy with it or just want to encourage me to continue creating stuff, there are few ways you can do it :-
 
 - Giving proper credit when you use github-readme-stats on your readme, linking back to it :D
 - Starring and sharing the project :rocket:
