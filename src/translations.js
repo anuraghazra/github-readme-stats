@@ -244,7 +244,7 @@ const wakatimeCardLocales = {
     "pt-br": "Estatísticas Wakatime",
     np: "Wakatime तथ्या .्क",
     el: "Στατιστικά Wakatime",
-    ru: "Статистика Вакатиме",
+    ru: "Статистика Wakatime",
     "uk-ua": "Статистика Wakatime",
     id: "Status Wakatime",
     my: "Statistik Wakatime",
