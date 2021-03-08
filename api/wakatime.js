@@ -27,6 +27,7 @@ module.exports = async (req, res) => {
     layout,
     api_domain,
     range,
+    border_radius,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -62,6 +63,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         hide_progress,
+        border_radius,
         locale: locale ? locale.toLowerCase() : null,
         layout,
       }),

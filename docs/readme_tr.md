@@ -52,6 +52,8 @@
     .
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
+    <a href="/docs/readme_np.md">नेपाली</a>
+    .
     <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
