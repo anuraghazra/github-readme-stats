@@ -1,4 +1,10 @@
 const themes = {
+   auro: {
+    title_color: "5D8CB3",
+    icon_color: "4798FF",
+    text_color: "718CA1",
+    bg_color: "1D252C",
+  },
   default: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
