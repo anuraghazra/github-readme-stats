@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
     show_icons,
     count_private,
     include_all_commits,
+    include_all_contributions,
     line_height,
     title_color,
     icon_color,
@@ -50,6 +51,7 @@ module.exports = async (req, res) => {
       username,
       parseBoolean(count_private),
       parseBoolean(include_all_commits),
+      parseBoolean(include_all_contributions),
     );
 
     const cacheSeconds = clampValue(
@@ -68,6 +70,7 @@ module.exports = async (req, res) => {
         hide_border: parseBoolean(hide_border),
         hide_rank: parseBoolean(hide_rank),
         include_all_commits: parseBoolean(include_all_commits),
+        include_all_contributions: parseBoolean(include_all_contributions),
         line_height,
         title_color,
         icon_color,
