@@ -263,6 +263,18 @@ const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23",
   },
+  outrun:{
+    title_color: "ffcc00",
+    icon_color: "ff1aff",
+    text_color: "8080ff",
+    bg_color: "141439",
+  },
+   ocean_dark:{
+    title_color: "8957B2",
+    icon_color: "FFFFFF",
+    text_color: "92D534",
+    bg_color: "151A28",
+  }
 };
 
 module.exports = themes;

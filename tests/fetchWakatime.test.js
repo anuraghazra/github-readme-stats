@@ -105,7 +105,7 @@ describe("Wakatime fetcher", () => {
     const username = "anuraghazra";
     mock
       .onGet(
-        `https://wakatime.com/api/v1/users/${username}/stats?is_including_today=true`,
+        `https://wakatime.com/api/v1/users/${username}/stats/?is_including_today=true`,
       )
       .reply(200, wakaTimeData);
 

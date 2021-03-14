@@ -73,10 +73,10 @@ const createTextNode = ({
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       <text class="stat bold" y="12.5">${label}:</text>
-      <text 
-        class="stat" 
-        x="${hideProgress ? 170 : 350}" 
-        y="12.5" 
+      <text
+        class="stat"
+        x="${hideProgress ? 170 : 350}"
+        y="12.5"
         data-testid="${id}"
       >${value}</text>
       ${cardProgress}
@@ -99,6 +99,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [], langs_count: null 
     custom_title,
     locale,
     layout,
+    border_radius,
     langs_count
   } = options;
 
@@ -163,17 +164,17 @@ const renderWakatimeCard = (stats = {}, options = { hide: [], langs_count: null 
     const compactProgressBar = languages
       .map((lang) => {
         // const progress = (width * lang.percent) / 100;
-        const progress = ((width - 50) * lang.percent) / 100;
+        const progress = ((width - 25) * lang.percent) / 100;
 
         const languageColor = languageColors[lang.name] || "#858585";
 
         const output = `
           <rect
-            mask="url(#rect-mask)" 
+            mask="url(#rect-mask)"
             data-testid="lang-progress"
-            x="${progressOffset}" 
+            x="${progressOffset}"
             y="0"
-            width="${progress}" 
+            width="${progress}"
             height="8"
             fill="${languageColor}"
           />
@@ -215,6 +216,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [], langs_count: null 
     defaultTitle: i18n.t("wakatimecard.title"),
     width: 495,
     height,
+    border_radius,
     colors: {
       titleColor,
       textColor,
@@ -235,7 +237,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [], langs_count: null 
   return card.render(`
     <svg x="0" y="0" width="100%">
       ${finalLayout}
-    </svg> 
+    </svg>
   `);
 };
 
