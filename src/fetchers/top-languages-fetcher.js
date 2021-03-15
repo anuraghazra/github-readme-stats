@@ -34,6 +34,21 @@ const fetcher = (variables, token) => {
   );
 };
 
+function escapeRegexExceptAsterisk(str) {
+  return str
+    .split("*")
+    .map(substr => substr.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1"))
+    .join(".*")
+  ;
+}
+
+function createMatcher(excludeStr) {
+  excludeStr = escapeRegexExceptAsterisk(excludeStr);
+  const regex = new RegExp(`^${excludeStr}$`);
+
+  return repoName => regex.test(repoName);
+}
+
 async function fetchTopLanguages(username, langsCount = 5, exclude_repo = []) {
   if (!username) throw Error("Invalid username");
 
@@ -47,21 +62,21 @@ async function fetchTopLanguages(username, langsCount = 5, exclude_repo = []) {
   }
 
   let repoNodes = res.data.data.user.repositories.nodes;
-  let repoToHide = {};
 
-  // populate repoToHide map for quick lookup
-  // while filtering out
   if (exclude_repo) {
-    exclude_repo.forEach((repoName) => {
-      repoToHide[repoName] = true;
-    });
+    exclude_repo = exclude_repo.map(createMatcher);
   }
 
   // filter out repositories to be hidden
   repoNodes = repoNodes
     .sort((a, b) => b.size - a.size)
     .filter((name) => {
-      return !repoToHide[name.name];
+      for (const matcher of exclude_repo) {
+        if (matcher(name.name)) {
+          return false;
+        }
+      }
+      return true;
     });
 
   repoNodes = repoNodes

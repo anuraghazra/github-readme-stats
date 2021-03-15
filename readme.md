@@ -244,6 +244,12 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 You can use `?exclude_repo=repo1,repo2` parameter to exclude individual repositories.
 
+You can also use an asterisk (`*`) for wildcard matching. A possible use case
+could be that you have forked projects that aren't on GitHub. In this case,
+GitHub doesn't know that they are forks so they will be included in this stat.
+If you end the name of all these repositories with `-fork` then you could use
+`?exclude_repo=*-fork` to exclude all of those forks.
+
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
 ```
