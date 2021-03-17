@@ -274,6 +274,18 @@ const themes = {
     icon_color: "FFFFFF",
     text_color: "92D534",
     bg_color: "151A28",
+  },
+  "color-cn":{
+    title_color: "fffb8f",
+    icon_color: "237804",
+    text_color: "fffb8f",
+    bg_color: "f5222d",
+  },
+  "color-cn-dark":{
+    title_color: "fff566",
+    icon_color: "F7142D",
+    text_color: "fff566",
+    bg_color: "092b00",
   }
 };
 
