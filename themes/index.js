@@ -274,13 +274,13 @@ const themes = {
     icon_color: "FFFFFF",
     text_color: "92D534",
     bg_color: "151A28",
-  }
+  },
   Martain_soil:{
   title_color:"#ff8b52",
     icon_color: "#ffac1c",
     text_color: "#ff5400",
     bg_color: "#16191f",
-}
+},
 };
 
 module.exports = themes;
