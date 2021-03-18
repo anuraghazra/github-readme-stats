@@ -1,5 +1,5 @@
 const themes = {
-   auro: {
+   city_lights: {
     title_color: "5D8CB3",
     icon_color: "4798FF",
     text_color: "718CA1",
