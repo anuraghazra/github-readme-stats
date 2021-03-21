@@ -354,7 +354,7 @@ Choose from any of the [default themes](#themes)
 
 You usually won't be able to layout the images side by side. To do that you can use this approach:
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
