@@ -274,7 +274,13 @@ const themes = {
     icon_color: "FFFFFF",
     text_color: "92D534",
     bg_color: "151A28",
-  }
+  },
+  city_lights: {
+    title_color: "5D8CB3",
+    icon_color: "4798FF",
+    text_color: "718CA1",
+    bg_color: "1D252C",
+  },
 };
 
 module.exports = themes;

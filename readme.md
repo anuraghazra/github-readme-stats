@@ -195,7 +195,8 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `hide_progress` - Hides the progress bar and percentage _(boolean)_
 - `custom_title` - Sets a custom title for the card
 - `layout` - Switch between two available layouts `default` & `compact`
-- `api_domain` - Set a custom api domain for the card
+- `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
+- `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for list of available options.
 
 ---
 
@@ -353,7 +354,7 @@ Choose from any of the [default themes](#themes)
 
 You usually won't be able to layout the images side by side. To do that you can use this approach:
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
