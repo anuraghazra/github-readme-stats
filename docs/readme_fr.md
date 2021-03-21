@@ -290,7 +290,7 @@ Choisissez parmi l'un des [thèmes par défaut](#themes)
 
 En général, vous ne pourrez pas mettre les images côte à côte. Pour ce faire, vous pouvez utiliser cette approche :
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
