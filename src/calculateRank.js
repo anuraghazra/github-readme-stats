@@ -15,9 +15,9 @@ function calculateRank({
   const COMMITS_VALUE = 1 / 10000;
   const CONTRIBS_VALUE = 1 / 1000;
   const ISSUES_VALUE = 1 / 100;
-  const STARS_VALUE = 1 / 50;
+  const STARS_VALUE = 1 / 400;
   const PRS_VALUE = 1 / 300;
-  const FOLLOWERS_VALUE = 1 / 25;
+  const FOLLOWERS_VALUE = 1 / 100;
   const REPO_VALUE = 1 / 20;
 
   const RANK_S_VALUE = 1;
