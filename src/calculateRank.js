@@ -50,3 +50,5 @@ function calculateRank({
 
   return { level, score: normalizedScore };
 }
+
+module.exports = calculateRank;
