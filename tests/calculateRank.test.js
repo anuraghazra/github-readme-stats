@@ -16,7 +16,7 @@ describe("Test calculateRank", () => {
     ).toStrictEqual({ level: "A+", score: 46.164852607446775 });
   });
   
-  it("should be able to get B+ rank", () => {
+  it("new user gets B+ rank", () => {
     expect(
       calculateRank({
         totalCommits: 0,
@@ -30,7 +30,7 @@ describe("Test calculateRank", () => {
     ).toStrictEqual({ level: "B+", score: 100 });
   });
   
-  it("should be able to get S+ rank for Linus Torvalds", () => {
+  it("Linus Torvalds gets S+ rank", () => {
     expect(
       calculateRank({
         totalCommits: 2700,
