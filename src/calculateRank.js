@@ -26,13 +26,14 @@ function calculateRank({
   const RANK_A3_VALUE = 60;
   const RANK_B_VALUE = 100;
 
-  const normalizedScore = (expsf(COMMITS_VALUE, totalCommits) +
-                           expsf(CONTRIBS_VALUE, contributions) +
-                           expsf(ISSUES_VALUE, issues) +
-                           expsf(STARS_VALUE, stargazers) +
-                           expsf(PRS_VALUE, prs) +
-                           expsf(FOLLOWERS_VALUE, followers) +
-                           expsf(REPO_VALUE, totalRepos)) / 7 * 100
+  const normalizedScore = 700 / (
+      1 / expsf(COMMITS_VALUE, totalCommits) +
+      1 / expsf(CONTRIBS_VALUE, contributions) +
+      1 / expsf(ISSUES_VALUE, issues) +
+      1 / expsf(STARS_VALUE, stargazers) +
+      1 / expsf(PRS_VALUE, prs) +
+      1 / expsf(FOLLOWERS_VALUE, followers) +
+      1 / expsf(REPO_VALUE, totalRepos))
 
   let level = "";
 
