@@ -34,10 +34,10 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchTopLanguages(username, langsCount = 5, exclude_repo = [], hide = 0) {
+async function fetchTopLanguages(username, langsCount = 5, exclude_repo = [], hide = []) {
   if (!username) throw Error("Invalid username");
-  langsCount = parseInt(langsCount) + len(hide);
-  langsCount = clampValue(langsCount, 1, 10 + len(hide));
+  langsCount = parseInt(langsCount + hide.length);
+  langsCount = clampValue(langsCount, 1, 10 + hide.length);
 
   const res = await retryer(fetcher, { login: username });
 
