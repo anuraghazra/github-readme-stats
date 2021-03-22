@@ -41,6 +41,6 @@ describe("Test calculateRank", () => {
         prs: 71,
         issues: 2,
       }),
-    ).toStrictEqual({ level: "S+", score: 50.069648962437896 });
+    ).toStrictEqual({ level: "S+", score: 0 });
   });
 });
