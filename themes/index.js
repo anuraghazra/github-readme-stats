@@ -281,6 +281,24 @@ const themes = {
     text_color: "718CA1",
     bg_color: "1D252C",
   },
+  space_yellow: {
+    title_color: "ffc34a",
+    icon_color: "ffc34a",
+    text_color: "fdfdfd",
+    bg_color: "232323",
+  },
+  red_light_district: {
+    title_color: "FF4A4A",
+    icon_color: "FF4A4A",
+    text_color: "fdfdfd",
+    bg_color: "232323",
+  },
+  roadside_assistant: {
+    title_color: "FFED4A",
+    icon_color: "FF4A4A",
+    text_color: "ffffff",
+    bg_color: "151515",
+  },
 };
 
 module.exports = themes;
