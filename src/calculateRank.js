@@ -1,5 +1,5 @@
-function expsf(lambda, to) {
-  return Math.exp(-lambda * to);
+function expsf(lambda, x) {
+  return Math.exp(-lambda * x);
 }
 
 function calculateRank({
