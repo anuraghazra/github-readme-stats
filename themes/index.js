@@ -281,6 +281,12 @@ const themes = {
     text_color: "718CA1",
     bg_color: "1D252C",
   },
+  "purple-pink-mirror": {
+    title_color: "C197D2",
+    icon_color: "de265a",
+    text_color: "D3B1C2",
+    bg_color: "211522",
+  },
 };
 
 module.exports = themes;
