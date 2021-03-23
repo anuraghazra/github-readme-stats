@@ -42,13 +42,13 @@ function calculateRank({
     REPO_OFFSET;
 
   const RANK_S_VALUE = 1;
-  const RANK_DOUBLE_A_VALUE = 25;
-  const RANK_A2_VALUE = 45;
-  const RANK_A3_VALUE = 60;
-  const RANK_B_VALUE = 100;
+  const RANK_A_VALUE = 25;
+  const RANK_B_VALUE = 45;
+  const RANK_C_VALUE = 60;
+  const RANK_D_VALUE = 100;
 
   const TOTAL_VALUES =
-    RANK_S_VALUE + RANK_A2_VALUE + RANK_A3_VALUE + RANK_B_VALUE;
+    RANK_S_VALUE + RANK_B_VALUE + RANK_C_VALUE + RANK_D_VALUE;
 
   // prettier-ignore
   const score = (
@@ -66,25 +66,23 @@ function calculateRank({
   let level = "";
 
   if (normalizedScore < RANK_S_VALUE) {
-    level = "S+";
-  }
-  if (
-    normalizedScore >= RANK_S_VALUE &&
-    normalizedScore < RANK_DOUBLE_A_VALUE
-  ) {
     level = "S";
   }
   if (
-    normalizedScore >= RANK_DOUBLE_A_VALUE &&
-    normalizedScore < RANK_A2_VALUE
+    normalizedScore >= RANK_S_VALUE && normalizedScore < RANK_A_VALUE
   ) {
-    level = "A++";
+    level = "A";
   }
-  if (normalizedScore >= RANK_A2_VALUE && normalizedScore < RANK_A3_VALUE) {
-    level = "A+";
+  if (
+    normalizedScore >= RANK_A_VALUE && normalizedScore < RANK_B_VALUE
+  ) {
+    level = "B";
   }
-  if (normalizedScore >= RANK_A3_VALUE && normalizedScore < RANK_B_VALUE) {
-    level = "B+";
+  if (normalizedScore >= RANK_B_VALUE && normalizedScore < RANK_C_VALUE) {
+    level = "C";
+  }
+  if (normalizedScore >= RANK_C_VALUE && normalizedScore < RANK_D_VALUE) {
+    level = "D";
   }
 
   return { level, score: normalizedScore };
