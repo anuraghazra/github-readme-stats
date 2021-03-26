@@ -281,6 +281,12 @@ const themes = {
     text_color: "718CA1",
     bg_color: "1D252C",
   },
+  javalan: {
+    title_color: "FF4B4B",
+    icon_color: "C8C8C8",
+    text_color: "4FADDC",
+    bg_color: "142B37",
+  },
 };
 
 module.exports = themes;
