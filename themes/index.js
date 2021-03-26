@@ -281,6 +281,12 @@ const themes = {
     text_color: "718CA1",
     bg_color: "1D252C",
   },
+  cyberpunk: {
+    title_color: "02d7f2",
+    icon_color: "02d7f2",
+    text_color: "242424",
+    bg_color: "fcee09",
+  },
 };
 
 module.exports = themes;
