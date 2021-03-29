@@ -281,6 +281,12 @@ const themes = {
     text_color: "718CA1",
     bg_color: "1D252C",
   },
+  andromeda: {
+    title_color: "05bc79",
+    text_color: "0fa8cd",
+    icon_color: "2472c9",
+    bg_color: "262a33",
+  },
 };
 
 module.exports = themes;
