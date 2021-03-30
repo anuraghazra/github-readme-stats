@@ -355,6 +355,12 @@ const themes = {
     bg_color: "09131B",
     border_color: "0c1a25",
   },
+  spring_green: {
+    title_color: "00FF7F",
+    icon_color: "00A43C",
+    text_color: "CBFFDF",
+    bg_color: "080808",
+  },
 };
 
 module.exports = themes;
