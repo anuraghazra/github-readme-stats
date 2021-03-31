@@ -1,8 +1,32 @@
 {
-  "redirects": [
+  "version": 2,
+  "routes": [
     {
-      "source": "/",
-      "destination": "https://github.com/anuraghazra/github-readme-stats"
+      "src": "/api(.*)",
+      "dest": "/api$1"
+    },
+    {
+      "src": "/pin(.*)",
+      "dest": "/api/pin$1"
+    },
+    {
+      "src": "/wakatime(.*)",
+      "dest": "/api/wakatime$1"
+    },
+    {
+      "src": "/top-langs(.*)",
+      "dest": "/api/top-langs$1"
+    },
+    {
+      "src": "/?(.*)",
+      "dest": "/api?$1"
+    },
+    {
+      "src": "/(.*)",
+      "status": 308,
+      "headers": {
+        "Location": "https://github.com/anuraghazra/github-readme-stats/"
+      }
     }
   ]
 }
