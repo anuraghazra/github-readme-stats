@@ -234,32 +234,39 @@ describe("Test renderStatsCard", () => {
   it("should render translations", () => {
     document.body.innerHTML = renderStatsCard(stats, { locale: "cn" });
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Anurag Hazra 的 GitHub 统计",
+      "Anurag Hazra 的 GitHub 统计数据",
     );
     expect(
       document.querySelector(
         'g[transform="translate(0, 0)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总 Star:");
+    ).toMatchInlineSnapshot(`"获标星数（star）:"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总提交 (2020):");
+    ).toMatchInlineSnapshot(`"累计提交数（commit） (2021):"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总 PR:");
+    ).toMatchInlineSnapshot(`"拉取请求数（PR）:"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 75)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总 Issue:");
+    ).toMatchInlineSnapshot(`"指出问题数（issue）:"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toBe("总贡献:");
+    ).toMatchInlineSnapshot(`"参与项目数:"`);
+  });
+
+  it("should render without rounding", () => {
+    document.body.innerHTML = renderStatsCard(stats, { border_radius: "0" });
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
+    document.body.innerHTML = renderStatsCard(stats, {});
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
   });
 });

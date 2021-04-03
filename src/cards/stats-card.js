@@ -69,6 +69,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     bg_color,
     theme = "default",
     custom_title,
+    border_radius,
     locale,
     disable_animations = false,
   } = options;
@@ -128,7 +129,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
   };
 
-  const isLongLocale = ["fr", "pt-br", "es"].includes(locale) === true;
+  const longLocales = ["cn", "es", "fr", "pt-br", "ru", "uk-ua", "id", "my", "pl"];
+  const isLongLocale = longLocales.includes(locale) === true;
 
   // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
@@ -199,6 +201,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     defaultTitle: i18n.t("statcard.title"),
     width,
     height,
+    border_radius,
     colors: {
       titleColor,
       textColor,
