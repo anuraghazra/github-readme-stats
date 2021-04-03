@@ -5,11 +5,11 @@ const {
   parseBoolean,
   parseArray,
   CONSTANTS,
-  isLocaleAvailable,
 } = require("../src/common/utils");
 const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 const renderTopLanguages = require("../src/cards/top-languages-card");
 const blacklist = require("../src/common/blacklist");
+const { isLocaleAvailable } = require("../src/translations");
 
 module.exports = async (req, res) => {
   const {
@@ -28,6 +28,7 @@ module.exports = async (req, res) => {
     exclude_repo,
     custom_title,
     locale,
+    border_radius
   } = req.query;
   let topLangs;
 
@@ -68,6 +69,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         layout,
+        border_radius,
         locale: locale ? locale.toLowerCase() : null,
       }),
     );

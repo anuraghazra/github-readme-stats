@@ -249,7 +249,43 @@ const themes = {
     title_color: "82aaff",
     icon_color: "89ddff",
     text_color: "27e8a7",
-    bg_color: "242938"
+    bg_color: "242938",
+  },
+  slateorange: {
+    title_color: "faa627",
+    icon_color: "faa627",
+    text_color: "ffffff",
+    bg_color: "36393f",
+  },
+  kacho_ga: {
+    title_color: "bf4a3f",
+    icon_color: "a64833",
+    text_color: "d9c8a9",
+    bg_color: "402b23"
+  },
+  outrun:{
+    title_color: "ffcc00",
+    icon_color: "ff1aff",
+    text_color: "8080ff",
+    bg_color: "141439",
+  },
+   ocean_dark:{
+    title_color: "8957B2",
+    icon_color: "FFFFFF",
+    text_color: "92D534",
+    bg_color: "151A28",
+  },
+  city_lights: {
+    title_color: "5D8CB3",
+    icon_color: "4798FF",
+    text_color: "718CA1",
+    bg_color: "1D252C",
+  },
+  github_dark: {
+    title_color: "58A6FF",
+    icon_color: "1F6FEB",
+    text_color: "C3D1D9",
+    bg_color: "0D1117"
   }
 };
 

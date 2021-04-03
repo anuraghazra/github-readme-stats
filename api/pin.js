@@ -4,11 +4,11 @@ const {
   parseBoolean,
   clampValue,
   CONSTANTS,
-  isLocaleAvailable,
 } = require("../src/common/utils");
 const fetchRepo = require("../src/fetchers/repo-fetcher");
 const renderRepoCard = require("../src/cards/repo-card");
 const blacklist = require("../src/common/blacklist");
+const { isLocaleAvailable } = require("../src/translations");
 
 module.exports = async (req, res) => {
   const {
@@ -23,6 +23,7 @@ module.exports = async (req, res) => {
     show_owner,
     cache_seconds,
     locale,
+    border_radius,
   } = req.query;
 
   let repoData;
@@ -69,6 +70,7 @@ module.exports = async (req, res) => {
         text_color,
         bg_color,
         theme,
+        border_radius,
         show_owner: parseBoolean(show_owner),
         locale: locale ? locale.toLowerCase() : null,
       }),
