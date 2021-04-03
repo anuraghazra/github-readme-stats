@@ -355,6 +355,12 @@ const themes = {
     bg_color: "09131B",
     border_color: "0c1a25",
   },
+  kindablue_grey: {
+    title_color: "ffffff",
+    icon_color: "5092df",
+    text_color: "ffffff",
+    bg_color: "434954"
+  }
 };
 
 module.exports = themes;
