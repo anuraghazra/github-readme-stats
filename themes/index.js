@@ -286,6 +286,12 @@ const themes = {
     icon_color: "1F6FEB",
     text_color: "C3D1D9",
     bg_color: "0D1117"
+  },
+  github_dimmed: {
+    title_color: "539BF5",
+    icon_color: "1F6FEB",
+    text_color: "ADBAC7",
+    bg_color: "22272E"
   }
 };
 
