@@ -174,6 +174,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 - `hide_progress` - Verbirgt die Fortschrittanzeige und Prozentzahl _(boolean)_
 - `custom_title` - Legt einen benutzerdefinierten Titel fest
 - `layout` - Wechselt zwischen zwei verschiedenen Layouts: `default` & `compact`
+- `langs_count` - Begrenzt die Anzahl der angezeigten Sprachen auf der Karte
 - `api_domain` - Legt eine benutzerdefinierte API Domain fest, z.B. für [Hakatime](https://github.com/mujx/hakatime) oder [Wakapi](https://github.com/muety/wakapi)
 - `range` – Fragt eine eine Zeitspanne an, als die standardmäßig in WakaTime hinterlegte, z.B. `last_7_days`. Siehe [WakaTime API Dokumentation](https://wakatime.com/developers#stats).
 
