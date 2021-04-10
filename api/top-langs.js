@@ -45,7 +45,6 @@ module.exports = async (req, res) => {
   try {
     topLangs = await fetchTopLanguages(
       username,
-      langs_count,
       parseArray(exclude_repo),
     );
 
@@ -69,6 +68,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         layout,
+        langs_count,
         border_radius,
         locale: locale ? locale.toLowerCase() : null,
       }),

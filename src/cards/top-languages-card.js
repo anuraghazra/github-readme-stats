@@ -1,5 +1,5 @@
 const Card = require("../common/Card");
-const { getCardColors, FlexLayout } = require("../common/utils");
+const { clampValue, getCardColors, FlexLayout } = require("../common/utils");
 const { createProgressNode } = require("../common/createProgressNode");
 const { langCardLocales } = require("../translations");
 const I18n = require("../common/I18n");
@@ -73,6 +73,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     layout,
     custom_title,
     locale,
+    langs_count = 5,
     border_radius
   } = options;
 
@@ -83,6 +84,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   let langs = Object.values(topLangs);
   let langsToHide = {};
+
+  langsCount = clampValue(parseInt(langs_count), 1, 10);
 
   // populate langsToHide map for quick lookup
   // while filtering out
@@ -97,7 +100,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     .sort((a, b) => b.size - a.size)
     .filter((lang) => {
       return !langsToHide[lowercaseTrim(lang.name)];
-    });
+    })
+    .slice(0, langsCount);
 
   const totalLanguageSize = langs.reduce((acc, curr) => {
     return acc + curr.size;
