@@ -287,6 +287,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117"
   }
+   red_velvet: {
+    title_color: "DA0000",
+    icon_color: "FF1212",
+    text_color: "FF1212",
+    bg_color: "000000"
+  }
 };
 
 module.exports = themes;
