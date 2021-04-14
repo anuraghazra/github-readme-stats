@@ -38,6 +38,8 @@
     ·
     <a href="/docs/readme_cn.md">简体中文</a>
     ·
+    <a href="/docs/readme_tw.md">繁體（正體）中文</a>
+    ·
     <a href="/docs/readme_es.md">Español</a>
     ·
     <a href="/docs/readme_de.md">Deutsch</a>
@@ -145,7 +147,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
 - `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
 - `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
-- `border_radius` - Corner rounding on the card_
+- `border_radius` - Corner rounding on the card _(number)_
 
 ##### Gradient in bg_color
 
