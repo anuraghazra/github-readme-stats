@@ -24,10 +24,13 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: `Statistik GitHub ${encodeHTML(name)}`,
       sk: `GitHub štatistiky používateľa ${encodeHTML(name)}`,
       tr: `${encodeHTML(name)} Hesabının GitHub Yıldızları`,
+      tw: `${encodeHTML(name)} 的 GitHub 統計數據`,
       pl: `Statystyki GitHub użytkownika ${encodeHTML(name)}`,
+      zhs: `${encodeHTML(name)} 的 GitHub 统计数据`,
+      zht: `${encodeHTML(name)} 的 GitHub 統計數據`,
     },
     "statcard.totalstars": {
-      cn: "获标星数（star）",
+      cn: "获标星数（Star）",
       cs: "Celkem hvězd",
       de: "Sterne Insgesamt",
       en: "Total Stars",
@@ -48,10 +51,13 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: "Jumlah Bintang",
       sk: "Hviezdy",
       tr: "Toplam Yıldız",
+      tw: "獲標星數（Star）",
       pl: "Liczba Gwiazdek",
+      zhs: "获标星数（Star）",
+      zht: "獲標星數（Star）",
     },
     "statcard.commits": {
-      cn: "累计提交数（commit）",
+      cn: "累计提交数（Commit）",
       cs: "Celkem commitů",
       de: "Anzahl Commits",
       en: "Total Commits",
@@ -72,7 +78,10 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: "Jumlah Komitmen",
       sk: "Všetky commity",
       tr: "Toplam Commit",
+      tw: "累計提交數（Commit）",
       pl: "Wszystkie commity",
+      zhs: "累计提交数（Commit）",
+      zht: "累計提交數（Commit）",
     },
     "statcard.prs": {
       cn: "拉取请求数（PR）",
@@ -96,10 +105,13 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: "Jumlah PR",
       sk: "Všetky PR",
       tr: "Toplam PR",
+      tw: "拉取請求數（PR）",
       pl: "Wszystkie PR",
+      zhs: "拉取请求数（PR）",
+      zht: "拉取請求數（PR）",
     },
     "statcard.issues": {
-      cn: "指出问题数（issue）",
+      cn: "提出问题数（Issue）",
       cs: "Celkem problémů",
       de: "Anzahl Issues",
       en: "Total Issues",
@@ -120,7 +132,10 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: "Jumlah Isu Dilaporkan",
       sk: "Všetky problémy",
       tr: "Toplam Hata",
+      tw: "提出問題數（Issue）",
       pl: "Wszystkie problemy",
+      zhs: "提出问题数（Issue）",
+      zht: "提出問題數（Issue）",
     },
     "statcard.contribs": {
       cn: "参与项目数",
@@ -144,7 +159,10 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: "Menyumbang kepada",
       sk: "Účasti",
       tr: "Katkı Verildi",
+      tw: "參與項目數",
       pl: "Udziały",
+      zhs: "参与项目数",
+      zht: "參與項目數",
     },
   };
 };
@@ -172,7 +190,10 @@ const repoCardLocales = {
     my: "Templat",
     sk: "Šablóna",
     tr: "Şablon",
+    tw: "模板",
     pl: "Szablony",
+    zhs: "模板",
+    zht: "模板",
   },
   "repocard.archived": {
     cn: "已归档",
@@ -196,13 +217,16 @@ const repoCardLocales = {
     my: "Arkib",
     sk: "Archivované",
     tr: "Arşiv",
+    tw: "已存檔",
     pl: "Zarchiwizowano",
+    zhs: "已归档",
+    zht: "已存檔",
   },
 };
 
 const langCardLocales = {
   "langcard.title": {
-    cn: "最常用的语言",
+    cn: "最常用语言",
     cs: "Nejpoužívanější jazyky",
     de: "Meist verwendete Sprachen",
     en: "Most Used Languages",
@@ -223,7 +247,10 @@ const langCardLocales = {
     my: "Bahasa Paling Digunakan",
     sk: "Najviac používané jazyky",
     tr: "En Çok Kullanılan Diller",
+    tw: "最常用語言",
     pl: "Najczęściej używane języki",
+    zhs: "最常用语言",
+    zht: "最常用語言",
   },
 };
 
@@ -250,7 +277,10 @@ const wakatimeCardLocales = {
     my: "Statistik Wakatime",
     sk: "Wakatime štatistika",
     tr: "Waketime İstatistikler",
+    tw: "Wakatime 周統計",
     pl: "statystyki Wakatime",
+    zhs: "Wakatime 周统计",
+    zht: "Wakatime 周統計",
   },
   "wakatimecard.nocodingactivity": {
     cn: "本周没有编程活动",
@@ -274,7 +304,10 @@ const wakatimeCardLocales = {
     my: "Tiada aktiviti pengekodan minggu ini",
     sk: "Žiadna kódovacia aktivita tento týždeň",
     tr: "Bu hafta herhangi bir kod yazma aktivitesi olmadı",
+    tw: "本週沒有編程活動",
     pl: "Brak aktywności w tym tygodniu",
+    zhs: "本周没有编程活动",
+    zht: "本週沒有編程活動",
   },
 };
 
