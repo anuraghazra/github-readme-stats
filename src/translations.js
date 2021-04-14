@@ -277,10 +277,10 @@ const wakatimeCardLocales = {
     my: "Statistik Wakatime",
     sk: "Wakatime štatistika",
     tr: "Waketime İstatistikler",
-    tw: "Wakatime 周統計",
+    tw: "Wakatime 週統計",
     pl: "statystyki Wakatime",
     zhs: "Wakatime 周统计",
-    zht: "Wakatime 周統計",
+    zht: "Wakatime 週統計",
   },
   "wakatimecard.nocodingactivity": {
     cn: "本周没有编程活动",
