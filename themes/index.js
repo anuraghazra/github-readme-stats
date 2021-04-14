@@ -286,7 +286,13 @@ const themes = {
     icon_color: "1F6FEB",
     text_color: "C3D1D9",
     bg_color: "0D1117"
-  }
+  },
+  berries: {
+    title_color: "862041",
+    icon_color: "ae1a56",
+    text_color: "8c8279",
+    bg_color: "ffffff",
+  },
 };
 
 module.exports = themes;
