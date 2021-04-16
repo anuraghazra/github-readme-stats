@@ -227,7 +227,7 @@ GitHub 更多置顶允许你在使用 GitHub 个人资料 readme 时，在个人
 
 常用语言卡片显示了 GitHub 用户常用的编程语言。
 
-_注意：常用语言并不代表我的技能水平或类似的信息，它是用来衡量用户在 github 上拥有最多代码的语言的一项指标，它是 github-readme-stats 的新特性。_
+_注意：常用语言并不代表我的技能水平或类似的信息，它是用来衡量用户在 GitHub 上拥有最多代码的语言的一项指标，它是 github-readme-stats 的新特性。_
 
 ### 使用细则
 
@@ -335,7 +335,7 @@ _注意：常用语言并不代表我的技能水平或类似的信息，它是�
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=cn)
 
-- 自定义 repo 卡片
+- 自定义 Repo 卡片
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 

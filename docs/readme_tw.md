@@ -331,7 +331,7 @@ _注意：常用語言並不代表我的技能水平或类似的資訊，它是�
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- 設置卡片在地化語言（簡中請用 `zhs` 或 `cn`，繁中請用 `zht` 或 `tw`）
+- 設置卡片本地化語言（簡中請用 `zhs` 或 `cn`，繁中請用 `zht` 或 `tw`）
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=tw)
 
@@ -373,7 +373,7 @@ _注意：常用語言並不代表我的技能水平或类似的資訊，它是�
 [![在 Vercel 上部署](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary>部署 Vercel 指導</summary>
+ <summary>Vercel 部署指南</summary>
 
 1. 前往 [vercel.com](https://vercel.com/)
 1. 點擊 `Log in`
