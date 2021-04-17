@@ -35,7 +35,7 @@ GitHub Readme Stats supports custom theming and you can also contribute new them
 
 All you need to do is edit [themes/index.js](./themes/index.js) file and add your theme at the end of the file.
 
-While creating the Pull request to add a new theme **don't forget to add a screenshot of how your theme looks**, you can also test how it looks using custom url parameters like `title_color`, `icon_color`, `bg_color`, `text_color`
+While creating the Pull request to add a new theme **don't forget to add a screenshot of how your theme looks**, you can also test how it looks using custom url parameters like `title_color`, `icon_color`, `bg_color`, `text_color`, `border_color`
 
 > NOTE: If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
 
