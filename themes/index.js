@@ -286,6 +286,12 @@ const themes = {
     icon_color: "1F6FEB",
     text_color: "C3D1D9",
     bg_color: "0D1117"
+  },
+  red_kamodark:{
+    title_color: "FF0032",
+    icon_color: "FF0032",
+    text_color: "F4F5F7",
+    bg_color: "212121"
   }
 };
 
