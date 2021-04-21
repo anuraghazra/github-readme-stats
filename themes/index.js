@@ -286,7 +286,13 @@ const themes = {
     icon_color: "1F6FEB",
     text_color: "C3D1D9",
     bg_color: "0D1117"
-  }
+  },
+  doom_one: {
+     title_color: "51afef",
+    icon_color: "c678dd",
+    text_color: "bbc2cf",
+    bg_color: "282c34"
+},
 };
 
 module.exports = themes;
