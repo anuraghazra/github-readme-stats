@@ -64,7 +64,7 @@ module.exports = async (req, res) => {
 
     return res.send(
       renderRepoCard(repoData, {
-        hide_border,
+        hide_border: parseBoolean(hide_border),
         title_color,
         icon_color,
         text_color,
