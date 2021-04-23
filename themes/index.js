@@ -261,15 +261,15 @@ const themes = {
     title_color: "bf4a3f",
     icon_color: "a64833",
     text_color: "d9c8a9",
-    bg_color: "402b23"
+    bg_color: "402b23",
   },
-  outrun:{
+  outrun: {
     title_color: "ffcc00",
     icon_color: "ff1aff",
     text_color: "8080ff",
     bg_color: "141439",
   },
-   ocean_dark:{
+  ocean_dark: {
     title_color: "8957B2",
     icon_color: "FFFFFF",
     text_color: "92D534",
@@ -285,14 +285,14 @@ const themes = {
     title_color: "58A6FF",
     icon_color: "1F6FEB",
     text_color: "C3D1D9",
-    bg_color: "0D1117"
+    bg_color: "0D1117",
   },
   transparent: {
     title_color: "2a84ea",
     icon_color: "2a84ea",
     text_color: "2a84ea",
-    bg_color: "00000000"
-  }
+    bg_color: "00000000",
+  },
 };
 
 module.exports = themes;
