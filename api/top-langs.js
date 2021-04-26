@@ -47,6 +47,7 @@ module.exports = async (req, res) => {
       username,
       langs_count,
       parseArray(exclude_repo),
+      parseArray(hide),
     );
 
     const cacheSeconds = clampValue(
