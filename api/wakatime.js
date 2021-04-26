@@ -25,6 +25,7 @@ module.exports = async (req, res) => {
     custom_title,
     locale,
     layout,
+    langs_count,
     api_domain,
     range,
     border_radius,
@@ -66,6 +67,7 @@ module.exports = async (req, res) => {
         border_radius,
         locale: locale ? locale.toLowerCase() : null,
         layout,
+        langs_count,
       }),
     );
   } catch (err) {
