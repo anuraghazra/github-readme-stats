@@ -24,6 +24,7 @@ module.exports = async (req, res) => {
     cache_seconds,
     locale,
     border_radius,
+    border_color,
   } = req.query;
 
   let repoData;
@@ -71,6 +72,7 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         border_radius,
+        border_color,
         show_owner: parseBoolean(show_owner),
         locale: locale ? locale.toLowerCase() : null,
       }),

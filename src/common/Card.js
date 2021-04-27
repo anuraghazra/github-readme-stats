@@ -147,7 +147,7 @@ class Card {
           y="0.5"
           rx="${this.border_radius}"
           height="99%"
-          stroke="#E4E2E2"
+          stroke="${this.colors.borderColor}"
           width="${this.width - 1}"
           fill="${
             typeof this.colors.bgColor === "object"
