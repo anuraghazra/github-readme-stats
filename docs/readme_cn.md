@@ -180,7 +180,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 # GitHub 更多置顶
 
-GitHub 更多置顶 允许你在使用 GitHub readme profile 时，在个人资料中置顶多于 6 个 repo 。
+GitHub 更多置顶允许你在使用 GitHub readme profile 时，在个人资料中置顶多于 6 个 repo。
 
 是的！你不再受限于置顶最多 6 个存储库了。
 
@@ -276,6 +276,10 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
+- 设置卡片语言地区
+
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=es)
+
 - 自定义 repo 卡片
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
@@ -284,9 +288,12 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
+- 编程时间
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 ---
 
-### 快速提示 (对齐 Repo 卡片)
+### 快速提示（对齐 Repo 卡片）
 
 你通常无法将图片靠边显示。为此，您可以使用以下方法：
 
@@ -301,7 +308,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ## 自己部署
 
-#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+#### [查看 @codeSTACKr 提供的逐演示视频教程](https://youtu.be/n6d4KHSKqGk?t=107)
 
 因为 GitHub 的 API 每个小时只允许 5 千次请求，我的 `https://github-readme-stats.vercel.app/api` 很有可能会触发限制。如果你将其托管在自己的 Vercel 服务器上，那么你就不必为此担心。点击 deploy 按钮来开始你的部署！
 
@@ -334,11 +341,11 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 我尽己所能地进行开源，并且我尽量回复每个在使用项目时需要帮助的人。很明显，这需要时间，但你可以免费享受这些。
 
-然而, 如果你正在使用这个项目并感觉良好，或只是想要支持我继续开发，你可以通过如下方式：
+然而, 如果你正在使用这个项目并觉得不错，或只是想要支持我继续开发，你可以通过如下方式：
 
 - 在你的 readme 中使用 github-readme-stats 时，链接指向这里 :D
-- Star 并 分享这个项目 :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - 你可以通过 PayPal 一次性捐款. 我多半会买一杯 ~~咖啡~~ 茶. :tea:
+- Star 并分享这个项目 :rocket:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - 你可以通过 PayPal 一次性捐款. 我多半会买一杯 ~~咖啡~~ 茶。 :tea:
 
 谢谢！ :heart:
 
