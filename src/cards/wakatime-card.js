@@ -100,7 +100,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     locale,
     layout,
     langs_count = languages ? languages.length : 0,
-    border_radius
+    border_radius,
+    border_color,
   } = options;
 
   const i18n = new I18n({
@@ -113,11 +114,18 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   langsCount = clampValue(parseInt(langs_count), 1, langs_count);
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, iconColor, bgColor } = getCardColors({
+  const {
+    titleColor,
+    textColor,
+    iconColor,
+    bgColor,
+    borderColor,
+  } = getCardColors({
     title_color,
     icon_color,
     text_color,
     bg_color,
+    border_color,
     theme,
   });
 
@@ -221,6 +229,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       textColor,
       iconColor,
       bgColor,
+      borderColor,
     },
   });
 

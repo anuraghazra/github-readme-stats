@@ -115,10 +115,12 @@ function getCardColors({
   icon_color,
   bg_color,
   theme,
+  border_color,
   fallbackTheme = "default",
 }) {
   const defaultTheme = themes[fallbackTheme];
   const selectedTheme = themes[theme] || defaultTheme;
+  const defaultBorderColor = selectedTheme.border_color || defaultTheme.border_color;
 
   // get the color provided by the user else the theme color
   // finally if both colors are invalid fallback to default theme
@@ -139,7 +141,12 @@ function getCardColors({
     "#" + defaultTheme.bg_color,
   );
 
-  return { titleColor, iconColor, textColor, bgColor };
+  const borderColor = fallbackColor(
+    border_color || defaultBorderColor,
+    "#" + defaultBorderColor,
+  );
+
+  return { titleColor, iconColor, textColor, bgColor, borderColor };
 }
 
 function wrapTextMultiline(text, width = 60, maxLines = 3) {
