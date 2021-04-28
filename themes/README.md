@@ -30,7 +30,8 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `calm` ![calm][calm] | `flag-india` ![flag-india][flag-india] | `omni` ![omni][omni] |
 | `react` ![react][react] | `jolly` ![jolly][jolly] | `maroongold` ![maroongold][maroongold] |
 | `yeblu` ![yeblu][yeblu] | `blueberry` ![blueberry][blueberry] | `slateorange` ![slateorange][slateorange] |
-| `kacho_ga` ![kacho_ga][kacho_ga] | `outrun` ![outrun][outrun] | [Add your theme][add-theme] |
+| `kacho_ga` ![kacho_ga][kacho_ga] | `outrun` ![outrun][outrun] | `forty` ![forty][forty] |
+| [Add your theme][add-theme] |
 
 ## Repo Card
 
@@ -100,7 +101,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [slateorange]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=slateorange
 [kacho_ga]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=kacho_ga
 [outrun]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=outrun
-
+[forty]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&icon_color=f1e05a&title_color=ec8d81&text_color=9bf1ff&bg_color=2a2f4a&border_color=8d82c4
 
 [default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
 [default_repocard_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default_repocard
