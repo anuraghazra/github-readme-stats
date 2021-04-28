@@ -289,10 +289,11 @@ const themes = {
     bg_color: "0D1117",
   },
   forty: {
-    title_color: "8d82c4",
-    icon_color: "ec8d81",
+    title_color: "ec8d81",
+    icon_color: "f1e05a",
     text_color: "9bf1ff",
     bg_color: "2a2f4a",
+    border_color: "8d82c4",
   },
 };
 
