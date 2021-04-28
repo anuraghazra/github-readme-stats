@@ -288,6 +288,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  forty: {
+    title_color: "8d82c4",
+    icon_color: "ec8d81",
+    text_color: "9bf1ff",
+    bg_color: "2a2f4a",
+  },
 };
 
 module.exports = themes;
