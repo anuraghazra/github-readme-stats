@@ -31,6 +31,7 @@ const renderRepoCard = (repo, options = {}) => {
     show_owner,
     theme = "default_repocard",
     border_radius,
+    border_color,
     locale,
   } = options;
 
@@ -60,11 +61,12 @@ const renderRepoCard = (repo, options = {}) => {
   });
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, iconColor, bgColor } = getCardColors({
+  const { titleColor, textColor, iconColor, bgColor, borderColor } = getCardColors({
     title_color,
     icon_color,
     text_color,
     bg_color,
+    border_color,
     theme,
   });
 
@@ -125,6 +127,7 @@ const renderRepoCard = (repo, options = {}) => {
       textColor,
       iconColor,
       bgColor,
+      borderColor,
     },
   });
 

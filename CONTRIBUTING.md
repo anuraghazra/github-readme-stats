@@ -24,6 +24,7 @@ _(make sure you already have a [vercel](https://vercel.com/) account)_
 
 1. Install [Vercel CLI](https://vercel.com/download)
 1. Fork the repository and clone the code to your local machine
+1. Run `npm install` in the repository root
 1. Run the command "vercel" in the root and follow the steps there
 1. Create a `.env` file in the root of the directory
 1. In the .env file add a new variable named "PAT_1" with your [github Personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
@@ -35,7 +36,7 @@ GitHub Readme Stats supports custom theming and you can also contribute new them
 
 All you need to do is edit [themes/index.js](./themes/index.js) file and add your theme at the end of the file.
 
-While creating the Pull request to add a new theme **don't forget to add a screenshot of how your theme looks**, you can also test how it looks using custom url parameters like `title_color`, `icon_color`, `bg_color`, `text_color`
+While creating the Pull request to add a new theme **don't forget to add a screenshot of how your theme looks**, you can also test how it looks using custom url parameters like `title_color`, `icon_color`, `bg_color`, `text_color`, `border_color`
 
 > NOTE: If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
 

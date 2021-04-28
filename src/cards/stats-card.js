@@ -70,6 +70,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     theme = "default",
     custom_title,
     border_radius,
+    border_color,
     locale,
     disable_animations = false,
   } = options;
@@ -77,11 +78,12 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const lheight = parseInt(line_height, 10);
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, iconColor, bgColor } = getCardColors({
+  const { titleColor, textColor, iconColor, bgColor, borderColor } = getCardColors({
     title_color,
     icon_color,
     text_color,
     bg_color,
+    border_color,
     theme,
   });
 
@@ -207,6 +209,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       textColor,
       iconColor,
       bgColor,
+      borderColor,
     },
   });
 

@@ -28,7 +28,8 @@ module.exports = async (req, res) => {
     exclude_repo,
     custom_title,
     locale,
-    border_radius
+    border_radius,
+    border_color,
   } = req.query;
   let topLangs;
 
@@ -47,6 +48,7 @@ module.exports = async (req, res) => {
       username,
       langs_count,
       parseArray(exclude_repo),
+      parseArray(hide),
     );
 
     const cacheSeconds = clampValue(
@@ -70,6 +72,7 @@ module.exports = async (req, res) => {
         theme,
         layout,
         border_radius,
+        border_color,
         locale: locale ? locale.toLowerCase() : null,
       }),
     );

@@ -2,7 +2,7 @@ const Card = require("../common/Card");
 const I18n = require("../common/I18n");
 const { getStyles } = require("../getStyles");
 const { wakatimeCardLocales } = require("../translations");
-const { getCardColors, FlexLayout } = require("../common/utils");
+const { clampValue, getCardColors, FlexLayout } = require("../common/utils");
 const { createProgressNode } = require("../common/createProgressNode");
 const languageColors = require("../common/languageColors.json");
 
@@ -99,7 +99,9 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     custom_title,
     locale,
     layout,
-    border_radius
+    langs_count = languages ? languages.length : 0,
+    border_radius,
+    border_color,
   } = options;
 
   const i18n = new I18n({
@@ -109,18 +111,28 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const lheight = parseInt(line_height, 10);
 
+  langsCount = clampValue(parseInt(langs_count), 1, langs_count);
+
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, iconColor, bgColor } = getCardColors({
+  const {
+    titleColor,
+    textColor,
+    iconColor,
+    bgColor,
+    borderColor,
+  } = getCardColors({
     title_color,
     icon_color,
     text_color,
     bg_color,
+    border_color,
     theme,
   });
 
   const statItems = languages
     ? languages
         .filter((language) => language.hours || language.minutes)
+        .slice(0, langsCount)
         .map((language) => {
           return createTextNode({
             id: language.name,
@@ -217,6 +229,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       textColor,
       iconColor,
       bgColor,
+      borderColor,
     },
   });
 
