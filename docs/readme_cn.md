@@ -62,6 +62,7 @@
 - [GitHub 统计卡片](#GitHub-统计卡片)
 - [GitHub 更多置顶](#GitHub-更多置顶)
 - [热门语言卡片](#热门语言卡片)
+- [Wakatime 统计](#Wakatime-统计)
 - [主题](#主题)
 - [自定义](#自定义)
 - [自己部署](#自己部署)
@@ -76,7 +77,9 @@
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.js](../src/calculateRank.js)_
+_注：等级划分为 S+（前 1%），S（前 25%），A++（前 45%），A+（前 60%），and B+（所有人）。
+等级使用[累积分布函数](https://en.wikipedia.org/wiki/Cumulative_distribution_function)基于用户的统计信息（包括 commits、contributions、issues、stars、pull requests、followers 和拥有的仓库）计算得出。
+其具体实现可以查看 [src/calculateRank.js](./src/calculateRank.js)_
 
 ### 隐藏指定统计
 
@@ -94,7 +97,7 @@ _注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.
 
 _注：如果你是自己部署本项目，私人贡献将会默认被计数，如果不是自己部署，你需要分享你的私人贡献计数。_
 
-> 选项: `&count_private=true`
+> 选项：`&count_private=true`
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
@@ -118,13 +121,13 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
-#### 所有现有主题
+#### 所有内置主题
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-你可以预览[所有可用主题](../themes/README.md)或者签出[主题配置文件](../themes/index.js), 而且如果你喜欢, **你也可以贡献新的主题** :D
+你可以预览[所有可用主题](../themes/README.md)或者查看[主题配置文件](../themes/index.js)，而且如果你喜欢，**你也可以贡献新的主题** :D
 
 ### 自定义
 
@@ -135,46 +138,64 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `title_color` - 卡片标题颜色 _（十六进制色码）_
 - `text_color` - 内容文本颜色 _（十六进制色码）_
 - `icon_color` - 图标颜色（如果可用）_（十六进制色码）_
-- `bg_color` - 卡片背景颜色 _（十六进制色码）_ **或者** 以 _angle,start,end_ 的形式渐变
+- `bg_color` - 卡片背景颜色 _（十六进制色码）_**或者**以“_角度,开始,结束_”的形式渐变
 - `hide_border` - 隐藏卡的边框 _(布尔值)_
 - `theme` - 主题名称，从[所有可用主题](../themes/README.md)中选择
-- `cache_seconds` - 手动设置缓存头 _（最小值: 1800，最大值: 86400）_
+- `cache_seconds` - 手动设置缓存头 _（最小值：1800，最大值：86400）_
 - `locale` - 在卡片中设置语言 _(例如 cn, de, es, 等等)_
+- `border_radius` - 卡片的圆角
 
 ##### bg_color 渐变
 
-你可以在 bg_color 选项中提供多个逗号分隔的值来呈现渐变，渐变的格式是 :-
+你可以在 bg_color 选项中提供多个逗号分隔的值来呈现渐变，渐变的格式是：
 
 ```
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
-> 缓存的注意事项: 如果 fork 数和 star 数 少于 1k , Repo 卡片默认缓存是 4 小时 （14400 秒） ，否则是 2 小时（7200）。另请注意缓存被限制为最短 2 小时，最长 24 小时。
+> 缓存的注意事项：如果 fork 数和 star 数少于 1k，Repo 卡片默认缓存是 4 小时（14400 秒），否则是 2 小时（7200 秒）。另请注意缓存被限制为最短 2 小时，最长 24 小时。
 
-#### 统计卡片专属选项:
+#### 统计卡片专属选项：
 
-- `hide` - 隐藏特定统计信息 _(以逗号分隔)_
-- `hide_title` - _(boolean)_
-- `hide_rank` - _(boolean)_
-- `show_icons` - _(boolean)_
-- `include_all_commits` - 统计总提交次数而不是仅统计今年的提交次数 _(boolean)_
-- `count_private` - 统计私人提交 _(boolean)_
-- `line_height` - 设置文本之间的行高 _(number)_
+- `hide` - 隐藏特定统计信息 _（以逗号分隔）_
+- `hide_title` - _（布尔值）_
+- `hide_rank` - _（布尔值）_ 隐藏等级并自动调整卡片宽度
+- `show_icons` - _（布尔值）_
+- `include_all_commits` - 统计总提交次数而不是仅统计今年的提交次数 _（布尔值）_
+- `count_private` - 统计私人提交 _（布尔值）_
+- `line_height` - 设置文本之间的行高 _（数值）_
+- `custom_title` - 自定义卡片标题
+- `disable_animations` - 禁用卡片中的所有动画 _（布尔值）_
 
-#### Repo 卡片专属选项:
+#### Repo 卡片专属选项：
 
-- `show_owner` - 显示 Repo 的所有者名字 _(boolean)_
+- `show_owner` - 显示 Repo 的所有者名字 _（布尔值）_
 
-#### 语言卡片专属选项:
+#### 语言卡片专属选项：
 
-- `hide` - 从卡片中隐藏指定语言 _(Comma seperated values)_
-- `hide_title` - _(boolean)_
+- `hide` - 从卡片中隐藏指定语言 _（以逗号分隔）_
+- `hide_title` - _（布尔值）_
 - `layout` - 在两个可用布局 `default` & `compact` 间切换
-- `card_width` - 手动设置卡片的宽度 _(number)_
+- `card_width` - 手动设置卡片的宽度 _（数值）_
+- `langs_count` - 在卡片上显示更多语言，可选 1-10，默认为 5 _（数值）_
+- `exclude_repo` - 排除指定的仓库 _（以逗号分隔）_
+- `custom_title` - 自定义卡片标题
 
-> :warning: **重要:**
+> :warning: **重要：**
 > 如 [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) 所指定，语言名称应使用 uri 转义。
-> (例: `c++` 应该是 `c%2B%2B`, `jupyter notebook` 应该是 `jupyter%20notebook`, 等.)
+> (例如 `c++` 应该是 `c%2B%2B`，`jupyter notebook` 应该是 `jupyter%20notebook` 等。你可以使用
+> [urlencoder.org](https://www.urlencoder.org/) 自动完成此操作。
+
+#### Wakatime 卡片专属选项：
+
+- `hide_title` - _（布尔值）_
+- `line_height` - 设置文本间的行高 _（数值）_
+- `hide_progress` - 隐藏进度条和百分比 _（布尔值）_
+- `custom_title` - 自定义卡片标题
+- `layout` - 在两个可用布局 `default` & `compact` 间切换
+- `langs_count` - 限制卡上的语言数量，默认为所有包含的语言
+- `api_domain` - 自定义卡片的 API 域名，如使用 [Hakatime](https://github.com/mujx/hakatime) 或 [Wakapi](https://github.com/muety/wakapi) 服务
+- `range` – 自定义统计范围，如 `last_7_days`。所有可用的选项请查阅 [WakaTime API docs](https://wakatime.com/developers#stats)
 
 ---
 
@@ -182,13 +203,13 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 GitHub 更多置顶允许你在使用 GitHub readme profile 时，在个人资料中置顶多于 6 个 repo。
 
-是的！你不再受限于置顶最多 6 个存储库了。
+好耶！你不再受限于置顶最多 6 个存储库了。
 
 ### 使用细则
 
 复制粘贴这段代码到你的 README 文件中，并更改链接。
 
-端点: `api/pin?username=anuraghazra&repo=github-readme-stats`
+末段：`api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
@@ -206,24 +227,40 @@ GitHub 更多置顶允许你在使用 GitHub readme profile 时，在个人资�
 
 热门语言卡片显示了 GitHub 用户常用的编程语言。
 
-_注意：热门语言并不表示我的技能水平或类似的水平，它是用来衡量用户在 github 上拥有最多代码的语言的一项指标，它是 github-readme-stats 的新特性_
+_注意：热门语言并不表示我的技能水平或类似的水平，它是用来衡量用户在 github 上拥有最多代码的语言的一项指标，它是 github readme stats 的新特性。_
 
 ### 使用细则
 
 将此代码复制粘贴到您的 `README.md` 文件中，并修改链接。
 
-端点: `api/top-langs?username=anuraghazra`
+末段：`api/top-langs?username=anuraghazra`
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
+### 隐藏指定仓库
+
+你可以使用 `?exclude_repo=repo1,repo2` 参数来隐藏指定的仓库。
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
+```
+
 ### 隐藏指定语言
 
-可以使用 `?hide=language1,language2` 参数来隐藏指定的语言。
+你可以使用 `?hide=language1,language2` 参数来隐藏指定的语言。
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### 显示更多语言
+
+你可以使用 `&langs_count=` 选项增加或减少卡上显示的语言数量。有效值是 1 到 10（含）之间的整数，默认为 5。
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### 紧凑的语言卡片布局
@@ -242,9 +279,27 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
+# Wakatime 统计
+
+更改 `?username=` 的值为你的 [Wakatime](https://wakatime.com) 用户名。
+
+```md
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Demo
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
+- 紧凑布局
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
 ---
 
-### 全部 Demos
+### 所有 Demo
 
 - 默认
 
@@ -288,14 +343,14 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- 编程时间
+- Wakatime 统计
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 ---
 
-### 快速提示（对齐 Repo 卡片）
+### 小提示（对齐 Repo 卡片）
 
-你通常无法将图片靠边显示。为此，您可以使用以下方法：
+你通常无法将图片并排显示。为此，您可以使用以下方法：
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -306,13 +361,13 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 </a>
 ```
 
-## 自己部署
+## 部署在自己的 Vercel 实例
 
 #### [查看 @codeSTACKr 提供的逐演示视频教程](https://youtu.be/n6d4KHSKqGk?t=107)
 
 因为 GitHub 的 API 每个小时只允许 5 千次请求，我的 `https://github-readme-stats.vercel.app/api` 很有可能会触发限制。如果你将其托管在自己的 Vercel 服务器上，那么你就不必为此担心。点击 deploy 按钮来开始你的部署！
 
-注意: 从 [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 开始，我们应该能够处理超过 5 千次的请求，并且不会出现宕机问题 :D
+注意：从 [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 开始，我们应该能够处理超过 5 千次的请求，并且不会出现宕机问题 :D
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
@@ -322,7 +377,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 1. 前往 [vercel.com](https://vercel.com/)
 1. 点击 `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
-1. 点击 `Continue with GitHub` 通过 GitHub 进行登录
+1. 点击 `Continue with GitHub` 使用 GitHub 登录
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. 登录 GitHub 并允许访问所有存储库（如果系统这样提示）
 1. Fork 这个仓库
@@ -341,11 +396,11 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 我尽己所能地进行开源，并且我尽量回复每个在使用项目时需要帮助的人。很明显，这需要时间，但你可以免费享受这些。
 
-然而, 如果你正在使用这个项目并觉得不错，或只是想要支持我继续开发，你可以通过如下方式：
+然而，如果你正在使用这个项目并觉得不错，或只是想要支持我继续开发，你可以通过如下方式：
 
 - 在你的 readme 中使用 github-readme-stats 时，链接指向这里 :D
 - Star 并分享这个项目 :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - 你可以通过 PayPal 一次性捐款. 我多半会买一杯 ~~咖啡~~ 茶。 :tea:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - 你可以通过 PayPal 单次捐款。我多半会买一杯 ~~咖啡~~ 茶。 :tea:
 
 谢谢！ :heart:
 
