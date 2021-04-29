@@ -142,7 +142,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `hide_border` - 隐藏卡的边框 _(布尔值)_
 - `theme` - 主题名称，从[所有可用主题](../themes/README.md)中选择
 - `cache_seconds` - 手动设置缓存头 _（最小值：1800，最大值：86400）_
-- `locale` - 在卡片中设置语言 _(例如 cn, de, es, 等等)_
+- `locale` - 在卡片中设置语言 _(例如 cn, de, es 等等)_
 - `border_radius` - 卡片的圆角
 
 ##### bg_color 渐变
@@ -177,7 +177,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `hide_title` - _（布尔值）_
 - `layout` - 在两个可用布局 `default` & `compact` 间切换
 - `card_width` - 手动设置卡片的宽度 _（数值）_
-- `langs_count` - 在卡片上显示更多语言，可选 1-10，默认为 5 _（数值）_
+- `langs_count` - 在卡片上显示更多语言，可选 1 到 10，默认为 5 _（数值）_
 - `exclude_repo` - 排除指定的仓库 _（以逗号分隔）_
 - `custom_title` - 自定义卡片标题
 
@@ -363,7 +363,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ## 部署在自己的 Vercel 实例
 
-#### [查看 @codeSTACKr 提供的逐演示视频教程](https://youtu.be/n6d4KHSKqGk?t=107)
+#### [查看 @codeSTACKr 提供的逐步演示视频教程](https://youtu.be/n6d4KHSKqGk?t=107)
 
 因为 GitHub 的 API 每个小时只允许 5 千次请求，我的 `https://github-readme-stats.vercel.app/api` 很有可能会触发限制。如果你将其托管在自己的 Vercel 服务器上，那么你就不必为此担心。点击 deploy 按钮来开始你的部署！
 
