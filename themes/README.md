@@ -30,7 +30,10 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `calm` ![calm][calm] | `flag-india` ![flag-india][flag-india] | `omni` ![omni][omni] |
 | `react` ![react][react] | `jolly` ![jolly][jolly] | `maroongold` ![maroongold][maroongold] |
 | `yeblu` ![yeblu][yeblu] | `blueberry` ![blueberry][blueberry] | `slateorange` ![slateorange][slateorange] |
-| `kacho_ga` ![kacho_ga][kacho_ga] | `outrun` ![outrun][outrun] | [Add your theme][add-theme] |
+| `kacho_ga` ![kacho_ga][kacho_ga] | `outrun` ![outrun][outrun] | `gh_dark_grey` ![gh_dark_grey][gh_dark_grey] |
+| `gh_dark_blue` ![gh_dark_blue][gh_dark_blue] | `gh_dark_green` ![gh_dark_green][gh_dark_green] | `gh_dark_red` ![gh_dark_red][gh_dark_red] |
+| `gh_dark_grey_2` ![gh_dark_grey_2][gh_dark_grey_2] | `gh_dark_blue_2` ![gh_dark_blue_2][gh_dark_blue_2] | `gh_dark_green_2` ![gh_dark_green_2][gh_dark_green_2] |
+| `gh_dark_red_2` ![gh_dark_red_2][gh_dark_red_2] | `[Add your theme][add-theme] |  |
 
 ## Repo Card
 
@@ -100,6 +103,14 @@ Use `?theme=THEME_NAME` parameter like so :-
 [slateorange]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=slateorange
 [kacho_ga]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=kacho_ga
 [outrun]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=outrun
+[gh_dark_grey]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gh_dark_grey
+[gh_dark_blue]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gh_dark_blue
+[gh_dark_green]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gh_dark_green
+[gh_dark_red]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gh_dark_red
+[gh_dark_grey_2]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gh_dark_grey_2
+[gh_dark_blue_2]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gh_dark_blue_2
+[gh_dark_green_2]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gh_dark_green_2
+[gh_dark_red_2]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gh_dark_red_2
 
 
 [default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default

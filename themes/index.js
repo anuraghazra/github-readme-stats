@@ -288,6 +288,62 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  gh_dark_grey: {
+    title_color: "C9D1D9",
+    icon_color: "C9D1D9",
+    text_color: "C9D1D9",
+    bg_color: "0D1117",
+    border_color: "C9D1D9"
+  },
+  gh_dark_blue: {
+    title_color: "79C0FF",
+    icon_color: "79C0FF",
+    text_color: "C9D1D9",
+    bg_color: "0D1117",
+    border_color: "79C0FF"
+  },
+    gh_dark_green: {
+    title_color: "56D364",
+    icon_color: "56D364",
+    text_color: "C9D1D9",
+    bg_color: "0D1117",
+    border_color: "56D364"
+  },
+    gh_dark_red: {
+    title_color: "F85149",
+    icon_color: "F85149",
+    text_color: "F85149",
+    bg_color: "0D1117",
+    border_color: "F85149"
+  },
+    gh_dark_grey_2: {
+    title_color: "C9D1D9",
+    icon_color: "C9D1D9",
+    text_color: "C9D1D9",
+    bg_color: "161B22",
+    border_color: "C9D1D9"
+  },
+    gh_dark_blue_2: {
+    title_color: "79C0FF",
+    icon_color: "79C0FF",
+    text_color: "C9D1D9",
+    bg_color: "111D2E",
+    border_color: "79C0FF"
+  },
+    gh_dark_green_2: {
+    title_color: "56D364",
+    icon_color: "56D364",
+    text_color: "C9D1D9",
+    bg_color: "101F1B",
+    border_color: "56D364"
+  },
+    gh_dark_red_2: {
+    title_color: "f85149",
+    icon_color: "F85149",
+    text_color: "F85149",
+    bg_color: "36181C",
+    border_color: "F85149"
+  },
 };
 
 module.exports = themes;
