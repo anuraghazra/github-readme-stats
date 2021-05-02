@@ -34,7 +34,11 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchTopLanguages(username, exclude_repo = []) {
+async function fetchTopLanguages(
+  username,
+  exclude_repo = [],
+  hide = [],
+) {
   if (!username) throw Error("Invalid username");
 
   const res = await retryer(fetcher, { login: username });

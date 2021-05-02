@@ -74,7 +74,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     custom_title,
     locale,
     langs_count = 5,
-    border_radius
+    border_radius,
+    border_color
   } = options;
 
   const i18n = new I18n({
@@ -108,10 +109,11 @@ const renderTopLanguages = (topLangs, options = {}) => {
   }, 0);
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, bgColor } = getCardColors({
+  const { titleColor, textColor, bgColor, borderColor } = getCardColors({
     title_color,
     text_color,
     bg_color,
+    border_color,
     theme,
   });
 
@@ -193,6 +195,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
       titleColor,
       textColor,
       bgColor,
+      borderColor,
     },
   });
 
