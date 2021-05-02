@@ -283,10 +283,17 @@ const themes = {
     bg_color: "1D252C",
   },
   github_dark: {
-    title_color: "58A6FF",
+    title_color: "421E59",
     icon_color: "1F6FEB",
     text_color: "C3D1D9",
     bg_color: "0D1117",
+  },
+  
+  purple_galaxy: {
+    title_color: "58A6FF",
+    icon_color: "FEFDEF",
+    text_color: "CEF2E8",
+    bg_color: "421E59",
   },
 };
 
