@@ -157,7 +157,6 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
 - `show_icons` - _(boolean)_
-- `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
 - `count_private` - Count private commits _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
 - `custom_title` - Sets a custom title for the card
@@ -302,7 +301,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 - सबै कमितहरु 
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - थेम्स 
 

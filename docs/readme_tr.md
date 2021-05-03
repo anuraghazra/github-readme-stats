@@ -162,7 +162,6 @@ bg_color içerisinde birden fazla rengi gradient olarak göstermek için virgül
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_ Sıralamayı gizler ve kartın genişliğini otomatik olarak tekrar düzenler
 - `show_icons` - _(boolean)_
-- `include_all_commits` - _(boolean)_ Sadece bu yılın değil tüm zamanlarda yaptığınız commit sayısını gösterir
 - `count_private` - _(boolean)_ Özel depolarda yaptığınız commitleri gösterir
 - `line_height` - _(number)_ Satır arası yüksekliği belirler
 - `custom_title` - Kart için istediğiniz bir başlığı belirler
@@ -313,7 +312,7 @@ Endpoint: `api/top-langs?username=mustafacagri`
 
 - Tüm commitler dahil
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - Temalar
 

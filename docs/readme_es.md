@@ -161,7 +161,6 @@ Puedes pasar mútliples valores separados por coma en la opción `bg_color` para
 - `hide_title` - _(booleano)_
 - `hide_rank` - _(booleano)_
 - `show_icons` - _(booleano)_
-- `include_all_commits` - Cuenta el total de commits en lugar de solo los commits del año actual _(boolean)_
 - `count_private` - Cuenta los commits privadas _(boolean)_
 - `line_height` - Establece el alto de línea entre texto _(número)_
 - `custom_title` - Establece un título personalizado
@@ -313,7 +312,7 @@ cambia el valor del parámetro `?username=` a tu username en [Wakatime](https://
 
 - Incluyendo todos los commits
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - Temas
 

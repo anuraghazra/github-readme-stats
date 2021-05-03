@@ -173,7 +173,6 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `hide_title` - 타이틀 표시 여부 _(boolean)_
 - `hide_rank` - 랭크 표시 여부 _(boolean)_
 - `show_icons` - 아이콘 표시 여부 _(boolean)_
-- `include_all_commits` - 올해가 아닌 전체 연도에 대한 커밋 포함 여부 _(boolean)_
 - `count_private` - 비공개 기여도 포함 여부 _(boolean)_
 - `line_height` - 텍스트 간 줄 높이 설정(자간) _(number)_
 - `custom_title` - 카드의 타이틀 값 설정
@@ -327,7 +326,7 @@ _참고:
 
 - 전체 커밋 포함 시
 
-![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - 테마들
 

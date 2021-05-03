@@ -12,7 +12,7 @@ const stats = {
   totalCommits: 200,
   totalIssues: 300,
   totalPRs: 400,
-  contributedTo: 500,
+  contributedTo: 1,
   rank: null,
 };
 stats.rank = calculateRank({
@@ -25,22 +25,40 @@ stats.rank = calculateRank({
   issues: stats.totalIssues,
 });
 
+const yearsOfContribData = {
+  data: {
+    user: {
+      contributionsCollection: {
+        contributionYears: [
+          2021
+        ]
+      },
+    },
+  }
+};
+
 const data = {
   data: {
     user: {
       name: stats.name,
-      repositoriesContributedTo: { totalCount: stats.contributedTo },
-      contributionsCollection: {
+      year_2021: {
         totalCommitContributions: stats.totalCommits,
-        restrictedContributionsCount: 100,
+        totalRepositoryContributions: 100,
+        restrictedContributionsCount: 200,
+        commitContributionsByRepository: [
+          {
+            repository: {
+              name: "ProtectApplicationsDemo",
+              stargazers: {
+                totalCount: stats.totalStars
+              }
+            }
+          }
+        ]
       },
       pullRequests: { totalCount: stats.totalPRs },
       issues: { totalCount: stats.totalIssues },
       followers: { totalCount: 0 },
-      repositories: {
-        totalCount: 1,
-        nodes: [{ stargazers: { totalCount: 100 } }],
-      },
     },
   },
 };
@@ -58,7 +76,7 @@ const error = {
 
 const mock = new MockAdapter(axios);
 
-const faker = (query, data) => {
+const faker = (query, data, yearsOfContribData) => {
   const req = {
     query: {
       username: "anuraghazra",
@@ -69,7 +87,18 @@ const faker = (query, data) => {
     setHeader: jest.fn(),
     send: jest.fn(),
   };
-  mock.onPost("https://api.github.com/graphql").reply(200, data);
+  mock
+    .onPost("https://api.github.com/graphql")
+    .reply((config) => {
+      const request = JSON.parse(config.data);
+    
+      if (request.query && request.query.includes("contributionYears")) {
+        return [200, yearsOfContribData];
+      } else  {
+        // passThrough
+        return [200, data];
+      }
+    });
 
   return { req, res };
 };
@@ -80,7 +109,7 @@ afterEach(() => {
 
 describe("Test /api/", () => {
   it("should test the request", async () => {
-    const { req, res } = faker({}, data);
+    const { req, res } = faker({}, data, yearsOfContribData);
 
     await api(req, res);
 
@@ -89,7 +118,7 @@ describe("Test /api/", () => {
   });
 
   it("should render error card on error", async () => {
-    const { req, res } = faker({}, error);
+    const { req, res } = faker({}, error, yearsOfContribData);
 
     await api(req, res);
 
@@ -116,6 +145,7 @@ describe("Test /api/", () => {
         bg_color: "fff",
       },
       data,
+      yearsOfContribData
     );
 
     await api(req, res);
@@ -136,8 +166,17 @@ describe("Test /api/", () => {
   });
 
   it("should have proper cache", async () => {
-    const { req, res } = faker({}, data);
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
+    const { req, res } = faker({}, data, yearsOfContribData);
+    mock.onPost("https://api.github.com/graphql").reply((config) => {
+      const request = JSON.parse(config.data);
+    
+      if (request.query && request.query.includes("contributionYears")) {
+        return [200, yearsOfContribData];
+      } else  {
+        // passThrough
+        return [200, data];
+      }
+    });
 
     await api(req, res);
 
@@ -148,7 +187,7 @@ describe("Test /api/", () => {
   });
 
   it("should set proper cache", async () => {
-    const { req, res } = faker({ cache_seconds: 8000 }, data);
+    const { req, res } = faker({ cache_seconds: 8000 }, data, yearsOfContribData);
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
@@ -159,7 +198,7 @@ describe("Test /api/", () => {
 
   it("should set proper cache with clamped values", async () => {
     {
-      let { req, res } = faker({ cache_seconds: 200000 }, data);
+      let { req, res } = faker({ cache_seconds: 200000 }, data, yearsOfContribData);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
@@ -170,7 +209,7 @@ describe("Test /api/", () => {
 
     // note i'm using block scoped vars
     {
-      let { req, res } = faker({ cache_seconds: 0 }, data);
+      let { req, res } = faker({ cache_seconds: 0 }, data, yearsOfContribData);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
@@ -180,7 +219,7 @@ describe("Test /api/", () => {
     }
 
     {
-      let { req, res } = faker({ cache_seconds: -10000 }, data);
+      let { req, res } = faker({ cache_seconds: -10000 }, data, yearsOfContribData);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
@@ -197,6 +236,7 @@ describe("Test /api/", () => {
         count_private: true,
       },
       data,
+      yearsOfContribData
     );
 
     await api(req, res);
@@ -206,9 +246,9 @@ describe("Test /api/", () => {
       renderStatsCard(
         {
           ...stats,
-          totalCommits: stats.totalCommits + 100,
+          totalCommits: stats.totalCommits + 200,
           rank: calculateRank({
-            totalCommits: stats.totalCommits + 100,
+            totalCommits: stats.totalCommits + 200,
             totalRepos: 1,
             followers: 0,
             contributions: stats.contributedTo,

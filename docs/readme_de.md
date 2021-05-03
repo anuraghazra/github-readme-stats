@@ -148,7 +148,6 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
 - `show_icons` - _(boolean)_
-- `include_all_commits` - Zähle alle Beiträge anstatt nur das aktuelle Jahr _(boolean)_
 - `count_private` - Zähle private Beiträge _(boolean)_
 - `line_height` - Legt die Zeilenhöhe zwischen Text fest _(Zahl)_
 
@@ -280,7 +279,7 @@ Du kannst die `&layout=compact` Option nutzen, um das Karten Design zu ändern.
 
 - Alle Beiträge anzeigen
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - Erscheinungsbild/Themes
 

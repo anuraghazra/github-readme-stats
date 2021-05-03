@@ -20,7 +20,6 @@ module.exports = async (req, res) => {
     hide_rank,
     show_icons,
     count_private,
-    include_all_commits,
     line_height,
     title_color,
     icon_color,
@@ -47,11 +46,8 @@ module.exports = async (req, res) => {
   }
 
   try {
-    stats = await fetchStats(
-      username,
-      parseBoolean(count_private),
-      parseBoolean(include_all_commits),
-    );
+    stats = await fetchStats(username,
+      parseBoolean(count_private));
 
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
@@ -68,7 +64,6 @@ module.exports = async (req, res) => {
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
         hide_rank: parseBoolean(hide_rank),
-        include_all_commits: parseBoolean(include_all_commits),
         line_height,
         title_color,
         icon_color,
