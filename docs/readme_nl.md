@@ -161,7 +161,6 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
 - `show_icons` - _(boolean)_
-- `include_all_commits` - Tel alle commits inplaats van alleen de commits van het huidige jaar _(boolean)_
 - `count_private` - Tel privé commits mee _(boolean)_
 - `line_height` - Stel de lijn-hoogte tussen text in _(nummer)_
 - `custom_title` - Stel een aangepaste titel voor je kaart in
@@ -308,7 +307,7 @@ Verander de `?username=` waarde naar je [Wakatime](https://wakatime.com) gebruik
 
 - Voeg alle commits toe
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - Thema\'s
 

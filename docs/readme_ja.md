@@ -158,7 +158,6 @@ bg_color オプションで複数のカンマ区切りの値を指定してグ�
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_
 - `show_icons` - _(boolean)_
-- `include_all_commits` - 今年度のコミット数だけでなく、コミット数の総数をカウントする _(boolean)_
 - `count_private` - プライベートリポジトリへのコミットをカウントする _(boolean)_
 - `line_height` - テキストの行の高さ _(number)_
 - `custom_title` - タイトル文字列を変更する
@@ -266,7 +265,7 @@ _NOTE: Top languages は、ユーザのスキルレベルを示すものでは�
 
 - コミット数の総数をカウントする
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - テーマの変更
 

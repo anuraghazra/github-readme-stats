@@ -26,6 +26,7 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "emoji-name-map": "^1.2.8",
+    "express": "^4.17.1",
     "github-username-regex": "^1.0.0",
     "prettier": "^2.1.2",
     "word-wrap": "^1.2.3"

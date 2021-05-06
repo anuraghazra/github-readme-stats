@@ -157,7 +157,6 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 - `hide_title` - Nasconde il titolo _(booleano)_
 - `hide_rank` - Nasconde il punteggio _(booleano)_
 - `show_icons` - Mostra le icone _(booleano)_
-- `include_all_commits` - Mostra tutti i commit e non solo quelli dell'anno corrente _(booleano)_
 - `count_private` - Include i contributi privati _(booleano)_
 - `line_height` - Specifica il valore dell'altezza di riga _(numero)_
 
@@ -258,7 +257,7 @@ Puoi utilizzare l'opzione `&layout=compact` per cambiare l'aspetto della card.
 
 - Includere tutti i commit
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - Temi
 

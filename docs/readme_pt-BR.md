@@ -150,7 +150,6 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 - `hide_title` - Ocutar o título _(boolean)_
 - `hide_rank` - Ocultar a classificação _(boolean)_
 - `show_icons` - Mostrar ícones _(boolean)_
-- `include_all_commits` - Contabiliza todos os commits ao invés de apenas os atual ano _(boolean)_
 - `count_private` - Contabiliza commits privados _(boolean)_
 - `line_height` - Define a altura do espaçamento entre o texto _(number)_
 
@@ -269,7 +268,7 @@ Altere o valor de `?username=` para o seu username do Wakatime.
 
 - Incluir todos os commits
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - Temas
 

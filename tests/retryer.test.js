@@ -13,7 +13,7 @@ const fetcherFail = jest.fn(() => {
   );
 });
 
-const fetcherFailOnSecondTry = jest.fn((_vars, _token, retries) => {
+const fetcherFailOnSecondTry = jest.fn((_vars, _token, query, retries) => {
   return new Promise((res, rej) => {
     // faking rate limit
     if (retries < 1) {
@@ -25,14 +25,14 @@ const fetcherFailOnSecondTry = jest.fn((_vars, _token, retries) => {
 
 describe("Test Retryer", () => {
   it("retryer should return value and have zero retries on first try", async () => {
-    let res = await retryer(fetcher, {});
+    let res = await retryer(fetcher, {}, "");
 
     expect(fetcher).toBeCalledTimes(1);
     expect(res).toStrictEqual({ data: "ok" });
   });
 
   it("retryer should return value and have 2 retries", async () => {
-    let res = await retryer(fetcherFailOnSecondTry, {});
+    let res = await retryer(fetcherFailOnSecondTry, {}, "");
 
     expect(fetcherFailOnSecondTry).toBeCalledTimes(2);
     expect(res).toStrictEqual({ data: "ok" });
@@ -42,7 +42,7 @@ describe("Test Retryer", () => {
     let res;
 
     try {
-      res = await retryer(fetcherFail, {});
+      res = await retryer(fetcherFail, {}, "");
     } catch (err) {
       expect(fetcherFail).toBeCalledTimes(8);
       expect(err.message).toBe("Maximum retries exceeded");

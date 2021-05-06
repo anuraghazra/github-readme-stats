@@ -4,28 +4,72 @@ const MockAdapter = require("axios-mock-adapter");
 const fetchStats = require("../src/fetchers/stats-fetcher");
 const calculateRank = require("../src/calculateRank");
 
+const yearsOfContribData = {
+  data: {
+    user: {
+      contributionsCollection: {
+        contributionYears: [
+          2021
+        ]
+      },
+    },
+  }
+};
+
 const data = {
   data: {
     user: {
       name: "Anurag Hazra",
-      repositoriesContributedTo: { totalCount: 61 },
-      contributionsCollection: {
+      year_2021: {
         totalCommitContributions: 100,
-        restrictedContributionsCount: 50,
+        totalRepositoryContributions: 61,
+        restrictedContributionsCount: 20,
+        commitContributionsByRepository: [
+          {
+            repository: {
+              name: "ApplicationsDemo1",
+              stargazers: {
+                totalCount: 100
+              }
+            }
+          },
+          {
+            repository: {
+              name: "ApplicationsDemo2",
+              stargazers: {
+                totalCount: 100
+              }
+            }
+          },
+          {
+            repository: {
+              name: "ApplicationsDemo3",
+              stargazers: {
+                totalCount: 100
+              }
+            }
+          },
+          {
+            repository: {
+              name: "ApplicationsDemo4",
+              stargazers: {
+                totalCount: 50
+              }
+            }
+          },
+          {
+            repository: {
+              name: "ApplicationsDemo5",
+              stargazers: {
+                totalCount: 50
+              }
+            }
+          }
+        ]
       },
       pullRequests: { totalCount: 300 },
       issues: { totalCount: 200 },
       followers: { totalCount: 100 },
-      repositories: {
-        totalCount: 5,
-        nodes: [
-          { stargazers: { totalCount: 100 } },
-          { stargazers: { totalCount: 100 } },
-          { stargazers: { totalCount: 100 } },
-          { stargazers: { totalCount: 50 } },
-          { stargazers: { totalCount: 50 } },
-        ],
-      },
     },
   },
 };
@@ -43,38 +87,56 @@ const error = {
 
 const mock = new MockAdapter(axios);
 
+const faker = (data) => {
+
+  mock
+    .onPost("https://api.github.com/graphql")
+    .reply((config) => {
+      const request = JSON.parse(config.data);
+
+      if (request.query && request.query.includes("contributionYears")) {
+        return [200, yearsOfContribData];
+      } else {
+        // passThrough
+        return [200, data];
+      }
+    });
+
+};
+
 afterEach(() => {
   mock.reset();
 });
 
 describe("Test fetchStats", () => {
   it("should fetch correct stats", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
+    faker(data);
 
     let stats = await fetchStats("anuraghazra");
     const rank = calculateRank({
       totalCommits: 100,
-      totalRepos: 5,
+      totalRepos: 61,
       followers: 100,
-      contributions: 61,
+      contributions: 5,
       stargazers: 400,
       prs: 300,
       issues: 200,
     });
 
     expect(stats).toStrictEqual({
-      contributedTo: 61,
+      contributedTo: 5,
       name: "Anurag Hazra",
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
+      totalRepos: 61,
       rank,
     });
   });
 
   it("should throw error", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, error);
+    faker(error)
 
     await expect(fetchStats("anuraghazra")).rejects.toThrow(
       "Could not resolve to a User with the login of 'noname'.",
@@ -82,54 +144,109 @@ describe("Test fetchStats", () => {
   });
 
   it("should fetch and add private contributions", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
+    faker(data);
 
     let stats = await fetchStats("anuraghazra", true);
     const rank = calculateRank({
-      totalCommits: 150,
-      totalRepos: 5,
+      totalCommits: 120,
+      totalRepos: 61,
       followers: 100,
-      contributions: 61,
+      contributions: 5,
       stargazers: 400,
       prs: 300,
       issues: 200,
     });
 
     expect(stats).toStrictEqual({
-      contributedTo: 61,
+      contributedTo: 5,
       name: "Anurag Hazra",
-      totalCommits: 150,
+      totalCommits: 120,
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
+      totalRepos: 61,
       rank,
     });
   });
 
   it("should fetch total commits", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
-    mock
-      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
-      .reply(200, { total_count: 1000 });
+    faker({
+      data: {
+        user: {
+          name: "Anurag Hazra",
+          year_2021: {
+            totalCommitContributions: 1050,
+            totalRepositoryContributions: 61,
+            restrictedContributionsCount: 20,
+            commitContributionsByRepository: [
+              {
+                repository: {
+                  name: "ApplicationsDemo1",
+                  stargazers: {
+                    totalCount: 100
+                  }
+                }
+              },
+              {
+                repository: {
+                  name: "ApplicationsDemo2",
+                  stargazers: {
+                    totalCount: 100
+                  }
+                }
+              },
+              {
+                repository: {
+                  name: "ApplicationsDemo3",
+                  stargazers: {
+                    totalCount: 100
+                  }
+                }
+              },
+              {
+                repository: {
+                  name: "ApplicationsDemo4",
+                  stargazers: {
+                    totalCount: 50
+                  }
+                }
+              },
+              {
+                repository: {
+                  name: "ApplicationsDemo5",
+                  stargazers: {
+                    totalCount: 50
+                  }
+                }
+              }
+            ]
+          },
+          pullRequests: { totalCount: 300 },
+          issues: { totalCount: 200 },
+          followers: { totalCount: 100 },
+        },
+      }
+    });
 
-    let stats = await fetchStats("anuraghazra", true, true);
+    let stats = await fetchStats("anuraghazra", true);
     const rank = calculateRank({
-      totalCommits: 1050,
-      totalRepos: 5,
+      totalCommits: 1070,
+      totalRepos: 61,
       followers: 100,
-      contributions: 61,
+      contributions: 5,
       stargazers: 400,
       prs: 300,
       issues: 200,
     });
 
     expect(stats).toStrictEqual({
-      contributedTo: 61,
+      contributedTo: 5,
       name: "Anurag Hazra",
-      totalCommits: 1050,
+      totalCommits: 1070,
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
+      totalRepos: 61,
       rank,
     });
   });
