@@ -74,19 +74,6 @@ describe("FetchTopLanguages", () => {
     });
   });
 
-  it("should fetch langs with specified langs_count", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
-
-    let repo = await fetchTopLanguages("anuraghazra", 1);
-    expect(repo).toStrictEqual({
-      javascript: {
-        color: "#0ff",
-        name: "javascript",
-        size: 200,
-      },
-    });
-  });
-
   it("should throw error", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, error);
 
