@@ -139,7 +139,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
-#### All inbuilt themes :-
+#### All inbuilt themes :-@Eric
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
