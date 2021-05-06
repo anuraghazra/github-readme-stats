@@ -1,5 +1,5 @@
-const { FlexLayout, encodeHTML } = require("../common/utils");
 const { getAnimations } = require("../getStyles");
+const { flexLayout, encodeHTML } = require("../common/utils");
 
 class Card {
   constructor({
@@ -85,7 +85,7 @@ class Card {
         data-testid="card-title"
         transform="translate(${this.paddingX}, ${this.paddingY})"
       >
-        ${FlexLayout({
+        ${flexLayout({
           items: [this.titlePrefixIcon && prefixIcon, titleText],
           gap: 25,
         }).join("")}

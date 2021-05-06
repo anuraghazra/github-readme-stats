@@ -3,7 +3,7 @@ const {
   kFormatter,
   encodeHTML,
   getCardColors,
-  FlexLayout,
+  flexLayout,
   wrapTextMultiline,
 } = require("../common/utils");
 const I18n = require("../common/I18n");
@@ -61,7 +61,13 @@ const renderRepoCard = (repo, options = {}) => {
   });
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, iconColor, bgColor, borderColor } = getCardColors({
+  const {
+    titleColor,
+    textColor,
+    iconColor,
+    bgColor,
+    borderColor,
+  } = getCardColors({
     title_color,
     icon_color,
     text_color,
@@ -111,7 +117,7 @@ const renderRepoCard = (repo, options = {}) => {
   const svgForks =
     forkCount > 0 && iconWithLabel(icons.fork, totalForks, "forkcount");
 
-  const starAndForkCount = FlexLayout({
+  const starAndForkCount = flexLayout({
     items: [svgStars, svgForks],
     gap: 65,
   }).join("");

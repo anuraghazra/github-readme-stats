@@ -1,4 +1,4 @@
-const { request, logger, clampValue } = require("../common/utils");
+const { request, logger } = require("../common/utils");
 const retryer = require("../common/retryer");
 require("dotenv").config();
 
@@ -34,11 +34,7 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchTopLanguages(
-  username,
-  exclude_repo = [],
-  hide = [],
-) {
+async function fetchTopLanguages(username, exclude_repo = []) {
   if (!username) throw Error("Invalid username");
 
   const res = await retryer(fetcher, { login: username });
