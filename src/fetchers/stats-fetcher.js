@@ -1,8 +1,9 @@
-const { request, logger, CustomError } = require("../common/utils");
 const axios = require("axios");
+const githubUsernameRegex = require("github-username-regex");
+
 const retryer = require("../common/retryer");
 const calculateRank = require("../calculateRank");
-const githubUsernameRegex = require("github-username-regex");
+const { request, logger, CustomError } = require("../common/utils");
 
 require("dotenv").config();
 

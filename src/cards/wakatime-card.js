@@ -2,9 +2,9 @@ const Card = require("../common/Card");
 const I18n = require("../common/I18n");
 const { getStyles } = require("../getStyles");
 const { wakatimeCardLocales } = require("../translations");
-const { clampValue, getCardColors, FlexLayout } = require("../common/utils");
-const { createProgressNode } = require("../common/createProgressNode");
 const languageColors = require("../common/languageColors.json");
+const { createProgressNode } = require("../common/createProgressNode");
+const { clampValue, getCardColors, flexLayout } = require("../common/utils");
 
 const noCodingActivityNode = ({ color, text }) => {
   return `
@@ -193,7 +193,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     }).join("")}
     `;
   } else {
-    finalLayout = FlexLayout({
+    finalLayout = flexLayout({
       items: filteredLanguages.length
         ? filteredLanguages
           .map((language) => {
