@@ -288,6 +288,13 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  cyber: {
+    title_color: "FFC107",
+    icon_color: "FFC107",
+    text_color: "FFFFFF",
+    bg_color: "1C1C1C",
+    border_color: "543F00",
+  },
 };
 
 module.exports = themes;
