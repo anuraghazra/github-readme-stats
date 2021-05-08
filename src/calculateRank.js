@@ -1,19 +1,13 @@
-// https://stackoverflow.com/a/5263759/10629172
 function normalcdf(mean, sigma, to) {
-  var z = (to - mean) / Math.sqrt(2 * sigma * sigma);
-  var t = 1 / (1 + 0.3275911 * Math.abs(z));
-  var a1 = 0.254829592;
-  var a2 = -0.284496736;
-  var a3 = 1.421413741;
-  var a4 = -1.453152027;
-  var a5 = 1.061405429;
-  var erf =
-    1 - ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t * Math.exp(-z * z);
-  var sign = 1;
-  if (z < 0) {
-    sign = -1;
-  }
-  return (1 / 2) * (1 + sign * erf);
+	var z = (to - mean) / Math.sqrt(2 * sigma * sigma);
+	let t = 1.0 / (1.35 + 0.47047 * Math.abs(z));
+	let poly = t * (0.3480242 + t * (-0.0958798 + t * 0.7478556));
+	let ans = 1.0 - poly * Math.exp(-z * z);
+	var sign = 1;
+	if (z < 0) {
+		sign = -1;
+	}
+	return 1 + sign * ans;
 }
 
 function calculateRank({
@@ -45,7 +39,7 @@ function calculateRank({
   const RANK_DOUBLE_A_VALUE = 25;
   const RANK_A2_VALUE = 45;
   const RANK_A3_VALUE = 60;
-  const RANK_B_VALUE = 100;
+	const RANK_B_VALUE = 150;
 
   const TOTAL_VALUES =
     RANK_S_VALUE + RANK_A2_VALUE + RANK_A3_VALUE + RANK_B_VALUE;
