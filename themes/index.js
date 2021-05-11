@@ -288,6 +288,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  blackwhite: {
+    title_color: "000000",
+    icon_color: "000000",
+    text_color: "000000",
+    bg_color: "ffffff",
+  },
 };
 
 module.exports = themes;
