@@ -70,8 +70,7 @@ Are you considering to support the project by donating to me? Please DON'T!!
 Instead, Help India fight 2nd deadly wave of COVID,  
 Thousands of people are dying in India for lack of Oxygen & COVID related necessary infrastructure.  
 
-Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help us fight covid and overcome this crisis.   
-Your small help goes a long way. :heart:
+Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help us fight covid and overcome this crisis. Never be heart broken if you can't donate, share this with you're friends so that this message could reach people who can help. Your small help goes a long way. :heart:
 </p>
 
 
