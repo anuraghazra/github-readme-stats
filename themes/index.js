@@ -288,6 +288,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  red_night: {
+    title_color: "d32f2f",
+    icon_color: "d32f2f",
+    text_color: "C3D1D9",
+    bg_color: "0D1117",
+  },
 };
 
 module.exports = themes;
