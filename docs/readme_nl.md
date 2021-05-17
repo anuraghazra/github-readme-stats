@@ -71,7 +71,7 @@
 
 Kopieer en plak dit in je markdown content, zo simpel is het!
 
-Verander de waarde `?username=` naar jou gebruikersnaam.
+Verander de waarde `?username=` naar jouw gebruikersnaam.
 
 ```md
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
@@ -83,7 +83,7 @@ De implementatie hiervan kan bekijken op [src/calculateRank.js](../src/calculate
 
 ### Verberg individueele statistieken
 
-Om specifieke statistieken te verbergen, kan je een `?hide=` query parameter toevogen, verdeeld met komma\'s.
+Om specifieke statistieken te verbergen, kun je een `?hide=` query parameter toevoegen, verdeeld met komma\'s.
 
 
 > Opties: `&hide=stars,commits,prs,issues,contribs`
@@ -96,7 +96,7 @@ Om specifieke statistieken te verbergen, kan je een `?hide=` query parameter toe
 
 Je kan de hoeveelheid privé commits toevoegen aan je totale hoeveelheid commits door de query parameter `?count_private=true` te gebruiken.
 
-_Notitie: Als je dit project zelf deployt, zullen de privé contributies standaard toegevoegt worden aan je totaal, omdat anders je hoeveelheid privé contributies moet delen._
+_Notitie: Als je dit project zelf deployt, zullen de privé contributies standaard toegevoegd worden aan je totaal, omdat je anders je hoeveelheid privé contributies moet delen._
 
 > Opties: `&count_private=true`
 
@@ -106,7 +106,7 @@ _Notitie: Als je dit project zelf deployt, zullen de privé contributies standaa
 
 ### Laat icoontjes zien
 
-Om icoontjes te gebruiken kan je `show_icons=true` gebruiken in de query parameter, zoals hier:
+Om icoontjes te gebruiken kun je `show_icons=true` gebruiken in de query parameter, zoals hier:
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -114,7 +114,7 @@ Om icoontjes te gebruiken kan je `show_icons=true` gebruiken in de query paramet
 
 ### Thema\'s
 
-Met ingebouwde thema\'s kan je het uiterlijk van de kaart aanpassen zonder enige [handmatige opmaak](#customization).
+Met ingebouwde thema\'s kun je het uiterlijk van de kaart aanpassen zonder enige [handmatige opmaak](#customization).
 
 Gebruik `?theme=THEME_NAME` parameters zo :-
 
@@ -147,7 +147,7 @@ Je kan het uiterlijk van je `Statistieken kaart` of `Repo kaart` aanpassen hoe j
 
 ##### Kleurenverloop in bg_color (achtergrond kleur):
 
-Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleurenverloop te creeëren, het formaat van het kleurenverloop is:-
+Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleurenverloop te creeëren, het format van het kleurenverloop is:-
 
 ```
 &bg_color=GRADEN,KLEUR1,KLEUR2,KLEUR3...KLEUR10
@@ -163,7 +163,7 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Tel alle commits inplaats van alleen de commits van het huidige jaar _(boolean)_
 - `count_private` - Tel privé commits mee _(boolean)_
-- `line_height` - Stel de lijn-hoogte tussen text in _(nummer)_
+- `line_height` - Stel de lijn-hoogte tussen tekst in _(nummer)_
 - `custom_title` - Stel een aangepaste titel voor je kaart in
 
 #### Exclusieve opties voor Repo Kaart:
@@ -188,7 +188,7 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 #### Exclusieve opties voor Wakatime Kaart:
 
 - `hide_title` - _(boolean)_
-- `line_height` - Verandert de lijn hoogte tussen tekst _(nummer)_
+- `line_height` - Verandert de lijnhoogte tussen tekst _(nummer)_
 - `hide_progress` - Verbergt de progressiebalk en het percentage _(boolean)_
 - `custom_title` - Stelt een eigen titel voor de kaart in
 - `layout` - Schakel tussen de twee beschikbare lay-outs `default` en `compact`
@@ -197,7 +197,7 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 
 # GitHub Extra Pins
 
-GitHub extra pins geven je de mogelijkheid om meer dan 6 repositories op je profiel te pinnen, doormiddel van een GitHub readme profile.
+GitHub extra pins geven je de mogelijkheid om meer dan 6 repositories op je profiel te pinnen, door middel van een GitHub readme profile.
 
 Joepie! Je bent niet langer aan 6 pins gelimiteerd!
 
@@ -223,7 +223,7 @@ Gebruikt [show_owner](#customization) variabele om de repo\'s eigenaar toe te vo
 
 De top programmeertalen kaart laat zien welke talen een GitHub gebruiker het meest gebruikt.
 
-_Notitie: Top programmeertalen wijzen niet op een vaardigheids niveau, het is puur een GitHub metriek over welke talen de meeste code op GitHub hebben. Het is een nieuwe funktie van github-readme-stats._
+_Notitie: Top programmeertalen wijzen niet op een vaardigheids niveau, het is puur een GitHub metriek over welke talen de meeste code op GitHub hebben. Het is een nieuwe functie van github-readme-stats._
 
 ### Gebruik
 
@@ -292,7 +292,7 @@ Verander de `?username=` waarde naar je [Wakatime](https://wakatime.com) gebruik
 
 ---
 
-### Alle demos
+### Alle demo's
 
 - Standaard
 
