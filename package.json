@@ -13,7 +13,7 @@
   "license": "MIT",
   "devDependencies": {
     "@actions/core": "^1.2.4",
-    "@actions/github": "^4.0.0",
+    "@actions/github": "^5.0.0",
     "@testing-library/dom": "^7.20.0",
     "@testing-library/jest-dom": "^5.11.0",
     "axios": "^0.19.2",
