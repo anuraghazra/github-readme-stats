@@ -288,6 +288,19 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  flag_pakistan: {
+    title_color: "F5F5F5",
+    icon_color: "F5F5F5",
+    text_color: "F5F5F5",
+    bg_color: "3E9E58",
+  },
+  github_dark_default: {
+    title_color: "2d333b",
+    icon_color: "fcfcfc",
+    text_color: "fcfcfc",
+    bg_color: "22272e",
+  }
+    
 };
 
 module.exports = themes;
