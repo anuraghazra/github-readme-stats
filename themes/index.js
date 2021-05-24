@@ -288,6 +288,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  discord_old_blurple: {
+    title_color: "7289DA",
+    icon_color: "7289DA",
+    text_color: "FFFFFF",
+    bg_color: "2C2F33",
+  },
 };
 
 module.exports = themes;
