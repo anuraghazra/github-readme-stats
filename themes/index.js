@@ -288,6 +288,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  gradient_blue: {
+    title_color: "A10115",
+    icon_color: "FFD64D",
+    text_color: "EDAE01",
+    bg_color: "002C54","4CB5F5"
+  },
 };
 
 module.exports = themes;
