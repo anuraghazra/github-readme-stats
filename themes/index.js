@@ -288,6 +288,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  godzilla: {
+    title_color: "031E29",
+    icon_color: "004052",
+    text_color: "00F1F3",
+    bg_color: "007BB3",
+  },
 };
 
 module.exports = themes;
