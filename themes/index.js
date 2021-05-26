@@ -1,4 +1,11 @@
 const themes = {
+  transparent: {
+    title_color: "eb1f6a",
+    icon_color: "e28905",
+    text_color: "f1f1eb",
+    bg_color: "27282200",
+    border_color: "e4e2e2",
+  },
   default: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
