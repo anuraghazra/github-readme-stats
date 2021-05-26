@@ -1,4 +1,11 @@
 const themes = {
+  Transparent-monokai: {
+    title_color: "eb1f6a",
+    icon_color: "e28905",
+    text_color: "999999",
+    bg_color: "27282200",
+    border_color: "999999",
+  },
   default: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
