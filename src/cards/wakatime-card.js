@@ -102,6 +102,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     langs_count = languages ? languages.length : 0,
     border_radius,
     border_color,
+    min_seconds = 180
   } = options;
 
   const i18n = new I18n({
@@ -132,6 +133,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const statItems = languages
     ? languages
         .filter((language) => language.hours || language.minutes)
+        .filter((language) => language.total_seconds >= min_seconds)
         .slice(0, langsCount)
         .map((language) => {
           return createTextNode({
