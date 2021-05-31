@@ -288,6 +288,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  hulk: {
+    title_color: "#614196",
+    icon_color: "#614196",
+    text_color: "#F2F2F2",
+    bg_color: "097A3A",
+  },
 };
 
 module.exports = themes;
