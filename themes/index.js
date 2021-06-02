@@ -288,6 +288,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+    discord: {
+    title_color: "5865F2",
+    icon_color: "57F287",
+    text_color: "FFFFFF",
+    bg_color: "000000",
+  },
 };
 
 module.exports = themes;
