@@ -4,6 +4,7 @@ const statCardLocales = ({ name, apostrophe }) => {
   const encodedName = encodeHTML(name);
   return {
     "statcard.title": {
+      ar: `${encodedName} إحصائيات غيت هاب`,
       cn: `${encodedName} 的 GitHub 统计数据`,
       cs: `GitHub statistiky uživatele ${encodedName}`,
       de: `${encodedName + apostrophe} GitHub-Statistiken`,
@@ -28,6 +29,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: `Statystyki GitHub użytkownika ${encodedName}`,
     },
     "statcard.totalstars": {
+      ar: "مجموع النجوم",
       cn: "获标星数（star）",
       cs: "Celkem hvězd",
       de: "Sterne Insgesamt",
@@ -52,6 +54,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Liczba Gwiazdek",
     },
     "statcard.commits": {
+      ar: "مجموع الحفظ",
       cn: "累计提交数（commit）",
       cs: "Celkem commitů",
       de: "Anzahl Commits",
@@ -76,6 +79,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie commity",
     },
     "statcard.prs": {
+      ar: "مجموع طلبات السحب",
       cn: "拉取请求数（PR）",
       cs: "Celkem PRs",
       de: "PRs Insgesamt",
@@ -100,6 +104,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie PR",
     },
     "statcard.issues": {
+      ar: "مجموع التحسينات",
       cn: "指出问题数（issue）",
       cs: "Celkem problémů",
       de: "Anzahl Issues",
@@ -124,6 +129,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie problemy",
     },
     "statcard.contribs": {
+      ar: "ساهم في",
       cn: "参与项目数",
       cs: "Přispěl k",
       de: "Beigetragen zu",
@@ -152,6 +158,7 @@ const statCardLocales = ({ name, apostrophe }) => {
 
 const repoCardLocales = {
   "repocard.template": {
+    ar: "قالب",
     cn: "模板",
     cs: "Šablona",
     de: "Vorlage",
@@ -176,6 +183,7 @@ const repoCardLocales = {
     pl: "Szablony",
   },
   "repocard.archived": {
+    ar: "محفوظ",
     cn: "已归档",
     cs: "Archivováno",
     de: "Archiviert",
@@ -203,6 +211,7 @@ const repoCardLocales = {
 
 const langCardLocales = {
   "langcard.title": {
+    ar: "أكثر اللغات إستخداماً",
     cn: "最常用的语言",
     cs: "Nejpoužívanější jazyky",
     de: "Meist verwendete Sprachen",
@@ -230,6 +239,7 @@ const langCardLocales = {
 
 const wakatimeCardLocales = {
   "wakatimecard.title": {
+    ar: "إحصائيات واكا تايم",
     cn: "Wakatime 周统计",
     cs: "Statistiky Wakatime",
     de: "Wakatime Status",
@@ -254,6 +264,7 @@ const wakatimeCardLocales = {
     pl: "statystyki Wakatime",
   },
   "wakatimecard.nocodingactivity": {
+    ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
     cn: "本周没有编程活动",
     cs: "Tento týden žádná aktivita v kódování",
     de: "Keine Aktivitäten in dieser Woche",
