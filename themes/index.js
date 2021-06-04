@@ -288,6 +288,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  "for-dark-or-light-any-theme": {
+    title_color: "FA8C00",
+    icon_color: "CC5160",
+    text_color: "949CA5",
+    bg_color: "00000000",
+  },
 };
 
 module.exports = themes;
