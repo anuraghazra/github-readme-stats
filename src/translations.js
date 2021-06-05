@@ -1,23 +1,23 @@
 const { encodeHTML } = require("./common/utils");
 
-const statCardLocales = ({ name, apostrophe }) => {
+const statCardLocales = ({ name }) => {
   const encodedName = encodeHTML(name);
   return {
     "statcard.title": {
       cn: `${encodedName} 的 GitHub 统计数据`,
       cs: `GitHub statistiky uživatele ${encodedName}`,
-      de: `${encodedName + apostrophe} GitHub-Statistiken`,
-      en: `${encodedName}'${apostrophe} GitHub Stats`,
+      de: `${encodedName}s GitHub-Statistiken`,
+      en: `${encodedName}'s GitHub Stats`,
       es: `Estadísticas de GitHub de ${encodedName}`,
       fr: `Statistiques GitHub de ${encodedName}`,
       hu: `${encodedName} GitHub statisztika`,
       it: `Statistiche GitHub di ${encodedName}`,
       ja: `${encodedName}の GitHub 統計`,
       kr: `${encodedName}의 GitHub 통계`,
-      nl: `${encodedName}'${apostrophe} GitHub Statistieken`,
+      nl: `${encodedName}'s GitHub Statistieken`,
       "pt-pt": `Estatísticas do GitHub de ${encodedName}`,
       "pt-br": `Estatísticas do GitHub de ${encodedName}`,
-      np: `${encodedName}'${apostrophe} गिटहब तथ्याङ्क`,
+      np: `${encodedName}'s गिटहब तथ्याङ्क`,
       el: `Στατιστικά GitHub του ${encodedName}`,
       ru: `Статистика GitHub пользователя ${encodedName}`,
       "uk-ua": `Статистика GitHub користувача ${encodedName}`,
