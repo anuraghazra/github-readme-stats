@@ -1,4 +1,10 @@
 const themes = {
+  "ads-juicy-fresh":{
+    title_color: "fe5700",
+    icon_color: "81fe00",
+    text_color: "fefefe",
+    bg_color: "0d0c15",
+  },
   default: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
