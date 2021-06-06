@@ -288,10 +288,16 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
-  transparent: {
+  light_transparent: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
     text_color: "000",
+    bg_color: "00000000",
+  },
+  dark_transparent: {
+    title_color: "2f80ed",
+    icon_color: "4c71f2",
+    text_color: "fffefe",
     bg_color: "00000000",
   },
 };
