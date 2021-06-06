@@ -288,6 +288,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  notshekhar: {
+    title_color: "FFFFFF",
+    icon_color: "ADADAD",
+    text_color: "ADADAD",
+    bg_color: "252526",
+  },
 };
 
 module.exports = themes;
