@@ -291,7 +291,7 @@ const themes = {
   transparent: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
-    text_color: "272727",
+    text_color: "000",
     bg_color: "00000000",
   },
 };
