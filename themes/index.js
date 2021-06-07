@@ -288,6 +288,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  bluegray:{
+    title_color: "45FB06",
+    icon_color: "00E1FF",
+    text_color: "FFFFFF",
+    bg_color: "1A91B5",
+  },
 };
 
 module.exports = themes;
