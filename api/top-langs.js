@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
     locale,
     border_radius,
     border_color,
+    role,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -45,6 +46,7 @@ module.exports = async (req, res) => {
     const topLangs = await fetchTopLanguages(
       username,
       parseArray(exclude_repo),
+      parseArray(role).filter(value => ['OWNER', 'ORGANIZATION_MEMBER', 'COLLABORATOR'].includes(value)),
       parseArray(hide),
     );
 

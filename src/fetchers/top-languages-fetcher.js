@@ -3,13 +3,18 @@ const retryer = require("../common/retryer");
 require("dotenv").config();
 
 const fetcher = (variables, token) => {
+  let ownerAffiliations = ["OWNER"];
+  if (variables.ownerAffiliations.length > 0) {
+    ownerAffiliations = variables.ownerAffiliations;
+  }
+  delete variables.ownerAffiliations;
   return request(
     {
       query: `
       query userInfo($login: String!) {
         user(login: $login) {
           # fetch only owner repos & not forks
-          repositories(ownerAffiliations: [OWNER, ORGANIZATION_MEMBER, COLLABORATOR], isFork: false, first: 100) {
+          repositories(ownerAffiliations: [${ownerAffiliations.join(', ')}], isFork: false, first: 100) {
             nodes {
               name
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
@@ -34,10 +39,10 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchTopLanguages(username, exclude_repo = []) {
+async function fetchTopLanguages(username, exclude_repo = [], ownerAffiliations) {
   if (!username) throw Error("Invalid username");
 
-  const res = await retryer(fetcher, { login: username });
+  const res = await retryer(fetcher, { login: username, ownerAffiliations });
 
   if (res.data.errors) {
     logger.error(res.data.errors);
