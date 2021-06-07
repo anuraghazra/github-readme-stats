@@ -288,6 +288,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  ash_phoenix: {
+    title_color: "DD053B",
+    icon_color: "DD053B",
+    text_color: "F8F8F8",
+    bg_color: "1D252C",
+  },
 };
 
 module.exports = themes;
