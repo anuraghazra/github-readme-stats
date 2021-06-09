@@ -288,6 +288,13 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  charlie_dark: {
+    title_color: "#3282b8",
+    icon_color: "0f4c75",
+    text_color: "bbe1fa",
+    bg_color: "#1B262C"
+  }
+  
 };
 
 module.exports = themes;
