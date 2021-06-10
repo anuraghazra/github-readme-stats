@@ -105,7 +105,12 @@ async function fetchStats(
     rank: { level: "C", score: 0 },
   };
 
-  let res = await retryer(fetcher, { login: username, ownerAffiliations});
+  // Set default value for ownerAffiliations in GraphQL query won't work because
+  // parseArray() will always return an empty array even nothing was specified
+  // and GraphQL would consider that empty arr as a valid value. Nothing will be
+  // queried in that case as no affiliation is presented.
+  ownerAffiliations = ownerAffiliations.length > 0 ? ownerAffiliations : ["OWNER"];
+  let res = await retryer(fetcher, { login: username, ownerAffiliations });
 
   if (res.data.errors) {
     logger.error(res.data.errors);
