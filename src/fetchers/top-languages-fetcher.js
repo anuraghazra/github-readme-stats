@@ -3,18 +3,13 @@ const retryer = require("../common/retryer");
 require("dotenv").config();
 
 const fetcher = (variables, token) => {
-  let ownerAffiliations = ["OWNER"];
-  if (variables.ownerAffiliations.length > 0) {
-    ownerAffiliations = variables.ownerAffiliations;
-  }
-  delete variables.ownerAffiliations;
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!, $ownerAffiliations: [RepositoryAffiliation]) {
         user(login: $login) {
-          # fetch only owner repos & not forks
-          repositories(ownerAffiliations: [${ownerAffiliations.join(', ')}], isFork: false, first: 100) {
+          # do not fetch forks
+          repositories(ownerAffiliations: $ownerAffiliations, isFork: false, first: 100) {
             nodes {
               name
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
