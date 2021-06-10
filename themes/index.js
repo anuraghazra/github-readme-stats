@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  hipster: {
+    title_color: "dfae6d",
+    icon_color: "5b7abf",
+    text_color: "e8e6e6",
+    bg_color: "2c3c54",
+  }
 };
 
 module.exports = themes;
