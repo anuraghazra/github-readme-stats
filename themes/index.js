@@ -294,6 +294,11 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  lords: {
+    title_color: "9C27B0",
+    icon_color: "9C27B0",
+    text_color: "40C4FF",
+    bg_color: "2C2F33",
 };
 
 module.exports = themes;
