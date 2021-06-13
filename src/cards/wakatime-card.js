@@ -154,13 +154,14 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     width = width + 50;
     height = 90 + Math.round(filteredLanguages.length / 2) * 25;
 
+    const totalPercentage = filteredLanguages.reduce((acc, language) => acc + language.percent, 0)
     // progressOffset holds the previous language's width and used to offset the next language
     // so that we can stack them one after another, like this: [--][----][---]
     let progressOffset = 0;
     const compactProgressBar = filteredLanguages
       .map((language) => {
         // const progress = (width * lang.percent) / 100;
-        const progress = ((width - 25) * language.percent) / 100;
+        const progress = ((width - 25) * language.percent) / totalPercentage;
 
         const languageColor = languageColors[language.name] || "#858585";
 
