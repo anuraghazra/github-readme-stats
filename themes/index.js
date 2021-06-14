@@ -48,6 +48,12 @@ const themes = {
     text_color: "38bdae",
     bg_color: "1a1b27",
   },
+  discord: {
+    title_color: "5865f2",
+    icon_color: "57f287",
+    text_color: "ffffff",
+    bg_color: "2c2f33",
+  },
   onedark: {
     title_color: "e4bf7a",
     icon_color: "8eb573",
