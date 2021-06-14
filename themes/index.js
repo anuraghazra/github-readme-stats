@@ -52,7 +52,7 @@ const themes = {
     title_color: "5865f2",
     icon_color: "57f287",
     text_color: "ffffff",
-    bg_color: "2c2f33",
+    bg_color: "23272a",
   },
   onedark: {
     title_color: "e4bf7a",
