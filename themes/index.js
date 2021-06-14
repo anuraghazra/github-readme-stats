@@ -293,7 +293,14 @@ const themes = {
     icon_color: "de265a",
     text_color: "D3B1C2",
     bg_color: "211522",
-  }
+    bg_color: "0D1117",
+  },
+  discord_old_blurple: {
+    title_color: "7289DA",
+    icon_color: "7289DA",
+    text_color: "FFFFFF",
+    bg_color: "2C2F33",
+  },
 };
 
 module.exports = themes;

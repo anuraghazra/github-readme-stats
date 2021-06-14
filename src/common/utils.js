@@ -97,7 +97,7 @@ function request(data, headers) {
  * Auto layout utility, allows us to layout things
  * vertically or horizontally with proper gaping
  */
-function FlexLayout({ items, gap, direction }) {
+function flexLayout({ items, gap, direction }) {
   // filter() for filtering out empty strings
   return items.filter(Boolean).map((item, i) => {
     let transform = `translate(${gap * i}, 0)`;
@@ -120,7 +120,8 @@ function getCardColors({
 }) {
   const defaultTheme = themes[fallbackTheme];
   const selectedTheme = themes[theme] || defaultTheme;
-  const defaultBorderColor = selectedTheme.border_color || defaultTheme.border_color;
+  const defaultBorderColor =
+    selectedTheme.border_color || defaultTheme.border_color;
 
   // get the color provided by the user else the theme color
   // finally if both colors are invalid fallback to default theme
@@ -239,7 +240,7 @@ module.exports = {
   parseArray,
   parseBoolean,
   fallbackColor,
-  FlexLayout,
+  flexLayout,
   getCardColors,
   clampValue,
   wrapTextMultiline,

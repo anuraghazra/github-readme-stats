@@ -1,4 +1,4 @@
-const { request, logger, clampValue } = require("../common/utils");
+const { request, logger } = require("../common/utils");
 const retryer = require("../common/retryer");
 require("dotenv").config();
 
@@ -34,15 +34,8 @@ const fetcher = (variables, token) => {
   );
 };
 
-async function fetchTopLanguages(
-  username,
-  langsCount = 5,
-  exclude_repo = [],
-  hide = [],
-) {
+async function fetchTopLanguages(username, exclude_repo = []) {
   if (!username) throw Error("Invalid username");
-  langsCount = parseInt(langsCount) + hide.length;
-  langsCount = clampValue(langsCount, 1, 10 + hide.length);
 
   const res = await retryer(fetcher, { login: username });
 
@@ -97,7 +90,6 @@ async function fetchTopLanguages(
 
   const topLangs = Object.keys(repoNodes)
     .sort((a, b) => repoNodes[b].size - repoNodes[a].size)
-    .slice(0, langsCount)
     .reduce((result, key) => {
       result[key] = repoNodes[key];
       return result;
