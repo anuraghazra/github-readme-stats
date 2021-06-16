@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  monster_nights: {
+    title_color: "00ff00",
+    icon_color: "ffff00",
+    text_color: "e6e600",
+    bg_color: "008000",
+  },
 };
 
 module.exports = themes;
