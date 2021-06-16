@@ -294,6 +294,13 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  simple_purple: {
+    title_color: "6C63FF",
+    icon_color: "536DFE",
+    text_color: "333",
+    bg_color: "fffefe",
+    border_color: "6C63FF",
+  },
 };
 
 module.exports = themes;
