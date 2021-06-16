@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  discord_girls_power: {
+    title_color:"ff80ff",
+    icon_color:"840084",
+    text_color:"840084",
+    bg_color: "2c2f43",
+  },
 };
 
 module.exports = themes;
