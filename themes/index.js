@@ -295,9 +295,9 @@ const themes = {
     bg_color: "2C2F33",
   },
   hacker: {
-    title_color: "00FF00",
-    icon_color: "00FF00",
-    text_color: "00FF00",
+    title_color: "00EE00",
+    icon_color: "00EE00",
+    text_color: "00EE00",
     bg_color: "000000",
   }
 };
