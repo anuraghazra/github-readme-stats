@@ -1,32 +1,35 @@
 const { encodeHTML } = require("./common/utils");
 
 const statCardLocales = ({ name, apostrophe }) => {
+  const encodedName = encodeHTML(name);
   return {
     "statcard.title": {
-      cn: `${encodeHTML(name)} 的 GitHub 统计数据`,
-      cs: `GitHub statistiky uživatele ${encodeHTML(name)}`,
-      de: `${encodeHTML(name) + apostrophe} GitHub-Statistiken`,
-      en: `${encodeHTML(name)}'${apostrophe} GitHub Stats`,
-      es: `Estadísticas de GitHub de ${encodeHTML(name)}`,
-      fr: `Statistiques GitHub de ${encodeHTML(name)}`,
-      hu: `${encodeHTML(name)} GitHub statisztika`,
-      it: `Statistiche GitHub di ${encodeHTML(name)}`,
-      ja: `${encodeHTML(name)}の GitHub 統計`,
-      kr: `${encodeHTML(name)}의 GitHub 통계`,
-      nl: `${encodeHTML(name)}'${apostrophe} GitHub Statistieken`,
-      "pt-pt": `Estatísticas do GitHub de ${encodeHTML(name)}`,
-      "pt-br": `Estatísticas do GitHub de ${encodeHTML(name)}`,
-      np: `${encodeHTML(name)}'${apostrophe} गिटहब तथ्याङ्क`,
-      el: `Στατιστικά GitHub του ${encodeHTML(name)}`,
-      ru: `Статистика GitHub пользователя ${encodeHTML(name)}`,
-      "uk-ua": `Статистика GitHub користувача ${encodeHTML(name)}`,
-      id: `Statistik GitHub ${encodeHTML(name)}`,
-      my: `Statistik GitHub ${encodeHTML(name)}`,
-      sk: `GitHub štatistiky používateľa ${encodeHTML(name)}`,
-      tr: `${encodeHTML(name)} Hesabının GitHub Yıldızları`,
-      pl: `Statystyki GitHub użytkownika ${encodeHTML(name)}`,
+      ar: `${encodedName} إحصائيات غيت هاب`,
+      cn: `${encodedName} 的 GitHub 统计数据`,
+      cs: `GitHub statistiky uživatele ${encodedName}`,
+      de: `${encodedName + apostrophe} GitHub-Statistiken`,
+      en: `${encodedName}'${apostrophe} GitHub Stats`,
+      es: `Estadísticas de GitHub de ${encodedName}`,
+      fr: `Statistiques GitHub de ${encodedName}`,
+      hu: `${encodedName} GitHub statisztika`,
+      it: `Statistiche GitHub di ${encodedName}`,
+      ja: `${encodedName}の GitHub 統計`,
+      kr: `${encodedName}의 GitHub 통계`,
+      nl: `${encodedName}'${apostrophe} GitHub Statistieken`,
+      "pt-pt": `Estatísticas do GitHub de ${encodedName}`,
+      "pt-br": `Estatísticas do GitHub de ${encodedName}`,
+      np: `${encodedName}'${apostrophe} गिटहब तथ्याङ्क`,
+      el: `Στατιστικά GitHub του ${encodedName}`,
+      ru: `Статистика GitHub пользователя ${encodedName}`,
+      "uk-ua": `Статистика GitHub користувача ${encodedName}`,
+      id: `Statistik GitHub ${encodedName}`,
+      my: `Statistik GitHub ${encodedName}`,
+      sk: `GitHub štatistiky používateľa ${encodedName}`,
+      tr: `${encodedName} Hesabının GitHub Yıldızları`,
+      pl: `Statystyki GitHub użytkownika ${encodedName}`,
     },
     "statcard.totalstars": {
+      ar: "مجموع النجوم",
       cn: "获标星数（star）",
       cs: "Celkem hvězd",
       de: "Sterne Insgesamt",
@@ -51,6 +54,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Liczba Gwiazdek",
     },
     "statcard.commits": {
+      ar: "مجموع الحفظ",
       cn: "累计提交数（commit）",
       cs: "Celkem commitů",
       de: "Anzahl Commits",
@@ -75,6 +79,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie commity",
     },
     "statcard.prs": {
+      ar: "مجموع طلبات السحب",
       cn: "拉取请求数（PR）",
       cs: "Celkem PRs",
       de: "PRs Insgesamt",
@@ -99,6 +104,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie PR",
     },
     "statcard.issues": {
+      ar: "مجموع التحسينات",
       cn: "指出问题数（issue）",
       cs: "Celkem problémů",
       de: "Anzahl Issues",
@@ -123,6 +129,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie problemy",
     },
     "statcard.contribs": {
+      ar: "ساهم في",
       cn: "参与项目数",
       cs: "Přispěl k",
       de: "Beigetragen zu",
@@ -151,6 +158,7 @@ const statCardLocales = ({ name, apostrophe }) => {
 
 const repoCardLocales = {
   "repocard.template": {
+    ar: "قالب",
     cn: "模板",
     cs: "Šablona",
     de: "Vorlage",
@@ -175,6 +183,7 @@ const repoCardLocales = {
     pl: "Szablony",
   },
   "repocard.archived": {
+    ar: "محفوظ",
     cn: "已归档",
     cs: "Archivováno",
     de: "Archiviert",
@@ -202,6 +211,7 @@ const repoCardLocales = {
 
 const langCardLocales = {
   "langcard.title": {
+    ar: "أكثر اللغات إستخداماً",
     cn: "最常用的语言",
     cs: "Nejpoužívanější jazyky",
     de: "Meist verwendete Sprachen",
@@ -229,6 +239,7 @@ const langCardLocales = {
 
 const wakatimeCardLocales = {
   "wakatimecard.title": {
+    ar: "إحصائيات واكا تايم",
     cn: "Wakatime 周统计",
     cs: "Statistiky Wakatime",
     de: "Wakatime Status",
@@ -253,6 +264,7 @@ const wakatimeCardLocales = {
     pl: "statystyki Wakatime",
   },
   "wakatimecard.nocodingactivity": {
+    ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
     cn: "本周没有编程活动",
     cs: "Tento týden žádná aktivita v kódování",
     de: "Keine Aktivitäten in dieser Woche",
