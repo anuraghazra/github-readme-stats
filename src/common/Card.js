@@ -94,7 +94,7 @@ class Card {
   }
 
   renderGradient() {
-    if (typeof this.colors.bgColor !== "object") return;
+    if (typeof this.colors.bgColor !== "object") return '';
 
     const gradients = this.colors.bgColor.slice(1);
     return typeof this.colors.bgColor === "object"
