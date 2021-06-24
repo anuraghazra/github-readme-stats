@@ -61,7 +61,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
           
         </style>
 
-        undefined
+        
 
         <rect
           data-testid=\\"card-bg\\"
@@ -212,7 +212,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
           
         </style>
 
-        undefined
+        
 
         <rect
           data-testid=\\"card-bg\\"
