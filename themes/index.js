@@ -294,6 +294,13 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  youtube_red: {
+    title_color: "282828",
+    icon_color: "ff0000",
+    text_color: "282828",
+    bg_color: "ffffff",
+    border_color: "282828",
+  },
 };
 
 module.exports = themes;
