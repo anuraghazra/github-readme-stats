@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  tokyo_night: {
+    title_color: "0abdc6",
+    icon_color: "fd00ff",
+    text_color: "ff0677",
+    bg_color: "30,711c91,091833",
+  },
 };
 
 module.exports = themes;
