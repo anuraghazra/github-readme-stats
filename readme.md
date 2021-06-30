@@ -374,7 +374,16 @@ Choose from any of the [default themes](#themes)
 
 ### Quick Tip (Align The Repo Cards)
 
-You usually won't be able to layout the images side by side. To do that you can use this approach:
+You usually won't be able to layout the images side by side, but there are several workarounds to accomplish this.
+
+#### Method 1 - this will only work if the width of the cards together don't overfill the maximum width
+
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+</a>
+<a href="https://github.com/anuraghazra/convoychat">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+</a>
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -384,6 +393,52 @@ You usually won't be able to layout the images side by side. To do that you can 
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
+
+#### Method 2 - set the width to slightly below the intended amount (i.e. 49.6% instead of 50%)
+
+<p>
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" width="49.6%" />
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" width="49.6%" /> 
+</p>
+
+```html
+<p>
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" width="49.6%" />
+  <img src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" width="49.6%" /> 
+</p>
+```
+
+#### Method 3 - this adds borders as this is a table
+
+<table>
+  <tr>
+    <td><img src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats"></td>
+    <td><img src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat"></td>
+  </tr>
+</table>
+
+```html
+<table>
+  <tr>
+    <td><img src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats"></td>
+    <td><img src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat"></td>
+  </tr>
+</table>
+```
+
+#### Method 4 - this also adds a header and borders as this is also a table (add &hide_title=true to replace with the table headers)
+
+
+Github | WakaTime
+:-:|:-:
+![](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats) | ![](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat)
+
+```html
+Github | WakaTime
+:-:|:-:
+![](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats) | ![](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat)
+```
+---
 
 ## Deploy on your own Vercel instance
 
