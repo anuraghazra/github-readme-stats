@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  rand_theme: {
+    title_color: "7289FA",
+    icon_color: "7289FA",
+    text_color: "FFFFFF",
+    bg_color: "2C2133",
+  },
 };
 
 module.exports = themes;
