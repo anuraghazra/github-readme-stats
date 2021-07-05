@@ -294,6 +294,13 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+
+react_gray: {
+    title_color: "61dafb",
+    icon_color: "61dafb",
+    text_color: "ffffff",
+    bg_color: "444850",
+  },
 };
 
 module.exports = themes;
