@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  arduino_light: {
+    title_color: "04646C",
+    icon_color: "14A4A4",
+    text_color: "000000",
+    bg_color: "D0FFFF",
+  },
 };
 
 module.exports = themes;
