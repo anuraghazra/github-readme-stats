@@ -13,10 +13,16 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!, $first: Int!, $after: String) {
         user(login: $login) {
           # fetch only owner repos & not forks
-          repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
+          repositories(
+            ownerAffiliations: OWNER, isFork: false, 
+            first: $first, after: $after
+          ) {
+            edges {
+              cursor
+            }
             nodes {
               name
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
@@ -49,14 +55,28 @@ const fetcher = (variables, token) => {
 async function fetchTopLanguages(username, exclude_repo = []) {
   if (!username) throw new MissingParamError(["username"]);
 
-  const res = await retryer(fetcher, { login: username });
+  const page_size = 100;
+  let page_cursor = null;
 
-  if (res.data.errors) {
-    logger.error(res.data.errors);
-    throw Error(res.data.errors[0].message || "Could not fetch user");
+  let repoNodes = [];
+
+  while (true) {
+    const variables = { login: username, first: page_size, after: page_cursor };
+    const res = await retryer(fetcher, variables);
+
+    if (res.data.errors) {
+      logger.error(res.data.errors);
+      throw Error(res.data.errors[0].message || "Could not fetch user");
+    }
+
+    repoNodes = repoNodes.concat(res.data.data.user.repositories.nodes);
+    if (!res.data.data.user.repositories.edges ||
+      res.data.data.user.repositories.edges.length < page_size) {
+      break;
+    }
+    page_cursor = res.data.data.user.repositories.edges[page_size - 1].cursor;
   }
 
-  let repoNodes = res.data.data.user.repositories.nodes;
   let repoToHide = {};
 
   // populate repoToHide map for quick lookup
