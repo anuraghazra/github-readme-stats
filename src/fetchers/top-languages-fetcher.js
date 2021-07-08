@@ -43,13 +43,13 @@ const fetcher = (variables, token) => {
 async function fetchTopLanguages(username, exclude_repo = []) {
   if (!username) throw Error("Invalid username");
 
-  const page_size = 100;
-  let page_cursor = null;
+  const pageSize = 100;
+  let pageCursor = null;
 
   let repoNodes = [];
 
   while (true) {
-    const variables = { login: username, first: page_size, after: page_cursor };
+    const variables = { login: username, first: pageSize, after: pageCursor };
     const res = await retryer(fetcher, variables);
 
     if (res.data.errors) {
@@ -59,10 +59,10 @@ async function fetchTopLanguages(username, exclude_repo = []) {
 
     repoNodes = repoNodes.concat(res.data.data.user.repositories.nodes);
     if (!res.data.data.user.repositories.edges ||
-      res.data.data.user.repositories.edges.length < page_size) {
+      res.data.data.user.repositories.edges.length < pageSize) {
       break;
     }
-    page_cursor = res.data.data.user.repositories.edges[page_size - 1].cursor;
+    pageCursor = res.data.data.user.repositories.edges[pageSize - 1].cursor;
   }
 
   let repoToHide = {};
