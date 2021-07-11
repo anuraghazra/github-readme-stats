@@ -4,6 +4,13 @@ const { langCardLocales } = require("../translations");
 const { createProgressNode } = require("../common/createProgressNode");
 const { clampValue, getCardColors, flexLayout } = require("../common/utils");
 
+const DEFAULT_CARD_WIDTH = 300;
+const DEFAULT_LANGS_COUNT = 5;
+const DEFAULT_LANG_COLOR = "#858585";
+const CARD_PADDING = 25;
+
+const lowercaseTrim = (name) => name.toLowerCase().trim();
+
 const createProgressTextNode = ({ width, color, name, progress }) => {
   const paddingRight = 95;
   const progressTextX = width - paddingRight + 10;
@@ -58,35 +65,99 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
   });
 };
 
-const lowercaseTrim = (name) => name.toLowerCase().trim();
+/**
+ *
+ * @param {any[]} langs
+ * @param {number} width
+ * @param {number} totalLanguageSize
+ * @returns {string}
+ */
+const renderNormalLayout = (langs, width, totalLanguageSize) => {
+  return flexLayout({
+    items: langs.map((lang) => {
+      return createProgressTextNode({
+        width: width,
+        name: lang.name,
+        color: lang.color || DEFAULT_LANG_COLOR,
+        progress: ((lang.size / totalLanguageSize) * 100).toFixed(2),
+      });
+    }),
+    gap: 40,
+    direction: "column",
+  }).join("");
+};
 
-const renderTopLanguages = (topLangs, options = {}) => {
-  const {
-    hide_title,
-    hide_border,
-    card_width,
-    title_color,
-    text_color,
-    bg_color,
-    hide,
-    theme,
-    layout,
-    custom_title,
-    locale,
-    langs_count = 5,
-    border_radius,
-    border_color,
-  } = options;
+/**
+ *
+ * @param {any[]} langs
+ * @param {number} width
+ * @param {number} totalLanguageSize
+ * @returns {string}
+ */
+const renderCompactLayout = (langs, width, totalLanguageSize) => {
+  const paddingRight = 50;
+  const offsetWidth = width - paddingRight;
+  // progressOffset holds the previous language's width and used to offset the next language
+  // so that we can stack them one after another, like this: [--][----][---]
+  let progressOffset = 0;
+  const compactProgressBar = langs
+    .map((lang) => {
+      const percentage = parseFloat(
+        ((lang.size / totalLanguageSize) * offsetWidth).toFixed(2),
+      );
 
-  const i18n = new I18n({
-    locale,
-    translations: langCardLocales,
-  });
+      const progress = percentage < 10 ? percentage + 10 : percentage;
 
+      const output = `
+        <rect
+          mask="url(#rect-mask)"
+          data-testid="lang-progress"
+          x="${progressOffset}"
+          y="0"
+          width="${progress}"
+          height="8"
+          fill="${lang.color || "#858585"}"
+        />
+      `;
+      progressOffset += percentage;
+      return output;
+    })
+    .join("");
+
+  return `
+    <mask id="rect-mask">
+      <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5" />
+    </mask>
+    ${compactProgressBar}
+    ${createLanguageTextNode({
+      x: 0,
+      y: 25,
+      langs,
+      totalSize: totalLanguageSize,
+    }).join("")}
+  `;
+};
+
+/**
+ * @param {number} totalLangs
+ * @returns {number}
+ */
+const calculateCompactLayoutHeight = (totalLangs) => {
+  return 90 + Math.round(totalLangs / 2) * 25;
+};
+
+/**
+ * @param {number} totalLangs
+ * @returns {number}
+ */
+const calculateNormalLayoutHeight = (totalLangs) => {
+  return 45 + (totalLangs + 1) * 40;
+};
+
+const useLanguages = (topLangs, hide, langs_count) => {
   let langs = Object.values(topLangs);
   let langsToHide = {};
-
-  langsCount = clampValue(parseInt(langs_count), 1, 10);
+  let langsCount = clampValue(parseInt(langs_count), 1, 10);
 
   // populate langsToHide map for quick lookup
   // while filtering out
@@ -104,12 +175,55 @@ const renderTopLanguages = (topLangs, options = {}) => {
     })
     .slice(0, langsCount);
 
-  const totalLanguageSize = langs.reduce((acc, curr) => {
-    return acc + curr.size;
-  }, 0);
+  const totalLanguageSize = langs.reduce((acc, curr) => acc + curr.size, 0);
+
+  return { langs, totalLanguageSize };
+};
+
+const renderTopLanguages = (topLangs, options = {}) => {
+  const {
+    hide_title,
+    hide_border,
+    card_width,
+    title_color,
+    text_color,
+    bg_color,
+    hide,
+    theme,
+    layout,
+    custom_title,
+    locale,
+    langs_count = DEFAULT_LANGS_COUNT,
+    border_radius,
+    border_color,
+  } = options;
+
+  const i18n = new I18n({
+    locale,
+    translations: langCardLocales,
+  });
+
+  const { langs, totalLanguageSize } = useLanguages(
+    topLangs,
+    hide,
+    langs_count,
+  );
+
+  let width = isNaN(card_width) ? DEFAULT_CARD_WIDTH : card_width;
+  let height = calculateNormalLayoutHeight(langs.length);
+
+  let finalLayout = "";
+  if (layout === "compact") {
+    width = width + 50; // padding
+    height = calculateCompactLayoutHeight(langs.length);
+
+    finalLayout = renderCompactLayout(langs, width, totalLanguageSize);
+  } else {
+    finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
+  }
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, bgColor, borderColor } = getCardColors({
+  const colors = getCardColors({
     title_color,
     text_color,
     bg_color,
@@ -117,97 +231,24 @@ const renderTopLanguages = (topLangs, options = {}) => {
     theme,
   });
 
-  let width = isNaN(card_width) ? 300 : card_width;
-  let height = 45 + (langs.length + 1) * 40;
-
-  let finalLayout = "";
-
-  // RENDER COMPACT LAYOUT
-  if (layout === "compact") {
-    width = width + 50;
-    height = 90 + Math.round(langs.length / 2) * 25;
-
-    // progressOffset holds the previous language's width and used to offset the next language
-    // so that we can stack them one after another, like this: [--][----][---]
-    let progressOffset = 0;
-    const compactProgressBar = langs
-      .map((lang) => {
-        const percentage = (
-          (lang.size / totalLanguageSize) *
-          (width - 50)
-        ).toFixed(2);
-
-        const progress =
-          percentage < 10 ? parseFloat(percentage) + 10 : percentage;
-
-        const output = `
-          <rect
-            mask="url(#rect-mask)" 
-            data-testid="lang-progress"
-            x="${progressOffset}" 
-            y="0"
-            width="${progress}" 
-            height="8"
-            fill="${lang.color || "#858585"}"
-          />
-        `;
-        progressOffset += parseFloat(percentage);
-        return output;
-      })
-      .join("");
-
-    finalLayout = `
-      <mask id="rect-mask">
-        <rect x="0" y="0" width="${
-          width - 50
-        }" height="8" fill="white" rx="5" />
-      </mask>
-      ${compactProgressBar}
-      ${createLanguageTextNode({
-        x: 0,
-        y: 25,
-        langs,
-        totalSize: totalLanguageSize,
-      }).join("")}
-    `;
-  } else {
-    finalLayout = flexLayout({
-      items: langs.map((lang) => {
-        return createProgressTextNode({
-          width: width,
-          name: lang.name,
-          color: lang.color || "#858585",
-          progress: ((lang.size / totalLanguageSize) * 100).toFixed(2),
-        });
-      }),
-      gap: 40,
-      direction: "column",
-    }).join("");
-  }
-
   const card = new Card({
     customTitle: custom_title,
     defaultTitle: i18n.t("langcard.title"),
     width,
     height,
     border_radius,
-    colors: {
-      titleColor,
-      textColor,
-      bgColor,
-      borderColor,
-    },
+    colors,
   });
 
   card.disableAnimations();
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
-  card.setCSS(`
-    .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
-  `);
+  card.setCSS(
+    `.lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.textColor} }`,
+  );
 
   return card.render(`
-    <svg data-testid="lang-items" x="25">
+    <svg data-testid="lang-items" x="${CARD_PADDING}">
       ${finalLayout}
     </svg>
   `);
