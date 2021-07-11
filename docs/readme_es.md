@@ -192,6 +192,7 @@ Puedes pasar mútliples valores separados por coma en la opción `bg_color` para
 - `hide_progress` - Oculta la barra de progreso y el porcentaje _(booleano)_
 - `custom_title` - Establece un título personalizado
 - `layout` - Cambia entre los dos diseños disponibles `default` & `compact`
+- `langs_count` - Limita el número de idiomas que aparecen en el mapa
 - `api_domain` - Establece un dominio de API personalizado para la tarjeta
 
 ---
