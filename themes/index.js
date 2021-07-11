@@ -24,6 +24,12 @@ const themes = {
     text_color: "a9fef7",
     bg_color: "141321",
   },
+  "city-lights": {
+    title_color: "5D8CB3",
+    icon_color: "4798FF",
+    text_color: "718CA1",
+    bg_color: "1D252C",
+  },
   merko: {
     title_color: "abd200",
     icon_color: "b7d364",
@@ -275,12 +281,6 @@ const themes = {
     icon_color: "FFFFFF",
     text_color: "92D534",
     bg_color: "151A28",
-  },
-  city_lights: {
-    title_color: "5D8CB3",
-    icon_color: "4798FF",
-    text_color: "718CA1",
-    bg_color: "1D252C",
   },
   github_dark: {
     title_color: "58A6FF",
