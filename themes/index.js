@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  tokyoblend: {
+    title_color: "70a5fd",
+    icon_color: "bf91f3",
+    text_color: "38bdae",
+    bg_color: "0d1117",
+  },
 };
 
 module.exports = themes;
