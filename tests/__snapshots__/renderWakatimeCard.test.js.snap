@@ -61,7 +61,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
           
         </style>
 
-        undefined
+        
 
         <rect
           data-testid=\\"card-bg\\"
@@ -69,7 +69,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
           y=\\"0.5\\"
           rx=\\"4.5\\"
           height=\\"99%\\"
-          stroke=\\"#E4E2E2\\"
+          stroke=\\"#e4e2e2\\"
           width=\\"494\\"
           fill=\\"#fffefe\\"
           stroke-opacity=\\"1\\"
@@ -155,8 +155,8 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
 "
       <svg
         width=\\"495\\"
-        height=\\"140\\"
-        viewBox=\\"0 0 495 140\\"
+        height=\\"115\\"
+        viewBox=\\"0 0 495 115\\"
         fill=\\"none\\"
         xmlns=\\"http://www.w3.org/2000/svg\\"
       >
@@ -212,7 +212,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
           
         </style>
 
-        undefined
+        
 
         <rect
           data-testid=\\"card-bg\\"
@@ -220,7 +220,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
           y=\\"0.5\\"
           rx=\\"4.5\\"
           height=\\"99%\\"
-          stroke=\\"#E4E2E2\\"
+          stroke=\\"#e4e2e2\\"
           width=\\"494\\"
           fill=\\"#fffefe\\"
           stroke-opacity=\\"1\\"
@@ -273,16 +273,6 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
             fill=\\"#2b7489\\"
           />
         
-          <rect
-            mask=\\"url(#rect-mask)\\"
-            data-testid=\\"lang-progress\\"
-            x=\\"7.1145\\"
-            y=\\"0\\"
-            width=\\"0.32550000000000007\\"
-            height=\\"8\\"
-            fill=\\"#cb171e\\"
-          />
-        
       
     <g transform=\\"translate(25, 25)\\">
       <circle cx=\\"5\\" cy=\\"6\\" r=\\"5\\" fill=\\"#858585\\" />
@@ -295,13 +285,6 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
       <circle cx=\\"5\\" cy=\\"6\\" r=\\"5\\" fill=\\"#2b7489\\" />
       <text data-testid=\\"lang-name\\" x=\\"15\\" y=\\"10\\" class='lang-name'>
         TypeScript - 1 min
-      </text>
-    </g>
-  
-    <g transform=\\"translate(25, 50)\\">
-      <circle cx=\\"5\\" cy=\\"6\\" r=\\"5\\" fill=\\"#cb171e\\" />
-      <text data-testid=\\"lang-name\\" x=\\"15\\" y=\\"10\\" class='lang-name'>
-        YAML - 0 secs
       </text>
     </g>
   
