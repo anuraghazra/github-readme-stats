@@ -1,19 +1,5 @@
-// https://stackoverflow.com/a/5263759/10629172
-function normalcdf(mean, sigma, to) {
-  var z = (to - mean) / Math.sqrt(2 * sigma * sigma);
-  var t = 1 / (1 + 0.3275911 * Math.abs(z));
-  var a1 = 0.254829592;
-  var a2 = -0.284496736;
-  var a3 = 1.421413741;
-  var a4 = -1.453152027;
-  var a5 = 1.061405429;
-  var erf =
-    1 - ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t * Math.exp(-z * z);
-  var sign = 1;
-  if (z < 0) {
-    sign = -1;
-  }
-  return (1 / 2) * (1 + sign * erf);
+function expsf(x, lambda=1.) {
+  return Math.exp(-lambda * x);
 }
 
 function calculateRank({
@@ -25,69 +11,50 @@ function calculateRank({
   issues,
   stargazers,
 }) {
-  const COMMITS_OFFSET = 1.65;
-  const CONTRIBS_OFFSET = 1.65;
-  const ISSUES_OFFSET = 1;
-  const STARS_OFFSET = 0.75;
-  const PRS_OFFSET = 0.5;
-  const FOLLOWERS_OFFSET = 0.45;
-  const REPO_OFFSET = 1;
+  const REPOS_MEAN = 10, REPOS_WEIGHT = 0.125;
+  const CONTRIBS_MEAN = 1000, CONTRIBS_WEIGHT = 0.125;
+  const FOLLOWERS_MEAN = 50, FOLLOWERS_WEIGHT = 0.5;
+  const PRS_ISSUES_MEAN = 50, PRS_ISSUES_WEIGHT = 0.25;
+  const STARS_MEAN = 100, STARS_WEIGHT = 1.0;
 
-  const ALL_OFFSETS =
-    CONTRIBS_OFFSET +
-    ISSUES_OFFSET +
-    STARS_OFFSET +
-    PRS_OFFSET +
-    FOLLOWERS_OFFSET +
-    REPO_OFFSET;
+  const TOTAL_WEIGHT = (
+    REPOS_WEIGHT +
+    CONTRIBS_WEIGHT +
+    FOLLOWERS_WEIGHT +
+    PRS_ISSUES_WEIGHT +
+    STARS_WEIGHT
+  );
 
-  const RANK_S_VALUE = 1;
-  const RANK_DOUBLE_A_VALUE = 25;
-  const RANK_A2_VALUE = 45;
-  const RANK_A3_VALUE = 60;
-  const RANK_B_VALUE = 100;
+  const rank = (
+    REPOS_WEIGHT * expsf(totalRepos / REPOS_MEAN) +
+    CONTRIBS_WEIGHT * expsf(contributions / CONTRIBS_MEAN) +
+    FOLLOWERS_WEIGHT * expsf(followers / FOLLOWERS_MEAN) +
+    PRS_ISSUES_WEIGHT * expsf((prs + issues) / PRS_ISSUES_MEAN) +
+    STARS_WEIGHT * expsf(stargazers / STARS_MEAN)
+  ) / TOTAL_WEIGHT;
 
-  const TOTAL_VALUES =
-    RANK_S_VALUE + RANK_A2_VALUE + RANK_A3_VALUE + RANK_B_VALUE;
-
-  // prettier-ignore
-  const score = (
-    totalCommits * COMMITS_OFFSET +
-    contributions * CONTRIBS_OFFSET +
-    issues * ISSUES_OFFSET +
-    stargazers * STARS_OFFSET +
-    prs * PRS_OFFSET +
-    followers * FOLLOWERS_OFFSET + 
-    totalRepos * REPO_OFFSET 
-  ) / 100;
-
-  const normalizedScore = normalcdf(score, TOTAL_VALUES, ALL_OFFSETS) * 100;
+  const RANK_S_PLUS = 0.01;
+  const RANK_S = 0.1;
+  const RANK_A_PLUS = 0.25;
+  const RANK_A = 0.50;
+  const RANK_B_PLUS = 0.75;
 
   let level = "";
 
-  if (normalizedScore < RANK_S_VALUE) {
+  if (rank < RANK_S_PLUS)
     level = "S+";
-  }
-  if (
-    normalizedScore >= RANK_S_VALUE &&
-    normalizedScore < RANK_DOUBLE_A_VALUE
-  ) {
+  else if (rank < RANK_S)
     level = "S";
-  }
-  if (
-    normalizedScore >= RANK_DOUBLE_A_VALUE &&
-    normalizedScore < RANK_A2_VALUE
-  ) {
-    level = "A++";
-  }
-  if (normalizedScore >= RANK_A2_VALUE && normalizedScore < RANK_A3_VALUE) {
+  else if (rank < RANK_A_PLUS)
     level = "A+";
-  }
-  if (normalizedScore >= RANK_A3_VALUE && normalizedScore < RANK_B_VALUE) {
+  else if (rank < RANK_A)
+    level = "A";
+  else if (rank < RANK_B_PLUS)
     level = "B+";
-  }
+  else
+    level = "B";
 
-  return { level, score: normalizedScore };
+  return {level, score: rank * 100};
 }
 
 module.exports = calculateRank;
