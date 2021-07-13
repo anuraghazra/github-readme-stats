@@ -12,25 +12,25 @@ function calculateRank({
   stargazers,
 }) {
   const REPOS_MEAN = 10, REPOS_WEIGHT = 0.125;
-  const CONTRIBS_MEAN = 1000, CONTRIBS_WEIGHT = 0.125;
+  const COMMITS_MEAN = 1000, COMMITS_WEIGHT = 0.125;
   const FOLLOWERS_MEAN = 50, FOLLOWERS_WEIGHT = 0.5;
   const PRS_ISSUES_MEAN = 50, PRS_ISSUES_WEIGHT = 0.25;
   const STARS_MEAN = 100, STARS_WEIGHT = 1.0;
 
   const TOTAL_WEIGHT = (
     REPOS_WEIGHT +
-    CONTRIBS_WEIGHT +
+    COMMITS_WEIGHT +
     FOLLOWERS_WEIGHT +
     PRS_ISSUES_WEIGHT +
     STARS_WEIGHT
   );
 
   const rank = (
-    REPOS_WEIGHT * expsf(totalRepos / REPOS_MEAN) +
-    CONTRIBS_WEIGHT * expsf(contributions / CONTRIBS_MEAN) +
-    FOLLOWERS_WEIGHT * expsf(followers / FOLLOWERS_MEAN) +
-    PRS_ISSUES_WEIGHT * expsf((prs + issues) / PRS_ISSUES_MEAN) +
-    STARS_WEIGHT * expsf(stargazers / STARS_MEAN)
+    REPOS_WEIGHT * expsf(totalRepos, 1 / REPOS_MEAN) +
+    COMMITS_WEIGHT * expsf(totalCommits, 1 / COMMITS_MEAN) +
+    FOLLOWERS_WEIGHT * expsf(followers, 1 / FOLLOWERS_MEAN) +
+    PRS_ISSUES_WEIGHT * expsf(prs + issues, 1 / PRS_ISSUES_MEAN) +
+    STARS_WEIGHT * expsf(stargazers, 1 / STARS_MEAN)
   ) / TOTAL_WEIGHT;
 
   const RANK_S_PLUS = 0.01;
