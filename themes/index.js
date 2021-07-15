@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  cocoa: {
+    title_color: "211476",
+    icon_color: "7009889",
+    text_color: "FFFFFF",
+    bg_color: "2C2F33",
+  },
 };
 
 module.exports = themes;
