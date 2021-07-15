@@ -294,6 +294,13 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  "holi-theme": {
+    title_color: "5fabee",
+    icon_color: "85a4c0",
+    text_color: "d6e7ff",
+    bg_color: "030314",
+    border_color: "2a4555",
+  },
 };
 
 module.exports = themes;
