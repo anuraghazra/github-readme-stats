@@ -297,7 +297,7 @@ const themes = {
   atom_one_dark: {
     title_color: '61afef',
     icon_color: '98c379',
-    text_color: 'f9fafa',
+    text_color: 'e3e5e8',
     bg_color: '282c34',
 };
 
