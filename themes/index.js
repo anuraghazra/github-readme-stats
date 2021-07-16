@@ -299,6 +299,7 @@ const themes = {
     icon_color: '98c379',
     text_color: 'e3e5e8',
     bg_color: '282c34',
+  }
 };
 
 module.exports = themes;
