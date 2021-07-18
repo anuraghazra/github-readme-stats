@@ -20,20 +20,20 @@ describe("Test calculateRank", () => {
     expect(
       calculateRank({
         totalRepos: 10,
-        totalCommits: 1000,
-        contributions: 1000,
+        totalCommits: 500,
+        contributions: 500,
         followers: 50,
-        prs: 25,
-        issues: 25,
+        prs: 12,
+        issues: 13,
         stargazers: 100,
       }),
-    ).toStrictEqual({"A", score: 36.787944117144235});
+    ).toStrictEqual({"A", score: 50.});
   });
 
-  it("Linus Torvalds gets S rank", () => {
+  it("Linus Torvalds gets S+ rank", () => {
     expect(
       calculateRank({
-        totalRepos: 4, // few repos
+        totalRepos: 4,
         totalCommits: 20000,
         contributions: 20000,
         followers: 132000,
@@ -41,6 +41,6 @@ describe("Test calculateRank", () => {
         issues: 2,
         stargazers: 109100,
       }),
-    ).toStrictEqual({ level: "S", score: 7.092453734726941});
+    ).toStrictEqual({level: "S+", score: 1.8875322153011722});
   });
 });
