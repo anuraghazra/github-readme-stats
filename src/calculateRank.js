@@ -12,13 +12,13 @@ function calculateRank({
   stargazers,
 }) {
   // value of statistics should be equal to 1 / <average number per user> (see https://en.wikipedia.org/wiki/Exponential_distribution#Mean,_variance,_moments_and_median)
-  const COMMITS_VALUE = 1 / 10000;
-  const CONTRIBS_VALUE = 1 / 1000;
-  const ISSUES_VALUE = 1 / 100;
-  const STARS_VALUE = 1 / 400;
-  const PRS_VALUE = 1 / 300;
-  const FOLLOWERS_VALUE = 1 / 100;
-  const REPO_VALUE = 1 / 20;
+  const COMMITS_LAMBDA = 1 / 10000;
+  const CONTRIBS_LAMBDA = 1 / 1000;
+  const ISSUES_LAMBDA = 1 / 100;
+  const STARS_LAMBDA = 1 / 400;
+  const PRS_LAMBDA = 1 / 300;
+  const FOLLOWERS_LAMBDA = 1 / 100;
+  const REPO_LAMBDA = 1 / 20;
 
   const RANK_S_VALUE = 1;
   const RANK_DOUBLE_A_VALUE = 25;
@@ -27,13 +27,13 @@ function calculateRank({
   const RANK_B_VALUE = 100;
 
   const normalizedScore = 700 / (
-      1 / expsf(COMMITS_VALUE, totalCommits) +
-      1 / expsf(CONTRIBS_VALUE, contributions) +
-      1 / expsf(ISSUES_VALUE, issues) +
-      1 / expsf(STARS_VALUE, stargazers) +
-      1 / expsf(PRS_VALUE, prs) +
-      1 / expsf(FOLLOWERS_VALUE, followers) +
-      1 / expsf(REPO_VALUE, totalRepos))
+      1 / expsf(COMMITS_LAMBDA, totalCommits) +
+      1 / expsf(CONTRIBS_LAMBDA, contributions) +
+      1 / expsf(ISSUES_LAMBDA, issues) +
+      1 / expsf(STARS_LAMBDA, stargazers) +
+      1 / expsf(PRS_LAMBDA, prs) +
+      1 / expsf(FOLLOWERS_LAMBDA, followers) +
+      1 / expsf(REPO_LAMBDA, totalRepos))
 
   let level = "";
 
