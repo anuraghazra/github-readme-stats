@@ -85,10 +85,21 @@ const createTextNode = ({
 };
 
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  const { languages } = stats;
+  const { languages, editors } = stats;
+
+  if (options.show_editors) {
+    return renderUnitCard(editors, options);
+  } else {
+    return renderUnitCard(languages, options);
+  }
+};
+
+function renderUnitCard(unit, options) {
+
   const {
     hide_title = false,
     hide_border = false,
+    show_editors = false,
     line_height = 25,
     title_color,
     icon_color,
@@ -99,7 +110,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     custom_title,
     locale,
     layout,
-    langs_count = languages ? languages.length : 0,
+    langs_count = unit ? unit.length : 0,
     border_radius,
     border_color,
   } = options;
@@ -129,15 +140,15 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     theme,
   });
 
-  const filteredLanguages = languages
-    ? languages
-      .filter((language) => language.hours || language.minutes)
+  const filteredUnits = unit
+    ? unit
+      .filter((unit) => unit.hours || unit.minutes)
       .slice(0, langsCount)
     : [];
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  let height = Math.max(45 + (filteredLanguages.length + 1) * lheight, 150);
+  let height = Math.max(45 + (filteredUnits.length + 1) * lheight, 150);
 
   const cssStyles = getStyles({
     titleColor,
@@ -152,17 +163,17 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
     width = width + 50;
-    height = 90 + Math.round(filteredLanguages.length / 2) * 25;
+    height = 90 + Math.round(filteredUnits.length / 2) * 25;
 
-    // progressOffset holds the previous language's width and used to offset the next language
+    // progressOffset holds the previous unit's width and used to offset the next unit
     // so that we can stack them one after another, like this: [--][----][---]
     let progressOffset = 0;
-    const compactProgressBar = filteredLanguages
-      .map((language) => {
+    const compactProgressBar = filteredUnits
+      .map((unit) => {
         // const progress = (width * lang.percent) / 100;
-        const progress = ((width - 25) * language.percent) / 100;
+        const progress = ((width - 25) * unit.percent) / 100;
 
-        const languageColor = languageColors[language.name] || "#858585";
+        const unitColor = languageColors[unit.name] || "#858585";
 
         const output = `
           <rect
@@ -172,7 +183,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
             y="0"
             width="${progress}"
             height="8"
-            fill="${languageColor}"
+            fill="${unitColor}"
           />
         `;
         progressOffset += progress;
@@ -188,20 +199,20 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       ${createLanguageTextNode({
       x: 0,
       y: 25,
-      langs: filteredLanguages,
+      langs: filteredUnits,
       totalSize: 100,
     }).join("")}
     `;
   } else {
     finalLayout = flexLayout({
-      items: filteredLanguages.length
-        ? filteredLanguages
-          .map((language) => {
+      items: filteredUnits.length
+        ? filteredUnits
+          .map((unit) => {
             return createTextNode({
-              id: language.name,
-              label: language.name,
-              value: language.text,
-              percent: language.percent,
+              id: unit.name,
+              label: unit.name,
+              value: unit.text,
+              percent: unit.percent,
               progressBarColor: titleColor,
               progressBarBackgroundColor: textColor,
               hideProgress: hide_progress,
@@ -247,7 +258,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       ${finalLayout}
     </svg>
   `);
-};
+}
 
 module.exports = renderWakatimeCard;
 exports.createProgressNode = createProgressNode;
