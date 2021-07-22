@@ -27,6 +27,7 @@ export default async (req, res) => {
     cache_seconds,
     layout,
     langs_count,
+    count_private,
     exclude_repo,
     custom_title,
     locale,
@@ -47,6 +48,7 @@ export default async (req, res) => {
     const topLangs = await fetchTopLanguages(
       username,
       parseArray(exclude_repo),
+      parseBoolean(count_private),
     );
 
     const cacheSeconds = clampValue(
