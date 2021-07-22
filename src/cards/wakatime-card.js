@@ -88,14 +88,13 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const { languages, editors } = stats;
 
   if (options.show_editors) {
-    return renderUnitCard(editors, options);
+    return renderItemCard(editors, options);
   } else {
-    return renderUnitCard(languages, options);
+    return renderItemCard(languages, options);
   }
 };
 
-function renderUnitCard(unit, options) {
-
+function renderItemCard(item, options) {
   const {
     hide_title = false,
     hide_border = false,
@@ -110,7 +109,7 @@ function renderUnitCard(unit, options) {
     custom_title,
     locale,
     layout,
-    langs_count = unit ? unit.length : 0,
+    langs_count = item ? item.length : 0,
     border_radius,
     border_color,
   } = options;
@@ -140,15 +139,15 @@ function renderUnitCard(unit, options) {
     theme,
   });
 
-  const filteredUnits = unit
-    ? unit
-      .filter((unit) => unit.hours || unit.minutes)
+  const filteredItems = item
+    ? item
+      .filter((item) => item.hours || item.minutes)
       .slice(0, langsCount)
     : [];
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  let height = Math.max(45 + (filteredUnits.length + 1) * lheight, 150);
+  let height = Math.max(45 + (filteredItems.length + 1) * lheight, 150);
 
   const cssStyles = getStyles({
     titleColor,
@@ -163,17 +162,17 @@ function renderUnitCard(unit, options) {
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
     width = width + 50;
-    height = 90 + Math.round(filteredUnits.length / 2) * 25;
+    height = 90 + Math.round(filteredItems.length / 2) * 25;
 
-    // progressOffset holds the previous unit's width and used to offset the next unit
+    // progressOffset holds the previous item's width and used to offset the next item
     // so that we can stack them one after another, like this: [--][----][---]
     let progressOffset = 0;
-    const compactProgressBar = filteredUnits
-      .map((unit) => {
+    const compactProgressBar = filteredItems
+      .map((item) => {
         // const progress = (width * lang.percent) / 100;
-        const progress = ((width - 25) * unit.percent) / 100;
+        const progress = ((width - 25) * item.percent) / 100;
 
-        const unitColor = languageColors[unit.name] || "#858585";
+        const itemColor = languageColors[item.name] || "#858585";
 
         const output = `
           <rect
@@ -183,7 +182,7 @@ function renderUnitCard(unit, options) {
             y="0"
             width="${progress}"
             height="8"
-            fill="${unitColor}"
+            fill="${itemColor}"
           />
         `;
         progressOffset += progress;
@@ -199,20 +198,20 @@ function renderUnitCard(unit, options) {
       ${createLanguageTextNode({
       x: 0,
       y: 25,
-      langs: filteredUnits,
+      langs: filteredItems,
       totalSize: 100,
     }).join("")}
     `;
   } else {
     finalLayout = flexLayout({
-      items: filteredUnits.length
-        ? filteredUnits
-          .map((unit) => {
+      items: filteredItems.length
+        ? filteredItems
+          .map((item) => {
             return createTextNode({
-              id: unit.name,
-              label: unit.name,
-              value: unit.text,
-              percent: unit.percent,
+              id: item.name,
+              label: item.name,
+              value: item.text,
+              percent: item.percent,
               progressBarColor: titleColor,
               progressBarBackgroundColor: textColor,
               hideProgress: hide_progress,
