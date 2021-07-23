@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
   }
 
   if (locale && !isLocaleAvailable(locale)) {
-    return res.send(renderError("Something went wrong", "Language not found"));
+    return res.send(renderError("Something went wrong", "Locale not found"));
   }
 
   try {
