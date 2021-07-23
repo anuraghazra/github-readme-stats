@@ -85,10 +85,14 @@ const createTextNode = ({
 };
 
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  const { languages, editors } = stats;
-
-  if (options.graph === 'editor') {
+  const { languages, editors, categories, operating_systems } = stats;
+  
+  if (options.graph === "editor") {
     return renderItemCard(editors, options);
+  } else if (options.graph === "category") {
+    return renderItemCard(categories, options);
+  } else if (options.graph === "os") {
+    return renderItemCard(operating_systems, options);
   } else {
     return renderItemCard(languages, options);
   }
