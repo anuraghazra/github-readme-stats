@@ -220,7 +220,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `langs_count` - Limit number of languages on the card, defaults to all reported langauges
 - `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
 - `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for list of available options.
-
+- `graph` - Display different graphs by specifying `editor`, `category` or `os`
 ---
 
 # GitHub Extra Pins
@@ -374,7 +374,9 @@ Choose from any of the [default themes](#themes)
 - Wakatime card
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
-
+[![willianrod's wakatime_editor stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&graph=editor)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's wakatime_editor stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&graph=category)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's wakatime_editor stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&graph=os)](https://github.com/anuraghazra/github-readme-stats)
 ---
 
 ### Quick Tip (Align The Repo Cards)
