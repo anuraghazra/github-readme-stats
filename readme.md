@@ -375,8 +375,8 @@ Choose from any of the [default themes](#themes)
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 [![willianrod's wakatime_editor stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&graph=editor)](https://github.com/anuraghazra/github-readme-stats)
-[![willianrod's wakatime_editor stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&graph=category)](https://github.com/anuraghazra/github-readme-stats)
-[![willianrod's wakatime_editor stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&graph=os)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's wakatime_category stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&graph=category)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's wakatime_os stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&graph=os)](https://github.com/anuraghazra/github-readme-stats)
 ---
 
 ### Quick Tip (Align The Repo Cards)
