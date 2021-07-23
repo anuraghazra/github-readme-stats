@@ -87,7 +87,7 @@ const createTextNode = ({
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const { languages, editors } = stats;
 
-  if (options.show_editors) {
+  if (options.graph === 'editor') {
     return renderItemCard(editors, options);
   } else {
     return renderItemCard(languages, options);
@@ -98,7 +98,6 @@ function renderItemCard(item, options) {
   const {
     hide_title = false,
     hide_border = false,
-    show_editors = false,
     line_height = 25,
     title_color,
     icon_color,
