@@ -1,6 +1,5 @@
 require("@testing-library/jest-dom");
 const cssToObject = require("css-to-object");
-const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 const renderTopLanguages = require("../src/cards/top-languages-card");
 
 const { queryByTestId, queryAllByTestId } = require("@testing-library/dom");
@@ -233,7 +232,7 @@ describe("Test renderTopLanguages", () => {
   });
 
   it("should render langs with specified langs_count", async () => {
-    options = {
+    let options = {
       langs_count: 1,
     };
     document.body.innerHTML = renderTopLanguages(langs, { ...options });
@@ -243,7 +242,7 @@ describe("Test renderTopLanguages", () => {
   });
 
   it("should render langs with specified langs_count even when hide is set", async () => {
-    options = {
+    let options = {
       hide: ["HTML"],
       langs_count: 2,
     };
