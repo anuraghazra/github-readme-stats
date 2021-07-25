@@ -137,19 +137,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
   };
 
-  const longLocales = [
-    "cn",
-    "es",
-    "fr",
-    "pt-br",
-    "ru",
-    "uk-ua",
-    "id",
-    "my",
-    "pl",
-  ];
-  const isLongLocale = longLocales.includes(locale) === true;
-
   // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
@@ -159,8 +146,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         ...STATS[key],
         index,
         showIcons: show_icons,
-        shiftValuePos:
-          (!include_all_commits ? 50 : 20) + (isLongLocale ? 50 : 0),
+        shiftValuePos: 100,
       }),
     );
 
