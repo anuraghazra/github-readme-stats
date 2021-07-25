@@ -229,27 +229,27 @@ describe("Test renderStatsCard", () => {
     );
     expect(
       document.querySelector(
-        "g[transform=\"translate(0, 0)\"]>.stagger>.stat.bold",
+        'g[transform="translate(0, 0)"]>.stagger>.stat.bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"获标星数（star）:"`);
     expect(
       document.querySelector(
-        "g[transform=\"translate(0, 25)\"]>.stagger>.stat.bold",
+        'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"累计提交数（commit） (2021):"`);
     expect(
       document.querySelector(
-        "g[transform=\"translate(0, 50)\"]>.stagger>.stat.bold",
+        'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"拉取请求数（PR）:"`);
     expect(
       document.querySelector(
-        "g[transform=\"translate(0, 75)\"]>.stagger>.stat.bold",
+        'g[transform="translate(0, 75)"]>.stagger>.stat.bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"指出问题数（issue）:"`);
     expect(
       document.querySelector(
-        "g[transform=\"translate(0, 100)\"]>.stagger>.stat.bold",
+        'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"参与项目数:"`);
   });
