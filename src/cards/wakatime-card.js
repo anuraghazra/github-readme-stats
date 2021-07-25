@@ -89,6 +89,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const {
     hide_title = false,
     hide_border = false,
+    hide,
     line_height = 25,
     title_color,
     icon_color,
@@ -99,10 +100,26 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     custom_title,
     locale,
     layout,
-    langs_count = languages ? languages.length : 0,
     border_radius,
     border_color,
   } = options;
+
+  let lowercase_hide = {}
+  if(hide){
+    lowercase_hide = hide.map(function(lang) {
+      return lang.toLowerCase().trim();
+    });
+
+    for (let i = languages.length - 1; i >= 0; i--) {
+      if (lowercase_hide.includes(languages[i].name.toLowerCase().trim())) {
+        languages.splice(i, 1);
+      }
+    }
+  }
+
+  // fixme calculate new percentage weight
+  // fixme consider older (query) language count
+  langs_count = languages ? languages.length : 0;
 
   const i18n = new I18n({
     locale,
