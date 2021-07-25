@@ -39,10 +39,8 @@ describe("Test Retryer", () => {
   });
 
   it("retryer should throw error if maximum retries reached", async () => {
-    let res;
-
     try {
-      res = await retryer(fetcherFail, {});
+      await retryer(fetcherFail, {});
     } catch (err) {
       expect(fetcherFail).toBeCalledTimes(8);
       expect(err.message).toBe("Maximum retries exceeded");
