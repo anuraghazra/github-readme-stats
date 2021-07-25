@@ -107,15 +107,10 @@ describe("Test renderStatsCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".stat"];
-    const iconClassStyles = stylesObject[".icon"];
-
-    expect(headerClassStyles.fill).toBe(`#${customColors.title_color}`);
-    expect(statClassStyles.fill).toBe(`#${customColors.text_color}`);
-    expect(iconClassStyles.fill).toBe(`#${customColors.icon_color}`);
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "fill",
+    expectColors(stylesObject,
+      `#${customColors.title_color}`,
+      `#${customColors.text_color}`,
+      `#${customColors.icon_color}`,
       "#252525",
     );
   });
@@ -129,17 +124,11 @@ describe("Test renderStatsCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".stat"];
-    const iconClassStyles = stylesObject[".icon"];
-
-    expect(headerClassStyles.fill).toBe("#5a0");
-    expect(statClassStyles.fill).toBe(`#${themes.radical.text_color}`);
-    expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "fill",
-      `#${themes.radical.bg_color}`,
-    );
+    expectColors(stylesObject,
+      "#5a0",
+      `#${themes.radical.text_color}`,
+      `#${themes.radical.icon_color}`,
+      `#${themes.radical.bg_color}`);
   });
 
   it("should render with all the themes", () => {
@@ -151,17 +140,11 @@ describe("Test renderStatsCard", () => {
       const styleTag = document.querySelector("style");
       const stylesObject = cssToObject(styleTag.innerHTML);
 
-      const headerClassStyles = stylesObject[".header"];
-      const statClassStyles = stylesObject[".stat"];
-      const iconClassStyles = stylesObject[".icon"];
-
-      expect(headerClassStyles.fill).toBe(`#${themes[name].title_color}`);
-      expect(statClassStyles.fill).toBe(`#${themes[name].text_color}`);
-      expect(iconClassStyles.fill).toBe(`#${themes[name].icon_color}`);
-      expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-        "fill",
-        `#${themes[name].bg_color}`,
-      );
+      expectColors(stylesObject,
+        `#${themes[name].title_color}`,
+        `#${themes[name].text_color}`,
+        `#${themes[name].icon_color}`,
+        `#${themes[name].bg_color}`);
     });
   });
 
@@ -175,18 +158,26 @@ describe("Test renderStatsCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
+    expectColors(stylesObject,
+      `#${themes.default.title_color}`,
+      `#${themes.default.text_color}`,
+      `#${themes.radical.icon_color}`,
+      `#${themes.radical.bg_color}`);
+  });
+
+  function expectColors(stylesObject, headerColor, statColor, iconColor, cardColor) {
     const headerClassStyles = stylesObject[".header"];
     const statClassStyles = stylesObject[".stat"];
     const iconClassStyles = stylesObject[".icon"];
 
-    expect(headerClassStyles.fill).toBe(`#${themes.default.title_color}`);
-    expect(statClassStyles.fill).toBe(`#${themes.default.text_color}`);
-    expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
+    expect(headerClassStyles.fill).toBe(headerColor);
+    expect(statClassStyles.fill).toBe(statColor);
+    expect(iconClassStyles.fill).toBe(iconColor);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      `#${themes.radical.bg_color}`,
+      cardColor,
     );
-  });
+  }
 
   it("should render icons correctly", () => {
     document.body.innerHTML = renderStatsCard(stats, {
@@ -238,27 +229,27 @@ describe("Test renderStatsCard", () => {
     );
     expect(
       document.querySelector(
-        'g[transform="translate(0, 0)"]>.stagger>.stat.bold',
+        "g[transform=\"translate(0, 0)\"]>.stagger>.stat.bold",
       ).textContent,
     ).toMatchInlineSnapshot(`"获标星数（star）:"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
+        "g[transform=\"translate(0, 25)\"]>.stagger>.stat.bold",
       ).textContent,
     ).toMatchInlineSnapshot(`"累计提交数（commit） (2021):"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
+        "g[transform=\"translate(0, 50)\"]>.stagger>.stat.bold",
       ).textContent,
     ).toMatchInlineSnapshot(`"拉取请求数（PR）:"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 75)"]>.stagger>.stat.bold',
+        "g[transform=\"translate(0, 75)\"]>.stagger>.stat.bold",
       ).textContent,
     ).toMatchInlineSnapshot(`"指出问题数（issue）:"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
+        "g[transform=\"translate(0, 100)\"]>.stagger>.stat.bold",
       ).textContent,
     ).toMatchInlineSnapshot(`"参与项目数:"`);
   });
