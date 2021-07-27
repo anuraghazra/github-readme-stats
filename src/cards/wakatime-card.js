@@ -94,7 +94,7 @@ const recalculatePercentages = (languages) => {
 };
 
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  const { languages } = stats;
+  let { languages } = stats;
   const {
     hide_title = false,
     hide_border = false,
@@ -114,17 +114,9 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     border_color,
   } = options;
 
-  let lowercase_hide = {};
   if (Array.isArray(hide) && hide.length > 0) {
-    lowercase_hide = hide.map(function(lang) {
-      return lang.toLowerCase().trim();
-    });
-
-    for (let i = languages.length - 1; i >= 0; i--) {
-      if (lowercase_hide.includes(languages[i].name.toLowerCase().trim())) {
-        languages.splice(i, 1);
-      }
-    }
+    const lowercase_hide = new Set(hide.map(lang => lang.trim().toLowerCase()));
+    languages = languages.filter(lang => !lowercase_hide.has(lang.name.trim().toLowerCase()));
     recalculatePercentages(languages);
   }
 
