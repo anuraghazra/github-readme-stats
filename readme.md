@@ -212,6 +212,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 #### Wakatime Card Exclusive Options:
 
+- `hide` - Hide the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
 - `hide_progress` - Hides the progress bar and percentage _(boolean)_
