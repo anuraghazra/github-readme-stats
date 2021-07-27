@@ -84,6 +84,15 @@ const createTextNode = ({
   `;
 };
 
+const recalculatePercentages = (languages) => {
+  let totalSum = 0;
+  languages.forEach(language => totalSum += language.percent);
+  const weight = (100 / totalSum).toFixed(2);
+  languages.forEach(language => {
+    language.percent = (language.percent * weight).toFixed(2)
+  })
+}
+
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const { languages } = stats;
   const {
@@ -105,7 +114,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   } = options;
 
   let lowercase_hide = {}
-  if(hide){
+  if(Array.isArray(hide) && hide.length > 0){
     lowercase_hide = hide.map(function(lang) {
       return lang.toLowerCase().trim();
     });
@@ -115,9 +124,9 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
         languages.splice(i, 1);
       }
     }
+    recalculatePercentages(languages);
   }
 
-  // fixme calculate new percentage weight
   // fixme consider older (query) language count
   langs_count = languages ? languages.length : 0;
 
