@@ -89,9 +89,9 @@ const recalculatePercentages = (languages) => {
   languages.forEach(language => totalSum += language.percent);
   const weight = (100 / totalSum).toFixed(2);
   languages.forEach(language => {
-    language.percent = (language.percent * weight).toFixed(2)
-  })
-}
+    language.percent = (language.percent * weight).toFixed(2);
+  });
+};
 
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const { languages } = stats;
@@ -109,12 +109,13 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     custom_title,
     locale,
     layout,
+    langs_count = languages ? languages.length : 0,
     border_radius,
     border_color,
   } = options;
 
-  let lowercase_hide = {}
-  if(Array.isArray(hide) && hide.length > 0){
+  let lowercase_hide = {};
+  if (Array.isArray(hide) && hide.length > 0) {
     lowercase_hide = hide.map(function(lang) {
       return lang.toLowerCase().trim();
     });
@@ -126,9 +127,6 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     }
     recalculatePercentages(languages);
   }
-
-  // fixme consider older (query) language count
-  langs_count = languages ? languages.length : 0;
 
   const i18n = new I18n({
     locale,
