@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  discord_new_blurple: {
+    title_color: "5865F2",
+    icon_color: "5865F2",
+    text_color: "FFFFFF",
+    bg_color: "2C2F33",
+  },
 };
 
 module.exports = themes;
