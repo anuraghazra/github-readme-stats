@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  london: {
+    title_color: "1E90FF",
+    icon_color: "1E90FF",
+    text_color: "7CFC00",
+    bg_color: "000000",
+  },
 };
 
 module.exports = themes;
