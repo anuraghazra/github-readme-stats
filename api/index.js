@@ -29,7 +29,7 @@ module.exports = async (req, res) => {
     theme,
     cache_seconds,
     custom_title,
-    locale,
+    locate,
     disable_animations,
     border_radius,
     border_color,
