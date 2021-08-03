@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  snake: {
+    title_color: "7fff00",
+    icon_color: "800080",
+    text_color: "FFFFFF",
+    bg_color: "2e3440",
+  }
 };
 
 module.exports = themes;
