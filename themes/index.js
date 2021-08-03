@@ -294,6 +294,11 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
-};
+  "midnight-blue": {
+    title_color: "000dfb",
+    icon_color: "000dfb",
+    text_color: "ffffff",
+    bg_color: "000000",
+  };
 
 module.exports = themes;
