@@ -299,6 +299,7 @@ const themes = {
     icon_color: "9EFFFF",
     text_color: "A5FF90",
     bg_color: "193549",
+    border_color: "717D88",
   },
 };
 
