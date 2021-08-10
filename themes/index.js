@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  discord: {
+    title_color: "FFFFFF",
+    icon_color: "FF73FE",
+    text_color: "7289DA",
+    bg_color: "36393F",
+  },
 };
 
 module.exports = themes;
