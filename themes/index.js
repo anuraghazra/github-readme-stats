@@ -18,6 +18,12 @@ const themes = {
     text_color: "9f9f9f",
     bg_color: "151515",
   },
+  red_dark: {
+    title_color: "fe422e",
+    icon_color: "fe422e",
+    text_color: "ffffff",
+    bg_color: "111111",
+  },
   radical: {
     title_color: "fe428e",
     icon_color: "f8d847",
