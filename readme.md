@@ -118,7 +118,7 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma-s
 
 You can add the count of all your private contributions to the total commits count by using the query parameter `?count_private=true`.
 
-_Note: If you are deploying this project yourself, the private contributions will be counted by default otherwise you need to chose to share your private contribution counts._
+_Note: If you are deploying this project yourself, the private contributions will be counted by default. Otherwise, you need to choose to share your private contribution counts._
 
 > Options: `&count_private=true`
 
