@@ -106,7 +106,7 @@ Thay giá trị của `?username=` bằng tên tài khoản GitHub của bạn.
 _Lưu ý: Các xếp hạng hiện có là S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (tất cả tài khoản).
 Các thông số được tính bằng [hàm phân phối tích lũy](https://vi.wikipedia.org/wiki/H%C3%A0m_ph%C3%A2n_ph%E1%BB%91i_t%C3%ADch_l%C5%A9y)
 sử dụng commits, đóng góp, issues, stars, pull requests, số người theo dõi và các repo mà bạn sở hữu.
-Việc triển khai có thể quan sát tại [src/calculateRank.js](./src/calculateRank.js)_
+Việc triển khai có thể quan sát tại [src/calculateRank.js](../src/calculateRank.js)_
 
 
 ### Ẩn số liệu không mong muốn
@@ -124,7 +124,7 @@ Việc triển khai có thể quan sát tại [src/calculateRank.js](./src/calcu
 Bạn có thể thêm tất cả lượt đóng góp ẩn danh vào tổng lượt commit bằng cách sử dụng tham số `?count_private=true`.
 
 _Lưu ý: Nếu bạn đang tự triển khai dự án đơn lẻ, góng góp ẩn danh sẽ mặc định được tính, 
-còn nếu không thì bạn cần phải chọn chia sẻ để số lượt đóng góp này được tính.
+còn nếu không thì bạn cần phải chọn chia sẻ để số lượt đóng góp này được tính._
 
 > Cài đặt: `&count_private=true`
 
