@@ -80,18 +80,18 @@ Mọi sự giúp đỡ đều được trân quý. :heart:
 
 # Tính năng
 
-- [Thẻ thống kê GitHub](#the-thong-ke-github)
-- [Ghim bổ sung cho GitHub](#ghim-bo-sung-cho-github)
-- [Thẻ top ngôn ngữ](#the-top-ngon-ngu)
-- [Thống kê Wakatime hàng tuần](#thong-ke-wakatime-hang-tuan)
-- [Giao diện](#giao-dien)
-- [Tuỳ biến giao diện](#tuy-bien-giao-dien)
-  - [Cài đặt chung](#cai-dat-chung)
-  - [Cài đặt dành riêng cho Thẻ thống kê](#cai-dat-danh-rieng-cho-the-thong-ke)
-  - [Cài đặt dành riêng cho Thẻ repo](#cai-dat-danh-rieng-cho-the-repo)
-  - [Cài đặt dành riêng cho Thẻ ngôn ngữ](#cai-dat-danh-rieng-cho-the-ngon-ngu)
-  - [Cài đặt dành riêng cho Thẻ Wakatime](#cai-dat-danh-rieng-cho-the-wakatime)
-- [Tự deploy](#tu-deploy)
+- [Thẻ thống kê GitHub](#thẻ-thống-kê-github)
+- [Ghim bổ sung cho GitHub](#ghim-bổ-sung-cho-github)
+- [Thẻ top ngôn ngữ](#thẻ-top-ngôn-ngữ)
+- [Thống kê Wakatime hàng tuần](#thống-kê-wakatime-hàng-tuần)
+- [Giao diện](#giao-diện)
+- [Tuỳ biến giao diện](#tuỳ-biến-giao-diện)
+  - [Cài đặt chung](#cài-đặt-chung)
+  - [Cài đặt dành riêng cho Thẻ thống kê](#cài-đặt-dành-riêng-cho-thẻ-thống-kê)
+  - [Cài đặt dành riêng cho Thẻ repo](#cài-đặt-dành-riêng-cho-thẻ-repo)
+  - [Cài đặt dành riêng cho Thẻ ngôn ngữ](#cài-đặt-dành-riêng-cho-thẻ-ngôn-ngữ)
+  - [Cài đặt dành riêng cho Thẻ Wakatime](#cài-đặt-dành-riêng-cho-thẻ-wakatime)
+- [Triển khai trên app Vercel của bạn](#triển-khai-trên-app-vercel-của-bạn)
 
 # Thẻ thống kê GitHub
 
@@ -123,9 +123,6 @@ Việc triển khai có thể quan sát tại [src/calculateRank.js](./src/calcu
 
 Bạn có thể thêm tất cả lượt đóng góp ẩn danh vào tổng lượt commit bằng cách sử dụng tham số `?count_private=true`.
 
-_Note: If you are deploying this project yourself, the private contributions 
-will be counted by default otherwise you need to chose to share your private contribution counts._
-
 _Lưu ý: Nếu bạn đang tự triển khai dự án đơn lẻ, góng góp ẩn danh sẽ mặc định được tính, 
 còn nếu không thì bạn cần phải chọn chia sẻ để số lượt đóng góp này được tính.
 
@@ -146,7 +143,7 @@ còn nếu không thì bạn cần phải chọn chia sẻ để số lượt đ
 ### Giao diện
 
 Với các giao diện có sẵn, bạn có thể tuỳ biến cách hiển thị 
-của thẻ mà không cần phải làm gì thêm [tuỳ biến thủ công](#tuy-bien-giao-dien). 
+của thẻ mà không cần phải làm gì thêm [tuỳ biến thủ công](#tuỳ-biến-giao-diện). 
 
 Sử dụng tham số `?theme=THEME_NAME` như này:
 
@@ -158,7 +155,7 @@ Sử dụng tham số `?theme=THEME_NAME` như này:
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
-<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-giao-dien_l4ynja.png" alt="GitHub Readme Stats giao-dien" width="600px"/>
+<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stats giao-dien" width="600px"/>
 
 Bạn có thể xem preview của [tất cả giao diện có sẵn](../themes/README.md) hoặc 
 xem [file config giao diện](../themes/index.js) và **bạn cũng có thể tạo giao diện mới** nếu thích :D
@@ -167,7 +164,7 @@ xem [file config giao diện](../themes/index.js) và **bạn cũng có thể t�
 
 Bạn có thể cá nhân hoá hiển thị của `Thẻ thống kê` hoặc `Thẻ repo` với tham số URL.
 
-#### Tuỳ chọn chung:
+#### Cài đặt chung:
 
 - `title_color` - Màu tiêu đề của thẻ _(hex color)_
 - `text_color` - Màu text của thẻ _(hex color)_
@@ -256,7 +253,7 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
-Use [show_owner](#tuy-bien-giao-dien) variable to include the repo's owner username
+Sử dụng biến [show_owner](#tuỳ-biến-giao-diện) để hiển thị tên người sở hữu repo
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -363,7 +360,7 @@ Thay giá trị của `?username=` bằng username trên [Wakatime](https://waka
 
 - Giao diện
 
-Chọn giao diện bất kỳ từ [giao diện mặc định](#giao-dien)
+Chọn giao diện bất kỳ từ [giao diện mặc định](#giao-diện)
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
@@ -448,7 +445,6 @@ Tuy nhiên, nếu bạn đang sử dụng dự án này và cảm thấy hài l�
 
 - Ghi nguồn đầy đủ khi bạn sử dụng github-readme-stats trong readme của bạn, gắn đường dẫn trở lại dự án này :D
 - Gắn sao và chia sẻ dự án :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - You can make one-time donations via PayPal. I'll probably buy a ~~coffee~~ tea. :tea:
 - [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - Bạn có thể quyên góp một lần qua PayPal. 
 Chắc tôi sẽ mua một ly ~~cà phê~~ trà. :tea:
 
@@ -456,7 +452,7 @@ Xin cảm ơn! :heart:
 
 ---
 
-[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 Mọi đóng góp đều được đón nhận! <3
 
