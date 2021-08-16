@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  send_tech: {
+    title_color: "FC784A",
+    icon_color: "F75762",
+    text_color: "EEEEEE",
+    bg_color: "0d0c2d",
+  },
 };
 
 module.exports = themes;
