@@ -228,6 +228,12 @@ const themes = {
     text_color: "ffffff",
     bg_color: "20232a",
   },
+  react_purple: {
+    title_color: "ae61fb",
+    icon_color: "ae61fb",
+    text_color: "ffffff",
+    bg_color: "20232a",
+  },
   jolly: {
     title_color: "ff64da",
     icon_color: "a960ff",
