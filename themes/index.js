@@ -297,7 +297,7 @@ const themes = {
   dark_orange: {
     title_color: "fdfdfd",
     icon_color: "fa8b00",
-    text_color: "fdfdfd",
+    text_color: "919191",
     bg_color: "151515",
   },
 };
