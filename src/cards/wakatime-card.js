@@ -87,7 +87,7 @@ const createTextNode = ({
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   let { languages } = stats;
   let amountOfHours = 0;
-  // TODO: improve this
+  // TODO: improve this..
   languages = languages
     .filter((language) => language.name !== 'Text' && language.name !== 'Other' && language.name !== 'Markdown')
     .slice(0, 8)
