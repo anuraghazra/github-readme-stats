@@ -73,7 +73,7 @@ async function fetchTopLanguages(username, exclude_repo = []) {
       let langSize = prev.size;
 
       // if we already have the language in the accumulator
-      // & the current language name is same as previous name
+      // and the current language name is same as previous name
       // add the size to the language size.
       if (acc[prev.node.name] && prev.node.name === acc[prev.node.name].name) {
         langSize = prev.size + acc[prev.node.name].size;
