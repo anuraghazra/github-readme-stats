@@ -87,8 +87,6 @@ function calculateRank({
     level = "B+";
   }
 
-  level = "A++";
-
   return { level, score: normalizedScore };
 }
 
