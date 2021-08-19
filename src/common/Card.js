@@ -1,10 +1,11 @@
-const { FlexLayout, encodeHTML } = require("../common/utils");
 const { getAnimations } = require("../getStyles");
+const { flexLayout, encodeHTML } = require("../common/utils");
 
 class Card {
   constructor({
     width = 100,
     height = 100,
+    border_radius = 4.5,
     colors = {},
     customTitle,
     defaultTitle = "",
@@ -15,6 +16,8 @@ class Card {
 
     this.hideBorder = false;
     this.hideTitle = false;
+
+    this.border_radius = border_radius;
 
     // returns theme based colors with proper overrides and defaults
     this.colors = colors;
@@ -82,7 +85,7 @@ class Card {
         data-testid="card-title"
         transform="translate(${this.paddingX}, ${this.paddingY})"
       >
-        ${FlexLayout({
+        ${flexLayout({
           items: [this.titlePrefixIcon && prefixIcon, titleText],
           gap: 25,
         }).join("")}
@@ -91,7 +94,7 @@ class Card {
   }
 
   renderGradient() {
-    if (typeof this.colors.bgColor !== "object") return;
+    if (typeof this.colors.bgColor !== "object") return "";
 
     const gradients = this.colors.bgColor.slice(1);
     return typeof this.colors.bgColor === "object"
@@ -142,9 +145,9 @@ class Card {
           data-testid="card-bg"
           x="0.5"
           y="0.5"
-          rx="4.5"
+          rx="${this.border_radius}"
           height="99%"
-          stroke="#E4E2E2"
+          stroke="${this.colors.borderColor}"
           width="${this.width - 1}"
           fill="${
             typeof this.colors.bgColor === "object"

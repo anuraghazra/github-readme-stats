@@ -28,6 +28,8 @@ module.exports = async (req, res) => {
     exclude_repo,
     custom_title,
     locale,
+    border_radius,
+    border_color,
   } = req.query;
   let topLangs;
 
@@ -38,14 +40,14 @@ module.exports = async (req, res) => {
   }
 
   if (locale && !isLocaleAvailable(locale)) {
-    return res.send(renderError("Something went wrong", "Language not found"));
+    return res.send(renderError("Something went wrong", "Locale not found"));
   }
 
   try {
     topLangs = await fetchTopLanguages(
       username,
-      langs_count,
       parseArray(exclude_repo),
+      parseArray(hide),
     );
 
     const cacheSeconds = clampValue(
@@ -68,6 +70,9 @@ module.exports = async (req, res) => {
         bg_color,
         theme,
         layout,
+        langs_count,
+        border_radius,
+        border_color,
         locale: locale ? locale.toLowerCase() : null,
       }),
     );

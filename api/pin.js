@@ -23,6 +23,8 @@ module.exports = async (req, res) => {
     show_owner,
     cache_seconds,
     locale,
+    border_radius,
+    border_color,
   } = req.query;
 
   let repoData;
@@ -63,12 +65,14 @@ module.exports = async (req, res) => {
 
     return res.send(
       renderRepoCard(repoData, {
-        hide_border,
+        hide_border: parseBoolean(hide_border),
         title_color,
         icon_color,
         text_color,
         bg_color,
         theme,
+        border_radius,
+        border_color,
         show_owner: parseBoolean(show_owner),
         locale: locale ? locale.toLowerCase() : null,
       }),

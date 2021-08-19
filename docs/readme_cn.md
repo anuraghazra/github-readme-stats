@@ -51,6 +51,8 @@
     <a href="/docs/readme_kr.md">한국어</a>
     .
     <a href="/docs/readme_nl.md">Nederlands</a>
+    .
+    <a href="/docs/readme_np.md">नेपाली</a>
   </p>
 </p>
 <p align="center">喜欢这个项目？请考虑<a href="https://www.paypal.me/anuraghazra">捐赠</a>来帮助它完善！
@@ -323,7 +325,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 1. 选择 `Import Git Repository`
    ![](https://files.catbox.moe/pqub9q.png)
 1. 选择 root 并将所有内容保持不变，并且只需添加名为 PAT_1 的环境变量（如图所示），其中将包含一个个人访问令牌（PAT），你可以在[这里](https://github.com/settings/tokens/new)轻松创建（保留默认，并且只需要命名下，名字随便）
-   ![](https://files.catbox.moe/caem5b.png)
+   ![](https://files.catbox.moe/0ez4g7.png)
 1. 点击 deploy，这就完成了，查看你的域名就可使用 API 了！
 
 </details>

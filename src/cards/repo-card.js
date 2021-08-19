@@ -3,7 +3,7 @@ const {
   kFormatter,
   encodeHTML,
   getCardColors,
-  FlexLayout,
+  flexLayout,
   wrapTextMultiline,
 } = require("../common/utils");
 const I18n = require("../common/I18n");
@@ -30,6 +30,8 @@ const renderRepoCard = (repo, options = {}) => {
     bg_color,
     show_owner,
     theme = "default_repocard",
+    border_radius,
+    border_color,
     locale,
   } = options;
 
@@ -59,11 +61,18 @@ const renderRepoCard = (repo, options = {}) => {
   });
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, iconColor, bgColor } = getCardColors({
+  const {
+    titleColor,
+    textColor,
+    iconColor,
+    bgColor,
+    borderColor,
+  } = getCardColors({
     title_color,
     icon_color,
     text_color,
     bg_color,
+    border_color,
     theme,
   });
 
@@ -108,7 +117,7 @@ const renderRepoCard = (repo, options = {}) => {
   const svgForks =
     forkCount > 0 && iconWithLabel(icons.fork, totalForks, "forkcount");
 
-  const starAndForkCount = FlexLayout({
+  const starAndForkCount = flexLayout({
     items: [svgStars, svgForks],
     gap: 65,
   }).join("");
@@ -118,11 +127,13 @@ const renderRepoCard = (repo, options = {}) => {
     titlePrefixIcon: icons.contribs,
     width: 400,
     height,
+    border_radius,
     colors: {
       titleColor,
       textColor,
       iconColor,
       bgColor,
+      borderColor,
     },
   });
 

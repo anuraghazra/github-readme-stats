@@ -52,10 +52,28 @@
     .
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
+    <a href="/docs/readme_np.md">नेपाली</a>
+    .
     <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
-<p align="center">Loved the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
+<p align="center">Love the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
+
+
+<p>
+<a href="https://indiafightscorona.giveindia.org">
+<img src="https://d2wvdrxmr8p0wf.cloudfront.net/static/giveindia.svg" alt="Give india logo" width="200" />
+</a>
+
+Are you considering to support the project by donating to me? Please DON'T!!  
+
+Instead, Help India fight 2nd deadly wave of COVID,  
+Thousands of people are dying in India for lack of Oxygen & COVID related necessary infrastructure.  
+
+Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help us fight covid and overcome this crisis.   
+Your small help goes a long way. :heart:
+</p>
+
 
 # Features
 
@@ -65,6 +83,11 @@
 - [Wakatime Week Stats](#wakatime-week-stats)
 - [Themes](#themes)
 - [Customization](#customization)
+  - [Common Options](#common-options)
+  - [Stats Card Exclusive Options](#stats-card-exclusive-options)
+  - [Repo Card Exclusive Options](#repo-card-exclusive-options)
+  - [Language Card Exclusive Options](#language-card-exclusive-options)
+  - [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
 - [Deploy Yourself](#deploy-on-your-own-vercel-instance)
 
 # GitHub Stats Card
@@ -79,7 +102,7 @@ Change the `?username=` value to your GitHub's username.
 
 _Note: Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone).
 The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories.
-The implementation is can be investigated at [src/calculateRank.js](./src/calculateRank.js)_
+The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js)_
 
 ### Hiding individual stats
 
@@ -95,7 +118,7 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma-s
 
 You can add the count of all your private contributions to the total commits count by using the query parameter `?count_private=true`.
 
-_Note: If you are deploying this project yourself, the private contributions will be counted by default otherwise you need to chose to share your private contribution counts._
+_Note: If you are deploying this project yourself, the private contributions will be counted by default. Otherwise, you need to choose to share your private contribution counts._
 
 > Options: `&count_private=true`
 
@@ -131,18 +154,20 @@ You can look at a preview for [all available themes](./themes/README.md) or chec
 
 ### Customization
 
-You can customize the appearance of your `Stats Card` or `Repo Card` however you want with URL params.
+You can customize the appearance of your `Stats Card` or `Repo Card` however you wish with URL params.
 
 #### Common Options:
 
 - `title_color` - Card's title color _(hex color)_
 - `text_color` - Body text color _(hex color)_
 - `icon_color` - Icons color if available _(hex color)_
+- `border_color` - Card's border color _(hex color)_. (Does not apply when `hide_border` is enabled)
 - `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_
 - `hide_border` - Hides the card's border _(boolean)_
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
 - `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
 - `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
+- `border_radius` - Corner rounding on the card_
 
 ##### Gradient in bg_color
 
@@ -152,7 +177,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
-> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k, otherwise, it's 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours
+> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k, otherwise, it's 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours.
 
 #### Stats Card Exclusive Options:
 
@@ -168,7 +193,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 #### Repo Card Exclusive Options:
 
-- `show_owner` - Show the owner name of the repo _(boolean)_
+- `show_owner` - Show the repo's owner name _(boolean)_
 
 #### Language Card Exclusive Options:
 
@@ -192,7 +217,9 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `hide_progress` - Hides the progress bar and percentage _(boolean)_
 - `custom_title` - Sets a custom title for the card
 - `layout` - Switch between two available layouts `default` & `compact`
-- `api_domain` - Set a custom api domain for the card
+- `langs_count` - Limit number of languages on the card, defaults to all reported langauges
+- `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
+- `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for list of available options.
 
 ---
 
@@ -222,7 +249,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 # Top Languages Card
 
-The top languages card shows a GitHub user's top languages which have used the most.
+The top languages card show a GitHub user's most frequently used top language.
 
 _NOTE: Top Languages does not indicate my skill level or anything like that, it's a GitHub metric of which languages have the most code on GitHub. It's a new feature of github-readme-stats._
 
@@ -310,6 +337,10 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
+- Customize Border Color
+
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&border_color=2e4058)
+
 - Include All Commits
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
@@ -350,7 +381,7 @@ Choose from any of the [default themes](#themes)
 
 You usually won't be able to layout the images side by side. To do that you can use this approach:
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
@@ -395,7 +426,7 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 I open-source almost everything I can, and I try to reply to everyone needing help using these projects. Obviously,
 this takes time. You can use this service for free.
 
-However, if you are using this project and happy with it or just want to encourage me to continue creating stuff, there are few ways you can do it :-
+However, if you are using this project and are happy with it or just want to encourage me to continue creating stuff, there are few ways you can do it :-
 
 - Giving proper credit when you use github-readme-stats on your readme, linking back to it :D
 - Starring and sharing the project :rocket:

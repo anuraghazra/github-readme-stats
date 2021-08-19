@@ -1,5 +1,6 @@
 require("@testing-library/jest-dom");
 const cssToObject = require("css-to-object");
+const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 const renderTopLanguages = require("../src/cards/top-languages-card");
 
 const { queryByTestId, queryAllByTestId } = require("@testing-library/dom");
@@ -197,7 +198,7 @@ describe("Test renderTopLanguages", () => {
     );
     expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
       "width",
-      "120.00",
+      "120",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
@@ -205,7 +206,7 @@ describe("Test renderTopLanguages", () => {
     );
     expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
       "width",
-      "120.00",
+      "120",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
@@ -213,7 +214,7 @@ describe("Test renderTopLanguages", () => {
     );
     expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
       "width",
-      "60.00",
+      "60",
     );
   });
 
@@ -221,6 +222,34 @@ describe("Test renderTopLanguages", () => {
     document.body.innerHTML = renderTopLanguages(langs, { locale: "cn" });
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
       "最常用的语言",
+    );
+  });
+
+  it("should render without rounding", () => {
+    document.body.innerHTML = renderTopLanguages(langs, { border_radius: "0" });
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
+    document.body.innerHTML = renderTopLanguages(langs, {});
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
+  });
+
+  it("should render langs with specified langs_count", async () => {
+    options = {
+      langs_count: 1,
+    };
+    document.body.innerHTML = renderTopLanguages(langs, { ...options });
+    expect(queryAllByTestId(document.body, "lang-name").length).toBe(
+      options.langs_count,
+    );
+  });
+
+  it("should render langs with specified langs_count even when hide is set", async () => {
+    options = {
+      hide: ["HTML"],
+      langs_count: 2,
+    };
+    document.body.innerHTML = renderTopLanguages(langs, { ...options });
+    expect(queryAllByTestId(document.body, "lang-name").length).toBe(
+      options.langs_count,
     );
   });
 });

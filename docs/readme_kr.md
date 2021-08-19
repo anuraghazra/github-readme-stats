@@ -51,6 +51,8 @@
     <a href="/docs/readme_kr.md">한국어</a>
     .
     <a href="/docs/readme_nl.md">Nederlands</a>
+    .
+    <a href="/docs/readme_np.md">नेपाली</a>
   </p>
 </p>
 <p align="center">기능들이 마음에 드시나요? 괜찮으시다면, 서비스 개선을 위해 <a href="https://www.paypal.me/anuraghazra">기부</a>를 고려해주세요!
@@ -422,7 +424,7 @@ GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,
 만족하시거나, 제가 이런 요소들을 만드는 데에 도움을 주고 싶으시다면,
 여러분께서 도와주실 수 있는 것들이 있어요!
 
-- github-readme-stats 를 README 에 표시하실 때 확실한 도움을 주세요! 이 저장소로 링크를 걸어주시면 되요! :D
+- github-readme-stats 를 README 에 표시하실 때 확실한 도움을 주세요! 이 저장소로 링크를 걸어주시면 돼요! :D
 - 이 프로젝트를 많이 공유해주시고, 즐겨찾기 해주세요! :rocket:
 - [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - PayPal 을 이용해 1회성 도네이션을 해주실 수 있어요. 아마도 전 ~~커피, 아... 아니~~ 차를 사서 마시겠죠? ㅎ; :tea:
 
