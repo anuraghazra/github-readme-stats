@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  flag_korea: {
+    title_color: "0047A0",
+    icon_color: "CC303B",
+    text_color: "000000",
+    bg_color: "ffffff",
+  },
 };
 
 module.exports = themes;
