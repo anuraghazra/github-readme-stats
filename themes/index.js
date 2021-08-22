@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+   valorant: {
+    title_color: "#FF4656",
+    icon_color: "#FF4656",
+    text_color: "#FFFBF5",
+    bg_color: "#111723",
+   },
 };
 
 module.exports = themes;
