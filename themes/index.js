@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+   unicorn: {
+    title_color: "DEDAF9",
+    icon_color: "FE7295",
+    text_color: "DEDAF9",
+    bg_color: "8176FF",
+  },
 };
 
 module.exports = themes;
