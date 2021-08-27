@@ -3,6 +3,7 @@ const {
   renderError,
   parseBoolean,
   clampValue,
+  parseArray,
   CONSTANTS,
   isLocaleAvailable,
 } = require("../src/common/utils");
@@ -26,6 +27,7 @@ module.exports = async (req, res) => {
     locale,
     layout,
     langs_count,
+    hide,
     api_domain,
     range,
     border_radius,
@@ -58,6 +60,7 @@ module.exports = async (req, res) => {
         custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
+        hide: parseArray(hide),
         line_height,
         title_color,
         icon_color,

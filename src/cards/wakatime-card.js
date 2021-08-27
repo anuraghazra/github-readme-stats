@@ -84,11 +84,21 @@ const createTextNode = ({
   `;
 };
 
+const recalculatePercentages = (languages) => {
+  let totalSum = 0;
+  languages.forEach(language => totalSum += language.percent);
+  const weight = (100 / totalSum).toFixed(2);
+  languages.forEach(language => {
+    language.percent = (language.percent * weight).toFixed(2);
+  });
+};
+
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  const { languages } = stats;
+  let { languages } = stats;
   const {
     hide_title = false,
     hide_border = false,
+    hide,
     line_height = 25,
     title_color,
     icon_color,
@@ -103,6 +113,12 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     border_radius,
     border_color,
   } = options;
+
+  if (Array.isArray(hide) && hide.length > 0) {
+    const lowercase_hide = new Set(hide.map(lang => lang.trim().toLowerCase()));
+    languages = languages.filter(lang => !lowercase_hide.has(lang.name.trim().toLowerCase()));
+    recalculatePercentages(languages);
+  }
 
   const i18n = new I18n({
     locale,
