@@ -4,7 +4,12 @@ const { getStyles } = require("../getStyles");
 const { wakatimeCardLocales } = require("../translations");
 const languageColors = require("../common/languageColors.json");
 const { createProgressNode } = require("../common/createProgressNode");
-const { clampValue, getCardColors, flexLayout } = require("../common/utils");
+const {
+  clampValue,
+  getCardColors,
+  flexLayout,
+  lowercaseTrim,
+} = require("../common/utils");
 
 const noCodingActivityNode = ({ color, text }) => {
   return `
@@ -61,23 +66,22 @@ const createTextNode = ({
   const cardProgress = hideProgress
     ? null
     : createProgressNode({
-      x: 110,
-      y: 4,
-      progress: percent,
-      color: progressBarColor,
-      width: 220,
-      name: label,
-      progressBarBackgroundColor,
-    });
+        x: 110,
+        y: 4,
+        progress: percent,
+        color: progressBarColor,
+        width: 220,
+        name: label,
+        progressBarBackgroundColor,
+      });
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
-      <text class="stat bold" y="12.5">${label}:</text>
+      <text class="stat bold" y="12.5" data-testid="${id}">${label}:</text>
       <text
         class="stat"
         x="${hideProgress ? 170 : 350}"
         y="12.5"
-        data-testid="${id}"
       >${value}</text>
       ${cardProgress}
     </g>
@@ -85,10 +89,14 @@ const createTextNode = ({
 };
 
 const recalculatePercentages = (languages) => {
-  let totalSum = 0;
-  languages.forEach(language => totalSum += language.percent);
+  // recalculating percentages so that,
+  // compact layout's progress bar does not break when hiding languages
+  const totalSum = languages.reduce(
+    (totalSum, language) => totalSum + language.percent,
+    0,
+  );
   const weight = (100 / totalSum).toFixed(2);
-  languages.forEach(language => {
+  languages.forEach((language) => {
     language.percent = (language.percent * weight).toFixed(2);
   });
 };
@@ -114,9 +122,12 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     border_color,
   } = options;
 
-  if (Array.isArray(hide) && hide.length > 0) {
-    const lowercase_hide = new Set(hide.map(lang => lang.trim().toLowerCase()));
-    languages = languages.filter(lang => !lowercase_hide.has(lang.name.trim().toLowerCase()));
+  const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
+  if (shouldHideLangs) {
+    const languagesToHide = new Set(hide.map((lang) => lowercaseTrim(lang)));
+    languages = languages.filter(
+      (lang) => !languagesToHide.has(lowercaseTrim(lang.name)),
+    );
     recalculatePercentages(languages);
   }
 
@@ -147,8 +158,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const filteredLanguages = languages
     ? languages
-      .filter((language) => language.hours || language.minutes)
-      .slice(0, langsCount)
+        .filter((language) => language.hours || language.minutes)
+        .slice(0, langsCount)
     : [];
 
   // Calculate the card height depending on how many items there are
@@ -202,17 +213,16 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       </mask>
       ${compactProgressBar}
       ${createLanguageTextNode({
-      x: 0,
-      y: 25,
-      langs: filteredLanguages,
-      totalSize: 100,
-    }).join("")}
+        x: 0,
+        y: 25,
+        langs: filteredLanguages,
+        totalSize: 100,
+      }).join("")}
     `;
   } else {
     finalLayout = flexLayout({
       items: filteredLanguages.length
-        ? filteredLanguages
-          .map((language) => {
+        ? filteredLanguages.map((language) => {
             return createTextNode({
               id: language.name,
               label: language.name,
@@ -224,11 +234,11 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
             });
           })
         : [
-          noCodingActivityNode({
-            color: textColor,
-            text: i18n.t("wakatimecard.nocodingactivity"),
-          }),
-        ],
+            noCodingActivityNode({
+              color: textColor,
+              text: i18n.t("wakatimecard.nocodingactivity"),
+            }),
+          ],
       gap: lheight,
       direction: "column",
     }).join("");
