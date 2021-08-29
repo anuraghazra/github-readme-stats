@@ -2,14 +2,17 @@ const Card = require("../common/Card");
 const I18n = require("../common/I18n");
 const { langCardLocales } = require("../translations");
 const { createProgressNode } = require("../common/createProgressNode");
-const { clampValue, getCardColors, flexLayout } = require("../common/utils");
+const {
+  clampValue,
+  getCardColors,
+  flexLayout,
+  lowercaseTrim,
+} = require("../common/utils");
 
 const DEFAULT_CARD_WIDTH = 300;
 const DEFAULT_LANGS_COUNT = 5;
 const DEFAULT_LANG_COLOR = "#858585";
 const CARD_PADDING = 25;
-
-const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 const createProgressTextNode = ({ width, color, name, progress }) => {
   const paddingRight = 95;
