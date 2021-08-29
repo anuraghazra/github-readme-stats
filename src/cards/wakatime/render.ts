@@ -1,5 +1,5 @@
-import { createProgressNode } from "../../helpers/CardRenderer";
 import { languageColors } from "../../utils/languages";
+import { createProgressNode } from "../../utils/render";
 
 export const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
   return langs.map((lang, index) => {

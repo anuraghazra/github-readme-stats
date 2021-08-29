@@ -1,8 +1,9 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const fetchStats = require("../src/fetchers/stats-fetcher");
-const calculateRank = require("../src/calculateRank");
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import fetchStats from "../src/cards/github-stats/fetcher";
+import { calculateRank } from "../src/utils/github";
+import { CardError } from "../src/helpers/Error";
 
 const data = {
   data: {
@@ -77,7 +78,10 @@ describe("Test fetchStats", () => {
     mock.onPost("https://api.github.com/graphql").reply(200, error);
 
     await expect(fetchStats("anuraghazra")).rejects.toThrow(
-      "Could not resolve to a User with the login of 'noname'.",
+      new CardError(
+        "Something wrong with fetch data",
+        "Could not resolve to a User with the login of 'noname'.",
+      ),
     );
   });
 

@@ -1,12 +1,9 @@
 import { VercelRequestQuery } from "@vercel/node";
 import axios from "axios";
-import CardRenderer, {
-  clampValue,
-  flexLayout,
-  getCardColors,
-} from "../../helpers/CardRenderer";
+import CardRenderer from "../../helpers/CardRenderer";
 import { FetchStatError } from "../../helpers/Error";
 import { languageColors } from "../../utils/languages";
+import { clampValue, flexLayout, getCardColors } from "../../utils/render";
 import { toBoolean, toInteger, toString } from "../../utils/vercelRequestQuery";
 import Card, { CommonProps } from "../Card";
 import { getStyles } from "../github-stats/render";
@@ -16,6 +13,30 @@ import {
   noCodingActivityNode,
 } from "./render";
 import translation from "./translation";
+
+export const fetchWakaTime = async (
+  username: string,
+  api_domain?: string,
+  range?: string,
+) => {
+  try {
+    const { data } = await axios.get(
+      `https://${
+        api_domain ? api_domain.replace(/\/$/gi, "") : "wakatime.com"
+      }/api/v1/users/${username}/stats/${range || ""}?is_including_today=true`,
+    );
+
+    return data.data;
+  } catch (err) {
+    if (err.response.status < 200 || err.response.status > 299) {
+      throw new FetchStatError(
+        FetchStatError.TYPE.USER_NOT_FOUND,
+        "make sure you have a wakatime profile",
+      );
+    }
+    throw new FetchStatError(FetchStatError.TYPE.UNEXPECTED, err.message);
+  }
+};
 
 interface WakaTimeProps extends CommonProps {
   line_height: number;
@@ -59,25 +80,7 @@ export default class WakaTime extends Card {
   protected async fetchStats(): Promise<any> {
     const { username, api_domain, range } = this.props as WakaTimeProps;
 
-    try {
-      const { data } = await axios.get(
-        `https://${
-          api_domain ? api_domain.replace(/\/$/gi, "") : "wakatime.com"
-        }/api/v1/users/${username}/stats/${
-          range || ""
-        }?is_including_today=true`,
-      );
-
-      return data.data;
-    } catch (err) {
-      if (err.response.status < 200 || err.response.status > 299) {
-        throw new FetchStatError(
-          FetchStatError.TYPE.USER_NOT_FOUND,
-          "make sure you have a wakatime profile",
-        );
-      }
-      throw new FetchStatError(FetchStatError.TYPE.UNEXPECTED, err.message);
-    }
+    return await fetchWakaTime(username, api_domain, range);
   }
 
   protected renderCard(stats: {

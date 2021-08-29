@@ -1,7 +1,9 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import fetchTopLanguages from "../src/cards/github-top-langs/fetcher";
+import { CardError } from "../src/helpers/Error";
+import { genUserNotFoundErrorData } from "./utils/mock";
 
 const mock = new MockAdapter(axios);
 
@@ -44,41 +46,35 @@ const data_langs = {
   },
 };
 
-const error = {
-  errors: [
-    {
-      type: "NOT_FOUND",
-      path: ["user"],
-      locations: [],
-      message: "Could not resolve to a User with the login of 'noname'.",
-    },
-  ],
-};
-
 describe("FetchTopLanguages", () => {
   it("should fetch correct language data", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
     let repo = await fetchTopLanguages("anuraghazra");
-    expect(repo).toStrictEqual({
-      HTML: {
+    expect(repo).toStrictEqual([
+      {
         color: "#0f0",
         name: "HTML",
         size: 200,
       },
-      javascript: {
+      {
         color: "#0ff",
         name: "javascript",
         size: 200,
       },
-    });
+    ]);
   });
 
   it("should throw error", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, error);
+    mock
+      .onPost("https://api.github.com/graphql")
+      .reply(200, genUserNotFoundErrorData());
 
     await expect(fetchTopLanguages("anuraghazra")).rejects.toThrow(
-      "Could not resolve to a User with the login of 'noname'.",
+      new CardError(
+        "Something wrong with fetch data",
+        "Could not resolve to a User with the login of 'noname'.",
+      ),
     );
   });
 });

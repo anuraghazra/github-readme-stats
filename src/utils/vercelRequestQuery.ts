@@ -2,22 +2,21 @@ import { VercelRequestQuery } from "@vercel/node";
 
 type ValueOf<T> = T[keyof T];
 
-type ValueOfQuery = ValueOf<VercelRequestQuery>;
+type ValueOfQuery = ValueOf<VercelRequestQuery> | undefined;
 
-const isValueEmpty = (value?: ValueOfQuery): boolean => {
+const isValueEmpty = (value: ValueOfQuery): boolean => {
   return !value || value.length === 0;
 };
 
 export const toBoolean = (value: ValueOfQuery): boolean | undefined => {
-  return value === "true" || value === "false" ? Boolean(value) : undefined;
+  return value === "true" || value === "false" ? JSON.parse(value) : undefined;
 };
 
 export const toString = (value: ValueOfQuery): string | undefined => {
-  return isValueEmpty(value)
-    ? undefined
-    : Array.isArray(value)
-    ? value[0]
-    : value;
+  if (isValueEmpty(value)) return undefined;
+  const originalValue = Array.isArray(value) ? value[0] : value;
+
+  return typeof originalValue === "string" ? originalValue : undefined;
 };
 
 export const toInteger = (value: ValueOfQuery = ""): number | undefined => {
@@ -25,13 +24,20 @@ export const toInteger = (value: ValueOfQuery = ""): number | undefined => {
   return isNaN(number) ? undefined : number;
 };
 
-export const toFloatingNumber = (value: ValueOfQuery = ""): number | undefined => {
-  if (Array.isArray(value)) return undefined;
+export const toFloatingNumber = (
+  value: ValueOfQuery = "",
+): number | undefined => {
   const number = parseFloat(value.toString());
 
   return isNaN(number) ? undefined : number;
 };
 
 export const toStringArray = (value: ValueOfQuery): string[] => {
-  return isValueEmpty(value) ? [] : Array.isArray(value) ? value : [value];
+  if (isValueEmpty(value)) return [];
+
+  const originalArray = Array.isArray(value) ? value : [value!];
+
+  return originalArray.every((value) => typeof value === "string")
+    ? originalArray
+    : [];
 };

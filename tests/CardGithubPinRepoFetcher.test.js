@@ -1,7 +1,7 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const fetchRepo = require("../src/fetchers/repo-fetcher");
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import fetchRepo from "../src/cards/gituhb-pin-repo/fetcher";
 
 const data_repo = {
   repository: {

@@ -14,6 +14,8 @@
   "devDependencies": {
     "@actions/core": "^1.2.4",
     "@actions/github": "^4.0.0",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
     "@testing-library/dom": "^7.20.0",
     "@testing-library/jest-dom": "^5.11.0",
     "@tsconfig/node14": "^1.0.1",

@@ -34,8 +34,8 @@ export default class Card {
   protected props: CommonProps;
   protected "i18n";
 
-  constructor(props: VercelRequestQuery, translation?: ITranslation) {
-    this.props = this.preprocess(props);
+  constructor(query: VercelRequestQuery, translation: ITranslation) {
+    this.props = this.preprocess(query);
     this.i18n = new I18n(this.props.locale, translation);
   }
 
@@ -54,7 +54,7 @@ export default class Card {
       return cardSvgString;
     } catch (err) {
       logger.log(err);
-      return renderError(err.message, err.secondaryMessage);
+      return renderError(err);
     }
   }
 

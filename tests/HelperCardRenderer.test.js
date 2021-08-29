@@ -1,13 +1,14 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("css-to-object");
-const Card = require("../src/common/Card");
-const icons = require("../src/common/icons");
-const { getCardColors } = require("../src/common/utils");
-const { queryByTestId } = require("@testing-library/dom");
+import "@testing-library/jest-dom";
+import cssToObject from "css-to-object";
+import CardRenderer, { renderError } from "../src/helpers/CardRenderer";
+import { getCardColors } from "../src/utils/render";
+import icons from "../src/icons/github";
+import { queryByTestId } from "@testing-library/dom";
+import { CardError } from "../src/helpers/Error";
 
-describe("Card", () => {
+describe("CardRenderer", () => {
   it("should hide border", () => {
-    const card = new Card({});
+    const card = new CardRenderer({});
     card.setHideBorder(true);
 
     document.body.innerHTML = card.render(``);
@@ -18,7 +19,7 @@ describe("Card", () => {
   });
 
   it("should not hide border", () => {
-    const card = new Card({});
+    const card = new CardRenderer({});
     card.setHideBorder(false);
 
     document.body.innerHTML = card.render(``);
@@ -29,7 +30,7 @@ describe("Card", () => {
   });
 
   it("should have a custom title", () => {
-    const card = new Card({
+    const card = new CardRenderer({
       customTitle: "custom title",
       defaultTitle: "default title",
     });
@@ -41,7 +42,7 @@ describe("Card", () => {
   });
 
   it("should hide title", () => {
-    const card = new Card({});
+    const card = new CardRenderer({});
     card.setHideTitle(true);
 
     document.body.innerHTML = card.render(``);
@@ -49,7 +50,7 @@ describe("Card", () => {
   });
 
   it("should not hide title", () => {
-    const card = new Card({});
+    const card = new CardRenderer({});
     card.setHideTitle(false);
 
     document.body.innerHTML = card.render(``);
@@ -57,21 +58,24 @@ describe("Card", () => {
   });
 
   it("title should have prefix icon", () => {
-    const card = new Card({ title: "ok", titlePrefixIcon: icons.contribs });
+    const card = new CardRenderer({
+      title: "ok",
+      titlePrefixIcon: icons.contribs,
+    });
 
     document.body.innerHTML = card.render(``);
     expect(document.getElementsByClassName("icon")[0]).toBeInTheDocument();
   });
 
   it("title should not have prefix icon", () => {
-    const card = new Card({ title: "ok" });
+    const card = new CardRenderer({ title: "ok" });
 
     document.body.innerHTML = card.render(``);
     expect(document.getElementsByClassName("icon")[0]).toBeUndefined();
   });
 
   it("should have proper height, width", () => {
-    const card = new Card({ height: 200, width: 200, title: "ok" });
+    const card = new CardRenderer({ height: 200, width: 200, title: "ok" });
     document.body.innerHTML = card.render(``);
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
       "height",
@@ -84,7 +88,7 @@ describe("Card", () => {
   });
 
   it("should have less height after title is hidden", () => {
-    const card = new Card({ height: 200, title: "ok" });
+    const card = new CardRenderer({ height: 200, title: "ok" });
     card.setHideTitle(true);
 
     document.body.innerHTML = card.render(``);
@@ -95,7 +99,7 @@ describe("Card", () => {
   });
 
   it("main-card-body should have proper when title is visible", () => {
-    const card = new Card({ height: 200 });
+    const card = new CardRenderer({ height: 200 });
     document.body.innerHTML = card.render(``);
     expect(queryByTestId(document.body, "main-card-body")).toHaveAttribute(
       "transform",
@@ -104,7 +108,7 @@ describe("Card", () => {
   });
 
   it("main-card-body should have proper position after title is hidden", () => {
-    const card = new Card({ height: 200 });
+    const card = new CardRenderer({ height: 200 });
     card.setHideTitle(true);
 
     document.body.innerHTML = card.render(``);
@@ -124,7 +128,7 @@ describe("Card", () => {
       theme: "default",
     });
 
-    const card = new Card({
+    const card = new CardRenderer({
       height: 200,
       colors: {
         titleColor,
@@ -154,7 +158,7 @@ describe("Card", () => {
       theme: "default",
     });
 
-    const card = new Card({
+    const card = new CardRenderer({
       height: 200,
       colors: {
         titleColor,
@@ -181,5 +185,27 @@ describe("Card", () => {
     expect(
       document.querySelector("defs linearGradient stop:nth-child(3)"),
     ).toHaveAttribute("stop-color", "#f00");
+  });
+});
+
+describe("renderError", () => {
+  it("should render correct content", () => {
+    document.body.innerHTML = renderError(
+      new CardError("Something went wrong"),
+    );
+    expect(
+      queryByTestId(document.body, "message").children[0],
+    ).toHaveTextContent(/Something went wrong/gim);
+    expect(
+      queryByTestId(document.body, "message").children[1],
+    ).toBeEmptyDOMElement(2);
+
+    // Secondary message
+    document.body.innerHTML = renderError(
+      new CardError("Something went wrong", "Secondary Message"),
+    );
+    expect(
+      queryByTestId(document.body, "message").children[1],
+    ).toHaveTextContent(/Secondary Message/gim);
   });
 });

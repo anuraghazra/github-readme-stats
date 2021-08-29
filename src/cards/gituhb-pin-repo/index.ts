@@ -7,12 +7,9 @@ import fetchRepo, { IStats } from "./fetcher";
 import translation from "./translation";
 import toEmoji from "emoji-name-map";
 import { encodeHTML, wrapTextMultiline } from "../../utils/string";
-import CardRenderer, {
-  flexLayout,
-  getCardColors,
-  kFormatter,
-} from "../../helpers/CardRenderer";
+import CardRenderer from "../../helpers/CardRenderer";
 import icons from "../../icons/github";
+import { flexLayout, getCardColors, kFormatter } from "../../utils/render";
 
 interface GithubPinRepoProps extends CommonProps {
   repo: string;
@@ -22,13 +19,13 @@ interface GithubPinRepoProps extends CommonProps {
 export default class GitHubPinRepo extends Card {
   private isBothOver1K = false;
   private isBothUnder1 = false;
-  constructor(props: VercelRequestQuery) {
-    super(props, translation);
+  constructor(query: VercelRequestQuery) {
+    super(query, translation);
   }
-  protected preprocess(props: VercelRequestQuery): GithubPinRepoProps {
-    const commonProps = super.preprocess(props);
+  protected preprocess(query: VercelRequestQuery): GithubPinRepoProps {
+    const commonProps = super.preprocess(query);
 
-    const { repo, show_owner } = props;
+    const { repo, show_owner } = query;
 
     return {
       ...commonProps,

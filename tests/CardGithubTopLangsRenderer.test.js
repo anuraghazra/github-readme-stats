@@ -1,33 +1,32 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("css-to-object");
-const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
-const renderTopLanguages = require("../src/cards/top-languages-card");
+import "@testing-library/jest-dom";
+import cssToObject from "css-to-object";
 
-const { queryByTestId, queryAllByTestId } = require("@testing-library/dom");
-const themes = require("../themes");
+import { queryByTestId, queryAllByTestId } from "@testing-library/dom";
+import themes from "../themes";
+import {
+  genGithubTopLangsMockData,
+  mockGithubRequest,
+  mockVercel,
+} from "./utils/mock";
+import GithubTopLangs from "../src/cards/github-top-langs";
 
-describe("Test renderTopLanguages", () => {
-  const langs = {
-    HTML: {
-      color: "#0f0",
-      name: "HTML",
-      size: 200,
-    },
-    javascript: {
-      color: "#0ff",
-      name: "javascript",
-      size: 200,
-    },
-    css: {
-      color: "#ff0",
-      name: "css",
-      size: 100,
-    },
-  };
+describe("GitHubTopLangsRenderer", () => {
+  async function render({ query = {}, statsHandler = (data) => data } = {}) {
+    const { req, res } = mockVercel({
+      repo: "convoychat",
+      ...query,
+    });
+    const mockData = genGithubTopLangsMockData();
+    const mockRestore = mockGithubRequest(statsHandler(mockData));
 
-  it("should render correctly", () => {
-    document.body.innerHTML = renderTopLanguages(langs);
+    const card = new GithubTopLangs(req.query);
+    const svgString = await card.generateSvgString(res.setHeader);
+    document.body.innerHTML = svgString;
+    mockRestore();
+  }
 
+  it("should render correctly", async () => {
+    await render();
     expect(queryByTestId(document.body, "header")).toHaveTextContent(
       "Most Used Languages",
     );
@@ -55,9 +54,11 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
-  it("should hide languages when hide is passed", () => {
-    document.body.innerHTML = renderTopLanguages(langs, {
-      hide: ["HTML"],
+  it("should hide languages when hide is passed", async () => {
+    await render({
+      query: {
+        hide: ["HTML"],
+      },
     });
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
       "javascript",
@@ -68,8 +69,10 @@ describe("Test renderTopLanguages", () => {
     expect(queryAllByTestId(document.body, "lang-name")[2]).not.toBeDefined();
 
     // multiple languages passed
-    document.body.innerHTML = renderTopLanguages(langs, {
-      hide: ["HTML", "css"],
+    await render({
+      query: {
+        hide: ["HTML", "css"],
+      },
     });
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
       "javascript",
@@ -77,36 +80,39 @@ describe("Test renderTopLanguages", () => {
     expect(queryAllByTestId(document.body, "lang-name")[1]).not.toBeDefined();
   });
 
-  it("should resize the height correctly depending on langs", () => {
-    document.body.innerHTML = renderTopLanguages(langs, {});
+  it("should resize the height correctly depending on langs", async () => {
+    await render();
     expect(document.querySelector("svg")).toHaveAttribute("height", "205");
 
-    document.body.innerHTML = renderTopLanguages(
-      {
-        ...langs,
-        python: {
-          color: "#ff0",
-          name: "python",
-          size: 100,
-        },
+    await render({
+      statsHandler(stats) {
+        stats.data.user.repositories.nodes.push({
+          languages: {
+            edges: [{ size: 100, node: { color: "#ff0", name: "python" } }],
+          },
+        });
+        return stats;
       },
-      {},
-    );
+    });
+
     expect(document.querySelector("svg")).toHaveAttribute("height", "245");
   });
 
-  it("should render with custom width set", () => {
-    document.body.innerHTML = renderTopLanguages(langs, {});
+  it("should render with custom width set", async () => {
+    await render();
 
     expect(document.querySelector("svg")).toHaveAttribute("width", "300");
+    await render({
+      query: {
+        card_width: 400,
+      },
+    });
 
-    document.body.innerHTML = renderTopLanguages(langs, { card_width: 400 });
     expect(document.querySelector("svg")).toHaveAttribute("width", "400");
   });
 
-  it("should render default colors properly", () => {
-    document.body.innerHTML = renderTopLanguages(langs);
-
+  it("should render default colors properly", async () => {
+    await render();
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.textContent);
 
@@ -121,7 +127,7 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
-  it("should render custom colors properly", () => {
+  it("should render custom colors properly", async () => {
     const customColors = {
       title_color: "5a0",
       icon_color: "1b998b",
@@ -129,7 +135,9 @@ describe("Test renderTopLanguages", () => {
       bg_color: "252525",
     };
 
-    document.body.innerHTML = renderTopLanguages(langs, { ...customColors });
+    await render({
+      query: customColors,
+    });
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
@@ -145,10 +153,12 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
-  it("should render custom colors with themes", () => {
-    document.body.innerHTML = renderTopLanguages(langs, {
-      title_color: "5a0",
-      theme: "radical",
+  it("should render custom colors with themes", async () => {
+    await render({
+      query: {
+        title_color: "5a0",
+        theme: "radical",
+      },
     });
 
     const styleTag = document.querySelector("style");
@@ -165,10 +175,12 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
-  it("should render with all the themes", () => {
-    Object.keys(themes).forEach((name) => {
-      document.body.innerHTML = renderTopLanguages(langs, {
-        theme: name,
+  it("should render with all the themes", async () => {
+    const fns = Object.keys(themes).map((name) => async () => {
+      await render({
+        query: {
+          theme: name,
+        },
       });
 
       const styleTag = document.querySelector("style");
@@ -184,10 +196,18 @@ describe("Test renderTopLanguages", () => {
         `#${themes[name].bg_color}`,
       );
     });
+
+    for (const fn of fns) {
+      await fn();
+    }
   });
 
-  it("should render with layout compact", () => {
-    document.body.innerHTML = renderTopLanguages(langs, { layout: "compact" });
+  it("should render with layout compact", async () => {
+    await render({
+      query: {
+        layout: "compact",
+      },
+    });
 
     expect(queryByTestId(document.body, "header")).toHaveTextContent(
       "Most Used Languages",
@@ -218,38 +238,44 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
-  it("should render a translated title", () => {
-    document.body.innerHTML = renderTopLanguages(langs, { locale: "cn" });
+  it("should render a translated title", async () => {
+    await render({
+      query: {
+        locale: "cn",
+      },
+    });
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
       "最常用的语言",
     );
   });
 
-  it("should render without rounding", () => {
-    document.body.innerHTML = renderTopLanguages(langs, { border_radius: "0" });
+  it("should render without rounding", async () => {
+    await render({
+      query: {
+        border_radius: "0",
+      },
+    });
     expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
-    document.body.innerHTML = renderTopLanguages(langs, {});
+    await render();
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
   });
 
   it("should render langs with specified langs_count", async () => {
-    options = {
-      langs_count: 1,
-    };
-    document.body.innerHTML = renderTopLanguages(langs, { ...options });
-    expect(queryAllByTestId(document.body, "lang-name").length).toBe(
-      options.langs_count,
-    );
+    await render({
+      query: {
+        langs_count: "1",
+      },
+    });
+    expect(queryAllByTestId(document.body, "lang-name").length).toBe(1);
   });
 
   it("should render langs with specified langs_count even when hide is set", async () => {
-    options = {
-      hide: ["HTML"],
-      langs_count: 2,
-    };
-    document.body.innerHTML = renderTopLanguages(langs, { ...options });
-    expect(queryAllByTestId(document.body, "lang-name").length).toBe(
-      options.langs_count,
-    );
+    await render({
+      query: {
+        hide: ["HTML"],
+        langs_count: "2",
+      },
+    });
+    expect(queryAllByTestId(document.body, "lang-name").length).toBe(2);
   });
 });

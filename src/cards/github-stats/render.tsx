@@ -1,4 +1,4 @@
-import { kFormatter } from "../../helpers/CardRenderer";
+import { kFormatter } from "../../utils/render";
 
 export const createTextNode = ({
   icon,

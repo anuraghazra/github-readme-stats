@@ -1,8 +1,8 @@
 export class CardError extends Error {
   secondaryMessage;
-  constructor(message: string, description: string) {
+  constructor(message: string, description?: string) {
     super(message);
-    this.secondaryMessage = description;
+    this.secondaryMessage = description ?? "";
   }
 }
 
@@ -29,14 +29,11 @@ enum ServerErrorType {
 }
 export class ServerError extends CardError {
   static readonly TYPE = ServerErrorType;
-  constructor(type: ServerErrorType, additionMessage?: string) {
+  constructor(type: ServerErrorType) {
     const type2Message = {
       [ServerErrorType.UNEXPECTED]: `Unexpected Error`,
     };
-    super(
-      "Something went wrong",
-      `${type2Message[type]} ${additionMessage ?? ""}`,
-    );
+    super("Something went wrong", type2Message[type]);
     this.name = "ServerError";
   }
 }
@@ -56,7 +53,7 @@ export class FetchStatError extends CardError {
     };
     super(
       "Something wrong with fetch data",
-      type2Message[type] ?? additionMessage,
+      additionMessage ?? type2Message[type],
     );
     this.name = "FetchStatError";
   }

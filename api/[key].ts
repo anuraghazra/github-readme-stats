@@ -6,7 +6,7 @@ import "../src/icons/github";
 module.exports = async (req: VercelRequest, res: VercelResponse) => {
   const { key, ...query } = req.query;
 
-  const reqKey = Array.isArray(key) ? key[0] : key;
+  const reqKey = (Array.isArray(key) ? key[0] : key) ?? "stats";
 
   if (reqKey in cards) {
     const Card = cards[reqKey as keyof typeof cards];

@@ -12,13 +12,14 @@ import {
 } from "../../utils/vercelRequestQuery";
 import fetchTopLanguages, { IStats } from "./fetcher";
 import { lowercaseTrim } from "../../utils/string";
-import CardRenderer, { getCardColors } from "../../helpers/CardRenderer";
+import CardRenderer from "../../helpers/CardRenderer";
 import {
   calculateCompactLayoutHeight,
   calculateNormalLayoutHeight,
   renderCompactLayout,
   renderNormalLayout,
 } from "./render";
+import { getCardColors } from "../../utils/render";
 
 interface GithubTopLangsProps extends CommonProps {
   hide: string[];

@@ -9,15 +9,13 @@ import {
 import Card, { CommonProps } from "../Card";
 import generateTranslation from "./translation";
 import fetchStats, { IStats } from "./fetcher";
-import icons from "../../icons/github";
-import { createTextNode, getStyles, measureText } from "./render";
-import CardRenderer, {
-  flexLayout,
-  getCardColors,
-} from "../../helpers/CardRenderer";
 import { BLACKLIST } from "../../utils/github";
+import icons from "../../icons/github";
+import CardRenderer from "../../helpers/CardRenderer";
+import { clampValue, flexLayout, getCardColors } from "../../utils/render";
+import { createTextNode, getStyles, measureText } from "./render";
 
-interface GithubStatsProps extends CommonProps {
+export interface GithubStatsProps extends CommonProps {
   hide: string[];
   hide_rank?: boolean;
   hide_title?: boolean;
@@ -77,8 +75,14 @@ export default class GitHubStatsCard extends Card {
   }
 
   protected renderCard(stats: IStats) {
+    const { name } = stats;
+    const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
+      ? ""
+      : "s";
+
+    this.i18n.setTranslation(generateTranslation(name, apostrophe));
+
     const {
-      name,
       totalStars,
       totalCommits,
       totalPRs,
@@ -89,14 +93,8 @@ export default class GitHubStatsCard extends Card {
     const {
       include_all_commits = false,
       locale,
-      hide,
+      hide = [],
     } = this.props as GithubStatsProps;
-
-    const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
-      ? ""
-      : "s";
-
-    this.i18n.setTranslation(generateTranslation(name, apostrophe));
 
     // Meta data for creating text nodes with createTextNode function
     const STATS = {
@@ -260,7 +258,7 @@ export default class GitHubStatsCard extends Card {
 
     return card.render(`
   ${rankCircle}
-
+  
   <svg x="0" y="0">
     ${flexLayout({
       items: statItems,
@@ -268,6 +266,6 @@ export default class GitHubStatsCard extends Card {
       direction: "column",
     }).join("")}
   </svg> 
-`);
+  `);
   }
 }

@@ -17,12 +17,13 @@ export const request = (
 export type Variables = { [key: string]: any };
 export type Fetcher = (variables: Variables, token: string) => AxiosPromise;
 
+const MAX_RETRY_TIMES = 7;
 export const retry = async (
   fetcher: Fetcher,
   variables: Variables,
   retryTimes = 0,
 ): Promise<AxiosResponse> => {
-  if (retryTimes > 7) {
+  if (retryTimes > MAX_RETRY_TIMES) {
     throw new FetchStatError(
       FetchStatError.TYPE.RETRY_UPPER_LIMIT,
       "Please add an env variable called PAT_1 with your github token in vercel",
@@ -63,8 +64,6 @@ export const retry = async (
   }
 };
 
-
-
 // https://stackoverflow.com/a/5263759/10629172
 function normalcdf(mean: number, sigma: number, to: number): number {
   var z = (to - mean) / Math.sqrt(2 * sigma * sigma);
@@ -92,13 +91,13 @@ export function calculateRank({
   issues,
   stargazers,
 }: {
-  totalRepos: number,
-  totalCommits: number,
-  contributions: number,
-  followers: number,
-  prs: number,
-  issues: number,
-  stargazers: number
+  totalRepos: number;
+  totalCommits: number;
+  contributions: number;
+  followers: number;
+  prs: number;
+  issues: number;
+  stargazers: number;
 }) {
   const COMMITS_OFFSET = 1.65;
   const CONTRIBS_OFFSET = 1.65;
@@ -164,6 +163,5 @@ export function calculateRank({
 
   return { level, score: normalizedScore };
 }
-
 
 export const BLACKLIST = ["renovate-bot", "technote-space", "sw-yx"];

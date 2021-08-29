@@ -1,13 +1,14 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("css-to-object");
-const renderStatsCard = require("../src/cards/stats-card");
+import "@testing-library/jest-dom";
+import cssToObject from "css-to-object";
+import GithubStatsCard from "../src/cards/github-stats";
 
-const {
+import {
   getByTestId,
   queryByTestId,
   queryAllByTestId,
-} = require("@testing-library/dom");
-const themes = require("../themes");
+} from "@testing-library/dom";
+import themes from "../themes";
+import { mockVercel } from "./utils/mock";
 
 describe("Test renderStatsCard", () => {
   const stats = {
@@ -20,8 +21,13 @@ describe("Test renderStatsCard", () => {
     rank: { level: "A+", score: 40 },
   };
 
-  it("should render correctly", () => {
-    document.body.innerHTML = renderStatsCard(stats);
+  it("should render correctly", async () => {
+    const { req, res } = mockVercel();
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats").mockImplementation(() => stats);
+    const svgString = await card.generateSvgString(res.setHeader);
+
+    document.body.innerHTML = svgString;
 
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
       "Anurag Hazra's GitHub Stats",
@@ -37,27 +43,36 @@ describe("Test renderStatsCard", () => {
     expect(getByTestId(document.body, "contribs").textContent).toBe("500");
     expect(queryByTestId(document.body, "card-bg")).toBeInTheDocument();
     expect(queryByTestId(document.body, "rank-circle")).toBeInTheDocument();
+
+    spy.mockRestore();
   });
 
-  it("should have proper name apostrophe", () => {
-    document.body.innerHTML = renderStatsCard({ ...stats, name: "Anil Das" });
+  it("should have proper name apostrophe", async () => {
+    const { req, res } = mockVercel();
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats");
 
+    spy.mockImplementation(() => ({ ...stats, name: "Anil Das" }));
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
       "Anil Das' GitHub Stats",
     );
 
-    document.body.innerHTML = renderStatsCard({ ...stats, name: "Felix" });
-
+    spy.mockImplementation(() => ({ ...stats, name: "Felix" }));
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
       "Felix' GitHub Stats",
     );
+    spy.mockRestore();
   });
 
-  it("should hide individual stats", () => {
-    document.body.innerHTML = renderStatsCard(stats, {
-      hide: ["issues", "prs", "contribs"],
-    });
+  it("should hide individual stats", async () => {
+    const { req, res } = mockVercel({ hide: ["issues", "prs", "contribs"] });
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats");
 
+    spy.mockImplementation(() => stats);
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height"),
     ).toBe("150"); // height should be 150 because we clamped it.
@@ -67,17 +82,27 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "issues")).toBeNull();
     expect(queryByTestId(document.body, "prs")).toBeNull();
     expect(queryByTestId(document.body, "contribs")).toBeNull();
+    spy.mockRestore();
   });
 
-  it("should hide_rank", () => {
-    document.body.innerHTML = renderStatsCard(stats, { hide_rank: true });
+  it("should hide_rank", async () => {
+    const { req, res } = mockVercel({ hide_rank: "true" });
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats");
 
+    spy.mockImplementation(() => stats);
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
     expect(queryByTestId(document.body, "rank-circle")).not.toBeInTheDocument();
+    spy.mockRestore();
   });
 
-  it("should render default colors properly", () => {
-    document.body.innerHTML = renderStatsCard(stats);
+  it("should render default colors properly", async () => {
+    const { req, res } = mockVercel({ hide_rank: "true" });
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats");
 
+    spy.mockImplementation(() => stats);
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.textContent);
 
@@ -92,9 +117,10 @@ describe("Test renderStatsCard", () => {
       "fill",
       "#fffefe",
     );
+    spy.mockRestore();
   });
 
-  it("should render custom colors properly", () => {
+  it("should render custom colors properly", async () => {
     const customColors = {
       title_color: "5a0",
       icon_color: "1b998b",
@@ -102,7 +128,12 @@ describe("Test renderStatsCard", () => {
       bg_color: "252525",
     };
 
-    document.body.innerHTML = renderStatsCard(stats, { ...customColors });
+    const { req, res } = mockVercel({ ...customColors });
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats");
+
+    spy.mockImplementation(() => stats);
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
@@ -118,13 +149,19 @@ describe("Test renderStatsCard", () => {
       "fill",
       "#252525",
     );
+    spy.mockRestore();
   });
 
-  it("should render custom colors with themes", () => {
-    document.body.innerHTML = renderStatsCard(stats, {
+  it("should render custom colors with themes", async () => {
+    const { req, res } = mockVercel({
       title_color: "5a0",
       theme: "radical",
     });
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats");
+
+    spy.mockImplementation(() => stats);
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
@@ -140,13 +177,18 @@ describe("Test renderStatsCard", () => {
       "fill",
       `#${themes.radical.bg_color}`,
     );
+    spy.mockRestore();
   });
 
-  it("should render with all the themes", () => {
-    Object.keys(themes).forEach((name) => {
-      document.body.innerHTML = renderStatsCard(stats, {
+  it("should render with all the themes", async () => {
+    Object.keys(themes).forEach(async (name) => {
+      const { req, res } = mockVercel({
         theme: name,
       });
+      const card = new GithubStatsCard(req.query);
+      const spy = jest.spyOn(card, "fetchStats");
+      spy.mockImplementation(() => stats);
+      document.body.innerHTML = await card.generateSvgString(res.setHeader);
 
       const styleTag = document.querySelector("style");
       const stylesObject = cssToObject(styleTag.innerHTML);
@@ -162,15 +204,20 @@ describe("Test renderStatsCard", () => {
         "fill",
         `#${themes[name].bg_color}`,
       );
+      spy.mockRestore();
     });
   });
 
-  it("should render custom colors with themes and fallback to default colors if invalid", () => {
-    document.body.innerHTML = renderStatsCard(stats, {
+  it("should render custom colors with themes and fallback to default colors if invalid", async () => {
+    const { req, res } = mockVercel({
       title_color: "invalid color",
       text_color: "invalid color",
       theme: "radical",
     });
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats");
+    spy.mockImplementation(() => stats);
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
@@ -186,53 +233,87 @@ describe("Test renderStatsCard", () => {
       "fill",
       `#${themes.radical.bg_color}`,
     );
+    spy.mockRestore();
   });
 
-  it("should render icons correctly", () => {
-    document.body.innerHTML = renderStatsCard(stats, {
-      show_icons: true,
+  it("should render icons correctly", async () => {
+    const { req, res } = mockVercel({
+      show_icons: "true",
     });
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats");
+
+    spy.mockImplementation(() => stats);
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
 
     expect(queryAllByTestId(document.body, "icon")[0]).toBeDefined();
     expect(queryByTestId(document.body, "stars")).toBeDefined();
     expect(
       queryByTestId(document.body, "stars").previousElementSibling, // the label
     ).toHaveAttribute("x", "25");
+    spy.mockRestore();
   });
 
-  it("should not have icons if show_icons is false", () => {
-    document.body.innerHTML = renderStatsCard(stats, { show_icons: false });
+  it("should not have icons if show_icons is false", async () => {
+    const { req, res } = mockVercel({
+      show_icons: "false",
+    });
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats");
+
+    spy.mockImplementation(() => stats);
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
 
     expect(queryAllByTestId(document.body, "icon")[0]).not.toBeDefined();
     expect(queryByTestId(document.body, "stars")).toBeDefined();
     expect(
       queryByTestId(document.body, "stars").previousElementSibling, // the label
     ).not.toHaveAttribute("x");
+    spy.mockRestore();
   });
 
-  it("should auto resize if hide_rank is true", () => {
-    document.body.innerHTML = renderStatsCard(stats, {
-      hide_rank: true,
+  it("should auto resize if hide_rank is true", async () => {
+    const { req, res } = mockVercel({
+      hide_rank: "true",
     });
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats");
+
+    spy.mockImplementation(() => stats);
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("width"),
     ).toBe("305.81250000000006");
+    spy.mockRestore();
   });
 
-  it("should auto resize if hide_rank is true & custom_title is set", () => {
-    document.body.innerHTML = renderStatsCard(stats, {
-      hide_rank: true,
+  it("should auto resize if hide_rank is true & custom_title is set", async () => {
+    const { req, res } = mockVercel({
+      hide_rank: "true",
       custom_title: "Hello world",
     });
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats");
+
+    spy.mockImplementation(() => stats);
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("width"),
     ).toBe("270");
+    spy.mockRestore();
   });
 
-  it("should render translations", () => {
-    document.body.innerHTML = renderStatsCard(stats, { locale: "cn" });
+  it("should render translations", async () => {
+    const { req, res } = mockVercel({
+      locale: "cn",
+    });
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats");
+
+    spy.mockImplementation(() => stats);
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
       "Anurag Hazra 的 GitHub 统计数据",
     );
@@ -261,12 +342,17 @@ describe("Test renderStatsCard", () => {
         'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"参与项目数:"`);
+    spy.mockRestore();
   });
 
-  it("should render without rounding", () => {
-    document.body.innerHTML = renderStatsCard(stats, { border_radius: "0" });
+  it("should render without rounding", async () => {
+    const { req, res } = mockVercel({
+      border_radius: "0",
+    });
+    const card = new GithubStatsCard(req.query);
+    const spy = jest.spyOn(card, "fetchStats").mockImplementation(() => stats);
+    document.body.innerHTML = await card.generateSvgString(res.setHeader);
     expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
-    document.body.innerHTML = renderStatsCard(stats, {});
-    expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
+    spy.mockRestore();
   });
 });

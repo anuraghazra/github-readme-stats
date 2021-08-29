@@ -98,52 +98,52 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
           
     <svg x=\\"0\\" y=\\"0\\" width=\\"100%\\">
       <g transform=\\"translate(0, 0)\\">
-    <g class=\\"stagger\\" style=\\"animation-delay: NaNms\\" transform=\\"translate(25, 0)\\">
-      <text class=\\"stat bold\\" y=\\"12.5\\">Other:</text>
-      <text
-        class=\\"stat\\"
-        x=\\"350\\"
-        y=\\"12.5\\"
-        data-testid=\\"Other\\"
-      >19 mins</text>
-      
-    <svg width=\\"220\\" x=\\"110\\" y=\\"4\\">
-      <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#333\\"></rect>
-      <rect
-          height=\\"8\\"
-          fill=\\"#2f80ed\\"
-          rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" 
-          data-testid=\\"lang-progress\\"
-          width=\\"2%\\"
-      >
-      </rect>
-    </svg>
-  
+      <g class=\\"stagger\\" style=\\"animation-delay: NaNms\\" transform=\\"translate(25, 0)\\">
+        <text class=\\"stat bold\\" y=\\"12.5\\">Other:</text>
+        <text
+          class=\\"stat\\"
+          x=\\"350\\"
+          y=\\"12.5\\"
+          data-testid=\\"Other\\"
+        >19 mins</text>
+        
+      <svg width=\\"220\\" x=\\"110\\" y=\\"4\\">
+        <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#333\\"></rect>
+        <rect
+            height=\\"8\\"
+            fill=\\"#2f80ed\\"
+            rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" 
+            data-testid=\\"lang-progress\\"
+            width=\\"2%\\"
+        >
+        </rect>
+      </svg>
+    
+      </g>
+    </g><g transform=\\"translate(0, 25)\\">
+      <g class=\\"stagger\\" style=\\"animation-delay: NaNms\\" transform=\\"translate(25, 0)\\">
+        <text class=\\"stat bold\\" y=\\"12.5\\">TypeScript:</text>
+        <text
+          class=\\"stat\\"
+          x=\\"350\\"
+          y=\\"12.5\\"
+          data-testid=\\"TypeScript\\"
+        >1 min</text>
+        
+      <svg width=\\"220\\" x=\\"110\\" y=\\"4\\">
+        <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#333\\"></rect>
+        <rect
+            height=\\"8\\"
+            fill=\\"#2f80ed\\"
+            rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" 
+            data-testid=\\"lang-progress\\"
+            width=\\"2%\\"
+        >
+        </rect>
+      </svg>
+    
+      </g>
     </g>
-  </g><g transform=\\"translate(0, 25)\\">
-    <g class=\\"stagger\\" style=\\"animation-delay: NaNms\\" transform=\\"translate(25, 0)\\">
-      <text class=\\"stat bold\\" y=\\"12.5\\">TypeScript:</text>
-      <text
-        class=\\"stat\\"
-        x=\\"350\\"
-        y=\\"12.5\\"
-        data-testid=\\"TypeScript\\"
-      >1 min</text>
-      
-    <svg width=\\"220\\" x=\\"110\\" y=\\"4\\">
-      <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#333\\"></rect>
-      <rect
-          height=\\"8\\"
-          fill=\\"#2f80ed\\"
-          rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" 
-          data-testid=\\"lang-progress\\"
-          width=\\"2%\\"
-      >
-      </rect>
-    </svg>
-  
-    </g>
-  </g>
     </svg>
   
         </g>
@@ -274,20 +274,20 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
           />
         
       
-    <g transform=\\"translate(25, 25)\\">
-      <circle cx=\\"5\\" cy=\\"6\\" r=\\"5\\" fill=\\"#858585\\" />
-      <text data-testid=\\"lang-name\\" x=\\"15\\" y=\\"10\\" class='lang-name'>
-        Other - 19 mins
-      </text>
-    </g>
-  
-    <g transform=\\"translate(230, 25)\\">
-      <circle cx=\\"5\\" cy=\\"6\\" r=\\"5\\" fill=\\"#2b7489\\" />
-      <text data-testid=\\"lang-name\\" x=\\"15\\" y=\\"10\\" class='lang-name'>
-        TypeScript - 1 min
-      </text>
-    </g>
-  
+      <g transform=\\"translate(25, 25)\\">
+        <circle cx=\\"5\\" cy=\\"6\\" r=\\"5\\" fill=\\"#858585\\" />
+        <text data-testid=\\"lang-name\\" x=\\"15\\" y=\\"10\\" class='lang-name'>
+          Other - 19 mins
+        </text>
+      </g>
+    
+      <g transform=\\"translate(230, 25)\\">
+        <circle cx=\\"5\\" cy=\\"6\\" r=\\"5\\" fill=\\"#2b7489\\" />
+        <text data-testid=\\"lang-name\\" x=\\"15\\" y=\\"10\\" class='lang-name'>
+          TypeScript - 1 min
+        </text>
+      </g>
+    
     
     </svg>
   

@@ -7,9 +7,9 @@ export interface ITranslation {
 export default class I18n {
   private locale: string;
   private translation: ITranslation;
-  constructor(locale: string, translation?: ITranslation) {
+  constructor(locale: string, translation: ITranslation = {}) {
     this.locale = locale;
-    this.translation = translation ?? {};
+    this.translation = translation;
   }
 
   public setTranslation(translation: ITranslation) {
@@ -31,6 +31,8 @@ export default class I18n {
   public isLocaleAvailable(locale: string) {
     const key =
       "title" in this.translation ? "title" : Object.keys(this.translation)[0];
-    return Object.keys(this.translation[key]).includes(locale.toLowerCase());
+    return key
+      ? Object.keys(this.translation[key]).includes(locale.toLowerCase())
+      : false;
   }
 }
