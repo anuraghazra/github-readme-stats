@@ -293,7 +293,14 @@ const themes = {
     icon_color: "7289DA",
     text_color: "FFFFFF",
     bg_color: "2C2F33",
-  },
+  }, 
+  prefs: {
+    title_color: "f82371",
+    icon_color: "f8ca23",
+    text_color: "ffffff",
+    bg_color: "000000", 
+    border_color: "ffffff",
+  }, 
 };
 
 module.exports = themes;
