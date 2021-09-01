@@ -72,6 +72,10 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     border_radius,
     border_color,
     locale,
+    bg_img,
+    bg_img_width,
+    bg_img_height,
+    bg_img_blurness,
     disable_animations = false,
   } = options;
 
@@ -227,6 +231,10 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       bgColor,
       borderColor,
     },
+    bg_img,
+    bg_img_height,
+    bg_img_width,
+    bg_img_blurness
   });
 
   card.setHideBorder(hide_border);

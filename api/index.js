@@ -33,6 +33,10 @@ module.exports = async (req, res) => {
     disable_animations,
     border_radius,
     border_color,
+    bg_img,
+    bg_img_width,
+    bg_img_height,
+    bg_img_blurness,
   } = req.query;
   let stats;
 
@@ -74,6 +78,10 @@ module.exports = async (req, res) => {
         icon_color,
         text_color,
         bg_color,
+        bg_img,
+        bg_img_width,
+        bg_img_height,
+        bg_img_blurness,
         theme,
         custom_title,
         border_radius,

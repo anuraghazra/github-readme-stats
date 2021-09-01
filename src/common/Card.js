@@ -10,6 +10,10 @@ class Card {
     customTitle,
     defaultTitle = "",
     titlePrefixIcon,
+    bg_img = "",
+    bg_img_height = "200",
+    bg_img_width = "200",
+    bg_img_blurness = "2"
   }) {
     this.width = width;
     this.height = height;
@@ -19,6 +23,10 @@ class Card {
 
     this.border_radius = border_radius;
 
+    this.bg_img =bg_img;
+    this.bg_img_width = bg_img_width;
+    this.bg_img_height = bg_img_height;
+    this.bg_img_blurness = bg_img_blurness;
     // returns theme based colors with proper overrides and defaults
     this.colors = colors;
     this.title =
@@ -114,6 +122,25 @@ class Card {
       : "";
   }
 
+  renderBackground(){
+
+    const {bg_img,bg_img_blurness,bg_img_height,bg_img_width} = this;
+
+      return bg_img?`<filter id="blur-image">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="${bg_img_blurness}"></feGaussianBlur>
+        </filter>
+        <image 
+         filter="url(#blur-image)" 
+         width="${bg_img_width}" 
+         height="${bg_img_height}" 
+         href="${bg_img}"
+        />`:''
+    
+  
+    
+
+  }
+
   render(body) {
     return `
       <svg
@@ -123,6 +150,9 @@ class Card {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
+
+      ${this.renderBackground()}
+
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
@@ -141,21 +171,21 @@ class Card {
 
         ${this.renderGradient()}
 
-        <rect
-          data-testid="card-bg"
-          x="0.5"
-          y="0.5"
-          rx="${this.border_radius}"
-          height="99%"
-          stroke="${this.colors.borderColor}"
-          width="${this.width - 1}"
-          fill="${
-            typeof this.colors.bgColor === "object"
-              ? "url(#gradient)"
-              : this.colors.bgColor
-          }"
-          stroke-opacity="${this.hideBorder ? 0 : 1}"
-        />
+        ${!this.bg_img?`<rect
+        data-testid="card-bg"
+        x="0.5"
+        y="0.5"
+        rx="${this.border_radius}"
+        height="99%"
+        stroke="${this.colors.borderColor}"
+        width="${this.width - 1}"
+        fill="${
+          typeof this.colors.bgColor === "object"
+            ? "url(#gradient)"
+            : this.colors.bgColor
+        }"
+        stroke-opacity="${this.hideBorder ? 0 : 1}"
+      />`:''}
 
         ${this.hideTitle ? "" : this.renderTitle()}
 
