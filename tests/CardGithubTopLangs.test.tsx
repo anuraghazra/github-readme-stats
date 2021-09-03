@@ -6,6 +6,10 @@ import {
 } from "./utils/mock";
 import api from "../api/[key]";
 import GithubTopLangs from "../src/cards/github-top-langs";
+import themes from "../themes";
+
+import "@testing-library/jest-dom";
+import cssToObject from "css-to-object";
 
 describe("GithubTopLangsCard", () => {
   it("should work with correct route", async () => {

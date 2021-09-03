@@ -1,24 +1,5 @@
 import themes from "../../themes";
 
-export function flexLayout({
-  items,
-  gap,
-  direction = "row",
-}: {
-  items: string[];
-  gap: number;
-  direction?: "column" | "row";
-}) {
-  // filter() for filtering out empty strings
-  return items.filter(Boolean).map((item, i) => {
-    let transform = `translate(${gap * i}, 0)`;
-    if (direction === "column") {
-      transform = `translate(0, ${gap * i})`;
-    }
-    return `<g transform="${transform}">${item}</g>`;
-  });
-}
-
 function isValidGradient(colors: string[]) {
   return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
 }
@@ -29,18 +10,19 @@ function isValidHexColor(hexColor: string) {
   ).test(hexColor);
 }
 
-function fallbackColor(color: string, fallbackColor: string) {
-  let colors = color.split(",");
+function fallbackBgColor(color: string = "", defaultColor: string) {
+  const colors = color.split(",");
   let gradient = null;
 
   if (colors.length > 1 && isValidGradient(colors)) {
     gradient = colors;
   }
 
-  return (
-    (gradient ? gradient : isValidHexColor(color) && `#${color}`) ||
-    fallbackColor
-  );
+  return (gradient ?? (isValidHexColor(color) && `#${color}`)) || defaultColor;
+}
+
+function fallbackColor(color: string = "", defaultColor: string) {
+  return isValidHexColor(color) ? `#${color}` : defaultColor;
 }
 
 export function getCardColors({
@@ -61,14 +43,14 @@ export function getCardColors({
   fallbackTheme?: keyof typeof themes;
 }) {
   const defaultTheme = themes[fallbackTheme];
-  const selectedTheme = (theme && themes[theme]) ?? defaultTheme;
+  const selectedTheme = (theme ? themes[theme] : defaultTheme) || defaultTheme;
   const defaultBorderColor =
     selectedTheme.border_color || defaultTheme.border_color;
 
   // get the color provided by the user else the theme color
   // finally if both colors are invalid fallback to default theme
   const titleColor = fallbackColor(
-    title_color || selectedTheme.title_color,
+    title_color ?? selectedTheme.title_color,
     "#" + defaultTheme.title_color,
   );
   const iconColor = fallbackColor(
@@ -79,7 +61,7 @@ export function getCardColors({
     text_color || selectedTheme.text_color,
     "#" + defaultTheme.text_color,
   );
-  const bgColor = fallbackColor(
+  const bgColor = fallbackBgColor(
     bg_color || selectedTheme.bg_color,
     "#" + defaultTheme.bg_color,
   );
@@ -92,37 +74,6 @@ export function getCardColors({
   return { titleColor, iconColor, textColor, bgColor, borderColor };
 }
 
-export const createProgressNode = ({
-  x,
-  y,
-  width,
-  color,
-  progress,
-  progressBarBackgroundColor,
-}) => {
-  const progressPercentage = clampValue(progress, 2, 100);
-
-  return `
-      <svg width="${width}" x="${x}" y="${y}">
-        <rect rx="5" ry="5" x="0" y="0" width="${width}" height="8" fill="${progressBarBackgroundColor}"></rect>
-        <rect
-            height="8"
-            fill="${color}"
-            rx="5" ry="5" x="0" y="0" 
-            data-testid="lang-progress"
-            width="${progressPercentage}%"
-        >
-        </rect>
-      </svg>
-    `;
-};
-
-export function clampValue(number, min, max) {
-  return Math.max(min, Math.min(number, max));
-}
-
-export function kFormatter(num: number) {
-  return Math.abs(num) > 999
-    ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
-    : Math.sign(num) * Math.abs(num);
+export function clampValue(num: number, min: number, max: number) {
+  return Math.max(min, Math.min(num, max));
 }

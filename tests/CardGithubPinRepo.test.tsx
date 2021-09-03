@@ -1,13 +1,14 @@
-import("@testing-library/jest-dom");
+import "@testing-library/jest-dom";
 import {
   genGithubPinRepoMockData,
   mockGithubRequest,
   mockVercel,
 } from "./utils/mock";
 import GithubPinRepoCard from "../src/cards/gituhb-pin-repo";
-import { renderError } from "../src/helpers/CardRenderer";
 import cssToObject from "css-to-object";
 import { queryByTestId } from "@testing-library/dom";
+import ErrorComponent from "../src/components/Error";
+import SVGRender, { render } from "../src/helpers/SVGRender";
 
 describe("GithubPinRepoCard", () => {
   it("should render pin repo card", async () => {
@@ -20,7 +21,7 @@ describe("GithubPinRepoCard", () => {
     const svgString = await card.generateSvgString(res.setHeader);
     document.body.innerHTML = svgString;
     expect(document.body.querySelector("svg")).toBeInTheDocument();
-    const [header] = document.getElementsByClassName("header");
+    const header = queryByTestId(document.body, "header");
     expect(header).toHaveTextContent("convoychat");
     expect(header).not.toHaveTextContent("anuraghazra");
 
@@ -41,19 +42,19 @@ describe("GithubPinRepoCard", () => {
     const svgString = await card.generateSvgString(res.setHeader);
     document.body.innerHTML = svgString;
     expect(document.body.querySelector("svg")).toBeInTheDocument();
-    const [header] = document.getElementsByClassName("header");
+    const header = queryByTestId(document.body, "header");
     expect(header).toHaveTextContent("convoychat");
     expect(header).not.toHaveTextContent("anuraghazra");
     const styleTag = document.querySelector("style");
-    const stylesObject = cssToObject(styleTag.innerHTML);
+    const stylesObject = cssToObject(styleTag?.innerHTML);
 
-    const headerClassStyles = stylesObject[".header"];
-    const descClassStyles = stylesObject[".description"];
-    const iconClassStyles = stylesObject[".icon"];
+    const primaryFill = stylesObject[".primary-fill"];
+    const textFill = stylesObject[".text-fill"];
+    const iconFill = stylesObject[".icon"];
 
-    expect(headerClassStyles.fill).toBe(`#fff`);
-    expect(descClassStyles.fill).toBe(`#fff`);
-    expect(iconClassStyles.fill).toBe(`#fff`);
+    expect(primaryFill.fill).toBe(`#fff`);
+    expect(textFill.fill).toBe(`#fff`);
+    expect(iconFill.fill).toBe(`#fff`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#fff",
@@ -76,7 +77,13 @@ describe("GithubPinRepoCard", () => {
     const card = new GithubPinRepoCard(req.query);
     const svgString = await card.generateSvgString(res.setHeader);
     document.body.innerHTML = svgString;
-    expect(svgString).toBe(renderError(new Error("User Repository Not found")));
+    expect(svgString).toBe(
+      render(
+        <ErrorComponent
+          error={new Error("User Repository Not found")}
+        ></ErrorComponent>,
+      ),
+    );
 
     mockRestore();
   });
@@ -93,7 +100,11 @@ describe("GithubPinRepoCard", () => {
     const svgString = await card.generateSvgString(res.setHeader);
     document.body.innerHTML = svgString;
     expect(svgString).toBe(
-      renderError(new Error("Organization Repository Not found")),
+      render(
+        <ErrorComponent
+          error={new Error("Organization Repository Not found")}
+        ></ErrorComponent>,
+      ),
     );
 
     mockRestore();

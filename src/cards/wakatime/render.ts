@@ -45,7 +45,7 @@ export const createTextNode = ({
   progressBarColor,
   progressBarBackgroundColor,
 }) => {
-  const staggerDelay = (index + 3) * 150;
+  const fadeInDelay = (index + 3) * 150;
 
   const cardProgress = hideProgress
     ? null
@@ -60,8 +60,8 @@ export const createTextNode = ({
       });
 
   return `
-      <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
-        <text class="stat bold" y="12.5">${label}:</text>
+      <g class="fadeIn" style="animation-delay: ${fadeInDelay}ms" transform="translate(25, 0)">
+        <text class="stat font-bold" y="12.5">${label}:</text>
         <text
           class="stat"
           x="${hideProgress ? 170 : 350}"
@@ -75,6 +75,6 @@ export const createTextNode = ({
 
 export const noCodingActivityNode = ({ color, text }) => {
   return `
-      <text x="25" y="11" class="stat bold" fill="${color}">${text}</text>
+      <text x="25" y="11" class="stat font-bold" fill="${color}">${text}</text>
     `;
 };

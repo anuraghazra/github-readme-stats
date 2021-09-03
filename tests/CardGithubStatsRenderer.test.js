@@ -2,6 +2,8 @@ import "@testing-library/jest-dom";
 import cssToObject from "css-to-object";
 import GithubStatsCard from "../src/cards/github-stats";
 
+console.log(cssToObject);
+
 import {
   getByTestId,
   queryByTestId,
@@ -29,7 +31,7 @@ describe("Test renderStatsCard", () => {
 
     document.body.innerHTML = svgString;
 
-    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+    expect(queryByTestId(document.body, "header").textContent).toBe(
       "Anurag Hazra's GitHub Stats",
     );
 
@@ -54,13 +56,13 @@ describe("Test renderStatsCard", () => {
 
     spy.mockImplementation(() => ({ ...stats, name: "Anil Das" }));
     document.body.innerHTML = await card.generateSvgString(res.setHeader);
-    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+    expect(queryByTestId(document.body, "header").textContent).toBe(
       "Anil Das' GitHub Stats",
     );
 
     spy.mockImplementation(() => ({ ...stats, name: "Felix" }));
     document.body.innerHTML = await card.generateSvgString(res.setHeader);
-    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+    expect(queryByTestId(document.body, "header").textContent).toBe(
       "Felix' GitHub Stats",
     );
     spy.mockRestore();
@@ -103,16 +105,16 @@ describe("Test renderStatsCard", () => {
 
     spy.mockImplementation(() => stats);
     document.body.innerHTML = await card.generateSvgString(res.setHeader);
-    const styleTag = document.querySelector("style");
-    const stylesObject = cssToObject(styleTag.textContent);
+    const styles = document.querySelector("style").textContent;
+    const stylesObject = cssToObject(styles);
 
-    const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".stat"];
-    const iconClassStyles = stylesObject[".icon"];
+    const primaryFill = stylesObject[".primary-fill"];
+    const textFill = stylesObject[".text-fill"];
+    const iconFill = stylesObject[".icon"];
 
-    expect(headerClassStyles.fill).toBe("#2f80ed");
-    expect(statClassStyles.fill).toBe("#333");
-    expect(iconClassStyles.fill).toBe("#4c71f2");
+    expect(primaryFill.fill).toBe("#2f80ed");
+    expect(textFill.fill).toBe("#333");
+    expect(iconFill.fill).toBe("#4c71f2");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#fffefe",
@@ -138,13 +140,13 @@ describe("Test renderStatsCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".stat"];
-    const iconClassStyles = stylesObject[".icon"];
+    const primaryFill = stylesObject[".primary-fill"];
+    const textFill = stylesObject[".text-fill"];
+    const iconFill = stylesObject[".icon"];
 
-    expect(headerClassStyles.fill).toBe(`#${customColors.title_color}`);
-    expect(statClassStyles.fill).toBe(`#${customColors.text_color}`);
-    expect(iconClassStyles.fill).toBe(`#${customColors.icon_color}`);
+    expect(primaryFill.fill).toBe(`#${customColors.title_color}`);
+    expect(textFill.fill).toBe(`#${customColors.text_color}`);
+    expect(iconFill.fill).toBe(`#${customColors.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#252525",
@@ -166,13 +168,13 @@ describe("Test renderStatsCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".stat"];
-    const iconClassStyles = stylesObject[".icon"];
+    const primaryFill = stylesObject[".primary-fill"];
+    const textFill = stylesObject[".text-fill"];
+    const iconFill = stylesObject[".icon"];
 
-    expect(headerClassStyles.fill).toBe("#5a0");
-    expect(statClassStyles.fill).toBe(`#${themes.radical.text_color}`);
-    expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
+    expect(primaryFill.fill).toBe("#5a0");
+    expect(textFill.fill).toBe(`#${themes.radical.text_color}`);
+    expect(iconFill.fill).toBe(`#${themes.radical.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       `#${themes.radical.bg_color}`,
@@ -193,13 +195,13 @@ describe("Test renderStatsCard", () => {
       const styleTag = document.querySelector("style");
       const stylesObject = cssToObject(styleTag.innerHTML);
 
-      const headerClassStyles = stylesObject[".header"];
-      const statClassStyles = stylesObject[".stat"];
-      const iconClassStyles = stylesObject[".icon"];
+      const primaryFill = stylesObject[".primary-fill"];
+      const textFill = stylesObject[".text-fill"];
+      const iconFill = stylesObject[".icon"];
 
-      expect(headerClassStyles.fill).toBe(`#${themes[name].title_color}`);
-      expect(statClassStyles.fill).toBe(`#${themes[name].text_color}`);
-      expect(iconClassStyles.fill).toBe(`#${themes[name].icon_color}`);
+      expect(primaryFill.fill).toBe(`#${themes[name].title_color}`);
+      expect(textFill.fill).toBe(`#${themes[name].text_color}`);
+      expect(iconFill.fill).toBe(`#${themes[name].icon_color}`);
       expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
         "fill",
         `#${themes[name].bg_color}`,
@@ -221,14 +223,13 @@ describe("Test renderStatsCard", () => {
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
+    const primaryFill = stylesObject[".primary-fill"];
+    const textFill = stylesObject[".text-fill"];
+    const iconFill = stylesObject[".icon"];
 
-    const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".stat"];
-    const iconClassStyles = stylesObject[".icon"];
-
-    expect(headerClassStyles.fill).toBe(`#${themes.default.title_color}`);
-    expect(statClassStyles.fill).toBe(`#${themes.default.text_color}`);
-    expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
+    expect(primaryFill.fill).toBe(`#${themes.default.title_color}`);
+    expect(textFill.fill).toBe(`#${themes.default.text_color}`);
+    expect(iconFill.fill).toBe(`#${themes.radical.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       `#${themes.radical.bg_color}`,
@@ -268,7 +269,7 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "stars")).toBeDefined();
     expect(
       queryByTestId(document.body, "stars").previousElementSibling, // the label
-    ).not.toHaveAttribute("x");
+    ).toHaveAttribute("x", "0");
     spy.mockRestore();
   });
 
@@ -314,32 +315,32 @@ describe("Test renderStatsCard", () => {
 
     spy.mockImplementation(() => stats);
     document.body.innerHTML = await card.generateSvgString(res.setHeader);
-    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+    expect(queryByTestId(document.body, "header").textContent).toBe(
       "Anurag Hazra 的 GitHub 统计数据",
     );
     expect(
       document.querySelector(
-        'g[transform="translate(0, 0)"]>.stagger>.stat.bold',
+        'g[transform="translate(0, 0)"]>.fadeIn>.font-bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"获标星数（star）:"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
+        'g[transform="translate(0, 25)"]>.fadeIn>.font-bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"累计提交数（commit） (2021):"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
+        'g[transform="translate(0, 50)"]>.fadeIn>.font-bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"拉取请求数（PR）:"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 75)"]>.stagger>.stat.bold',
+        'g[transform="translate(0, 75)"]>.fadeIn>.font-bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"指出问题数（issue）:"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
+        'g[transform="translate(0, 100)"]>.fadeIn>.font-bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"参与项目数:"`);
     spy.mockRestore();

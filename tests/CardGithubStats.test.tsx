@@ -5,9 +5,17 @@ import {
   mockVercel,
 } from "./utils/mock";
 import { ServerError } from "../src/helpers/Error";
+import Error from "../src/components/Error";
+import SVGRender, { render } from "../src/helpers/SVGRender";
+
 import "@testing-library/jest-dom";
-import { getByTestId } from "@testing-library/dom";
-import { renderError } from "../src/helpers/CardRenderer";
+import cssToObject from "css-to-object";
+import GithubStatsCard from "../src/cards/github-stats";
+import {
+  getByTestId,
+  queryByTestId,
+  queryAllByTestId,
+} from "@testing-library/dom";
 
 const githubStats = genGithubStatsMockData();
 const mockRestore = mockGithubRequest(githubStats);
@@ -21,7 +29,9 @@ describe("GithubStatsCard", () => {
     const card = new GitHubStatsCard({ username: "technote-space" });
     const svgString = await card.generateSvgString(res.setHeader);
     expect(svgString).toBe(
-      renderError(new ServerError(ServerError.TYPE.UNEXPECTED)),
+      render(
+        <Error error={new ServerError(ServerError.TYPE.UNEXPECTED)}></Error>,
+      ),
     );
   });
 
@@ -35,7 +45,7 @@ describe("GithubStatsCard", () => {
     const svgString = await card.generateSvgString(res.setHeader);
     document.body.innerHTML = svgString;
     expect(document.body.querySelector("svg")).toBeInTheDocument();
-    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+    expect(getByTestId(document.body, "header").textContent).toBe(
       "Hello World",
     );
     expect(document.body.querySelectorAll(".icon").length).toBe(5);

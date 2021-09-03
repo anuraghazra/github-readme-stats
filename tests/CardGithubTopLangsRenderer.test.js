@@ -2,13 +2,13 @@ import "@testing-library/jest-dom";
 import cssToObject from "css-to-object";
 
 import { queryByTestId, queryAllByTestId } from "@testing-library/dom";
-import themes from "../themes";
 import {
   genGithubTopLangsMockData,
   mockGithubRequest,
   mockVercel,
 } from "./utils/mock";
 import GithubTopLangs from "../src/cards/github-top-langs";
+import themes from "../themes";
 
 describe("GitHubTopLangsRenderer", () => {
   async function render({ query = {}, statsHandler = (data) => data } = {}) {
@@ -31,24 +31,20 @@ describe("GitHubTopLangsRenderer", () => {
       "Most Used Languages",
     );
 
-    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
-      "HTML",
-    );
-    expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
-      "javascript",
-    );
-    expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
-      "css",
-    );
-    expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
+    const langNames = queryAllByTestId(document.body, "lang-name");
+
+    expect(langNames[0]).toHaveTextContent("HTML");
+    expect(langNames[1]).toHaveTextContent("javascript");
+    expect(langNames[2]).toHaveTextContent("css");
+    expect(queryByTestId(langNames[0], "progress")).toHaveAttribute(
       "width",
       "40%",
     );
-    expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
+    expect(queryByTestId(langNames[1], "progress")).toHaveAttribute(
       "width",
       "40%",
     );
-    expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
+    expect(queryByTestId(langNames[2], "progress")).toHaveAttribute(
       "width",
       "20%",
     );
@@ -116,11 +112,19 @@ describe("GitHubTopLangsRenderer", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.textContent);
 
-    const headerStyles = stylesObject[".header"];
-    const langNameStyles = stylesObject[".lang-name"];
+    const primaryFill = stylesObject[".primary-fill"];
+    const textFill = stylesObject[".text-fill"];
 
-    expect(headerStyles.fill).toBe("#2f80ed");
-    expect(langNameStyles.fill).toBe("#333");
+    expect(primaryFill.fill).toBe("#2f80ed");
+    expect(textFill.fill).toBe("#333");
+    expect(
+      queryByTestId(document.body, "header").classList.contains("primary-fill"),
+    ).toBe(true);
+    expect(
+      queryAllByTestId(document.body, "lang-name")[0].classList.contains(
+        "text-fill",
+      ),
+    ).toBe(true);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#fffefe",
@@ -142,11 +146,11 @@ describe("GitHubTopLangsRenderer", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerStyles = stylesObject[".header"];
-    const langNameStyles = stylesObject[".lang-name"];
+    const primaryFill = stylesObject[".primary-fill"];
+    const textFill = stylesObject[".text-fill"];
 
-    expect(headerStyles.fill).toBe(`#${customColors.title_color}`);
-    expect(langNameStyles.fill).toBe(`#${customColors.text_color}`);
+    expect(primaryFill.fill).toBe(`#${customColors.title_color}`);
+    expect(textFill.fill).toBe(`#${customColors.text_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#252525",
@@ -164,11 +168,11 @@ describe("GitHubTopLangsRenderer", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerStyles = stylesObject[".header"];
-    const langNameStyles = stylesObject[".lang-name"];
+    const primaryFill = stylesObject[".primary-fill"];
+    const textFill = stylesObject[".text-fill"];
 
-    expect(headerStyles.fill).toBe("#5a0");
-    expect(langNameStyles.fill).toBe(`#${themes.radical.text_color}`);
+    expect(primaryFill.fill).toBe("#5a0");
+    expect(textFill.fill).toBe(`#${themes.radical.text_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       `#${themes.radical.bg_color}`,
@@ -186,11 +190,11 @@ describe("GitHubTopLangsRenderer", () => {
       const styleTag = document.querySelector("style");
       const stylesObject = cssToObject(styleTag.innerHTML);
 
-      const headerStyles = stylesObject[".header"];
-      const langNameStyles = stylesObject[".lang-name"];
+      const primaryFill = stylesObject[".primary-fill"];
+      const textFill = stylesObject[".text-fill"];
 
-      expect(headerStyles.fill).toBe(`#${themes[name].title_color}`);
-      expect(langNameStyles.fill).toBe(`#${themes[name].text_color}`);
+      expect(primaryFill.fill).toBe(`#${themes[name].title_color}`);
+      expect(textFill.fill).toBe(`#${themes[name].text_color}`);
       expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
         "fill",
         `#${themes[name].bg_color}`,
@@ -244,7 +248,7 @@ describe("GitHubTopLangsRenderer", () => {
         locale: "cn",
       },
     });
-    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+    expect(queryByTestId(document.body, "header").textContent).toBe(
       "最常用的语言",
     );
   });

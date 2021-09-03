@@ -1,5 +1,4 @@
 import { URLQueryError } from "../helpers/Error";
-import { renderError } from "../helpers/CardRenderer";
 import I18n, { ITranslation } from "../helpers/I18n";
 import { VercelRequestQuery, VercelResponse } from "@vercel/node";
 import {
@@ -9,6 +8,8 @@ import {
   toString,
 } from "../utils/vercelRequestQuery";
 import { logger } from "../utils/debug";
+import SVGRender, { render } from "../helpers/SVGRender";
+import Error from "../components/Error";
 
 export interface CommonProps {
   username: string;
@@ -45,16 +46,16 @@ export default class Card {
     try {
       this.checkProps();
       const stats = await this.fetchStats();
-      const cardSvgString = this.renderCard(stats);
+      const svgElement = this.renderCard(stats);
       setResponseHeader(
         "Cache-Control",
         `public, max-age=${this.getCacheSeconds()}`,
       );
 
-      return cardSvgString;
+      return render(svgElement);
     } catch (err) {
       logger.log(err);
-      return renderError(err);
+      return render(<Error error={err} />);
     }
   }
 
@@ -112,7 +113,7 @@ export default class Card {
 
   protected async fetchStats(): Promise<any> {}
 
-  protected renderCard(_stats: any): string {
-    return "";
+  protected renderCard(_stats: any): SVGRender.SVGElement | string {
+    return <svg></svg>;
   }
 }

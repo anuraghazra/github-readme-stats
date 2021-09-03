@@ -1,43 +1,7 @@
 import "@testing-library/jest-dom";
-import {
-  kFormatter,
-  flexLayout,
-  getCardColors,
-  clampValue,
-} from "../src/utils/render";
+import { getCardColors, clampValue } from "../src/utils/render";
 
 describe("Test card render utils", () => {
-  it("should test kFormatter", () => {
-    expect(kFormatter(1)).toBe(1);
-    expect(kFormatter(-1)).toBe(-1);
-    expect(kFormatter(500)).toBe(500);
-    expect(kFormatter(1000)).toBe("1k");
-    expect(kFormatter(10000)).toBe("10k");
-    expect(kFormatter(12345)).toBe("12.3k");
-    expect(kFormatter(9900000)).toBe("9900k");
-  });
-
-  it("should test flexLayout", () => {
-    const layout = flexLayout({
-      items: ["<text>1</text>", "<text>2</text>"],
-      gap: 60,
-    }).join("");
-
-    expect(layout).toBe(
-      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(60, 0)\"><text>2</text></g>`,
-    );
-
-    const columns = flexLayout({
-      items: ["<text>1</text>", "<text>2</text>"],
-      gap: 60,
-      direction: "column",
-    }).join("");
-
-    expect(columns).toBe(
-      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(0, 60)\"><text>2</text></g>`,
-    );
-  });
-
   it("should test clampValue", () => {
     expect(clampValue(2, 1, 10)).toBe(2);
     expect(clampValue(-1, 1, 10)).toBe(1);

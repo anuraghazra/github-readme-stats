@@ -26,6 +26,14 @@ describe("API", () => {
     );
   });
 
+  it("should return stat card svg when request to /api", async () => {
+    const { req, res } = mockVercel();
+    await api(req, res);
+    expect(res.send).toBeCalledWith(
+      await new GitHubStatsCard(req.query).generateSvgString(res.setHeader),
+    );
+  });
+
   it("should return 404 when request to /api/xxx", async () => {
     const { req, res } = mockVercel({
       key: "xxx",

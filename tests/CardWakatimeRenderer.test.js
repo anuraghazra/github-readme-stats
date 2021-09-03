@@ -1,3 +1,4 @@
+import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import WakaTimeCard from "../src/cards/wakatime";
 import {
@@ -42,13 +43,12 @@ describe("Test Render Wakatime Card", () => {
         data: {},
       },
     });
-    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+    expect(queryByTestId(document.body, "header").textContent).toBe(
       "Wakatime 周统计",
     );
-    expect(
-      document.querySelector('g[transform="translate(0, 0)"]>text.stat.bold')
-        .textContent,
-    ).toBe("本周没有编程活动");
+    expect(queryByTestId(document.body, "nocoding").textContent).toBe(
+      "本周没有编程活动",
+    );
   });
 
   it("should render without rounding", async () => {

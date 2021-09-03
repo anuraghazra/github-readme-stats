@@ -1,7 +1,8 @@
-import { renderError } from "../src/helpers/CardRenderer";
 import { mockVercel } from "./utils/mock";
 import { CardError, URLQueryError } from "../src/helpers/Error";
 import Card from "../src/cards/Card";
+import Error from "../src/components/Error";
+import SVGRender, { render } from "../src/helpers/SVGRender";
 
 describe("Card Base Class", () => {
   describe("generateSvgString", () => {
@@ -51,14 +52,18 @@ describe("Card Base Class", () => {
       const { req, res } = mockVercel({});
       const card = new TestCard(req.query, { title: { en: "Title" } });
       const svgString = await card.generateSvgString(res.setHeader);
-      expect(svgString).toBe(renderError(error));
+      expect(svgString).toBe(render(<Error error={error}></Error>));
     });
     it("should render query missing error when username is empty", async () => {
       const { res } = mockVercel();
       const card = new Card({}, { title: { en: "Title" } });
       const svgString = await card.generateSvgString(res.setHeader);
       expect(svgString).toBe(
-        renderError(new URLQueryError(URLQueryError.TYPE.MISSING, "username")),
+        render(
+          <Error
+            error={new URLQueryError(URLQueryError.TYPE.MISSING, "username")}
+          ></Error>,
+        ),
       );
     });
     it("should render query missing error when locale is not available", async () => {
@@ -68,8 +73,12 @@ describe("Card Base Class", () => {
       const card = new Card(req.query, { title: { en: "Title" } });
       const svgString = await card.generateSvgString(res.setHeader);
       expect(svgString).toBe(
-        renderError(
-          new URLQueryError(URLQueryError.TYPE.NOT_SUPPORTED, "locale=fr"),
+        render(
+          <Error
+            error={
+              new URLQueryError(URLQueryError.TYPE.NOT_SUPPORTED, "locale=fr")
+            }
+          ></Error>,
         ),
       );
     });

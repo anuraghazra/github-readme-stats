@@ -1,4 +1,12 @@
-export default {
+const themes: {
+  [_: string]: {
+    title_color?: string;
+    icon_color?: string;
+    text_color?: string;
+    bg_color?: string;
+    border_color?: string;
+  };
+} = {
   default: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
@@ -295,3 +303,5 @@ export default {
     bg_color: "2C2F33",
   },
 };
+
+export default themes;

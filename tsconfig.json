@@ -3,6 +3,7 @@
     "exclude": ["node_modules", "**/*.spec.ts"],
     "compilerOptions": {
         "jsx": "react",
-        "jsxFactory": "createSvg"
+        "jsxFactory": "SVGRender.createElement",
+        "lib": ["DOM", "ES2020"]
     },   
 }

@@ -1,17 +1,18 @@
 import "@testing-library/jest-dom";
 import cssToObject from "css-to-object";
-import CardRenderer, { renderError } from "../src/helpers/CardRenderer";
 import { getCardColors } from "../src/utils/render";
 import icons from "../src/icons/github";
 import { queryByTestId } from "@testing-library/dom";
 import { CardError } from "../src/helpers/Error";
+import SVGRender, { render } from "../src/helpers/SVGRender";
+import CardContainer from "../src/components/CardContainer";
+import Error from "../src/components/Error";
 
-describe("CardRenderer", () => {
+describe("ComponentCardContainer", () => {
   it("should hide border", () => {
-    const card = new CardRenderer({});
-    card.setHideBorder(true);
-
-    document.body.innerHTML = card.render(``);
+    document.body.innerHTML = render(
+      <CardContainer hideBorder={true}></CardContainer>,
+    );
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "stroke-opacity",
       "0",
@@ -19,10 +20,9 @@ describe("CardRenderer", () => {
   });
 
   it("should not hide border", () => {
-    const card = new CardRenderer({});
-    card.setHideBorder(false);
-
-    document.body.innerHTML = card.render(``);
+    document.body.innerHTML = render(
+      <CardContainer hideBorder={false}></CardContainer>,
+    );
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "stroke-opacity",
       "1",
@@ -30,53 +30,56 @@ describe("CardRenderer", () => {
   });
 
   it("should have a custom title", () => {
-    const card = new CardRenderer({
-      customTitle: "custom title",
-      defaultTitle: "default title",
-    });
-
-    document.body.innerHTML = card.render(``);
+    document.body.innerHTML = render(
+      <CardContainer
+        customTitle="custom title"
+        defaultTitle="default title"
+      ></CardContainer>,
+    );
     expect(queryByTestId(document.body, "card-title")).toHaveTextContent(
       "custom title",
     );
   });
 
   it("should hide title", () => {
-    const card = new CardRenderer({});
-    card.setHideTitle(true);
-
-    document.body.innerHTML = card.render(``);
+    document.body.innerHTML = render(<CardContainer hideTitle></CardContainer>);
     expect(queryByTestId(document.body, "card-title")).toBeNull();
   });
 
   it("should not hide title", () => {
-    const card = new CardRenderer({});
-    card.setHideTitle(false);
-
-    document.body.innerHTML = card.render(``);
+    document.body.innerHTML = render(
+      <CardContainer hideTitle={false}></CardContainer>,
+    );
     expect(queryByTestId(document.body, "card-title")).toBeInTheDocument();
   });
 
   it("title should have prefix icon", () => {
-    const card = new CardRenderer({
-      title: "ok",
-      titlePrefixIcon: icons.contribs,
-    });
+    document.body.innerHTML = render(
+      <CardContainer
+        defaultTitle="ok"
+        titlePrefixIcon={icons.contribs}
+      ></CardContainer>,
+    );
 
-    document.body.innerHTML = card.render(``);
     expect(document.getElementsByClassName("icon")[0]).toBeInTheDocument();
   });
 
   it("title should not have prefix icon", () => {
-    const card = new CardRenderer({ title: "ok" });
-
-    document.body.innerHTML = card.render(``);
+    document.body.innerHTML = render(
+      <CardContainer defaultTitle="ok"></CardContainer>,
+    );
     expect(document.getElementsByClassName("icon")[0]).toBeUndefined();
   });
 
   it("should have proper height, width", () => {
-    const card = new CardRenderer({ height: 200, width: 200, title: "ok" });
-    document.body.innerHTML = card.render(``);
+    document.body.innerHTML = render(
+      <CardContainer
+        height={200}
+        width={200}
+        defaultTitle="ok"
+      ></CardContainer>,
+    );
+
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
       "height",
       "200",
@@ -88,10 +91,10 @@ describe("CardRenderer", () => {
   });
 
   it("should have less height after title is hidden", () => {
-    const card = new CardRenderer({ height: 200, title: "ok" });
-    card.setHideTitle(true);
+    document.body.innerHTML = render(
+      <CardContainer height={200} defaultTitle="ok" hideTitle></CardContainer>,
+    );
 
-    document.body.innerHTML = card.render(``);
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
       "height",
       "170",
@@ -99,8 +102,9 @@ describe("CardRenderer", () => {
   });
 
   it("main-card-body should have proper when title is visible", () => {
-    const card = new CardRenderer({ height: 200 });
-    document.body.innerHTML = card.render(``);
+    document.body.innerHTML = render(
+      <CardContainer height={200}></CardContainer>,
+    );
     expect(queryByTestId(document.body, "main-card-body")).toHaveAttribute(
       "transform",
       "translate(0, 55)",
@@ -108,10 +112,10 @@ describe("CardRenderer", () => {
   });
 
   it("main-card-body should have proper position after title is hidden", () => {
-    const card = new CardRenderer({ height: 200 });
-    card.setHideTitle(true);
+    document.body.innerHTML = render(
+      <CardContainer height={200} hideTitle></CardContainer>,
+    );
 
-    document.body.innerHTML = card.render(``);
     expect(queryByTestId(document.body, "main-card-body")).toHaveAttribute(
       "transform",
       "translate(0, 25)",
@@ -120,54 +124,60 @@ describe("CardRenderer", () => {
 
   it("should render with correct colors", () => {
     // returns theme based colors with proper overrides and defaults
-    const { titleColor, textColor, iconColor, bgColor } = getCardColors({
-      title_color: "f00",
-      icon_color: "0f0",
-      text_color: "00f",
-      bg_color: "fff",
-      theme: "default",
-    });
+    const { titleColor, textColor, iconColor, bgColor, borderColor } =
+      getCardColors({
+        title_color: "f00",
+        icon_color: "0f0",
+        text_color: "00f",
+        bg_color: "fff",
+        theme: "default",
+      });
 
-    const card = new CardRenderer({
-      height: 200,
-      colors: {
-        titleColor,
-        textColor,
-        iconColor,
-        bgColor,
-      },
-    });
-    document.body.innerHTML = card.render(``);
+    document.body.innerHTML = render(
+      <CardContainer
+        height={200}
+        colors={{
+          titleColor,
+          textColor,
+          iconColor,
+          bgColor,
+          borderColor,
+        }}
+      ></CardContainer>,
+    );
 
     const styleTag = document.querySelector("style");
-    const stylesObject = cssToObject(styleTag.innerHTML);
-    const headerClassStyles = stylesObject[".header"];
+    const stylesObject = cssToObject(styleTag?.innerHTML);
+    const primaryFill = stylesObject[".primary-fill"];
 
-    expect(headerClassStyles.fill).toBe("#f00");
+    expect(primaryFill.fill).toBe("#f00");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#fff",
     );
   });
   it("should render gradient backgrounds", () => {
-    const { titleColor, textColor, iconColor, bgColor } = getCardColors({
-      title_color: "f00",
-      icon_color: "0f0",
-      text_color: "00f",
-      bg_color: "90,fff,000,f00",
-      theme: "default",
-    });
+    const { titleColor, textColor, iconColor, bgColor, borderColor } =
+      getCardColors({
+        title_color: "f00",
+        icon_color: "0f0",
+        text_color: "00f",
+        bg_color: "90,fff,000,f00",
+        theme: "default",
+      });
 
-    const card = new CardRenderer({
-      height: 200,
-      colors: {
-        titleColor,
-        textColor,
-        iconColor,
-        bgColor,
-      },
-    });
-    document.body.innerHTML = card.render(``);
+    document.body.innerHTML = render(
+      <CardContainer
+        height={200}
+        colors={{
+          titleColor,
+          textColor,
+          iconColor,
+          bgColor,
+          borderColor,
+        }}
+      ></CardContainer>,
+    );
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "url(#gradient)",
@@ -190,22 +200,24 @@ describe("CardRenderer", () => {
 
 describe("renderError", () => {
   it("should render correct content", () => {
-    document.body.innerHTML = renderError(
-      new CardError("Something went wrong"),
+    document.body.innerHTML = render(
+      <Error error={new CardError("Something went wrong")}></Error>,
     );
     expect(
-      queryByTestId(document.body, "message").children[0],
+      queryByTestId(document.body, "message")?.children[0],
     ).toHaveTextContent(/Something went wrong/gim);
     expect(
-      queryByTestId(document.body, "message").children[1],
-    ).toBeEmptyDOMElement(2);
+      queryByTestId(document.body, "message")?.children[1],
+    ).toBeEmptyDOMElement();
 
     // Secondary message
-    document.body.innerHTML = renderError(
-      new CardError("Something went wrong", "Secondary Message"),
+    document.body.innerHTML = render(
+      <Error
+        error={new CardError("Something went wrong", "Secondary Message")}
+      ></Error>,
     );
     expect(
-      queryByTestId(document.body, "message").children[1],
+      queryByTestId(document.body, "message")?.children[1],
     ).toHaveTextContent(/Secondary Message/gim);
   });
 });

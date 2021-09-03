@@ -27,11 +27,11 @@ describe("GithubPinRepoRenderer", () => {
 
   it("should render pin repo card", async () => {
     await render();
-    const [header] = document.getElementsByClassName("header");
+    const header = queryByTestId(document.body, "header");
 
     expect(header).toHaveTextContent("convoychat");
     expect(header).not.toHaveTextContent("anuraghazra");
-    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
+    expect(queryByTestId(document.body, "description")).toHaveTextContent(
       "Help us take over the world! React + TS + GraphQL Chat App",
     );
     expect(queryByTestId(document.body, "stargazers")).toHaveTextContent("38k");
@@ -49,7 +49,7 @@ describe("GithubPinRepoRenderer", () => {
     await render({
       query: { show_owner: "true" },
     });
-    expect(document.getElementsByClassName("header")[0]).toHaveTextContent(
+    expect(queryByTestId(document.body, "header")).toHaveTextContent(
       "anuraghazra/convoychat",
     );
   });
@@ -66,11 +66,11 @@ describe("GithubPinRepoRenderer", () => {
     });
 
     expect(
-      document.getElementsByClassName("description")[0].children[0].textContent,
+      queryByTestId(document.body, "description")?.children[0].textContent,
     ).toBe("The quick brown fox jumps over the lazy dog is an");
 
     expect(
-      document.getElementsByClassName("description")[0].children[1].textContent,
+      queryByTestId(document.body, "description")?.children[1].textContent,
     ).toBe("English-language pangram—a sentence that contains all");
 
     // Should not trim
@@ -82,7 +82,7 @@ describe("GithubPinRepoRenderer", () => {
         return stats;
       },
     });
-    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
+    expect(queryByTestId(document.body, "description")).toHaveTextContent(
       "Small text should not trim",
     );
   });
@@ -98,7 +98,7 @@ describe("GithubPinRepoRenderer", () => {
     });
 
     // poop emoji may not show in all editors but it's there between "a" and "poo"
-    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
+    expect(queryByTestId(document.body, "description")).toHaveTextContent(
       "This is a text with a 💩 poo emoji",
     );
   });
@@ -177,15 +177,15 @@ describe("GithubPinRepoRenderer", () => {
     await render();
 
     const styleTag = document.querySelector("style");
-    const stylesObject = cssToObject(styleTag.innerHTML);
+    const stylesObject = cssToObject(styleTag?.innerHTML);
 
-    const headerClassStyles = stylesObject[".header"];
-    const descClassStyles = stylesObject[".description"];
-    const iconClassStyles = stylesObject[".icon"];
+    const primaryFill = stylesObject[".primary-fill"];
+    const textFill = stylesObject[".text-fill"];
+    const iconFill = stylesObject[".icon"];
 
-    expect(headerClassStyles.fill).toBe("#2f80ed");
-    expect(descClassStyles.fill).toBe("#333");
-    expect(iconClassStyles.fill).toBe("#586069");
+    expect(primaryFill.fill).toBe("#2f80ed");
+    expect(textFill.fill).toBe("#333");
+    expect(iconFill.fill).toBe("#586069");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#fffefe",
@@ -205,15 +205,15 @@ describe("GithubPinRepoRenderer", () => {
     });
 
     const styleTag = document.querySelector("style");
-    const stylesObject = cssToObject(styleTag.innerHTML);
+    const stylesObject = cssToObject(styleTag?.innerHTML);
 
-    const headerClassStyles = stylesObject[".header"];
-    const descClassStyles = stylesObject[".description"];
-    const iconClassStyles = stylesObject[".icon"];
+    const primaryFill = stylesObject[".primary-fill"];
+    const textFill = stylesObject[".text-fill"];
+    const iconFill = stylesObject[".icon"];
 
-    expect(headerClassStyles.fill).toBe(`#${customColors.title_color}`);
-    expect(descClassStyles.fill).toBe(`#${customColors.text_color}`);
-    expect(iconClassStyles.fill).toBe(`#${customColors.icon_color}`);
+    expect(primaryFill.fill).toBe(`#${customColors.title_color}`);
+    expect(textFill.fill).toBe(`#${customColors.text_color}`);
+    expect(iconFill.fill).toBe(`#${customColors.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#252525",
@@ -229,15 +229,15 @@ describe("GithubPinRepoRenderer", () => {
       });
 
       const styleTag = document.querySelector("style");
-      const stylesObject = cssToObject(styleTag.innerHTML);
+      const stylesObject = cssToObject(styleTag?.innerHTML);
 
-      const headerClassStyles = stylesObject[".header"];
-      const descClassStyles = stylesObject[".description"];
-      const iconClassStyles = stylesObject[".icon"];
+      const primaryFill = stylesObject[".primary-fill"];
+      const textFill = stylesObject[".text-fill"];
+      const iconFill = stylesObject[".icon"];
 
-      expect(headerClassStyles.fill).toBe(`#${themes[name].title_color}`);
-      expect(descClassStyles.fill).toBe(`#${themes[name].text_color}`);
-      expect(iconClassStyles.fill).toBe(`#${themes[name].icon_color}`);
+      expect(primaryFill.fill).toBe(`#${themes[name].title_color}`);
+      expect(textFill.fill).toBe(`#${themes[name].text_color}`);
+      expect(iconFill.fill).toBe(`#${themes[name].icon_color}`);
       expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
         "fill",
         `#${themes[name].bg_color}`,
@@ -258,15 +258,15 @@ describe("GithubPinRepoRenderer", () => {
     });
 
     const styleTag = document.querySelector("style");
-    const stylesObject = cssToObject(styleTag.innerHTML);
+    const stylesObject = cssToObject(styleTag?.innerHTML);
 
-    const headerClassStyles = stylesObject[".header"];
-    const descClassStyles = stylesObject[".description"];
-    const iconClassStyles = stylesObject[".icon"];
+    const primaryFill = stylesObject[".primary-fill"];
+    const textFill = stylesObject[".text-fill"];
+    const iconFill = stylesObject[".icon"];
 
-    expect(headerClassStyles.fill).toBe("#5a0");
-    expect(descClassStyles.fill).toBe(`#${themes.radical.text_color}`);
-    expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
+    expect(primaryFill.fill).toBe("#5a0");
+    expect(textFill.fill).toBe(`#${themes.radical.text_color}`);
+    expect(iconFill.fill).toBe(`#${themes.radical.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       `#${themes.radical.bg_color}`,
@@ -283,15 +283,14 @@ describe("GithubPinRepoRenderer", () => {
     });
 
     const styleTag = document.querySelector("style");
-    const stylesObject = cssToObject(styleTag.innerHTML);
+    const stylesObject = cssToObject(styleTag?.innerHTML);
 
-    const headerClassStyles = stylesObject[".header"];
-    const descClassStyles = stylesObject[".description"];
-    const iconClassStyles = stylesObject[".icon"];
-
-    expect(headerClassStyles.fill).toBe(`#${themes.default.title_color}`);
-    expect(descClassStyles.fill).toBe(`#${themes.default.text_color}`);
-    expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
+    const primaryFill = stylesObject[".primary-fill"];
+    const textFill = stylesObject[".text-fill"];
+    const iconFill = stylesObject[".icon"];
+    expect(primaryFill.fill).toBe(`#${themes.default.title_color}`);
+    expect(textFill.fill).toBe(`#${themes.default.text_color}`);
+    expect(iconFill.fill).toBe(`#${themes.radical.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       `#${themes.radical.bg_color}`,

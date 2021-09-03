@@ -11,9 +11,13 @@ import generateTranslation from "./translation";
 import fetchStats, { IStats } from "./fetcher";
 import { BLACKLIST } from "../../utils/github";
 import icons from "../../icons/github";
-import CardRenderer from "../../helpers/CardRenderer";
-import { clampValue, flexLayout, getCardColors } from "../../utils/render";
-import { createTextNode, getStyles, measureText } from "./render";
+import { clampValue, getCardColors } from "../../utils/render";
+import { measureText } from "../../utils/string";
+import StatRow from "../../components/StatRow";
+import CircleProgress from "../../components/CircleProgress";
+import CardContainer from "../../components/CardContainer";
+import FlexLayout from "../../components/FlexLayout";
+import SVGRender from "../../helpers/SVGRender";
 
 export interface GithubStatsProps extends CommonProps {
   hide: string[];
@@ -96,8 +100,37 @@ export default class GitHubStatsCard extends Card {
       hide = [],
     } = this.props as GithubStatsProps;
 
-    // Meta data for creating text nodes with createTextNode function
-    const STATS = {
+    const longLocales = [
+      "cn",
+      "es",
+      "fr",
+      "pt-br",
+      "ru",
+      "uk-ua",
+      "id",
+      "my",
+      "pl",
+    ];
+    const isLongLocale = longLocales.includes(locale) === true;
+
+    const {
+      line_height = 25,
+      hide_rank = false,
+      show_icons = false,
+      hide_title = false,
+      hide_border = false,
+      disable_animations = false,
+      title_color,
+      icon_color,
+      text_color,
+      bg_color,
+      border_color,
+      theme,
+      custom_title,
+      border_radius,
+    } = this.props as GithubStatsProps;
+
+    const statItemData = {
       stars: {
         icon: icons.star,
         label: this.i18n.t("totalstars"),
@@ -132,140 +165,79 @@ export default class GitHubStatsCard extends Card {
       },
     } as const;
 
-    const longLocales = [
-      "cn",
-      "es",
-      "fr",
-      "pt-br",
-      "ru",
-      "uk-ua",
-      "id",
-      "my",
-      "pl",
-    ];
-    const isLongLocale = longLocales.includes(locale) === true;
+    // filter out hidden stats defined by user & create the text nodes
+    const statItems = Object.keys(statItemData)
+      .filter((key) => !hide.includes(key))
+      .map((key, index) => (
+        // create the text nodes, and pass index so that we can calculate the line spacing
+        <StatRow
+          index={index}
+          showIcons={show_icons}
+          shiftValuePos={
+            (!include_all_commits ? 50 : 20) + (isLongLocale ? 50 : 0)
+          }
+          {...statItemData[key as keyof typeof statItemData]}
+        ></StatRow>
+      ));
 
-    const {
-      line_height = 25,
-      hide_rank = false,
-      show_icons = false,
-      hide_title = false,
-      hide_border = false,
-      disable_animations = false,
+    // Calculate the card height depending on how many items there are
+    // but if rank circle is visible clamp the minimum height to `150`
+    const cardHeight = Math.max(
+      45 + (statItems.length + 1) * line_height,
+      hide_rank ? 0 : 150,
+    );
+
+    // Conditionally rendered elements
+    const rankCircle = hide_rank ? (
+      ""
+    ) : (
+      <CircleProgress
+        containerHeight={cardHeight}
+        text={rank.level}
+        progress={100 - rank.score}
+      ></CircleProgress>
+    );
+
+    const colors = getCardColors({
       title_color,
       icon_color,
       text_color,
       bg_color,
       border_color,
       theme,
-      custom_title,
-      border_radius,
-    } = this.props as GithubStatsProps;
-
-    // filter out hidden stats defined by user & create the text nodes
-    const statItems = Object.keys(STATS)
-      .filter((key) => !hide.includes(key))
-      .map((key, index) =>
-        // create the text nodes, and pass index so that we can calculate the line spacing
-        createTextNode({
-          ...STATS[key as keyof typeof STATS],
-          index,
-          showIcons: show_icons,
-          shiftValuePos:
-            (!include_all_commits ? 50 : 20) + (isLongLocale ? 50 : 0),
-        }),
-      );
-
-    // Calculate the card height depending on how many items there are
-    // but if rank circle is visible clamp the minimum height to `150`
-    const height = Math.max(
-      45 + (statItems.length + 1) * line_height,
-      hide_rank ? 0 : 150,
-    );
-
-    // Conditionally rendered elements
-    const rankCircle = hide_rank
-      ? ""
-      : `<g data-testid="rank-circle" 
-        transform="translate(400, ${height / 2 - 50})">
-      <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
-      <circle class="rank-circle" cx="-10" cy="8" r="40" />
-      <g class="rank-text">
-        <text
-          x="${rank.level.length === 1 ? "-4" : "0"}"
-          y="0"
-          alignment-baseline="central"
-          dominant-baseline="central"
-          text-anchor="middle"
-        >
-          ${rank.level}
-        </text>
-      </g>
-    </g>`;
-
-    const { titleColor, textColor, iconColor, bgColor, borderColor } =
-      getCardColors({
-        title_color,
-        icon_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      });
-    // the better user's score the the rank will be closer to zero so
-    // subtracting 100 to get the progress in 100%
-    const progress = 100 - rank.score;
-    const cssStyles = getStyles({
-      titleColor,
-      textColor,
-      iconColor,
-      show_icons,
-      progress,
     });
-
-    const calculateTextWidth = () => {
-      return measureText(custom_title ? custom_title : this.i18n.t("title"));
-    };
 
     const width = hide_rank
       ? clampValue(
-          50 /* padding */ + calculateTextWidth() * 2,
+          50 /* padding */ +
+            measureText(custom_title ?? this.i18n.t("title")) * 2,
           270 /* min */,
           Infinity,
         )
       : 495;
 
-    const card = new CardRenderer({
-      customTitle: custom_title,
-      defaultTitle: this.i18n.t("title"),
-      width,
-      height,
-      border_radius,
-      colors: {
-        titleColor,
-        textColor,
-        iconColor,
-        bgColor,
-        borderColor,
-      },
-    });
+    return (
+      <CardContainer
+        width={width}
+        height={cardHeight}
+        borderRadius={border_radius}
+        colors={colors}
+        customTitle={custom_title}
+        defaultTitle={this.i18n.t("title")}
+        hideBorder={hide_border}
+        hideTitle={hide_title}
+        isDisableAnimation={disable_animations}
+      >
+        {rankCircle}
 
-    card.setHideBorder(hide_border);
-    card.setHideTitle(hide_title);
-    card.setCSS(cssStyles);
-
-    if (disable_animations) card.disableAnimations();
-
-    return card.render(`
-  ${rankCircle}
-  
-  <svg x="0" y="0">
-    ${flexLayout({
-      items: statItems,
-      gap: line_height,
-      direction: "column",
-    }).join("")}
-  </svg> 
-  `);
+        <svg x="0" y="0">
+          <FlexLayout
+            gap={line_height}
+            direction="column"
+            items={statItems}
+          ></FlexLayout>
+        </svg>
+      </CardContainer>
+    );
   }
 }

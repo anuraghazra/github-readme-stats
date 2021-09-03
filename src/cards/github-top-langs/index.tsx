@@ -12,14 +12,12 @@ import {
 } from "../../utils/vercelRequestQuery";
 import fetchTopLanguages, { IStats } from "./fetcher";
 import { lowercaseTrim } from "../../utils/string";
-import CardRenderer from "../../helpers/CardRenderer";
-import {
-  calculateCompactLayoutHeight,
-  calculateNormalLayoutHeight,
-  renderCompactLayout,
-  renderNormalLayout,
-} from "./render";
 import { getCardColors } from "../../utils/render";
+import CompactProgress from "../../components/CompactProgress";
+import CardContainer from "../../components/CardContainer";
+import SVGRender from "../../helpers/SVGRender";
+import FlexLayout from "../../components/FlexLayout";
+import Progress from "../../components/Progress";
 
 interface GithubTopLangsProps extends CommonProps {
   hide: string[];
@@ -98,14 +96,34 @@ export default class GithubTopLangs extends Card {
     let width = card_width ?? 300;
     let height;
 
-    let finalLayout = "";
+    let progressLayout = "";
     if (layout === "compact") {
       width = width + 50; // padding
-      height = calculateCompactLayoutHeight(langs.length);
-      finalLayout = renderCompactLayout(langs, width, totalLanguageSize);
+      height = CompactProgress.getHeight(langs.length);
+      progressLayout = (
+        <CompactProgress.component
+          width={width - 50}
+          items={langs}
+        ></CompactProgress.component>
+      );
     } else {
-      height = calculateNormalLayoutHeight(langs.length);
-      finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
+      height = Progress.getHeight(langs.length);
+      progressLayout = (
+        <FlexLayout
+          items={langs.map((lang) => (
+            <Progress.component
+              width={width - 95}
+              name={lang.name}
+              color={lang.color}
+              progress={(lang.size / totalLanguageSize) * 100}
+              testid="lang-name"
+              labelFormatter={(progress) => progress.toFixed(2)}
+            />
+          ))}
+          gap={40}
+          direction="column"
+        ></FlexLayout>
+      );
     }
 
     // returns theme based colors with proper overrides and defaults
@@ -117,26 +135,22 @@ export default class GithubTopLangs extends Card {
       theme,
     });
 
-    const card = new CardRenderer({
-      customTitle: custom_title,
-      defaultTitle: this.i18n.t("title"),
-      width,
-      height,
-      border_radius,
-      colors,
-    });
-
-    card.disableAnimations();
-    card.setHideBorder(hide_border);
-    card.setHideTitle(hide_title);
-    card.setCSS(
-      `.lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.textColor} }`,
+    return (
+      <CardContainer
+        customTitle={custom_title}
+        defaultTitle={this.i18n.t("title")}
+        width={width}
+        height={height}
+        borderRadius={border_radius}
+        colors={colors}
+        isDisableAnimation
+        hideBorder={hide_border}
+        hideTitle={hide_title}
+      >
+        <svg data-testid="lang-items" x="25">
+          {progressLayout}
+        </svg>
+      </CardContainer>
     );
-
-    return card.render(`
-    <svg data-testid="lang-items" x="${25}">
-      ${finalLayout}
-    </svg>
-  `);
   }
 }
