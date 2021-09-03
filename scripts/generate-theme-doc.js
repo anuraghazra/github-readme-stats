@@ -1,4 +1,4 @@
-const theme = require("../themes/index");
+const theme = require("../themes/index").default;
 const fs = require("fs");
 
 const TARGET_FILE = "./themes/README.md";

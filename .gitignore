@@ -7,4 +7,4 @@ package-lock.json
 .idea/
 coverage
 vercel_token
-
+themes/index.js

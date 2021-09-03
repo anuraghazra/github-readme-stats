@@ -6,8 +6,9 @@
   "scripts": {
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "theme-readme-gen": "node scripts/generate-theme-doc",
-    "preview-theme": "node scripts/preview-theme"
+    "theme-readme-gen": "tsc themes/index.ts && node scripts/generate-theme-doc",
+    "preview-theme": "tsc themes/index.ts && node scripts/preview-theme",
+    "create": "node scripts/create-new-card"
   },
   "author": "Anurag Hazra",
   "license": "MIT",
@@ -25,6 +26,7 @@
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",
     "css-to-object": "^1.1.0",
+    "fs-extra": "^10.0.0",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
     "parse-diff": "^0.7.0",
