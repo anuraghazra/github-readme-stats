@@ -230,6 +230,7 @@ function measureText(str, fontSize = 10) {
       .reduce((cur, acc) => acc + cur) * fontSize
   );
 }
+const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 module.exports = {
   renderError,
@@ -248,4 +249,5 @@ module.exports = {
   logger,
   CONSTANTS,
   CustomError,
+  lowercaseTrim,
 };

@@ -99,12 +99,11 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
     <svg x=\\"0\\" y=\\"0\\" width=\\"100%\\">
       <g transform=\\"translate(0, 0)\\">
     <g class=\\"stagger\\" style=\\"animation-delay: NaNms\\" transform=\\"translate(25, 0)\\">
-      <text class=\\"stat bold\\" y=\\"12.5\\">Other:</text>
+      <text class=\\"stat bold\\" y=\\"12.5\\" data-testid=\\"Other\\">Other:</text>
       <text
         class=\\"stat\\"
         x=\\"350\\"
         y=\\"12.5\\"
-        data-testid=\\"Other\\"
       >19 mins</text>
       
     <svg width=\\"220\\" x=\\"110\\" y=\\"4\\">
@@ -122,12 +121,11 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
     </g>
   </g><g transform=\\"translate(0, 25)\\">
     <g class=\\"stagger\\" style=\\"animation-delay: NaNms\\" transform=\\"translate(25, 0)\\">
-      <text class=\\"stat bold\\" y=\\"12.5\\">TypeScript:</text>
+      <text class=\\"stat bold\\" y=\\"12.5\\" data-testid=\\"TypeScript\\">TypeScript:</text>
       <text
         class=\\"stat\\"
         x=\\"350\\"
         y=\\"12.5\\"
-        data-testid=\\"TypeScript\\"
       >1 min</text>
       
     <svg width=\\"220\\" x=\\"110\\" y=\\"4\\">
