@@ -71,7 +71,7 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 
 **Q:** How to count private stats?
 
-> **Ans:** We can only count private commits & we cannot access any other private info of any users, so it's not possible. only way is to deploy on your own instance & use your own PAT (Personal Access Token)
+> **Ans:** We can only count public commits & we cannot access any other private info of any users, so it's not possible. The only way to count your personal private stats is to deploy on your own instance & use your own PAT (Personal Access Token)
 
 ### Bug Reports
 

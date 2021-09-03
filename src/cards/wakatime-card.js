@@ -4,7 +4,12 @@ const { getStyles } = require("../getStyles");
 const { wakatimeCardLocales } = require("../translations");
 const languageColors = require("../common/languageColors.json");
 const { createProgressNode } = require("../common/createProgressNode");
-const { clampValue, getCardColors, flexLayout } = require("../common/utils");
+const {
+  clampValue,
+  getCardColors,
+  flexLayout,
+  lowercaseTrim,
+} = require("../common/utils");
 
 const noCodingActivityNode = ({ color, text }) => {
   return `
@@ -72,16 +77,28 @@ const createTextNode = ({
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
-      <text class="stat bold" y="12.5">${label}:</text>
+      <text class="stat bold" y="12.5" data-testid="${id}">${label}:</text>
       <text
         class="stat"
         x="${hideProgress ? 170 : 350}"
         y="12.5"
-        data-testid="${id}"
       >${value}</text>
       ${cardProgress}
     </g>
   `;
+};
+
+const recalculatePercentages = (languages) => {
+  // recalculating percentages so that,
+  // compact layout's progress bar does not break when hiding languages
+  const totalSum = languages.reduce(
+    (totalSum, language) => totalSum + language.percent,
+    0,
+  );
+  const weight = (100 / totalSum).toFixed(2);
+  languages.forEach((language) => {
+    language.percent = (language.percent * weight).toFixed(2);
+  });
 };
 
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
@@ -98,10 +115,11 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   }
 };
 
-function renderItemCard(item, options) {
+function renderItemCard(items, options) {
   const {
     hide_title = false,
     hide_border = false,
+    hide,
     line_height = 25,
     title_color,
     icon_color,
@@ -112,10 +130,19 @@ function renderItemCard(item, options) {
     custom_title,
     locale,
     layout,
-    langs_count = item ? item.length : 0,
+    langs_count = items ? items.length : 0,
     border_radius,
     border_color,
   } = options;
+
+  const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
+  if (shouldHideLangs) {
+    const languagesToHide = new Set(hide.map((lang) => lowercaseTrim(lang)));
+    items = items.filter(
+      (lang) => !languagesToHide.has(lowercaseTrim(lang.name)),
+    );
+    recalculatePercentages(items);
+  }
 
   const i18n = new I18n({
     locale,
@@ -142,8 +169,8 @@ function renderItemCard(item, options) {
     theme,
   });
 
-  const filteredItems = item
-    ? item
+  const filteredItems = items
+    ? items
       .filter((item) => item.hours || item.minutes)
       .slice(0, langsCount)
     : [];
@@ -208,18 +235,17 @@ function renderItemCard(item, options) {
   } else {
     finalLayout = flexLayout({
       items: filteredItems.length
-        ? filteredItems
-          .map((item) => {
-            return createTextNode({
-              id: item.name,
-              label: item.name,
-              value: item.text,
-              percent: item.percent,
-              progressBarColor: titleColor,
-              progressBarBackgroundColor: textColor,
-              hideProgress: hide_progress,
-            });
-          })
+        ? filteredItems.map((item) => {
+          return createTextNode({
+            id: item.name,
+            label: item.name,
+            value: item.text,
+            percent: item.percent,
+            progressBarColor: titleColor,
+            progressBarBackgroundColor: textColor,
+            hideProgress: hide_progress,
+          });
+        })
         : [
           noCodingActivityNode({
             color: textColor,
