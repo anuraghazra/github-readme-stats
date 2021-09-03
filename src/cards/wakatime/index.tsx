@@ -8,14 +8,28 @@ import { FetchStatError } from "../../helpers/Error";
 import SVGRender from "../../helpers/SVGRender";
 import { languageColors } from "../../utils/languages";
 import { getCardColors } from "../../utils/render";
-import { toBoolean, toInteger, toString } from "../../utils/vercelRequestQuery";
+import { lowercaseTrim } from "../../utils/string";
+import {
+  toBoolean,
+  toInteger,
+  toString,
+  toStringArray,
+} from "../../utils/vercelRequestQuery";
 import Card, { CommonProps } from "../Card";
-// import {
-//   createLanguageTextNode,
-//   createTextNode,
-//   noCodingActivityNode,
-// } from "./render";
 import translation from "./translation";
+
+const recalculatePercentages = (languages: WakaTimeStats) => {
+  // recalculating percentages so that,
+  // compact layout's progress bar does not break when hiding languages
+  const totalSum = languages.reduce(
+    (totalSum, language) => totalSum + language.percent,
+    0,
+  );
+  const weight = +(100 / totalSum).toFixed(2);
+  languages.forEach((language) => {
+    language.percent = +(language.percent * weight).toFixed(2);
+  });
+};
 
 export const fetchWakaTime = async (
   username: string,
@@ -50,7 +64,16 @@ interface WakaTimeProps extends CommonProps {
   langs_count?: number;
   api_domain?: string;
   range?: string;
+  hide: string[];
 }
+
+type WakaTimeStats = Array<{
+  hours: number;
+  minutes: number;
+  percent: number;
+  name: string;
+  text: string;
+}>;
 
 export default class WakaTime extends Card {
   constructor(props: VercelRequestQuery) {
@@ -67,6 +90,7 @@ export default class WakaTime extends Card {
       langs_count,
       api_domain,
       range,
+      hide,
     } = query;
     return {
       ...commonProps,
@@ -78,23 +102,16 @@ export default class WakaTime extends Card {
       langs_count: toInteger(langs_count),
       api_domain: toString(api_domain),
       range: toString(range),
+      hide: toStringArray(hide),
     };
   }
-  protected async fetchStats(): Promise<any> {
+  protected async fetchStats(): Promise<WakaTimeStats> {
     const { username, api_domain, range } = this.props as WakaTimeProps;
 
     return await fetchWakaTime(username, api_domain, range);
   }
 
-  protected renderCard(stats: {
-    languages: Array<{
-      hours: number;
-      minutes: number;
-      percent: number;
-      name: string;
-      text: string;
-    }>;
-  }): string {
+  protected renderCard(stats: { languages: WakaTimeStats }): string {
     const { languages } = stats;
     const {
       hide_title = false,
@@ -107,19 +124,27 @@ export default class WakaTime extends Card {
       theme = "default",
       hide_progress,
       custom_title,
-      locale,
       layout,
       langs_count = languages ? languages.length : 0,
       border_radius,
       border_color,
+      hide,
     } = this.props as WakaTimeProps;
 
+    const hiddenLangs = new Set(hide.map(lowercaseTrim));
     const langsCount = Math.max(1, langs_count);
     const filteredLanguages = languages
       ? languages
-          .filter((language) => language.hours || language.minutes)
+          .filter(
+            (language) =>
+              language.hours ||
+              (language.minutes &&
+                !hiddenLangs.has(lowercaseTrim(language.name))),
+          )
           .slice(0, langsCount)
       : [];
+
+    recalculatePercentages(filteredLanguages);
 
     // Calculate the card height depending on how many items there are
     // but if rank circle is visible clamp the minimum height to `150`

@@ -34,6 +34,18 @@ describe("Test Render Wakatime Card", () => {
     expect(card).toMatchSnapshot();
   });
 
+  it("should hide languages when hide is passed", async () => {
+    document.body.innerHTML = await render({
+      query: {
+        hide: ["YAML", "Other"],
+      },
+    });
+
+    expect(queryByTestId(document.body, /YAML/i)).toBeNull();
+    expect(queryByTestId(document.body, /Other/i)).toBeNull();
+    expect(queryByTestId(document.body, /TypeScript/i)).not.toBeNull();
+  });
+
   it("should render translations", async () => {
     document.body.innerHTML = await render({
       query: {

@@ -110,6 +110,8 @@ export default class GitHubStatsCard extends Card {
       "id",
       "my",
       "pl",
+      "de",
+      "nl",
     ];
     const isLongLocale = longLocales.includes(locale) === true;
 

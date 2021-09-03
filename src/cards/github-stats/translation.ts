@@ -1,12 +1,9 @@
 import { encodeHTML } from "../../utils/string";
 
-export default (
-  name = "",
-  apostrophe = "",
-) => {
+export default (name = "", apostrophe = "") => {
   const encodedName = encodeHTML(name);
   return {
-    "title": {
+    title: {
       ar: `${encodedName} إحصائيات غيت هاب`,
       cn: `${encodedName} 的 GitHub 统计数据`,
       cs: `GitHub statistiky uživatele ${encodedName}`,
@@ -32,7 +29,7 @@ export default (
       tr: `${encodedName} Hesabının GitHub Yıldızları`,
       pl: `Statystyki GitHub użytkownika ${encodedName}`,
     },
-    "totalstars": {
+    totalstars: {
       ar: "مجموع النجوم",
       cn: "获标星数（star）",
       cs: "Celkem hvězd",
@@ -58,7 +55,7 @@ export default (
       tr: "Toplam Yıldız",
       pl: "Liczba Gwiazdek",
     },
-    "commits": {
+    commits: {
       ar: "مجموع الحفظ",
       cn: "累计提交数（commit）",
       cs: "Celkem commitů",
@@ -84,7 +81,7 @@ export default (
       tr: "Toplam Commit",
       pl: "Wszystkie commity",
     },
-    "prs": {
+    prs: {
       ar: "مجموع طلبات السحب",
       cn: "拉取请求数（PR）",
       cs: "Celkem PRs",
@@ -110,7 +107,7 @@ export default (
       tr: "Toplam PR",
       pl: "Wszystkie PR",
     },
-    "issues": {
+    issues: {
       ar: "مجموع التحسينات",
       cn: "指出问题数（issue）",
       cs: "Celkem problémů",
@@ -136,7 +133,7 @@ export default (
       tr: "Toplam Hata",
       pl: "Wszystkie problemy",
     },
-    "contribs": {
+    contribs: {
       ar: "ساهم في",
       cn: "参与项目数",
       cs: "Přispěl k",
