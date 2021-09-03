@@ -47,6 +47,7 @@ describe("toStringArray", () => {
   });
   it("should return string array when value string", () => {
     expect(toStringArray("a")).toEqual(["a"]);
+    expect(toStringArray("a,b")).toEqual(["a", "b"]);
   });
   it("should return empty array when value is empty", () => {
     expect(toStringArray("")).toEqual([]);

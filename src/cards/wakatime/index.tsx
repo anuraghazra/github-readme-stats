@@ -137,9 +137,8 @@ export default class WakaTime extends Card {
       ? languages
           .filter(
             (language) =>
-              language.hours ||
-              (language.minutes &&
-                !hiddenLangs.has(lowercaseTrim(language.name))),
+              (language.hours || language.minutes) &&
+              !hiddenLangs.has(lowercaseTrim(language.name)),
           )
           .slice(0, langsCount)
       : [];

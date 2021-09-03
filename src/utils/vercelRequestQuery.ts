@@ -35,7 +35,8 @@ export const toFloatingNumber = (
 export const toStringArray = (value: ValueOfQuery): string[] => {
   if (isValueEmpty(value)) return [];
 
-  const originalArray = Array.isArray(value) ? value : [value!];
+  const originalArray =
+    (Array.isArray(value) ? value : value?.split?.(",")) ?? [];
 
   return originalArray.every((value) => typeof value === "string")
     ? originalArray
