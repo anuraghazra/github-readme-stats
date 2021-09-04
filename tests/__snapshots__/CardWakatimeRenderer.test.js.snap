@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test Render Wakatime Card should render correctly 1`] = `
+"<svg width=\\"495\\" height=\\"150\\" viewBox=\\"0 0 495 150\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><style>
+        
+      svg {
+        font-family: 'Segoe UI', Ubuntu, Sans-Serif;
+        font-weight: 400;
+        font-size: 14px;
+      }
+      .font-sans {font-family: 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif;}
+      .font-medium {font-weight: 500}
+      .font-semibold { font-weight: 600 }
+      .font-bold { font-weight: 700 }
+      .font-extrabold {font-weight: 800}
+      .fadeIn {
+        opacity: 0;
+        animation: fadeInAnimation 0.3s ease-in-out forwards;
+      }
+      .text-2xl {
+        font-size: 24px;
+      }
+      .text-xl {
+        font-size: 18px;
+      }
+      .text-lg {
+        font-size: 16px;
+      }
+      .text-base {
+        font-size: 14px;
+      }
+      .text-sm {
+        font-size: 12px;
+      }
+      .text-xs {
+        font-size: 11px;
+      }
+  
+      .icon {
+        fill: #4c71f2;
+      }
+      .primary-stroke {
+        stroke: #2f80ed
+      }
+      .primary-fill {
+        fill: #2f80ed
+      }
+      .text-fill {
+        fill: #333
+      }
+      .text-stroke {
+        stroke: #333
+      }
+      .text-secondary {
+        fill: #858585;
+      }
+
+    
+    
+        
+      </style><rect data-testid=\\"card-bg\\" x=\\"0.5\\" y=\\"0.5\\" rx=\\"4.5\\" height=\\"99%\\" stroke=\\"#e4e2e2\\" width=\\"494\\" fill=\\"#fffefe\\" stroke-opacity=\\"1\\"></rect><g data-testid=\\"card-title\\" transform=\\"translate(25, 35)\\"><g transform=\\"translate(0, 0)\\"><text x=\\"0\\" y=\\"0\\" data-testid=\\"header\\" style=\\"animation:fadeInAnimation 0.8s ease-in-out forwards\\" class=\\"primary-fill font-semibold text-xl\\">Wakatime Stats</text></g></g><g data-testid=\\"main-card-body\\" transform=\\"translate(0, 55)\\"><svg x=\\"25\\" y=\\"0\\" width=\\"100%\\"><style></style><g transform=\\"translate(0, 0)\\"><g class=\\"fadeIn\\" style=\\"animation-delay: 450ms\\"><text class=\\"font-bold text-fill font-sans\\" y=\\"12.5\\">Other:</text><text class=\\"font-bold text-fill font-sans\\" x=\\"350\\" y=\\"12.5\\" data-testid=\\"Other\\">19 mins</text><g data-testid=\\"undefined\\" transform=\\"translate(110, 4)\\" class=\\"text-fill text-xs\\"><svg width=\\"220\\" x=\\"0\\" y=\\"0\\"><style></style><rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#333\\"></rect><rect height=\\"8\\" fill=\\"#2f80ed\\" rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" data-testid=\\"progress\\" width=\\"93.46%\\"></rect></svg></g></g></g><g transform=\\"translate(0, 25)\\"><g class=\\"fadeIn\\" style=\\"animation-delay: 600ms\\"><text class=\\"font-bold text-fill font-sans\\" y=\\"12.5\\">TypeScript:</text><text class=\\"font-bold text-fill font-sans\\" x=\\"350\\" y=\\"12.5\\" data-testid=\\"TypeScript\\">1 min</text><g data-testid=\\"undefined\\" transform=\\"translate(110, 4)\\" class=\\"text-fill text-xs\\"><svg width=\\"220\\" x=\\"0\\" y=\\"0\\"><style></style><rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#333\\"></rect><rect height=\\"8\\" fill=\\"#2f80ed\\" rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" data-testid=\\"progress\\" width=\\"6.54%\\"></rect></svg></g></g></g></svg></g></svg>"
+`;
+
+exports[`Test Render Wakatime Card should render correctly with compact layout 1`] = `
+"<svg width=\\"495\\" height=\\"115\\" viewBox=\\"0 0 495 115\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\"><style>
+        
+      svg {
+        font-family: 'Segoe UI', Ubuntu, Sans-Serif;
+        font-weight: 400;
+        font-size: 14px;
+      }
+      .font-sans {font-family: 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif;}
+      .font-medium {font-weight: 500}
+      .font-semibold { font-weight: 600 }
+      .font-bold { font-weight: 700 }
+      .font-extrabold {font-weight: 800}
+      .fadeIn {
+        opacity: 0;
+        animation: fadeInAnimation 0.3s ease-in-out forwards;
+      }
+      .text-2xl {
+        font-size: 24px;
+      }
+      .text-xl {
+        font-size: 18px;
+      }
+      .text-lg {
+        font-size: 16px;
+      }
+      .text-base {
+        font-size: 14px;
+      }
+      .text-sm {
+        font-size: 12px;
+      }
+      .text-xs {
+        font-size: 11px;
+      }
+  
+      .icon {
+        fill: #4c71f2;
+      }
+      .primary-stroke {
+        stroke: #2f80ed
+      }
+      .primary-fill {
+        fill: #2f80ed
+      }
+      .text-fill {
+        fill: #333
+      }
+      .text-stroke {
+        stroke: #333
+      }
+      .text-secondary {
+        fill: #858585;
+      }
+
+    
+    
+        
+      </style><rect data-testid=\\"card-bg\\" x=\\"0.5\\" y=\\"0.5\\" rx=\\"4.5\\" height=\\"99%\\" stroke=\\"#e4e2e2\\" width=\\"494\\" fill=\\"#fffefe\\" stroke-opacity=\\"1\\"></rect><g data-testid=\\"card-title\\" transform=\\"translate(25, 35)\\"><g transform=\\"translate(0, 0)\\"><text x=\\"0\\" y=\\"0\\" data-testid=\\"header\\" style=\\"animation:fadeInAnimation 0.8s ease-in-out forwards\\" class=\\"primary-fill font-semibold text-xl\\">Wakatime Stats</text></g></g><g data-testid=\\"main-card-body\\" transform=\\"translate(0, 55)\\"><svg x=\\"25\\" y=\\"0\\" width=\\"100%\\"><style></style><g><mask id=\\"rect-mask\\"><rect x=\\"0\\" y=\\"0\\" width=\\"440\\" height=\\"8\\" fill=\\"white\\" rx=\\"5\\"></rect></mask><rect mask=\\"url(#rect-mask)\\" data-testid=\\"lang-progress\\" x=\\"0\\" y=\\"0\\" width=\\"411.22\\" height=\\"8\\" fill=\\"#858585\\"></rect><rect mask=\\"url(#rect-mask)\\" data-testid=\\"lang-progress\\" x=\\"411.22\\" y=\\"0\\" width=\\"28.78\\" height=\\"8\\" fill=\\"#2b7489\\"></rect><g data-testid=\\"undefined\\" transform=\\"translate(0, 25)\\"><circle data-testid=\\"lang-color\\" cx=\\"5\\" cy=\\"6\\" r=\\"5\\" fill=\\"#858585\\"></circle><text data-testid=\\"lang-name\\" style=\\"font-size:11px\\" class=\\"text-fill\\" x=\\"15\\" y=\\"10\\">Other - 19 mins</text></g><g data-testid=\\"undefined\\" transform=\\"translate(205, 25)\\"><circle data-testid=\\"lang-color\\" cx=\\"5\\" cy=\\"6\\" r=\\"5\\" fill=\\"#2b7489\\"></circle><text data-testid=\\"lang-name\\" style=\\"font-size:11px\\" class=\\"text-fill\\" x=\\"15\\" y=\\"10\\">TypeScript - 1 min</text></g></g></svg></g></svg>"
+`;

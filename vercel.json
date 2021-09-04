@@ -1,8 +1,8 @@
 {
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "https://github.com/anuraghazra/github-readme-stats"
-    }
-  ]
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "https://github.com/anuraghazra/github-readme-stats"
+      }
+    ]
 }

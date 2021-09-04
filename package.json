@@ -6,22 +6,31 @@
   "scripts": {
     "test": "jest --coverage",
     "test:watch": "jest --watch",
-    "theme-readme-gen": "node scripts/generate-theme-doc",
-    "preview-theme": "node scripts/preview-theme"
+    "theme-readme-gen": "tsc themes/index.ts && node scripts/generate-theme-doc",
+    "preview-theme": "tsc themes/index.ts && node scripts/preview-theme",
+    "create": "node scripts/create-new-card"
   },
   "author": "Anurag Hazra",
   "license": "MIT",
   "devDependencies": {
     "@actions/core": "^1.2.4",
     "@actions/github": "^4.0.0",
+    "@babel/plugin-transform-react-jsx": "^7.14.9",
+    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-typescript": "^7.15.0",
     "@testing-library/dom": "^7.20.0",
-    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@tsconfig/node14": "^1.0.1",
+    "@types/github-username-regex": "^1.0.0",
+    "@vercel/node": "^1.12.0",
     "axios": "^0.19.2",
     "axios-mock-adapter": "^1.18.1",
     "css-to-object": "^1.1.0",
+    "fs-extra": "^10.0.0",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
-    "parse-diff": "^0.7.0"
+    "parse-diff": "^0.7.0",
+    "typescript": "^4.3.5"
   },
   "dependencies": {
     "dotenv": "^8.2.0",
