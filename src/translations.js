@@ -53,7 +53,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: "Jumlah Bintang",
       sk: "Hviezdy",
       tr: "Toplam Yıldız",
-      pl: "Liczba Gwiazdek dostanych",
+      pl: "Liczba otrzymanych Gwiazdek",
     },
     "statcard.commits": {
       ar: "مجموع الحفظ",
@@ -267,7 +267,7 @@ const wakatimeCardLocales = {
     my: "Statistik Wakatime",
     sk: "Wakatime štatistika",
     tr: "Waketime İstatistikler",
-    pl: "statystyki Wakatime",
+    pl: "Statystyki Wakatime",
   },
   "wakatimecard.nocodingactivity": {
     ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
