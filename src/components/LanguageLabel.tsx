@@ -23,6 +23,7 @@ const LanguageLabel: SVGRender.FunctionComponent<Props> = ({
       cy: -5,
       r: 6,
       x: 15,
+      y: 0,
       fontSize: 12,
     },
     small: {
@@ -47,7 +48,7 @@ const LanguageLabel: SVGRender.FunctionComponent<Props> = ({
       <text
         data-testid="lang-name"
         style={{
-          font: `400 ${s.fontSize}px 'Segoe UI', Ubuntu, Sans-Serif`,
+          "font-size": `${s.fontSize}px`,
         }}
         class="text-fill"
         x={s.x}

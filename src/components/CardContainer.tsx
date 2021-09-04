@@ -13,10 +13,37 @@ export interface CardColors {
 const getGlobalStyles = (colors: CardColors) => {
   const { titleColor, textColor, iconColor } = colors;
   return `
+      svg {
+        font-family: 'Segoe UI', Ubuntu, Sans-Serif;
+        font-weight: 400;
+        font-size: 14px;
+      }
+      .font-sans {font-family: 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif;}
+      .font-medium {font-weight: 500}
+      .font-semibold { font-weight: 600 }
       .font-bold { font-weight: 700 }
+      .font-extrabold {font-weight: 800}
       .fadeIn {
         opacity: 0;
         animation: fadeInAnimation 0.3s ease-in-out forwards;
+      }
+      .text-2xl {
+        font-size: 24px;
+      }
+      .text-xl {
+        font-size: 18px;
+      }
+      .text-lg {
+        font-size: 16px;
+      }
+      .text-base {
+        font-size: 14px;
+      }
+      .text-sm {
+        font-size: 12px;
+      }
+      .text-xs {
+        font-size: 11px;
       }
   
       .icon {
@@ -33,6 +60,9 @@ const getGlobalStyles = (colors: CardColors) => {
       }
       .text-stroke {
         stroke: ${textColor}
+      }
+      .text-secondary {
+        fill: #858585;
       }
 
     @keyframes scaleInAnimation {
@@ -89,9 +119,8 @@ function Title({
       data-testid="header"
       style={{
         animation: "fadeInAnimation 0.8s ease-in-out forwards",
-        font: "600 18px 'Segoe UI', Ubuntu, Sans-Serif",
       }}
-      class="primary-fill"
+      class="primary-fill font-semibold text-xl"
     >
       {title}
     </text>
@@ -135,6 +164,8 @@ interface Props {
   titlePrefixIcon?: string;
   customTitle?: string;
   defaultTitle?: string;
+  paddingX?: number;
+  paddingY?: number;
 }
 
 const CardContainer: SVGRender.FunctionComponent<Props> = (
@@ -155,6 +186,8 @@ const CardContainer: SVGRender.FunctionComponent<Props> = (
     titlePrefixIcon,
     customTitle,
     defaultTitle = "",
+    paddingX = 25,
+    paddingY = 35,
   }: Props,
   children,
 ) => {
@@ -192,8 +225,8 @@ const CardContainer: SVGRender.FunctionComponent<Props> = (
         <Title
           title={encodeHTML(customTitle ?? defaultTitle)}
           icon={titlePrefixIcon}
-          paddingX={25}
-          paddingY={35}
+          paddingX={paddingX}
+          paddingY={paddingY}
         />
       )}
 

@@ -37,10 +37,7 @@ const Progress: SVGRender.FunctionComponent<Props> = ({
     <g
       data-testid={testid}
       transform={`translate(${x}, ${y})`}
-      style={{
-        font: "400 11px 'Segoe UI', Ubuntu, Sans-Serif",
-      }}
-      class="text-fill"
+      class="text-fill text-xs"
     >
       {hideName ? null : (
         <text x="2" y="15">

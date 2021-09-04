@@ -43,23 +43,17 @@ export default function StatRow({
     >
       {iconSvg}
       <text
-        class="text-fill font-bold"
+        class="text-fill font-bold font-sans"
         x={showIcons ? 25 : 0}
         y="12.5"
-        style={{
-          font: `600 14px 'Segoe UI', Ubuntu, 'Helvetica Neue', Sans-Serif`,
-        }}
       >
         {label}:
       </text>
       <text
-        class="text-fill"
+        class="text-fill font-semibold font-sans"
         x={(showIcons ? 140 : 120) + shiftValuePos}
         y="12.5"
         data-testid={id}
-        style={{
-          font: `600 14px 'Segoe UI', Ubuntu, 'Helvetica Neue', Sans-Serif`,
-        }}
       >
         {kValue}
       </text>

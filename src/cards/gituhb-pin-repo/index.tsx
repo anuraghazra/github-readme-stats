@@ -145,7 +145,7 @@ export default class GitHubPinRepo extends Card {
           x="25"
           y="-5"
           style={{
-            font: "400 13px 'Segoe UI', Ubuntu, Sans-Serif",
+            "font-size": "13px",
           }}
           class="text-fill"
           data-testid="description"
@@ -205,9 +205,7 @@ function Badge({ label = "" }) {
     <g
       data-testid="badge"
       transform="translate(320, -18)"
-      style={{
-        font: "600 11px 'Segoe UI', Ubuntu, Sans-Serif",
-      }}
+      class="font-semibold text-xs"
     >
       <rect
         class="text-stroke"
@@ -257,14 +255,7 @@ function IconWithLabel({
       >
         {icon}
       </svg>
-      <text
-        data-testid={testid}
-        class="text-fill"
-        style={{
-          font: "400 12px 'Segoe UI', Ubuntu, Sans-Serif",
-        }}
-        x="25"
-      >
+      <text data-testid={testid} class="text-fill text-sm" x="25" y="0">
         {label}
       </text>
     </g>

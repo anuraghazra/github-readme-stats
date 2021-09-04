@@ -42,6 +42,7 @@ enum FetchStatErrorType {
   RETRY_UPPER_LIMIT,
   USER_NOT_FOUND,
   UNEXPECTED,
+  REQUEST_ERROR,
 }
 export class FetchStatError extends CardError {
   static readonly TYPE = FetchStatErrorType;
@@ -49,7 +50,8 @@ export class FetchStatError extends CardError {
     const type2Message = {
       [FetchStatErrorType.RETRY_UPPER_LIMIT]: `Over the limit of re-request`,
       [FetchStatErrorType.USER_NOT_FOUND]: "Could not fetch user",
-      [FetchStatErrorType.UNEXPECTED]: "Unexpected Fetch Error",
+      [FetchStatErrorType.UNEXPECTED]: "Unexpected fetch error",
+      [FetchStatErrorType.REQUEST_ERROR]: "Request to data server with error",
     };
     super(
       "Something wrong with fetch data",

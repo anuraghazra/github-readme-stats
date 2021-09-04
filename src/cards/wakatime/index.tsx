@@ -193,20 +193,11 @@ export default class WakaTime extends Card {
                     class="fadeIn"
                     style={`animation-delay: ${(index + 3) * 150}ms`}
                   >
-                    <text
-                      class="font-bold text-fill"
-                      y="12.5"
-                      style={{
-                        font: `600 14px 'Segoe UI', Ubuntu, 'Helvetica Neue', Sans-Serif`,
-                      }}
-                    >
+                    <text class="font-bold text-fill font-sans" y="12.5">
                       {lang.name}:
                     </text>
                     <text
-                      style={{
-                        font: `600 14px 'Segoe UI', Ubuntu, 'Helvetica Neue', Sans-Serif`,
-                      }}
-                      class="font-bold text-fill"
+                      class="font-bold text-fill font-sans"
                       x={hide_progress ? 170 : 350}
                       y="12.5"
                       data-testid={lang.name}
@@ -232,10 +223,7 @@ export default class WakaTime extends Card {
                   <text
                     x="25"
                     y="11"
-                    class="font-bold text-fill"
-                    style={{
-                      font: `600 14px 'Segoe UI', Ubuntu, 'Helvetica Neue', Sans-Serif`,
-                    }}
+                    class="font-bold text-fill font-sans"
                     data-testid="nocoding"
                   >
                     {this.i18n.t("nocodingactivity")}

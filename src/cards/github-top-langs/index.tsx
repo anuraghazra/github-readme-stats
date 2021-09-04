@@ -117,7 +117,7 @@ export default class GithubTopLangs extends Card {
               color={lang.color}
               progress={(lang.size / totalLanguageSize) * 100}
               testid="lang-name"
-              labelFormatter={(progress) => progress.toFixed(2)}
+              labelFormatter={(progress) => progress.toFixed(2) + "%"}
             />
           ))}
           gap={40}

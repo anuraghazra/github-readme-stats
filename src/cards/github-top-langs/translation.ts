@@ -1,5 +1,5 @@
 export default {
-  "title": {
+  title: {
     ar: "أكثر اللغات إستخداماً",
     cn: "最常用的语言",
     cs: "Nejpoužívanější jazyky",

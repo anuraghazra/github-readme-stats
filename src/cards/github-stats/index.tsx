@@ -193,11 +193,17 @@ export default class GitHubStatsCard extends Card {
     const rankCircle = hide_rank ? (
       ""
     ) : (
-      <CircleProgress
-        containerHeight={cardHeight}
-        text={rank.level}
-        progress={100 - rank.score}
-      ></CircleProgress>
+      <g transform={`translate(400, ${cardHeight / 2 - 50})`}>
+        <CircleProgress progress={100 - rank.score}>
+          <text
+            x={rank.level.length === 1 ? "-4" : "0"}
+            y="0"
+            class="font-extrabold text-2xl"
+          >
+            {rank.level}
+          </text>
+        </CircleProgress>
+      </g>
     );
 
     const colors = getCardColors({

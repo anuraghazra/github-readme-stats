@@ -1,25 +1,21 @@
 import SVGRender from "../helpers/SVGRender";
 
 interface Props {
-  containerHeight: number;
-  text: string;
   progress: number;
+  radius?: number;
+  transform?: any;
 }
-export default function CircleProgress({
-  containerHeight,
-  text,
-  progress,
-}: Props): SVGRender.SVGElement {
+const CircleProgress: SVGRender.FunctionComponent<Props> = (
+  { progress, radius = 40, transform = "translate(0, 0)" }: Props,
+  children,
+) => {
   return (
-    <g
-      data-testid="rank-circle"
-      transform={`translate(400, ${containerHeight / 2 - 50})`}
-    >
+    <g data-testid="rank-circle" transform={transform}>
       <circle
         class="primary-stroke"
         cx="-10"
         cy="8"
-        r="40"
+        r={radius}
         style={{
           fill: "none",
           "stroke-width": 6,
@@ -30,7 +26,7 @@ export default function CircleProgress({
         class="primary-stroke"
         cx="-10"
         cy="8"
-        r="40"
+        r={radius}
         style={{
           "stroke-dasharray": 250,
           fill: "none",
@@ -46,23 +42,16 @@ export default function CircleProgress({
       <g
         class="text-fill"
         style={{
-          font: "800 24px 'Segoe UI', Ubuntu, Sans-Serif",
           animation: "scaleInAnimation 0.3s ease-in-out forwards",
         }}
+        dominant-baseline="central"
+        text-anchor="middle"
       >
-        <text
-          x={text.length === 1 ? "-4" : "0"}
-          y="0"
-          alignment-baseline="central"
-          dominant-baseline="central"
-          text-anchor="middle"
-        >
-          {text}
-        </text>
+        {children}
       </g>
     </g>
   );
-}
+};
 
 const getProgressAnimation = (progress: number) => {
   const calculateCircleProgress = (value: number) => {
@@ -87,3 +76,5 @@ const getProgressAnimation = (progress: number) => {
     }
   `;
 };
+
+export default CircleProgress;
