@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  neon_purpleRed: {
+    icon_color: "F5E050",
+    text_color: "FDFDFD",
+    title_color: "F7E252",
+    bg_color: "10,F23D92,CA3AB0,9138A7,69208E",
+  },
 };
 
 module.exports = themes;
