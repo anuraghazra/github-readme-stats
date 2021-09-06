@@ -294,6 +294,13 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  minimalist_github_dark: {
+    title_color: "58a6ff",
+    icon_color: "58a6ff",
+    text_color: "58a6ff",
+    bg_color: "0D1117",
+    hide_border: "1",
+  },
 };
 
 module.exports = themes;
