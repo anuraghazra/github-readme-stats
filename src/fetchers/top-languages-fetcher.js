@@ -1,4 +1,4 @@
-const { request, logger } = require("../common/utils");
+const { request, logger, parseArray } = require("../common/utils");
 const retryer = require("../common/retryer");
 require("dotenv").config();
 
@@ -46,6 +46,8 @@ async function fetchTopLanguages(username, exclude_repo = []) {
 
   let repoNodes = res.data.data.user.repositories.nodes;
   let repoToHide = {};
+
+  exclude_repo.push(parseArray(process.env.EXCLUDE_REPO));
 
   // populate repoToHide map for quick lookup
   // while filtering out
