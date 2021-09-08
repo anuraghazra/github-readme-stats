@@ -8,11 +8,13 @@ const {
 const fetchRepo = require("../src/fetchers/repo-fetcher");
 const renderRepoCard = require("../src/cards/repo-card");
 const allowlist = require("../src/common/allowlist");
+const { isLocaleAvailable } = require("../src/translations");
 
 module.exports = async (req, res) => {
   const {
     username,
     repo,
+    hide_border,
     title_color,
     icon_color,
     text_color,
@@ -20,6 +22,9 @@ module.exports = async (req, res) => {
     theme,
     show_owner,
     cache_seconds,
+    locale,
+    border_radius,
+    border_color,
   } = req.query;
 
   let repoData;
@@ -30,13 +35,17 @@ module.exports = async (req, res) => {
     return res.send(renderError("Something went wrong"));
   }
 
+  if (locale && !isLocaleAvailable(locale)) {
+    return res.send(renderError("Something went wrong", "Language not found"));
+  }
+
   try {
     repoData = await fetchRepo(username, repo);
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       CONSTANTS.TWO_HOURS,
-      CONSTANTS.ONE_DAY
+      CONSTANTS.ONE_DAY,
     );
 
     /*
@@ -56,13 +65,17 @@ module.exports = async (req, res) => {
 
     return res.send(
       renderRepoCard(repoData, {
+        hide_border: parseBoolean(hide_border),
         title_color,
         icon_color,
         text_color,
         bg_color,
         theme,
+        border_radius,
+        border_color,
         show_owner: parseBoolean(show_owner),
-      })
+        locale: locale ? locale.toLowerCase() : null,
+      }),
     );
   } catch (err) {
     return res.send(renderError(err.message, err.secondaryMessage));

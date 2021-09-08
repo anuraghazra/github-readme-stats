@@ -3,7 +3,7 @@ const {
   kFormatter,
   encodeHTML,
   renderError,
-  FlexLayout,
+  flexLayout,
   getCardColors,
   wrapTextMultiline,
 } = require("../src/common/utils");
@@ -23,45 +23,45 @@ describe("Test utils.js", () => {
 
   it("should test encodeHTML", () => {
     expect(encodeHTML(`<html>hello world<,.#4^&^@%!))`)).toBe(
-      "&#60;html&#62;hello world&#60;,.#4^&#38;^@%!))"
+      "&#60;html&#62;hello world&#60;,.#4^&#38;^@%!))",
     );
   });
 
   it("should test renderError", () => {
     document.body.innerHTML = renderError("Something went wrong");
     expect(
-      queryByTestId(document.body, "message").children[0]
+      queryByTestId(document.body, "message").children[0],
     ).toHaveTextContent(/Something went wrong/gim);
     expect(queryByTestId(document.body, "message").children[1]).toBeEmpty(2);
 
     // Secondary message
     document.body.innerHTML = renderError(
       "Something went wrong",
-      "Secondary Message"
+      "Secondary Message",
     );
     expect(
-      queryByTestId(document.body, "message").children[1]
+      queryByTestId(document.body, "message").children[1],
     ).toHaveTextContent(/Secondary Message/gim);
   });
 
-  it("should test FlexLayout", () => {
-    const layout = FlexLayout({
+  it("should test flexLayout", () => {
+    const layout = flexLayout({
       items: ["<text>1</text>", "<text>2</text>"],
       gap: 60,
     }).join("");
 
     expect(layout).toBe(
-      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(60, 0)\"><text>2</text></g>`
+      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(60, 0)\"><text>2</text></g>`,
     );
 
-    const columns = FlexLayout({
+    const columns = flexLayout({
       items: ["<text>1</text>", "<text>2</text>"],
       gap: 60,
       direction: "column",
     }).join("");
 
     expect(columns).toBe(
-      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(0, 60)\"><text>2</text></g>`
+      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(0, 60)\"><text>2</text></g>`,
     );
   });
 
@@ -71,6 +71,7 @@ describe("Test utils.js", () => {
       text_color: "0f0",
       icon_color: "00f",
       bg_color: "fff",
+      border_color: "fff",
       theme: "dark",
     });
     expect(colors).toStrictEqual({
@@ -78,6 +79,7 @@ describe("Test utils.js", () => {
       textColor: "#0f0",
       iconColor: "#00f",
       bgColor: "#fff",
+      borderColor: "#fff",
     });
   });
 
@@ -87,6 +89,7 @@ describe("Test utils.js", () => {
       text_color: "0f0",
       icon_color: "00f",
       bg_color: "fff",
+      border_color: "invalidColor",
       theme: "dark",
     });
     expect(colors).toStrictEqual({
@@ -94,6 +97,7 @@ describe("Test utils.js", () => {
       textColor: "#0f0",
       iconColor: "#00f",
       bgColor: "#fff",
+      borderColor: "#e4e2e2",
     });
   });
 
@@ -106,6 +110,7 @@ describe("Test utils.js", () => {
       textColor: "#9f9f9f",
       iconColor: "#79ff97",
       bgColor: "#151515",
+      borderColor: "#e4e2e2",
     });
   });
 });
@@ -121,7 +126,7 @@ describe("wrapTextMultiline", () => {
     let multiLineText = wrapTextMultiline(
       "Hello world long long long text",
       20,
-      3
+      3,
     );
     expect(multiLineText).toEqual(["Hello world long", "long long text"]);
   });
@@ -129,7 +134,7 @@ describe("wrapTextMultiline", () => {
     let multiLineText = wrapTextMultiline(
       "Hello world long long long text",
       10,
-      2
+      2,
     );
     expect(multiLineText).toEqual(["Hello", "world long..."]);
   });

@@ -1,7 +1,7 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">동적으로 생성된 Github의 통계를 여러분의 README에 올려보세요!</p>
+ <p align="center">동적으로 생성되는 Github 사용량 통계를 여러분의 README 에 추가해보세요!</p>
 </p>
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
@@ -27,13 +27,15 @@
   </p>
 
   <p align="center">
-    <a href="#데모">View Demo</a>
+    <a href="#미리보기">미리보기 확인</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">버그 제보하기</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">기능 추가 요청하기</a>
   </p>
   <p align="center">
+    <a href="/docs/readme_fr.md">Français </a>
+    ·
     <a href="/docs/readme_cn.md">简体中文</a>
     ·
     <a href="/docs/readme_es.md">Español</a>
@@ -47,284 +49,391 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
+    .
+    <a href="/docs/readme_np.md">नेपाली</a>
   </p>
 </p>
-<p align="center">이 프로젝트가 마음에 드나요? 괜찮으시다면 더 나은 개선을 위해 <a href="https://www.paypal.me/anuraghazra">기부</a>를 고려해주세요!
+<p align="center">기능들이 마음에 드시나요? 괜찮으시다면, 서비스 개선을 위해 <a href="https://www.paypal.me/anuraghazra">기부</a>를 고려해주세요!
 
-# Features
+# 기능들
 
-- [GitHub Stats Card](#github-stats-card)
-- [GitHub Extra Pins](#github-extra-pins)
-- [상위 언어 카드](#상위-언어-카드)
+- [GitHub 통계](#github-통계)
+- [GitHub 저장소 핀](#github-저장소-핀)
+- [언어 사용량 통계](#언어-사용량-통계)
+- [Wakatime 주간 통계](#wakatime-주간-통계)
 - [테마](#테마)
-- [사용자정의](#사용자정의)
-- [직접 배포하기](#자체-Vercel-인스턴스에-배포하기)
+- [커스터마이징](#커스터마이징)
+- [직접 배포하기](#나만의-Vercel-인스턴스에-직접-배포하기)
 
-# GitHub Stats Card
 
-아래 코드를 복사해서 당신의 마크다운 파일에 넣으면 됩니다. 간단합니다!
+# GitHub 통계
 
-`?username=` 영역의 값은 당신의 Github 계정의 이름으로 바꿔주세요.
+아래 코드를 복사해서 마크다운 파일에 붙여넣으면 끝이에요, 아주 간단해요!
+
+`?username=` 속성의 값을 Github 계정의 사용자 명(닉네임)으로 바꿔주세요.
 
 ```md
-[![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_참고: 순위는 사용자의 통계를 기반으로 계산됩니다. [src/calculateRank.js](../src/calculateRank.js) 참고_
+_참고:_
+
+_랭크는 S+ (상위 1%), S (상위 25%), A++ (상위 45%), A+ (상위 60%), 그리고 B+ (전체) 로 구성되어 있습니다._
+
+_커밋의 수(commits), 기여도(contribution), 이슈의 수(issues), 즐겨찾기(star), 작업내용 반영 요청(Pull Request),
+팔로워 수, 그리고 보유 중인 저장소 등의 항목들에 대해 [누적 분포 함수](https://ko.wikipedia.org/wiki/%EB%88%84%EC%A0%81_%EB%B6%84%ED%8F%AC_%ED%95%A8%EC%88%98) 를 이용해 계산됩니다._
+
+_[src/calculateRank.js](../src/calculateRank.js) 에서 수행되는 계산 작업의 내용을 확인할 수 있습니다._
 
 ### 개별 통계 숨기기
 
-특정 통계를 숨기려면 콤마로 구분된 값을 `?hide=` 쿼리 파라미터 값으로 나열하면 됩니다.
+특정 통계를 숨기려면 `콤마(,)`로 구분된 값들을 `?hide=` 속성의 값으로 넣어주세요.
 
-> 예시: `&hide=stars,commits,prs,issues,contribs`
+> 사용 가능한 항목들: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
-### 총 커밋 수에 private 컨트리뷰트 개수 추가하기
+### 총 커밋 수에 비공개 기여도 (private contribs) 수 추가하기
 
-`?count_private=true` 쿼리 파라미터를 사용하면 총 커밋 수에 private 컨트리뷰트 개수를 추가할 수 있습니다.
+`?count_private=true` 속성을 추가하시면, 여러분의 모든 비공개 기여도까지 반영됩니다.
 
-_참고: 이 프로젝트를 직접 배포하는 경우 private 컨트리뷰트는 기본적으로 계산됩니다. 그렇지 않은 경우 private 컨트리뷰트 개수를 추가하도록 설정해야 합니다._
+_참고: 프로젝트를 직접 배포하신 경우, 비공개 기여도는 기본적으로 반영됩니다. 원하지 않는 경우엔 직접 설정해야 합니다._
 
 > 예시: `&count_private=true`
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
-### 아이콘 표기
+### 아이콘 표시하기
 
-아이콘을 활성화하려면 다음과 같이 `show_icons=true` 쿼리 파라미터를 사용하세요.
+아이콘 항목을 활성화 하기 위해선, 다음과 같이 `show_icons=true` 속성을 추가해주세요.
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
-### 테마
+### 테마 설정하기
 
-내장된 테마를 사용하여 수동 [사용자정의](#사용자정의)할 필요 없이 카드의 모양을 커스터마이징할 수 있습니다.
+내장 테마를 사용하시면, 별도의 [커스터마이징](#커스터마이징) 없이 GitHub 통계 카드를 꾸미실 수 있어요.
 
-아래와 같이 `?theme=THEME_NAME` 파라미터를 사용하세요. :-
+다음과 같이 `?theme=THEME_NAME` 속성을 이용해주세요.
 
 ```md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
-#### 모든 내장된 테마 :-
+#### 지원하는 내장 테마 목록
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-[사용 가능한 모든 테마](../themes/README.md)의 미리보기와 [테마 설정 파일](../themes/index.js)을 확인할 수 있습니다. 괜찮으시다면 **새로운 테마를 만드셔서, 코드를 기여** 해주세요 :D
+[사용 가능한 모든 테마](../themes/README.md) 에서 미리보기를 확인하실 수 있어요.
 
-### 사용자정의
+원하신다면 [테마 설정하기](../themes/index.js) 항목에서  **새로운 테마를 직접 만드실수 있어요.** :D
 
-URL 파라미터를 사용하여 원하는대로 `Stats Card` 또는 `Repo Card` 모양을 사용자 정의할 수 있습니다.
+### 커스터마이징
 
-#### Common Options:
+여러가지 추가 속성을 통해, 원하는대로 `Stats Card` 또는 `Repo Card` 모양을 커스터마이징할 수 있어요.
 
-- `title_color` - 카드 제목 색상 _(hex color)_
-- `text_color` - 본문 글자 색상 _(hex color)_
-- `icon_color` - 아이콘 색상(활성화된 경우) _(hex color)_
-- `bg_color` - 카드 배경 색상 _(hex color)_
-- `theme` - 테마의 이름, [사용 가능한 모든 테마](../themes/README.md)에서 선택
-- `cache_seconds` - 캐시 헤더를 수동으로 설정 _(min: 1800, max: 86400)_
+#### 기본 옵션:
 
-> 캐시 관련 참고: Repo 카드는 fork 개수와 star 카운트가 1천 개 미만인 경우 기본 캐시가 30분(1800초)이고, 그렇지 않은 경우 2시간(7200초) 입니다. 또한 캐시는 최소 30분 및 최대 24시간으로 고정됩니다.
+- `title_color` - 카드 타이틀 색상 _(hex color)_
+- `text_color` - 카드 본문 글씨 색상 _(hex color)_
+- `icon_color` - 아이콘 색상 (활성화된 경우) _(hex color)_
+- `bg_color` - 카드의 배경 색상 _(hex color)_ **혹은** 다음 양식으로 그라데이션 주기 _angle,start,end_
+- `hide_border` - 카드의 테두리 표시 여부 _(boolean)_
+- `theme` - 테마의 이름, [사용 가능한 모든 테마](../themes/README.md) 에서 선택
+- `cache_seconds` - 수동으로 캐시 헤더 설정 _(min: 1800, max: 86400)_
+- `locale` - 카드에 표시할 언어 _(e.g. kr, cn, de, es, etc.)_
 
-#### Stats Card의 제외 옵션:
+##### 배경에 그라데이션 주기
 
-- `hide` - 통계에서 특정 항목을 제외한다. _(콤마로 구분된 값)_
-- `hide_title` - _(boolean)_
-- `hide_rank` - _(boolean)_
-- `show_icons` - _(boolean)_
-- `include_all_commits` - 현재 년도 대신 전체 커밋 개수 카운트 _(boolean)_
-- `count_private` - private 커밋도 카운트 _(boolean)_
-- `line_height` - 글자 사이의 line-height 값 설정(자간) _(number)_
+그라데이션이 적용된 카드를 표시하고 싶으시다면, 여러가지 쉼표(,) 로 구분된 값을 추가할 수 있어요.
 
-#### Repo Card의 제외 옵션:
+양식은 다음과 같습니다.
 
-- `show_owner` - repo의 소유자 이름 표기 _(boolean)_
+```
+&bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
+```
 
-#### Language Card의 제외 옵션:
+> 캐시에 대한 참고사항:
+> 포크와 스타 수가 1,000 개 미만인 저장소의 카드는 기본적으로 4시간 (14,400초) 으로 설정되어 있습니다.
+> 그 외에는, it's 2시간 (7,200초) 입니다. 또한, 캐시설정 시간의 범위는 최소 2시간, 최대 24시간입니다.
 
-- `hide` - 카드에서 특정 언어 숨기기 _(콤마로 구분된 값)_
-- `hide_title` - _(boolean)_
-- `layout` - `default` & `compact` 레이아웃 간의 전환
-- `card_width` - 카드의 너비를 수동으로 설정 _(숫자)_
 
-> :warning: **중요:**  
-> 언어 이름은 URI 이스케이프 처리되어야 합니다. [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)를 참고하세요.
-> (i.e: `c++` 는 `c%2B%2B`, `jupyter notebook` 는 `jupyter%20notebook`, etc.)
+#### 통계 카드의 표시 제한 옵션:
+
+- `hide` - 통계에서 특정한 값 제외 _(Comma-separated values)_
+- `hide_title` - 타이틀 표시 여부 _(boolean)_
+- `hide_rank` - 랭크 표시 여부 _(boolean)_
+- `show_icons` - 아이콘 표시 여부 _(boolean)_
+- `include_all_commits` - 올해가 아닌 전체 연도에 대한 커밋 포함 여부 _(boolean)_
+- `count_private` - 비공개 기여도 포함 여부 _(boolean)_
+- `line_height` - 텍스트 간 줄 높이 설정(자간) _(number)_
+- `custom_title` - 카드의 타이틀 값 설정
+- `disable_animations` - 카드의 모든 에니메이션 활성 여부 _(boolean)_
+
+#### 저장소 카드의 표시 제한 옵션:
+
+- `show_owner` - 저장소 소유자 닉네임 표기 여부 _(boolean)_
+
+#### 언어 사용량 통계 카드의 표시 제한 옵션:
+
+- `hide` - 카드에서 특정 언어 제외 _(Comma-separated values)_
+- `hide_title` - 타이틀 제외 _(boolean)_
+- `layout` - 사용 가능한 두 가지 값, `default` & `compact` 중 표시 형태 선택
+- `card_width` - 카드 너비 직접 설정 _(number)_
+- `langs_count` - 카드에 표시할 언어의 수 (1-10 사이, 기본 값 : 5) _(number)_
+- `exclude_repo` - 통계에 제외할 저장소 지정 _(Comma-separated values)_
+- `custom_title` - 카드의 타이틀 값 설정
+
+##### 경고! **매우 중요**
+>
+> 언어의 이름은 [퍼센트 인코딩](https://ko.wikipedia.org/wiki/%ED%8D%BC%EC%84%BC%ED%8A%B8_%EC%9D%B8%EC%BD%94%EB%94%A9) 에 지정된 URI 방식으로 표기되어야 합니다.
+> ( 예를 들면, `c++` 는 `c%2B%2B`, `jupyter notebook` 는 `jupyter%20notebook`, 등등. )
+> [urlencoder.org](https://www.urlencoder.org/) < 서비스를 이용하면 자동으로 생성할 수 있습니다.
+
+#### Wakatime 카드의 표시 제한 옵션:
+
+- `hide_title` - 타이틀 제외 _(boolean)_
+- `line_height` - 텍스트 간 줄 높이 설정(자간) _(number)_
+- `hide_progress` - 퍼센트와 표기바 표시 여부 _(boolean)_
+- `custom_title` - 카드의 타이틀 값 설정
+- `layout` - 사용 가능한 두 가지 값, `default` & `compact` 중 표시 형태 선택
 
 ---
 
-# GitHub Extra Pins
+# GitHub 저장소 핀
 
-GitHub extra pins을 사용하면 Github readme 프로필에 6개 이상의 저장소를 고정할 수 있습니다.
-그렇습니다! 더 이상 고정된 6개의 저장소로 제한되지 않습니다.
+GitHub 저장소 여분 핀을 이용하면, 6개 이상의 저장소 핀을 여러분의 프로필에 추가할 수 있어요.
+
+맞아요! 이제 6개 이상의 핀을 사용할 수 있어요! (핀이 부족할 일이 없답니다!)
 
 ### 사용법
 
-이 코드를 복사해서 readme에 넣고 링크를 변경해주세요.
+이 코드를 복사해서 여러분의 README 에 넣고 링크를 변경해주세요.
 
-Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
+엔드 포인트: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### 데모
+### 미리보기
 
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![GitHub 저장소 핀 카드](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
-[show_owner](#사용자정의) 값을 사용하여 저장소 소유자 이름을 포함할 수 있습니다.
+[show_owner](#커스터마이징) 속성을 통해 저장소 소유자의 닉네임 표시 여부를 설정할 수 있어요.
 
-[![ReadMe Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+[![GitHub 저장소 핀 카드](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
-# 상위 언어 카드
+# 언어 사용량 통계
 
-상위 언어 카드는 그 Github 사용자가 가장 많이 사용하고 있는 언어가 표시됩니다.
+언어 사용량 통계 카드는 Github 사용자가 가장 많이 사용한 언어가 표시됩니다.
 
-_참고: Top languages는 사용자의 기술 수준을 나타내는 것이 아니라 GitHub에서 어떤 언어로 코드를 많이 작성하는지 나타내는 Github 지표이며 github-readme-stats의 새로운 기능입니다._
+_참고:
+언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어의 표기일 뿐입니다.
+숙련도, 혹은 그와 비슷한 지표를 나타내진 않습니다. (새로 추가된 기능입니다!)_
 
 ### 사용법
 
-이 코드를 복사해서 readme에 넣고 링크를 변경해주세요.
+이 코드를 복사해서 여러분의 README 에 넣고 링크를 변경해주세요.
 
-Endpoint: `api/top-langs?username=anuraghazra`
+엔드 포인트: `api/top-langs?username=anuraghazra`
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### 개별 언어 숨기기
+### 통계에서 제외할 저장소 지정하기
 
-`?hide=language1,language2` 파라미터를 사용하여 특정 언어를 숨길 수 있습니다.
+`?exclude_repo=repo1,repo2` 속성을 통해 특정 저장소를 제외할 수 있어요.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### 통계에서 특정 언어 제외하기
+
+`?hide=language1,language2` 속성을 통해 특정 언어를 제외할 수 있어요.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### 컴팩트 언어 카드 레이아웃
+### 표시할 언어 수 지정하기
 
-`&layout=compact` 파라미터를 사용하여 카드의 디자인을 변경할 수 있습니다.
+`&langs_count=` 속성을 통해 카드에 표시할 언어의 수를 지정할 수 있어요. (1-10 사이, 기본 값 : 5)
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### 컴택트한 카드 레이아웃 설정하기
+
+`&layout=compact` 속성을 통해 카드의 디자인을 변경할 수 있어요.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### 데모
+### 미리보기
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![언어 사용량 통계](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- 컴팩트 레이아웃
+- 컴팩트한 레이아웃
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![언어 사용량 통계](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
----
+# Wakatime 주간 통계
 
-### 모든 데모
+`?username=` 속성의 값을 [Wakatime](https://wakatime.com) 계정의 사용자 명(닉네임)으로 바꿔주세요.
 
-- 기본 설정
+```md
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+```
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+### 미리보기
 
-- 특정 통계 숨김
+[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
+[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
-- 아이콘 표기
+- 컴팩트한 레이아웃
 
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
-
-- 모든 커밋 표기
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
-
-- 테마
-
-[default themes](#테마)에서 선택
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
-
-- Stats 카드 사용자 정의
-
-![Anurag's github stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
-
-- Repo 카드 사용자 정의
-
-![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
-
-- 상위 언어
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
-### 꿀팁 (Repo 카드 정렬)
+### 전체 미리보기
 
-일반적으로 사진을 나란히 배치할 수 없습니다. 따라서 다음과 같은 방법을 사용할 수 있습니다.
+- 기본
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+
+- 특정 통계 내용 숨김
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
+
+- 아이콘 표시
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
+
+- 전체 커밋 포함 시
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+
+- 테마들
+
+[내장 테마](#themes) 에서 직접 선택해보세요
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+
+- 그라데이션 주기
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
+
+- 통계 카드 커스터마이징하기
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+
+- 언어 사용 지역 설정하기
+
+![Anurag 님의 GitHub 사용량 통계](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=kr)
+
+- 저장소 핀 커스터마이징하기
+
+![Anurag 님의 GitHub 저장소 핀](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+
+- 언어 사용량 통계
+
+[![언어 사용량 통계](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+- Wakatime 카드
+
+[![willianrod 님의 Wakatime 카드](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+
+---
+
+### 꿀팁 (저장소 핀 정렬하기)
+
+아마, 이미지들을 나란히 정렬할 수 없을거에요.
+
+그럴땐, 이렇게 해보세요!
 
 ```md
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="left" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 
-## 자체 Vercel 인스턴스에 배포하기
+## 나만의 Vercel 인스턴스에 직접 배포하기
 
-#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+#### [@codeSTACKr 님의 튜토리얼 영상 보기](https://youtu.be/n6d4KHSKqGk?t=107)
 
-Github API는 시간당 5k 요청만을 허용하기 때문에, 이 `https://github-readme-stats.vercel.app/api`이 제한에 도달할 수 있습니다.
-물론 자신의 Vercel 서버에서 호스팅하는 것이라면 아무것도 걱정할 필요가 없습니다. 시작하려면 배포 버튼을 클릭하세요!
+GitHub API 가 시간 당 요청 개수를 5,000회로 제한한 뒤로,
+저의 `https://github-readme-stats.vercel.app/api` 가 사용량 제한에 걸릴 위험이 생겼어요.
 
-참고: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 이슈 이후로는 5k 이상의 요청을 처리할 수 있게 되어, 다운 타임의 문제가 발생하지 않습니다 :D
+만약, 여러분이 Vercel server 에서 직접 호스트 하신다면, 걱정하실 일은 없을거에요.
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
+아래의 버튼을 이용해 직접 배포해보세요!
+
+참고: [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 풀 리퀘스트 이후로, 저희는 5,000 개 이상의 요청을 처리할 수 있게 됐어요. 더이상 서버 다운에 대한 걱정은 노놉! :D
+
+[![Vercel 에 배포하기](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary><b> Guide on setting up Vercel  🔨 </b></summary>
+ <summary><b> 🔨 Vercel 세팅 가이드!   </b></summary>
 
-1. [vercel.com](https://vercel.com/)에 접속하세요.
-1. `Log in` 클릭합니다.
+1. [vercel.com](https://vercel.com/) 으로 이동하기
+1. `Log in` 버튼 클릭!
    ![](https://files.catbox.moe/tct1wg.png)
-1. `Continue with GitHub` 를 클릭하여 Github로 로그인하세요.
+1. `Continue with GitHub` 버튼을 이용해 GitHub 계정으로 가입하기
    ![](https://files.catbox.moe/btd78j.jpeg)
-1. Github에 로그인하고 메시지가 표시되면 모든 저장소에 대한 접근을 허용합니다.
-1. 이 저장소를 fork 합니다.
-1. [Vercel dashboard](https://vercel.com/dashboard)로 돌아갑니다.
-1. `Import Project` 를 선택합니다.
+1. GitHub 에 로그인한 뒤, (권한을 요청한다면) 모든 저장소에 대한 권한을 허용해주세요!
+1. 이 저장소를 Fork!
+1. [Vercel 대시보드](https://vercel.com/dashboard) 로 돌아가세요!
+1. `Import Project` 항목 선택!
    ![](https://files.catbox.moe/qckos0.png)
-1. `Import Git Repository` 를 선택합니다.
+1. `Import Git Repository` 항목 선택!
    ![](https://files.catbox.moe/pqub9q.png)
-1. 루트를 선택한 다음에 다른 것들은 그대로 두고 PAT_1 이라는 환경 변수(아래처럼)를 추가합니다. 여기에는 개인 접근 토큰(PAT)이 포함되며, 토큰은 [여기](https://github.com/settings/tokens/new)에서 쉽게 만들 수 있습니다. (모두 그대로 두고, 이름만 지정하면 됩니다.)
+1. 'root' 를 선택하고 넘어간 후, 아래와 같이 개인용 엑세스 토큰 (PAT) 을 저장할 환경변수를 PAT_1 의 값으로 추가해주세요. [이 곳](https://github.com/settings/tokens/new)에서 쉽게 생성할 수 있어요. (모든 항목을 그대로 두고, 이 부분만 원하는 이름으로 변경해주세요.)
    ![](https://files.catbox.moe/0ez4g7.png)
-1. 배포를 클릭하면 완료됩니다. API를 사용하기 위해 당신의 도메인을 참조하세요!
+1. 마지막으로 'Deploy' 버튼을 클릭하면, 끝! => API 를 사용하기 위한 도메인 주소를 확인하세요!
 
 </details>
 
-## :sparkling_heart: 프로젝트 후원
+## :sparkling_heart: 프로젝트 지원하기!
 
-저는 제가 할 수 있는 거의 모든 것을 오픈소스로 제공하고, 이 프로젝트를 사용하면서 도움이 필요한 분들에게 회신하려고 합니다.
-분명한 것은, 이는 시간이 걸리는 일입니다. 하지만 여러분은 이 서비스를 무료로 사용할 수 있습니다.
+저는 가능한 모든 요소들을 오픈소스로 공개하고,
+이 서비스를 이용하는데 도움이 필요한 모두에게 도움을 드리려 노력하고 있어요.
 
-하지만 여러분이 이 프로젝트를 사용하고 거기에 만족한다면, 아니면 제가 하는 활동을 격려하고자 싶다면 몇가지 방법이 있습니다. :-
+솔직히 말하자면, 시간이 좀 걸린답니다...
+물론, 여러분이 이 서비스를 사용하는건 무료에요 ㅎ
 
-- readme에서 github-readme-stats를 사용하고 다시 링크해주세요 :D
-- star를 눌러주거나 이 프로젝트를 공유해주세요. :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - PayPal을 통해서 일회성 기부를 할 수 있습니다. 저는 아마 ~~커피~~ 차를 살겁니다.
+하지만, 만약 여러분이 이 서비스를 잘 이용하시고,
+만족하시거나, 제가 이런 요소들을 만드는 데에 도움을 주고 싶으시다면,
+여러분께서 도와주실 수 있는 것들이 있어요!
 
-고맙습니다! :heart:
+- github-readme-stats 를 README 에 표시하실 때 확실한 도움을 주세요! 이 저장소로 링크를 걸어주시면 돼요! :D
+- 이 프로젝트를 많이 공유해주시고, 즐겨찾기 해주세요! :rocket:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - PayPal 을 이용해 1회성 도네이션을 해주실 수 있어요. 아마도 전 ~~커피, 아... 아니~~ 차를 사서 마시겠죠? ㅎ; :tea:
+
+감사합니다! :heart:
 
 ---
 
-코드 기여는 환영합니다!
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
-:heart: and JavaScript로 만들어졌습니다.
+프로젝트에 대한 기여는 언제나 환영이에요! <3
+
+Made with :heart: and JavaScript.

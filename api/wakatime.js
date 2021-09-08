@@ -1,79 +1,78 @@
 require("dotenv").config();
 const {
   renderError,
-  clampValue,
   parseBoolean,
+  clampValue,
   parseArray,
   CONSTANTS,
+  isLocaleAvailable,
 } = require("../src/common/utils");
-const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
-const renderTopLanguages = require("../src/cards/top-languages-card");
-const allowlist = require("../src/common/allowlist");
-const { isLocaleAvailable } = require("../src/translations");
+const { fetchWakatimeStats } = require("../src/fetchers/wakatime-fetcher");
+const wakatimeCard = require("../src/cards/wakatime-card");
 
 module.exports = async (req, res) => {
   const {
     username,
-    hide,
-    hide_title,
-    hide_border,
-    card_width,
     title_color,
+    icon_color,
+    hide_border,
+    line_height,
     text_color,
     bg_color,
     theme,
     cache_seconds,
-    layout,
-    langs_count,
-    exclude_repo,
+    hide_title,
+    hide_progress,
     custom_title,
     locale,
+    layout,
+    langs_count,
+    hide,
+    api_domain,
+    range,
     border_radius,
     border_color,
   } = req.query;
-  let topLangs;
 
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (!allowlist.includes(username)) {
-    return res.send(renderError("Something went wrong"));
-  }
-
   if (locale && !isLocaleAvailable(locale)) {
-    return res.send(renderError("Something went wrong", "Locale not found"));
+    return res.send(renderError("Something went wrong", "Language not found"));
   }
 
   try {
-    topLangs = await fetchTopLanguages(
-      username,
-      parseArray(exclude_repo),
-      parseArray(hide),
-    );
+    const stats = await fetchWakatimeStats({ username, api_domain, range });
 
-    const cacheSeconds = clampValue(
+    let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       CONSTANTS.TWO_HOURS,
       CONSTANTS.ONE_DAY,
     );
 
+    if (!cache_seconds) {
+      cacheSeconds = CONSTANTS.FOUR_HOURS;
+    }
+
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
     return res.send(
-      renderTopLanguages(topLangs, {
+      wakatimeCard(stats, {
         custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
-        card_width: parseInt(card_width, 10),
         hide: parseArray(hide),
+        line_height,
         title_color,
+        icon_color,
         text_color,
         bg_color,
         theme,
-        layout,
-        langs_count,
+        hide_progress,
         border_radius,
         border_color,
         locale: locale ? locale.toLowerCase() : null,
+        layout,
+        langs_count,
       }),
     );
   } catch (err) {

@@ -28,29 +28,29 @@ describe("Test renderTopLanguages", () => {
     document.body.innerHTML = renderTopLanguages(langs);
 
     expect(queryByTestId(document.body, "header")).toHaveTextContent(
-      "Most Used Languages"
+      "Most Used Languages",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
-      "HTML"
+      "HTML",
     );
     expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
-      "javascript"
+      "javascript",
     );
     expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
-      "css"
+      "css",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
       "width",
-      "40%"
+      "40%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
       "width",
-      "40%"
+      "40%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
       "width",
-      "20%"
+      "20%",
     );
   });
 
@@ -59,10 +59,10 @@ describe("Test renderTopLanguages", () => {
       hide: ["HTML"],
     });
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
-      "javascript"
+      "javascript",
     );
     expect(queryAllByTestId(document.body, "lang-name")[1]).toBeInTheDocument(
-      "css"
+      "css",
     );
     expect(queryAllByTestId(document.body, "lang-name")[2]).not.toBeDefined();
 
@@ -71,7 +71,7 @@ describe("Test renderTopLanguages", () => {
       hide: ["HTML", "css"],
     });
     expect(queryAllByTestId(document.body, "lang-name")[0]).toBeInTheDocument(
-      "javascript"
+      "javascript",
     );
     expect(queryAllByTestId(document.body, "lang-name")[1]).not.toBeDefined();
   });
@@ -89,7 +89,7 @@ describe("Test renderTopLanguages", () => {
           size: 100,
         },
       },
-      {}
+      {},
     );
     expect(document.querySelector("svg")).toHaveAttribute("height", "245");
   });
@@ -116,7 +116,7 @@ describe("Test renderTopLanguages", () => {
     expect(langNameStyles.fill).toBe("#333");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#fffefe"
+      "#fffefe",
     );
   });
 
@@ -140,7 +140,7 @@ describe("Test renderTopLanguages", () => {
     expect(langNameStyles.fill).toBe(`#${customColors.text_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#252525"
+      "#252525",
     );
   });
 
@@ -160,7 +160,7 @@ describe("Test renderTopLanguages", () => {
     expect(langNameStyles.fill).toBe(`#${themes.radical.text_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      `#${themes.radical.bg_color}`
+      `#${themes.radical.bg_color}`,
     );
   });
 
@@ -180,7 +180,7 @@ describe("Test renderTopLanguages", () => {
       expect(langNameStyles.fill).toBe(`#${themes[name].text_color}`);
       expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
         "fill",
-        `#${themes[name].bg_color}`
+        `#${themes[name].bg_color}`,
       );
     });
   });
@@ -189,31 +189,66 @@ describe("Test renderTopLanguages", () => {
     document.body.innerHTML = renderTopLanguages(langs, { layout: "compact" });
 
     expect(queryByTestId(document.body, "header")).toHaveTextContent(
-      "Most Used Languages"
+      "Most Used Languages",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
-      "HTML 40.00%"
+      "HTML 40.00%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
       "width",
-      "120.00"
+      "120",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
-      "javascript 40.00%"
+      "javascript 40.00%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
       "width",
-      "120.00"
+      "120",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
-      "css 20.00%"
+      "css 20.00%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
       "width",
-      "60.00"
+      "60",
+    );
+  });
+
+  it("should render a translated title", () => {
+    document.body.innerHTML = renderTopLanguages(langs, { locale: "cn" });
+    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+      "最常用的语言",
+    );
+  });
+
+  it("should render without rounding", () => {
+    document.body.innerHTML = renderTopLanguages(langs, { border_radius: "0" });
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
+    document.body.innerHTML = renderTopLanguages(langs, {});
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
+  });
+
+  it("should render langs with specified langs_count", async () => {
+    options = {
+      langs_count: 1,
+    };
+    document.body.innerHTML = renderTopLanguages(langs, { ...options });
+    expect(queryAllByTestId(document.body, "lang-name").length).toBe(
+      options.langs_count,
+    );
+  });
+
+  it("should render langs with specified langs_count even when hide is set", async () => {
+    options = {
+      hide: ["HTML"],
+      langs_count: 2,
+    };
+    document.body.innerHTML = renderTopLanguages(langs, { ...options });
+    expect(queryAllByTestId(document.body, "lang-name").length).toBe(
+      options.langs_count,
     );
   });
 });

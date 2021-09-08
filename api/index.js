@@ -9,6 +9,7 @@ const {
 const fetchStats = require("../src/fetchers/stats-fetcher");
 const renderStatsCard = require("../src/cards/stats-card");
 const allowlist = require("../src/common/allowlist");
+const { isLocaleAvailable } = require("../src/translations");
 
 module.exports = async (req, res) => {
   const {
@@ -27,6 +28,11 @@ module.exports = async (req, res) => {
     bg_color,
     theme,
     cache_seconds,
+    custom_title,
+    locale,
+    disable_animations,
+    border_radius,
+    border_color,
   } = req.query;
   let stats;
 
@@ -36,17 +42,21 @@ module.exports = async (req, res) => {
     return res.send(renderError("Something went wrong"));
   }
 
+  if (locale && !isLocaleAvailable(locale)) {
+    return res.send(renderError("Something went wrong", "Language not found"));
+  }
+
   try {
     stats = await fetchStats(
       username,
       parseBoolean(count_private),
-      parseBoolean(include_all_commits)
+      parseBoolean(include_all_commits),
     );
 
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
       CONSTANTS.TWO_HOURS,
-      CONSTANTS.ONE_DAY
+      CONSTANTS.ONE_DAY,
     );
 
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
@@ -65,7 +75,12 @@ module.exports = async (req, res) => {
         text_color,
         bg_color,
         theme,
-      })
+        custom_title,
+        border_radius,
+        border_color,
+        locale: locale ? locale.toLowerCase() : null,
+        disable_animations: parseBoolean(disable_animations),
+      }),
     );
   } catch (err) {
     return res.send(renderError(err.message, err.secondaryMessage));

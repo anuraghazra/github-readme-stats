@@ -37,7 +37,7 @@ function kFormatter(num) {
 
 function isValidHexColor(hexColor) {
   return new RegExp(
-    /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/
+    /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/,
   ).test(hexColor);
 }
 
@@ -97,7 +97,7 @@ function request(data, headers) {
  * Auto layout utility, allows us to layout things
  * vertically or horizontally with proper gaping
  */
-function FlexLayout({ items, gap, direction }) {
+function flexLayout({ items, gap, direction }) {
   // filter() for filtering out empty strings
   return items.filter(Boolean).map((item, i) => {
     let transform = `translate(${gap * i}, 0)`;
@@ -115,31 +115,39 @@ function getCardColors({
   icon_color,
   bg_color,
   theme,
+  border_color,
   fallbackTheme = "default",
 }) {
   const defaultTheme = themes[fallbackTheme];
   const selectedTheme = themes[theme] || defaultTheme;
+  const defaultBorderColor =
+    selectedTheme.border_color || defaultTheme.border_color;
 
   // get the color provided by the user else the theme color
   // finally if both colors are invalid fallback to default theme
   const titleColor = fallbackColor(
     title_color || selectedTheme.title_color,
-    "#" + defaultTheme.title_color
+    "#" + defaultTheme.title_color,
   );
   const iconColor = fallbackColor(
     icon_color || selectedTheme.icon_color,
-    "#" + defaultTheme.icon_color
+    "#" + defaultTheme.icon_color,
   );
   const textColor = fallbackColor(
     text_color || selectedTheme.text_color,
-    "#" + defaultTheme.text_color
+    "#" + defaultTheme.text_color,
   );
   const bgColor = fallbackColor(
     bg_color || selectedTheme.bg_color,
-    "#" + defaultTheme.bg_color
+    "#" + defaultTheme.bg_color,
   );
 
-  return { titleColor, iconColor, textColor, bgColor };
+  const borderColor = fallbackColor(
+    border_color || defaultBorderColor,
+    "#" + defaultBorderColor,
+  );
+
+  return { titleColor, iconColor, textColor, bgColor, borderColor };
 }
 
 function wrapTextMultiline(text, width = 60, maxLines = 3) {
@@ -188,6 +196,42 @@ class CustomError extends Error {
   static USER_NOT_FOUND = "USER_NOT_FOUND";
 }
 
+// https://stackoverflow.com/a/48172630/10629172
+function measureText(str, fontSize = 10) {
+  // prettier-ignore
+  const widths = [
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0.2796875, 0.2765625,
+    0.3546875, 0.5546875, 0.5546875, 0.8890625, 0.665625, 0.190625,
+    0.3328125, 0.3328125, 0.3890625, 0.5828125, 0.2765625, 0.3328125,
+    0.2765625, 0.3015625, 0.5546875, 0.5546875, 0.5546875, 0.5546875,
+    0.5546875, 0.5546875, 0.5546875, 0.5546875, 0.5546875, 0.5546875,
+    0.2765625, 0.2765625, 0.584375, 0.5828125, 0.584375, 0.5546875,
+    1.0140625, 0.665625, 0.665625, 0.721875, 0.721875, 0.665625,
+    0.609375, 0.7765625, 0.721875, 0.2765625, 0.5, 0.665625,
+    0.5546875, 0.8328125, 0.721875, 0.7765625, 0.665625, 0.7765625,
+    0.721875, 0.665625, 0.609375, 0.721875, 0.665625, 0.94375,
+    0.665625, 0.665625, 0.609375, 0.2765625, 0.3546875, 0.2765625,
+    0.4765625, 0.5546875, 0.3328125, 0.5546875, 0.5546875, 0.5,
+    0.5546875, 0.5546875, 0.2765625, 0.5546875, 0.5546875, 0.221875,
+    0.240625, 0.5, 0.221875, 0.8328125, 0.5546875, 0.5546875,
+    0.5546875, 0.5546875, 0.3328125, 0.5, 0.2765625, 0.5546875,
+    0.5, 0.721875, 0.5, 0.5, 0.5, 0.3546875, 0.259375, 0.353125, 0.5890625,
+  ];
+
+  const avg = 0.5279276315789471;
+  return (
+    str
+      .split("")
+      .map((c) =>
+        c.charCodeAt(0) < widths.length ? widths[c.charCodeAt(0)] : avg,
+      )
+      .reduce((cur, acc) => acc + cur) * fontSize
+  );
+}
+const lowercaseTrim = (name) => name.toLowerCase().trim();
+
 module.exports = {
   renderError,
   kFormatter,
@@ -197,11 +241,13 @@ module.exports = {
   parseArray,
   parseBoolean,
   fallbackColor,
-  FlexLayout,
+  flexLayout,
   getCardColors,
   clampValue,
   wrapTextMultiline,
+  measureText,
   logger,
   CONSTANTS,
   CustomError,
+  lowercaseTrim,
 };

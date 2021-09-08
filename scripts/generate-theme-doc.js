@@ -17,7 +17,7 @@ With inbuilt themes you can customize the look of the card without doing any man
 Use \`?theme=THEME_NAME\` parameter like so :-
 
 \`\`\`md
-![Anurag's github stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=dark&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=dark&show_icons=true)
 \`\`\`
 
 ## Stats
@@ -66,7 +66,7 @@ const createTableItem = ({ link, label, isRepoCard }) => {
 const generateTable = ({ isRepoCard }) => {
   const rows = [];
   const themes = Object.keys(theme).filter(
-    (name) => name !== (!isRepoCard ? "default_repocard" : "default")
+    (name) => name !== (!isRepoCard ? "default_repocard" : "default"),
   );
 
   for (let i = 0; i < themes.length; i += 3) {

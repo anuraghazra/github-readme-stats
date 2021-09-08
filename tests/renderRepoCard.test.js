@@ -29,16 +29,16 @@ describe("Test renderRepoCard", () => {
     expect(header).toHaveTextContent("convoychat");
     expect(header).not.toHaveTextContent("anuraghazra");
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
-      "Help us take over the world! React + TS + GraphQL Chat App"
+      "Help us take over the world! React + TS + GraphQL Chat App",
     );
     expect(queryByTestId(document.body, "stargazers")).toHaveTextContent("38k");
     expect(queryByTestId(document.body, "forkcount")).toHaveTextContent("100");
     expect(queryByTestId(document.body, "lang-name")).toHaveTextContent(
-      "TypeScript"
+      "TypeScript",
     );
     expect(queryByTestId(document.body, "lang-color")).toHaveAttribute(
       "fill",
-      "#2b7489"
+      "#2b7489",
     );
   });
 
@@ -47,7 +47,7 @@ describe("Test renderRepoCard", () => {
       show_owner: true,
     });
     expect(document.getElementsByClassName("header")[0]).toHaveTextContent(
-      "anuraghazra/convoychat"
+      "anuraghazra/convoychat",
     );
   });
 
@@ -59,11 +59,11 @@ describe("Test renderRepoCard", () => {
     });
 
     expect(
-      document.getElementsByClassName("description")[0].children[0].textContent
+      document.getElementsByClassName("description")[0].children[0].textContent,
     ).toBe("The quick brown fox jumps over the lazy dog is an");
 
     expect(
-      document.getElementsByClassName("description")[0].children[1].textContent
+      document.getElementsByClassName("description")[0].children[1].textContent,
     ).toBe("English-language pangram—a sentence that contains all");
 
     // Should not trim
@@ -73,7 +73,7 @@ describe("Test renderRepoCard", () => {
     });
 
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
-      "Small text should not trim"
+      "Small text should not trim",
     );
   });
 
@@ -85,7 +85,7 @@ describe("Test renderRepoCard", () => {
 
     // poop emoji may not show in all editors but it's there between "a" and "poo"
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
-      "This is a text with a 💩 poo emoji"
+      "This is a text with a 💩 poo emoji",
     );
   });
 
@@ -101,7 +101,7 @@ describe("Test renderRepoCard", () => {
     expect(queryByTestId(document.body, "primary-lang")).toBeInTheDocument();
     expect(queryByTestId(document.body, "star-fork-group")).toHaveAttribute(
       "transform",
-      "translate(155, 0)"
+      "translate(155, 0)",
     );
 
     // Small lang
@@ -115,7 +115,7 @@ describe("Test renderRepoCard", () => {
 
     expect(queryByTestId(document.body, "star-fork-group")).toHaveAttribute(
       "transform",
-      "translate(125, 0)"
+      "translate(125, 0)",
     );
   });
 
@@ -135,11 +135,11 @@ describe("Test renderRepoCard", () => {
     expect(queryByTestId(document.body, "primary-lang")).toBeInTheDocument();
     expect(queryByTestId(document.body, "lang-color")).toHaveAttribute(
       "fill",
-      "#333"
+      "#333",
     );
 
     expect(queryByTestId(document.body, "lang-name")).toHaveTextContent(
-      "Unspecified"
+      "Unspecified",
     );
   });
 
@@ -158,7 +158,7 @@ describe("Test renderRepoCard", () => {
     expect(iconClassStyles.fill).toBe("#586069");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#fffefe"
+      "#fffefe",
     );
   });
 
@@ -186,7 +186,7 @@ describe("Test renderRepoCard", () => {
     expect(iconClassStyles.fill).toBe(`#${customColors.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      "#252525"
+      "#252525",
     );
   });
 
@@ -208,7 +208,7 @@ describe("Test renderRepoCard", () => {
       expect(iconClassStyles.fill).toBe(`#${themes[name].icon_color}`);
       expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
         "fill",
-        `#${themes[name].bg_color}`
+        `#${themes[name].bg_color}`,
       );
     });
   });
@@ -231,7 +231,7 @@ describe("Test renderRepoCard", () => {
     expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      `#${themes.radical.bg_color}`
+      `#${themes.radical.bg_color}`,
     );
   });
 
@@ -254,7 +254,7 @@ describe("Test renderRepoCard", () => {
     expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
-      `#${themes.radical.bg_color}`
+      `#${themes.radical.bg_color}`,
     );
   });
 
@@ -306,5 +306,37 @@ describe("Test renderRepoCard", () => {
       ...data_repo.repository,
     });
     expect(queryByTestId(document.body, "badge")).toBeNull();
+  });
+
+  it("should render translated badges", () => {
+    document.body.innerHTML = renderRepoCard(
+      {
+        ...data_repo.repository,
+        isArchived: true,
+      },
+      {
+        locale: "cn",
+      },
+    );
+
+    expect(queryByTestId(document.body, "badge")).toHaveTextContent("已归档");
+
+    document.body.innerHTML = renderRepoCard(
+      {
+        ...data_repo.repository,
+        isTemplate: true,
+      },
+      {
+        locale: "cn",
+      },
+    );
+    expect(queryByTestId(document.body, "badge")).toHaveTextContent("模板");
+  });
+  
+  it("should render without rounding", () => {
+    document.body.innerHTML = renderRepoCard(data_repo.repository, { border_radius: "0" });
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
+    document.body.innerHTML = renderRepoCard(data_repo.repository, { });
+    expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
   });
 });
