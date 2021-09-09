@@ -296,59 +296,6 @@ const wakatimeCardLocales = {
   },
 };
 
-const codetimeCardLocales = {
-  "codetimecard.title": {
-    ar: "إحصائيات واكا تايم",
-    cn: "CodeTime 周统计",
-    cs: "Statistiky CodeTime",
-    de: "CodeTime Status",
-    en: "CodeTime Stats",
-    es: "Estadísticas de CodeTime",
-    fr: "Statistiques de CodeTime",
-    hu: "CodeTime statisztika",
-    it: "Statistiche CodeTime",
-    ja: "CodeTime ワカタイム統計",
-    kr: "CodeTime 주간 통계",
-    nl: "Takwimu za CodeTime",
-    "pt-pt": "Estatísticas CodeTime",
-    "pt-br": "Estatísticas CodeTime",
-    np: "CodeTime तथ्या .्क",
-    el: "Στατιστικά CodeTime",
-    ru: "Статистика CodeTime",
-    "uk-ua": "Статистика CodeTime",
-    id: "Status CodeTime",
-    my: "Statistik CodeTime",
-    sk: "CodeTime štatistika",
-    tr: "CodeTime İstatistikler",
-    pl: "statystyki CodeTime",
-  },
-  "codetimecard.nocodingactivity": {
-    ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
-    cn: "本周没有编程活动",
-    cs: "Tento týden žádná aktivita v kódování",
-    de: "Keine Aktivitäten in dieser Woche",
-    en: "No coding activity this week",
-    es: "No hay actividad de codificación esta semana",
-    fr: "Aucune activité de codage cette semaine",
-    hu: "Nem volt aktivitás ezen a héten",
-    it: "Nessuna attività in questa settimana",
-    ja: "今週のコーディング活動はありません",
-    kr: "이번 주 작업내역 없음",
-    nl: "Geen coderings activiet deze week",
-    "pt-pt": "Sem atividade esta semana",
-    "pt-br": "Nenhuma atividade de codificação esta semana",
-    np: "यस हप्ता कुनै कोडिंग गतिविधि छैन",
-    el: "Δεν υπάρχει δραστηριότητα κώδικα γι' αυτή την εβδομάδα",
-    ru: "На этой неделе не было активности",
-    "uk-ua": "На цьому тижні не було активності",
-    id: "Tidak ada aktivitas perkodingan minggu ini",
-    my: "Tiada aktiviti pengekodan minggu ini",
-    sk: "Žiadna kódovacia aktivita tento týždeň",
-    tr: "Bu hafta herhangi bir kod yazma aktivitesi olmadı",
-    pl: "Brak aktywności w tym tygodniu",
-  },
-};
-
 const availableLocales = Object.keys(repoCardLocales["repocard.archived"]);
 
 function isLocaleAvailable(locale) {
@@ -362,5 +309,4 @@ module.exports = {
   repoCardLocales,
   langCardLocales,
   wakatimeCardLocales,
-  codetimeCardLocales
 };
