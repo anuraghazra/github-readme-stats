@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  magnet: {
+    title_color: "20F8D1",
+    icon_color: "0DBDF2",
+    text_color: "F8F9FA",
+    bg_color: "-180deg, 000, 200835"
+  },
 };
 
 module.exports = themes;
