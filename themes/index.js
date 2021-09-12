@@ -294,6 +294,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "2C2F33",
   },
+  Neon Knights : {
+    title_color: "00FF00",
+    icon_color: "00FF00",
+    text_color: "ffffff",
+    bg_color: "000000",
+  },
 };
 
 module.exports = themes;
