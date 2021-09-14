@@ -1,6 +1,5 @@
 require("@testing-library/jest-dom");
 const cssToObject = require("css-to-object");
-const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
 const renderTopLanguages = require("../src/cards/top-languages-card");
 
 const { queryByTestId, queryAllByTestId } = require("@testing-library/dom");
