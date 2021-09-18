@@ -89,21 +89,26 @@ function request(data, headers) {
 
 /**
  *
- * @param {String[]} items
+ * @param {string[]} items
  * @param {Number} gap
- * @param {string} direction
+ * @param {"column" | "row"} direction
+ *
+ * @returns {string[]}
  *
  * @description
  * Auto layout utility, allows us to layout things
  * vertically or horizontally with proper gaping
  */
-function flexLayout({ items, gap, direction }) {
+function flexLayout({ items, gap, direction, sizes = [] }) {
+  let lastSize = 0;
   // filter() for filtering out empty strings
   return items.filter(Boolean).map((item, i) => {
-    let transform = `translate(${gap * i}, 0)`;
+    const size = sizes[i] || 0;
+    let transform = `translate(${lastSize}, 0)`;
     if (direction === "column") {
-      transform = `translate(0, ${gap * i})`;
+      transform = `translate(0, ${lastSize})`;
     }
+    lastSize += size + gap;
     return `<g transform="${transform}">${item}</g>`;
   });
 }
@@ -232,6 +237,26 @@ function measureText(str, fontSize = 10) {
 }
 const lowercaseTrim = (name) => name.toLowerCase().trim();
 
+/**
+ * @template T
+ * @param {Array<T>} arr
+ * @param {number} perChunk
+ * @returns {Array<T>}
+ */
+function chunkArray(arr, perChunk) {
+  return arr.reduce((resultArray, item, index) => {
+    const chunkIndex = Math.floor(index / perChunk);
+
+    if (!resultArray[chunkIndex]) {
+      resultArray[chunkIndex] = []; // start a new chunk
+    }
+
+    resultArray[chunkIndex].push(item);
+
+    return resultArray;
+  }, []);
+}
+
 module.exports = {
   renderError,
   kFormatter,
@@ -250,4 +275,5 @@ module.exports = {
   CONSTANTS,
   CustomError,
   lowercaseTrim,
+  chunkArray,
 };

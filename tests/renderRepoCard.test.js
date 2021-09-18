@@ -89,36 +89,6 @@ describe("Test renderRepoCard", () => {
     );
   });
 
-  it("should shift the text position depending on language length", () => {
-    document.body.innerHTML = renderRepoCard({
-      ...data_repo.repository,
-      primaryLanguage: {
-        ...data_repo.repository.primaryLanguage,
-        name: "Jupyter Notebook",
-      },
-    });
-
-    expect(queryByTestId(document.body, "primary-lang")).toBeInTheDocument();
-    expect(queryByTestId(document.body, "star-fork-group")).toHaveAttribute(
-      "transform",
-      "translate(155, 0)",
-    );
-
-    // Small lang
-    document.body.innerHTML = renderRepoCard({
-      ...data_repo.repository,
-      primaryLanguage: {
-        ...data_repo.repository.primaryLanguage,
-        name: "Ruby",
-      },
-    });
-
-    expect(queryByTestId(document.body, "star-fork-group")).toHaveAttribute(
-      "transform",
-      "translate(125, 0)",
-    );
-  });
-
   it("should hide language if primaryLanguage is null & fallback to correct values", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
@@ -332,11 +302,13 @@ describe("Test renderRepoCard", () => {
     );
     expect(queryByTestId(document.body, "badge")).toHaveTextContent("模板");
   });
-  
+
   it("should render without rounding", () => {
-    document.body.innerHTML = renderRepoCard(data_repo.repository, { border_radius: "0" });
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      border_radius: "0",
+    });
     expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
-    document.body.innerHTML = renderRepoCard(data_repo.repository, { });
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {});
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
   });
 });
