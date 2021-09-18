@@ -44,27 +44,6 @@ describe("Test utils.js", () => {
     ).toHaveTextContent(/Secondary Message/gim);
   });
 
-  it("should test flexLayout", () => {
-    const layout = flexLayout({
-      items: ["<text>1</text>", "<text>2</text>"],
-      gap: 60,
-    }).join("");
-
-    expect(layout).toBe(
-      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(60, 0)\"><text>2</text></g>`,
-    );
-
-    const columns = flexLayout({
-      items: ["<text>1</text>", "<text>2</text>"],
-      gap: 60,
-      direction: "column",
-    }).join("");
-
-    expect(columns).toBe(
-      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(0, 60)\"><text>2</text></g>`,
-    );
-  });
-
   it("getCardColors: should return expected values", () => {
     let colors = getCardColors({
       title_color: "f00",

@@ -5,6 +5,7 @@ const {
   getCardColors,
   flexLayout,
   wrapTextMultiline,
+  measureText,
 } = require("../common/utils");
 const I18n = require("../common/I18n");
 const Card = require("../common/Card");
@@ -61,20 +62,15 @@ const renderRepoCard = (repo, options = {}) => {
   });
 
   // returns theme based colors with proper overrides and defaults
-  const {
-    titleColor,
-    textColor,
-    iconColor,
-    bgColor,
-    borderColor,
-  } = getCardColors({
-    title_color,
-    icon_color,
-    text_color,
-    bg_color,
-    border_color,
-    theme,
-  });
+  const { titleColor, textColor, iconColor, bgColor, borderColor } =
+    getCardColors({
+      title_color,
+      icon_color,
+      text_color,
+      bg_color,
+      border_color,
+      theme,
+    });
 
   const totalStars = kFormatter(stargazers.totalCount);
   const totalForks = kFormatter(forkCount);
@@ -96,21 +92,24 @@ const renderRepoCard = (repo, options = {}) => {
 
   const svgLanguage = primaryLanguage
     ? `
-    <g data-testid="primary-lang" transform="translate(30, 0)">
+    <g data-testid="primary-lang">
       <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
       <text data-testid="lang-name" class="gray" x="15">${langName}</text>
     </g>
     `
     : "";
 
+  const iconSize = 16;
   const iconWithLabel = (icon, label, testid) => {
-    return `
-      <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+    const iconSvg = `
+      <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="${iconSize}" height="${iconSize}">
         ${icon}
       </svg>
-      <text data-testid="${testid}" class="gray" x="25">${label}</text>
     `;
+    const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
+    return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
   };
+
   const svgStars =
     stargazers.totalCount > 0 &&
     iconWithLabel(icons.star, totalStars, "stargazers");
@@ -118,8 +117,13 @@ const renderRepoCard = (repo, options = {}) => {
     forkCount > 0 && iconWithLabel(icons.fork, totalForks, "forkcount");
 
   const starAndForkCount = flexLayout({
-    items: [svgStars, svgForks],
-    gap: 65,
+    items: [svgLanguage, svgStars, svgForks],
+    sizes: [
+      measureText(langName, 12),
+      iconSize + measureText(`${totalStars}`, 12),
+      iconSize + measureText(`${totalForks}`, 12),
+    ],
+    gap: 25,
   }).join("");
 
   const card = new Card({
@@ -163,15 +167,8 @@ const renderRepoCard = (repo, options = {}) => {
         .join("")}
     </text>
 
-    <g transform="translate(0, ${height - 75})">
-      ${svgLanguage}
-
-      <g
-        data-testid="star-fork-group"
-        transform="translate(${primaryLanguage ? 155 - shiftText : 25}, 0)"
-      >
-        ${starAndForkCount}
-      </g>
+    <g transform="translate(30, ${height - 75})">
+      ${starAndForkCount}
     </g>
   `);
 };
