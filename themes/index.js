@@ -300,6 +300,12 @@ const themes = {
     text_color: "dbdbdb",
     bg_color: "252334",
   },
+  "night-sky": {
+    title_color: "B2A0FA",
+    icon_color: "8258FF",
+    text_color: "AACFFE",
+    bg_color: "1B1A52",
+  },
 };
 
 module.exports = themes;
