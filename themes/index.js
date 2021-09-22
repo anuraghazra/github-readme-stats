@@ -300,6 +300,12 @@ const themes = {
     text_color: "dbdbdb",
     bg_color: "252334",
   },
+  panda: {
+    title_color: "19f9d899",
+    icon_color: "19f9d899",
+    text_color: "FF75B5",
+    bg_color: "31353a",
+  },
 };
 
 module.exports = themes;
