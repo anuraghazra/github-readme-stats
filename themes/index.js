@@ -300,6 +300,11 @@ const themes = {
     text_color: "dbdbdb",
     bg_color: "252334",
   },
+  flag_vn : {
+    title_color: "dd0f0e",
+    icon_color: "cc0c14",
+    text_color: "f8db07",
+    bg_color: "191622",
 };
 
 module.exports = themes;
