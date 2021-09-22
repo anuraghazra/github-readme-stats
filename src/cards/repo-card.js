@@ -1,4 +1,3 @@
-const toEmoji = require("emoji-name-map");
 const {
   kFormatter,
   encodeHTML,
@@ -6,11 +5,65 @@ const {
   flexLayout,
   wrapTextMultiline,
   measureText,
+  parseEmojis,
 } = require("../common/utils");
 const I18n = require("../common/I18n");
 const Card = require("../common/Card");
 const icons = require("../common/icons");
 const { repoCardLocales } = require("../translations");
+
+/**
+ * @param {string} label
+ * @param {string} textColor
+ * @returns {string}
+ */
+const getBadgeSVG = (label, textColor) => `
+  <g data-testid="badge" class="badge" transform="translate(320, -18)">
+    <rect stroke="${textColor}" stroke-width="1" width="70" height="20" x="-12" y="-14" ry="10" rx="10"></rect>
+    <text
+      x="23" y="-5"
+      alignment-baseline="central"
+      dominant-baseline="central"
+      text-anchor="middle"
+      fill="${textColor}"
+    >
+      ${label}
+    </text>
+  </g>
+`;
+
+/**
+ * @param {string} langName
+ * @param {string} langColor
+ * @returns {string}
+ */
+const createLanguageNode = (langName, langColor) => {
+  return `
+  <g data-testid="primary-lang">
+    <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
+    <text data-testid="lang-name" class="gray" x="15">${langName}</text>
+  </g>
+  `;
+};
+
+const ICON_SIZE = 16;
+const iconWithLabel = (icon, label, testid) => {
+  if (label <= 0) return "";
+  const iconSvg = `
+    <svg
+      class="icon"
+      y="-12"
+      viewBox="0 0 16 16"
+      version="1.1"
+      width="${ICON_SIZE}"
+      height="${ICON_SIZE}"
+    >
+      ${icon}
+    </svg>
+  `;
+  const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
+  return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
+};
 
 const renderRepoCard = (repo, options = {}) => {
   const {
@@ -18,9 +71,9 @@ const renderRepoCard = (repo, options = {}) => {
     nameWithOwner,
     description,
     primaryLanguage,
-    stargazers,
     isArchived,
     isTemplate,
+    starCount,
     forkCount,
   } = repo;
   const {
@@ -36,22 +89,17 @@ const renderRepoCard = (repo, options = {}) => {
     locale,
   } = options;
 
+  const lineHeight = 10;
   const header = show_owner ? nameWithOwner : name;
   const langName = (primaryLanguage && primaryLanguage.name) || "Unspecified";
   const langColor = (primaryLanguage && primaryLanguage.color) || "#333";
 
-  const shiftText = langName.length > 15 ? 0 : 30;
-
-  let desc = description || "No description provided";
-
-  // parse emojis to unicode
-  desc = desc.replace(/:\w+:/gm, (emoji) => {
-    return toEmoji.get(emoji) || "";
-  });
-
+  const desc = parseEmojis(description) || "No description provided";
   const multiLineDescription = wrapTextMultiline(desc);
   const descriptionLines = multiLineDescription.length;
-  const lineHeight = 10;
+  const descriptionSvg = multiLineDescription
+    .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
+    .join("");
 
   const height =
     (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
@@ -72,56 +120,21 @@ const renderRepoCard = (repo, options = {}) => {
       theme,
     });
 
-  const totalStars = kFormatter(stargazers.totalCount);
-  const totalForks = kFormatter(forkCount);
-
-  const getBadgeSVG = (label) => `
-    <g data-testid="badge" class="badge" transform="translate(320, -18)">
-      <rect stroke="${textColor}" stroke-width="1" width="70" height="20" x="-12" y="-14" ry="10" rx="10"></rect>
-      <text
-        x="23" y="-5"
-        alignment-baseline="central"
-        dominant-baseline="central"
-        text-anchor="middle"
-        fill="${textColor}"
-      >
-        ${label}
-      </text>
-    </g>
-  `;
-
   const svgLanguage = primaryLanguage
-    ? `
-    <g data-testid="primary-lang">
-      <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
-      <text data-testid="lang-name" class="gray" x="15">${langName}</text>
-    </g>
-    `
+    ? createLanguageNode(langName, langColor)
     : "";
 
-  const iconSize = 16;
-  const iconWithLabel = (icon, label, testid) => {
-    const iconSvg = `
-      <svg class="icon" y="-12" viewBox="0 0 16 16" version="1.1" width="${iconSize}" height="${iconSize}">
-        ${icon}
-      </svg>
-    `;
-    const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
-    return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
-  };
-
-  const svgStars =
-    stargazers.totalCount > 0 &&
-    iconWithLabel(icons.star, totalStars, "stargazers");
-  const svgForks =
-    forkCount > 0 && iconWithLabel(icons.fork, totalForks, "forkcount");
+  const totalStars = kFormatter(starCount);
+  const totalForks = kFormatter(forkCount);
+  const svgStars = iconWithLabel(icons.star, totalStars, "stargazers");
+  const svgForks = iconWithLabel(icons.fork, totalForks, "forkcount");
 
   const starAndForkCount = flexLayout({
     items: [svgLanguage, svgStars, svgForks],
     sizes: [
       measureText(langName, 12),
-      iconSize + measureText(`${totalStars}`, 12),
-      iconSize + measureText(`${totalForks}`, 12),
+      ICON_SIZE + measureText(`${totalStars}`, 12),
+      ICON_SIZE + measureText(`${totalForks}`, 12),
     ],
     gap: 25,
   }).join("");
@@ -155,16 +168,14 @@ const renderRepoCard = (repo, options = {}) => {
   return card.render(`
     ${
       isTemplate
-        ? getBadgeSVG(i18n.t("repocard.template"))
+        ? getBadgeSVG(i18n.t("repocard.template"), textColor)
         : isArchived
-        ? getBadgeSVG(i18n.t("repocard.archived"))
+        ? getBadgeSVG(i18n.t("repocard.archived"), textColor)
         : ""
     }
 
     <text class="description" x="25" y="-5">
-      ${multiLineDescription
-        .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
-        .join("")}
+      ${descriptionSvg}
     </text>
 
     <g transform="translate(30, ${height - 75})">

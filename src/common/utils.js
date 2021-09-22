@@ -1,6 +1,7 @@
 const axios = require("axios");
 const wrap = require("word-wrap");
 const themes = require("../../themes");
+const toEmoji = require("emoji-name-map");
 
 const renderError = (message, secondaryMessage = "") => {
   return `
@@ -88,10 +89,11 @@ function request(data, headers) {
 }
 
 /**
- *
- * @param {string[]} items
- * @param {Number} gap
- * @param {"column" | "row"} direction
+ * @param {object} props
+ * @param {string[]} props.items
+ * @param {number} props.gap
+ * @param {number[]} props.sizes
+ * @param {"column" | "row"} props.direction
  *
  * @returns {string[]}
  *
@@ -257,6 +259,17 @@ function chunkArray(arr, perChunk) {
   }, []);
 }
 
+/**
+ *
+ * @param {string} str
+ * @returns {string}
+ */
+function parseEmojis(str) {
+  return str.replace(/:\w+:/gm, (emoji) => {
+    return toEmoji.get(emoji) || "";
+  });
+}
+
 module.exports = {
   renderError,
   kFormatter,
@@ -276,4 +289,5 @@ module.exports = {
   CustomError,
   lowercaseTrim,
   chunkArray,
+  parseEmojis,
 };
