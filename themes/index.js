@@ -300,6 +300,12 @@ const themes = {
     text_color: "dbdbdb",
     bg_color: "252334",
   },
+  cyanisme: {
+    title_color: "0bdbb6",
+    icon_color: "BCECE0",
+    text_color: "2ebdbd",
+    bg_color: "00353f",
+  },
 };
 
 module.exports = themes;
