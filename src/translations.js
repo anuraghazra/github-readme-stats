@@ -31,6 +31,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       tr: `${encodedName} Hesabının GitHub Yıldızları`,
       pl: `Statystyki GitHub użytkownika ${encodedName}`,
       uz: `${encodedName}ning Github'dagi statistikasi`,
+      vi: `Thống Kê GitHub ${encodedName}`
     },
     "statcard.totalstars": {
       ar: "مجموع النجوم",
@@ -60,6 +61,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       tr: "Toplam Yıldız",
       pl: "Liczba Gwiazdek dostanych",
       uz: "Yulduzchalar",
+      vi: "Tổng Số Sao"
     },
     "statcard.commits": {
       ar: "مجموع الحفظ",
@@ -89,6 +91,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       tr: "Toplam Commit",
       pl: "Wszystkie commity",
       uz: "'Commit'lar",
+      vi: "Tổng Số Cam Kết",
     },
     "statcard.prs": {
       ar: "مجموع طلبات السحب",
@@ -118,6 +121,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       tr: "Toplam PR",
       pl: "Wszystkie PR-y",
       uz: "'Pull Request'lar",
+      vi: "Tổng Số PR",
     },
     "statcard.issues": {
       ar: "مجموع التحسينات",
@@ -147,6 +151,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       tr: "Toplam Hata",
       pl: "Wszystkie Issues",
       uz: "'Issue'lar",
+      vi: "Tổng Số Vấn Đề",
     },
     "statcard.contribs": {
       ar: "ساهم في",
@@ -176,6 +181,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       tr: "Katkı Verildi",
       pl: "Kontrybucje",
       uz: "Hissa qoʻshgan",
+      vi: "Đã Đóng Góp"
     },
   };
 };
@@ -207,7 +213,7 @@ const repoCardLocales = {
     sk: "Šablóna",
     tr: "Şablon",
     pl: "Szablony",
-    uz: "Shablon",
+    vi: "Mẫu",
   },
   "repocard.archived": {
     ar: "محفوظ",
@@ -235,7 +241,7 @@ const repoCardLocales = {
     sk: "Archivované",
     tr: "Arşiv",
     pl: "Zarchiwizowano",
-    uz: "Arxivlangan",
+    vi: "Đã Lưu Trữ",
   },
 };
 
@@ -266,7 +272,7 @@ const langCardLocales = {
     sk: "Najviac používané jazyky",
     tr: "En Çok Kullanılan Diller",
     pl: "Najczęściej używane języki",
-    uz: "Eng ko'p ishlatadigan tillar",
+    vi: "Ngôn Ngữ Thường Sử Dụng",
   },
 };
 
@@ -297,7 +303,7 @@ const wakatimeCardLocales = {
     sk: "Wakatime štatistika",
     tr: "Waketime İstatistikler",
     pl: "statystyki Wakatime",
-    uz: "Wakatime statistikasi",
+    vi: "Thống Kê Wakatime",
   },
   "wakatimecard.nocodingactivity": {
     ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
@@ -326,6 +332,7 @@ const wakatimeCardLocales = {
     tr: "Bu hafta herhangi bir kod yazma aktivitesi olmadı",
     pl: "Brak aktywności w tym tygodniu",
     uz: "Bu hafta faol bo'lmadi",
+    vi: "Không Có Hoạt Động Trong Tuần Này"
   },
 };
 
