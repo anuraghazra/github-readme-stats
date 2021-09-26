@@ -311,4 +311,15 @@ describe("Test renderRepoCard", () => {
     document.body.innerHTML = renderRepoCard(data_repo.repository, {});
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
   });
+
+  it("should fallback to default description", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      description: undefined,
+      isArchived: true,
+    });
+    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
+      "No description provided",
+    );
+  });
 });

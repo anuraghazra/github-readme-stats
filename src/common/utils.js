@@ -265,6 +265,7 @@ function chunkArray(arr, perChunk) {
  * @returns {string}
  */
 function parseEmojis(str) {
+  if (!str) throw new Error("[parseEmoji]: str argument not provided");
   return str.replace(/:\w+:/gm, (emoji) => {
     return toEmoji.get(emoji) || "";
   });

@@ -94,7 +94,7 @@ const renderRepoCard = (repo, options = {}) => {
   const langName = (primaryLanguage && primaryLanguage.name) || "Unspecified";
   const langColor = (primaryLanguage && primaryLanguage.color) || "#333";
 
-  const desc = parseEmojis(description) || "No description provided";
+  const desc = parseEmojis(description || "No description provided");
   const multiLineDescription = wrapTextMultiline(desc);
   const descriptionLines = multiLineDescription.length;
   const descriptionSvg = multiLineDescription
