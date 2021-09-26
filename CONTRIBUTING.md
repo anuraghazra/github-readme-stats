@@ -17,6 +17,15 @@ Pull requests are the best way to propose changes. We actively welcome your pull
 1. If you've changed APIs, update the documentation.
 1. Issue that pull request!
 
+## Under the hood of github-readme-stats
+
+Interested in diving deeper into understanding how github-readme-stats works?   
+
+[Bohdan](https://github.com/Bogdan-Lyashenko) wrote an amazing in-depth post about it, check it out:
+
+**[Under the hood of github-readme-stats project](https://codecrumbs.io/library/github-readme-stats)**
+
+
 ## Local Development
 
 To run & test github-readme-stats you need to follow few simple steps :-
