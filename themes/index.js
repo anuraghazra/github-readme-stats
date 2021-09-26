@@ -300,6 +300,12 @@ const themes = {
     text_color: "dbdbdb",
     bg_color: "252334",
   },
+github_original: {
+    title_color: "ff6441",
+    icon_color: "ff380b",
+    text_color: "ff6441",
+    bg_color: "22272d",
+  },
 };
 
 module.exports = themes;
