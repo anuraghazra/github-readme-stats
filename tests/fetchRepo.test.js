@@ -41,7 +41,7 @@ describe("Test fetchRepo", () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_user);
 
     let repo = await fetchRepo("anuraghazra", "convoychat");
-    console.log(repo);
+
     expect(repo).toStrictEqual({
       ...data_repo.repository,
       starCount: data_repo.repository.stargazers.totalCount,
