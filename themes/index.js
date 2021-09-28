@@ -330,6 +330,12 @@ const themes = {
   text_color: "355E3B",
   bg_color: "8A9A5B",
 }, 
+starrynight: {
+  title_color: "FFFF8F",
+  icon_color: "FFFF8F",
+  text_color: "023020",
+  bg_color: "6082B6",
+}, 
 };
 
 module.exports = themes;
