@@ -324,6 +324,12 @@ const themes = {
     text_color: "E29E93",
     bg_color: "E5EDF8",
  }, 
+ matcha: {
+  title_color: "C1E1C1",
+  icon_color: "C1E1C1",
+  text_color: "355E3B",
+  bg_color: "8A9A5B",
+}, 
 };
 
 module.exports = themes;
