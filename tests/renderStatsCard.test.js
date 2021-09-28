@@ -75,6 +75,22 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "rank-circle")).not.toBeInTheDocument();
   });
 
+  it("should render with custom width set", () => {
+    document.body.innerHTML = renderStatsCard(stats);
+    expect(document.querySelector("svg")).toHaveAttribute("width", "495");
+
+    document.body.innerHTML = renderStatsCard(stats, { card_width: 400 });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "400");
+  });
+
+  it("should render with custom width set and limit minimum width", () => {
+    document.body.innerHTML = renderStatsCard(stats, { card_width: 1 });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "340");
+
+    document.body.innerHTML = renderStatsCard(stats, { card_width: 1, hide_rank: true });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "305.81250000000006");
+  });
+
   it("should render default colors properly", () => {
     document.body.innerHTML = renderStatsCard(stats);
 
