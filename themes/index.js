@@ -316,7 +316,7 @@ const themes = {
     title_color: "C8EA90",
     icon_color: "90B987",
     text_color: "ECE883",
-    bg_color: "559B5C",
+    bg_color: "559B5B",
   },
 };
 
