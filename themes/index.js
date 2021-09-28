@@ -306,6 +306,12 @@ const themes = {
     text_color: "FF75B5",
     bg_color: "31353a",
   },
+  fancy: {
+    title_color: "e84a26",
+    icon_color: "ffffff",
+    text_color: "ffffff",
+    bg_color: "DEG,3484bf,214476,182c49",
+  },
 };
 
 module.exports = themes;
