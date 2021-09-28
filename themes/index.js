@@ -306,6 +306,12 @@ const themes = {
     text_color: "FF75B5",
     bg_color: "31353a",
   },
+  almond: {
+    title_color: "F2AB35",
+    icon_color: "E4B55D",
+    text_color: "FED442",
+    bg_color: "825B21",
+  },
 };
 
 module.exports = themes;
