@@ -60,6 +60,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     show_icons = false,
     hide_title = false,
     hide_border = false,
+    card_width,
     hide_rank = false,
     include_all_commits = false,
     line_height = 25,
@@ -74,6 +75,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     locale,
     disable_animations = false,
   } = options;
+
 
   const lheight = parseInt(line_height, 10);
 
@@ -168,26 +170,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_rank ? 0 : 150,
   );
 
-  // Conditionally rendered elements
-  const rankCircle = hide_rank
-    ? ""
-    : `<g data-testid="rank-circle" 
-          transform="translate(400, ${height / 2 - 50})">
-        <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
-        <circle class="rank-circle" cx="-10" cy="8" r="40" />
-        <g class="rank-text">
-          <text
-            x="${rank.level.length === 1 ? "-4" : "0"}"
-            y="0"
-            alignment-baseline="central"
-            dominant-baseline="central"
-            text-anchor="middle"
-          >
-            ${rank.level}
-          </text>
-        </g>
-      </g>`;
-
   // the better user's score the the rank will be closer to zero so
   // subtracting 100 to get the progress in 100%
   const progress = 100 - rank.score;
@@ -203,13 +185,22 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     return measureText(custom_title ? custom_title : i18n.t("statcard.title"));
   };
 
-  const width = hide_rank
+  /*
+    When hide_rank=true, minimum card width is max of 270 and length of title + paddings.
+    When hide_rank=false, minimum card_width is 340.
+    Numbers are picked by looking at existing dimensions on production.
+  */
+  const minCardWidth = hide_rank
     ? clampValue(
         50 /* padding */ + calculateTextWidth() * 2,
-        270 /* min */,
-        Infinity,
-      )
-    : 495;
+        270,
+        Infinity)
+    : 340
+  const defaultCardWidth = hide_rank ? 270 : 495
+  let width = isNaN(card_width) ? defaultCardWidth : card_width
+  if (width < minCardWidth) {
+    width = minCardWidth
+  }
 
   const card = new Card({
     customTitle: custom_title,
@@ -231,6 +222,26 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   card.setCSS(cssStyles);
 
   if (disable_animations) card.disableAnimations();
+
+  // Conditionally rendered elements
+  const rankCircle = hide_rank
+    ? ""
+    : `<g data-testid="rank-circle" 
+          transform="translate(${width - 50}, ${height / 2 - 50})">
+        <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
+        <circle class="rank-circle" cx="-10" cy="8" r="40" />
+        <g class="rank-text">
+          <text
+            x="${rank.level.length === 1 ? "-4" : "0"}"
+            y="0"
+            alignment-baseline="central"
+            dominant-baseline="central"
+            text-anchor="middle"
+          >
+            ${rank.level}
+          </text>
+        </g>
+      </g>`;
 
   return card.render(`
     ${rankCircle}
