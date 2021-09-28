@@ -65,9 +65,9 @@
 <img src="https://d2wvdrxmr8p0wf.cloudfront.net/static/giveindia.svg" alt="Give india logo" width="200" />
 </a>
 
-Are you considering to support the project by donating to me? Please DON'T!!  
+Are you considering supporting the project by donating to me? Please DON'T.  
 
-Instead, Help India fight 2nd deadly wave of COVID,  
+Instead, Help India fight second deadly wave of COVID,  
 Thousands of people are dying in India for lack of Oxygen & COVID related necessary infrastructure.  
 
 Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help us fight covid and overcome this crisis.   
@@ -92,7 +92,7 @@ Your small help goes a long way. :heart:
 
 # GitHub Stats Card
 
-Copy-paste this into your markdown content, and that's it. Simple!
+Copy-paste this into your markdown content, and that is it. Simple!
 
 Change the `?username=` value to your GitHub's username.
 
@@ -118,7 +118,7 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma-s
 
 You can add the count of all your private contributions to the total commits count by using the query parameter `?count_private=true`.
 
-_Note: If you are deploying this project yourself, the private contributions will be counted by default. Otherwise, you need to choose to share your private contribution counts._
+_Note: If you are deploying this project yourself, the private contributions will be counted by default. Otherwise, it would help if you chose to share your private contribution counts._
 
 > Options: `&count_private=true`
 
@@ -146,7 +146,7 @@ Use `&theme=THEME_NAME` parameter like so :-
 
 #### All inbuilt themes :-
 
-dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
+dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula.
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stats Themes" width="600px"/>
 
@@ -164,20 +164,20 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `border_color` - Card's border color _(hex color)_. (Does not apply when `hide_border` is enabled)
 - `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_
 - `hide_border` - Hides the card's border _(boolean)_
-- `theme` - name of the theme, choose from [all available themes](./themes/README.md)
+- `theme` - the name of the theme, choose from [all available themes](./themes/README.md)
 - `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
-- `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
+- `locale` - set the language in the card _(e.g. cn, de, es, Etc.)_
 - `border_radius` - Corner rounding on the card_
 
 ##### Gradient in bg_color
 
-You can provide multiple comma-separated values in bg_color option to render a gradient, the format of the gradient is :-
+You can provide multiple comma-separated values in the bg_color option to render a gradient. The format of the gradient is:-
 
 ```
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
-> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k, otherwise, it's 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours.
+> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k. Otherwise, it is 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours.
 
 #### Stats Card Exclusive Options:
 
@@ -207,7 +207,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 > :warning: **Important:**
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
-> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
+> (i.e., `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, Etc.) You can use
 > [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
 
 #### Wakatime Card Exclusive Options:
@@ -218,15 +218,15 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `hide_progress` - Hides the progress bar and percentage _(boolean)_
 - `custom_title` - Sets a custom title for the card
 - `layout` - Switch between two available layouts `default` & `compact`
-- `langs_count` - Limit number of languages on the card, defaults to all reported langauges
+- `langs_count` - Limit number of languages on the card, defaults to all reported languages
 - `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
-- `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for list of available options.
+- `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options.
 
 ---
 
 # GitHub Extra Pins
 
-GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
+Using a GitHub readme profile, GitHub extra pins allow you to pin more than six repositories in your profile.
 
 Yay! You are no longer limited to 6 pinned repositories.
 
@@ -250,9 +250,9 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 # Top Languages Card
 
-The top languages card show a GitHub user's most frequently used top language.
+The top languages card show that a GitHub user has the most frequently used top language.
 
-_NOTE: Top Languages does not indicate my skill level or anything like that, it's a GitHub metric of which languages have the most code on GitHub. It's a new feature of github-readme-stats._
+_NOTE: Top Languages does not indicate my skill level or anything like that. It is a GitHub metric of which languages have the most code on GitHub. It is a new feature of Github-readme-stats._
 
 ### Usage
 
@@ -380,7 +380,7 @@ Choose from any of the [default themes](#themes)
 
 ### Quick Tip (Align The Repo Cards)
 
-You usually won't be able to layout the images side by side. To do that you can use this approach:
+You usually will not be able to layout the side of the image by the side. To do that, you can use this approach:
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
