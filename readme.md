@@ -183,6 +183,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 - `hide` - Hides the specified items from stats _(Comma-separated values)_
 - `hide_title` - _(boolean)_
+- `card_width` - Set the card's width manually _(number)_
 - `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
