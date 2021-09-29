@@ -306,6 +306,12 @@ const themes = {
     text_color: "FF75B5",
     bg_color: "31353a",
   },
+  noctis_minimus:{
+    title_color: "d3b692",
+    icon_color: "5998c0",
+    text_color: "c5cdd3",
+    bg_color: "1b2932",
+  }
 };
 
 module.exports = themes;
