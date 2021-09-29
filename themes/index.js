@@ -306,6 +306,12 @@ const themes = {
     text_color: "AACFFE",
     bg_color: "1B1A52",
   },
+  panda: {
+    title_color: "19f9d899",
+    icon_color: "19f9d899",
+    text_color: "FF75B5",
+    bg_color: "31353a",
+  },
 };
 
 module.exports = themes;
