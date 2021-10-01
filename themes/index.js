@@ -306,6 +306,12 @@ const themes = {
     text_color: "FF75B5",
     bg_color: "31353a",
   },
+  black_and_white: {
+    title_color: "ffffffff",
+    icon_color: "ffffffff",
+    text_color: "ffffff",
+    bg_color: "000000",
+  },
 };
 
 module.exports = themes;
