@@ -306,6 +306,12 @@ const themes = {
     text_color: "FF75B5",
     bg_color: "31353a",
   },
+  cobalt2: {
+    title_color: "ffc600",
+    icon_color: "ffffff",
+    text_color: "0088ff",
+    bg_color: "193549",
+  },
 };
 
 module.exports = themes;
