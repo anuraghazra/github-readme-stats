@@ -16,7 +16,7 @@
     "@actions/github": "^5.0.0",
     "@testing-library/dom": "^7.20.0",
     "@testing-library/jest-dom": "^5.11.0",
-    "axios": "^0.19.2",
+    "axios": "^0.22.0",
     "axios-mock-adapter": "^1.18.1",
     "css-to-object": "^1.1.0",
     "husky": "^4.2.5",
