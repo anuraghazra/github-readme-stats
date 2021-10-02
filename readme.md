@@ -1,7 +1,7 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">Get dynamically generated GitHub stats on your readmes!</p>
+ <p align="center">Get dynamically generated GitHub stats on your READMEs!</p>
 </p>
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
@@ -65,13 +65,13 @@
 <img src="https://d2wvdrxmr8p0wf.cloudfront.net/static/giveindia.svg" alt="Give india logo" width="200" />
 </a>
 
-Are you considering to support the project by donating to me? Please DON'T!!  
+Are you considering supporting the project by donating? Please DON'T!!  
 
-Instead, Help India fight 2nd deadly wave of COVID,  
-Thousands of people are dying in India for lack of Oxygen & COVID related necessary infrastructure.  
+Instead, Help India fight the 2nd deadly wave of COVID-19.  
+Thousands of people are dying in India for lack of Oxygen & COVID related infrastructure.  
 
-Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help us fight covid and overcome this crisis.   
-Your small help goes a long way. :heart:
+Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help us fight COVID and overcome this crisis.   
+A small donation goes a long way. :heart:
 </p>
 
 
@@ -171,7 +171,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 ##### Gradient in bg_color
 
-You can provide multiple comma-separated values in bg_color option to render a gradient, the format of the gradient is :-
+You can provide multiple comma-separated values in bg_color option to render a gradient, with the following format:
 
 ```
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
