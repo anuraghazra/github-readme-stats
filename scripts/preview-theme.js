@@ -13,10 +13,10 @@ function getPrNumber() {
 }
 
 const themeContribGuidelines = `
-  \rHi thanks for the theme contribution, please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).  
-  \rWe are currently only accepting color combinations from any vscode theme or which has good color combination to minimize bloating the themes collection.
+  \rHi, thanks for the theme contribution, please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).  
+  \rWe are currently only accepting color combinations from any VSCode theme or themes which have good color combination to minimize bloating the themes collection.
 
-  \r> Also note that if this theme is exclusively for your personal use then instead of adding it to our theme collection you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization) 
+  \r> Also note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization) 
 `;
 
 async function run() {

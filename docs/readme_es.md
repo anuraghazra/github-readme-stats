@@ -64,7 +64,7 @@
 
 - [Tarjeta de estadísticas de GitHub](#tarjeta-de-estadísticas-de-github)
 - [Pins adicionales de GitHub](#pines-adicionales-de-github)
-- [Top Languages Card](#tarjeta-de-lenguajes-principales)
+- [Tarjeta de Lenguajes Principales](#tarjeta-de-lenguajes-principales)
 - [Wakatime Week Stats](#estadísticas-de-la-semana-de-wakatime)
 - [Temas](#temas)
 - [Personalización](#personalización)
