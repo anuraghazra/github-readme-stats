@@ -21,7 +21,7 @@
     "css-to-object": "^1.1.0",
     "husky": "^7.0.2",
     "jest": "^26.1.0",
-    "parse-diff": "^0.7.0"
+    "parse-diff": "^0.8.1"
   },
   "dependencies": {
     "dotenv": "^10.0.0",
