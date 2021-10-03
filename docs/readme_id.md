@@ -19,10 +19,10 @@
     <br />
     <br />
     <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supporté%20par-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
+      <img src="https://img.shields.io/badge/Didukung%20oleh-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
     </a>
     <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supporté%20par-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
+      <img src="https://img.shields.io/badge/Didukung%20Oleh-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
     </a>
   </p>
 
@@ -59,11 +59,11 @@
 # Features
 
 - [Kartu Statistik Github](#kartu-statis-github)
-- [GitHub Extra Pins](#github-extra-pins)
-- [Carte des meilleurs langages](#carte-des-langages-les--utilisés)
-- [Themes](#thèmes)
-- [Personnalisation](#personnalisation)
-- [Deployer toi-même](#déployer-sur-votre-propre-instance-vercel)
+- [Github Ekstra Pin](#github-ekstra-pin)
+- [Bahasa Teratas pada kartu](#bahasa-teratas-pada-kartu)
+- [Tema](#tema)
+- [Kustomisasi](#kustomisasi)
+- [Deploy ke Vercel anda](#terapkan-pada-instance-vercel-anda-sendiri)
 
 # Kartu Statistik Github
 
@@ -109,7 +109,7 @@ untuk menampilkan ikon, kamu dapat menambahkan `show_icons=true` pada query para
 
 ### Tema
 
-Dengan tema bawaan, Anda dapat menyesuaikan tampilan kartu statistik tanpa melakukan apa pun [Kustomisasi](#Kustomisasi).
+Dengan tema bawaan, Anda dapat menyesuaikan tampilan kartu statistik tanpa melakukan apa pun [Kustomisasi](#kustomisasi).
 
 gunakan `?theme=THEME_NAME` pada query parameter seperti :-
 
