@@ -318,6 +318,13 @@ const themes = {
     text_color: "0088ff",
     bg_color: "193549",
   },
+  fantomx: {
+    title_color: "ffffff",
+    icon_color: "8f4aff",
+    text_color: "ffffff",
+    bg_color: "0d0e19",
+    border_color: "8f4aff",
+  },
 };
 
 module.exports = themes;
