@@ -18,7 +18,7 @@ const createTextNode = ({
   id,
   index,
   showIcons,
-  shiftValuePos,
+  shiftValuePos
 }) => {
   const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
@@ -34,9 +34,9 @@ const createTextNode = ({
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       ${iconSvg}
-      <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
+      <text data-testid="${id}-label" class="stat-label"${labelOffset} y="12.5">${label}:</text>
       <text 
-        class="stat" 
+        class="stat-value"
         x="${(showIcons ? 140 : 120) + shiftValuePos}" 
         y="12.5" 
         data-testid="${id}"
@@ -73,6 +73,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     border_color,
     locale,
     disable_animations = false,
+    label_bold = true,
+    value_bold = false,
+    rank_bold = true,
   } = options;
 
   const lheight = parseInt(line_height, 10);
@@ -157,7 +160,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         index,
         showIcons: show_icons,
         shiftValuePos:
-          (!include_all_commits ? 50 : 35) + (isLongLocale ? 50 : 0),
+          (!include_all_commits ? 50 : 35) + (isLongLocale ? 50 : 0)
       }),
     );
 
@@ -197,6 +200,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     iconColor,
     show_icons,
     progress,
+    label_bold,
+    value_bold,
+    rank_bold,
   });
 
   const calculateTextWidth = () => {

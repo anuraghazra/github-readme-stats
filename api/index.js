@@ -33,6 +33,9 @@ module.exports = async (req, res) => {
     disable_animations,
     border_radius,
     border_color,
+    label_bold,
+    value_bold,
+    rank_bold,
   } = req.query;
   let stats;
 
@@ -80,6 +83,9 @@ module.exports = async (req, res) => {
         border_color,
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
+        label_bold: parseBoolean(label_bold),
+        value_bold: parseBoolean(value_bold),
+        rank_bold: parseBoolean(rank_bold),
       }),
     );
   } catch (err) {

@@ -17,19 +17,23 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
           }
           
     
-    .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+    .stat-label {
+      font: 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+      font-weight: 700;
+    }
+    .stat-value {
+      font: 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+      font-weight: 600;
     }
     .stagger {
       opacity: 0;
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
     .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333; 
+      font: 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333; 
+      font-weight: 600;
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
-    
-    .bold { font-weight: 700 }
     .icon {
       fill: #4c71f2;
       display: none;
@@ -99,9 +103,9 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
     <svg x=\\"0\\" y=\\"0\\" width=\\"100%\\">
       <g transform=\\"translate(0, 0)\\">
     <g class=\\"stagger\\" style=\\"animation-delay: NaNms\\" transform=\\"translate(25, 0)\\">
-      <text class=\\"stat bold\\" y=\\"12.5\\" data-testid=\\"Other\\">Other:</text>
+      <text class=\\"stat-label\\" y=\\"12.5\\" data-testid=\\"Other\\">Other:</text>
       <text
-        class=\\"stat\\"
+        class=\\"stat-value\\"
         x=\\"350\\"
         y=\\"12.5\\"
       >19 mins</text>
@@ -121,9 +125,9 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
     </g>
   </g><g transform=\\"translate(0, 25)\\">
     <g class=\\"stagger\\" style=\\"animation-delay: NaNms\\" transform=\\"translate(25, 0)\\">
-      <text class=\\"stat bold\\" y=\\"12.5\\" data-testid=\\"TypeScript\\">TypeScript:</text>
+      <text class=\\"stat-label\\" y=\\"12.5\\" data-testid=\\"TypeScript\\">TypeScript:</text>
       <text
-        class=\\"stat\\"
+        class=\\"stat-value\\"
         x=\\"350\\"
         y=\\"12.5\\"
       >1 min</text>
@@ -166,19 +170,23 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
           }
           
     
-    .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+    .stat-label {
+      font: 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+      font-weight: 700;
+    }
+    .stat-value {
+      font: 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+      font-weight: 600;
     }
     .stagger {
       opacity: 0;
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
     .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333; 
+      font: 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333; 
+      font-weight: 600;
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
-    
-    .bold { font-weight: 700 }
     .icon {
       fill: #4c71f2;
       display: none;

@@ -23,7 +23,7 @@ const createProgressTextNode = ({ width, color, name, progress }) => {
 
   return `
     <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
-    <text x="${progressTextX}" y="34" class="lang-name">${progress}%</text>
+    <text x="${progressTextX}" y="34" class="lang-value">${progress}%</text>
     ${createProgressNode({
       x: 0,
       y: 25,
@@ -42,8 +42,8 @@ const createCompactLangNode = ({ lang, totalSize }) => {
   return `
     <g>
       <circle cx="5" cy="6" r="5" fill="${color}" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        ${lang.name} ${percentage}%
+      <text data-testid="lang-name" x="15" y="10">
+        <tspan class="lang-name">${lang.name}</tspan> <tspan class="lang-value">${percentage}%</tspan>
       </text>
     </g>
   `;
@@ -216,6 +216,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     langs_count = DEFAULT_LANGS_COUNT,
     border_radius,
     border_color,
+    label_bold = false,
+    value_bold = false,
   } = options;
 
   const i18n = new I18n({
@@ -264,7 +266,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
   card.setCSS(
-    `.lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.textColor} }`,
+    `.lang-name { font: 11px 'Segoe UI', Ubuntu, Sans-Serif; font-weight: ${label_bold ? 700 : 400}; fill: ${colors.textColor} }
+     .lang-value { font: 11px 'Segoe UI', Ubuntu, Sans-Serif; font-weight:  ${value_bold ? 700 : 400}; fill: ${colors.textColor} }`,
   );
 
   return card.render(`

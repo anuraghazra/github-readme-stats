@@ -50,21 +50,28 @@ const getStyles = ({
   iconColor,
   show_icons,
   progress,
+  label_bold,
+  value_bold,
+  rank_bold
 }) => {
   return `
-    .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
+    .stat-label {
+      font: 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
+      font-weight: ${label_bold ? 700 : 600};
+    }
+    .stat-value {
+      font: 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
+      font-weight: ${value_bold ? 700 : 600};
     }
     .stagger {
       opacity: 0;
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
     .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; 
+      font: 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; 
+      font-weight: ${rank_bold ? 800 : 600};
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
-    
-    .bold { font-weight: 700 }
     .icon {
       fill: ${iconColor};
       display: ${!!show_icons ? "block" : "none"};

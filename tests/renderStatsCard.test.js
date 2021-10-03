@@ -82,7 +82,7 @@ describe("Test renderStatsCard", () => {
     const stylesObject = cssToObject(styleTag.textContent);
 
     const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".stat"];
+    const statClassStyles = stylesObject[".stat-label"];
     const iconClassStyles = stylesObject[".icon"];
 
     expect(headerClassStyles.fill).toBe("#2f80ed");
@@ -108,7 +108,7 @@ describe("Test renderStatsCard", () => {
     const stylesObject = cssToObject(styleTag.innerHTML);
 
     const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".stat"];
+    const statClassStyles = stylesObject[".stat-label"];
     const iconClassStyles = stylesObject[".icon"];
 
     expect(headerClassStyles.fill).toBe(`#${customColors.title_color}`);
@@ -118,6 +118,44 @@ describe("Test renderStatsCard", () => {
       "fill",
       "#252525",
     );
+  });
+
+  it("should render items as bold properly", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      label_bold: true,
+      value_bold: true,
+      rank_bold: true
+    });
+
+    const styleTag = document.querySelector("style");
+    const stylesObject = cssToObject(styleTag.innerHTML);
+
+    const statLabelClassStyles = stylesObject[".stat-label"];
+    const statValueClassStyles = stylesObject[".stat-value"];
+    const rankTextClassStyles = stylesObject[".rank-text"];
+
+    expect(statLabelClassStyles['font-weight']).toBe("700");
+    expect(statValueClassStyles['font-weight']).toBe("700");
+    expect(rankTextClassStyles['font-weight']).toBe("800");
+  });
+
+  it("should render items without bold properly", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      label_bold: false,
+      value_bold: false,
+      rank_bold: false
+    });
+
+    const styleTag = document.querySelector("style");
+    const stylesObject = cssToObject(styleTag.innerHTML);
+
+    const statLabelClassStyles = stylesObject[".stat-label"];
+    const statValueClassStyles = stylesObject[".stat-value"];
+    const rankTextClassStyles = stylesObject[".rank-text"];
+
+    expect(statLabelClassStyles['font-weight']).toBe("600");
+    expect(statValueClassStyles['font-weight']).toBe("600");
+    expect(rankTextClassStyles['font-weight']).toBe("600");
   });
 
   it("should render custom colors with themes", () => {
@@ -130,7 +168,7 @@ describe("Test renderStatsCard", () => {
     const stylesObject = cssToObject(styleTag.innerHTML);
 
     const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".stat"];
+    const statClassStyles = stylesObject[".stat-label"];
     const iconClassStyles = stylesObject[".icon"];
 
     expect(headerClassStyles.fill).toBe("#5a0");
@@ -152,7 +190,7 @@ describe("Test renderStatsCard", () => {
       const stylesObject = cssToObject(styleTag.innerHTML);
 
       const headerClassStyles = stylesObject[".header"];
-      const statClassStyles = stylesObject[".stat"];
+      const statClassStyles = stylesObject[".stat-label"];
       const iconClassStyles = stylesObject[".icon"];
 
       expect(headerClassStyles.fill).toBe(`#${themes[name].title_color}`);
@@ -176,7 +214,7 @@ describe("Test renderStatsCard", () => {
     const stylesObject = cssToObject(styleTag.innerHTML);
 
     const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".stat"];
+    const statClassStyles = stylesObject[".stat-label"];
     const iconClassStyles = stylesObject[".icon"];
 
     expect(headerClassStyles.fill).toBe(`#${themes.default.title_color}`);
@@ -238,27 +276,27 @@ describe("Test renderStatsCard", () => {
     );
     expect(
       document.querySelector(
-        'g[transform="translate(0, 0)"]>.stagger>.stat.bold',
+        'g[transform="translate(0, 0)"]>.stagger>.stat-label',
       ).textContent,
     ).toMatchInlineSnapshot(`"获标星数（star）:"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
+        'g[transform="translate(0, 25)"]>.stagger>.stat-label',
       ).textContent,
     ).toMatchInlineSnapshot(`"累计提交数（commit） (2021):"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
+        'g[transform="translate(0, 50)"]>.stagger>.stat-label',
       ).textContent,
     ).toMatchInlineSnapshot(`"拉取请求数（PR）:"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 75)"]>.stagger>.stat.bold',
+        'g[transform="translate(0, 75)"]>.stagger>.stat-label',
       ).textContent,
     ).toMatchInlineSnapshot(`"指出问题数（issue）:"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
+        'g[transform="translate(0, 100)"]>.stagger>.stat-label',
       ).textContent,
     ).toMatchInlineSnapshot(`"参与项目数:"`);
   });
