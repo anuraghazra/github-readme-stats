@@ -1,6 +1,6 @@
 const themes = {
   default: {
-    title_color: "2f80ed",
+    title_color: "ed3d2f",
     icon_color: "4c71f2",
     text_color: "333",
     bg_color: "fffefe",
@@ -317,6 +317,12 @@ const themes = {
     icon_color: "ffffff",
     text_color: "0088ff",
     bg_color: "193549",
+  },
+  lavender: {
+    title_color: "FFFFFF",
+    icon_color: "FFFFFF",
+    text_color: "101010",
+    bg_color: "AF60AF",
   },
 };
 
