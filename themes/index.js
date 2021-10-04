@@ -318,6 +318,12 @@ const themes = {
     text_color: "0088ff",
     bg_color: "193549",
   },
+  lavender: {
+    title_color: "FFFFFF",
+    icon_color: "FFFFFF",
+    text_color: "101010",
+    bg_color: "AF60AF",
+  },
 };
 
 module.exports = themes;
