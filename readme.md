@@ -31,9 +31,10 @@
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Report Bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request A Feature</a>
   </p>
   <p align="center">
+ Also available in:
     <a href="/docs/readme_fr.md">Français </a>
     ·
     <a href="/docs/readme_cn.md">简体中文</a>
@@ -57,21 +58,14 @@
     <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
-<p align="center">Love the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
-
-
 <p>
 <a href="https://indiafightscorona.giveindia.org">
 <img src="https://d2wvdrxmr8p0wf.cloudfront.net/static/giveindia.svg" alt="Give india logo" width="200" />
-</a>
+</a><br>
+Consider donating to Give India, helping thousands of Indians dying of a lack of oxygen and necessary infrastructure needed for India's 2nd wave of COVID-19.
 
-Are you considering to support the project by donating to me? Please DON'T!!  
-
-Instead, Help India fight 2nd deadly wave of COVID,  
-Thousands of people are dying in India for lack of Oxygen & COVID related necessary infrastructure.  
-
-Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help us fight covid and overcome this crisis.   
-Your small help goes a long way. :heart:
+Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help India fight this deadly crisis.
+Your donation, however small it may be, goes a long way. :heart:
 </p>
 
 
@@ -91,22 +85,20 @@ Your small help goes a long way. :heart:
 - [Deploy Yourself](#deploy-on-your-own-vercel-instance)
 
 # GitHub Stats Card
-
-Copy-paste this into your markdown content, and that's it. Simple!
-
-Change the `?username=` value to your GitHub's username.
+Just copy this into your markdown content, and you're all set!
 
 ```md
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
+Change the `?username=` parameter to your GitHub username.
 
-_Note: Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone).
-The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories.
-The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js)_
+_Note: Your score is ranked into S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone).
+The values are calculated using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function), absed on your commits, contributions, issues, stars, pull requests, followers, and owned repositories.
+You can see how this works in my code at [src/calculateRank.js](./src/calculateRank.js)_
 
-### Hiding individual stats
+### Hiding specific stats
 
-To hide any specific stats, you can pass a query parameter `?hide=` with comma-separated values.
+To hide specific stats, you can pass a parameter `?hide=` with comma-separated values.
 
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
@@ -114,11 +106,11 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma-s
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
-### Adding private contributions count to total commits count
+### Allow private contributions to count towards the total commits
 
-You can add the count of all your private contributions to the total commits count by using the query parameter `?count_private=true`.
+You can include the count of all your private contributions to the total commits count by using the parameter `?count_private=true`.
 
-_Note: If you are deploying this project yourself, the private contributions will be counted by default. Otherwise, you need to choose to share your private contribution counts._
+_Note: If you are deploying this project yourself, private contributions will be counted by default. Otherwise, you need to choose to share your private contribution counts._
 
 > Options: `&count_private=true`
 
@@ -126,9 +118,9 @@ _Note: If you are deploying this project yourself, the private contributions wil
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
-### Showing icons
+### Displaying icons
 
-To enable icons, you can pass `show_icons=true` in the query param, like so:
+To enable icons, you can pass `show_icons=true` in the query parameters, like so:
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -136,27 +128,37 @@ To enable icons, you can pass `show_icons=true` in the query param, like so:
 
 ### Themes
 
-With inbuilt themes, you can customize the look of the card without doing any [manual customization](#customization).
+You can customize the look of your card with in-built themes without [manual customization](#customization).
 
-Use `&theme=THEME_NAME` parameter like so :-
+Use the `&theme` parameter like so :-
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
-#### All inbuilt themes :-
-
-dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
+#### All in-built themes :-
+The following are the in-built themes:
+ - dark 
+ - radical 
+ - merko 
+ - gruvbox
+ - tokyonight 
+ - onedark
+ -  cobalt
+ - synthwave
+ - highcontrast 
+ - dracula
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stats Themes" width="600px"/>
 
-You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
+You can preview  all available themes [here](./themes/README.md), or in the [theme config file](./themes/index.js)
+**You can also contribute new themes** :D
 
 ### Customization
 
-You can customize the appearance of your `Stats Card` or `Repo Card` however you wish with URL params.
+You can customize the appearance of your `Stats Card` or `Repo Card` with URL params.
 
-#### Common Options:
+#### Allowed parameters:
 
 - `title_color` - Card's title color _(hex color)_
 - `text_color` - Body text color _(hex color)_
@@ -177,7 +179,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
-> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k, otherwise, it's 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours.
+> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k. If so, the cache is 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours.
 
 #### Stats Card Exclusive Options:
 
@@ -193,7 +195,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 #### Repo Card Exclusive Options:
 
-- `show_owner` - Show the repo's owner name _(boolean)_
+- `show_owner` - Show the repo owner's name _(boolean)_
 
 #### Language Card Exclusive Options:
 
@@ -206,8 +208,8 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `custom_title` - Sets a custom title for the card
 
 > :warning: **Important:**
-> Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
-> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
+> Language names should be URI-Escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
+> (For example, `C++` should be `c%2B%2B` and `Jupyter Notebook` should be `Jupyter%20Notebook`, and so on.) You can use
 > [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
 
 #### Wakatime Card Exclusive Options:
@@ -227,8 +229,6 @@ You can provide multiple comma-separated values in bg_color option to render a g
 # GitHub Extra Pins
 
 GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
-
-Yay! You are no longer limited to 6 pinned repositories.
 
 ### Usage
 
@@ -256,7 +256,7 @@ _NOTE: Top Languages does not indicate my skill level or anything like that, it'
 
 ### Usage
 
-Copy-paste this code into your readme and change the links.
+Copy this code into your readme and change the links.
 
 Endpoint: `api/top-langs?username=anuraghazra`
 
@@ -266,7 +266,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ### Exclude individual repositories
 
-You can use `?exclude_repo=repo1,repo2` parameter to exclude individual repositories.
+You can use the `?exclude_repo=repo1,repo2` parameter to exclude individual repositories.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
@@ -274,7 +274,7 @@ You can use `?exclude_repo=repo1,repo2` parameter to exclude individual reposito
 
 ### Hide individual languages
 
-You can use `?hide=language1,language2` parameter to hide individual languages.
+You can use the `?hide=language1,language2` parameter to hide individual languages.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
@@ -288,7 +288,7 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Compact Language Card Layout
+### Compact Card Layout
 
 You can use the `&layout=compact` option to change the card design.
 
@@ -304,7 +304,7 @@ You can use the `&layout=compact` option to change the card design.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Wakatime Week Stats
+# Wakatime Weekly Stats
 
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
@@ -324,7 +324,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ---
 
-### All Demos
+### Demos
 
 - Default
 
@@ -442,4 +442,4 @@ Thanks! :heart:
 
 Contributions are welcome! <3
 
-Made with :heart: and JavaScript.
+Made with :heart: in JavaScript.
