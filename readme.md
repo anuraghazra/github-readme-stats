@@ -42,6 +42,8 @@
     ·
     <a href="/docs/readme_de.md">Deutsch</a>
     ·
+    <a href="/docs/readme_ar.md">العربية</a>
+    ·
     <a href="/docs/readme_ja.md">日本語</a>
     ·
     <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
