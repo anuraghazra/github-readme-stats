@@ -318,6 +318,12 @@ const themes = {
     text_color: "0088ff",
     bg_color: "193549",
   },
+  aci: {
+    title_color: "a4ccd8",
+    icon_color: "a4ccd8",
+    text_color: "a4ccd8",
+    bg_color: "0d1927",
+  },
 };
 
 module.exports = themes;
