@@ -49,10 +49,12 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
-    .
+    ·
     <a href="/docs/readme_nl.md">Nederlands</a>
-    .
+    ·
     <a href="/docs/readme_np.md">नेपाली</a>
+    ·
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">Gostou do projeto? Por favor considere <a href="https://www.paypal.me/anuraghazra">fazer uma doação</a> para ajudar a melhorá-lo!
