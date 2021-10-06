@@ -1,4 +1,9 @@
 {
+  "functions": {
+    "api/*.js": {
+      "memory": 128
+    }
+  },
   "redirects": [
     {
       "source": "/",
