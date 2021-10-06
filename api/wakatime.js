@@ -5,8 +5,8 @@ const {
   clampValue,
   parseArray,
   CONSTANTS,
-  isLocaleAvailable,
 } = require("../src/common/utils");
+const { isLocaleAvailable } = require("../src/translations");
 const { fetchWakatimeStats } = require("../src/fetchers/wakatime-fetcher");
 const wakatimeCard = require("../src/cards/wakatime-card");
 
