@@ -51,6 +51,17 @@ describe("Test renderRepoCard", () => {
     );
   });
 
+  it("should trim header", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      name: "some-really-long-repo-name-for-test-purposes",
+    });
+
+    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+      "some-really-long-repo-name-for-test...",
+    );
+  });
+
   it("should trim description", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
