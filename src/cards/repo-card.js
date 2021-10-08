@@ -140,7 +140,7 @@ const renderRepoCard = (repo, options = {}) => {
   }).join("");
 
   const card = new Card({
-    defaultTitle: header,
+    defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
     titlePrefixIcon: icons.contribs,
     width: 400,
     height,
