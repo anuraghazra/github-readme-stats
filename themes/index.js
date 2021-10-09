@@ -318,6 +318,12 @@ const themes = {
     text_color: "0088ff",
     bg_color: "193549",
   },
+  american_flag: {
+    title_color: "B31942",
+    icon_color: "0A3161",
+    text_color: "B31942",
+    bg_color: "FFFFFF",
+  },
 };
 
 module.exports = themes;
