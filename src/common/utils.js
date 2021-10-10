@@ -1,8 +1,14 @@
+// @ts-check
 const axios = require("axios");
 const wrap = require("word-wrap");
 const themes = require("../../themes");
 const toEmoji = require("emoji-name-map");
 
+/**
+ * @param {string} message
+ * @param {string} secondaryMessage
+ * @returns {string}
+ */
 const renderError = (message, secondaryMessage = "") => {
   return `
     <svg width="495" height="120" viewBox="0 0 495 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -21,7 +27,11 @@ const renderError = (message, secondaryMessage = "") => {
   `;
 };
 
-// https://stackoverflow.com/a/48073476/10629172
+/**
+ * @see https://stackoverflow.com/a/48073476/10629172
+ * @param {string} str
+ * @returns {string}
+ */
 function encodeHTML(str) {
   return str
     .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
@@ -30,18 +40,29 @@ function encodeHTML(str) {
     .replace(/\u0008/gim, "");
 }
 
+/**
+ * @param {number} num
+ */
 function kFormatter(num) {
   return Math.abs(num) > 999
-    ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
+    ? Math.sign(num) * parseFloat((Math.abs(num) / 1000).toFixed(1)) + "k"
     : Math.sign(num) * Math.abs(num);
 }
 
+/**
+ * @param {string} hexColor
+ * @returns {boolean}
+ */
 function isValidHexColor(hexColor) {
   return new RegExp(
     /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/,
   ).test(hexColor);
 }
 
+/**
+ * @param {string} value
+ * @returns {boolean | string}
+ */
 function parseBoolean(value) {
   if (value === "true") {
     return true;
@@ -52,19 +73,37 @@ function parseBoolean(value) {
   }
 }
 
+/**
+ * @param {string} str
+ */
 function parseArray(str) {
   if (!str) return [];
   return str.split(",");
 }
 
+/**
+ * @param {number} number
+ * @param {number} min
+ * @param {number} max
+ */
 function clampValue(number, min, max) {
+  // @ts-ignore
+  if (Number.isNaN(parseInt(number))) return min;
   return Math.max(min, Math.min(number, max));
 }
 
+/**
+ * @param {string[]} colors
+ */
 function isValidGradient(colors) {
   return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
 }
 
+/**
+ * @param {string} color
+ * @param {string} fallbackColor
+ * @returns {string | string[]}
+ */
 function fallbackColor(color, fallbackColor) {
   let colors = color.split(",");
   let gradient = null;
@@ -79,7 +118,12 @@ function fallbackColor(color, fallbackColor) {
   );
 }
 
+/**
+ * @param {import('axios').AxiosRequestConfig['data']} data
+ * @param {import('axios').AxiosRequestConfig['headers']} headers
+ */
 function request(data, headers) {
+  // @ts-ignore
   return axios({
     url: "https://api.github.com/graphql",
     method: "post",
@@ -92,8 +136,8 @@ function request(data, headers) {
  * @param {object} props
  * @param {string[]} props.items
  * @param {number} props.gap
- * @param {number[]} props.sizes
- * @param {"column" | "row"} props.direction
+ * @param {number[]?=} props.sizes
+ * @param {"column" | "row"?=} props.direction
  *
  * @returns {string[]}
  *
@@ -115,14 +159,27 @@ function flexLayout({ items, gap, direction, sizes = [] }) {
   });
 }
 
-// returns theme based colors with proper overrides and defaults
+/**
+ * @typedef {object} CardColors
+ * @prop {string} title_color
+ * @prop {string} text_color
+ * @prop {string} icon_color
+ * @prop {string} bg_color
+ * @prop {string} border_color
+ * @prop {keyof typeof import('../../themes')?=} fallbackTheme
+ * @prop {keyof typeof import('../../themes')?=} theme
+ */
+/**
+ * returns theme based colors with proper overrides and defaults
+ * @param {CardColors} options
+ */
 function getCardColors({
   title_color,
   text_color,
   icon_color,
   bg_color,
-  theme,
   border_color,
+  theme,
   fallbackTheme = "default",
 }) {
   const defaultTheme = themes[fallbackTheme];
@@ -157,6 +214,12 @@ function getCardColors({
   return { titleColor, iconColor, textColor, bgColor, borderColor };
 }
 
+/**
+ * @param {string} text
+ * @param {number} width
+ * @param {number} maxLines
+ * @returns {string[]}
+ */
 function wrapTextMultiline(text, width = 60, maxLines = 3) {
   const wrapped = wrap(encodeHTML(text), { width })
     .split("\n") // Split wrapped lines to get an array of lines
@@ -193,6 +256,10 @@ const SECONDARY_ERROR_MESSAGES = {
 };
 
 class CustomError extends Error {
+  /**
+   * @param {string} message
+   * @param {string} type
+   */
   constructor(message, type) {
     super(message);
     this.type = type;
@@ -203,7 +270,12 @@ class CustomError extends Error {
   static USER_NOT_FOUND = "USER_NOT_FOUND";
 }
 
-// https://stackoverflow.com/a/48172630/10629172
+/**
+ * @see https://stackoverflow.com/a/48172630/10629172
+ * @param {string} str
+ * @param {number} fontSize
+ * @returns
+ */
 function measureText(str, fontSize = 10) {
   // prettier-ignore
   const widths = [
@@ -237,6 +309,8 @@ function measureText(str, fontSize = 10) {
       .reduce((cur, acc) => acc + cur) * fontSize
   );
 }
+
+/** @param {string} name */
 const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 /**

@@ -31,8 +31,6 @@ module.exports = async (req, res) => {
     border_radius,
     border_color,
   } = req.query;
-  let topLangs;
-
   res.setHeader("Content-Type", "image/svg+xml");
 
   if (blacklist.includes(username)) {
@@ -44,7 +42,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    topLangs = await fetchTopLanguages(
+    const topLangs = await fetchTopLanguages(
       username,
       parseArray(exclude_repo),
       parseArray(hide),
