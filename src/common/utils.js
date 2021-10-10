@@ -136,8 +136,8 @@ function request(data, headers) {
  * @param {object} props
  * @param {string[]} props.items
  * @param {number} props.gap
- * @param {number[]} props.sizes
- * @param {"column" | "row"} props.direction
+ * @param {number[]?=} props.sizes
+ * @param {"column" | "row"?=} props.direction
  *
  * @returns {string[]}
  *
@@ -166,8 +166,8 @@ function flexLayout({ items, gap, direction, sizes = [] }) {
  * @prop {string} icon_color
  * @prop {string} bg_color
  * @prop {string} border_color
- * @prop {keyof typeof import('../../themes')} fallbackTheme
- * @prop {keyof typeof import('../../themes')} theme
+ * @prop {keyof typeof import('../../themes')?=} fallbackTheme
+ * @prop {keyof typeof import('../../themes')?=} theme
  */
 /**
  * returns theme based colors with proper overrides and defaults

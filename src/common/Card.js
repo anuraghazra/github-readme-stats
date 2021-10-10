@@ -2,6 +2,16 @@ const { getAnimations } = require("../getStyles");
 const { flexLayout, encodeHTML } = require("../common/utils");
 
 class Card {
+  /**
+   * @param {object} args
+   * @param {number?=} args.width
+   * @param {number?=} args.height
+   * @param {number?=} args.border_radius
+   * @param {string?=} args.customTitle
+   * @param {string?=} args.defaultTitle
+   * @param {string?=} args.titlePrefixIcon
+   * @param {ReturnType<import('../common/utils').getCardColors>?=} args.colors
+   */
   constructor({
     width = 100,
     height = 100,
@@ -38,14 +48,23 @@ class Card {
     this.animations = false;
   }
 
+  /**
+   * @param {string} value
+   */
   setCSS(value) {
     this.css = value;
   }
 
+  /**
+   * @param {boolean} value
+   */
   setHideBorder(value) {
     this.hideBorder = value;
   }
 
+  /**
+   * @param {boolean} value
+   */
   setHideTitle(value) {
     this.hideTitle = value;
     if (value) {
@@ -53,6 +72,9 @@ class Card {
     }
   }
 
+  /**
+   * @param {string} text
+   */
   setTitle(text) {
     this.title = text;
   }
@@ -114,6 +136,9 @@ class Card {
       : "";
   }
 
+  /**
+   * @param {string} body
+   */
   render(body) {
     return `
       <svg
