@@ -27,8 +27,6 @@ module.exports = async (req, res) => {
     border_color,
   } = req.query;
 
-  let repoData;
-
   res.setHeader("Content-Type", "image/svg+xml");
 
   if (blacklist.includes(username)) {
@@ -40,7 +38,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    repoData = await fetchRepo(username, repo);
+    const repoData = await fetchRepo(username, repo);
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),

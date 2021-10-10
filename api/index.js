@@ -34,8 +34,6 @@ module.exports = async (req, res) => {
     border_radius,
     border_color,
   } = req.query;
-  let stats;
-
   res.setHeader("Content-Type", "image/svg+xml");
 
   if (blacklist.includes(username)) {
@@ -47,7 +45,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    stats = await fetchStats(
+    const stats = await fetchStats(
       username,
       parseBoolean(count_private),
       parseBoolean(include_all_commits),
