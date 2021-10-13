@@ -14,10 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-          cache: npm
 
       - name: npm install, generate readme
         run: |
