@@ -20,7 +20,7 @@
     "axios-mock-adapter": "^1.18.1",
     "css-to-object": "^1.1.0",
     "husky": "^7.0.2",
-    "jest": "^26.1.0",
+    "jest": "^27.2.5",
     "parse-diff": "^0.8.1"
   },
   "dependencies": {
