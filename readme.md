@@ -146,9 +146,14 @@ Use `&theme=THEME_NAME` parameter like so :-
 
 #### All inbuilt themes :-
 
-dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
+merko, tokyonight, 
+gruvbox, sythwave,
+radical, cobalt, 
+onedark, dracula, 
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stats Themes" width="600px"/>
+
++ More themes: highcontrast, dark
 
 You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
 
