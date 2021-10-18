@@ -220,12 +220,22 @@ function getCardColors({
  * @param {number} maxLines
  * @returns {string[]}
  */
-function wrapTextMultiline(text, width = 60, maxLines = 3) {
-  const wrapped = wrap(encodeHTML(text), { width })
-    .split("\n") // Split wrapped lines to get an array of lines
-    .map((line) => line.trim()); // Remove leading and trailing whitespace of each line
+function wrapTextMultiline(text, width = 59, maxLines = 3) {
+  const fullWidthComma = "，";
+  const encoded = encodeHTML(text);
+  const isChinese = encoded.includes(fullWidthComma);
 
-  const lines = wrapped.slice(0, maxLines); // Only consider maxLines lines
+  let wrapped = [];
+
+  if (isChinese) {
+    wrapped = encoded.split(fullWidthComma); // Chinese full punctuation
+  } else {
+    wrapped = wrap(encoded, {
+      width,
+    }).split("\n"); // Split wrapped lines to get an array of lines
+  }
+
+  const lines = wrapped.map((line) => line.trim()).slice(0, maxLines); // Only consider maxLines lines
 
   // Add "..." to the last line if the text exceeds maxLines
   if (wrapped.length > maxLines) {
