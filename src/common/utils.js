@@ -221,13 +221,14 @@ function getCardColors({
  * @returns {string[]}
  */
 function wrapTextMultiline(text, width = 59, maxLines = 3) {
+  const fullWidthComma = "，";
   const encoded = encodeHTML(text);
-  const isChinese = encoded.includes("，");
+  const isChinese = encoded.includes(fullWidthComma);
 
   let wrapped = [];
 
   if (isChinese) {
-    wrapped = encoded.split("，"); // Chinese full punctuation
+    wrapped = encoded.split(fullWidthComma); // Chinese full punctuation
   } else {
     wrapped = wrap(encoded, {
       width,
