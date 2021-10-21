@@ -17,6 +17,7 @@ describe("Test renderStatsCard", () => {
     totalIssues: 300,
     totalPRs: 400,
     contributedTo: 500,
+    reviews: 600,
     rank: { level: "A+", score: 40 },
   };
 
@@ -29,12 +30,13 @@ describe("Test renderStatsCard", () => {
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height"),
-    ).toBe("195");
+    ).toBe("220");
     expect(getByTestId(document.body, "stars").textContent).toBe("100");
     expect(getByTestId(document.body, "commits").textContent).toBe("200");
     expect(getByTestId(document.body, "issues").textContent).toBe("300");
     expect(getByTestId(document.body, "prs").textContent).toBe("400");
     expect(getByTestId(document.body, "contribs").textContent).toBe("500");
+    expect(getByTestId(document.body, "reviews").textContent).toBe("600");
     expect(queryByTestId(document.body, "card-bg")).toBeInTheDocument();
     expect(queryByTestId(document.body, "rank-circle")).toBeInTheDocument();
   });
@@ -67,6 +69,7 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "issues")).toBeNull();
     expect(queryByTestId(document.body, "prs")).toBeNull();
     expect(queryByTestId(document.body, "contribs")).toBeNull();
+    expect(queryByTestId(document.body, "reviews")).toBeDefined();
   });
 
   it("should hide_rank", () => {

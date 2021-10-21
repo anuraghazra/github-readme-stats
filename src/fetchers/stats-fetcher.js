@@ -18,6 +18,7 @@ const fetcher = (variables, token) => {
           contributionsCollection {
             totalCommitContributions
             restrictedContributionsCount
+            totalPullRequestReviewContributions
           }
           repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
             totalCount
@@ -99,6 +100,7 @@ async function fetchStats(
     totalStars: 0,
     contributedTo: 0,
     rank: { level: "C", score: 0 },
+    reviews: 0,
   };
 
   let res = await retryer(fetcher, { login: username });
@@ -133,6 +135,7 @@ async function fetchStats(
 
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
+  stats.reviews = user.contributionsCollection.totalPullRequestReviewContributions;
 
   stats.totalStars = user.repositories.nodes.reduce((prev, curr) => {
     return prev + curr.stargazers.totalCount;

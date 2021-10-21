@@ -54,6 +54,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     totalPRs,
     contributedTo,
     rank,
+    reviews,
   } = stats;
   const {
     hide = [],
@@ -129,6 +130,12 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       label: i18n.t("statcard.contribs"),
       value: contributedTo,
       id: "contribs",
+    },
+    reviews: {
+      icon: icons.reviews,
+      label: i18n.t("statcard.reviews"),
+      value: reviews,
+      id: "reviews",
     },
   };
 

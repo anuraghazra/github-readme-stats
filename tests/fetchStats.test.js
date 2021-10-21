@@ -12,6 +12,7 @@ const data = {
       contributionsCollection: {
         totalCommitContributions: 100,
         restrictedContributionsCount: 50,
+        totalPullRequestReviewContributions: 600,
       },
       pullRequests: { totalCount: 300 },
       issues: { totalCount: 200 },
@@ -69,6 +70,7 @@ describe("Test fetchStats", () => {
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
+      reviews: 600,
       rank,
     });
   });
@@ -102,6 +104,7 @@ describe("Test fetchStats", () => {
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
+      reviews: 600,
       rank,
     });
   });
@@ -130,6 +133,7 @@ describe("Test fetchStats", () => {
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
+      reviews: 600,
       rank,
     });
   });
