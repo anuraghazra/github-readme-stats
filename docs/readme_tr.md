@@ -55,6 +55,8 @@
     <a href="/docs/readme_np.md">नेपाली</a>
     .
     <a href="/docs/readme_tr.md">Türkçe</a>
+    .
+    <a href="/docs/readme_fa.md">فارسی</a>
   </p>
 </p>
 <p align="center">Projeyi sevdiniz mi? Daha da gelişmesi için lütfen <a href="https://www.paypal.me/anuraghazra">bağış</a> yapın!

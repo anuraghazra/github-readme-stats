@@ -28,6 +28,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       sk: `GitHub štatistiky používateľa ${encodedName}`,
       tr: `${encodedName} Hesabının GitHub Yıldızları`,
       pl: `Statystyki GitHub użytkownika ${encodedName}`,
+      fa: 
     },
     "statcard.totalstars": {
       ar: "مجموع النجوم",
