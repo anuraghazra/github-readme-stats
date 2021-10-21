@@ -123,7 +123,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
-  if (shouldHideLangs) {
+  if (shouldHideLangs && languages !== undefined) {
     const languagesToHide = new Set(hide.map((lang) => lowercaseTrim(lang)));
     languages = languages.filter(
       (lang) => !languagesToHide.has(lowercaseTrim(lang.name)),
@@ -138,7 +138,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const lheight = parseInt(line_height, 10);
 
-  langsCount = clampValue(parseInt(langs_count), 1, langs_count);
+  const langsCount = clampValue(parseInt(langs_count), 1, langs_count);
 
   // returns theme based colors with proper overrides and defaults
   const {
