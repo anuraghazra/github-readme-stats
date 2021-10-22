@@ -13,7 +13,7 @@ const {
 
 const noCodingActivityNode = ({ color, text }) => {
   return `
-    <text x="25" y="11" class="stat bold" fill="${color}">${text}</text>
+    <text x="25" y="11" class="stat-label" fill="${color}">${text}</text>
   `;
 };
 
@@ -77,9 +77,9 @@ const createTextNode = ({
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
-      <text class="stat bold" y="12.5" data-testid="${id}">${label}:</text>
+      <text class="stat-label" y="12.5" data-testid="${id}">${label}:</text>
       <text
-        class="stat"
+        class="stat-value"
         x="${hideProgress ? 170 : 350}"
         y="12.5"
       >${value}</text>
@@ -120,6 +120,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     langs_count = languages ? languages.length : 0,
     border_radius,
     border_color,
+    label_bold = true,
+    value_bold = false,
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
@@ -170,6 +172,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     titleColor,
     textColor,
     iconColor,
+    label_bold,
+    value_bold,
   });
 
   let finalLayout = "";

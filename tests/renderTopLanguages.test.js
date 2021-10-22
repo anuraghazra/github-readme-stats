@@ -251,4 +251,36 @@ describe("Test renderTopLanguages", () => {
       options.langs_count,
     );
   });
+
+  it("should render items as bold properly", () => {
+    document.body.innerHTML = renderTopLanguages(langs, {
+      label_bold: true,
+      value_bold: true
+    });
+
+    const styleTag = document.querySelector("style");
+    const stylesObject = cssToObject(styleTag.innerHTML);
+
+    const langNameClassStyles = stylesObject[".lang-name"];
+    const langValueClassStyles = stylesObject[".lang-value"];
+
+    expect(langNameClassStyles['font-weight']).toBe("700");
+    expect(langValueClassStyles['font-weight']).toBe("700");
+  });
+
+  it("should render items without bold properly", () => {
+    document.body.innerHTML = renderTopLanguages(langs, {
+      label_bold: false,
+      value_bold: false
+    });
+
+    const styleTag = document.querySelector("style");
+    const stylesObject = cssToObject(styleTag.innerHTML);
+
+    const langNameClassStyles = stylesObject[".lang-name"];
+    const langValueClassStyles = stylesObject[".lang-value"];
+
+    expect(langNameClassStyles['font-weight']).toBe("400");
+    expect(langValueClassStyles['font-weight']).toBe("400");
+  });
 });

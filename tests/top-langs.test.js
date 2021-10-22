@@ -99,6 +99,9 @@ describe("Test /api/top-langs", () => {
         icon_color: "fff",
         text_color: "fff",
         bg_color: "fff",
+        label_bold: true,
+        value_bold: true,
+        rank_bold: true,
       },
     };
     const res = {
@@ -118,6 +121,9 @@ describe("Test /api/top-langs", () => {
         icon_color: "fff",
         text_color: "fff",
         bg_color: "fff",
+        label_bold: true,
+        value_bold: true,
+        rank_bold: true,
       }),
     );
   });

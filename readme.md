@@ -190,6 +190,9 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `line_height` - Sets the line-height between text _(number)_
 - `custom_title` - Sets a custom title for the card
 - `disable_animations` - Disables all animations in the card _(boolean)_
+- `label_bold` - _(boolean)_ Display the label as bold. Defaults to `true`
+- `value_bold` - _(boolean)_ Display the value as bold. Defaults to `false`
+- `rank_bold` - _(boolean)_ Display the rank as bold. Defaults to `true`
 
 #### Repo Card Exclusive Options:
 
@@ -204,6 +207,8 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
 - `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
 - `custom_title` - Sets a custom title for the card
+- `label_bold` - _(boolean)_ Display the label as bold. Defaults to `false`
+- `value_bold` - _(boolean)_ Display the value as bold. Defaults to `false`
 
 > :warning: **Important:**
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
@@ -221,6 +226,8 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `langs_count` - Limit number of languages on the card, defaults to all reported langauges
 - `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
 - `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for list of available options.
+- `label_bold` - _(boolean)_ Display the label as bold. Defaults to `true`
+- `value_bold` - _(boolean)_ Display the value as bold. Defaults to `false`
 
 ---
 

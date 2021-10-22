@@ -32,6 +32,8 @@ module.exports = async (req, res) => {
     range,
     border_radius,
     border_color,
+    label_bold,
+    value_bold,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -73,6 +75,8 @@ module.exports = async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         layout,
         langs_count,
+        label_bold: parseBoolean(label_bold),
+        value_bold: parseBoolean(value_bold),
       }),
     );
   } catch (err) {
