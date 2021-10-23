@@ -250,7 +250,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 # Top Languages Card
 
-The top languages card show a GitHub user's most frequently used top language.
+The top languages card shows a GitHub user's most frequently used top language.
 
 _NOTE: Top Languages does not indicate my skill level or anything like that, it's a GitHub metric of which languages have the most code on GitHub. It's a new feature of github-readme-stats._
 
