@@ -30,15 +30,17 @@ describe("Test renderStatsCard", () => {
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height"),
-    ).toBe("220");
+    ).toBe("195");
     expect(getByTestId(document.body, "stars").textContent).toBe("100");
     expect(getByTestId(document.body, "commits").textContent).toBe("200");
     expect(getByTestId(document.body, "issues").textContent).toBe("300");
     expect(getByTestId(document.body, "prs").textContent).toBe("400");
     expect(getByTestId(document.body, "contribs").textContent).toBe("500");
-    expect(getByTestId(document.body, "reviews").textContent).toBe("600");
     expect(queryByTestId(document.body, "card-bg")).toBeInTheDocument();
     expect(queryByTestId(document.body, "rank-circle")).toBeInTheDocument();
+
+    // Default hidden stats
+    expect(queryByTestId(document.body, "reviews")).not.toBeInTheDocument();
   });
 
   it("should have proper name apostrophe", () => {
@@ -69,7 +71,22 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "issues")).toBeNull();
     expect(queryByTestId(document.body, "prs")).toBeNull();
     expect(queryByTestId(document.body, "contribs")).toBeNull();
-    expect(queryByTestId(document.body, "reviews")).toBeDefined();
+  });
+
+  it("should show individual stats", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      show: ["reviews"],
+    });
+
+    expect(
+      document.body.getElementsByTagName("svg")[0].getAttribute("height"),
+    ).toBe("220");
+
+    expect(queryByTestId(document.body, "stars")).toBeDefined();
+    expect(queryByTestId(document.body, "commits")).toBeDefined();
+    expect(queryByTestId(document.body, "issues")).toBeDefined();
+    expect(queryByTestId(document.body, "prs")).toBeDefined();
+    expect(queryByTestId(document.body, "contribs")).toBeDefined();
   });
 
   it("should hide_rank", () => {

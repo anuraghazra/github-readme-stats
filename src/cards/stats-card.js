@@ -74,6 +74,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     border_color,
     locale,
     disable_animations = false,
+    show = [],
   } = options;
 
   const lheight = parseInt(line_height, 10);
@@ -154,9 +155,15 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   ];
   const isLongLocale = longLocales.includes(locale) === true;
 
+  const defaultHiddenStats = ["reviews"];
+
   // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
-    .filter((key) => !hide.includes(key))
+    .filter(
+      (key) =>
+        (!hide.includes(key) && !defaultHiddenStats.includes(key)) ||
+        (defaultHiddenStats.includes(key) && show.includes(key)),
+    )
     .map((key, index) =>
       // create the text nodes, and pass index so that we can calculate the line spacing
       createTextNode({

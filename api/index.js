@@ -33,6 +33,7 @@ module.exports = async (req, res) => {
     disable_animations,
     border_radius,
     border_color,
+    show,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -78,6 +79,7 @@ module.exports = async (req, res) => {
         border_color,
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
+        show: parseArray(show),
       }),
     );
   } catch (err) {

@@ -114,6 +114,16 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma-s
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
+### Showing stats that are hidden by default
+
+Some statistics are hidden by default. To make these visible, pass a query parameter `?show=` with comma-separated values.
+
+> Options: `&show=reviews`
+
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show=reviews)
+```
+
 ### Adding private contributions count to total commits count
 
 You can add the count of all your private contributions to the total commits count by using the query parameter `?count_private=true`.
@@ -190,6 +200,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `line_height` - Sets the line-height between text _(number)_
 - `custom_title` - Sets a custom title for the card
 - `disable_animations` - Disables all animations in the card _(boolean)_
+- `show` - Show stats that are hidden by default _(Comma-separated values)_
 
 #### Repo Card Exclusive Options:
 
