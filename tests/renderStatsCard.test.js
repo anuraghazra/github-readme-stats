@@ -87,6 +87,7 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "issues")).toBeDefined();
     expect(queryByTestId(document.body, "prs")).toBeDefined();
     expect(queryByTestId(document.body, "contribs")).toBeDefined();
+    expect(queryByTestId(document.body, "reviews")).toBeDefined();
   });
 
   it("should hide_rank", () => {
