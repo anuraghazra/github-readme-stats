@@ -324,6 +324,12 @@ const themes = {
     text_color: "0088ff",
     bg_color: "193549",
   },
+  forest_fire: {
+    title_color: "F2784B",
+    icon_color: "#730337",
+    text_color: "#F2784B",
+    bg_color: "F2D4C2",
+  },
 };
 
 module.exports = themes;
