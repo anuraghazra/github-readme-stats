@@ -9,13 +9,13 @@ const data_repo = {
   repository: {
     nameWithOwner: "anuraghazra/convoychat",
     name: "convoychat",
-    stargazers: { totalCount: 38000 },
     description: "Help us take over the world! React + TS + GraphQL Chat App",
     primaryLanguage: {
       color: "#2b7489",
       id: "MDg6TGFuZ3VhZ2UyODc=",
       name: "TypeScript",
     },
+    starCount: 38000,
     forkCount: 100,
   },
 };
@@ -48,6 +48,17 @@ describe("Test renderRepoCard", () => {
     });
     expect(document.getElementsByClassName("header")[0]).toHaveTextContent(
       "anuraghazra/convoychat",
+    );
+  });
+
+  it("should trim header", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      name: "some-really-long-repo-name-for-test-purposes",
+    });
+
+    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+      "some-really-long-repo-name-for-test...",
     );
   });
 
@@ -86,36 +97,6 @@ describe("Test renderRepoCard", () => {
     // poop emoji may not show in all editors but it's there between "a" and "poo"
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
       "This is a text with a 💩 poo emoji",
-    );
-  });
-
-  it("should shift the text position depending on language length", () => {
-    document.body.innerHTML = renderRepoCard({
-      ...data_repo.repository,
-      primaryLanguage: {
-        ...data_repo.repository.primaryLanguage,
-        name: "Jupyter Notebook",
-      },
-    });
-
-    expect(queryByTestId(document.body, "primary-lang")).toBeInTheDocument();
-    expect(queryByTestId(document.body, "star-fork-group")).toHaveAttribute(
-      "transform",
-      "translate(155, 0)",
-    );
-
-    // Small lang
-    document.body.innerHTML = renderRepoCard({
-      ...data_repo.repository,
-      primaryLanguage: {
-        ...data_repo.repository.primaryLanguage,
-        name: "Ruby",
-      },
-    });
-
-    expect(queryByTestId(document.body, "star-fork-group")).toHaveAttribute(
-      "transform",
-      "translate(125, 0)",
     );
   });
 
@@ -261,7 +242,7 @@ describe("Test renderRepoCard", () => {
   it("should not render star count or fork count if either of the are zero", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
-      stargazers: { totalCount: 0 },
+      starCount: 0,
     });
 
     expect(queryByTestId(document.body, "stargazers")).toBeNull();
@@ -269,7 +250,7 @@ describe("Test renderRepoCard", () => {
 
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
-      stargazers: { totalCount: 1 },
+      starCount: 1,
       forkCount: 0,
     });
 
@@ -278,7 +259,7 @@ describe("Test renderRepoCard", () => {
 
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
-      stargazers: { totalCount: 0 },
+      starCount: 0,
       forkCount: 0,
     });
 
@@ -332,11 +313,24 @@ describe("Test renderRepoCard", () => {
     );
     expect(queryByTestId(document.body, "badge")).toHaveTextContent("模板");
   });
-  
+
   it("should render without rounding", () => {
-    document.body.innerHTML = renderRepoCard(data_repo.repository, { border_radius: "0" });
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      border_radius: "0",
+    });
     expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
-    document.body.innerHTML = renderRepoCard(data_repo.repository, { });
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {});
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
+  });
+
+  it("should fallback to default description", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      description: undefined,
+      isArchived: true,
+    });
+    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
+      "No description provided",
+    );
   });
 });

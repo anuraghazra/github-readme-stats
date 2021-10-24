@@ -27,8 +27,6 @@ module.exports = async (req, res) => {
     border_color,
   } = req.query;
 
-  let repoData;
-
   res.setHeader("Content-Type", "image/svg+xml");
 
   if (blacklist.includes(username)) {
@@ -40,7 +38,7 @@ module.exports = async (req, res) => {
   }
 
   try {
-    repoData = await fetchRepo(username, repo);
+    const repoData = await fetchRepo(username, repo);
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
@@ -53,7 +51,7 @@ module.exports = async (req, res) => {
     and if both are zero we are not showing the stats
     so we can just make the cache longer, since there is no need to frequent updates
   */
-    const stars = repoData.stargazers.totalCount;
+    const stars = repoData.starCount;
     const forks = repoData.forkCount;
     const isBothOver1K = stars > 1000 && forks > 1000;
     const isBothUnder1 = stars < 1 && forks < 1;

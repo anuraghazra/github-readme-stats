@@ -1,14 +1,21 @@
+/**
+ * @param {number} value
+ */
 const calculateCircleProgress = (value) => {
-  let radius = 40;
-  let c = Math.PI * (radius * 2);
+  const radius = 40;
+  const c = Math.PI * (radius * 2);
 
   if (value < 0) value = 0;
   if (value > 100) value = 100;
 
-  let percentage = ((100 - value) / 100) * c;
-  return percentage;
+  return ((100 - value) / 100) * c;
 };
 
+/**
+ *
+ * @param {{progress: number}} param0
+ * @returns
+ */
 const getProgressAnimation = ({ progress }) => {
   return `
     @keyframes rankAnimation {
@@ -44,6 +51,15 @@ const getAnimations = () => {
   `;
 };
 
+/**
+ * @param {{
+ *  titleColor: string;
+ *  textColor: string;
+ *  iconColor: string;
+ *  show_icons: boolean;
+ *  progress: number;
+ * }} args
+ */
 const getStyles = ({
   titleColor,
   textColor,

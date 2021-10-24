@@ -138,7 +138,7 @@ To enable icons, you can pass `show_icons=true` in the query param, like so:
 
 With inbuilt themes, you can customize the look of the card without doing any [manual customization](#customization).
 
-Use `?theme=THEME_NAME` parameter like so :-
+Use `&theme=THEME_NAME` parameter like so :-
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)

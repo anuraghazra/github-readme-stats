@@ -13,12 +13,10 @@ function getPrNumber() {
 }
 
 const themeContribGuidelines = `
-  \r> Hi thanks for the theme contribution, please read our theme contribution guidelines
+  \rHi, thanks for the theme contribution, please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).  
+  \rWe are currently only accepting color combinations from any VSCode theme or themes which have good color combination to minimize bloating the themes collection.
 
-  \r> We are currently only accepting color combinations from any vscode theme or which has good color combination to minimize bloating the themes collection.
-
-  \r> Also note that if this theme is exclusively for your personal use then instead of adding it to our theme collection you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization) 
-  \r> Read our [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md) for more info
+  \r> Also note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization) 
 `;
 
 async function run() {
@@ -56,7 +54,7 @@ async function run() {
         owner: "anuraghazra",
         repo: "github-readme-stats",
         body: `
-        \rTheme preview (bot)
+        \r**Automated Theme preview**
         
         \rCannot create theme preview
 
@@ -80,11 +78,11 @@ async function run() {
       owner: "anuraghazra",
       repo: "github-readme-stats",
       body: `
-      \rTheme preview (bot)  
+      \r**Automated Theme preview**  
       
       \ntitle_color: <code>#${titleColor}</code> | icon_color: <code>#${iconColor}</code> | text_color: <code>#${textColor}</code> | bg_color: <code>#${bgColor}</code>
       
-      \rLink: ${url}
+      \r[Preview Link](${url})
 
       \r[![](${url})](${url})
       

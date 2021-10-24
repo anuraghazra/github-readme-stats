@@ -14,7 +14,8 @@ const data = {
         restrictedContributionsCount: 50,
       },
       pullRequests: { totalCount: 300 },
-      issues: { totalCount: 200 },
+      openIssues: { totalCount: 100 },
+      closedIssues: { totalCount: 100 },
       followers: { totalCount: 100 },
       repositories: {
         totalCount: 5,
