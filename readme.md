@@ -77,18 +77,37 @@ Your small help goes a long way. :heart:
 
 # Features
 
+- [Features](#features)
 - [GitHub Stats Card](#github-stats-card)
+    - [Hiding individual stats](#hiding-individual-stats)
+    - [Adding private contributions count to total commits count](#adding-private-contributions-count-to-total-commits-count)
+    - [Showing icons](#showing-icons)
+    - [Themes](#themes)
+      - [All inbuilt themes :-](#all-inbuilt-themes--)
+    - [Customization](#customization)
+      - [Common Options:](#common-options)
+        - [Gradient in bg_color](#gradient-in-bg_color)
+      - [Stats Card Exclusive Options:](#stats-card-exclusive-options)
+      - [Repo Card Exclusive Options:](#repo-card-exclusive-options)
+      - [Language Card Exclusive Options:](#language-card-exclusive-options)
+      - [Wakatime Card Exclusive Options:](#wakatime-card-exclusive-options)
 - [GitHub Extra Pins](#github-extra-pins)
+    - [Usage](#usage)
+    - [Demo](#demo)
 - [Top Languages Card](#top-languages-card)
+    - [Usage](#usage-1)
+    - [Exclude individual repositories](#exclude-individual-repositories)
+    - [Hide individual languages](#hide-individual-languages)
+    - [Show more languages](#show-more-languages)
+    - [Compact Language Card Layout](#compact-language-card-layout)
+    - [Demo](#demo-1)
 - [Wakatime Week Stats](#wakatime-week-stats)
-- [Themes](#themes)
-- [Customization](#customization)
-  - [Common Options](#common-options)
-  - [Stats Card Exclusive Options](#stats-card-exclusive-options)
-  - [Repo Card Exclusive Options](#repo-card-exclusive-options)
-  - [Language Card Exclusive Options](#language-card-exclusive-options)
-  - [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
-- [Deploy Yourself](#deploy-on-your-own-vercel-instance)
+    - [Demo](#demo-2)
+    - [All Demos](#all-demos)
+    - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
+  - [Deploy on your own Vercel instance](#deploy-on-your-own-vercel-instance)
+      - [Check Out Step By Step Video Tutorial By @codeSTACKr](#check-out-step-by-step-video-tutorial-by-codestackr)
+  - [:sparkling_heart: Support the project](#sparkling_heart-support-the-project)
 
 # GitHub Stats Card
 
@@ -411,6 +430,7 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. Sign into GitHub and allow access to all repositories, if prompted
 1. Fork this repo
+1. After forking the repo, open the [`vercel.json`](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json#L5) file and change the `maxDuration` field to `10`
 1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
 1. Select `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
