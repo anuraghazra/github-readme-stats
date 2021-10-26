@@ -205,7 +205,7 @@ Los pines adicionales de GitHub le permiten fijar más de 6 repositorios en su p
 
 ### Utilización
 
-Copia y pegua este código en tu Readme y cambia los enlaces.
+Copia y pega este código en tu Readme y cambia los enlaces.
 
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
