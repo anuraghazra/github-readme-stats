@@ -324,6 +324,13 @@ const themes = {
     text_color: "0088ff",
     bg_color: "193549",
   },
+  coruja: {
+    title_color: "ae8ce2",
+    icon_color: "ae8ce2",
+    text_color: "b2b2b2",
+    bg_color: "181b21",
+    border_color: "ae8ce2",
+  },
 };
 
 module.exports = themes;
