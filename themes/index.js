@@ -36,6 +36,12 @@ const themes = {
     text_color: "8ec07c",
     bg_color: "282828",
   },
+  gruvbox_light: {
+    title_color: "b57614",
+    icon_color: "af3a03",
+    text_color: "427b58",
+    bg_color: "fbf1c7",
+  },
   tokyonight: {
     title_color: "70a5fd",
     icon_color: "bf91f3",
