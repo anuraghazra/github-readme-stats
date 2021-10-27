@@ -229,7 +229,7 @@ _NOTA: los lenguajes principales no indican mi nivel de habilidad o algo así, e
 
 ### Utilización
 
-Copia y pegua este código en tu Readme y cambia los enlaces.
+Copia y pega este código en tu Readme y cambia los enlaces.
 
 Endpoint: `api/top-langs?username=anuraghazra`
 
@@ -255,7 +255,7 @@ Puedes usar el parámetro `?hide=language1,language2` para ocultar lenguajes ind
 
 ### Mostrar más lenguajes
 
-Puedes usar el paramétro `&langs_count=` para incrementar o decrementar el número de lenguajes mostrados en la tarjeta. Los valores admitidos son los números enteros entre 1 y 10 (inclusive), y el valor por defecto es 5.
+Puedes usar el parámetro `&langs_count=` para incrementar o decrementar el número de lenguajes mostrados en la tarjeta. Los valores admitidos son los números enteros entre 1 y 10 (inclusive), y el valor por defecto es 5.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
@@ -364,7 +364,7 @@ Por lo general, no podrás acomodar las imágenes una al lado de la otra. Para h
 
 #### [Échale un vistazo a este tutorial paso a paso de @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-Desde que la API de GitHub permite solo 5k peticiones por hora, es posible que mi `https://github-readme-stats.vercel.app/api` pueda llegar al límite. Si lo alojas en tu propio servidor de Vercel, no tendrás que preocuparte de nada. ¡Clickea en el botón "Deploy" para comenzar!
+Desde que la API de GitHub permite solo 5k peticiones por hora, es posible que mi `https://github-readme-stats.vercel.app/api` pueda llegar al límite. Si lo alojas en tu propio servidor de Vercel, no tendrás que preocuparte de nada. ¡Haz en el botón "Deploy" para comenzar!
 
 NOTA: Debido a [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) podríamos manejar más de 5k peticiones sin tener ningún problema con el downtime :D
 
@@ -374,7 +374,7 @@ NOTA: Debido a [#58](https://github.com/anuraghazra/github-readme-stats/pull/58)
  <summary>Guía para comenzar en Vercel</summary>
 
 1. Ve a [vercel.com](https://vercel.com/)
-2. Clickea en `Log in`
+2. Haz clic en `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
 3. Inicia sesión con GitHub presionando `Continue with GitHub`
    ![](https://files.catbox.moe/btd78j.jpeg)
@@ -385,9 +385,9 @@ NOTA: Debido a [#58](https://github.com/anuraghazra/github-readme-stats/pull/58)
    ![](https://files.catbox.moe/qckos0.png)
 8. Selecciona `Import Git Repository`
    ![](https://files.catbox.moe/pqub9q.png)
-9. Selecciona "root" y matén todo como está, simplemente añade tu variable de entorno llamada PAT_1 (como se muestra), la cual contendrá un token de acceso personal (PAT), el cual puedes crear fácilmente [aquí](https://github.com/settings/tokens/new) (mantén todo como está, simplemente asígnale un nombre, puede ser cualquiera que desees)
+9. Selecciona "root" y mantén todo como está, simplemente añade tu variable de entorno llamada PAT_1 (como se muestra), la cual contendrá un token de acceso personal (PAT), el cual puedes crear fácilmente [aquí](https://github.com/settings/tokens/new) (mantén todo como está, simplemente asígnale un nombre, puede ser cualquiera que desees)
    ![](https://files.catbox.moe/0ez4g7.png)
-10. Clickea "Deploy" y ya está listo. ¡Ve tus dominios para usar la API!
+10. Haz clic en "Deploy" y ya está listo. ¡Ve tus dominios para usar la API!
 
 </details>
 
@@ -397,7 +397,7 @@ Casi todos mis proyectos son de código abierto e intento responder a todos los 
 
 No obstante, si estás utilizando este proyecto y estás feliz con él o simplemente quieres animarme a que siga creando cosas, aquí tienes algunas maneras de hacerlo:
 
-- Darme créditos cuando estés utilizando github-readme-stats en tu README, añadiendo un link a este repositorio :D
+- Darme créditos cuando estés utilizando github-readme-stats en tu README, añadiendo un enlace a este repositorio :D
 - Dándole una estrella y compartiendo el proyecto :rocket:
 - [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - Puedes hacerme una única donación a través de PayPal. Probablemente me compraré un ~~café~~ té. :tea:
 
