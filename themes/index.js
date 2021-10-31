@@ -324,6 +324,14 @@ const themes = {
     text_color: "0088ff",
     bg_color: "193549",
   },
+  trybe: {
+    title_color: "2fc19b",
+    icon_color: "2fc18c",
+    text_color: "ffffff",
+    bg_color: "DEG,000000,061711,09271c,0e3a2a,134d38,186146",
+    border_color: "061711",
+    border_radius: "19",
+  },
 };
 
 module.exports = themes;
