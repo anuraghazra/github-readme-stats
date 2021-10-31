@@ -107,7 +107,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     commits: {
       icon: icons.commits,
       label: `${i18n.t("statcard.commits")}${
-        include_all_commits ? "" : ` (${new Date().getFullYear()})`
+        include_all_commits ? "" : `(${new Date().getFullYear()}) `
       }`,
       value: totalCommits,
       id: "commits",
