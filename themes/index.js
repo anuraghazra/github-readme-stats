@@ -324,6 +324,12 @@ const themes = {
     text_color: "0088ff",
     bg_color: "193549",
   },
+  sakura: {
+    title_color: "DD376D",
+    icon_color: "DD376D",
+    text_color: "333",
+    bg_color: "fffefe",
+  }
 };
 
 module.exports = themes;
