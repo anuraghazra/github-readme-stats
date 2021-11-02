@@ -324,6 +324,12 @@ const themes = {
     text_color: "0088ff",
     bg_color: "193549",
   },
+red-blue-gold: {
+    title_color: "0000ff",
+    icon_color: "FFD700",
+    text_color: "0000ff",
+    bg_color: "ff0000",
+  },
 };
 
 module.exports = themes;
