@@ -220,11 +220,30 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   if (disable_animations) card.disableAnimations();
 
+  /**
+   * Calculates the right rank circle translation values such that the rank circle
+   * keeps respecting the padding.
+   *
+   * width > 450: The default left padding of 50 px will be used.
+   * width < 450: The left and right padding will shrink equally.
+   *
+   * @returns {number} - Rank circle translation value.
+   */
+  const calculateRankXTranslation = () => {
+    if (width < 450) {
+      return width - 95 + (45 * (450 - 340)) / 110;
+    } else {
+      return width - 95;
+    }
+  };
+
   // Conditionally rendered elements
   const rankCircle = hide_rank
     ? ""
     : `<g data-testid="rank-circle"
-          transform="translate(${width - 50}, ${height / 2 - 50})">
+          transform="translate(${calculateRankXTranslation()}, ${
+        height / 2 - 50
+      })">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
