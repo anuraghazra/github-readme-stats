@@ -411,6 +411,7 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. Sign into GitHub and allow access to all repositories, if prompted
 1. Fork this repo
+1. After forking the repo, open the [`vercel.json`](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json#L5) file and change the `maxDuration` field to `10`
 1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
 1. Select `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
