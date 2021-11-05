@@ -324,6 +324,12 @@ const themes = {
     text_color: "0088ff",
     bg_color: "193549",
   },
+  aura: {
+    title_color: "a277ff",
+    icon_color: "ffca85",
+    text_color: "61ffca",
+    bg_color: "15141b",
+  },
 };
 
 module.exports = themes;
