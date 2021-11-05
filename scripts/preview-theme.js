@@ -29,7 +29,7 @@ async function run() {
     const warnings = [];
     const token = core.getInput("token");
     const octokit = github.getOctokit(token || process.env.PERSONAL_TOKEN);
-    const pullRequestId = 1438; //getPrNumber();
+    const pullRequestId = getPrNumber();
 
     if (!pullRequestId) {
       console.log("PR not found");
