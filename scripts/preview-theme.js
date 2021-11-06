@@ -7,6 +7,10 @@ const ColorContrastChecker = require("color-contrast-checker");
 
 require("dotenv").config();
 
+const OWNER = "anuraghazra";
+const REPO = "github-readme-stats";
+const COMMENT_TITLE = "Automated Theme Preview";
+
 function getPrNumber() {
   const pullRequest = github.context.payload.pull_request;
   if (!pullRequest) {
@@ -14,6 +18,61 @@ function getPrNumber() {
   }
 
   return pullRequest.number;
+}
+
+function findCommentPredicate(inputs, comment) {
+  return (
+    (inputs.commentAuthor && comment.user
+      ? comment.user.login === inputs.commentAuthor
+      : true) &&
+    (inputs.bodyIncludes && comment.body
+      ? comment.body.includes(inputs.bodyIncludes)
+      : true)
+  );
+}
+
+async function findComment(octokit, issueNumber) {
+  const parameters = {
+    owner: OWNER,
+    repo: REPO,
+    issue_number: issueNumber,
+  };
+  const inputs = {
+    commentAuthor: OWNER,
+    bodyIncludes: COMMENT_TITLE,
+  };
+
+  for await (const { data: comments } of octokit.paginate.iterator(
+    octokit.rest.issues.listComments,
+    parameters,
+  )) {
+    // Search each page for the comment
+    const comment = comments.find((comment) =>
+      findCommentPredicate(inputs, comment),
+    );
+    if (comment) return comment;
+  }
+}
+
+async function upsertComment(octokit, props) {
+  if (props.comment_id !== undefined) {
+    await octokit.issues.updateComment(props);
+  } else {
+    await octokit.issues.createComment(props);
+  }
+}
+
+function getWebAimLink(color1, color2) {
+  return `https://webaim.org/resources/contrastchecker/?fcolor=${color1}&bcolor=${color2}`;
+}
+
+function getGrsLink(colors) {
+  const url = `https://github-readme-stats.vercel.app/api?username=anuraghazra`;
+  const colorString = Object.keys(colors)
+    .map((colorKey) => `${colorKey}=${colors[colorKey]}`)
+    .join("&");
+
+  return `${url}&${colorString}&show_icons=true`;
 }
 
 const themeContribGuidelines = `
@@ -37,13 +96,14 @@ async function run() {
     }
 
     const res = await octokit.pulls.get({
-      owner: "anuraghazra",
-      repo: "github-readme-stats",
+      owner: OWNER,
+      repo: REPO,
       pull_number: pullRequestId,
       mediaType: {
         format: "diff",
       },
     });
+    const comment = await findComment(octokit, pullRequestId);
 
     const diff = parse(res.data);
     const content = diff
@@ -61,17 +121,18 @@ async function run() {
     }
 
     if (!colors) {
-      await octokit.issues.createComment({
-        owner: "anuraghazra",
-        repo: "github-readme-stats",
+      await upsertComment({
+        comment_id: comment?.id,
+        owner: OWNER,
+        repo: REPO,
+        issue_number: pullRequestId,
         body: `
-        \r**Automated Theme preview**
+        \r**${COMMENT_TITLE}**
         
         \rCannot create theme preview
 
         ${themeContribGuidelines}
         `,
-        issue_number: pullRequestId,
       });
       return;
     }
@@ -80,7 +141,7 @@ async function run() {
     const iconColor = colors.icon_color;
     const textColor = colors.text_color;
     const bgColor = colors.bg_color;
-    const url = `https://github-readme-stats.vercel.app/api?username=anuraghazra&title_color=${titleColor}&icon_color=${iconColor}&text_color=${textColor}&bg_color=${bgColor}&show_icons=true`;
+    const url = getGrsLink(colors);
 
     const colorPairs = {
       title_color: [titleColor, bgColor],
@@ -93,18 +154,20 @@ async function run() {
       const color1 = colorPairs[key][0];
       const color2 = colorPairs[key][1];
       if (!ccc.isLevelAA(`#${color1}`, `#${color2}`)) {
-        const permalink = `https://webaim.org/resources/contrastchecker/?fcolor=${color1}&bcolor=${color2}`;
+        const permalink = getWebAimLink(color1, color2);
         warnings.push(
           `\`${key}\` does not passes [AA contrast ratio](${permalink})`,
         );
       }
     });
 
-    await octokit.issues.createComment({
-      owner: "anuraghazra",
-      repo: "github-readme-stats",
+    await upsertComment(octokit, {
+      comment_id: comment?.id,
+      issue_number: pullRequestId,
+      owner: OWNER,
+      repo: REPO,
       body: `
-      \r**Automated Theme preview**  
+      \r**${COMMENT_TITLE}**  
       
       \r${warnings.map((warning) => `- :warning: ${warning}\n`).join("")}
 
@@ -116,7 +179,6 @@ async function run() {
       
       ${themeContribGuidelines}
       `,
-      issue_number: pullRequestId,
     });
   } catch (error) {
     console.log(error);
