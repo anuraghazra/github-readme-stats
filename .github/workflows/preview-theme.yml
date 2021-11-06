@@ -7,6 +7,12 @@ on:
       - master
       - theme-preview-script
       - "themes/index.js"
+  issue_comment:
+    types: [edited]
+    branches:
+      - master
+      - theme-preview-script
+      - "themes/index.js"
 
 jobs:
   build:
