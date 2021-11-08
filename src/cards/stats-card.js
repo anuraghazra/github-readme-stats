@@ -35,10 +35,10 @@ const createTextNode = ({
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       ${iconSvg}
       <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
-      <text 
-        class="stat" 
-        x="${(showIcons ? 140 : 120) + shiftValuePos}" 
-        y="12.5" 
+      <text
+        class="stat"
+        x="${(showIcons ? 140 : 120) + shiftValuePos}"
+        y="12.5"
         data-testid="${id}"
       >${kValue}</text>
     </g>
@@ -75,7 +75,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     locale,
     disable_animations = false,
   } = options;
-
 
   const lheight = parseInt(line_height, 10);
 
@@ -186,20 +185,18 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   };
 
   /*
-    When hide_rank=true, minimum card width is max of 270 and length of title + paddings.
-    When hide_rank=false, minimum card_width is 340.
+    When hide_rank=true, the minimum card width is 270 px + the title length and padding.
+    When hide_rank=false, the minimum card_width is 340 px + the icon width (if show_icons=true).
     Numbers are picked by looking at existing dimensions on production.
   */
+  const iconWidth = show_icons ? 16 : 0;
   const minCardWidth = hide_rank
-    ? clampValue(
-        50 /* padding */ + calculateTextWidth() * 2,
-        270,
-        Infinity)
-    : 340
-  const defaultCardWidth = hide_rank ? 270 : 495
-  let width = isNaN(card_width) ? defaultCardWidth : card_width
+    ? clampValue(50 /* padding */ + calculateTextWidth() * 2, 270, Infinity)
+    : 340 + iconWidth;
+  const defaultCardWidth = hide_rank ? 270 : 495;
+  let width = isNaN(card_width) ? defaultCardWidth : card_width;
   if (width < minCardWidth) {
-    width = minCardWidth
+    width = minCardWidth;
   }
 
   const card = new Card({
@@ -223,11 +220,30 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   if (disable_animations) card.disableAnimations();
 
+  /**
+   * Calculates the right rank circle translation values such that the rank circle
+   * keeps respecting the padding.
+   *
+   * width > 450: The default left padding of 50 px will be used.
+   * width < 450: The left and right padding will shrink equally.
+   *
+   * @returns {number} - Rank circle translation value.
+   */
+  const calculateRankXTranslation = () => {
+    if (width < 450) {
+      return width - 95 + (45 * (450 - 340)) / 110;
+    } else {
+      return width - 95;
+    }
+  };
+
   // Conditionally rendered elements
   const rankCircle = hide_rank
     ? ""
-    : `<g data-testid="rank-circle" 
-          transform="translate(${width - 50}, ${height / 2 - 50})">
+    : `<g data-testid="rank-circle"
+          transform="translate(${calculateRankXTranslation()}, ${
+        height / 2 - 50
+      })">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
@@ -252,7 +268,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         gap: lheight,
         direction: "column",
       }).join("")}
-    </svg> 
+    </svg>
   `);
 };
 
