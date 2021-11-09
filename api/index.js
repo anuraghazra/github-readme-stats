@@ -28,6 +28,7 @@ module.exports = async (req, res) => {
     bg_color,
     theme,
     cache_seconds,
+    exclude_repo,
     custom_title,
     locale,
     disable_animations,
@@ -49,6 +50,7 @@ module.exports = async (req, res) => {
       username,
       parseBoolean(count_private),
       parseBoolean(include_all_commits),
+      parseArray(exclude_repo),
     );
 
     const cacheSeconds = clampValue(

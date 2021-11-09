@@ -37,6 +37,7 @@ const fetcher = (variables, token) => {
           repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}) {
             totalCount
             nodes {
+              name
               stargazers {
                 totalCount
               }
@@ -91,6 +92,7 @@ async function fetchStats(
   username,
   count_private = false,
   include_all_commits = false,
+  exclude_repo = [],
 ) {
   if (!username) throw Error("Invalid username");
 
@@ -116,6 +118,15 @@ async function fetchStats(
 
   const user = res.data.data.user;
 
+  // populate repoToHide map for quick lookup
+  // while filtering out
+  let repoToHide = {};
+  if (exclude_repo) {
+    exclude_repo.forEach((repoName) => {
+      repoToHide[repoName] = true;
+    });
+  }
+
   stats.name = user.name || user.login;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
 
@@ -137,9 +148,14 @@ async function fetchStats(
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
-  stats.totalStars = user.repositories.nodes.reduce((prev, curr) => {
-    return prev + curr.stargazers.totalCount;
-  }, 0);
+  // Retrieve stars while filtering out repositories to be hidden
+  stats.totalStars = user.repositories.nodes
+    .filter((data) => {
+      return !repoToHide[data.name];
+    })
+    .reduce((prev, curr) => {
+      return prev + curr.stargazers.totalCount;
+    }, 0);
 
   stats.rank = calculateRank({
     totalCommits: stats.totalCommits,
