@@ -27,7 +27,7 @@ describe("Test calculateRank", () => {
         issues: 13,
         stargazers: 100,
       }),
-    ).toStrictEqual({"A", score: 50.});
+    ).toStrictEqual({level: "A", score: 50.});
   });
 
   it("Linus Torvalds gets S+ rank", () => {
