@@ -426,5 +426,6 @@
     "Zephir": "#118f9e",
     "Zig": "#ec915c",
     "ZIL": "#dc75e5",
-    "Zimpl": null
+    "Zimpl": null,
+    "JSON": "#292929"
 }
