@@ -175,7 +175,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 - `layout` - Wechselt zwischen zwei verschiedenen Layouts: `default` & `compact`
 - `langs_count` - Begrenzt die Anzahl der angezeigten Sprachen auf der Karte
 - `api_domain` - Legt eine benutzerdefinierte API Domain fest, z.B. für [Hakatime](https://github.com/mujx/hakatime) oder [Wakapi](https://github.com/muety/wakapi)
-- `range` – Fragt eine Zeitspanne an, als die standardmäßig in WakaTime hinterlegte, z.B. `last_7_days`. Siehe [WakaTime API Dokumentation](https://wakatime.com/developers#stats).
+- `range` – Fragt eine andere Zeitspanne an, als jene, welche standardmäßig in Wakatime hinterlegt ist. Zum Beispiel `last_7_days`. Siehe [WakaTime API Dokumentation](https://wakatime.com/developers#stats).
 
 ---
 
