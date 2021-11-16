@@ -349,7 +349,7 @@ Hinweis: Seit [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 
    ![](https://files.catbox.moe/pqub9q.png)
 1. Wähle root und füge eine Umgebungsvariable namens PAT_1 (siehe Abbildung) die als Wert deinen persönlichen Access Token (PAT) hat hinzu, den du einfach [hier](https://github.com/settings/tokens/new) erzeugen kannst (lasse alles wie es ist, vergebe einen beliebigen Namen)
    ![](https://files.catbox.moe/0ez4g7.png)
-1. Klicke auf "Deploy", und das wars. Besuche deine Domains um die API zu benutzen!
+1. Klicke auf `Deploy`, und das wars. Besuche deine Domains um die API zu benutzen!
 </details>
 
 ## :sparkling_heart: Unterstütze das Projekt
