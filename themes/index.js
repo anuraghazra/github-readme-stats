@@ -336,6 +336,13 @@ const themes = {
     text_color: "61ffca",
     bg_color: "15141b",
   },
+  lazuli: {
+    title_color: "00FFFF",
+    icon_color: "00FFFF",
+    text_color: "#9E9E9E",
+    bg_color: "#151515"
+  },
 };
+
 
 module.exports = themes;
