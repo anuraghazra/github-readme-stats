@@ -19,6 +19,7 @@ const createTextNode = ({
   index,
   showIcons,
   shiftValuePos,
+  bold,
 }) => {
   const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
@@ -34,18 +35,18 @@ const createTextNode = ({
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       ${iconSvg}
-      <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
-      <text 
-        class="stat" 
-        x="${(showIcons ? 140 : 120) + shiftValuePos}" 
-        y="12.5" 
+      <text class="stat ${bold ?" bold": "not_bold"}" ${labelOffset} y="12.5">${label}:</text>
+      <text
+        class="stat ${bold ?" bold": "not_bold"}"
+        x="${(showIcons ? 140 : 120) + shiftValuePos}"
+        y="12.5"
         data-testid="${id}"
       >${kValue}</text>
     </g>
   `;
 };
 
-const renderStatsCard = (stats = {}, options = { hide: [] }) => {
+const renderStatsCard = (stats = {}, options = { hide: []}) => {
   const {
     name,
     totalStars,
@@ -66,6 +67,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     title_color,
     icon_color,
     text_color,
+    text_bold = true,
     bg_color,
     theme = "default",
     custom_title,
@@ -158,6 +160,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         showIcons: show_icons,
         shiftValuePos:
           (!include_all_commits ? 50 : 35) + (isLongLocale ? 50 : 0),
+        bold: text_bold,
       }),
     );
 
@@ -171,7 +174,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   // Conditionally rendered elements
   const rankCircle = hide_rank
     ? ""
-    : `<g data-testid="rank-circle" 
+    : `<g data-testid="rank-circle"
           transform="translate(400, ${height / 2 - 50})">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
@@ -241,7 +244,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         gap: lheight,
         direction: "column",
       }).join("")}
-    </svg> 
+    </svg>
   `);
 };
 

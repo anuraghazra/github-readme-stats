@@ -189,6 +189,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `count_private` - Count private commits _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
 - `custom_title` - Sets a custom title for the card
+- `text_bold` - Use bold text _(boolean)_
 - `disable_animations` - Disables all animations in the card _(boolean)_
 
 #### Repo Card Exclusive Options:
@@ -444,3 +445,4 @@ Thanks! :heart:
 Contributions are welcome! <3
 
 Made with :heart: and JavaScript.
+
