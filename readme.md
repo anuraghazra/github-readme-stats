@@ -220,7 +220,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `layout` - Switch between two available layouts `default` & `compact`
 - `langs_count` - Limit number of languages on the card, defaults to all reported langauges
 - `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
-- `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for list of available options.
+- `time_range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for list of available options.
 
 ---
 
