@@ -69,7 +69,7 @@ const totalCommitsFetcher = async (username) => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/vnd.github.cloak-preview",
-        Authorization: `bearer ${token}`,
+        Authorization: `token ${token}`,
       },
     });
   };
