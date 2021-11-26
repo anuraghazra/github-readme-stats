@@ -342,6 +342,13 @@ const themes = {
     text_color: "bcbcbc",
     bg_color: "262626",
   },
+  moonlight: {
+    title_color: "86e1fc",
+    icon_color: "c099ff",
+    text_color: "ff5370",
+    bg_color: "212337",
+    border_color: "c8d3f5",
+  },
 };
 
 module.exports = themes;
