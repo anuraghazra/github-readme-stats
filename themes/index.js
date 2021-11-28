@@ -342,6 +342,12 @@ const themes = {
     text_color: "bcbcbc",
     bg_color: "262626",
   },
+  ubuntu: {
+    title_color: "ffffff",
+    icon_color: "E95420",
+    text_color: "ffffff",
+    bg_color: "FFFFFF"
+  }
 };
 
 module.exports = themes;
