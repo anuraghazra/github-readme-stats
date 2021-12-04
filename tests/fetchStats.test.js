@@ -52,7 +52,7 @@ describe("Test fetchStats", () => {
   it("should fetch correct stats", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data);
 
-    let stats = await fetchStats("anuraghazra");
+    let stats = await fetchStats("anuraghazra", []);
     const rank = calculateRank({
       totalCommits: 100,
       totalRepos: 5,
@@ -77,7 +77,7 @@ describe("Test fetchStats", () => {
   it("should throw error", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, error);
 
-    await expect(fetchStats("anuraghazra")).rejects.toThrow(
+    await expect(fetchStats("anuraghazra", [])).rejects.toThrow(
       "Could not resolve to a User with the login of 'noname'.",
     );
   });
@@ -85,7 +85,7 @@ describe("Test fetchStats", () => {
   it("should fetch and add private contributions", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data);
 
-    let stats = await fetchStats("anuraghazra", true);
+    let stats = await fetchStats("anuraghazra", [], true);
     const rank = calculateRank({
       totalCommits: 150,
       totalRepos: 5,
@@ -113,7 +113,7 @@ describe("Test fetchStats", () => {
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", true, true);
+    let stats = await fetchStats("anuraghazra", [], true, true);
     const rank = calculateRank({
       totalCommits: 1050,
       totalRepos: 5,

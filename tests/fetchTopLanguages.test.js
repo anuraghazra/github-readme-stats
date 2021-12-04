@@ -59,7 +59,7 @@ describe("FetchTopLanguages", () => {
   it("should fetch correct language data", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
-    let repo = await fetchTopLanguages("anuraghazra");
+    let repo = await fetchTopLanguages("anuraghazra", []);
     expect(repo).toStrictEqual({
       HTML: {
         color: "#0f0",
@@ -77,7 +77,7 @@ describe("FetchTopLanguages", () => {
   it("should throw error", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, error);
 
-    await expect(fetchTopLanguages("anuraghazra")).rejects.toThrow(
+    await expect(fetchTopLanguages("anuraghazra", [])).rejects.toThrow(
       "Could not resolve to a User with the login of 'noname'.",
     );
   });

@@ -89,9 +89,9 @@ const totalCommitsFetcher = async (username) => {
 
 async function fetchStats(
   username,
+  ownerAffiliations,
   count_private = false,
   include_all_commits = false,
-  ownerAffiliations,
 ) {
   if (!username) throw Error("Invalid username");
 
