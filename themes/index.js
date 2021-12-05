@@ -342,6 +342,12 @@ const themes = {
     text_color: "bcbcbc",
     bg_color: "262626",
   },
+  nawrassedhm: {
+    title_color: "000000",
+    icon_color: "13100e",
+    text_color: "101010",
+    bg_color: "fbe4c4",
+  },
 };
 
 module.exports = themes;
