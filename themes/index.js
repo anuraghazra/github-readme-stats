@@ -342,6 +342,12 @@ const themes = {
     text_color: "bcbcbc",
     bg_color: "262626",
   },
+  Onear: {
+    title_color: "660bba",
+    icon_color: "660bba",
+    text_color: "6c3e96",
+    bg_color: "1b1029",
+  },
 };
 
 module.exports = themes;
