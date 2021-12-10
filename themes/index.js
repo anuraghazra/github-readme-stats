@@ -342,6 +342,13 @@ const themes = {
     text_color: "bcbcbc",
     bg_color: "262626",
   },
+  gh_dark: {
+    title_color: "c9d1d9",
+    icon_color: "8b949e",
+    text_color: "c9d1d9",
+    bg_color: "0d1117",
+    border_color="30363d",
+  }
 };
 
 module.exports = themes;
