@@ -112,8 +112,8 @@ describe("Test renderTopLanguages", () => {
     const headerStyles = stylesObject[":host"][".header "];
     const langNameStyles = stylesObject[":host"][".lang-name "];
 
-    expect(headerStyles["fill"].trim()).toBe("#2f80ed");
-    expect(langNameStyles["fill"].trim()).toBe("#333");
+    expect(headerStyles.fill.trim()).toBe("#2f80ed");
+    expect(langNameStyles.fill.trim()).toBe("#333");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#fffefe",
@@ -136,8 +136,8 @@ describe("Test renderTopLanguages", () => {
     const headerStyles = stylesObject[":host"][".header "];
     const langNameStyles = stylesObject[":host"][".lang-name "];
 
-    expect(headerStyles["fill"].trim()).toBe(`#${customColors.title_color}`);
-    expect(langNameStyles["fill"].trim()).toBe(`#${customColors.text_color}`);
+    expect(headerStyles.fill.trim()).toBe(`#${customColors.title_color}`);
+    expect(langNameStyles.fill.trim()).toBe(`#${customColors.text_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#252525",
@@ -156,8 +156,8 @@ describe("Test renderTopLanguages", () => {
     const headerStyles = stylesObject[":host"][".header "];
     const langNameStyles = stylesObject[":host"][".lang-name "];
 
-    expect(headerStyles["fill"].trim()).toBe("#5a0");
-    expect(langNameStyles["fill"].trim()).toBe(`#${themes.radical.text_color}`);
+    expect(headerStyles.fill.trim()).toBe("#5a0");
+    expect(langNameStyles.fill.trim()).toBe(`#${themes.radical.text_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       `#${themes.radical.bg_color}`,
@@ -176,8 +176,8 @@ describe("Test renderTopLanguages", () => {
       const headerStyles = stylesObject[":host"][".header "];
       const langNameStyles = stylesObject[":host"][".lang-name "];
 
-      expect(headerStyles["fill"].trim()).toBe(`#${themes[name].title_color}`);
-      expect(langNameStyles["fill"].trim()).toBe(`#${themes[name].text_color}`);
+      expect(headerStyles.fill.trim()).toBe(`#${themes[name].title_color}`);
+      expect(langNameStyles.fill.trim()).toBe(`#${themes[name].text_color}`);
       expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
         "fill",
         `#${themes[name].bg_color}`,
