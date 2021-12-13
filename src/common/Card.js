@@ -154,6 +154,10 @@ class Card {
             fill: ${this.colors.titleColor};
             animation: fadeInAnimation 0.8s ease-in-out forwards;
           }
+          @supports(-moz-appearance: auto) {
+            /* Selector detects Firefox */
+            .header { font-size: 15.5px; }
+          }
           ${this.css}
 
           ${process.env.NODE_ENV === "test" ? "" : getAnimations()}

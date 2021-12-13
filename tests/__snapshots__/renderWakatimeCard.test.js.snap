@@ -15,10 +15,18 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
             fill: #2f80ed;
             animation: fadeInAnimation 0.8s ease-in-out forwards;
           }
+          @supports(-moz-appearance: auto) {
+            /* Selector detects Firefox */
+            .header { font-size: 15.5px; }
+          }
           
     
     .stat {
       font: 600 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+    }
+    @supports(-moz-appearance: auto) {
+      /* Selector detects Firefox */
+      .stat { font-size:12px; }
     }
     .stagger {
       opacity: 0;
@@ -164,10 +172,18 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
             fill: #2f80ed;
             animation: fadeInAnimation 0.8s ease-in-out forwards;
           }
+          @supports(-moz-appearance: auto) {
+            /* Selector detects Firefox */
+            .header { font-size: 15.5px; }
+          }
           
     
     .stat {
       font: 600 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+    }
+    @supports(-moz-appearance: auto) {
+      /* Selector detects Firefox */
+      .stat { font-size:12px; }
     }
     .stagger {
       opacity: 0;
