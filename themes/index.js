@@ -342,6 +342,12 @@ const themes = {
     text_color: "bcbcbc",
     bg_color: "262626",
   },
+  moltack: {
+    title_color: "86092C",
+    icon_color: "86092C",
+    text_color: "574038",
+    bg_color: "F5E1C0",
+  },
 };
 
 module.exports = themes;
