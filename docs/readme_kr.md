@@ -1,7 +1,7 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">동적으로 생성되는 Github 사용량 통계를 여러분의 README 에 추가해보세요!</p>
+ <p align="center">동적으로 생성되는 Github 사용량 통계를 여러분의 README에 추가해보세요!</p>
 </p>
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
@@ -49,9 +49,9 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
-    .
+    ·
     <a href="/docs/readme_nl.md">Nederlands</a>
-    .
+    ·
     <a href="/docs/readme_np.md">नेपाली</a>
   </p>
 </p>
@@ -72,7 +72,7 @@
 
 아래 코드를 복사해서 마크다운 파일에 붙여넣으면 끝이에요, 아주 간단해요!
 
-`?username=` 속성의 값을 Github 계정의 사용자 명(닉네임)으로 바꿔주세요.
+`?username=` 속성의 값을 Github 계정의 사용자명(닉네임)으로 바꿔주세요.
 
 ```md
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
@@ -163,8 +163,8 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 ```
 
 > 캐시에 대한 참고사항:
-> 포크와 스타 수가 1,000 개 미만인 저장소의 카드는 기본적으로 4시간 (14,400초) 으로 설정되어 있습니다.
-> 그 외에는, it's 2시간 (7,200초) 입니다. 또한, 캐시설정 시간의 범위는 최소 2시간, 최대 24시간입니다.
+> 포크와 스타 수가 1,000 개 미만인 레포지토리의 카드는 기본적으로 4시간 (14,400초) 으로 설정되어 있습니다.
+> 그 외에는, 2시간 (7,200초) 입니다. 또한, 캐시 설정 시간의 범위는 최소 2시간, 최대 24시간입니다.
 
 
 #### 통계 카드의 표시 제한 옵션:
@@ -179,7 +179,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `custom_title` - 카드의 타이틀 값 설정
 - `disable_animations` - 카드의 모든 에니메이션 활성 여부 _(boolean)_
 
-#### 저장소 카드의 표시 제한 옵션:
+#### 레포지토리 카드의 표시 제한 옵션:
 
 - `show_owner` - 저장소 소유자 닉네임 표기 여부 _(boolean)_
 
@@ -209,15 +209,15 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 ---
 
-# GitHub 저장소 핀
+# GitHub 레포지토리 핀
 
-GitHub 저장소 여분 핀을 이용하면, 6개 이상의 저장소 핀을 여러분의 프로필에 추가할 수 있어요.
+GitHub 레포지토리 여분 핀을 이용하면, 6개 이상의 레포지토리 핀을 여러분의 프로필에 추가할 수 있어요.
 
 맞아요! 이제 6개 이상의 핀을 사용할 수 있어요! (핀이 부족할 일이 없답니다!)
 
 ### 사용법
 
-이 코드를 복사해서 여러분의 README 에 넣고 링크를 변경해주세요.
+이 코드를 복사해서 여러분의 README에 넣고 링크를 변경해주세요.
 
 엔드 포인트: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
@@ -227,11 +227,11 @@ GitHub 저장소 여분 핀을 이용하면, 6개 이상의 저장소 핀을 여
 
 ### 미리보기
 
-[![GitHub 저장소 핀 카드](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![GitHub 레포지토리 핀 카드](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
 [show_owner](#커스터마이징) 속성을 통해 저장소 소유자의 닉네임 표시 여부를 설정할 수 있어요.
 
-[![GitHub 저장소 핀 카드](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+[![GitHub 레포지토리 핀 카드](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
 # 언어 사용량 통계
 
@@ -243,7 +243,7 @@ _참고:
 
 ### 사용법
 
-이 코드를 복사해서 여러분의 README 에 넣고 링크를 변경해주세요.
+이 코드를 복사해서 여러분의 README에 넣고 링크를 변경해주세요.
 
 엔드 포인트: `api/top-langs?username=anuraghazra`
 
@@ -293,7 +293,7 @@ _참고:
 
 # Wakatime 주간 통계
 
-`?username=` 속성의 값을 [Wakatime](https://wakatime.com) 계정의 사용자 명(닉네임)으로 바꿔주세요.
+`?username=` 속성의 값을 [Wakatime](https://wakatime.com) 계정의 사용자명(닉네임)으로 바꿔주세요.
 
 ```md
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
@@ -349,7 +349,7 @@ _참고:
 
 - 저장소 핀 커스터마이징하기
 
-![Anurag 님의 GitHub 저장소 핀](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+![Anurag 님의 GitHub 레포지토리ㅇ 핀](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
 - 언어 사용량 통계
 
