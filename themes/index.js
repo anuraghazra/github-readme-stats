@@ -349,8 +349,8 @@ const themes = {
     bg_color: "F5E1C0",
   },
    fojan: {
-    title_color: "26a641",
-    icon_color: "26a641",
+    title_color: "2a9d8f",
+    icon_color: "7209b7",
     text_color: "cdd9e5",
     bg_color: "2d333b",
   },
