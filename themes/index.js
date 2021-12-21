@@ -350,7 +350,7 @@ const themes = {
   },
    fojan: {
     title_color: "2a9d8f",
-    icon_color: "7209b7",
+    icon_color: "b7e4c7",
     text_color: "cdd9e5",
     bg_color: "2d333b",
   },
