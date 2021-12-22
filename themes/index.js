@@ -348,6 +348,12 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+  arshan_spec: {
+    title_color: "FF2E63",
+    icon_color: "EAEAEA",
+    text_color: "252A34",
+    bg_color: "08D9D6",
+  },  
 };
 
 module.exports = themes;
