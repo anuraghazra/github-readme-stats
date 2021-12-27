@@ -348,6 +348,12 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+  frostbite: {
+    title_color: "0096c7",
+    icon_color: "ade8f4",
+    text_color: "48cae4",
+    bg_color: "001233",
+  },
 };
 
 module.exports = themes;
