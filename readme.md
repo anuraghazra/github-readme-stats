@@ -415,9 +415,10 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
 1. Select `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
-1. Select `Import Git Repository`
+1. Select `Import Git Repository`. Select root and keep everything as is.
    ![](https://files.catbox.moe/pqub9q.png)
-1. Select root and keep everything as is, just add your environment variable named PAT_1 (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)
+1. Create a personal access token (PAT) [here](https://github.com/settings/tokens/new) and enable the `repo` permissions (this allows access to see private repo stats)
+1. Add the PAT as an environment variable named `PAT_1` (as shown).
    ![](https://files.catbox.moe/0ez4g7.png)
 1. Click deploy, and you're good to go. See your domains to use the API!
 
