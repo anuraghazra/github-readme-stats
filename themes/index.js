@@ -348,6 +348,12 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+  makan: {
+    title_color: "2CB1BF",
+    icon_color: "2CB1BF",
+    text_color: "c3adc7",
+    bg_color: "22272E",
+  },
 };
 
 module.exports = themes;
