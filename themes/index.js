@@ -348,6 +348,12 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+  glory: {
+    title_color: "ffdb58",
+    icon_color: "ffcc33",
+    text_color: "daa520",
+    bg_color: "8b0000",
+  },
 };
 
 module.exports = themes;
