@@ -348,6 +348,12 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+  moonlight: {
+    title_color: "ffc777",
+    icon_color: "82aaff",
+    text_color: "c8d3f5",
+    bg_color: "191a2a",
+  },
 };
 
 module.exports = themes;
