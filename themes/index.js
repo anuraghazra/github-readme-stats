@@ -348,6 +348,13 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+   softness: {
+    title_color: "763839",
+    icon_color: "b99488",
+    text_color: "bc7832",
+    bg_color: "f2e8db",
+    border_color: "b99488",
+  },
 };
 
 module.exports = themes;
