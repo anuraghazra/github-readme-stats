@@ -348,7 +348,7 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
-  "noctis-high-contrast": {
+  noctis_high_contrast: {
     title_color: "66ffbf",
     icon_color: "99f3ff",
     text_color: "ffffff",
