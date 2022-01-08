@@ -348,6 +348,12 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+  "noctis-high-contrast": {
+    title_color: "66ffbf",
+    icon_color: "99f3ff",
+    text_color: "ffffff",
+    bg_color: "000000",
+  }
 };
 
 module.exports = themes;
