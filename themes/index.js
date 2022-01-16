@@ -348,6 +348,11 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+  lights_out: {
+    title_color: "ffffff",
+    icon_color: "ffffff",
+    text_color: "ffffff",
+    bg_color: "000000",
 };
 
 module.exports = themes;
