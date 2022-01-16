@@ -11,11 +11,12 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!, $start_time: DateTime!) {
         user(login: $login) {
           name
           login
-          contributionsCollection {
+          isSponsoringViewer
+          contributionsCollection(from: $start_time) {
             totalCommitContributions
             restrictedContributionsCount
           }
@@ -104,7 +105,10 @@ async function fetchStats(
     rank: { level: "C", score: 0 },
   };
 
-  let res = await retryer(fetcher, { login: username });
+  let res = await retryer(fetcher, { 
+    login: username, 
+    start_time: `${new Date().getFullYear()}-01-01T00:00:00.000Z`,
+  });
 
   if (res.data.errors) {
     logger.error(res.data.errors);
