@@ -349,7 +349,7 @@ const themes = {
     bg_color: "F5E1C0",
   },
   githubdark: {
-    title_color: "1f6feb",
+    title_color: "58a6ff",
     icon_color: "8b949e",
     text_color: "c9d1d9",
     bg_color: "0d1117",
