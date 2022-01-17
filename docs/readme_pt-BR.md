@@ -27,7 +27,7 @@
   </p>
 
   <p align="center">
-    <a href="#demo">Ver demonstração</a>
+    <a href="#demonstração">Ver demonstração</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Reportar erros</a>
     ·
