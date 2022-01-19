@@ -398,7 +398,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary><b> 设置 Vercel 的指导 🔨</b></summary>
+ <summary><b> Vercel 部署指南 🔨</b></summary>
 
 1. 前往 [vercel.com](https://vercel.com/)
 1. 点击 `Log in`
