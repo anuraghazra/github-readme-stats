@@ -2,7 +2,7 @@
 
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
-- Reporting a issue
+- Reporting an issue
 - Discussing the current state of the code
 - Submitting a fix
 - Proposing new features
@@ -13,7 +13,7 @@ We love your input! We want to make contributing to this project as easy and tra
 Pull requests are the best way to propose changes. We actively welcome your pull requests:
 
 1. Fork the repo and create your branch from `master`.
-1. If you've added code that should be tested, add some tests' example.
+1. If you've added code that should be tested, add some tests' examples.
 1. If you've changed APIs, update the documentation.
 1. Issue that pull request!
 
@@ -28,24 +28,24 @@ Interested in diving deeper into understanding how github-readme-stats works?
 
 ## Local Development
 
-To run & test github-readme-stats you need to follow few simple steps :-
-_(make sure you already have a [vercel](https://vercel.com/) account)_
+To run & test github-readme-stats you need to follow a few simple steps:-
+_(make sure you already have a [Vercel](https://vercel.com/) account)_
 
 1. Install [Vercel CLI](https://vercel.com/download)
 1. Fork the repository and clone the code to your local machine
 1. Run `npm install` in the repository root
 1. Run the command "vercel" in the root and follow the steps there
 1. Create a `.env` file in the root of the directory
-1. In the .env file add a new variable named "PAT_1" with your [github Personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+1. In the .env file add a new variable named "PAT_1" with your [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
 1. Run the command "vercel dev" to start a development server at https://localhost:3000
 
 ## Themes Contribution
 
 GitHub Readme Stats supports custom theming and you can also contribute new themes!
 
-All you need to do is edit [themes/index.js](./themes/index.js) file and add your theme at the end of the file.
+All you need to do is edit the [themes/index.js](./themes/index.js) file and add your theme at the end of the file.
 
-While creating the Pull request to add a new theme **don't forget to add a screenshot of how your theme looks**, you can also test how it looks using custom url parameters like `title_color`, `icon_color`, `bg_color`, `text_color`, `border_color`
+While creating the Pull request to add a new theme **don't forget to add a screenshot of how your theme looks**, you can also test how it looks using custom URL parameters like `title_color`, `icon_color`, `bg_color`, `text_color`, `border_color`
 
 > NOTE: If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
 
@@ -59,11 +59,11 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 
 ## Frequently Asked Questions (FAQs)
 
-**Q:** How to hide jupyter Notebook?
+**Q:** How to hide Jupyter Notebook?
 
 > **Ans:** &hide=jupyter%20notebook
 
-**Q:** I could not figure out how to deploy on my own vercel instance
+**Q:** I could not figure out how to deploy on my own Vercel instance
 
 > **Ans:**
 >
@@ -72,7 +72,7 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 
 **Q:** Language Card is incorrect
 
-> **Ans:** Please read all the related issues / comments before opening any issues regarding language card stats:
+> **Ans:** Please read all the related issues/comments before opening any issues regarding language card stats:
 >
 > - https://github.com/anuraghazra/github-readme-stats/issues/136#issuecomment-665164174
 >
@@ -102,8 +102,8 @@ People _love_ thorough bug reports. I'm not even kidding.
 **Great Feature Requests** tend to have:
 
 - A quick idea summary
-- What & why you wanted to add the specific feature
-- Additional Context like images, links to resources to implement the feature etc etc.
+- What & why do you want to add the specific feature
+- Additional context like images, links to resources to implement the feature, etc.
 
 ## License
 
