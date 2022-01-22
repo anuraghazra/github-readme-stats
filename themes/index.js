@@ -356,16 +356,10 @@ const themes = {
     border_color: "0c1a25",
   },
   "rose_pine":{
-    title_color: "9CCFD8",
-    icon_color: "C3A6E6",
-    text_color: "FAF4ED",
-    bg_color: "1f1d29",
-  },
-  "rose_pine_dawn":{
-    title_color: "56949f",
-    icon_color: "907aa9",
-    text_color: "575279",
-    bg_color: "FAF4ED",
+    title_color: "9ccfd8",
+    icon_color: "ebbcba",
+    text_color: "e0def4",
+    bg_color: "191724",
   }
 };
 
