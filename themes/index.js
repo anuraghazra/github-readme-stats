@@ -348,6 +348,12 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+  Ecoglow: {
+    title_color: "53b14f",
+    icon_color: "53b14f",
+    text_color: "b3b3b3",
+    bg_color: "121212",
+  },
 };
 
 module.exports = themes;
