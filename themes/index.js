@@ -348,6 +348,11 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+  pinkshawa: {
+    title_color: "cbf5f1",
+    icon_color: "cbf5f1",
+    text_color: "d047a7",
+    bg_color: "fab2a3",
 };
 
 module.exports = themes;
