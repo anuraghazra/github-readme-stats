@@ -352,7 +352,7 @@ const themes = {
     title_color: "FFDC32",
     icon_color: "B4C878",
     text_color: "FFDC32",
-    bg_color: "649650",
+    bg_color: "2F4828",
     border_color: "B4C878",
   },  
 };
