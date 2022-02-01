@@ -266,7 +266,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ### Exclude individual repositories
 
-You can use `?exclude_repo=repo1,repo2` parameter to exclude individual repositories.
+You can use `&exclude_repo=repo1,repo2` parameter to exclude individual repositories.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
@@ -274,7 +274,7 @@ You can use `?exclude_repo=repo1,repo2` parameter to exclude individual reposito
 
 ### Hide individual languages
 
-You can use `?hide=language1,language2` parameter to hide individual languages.
+You can use `&hide=language1,language2` parameter to hide individual languages.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
