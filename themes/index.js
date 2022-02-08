@@ -348,6 +348,18 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+  gold: {
+    title_color:"FFB300",
+    icon_color:"FFB300",
+    text_color:"976909",
+    bg_color:"010409",
+  },
+  all_black: {
+    title_color:"999",
+    icon_color:"666",
+    text_color:"444",
+    bg_color:"000"
+  },
 };
 
 module.exports = themes;
