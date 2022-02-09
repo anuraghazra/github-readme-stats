@@ -348,6 +348,13 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+  codeSTACKr: {
+    title_color: "ff652f",
+    icon_color: "FFE400",
+    text_color: "ffffff",
+    bg_color: "09131B",
+    border_color: "0c1a25",
+  },
 };
 
 module.exports = themes;
