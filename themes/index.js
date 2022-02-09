@@ -355,6 +355,13 @@ const themes = {
     bg_color: "09131B",
     border_color: "0c1a25",
   },
+  transDev: {
+    title_color: "faebd7",
+    icon_color: "f4e6d4",
+    text_color: "5ce1e6",
+    bg_color: "1f004e",
+    border_color: "2c2c2c",
+  },
 };
 
 module.exports = themes;
