@@ -35,6 +35,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `discord_old_blurple` ![discord_old_blurple][discord_old_blurple] | `aura_dark` ![aura_dark][aura_dark] | `panda` ![panda][panda] |
 | `noctis_minimus` ![noctis_minimus][noctis_minimus] | `cobalt2` ![cobalt2][cobalt2] | `swift` ![swift][swift] |
 | `aura` ![aura][aura] | `apprentice` ![apprentice][apprentice] | `moltack` ![moltack][moltack] |
+| `codeSTACKr` ![codeSTACKr][codeSTACKr] | | |
 | [Add your theme][add-theme] | | |
 
 ## Repo Card
@@ -62,6 +63,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `discord_old_blurple` ![discord_old_blurple][discord_old_blurple_repo] | `aura_dark` ![aura_dark][aura_dark_repo] | `panda` ![panda][panda_repo] |
 | `noctis_minimus` ![noctis_minimus][noctis_minimus_repo] | `cobalt2` ![cobalt2][cobalt2_repo] | `swift` ![swift][swift_repo] |
 | `aura` ![aura][aura_repo] | `apprentice` ![apprentice][apprentice_repo] | `moltack` ![moltack][moltack_repo] |
+| `codeSTACKr` ![codeSTACKr][codeSTACKr_repo] | | |
 | [Add your theme][add-theme] | | |
 
 
@@ -123,6 +125,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [aura]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=aura
 [apprentice]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=apprentice
 [moltack]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=moltack
+[codeSTACKr]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=codeSTACKr
 
 
 [default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
@@ -183,6 +186,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [aura_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=aura
 [apprentice_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=apprentice
 [moltack_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=moltack
+[codeSTACKr_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=codeSTACKr
 
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
