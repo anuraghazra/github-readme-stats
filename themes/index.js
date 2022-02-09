@@ -348,6 +348,12 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+  github_live: {
+    title_color: "3c2678",
+    icon_color: "db4132",
+    text_color: "d4326a",
+    bg_color: "f0c145",
+  }
 };
 
 module.exports = themes;
