@@ -348,6 +348,11 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
-};
+  electron: {
+    title_color: "91f2a2",
+    icon_color: "fcfcaa",
+    text_color: "85f5fa",
+    bg_color: "222835",
+  };
 
 module.exports = themes;
