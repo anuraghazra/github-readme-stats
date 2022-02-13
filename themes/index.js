@@ -355,6 +355,12 @@ const themes = {
     bg_color: "09131B",
     border_color: "0c1a25",
   },
+  foxroad {
+    title_color: "ff5000",
+    icon_color: "ff5000",
+    text_color: "ffffff",
+    bg_color: "141414",
+  },
 };
 
 module.exports = themes;
