@@ -42,9 +42,10 @@ const fetcher = (variables, token) => {
 /**
  * @param {string} username
  * @param {string[]} exclude_repo
+ * @param {string[]} include_repo
  * @returns {Promise<import("./types").TopLangData>}
  */
-async function fetchTopLanguages(username, exclude_repo = []) {
+async function fetchTopLanguages(username, exclude_repo = [], include_repo=[]) {
   if (!username) throw new MissingParamError(["username"]);
 
   const res = await retryer(fetcher, { login: username });
@@ -56,21 +57,36 @@ async function fetchTopLanguages(username, exclude_repo = []) {
 
   let repoNodes = res.data.data.user.repositories.nodes;
   let repoToHide = {};
+  let repoToInclude = {};
 
   // populate repoToHide map for quick lookup
   // while filtering out
-  if (exclude_repo) {
+  if (exclude_repo.length > 0) {
     exclude_repo.forEach((repoName) => {
       repoToHide[repoName] = true;
     });
   }
+  else if (include_repo.length > 0 ){
+    include_repo.forEach((repoName) => {
+      repoToInclude[repoName] = true
+    });
+  }
 
   // filter out repositories to be hidden
-  repoNodes = repoNodes
+  if (exclude_repo.length > 0){
+    repoNodes = repoNodes
     .sort((a, b) => b.size - a.size)
     .filter((name) => {
       return !repoToHide[name.name];
     });
+  }
+  else if (include_repo.length > 0 ){
+    repoNodes = repoNodes
+    .sort((a, b) => b.size - a.size)
+    .filter((name) => {
+      return !!repoToInclude[name.name];
+    });
+  }
 
   repoNodes = repoNodes
     .filter((node) => {

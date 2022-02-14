@@ -26,6 +26,7 @@ module.exports = async (req, res) => {
     layout,
     langs_count,
     exclude_repo,
+    include_repo,
     custom_title,
     locale,
     border_radius,
@@ -45,6 +46,7 @@ module.exports = async (req, res) => {
     const topLangs = await fetchTopLanguages(
       username,
       parseArray(exclude_repo),
+      parseArray(include_repo)
     );
 
     const cacheSeconds = clampValue(
