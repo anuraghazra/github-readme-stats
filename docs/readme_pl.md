@@ -82,7 +82,7 @@ Twoja niewielka pomoc ma ogromne znaczenie. :heart:
 - [Karta statystyk GitHub](#karta-statystyk-github)
 - [Dodatkowe przypinki GitHub](#dodatkowe-przypinki-github)
 - [Karta głównych języków](#karta-głównych-języków)
-- [Wakatime Week Stats](#wakatime-week-stats)
+- [Statystyki tygodnia Wakatime](#statystyki-tygodnia-wakatime)
 - [Motywy](#motywy)
 - [Dostosowywanie](#dostosowywanie)
   - [Typowe opcje](#typowe-opcje)
@@ -188,7 +188,7 @@ Możesz podać wiele wartości oddzielonych przecinkami w opcji bg_color aby ren
 - `hide_rank` - _(boolean)_ ukrywa rangę i automatycznie zmienia rozmiar szerokości karty
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Liczenie wszystkich commitów zamiast tylko bieżącego roku _(boolean)_
-- `count_private` - CLiczenie prywatnych commitów _(boolean)_
+- `count_private` - Liczenie prywatnych commitów _(boolean)_
 - `line_height` - Ustawia wysokość linii między tekstem _(liczba)_
 - `custom_title` - Ustawia własny tytuł karty
 - `disable_animations` - Wyłącza wszystkie animacje na karcie _(boolean)_
@@ -208,7 +208,7 @@ Możesz podać wiele wartości oddzielonych przecinkami w opcji bg_color aby ren
 - `custom_title` - Ustawia własny tytuł karty
 
 > :ostrzeżenie: **Ważne:**
-> Nazwy języków powinny mieć uri, jak określono w [Kodowaniu procentowym](https://pl.wikipedia.org/wiki/Kodowanie_procentowe)
+> Nazwy języków powinny mieć URI, jak określono w [Kodowaniu procentowym](https://pl.wikipedia.org/wiki/Kodowanie_procentowe)
 > (np: `c++` powinno stać się `c%2B%2B`, `jupyter notebook` powinno stać się `jupyter%20notebook`, etc.) Możesz użyć
 > [urlencoder.org](https://www.urlencoder.org/) aby pomóc ci zrobić to automatycznie.
 
@@ -254,7 +254,7 @@ Użyj zmiennej [show_owner](#dostosowywanie) aby dołączyć nazwę użytkownika
 
 Karta topowych języków pokazuje najczęściej używany język główny użytkownika GitHub.
 
-_NOTKA: Top Languages nie wskazuje mojego poziomu umiejętności ani nic podobnego; jest to metryka GitHub określająca, które języki mają najwięcej kodu w GitHub. To nowa funkcja github-readme-stats._
+_NOTKA: Top Languages nie wskazuje poziomu umiejętności ani nic podobnego; jest to metryka GitHub określająca, które języki mają najwięcej kodu w GitHub. To nowa funkcja github-readme-stats._
 
 ### Stosowanie
 
@@ -444,6 +444,6 @@ Dzięki! :heart:
 [![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 
-Wszelkie contributions są mile widziane! <3
+Wszelkie wkłady we współtworzenie są mile widziane! <3
 
 Stworzone z :heart: i JavaScript.
