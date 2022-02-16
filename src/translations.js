@@ -273,7 +273,7 @@ const wakatimeCardLocales = {
     ru: "Статистика Wakatime",
     "uk-ua": "Статистика Wakatime",
     id: "Status Wakatime",
-    ml: "സമയ സ്ഥിതിവിവരക്കണക്കുകൾ",
+    ml: "വേക്ക് ടൈം സ്ഥിതിവിവരക്കണക്കുകൾ",
     my: "Statistik Wakatime",
     sk: "Wakatime štatistika",
     tr: "Waketime İstatistikler",
