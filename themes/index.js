@@ -355,6 +355,19 @@ const themes = {
     bg_color: "09131B",
     border_color: "0c1a25",
   },
+  github_darkgray: {
+    title_color: "cbcbcb",
+    icon_color: "ffffff",
+    text_color: "cbcbcb",
+    bg_color: "0D1117",
+    border_color: "959595",
+  },
+  dark_contrast: {
+    title_color: "ffffff",
+    icon_color: "ffffff",
+    text_color: "ffffff",
+    bg_color: "000000",
+  }
 };
 
 module.exports = themes;
