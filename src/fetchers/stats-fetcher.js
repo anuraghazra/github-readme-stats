@@ -87,10 +87,116 @@ const totalCommitsFetcher = async (username) => {
   }
 };
 
+// To get the all time number of repositories that the user has contributed to
+const totalContributionsFetcher = async (username) => {
+  if (!githubUsernameRegex.test(username)) {
+    logger.log("Invalid username");
+    return 0;
+  }
+
+  // To hold the repos the user has contributed to. The URL of the repo will be
+  // the key, so that duplicates are automatically removed.
+  let repos = {};
+
+  const ITEMS_PER_PAGE = 100;
+
+  const excludeReposOwnedByUser = `-user:${username}`;
+
+  // https://developer.github.com/v3/search/#search-commits
+  const fetchTotalCommits = (variables, token) => {
+    return axios({
+      method: "get",
+      url: `https://api.github.com/search/commits?q=author:${variables.login} ${excludeReposOwnedByUser}&per_page=${ITEMS_PER_PAGE}&page=${variables.page}`,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/vnd.github.cloak-preview",
+        Authorization: `bearer ${token}`,
+      },
+    });
+  };
+
+  // https://developer.github.com/v3/search/#search-issues-and-pull-requests
+  const fetchTotalIssues = (variables, token) => {
+    return axios({
+      method: "get",
+      url: `https://api.github.com/search/issues?q=author:${variables.login} ${excludeReposOwnedByUser}&per_page=${ITEMS_PER_PAGE}&page=${variables.page}`,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/vnd.github.cloak-preview",
+        Authorization: `bearer ${token}`,
+      },
+    });
+  };
+
+  const fetchPage = async (fetcher, pageNum) => {
+    let numPages = 0;
+
+    let res = await retryer(fetcher, { login: username, page: pageNum });
+    if (res === undefined) {
+      logger.log("Response failed.");
+      return numPages;
+    }
+
+    if (!res.data.items) {
+      return numPages;
+    }
+
+    const numItems = res.data.total_count
+    const numItemsPerPage = res.data.items.length;
+    numPages = Math.ceil(numItems / numItemsPerPage);
+
+    const items = res.data.items;
+
+    items.forEach((item) => {
+      let repoURL;
+
+      switch(fetcher) {
+        case fetchTotalCommits:
+          repoURL = item.repository.url;
+          break;
+        case fetchTotalIssues:
+          repoURL = item.repository_url;
+          break;
+      }
+
+      if (repoURL) {
+        repos[repoURL] = true;
+      }
+    });
+
+    return numPages;
+  }
+
+  const fetchHandler = async (fetcher) => {
+    // Fetch the first page to start with. This will give us the total number of
+    // items we will have to find.
+    const numPages = await fetchPage(fetcher, 1);
+
+    let pageFetchers = [];
+    for (let page = 2; page <= numPages; page++) {
+      pageFetchers.push(fetchPage(fetcher, page));
+    }
+
+    await Promise.all(pageFetchers);
+  }
+
+  try {
+    await Promise.all([
+      fetchHandler(fetchTotalCommits),
+      fetchHandler(fetchTotalIssues),
+    ]);
+  } catch(err) {
+    logger.log(err);
+  }
+
+  return Object.keys(repos).length;
+};
+
 async function fetchStats(
   username,
   count_private = false,
   include_all_commits = false,
+  include_all_contributions = false,
 ) {
   if (!username) throw Error("Invalid username");
 
@@ -135,7 +241,12 @@ async function fetchStats(
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
-  stats.contributedTo = user.repositoriesContributedTo.totalCount;
+
+  if (include_all_contributions) {
+    stats.contributedTo = await totalContributionsFetcher(username);
+  } else {
+    stats.contributedTo = user.repositoriesContributedTo.totalCount;
+  }
 
   stats.totalStars = user.repositories.nodes.reduce((prev, curr) => {
     return prev + curr.stargazers.totalCount;
