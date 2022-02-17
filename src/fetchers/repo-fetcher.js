@@ -1,6 +1,11 @@
+// @ts-check
 const retryer = require("../common/retryer");
 const { request } = require("../common/utils");
 
+/**
+ * @param {import('Axios').AxiosRequestHeaders} variables
+ * @param {string} token
+ */
 const fetcher = (variables, token) => {
   return request(
     {
@@ -43,6 +48,26 @@ const fetcher = (variables, token) => {
   );
 };
 
+/**
+ * @typedef {{
+ *  name: string;
+ *  nameWithOwner: string;
+ *  isPrivate: boolean;
+ *  isArchived: boolean;
+ *  isTemplate: boolean;
+ *  stargazers: { totalCount: number };
+ *  description: string;
+ *  primaryLanguage: { color: string; id: string; name: string };
+ *  forkCount: number;
+ *  starCount: number
+ * }} RepositoryData
+ */
+
+/**
+ * @param {string} username
+ * @param {string} reponame
+ * @returns {Promise<RepositoryData>}
+ */
 async function fetchRepo(username, reponame) {
   if (!username || !reponame) {
     throw new Error("Invalid username or reponame");

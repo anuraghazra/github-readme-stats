@@ -1,7 +1,12 @@
+// @ts-check
 const { request, logger } = require("../common/utils");
 const retryer = require("../common/retryer");
 require("dotenv").config();
 
+/**
+ * @param {import('Axios').AxiosRequestHeaders} variables
+ * @param {string} token
+ */
 const fetcher = (variables, token) => {
   return request(
     {
@@ -34,6 +39,19 @@ const fetcher = (variables, token) => {
   );
 };
 
+/**
+ * @typedef {{ name: string, color: string, size: number }} Lang
+ */
+
+/**
+ * @typedef {Record<string, Lang>} TopLangData
+ */
+
+/**
+ * @param {string} username
+ * @param {string[]} exclude_repo
+ * @returns {Promise<TopLangData>}
+ */
 async function fetchTopLanguages(username, exclude_repo = []) {
   if (!username) throw Error("Invalid username");
 

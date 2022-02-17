@@ -1,3 +1,4 @@
+// @ts-check
 const I18n = require("../common/I18n");
 const Card = require("../common/Card");
 const icons = require("../common/icons");
@@ -45,6 +46,12 @@ const createTextNode = ({
   `;
 };
 
+
+/**
+ * @param {Partial<import('../fetchers/stats-fetcher').StatsData>} stats
+ * @param {Partial<import("./types").StatCardOptions>} options
+ * @returns {string}
+ */
 const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const {
     name,
@@ -75,7 +82,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     disable_animations = false,
   } = options;
 
-  const lheight = parseInt(line_height, 10);
+  const lheight = parseInt(String(line_height), 10);
 
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor, borderColor } =
