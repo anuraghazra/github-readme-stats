@@ -109,7 +109,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: "Jumlah PR",
       sk: "Všetky PR",
       tr: "Toplam PR",
-      pl: "Wszystkie PR",
+      pl: "Wszystkie PR-y",
     },
     "statcard.issues": {
       ar: "مجموع التحسينات",
@@ -136,7 +136,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: "Jumlah Isu Dilaporkan",
       sk: "Všetky problémy",
       tr: "Toplam Hata",
-      pl: "Wszystkie problemy",
+      pl: "Wszystkie Issues",
     },
     "statcard.contribs": {
       ar: "ساهم في",
@@ -163,7 +163,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: "Menyumbang kepada",
       sk: "Účasti",
       tr: "Katkı Verildi",
-      pl: "Udziały",
+      pl: "Kontrybucje",
     },
   };
 };
