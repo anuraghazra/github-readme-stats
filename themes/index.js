@@ -358,8 +358,8 @@ const themes = {
     demolsn: {
     title_color: "262B4F",
     icon_color: "FACA22",
-    text_color: "ffffff",
-    bg_color: "000000",
+    text_color: "000000",
+    bg_color: "ffffff",
     border_color: "FACA22",
   },
 };
