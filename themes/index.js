@@ -355,6 +355,13 @@ const themes = {
     bg_color: "09131B",
     border_color: "0c1a25",
   },
+    demolsn: {
+    title_color: "262B4F",
+    icon_color: "FACA22",
+    text_color: "ffffff",
+    bg_color: "000000",
+    border_color: "FACA22",
+  },
 };
 
 module.exports = themes;
