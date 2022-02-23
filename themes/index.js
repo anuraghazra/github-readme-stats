@@ -355,6 +355,12 @@ const themes = {
     bg_color: "09131B",
     border_color: "0c1a25",
   },
+  "shades-of-electric-violet": {
+    title_color: "5500FF",
+    icon_color: "5500FF",
+    text_color: "5500FF",
+    bg_color: "8f00ff",
+  },
 };
 
 module.exports = themes;
