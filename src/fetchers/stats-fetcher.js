@@ -4,7 +4,12 @@ const githubUsernameRegex = require("github-username-regex");
 
 const retryer = require("../common/retryer");
 const calculateRank = require("../calculateRank");
-const { request, logger, CustomError } = require("../common/utils");
+const {
+  request,
+  logger,
+  CustomError,
+  MissingParamError,
+} = require("../common/utils");
 
 require("dotenv").config();
 
@@ -103,7 +108,7 @@ async function fetchStats(
   count_private = false,
   include_all_commits = false,
 ) {
-  if (!username) throw Error("Invalid username");
+  if (!username) throw new MissingParamError(["username"]);
 
   const stats = {
     name: "",
