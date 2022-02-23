@@ -273,11 +273,26 @@ class CustomError extends Error {
   constructor(message, type) {
     super(message);
     this.type = type;
-    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || "adsad";
+    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || type;
   }
 
   static MAX_RETRY = "MAX_RETRY";
   static USER_NOT_FOUND = "USER_NOT_FOUND";
+}
+
+class MissingParamError extends Error {
+  /**
+   * @param {string[]} missedParams
+   * @param {string?=} secondaryMessage
+   */
+  constructor(missedParams, secondaryMessage) {
+    const msg = `Missing params ${missedParams
+      .map((p) => `"${p}"`)
+      .join(", ")} make sure you pass the parameters in URL`;
+    super(msg);
+    this.missedParams = missedParams;
+    this.secondaryMessage = secondaryMessage;
+  }
 }
 
 /**
@@ -372,6 +387,7 @@ module.exports = {
   logger,
   CONSTANTS,
   CustomError,
+  MissingParamError,
   lowercaseTrim,
   chunkArray,
   parseEmojis,
