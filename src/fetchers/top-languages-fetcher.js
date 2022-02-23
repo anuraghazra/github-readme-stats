@@ -40,17 +40,9 @@ const fetcher = (variables, token) => {
 };
 
 /**
- * @typedef {{ name: string, color: string, size: number }} Lang
- */
-
-/**
- * @typedef {Record<string, Lang>} TopLangData
- */
-
-/**
  * @param {string} username
  * @param {string[]} exclude_repo
- * @returns {Promise<TopLangData>}
+ * @returns {Promise<import("./types").TopLangData>}
  */
 async function fetchTopLanguages(username, exclude_repo = []) {
   if (!username) throw Error("Invalid username");

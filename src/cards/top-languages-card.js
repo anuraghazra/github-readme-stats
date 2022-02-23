@@ -18,7 +18,7 @@ const DEFAULT_LANG_COLOR = "#858585";
 const CARD_PADDING = 25;
 
 /**
- * @typedef {import("../fetchers/top-languages-fetcher").Lang} Lang
+ * @typedef {import("../fetchers/types").Lang} Lang
  */
 
 /**
@@ -228,7 +228,7 @@ const useLanguages = (topLangs, hide, langs_count) => {
 };
 
 /**
- * @param {import('../fetchers/top-languages-fetcher').TopLangData} topLangs
+ * @param {import('../fetchers/types').TopLangData} topLangs
  * @param {Partial<import("./types").TopLangOptions>} options
  * @returns {string}
  */

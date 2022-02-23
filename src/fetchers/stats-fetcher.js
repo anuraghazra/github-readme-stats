@@ -93,22 +93,10 @@ const totalCommitsFetcher = async (username) => {
 };
 
 /**
- * @typedef {{
- *  name: string;
- *  totalPRs: number;
- *  totalCommits: number;
- *  totalIssues: number;
- *  totalStars: number;
- *  contributedTo: number;
- *  rank: { level: string; score: number };
- * }} StatsData
- */
-
-/**
  * @param {string} username
  * @param {boolean} count_private
  * @param {boolean} include_all_commits
- * @returns {Promise<StatsData>}
+ * @returns {Promise<import("./types").StatsData>}
  */
 async function fetchStats(
   username,

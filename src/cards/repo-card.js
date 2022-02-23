@@ -67,7 +67,7 @@ const iconWithLabel = (icon, label, testid) => {
 };
 
 /**
- * @param {import('../fetchers/repo-fetcher').RepositoryData} repo 
+ * @param {import('../fetchers/types').RepositoryData} repo 
  * @param {Partial<import("./types").RepoCardOptions>} options 
  * @returns {string}
  */

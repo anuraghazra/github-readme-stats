@@ -49,24 +49,9 @@ const fetcher = (variables, token) => {
 };
 
 /**
- * @typedef {{
- *  name: string;
- *  nameWithOwner: string;
- *  isPrivate: boolean;
- *  isArchived: boolean;
- *  isTemplate: boolean;
- *  stargazers: { totalCount: number };
- *  description: string;
- *  primaryLanguage: { color: string; id: string; name: string };
- *  forkCount: number;
- *  starCount: number
- * }} RepositoryData
- */
-
-/**
  * @param {string} username
  * @param {string} reponame
- * @returns {Promise<RepositoryData>}
+ * @returns {Promise<import("./types").RepositoryData>}
  */
 async function fetchRepo(username, reponame) {
   if (!username || !reponame) {

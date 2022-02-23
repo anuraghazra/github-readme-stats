@@ -1,3 +1,38 @@
+export type RepositoryData = {
+  name: string;
+  nameWithOwner: string;
+  isPrivate: boolean;
+  isArchived: boolean;
+  isTemplate: boolean;
+  stargazers: { totalCount: number };
+  description: string;
+  primaryLanguage: {
+    color: string;
+    id: string;
+    name: string;
+  };
+  forkCount: number;
+  starCount: number;
+};
+
+export type StatsData = {
+  name: string;
+  totalPRs: number;
+  totalCommits: number;
+  totalIssues: number;
+  totalStars: number;
+  contributedTo: number;
+  rank: { level: string; score: number };
+};
+
+export type Lang = {
+  name: string;
+  color: string;
+  size: number;
+};
+
+export type TopLangData = Record<string, Lang>;
+
 export type WakaTimeData = {
   categories: {
     digital: string;
@@ -66,4 +101,4 @@ export type WakaTimeLang = {
   name: string;
   text: string;
   percent: number;
-}
+};

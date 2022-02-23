@@ -48,7 +48,7 @@ const createTextNode = ({
 
 
 /**
- * @param {Partial<import('../fetchers/stats-fetcher').StatsData>} stats
+ * @param {Partial<import('../fetchers/types').StatsData>} stats
  * @param {Partial<import("./types").StatCardOptions>} options
  * @returns {string}
  */
