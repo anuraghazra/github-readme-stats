@@ -1,4 +1,5 @@
-const axios = require("axios");
+// @ts-check
+const axios = require("axios").default;
 const githubUsernameRegex = require("github-username-regex");
 
 const retryer = require("../common/retryer");
@@ -7,6 +8,10 @@ const { request, logger, CustomError } = require("../common/utils");
 
 require("dotenv").config();
 
+/**
+ * @param {import('axios').AxiosRequestHeaders} variables
+ * @param {string} token
+ */
 const fetcher = (variables, token) => {
   return request(
     {
@@ -87,6 +92,12 @@ const totalCommitsFetcher = async (username) => {
   }
 };
 
+/**
+ * @param {string} username
+ * @param {boolean} count_private
+ * @param {boolean} include_all_commits
+ * @returns {Promise<import("./types").StatsData>}
+ */
 async function fetchStats(
   username,
   count_private = false,

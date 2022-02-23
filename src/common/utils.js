@@ -161,11 +161,11 @@ function flexLayout({ items, gap, direction, sizes = [] }) {
 
 /**
  * @typedef {object} CardColors
- * @prop {string} title_color
- * @prop {string} text_color
- * @prop {string} icon_color
- * @prop {string} bg_color
- * @prop {string} border_color
+ * @prop {string?=} title_color
+ * @prop {string?=} text_color
+ * @prop {string?=} icon_color
+ * @prop {string?=} bg_color
+ * @prop {string?=} border_color
  * @prop {keyof typeof import('../../themes')?=} fallbackTheme
  * @prop {keyof typeof import('../../themes')?=} theme
  */

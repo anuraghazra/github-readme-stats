@@ -1,5 +1,9 @@
 const axios = require("axios");
 
+/**
+ * @param {{username: string, api_domain: string, range: string}} props
+ * @returns {Promise<WakaTimeData>} 
+ */
 const fetchWakatimeStats = async ({ username, api_domain, range }) => {
   try {
     const { data } = await axios.get(
