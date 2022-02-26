@@ -47,10 +47,10 @@ module.exports = async (req, res) => {
     );
 
     /*
-    if star count & fork count is over 1k then we are kFormating the text
-    and if both are zero we are not showing the stats
-    so we can just make the cache longer, since there is no need to frequent updates
-  */
+      if star count & fork count is over 1k then we are kFormating the text
+      and if both are zero we are not showing the stats
+      so we can just make the cache longer, since there is no need to frequent updates
+    */
     const stars = repoData.starCount;
     const forks = repoData.forkCount;
     const isBothOver1K = stars > 1000 && forks > 1000;

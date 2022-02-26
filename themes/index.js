@@ -355,6 +355,13 @@ const themes = {
     bg_color: "1E1E2E",
     border_color: "F5E0DC",
   },
+  codeSTACKr: {
+    title_color: "ff652f",
+    icon_color: "FFE400",
+    text_color: "ffffff",
+    bg_color: "09131B",
+    border_color: "0c1a25",
+  },
 };
 
 module.exports = themes;

@@ -102,7 +102,7 @@ Change the `?username=` value to your GitHub's username.
 
 _Note: Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone).
 The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories.
-The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js)_
+The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js)._
 
 ### Hiding individual stats
 
@@ -252,7 +252,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 The top languages card show a GitHub user's most frequently used top language.
 
-_NOTE: Top Languages does not indicate my skill level or anything like that, it's a GitHub metric of which languages have the most code on GitHub. It's a new feature of github-readme-stats._
+_NOTE: Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It's a new feature of github-readme-stats._
 
 ### Usage
 
