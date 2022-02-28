@@ -355,6 +355,13 @@ const themes = {
     bg_color: "09131B",
     border_color: "0c1a25",
   },
+  cyanSpaceCoder: {
+    title_color: "15ba88",
+    icon_color: "8093f1",
+    text_color: "15ba88",
+    bg_color: "272640",
+    border_color: "15ba88",
+  },
 };
 
 module.exports = themes;
