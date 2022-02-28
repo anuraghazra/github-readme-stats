@@ -113,7 +113,7 @@ describe("Test renderTopLanguages", () => {
     const langNameStyles = stylesObject[":host"][".lang-name "];
 
     expect(headerStyles.fill.trim()).toBe("#2f80ed");
-    expect(langNameStyles.fill.trim()).toBe("#333");
+    expect(langNameStyles.fill.trim()).toBe("#434d58");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#fffefe",
