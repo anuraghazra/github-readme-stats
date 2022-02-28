@@ -355,7 +355,7 @@ const themes = {
     bg_color: "09131B",
     border_color: "0c1a25",
   },
-  Viðar: {
+  vidar: {
     title_color: "AD85FF",
     icon_color: "ffd700",
     text_color: "2bff00",
