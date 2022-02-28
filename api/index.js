@@ -13,6 +13,7 @@ const { isLocaleAvailable } = require("../src/translations");
 
 module.exports = async (req, res) => {
   const {
+    experimental_css,
     username,
     hide,
     hide_title,
@@ -61,6 +62,7 @@ module.exports = async (req, res) => {
 
     return res.send(
       renderStatsCard(stats, {
+        css: experimental_css,
         hide: parseArray(hide),
         show_icons: parseBoolean(show_icons),
         hide_title: parseBoolean(hide_title),

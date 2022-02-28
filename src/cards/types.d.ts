@@ -12,6 +12,7 @@ export type CommonOptions = {
 };
 
 export type StatCardOptions = CommonOptions & {
+  css: string;
   hide: string[];
   show_icons: boolean;
   hide_title: boolean;

@@ -63,6 +63,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     rank,
   } = stats;
   const {
+    css,
     hide = [],
     show_icons = false,
     hide_title = false,
@@ -235,7 +236,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
-  card.setCSS(cssStyles);
+  card.setCSS(`${cssStyles}${css}`);
 
   if (disable_animations) card.disableAnimations();
 
