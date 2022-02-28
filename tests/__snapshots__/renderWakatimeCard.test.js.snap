@@ -22,7 +22,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
           
     
     .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+      font: 600 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #434d58;
     }
     @supports(-moz-appearance: auto) {
       /* Selector detects Firefox */
@@ -33,7 +33,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
     .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333; 
+      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58; 
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
     
@@ -62,7 +62,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
     }
     
   
-    .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333 }
+    .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58 }
     
 
           
@@ -115,7 +115,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
       >19 mins</text>
       
     <svg width=\\"220\\" x=\\"110\\" y=\\"4\\">
-      <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#333\\"></rect>
+      <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#434d58\\"></rect>
       <rect
           height=\\"8\\"
           fill=\\"#2f80ed\\"
@@ -137,7 +137,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
       >1 min</text>
       
     <svg width=\\"220\\" x=\\"110\\" y=\\"4\\">
-      <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#333\\"></rect>
+      <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#434d58\\"></rect>
       <rect
           height=\\"8\\"
           fill=\\"#2f80ed\\"
@@ -179,7 +179,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
           
     
     .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #333;
+      font: 600 14px 'Segoe UI', Ubuntu, \\"Helvetica Neue\\", Sans-Serif; fill: #434d58;
     }
     @supports(-moz-appearance: auto) {
       /* Selector detects Firefox */
@@ -190,7 +190,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
     .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333; 
+      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58; 
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
     
@@ -219,7 +219,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
     }
     
   
-    .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #333 }
+    .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58 }
     
 
           
