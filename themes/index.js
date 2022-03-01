@@ -355,6 +355,13 @@ const themes = {
     bg_color: "09131B",
     border_color: "0c1a25",
   },
+  chuck: {
+    title_color: "ff0000",
+    icon_color: "7DBBE6",
+    text_color: "211F1F",
+    bg_color: "f5f5f5",
+    border_color: "e4e2e2",
+  },
 };
 
 module.exports = themes;
