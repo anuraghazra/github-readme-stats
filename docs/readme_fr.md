@@ -64,7 +64,7 @@
 
 Envisagez-vous de soutenir le projet en faisant un don ? Ne le faites pas !
 
-Au lieu de cela, aidez l'Inde à combattre la 2ème vague mortelle de COVID,
+Au lieu de cela, aidez l'Inde à combattre la 2ème vague mortelle de COVID !
 Des milliers de personnes meurent en Inde faute d'infrastructures nécessaires liées à l'oxygène et au COVID.
 
 Vous pouvez aller sur [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) et faire un petit don pour nous aider à combattre le covid et à surmonter cette crise. :heart:
@@ -197,7 +197,7 @@ Vous pouvez fournir plusieurs valeurs *(suivie d'une virgule)* dans l'option bg_
 
 Les épingles supplémentaires GitHub vous permettent d'épingler plus que les 6 dépôts dans votre profil, en utilisant un profil GitHub Readme.
 
-Et OUI ! Vous n'êtes plus limité à 6 dépôts épinglés.
+Eh OUI ! Vous n'êtes plus limité à 6 dépôts épinglés.
 
 ### Usage
 
