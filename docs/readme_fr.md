@@ -55,38 +55,53 @@
     <a href="/docs/readme_np.md">नेपाली</a>
   </p>
 </p>
-<p align="center">Vous aimez ce projet? Pensez <a href="https://www.paypal.me/anuraghazra">à faire un don</a> pour l'améliorer!
+<p align="center">Vous aimez ce projet ? Pensez <a href="https://www.paypal.me/anuraghazra">à faire un don</a> pour l'améliorer !
 
-# Features
+<p>
+<a href="https://indiafightscorona.giveindia.org">
+<img src="https://d2wvdrxmr8p0wf.cloudfront.net/static/giveindia.svg" alt="Give india logo" width="200" />
+</a>
 
-- [Carte des stats GitHub](#carte-des-stats-github)
-- [GitHub Extra Pins](#github-extra-pins)
-- [Carte des meilleurs langages](#carte-des-langages-les--utilisés)
-- [Themes](#thèmes)
+Envisagez-vous de soutenir le projet en faisant un don ? Ne le faites pas !
+
+Au lieu de cela, aidez l'Inde à combattre la 2ème vague mortelle de COVID,
+Des milliers de personnes meurent en Inde faute d'infrastructures nécessaires liées à l'oxygène et au COVID.
+
+Vous pouvez aller sur [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) et faire un petit don pour nous aider à combattre le covid et à surmonter cette crise. :heart:
+</p>
+
+# Fonctionnalités
+
+- [Carte de stats GitHub](#carte-des-stats-github)
+- [Thèmes](#thèmes)
 - [Personnalisation](#personnalisation)
-- [Deployer toi-même](#déployer-sur-votre-propre-instance-vercel)
+- [GitHub Extra Pins](#github-extra-pins)
+- [Carte des langages les plus utilisés](#carte-des-langages-les--utilisés)
+- [Deployez-vous !](#déployer-le-projet-sur-votre-propre-instance-vercel)
+- [Supporter le projet](#sparkling_heart-supporter-le-projet)
 
-# Carte des Stats GitHub
+# Carte de stats GitHub
 
-Copiez-collez ceci dans votre Markdown, et c'est tout. C'est simple !
+ C'est simple, copiez-collez ceci dans votre Readme ... et c'est tout !
 
-Remplacez la valeur `?username=` par le nom d'utilisateur de votre GitHub.
+Remplacez la valeur `?username=` par votre nom d'utilisateur GitHub.
 
 ```md
-[![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Les stats GitHub d'Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Note: Les rangs sont calculés sur la base des statistiques de l'utilisateur, voir [src/calculateRank.js](../src/calculateRank.js)_
+_Note: Les rangs disponibles sont S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%) et B+ (tout le monde). Les valeurs sont calculées via le nombre de contributions, de forks, d'issue ouverte, de pull request, d'étoiles, d'abonnés, de repositories détenus ... etc. Pour en savoir plus, voir : [src/calculateRank.js](../src/calculateRank.js)_
 
 ### Cacher les statistiques individuelles
 
-Pour masquer des statistiques spécifiques, vous pouvez passer un paramètre de requête `?hide=` avec des valeurs séparées par des virgules.
+Pour masquer des statistiques spécifiques, vous pouvez passer le paramètre de requête `?hide=` avec des valeurs séparées par des virgules.
 
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
-![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
+![Les stats GitHub d'Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
+
 
 ### Ajouter le compte des contributions privées au compte des commits totaux
 
@@ -97,59 +112,59 @@ _Note: Si vous déployez vous-même ce projet, les contributions privées seront
 > Options: `&count_private=true`
 
 ```md
-![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+![Les stats GitHub d'Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
 ### Afficher les icônes
 
-Pour activer les icônes, vous pouvez passer `show_icons=true` dans le paramètre de requête, comme ceci :
+Pour activer les icônes, passez `show_icons=true` dans le paramètre de requête, comme ceci :
 
 ```md
-![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+![Les stats GitHub d'Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
 ### Thèmes
 
-Avec les thèmes intégrés, vous pouvez personnaliser l'apparence de la carte sans faire de [personnalisation manuelle](#customization).
+Avec les thèmes intégrés, vous pouvez personnaliser l'apparence de vos cartes sans faire de [personnalisation manuelle](#customization).
 
-Use `?theme=THEME_NAME` parameter like so :-
+Pour cela, utilisez le paramètre `?theme=THEME_NAME` comme ceci :
 
 ```md
-![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Les stats GitHub d'Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
-#### Tous les thèmes intégrés :-
+#### Ci-dessous, les thèmes intégrés :
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-Vous pouvez consulter un aperçu de [tous les thèmes disponibles](../themes/README.md) ou consulter le [fichier de configuration des thèmes](../themes/index.js) & **vous pouvez également ajouter de nouveaux thèmes** si vous le souhaitez :D
+Vous pouvez consulter un aperçu de [tous les thèmes disponibles](../themes/README.md) ou consulter le [fichier de configuration des thèmes](../themes/index.js) et **vous pouvez également ajouter de nouveaux thèmes** si vous le souhaitez :D
 
 ### Personnalisation
 
 Vous pouvez personnaliser l'apparence de votre `Carte des stats` ou `Carte de dépôt` comme vous le souhaitez avec les paramètres d'URL.
 
-#### Options principales:
+#### Les options principales :
 
 - `title_color` - Couleur du titre de la carte _(hex color)_
 - `text_color` - Couleur du texte _(hex color)_
-- `icon_color` - Couleur des icônes si disponibles _(hex color)_
+- `icon_color` - Couleur des icônes *(si disponibles)* _(hex color)_
 - `bg_color` - Couleur du fond de la carte _(hex color)_ **ou** un gradiant de la forme _angle,start,end_
 - `hide_border` - Cache la bordure de la carte _(booléen)_
 - `theme` - Nom du thème, parmis [tous les thèmes disponibles](../themes/README.md)
-- `cache_seconds` - Paramétrer le cache manuellement _(min: 1800, max: 86400)_
-- `locale` - définir la langue de la carte _(par exemple. cn, de, es, etc.)_
+- `cache_seconds` - Permet de paramétrer le cache manuellement _(min: 1800, max: 86400)_
+- `locale` - Permet de définir la langue de la carte _(par exemple. cn, de, es, etc.)_
 
 ##### Gradient in bg_color
 
-Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_color pour rendre un degradé, le format du degradé est :-
+Vous pouvez fournir plusieurs valeurs *(suivie d'une virgule)* dans l'option bg_color pour rendre un degradé. Le format du degradé est :
 
 ```
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
-> Note relative: Les cartes dépôt ont un cache par défaut de 30 minutes (1800 secondes) si le nombre de bifurcations et d'étoiles est inférieur à 1K, alors il est de 2 heures (7200). Notez également que la mémoire cache est limitée à 30 minutes au minimum et à 24 heures au maximum.
+> Note relative : Les cartes de dépôt ont un cache par défaut de 30 minutes *(1800 secondes)* si le nombre de forks et d'étoiles est inférieur à 1K, alors il est de 2 heures *(7200 secondes)*. Notez également que la mémoire cache est limitée à 30 minutes au minimum et à 24 heures au maximum.
 
 #### Stats Card Exclusive Options:
 
@@ -180,7 +195,7 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 # GitHub Extra Pins
 
-Les épingles supplémentaires GitHub vous permettent d'épingler plus de 6 dépôts dans votre profil en utilisant un profil GitHub readme.
+Les épingles supplémentaires GitHub vous permettent d'épingler plus que les 6 dépôts dans votre profil, en utilisant un profil GitHub Readme.
 
 Et OUI ! Vous n'êtes plus limité à 6 dépôts épinglés.
 
@@ -194,19 +209,19 @@ Extrémité: `api/pin?username=anuraghazra&repo=github-readme-stats`
 [![Carte ReadMe](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Démo
+### Démonstration
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
-Utiliser la variable [show_owner](#customization) pour inclure le nom d'utilisateur du propriétaire du dépôt.
+Utilisez la variable [show_owner](#customization) pour inclure le nom d'utilisateur du propriétaire du dépôt.
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
 # Carte des langages les + utilisés
 
-La carte des langages principaux montre les langages les plus utilisés par les utilisateurs de GitHub.
+La carte des langages principaux montre les langages que vous utilisez le plus.
 
-_NOTE: Les langages affichés n'indiquent pas mon niveau de compétence ou quelque chose comme ça, c'est une métrique GitHub de quelles langages j'ai le plus de code sur GitHub, c'est une nouvelle fonctionnalité de github-readme-stats_
+_NOTE: Les langages affichés n'indiquent pas votre niveau de compétence ou quelque chose comme ça, c'est une métrique GitHub de quels languages vous utilisez le plus sur GitHub._
 
 ### Usage
 
@@ -220,7 +235,7 @@ Extrémité: `api/top-langs?username=anuraghazra`
 
 ### Cacher certaines langages
 
-Vous pouvez utiliser le paramètre `?hide=language1,language2` pour masquer les langages individuels.
+Vous pouvez utiliser le paramètre `?hide=language1,language2` pour masquer certains languages.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
@@ -299,11 +314,11 @@ En général, vous ne pourrez pas mettre les images côte à côte. Pour ce fair
 </a>
 ```
 
-## Déployer sur votre propre instance Vercel
+# Déployer le projet sur votre propre instance Vercel
 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-Comme l'API GitHub ne permet que 5k requêtes par heure, il est possible que mon `https://github-readme-stats.vercel.app/api` puisse atteindre le limiteur de débit. Si vous l'hébergez sur votre propre serveur Vercel, alors vous n'avez pas à vous soucier de quoi que ce soit. Cliquez sur le bouton de déploiement pour commencer !
+Comme l'API GitHub ne permet que 5000 requêtes par heure, il est possible que mon API `https://github-readme-stats.vercel.app/api` puisse atteindre le limiteur de débit. Si vous l'hébergez sur votre propre serveur Vercel, alors vous n'avez pas à vous soucier de quoi que ce soit. Vous aurez juste à ciquer sur le bouton de déploiement pour commencer !
 
 NOTE: Depuis [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) nous devrions être en mesure de traiter plus de 5 000 demandes et ne pas avoir de problèmes de temps d'arrêt :D
 
@@ -330,15 +345,15 @@ NOTE: Depuis [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) n
 
 </details>
 
-## :sparkling_heart: Supporter le project
+# :sparkling_heart: Supporter le project
 
-Je mets open-source presque tout ce que je peux, et j'essaie de répondre à tous ceux qui ont besoin d'aide en utilisant ces projets. Évidemment, cela prend du temps. Vous pouvez utiliser ce service gratuitement.
+Je mets en open-source presque tout ce que je peux, et j'essaie de répondre à tous ceux qui ont besoin d'aide en utilisant ces projets. Évidemment, cela prend du temps. Vous pouvez utiliser ce service gratuitement.
 
-Cependant, si vous utilisez ce projet et que vous en êtes satisfait ou si vous voulez simplement m'encourager à continuer à créer, il y a quelques façons de le faire :-
+Cependant, si vous utilisez ce projet et que vous en êtes satisfait ou si vous voulez simplement m'encourager à continuer à créer, il y a quelques façons de le faire :
 
 - Donner un crédit approprié lorsque vous utilisez github-readme-stats sur votre readme, avec un lien vers celui-ci :D
 - Mettre une étoile et partager le projet :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - Vous pouvez faire des dons uniques via PayPal. Je vais probablement acheter un ~~café~~ thé. :tea:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - Vous pouvez égaleùent faire un don unique via PayPal. Comme ça, je pourrais acheter un ~~café~~ thé :tea:
 
 Merci ! :heart:
 
