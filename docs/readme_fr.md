@@ -74,9 +74,9 @@ Vous pouvez aller sur [https://indiafightscorona.giveindia.org](https://indiafig
 
 - [Carte de stats GitHub](#carte-de-stats-github-) 📊
 - [Thèmes](#thèmes-) 🎨
-- [Personnalisation](#personnalisation)
-- [GitHub Extra Pins](#github-extra-pins)
-- [Carte des langages les plus utilisés](#carte-des-langages-les--utilisés)
+- [Personnalisation](#personnalisation-artist) :artist:
+- [GitHub Extra Pins](#github-extra-pins-) 🤙
+- [Carte des langages les plus utilisés](#carte-des-langages-les--utilisés-) 🏁
 - [Deployez-vous !](#déployer-le-projet-sur-votre-propre-instance-vercel-) 🤓
 - [Supporter le projet](#supporter-le-project-sparkling_heart) 💖
 
@@ -141,7 +141,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 Vous pouvez consulter un aperçu de [tous les thèmes disponibles](../themes/README.md) ou consulter le [fichier de configuration des thèmes](../themes/index.js) et **vous pouvez également ajouter de nouveaux thèmes** si vous le souhaitez :D
 
-### Personnalisation
+### Personnalisation :artist:
 
 Vous pouvez personnaliser l'apparence de votre `Carte des stats` ou `Carte de dépôt` comme vous le souhaitez avec les paramètres d'URL.
 
@@ -193,7 +193,7 @@ Vous pouvez fournir plusieurs valeurs *(suivie d'une virgule)* dans l'option bg_
 
 ---
 
-# GitHub Extra Pins
+# GitHub Extra Pins 🤙
 
 Les épingles supplémentaires GitHub vous permettent d'épingler plus que les 6 dépôts dans votre profil, en utilisant un profil GitHub Readme.
 
@@ -217,7 +217,7 @@ Utilisez la variable [show_owner](#customization) pour inclure le nom d'utilisat
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
-# Carte des langages les + utilisés
+# Carte des langages les + utilisés 🏁
 
 La carte des langages principaux montre les langages que vous utilisez le plus.
 
