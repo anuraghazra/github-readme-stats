@@ -72,15 +72,15 @@ Vous pouvez aller sur [https://indiafightscorona.giveindia.org](https://indiafig
 
 # Fonctionnalités
 
-- [Carte de stats GitHub](#carte-des-stats-github)
-- [Thèmes](#thèmes)
+- [Carte de stats GitHub](#carte-de-stats-github-) 📊
+- [Thèmes](#thèmes-) 🎨
 - [Personnalisation](#personnalisation)
 - [GitHub Extra Pins](#github-extra-pins)
 - [Carte des langages les plus utilisés](#carte-des-langages-les--utilisés)
-- [Deployez-vous !](#déployer-le-projet-sur-votre-propre-instance-vercel)
-- [Supporter le projet](#sparkling_heart-supporter-le-projet)
+- [Deployez-vous !](#déployer-le-projet-sur-votre-propre-instance-vercel-) 🤓
+- [Supporter le projet](#supporter-le-project-sparkling_heart) 💖
 
-# Carte de stats GitHub
+# Carte de stats GitHub 📊
 
  C'est simple, copiez-collez ceci dans votre Readme ... et c'est tout !
 
@@ -123,7 +123,7 @@ Pour activer les icônes, passez `show_icons=true` dans le paramètre de requêt
 ![Les stats GitHub d'Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
-### Thèmes
+### Thèmes 🎨
 
 Avec les thèmes intégrés, vous pouvez personnaliser l'apparence de vos cartes sans faire de [personnalisation manuelle](#customization).
 
@@ -314,7 +314,7 @@ En général, vous ne pourrez pas mettre les images côte à côte. Pour ce fair
 </a>
 ```
 
-# Déployer le projet sur votre propre instance Vercel
+# Déployer le projet sur votre propre instance Vercel 🤓
 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
@@ -345,7 +345,7 @@ NOTE: Depuis [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) n
 
 </details>
 
-# :sparkling_heart: Supporter le project
+# Supporter le project :sparkling_heart:
 
 Je mets en open-source presque tout ce que je peux, et j'essaie de répondre à tous ceux qui ont besoin d'aide en utilisant ces projets. Évidemment, cela prend du temps. Vous pouvez utiliser ce service gratuitement.
 
