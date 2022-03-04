@@ -355,6 +355,13 @@ const themes = {
     bg_color: "09131B",
     border_color: "0c1a25",
   },
+  javaDev: {
+    title_color: "0e8ac8",
+    icon_color: "0e8ac8",
+    text_color: "ffffff",
+    bg_color: "ed2025",
+    border_color: "ed2025",
+  },
 };
 
 module.exports = themes;
