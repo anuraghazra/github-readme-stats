@@ -355,11 +355,17 @@ const themes = {
     bg_color: "09131B",
     border_color: "0c1a25",
   },
-  "rose_pine":{
+  "rose_pine": {
     title_color: "9ccfd8",
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  "purple_gradient": {
+    title_color: "EC7F8F",
+    icon_color: "EFFA4B",
+    text_color: "5CDD8F",
+    bg_color: "50,4A1133,0B1133",
   }
 };
 
