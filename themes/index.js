@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  laravel: {
+    title_color: "f9322c",
+    icon_color: "f9322c",
+    text_color: "232323",
+    bg_color: "ffffff",
   }
 };
 
