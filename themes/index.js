@@ -348,6 +348,12 @@ const themes = {
     text_color: "574038",
     bg_color: "F5E1C0",
   },
+  catppuccin: {
+    title_color: "96CDFB",
+    icon_color: "DDB6F2",
+    text_color: "D9E0EE",
+    bg_color: "161320",
+  },
   codeSTACKr: {
     title_color: "ff652f",
     icon_color: "FFE400",
