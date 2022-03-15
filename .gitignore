@@ -8,3 +8,6 @@ package-lock.json
 coverage
 vercel_token
 
+# IDE
+.vscode
+*.code-workspace
