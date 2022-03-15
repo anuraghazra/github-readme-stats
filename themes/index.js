@@ -361,6 +361,12 @@ const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   }
+  "faded-purple":{
+    title_color: "8262FF",
+    icon_color: "8262FF",
+    text_color: "AFA9C7",
+    bg_color: "282d31",
+  }
 };
 
 module.exports = themes;
