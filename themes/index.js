@@ -362,9 +362,9 @@ const themes = {
     bg_color: "191724",
   }
   "faded-purple":{
-    title_color: "8262FF",
-    icon_color: "8262FF",
-    text_color: "AFA9C7",
+    title_color: "8262ff",
+    icon_color: "8262ff",
+    text_color: "cadbdff",
     bg_color: "282d31",
   }
 };
