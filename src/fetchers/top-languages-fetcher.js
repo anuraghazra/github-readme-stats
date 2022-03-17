@@ -17,6 +17,7 @@ const fetcher = (variables, token) => {
           repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
             nodes {
               name
+              isArchived
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
                 edges {
                   size
@@ -42,9 +43,10 @@ const fetcher = (variables, token) => {
 /**
  * @param {string} username
  * @param {string[]} exclude_repo
+ * @param {boolean} exclude_archived
  * @returns {Promise<import("./types").TopLangData>}
  */
-async function fetchTopLanguages(username, exclude_repo = []) {
+async function fetchTopLanguages(username, exclude_repo = [], exclude_archived = false) {
   if (!username) throw new MissingParamError(["username"]);
 
   const res = await retryer(fetcher, { login: username });
@@ -55,7 +57,17 @@ async function fetchTopLanguages(username, exclude_repo = []) {
   }
 
   let repoNodes = res.data.data.user.repositories.nodes;
+
   let repoToHide = {};
+
+  // populate repoToHide with archived repos
+  if (exclude_archived) {
+    repoNodes.forEach(({ name, isArchived }) => {
+      if (isArchived) {
+        repoToHide[name] = true;
+      }
+    });
+  }
 
   // populate repoToHide map for quick lookup
   // while filtering out
