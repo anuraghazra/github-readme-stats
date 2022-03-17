@@ -274,7 +274,7 @@ You can use `?exclude_repo=repo1,repo2` parameter to exclude individual reposito
 
 ### Exclude archived repositories
 
-You can use `?exclude_archived=true` parameter to exclude individual repositories.
+You can use `?exclude_archived=true` parameter to exclude archived repositories.
 
 This feature is **disabled** by default.
 
