@@ -18,7 +18,6 @@
     "@testing-library/dom": "^7.20.0",
     "@testing-library/jest-dom": "^5.11.0",
     "@uppercod/css-to-object": "^1.1.1",
-    "axios": "^0.24.0",
     "axios-mock-adapter": "^1.18.1",
     "color-contrast-checker": "^2.1.0",
     "hjson": "^3.2.2",
@@ -26,13 +25,14 @@
     "jest": "^26.1.0",
     "js-yaml": "^4.1.0",
     "lodash.snakecase": "^4.1.1",
-    "parse-diff": "^0.7.0"
+    "parse-diff": "^0.7.0",
+    "prettier": "^2.1.2"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "dotenv": "^8.2.0",
     "emoji-name-map": "^1.2.8",
     "github-username-regex": "^1.0.0",
-    "prettier": "^2.1.2",
     "word-wrap": "^1.2.3"
   },
   "husky": {
