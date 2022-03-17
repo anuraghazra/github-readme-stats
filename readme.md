@@ -272,6 +272,16 @@ You can use `?exclude_repo=repo1,repo2` parameter to exclude individual reposito
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
+### Exclude archived repositories
+
+You can use `?exclude_archived=true` parameter to exclude individual repositories.
+
+This feature is **disabled** by default.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_archived=true)](https://github.com/anuraghazra/github-readme-stats)
+```
+
 ### Hide individual languages
 
 You can use `?hide=language1,language2` parameter to hide individual languages.
