@@ -361,6 +361,12 @@ const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   }
+  "deep_sea_light":{
+    title_color: "084451",
+    icon_color: "062664",
+    text_color: "306162",
+    bg_color: "fffefe",
+  }
 };
 
 module.exports = themes;
