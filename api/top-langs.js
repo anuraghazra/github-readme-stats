@@ -34,19 +34,27 @@ module.exports = async (req, res) => {
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
+  // Validate input arguments.
   if (blacklist.includes(username)) {
     return res.send(renderError("Something went wrong"));
   }
-
   if (locale && !isLocaleAvailable(locale)) {
     return res.send(renderError("Something went wrong", "Locale not found"));
+  }
+  if (include_repo && exclude_repo) {
+    return res.send(
+      renderError(
+        "Something went wrong",
+        "'include_repo' and 'exclude_repo' options can't be used in the same query.",
+      ),
+    );
   }
 
   try {
     const topLangs = await fetchTopLanguages(
       username,
       parseArray(exclude_repo),
-      parseArray(include_repo)
+      parseArray(include_repo),
     );
 
     const cacheSeconds = clampValue(
