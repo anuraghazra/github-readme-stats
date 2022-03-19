@@ -245,6 +245,14 @@ const repoCardLocales = {
     pl: "Zarchiwizowano",
     vi: "Đã Lưu Trữ",
   },
+  "topStars.title": {
+    en: "Top Starred Repos",
+    id: "Repositori dengan Bintang Terbanyak",
+  },
+  "topForks.title": {
+    en: "Top Forked Repos",
+    id: "Repositori dengan Fork Terbanyak",
+  },
 };
 
 const langCardLocales = {
