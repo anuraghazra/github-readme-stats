@@ -7,7 +7,8 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "theme-readme-gen": "node scripts/generate-theme-doc",
-    "preview-theme": "node scripts/preview-theme"
+    "preview-theme": "node scripts/preview-theme",
+    "generate-langs-json": "node scripts/generate-langs-json"
   },
   "author": "Anurag Hazra",
   "license": "MIT",
@@ -22,6 +23,7 @@
     "hjson": "^3.2.2",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
+    "js-yaml": "^4.1.0",
     "lodash.snakecase": "^4.1.1",
     "parse-diff": "^0.7.0",
     "prettier": "^2.1.2"

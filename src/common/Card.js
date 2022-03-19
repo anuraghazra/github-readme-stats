@@ -123,8 +123,9 @@ class Card {
       ? `
         <defs>
           <linearGradient
-            id="gradient" 
+            id="gradient"
             gradientTransform="rotate(${this.colors.bgColor[0]})"
+            gradientUnits="userSpaceOnUse"
           >
             ${gradients.map((grad, index) => {
               let offset = (index * 100) / (gradients.length - 1);
