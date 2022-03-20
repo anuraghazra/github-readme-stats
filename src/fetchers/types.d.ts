@@ -33,6 +33,12 @@ export type Lang = {
 
 export type TopLangData = Record<string, Lang>;
 
+export type Repo = {
+  name: string;
+  forkCount: number;
+  stargazerCount: number;
+};
+
 export type WakaTimeData = {
   categories: {
     digital: string;

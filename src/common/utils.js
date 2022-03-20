@@ -133,6 +133,22 @@ function request(data, headers) {
 }
 
 /**
+ * @param {string} url
+ * @param {string} method
+ * @param {import('axios').AxiosRequestConfig['data']} data
+ * @param {import('axios').AxiosRequestConfig['headers']} headers
+ */
+function requestCustom(url, method, data, headers) {
+  // @ts-ignore
+  return axios({
+    url: url,
+    method: method,
+    headers,
+    data,
+  });
+}
+
+/**
  * @param {object} props
  * @param {string[]} props.items
  * @param {number} props.gap
@@ -376,6 +392,7 @@ module.exports = {
   encodeHTML,
   isValidHexColor,
   request,
+  requestCustom,
   parseArray,
   parseBoolean,
   fallbackColor,
