@@ -360,6 +360,13 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  thiagonox:{
+    title_color: "F22738",
+    icon_color:"A429A6",
+    text_color:"ffffff",
+    border_color:"A429A6",
+    bg_color:"0D0D0D"
   }
 };
 
