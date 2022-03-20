@@ -370,7 +370,7 @@ const themes = {
   },
   nox:{
     title_color: "F22738",
-    icon_color:"A429A6",
+    icon_color:"F24182",
     text_color:"ffffff",
     border_color:"A429A6",
     bg_color:"0D0D0D"
