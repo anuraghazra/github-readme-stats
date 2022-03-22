@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  "wisteria":{
+    title_color: "BCB6FF",
+    icon_color: "BCB6FF",
+    text_color: "F1F5F2",
+    bg_color: "0D1117",
   }
 };
 
