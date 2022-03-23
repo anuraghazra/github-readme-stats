@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  onyxvista:{
+    title_color: "8597cd",
+    icon_color: "8597cd",
+    text_color: "ffffff",
+    bg_color: "3d3d3e",
   }
 };
 
