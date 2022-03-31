@@ -361,6 +361,12 @@ const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   }
+  "nayan_cat": {
+    title_color: "fe77ff",
+    icon_color: "33FF00",
+    text_color: "FFFF00",
+    bg_color: "003366",
+  },
 };
 
 module.exports = themes;
