@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  pinkneon:{
+    title_color: "f58caf",
+    icon_color: "ff6e61",
+    text_color: "ff8fbf",
+    bg_color: "0f0f1f",
   }
 };
 
