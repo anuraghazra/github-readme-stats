@@ -7,7 +7,8 @@ const {
   CONSTANTS,
 } = require("../src/common/utils");
 const fetchStats = require("../src/fetchers/stats-fetcher");
-const renderStatsCard = require("../src/cards/stats-card");
+// const renderStatsCard = require("../src/cards/stats-card");
+const renderStatsCard = require("../src/cards/hackerrank-card");
 const blacklist = require("../src/common/blacklist");
 const { isLocaleAvailable } = require("../src/translations");
 
