@@ -219,18 +219,18 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     : 495;
 
   const card = new Card({
-    // customTitle: custom_title,
-    // defaultTitle: i18n.t("statcard.title"),
-    // width,
-    // height,
-    // border_radius,
-    // colors: {
-    //   titleColor,
-    //   textColor,
-    //   iconColor,
-    //   bgColor,
-    //   borderColor,
-    // },
+    customTitle: custom_title,
+    defaultTitle: i18n.t("statcard.title"),
+    width,
+    height,
+    border_radius,
+    colors: {
+      titleColor,
+      textColor,
+      iconColor,
+      bgColor,
+      borderColor,
+    },
   });
 
   card.setHideBorder(hide_border);
