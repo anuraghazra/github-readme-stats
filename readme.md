@@ -92,7 +92,7 @@ Your small help goes a long way. :heart:
 
 # GitHub Stats Card
 
-Copy-paste this into your markdown content, and that's it. Simple!
+Copy-paste this into your markdown content, and that's it. simple!
 
 Change the `?username=` value to your GitHub's username.
 
