@@ -106,7 +106,7 @@ The implementation can be investigated at [src/calculateRank.js](./src/calculate
 
 ### Hiding individual stats
 
-To hide any specific stats, you can pass a query parameter `?hide=` with comma-separated values.
+To hide any specific stats, you can pass a query parameter `&hide=` with comma-separated values.
 
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
@@ -118,7 +118,7 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma-s
 
 You can add the count of all your private contributions to the total commits count by using the query parameter `?count_private=true`.
 
-_Note: If you are deploying this project yourself, the private contributions will be counted by default. Otherwise, you need to choose to share your private contribution counts._
+_Note: If you are deploying this project yourself, private contributions will be counted by default. Otherwise, you need to choose to share your private contribution counts._
 
 > Options: `&count_private=true`
 
@@ -128,7 +128,7 @@ _Note: If you are deploying this project yourself, the private contributions wil
 
 ### Showing icons
 
-To enable icons, you can pass `show_icons=true` in the query param, like so:
+To enable icons, you can pass `&show_icons=true` in the query param, like so:
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -160,14 +160,14 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 - `title_color` - Card's title color _(hex color)_
 - `text_color` - Body text color _(hex color)_
-- `icon_color` - Icons color if available _(hex color)_
+- `icon_color` - Icon colors if available _(hex color)_
 - `border_color` - Card's border color _(hex color)_. (Does not apply when `hide_border` is enabled)
 - `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_
 - `hide_border` - Hides the card's border _(boolean)_
-- `theme` - name of the theme, choose from [all available themes](./themes/README.md)
-- `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
-- `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
-- `border_radius` - Corner rounding on the card_
+- `theme` - Name of the theme, choose from [all available themes](./themes/README.md)
+- `cache_seconds` - Sets the cache header manually _(min: 1800, max: 86400)_
+- `locale` - Sets the language in the card _(e.g. cn, de, es, etc.)_
+- `border_radius` - Corner rounding on the card
 
 ##### Gradient in bg_color
 
@@ -183,26 +183,26 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 - `hide` - Hides the specified items from stats _(Comma-separated values)_
 - `hide_title` - _(boolean)_
-- `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width
+- `hide_rank` - _(boolean)_ Hides the rank and automatically resizes the card width
 - `show_icons` - _(boolean)_
-- `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
-- `count_private` - Count private commits _(boolean)_
+- `include_all_commits` - Counts total commits instead of just the current year commits _(boolean)_
+- `count_private` - Counts private commits _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
 - `custom_title` - Sets a custom title for the card
 - `disable_animations` - Disables all animations in the card _(boolean)_
 
 #### Repo Card Exclusive Options:
 
-- `show_owner` - Show the repo's owner name _(boolean)_
+- `show_owner` - Shows the repo's owner name _(boolean)_
 
 #### Language Card Exclusive Options:
 
-- `hide` - Hide the languages specified from the card _(Comma-separated values)_
+- `hide` - Hides the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
-- `layout` - Switch between two available layouts `default` & `compact`
-- `card_width` - Set the card's width manually _(number)_
-- `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
-- `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
+- `layout` - Switches between two available layouts `default` & `compact`
+- `card_width` - Sets the card's width manually _(number)_
+- `langs_count` - Shows more languages on the card, between 1-10, defaults to 5 _(number)_
+- `exclude_repo` - Excludes specified repositories _(Comma-separated values)_
 - `custom_title` - Sets a custom title for the card
 
 > :warning: **Important:**
@@ -212,15 +212,15 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 #### Wakatime Card Exclusive Options:
 
-- `hide` - Hide the languages specified from the card _(Comma-separated values)_
+- `hide` - Hides the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
 - `hide_progress` - Hides the progress bar and percentage _(boolean)_
 - `custom_title` - Sets a custom title for the card
-- `layout` - Switch between two available layouts `default` & `compact`
-- `langs_count` - Limit number of languages on the card, defaults to all reported langauges
-- `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
-- `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for list of available options.
+- `layout` - Switches between two available layouts `default` & `compact`
+- `langs_count` - Limit number of languages on the card, defaults to all reported languages
+- `api_domain` - Sets a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
+- `range` – Requests a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options.
 
 ---
 
@@ -250,7 +250,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 # Top Languages Card
 
-The top languages card show a GitHub user's most frequently used top language.
+The top languages card shows a GitHub user's most frequently used top language.
 
 _NOTE: Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It's a new feature of github-readme-stats._
 
@@ -266,7 +266,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ### Exclude individual repositories
 
-You can use `?exclude_repo=repo1,repo2` parameter to exclude individual repositories.
+You can use `&exclude_repo=repo1,repo2` parameter to exclude individual repositories.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
@@ -274,7 +274,7 @@ You can use `?exclude_repo=repo1,repo2` parameter to exclude individual reposito
 
 ### Hide individual languages
 
-You can use `?hide=language1,language2` parameter to hide individual languages.
+You can use `&hide=language1,language2` parameter to hide individual languages.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
@@ -429,7 +429,7 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 I open-source almost everything I can, and I try to reply to everyone needing help using these projects. Obviously,
 this takes time. You can use this service for free.
 
-However, if you are using this project and are happy with it or just want to encourage me to continue creating stuff, there are few ways you can do it :-
+However, if you are using this project and are happy with it or just want to encourage me to continue creating stuff, there are a few ways you can do it :-
 
 - Giving proper credit when you use github-readme-stats on your readme, linking back to it :D
 - Starring and sharing the project :rocket:
