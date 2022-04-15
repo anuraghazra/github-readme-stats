@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+   "virtuoso":{
+    title_color: "5a48ba",
+    icon_color: "5a48ba",
+    text_color: "#db447d",
+    bg_color: "232054",
   }
 };
 
