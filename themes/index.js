@@ -367,6 +367,13 @@ const themes = {
     text_color: "4f5975",
     bg_color: "1c2028",
     border_color: "212630",
+  },
+  lunar: {
+    title_color: "0284e8",
+    icon_color: "59a7d4",
+    text_color: "f3f3f3",
+    bg_color: "161616",
+    border_color: "202020",
   }
 };
 
