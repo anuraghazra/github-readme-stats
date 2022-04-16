@@ -360,6 +360,13 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  neon_world: {
+   title_color: "FF1493",
+   icon_color: "9457eb",
+   text_color: "0CFFD2",
+   bg_color: "05061D",
+   border_color: "0CFFD2"
   }
 };
 
