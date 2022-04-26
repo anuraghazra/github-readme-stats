@@ -106,7 +106,7 @@ The implementation can be investigated at [src/calculateRank.js](./src/calculate
 
 ### Hiding individual stats
 
-To hide any specific stats, you can pass a query parameter `?hide=` with comma-separated values.
+To hide any specific stats, you can pass a query parameter `&hide=` with comma-separated values.
 
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
@@ -116,7 +116,7 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma-s
 
 ### Adding private contributions count to total commits count
 
-You can add the count of all your private contributions to the total commits count by using the query parameter `?count_private=true`.
+You can add the count of all your private contributions to the total commits count by using the query parameter `&count_private=true`.
 
 _Note: If you are deploying this project yourself, the private contributions will be counted by default. Otherwise, you need to choose to share your private contribution counts._
 
@@ -266,7 +266,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ### Exclude individual repositories
 
-You can use `?exclude_repo=repo1,repo2` parameter to exclude individual repositories.
+You can use `&exclude_repo=repo1,repo2` parameter to exclude individual repositories.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
@@ -274,7 +274,7 @@ You can use `?exclude_repo=repo1,repo2` parameter to exclude individual reposito
 
 ### Hide individual languages
 
-You can use `?hide=language1,language2` parameter to hide individual languages.
+You can use `&hide=language1,language2` parameter to hide individual languages.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
