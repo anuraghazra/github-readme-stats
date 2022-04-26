@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  "crimson_dark": {
+    title_color: "E31B47",
+    icon_color: "8A213F",
+    text_color: "F8BEF7",
+    bg_color: "100000"
   }
 };
 
