@@ -115,7 +115,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
       >19 mins</text>
       
     <svg width=\\"220\\" x=\\"110\\" y=\\"4\\">
-      <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#434d58\\"></rect>
+      <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#ddd\\"></rect>
       <rect
           height=\\"8\\"
           fill=\\"#2f80ed\\"
@@ -137,7 +137,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
       >1 min</text>
       
     <svg width=\\"220\\" x=\\"110\\" y=\\"4\\">
-      <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#434d58\\"></rect>
+      <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#ddd\\"></rect>
       <rect
           height=\\"8\\"
           fill=\\"#2f80ed\\"

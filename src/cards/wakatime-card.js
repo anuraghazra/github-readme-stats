@@ -90,8 +90,7 @@ const createTextNode = ({
   index,
   percent,
   hideProgress,
-  progressBarColor,
-  progressBarBackgroundColor,
+  progressBarColor
 }) => {
   const staggerDelay = (index + 3) * 150;
 
@@ -105,7 +104,7 @@ const createTextNode = ({
         width: 220,
         // @ts-ignore
         name: label,
-        progressBarBackgroundColor,
+        progressBarBackgroundColor: '#ddd',
       });
 
   return `
@@ -266,8 +265,6 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               percent: language.percent,
               // @ts-ignore
               progressBarColor: titleColor,
-              // @ts-ignore
-              progressBarBackgroundColor: textColor,
               hideProgress: hide_progress,
             });
           })
