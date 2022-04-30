@@ -2,6 +2,16 @@ const { getAnimations } = require("../getStyles");
 const { flexLayout, encodeHTML } = require("../common/utils");
 
 class Card {
+  /**
+   * @param {object} args
+   * @param {number?=} args.width
+   * @param {number?=} args.height
+   * @param {number?=} args.border_radius
+   * @param {string?=} args.customTitle
+   * @param {string?=} args.defaultTitle
+   * @param {string?=} args.titlePrefixIcon
+   * @param {ReturnType<import('../common/utils').getCardColors>?=} args.colors
+   */
   constructor({
     width = 100,
     height = 100,
@@ -38,14 +48,23 @@ class Card {
     this.animations = false;
   }
 
+  /**
+   * @param {string} value
+   */
   setCSS(value) {
     this.css = value;
   }
 
+  /**
+   * @param {boolean} value
+   */
   setHideBorder(value) {
     this.hideBorder = value;
   }
 
+  /**
+   * @param {boolean} value
+   */
   setHideTitle(value) {
     this.hideTitle = value;
     if (value) {
@@ -53,6 +72,9 @@ class Card {
     }
   }
 
+  /**
+   * @param {string} text
+   */
   setTitle(text) {
     this.title = text;
   }
@@ -101,8 +123,9 @@ class Card {
       ? `
         <defs>
           <linearGradient
-            id="gradient" 
+            id="gradient"
             gradientTransform="rotate(${this.colors.bgColor[0]})"
+            gradientUnits="userSpaceOnUse"
           >
             ${gradients.map((grad, index) => {
               let offset = (index * 100) / (gradients.length - 1);
@@ -114,6 +137,9 @@ class Card {
       : "";
   }
 
+  /**
+   * @param {string} body
+   */
   render(body) {
     return `
       <svg
@@ -128,6 +154,10 @@ class Card {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
             fill: ${this.colors.titleColor};
             animation: fadeInAnimation 0.8s ease-in-out forwards;
+          }
+          @supports(-moz-appearance: auto) {
+            /* Selector detects Firefox */
+            .header { font-size: 15.5px; }
           }
           ${this.css}
 

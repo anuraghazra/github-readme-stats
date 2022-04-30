@@ -7,7 +7,8 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "theme-readme-gen": "node scripts/generate-theme-doc",
-    "preview-theme": "node scripts/preview-theme"
+    "preview-theme": "node scripts/preview-theme",
+    "generate-langs-json": "node scripts/generate-langs-json"
   },
   "author": "Anurag Hazra",
   "license": "MIT",
@@ -16,18 +17,22 @@
     "@actions/github": "^4.0.0",
     "@testing-library/dom": "^7.20.0",
     "@testing-library/jest-dom": "^5.11.0",
-    "axios": "^0.19.2",
+    "@uppercod/css-to-object": "^1.1.1",
     "axios-mock-adapter": "^1.18.1",
-    "css-to-object": "^1.1.0",
+    "color-contrast-checker": "^2.1.0",
+    "hjson": "^3.2.2",
     "husky": "^4.2.5",
     "jest": "^26.1.0",
-    "parse-diff": "^0.7.0"
+    "js-yaml": "^4.1.0",
+    "lodash.snakecase": "^4.1.1",
+    "parse-diff": "^0.7.0",
+    "prettier": "^2.1.2"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "dotenv": "^8.2.0",
     "emoji-name-map": "^1.2.8",
     "github-username-regex": "^1.0.0",
-    "prettier": "^2.1.2",
     "word-wrap": "^1.2.3"
   },
   "husky": {

@@ -1,5 +1,5 @@
 require("@testing-library/jest-dom");
-const cssToObject = require("css-to-object");
+const cssToObject = require("@uppercod/css-to-object").cssToObject;
 const renderStatsCard = require("../src/cards/stats-card");
 
 const {
@@ -81,15 +81,10 @@ describe("Test renderStatsCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.textContent);
 
-    const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".stat"];
-    const iconClassStyles = stylesObject[".icon"];
-
-    expect(headerClassStyles.fill).toBe("#2f80ed");
-    expect(statClassStyles.fill).toBe("#333");
-    expect(iconClassStyles.fill).toBe("#4c71f2");
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "fill",
+    expectColors(stylesObject,
+      "#2f80ed",
+      "#434d58",
+      "#4c71f2",
       "#fffefe",
     );
   });
@@ -128,7 +123,8 @@ describe("Test renderStatsCard", () => {
       "#5a0",
       `#${themes.radical.text_color}`,
       `#${themes.radical.icon_color}`,
-      `#${themes.radical.bg_color}`);
+      `#${themes.radical.bg_color}`,
+    );
   });
 
   it("should render with all the themes", () => {
@@ -144,7 +140,8 @@ describe("Test renderStatsCard", () => {
         `#${themes[name].title_color}`,
         `#${themes[name].text_color}`,
         `#${themes[name].icon_color}`,
-        `#${themes[name].bg_color}`);
+        `#${themes[name].bg_color}`,
+      );
     });
   });
 
@@ -162,22 +159,9 @@ describe("Test renderStatsCard", () => {
       `#${themes.default.title_color}`,
       `#${themes.default.text_color}`,
       `#${themes.radical.icon_color}`,
-      `#${themes.radical.bg_color}`);
-  });
-
-  function expectColors(stylesObject, headerColor, statColor, iconColor, cardColor) {
-    const headerClassStyles = stylesObject[".header"];
-    const statClassStyles = stylesObject[".stat"];
-    const iconClassStyles = stylesObject[".icon"];
-
-    expect(headerClassStyles.fill).toBe(headerColor);
-    expect(statClassStyles.fill).toBe(statColor);
-    expect(iconClassStyles.fill).toBe(iconColor);
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "fill",
-      cardColor,
+      `#${themes.radical.bg_color}`,
     );
-  }
+  });
 
   it("should render icons correctly", () => {
     document.body.innerHTML = renderStatsCard(stats, {
@@ -229,27 +213,27 @@ describe("Test renderStatsCard", () => {
     );
     expect(
       document.querySelector(
-        'g[transform="translate(0, 0)"]>.stagger>.stat.bold',
+        "g[transform=\"translate(0, 0)\"]>.stagger>.stat.bold",
       ).textContent,
     ).toMatchInlineSnapshot(`"获标星数（star）:"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
+        "g[transform=\"translate(0, 25)\"]>.stagger>.stat.bold",
       ).textContent,
-    ).toMatchInlineSnapshot(`"累计提交数（commit） (2021):"`);
+    ).toMatchInlineSnapshot(`"累计提交数（commit） (2022):"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
+        "g[transform=\"translate(0, 50)\"]>.stagger>.stat.bold",
       ).textContent,
     ).toMatchInlineSnapshot(`"拉取请求数（PR）:"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 75)"]>.stagger>.stat.bold',
+        "g[transform=\"translate(0, 75)\"]>.stagger>.stat.bold",
       ).textContent,
     ).toMatchInlineSnapshot(`"指出问题数（issue）:"`);
     expect(
       document.querySelector(
-        'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
+        "g[transform=\"translate(0, 100)\"]>.stagger>.stat.bold",
       ).textContent,
     ).toMatchInlineSnapshot(`"参与项目数:"`);
   });
@@ -260,4 +244,18 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard(stats, {});
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
   });
+
+  function expectColors(stylesObject, headerColor, statColor, iconColor, cardColor) {
+    const headerClassStyles = stylesObject[":host"][".header "];
+    const statClassStyles = stylesObject[":host"][".stat "];
+    const iconClassStyles = stylesObject[":host"][".icon "];
+
+    expect(headerClassStyles.fill.trim()).toBe(headerColor);
+    expect(statClassStyles.fill.trim()).toBe(statColor);
+    expect(iconClassStyles.fill.trim()).toBe(iconColor);
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "fill",
+      cardColor,
+    );
+  }
 });
