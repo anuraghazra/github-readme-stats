@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  cobalt3: {
+    title_color: "ffc600",
+    icon_color: "0088ff",
+    text_color: "FF5757D0",
+    bg_color: "193549",
   }
 };
 
