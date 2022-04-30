@@ -130,15 +130,10 @@ describe("Test renderRepoCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[":host"][".header "];
-    const descClassStyles = stylesObject[":host"][".description "];
-    const iconClassStyles = stylesObject[":host"][".icon "];
-
-    expect(headerClassStyles.fill.trim()).toBe("#2f80ed");
-    expect(descClassStyles.fill.trim()).toBe("#434d58");
-    expect(iconClassStyles.fill.trim()).toBe("#586069");
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "fill",
+    expectColors(stylesObject,
+      "#2f80ed",
+      "#434d58",
+      "#586069",
       "#fffefe",
     );
   });
@@ -158,15 +153,10 @@ describe("Test renderRepoCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[":host"][".header "];
-    const descClassStyles = stylesObject[":host"][".description "];
-    const iconClassStyles = stylesObject[":host"][".icon "];
-
-    expect(headerClassStyles.fill.trim()).toBe(`#${customColors.title_color}`);
-    expect(descClassStyles.fill.trim()).toBe(`#${customColors.text_color}`);
-    expect(iconClassStyles.fill.trim()).toBe(`#${customColors.icon_color}`);
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "fill",
+    expectColors(stylesObject,
+      `#${customColors.title_color}`,
+      `#${customColors.text_color}`,
+      `#${customColors.icon_color}`,
       "#252525",
     );
   });
@@ -180,17 +170,10 @@ describe("Test renderRepoCard", () => {
       const styleTag = document.querySelector("style");
       const stylesObject = cssToObject(styleTag.innerHTML);
 
-      const headerClassStyles = stylesObject[":host"][".header "];
-      const descClassStyles = stylesObject[":host"][".description "];
-      const iconClassStyles = stylesObject[":host"][".icon "];
-
-      expect(headerClassStyles.fill.trim()).toBe(
+      expectColors(stylesObject,
         `#${themes[name].title_color}`,
-      );
-      expect(descClassStyles.fill.trim()).toBe(`#${themes[name].text_color}`);
-      expect(iconClassStyles.fill.trim()).toBe(`#${themes[name].icon_color}`);
-      expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-        "fill",
+        `#${themes[name].text_color}`,
+        `#${themes[name].icon_color}`,
         `#${themes[name].bg_color}`,
       );
     });
@@ -205,15 +188,10 @@ describe("Test renderRepoCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[":host"][".header "];
-    const descClassStyles = stylesObject[":host"][".description "];
-    const iconClassStyles = stylesObject[":host"][".icon "];
-
-    expect(headerClassStyles.fill.trim()).toBe("#5a0");
-    expect(descClassStyles.fill.trim()).toBe(`#${themes.radical.text_color}`);
-    expect(iconClassStyles.fill.trim()).toBe(`#${themes.radical.icon_color}`);
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "fill",
+    expectColors(stylesObject,
+      "#5a0",
+      `#${themes.radical.text_color}`,
+      `#${themes.radical.icon_color}`,
       `#${themes.radical.bg_color}`,
     );
   });
@@ -228,17 +206,10 @@ describe("Test renderRepoCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[":host"][".header "];
-    const descClassStyles = stylesObject[":host"][".description "];
-    const iconClassStyles = stylesObject[":host"][".icon "];
-
-    expect(headerClassStyles.fill.trim()).toBe(
+    expectColors(stylesObject,
       `#${themes.default.title_color}`,
-    );
-    expect(descClassStyles.fill.trim()).toBe(`#${themes.default.text_color}`);
-    expect(iconClassStyles.fill.trim()).toBe(`#${themes.radical.icon_color}`);
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "fill",
+      `#${themes.default.text_color}`,
+      `#${themes.radical.icon_color}`,
       `#${themes.radical.bg_color}`,
     );
   });
@@ -337,4 +308,18 @@ describe("Test renderRepoCard", () => {
       "No description provided",
     );
   });
+
+  function expectColors(stylesObject, headerColor, descriptionColor, iconColor, cardColor) {
+    const headerClassStyles = stylesObject[":host"][".header "];
+    const descClassStyles = stylesObject[":host"][".description "];
+    const iconClassStyles = stylesObject[":host"][".icon "];
+
+    expect(headerClassStyles.fill.trim()).toBe(headerColor);
+    expect(descClassStyles.fill.trim()).toBe(descriptionColor);
+    expect(iconClassStyles.fill.trim()).toBe(iconColor);
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "fill",
+      cardColor,
+    );
+  }
 });
