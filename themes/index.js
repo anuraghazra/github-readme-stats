@@ -367,6 +367,13 @@ const themes = {
     text_color: "adbac7",
     bg_color: "22272e",
     border_color: "373e47",
+  },
+  "2077": {
+    title_color: "f72876",
+    icon_color: "df1d55",
+    text_color: "09ddff",
+    bg_color: "030d22",
+    border_color: "f7d401"
   }
 };
 
