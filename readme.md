@@ -74,6 +74,15 @@ Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.givein
 Your small help goes a long way. :heart:
 </p>
 
+# Table of Contents
+
+- [Features](#features)
+- [GitHub Stats Card](#github-stats-card)
+- [GitHub Extra Pins](#github-extra-pins)
+- [Top Languages Card](#top-languages-card)
+- [Wakatime Week Stats](#wakatime-week-stats)
+- [Deploy on your own Vercel instance](#deploy-on-your-own-vercel-instance)
+- [Support the project](#support-the-project)
 
 # Features
 
