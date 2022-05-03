@@ -72,6 +72,7 @@ async function fetchTopLanguages(username, exclude_repo = []) {
     .sort((a, b) => b.size - a.size)
     .filter((name) => !repoToHide[name.name]);
 
+  let repoCount = 0;
   repoNodes = repoNodes
     .filter((node) => node.languages.edges.length > 0)
     // flatten the list of language nodes
@@ -82,16 +83,20 @@ async function fetchTopLanguages(username, exclude_repo = []) {
 
       // if we already have the language in the accumulator
       // & the current language name is same as previous name
-      // add the size to the language size.
+      // add the size to the language size and increase repoCount.
       if (acc[prev.node.name] && prev.node.name === acc[prev.node.name].name) {
         langSize = prev.size + acc[prev.node.name].size;
+        repoCount = repoCount + 1;
+      }
+      else {
+        repoCount = 1;
       }
       return {
         ...acc,
         [prev.node.name]: {
           name: prev.node.name,
           color: prev.node.color,
-          size: langSize,
+          size: Math.sqrt(langSize * repoCount),
         },
       };
     }, {});
