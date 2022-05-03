@@ -73,6 +73,7 @@ async function fetchTopLanguages(username, exclude_repo = []) {
     .filter((name) => !repoToHide[name.name]);
 
   let repoCount = 0;
+
   repoNodes = repoNodes
     .filter((node) => node.languages.edges.length > 0)
     // flatten the list of language nodes
@@ -89,6 +90,8 @@ async function fetchTopLanguages(username, exclude_repo = []) {
         repoCount = repoCount + 1;
       }
       else {
+        // reset repoCount to 1
+        // language must exist in atleast one repo to be detected
         repoCount = 1;
       }
       return {
@@ -96,7 +99,7 @@ async function fetchTopLanguages(username, exclude_repo = []) {
         [prev.node.name]: {
           name: prev.node.name,
           color: prev.node.color,
-          size: Math.sqrt(langSize * repoCount),
+          size: Math.sqrt(langSize * repoCount), // comparison index calculation
         },
       };
     }, {});
