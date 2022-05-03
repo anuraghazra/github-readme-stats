@@ -1,3 +1,4 @@
+// @ts-check
 const I18n = require("../common/I18n");
 const Card = require("../common/Card");
 const icons = require("../common/icons");
@@ -45,6 +46,12 @@ const createTextNode = ({
   `;
 };
 
+
+/**
+ * @param {Partial<import('../fetchers/types').StatsData>} stats
+ * @param {Partial<import("./types").StatCardOptions>} options
+ * @returns {string}
+ */
 const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const {
     name,
@@ -75,7 +82,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     disable_animations = false,
   } = options;
 
-  const lheight = parseInt(line_height, 10);
+  const lheight = parseInt(String(line_height), 10);
 
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor, borderColor } =
@@ -177,8 +184,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
           <text
-            x="${rank.level.length === 1 ? "-4" : "0"}"
-            y="0"
+            x="-5"
+            y="3"
             alignment-baseline="central"
             dominant-baseline="central"
             text-anchor="middle"

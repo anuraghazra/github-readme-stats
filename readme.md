@@ -1,7 +1,7 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">Get dynamically generated GitHub stats on your readmes!</p>
+ <p align="center">Get dynamically generated GitHub stats on your READMEs!</p>
 </p>
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
@@ -65,13 +65,13 @@
 <img src="https://d2wvdrxmr8p0wf.cloudfront.net/static/giveindia.svg" alt="Give india logo" width="200" />
 </a>
 
-Are you considering supporting the project by donating to me? Please DON'T!!  
+Are you considering supporting the project by donating? Please DON'T!!  
 
-Instead, Help India fight 2nd deadly wave of COVID,  
-Thousands of people are dying in India for lack of Oxygen & COVID-related necessary infrastructure.  
+Instead, Help India fight the 2nd deadly wave of COVID-19.  
+Thousands of people are dying in India for lack of Oxygen & COVID related infrastructure.  
 
-Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help us fight covid and overcome this crisis.   
-Your small help goes a long way. :heart:
+Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help us fight COVID and overcome this crisis.   
+A small donation goes a long way. :heart:
 </p>
 
 
@@ -102,11 +102,11 @@ Change the `?username=` value to your GitHub's username.
 
 _Note: Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone).
 The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories.
-The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js)_
+The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js)._
 
 ### Hiding individual stats
 
-To hide any specific stats, you can pass a query parameter `?hide=` with comma-separated values.
+To hide any specific stats, you can pass a query parameter `&hide=` with comma-separated values.
 
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
@@ -116,7 +116,7 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma-s
 
 ### Adding private contributions count to total commits count
 
-You can add the count of all your private contributions to the total commits count by using the query parameter `?count_private=true`.
+You can add the count of all your private contributions to the total commits count by using the query parameter `&count_private=true`.
 
 _Note: If you are deploying this project yourself, the private contributions will be counted by default. Otherwise, you need to choose to share your private contribution counts._
 
@@ -171,7 +171,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 ##### Gradient in bg_color
 
-You can provide multiple comma-separated values in bg_color option to render a gradient, the format of the gradient is:-
+You can provide multiple comma-separated values in bg_color option to render a gradient, with the following format:
 
 ```
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
@@ -252,7 +252,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 The top languages card shows a GitHub user's most frequently used top language.
 
-_NOTE: Top Languages does not indicate my skill level or anything like that, it's a GitHub metric of which languages have the most code on GitHub. It's a new feature of github-readme-stats._
+_NOTE: Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It's a new feature of github-readme-stats._
 
 ### Usage
 
@@ -266,7 +266,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ### Exclude individual repositories
 
-You can use `?exclude_repo=repo1,repo2` parameter to exclude individual repositories.
+You can use `&exclude_repo=repo1,repo2` parameter to exclude individual repositories.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
@@ -274,7 +274,7 @@ You can use `?exclude_repo=repo1,repo2` parameter to exclude individual reposito
 
 ### Hide individual languages
 
-You can use `?hide=language1,language2` parameter to hide individual languages.
+You can use `&hide=language1,language2` parameter to hide individual languages.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
@@ -411,12 +411,14 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. Sign in to GitHub and allow access to all repositories, if prompted
 1. Fork this repo
+1. After forking the repo, open the [`vercel.json`](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json#L5) file and change the `maxDuration` field to `10`
 1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
 1. Select `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
-1. Select `Import Git Repository`
+1. Select `Import Git Repository`. Select root and keep everything as is.
    ![](https://files.catbox.moe/pqub9q.png)
-1. Select root and keep everything as is, just add your environment variable named PAT_1 (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)
+1. Create a personal access token (PAT) [here](https://github.com/settings/tokens/new) and enable the `repo` permissions (this allows access to see private repo stats)
+1. Add the PAT as an environment variable named `PAT_1` (as shown).
    ![](https://files.catbox.moe/0ez4g7.png)
 1. Click deploy, and you're good to go. See your domains to use the API!
 

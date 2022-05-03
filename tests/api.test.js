@@ -35,7 +35,8 @@ const data = {
         restrictedContributionsCount: 100,
       },
       pullRequests: { totalCount: stats.totalPRs },
-      issues: { totalCount: stats.totalIssues },
+      openIssues: { totalCount: stats.totalIssues },
+      closedIssues: { totalCount: 0 },
       followers: { totalCount: 0 },
       repositories: {
         totalCount: 1,

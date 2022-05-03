@@ -161,11 +161,11 @@ function flexLayout({ items, gap, direction, sizes = [] }) {
 
 /**
  * @typedef {object} CardColors
- * @prop {string} title_color
- * @prop {string} text_color
- * @prop {string} icon_color
- * @prop {string} bg_color
- * @prop {string} border_color
+ * @prop {string?=} title_color
+ * @prop {string?=} text_color
+ * @prop {string?=} icon_color
+ * @prop {string?=} bg_color
+ * @prop {string?=} border_color
  * @prop {keyof typeof import('../../themes')?=} fallbackTheme
  * @prop {keyof typeof import('../../themes')?=} theme
  */
@@ -273,11 +273,26 @@ class CustomError extends Error {
   constructor(message, type) {
     super(message);
     this.type = type;
-    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || "adsad";
+    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || type;
   }
 
   static MAX_RETRY = "MAX_RETRY";
   static USER_NOT_FOUND = "USER_NOT_FOUND";
+}
+
+class MissingParamError extends Error {
+  /**
+   * @param {string[]} missedParams
+   * @param {string?=} secondaryMessage
+   */
+  constructor(missedParams, secondaryMessage) {
+    const msg = `Missing params ${missedParams
+      .map((p) => `"${p}"`)
+      .join(", ")} make sure you pass the parameters in URL`;
+    super(msg);
+    this.missedParams = missedParams;
+    this.secondaryMessage = secondaryMessage;
+  }
 }
 
 /**
@@ -372,6 +387,7 @@ module.exports = {
   logger,
   CONSTANTS,
   CustomError,
+  MissingParamError,
   lowercaseTrim,
   chunkArray,
   parseEmojis,
