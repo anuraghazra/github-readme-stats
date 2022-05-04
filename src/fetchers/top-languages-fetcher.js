@@ -99,10 +99,18 @@ async function fetchTopLanguages(username, exclude_repo = []) {
         [prev.node.name]: {
           name: prev.node.name,
           color: prev.node.color,
-          size: Math.sqrt(langSize * repoCount), // comparison index calculation
+          size: langSize,
+          count: repoCount,
         },
       };
     }, {});
+
+
+  Object.keys(repoNodes)
+    .forEach((name) => {
+      // comparison index calculation
+      repoNodes[name].size = Math.sqrt(repoNodes[name].size * repoNodes[name].count);
+    })
 
   const topLangs = Object.keys(repoNodes)
     .sort((a, b) => repoNodes[b].size - repoNodes[a].size)
