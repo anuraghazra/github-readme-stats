@@ -34,9 +34,10 @@ _(make sure you already have a [Vercel](https://vercel.com/) account)_
 2.  Fork the repository and clone the code to your local machine
 3.  Run `npm install` in the repository root
 4.  Run the command "vercel" in the root and follow the steps there
-5.  Create a `.env` file in the root of the directory
-6.  In the .env file add a new variable named "PAT_1" with your [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
-7.  Run the command "vercel dev" to start a development server at <https://localhost:3000>
+5.  open `vercel.json` and set the maxDuration to 10
+6.  Create a `.env` file in the root of the directory
+7.  In the .env file add a new variable named "PAT_1" with your [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token)
+8.  Run the command "vercel dev" to start a development server at <https://localhost:3000>
 
 ## Themes Contribution
 
