@@ -24,6 +24,12 @@ const themes = {
     text_color: "a9fef7",
     bg_color: "141321",
   },
+  devloper: {
+    title_color: "33f719",
+    icon_color: "fff957",
+    text_color: "ffffff",
+    bg_color: "000000",
+  },
   merko: {
     title_color: "abd200",
     icon_color: "b7d364",
