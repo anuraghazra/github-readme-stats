@@ -71,7 +71,7 @@
 # GitHub Statistiken-Karte
 
 Kopiere folgendes in deine Readme um die Statistiken zu benutzen.
-Passe den Wert des URL-Parameters `?username=` so an, dass dort dein GitHub Nutzername steht.
+Passe den Wert des URL-Parameters `?username=` so an, dass dort dein GitHub-Nutzername steht.
 
 ```md
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
@@ -91,7 +91,7 @@ Um eine spezifische Statistik auszublenden, kann dem Query-Parameter `?hide=` ei
 
 ### Symbole anzeigen
 
-Um Symbole anzuzeigen kann der URL-Paramter `show_icons=true` wie folgt verwendet werden:
+Um Symbole anzuzeigen kann der URL-Parameter `show_icons=true` wie folgt verwendet werden:
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -139,7 +139,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 &bg_color=WINKEL,FARBE1,FARBE2,FARBE3...FARBE10
 ```
 
-> Hinweis bzgl. des Caches: Wenn die Anzahl der Forks und Stars geringer als 1 Tsd ist, haben die Repo-Cards eine Standard-Cachezeit von 30 Minuten (1800 Sekunden), ansonsten beträgt diese 2 Stunden (7200 Sekunden). Außerdem ist der Cache auf ein Minimum von 30 Minuten und ein Maximum von 24 Stunden begrenzt.
+> Hinweis bzgl. des Caches: Wenn die Anzahl der Forks und Stars geringer als 1 Tsd. ist, haben die Repo-Cards eine Standard-Cachezeit von 30 Minuten (1800 Sekunden), ansonsten beträgt diese 2 Stunden (7200 Sekunden). Außerdem ist der Cache auf ein Minimum von 30 Minuten und ein Maximum von 24 Stunden begrenzt.
 
 #### Exklusive Optionen der Statistiken-Karte:
 
@@ -170,12 +170,12 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 
 - `hide_title` - _(Boolean)_
 - `line_height` - Legt die Zeilenhöhe des Texts fest _(Zahl)_
-- `hide_progress` - Verbirgt die Fortschrittanzeige und Prozentzahl _(Boolean)_
+- `hide_progress` - Verbirgt die Fortschrittsanzeige und Prozentzahl _(Boolean)_
 - `custom_title` - Legt einen benutzerdefinierten Titel fest
 - `layout` - Wechselt zwischen zwei verschiedenen Layouts: `default` & `compact`
 - `langs_count` - Begrenzt die Anzahl der angezeigten Sprachen auf der Karte
 - `api_domain` - Legt eine benutzerdefinierte API Domain fest, z.B. für [Hakatime](https://github.com/mujx/hakatime) oder [Wakapi](https://github.com/muety/wakapi)
-- `range` – Fragt eine eine Zeitspanne an, als die standardmäßig in WakaTime hinterlegte, z.B. `last_7_days`. Siehe [WakaTime API Dokumentation](https://wakatime.com/developers#stats).
+- `range` – Fragt eine andere Zeitspanne an, als jene, welche standardmäßig in Wakatime hinterlegt ist. Zum Beispiel `last_7_days`. Siehe [WakaTime API Dokumentation](https://wakatime.com/developers#stats).
 
 ---
 
@@ -188,7 +188,7 @@ Und Bääm! Du bist nicht mehr auf 6 angeheftete Repositories limitiert.
 ### Benutzung
 
 Füge diesen Code in deine Readme-Datei ein und passe die Links an.
-Passe den Wert des URL-Parameters `?username=` so an, dass dort dein GitHub Nutzername steht.
+Passe den Wert des URL-Parameters `?username=` so an, dass dort dein GitHub-Nutzername steht.
 Den Wert des URL-Parameters `?repo=` musst du so anpassen, dass dort der Namen deines Repositorys steht.
 
 Endpunkt: `api/pin?username=anuraghazra&repo=github-readme-stats`
@@ -201,7 +201,7 @@ Endpunkt: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
-Benutze die [show_owner](#anpassungenpersonalisierung) Variable, um den Nutzernamen des Repo Eigentümers anzuzeigen.
+Benutze die [show_owner](#anpassungenpersonalisierung) Variable, um den Nutzernamen des Repository-Eigentümers anzuzeigen.
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -214,7 +214,7 @@ _HINWEIS: Die Top Programmiersprachen treffen keine Aussage über persönliche F
 ### Benutzung
 
 Füge diesen Code in deine Readme-Datei ein und passe die Links an.
-Passe den Wert des URL-Parameters `?username=` so an, dass dort dein GitHub Nutzername steht.
+Passe den Wert des URL-Parameters `?username=` so an, dass dort dein GitHub-Nutzername steht.
 
 Endpunkt: `api/top-langs?username=anuraghazra`
 
@@ -232,7 +232,7 @@ Du kannst den `?hide=language1,language2` URL-Parameter benutzen, um einzelne Sp
 
 ### Kompaktes Sprachen-Karte Layout
 
-Du kannst die `&layout=compact` Option nutzen, um das Karten Design zu ändern.
+Du kannst die `&layout=compact` Option nutzen, um das Kartendesign zu ändern.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
@@ -248,7 +248,7 @@ Du kannst die `&layout=compact` Option nutzen, um das Karten Design zu ändern.
 
 # Wakatime Wochen-Statistik
 
-Ändere `?username=` in den eigenen [Wakatime](https://wakatime.com) Benutzernamen.
+Ändere `?username=` in den eigenen [Wakatime](https://wakatime.com)-Benutzernamen.
 
 ```md
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
@@ -325,7 +325,7 @@ Wähle Eines von den [Standard-Themes](#themes)
 
 #### [Schritt für Schritt YouTube Tutorial by @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-Da die GitHub API nur 5 Tsd Aufrufe pro Stunde zulässt, kann es passieren, dass meine `https://github-readme-stats.vercel.app/api` dieses Limit erreicht.
+Da die GitHub API nur 5 Tsd. Aufrufe pro Stunde zulässt, kann es passieren, dass meine `https://github-readme-stats.vercel.app/api` dieses Limit erreicht.
 Wenn du es auf deinem eigenen Vercel-Server hostest, brauchst du dich darum nicht zu kümmern. Klicke auf den Deploy-Knopf um loszulegen!
 
 Hinweis: Seit [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) sollte es möglich sein, mehr als 5 Tsd Aufrufe pro Stunde ohne Downtimes zu verkraften :D
@@ -349,7 +349,7 @@ Hinweis: Seit [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 
    ![](https://files.catbox.moe/pqub9q.png)
 1. Wähle root und füge eine Umgebungsvariable namens PAT_1 (siehe Abbildung) die als Wert deinen persönlichen Access Token (PAT) hat hinzu, den du einfach [hier](https://github.com/settings/tokens/new) erzeugen kannst (lasse alles wie es ist, vergebe einen beliebigen Namen)
    ![](https://files.catbox.moe/0ez4g7.png)
-1. Klicke deploy, und das wars. Besuche deine Domains um die API zu benutzen!
+1. Klicke auf `Deploy`, und das wars. Besuche deine Domains um die API zu benutzen!
 </details>
 
 ## :sparkling_heart: Unterstütze das Projekt
