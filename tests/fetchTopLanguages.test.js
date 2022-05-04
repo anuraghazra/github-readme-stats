@@ -67,13 +67,15 @@ describe("FetchTopLanguages", () => {
     expect(repo).toStrictEqual({
       HTML: {
         color: "#0f0",
+        count: 2,
         name: "HTML",
-        size: 200,
+        size: 20,
       },
       javascript: {
         color: "#0ff",
+        count: 2,
         name: "javascript",
-        size: 200,
+        size: 20,
       },
     });
   });
@@ -85,13 +87,15 @@ describe("FetchTopLanguages", () => {
     expect(repo).toStrictEqual({
       HTML: {
         color: "#0f0",
+        count: 1,
         name: "HTML",
-        size: 100,
+        size: 10,
       },
       javascript: {
         color: "#0ff",
+        count: 2,
         name: "javascript",
-        size: 200,
+        size: 20,
       },
     });
   });
