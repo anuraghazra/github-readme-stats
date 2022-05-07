@@ -46,7 +46,7 @@ const fetcher = (variables, token) => {
  * @param {string[]} exclude_repo
  * @returns {Promise<import("./types").TopLangData>}
  */
-async function fetchTopLanguages(username, exclude_repo = []) {
+async function fetchTopLanguages(username, exclude_repo = [], p = 1, q = 0) {
   if (!username) throw new MissingParamError(["username"]);
 
   const res = await retryer(fetcher, { login: username });
@@ -109,7 +109,7 @@ async function fetchTopLanguages(username, exclude_repo = []) {
   Object.keys(repoNodes)
     .forEach((name) => {
       // comparison index calculation
-      repoNodes[name].size = Math.sqrt(repoNodes[name].size * repoNodes[name].count);
+      repoNodes[name].size = Math.pow(repoNodes[name].size, p) * Math.pow(repoNodes[name].count, q);
     })
 
   const topLangs = Object.keys(repoNodes)
