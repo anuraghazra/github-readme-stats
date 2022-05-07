@@ -60,10 +60,10 @@ const error = {
 };
 
 describe("FetchTopLanguages", () => {
-  it("should fetch correct language data", async () => {
+  it("should fetch correct language data while using the new calculation", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
-    let repo = await fetchTopLanguages("anuraghazra");
+    let repo = await fetchTopLanguages("anuraghazra", p = 0.5, q = 0.5);
     expect(repo).toStrictEqual({
       HTML: {
         color: "#0f0",
@@ -89,13 +89,33 @@ describe("FetchTopLanguages", () => {
         color: "#0f0",
         count: 1,
         name: "HTML",
-        size: 10,
+        size: 100,
       },
       javascript: {
         color: "#0ff",
         count: 2,
         name: "javascript",
-        size: 20,
+        size: 200,
+      },
+    });
+  });
+
+  it("should fetch correct language data while using the old calculation", async () => {
+    mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
+
+    let repo = await fetchTopLanguages("anuraghazra", p = 1, q = 0);
+    expect(repo).toStrictEqual({
+      HTML: {
+        color: "#0f0",
+        count: 2,
+        name: "HTML",
+        size: 200,
+      },
+      javascript: {
+        color: "#0ff",
+        count: 2,
+        name: "javascript",
+        size: 200,
       },
     });
   });
