@@ -360,6 +360,13 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  "UWI": {
+    title_color: "c33357",
+    icon_color: "c33357",
+    text_color: "c33357",
+    bg_color: "14141c",
+    border_color: "662136", 
   }
 };
 
