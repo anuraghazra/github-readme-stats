@@ -61,7 +61,6 @@
 </p>
 <p align="center">Love the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
 
-
 <p>
 <a href="https://indiafightscorona.giveindia.org">
 <img src="https://d2wvdrxmr8p0wf.cloudfront.net/static/giveindia.svg" alt="Give india logo" width="200" />
@@ -75,7 +74,6 @@ Thousands of people are dying in India because of a lack of Oxygen & also COVID-
 Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help us fight COVID and overcome this crisis.
 A small donation goes a long way. :heart:
 </p>
-
 
 # Features
 
@@ -158,7 +156,7 @@ You can look at a preview for [all available themes](./themes/README.md) or chec
 
 You can customize the appearance of your `Stats Card` or `Repo Card` however you wish with URL params.
 
-#### Common Options:
+#### Common Options
 
 - `title_color` - Card's title color _(hex color)_
 - `text_color` - Body text color _(hex color)_
@@ -183,7 +181,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 
 > Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k, otherwise, it's 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours.
 
-#### Stats Card Exclusive Options:
+#### Stats Card Exclusive Options
 
 - `hide` - Hides the [specified items](#hiding-individual-stats) from stats _(Comma-separated values)_
 - `hide_title` - _(boolean)_
@@ -198,11 +196,11 @@ You can provide multiple comma-separated values in the bg_color option to render
 - `text_bold` - Use bold text _(boolean)_
 - `disable_animations` - Disables all animations in the card _(boolean)_
 
-#### Repo Card Exclusive Options:
+#### Repo Card Exclusive Options
 
 - `show_owner` - Show the repo's owner name _(boolean)_
 
-#### Language Card Exclusive Options:
+#### Language Card Exclusive Options
 
 - `hide` - Hide the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
@@ -211,13 +209,15 @@ You can provide multiple comma-separated values in the bg_color option to render
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
 - `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
 - `custom_title` - Sets a custom title for the card
+- `&p` - Configures ranking algorithm, defaults to 1, recommended is 0.5 _(number)_
+- `&q` - Configures ranking algorithm, defaults to 0, recommended is 0.5 _(number)_
 
 > :warning: **Important:**
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
 > (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
 > [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
 
-#### Wakatime Card Exclusive Options:
+#### Wakatime Card Exclusive Options
 
 - `hide` - Hide the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
@@ -301,6 +301,26 @@ You can use the `&layout=compact` option to change the card design.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Ranking configuration
+
+You can use the `&p=` and `&q=` options to change the method used to rank the languages used. The values must be positive real numbers.
+
+The algorithm used is
+
+```javascript
+ranking_index = (byte_count ^ p) * (repo_count ^ q)
+```
+
+[Details here.](https://github.com/anuraghazra/github-readme-stats/issues/1600#issuecomment-1046056305)
+
+- `&p=1&q=0` - _(default)_ Orders by byte count
+- `&p=0.5&q=0.5` - _(recommended)_ Uses both byte and repo count for ranking
+- `&p=0&q=1` - Orders by repo count
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&p=0.5&q=0.5)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
@@ -449,7 +469,6 @@ Thanks! :heart:
 ---
 
 [![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
-
 
 Contributions are welcome! <3
 
