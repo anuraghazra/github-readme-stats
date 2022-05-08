@@ -120,6 +120,26 @@ describe("FetchTopLanguages", () => {
     });
   });
 
+  it("should rank languages by the number of repositories they appear in", async () => {
+    mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
+
+    let repo = await fetchTopLanguages("anuraghazra", exclude_repo = [], p = 0, q = 1);
+    expect(repo).toStrictEqual({
+      HTML: {
+        color: "#0f0",
+        count: 2,
+        name: "HTML",
+        size: 2,
+      },
+      javascript: {
+        color: "#0ff",
+        count: 2,
+        name: "javascript",
+        size: 2,
+      },
+    });
+  });
+
   it("should throw error", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, error);
 
