@@ -234,6 +234,13 @@ const themes = {
     text_color: "ffffff",
     bg_color: "20232a",
   },
+  ncoder: {
+    title_color: "61dafb",
+    icon_color: "61dafb",
+    text_color: "ffffff",
+    bg_color: "20232a",
+    border_color: "0c1a25"
+  },
   jolly: {
     title_color: "ff64da",
     icon_color: "a960ff",
