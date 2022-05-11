@@ -361,11 +361,11 @@ const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
-  "orange_white":{
+  "materialize_purple":{
     title_color: "923AFC",
     icon_color: "179994",
     text_color: "170215",
-    bg_color: "E6C945",
+    bg_color: "FFFFFF",
   }
 };
 
