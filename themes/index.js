@@ -360,7 +360,13 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
-  }
+  },
+  darkLilac: {
+    title_color: "9C83E9",
+    icon_color: "FFD5BC",
+    text_color: "EBB6F0",
+    bg_color: "121316",
+  },
 };
 
 module.exports = themes;
