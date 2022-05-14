@@ -4,8 +4,8 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
 "
       <svg
         width=\\"495\\"
-        height=\\"150\\"
-        viewBox=\\"0 0 495 150\\"
+        height=\\"170\\"
+        viewBox=\\"0 0 495 170\\"
         fill=\\"none\\"
         xmlns=\\"http://www.w3.org/2000/svg\\"
       >
@@ -149,6 +149,50 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
     </svg>
   
     </g>
+  </g><g transform=\\"translate(0, 50)\\">
+    <g class=\\"stagger\\" style=\\"animation-delay: NaNms\\" transform=\\"translate(25, 0)\\">
+      <text class=\\"stat bold\\" y=\\"12.5\\" data-testid=\\"YAML\\">YAML:</text>
+      <text
+        class=\\"stat\\"
+        x=\\"350\\"
+        y=\\"12.5\\"
+      >0 secs</text>
+      
+    <svg width=\\"220\\" x=\\"110\\" y=\\"4\\">
+      <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#434d58\\"></rect>
+      <rect
+          height=\\"8\\"
+          fill=\\"#2f80ed\\"
+          rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" 
+          data-testid=\\"lang-progress\\"
+          width=\\"2%\\"
+      >
+      </rect>
+    </svg>
+  
+    </g>
+  </g><g transform=\\"translate(0, 75)\\">
+    <g class=\\"stagger\\" style=\\"animation-delay: NaNms\\" transform=\\"translate(25, 0)\\">
+      <text class=\\"stat bold\\" y=\\"12.5\\" data-testid=\\"Makefile\\">Makefile:</text>
+      <text
+        class=\\"stat\\"
+        x=\\"350\\"
+        y=\\"12.5\\"
+      >0.05%</text>
+      
+    <svg width=\\"220\\" x=\\"110\\" y=\\"4\\">
+      <rect rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" width=\\"220\\" height=\\"8\\" fill=\\"#434d58\\"></rect>
+      <rect
+          height=\\"8\\"
+          fill=\\"#2f80ed\\"
+          rx=\\"5\\" ry=\\"5\\" x=\\"0\\" y=\\"0\\" 
+          data-testid=\\"lang-progress\\"
+          width=\\"2%\\"
+      >
+      </rect>
+    </svg>
+  
+    </g>
   </g>
     </svg>
   
@@ -161,8 +205,8 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
 "
       <svg
         width=\\"495\\"
-        height=\\"115\\"
-        viewBox=\\"0 0 495 115\\"
+        height=\\"140\\"
+        viewBox=\\"0 0 495 140\\"
         fill=\\"none\\"
         xmlns=\\"http://www.w3.org/2000/svg\\"
       >
@@ -287,6 +331,26 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
             fill=\\"#2b7489\\"
           />
         
+          <rect
+            mask=\\"url(#rect-mask)\\"
+            data-testid=\\"lang-progress\\"
+            x=\\"7.1145\\"
+            y=\\"0\\"
+            width=\\"0.32550000000000007\\"
+            height=\\"8\\"
+            fill=\\"#cb171e\\"
+          />
+        
+          <rect
+            mask=\\"url(#rect-mask)\\"
+            data-testid=\\"lang-progress\\"
+            x=\\"7.4399999999999995\\"
+            y=\\"0\\"
+            width=\\"0.2325\\"
+            height=\\"8\\"
+            fill=\\"#427819\\"
+          />
+        
       
     <g transform=\\"translate(25, 25)\\">
       <circle cx=\\"5\\" cy=\\"6\\" r=\\"5\\" fill=\\"#858585\\" />
@@ -299,6 +363,20 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
       <circle cx=\\"5\\" cy=\\"6\\" r=\\"5\\" fill=\\"#2b7489\\" />
       <text data-testid=\\"lang-name\\" x=\\"15\\" y=\\"10\\" class='lang-name'>
         TypeScript - 1 min
+      </text>
+    </g>
+  
+    <g transform=\\"translate(25, 50)\\">
+      <circle cx=\\"5\\" cy=\\"6\\" r=\\"5\\" fill=\\"#cb171e\\" />
+      <text data-testid=\\"lang-name\\" x=\\"15\\" y=\\"10\\" class='lang-name'>
+        YAML - 0 secs
+      </text>
+    </g>
+  
+    <g transform=\\"translate(230, 50)\\">
+      <circle cx=\\"5\\" cy=\\"6\\" r=\\"5\\" fill=\\"#427819\\" />
+      <text data-testid=\\"lang-name\\" x=\\"15\\" y=\\"10\\" class='lang-name'>
+        Makefile - 0.05%
       </text>
     </g>
   

@@ -76,6 +76,10 @@ const wakaTimeData = {
         text: "0 secs",
         total_seconds: 54.975151,
       },
+      {
+        name: "Makefile",
+        percent: 0.05,
+      },
     ],
     operating_systems: [
       {
@@ -177,6 +181,10 @@ describe("Wakatime fetcher", () => {
             "percent": 0.07,
             "text": "0 secs",
             "total_seconds": 54.975151,
+          },
+          Object {
+            "name": "Makefile",
+            "percent": 0.05,
           },
         ],
         "operating_systems": Array [

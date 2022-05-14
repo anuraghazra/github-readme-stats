@@ -33,6 +33,16 @@ export type Lang = {
 
 export type TopLangData = Record<string, Lang>;
 
+export type WakaTimeLang = {
+  name: string;
+  percent: number;
+  digital?: string;
+  hours?: number;
+  minutes?: number;
+  text?: string;
+  total_seconds?: number;
+};
+
 export type WakaTimeData = {
   categories: {
     digital: string;
@@ -68,15 +78,7 @@ export type WakaTimeData = {
   is_other_usage_visible: boolean;
   is_stuck: boolean;
   is_up_to_date: boolean;
-  languages: {
-    digital: string;
-    hours: number;
-    minutes: number;
-    name: string;
-    percent: number;
-    text: string;
-    total_seconds: number;
-  }[];
+  languages: WakaTimeLang[];
   operating_systems: {
     digital: string;
     hours: number;
@@ -97,8 +99,3 @@ export type WakaTimeData = {
   writes_only: boolean;
 };
 
-export type WakaTimeLang = {
-  name: string;
-  text: string;
-  percent: number;
-};

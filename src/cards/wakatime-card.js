@@ -143,7 +143,13 @@ const recalculatePercentages = (languages) => {
  * @returns {string}
  */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  let { languages } = stats;
+  let languages = stats.languages?.map((language) => {
+    return {
+      ...language,
+      text: language.text || `${language.percent}%`,
+    };
+  });
+
   const {
     hide_title = false,
     hide_border = false,
@@ -194,7 +200,9 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const filteredLanguages = languages
     ? languages
-        .filter((language) => language.hours || language.minutes)
+        .filter(
+          (language) => language.hours || language.minutes || language.percent
+        )
         .slice(0, langsCount)
     : [];
 
