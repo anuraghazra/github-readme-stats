@@ -360,7 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
-  }
+  },
+  foggy_forest: {
+    title_color: "17363b",
+    icon_color: "17363b",
+    text_color: "833707",
+    bg_color: "9aa8ab",
 };
 
 module.exports = themes;
