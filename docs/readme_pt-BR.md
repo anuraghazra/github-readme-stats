@@ -137,7 +137,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 - `text_color` - Cor de texto do conteúdo _(hex color)_
 - `icon_color` - Cor dos ícones (se disponível) _(hex color)_
 - `bg_color` - Cor de fundo do cartão _(hex color)_
-- `hide_border` - Esconde a borda do cartão _(boleano)_
+- `hide_border` - Esconde a borda do cartão _(boolean)_
 - `theme` - Nome do tema, escolha em [todos os temas disponíveis](../themes/README.md)
 - `cache_seconds` - Defina o cabeçalho do cache manualmente _(min: 1800, max: 86400)_
 - `locale` - defina o idioma no cartão _(por exemplo. cn, de, es, etc.)_
