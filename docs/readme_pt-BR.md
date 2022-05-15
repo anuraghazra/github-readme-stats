@@ -191,7 +191,7 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
-Utilize a variável [show_owner](#personalização) para incluir o nome de usuário do proprietária do repositório
+Utilize a variável [show_owner](#personalização) para incluir o nome de usuário proprietário do repositório
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
