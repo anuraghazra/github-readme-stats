@@ -143,7 +143,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 
 #### Exklusive Optionen der Statistiken-Karte:
 
-- `hide` - Verbirgt die angegeben Elemente _(mit Komma abgegrenzte Werte)_
+- `hide` - Verbirgt die [angegeben Elemente](#verbergen-individueller-statistiken) _(mit Komma abgegrenzte Werte)_
 - `hide_title` - _(Boolean)_
 - `hide_rank` - _(Boolean)_
 - `show_icons` - _(Boolean)_

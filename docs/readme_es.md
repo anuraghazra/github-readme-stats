@@ -157,7 +157,7 @@ Puedes pasar mútliples valores separados por coma en la opción `bg_color` para
 
 #### Opciones exclusivas de la Tarjeta de Estadísticas:
 
-- `hide` - Oculta de las estadísticas los elementos especificados _ (valores separados por comas) _
+- `hide` - Oculta de las estadísticas [los elementos especificados](#ocultar-estadísticas-individualmente) _(valores separados por comas)_
 - `hide_title` - _(booleano)_
 - `hide_rank` - _(booleano)_
 - `show_icons` - _(booleano)_

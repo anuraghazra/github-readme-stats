@@ -181,7 +181,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 #### Stats Card Exclusive Options:
 
-- `hide` - Hides the specified items from stats _(Comma-separated values)_
+- `hide` - Hides the [specified items](#hiding-individual-stats) from stats _(Comma-separated values)_
 - `hide_title` - _(boolean)_
 - `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width
 - `show_icons` - _(boolean)_
