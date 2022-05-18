@@ -153,7 +153,7 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 #### Stats Card Exclusive Options:
 
--   `hide` - Masquer les éléments spécifiés dans les statistiques _(Comma seperated values)_
+-   `hide` - Masquer [les éléments spécifiés](#cacher-les-statistiques-individuelles) dans les statistiques _(Comma seperated values)_
 -   `hide_title` - Masquer le titre _(boolean)_
 -   `hide_rank` - Masquer le rang _(boolean)_
 -   `show_icons` - Afficher les icônes _(boolean)_
