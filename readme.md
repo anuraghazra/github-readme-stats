@@ -32,6 +32,8 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Report Bug</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
+    ·
+    <a href="https://github.com/anuraghazra/github-readme-stats/discussions">Ask Question</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français </a>
