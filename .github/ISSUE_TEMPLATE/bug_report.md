@@ -20,7 +20,10 @@ Add any other context about the problem here.
 
 <!--
 
-PLEASE READ THE FAQs!!!
+PLEASE FIRST READ THE FAQ (#1770) AND COMMON ERROR CODES (#1772)!!!
+
+Q: My card displays an error
+Ans: Please first check the common error codes (i.e. https://github.com/anuraghazra/github-readme-stats/issues/1772) and existing issues before creating a new issue. 
 
 Q: How to hide jupyter Notebook?
 Ans: &hide=jupyter%20notebook
