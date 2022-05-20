@@ -361,9 +361,9 @@ const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   }
-  "blood-dark":{
+  "blood_dark":{
     title_color: "fe5e5e",
-    icon_color: "347190",
+    icon_color: "8BBCDA",
     text_color: "f2f2f2",
     bg_color: "142b37",
   }
