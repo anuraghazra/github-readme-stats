@@ -67,6 +67,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     show_icons = false,
     hide_title = false,
     hide_border = false,
+    hide_background = false,
     hide_rank = false,
     include_all_commits = false,
     line_height = 25,
@@ -234,6 +235,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   });
 
   card.setHideBorder(hide_border);
+  card.setHideBackground(hide_background);
   card.setHideTitle(hide_title);
   card.setCSS(cssStyles);
 

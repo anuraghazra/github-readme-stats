@@ -84,6 +84,7 @@ const renderRepoCard = (repo, options = {}) => {
   } = repo;
   const {
     hide_border = false,
+    hide_background = false,
     title_color,
     icon_color,
     text_color,
@@ -155,6 +156,7 @@ const renderRepoCard = (repo, options = {}) => {
 
   card.disableAnimations();
   card.setHideBorder(hide_border);
+  card.setHideBackground(hide_background);
   card.setHideTitle(false);
   card.setCSS(`
     .description { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.textColor} }

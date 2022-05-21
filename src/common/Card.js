@@ -25,6 +25,7 @@ class Card {
     this.height = height;
 
     this.hideBorder = false;
+    this.hideBackground = false;
     this.hideTitle = false;
 
     this.border_radius = border_radius;
@@ -60,6 +61,13 @@ class Card {
    */
   setHideBorder(value) {
     this.hideBorder = value;
+  }
+
+  /**
+   * @param {boolean} value
+   */
+  setHideBackground(value) {
+    this.hideBackground = value;
   }
 
   /**
@@ -185,6 +193,7 @@ class Card {
               : this.colors.bgColor
           }"
           stroke-opacity="${this.hideBorder ? 0 : 1}"
+          fill-opacity="${this.hideBackground ? 0 : 1}"
         />
 
         ${this.hideTitle ? "" : this.renderTitle()}

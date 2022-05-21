@@ -16,6 +16,7 @@ export type StatCardOptions = CommonOptions & {
   show_icons: boolean;
   hide_title: boolean;
   hide_border: boolean;
+  hide_background: boolean;
   hide_rank: boolean;
   include_all_commits: boolean;
   line_height: number | string;
@@ -25,12 +26,14 @@ export type StatCardOptions = CommonOptions & {
 
 export type RepoCardOptions = CommonOptions & {
   hide_border: boolean;
+  hide_background: boolean;
   show_owner: boolean;
 };
 
 export type TopLangOptions = CommonOptions & {
   hide_title: boolean;
   hide_border: boolean;
+  hide_background: boolean;
   card_width: number;
   hide: string[];
   layout: "compact" | "normal";
@@ -41,6 +44,7 @@ export type TopLangOptions = CommonOptions & {
 type WakaTimeOptions = CommonOptions & {
   hide_title: boolean;
   hide_border: boolean;
+  hide_background: boolean;
   hide: string[];
   line_height: string;
   hide_progress: boolean;

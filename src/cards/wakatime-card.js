@@ -147,6 +147,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const {
     hide_title = false,
     hide_border = false,
+    hide_background = false,
     hide,
     line_height = 25,
     title_color,
@@ -299,6 +300,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   });
 
   card.setHideBorder(hide_border);
+  card.setHideBackground(hide_background);
   card.setHideTitle(hide_title);
   card.setCSS(
     `
