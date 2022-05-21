@@ -81,6 +81,7 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
           width=\\"494\\"
           fill=\\"#fffefe\\"
           stroke-opacity=\\"1\\"
+          fill-opacity=\\"1\\"
         />
 
         
@@ -238,6 +239,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
           width=\\"494\\"
           fill=\\"#fffefe\\"
           stroke-opacity=\\"1\\"
+          fill-opacity=\\"1\\"
         />
 
         

@@ -28,6 +28,28 @@ describe("Card", () => {
     );
   });
 
+  it("should hide background", () => {
+    const card = new Card({});
+    card.setHideBackground(true);
+
+    document.body.innerHTML = card.render(``);
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "fill-opacity",
+      "0",
+    );
+  });
+
+  it("should not hide background", () => {
+    const card = new Card({});
+    card.setHideBackground(false);
+
+    document.body.innerHTML = card.render(``);
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "fill-opacity",
+      "1",
+    );
+  });
+
   it("should have a custom title", () => {
     const card = new Card({
       customTitle: "custom title",
