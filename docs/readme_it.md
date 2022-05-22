@@ -290,7 +290,7 @@ Scegli uno dei [temi di default](#themes)
 
 Per allineare le card una accanto all'altra, puoi adottare questo approccio:
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>

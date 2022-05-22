@@ -369,7 +369,7 @@ _참고:
 
 그럴땐, 이렇게 해보세요!
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>

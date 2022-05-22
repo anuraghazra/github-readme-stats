@@ -298,7 +298,7 @@ _NOTE: Top languages は、ユーザのスキルレベルを示すものでは�
 
 通常、画像を並べてレイアウトすることはできません。画像を並べるには、以下のような方法があります。
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
