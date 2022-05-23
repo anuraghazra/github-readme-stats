@@ -170,7 +170,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       fr: "Contribué à",
       hu: "Hozzájárulások",
       it: "Ha contribuito a",
-      ja: "コントリビュートしたリポジトリ",
+      ja: "貢献したリポジトリ",
       kr: "전체 기여도",
       nl: "Bijgedragen aan",
       "pt-pt": "Contribuiu em",
