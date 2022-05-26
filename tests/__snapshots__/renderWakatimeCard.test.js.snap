@@ -8,7 +8,11 @@ exports[`Test Render Wakatime Card should render correctly 1`] = `
         viewBox=\\"0 0 495 150\\"
         fill=\\"none\\"
         xmlns=\\"http://www.w3.org/2000/svg\\"
+        role=\\"img\\"
+        aria-labelledby=\\"descId\\"
       >
+        <title id=\\"titleId\\"></title>
+        <desc id=\\"descId\\"></desc>
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
@@ -165,7 +169,11 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
         viewBox=\\"0 0 495 115\\"
         fill=\\"none\\"
         xmlns=\\"http://www.w3.org/2000/svg\\"
+        role=\\"img\\"
+        aria-labelledby=\\"descId\\"
       >
+        <title id=\\"titleId\\"></title>
+        <desc id=\\"descId\\"></desc>
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
