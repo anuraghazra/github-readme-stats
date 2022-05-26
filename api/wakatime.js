@@ -3,9 +3,10 @@ const {
   renderError,
   parseBoolean,
   clampValue,
+  parseArray,
   CONSTANTS,
-  isLocaleAvailable,
 } = require("../src/common/utils");
+const { isLocaleAvailable } = require("../src/translations");
 const { fetchWakatimeStats } = require("../src/fetchers/wakatime-fetcher");
 const wakatimeCard = require("../src/cards/wakatime-card");
 
@@ -26,6 +27,7 @@ module.exports = async (req, res) => {
     locale,
     layout,
     langs_count,
+    hide,
     api_domain,
     range,
     border_radius,
@@ -42,8 +44,8 @@ module.exports = async (req, res) => {
     const stats = await fetchWakatimeStats({ username, api_domain, range });
 
     let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
-      CONSTANTS.TWO_HOURS,
+      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
+      CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
 
@@ -58,6 +60,7 @@ module.exports = async (req, res) => {
         custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
+        hide: parseArray(hide),
         line_height,
         title_color,
         icon_color,

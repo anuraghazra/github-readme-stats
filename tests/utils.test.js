@@ -44,27 +44,6 @@ describe("Test utils.js", () => {
     ).toHaveTextContent(/Secondary Message/gim);
   });
 
-  it("should test flexLayout", () => {
-    const layout = flexLayout({
-      items: ["<text>1</text>", "<text>2</text>"],
-      gap: 60,
-    }).join("");
-
-    expect(layout).toBe(
-      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(60, 0)\"><text>2</text></g>`,
-    );
-
-    const columns = flexLayout({
-      items: ["<text>1</text>", "<text>2</text>"],
-      gap: 60,
-      direction: "column",
-    }).join("");
-
-    expect(columns).toBe(
-      `<g transform=\"translate(0, 0)\"><text>1</text></g><g transform=\"translate(0, 60)\"><text>2</text></g>`,
-    );
-  });
-
   it("getCardColors: should return expected values", () => {
     let colors = getCardColors({
       title_color: "f00",
@@ -137,5 +116,12 @@ describe("wrapTextMultiline", () => {
       2,
     );
     expect(multiLineText).toEqual(["Hello", "world long..."]);
+  });
+  it("should wrap chinese by punctuation", () => {
+    let multiLineText = wrapTextMultiline(
+      "专门为刚开始刷题的同学准备的算法基地，没有最细只有更细，立志用动画将晦涩难懂的算法说的通俗易懂！",
+    );
+    expect(multiLineText.length).toEqual(3);
+    expect(multiLineText[0].length).toEqual(18 * 8); // &#xxxxx; x 8
   });
 });
