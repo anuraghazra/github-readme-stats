@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  "Ambrosia": {
+    title_color: "FF7BAC",
+    icon_color: "FF7BAC",
+    text_color: "CE0079",
+    bg_color: "7C40FF",
   }
 };
 
