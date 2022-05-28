@@ -314,6 +314,8 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
+> Note: Please be aware that we currently only show data from Wakatime profiles that are public.
+
 ### Demo
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
