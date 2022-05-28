@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+    "vini-red": {
+    title_color: "e21a2c",
+    icon_color: "f11f32",
+    text_color: "ffffff",
+    bg_color: "000000",
   }
 };
 
