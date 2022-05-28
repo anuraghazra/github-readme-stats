@@ -42,10 +42,20 @@ class Card {
     this.paddingY = 35;
     this.titlePrefixIcon = titlePrefixIcon;
     this.animations = true;
+    this.a11yTitle = "";
+    this.a11yDesc = "";
   }
 
   disableAnimations() {
     this.animations = false;
+  }
+
+  /**
+   * @param {{title: string, desc: string}} prop
+   */
+  setAccessibilityLabel({ title, desc }) {
+    this.a11yTitle = title;
+    this.a11yDesc = desc;
   }
 
   /**
@@ -148,7 +158,11 @@ class Card {
         viewBox="0 0 ${this.width} ${this.height}"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-labelledby="descId"
       >
+        <title id="titleId">${this.a11yTitle}</title>
+        <desc id="descId">${this.a11yDesc}</desc>
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
