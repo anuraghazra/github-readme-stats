@@ -360,6 +360,18 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  "acid_green":{
+    title_color: "39D253",
+    icon_color: "1F6FEA",
+    text_color: "EBEBEC",
+    bg_color: "0D1117",
+  },
+  "sweet":{
+    title_color: "E31D44",
+    icon_color: "F8DC3C",
+    text_color: "EC7A25",
+    bg_color: "212237",
   }
 };
 
