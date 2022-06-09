@@ -319,12 +319,14 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
    ![](https://files.catbox.moe/btd78j.jpeg)
 1. 登录 GitHub 并允许访问所有存储库（如果系统这样提示）
 1. Fork 这个仓库
+1. Fork这个仓库之后，打开你的仓库里的[`vercel.json`](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json#L5)，把`maxDuration` 改为 `10`
 1. 返回到你的 [Vercel dashboard](https://vercel.com/dashboard)
 1. 选择 `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
 1. 选择 `Import Git Repository`
    ![](https://files.catbox.moe/pqub9q.png)
-1. 选择 root 并将所有内容保持不变，并且只需添加名为 PAT_1 的环境变量（如图所示），其中将包含一个个人访问令牌（PAT），你可以在[这里](https://github.com/settings/tokens/new)轻松创建（保留默认，并且只需要命名下，名字随便）
+1. 创建一个personal access token(PAT)，[这里跳转](https://github.com/settings/tokens/new)，打开`repo`的权限（这里是需要允许查看私有仓库的状态）
+1. 添加PAT到 environment variable，命名为`PAT_1`（如图所示）
    ![](https://files.catbox.moe/0ez4g7.png)
 1. 点击 deploy，这就完成了，查看你的域名就可使用 API 了！
 
