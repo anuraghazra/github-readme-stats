@@ -1,14 +1,14 @@
 {
-    "functions": {
-        "api/*.js": {
-            "memory": 128,
-            "maxDuration": 30
-        }
-    },
-    "redirects": [
-        {
-            "source": "/",
-            "destination": "https://github.com/anuraghazra/github-readme-stats"
-        }
-    ]
+  "functions": {
+    "api/*.js": {
+      "memory": 128,
+      "maxDuration": 30
+    }
+  },
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "https://github.com/anuraghazra/github-readme-stats"
+    }
+  ]
 }
