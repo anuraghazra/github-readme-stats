@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  purple_gradient: {
+    title_color: "fff",
+    icon_color: "aa88ff",
+    text_color: "fff",
+    bg_color: "1,000000,4716A3",
   }
 };
 
