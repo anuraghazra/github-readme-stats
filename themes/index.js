@@ -342,11 +342,12 @@ const themes = {
     text_color: "bcbcbc",
     bg_color: "262626",
   },
-  blackcyan:{
+  black_cyan:{
    title_color: "00FFFF",
    icon_color: "FFFFFF",
    text_color: "FFFFFF",
    bg_color: "000000",
+   border_color: "00FFFF",
   },
 };
 
