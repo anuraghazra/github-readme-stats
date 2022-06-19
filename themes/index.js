@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  "yensubldg":{
+    title_color:"f707ab",
+    icon_color: "2b0828",
+    text_color: "de0dcc",
+    bg_color: "9e8d9d",
   }
 };
 
