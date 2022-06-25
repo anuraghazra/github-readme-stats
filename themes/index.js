@@ -360,7 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
-  }
+  },
+  "Berry":{
+    title_color: "990f4b",
+    icon_color: "874c62",
+    text_color: "000000",
+    bg_color: "ffffff",
 };
 
 module.exports = themes;
