@@ -349,11 +349,11 @@ const themes = {
     bg_color: "F5E1C0",
   },
   codeSTACKr: {
-    title_color: "ff652f",
-    icon_color: "FFE400",
-    text_color: "ffffff",
-    bg_color: "09131B",
-    border_color: "0c1a25",
+    title_color: "44A833",
+    icon_color: "44A833",
+    text_color: "44A833",
+    bg_color: "44A833",
+    border_color: "44A833",
   },
   "rose_pine":{
     title_color: "9ccfd8",
