@@ -360,7 +360,38 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
-  }
+  },
+  "sequoia-moonlight":{
+    title_color: "8eb6f5",
+    icon_color: "f58ee0",
+    text_color: "868690",
+    bg_color: "0F1014",
+  },
+  "sequoia-monochrome":{
+    title_color: "626983",
+    icon_color: "999EB2",
+    text_color: "868690",
+    bg_color: "0F1014",
+  },
+    "serendipity-midnight":{
+    title_color: "EE8679",
+    icon_color: "5BA2D0",
+    text_color: "DEE0EF",
+    bg_color: "151726",
+  },
+  "serendipity-sunset":{
+    title_color: "D1918F",
+    icon_color: "709BBD",
+    text_color: "DEE0EF",
+    bg_color: "202231",
+  },
+  "serendipity-morning":{
+    title_color: "D26A5D",
+    icon_color: "3788BE",
+    text_color: "4E5377",
+    bg_color: "FDFDFE",
+  },
+
 };
 
 module.exports = themes;
