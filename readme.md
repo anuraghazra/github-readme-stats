@@ -70,7 +70,7 @@
 Are you considering supporting the project by donating? Please DON'T!!  
 
 Instead, Help India fight the 2nd deadly wave of COVID-19.  
-Thousands of people are dying in India for lack of Oxygen & COVID related infrastructure.  
+Thousands of people are dying in India because of a lack of Oxygen & also COVID-related infrastructure.  
 
 Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help us fight COVID and overcome this crisis.   
 A small donation goes a long way. :heart:
@@ -96,7 +96,7 @@ A small donation goes a long way. :heart:
 
 Copy-paste this into your markdown content, and that's it. Simple!
 
-Change the `?username=` value to your GitHub's username.
+Change the `?username=` value to your GitHub username.
 
 ```md
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
@@ -173,7 +173,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 ##### Gradient in bg_color
 
-You can provide multiple comma-separated values in bg_color option to render a gradient, with the following format:
+You can provide multiple comma-separated values in the bg_color option to render a gradient, with the following format:
 
 ```
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
@@ -220,7 +220,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `hide_progress` - Hides the progress bar and percentage _(boolean)_
 - `custom_title` - Sets a custom title for the card
 - `layout` - Switch between two available layouts `default` & `compact`
-- `langs_count` - Limit number of languages on the card, defaults to all reported languages
+- `langs_count` - Limit the number of languages on the card, defaults to all reported languages
 - `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
 - `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options.
 
