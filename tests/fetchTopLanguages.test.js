@@ -23,7 +23,7 @@ const data_langs = {
           {
             name: "test-repo-2",
             languages: {
-              edges: [{ size: 100, node: { color: "#0f0", name: "HTML" } }],
+              edges: [{ size: 150, node: { color: "#0f0", name: "HTML" } }],
             },
           },
           {
@@ -38,7 +38,7 @@ const data_langs = {
             name: "test-repo-4",
             languages: {
               edges: [
-                { size: 100, node: { color: "#0ff", name: "javascript" } },
+                { size: 150, node: { color: "#0ff", name: "javascript" } },
               ],
             },
           },
@@ -68,20 +68,38 @@ describe("FetchTopLanguages", () => {
       HTML: {
         color: "#0f0",
         name: "HTML",
-        size: 200,
+        size: 250,
       },
       javascript: {
         color: "#0ff",
         name: "javascript",
-        size: 200,
+        size: 250,
       },
     });
   });
 
-  it("should fetch correct language data while excluding the 'test-repo-1' repository", async () => {
+  it("should fetch correct language data while excluding the 'test-repo-1' and 'test-repo-3' repositories", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
-    let repo = await fetchTopLanguages("anuraghazra", exclude_repo=["test-repo-1"]);
+    let repo = await fetchTopLanguages("anuraghazra", exclude_repo=["test-repo-1", "test-repo-3"], include_repo=[]);
+    expect(repo).toStrictEqual({
+      HTML: {
+        color: "#0f0",
+        name: "HTML",
+        size: 150,
+      },
+      javascript: {
+        color: "#0ff",
+        name: "javascript",
+        size: 150,
+      },
+    });
+  });
+
+  it("should fetch correct language data while only including the 'test-repo-1' and 'test-repo-3' repository", async () => {
+    mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
+
+    let repo = await fetchTopLanguages("anuraghazra", exclude_repo=[], include_repo=["test-repo-1", "test-repo-3"]);
     expect(repo).toStrictEqual({
       HTML: {
         color: "#0f0",
@@ -91,7 +109,7 @@ describe("FetchTopLanguages", () => {
       javascript: {
         color: "#0ff",
         name: "javascript",
-        size: 200,
+        size: 100,
       },
     });
   });
