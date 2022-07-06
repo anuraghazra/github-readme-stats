@@ -147,7 +147,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 #### Opções exclusivas do cartão de estatísticas:
 
 - `hide` - Oculta itens específicos das estatísticas _(Valores separados por vírgulas)_
-- `hide_title` - Ocutar o título _(boolean)_
+- `hide_title` - Ocultar o título _(boolean)_
 - `hide_rank` - Ocultar a classificação _(boolean)_
 - `show_icons` - Mostrar ícones _(boolean)_
 - `include_all_commits` - Contabiliza todos os commits ao invés de apenas os atual ano _(boolean)_
