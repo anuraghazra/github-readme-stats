@@ -294,6 +294,12 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  github_dark_green: {
+    title_color: "39D353",
+    icon_color: "1F6FEB",
+    text_color: "FFFFFF",
+    bg_color: "0D1117",
+  },
   discord_old_blurple: {
     title_color: "7289DA",
     icon_color: "7289DA",
