@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  "readMeCodeColors":{
+    title_color: "5788B4",
+    icon_color: "C8645F",
+    text_color: "E39551",
+    bg_color: "161B22",
   }
 };
 
