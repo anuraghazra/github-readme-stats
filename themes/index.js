@@ -123,7 +123,7 @@ const themes = {
   cyberpunk: {
     title_color: "00ffee",
     icon_color: "13dd78",
-    text_color: "ef1355",
+    text_color: "c1bcff",
     bg_color: "1a0153",
   },
   "blue-green": {
