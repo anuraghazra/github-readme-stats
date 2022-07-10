@@ -98,15 +98,15 @@ const createTextNode = ({
   const cardProgress = hideProgress
     ? null
     : createProgressNode({
-        x: 110,
-        y: 4,
-        progress: percent,
-        color: progressBarColor,
-        width: 220,
-        // @ts-ignore
-        name: label,
-        progressBarBackgroundColor,
-      });
+      x: 110,
+      y: 4,
+      progress: percent,
+      color: progressBarColor,
+      width: 220,
+      // @ts-ignore
+      name: label,
+      progressBarBackgroundColor,
+    });
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
@@ -144,7 +144,7 @@ const recalculatePercentages = (languages) => {
  */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const { languages, editors, categories, operating_systems } = stats;
-  
+
   if (options.graph === "editor") {
     return renderItemCard(editors, options);
   } else if (options.graph === "category") {
