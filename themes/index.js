@@ -120,6 +120,12 @@ const themes = {
     text_color: "363636",
     bg_color: "ffffff",
   },
+  cyberpunk: {
+    title_color: "00ffee",
+    icon_color: "13dd78",
+    text_color: "ef1355",
+    bg_color: "1a0153",
+  },
   "blue-green": {
     title_color: "2f97c1",
     icon_color: "f5b700",
