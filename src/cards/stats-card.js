@@ -1,3 +1,4 @@
+// @ts-check
 const I18n = require("../common/I18n");
 const Card = require("../common/Card");
 const icons = require("../common/icons");
@@ -45,6 +46,11 @@ const createTextNode = ({
   `;
 };
 
+/**
+ * @param {Partial<import('../fetchers/types').StatsData>} stats
+ * @param {Partial<import("./types").StatCardOptions>} options
+ * @returns {string}
+ */
 const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const {
     name,
@@ -75,23 +81,18 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     disable_animations = false,
   } = options;
 
-  const lheight = parseInt(line_height, 10);
+  const lheight = parseInt(String(line_height), 10);
 
   // returns theme based colors with proper overrides and defaults
-  const {
-    titleColor,
-    textColor,
-    iconColor,
-    bgColor,
-    borderColor,
-  } = getCardColors({
-    title_color,
-    icon_color,
-    text_color,
-    bg_color,
-    border_color,
-    theme,
-  });
+  const { titleColor, textColor, iconColor, bgColor, borderColor } =
+    getCardColors({
+      title_color,
+      icon_color,
+      text_color,
+      bg_color,
+      border_color,
+      theme,
+    });
 
   const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
     ? ""
@@ -162,7 +163,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         index,
         showIcons: show_icons,
         shiftValuePos:
-          (!include_all_commits ? 50 : 20) + (isLongLocale ? 50 : 0),
+          (!include_all_commits ? 50 : 35) + (isLongLocale ? 50 : 0),
       }),
     );
 
@@ -182,8 +183,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
           <text
-            x="${rank.level.length === 1 ? "-4" : "0"}"
-            y="0"
+            x="-5"
+            y="3"
             alignment-baseline="central"
             dominant-baseline="central"
             text-anchor="middle"
@@ -237,9 +238,26 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   if (disable_animations) card.disableAnimations();
 
+  // Accessibility Labels
+  const labels = Object.keys(STATS)
+    .filter((key) => !hide.includes(key))
+    .map((key) => {
+      if (key === "commits") {
+        return `${i18n.t("statcard.commits")} ${
+          include_all_commits ? "" : `in ${new Date().getFullYear()}`
+        } : ${totalStars}`;
+      }
+      return `${STATS[key].label}: ${STATS[key].value}`;
+    })
+    .join(", ");
+
+  card.setAccessibilityLabel({
+    title: `${card.title}, Rank: ${rank.level}`,
+    desc: labels,
+  });
+
   return card.render(`
     ${rankCircle}
-
     <svg x="0" y="0">
       ${flexLayout({
         items: statItems,
