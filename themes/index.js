@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  "neon_blurange":{
+    title_color: "FB750B",
+    icon_color: "25FB88",
+    text_color: "C7CCFF",
+    bg_color: "030D6B"
   }
 };
 
