@@ -54,6 +54,7 @@ module.exports = async (req, res) => {
     );
 
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    res.setHeader("Cache-Control", `private, max-age=${cacheSeconds}`);
 
     return res.send(
       renderTopLanguages(topLangs, {
