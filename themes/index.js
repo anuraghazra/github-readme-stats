@@ -362,7 +362,7 @@ const themes = {
     bg_color: "191724",
   },
   violet: {
-    title_color: "f3fae1",
+    title_color: "7b2cbf",
     icon_color: "3c096c",
     text_color: "f3fae1",
     bg_color: "10002b",
