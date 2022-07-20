@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  violet: {
+    title_color: "f3fae1",
+    icon_color: "3c096c",
+    text_color: "f3fae1",
+    bg_color: "10002b",
   }
 };
 
