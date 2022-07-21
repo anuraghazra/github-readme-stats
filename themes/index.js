@@ -311,6 +311,12 @@ const themes = {
     icon_color: "19f9d899",
     text_color: "FF75B5",
     bg_color: "31353a",
+    },
+  blackcian: {
+    title_color: "00FFFF",
+    icon_color: "79ff97",
+    text_color: "00FFFF",
+    bg_color: "151515",
   },
   noctis_minimus: {
     title_color: "d3b692",
