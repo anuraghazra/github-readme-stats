@@ -1,3 +1,4 @@
+// @ts-check
 const {
   kFormatter,
   encodeHTML,
@@ -65,6 +66,11 @@ const iconWithLabel = (icon, label, testid) => {
   return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
 };
 
+/**
+ * @param {import('../fetchers/types').RepositoryData} repo 
+ * @param {Partial<import("./types").RepoCardOptions>} options 
+ * @returns {string}
+ */
 const renderRepoCard = (repo, options = {}) => {
   const {
     name,
@@ -161,8 +167,10 @@ const renderRepoCard = (repo, options = {}) => {
   return card.render(`
     ${
       isTemplate
+        // @ts-ignore
         ? getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
         : isArchived
+        // @ts-ignore
         ? getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
         : ""
     }

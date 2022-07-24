@@ -156,7 +156,7 @@ async function run() {
       if (!ccc.isLevelAA(`#${color1}`, `#${color2}`)) {
         const permalink = getWebAimLink(color1, color2);
         warnings.push(
-          `\`${key}\` does not passes [AA contrast ratio](${permalink})`,
+          `\`${key}\` does not pass [AA contrast ratio](${permalink})`,
         );
       }
     });
