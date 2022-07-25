@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  "volcanic_lava":{
+    title_color: "CF121F",
+    icon_color: "FFD228",
+    text_color: "F83A0C",
+    bg_color: "5A4A40",
   }
 };
 
