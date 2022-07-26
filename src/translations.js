@@ -201,7 +201,7 @@ const repoCardLocales = {
     cs: "Šablona",
     de: "Vorlage",
     en: "Template",
-    es: "Planitlla",
+    es: "Plantilla",
     fr: "Modèle",
     hu: "Sablon",
     it: "Template",
