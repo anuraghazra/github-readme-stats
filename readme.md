@@ -171,6 +171,8 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
 - `border_radius` - Corner rounding on the card_
 
+> Note: The minimum of cache_seconds is currently 4 hours as a temporary fix for PATs exhaustion. 
+
 ##### Gradient in bg_color
 
 You can provide multiple comma-separated values in the bg_color option to render a gradient, with the following format:
