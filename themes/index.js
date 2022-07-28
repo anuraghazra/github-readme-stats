@@ -360,6 +360,13 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  github: {
+    title_color: "71b7ff",
+    icon_color: "26cd4d",
+    text_color: "f0f3f6",
+    bg_color: "272b33",
+    border_color: "7a828e",
   }
 };
 
