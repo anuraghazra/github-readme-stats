@@ -1,23 +1,3 @@
----
-name: Bug report
-about: Create a report to help us improve
-title: ""
-labels: ""
-assignees: ""
----
-
-**Describe the bug**
-A clear and concise description of what the bug is.
-
-**Expected behaviour**
-A clear and concise description of what you expected to happen.
-
-**Screenshots / Live demo link (paste the github-readme-stats link as markdown image)**
-If applicable, add screenshots to help explain your problem.
-
-**Additional context**
-Add any other context about the problem here.
-
 <!--
 
 PLEASE FIRST READ THE FAQ (#1770) AND COMMON ERROR CODES (#1772)!!!
@@ -40,5 +20,24 @@ Ans: Please read all the issues/comments before opening any issues regarding lan
 
 Q: How to count private stats?
 Ans: We can only count private commits & we cannot access any other private info of any users, so it's impossible. The only way is to deploy on your own instance & use your own PAT (Personal Access Token)
-
 -->
+
+---
+name: Bug report
+about: Create a report to help us improve
+title: ""
+labels: ""
+assignees: ""
+---
+
+**Describe the bug**
+A clear and concise description of what the bug is.
+
+**Expected behaviour**
+A clear and concise description of what you expected to happen.
+
+**Screenshots / Live demo link (paste the github-readme-stats link as markdown image)**
+If applicable, add screenshots to help explain your problem.
+
+**Additional context**
+Add any other context about the problem here.
