@@ -214,7 +214,7 @@ const useLanguages = (topLangs, hide, langs_count) => {
     });
   }
 
-  // filter out langauges to be hidden
+  // filter out languages to be hidden
   langs = langs
     .sort((a, b) => b.size - a.size)
     .filter((lang) => {
