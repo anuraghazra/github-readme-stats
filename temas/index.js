@@ -361,6 +361,10 @@ const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   }
-};
+};"escuro" :{
+  title_color: "e683d9", 
+    icon_color: "0480ef",
+    text_color: "f0f8ff" ,
+    bg_color: "000000" ,
 
 module.exports = themes;
