@@ -29,6 +29,7 @@ export type Lang = {
   name: string;
   color: string;
   size: number;
+  url: string;
 };
 
 export type TopLangData = Record<string, Lang>;
