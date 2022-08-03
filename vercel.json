@@ -2,13 +2,13 @@
   "functions": {
     "api/*.js": {
       "memory": 128,
-      "maxDuration": 30
+      "maxDuration": 10
     }
   },
   "redirects": [
     {
       "source": "/",
-      "destination": "https://github.com/anuraghazra/github-readme-stats"
+      "destination": "https://github.com/notauserx/github-readme-stats"
     }
   ]
 }

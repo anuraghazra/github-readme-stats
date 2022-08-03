@@ -36,17 +36,20 @@ const CARD_PADDING = 25;
  *  width: number,
  *  color: string,
  *  name: string,
- *  progress: string
+ *  progress: string,
+ *  url: string
  * }} props
  */
-const createProgressTextNode = ({ width, color, name, progress }) => {
+const createProgressTextNode = ({ width, color, name, progress, url }) => {
   const paddingRight = 95;
   const progressTextX = width - paddingRight + 10;
   const progressWidth = width - paddingRight;
 
   return `
-    <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
-    <text x="${progressTextX}" y="34" class="lang-name">${progress}%</text>
+    <a href="${url}">
+      <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
+      <text x="${progressTextX}" y="34" class="lang-name">${progress}%</text>
+    </a>
     ${createProgressNode({
       x: 0,
       y: 25,
@@ -68,9 +71,11 @@ const createCompactLangNode = ({ lang, totalSize }) => {
   return `
     <g>
       <circle cx="5" cy="6" r="5" fill="${color}" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        ${lang.name} ${percentage}%
-      </text>
+      <a href="${lang.url}">
+        <text data-testid="lang-name" x="15" y="10" class='lang-name'>
+          ${lang.name} ${percentage}%
+        </text>
+      </a>
     </g>
   `;
 };
@@ -121,6 +126,7 @@ const renderNormalLayout = (langs, width, totalLanguageSize) => {
         name: lang.name,
         color: lang.color || DEFAULT_LANG_COLOR,
         progress: ((lang.size / totalLanguageSize) * 100).toFixed(2),
+        url: lang.url
       });
     }),
     gap: 40,

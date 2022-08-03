@@ -90,6 +90,7 @@ async function fetchTopLanguages(username, exclude_repo = []) {
           name: prev.node.name,
           color: prev.node.color,
           size: langSize,
+          url: `https://github.com/search?l=${encodeURIComponent(prev.node.name)}&amp;q=user%3A${username}&amp;type=code`
         },
       };
     }, {});

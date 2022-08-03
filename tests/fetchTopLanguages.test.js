@@ -69,11 +69,13 @@ describe("FetchTopLanguages", () => {
         color: "#0f0",
         name: "HTML",
         size: 200,
+        url: "https://github.com/search?l=HTML&amp;q=user%3Aanuraghazra&amp;type=code",
       },
       javascript: {
         color: "#0ff",
         name: "javascript",
         size: 200,
+        url: "https://github.com/search?l=javascript&amp;q=user%3Aanuraghazra&amp;type=code",
       },
     });
   });
@@ -87,11 +89,13 @@ describe("FetchTopLanguages", () => {
         color: "#0f0",
         name: "HTML",
         size: 100,
+        url: "https://github.com/search?l=HTML&amp;q=user%3Aanuraghazra&amp;type=code",
       },
       javascript: {
         color: "#0ff",
         name: "javascript",
         size: 200,
+        url: "https://github.com/search?l=javascript&amp;q=user%3Aanuraghazra&amp;type=code",
       },
     });
   });
