@@ -132,6 +132,12 @@ const themes = {
     text_color: "FFFFFF",
     bg_color: "050F2C",
   },
+  "algolia-light": {
+    title_color: "00AEFF",
+    icon_color: "2DDE98",
+    text_color: "FFFFBF",
+    bg_color: "050F2C",
+  },
   "great-gatsby": {
     title_color: "ffa726",
     icon_color: "ffb74d",
