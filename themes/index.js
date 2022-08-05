@@ -6,6 +6,12 @@ const themes = {
     bg_color: "fffefe",
     border_color: "e4e2e2",
   },
+  sun_eclipse: {
+    title_color: "ab930a",
+    text_color: "ed98dd",
+    icon_color: "ede398",
+    bg_color: "0c1931",
+  },
   default_repocard: {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
