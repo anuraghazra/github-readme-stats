@@ -1,7 +1,7 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">पहुनु होस् द्य्नामिचल्ली गेनेरटे गितहब  रेअडमी सतत  </p>
+ <p align="center">पहुनु होस् द्य्नामिचल्ली गेनेरटे गिटहब  रेअडमी सतत  </p>
 </p>
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
@@ -53,19 +53,24 @@
     <a href="/docs/readme_np.md">नेपाली</a>
   </p>
 </p>
-<p align="center">परियोजना मनपर्‍यो? तपाईं मद्दत गर्न सक्नुहुन्छ <a href="https://www.paypal.me/anuraghazra">यो परियोजना</a> बढ्न 
+<p align="center">परियोजना मन पराउनुभयो? कृपया यसलाई सुधार गर्न <a href="https://www.paypal.me/anuraghazra"> अनुदान मद्दत </a> गर्नुहोस्!
 
 # विशेषताहरु
 
-- [गितहब स्टेट कार्ड](#गितहब-स्टेट-कार्ड)
-- [गितहब अतिरिक्त पिन्स](#गितहब-अतिरिक्त-पिन्स)
-- [टोप भाषा कार्ड](#टोप-भाषा-कार्ड)
-- [वाका समय वीक स्तट्स ](#वाका-समय-वीक-स्तट्स )
-- [विषयवस्तुहरू](#विषयवस्तुहरू)
-- [अनुकूलन](#अनुकूलन)
-- [आफैलाई तैनाथ गर्नुहोस्](#देप्लोय-आफ्नै-वेर्चेल-इन्स्तंस )
+- [गिटहब स्टेट कार्ड](#गिटहब-स्टेट-कार्ड)
+- [गिटहब अतिरिक्त पिन्स](#गिटहब-अतिरिक्त-पिन्स)
+- [शीर्ष भाषा कार्ड](#शीर्ष-भाषा-कार्ड)
+- [Wakatime साप्ताहिक स्तट्स ](#wakatime-साप्ताहिक-स्तट्स )
+- [थिमहरु](#थिमहरु)
+- [परिमार्जन](#परिमार्जन)
+  - [साधारण विकल्पहरू](#साधारण-विकल्पहरू)
+  - [Stats कार्ड विशेष विकल्पहरू](#Stats-कार्ड-विशेष-विकल्पहरू)
+  - [Repo कार्ड विशेष विकल्पहरू](#Repo-कार्ड-विशेष-विकल्पहरू)
+  - [भाषा कार्ड विशेष विकल्पहरू](#भाषा-कार्ड-विशेष-विकल्पहरू)
+  - [Wakatime कार्ड विशेष विकल्प](#wakatime-कार्ड-विशेष-विकल्प)
+- [आफै तैनाथ गर्नुहोस्](#देप्लोय-आफ्नै-वेर्चेल-इन्स्तंस )
 
-# गितहब स्टेट कार्ड 
+# गिटहब तथ्याङ्क कार्डहरू
 
 Copy-paste this into your markdown content, and that's it. Simple!
 
@@ -77,7 +82,7 @@ Change the `?username=` value to your GitHub's username.
 
 _Note: Ranks are calculated based on user's stats, see [src/calculateRank.js](./src/calculateRank.js)_
 
-### लुकाउनु होस् व्यक्तिगत स्टेट
+### व्यक्तिगत तथ्याङ्क लुकाउन
 
 To hide any specific stats, you can pass a query parameter `?hide=` with comma-separated values.
 
@@ -87,7 +92,7 @@ To hide any specific stats, you can pass a query parameter `?hide=` with comma-s
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
-### जोड्नु होस् निजी टोटल  योगदान
+### कुल कमिट गणनामा निजी योगदानहरू गणना थप्न
 
 You can add the count of all your private contributions to the total commits count by using the query parameter `?count_private=true`.
 
@@ -99,7 +104,7 @@ _Note: If you are deploying this project yourself, the private contributions wil
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
-### देखाउनु होस् इकोन 
+### आइकनहरू देखाउन
 
 To enable icons, you can pass `show_icons=true` in the query param, like so:
 
@@ -107,7 +112,7 @@ To enable icons, you can pass `show_icons=true` in the query param, like so:
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
-### विषयवस्तुहरू
+### थिमहरु 
 
 With inbuilt themes, you can customize the look of the card without doing any [manual customization](#customization).
 
@@ -117,7 +122,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
-#### सबै इनबिल्ट विषयवस्तु :-
+#### सबै पूर्व निर्मित थिमहरु:-
 
 dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
 
@@ -126,13 +131,11 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 तपैले सबै थेम्सहरु  प्रेविउ गर्न सक्नु हुनेछ । [all available themes](../themes/README.md) नत्र थेम्सहरुको config [theme config file](../themes/index.js) पनि हेर्न सक्नु हुनेछ र **थेम्सहरुमा योगदान पनि गर्नु सक्नु हुनेछ** :D ।
 
-### अनुकूलन
+### परिमार्जन
 
 तपैले `Stats Card` or `Repo Card` को अपपेअरंस कस्टमेज गर्न सक्नु हुनेछ  जसमा तपैले URL  params  पनि प्रयोग गर्नु सक्नु हुनेछ ।
 
-#### साधारण विकल्पहरू:
-
-- `title_color` - Card's title color _(hex color)_
+#### साधारण विकल्पहरू
 - `text_color` - Body text color _(hex color)_
 - `icon_color` - Icons color if available _(hex color)_
 - `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_
@@ -141,7 +144,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
 - `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
 
-##### Gradient in bg_color
+##### bg_color मा ग्रेडियन्ट
 
 You can provide multiple comma-separated values in bg_color option to render a gradient, the format of the gradient is :-
 
@@ -166,7 +169,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 - `show_owner` - Show the owner name of the repo _(boolean)_
 
-#### भाषा कार्ड अनन्य विकल्पहरू :
+#### भाषा कार्ड विशेष विकल्पहरू:
 
 - `hide` - Hide the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
@@ -180,7 +183,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
 > (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.)
 
-#### वकासमय  कार्ड विशेष विकल्प:
+#### Wakatime कार्ड विशेष विकल्प:
 
 - `hide_title` - _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
@@ -189,7 +192,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 ---
 
-# गितहब अतिरिक्त पिन्स   
+# गिटहब अतिरिक्त पिन्स
 
 GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
 
@@ -215,9 +218,9 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
-# टोप भाषा कार्ड 
+# शीर्ष भाषा कार्ड 
 
-टोप भाषाकार्डले github परयोग गर्नेहरुको प्रोग्रम्मिंग भाषाहरु देखाऊने गर्दछ |. 
+शीर्ष भाषाकार्डले github परयोग गर्नेहरुको प्रोग्रम्मिंग भाषाहरु देखाऊने गर्दछ |. 
 
 _NOTE: टोप भाषाहरुले आफ्नो सिपलाए संकेत गरेको होईन | योचै Github  Metricबाट धेरै कुन भाषा परयोग भाकोलाए संकेत गरेको हो |
 ### प्रयोग 
@@ -230,7 +233,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Exclude individual repositories
+### व्यक्तिगत repositories समावेश नगर्नुहोस्
 
 You can use `?exclude_repo=repo1,repo2` parameter to exclude individual repositories.
 
@@ -238,7 +241,7 @@ You can use `?exclude_repo=repo1,repo2` parameter to exclude individual reposito
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### कुनै भाषा चुपौनॆ तरिका 
+### कुनै भाषा लुकाउनुहोस्
 
 You can use `?hide=language1,language2` parameter to hide individual languages.
 
@@ -254,7 +257,7 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### कम्प्याक्ट भाषा कार्ड ळयोउत 
+### कम्प्याक्ट भाषा कार्ड लेआउट 
 
 तपाइले `&layout=compact` ओप्तिओनपनि  कार्ड देसिग्न को लागि परहयोग गर्न सक्नु हुन्क्ष 
 
@@ -266,11 +269,11 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- Compact layout
+- कम्प्याक्ट कार्ड
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# वाका समय वीक स्तट्स 
+# Wakatime साप्ताहिक स्तट्स 
 
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
@@ -288,57 +291,61 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ### सबै डेमोहरु  
 
-- देफौल्ट 
+- डिफल्ट 
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
-- हिदिंग स्पेचific स्तट्स 
+- कुनै स्ट्याट हटाएर 
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
 
-- इकोनहरु शो गर्ने 
+- आइकनहरुका साथ 
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
-- सबै कमितहरु 
+- सिमा रेखा अनुकुलन गरेर
+
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&border_color=2e4058)
+
+- सबै कमिटहरुका साथ 
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
 
-- थेम्स 
+- थिम्सहरु 
 
 कुनै एउटा चोज गर्नुस [default themes](#themes)
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
-- घ्रदिएन्त 
+- ग्रेडिएन्ट 
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
-- स्तत्स कार्ड लाए कस्तोमेज गर्ने    
+- इस्ट्याटस कार्ड लाई परिमार्जन गर्नुहोस्
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- सेत्तिंग  कार्ड  लोचले 
+- सेटिङ्स तथ भाषा परिमार्जन गर्नुहोस्
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=es)
 
-- रेपो कार्डलाई एडित गर्नु 
+- रेपो कार्ड परिमार्जन गर्नुहोस् 
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
-- टोप भाषा 
+- शीर्ष भाषाहरू 
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- वक समय कार्ड 
+- वाकाटाईम कार्ड 
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
-### टिप्  (रेपो कार्डलाए अलिग्न गर्ने )
+### जानकारी (रेपो कार्डलाए पङ्क्तिबद्ध वा अलाईन गर्ने )
 
-तपाइले इमेजलाई सइद बय सइद  अलीग्न गर्न सक्नु हुदैन तेसैले येसरी गर्नु होस् :
+तपाइँ सामान्यतया तस्बिरहरू सँगसँगै लेआउट गर्न सक्षम हुनुहुने छैन। यो गर्न को लागी तपाइँ यो विधि प्रयोग गर्न सक्नुहुन्छ:
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -349,11 +356,11 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 </a>
 ```
 
-##  देप्लोय  आफ्नै  वेर्चेल  इन्स्तंस 
+##  तपाईंको आफ्नै Vercel उदाहरणमा तैनात गर्नुहोस् 
 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-गितहब को अपिएले पाच हजार रेक़ुएस्त प्रति घण्टा मात्र मिल्क्ष ।  मेरो 
+गिटहब को अपिएले पाच हजार रेक़ुएस्त प्रति घण्टा मात्र मिल्क्ष ।  मेरो 
  `https://github-readme-stats.vercel.app/api` प्रोजेक्ट मा रेत्  लिमिट हुन सक्क्ष । तर तपाइले आफ्नै वेर्चेल सेर्वेर मा होस्ट गर्नु बाको छ बने यो प्रोब्लेम हुदैन।  
  होस्ट गर्ने तरिका यस पकारका षन ।
 
