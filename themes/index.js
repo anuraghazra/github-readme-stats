@@ -360,7 +360,14 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
-  }
+  },
+  fine_design: {
+    title_color: "ffe0b5",
+    icon_color: "bd8a84",
+    text_color: "8e724d",
+    bg_color: "000000",
+    border_color: "000000",
+  },
 };
 
 module.exports = themes;
