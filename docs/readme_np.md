@@ -287,6 +287,10 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
+- साँघुरो लेआउट
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
 ---
 
 ### सबै डेमोहरु  
@@ -303,7 +307,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
-- सिमा रेखा अनुकुलन गरेर
+- सिमा रेखा परिमार्जन गरेर
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&border_color=2e4058)
 
@@ -313,7 +317,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 - थिम्सहरु 
 
-कुनै एउटा चोज गर्नुस [default themes](#themes)
+कुनै पनि [default themes](#themes) बाट छनौट गर्नुहोस्
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
