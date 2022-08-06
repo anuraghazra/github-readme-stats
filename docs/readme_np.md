@@ -337,7 +337,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- वाकाटाईम कार्ड 
+- Wakatime कार्ड 
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -389,15 +389,15 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 
 </details>
 
-## :sparkling_heart: सहपोर्ट द प्रोजेक्ट 
+## :sparkling_heart: परियोजनालाई समर्थन गर्नुहोस्
 
-म सके सम्म आफ्नो प्रोजेक्ट हरु ओपेन्सोउर्चे गर्छु र अरु ले पनि सहयोग गर्क्षु । मेले सहयोग गर्दा आफ्नो समय पनि देरै ने दिन्क्षु । तपाइहरु ले यो सेर्विचेस फ्री मा चलाउनु सक्नु हुनेक्ष ।
+म सके सम्म आफ्नो प्रोजेक्ट हरु ओपन सोर्श गर्छु र र म यी परियोजनाहरू प्रयोग गरेर मद्दत चाहिने सबैलाई जवाफ दिने प्रयास गर्छु| जाहिर छ, यो समय लाग्छ| तपाईं यो सेवा नि: शुल्क प्रयोग गर्न सक्नुहुन्छ|
 
-येदि तपाइले यो प्रोजेक्ट चलाउनु बाकोक्ष बने र मलाई अझै प्रसंसा गर्ने हो बने तपाइले थुप्रै तरिका ले गर्नु सक्नु हुने छ :-
+यद्यपि, यदि तपाईं यो परियोजना प्रयोग गर्दै हुनुहुन्छ र यससँग खुसी हुनुहुन्छ वा मलाई सामग्री सिर्जना गर्न जारी राख्न प्रोत्साहन दिन चाहनुहुन्छ भने, तपाईंले यो गर्न सक्ने केही तरिकाहरू छन्:-
 
-- यो प्रोजेक्टमा तपाइले प्रहयोग गर्दा मलाई क्रेडिट दिन सक्नु हुनेक्ष ।
-- तपाइले Github ReadMe Stats स्तार्रेड गर्न सक्नु हुनेक्ष  :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - तपाइले पेपाल बाट पनि सहयोग (डक्क्षिन) गर्न सक्नु हुनेक्ष | म  ~~कोफी ~~ चिया . :tea: किन्न सक्क्षु ।
+- यो प्रोजेक्टमा तपाइले प्रहयोग गर्दा मलाई क्रेडिट दिन सक्नु हुनेछ|
+- तपाइले Github ReadMe Stats स्तार्रेड गर्न सक्नु हुनेछ|  :rocket:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - तपाइले पेपाल बाट पनि सहयोग (दक्षिणा) गर्न सक्नु हुनेछ| म  ~~कफी~~ चिया . :tea: किन्न सक्क्षु।
 
 धन्याबाद! :heart:
 
