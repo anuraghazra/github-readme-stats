@@ -12,6 +12,13 @@ const themes = {
     text_color: "434d58",
     bg_color: "fffefe",
   },
+  gradient: {
+    title_color: "fff",
+    icon_color: "79ff97",
+    text_color: "9f9f9f",
+    bg_color: ctx.createLinearGradient(43deg, #4158D0 0%, #C850C0 46%, #FFCC70 100%),
+
+  },
   dark: {
     title_color: "fff",
     icon_color: "79ff97",
