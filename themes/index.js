@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  Hetx:{
+    title_color: "7400ff",
+    icon_color: "c0ff00",
+    text_color: "ffffff",
+    bg_color: "040404",
   }
 };
 
