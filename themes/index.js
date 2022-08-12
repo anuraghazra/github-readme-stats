@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  "flag-bangladesh": {
+    title_color: "ff4d4d",
+    icon_color: "ff4d4d",
+    text_color: "ff4d4d",
+    bg_color: "55,006a4e,cc0000",
   }
 };
 
