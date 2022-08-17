@@ -103,6 +103,15 @@ describe("Test renderTopLanguages", () => {
     expect(document.querySelector("svg")).toHaveAttribute("width", "400");
   });
 
+  it("should render with min width", () => {
+    document.body.innerHTML = renderTopLanguages(langs, { card_width: 190 });
+
+    expect(document.querySelector("svg")).toHaveAttribute("width", "200");
+
+    document.body.innerHTML = renderTopLanguages(langs, { card_width: 100 });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "200");
+  });
+
   it("should render default colors properly", () => {
     document.body.innerHTML = renderTopLanguages(langs);
 
