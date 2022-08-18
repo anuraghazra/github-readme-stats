@@ -13,6 +13,7 @@ const {
 } = require("../common/utils");
 
 const DEFAULT_CARD_WIDTH = 300;
+const MIN_CARD_WIDTH = 230;
 const DEFAULT_LANGS_COUNT = 5;
 const DEFAULT_LANG_COLOR = "#858585";
 const CARD_PADDING = 25;
@@ -24,12 +25,12 @@ const CARD_PADDING = 25;
 /**
  * @param {Lang[]} arr
  */
- const getLongestLang = (arr) =>
- arr.reduce(
-   (savedLang, lang) =>
-     lang.name.length > savedLang.name.length ? lang : savedLang,
-   { name: "", size: null, color: "" },
- );
+const getLongestLang = (arr) =>
+  arr.reduce(
+    (savedLang, lang) =>
+      lang.name.length > savedLang.name.length ? lang : savedLang,
+    { name: "", size: null, color: "" },
+  );
 
 /**
  * @param {{
@@ -261,7 +262,11 @@ const renderTopLanguages = (topLangs, options = {}) => {
     String(langs_count),
   );
 
-  let width = isNaN(card_width) ? DEFAULT_CARD_WIDTH : card_width;
+  let width = isNaN(card_width)
+    ? DEFAULT_CARD_WIDTH
+    : card_width < MIN_CARD_WIDTH
+    ? MIN_CARD_WIDTH
+    : card_width;
   let height = calculateNormalLayoutHeight(langs.length);
 
   let finalLayout = "";
@@ -307,3 +312,4 @@ const renderTopLanguages = (topLangs, options = {}) => {
 };
 
 module.exports = renderTopLanguages;
+module.exports.MIN_CARD_WIDTH = MIN_CARD_WIDTH;
