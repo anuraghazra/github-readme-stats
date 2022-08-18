@@ -1,0 +1,20 @@
+name: Update top issues dashboard.
+on:
+  schedule:
+    - cron: "0 0 */7 * *"
+
+jobs:
+  showAndLabelTopIssues:
+    name: Update top issues Dashboard.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run top issues action
+        uses: rickstaa/top-issues-action@v1
+        env:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          label: false
+          dashboard: true
+          top_issues: true
+          top_bugs: true
+          top_features: true
+          top_pull_requests: true
