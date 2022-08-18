@@ -1,4 +1,4 @@
-name: Update top issues dashboard.
+name: Update top issues dashboard
 on:
   schedule:
     - cron: "0 0 */7 * *"
