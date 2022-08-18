@@ -115,7 +115,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-br": "Total de PRs",
       np: "कुल PRs",
       el: "Σύνολο PRs",
-      ru: "Всего pull request`ов",
+      ru: "Всего Pull Request`ов",
       "uk-ua": "Всього pull request`iв",
       id: "Total Permintaan Tarik",
       ml: "ആകെ പുൾ അഭ്യർത്ഥനകൾ",
