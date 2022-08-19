@@ -67,8 +67,8 @@ const iconWithLabel = (icon, label, testid) => {
 };
 
 /**
- * @param {import('../fetchers/types').RepositoryData} repo 
- * @param {Partial<import("./types").RepoCardOptions>} options 
+ * @param {import('../fetchers/types').RepositoryData} repo
+ * @param {Partial<import("./types").RepoCardOptions>} options
  * @returns {string}
  */
 const renderRepoCard = (repo, options = {}) => {
@@ -93,27 +93,14 @@ const renderRepoCard = (repo, options = {}) => {
     border_radius,
     border_color,
     locale,
+    description_line_count,
+    foreign_object,
   } = options;
 
   const lineHeight = 10;
   const header = show_owner ? nameWithOwner : name;
   const langName = (primaryLanguage && primaryLanguage.name) || "Unspecified";
   const langColor = (primaryLanguage && primaryLanguage.color) || "#333";
-
-  const desc = parseEmojis(description || "No description provided");
-  const multiLineDescription = wrapTextMultiline(desc);
-  const descriptionLines = multiLineDescription.length;
-  const descriptionSvg = multiLineDescription
-    .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
-    .join("");
-
-  const height =
-    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
-
-  const i18n = new I18n({
-    locale,
-    translations: repoCardLocales,
-  });
 
   // returns theme based colors with proper overrides and defaults
   const colors = getCardColors({
@@ -123,6 +110,38 @@ const renderRepoCard = (repo, options = {}) => {
     bg_color,
     border_color,
     theme,
+  });
+
+  const desc = parseEmojis(description || "No description provided");
+  let descriptionLines = 1;
+  let descriptionSvg = "";
+  if (foreign_object) {
+    descriptionLines = description_line_count || Math.ceil(desc.length / 59);
+    descriptionSvg = `<foreignObject x="25" y="-5" width="350" height="${descriptionLines * 16.6}">
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <style>
+        .description {color: ${colors.textColor};display: inline-block;line-height: 16.6px; }
+      </style>
+      <span class="description">${desc}</span>
+    </div>
+  </foreignObject>`;
+  } else {
+    const multiLineDescription = wrapTextMultiline(desc, 59, description_line_count || 3);
+    descriptionLines = description_line_count || multiLineDescription.length;
+    const descriptionSpan = multiLineDescription
+      .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
+      .join("");
+    descriptionSvg = `<text class="description" x="25" y="-5">
+      ${descriptionSpan}
+    </text>`
+  }
+
+  const height =
+    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+
+  const i18n = new I18n({
+    locale,
+    translations: repoCardLocales,
   });
 
   const svgLanguage = primaryLanguage
@@ -175,9 +194,7 @@ const renderRepoCard = (repo, options = {}) => {
         : ""
     }
 
-    <text class="description" x="25" y="-5">
-      ${descriptionSvg}
-    </text>
+    ${descriptionSvg}
 
     <g transform="translate(30, ${height - 75})">
       ${starAndForkCount}
