@@ -360,6 +360,14 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+
+  organic:{
+    title_color: "7FB77E",
+    icon_color: "B1D7B4",
+    text_color: "B1D7B4",
+    bg_color: "F7F6DC",
+    border_color: "FFC090",
   }
 };
 
