@@ -361,7 +361,7 @@ const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
-  "nush_light":{
+  nush_light:{
     title_color: "1C3879",
     icon_color: "607EAA",
     text_color: "e0def4",
