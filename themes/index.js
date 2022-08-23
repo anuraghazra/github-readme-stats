@@ -360,6 +360,12 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  "nush_light":{
+    title_color: "1C3879",
+    icon_color: "607EAA",
+    text_color: "e0def4",
+    bg_color: "EAE3D2",
   }
 };
 
