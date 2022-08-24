@@ -151,7 +151,7 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 > Note relative: Les cartes dépôt ont un cache par défaut de 30 minutes (1800 secondes) si le nombre de bifurcations et d'étoiles est inférieur à 1K, alors il est de 2 heures (7200). Notez également que la mémoire cache est limitée à 30 minutes au minimum et à 24 heures au maximum.
 
-#### Options exclusives de stats:
+#### Options exclusives de Carte de stats:
 
 -   `hide` - Masquer [les éléments spécifiés](#cacher-les-statistiques-individuelles) dans les statistiques _(Comma seperated values)_
 -   `hide_title` - Masquer le titre _(boolean)_
@@ -161,11 +161,11 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 -   `count_private` - Compter les commits privés _(boolean)_
 -   `line_height` - Fixer la hauteur de la ligne entre les textes _(number)_
 
-#### Option exclusive de dépôt:
+#### Option exclusive de Carte de dépôt:
 
 -   `show_owner` - Affiche le nom du propriétaire du dépôt _(boolean)_
 
-#### Option exclusive de langage:
+#### Option exclusive Carte de langage:
 
 -   `hide` - Masquer les langages spécifiés sur la carte _(Comma seperated values)_
 -   `hide_title` - Masquer le titre _(boolean)_
@@ -202,7 +202,7 @@ Utiliser la variable [show_owner](#customization) pour inclure le nom d'utilisat
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
-# Carte des langages les + utilisés
+# Carte des langages les plus utilisés
 
 La carte des langages principaux montre les langages les plus utilisés par les utilisateurs de GitHub.
 
@@ -220,7 +220,7 @@ Extrémité: `api/top-langs?username=anuraghazra`
 
 ### Cacher certains langages
 
-Vous pouvez utiliser le paramètre `?hide=language1,language2` pour masquer les langages individuels.
+Vous pouvez utiliser le paramètre `?hide=language1,language2` pour masquer certains langages.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
@@ -330,7 +330,7 @@ NOTE: Depuis [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) n
 
 </details>
 
-## :sparkling_heart: Supporter le project
+## :sparkling_heart: Supporter le projet
 
 Je mets open-source presque tout ce que je peux, et j'essaie de répondre à tous ceux qui ont besoin d'aide en utilisant ces projets. Évidemment, cela prend du temps. Vous pouvez utiliser ce service gratuitement.
 
