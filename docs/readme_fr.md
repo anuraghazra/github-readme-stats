@@ -92,7 +92,7 @@ Pour masquer des statistiques spécifiques, vous pouvez passer un paramètre de 
 
 Vous pouvez ajouter le compte de toutes vos contributions privées au compte total des engagements en utilisant le paramètre de requête `?count_private=true`.
 
-_Note: Si vous déployez vous-même ce projet, les contributions privées seront comptées par défaut ; sinon, vous devez choisir de partager les comptes de vos contributions privées._
+_Note: Si vous déployez vous-même ce projet, les contributions privées seront comptées par défaut, sinon vous devez choisir de partager les comptes de vos contributions privées._
 
 > Options: `&count_private=true`
 
@@ -112,7 +112,7 @@ Pour activer les icônes, vous pouvez passer `show_icons=true` dans le paramètr
 
 Avec les thèmes intégrés, vous pouvez personnaliser l'apparence de la carte sans faire de [personnalisation manuelle](#customization).
 
-Use `?theme=THEME_NAME` parameter like so :-
+Utilisez le paramètre `?theme=THEME_NAME` comme ceci :-
 
 ```md
 ![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
@@ -141,9 +141,9 @@ Vous pouvez personnaliser l'apparence de votre `Carte des stats` ou `Carte de d�
 - `cache_seconds` - Paramétrer le cache manuellement _(min: 1800, max: 86400)_
 - `locale` - définir la langue de la carte _(par exemple. cn, de, es, etc.)_
 
-##### Gradient in bg_color
+##### Utilisation du gradient dans bg_color
 
-Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_color pour rendre un degradé, le format du degradé est :-
+Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_color pour faire un degradé, le format du degradé est :-
 
 ```
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
@@ -151,7 +151,7 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 > Note relative: Les cartes dépôt ont un cache par défaut de 30 minutes (1800 secondes) si le nombre de bifurcations et d'étoiles est inférieur à 1K, alors il est de 2 heures (7200). Notez également que la mémoire cache est limitée à 30 minutes au minimum et à 24 heures au maximum.
 
-#### Stats Card Exclusive Options:
+#### Options exclusives de stats:
 
 -   `hide` - Masquer [les éléments spécifiés](#cacher-les-statistiques-individuelles) dans les statistiques _(Comma seperated values)_
 -   `hide_title` - Masquer le titre _(boolean)_
@@ -161,11 +161,11 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 -   `count_private` - Compter les commits privés _(boolean)_
 -   `line_height` - Fixer la hauteur de la ligne entre les textes _(number)_
 
-#### Repo Card Exclusive Options:
+#### Option exclusive de dépôt:
 
 -   `show_owner` - Affiche le nom du propriétaire du dépôt _(boolean)_
 
-#### Language Card Exclusive Options:
+#### Option exclusive de langage:
 
 -   `hide` - Masquer les langages spécifiés sur la carte _(Comma seperated values)_
 -   `hide_title` - Masquer le titre _(boolean)_
@@ -178,13 +178,13 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 ---
 
-# GitHub Extra Pins
+## GitHub Épingles Supplémentaires
 
 Les épingles supplémentaires GitHub vous permettent d'épingler plus de 6 dépôts dans votre profil en utilisant un profil GitHub readme.
 
 Et OUI ! Vous n'êtes plus limité à 6 dépôts épinglés.
 
-### Usage
+### Utilisation
 
 Copiez-collez ce code dans votre readme et modifiez les liens.
 
@@ -206,9 +206,9 @@ Utiliser la variable [show_owner](#customization) pour inclure le nom d'utilisat
 
 La carte des langages principaux montre les langages les plus utilisés par les utilisateurs de GitHub.
 
-_NOTE: Les langages affichés n'indiquent pas mon niveau de compétence ou quelque chose comme ça, c'est une métrique GitHub de quelles langages j'ai le plus de code sur GitHub, c'est une nouvelle fonctionnalité de github-readme-stats_
+_NOTE: Les langages affichés n'indiquent pas votre niveau de compétence, mais plutôt une métrique GitHub des langages qui ont le plus de lignes de codes sur GitHub, c'est une nouvelle fonctionnalité de github-readme-stats_
 
-### Usage
+### Utilisation
 
 Copiez-collez ce code dans votre readme et modifiez les liens.
 
@@ -218,7 +218,7 @@ Extrémité: `api/top-langs?username=anuraghazra`
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Cacher certaines langages
+### Cacher certains langages
 
 Vous pouvez utiliser le paramètre `?hide=language1,language2` pour masquer les langages individuels.
 
@@ -301,7 +301,7 @@ En général, vous ne pourrez pas mettre les images côte à côte. Pour ce fair
 
 ## Déployer sur votre propre instance Vercel
 
-#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+#### [Regarder Pas À Pas Le Tutoriel Vidéo Par @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
 Comme l'API GitHub ne permet que 5k requêtes par heure, il est possible que mon `https://github-readme-stats.vercel.app/api` puisse atteindre le limiteur de débit. Si vous l'hébergez sur votre propre serveur Vercel, alors vous n'avez pas à vous soucier de quoi que ce soit. Cliquez sur le bouton de déploiement pour commencer !
 
