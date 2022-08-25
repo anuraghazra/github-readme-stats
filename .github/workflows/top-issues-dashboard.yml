@@ -12,6 +12,7 @@ jobs:
         uses: rickstaa/top-issues-action@v1
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+        with:
           label: false
           dashboard: true
           top_issues: true
