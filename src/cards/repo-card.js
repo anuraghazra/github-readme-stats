@@ -165,11 +165,10 @@ const renderRepoCard = (repo, options = {}) => {
   `);
 
   return card.render(`
-    ${
-      isTemplate
-        // @ts-ignore
-        ? getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
-        : isArchived
+    ${isTemplate
+      // @ts-ignore
+      ? getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
+      : isArchived
         // @ts-ignore
         ? getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
         : ""

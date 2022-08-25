@@ -247,7 +247,7 @@ function wrapTextMultiline(text, width = 59, maxLines = 3) {
   return multiLineText;
 }
 
-const noop = () => {};
+const noop = () => { };
 // return console instance based on the environment
 const logger =
   process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
