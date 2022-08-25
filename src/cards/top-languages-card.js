@@ -49,13 +49,13 @@ const createProgressTextNode = ({ width, color, name, progress }) => {
     <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
     <text x="${progressTextX}" y="34" class="lang-name">${progress}%</text>
     ${createProgressNode({
-      x: 0,
-      y: 25,
-      color,
-      width: progressWidth,
-      progress,
-      progressBarBackgroundColor: "#ddd",
-    })}
+    x: 0,
+    y: 25,
+    color,
+    width: progressWidth,
+    progress,
+    progressBarBackgroundColor: "#ddd",
+  })}
   `;
 };
 
@@ -173,9 +173,9 @@ const renderCompactLayout = (langs, width, totalLanguageSize) => {
 
     <g transform="translate(0, 25)">
       ${createLanguageTextNode({
-        langs,
-        totalSize: totalLanguageSize,
-      })}
+    langs,
+    totalSize: totalLanguageSize,
+  })}
     </g>
   `;
 };
@@ -265,8 +265,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
   let width = isNaN(card_width)
     ? DEFAULT_CARD_WIDTH
     : card_width < MIN_CARD_WIDTH
-    ? MIN_CARD_WIDTH
-    : card_width;
+      ? MIN_CARD_WIDTH
+      : card_width;
   let height = calculateNormalLayoutHeight(langs.length);
 
   let finalLayout = "";

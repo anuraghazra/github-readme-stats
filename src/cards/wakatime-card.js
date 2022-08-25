@@ -98,15 +98,15 @@ const createTextNode = ({
   const cardProgress = hideProgress
     ? null
     : createProgressNode({
-        x: 110,
-        y: 4,
-        progress: percent,
-        color: progressBarColor,
-        width: 220,
-        // @ts-ignore
-        name: label,
-        progressBarBackgroundColor,
-      });
+      x: 110,
+      y: 4,
+      progress: percent,
+      color: progressBarColor,
+      width: 220,
+      // @ts-ignore
+      name: label,
+      progressBarBackgroundColor,
+    });
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
@@ -194,8 +194,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const filteredLanguages = languages
     ? languages
-        .filter((language) => language.hours || language.minutes)
-        .slice(0, langsCount)
+      .filter((language) => language.hours || language.minutes)
+      .slice(0, langsCount)
     : [];
 
   // Calculate the card height depending on how many items there are
@@ -249,35 +249,35 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       </mask>
       ${compactProgressBar}
       ${createLanguageTextNode({
-        x: 0,
-        y: 25,
-        langs: filteredLanguages,
-        totalSize: 100,
-      }).join("")}
+      x: 0,
+      y: 25,
+      langs: filteredLanguages,
+      totalSize: 100,
+    }).join("")}
     `;
   } else {
     finalLayout = flexLayout({
       items: filteredLanguages.length
         ? filteredLanguages.map((language) => {
-            return createTextNode({
-              id: language.name,
-              label: language.name,
-              value: language.text,
-              percent: language.percent,
-              // @ts-ignore
-              progressBarColor: titleColor,
-              // @ts-ignore
-              progressBarBackgroundColor: textColor,
-              hideProgress: hide_progress,
-            });
-          })
+          return createTextNode({
+            id: language.name,
+            label: language.name,
+            value: language.text,
+            percent: language.percent,
+            // @ts-ignore
+            progressBarColor: titleColor,
+            // @ts-ignore
+            progressBarBackgroundColor: textColor,
+            hideProgress: hide_progress,
+          });
+        })
         : [
-            noCodingActivityNode({
-              // @ts-ignore
-              color: textColor,
-              text: i18n.t("wakatimecard.nocodingactivity"),
-            }),
-          ],
+          noCodingActivityNode({
+            // @ts-ignore
+            color: textColor,
+            text: i18n.t("wakatimecard.nocodingactivity"),
+          }),
+        ],
       gap: lheight,
       direction: "column",
     }).join("");

@@ -112,9 +112,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     commits: {
       icon: icons.commits,
-      label: `${i18n.t("statcard.commits")}${
-        include_all_commits ? "" : ` (${new Date().getFullYear()})`
-      }`,
+      label: `${i18n.t("statcard.commits")}${include_all_commits ? "" : ` (${new Date().getFullYear()})`
+        }`,
       value: totalCommits,
       id: "commits",
     },
@@ -211,10 +210,10 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const width = hide_rank
     ? clampValue(
-        50 /* padding */ + calculateTextWidth() * 2,
-        270 /* min */,
-        Infinity,
-      )
+      50 /* padding */ + calculateTextWidth() * 2,
+      270 /* min */,
+      Infinity,
+    )
     : 495;
 
   const card = new Card({
@@ -243,9 +242,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     .filter((key) => !hide.includes(key))
     .map((key) => {
       if (key === "commits") {
-        return `${i18n.t("statcard.commits")} ${
-          include_all_commits ? "" : `in ${new Date().getFullYear()}`
-        } : ${totalStars}`;
+        return `${i18n.t("statcard.commits")} ${include_all_commits ? "" : `in ${new Date().getFullYear()}`
+          } : ${totalStars}`;
       }
       return `${STATS[key].label}: ${STATS[key].value}`;
     })
@@ -260,10 +258,10 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     ${rankCircle}
     <svg x="0" y="0">
       ${flexLayout({
-        items: statItems,
-        gap: lheight,
-        direction: "column",
-      }).join("")}
+    items: statItems,
+    gap: lheight,
+    direction: "column",
+  }).join("")}
     </svg> 
   `);
 };
