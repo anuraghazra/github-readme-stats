@@ -86,15 +86,16 @@ const totalCommitsFetcher = async (username) => {
 
   try {
     let res = await retryer(fetchTotalCommits, { login: username });
-    if (res.data.total_count) {
+    let total_count = res.data.total_count;
+    if (!!total_count && !isNaN(total_count)) {
       return res.data.total_count;
     }
   } catch (err) {
     logger.log(err);
-    // just return 0 if there is something wrong so that
-    // we don't break the whole app
-    return 0;
   }
+  // just return 0 if there is something wrong so that
+  // we don't break the whole app
+  return 0;
 };
 
 /**
