@@ -184,7 +184,7 @@ Voit antaa pilkuilla erotetut arvot bg_color-parametrissa luodaksesi gradientin,
 
 GitHub Extra Pinsin avulla voit kiinnittää profiiliisi yli 6 tietovarastoa käyttämällä profiilin README-komentoa.
 
-### Utilizzo
+### Käyttö
 
 Kopioi ja liitä seuraava koodi niin, että vaihdat linkin.
 
