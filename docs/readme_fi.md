@@ -72,7 +72,7 @@
 
 Jos haluat luoda kortin GitHub-tilastoilla, kopioi ja liitä se markdown-tiedostoosi, siinä kaikki: se on helppoa!
 
-Muista vaihtaa `? Username =` -arvo GitHub-käyttäjänimeksi.
+Muista vaihtaa `?Username=` -arvo GitHub-käyttäjänimeksi.
 
 ```md
 [![Anuragin GitHub-tilastot](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
