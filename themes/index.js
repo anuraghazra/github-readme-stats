@@ -361,6 +361,12 @@ const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   }
+   "pinkin dark":{
+   title_color: "e2e9ec",
+   icon_color: "00ffff",
+   text_color: "e5289e",
+   bg_color: "000",
+ }
 };
 
 module.exports = themes;
