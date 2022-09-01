@@ -360,7 +360,13 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
-  }
+  },
+  "flag-ukraine": {
+      title_color: "0077ff",
+      icon_color: "0077ff",
+      text_color: "ffc600",
+      bg_color: "ffffff",
+    }
 };
 
 module.exports = themes;
