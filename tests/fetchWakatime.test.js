@@ -1,7 +1,7 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const { fetchWakatimeStats } = require("../src/fetchers/wakatime-fetcher");
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import { fetchWakatimeStats } form "../src/fetchers/wakatime-fetcher";
 const mock = new MockAdapter(axios);
 
 afterEach(() => {
@@ -212,4 +212,4 @@ describe("Wakatime fetcher", () => {
   });
 });
 
-module.exports = { wakaTimeData };
+export { wakaTimeData };

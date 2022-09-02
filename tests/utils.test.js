@@ -1,14 +1,14 @@
-require("@testing-library/jest-dom");
-const {
+import "@testing-library/jest-dom";
+import {
   kFormatter,
   encodeHTML,
   renderError,
   flexLayout,
   getCardColors,
   wrapTextMultiline,
-} = require("../src/common/utils");
+} from "../src/common/utils";
 
-const { queryByTestId } = require("@testing-library/dom");
+import { queryByTestId } from "@testing-library/dom";
 
 describe("Test utils.js", () => {
   it("should test kFormatter", () => {

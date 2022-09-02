@@ -1,9 +1,9 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("@uppercod/css-to-object").cssToObject;
-const renderTopLanguages = require("../src/cards/top-languages-card");
+import "@testing-library/jest-dom";
+import {cssToObject} from "@uppercod/css-to-object";
+import {renderTopLanguages, MIN_CARD_WIDTH} from "../src/cards/top-languages-card";
 
-const { queryByTestId, queryAllByTestId } = require("@testing-library/dom");
-const themes = require("../themes");
+import { queryByTestId, queryAllByTestId } from "@testing-library/dom";
+import themes from "../themes";
 
 describe("Test renderTopLanguages", () => {
   const langs = {
@@ -108,13 +108,13 @@ describe("Test renderTopLanguages", () => {
 
     expect(document.querySelector("svg")).toHaveAttribute(
       "width",
-      renderTopLanguages.MIN_CARD_WIDTH.toString(),
+      MIN_CARD_WIDTH.toString(),
     );
 
     document.body.innerHTML = renderTopLanguages(langs, { card_width: 100 });
     expect(document.querySelector("svg")).toHaveAttribute(
       "width",
-      renderTopLanguages.MIN_CARD_WIDTH.toString(),
+      MIN_CARD_WIDTH.toString(),
     );
   });
 

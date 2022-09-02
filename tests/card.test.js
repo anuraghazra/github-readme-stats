@@ -1,9 +1,9 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("@uppercod/css-to-object").cssToObject;
-const Card = require("../src/common/Card");
-const icons = require("../src/common/icons");
-const { getCardColors } = require("../src/common/utils");
-const { queryByTestId } = require("@testing-library/dom");
+import "@testing-library/jest-dom";
+import {cssToObject} from "@uppercod/css-to-object";
+import Card from "../src/common/Card";
+import icons from "../src/common/icons";
+import { getCardColors } from "../src/common/utils";
+import { queryByTestId } from "@testing-library/dom";
 
 describe("Card", () => {
   it("should hide border", () => {

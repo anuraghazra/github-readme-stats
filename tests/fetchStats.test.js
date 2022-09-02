@@ -1,8 +1,8 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const fetchStats = require("../src/fetchers/stats-fetcher");
-const calculateRank = require("../src/calculateRank");
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import fetchStats from "../src/fetchers/stats-fetcher";
+import calculateRank from "../src/calculateRank";
 
 const data = {
   data: {

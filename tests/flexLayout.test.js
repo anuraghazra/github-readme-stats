@@ -1,4 +1,4 @@
-const { flexLayout } = require("../src/common/utils");
+import { flexLayout } from "../src/common/utils";
 
 describe("flexLayout", () => {
   it("should work with row & col layouts", () => {

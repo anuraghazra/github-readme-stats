@@ -1,13 +1,13 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("@uppercod/css-to-object").cssToObject;
-const renderStatsCard = require("../src/cards/stats-card");
+import "@testing-library/jest-dom";
+import {cssToObject} from "@uppercod/css-to-object";
+import renderStatsCard from "../src/cards/stats-card";
 
-const {
+import {
   getByTestId,
   queryByTestId,
   queryAllByTestId,
-} = require("@testing-library/dom");
-const themes = require("../themes");
+} from "@testing-library/dom";
+import themes from "../themes";
 
 describe("Test renderStatsCard", () => {
   const stats = {
