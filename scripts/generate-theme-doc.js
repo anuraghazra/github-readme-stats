@@ -1,5 +1,5 @@
-const theme = require("../themes/index");
-const fs = require("fs");
+import theme from "../themes/index";
+import fs from "fs";
 
 const TARGET_FILE = "./themes/README.md";
 const REPO_CARD_LINKS_FLAG = "<!-- REPO_CARD_LINKS -->";

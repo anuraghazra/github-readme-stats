@@ -74,4 +74,4 @@ function calculateRank({
   return { level, score: normalizedScore };
 }
 
-module.exports = calculateRank;
+export default calculateRank;

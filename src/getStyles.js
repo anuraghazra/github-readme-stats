@@ -112,4 +112,4 @@ const getStyles = ({
   `;
 };
 
-module.exports = { getStyles, getAnimations };
+export { getStyles, getAnimations };

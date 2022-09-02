@@ -1,6 +1,6 @@
 // @ts-check
-const { request, logger, MissingParamError } = require("../common/utils");
-const retryer = require("../common/retryer");
+import { request, logger, MissingParamError } from "../common/utils";
+import retryer from "../common/retryer";
 require("dotenv").config();
 
 /**
@@ -104,4 +104,4 @@ async function fetchTopLanguages(username, exclude_repo = []) {
   return topLangs;
 }
 
-module.exports = fetchTopLanguages;
+export default fetchTopLanguages;

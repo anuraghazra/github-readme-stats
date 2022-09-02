@@ -1,5 +1,5 @@
-const { getAnimations } = require("../getStyles");
-const { flexLayout, encodeHTML } = require("../common/utils");
+import { getAnimations } from "../getStyles";
+import { flexLayout, encodeHTML } from "../common/utils";
 
 class Card {
   /**
@@ -216,4 +216,4 @@ class Card {
   }
 }
 
-module.exports = Card;
+export default Card;

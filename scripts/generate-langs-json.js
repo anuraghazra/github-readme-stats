@@ -1,6 +1,6 @@
-const fs = require('fs');
-const jsYaml = require('js-yaml');
-const axios = require('axios');
+import fs from 'fs';
+import jsYaml from 'js-yaml';
+import axios from 'axios';
 
 const LANGS_FILEPATH = "./src/common/languageColors.json"
 

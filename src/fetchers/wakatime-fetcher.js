@@ -1,5 +1,5 @@
-const axios = require("axios");
-const { MissingParamError } = require("../common/utils");
+import axios from "axios";
+import { MissingParamError } from "../common/utils";
 
 /**
  * @param {{username: string, api_domain: string, range: string}} props
@@ -26,6 +26,4 @@ const fetchWakatimeStats = async ({ username, api_domain, range }) => {
   }
 };
 
-module.exports = {
-  fetchWakatimeStats,
-};
+export default fetchWakatimeStats;

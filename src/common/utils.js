@@ -1,8 +1,8 @@
 // @ts-check
-const axios = require("axios");
-const wrap = require("word-wrap");
-const themes = require("../../themes");
-const toEmoji = require("emoji-name-map");
+import axios from "axios";
+import wrap from "word-wrap";
+import themes from "../../themes";
+import toEmoji from "emoji-name-map";
 
 /**
  * @param {string} message
@@ -370,7 +370,7 @@ function parseEmojis(str) {
   });
 }
 
-module.exports = {
+export {
   renderError,
   kFormatter,
   encodeHTML,

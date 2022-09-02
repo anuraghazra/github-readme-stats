@@ -1,9 +1,9 @@
-const core = require("@actions/core");
-const github = require("@actions/github");
-const parse = require("parse-diff");
-const Hjson = require("hjson");
-const snakeCase = require("lodash.snakecase");
-const ColorContrastChecker = require("color-contrast-checker");
+import core from "@actions/core";
+import github from "@actions/github";
+import parse from "parse-diff";
+import Hjson from "hjson";
+import snakeCase from "lodash.snakecase";
+import ColorContrastChecker from "color-contrast-checker";
 
 require("dotenv").config();
 
