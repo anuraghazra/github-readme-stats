@@ -360,6 +360,13 @@ const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  accurate_github_dark: {
+    title_color: "c9d1d9",
+    icon_color: "8b949e",
+    text_color: "8b949e",
+    bg_color: "0d1117",
+    border_color: "30363d",
   }
 };
 
