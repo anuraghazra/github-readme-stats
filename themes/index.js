@@ -361,6 +361,12 @@ const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+    cyberpunk: {
+    title_color: "05d9e8",
+    icon_color: "f3e600",
+    text_color: "05d9e8",
+    bg_color: "01012b",
+  },
 };
 
 module.exports = themes;
