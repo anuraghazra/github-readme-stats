@@ -48,10 +48,15 @@ describe("Test Render Wakatime Card", () => {
   });
 
   it('should show "no coding activitiy this week" message when there hasn not been activity', () => {
-    document.body.innerHTML = renderWakatimeCard({
-      ...wakaTimeData.data,
-      languages: undefined
-    }, {});
-    expect(document.querySelector(".stat").textContent).toBe("No coding activity this week")
-  })
+    document.body.innerHTML = renderWakatimeCard(
+      {
+        ...wakaTimeData.data,
+        languages: undefined,
+      },
+      {},
+    );
+    expect(document.querySelector(".stat").textContent).toBe(
+      "No coding activity this week",
+    );
+  });
 });
