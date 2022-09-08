@@ -33,6 +33,7 @@ module.exports = async (req, res) => {
     disable_animations,
     border_radius,
     border_color,
+    role,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -47,6 +48,7 @@ module.exports = async (req, res) => {
   try {
     const stats = await fetchStats(
       username,
+      parseArray(role),
       parseBoolean(count_private),
       parseBoolean(include_all_commits),
     );
