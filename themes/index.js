@@ -361,6 +361,18 @@ const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  catppuccin_latte: {
+    title_color: "179299",
+    icon_color: "8839ef",
+    text_color: "4c4f69",
+    bg_color: "eff1f5",
+  },
+  catppuccin_mocha: {
+    title_color: "94e2d5",
+    icon_color: "cba6f7",
+    text_color: "cdd6f4",
+    bg_color: "1e1e2e",
+  },
 };
 
 module.exports = themes;
