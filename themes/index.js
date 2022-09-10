@@ -361,6 +361,12 @@ const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  green_sky:{
+    title_color: "14FF5B",
+    icon_color: "14FF5B",
+    text_color: "FFFFFF",
+    bg_color: "004280",
+  }
 };
 
 module.exports = themes;
