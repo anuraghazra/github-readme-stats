@@ -174,12 +174,13 @@ const themes = {
     icon_color: "88c0d0",
     bg_color: "2e3440",
   },
-  "nord-light-aurora": { // Based on the Nord theme colour palettes: https://www.nordtheme.com/docs/colors-and-palettes
-    title_color: "D08770",
-    text_color: "5E81AC",
-    icon_color: "A3BE8C",
-    bg_color: "FFFFFF",
-    border_color: "B48EAD",
+  "nord-light-aurora": {
+    // Based on the Nord theme colour palettes: https://www.nordtheme.com/docs/colors-and-palettes
+    title_color: "d08770",
+    text_color: "5e81ac",
+    icon_color: "a3be8c",
+    bg_color: "ffffff",
+    border_color: "b48ead",
   },
   gotham: {
     title_color: "2aa889",
