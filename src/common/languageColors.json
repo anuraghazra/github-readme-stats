@@ -80,6 +80,7 @@
     "Clojure": "#db5855",
     "Closure Templates": "#0d948f",
     "Cloud Firestore Security Rules": "#FFA000",
+    "Cocoa" : "FB0008"
     "CodeQL": "#140f46",
     "CoffeeScript": "#244776",
     "ColdFusion": "#ed2cd6",
@@ -178,7 +179,7 @@
     "Groovy Server Pages": "#4298b8",
     "HAProxy": "#106da9",
     "HLSL": "#aace60",
-    "HTML": "#e34c26",
+    "HTML": "#C53B00",
     "HTML+ECR": "#2e1052",
     "HTML+EEX": "#6e4a7e",
     "HTML+ERB": "#701516",
