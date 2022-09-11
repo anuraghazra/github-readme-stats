@@ -1,26 +1,30 @@
-const fs = require('fs');
-const jsYaml = require('js-yaml');
-const axios = require('axios');
+const fs = require("fs");
+const jsYaml = require("js-yaml");
+const axios = require("axios");
 
-const LANGS_FILEPATH = "./src/common/languageColors.json"
+const LANGS_FILEPATH = "./src/common/languageColors.json";
 
 //Retrieve languages from github linguist repository yaml file
 //@ts-ignore
-axios.get("https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml")
-.then((response) => {
+axios
+  .get(
+    "https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml",
+  )
+  .then((response) => {
+    //and convert them to a JS Object
+    const languages = jsYaml.load(response.data);
 
-  //and convert them to a JS Object
-  const languages = jsYaml.load(response.data);
+    const languageColors = {};
 
-  const languageColors = {};
+    //Filter only language colors from the whole file
+    Object.keys(languages).forEach((lang) => {
+      languageColors[lang] = languages[lang].color;
+    });
 
-  //Filter only language colors from the whole file
-  Object.keys(languages).forEach((lang) => {
-    languageColors[lang] = languages[lang].color;
+    //Debug Print
+    //console.dir(languageColors);
+    fs.writeFileSync(
+      LANGS_FILEPATH,
+      JSON.stringify(languageColors, null, "    "),
+    );
   });
-
-  //Debug Print
-  //console.dir(languageColors);
-  fs.writeFileSync(LANGS_FILEPATH, JSON.stringify(languageColors, null, '    '));
-  
-});

@@ -207,7 +207,7 @@ describe("Wakatime fetcher", () => {
     mock.onGet(/\/https:\/\/wakatime\.com\/api/).reply(404, wakaTimeData);
 
     await expect(fetchWakatimeStats("noone")).rejects.toThrow(
-      "Missing params \"username\" make sure you pass the parameters in URL",
+      'Missing params "username" make sure you pass the parameters in URL',
     );
   });
 });
