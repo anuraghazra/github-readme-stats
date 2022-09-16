@@ -1,6 +1,6 @@
 // @ts-check
-import retryer from "../common/retryer";
-import { request, MissingParamError } from "../common/utils";
+import { retryer } from "../common/retryer";
+import { MissingParamError, request } from "../common/utils";
 
 /**
  * @param {import('Axios').AxiosRequestHeaders} variables
@@ -97,4 +97,5 @@ async function fetchRepo(username, reponame) {
   }
 }
 
+export { fetchRepo };
 export default fetchRepo;

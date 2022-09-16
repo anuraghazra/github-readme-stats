@@ -1,16 +1,17 @@
 // @ts-check
-import axios from "axios"
+import axios from "axios";
+import * as dotenv from "dotenv";
 import githubUsernameRegex from "github-username-regex";
-import retryer from "../common/retryer";
-import calculateRank from "../calculateRank";
+import { calculateRank } from "../calculateRank";
+import { retryer } from "../common/retryer";
 import {
-  request,
-  logger,
   CustomError,
+  logger,
   MissingParamError,
+  request,
 } from "../common/utils";
 
-require("dotenv").config();
+dotenv.config();
 
 /**
  * @param {import('axios').AxiosRequestHeaders} variables
@@ -169,4 +170,5 @@ async function fetchStats(
   return stats;
 }
 
+export { fetchStats };
 export default fetchStats;

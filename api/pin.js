@@ -1,4 +1,3 @@
-require("dotenv").config();
 import {
   renderError,
   parseBoolean,

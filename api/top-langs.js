@@ -1,4 +1,3 @@
-require("dotenv").config();
 import {
   renderError,
   clampValue,
@@ -10,6 +9,9 @@ import fetchTopLanguages from "../src/fetchers/top-languages-fetcher";
 import {renderTopLanguages} from "../src/cards/top-languages-card";
 import blacklist from "../src/common/blacklist";
 import { isLocaleAvailable } from "../src/translations";
+import * as dotenv from "dotenv";
+
+dotenv.config()
 
 export default async (req, res) => {
   const {

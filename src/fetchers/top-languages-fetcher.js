@@ -1,7 +1,9 @@
 // @ts-check
-import { request, logger, MissingParamError } from "../common/utils";
-import retryer from "../common/retryer";
-require("dotenv").config();
+import * as dotenv from "dotenv";
+import { retryer } from "../common/retryer";
+import { logger, MissingParamError, request } from "../common/utils";
+
+dotenv.config();
 
 /**
  * @param {import('Axios').AxiosRequestHeaders} variables
@@ -104,4 +106,5 @@ async function fetchTopLanguages(username, exclude_repo = []) {
   return topLangs;
 }
 
+export { fetchTopLanguages };
 export default fetchTopLanguages;

@@ -1,8 +1,8 @@
 // @ts-check
 import axios from "axios";
-import wrap from "word-wrap";
-import themes from "../../themes";
 import toEmoji from "emoji-name-map";
+import wrap from "word-wrap";
+import { themes } from "../../themes";
 
 /**
  * @param {string} message

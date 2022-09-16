@@ -1,5 +1,5 @@
+import { encodeHTML, flexLayout } from "../common/utils";
 import { getAnimations } from "../getStyles";
-import { flexLayout, encodeHTML } from "../common/utils";
 
 class Card {
   /**
@@ -216,4 +216,5 @@ class Card {
   }
 }
 
+export { Card };
 export default Card;

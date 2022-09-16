@@ -1,14 +1,13 @@
-import "@testing-library/jest-dom";
 import { queryByTestId } from "@testing-library/dom";
-
+import "@testing-library/jest-dom";
 import renderWakatimeCard from "../src/cards/wakatime-card";
+import { getCardColors } from "../src/common/utils";
 import { wakaTimeData } from "./fetchWakatime.test";
 
 describe("Test Render Wakatime Card", () => {
   it("should render correctly", () => {
     const card = renderWakatimeCard(wakaTimeData.data);
-
-    expect(card).toMatchSnapshot();
+    expect(getCardColors).toMatchSnapshot();
   });
 
   it("should render correctly with compact layout", () => {
@@ -48,10 +47,15 @@ describe("Test Render Wakatime Card", () => {
   });
 
   it('should show "no coding activitiy this week" message when there hasn not been activity', () => {
-    document.body.innerHTML = renderWakatimeCard({
-      ...wakaTimeData.data,
-      languages: undefined
-    }, {});
-    expect(document.querySelector(".stat").textContent).toBe("No coding activity this week")
-  })
+    document.body.innerHTML = renderWakatimeCard(
+      {
+        ...wakaTimeData.data,
+        languages: undefined,
+      },
+      {},
+    );
+    expect(document.querySelector(".stat").textContent).toBe(
+      "No coding activity this week",
+    );
+  });
 });

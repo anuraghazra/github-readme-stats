@@ -1,16 +1,16 @@
 // @ts-check
+import { Card } from "../common/Card";
+import { I18n } from "../common/I18n";
+import { icons } from "../common/icons";
 import {
-  kFormatter,
   encodeHTML,
-  getCardColors,
   flexLayout,
-  wrapTextMultiline,
+  getCardColors,
+  kFormatter,
   measureText,
   parseEmojis,
+  wrapTextMultiline,
 } from "../common/utils";
-import I18n from "../common/I18n";
-import Card from "../common/Card";
-import icons from "../common/icons";
 import { repoCardLocales } from "../translations";
 
 /**
@@ -67,8 +67,8 @@ const iconWithLabel = (icon, label, testid) => {
 };
 
 /**
- * @param {import('../fetchers/types').RepositoryData} repo 
- * @param {Partial<import("./types").RepoCardOptions>} options 
+ * @param {import('../fetchers/types').RepositoryData} repo
+ * @param {Partial<import("./types").RepoCardOptions>} options
  * @returns {string}
  */
 const renderRepoCard = (repo, options = {}) => {
@@ -167,11 +167,11 @@ const renderRepoCard = (repo, options = {}) => {
   return card.render(`
     ${
       isTemplate
-        // @ts-ignore
-        ? getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
+        ? // @ts-ignore
+          getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
         : isArchived
-        // @ts-ignore
-        ? getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
+        ? // @ts-ignore
+          getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
         : ""
     }
 
@@ -185,4 +185,5 @@ const renderRepoCard = (repo, options = {}) => {
   `);
 };
 
+export { renderRepoCard };
 export default renderRepoCard;

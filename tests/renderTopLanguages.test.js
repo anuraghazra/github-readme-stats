@@ -1,9 +1,13 @@
+import { queryAllByTestId, queryByTestId } from "@testing-library/dom";
+import { cssToObject } from "@uppercod/css-to-object";
+import {
+  MIN_CARD_WIDTH,
+  renderTopLanguages,
+} from "../src/cards/top-languages-card";
+// adds special assertions like toHaveTextContent
 import "@testing-library/jest-dom";
-import {cssToObject} from "@uppercod/css-to-object";
-import {renderTopLanguages, MIN_CARD_WIDTH} from "../src/cards/top-languages-card";
 
-import { queryByTestId, queryAllByTestId } from "@testing-library/dom";
-import themes from "../themes";
+import { themes } from "../themes";
 
 describe("Test renderTopLanguages", () => {
   const langs = {
@@ -247,7 +251,7 @@ describe("Test renderTopLanguages", () => {
   });
 
   it("should render langs with specified langs_count", async () => {
-    options = {
+    const options = {
       langs_count: 1,
     };
     document.body.innerHTML = renderTopLanguages(langs, { ...options });
@@ -257,7 +261,7 @@ describe("Test renderTopLanguages", () => {
   });
 
   it("should render langs with specified langs_count even when hide is set", async () => {
-    options = {
+    const options = {
       hide: ["HTML"],
       langs_count: 2,
     };

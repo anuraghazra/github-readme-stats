@@ -16,7 +16,7 @@ const createProgressNode = ({
       <rect
           height="8"
           fill="${color}"
-          rx="5" ry="5" x="0" y="0" 
+          rx="5" ry="5" x="0" y="0"
           data-testid="lang-progress"
           width="${progressPercentage}%"
       >
@@ -25,4 +25,5 @@ const createProgressNode = ({
   `;
 };
 
+export { createProgressNode };
 export default createProgressNode;

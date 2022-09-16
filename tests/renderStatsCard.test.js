@@ -1,13 +1,14 @@
-import "@testing-library/jest-dom";
-import {cssToObject} from "@uppercod/css-to-object";
-import renderStatsCard from "../src/cards/stats-card";
-
 import {
   getByTestId,
-  queryByTestId,
   queryAllByTestId,
+  queryByTestId,
 } from "@testing-library/dom";
-import themes from "../themes";
+import { cssToObject } from "@uppercod/css-to-object";
+import renderStatsCard from "../src/cards/stats-card";
+// adds special assertions like toHaveTextContent
+import "@testing-library/jest-dom";
+
+import { themes } from "../themes";
 
 describe("Test renderStatsCard", () => {
   const stats = {

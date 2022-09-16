@@ -1,10 +1,10 @@
-import "@testing-library/jest-dom";
+import { jest } from "@jest/globals";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import api from "../api/index";
-import renderStatsCard from "../src/cards/stats-card";
-import { renderError, CONSTANTS } from "../src/common/utils";
 import calculateRank from "../src/calculateRank";
+import renderStatsCard from "../src/cards/stats-card";
+import { CONSTANTS, renderError } from "../src/common/utils";
 
 const stats = {
   name: "Anurag Hazra",

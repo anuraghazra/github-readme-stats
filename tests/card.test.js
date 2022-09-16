@@ -1,9 +1,9 @@
+import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
-import {cssToObject} from "@uppercod/css-to-object";
+import { cssToObject } from "@uppercod/css-to-object";
 import Card from "../src/common/Card";
 import icons from "../src/common/icons";
 import { getCardColors } from "../src/common/utils";
-import { queryByTestId } from "@testing-library/dom";
 
 describe("Card", () => {
   it("should hide border", () => {

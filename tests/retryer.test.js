@@ -1,6 +1,7 @@
+import { jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 import retryer from "../src/common/retryer";
-import logger from "../src/common/utils";
+import { logger } from "../src/common/utils";
 
 const fetcher = jest.fn((variables, token) => {
   logger.log(variables, token);
