@@ -20,21 +20,14 @@ jobs:
         with:
           node-version: "12.x"
 
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key:
-            ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-cache-
-
       - name: Install & Test
         run: |
           npm install
           npm run test
+
+      - name: Run Prettier
+        run: |
+          npm run prettier:check:ci
 
       - name: Code Coverage
         uses: codecov/codecov-action@v1

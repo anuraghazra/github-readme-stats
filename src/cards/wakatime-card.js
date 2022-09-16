@@ -1,3 +1,4 @@
+// @ts-check
 const Card = require("../common/Card");
 const I18n = require("../common/I18n");
 const { getStyles } = require("../getStyles");
@@ -11,12 +12,24 @@ const {
   lowercaseTrim,
 } = require("../common/utils");
 
+/**
+ * @param {{color: string, text: string}} param0
+ */
 const noCodingActivityNode = ({ color, text }) => {
   return `
     <text x="25" y="11" class="stat bold" fill="${color}">${text}</text>
   `;
 };
 
+/**
+ *
+ * @param {{
+ *  lang: import("../fetchers/types").WakaTimeLang,
+ *  totalSize: number,
+ *  x: number,
+ *  y: number
+ * }} props
+ */
 const createCompactLangNode = ({ lang, totalSize, x, y }) => {
   const color = languageColors[lang.name] || "#858585";
 
@@ -30,6 +43,14 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
   `;
 };
 
+/**
+ * @param {{
+ *  langs: import("../fetchers/types").WakaTimeLang[],
+ *  totalSize: number,
+ *  x: number,
+ *  y: number
+ * }} props
+ */
 const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
   return langs.map((lang, index) => {
     if (index % 2 === 0) {
@@ -38,7 +59,6 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
         x: 25,
         y: 12.5 * index + y,
         totalSize,
-        index,
       });
     }
     return createCompactLangNode({
@@ -46,11 +66,23 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
       x: 230,
       y: 12.5 + 12.5 * index,
       totalSize,
-      index,
     });
   });
 };
 
+/**
+ *
+ * @param {{
+ *  id: string;
+ *  label: string;
+ *  value: string;
+ *  index: number;
+ *  percent: number;
+ *  hideProgress: boolean;
+ *  progressBarColor: string;
+ *  progressBarBackgroundColor: string
+ * }} props
+ */
 const createTextNode = ({
   id,
   label,
@@ -71,6 +103,7 @@ const createTextNode = ({
         progress: percent,
         color: progressBarColor,
         width: 220,
+        // @ts-ignore
         name: label,
         progressBarBackgroundColor,
       });
@@ -88,6 +121,9 @@ const createTextNode = ({
   `;
 };
 
+/**
+ * @param {import("../fetchers/types").WakaTimeLang[]} languages
+ */
 const recalculatePercentages = (languages) => {
   // recalculating percentages so that,
   // compact layout's progress bar does not break when hiding languages
@@ -95,12 +131,17 @@ const recalculatePercentages = (languages) => {
     (totalSum, language) => totalSum + language.percent,
     0,
   );
-  const weight = (100 / totalSum).toFixed(2);
+  const weight = +(100 / totalSum).toFixed(2);
   languages.forEach((language) => {
-    language.percent = (language.percent * weight).toFixed(2);
+    language.percent = +(language.percent * weight).toFixed(2);
   });
 };
 
+/**
+ * @param {Partial<import('../fetchers/types').WakaTimeData>} stats
+ * @param {Partial<import('./types').WakaTimeOptions>} options
+ * @returns {string}
+ */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   let { languages } = stats;
   const {
@@ -123,7 +164,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
-  if (shouldHideLangs) {
+  if (shouldHideLangs && languages !== undefined) {
     const languagesToHide = new Set(hide.map((lang) => lowercaseTrim(lang)));
     languages = languages.filter(
       (lang) => !languagesToHide.has(lowercaseTrim(lang.name)),
@@ -136,25 +177,20 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     translations: wakatimeCardLocales,
   });
 
-  const lheight = parseInt(line_height, 10);
+  const lheight = parseInt(String(line_height), 10);
 
-  langsCount = clampValue(parseInt(langs_count), 1, langs_count);
+  const langsCount = clampValue(parseInt(String(langs_count)), 1, langs_count);
 
   // returns theme based colors with proper overrides and defaults
-  const {
-    titleColor,
-    textColor,
-    iconColor,
-    bgColor,
-    borderColor,
-  } = getCardColors({
-    title_color,
-    icon_color,
-    text_color,
-    bg_color,
-    border_color,
-    theme,
-  });
+  const { titleColor, textColor, iconColor, bgColor, borderColor } =
+    getCardColors({
+      title_color,
+      icon_color,
+      text_color,
+      bg_color,
+      border_color,
+      theme,
+    });
 
   const filteredLanguages = languages
     ? languages
@@ -228,13 +264,16 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               label: language.name,
               value: language.text,
               percent: language.percent,
+              // @ts-ignore
               progressBarColor: titleColor,
+              // @ts-ignore
               progressBarBackgroundColor: textColor,
               hideProgress: hide_progress,
             });
           })
         : [
             noCodingActivityNode({
+              // @ts-ignore
               color: textColor,
               text: i18n.t("wakatimecard.nocodingactivity"),
             }),

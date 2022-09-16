@@ -1,7 +1,14 @@
+// @ts-check
 const axios = require("axios");
 const wrap = require("word-wrap");
 const themes = require("../../themes");
+const toEmoji = require("emoji-name-map");
 
+/**
+ * @param {string} message
+ * @param {string} secondaryMessage
+ * @returns {string}
+ */
 const renderError = (message, secondaryMessage = "") => {
   return `
     <svg width="495" height="120" viewBox="0 0 495 120" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -11,7 +18,7 @@ const renderError = (message, secondaryMessage = "") => {
     .gray { fill: #858585 }
     </style>
     <rect x="0.5" y="0.5" width="494" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
-    <text x="25" y="45" class="text">Something went wrong! file an issue at https://git.io/JJmN9</text>
+    <text x="25" y="45" class="text">Something went wrong! file an issue at https://tiny.one/readme-stats</text>
     <text data-testid="message" x="25" y="55" class="text small">
       <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
       <tspan x="25" dy="18" class="gray">${secondaryMessage}</tspan>
@@ -20,7 +27,11 @@ const renderError = (message, secondaryMessage = "") => {
   `;
 };
 
-// https://stackoverflow.com/a/48073476/10629172
+/**
+ * @see https://stackoverflow.com/a/48073476/10629172
+ * @param {string} str
+ * @returns {string}
+ */
 function encodeHTML(str) {
   return str
     .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
@@ -29,18 +40,29 @@ function encodeHTML(str) {
     .replace(/\u0008/gim, "");
 }
 
+/**
+ * @param {number} num
+ */
 function kFormatter(num) {
   return Math.abs(num) > 999
-    ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
+    ? Math.sign(num) * parseFloat((Math.abs(num) / 1000).toFixed(1)) + "k"
     : Math.sign(num) * Math.abs(num);
 }
 
+/**
+ * @param {string} hexColor
+ * @returns {boolean}
+ */
 function isValidHexColor(hexColor) {
   return new RegExp(
     /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/,
   ).test(hexColor);
 }
 
+/**
+ * @param {string} value
+ * @returns {boolean | string}
+ */
 function parseBoolean(value) {
   if (value === "true") {
     return true;
@@ -51,19 +73,37 @@ function parseBoolean(value) {
   }
 }
 
+/**
+ * @param {string} str
+ */
 function parseArray(str) {
   if (!str) return [];
   return str.split(",");
 }
 
+/**
+ * @param {number} number
+ * @param {number} min
+ * @param {number} max
+ */
 function clampValue(number, min, max) {
+  // @ts-ignore
+  if (Number.isNaN(parseInt(number))) return min;
   return Math.max(min, Math.min(number, max));
 }
 
+/**
+ * @param {string[]} colors
+ */
 function isValidGradient(colors) {
   return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
 }
 
+/**
+ * @param {string} color
+ * @param {string} fallbackColor
+ * @returns {string | string[]}
+ */
 function fallbackColor(color, fallbackColor) {
   let colors = color.split(",");
   let gradient = null;
@@ -78,7 +118,12 @@ function fallbackColor(color, fallbackColor) {
   );
 }
 
+/**
+ * @param {import('axios').AxiosRequestConfig['data']} data
+ * @param {import('axios').AxiosRequestConfig['headers']} headers
+ */
 function request(data, headers) {
+  // @ts-ignore
   return axios({
     url: "https://api.github.com/graphql",
     method: "post",
@@ -88,10 +133,11 @@ function request(data, headers) {
 }
 
 /**
- *
- * @param {string[]} items
- * @param {Number} gap
- * @param {"column" | "row"} direction
+ * @param {object} props
+ * @param {string[]} props.items
+ * @param {number} props.gap
+ * @param {number[]?=} props.sizes
+ * @param {"column" | "row"?=} props.direction
  *
  * @returns {string[]}
  *
@@ -113,14 +159,27 @@ function flexLayout({ items, gap, direction, sizes = [] }) {
   });
 }
 
-// returns theme based colors with proper overrides and defaults
+/**
+ * @typedef {object} CardColors
+ * @prop {string?=} title_color
+ * @prop {string?=} text_color
+ * @prop {string?=} icon_color
+ * @prop {string?=} bg_color
+ * @prop {string?=} border_color
+ * @prop {keyof typeof import('../../themes')?=} fallbackTheme
+ * @prop {keyof typeof import('../../themes')?=} theme
+ */
+/**
+ * returns theme based colors with proper overrides and defaults
+ * @param {CardColors} options
+ */
 function getCardColors({
   title_color,
   text_color,
   icon_color,
   bg_color,
-  theme,
   border_color,
+  theme,
   fallbackTheme = "default",
 }) {
   const defaultTheme = themes[fallbackTheme];
@@ -155,12 +214,28 @@ function getCardColors({
   return { titleColor, iconColor, textColor, bgColor, borderColor };
 }
 
-function wrapTextMultiline(text, width = 60, maxLines = 3) {
-  const wrapped = wrap(encodeHTML(text), { width })
-    .split("\n") // Split wrapped lines to get an array of lines
-    .map((line) => line.trim()); // Remove leading and trailing whitespace of each line
+/**
+ * @param {string} text
+ * @param {number} width
+ * @param {number} maxLines
+ * @returns {string[]}
+ */
+function wrapTextMultiline(text, width = 59, maxLines = 3) {
+  const fullWidthComma = "，";
+  const encoded = encodeHTML(text);
+  const isChinese = encoded.includes(fullWidthComma);
 
-  const lines = wrapped.slice(0, maxLines); // Only consider maxLines lines
+  let wrapped = [];
+
+  if (isChinese) {
+    wrapped = encoded.split(fullWidthComma); // Chinese full punctuation
+  } else {
+    wrapped = wrap(encoded, {
+      width,
+    }).split("\n"); // Split wrapped lines to get an array of lines
+  }
+
+  const lines = wrapped.map((line) => line.trim()).slice(0, maxLines); // Only consider maxLines lines
 
   // Add "..." to the last line if the text exceeds maxLines
   if (wrapped.length > maxLines) {
@@ -191,17 +266,41 @@ const SECONDARY_ERROR_MESSAGES = {
 };
 
 class CustomError extends Error {
+  /**
+   * @param {string} message
+   * @param {string} type
+   */
   constructor(message, type) {
     super(message);
     this.type = type;
-    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || "adsad";
+    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || type;
   }
 
   static MAX_RETRY = "MAX_RETRY";
   static USER_NOT_FOUND = "USER_NOT_FOUND";
 }
 
-// https://stackoverflow.com/a/48172630/10629172
+class MissingParamError extends Error {
+  /**
+   * @param {string[]} missedParams
+   * @param {string?=} secondaryMessage
+   */
+  constructor(missedParams, secondaryMessage) {
+    const msg = `Missing params ${missedParams
+      .map((p) => `"${p}"`)
+      .join(", ")} make sure you pass the parameters in URL`;
+    super(msg);
+    this.missedParams = missedParams;
+    this.secondaryMessage = secondaryMessage;
+  }
+}
+
+/**
+ * @see https://stackoverflow.com/a/48172630/10629172
+ * @param {string} str
+ * @param {number} fontSize
+ * @returns
+ */
 function measureText(str, fontSize = 10) {
   // prettier-ignore
   const widths = [
@@ -235,6 +334,8 @@ function measureText(str, fontSize = 10) {
       .reduce((cur, acc) => acc + cur) * fontSize
   );
 }
+
+/** @param {string} name */
 const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 /**
@@ -257,6 +358,18 @@ function chunkArray(arr, perChunk) {
   }, []);
 }
 
+/**
+ *
+ * @param {string} str
+ * @returns {string}
+ */
+function parseEmojis(str) {
+  if (!str) throw new Error("[parseEmoji]: str argument not provided");
+  return str.replace(/:\w+:/gm, (emoji) => {
+    return toEmoji.get(emoji) || "";
+  });
+}
+
 module.exports = {
   renderError,
   kFormatter,
@@ -274,6 +387,8 @@ module.exports = {
   logger,
   CONSTANTS,
   CustomError,
+  MissingParamError,
   lowercaseTrim,
   chunkArray,
+  parseEmojis,
 };

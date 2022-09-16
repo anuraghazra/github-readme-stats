@@ -2,14 +2,14 @@ const themes = {
   default: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
-    text_color: "333",
+    text_color: "434d58",
     bg_color: "fffefe",
     border_color: "e4e2e2",
   },
   default_repocard: {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
-    text_color: "333",
+    text_color: "434d58",
     bg_color: "fffefe",
   },
   dark: {
@@ -35,6 +35,12 @@ const themes = {
     icon_color: "fe8019",
     text_color: "8ec07c",
     bg_color: "282828",
+  },
+  gruvbox_light: {
+    title_color: "b57614",
+    icon_color: "af3a03",
+    text_color: "427b58",
+    bg_color: "fbf1c7",
   },
   tokyonight: {
     title_color: "70a5fd",
@@ -299,6 +305,61 @@ const themes = {
     icon_color: "6cffd0",
     text_color: "dbdbdb",
     bg_color: "252334",
+  },
+  panda: {
+    title_color: "19f9d899",
+    icon_color: "19f9d899",
+    text_color: "FF75B5",
+    bg_color: "31353a",
+  },
+  noctis_minimus: {
+    title_color: "d3b692",
+    icon_color: "72b7c0",
+    text_color: "c5cdd3",
+    bg_color: "1b2932",
+  },
+  cobalt2: {
+    title_color: "ffc600",
+    icon_color: "ffffff",
+    text_color: "0088ff",
+    bg_color: "193549",
+  },
+  swift: {
+    title_color: "000000",
+    icon_color: "f05237",
+    text_color: "000000",
+    bg_color: "f7f7f7",
+  },
+  aura: {
+    title_color: "a277ff",
+    icon_color: "ffca85",
+    text_color: "61ffca",
+    bg_color: "15141b",
+  },
+  apprentice: {
+    title_color: "ffffff",
+    icon_color: "ffffaf",
+    text_color: "bcbcbc",
+    bg_color: "262626",
+  },
+  moltack: {
+    title_color: "86092C",
+    icon_color: "86092C",
+    text_color: "574038",
+    bg_color: "F5E1C0",
+  },
+  codeSTACKr: {
+    title_color: "ff652f",
+    icon_color: "FFE400",
+    text_color: "ffffff",
+    bg_color: "09131B",
+    border_color: "0c1a25",
+  },
+  rose_pine: {
+    title_color: "9ccfd8",
+    icon_color: "ebbcba",
+    text_color: "e0def4",
+    bg_color: "191724",
   },
 };
 
