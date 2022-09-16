@@ -17,6 +17,7 @@ module.exports = async (req, res) => {
     hide,
     hide_title,
     hide_border,
+    card_width,
     hide_rank,
     show_icons,
     count_private,
@@ -54,8 +55,8 @@ module.exports = async (req, res) => {
     );
 
     const cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
-      CONSTANTS.TWO_HOURS,
+      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
+      CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
 
@@ -67,6 +68,7 @@ module.exports = async (req, res) => {
         show_icons: parseBoolean(show_icons),
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
+        card_width: parseInt(card_width, 10),
         hide_rank: parseBoolean(hide_rank),
         include_all_commits: parseBoolean(include_all_commits),
         line_height,
