@@ -111,20 +111,14 @@ describe("Test renderStatsCard", () => {
       hide_rank: false,
       show_icons: true,
     });
-    expect(document.querySelector("svg")).toHaveAttribute(
-      "width",
-      "356",
-    );
+    expect(document.querySelector("svg")).toHaveAttribute("width", "356");
 
     document.body.innerHTML = renderStatsCard(stats, {
       card_width: 1,
       hide_rank: false,
       show_icons: false,
     });
-    expect(document.querySelector("svg")).toHaveAttribute(
-      "width",
-      "340",
-    );
+    expect(document.querySelector("svg")).toHaveAttribute("width", "340");
   });
 
   it("should render default colors properly", () => {
