@@ -20,6 +20,7 @@ const createTextNode = ({
   index,
   showIcons,
   shiftValuePos,
+  bold,
 }) => {
   const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
@@ -35,9 +36,11 @@ const createTextNode = ({
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       ${iconSvg}
-      <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
+      <text class="stat ${
+        bold ? " bold" : "not_bold"
+      }" ${labelOffset} y="12.5">${label}:</text>
       <text
-        class="stat"
+        class="stat ${bold ? " bold" : "not_bold"}"
         x="${(showIcons ? 140 : 120) + shiftValuePos}"
         y="12.5"
         data-testid="${id}"
@@ -73,6 +76,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     title_color,
     icon_color,
     text_color,
+    text_bold = true,
     bg_color,
     theme = "default",
     custom_title,
@@ -165,6 +169,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         showIcons: show_icons,
         shiftValuePos:
           (!include_all_commits ? 50 : 35) + (isLongLocale ? 50 : 0),
+        bold: text_bold,
       }),
     );
 

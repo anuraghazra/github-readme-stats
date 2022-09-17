@@ -195,6 +195,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 - `line_height` - Sets the line-height between text _(number)_
 - `exclude_repo` - Exclude stars from specified repositories _(Comma-separated values)_
 - `custom_title` - Sets a custom title for the card
+- `text_bold` - Use bold text _(boolean)_
 - `disable_animations` - Disables all animations in the card _(boolean)_
 
 #### Repo Card Exclusive Options:
@@ -453,3 +454,4 @@ Thanks! :heart:
 Contributions are welcome! <3
 
 Made with :heart: and JavaScript.
+
