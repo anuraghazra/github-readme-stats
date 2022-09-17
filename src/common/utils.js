@@ -60,17 +60,23 @@ function isValidHexColor(hexColor) {
 }
 
 /**
- * @param {string} value
- * @returns {boolean | string}
+ * @param {string | boolean} value
+ * @returns {boolean | undefined }
  */
 function parseBoolean(value) {
-  if (value === "true") {
-    return true;
-  } else if (value === "false") {
-    return false;
-  } else {
-    return value;
+  if (typeof value === "boolean") return value;
+
+  if (typeof value === "string") {
+    if (value.toLowerCase() === "true") {
+      return true;
+    } else if (value.toLowerCase() === "false") {
+      return false;
+    }
   }
+  console.warn(
+    `'${value}' is not a valid boolean, expected 'true' or 'false'.`,
+  );
+  return undefined;
 }
 
 /**
