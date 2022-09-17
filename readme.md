@@ -67,12 +67,12 @@
 <img src="https://d2wvdrxmr8p0wf.cloudfront.net/static/giveindia.svg" alt="Give india logo" width="200" />
 </a>
 
-Are you considering supporting the project by donating? Please DON'T!!  
+Are you considering supporting the project by donating? Please DON'T!!
 
-Instead, Help India fight the 2nd deadly wave of COVID-19.  
-Thousands of people are dying in India because of a lack of Oxygen & also COVID-related infrastructure.  
+Instead, Help India fight the 2nd deadly wave of COVID-19.
+Thousands of people are dying in India because of a lack of Oxygen & also COVID-related infrastructure.
 
-Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help us fight COVID and overcome this crisis.   
+Visit [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) and make a small donation to help us fight COVID and overcome this crisis.
 A small donation goes a long way. :heart:
 </p>
 
@@ -169,9 +169,9 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
 - `cache_seconds` - set the cache header manually _(min: 7200, max: 86400)_
 - `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
-- `border_radius` - Corner rounding on the card_
+- `border_radius` - Corner rounding on the card
 
-> Note: The minimum of cache_seconds is currently 4 hours as a temporary fix for PATs exhaustion. 
+> Note: The minimum of cache_seconds is currently 4 hours as a temporary fix for PATs exhaustion.
 
 ##### Gradient in bg_color
 
@@ -187,12 +187,15 @@ You can provide multiple comma-separated values in the bg_color option to render
 
 - `hide` - Hides the [specified items](#hiding-individual-stats) from stats _(Comma-separated values)_
 - `hide_title` - _(boolean)_
+- `card_width` - Set the card's width manually _(number)_
 - `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width
 - `show_icons` - _(boolean)_
 - `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
 - `count_private` - Count private commits _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
+- `exclude_repo` - Exclude stars from specified repositories _(Comma-separated values)_
 - `custom_title` - Sets a custom title for the card
+- `text_bold` - Use bold text _(boolean)_
 - `disable_animations` - Disables all animations in the card _(boolean)_
 
 #### Repo Card Exclusive Options:
@@ -451,3 +454,4 @@ Thanks! :heart:
 Contributions are welcome! <3
 
 Made with :heart: and JavaScript.
+

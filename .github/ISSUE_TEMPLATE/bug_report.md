@@ -5,6 +5,7 @@ title: ""
 labels: ""
 assignees: ""
 ---
+<!--PLEASE FIRST READ THE FAQ (#1770) AND COMMON ERROR CODES (#1772)!!!-->
 
 **Describe the bug**
 A clear and concise description of what the bug is.
@@ -18,9 +19,8 @@ If applicable, add screenshots to help explain your problem.
 **Additional context**
 Add any other context about the problem here.
 
-<!--
-
-PLEASE FIRST READ THE FAQ (#1770) AND COMMON ERROR CODES (#1772)!!!
+<!-- FAQ
+Below are some questions that are found in the FAQ. The full FAQ can be found in #1770.
 
 Q: My card displays an error
 Ans: First, check the common error codes (i.e. https://github.com/anuraghazra/github-readme-stats/issues/1772) and existing issues before creating a new one. 
@@ -40,5 +40,4 @@ Ans: Please read all the issues/comments before opening any issues regarding lan
 
 Q: How to count private stats?
 Ans: We can only count private commits & we cannot access any other private info of any users, so it's impossible. The only way is to deploy on your own instance & use your own PAT (Personal Access Token)
-
 -->

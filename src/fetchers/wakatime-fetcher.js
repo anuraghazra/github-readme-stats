@@ -7,7 +7,7 @@ const { MissingParamError } = require("../common/utils");
  */
 const fetchWakatimeStats = async ({ username, api_domain, range }) => {
   if (!username) throw new MissingParamError(["username"]);
-  
+
   try {
     const { data } = await axios.get(
       `https://${
