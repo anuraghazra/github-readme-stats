@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * @param {number} value
  */
@@ -53,11 +54,11 @@ const getAnimations = () => {
 
 /**
  * @param {{
- *  titleColor: string;
- *  textColor: string;
- *  iconColor: string;
- *  show_icons: boolean;
- *  progress: number;
+ *  titleColor?: string | string[]
+ *  textColor?: string | string[]
+ *  iconColor?: string | string[]
+ *  show_icons?: boolean;
+ *  progress?: number;
  * }} args
  */
 const getStyles = ({
@@ -70,6 +71,10 @@ const getStyles = ({
   return `
     .stat {
       font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
+    }
+    @supports(-moz-appearance: auto) {
+      /* Selector detects Firefox */
+      .stat { font-size:12px; }
     }
     .stagger {
       opacity: 0;

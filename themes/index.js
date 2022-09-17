@@ -2,14 +2,14 @@ const themes = {
   default: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
-    text_color: "333",
+    text_color: "434d58",
     bg_color: "fffefe",
     border_color: "e4e2e2",
   },
   default_repocard: {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
-    text_color: "333",
+    text_color: "434d58",
     bg_color: "fffefe",
   },
   dark: {
@@ -335,6 +335,31 @@ const themes = {
     icon_color: "ffca85",
     text_color: "61ffca",
     bg_color: "15141b",
+  },
+  apprentice: {
+    title_color: "ffffff",
+    icon_color: "ffffaf",
+    text_color: "bcbcbc",
+    bg_color: "262626",
+  },
+  moltack: {
+    title_color: "86092C",
+    icon_color: "86092C",
+    text_color: "574038",
+    bg_color: "F5E1C0",
+  },
+  codeSTACKr: {
+    title_color: "ff652f",
+    icon_color: "FFE400",
+    text_color: "ffffff",
+    bg_color: "09131B",
+    border_color: "0c1a25",
+  },
+  rose_pine: {
+    title_color: "9ccfd8",
+    icon_color: "ebbcba",
+    text_color: "e0def4",
+    bg_color: "191724",
   },
 };
 

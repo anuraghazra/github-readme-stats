@@ -42,10 +42,20 @@ class Card {
     this.paddingY = 35;
     this.titlePrefixIcon = titlePrefixIcon;
     this.animations = true;
+    this.a11yTitle = "";
+    this.a11yDesc = "";
   }
 
   disableAnimations() {
     this.animations = false;
+  }
+
+  /**
+   * @param {{title: string, desc: string}} prop
+   */
+  setAccessibilityLabel({ title, desc }) {
+    this.a11yTitle = title;
+    this.a11yDesc = desc;
   }
 
   /**
@@ -123,8 +133,9 @@ class Card {
       ? `
         <defs>
           <linearGradient
-            id="gradient" 
+            id="gradient"
             gradientTransform="rotate(${this.colors.bgColor[0]})"
+            gradientUnits="userSpaceOnUse"
           >
             ${gradients.map((grad, index) => {
               let offset = (index * 100) / (gradients.length - 1);
@@ -147,12 +158,20 @@ class Card {
         viewBox="0 0 ${this.width} ${this.height}"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-labelledby="descId"
       >
+        <title id="titleId">${this.a11yTitle}</title>
+        <desc id="descId">${this.a11yDesc}</desc>
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
             fill: ${this.colors.titleColor};
             animation: fadeInAnimation 0.8s ease-in-out forwards;
+          }
+          @supports(-moz-appearance: auto) {
+            /* Selector detects Firefox */
+            .header { font-size: 15.5px; }
           }
           ${this.css}
 
