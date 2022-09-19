@@ -361,6 +361,12 @@ const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  moonlight: {
+    title_color: "ff757f",
+    icon_color: "599dff",
+    text_color: "f8f8f8",
+    bg_color: "3a3e59",
+  }
 };
 
 module.exports = themes;
