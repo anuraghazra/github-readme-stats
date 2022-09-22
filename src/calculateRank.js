@@ -36,20 +36,14 @@ function calculateRank({
   const RANK_A = 0.50;
   const RANK_B_PLUS = 0.75;
 
-  let level = "";
-
-  if (rank <= RANK_S_PLUS)
-    level = "S+";
-  else if (rank <= RANK_S)
-    level = "S";
-  else if (rank <= RANK_A_PLUS)
-    level = "A+";
-  else if (rank <= RANK_A)
-    level = "A";
-  else if (rank <= RANK_B_PLUS)
-    level = "B+";
-  else
-    level = "B";
+  const level = (() => {
+    if (rank <= RANK_S_PLUS) return "S+";
+    if (rank <= RANK_S) return "S";
+    if (rank <= RANK_A_PLUS) return "A+";
+    if (rank <= RANK_A) return "A";
+    if (rank <= RANK_B_PLUS) return "B+";
+    return "B";
+  })();
 
   return {level, score: rank * 100};
 }

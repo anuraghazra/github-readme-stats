@@ -1,5 +1,5 @@
 require("@testing-library/jest-dom");
-const cssToObject = require("css-to-object");
+const cssToObject = require("@uppercod/css-to-object").cssToObject;
 const Card = require("../src/common/Card");
 const icons = require("../src/common/icons");
 const { getCardColors } = require("../src/common/utils");
@@ -137,9 +137,9 @@ describe("Card", () => {
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
-    const headerClassStyles = stylesObject[".header"];
+    const headerClassStyles = stylesObject[":host"][".header "];
 
-    expect(headerClassStyles.fill).toBe("#f00");
+    expect(headerClassStyles["fill"].trim()).toBe("#f00");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#fff",
@@ -168,18 +168,18 @@ describe("Card", () => {
       "fill",
       "url(#gradient)",
     );
-    expect(document.querySelector("defs linearGradient")).toHaveAttribute(
+    expect(document.querySelector("defs #gradient")).toHaveAttribute(
       "gradientTransform",
       "rotate(90)",
     );
     expect(
-      document.querySelector("defs linearGradient stop:nth-child(1)"),
+      document.querySelector("defs #gradient stop:nth-child(1)"),
     ).toHaveAttribute("stop-color", "#fff");
     expect(
-      document.querySelector("defs linearGradient stop:nth-child(2)"),
+      document.querySelector("defs #gradient stop:nth-child(2)"),
     ).toHaveAttribute("stop-color", "#000");
     expect(
-      document.querySelector("defs linearGradient stop:nth-child(3)"),
+      document.querySelector("defs #gradient stop:nth-child(3)"),
     ).toHaveAttribute("stop-color", "#f00");
   });
 });
