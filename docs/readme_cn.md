@@ -220,7 +220,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ### 隐藏指定语言
 
-可以使用 `?hide=language1,language2` 参数来隐藏指定的语言。
+可以使用 `&hide=language1,language2` 参数来隐藏指定的语言。
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
