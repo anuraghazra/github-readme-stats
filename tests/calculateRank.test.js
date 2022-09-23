@@ -13,7 +13,7 @@ describe("Test calculateRank", () => {
         issues: 0,
         stargazers: 0,
       }),
-    ).toStrictEqual({level: "B", score: 100.});
+    ).toStrictEqual({ level: "B", score: 100 });
   });
 
   it("average user gets A rank", () => {
@@ -27,7 +27,7 @@ describe("Test calculateRank", () => {
         issues: 13,
         stargazers: 100,
       }),
-    ).toStrictEqual({level: "A", score: 50.});
+    ).toStrictEqual({ level: "A", score: 50 });
   });
 
   it("Linus Torvalds gets S+ rank", () => {
@@ -41,6 +41,6 @@ describe("Test calculateRank", () => {
         issues: 2,
         stargazers: 109100,
       }),
-    ).toStrictEqual({level: "S+", score: 1.8875322153011722});
+    ).toStrictEqual({ level: "S+", score: 1.8875322153011722 });
   });
 });
