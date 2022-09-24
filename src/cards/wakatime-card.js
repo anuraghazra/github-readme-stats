@@ -11,6 +11,7 @@ import {
 } from "../common/utils.js";
 import { getStyles } from "../getStyles.js";
 import { wakatimeCardLocales } from "../translations.js";
+
 /**
  * @param {{color: string, text: string}} param0
  */

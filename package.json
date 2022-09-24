@@ -17,7 +17,7 @@
   "author": "Anurag Hazra",
   "license": "MIT",
   "engines": {
-    "node": ">=13"
+    "node": "16.17.1"
   },
   "devDependencies": {
     "@actions/core": "^1.2.4",
