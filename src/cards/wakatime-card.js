@@ -2,7 +2,6 @@
 import { Card } from "../common/Card.js";
 import { createProgressNode } from "../common/createProgressNode.js";
 import { I18n } from "../common/I18n.js";
-import languageColors from "../common/languageColors.json" assert { type: "json" };
 import {
   clampValue,
   flexLayout,
@@ -11,6 +10,18 @@ import {
 } from "../common/utils.js";
 import { getStyles } from "../getStyles.js";
 import { wakatimeCardLocales } from "../translations.js";
+
+/** Import language colors.
+ *
+ * @description Here we use the workaround found in
+ * https://stackoverflow.com/questions/66726365/how-should-i-import-json-in-node
+ * since vercel is using v16.14.0 which does not yet support json imports without the
+ * --experimental-json-modules flag.
+ */
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const languageColors = require("../common/languageColors.json"); // now works
+
 /**
  * @param {{color: string, text: string}} param0
  */
