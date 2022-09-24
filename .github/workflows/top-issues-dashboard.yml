@@ -12,8 +12,10 @@ jobs:
         uses: rickstaa/top-issues-action@v1
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+        with:
           label: false
           dashboard: true
+          dashboard_show_total_reactions: true
           top_issues: true
           top_bugs: true
           top_features: true

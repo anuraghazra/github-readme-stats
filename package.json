@@ -10,7 +10,9 @@
     "test:update:snapshot": "node --experimental-vm-modules node_modules/jest/bin/jest.js -u",
     "theme-readme-gen": "node scripts/generate-theme-doc",
     "preview-theme": "node scripts/preview-theme",
-    "generate-langs-json": "node scripts/generate-langs-json"
+    "generate-langs-json": "node scripts/generate-langs-json",
+    "format": "./node_modules/.bin/prettier --write .",
+    "format:check": "./node_modules/.bin/prettier --check ."
   },
   "author": "Anurag Hazra",
   "license": "MIT",

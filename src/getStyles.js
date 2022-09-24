@@ -84,7 +84,8 @@ const getStyles = ({
       font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor};
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
-
+    
+    .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
     .icon {
       fill: ${iconColor};

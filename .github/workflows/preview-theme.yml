@@ -5,8 +5,10 @@ on:
     types: [opened, synchronize, reopened]
     branches:
       - master
-      - theme-preview-script
+      - theme_preview_script
+    paths:
       - "themes/index.js"
+      - "scripts/preview-theme.js"
 
 jobs:
   build:
