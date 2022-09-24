@@ -22,7 +22,7 @@ jobs:
 
       - name: Install & Test
         run: |
-          npm install
+          npm ci
           npm run test
 
       - name: Run Prettier
