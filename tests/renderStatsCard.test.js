@@ -4,11 +4,11 @@ import {
   queryByTestId,
 } from "@testing-library/dom";
 import { cssToObject } from "@uppercod/css-to-object";
-import renderStatsCard from "../src/cards/stats-card";
+import renderStatsCard from "../src/cards/stats-card.js";
 // adds special assertions like toHaveTextContent
 import "@testing-library/jest-dom";
 
-import { themes } from "../themes";
+import { themes } from "../themes/index.js";
 
 describe("Test renderStatsCard", () => {
   const stats = {

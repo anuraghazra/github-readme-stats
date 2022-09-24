@@ -1,16 +1,16 @@
 // @ts-check
-import { Card } from "../common/Card";
-import { I18n } from "../common/I18n";
-import { icons } from "../common/icons";
+import { Card } from "../common/Card.js";
+import { I18n } from "../common/I18n.js";
+import { icons } from "../common/icons.js";
 import {
   clampValue,
   flexLayout,
   getCardColors,
   kFormatter,
   measureText,
-} from "../common/utils";
-import { getStyles } from "../getStyles";
-import { statCardLocales } from "../translations";
+} from "../common/utils.js";
+import { getStyles } from "../getStyles.js";
+import { statCardLocales } from "../translations.js";
 
 const createTextNode = ({
   icon,

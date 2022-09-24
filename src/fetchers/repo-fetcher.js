@@ -1,6 +1,6 @@
 // @ts-check
-import { retryer } from "../common/retryer";
-import { MissingParamError, request } from "../common/utils";
+import { retryer } from "../common/retryer.js";
+import { MissingParamError, request } from "../common/utils.js";
 
 /**
  * @param {import('Axios').AxiosRequestHeaders} variables

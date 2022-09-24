@@ -1,17 +1,16 @@
 // @ts-check
-import { Card } from "../common/Card";
-import { createProgressNode } from "../common/createProgressNode";
-import { I18n } from "../common/I18n";
-import languageColors from "../common/languageColors.json";
+import { Card } from "../common/Card.js";
+import { createProgressNode } from "../common/createProgressNode.js";
+import { I18n } from "../common/I18n.js";
+import languageColors from "../common/languageColors.json" assert { type: "json" };
 import {
   clampValue,
   flexLayout,
   getCardColors,
   lowercaseTrim,
-} from "../common/utils";
-import { getStyles } from "../getStyles";
-import { wakatimeCardLocales } from "../translations";
-
+} from "../common/utils.js";
+import { getStyles } from "../getStyles.js";
+import { wakatimeCardLocales } from "../translations.js";
 /**
  * @param {{color: string, text: string}} param0
  */

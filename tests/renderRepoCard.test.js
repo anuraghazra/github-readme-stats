@@ -1,9 +1,9 @@
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import { cssToObject } from "@uppercod/css-to-object";
-import renderRepoCard from "../src/cards/repo-card";
+import renderRepoCard from "../src/cards/repo-card.js";
 
-import { themes } from "../themes";
+import { themes } from "../themes/index.js";
 
 const data_repo = {
   repository: {

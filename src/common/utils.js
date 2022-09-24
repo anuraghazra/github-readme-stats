@@ -2,7 +2,7 @@
 import axios from "axios";
 import toEmoji from "emoji-name-map";
 import wrap from "word-wrap";
-import { themes } from "../../themes";
+import { themes } from "../../themes/index.js";
 
 /**
  * @param {string} message

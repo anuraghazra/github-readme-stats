@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import fetchTopLanguages from "../src/fetchers/top-languages-fetcher";
+import fetchTopLanguages from "../src/fetchers/top-languages-fetcher.js";
 
 const mock = new MockAdapter(axios);
 

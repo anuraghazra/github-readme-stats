@@ -1,15 +1,15 @@
+import * as dotenv from "dotenv";
+import renderStatsCard from "../src/cards/stats-card.js";
+import blacklist from "../src/common/blacklist.js";
 import {
-  renderError,
-  parseBoolean,
-  parseArray,
   clampValue,
   CONSTANTS,
-} from "../src/common/utils";
-import fetchStats from "../src/fetchers/stats-fetcher";
-import renderStatsCard from "../src/cards/stats-card";
-import blacklist from "../src/common/blacklist";
-import { isLocaleAvailable } from "../src/translations";
-import * as dotenv from "dotenv";
+  parseArray,
+  parseBoolean,
+  renderError,
+} from "../src/common/utils.js";
+import fetchStats from "../src/fetchers/stats-fetcher.js";
+import { isLocaleAvailable } from "../src/translations.js";
 
 dotenv.config();
 

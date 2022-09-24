@@ -1,7 +1,7 @@
 // @ts-check
-import { Card } from "../common/Card";
-import { createProgressNode } from "../common/createProgressNode";
-import { I18n } from "../common/I18n";
+import { Card } from "../common/Card.js";
+import { createProgressNode } from "../common/createProgressNode.js";
+import { I18n } from "../common/I18n.js";
 import {
   chunkArray,
   clampValue,
@@ -9,8 +9,8 @@ import {
   getCardColors,
   lowercaseTrim,
   measureText,
-} from "../common/utils";
-import { langCardLocales } from "../translations";
+} from "../common/utils.js";
+import { langCardLocales } from "../translations.js";
 
 const DEFAULT_CARD_WIDTH = 300;
 const MIN_CARD_WIDTH = 230;

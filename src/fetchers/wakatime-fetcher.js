@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MissingParamError } from "../common/utils";
+import { MissingParamError } from "../common/utils.js";
 
 /**
  * @param {{username: string, api_domain: string, range: string}} props

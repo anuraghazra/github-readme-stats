@@ -2,9 +2,9 @@ import { jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import topLangs from "../api/top-langs";
-import { renderTopLanguages } from "../src/cards/top-languages-card";
-import { renderError } from "../src/common/utils";
+import topLangs from "../api/top-langs.js";
+import { renderTopLanguages } from "../src/cards/top-languages-card.js";
+import { renderError } from "../src/common/utils.js";
 
 const data_langs = {
   data: {

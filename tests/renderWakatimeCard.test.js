@@ -1,8 +1,8 @@
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
-import renderWakatimeCard from "../src/cards/wakatime-card";
-import { getCardColors } from "../src/common/utils";
-import { wakaTimeData } from "./fetchWakatime.test";
+import renderWakatimeCard from "../src/cards/wakatime-card.js";
+import { getCardColors } from "../src/common/utils.js";
+import { wakaTimeData } from "./fetchWakatime.test.js";
 
 describe("Test Render Wakatime Card", () => {
   it("should render correctly", () => {

@@ -1,4 +1,4 @@
-type ThemeNames = keyof typeof import("../../themes");
+type ThemeNames = keyof typeof import("../../themes/index.js");
 
 export type CommonOptions = {
   title_color: string;

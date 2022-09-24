@@ -6,7 +6,7 @@ import {
   kFormatter,
   renderError,
   wrapTextMultiline,
-} from "../src/common/utils";
+} from "../src/common/utils.js";
 
 describe("Test utils.js", () => {
   it("should test kFormatter", () => {

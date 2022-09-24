@@ -1,15 +1,15 @@
-import {
-  renderError,
-  clampValue,
-  parseBoolean,
-  parseArray,
-  CONSTANTS,
-} from "../src/common/utils";
-import fetchTopLanguages from "../src/fetchers/top-languages-fetcher";
-import { renderTopLanguages } from "../src/cards/top-languages-card";
-import blacklist from "../src/common/blacklist";
-import { isLocaleAvailable } from "../src/translations";
 import * as dotenv from "dotenv";
+import { renderTopLanguages } from "../src/cards/top-languages-card.js";
+import blacklist from "../src/common/blacklist.js";
+import {
+  clampValue,
+  CONSTANTS,
+  parseArray,
+  parseBoolean,
+  renderError,
+} from "../src/common/utils.js";
+import fetchTopLanguages from "../src/fetchers/top-languages-fetcher.js";
+import { isLocaleAvailable } from "../src/translations.js";
 
 dotenv.config();
 

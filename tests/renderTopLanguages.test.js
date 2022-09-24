@@ -3,11 +3,11 @@ import { cssToObject } from "@uppercod/css-to-object";
 import {
   MIN_CARD_WIDTH,
   renderTopLanguages,
-} from "../src/cards/top-languages-card";
+} from "../src/cards/top-languages-card.js";
 // adds special assertions like toHaveTextContent
 import "@testing-library/jest-dom";
 
-import { themes } from "../themes";
+import { themes } from "../themes/index.js";
 
 describe("Test renderTopLanguages", () => {
   const langs = {

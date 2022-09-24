@@ -1,4 +1,4 @@
-import { flexLayout } from "../src/common/utils";
+import { flexLayout } from "../src/common/utils.js";
 
 describe("flexLayout", () => {
   it("should work with row & col layouts", () => {

@@ -1,7 +1,7 @@
 // @ts-check
-import { Card } from "../common/Card";
-import { I18n } from "../common/I18n";
-import { icons } from "../common/icons";
+import { Card } from "../common/Card.js";
+import { I18n } from "../common/I18n.js";
+import { icons } from "../common/icons.js";
 import {
   encodeHTML,
   flexLayout,
@@ -10,8 +10,8 @@ import {
   measureText,
   parseEmojis,
   wrapTextMultiline,
-} from "../common/utils";
-import { repoCardLocales } from "../translations";
+} from "../common/utils.js";
+import { repoCardLocales } from "../translations.js";
 
 /**
  * @param {string} label
