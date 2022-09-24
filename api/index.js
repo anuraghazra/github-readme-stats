@@ -3,15 +3,15 @@ import {
   parseBoolean,
   parseArray,
   clampValue,
-  CONSTANTS
-} from "../src/common/utils"
+  CONSTANTS,
+} from "../src/common/utils";
 import fetchStats from "../src/fetchers/stats-fetcher";
 import renderStatsCard from "../src/cards/stats-card";
 import blacklist from "../src/common/blacklist";
 import { isLocaleAvailable } from "../src/translations";
 import * as dotenv from "dotenv";
 
-dotenv.config()
+dotenv.config();
 
 export default async (req, res) => {
   const {

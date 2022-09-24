@@ -2,7 +2,7 @@ import {
   renderError,
   parseBoolean,
   clampValue,
-  CONSTANTS
+  CONSTANTS,
 } from "../src/common/utils";
 import fetchRepo from "../src/fetchers/repo-fetcher";
 import renderRepoCard from "../src/cards/repo-card";
