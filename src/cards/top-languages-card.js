@@ -1,16 +1,16 @@
 // @ts-check
-const Card = require("../common/Card");
-const I18n = require("../common/I18n");
-const { langCardLocales } = require("../translations");
-const { createProgressNode } = require("../common/createProgressNode");
-const {
+import { Card } from "../common/Card";
+import { createProgressNode } from "../common/createProgressNode";
+import { I18n } from "../common/I18n";
+import {
+  chunkArray,
   clampValue,
-  getCardColors,
   flexLayout,
+  getCardColors,
   lowercaseTrim,
   measureText,
-  chunkArray,
-} = require("../common/utils");
+} from "../common/utils";
+import { langCardLocales } from "../translations";
 
 const DEFAULT_CARD_WIDTH = 300;
 const MIN_CARD_WIDTH = 230;
@@ -311,5 +311,4 @@ const renderTopLanguages = (topLangs, options = {}) => {
   `);
 };
 
-module.exports = renderTopLanguages;
-module.exports.MIN_CARD_WIDTH = MIN_CARD_WIDTH;
+export { renderTopLanguages, MIN_CARD_WIDTH };

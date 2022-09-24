@@ -1,6 +1,7 @@
-require("@testing-library/jest-dom");
-const retryer = require("../src/common/retryer");
-const { logger } = require("../src/common/utils");
+import { jest } from "@jest/globals";
+import "@testing-library/jest-dom";
+import retryer from "../src/common/retryer";
+import { logger } from "../src/common/utils";
 
 const fetcher = jest.fn((variables, token) => {
   logger.log(variables, token);

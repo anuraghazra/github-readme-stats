@@ -1,8 +1,8 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const fetchStats = require("../src/fetchers/stats-fetcher");
-const calculateRank = require("../src/calculateRank");
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import calculateRank from "../src/calculateRank";
+import fetchStats from "../src/fetchers/stats-fetcher";
 
 const data = {
   data: {
@@ -141,12 +141,7 @@ describe("Test fetchStats", () => {
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats(
-      "anuraghazra",
-      true,
-      true,
-      (exclude_repo = ["test-repo-1"]),
-    );
+    let stats = await fetchStats("anuraghazra", true, true, ["test-repo-1"]);
     const rank = calculateRank({
       totalCommits: 1050,
       totalRepos: 5,

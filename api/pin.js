@@ -1,16 +1,15 @@
-require("dotenv").config();
-const {
+import {
   renderError,
   parseBoolean,
   clampValue,
   CONSTANTS,
-} = require("../src/common/utils");
-const fetchRepo = require("../src/fetchers/repo-fetcher");
-const renderRepoCard = require("../src/cards/repo-card");
-const blacklist = require("../src/common/blacklist");
-const { isLocaleAvailable } = require("../src/translations");
+} from "../src/common/utils";
+import fetchRepo from "../src/fetchers/repo-fetcher";
+import renderRepoCard from "../src/cards/repo-card";
+import blacklist from "../src/common/blacklist";
+import { isLocaleAvailable } from "../src/translations";
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const {
     username,
     repo,

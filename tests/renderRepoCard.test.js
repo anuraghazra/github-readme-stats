@@ -1,9 +1,9 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("@uppercod/css-to-object").cssToObject;
-const renderRepoCard = require("../src/cards/repo-card");
+import { queryByTestId } from "@testing-library/dom";
+import "@testing-library/jest-dom";
+import { cssToObject } from "@uppercod/css-to-object";
+import renderRepoCard from "../src/cards/repo-card";
 
-const { queryByTestId } = require("@testing-library/dom");
-const themes = require("../themes");
+import { themes } from "../themes";
 
 const data_repo = {
   repository: {

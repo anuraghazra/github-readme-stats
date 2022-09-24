@@ -1,17 +1,17 @@
 // @ts-check
-const {
-  kFormatter,
+import { Card } from "../common/Card";
+import { I18n } from "../common/I18n";
+import { icons } from "../common/icons";
+import {
   encodeHTML,
-  getCardColors,
   flexLayout,
-  wrapTextMultiline,
+  getCardColors,
+  kFormatter,
   measureText,
   parseEmojis,
-} = require("../common/utils");
-const I18n = require("../common/I18n");
-const Card = require("../common/Card");
-const icons = require("../common/icons");
-const { repoCardLocales } = require("../translations");
+  wrapTextMultiline,
+} from "../common/utils";
+import { repoCardLocales } from "../translations";
 
 /**
  * @param {string} label
@@ -185,4 +185,5 @@ const renderRepoCard = (repo, options = {}) => {
   `);
 };
 
-module.exports = renderRepoCard;
+export { renderRepoCard };
+export default renderRepoCard;

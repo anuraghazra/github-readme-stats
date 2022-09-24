@@ -57,8 +57,8 @@ function calculateRank({
     issues * ISSUES_OFFSET +
     stargazers * STARS_OFFSET +
     prs * PRS_OFFSET +
-    followers * FOLLOWERS_OFFSET + 
-    totalRepos * REPO_OFFSET 
+    followers * FOLLOWERS_OFFSET +
+    totalRepos * REPO_OFFSET
   ) / 100;
 
   const normalizedScore = normalcdf(score, TOTAL_VALUES, ALL_OFFSETS) * 100;
@@ -74,4 +74,5 @@ function calculateRank({
   return { level, score: normalizedScore };
 }
 
-module.exports = calculateRank;
+export { calculateRank };
+export default calculateRank;

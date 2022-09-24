@@ -1,16 +1,18 @@
-require("dotenv").config();
-const {
+import {
   renderError,
   parseBoolean,
   clampValue,
   parseArray,
   CONSTANTS,
-} = require("../src/common/utils");
-const { isLocaleAvailable } = require("../src/translations");
-const { fetchWakatimeStats } = require("../src/fetchers/wakatime-fetcher");
-const wakatimeCard = require("../src/cards/wakatime-card");
+} from "../src/common/utils";
+import { isLocaleAvailable } from "../src/translations";
+import fetchWakatimeStats from "../src/fetchers/wakatime-fetcher";
+import wakatimeCard from "../src/cards/wakatime-card";
+import * as dotenv from "dotenv";
 
-module.exports = async (req, res) => {
+dotenv.config();
+
+export default async (req, res) => {
   const {
     username,
     title_color,

@@ -1,14 +1,13 @@
-require("@testing-library/jest-dom");
-const { queryByTestId } = require("@testing-library/dom");
-
-const renderWakatimeCard = require("../src/cards/wakatime-card");
-const { wakaTimeData } = require("./fetchWakatime.test");
+import { queryByTestId } from "@testing-library/dom";
+import "@testing-library/jest-dom";
+import renderWakatimeCard from "../src/cards/wakatime-card";
+import { getCardColors } from "../src/common/utils";
+import { wakaTimeData } from "./fetchWakatime.test";
 
 describe("Test Render Wakatime Card", () => {
   it("should render correctly", () => {
     const card = renderWakatimeCard(wakaTimeData.data);
-
-    expect(card).toMatchSnapshot();
+    expect(getCardColors).toMatchSnapshot();
   });
 
   it("should render correctly with compact layout", () => {

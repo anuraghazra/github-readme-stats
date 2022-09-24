@@ -1,11 +1,12 @@
-const core = require("@actions/core");
-const github = require("@actions/github");
-const parse = require("parse-diff");
-const Hjson = require("hjson");
-const snakeCase = require("lodash.snakecase");
-const ColorContrastChecker = require("color-contrast-checker");
+import core from "@actions/core";
+import github from "@actions/github";
+import ColorContrastChecker from "color-contrast-checker";
+import * as dotenv from "dotenv";
+import Hjson from "hjson";
+import snakeCase from "lodash.snakecase";
+import parse from "parse-diff";
 
-require("dotenv").config();
+dotenv.config();
 
 const OWNER = "anuraghazra";
 const REPO = "github-readme-stats";
@@ -76,10 +77,10 @@ function getGrsLink(colors) {
 }
 
 const themeContribGuidelines = `
-  \rHi, thanks for the theme contribution, please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).  
+  \rHi, thanks for the theme contribution, please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).
   \rWe are currently only accepting color combinations from any VSCode theme or themes which have good color combination to minimize bloating the themes collection.
 
-  \r> Also note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization) 
+  \r> Also note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization)
 `;
 
 async function run() {
@@ -128,7 +129,7 @@ async function run() {
         issue_number: pullRequestId,
         body: `
         \r**${COMMENT_TITLE}**
-        
+
         \rCannot create theme preview
 
         ${themeContribGuidelines}
@@ -167,16 +168,16 @@ async function run() {
       owner: OWNER,
       repo: REPO,
       body: `
-      \r**${COMMENT_TITLE}**  
-      
+      \r**${COMMENT_TITLE}**
+
       \r${warnings.map((warning) => `- :warning: ${warning}\n`).join("")}
 
       \ntitle_color: <code>#${titleColor}</code> | icon_color: <code>#${iconColor}</code> | text_color: <code>#${textColor}</code> | bg_color: <code>#${bgColor}</code>
-      
+
       \r[Preview Link](${url})
 
       \r[![](${url})](${url})
-      
+
       ${themeContribGuidelines}
       `,
     });

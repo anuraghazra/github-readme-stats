@@ -1,5 +1,5 @@
-const theme = require("../themes/index");
-const fs = require("fs");
+import fs from "fs";
+import { themes } from "../themes/index";
 
 const TARGET_FILE = "./themes/README.md";
 const REPO_CARD_LINKS_FLAG = "<!-- REPO_CARD_LINKS -->";
@@ -54,7 +54,7 @@ const createStatMdLink = (theme) => {
 };
 
 const generateLinks = (fn) => {
-  return Object.keys(theme)
+  return Object.keys(themes)
     .map((name) => fn(name))
     .join("");
 };
@@ -65,7 +65,7 @@ const createTableItem = ({ link, label, isRepoCard }) => {
 };
 const generateTable = ({ isRepoCard }) => {
   const rows = [];
-  const themes = Object.keys(theme).filter(
+  const themes = Object.keys(themes).filter(
     (name) => name !== (!isRepoCard ? "default_repocard" : "default"),
   );
 

@@ -1,3 +1,5 @@
-module.exports = {
+export default {
   clearMocks: true,
+  transform: {},
+  testEnvironment: "jsdom",
 };

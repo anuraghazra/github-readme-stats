@@ -1,10 +1,10 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const api = require("../api/index");
-const renderStatsCard = require("../src/cards/stats-card");
-const { renderError, CONSTANTS } = require("../src/common/utils");
-const calculateRank = require("../src/calculateRank");
+import { jest } from "@jest/globals";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import api from "../api/index";
+import calculateRank from "../src/calculateRank";
+import renderStatsCard from "../src/cards/stats-card";
+import { CONSTANTS, renderError } from "../src/common/utils";
 
 const stats = {
   name: "Anurag Hazra",

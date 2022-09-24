@@ -1,16 +1,16 @@
 // @ts-check
-const Card = require("../common/Card");
-const I18n = require("../common/I18n");
-const { getStyles } = require("../getStyles");
-const { wakatimeCardLocales } = require("../translations");
-const languageColors = require("../common/languageColors.json");
-const { createProgressNode } = require("../common/createProgressNode");
-const {
+import { Card } from "../common/Card";
+import { createProgressNode } from "../common/createProgressNode";
+import { I18n } from "../common/I18n";
+import languageColors from "../common/languageColors.json";
+import {
   clampValue,
-  getCardColors,
   flexLayout,
+  getCardColors,
   lowercaseTrim,
-} = require("../common/utils");
+} from "../common/utils";
+import { getStyles } from "../getStyles";
+import { wakatimeCardLocales } from "../translations";
 
 /**
  * @param {{color: string, text: string}} param0
@@ -314,5 +314,5 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   `);
 };
 
-module.exports = renderWakatimeCard;
-exports.createProgressNode = createProgressNode;
+export { renderWakatimeCard };
+export default renderWakatimeCard;

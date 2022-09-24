@@ -1,16 +1,16 @@
 // @ts-check
-const I18n = require("../common/I18n");
-const Card = require("../common/Card");
-const icons = require("../common/icons");
-const { getStyles } = require("../getStyles");
-const { statCardLocales } = require("../translations");
-const {
-  kFormatter,
-  flexLayout,
+import { Card } from "../common/Card";
+import { I18n } from "../common/I18n";
+import { icons } from "../common/icons";
+import {
   clampValue,
-  measureText,
+  flexLayout,
   getCardColors,
-} = require("../common/utils");
+  kFormatter,
+  measureText,
+} from "../common/utils";
+import { getStyles } from "../getStyles";
+import { statCardLocales } from "../translations";
 
 const createTextNode = ({
   icon,
@@ -300,4 +300,5 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   `);
 };
 
-module.exports = renderStatsCard;
+export { renderStatsCard };
+export default renderStatsCard;

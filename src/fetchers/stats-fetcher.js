@@ -1,17 +1,17 @@
 // @ts-check
-const axios = require("axios").default;
-const githubUsernameRegex = require("github-username-regex");
-
-const retryer = require("../common/retryer");
-const calculateRank = require("../calculateRank");
-const {
-  request,
-  logger,
+import axios from "axios";
+import * as dotenv from "dotenv";
+import githubUsernameRegex from "github-username-regex";
+import { calculateRank } from "../calculateRank";
+import { retryer } from "../common/retryer";
+import {
   CustomError,
+  logger,
   MissingParamError,
-} = require("../common/utils");
+  request,
+} from "../common/utils";
 
-require("dotenv").config();
+dotenv.config();
 
 /**
  * @param {import('axios').AxiosRequestHeaders} variables
@@ -187,4 +187,5 @@ async function fetchStats(
   return stats;
 }
 
-module.exports = fetchStats;
+export { fetchStats };
+export default fetchStats;
