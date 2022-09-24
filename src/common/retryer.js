@@ -1,4 +1,4 @@
-import { CustomError, logger } from "../common/utils.js";
+import { CustomError, logger } from "./utils.js";
 
 const retryer = async (fetcher, variables, retries = 0) => {
   if (retries > 7) {

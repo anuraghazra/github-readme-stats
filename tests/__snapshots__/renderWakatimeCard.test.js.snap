@@ -134,7 +134,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
             y="0"
             width="0.465"
             height="8"
-            fill="#2b7489"
+            fill="#3178c6"
           />
         
       
@@ -146,7 +146,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
     </g>
   
     <g transform="translate(230, 25)">
-      <circle cx="5" cy="6" r="5" fill="#2b7489" />
+      <circle cx="5" cy="6" r="5" fill="#3178c6" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
         TypeScript - 1 min
       </text>

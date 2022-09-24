@@ -1,4 +1,4 @@
-import { clampValue } from "../common/utils.js";
+import { clampValue } from "./utils.js";
 
 const createProgressNode = ({
   x,

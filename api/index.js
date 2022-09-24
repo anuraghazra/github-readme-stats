@@ -1,6 +1,6 @@
 import * as dotenv from "dotenv";
-import renderStatsCard from "../src/cards/stats-card.js";
-import blacklist from "../src/common/blacklist.js";
+import { renderStatsCard } from "../src/cards/stats-card.js";
+import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
   CONSTANTS,
@@ -8,7 +8,7 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import fetchStats from "../src/fetchers/stats-fetcher.js";
+import { fetchStats } from "../src/fetchers/stats-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 dotenv.config();

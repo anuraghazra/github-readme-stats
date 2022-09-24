@@ -2,8 +2,8 @@ import { jest } from "@jest/globals";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import api from "../api/index.js";
-import calculateRank from "../src/calculateRank.js";
-import renderStatsCard from "../src/cards/stats-card.js";
+import { calculateRank } from "../src/calculateRank.js";
+import { renderStatsCard } from "../src/cards/stats-card.js";
 import { CONSTANTS, renderError } from "../src/common/utils.js";
 
 const stats = {

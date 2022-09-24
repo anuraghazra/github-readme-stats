@@ -1,5 +1,5 @@
-import { encodeHTML, flexLayout } from "../common/utils.js";
 import { getAnimations } from "../getStyles.js";
+import { encodeHTML, flexLayout } from "./utils.js";
 
 class Card {
   /**

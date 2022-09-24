@@ -4,7 +4,7 @@ import {
   queryByTestId,
 } from "@testing-library/dom";
 import { cssToObject } from "@uppercod/css-to-object";
-import renderStatsCard from "../src/cards/stats-card.js";
+import { renderStatsCard } from "../src/cards/stats-card.js";
 // adds special assertions like toHaveTextContent
 import "@testing-library/jest-dom";
 

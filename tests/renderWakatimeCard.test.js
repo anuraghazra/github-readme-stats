@@ -1,6 +1,6 @@
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
-import renderWakatimeCard from "../src/cards/wakatime-card.js";
+import { renderWakatimeCard } from "../src/cards/wakatime-card.js";
 import { getCardColors } from "../src/common/utils.js";
 import { wakaTimeData } from "./fetchWakatime.test.js";
 
