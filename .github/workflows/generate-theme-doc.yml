@@ -20,7 +20,7 @@ jobs:
 
       - name: npm install, generate readme
         run: |
-          npm install
+          npm ci
           npm run theme-readme-gen
         env:
           CI: true
