@@ -160,16 +160,16 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 #### Common Options:
 
-- `title_color` - Card's title color _(hex color)_
-- `text_color` - Body text color _(hex color)_
-- `icon_color` - Icons color if available _(hex color)_
+- `title_color` - Card's title color _(hex color)_. Default: `2f80ed`.
+- `text_color` - Body text color _(hex color)_. Default: `434d58`
+- `icon_color` - Icons color if available _(hex color)_. Default: `586069`
 - `border_color` - Card's border color _(hex color)_. (Does not apply when `hide_border` is enabled)
-- `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_
-- `hide_border` - Hides the card's border _(boolean)_
-- `theme` - name of the theme, choose from [all available themes](./themes/README.md)
-- `cache_seconds` - set the cache header manually _(min: 7200, max: 86400)_
-- `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
-- `border_radius` - Corner rounding on the card
+- `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_. Default: `fffefe`
+- `hide_border` - Hides the card's border _(boolean)_. Defaults to false
+- `theme` - name of the theme, choose from [all available themes](./themes/README.md). Defaults to default theme. 
+- `cache_seconds` - set the cache header manually _(min: 7200, max: 86400)_. Default: `14400 seconds (4 hours)`
+- `locale` - set the language in the card _(e.g. cn, de, es, etc.)_. Default: `en`
+- `border_radius` - Corner rounding on the card. Default: `4.5`
 
 > Note: The minimum of cache_seconds is currently 4 hours as a temporary fix for PATs exhaustion.
 
