@@ -13,6 +13,7 @@ jobs:
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         with:
+          filter: "1772"
           label: false
           dashboard: true
           dashboard_show_total_reactions: true
