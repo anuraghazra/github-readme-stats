@@ -166,6 +166,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 - `border_color` - Card's border color _(hex color)_. (Does not apply when `hide_border` is enabled)
 - `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_. Default: `fffefe`
 - `hide_border` - Hides the card's border _(boolean)_. Defaults to false
++ `hide_border` - Hides the card's border _(boolean)_. Defaults to `false`.
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md). Defaults to default theme. 
 - `cache_seconds` - set the cache header manually _(min: 7200, max: 86400)_. Default: `14400 seconds (4 hours)`
 - `locale` - set the language in the card _(e.g. cn, de, es, etc.)_. Default: `en`
