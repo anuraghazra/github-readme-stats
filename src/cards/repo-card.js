@@ -1,5 +1,5 @@
 // @ts-check
-import { Card } from "../common/Card.js";
+import { Card } from "../common/Card";
 import { I18n } from "../common/I18n.js";
 import { icons } from "../common/icons.js";
 import {
