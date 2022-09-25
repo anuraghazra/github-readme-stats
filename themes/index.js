@@ -362,5 +362,10 @@ export const themes = {
     bg_color: "191724",
   },
 };
-
+ blackgreen: {
+    title_color: "#78FE96",
+    icon_color: "#78FE96",
+    text_color: "9f9f9f",
+    bg_color: "151515",
+  },
 export default themes;
