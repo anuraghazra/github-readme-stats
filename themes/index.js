@@ -361,6 +361,12 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  purple_dark_accessible: {
+    title_color: "af7aff",
+    icon_color: "af7aff",
+    text_color: "e4e4e4",
+    bg_color: "010101",
+  },
 };
 
 export default themes;
