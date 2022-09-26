@@ -361,6 +361,13 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  star_wars: {
+    title_color: "FFE81F",
+    icon_color: "58A6FF",
+    text_color: "C3D1D9",
+    bg_color: "09131B",
+    border_color: "FFE81F",
+  },
 };
 
 export default themes;
