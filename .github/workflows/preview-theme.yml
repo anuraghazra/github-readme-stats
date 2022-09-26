@@ -22,5 +22,4 @@ jobs:
           useLockFile: false
       - run: npm run preview-theme
         env:
-          CI: true
-          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
