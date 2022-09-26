@@ -361,6 +361,25 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  moltack2: {
+    title_color: "86092C",
+    icon_color: "86092C",
+    text_color: "574038",
+    bg_color: "F5E1C0",
+  },
+  codeSTACKr2: {
+    title_color: "ff652f",
+    icon_color: "FFE400",
+    text_color: "ffffff",
+    bg_color: "09131B",
+    border_color: "0c1a25",
+  },
+  rose_pine2: {
+    title_color: "9ccfd8",
+    icon_color: "ebbcba",
+    text_color: "e0def4",
+    bg_color: "191724",
+  },
 };
 
 export default themes;
