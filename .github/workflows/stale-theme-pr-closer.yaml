@@ -1,0 +1,22 @@
+name: Close stale theme pull requests that have the 'invalid' label.
+on:
+  schedule:
+    - cron: "0 0 */7 * *"
+
+jobs:
+  closeOldThemePrs:
+    runs-on: ubuntu-latest
+    name: Close stale 'invalid' theme PRs
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - uses: bahmutov/npm-install@v1
+        with:
+          useLockFile: false
+      - run: npm run close-stale-theme-prs
+        env:
+          STALE_DAYS: 15
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
