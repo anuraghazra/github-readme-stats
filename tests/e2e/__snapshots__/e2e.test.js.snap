@@ -1,0 +1,674 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Fetch Cards retrieve WakaTime card 1`] = `
+"
+      <svg
+        width="495"
+        height="150"
+        viewBox="0 0 495 150"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-labelledby="descId"
+      >
+        <title id="titleId"></title>
+        <desc id="descId"></desc>
+        <style>
+          .header {
+            font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
+            fill: #2f80ed;
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
+          }
+          @supports(-moz-appearance: auto) {
+            /* Selector detects Firefox */
+            .header { font-size: 15.5px; }
+          }
+          
+    
+    .stat {
+      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #434d58;
+    }
+    @supports(-moz-appearance: auto) {
+      /* Selector detects Firefox */
+      .stat { font-size:12px; }
+    }
+    .stagger {
+      opacity: 0;
+      animation: fadeInAnimation 0.3s ease-in-out forwards;
+    }
+    .rank-text {
+      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58;
+      animation: scaleInAnimation 0.3s ease-in-out forwards;
+    }
+    
+    .not_bold { font-weight: 400 }
+    .bold { font-weight: 700 }
+    .icon {
+      fill: #4c71f2;
+      display: none;
+    }
+
+    .rank-circle-rim {
+      stroke: #2f80ed;
+      fill: none;
+      stroke-width: 6;
+      opacity: 0.2;
+    }
+    .rank-circle {
+      stroke: #2f80ed;
+      stroke-dasharray: 250;
+      fill: none;
+      stroke-width: 6;
+      stroke-linecap: round;
+      opacity: 0.8;
+      transform-origin: -10px 8px;
+      transform: rotate(-90deg);
+      animation: rankAnimation 1s forwards ease-in-out;
+    }
+    
+    @keyframes rankAnimation {
+      from {
+        stroke-dashoffset: 251.32741228718345;
+      }
+      to {
+        stroke-dashoffset: NaN;
+      }
+    }
+  
+  
+    .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58 }
+    
+
+          
+    /* Animations */
+    @keyframes scaleInAnimation {
+      from {
+        transform: translate(-5px, 5px) scale(0);
+      }
+      to {
+        transform: translate(-5px, 5px) scale(1);
+      }
+    }
+    @keyframes fadeInAnimation {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  
+          
+        </style>
+
+        
+
+        <rect
+          data-testid="card-bg"
+          x="0.5"
+          y="0.5"
+          rx="4.5"
+          height="99%"
+          stroke="#e4e2e2"
+          width="494"
+          fill="#fffefe"
+          stroke-opacity="1"
+        />
+
+        
+      <g
+        data-testid="card-title"
+        transform="translate(25, 35)"
+      >
+        <g transform="translate(0, 0)">
+      <text
+        x="0"
+        y="0"
+        class="header"
+        data-testid="header"
+      >Wakatime Stats</text>
+    </g>
+      </g>
+    
+
+        <g
+          data-testid="main-card-body"
+          transform="translate(0, 55)"
+        >
+          
+    <svg x="0" y="0" width="100%">
+      <g transform="translate(0, 0)">
+    <text x="25" y="11" class="stat bold" fill="#434d58">No coding activity this week</text>
+  </g>
+    </svg>
+  
+        </g>
+      </svg>
+    "
+`;
+
+exports[`Fetch Cards retrieve language card 1`] = `
+"
+      <svg
+        width="300"
+        height="285"
+        viewBox="0 0 300 285"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-labelledby="descId"
+      >
+        <title id="titleId"></title>
+        <desc id="descId"></desc>
+        <style>
+          .header {
+            font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
+            fill: #2f80ed;
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
+          }
+          @supports(-moz-appearance: auto) {
+            /* Selector detects Firefox */
+            .header { font-size: 15.5px; }
+          }
+          .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58 }
+
+          
+    /* Animations */
+    @keyframes scaleInAnimation {
+      from {
+        transform: translate(-5px, 5px) scale(0);
+      }
+      to {
+        transform: translate(-5px, 5px) scale(1);
+      }
+    }
+    @keyframes fadeInAnimation {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  
+          * { animation-duration: 0s !important; animation-delay: 0s !important; }
+        </style>
+
+        
+
+        <rect
+          data-testid="card-bg"
+          x="0.5"
+          y="0.5"
+          rx="4.5"
+          height="99%"
+          stroke="#e4e2e2"
+          width="299"
+          fill="#fffefe"
+          stroke-opacity="1"
+        />
+
+        
+      <g
+        data-testid="card-title"
+        transform="translate(25, 35)"
+      >
+        <g transform="translate(0, 0)">
+      <text
+        x="0"
+        y="0"
+        class="header"
+        data-testid="header"
+      >Most Used Languages</text>
+    </g>
+      </g>
+    
+
+        <g
+          data-testid="main-card-body"
+          transform="translate(0, 55)"
+        >
+          
+    <svg data-testid="lang-items" x="25">
+      <g transform="translate(0, 0)">
+    <text data-testid="lang-name" x="2" y="15" class="lang-name">TypeScript</text>
+    <text x="215" y="34" class="lang-name">49.46%</text>
+    
+    <svg width="205" x="0" y="25">
+      <rect rx="5" ry="5" x="0" y="0" width="205" height="8" fill="#ddd"></rect>
+      <rect
+          height="8"
+          fill="#3178c6"
+          rx="5" ry="5" x="0" y="0"
+          data-testid="lang-progress"
+          width="49.46%"
+      >
+      </rect>
+    </svg>
+  
+  </g><g transform="translate(0, 40)">
+    <text data-testid="lang-name" x="2" y="15" class="lang-name">JavaScript</text>
+    <text x="215" y="34" class="lang-name">42.83%</text>
+    
+    <svg width="205" x="0" y="25">
+      <rect rx="5" ry="5" x="0" y="0" width="205" height="8" fill="#ddd"></rect>
+      <rect
+          height="8"
+          fill="#f1e05a"
+          rx="5" ry="5" x="0" y="0"
+          data-testid="lang-progress"
+          width="42.83%"
+      >
+      </rect>
+    </svg>
+  
+  </g><g transform="translate(0, 80)">
+    <text data-testid="lang-name" x="2" y="15" class="lang-name">SCSS</text>
+    <text x="215" y="34" class="lang-name">2.66%</text>
+    
+    <svg width="205" x="0" y="25">
+      <rect rx="5" ry="5" x="0" y="0" width="205" height="8" fill="#ddd"></rect>
+      <rect
+          height="8"
+          fill="#c6538c"
+          rx="5" ry="5" x="0" y="0"
+          data-testid="lang-progress"
+          width="2.66%"
+      >
+      </rect>
+    </svg>
+  
+  </g><g transform="translate(0, 120)">
+    <text data-testid="lang-name" x="2" y="15" class="lang-name">Java</text>
+    <text x="215" y="34" class="lang-name">2.61%</text>
+    
+    <svg width="205" x="0" y="25">
+      <rect rx="5" ry="5" x="0" y="0" width="205" height="8" fill="#ddd"></rect>
+      <rect
+          height="8"
+          fill="#b07219"
+          rx="5" ry="5" x="0" y="0"
+          data-testid="lang-progress"
+          width="2.61%"
+      >
+      </rect>
+    </svg>
+  
+  </g><g transform="translate(0, 160)">
+    <text data-testid="lang-name" x="2" y="15" class="lang-name">CSS</text>
+    <text x="215" y="34" class="lang-name">2.44%</text>
+    
+    <svg width="205" x="0" y="25">
+      <rect rx="5" ry="5" x="0" y="0" width="205" height="8" fill="#ddd"></rect>
+      <rect
+          height="8"
+          fill="#563d7c"
+          rx="5" ry="5" x="0" y="0"
+          data-testid="lang-progress"
+          width="2.44%"
+      >
+      </rect>
+    </svg>
+  
+  </g>
+    </svg>
+  
+        </g>
+      </svg>
+    "
+`;
+
+exports[`Fetch Cards retrieve repo card 1`] = `
+"
+      <svg
+        width="400"
+        height="120"
+        viewBox="0 0 400 120"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-labelledby="descId"
+      >
+        <title id="titleId"></title>
+        <desc id="descId"></desc>
+        <style>
+          .header {
+            font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
+            fill: #2f80ed;
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
+          }
+          @supports(-moz-appearance: auto) {
+            /* Selector detects Firefox */
+            .header { font-size: 15.5px; }
+          }
+          
+    .description { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58 }
+    .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58 }
+    .icon { fill: #586069 }
+    .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
+    .badge rect { opacity: 0.2 }
+  
+
+          
+    /* Animations */
+    @keyframes scaleInAnimation {
+      from {
+        transform: translate(-5px, 5px) scale(0);
+      }
+      to {
+        transform: translate(-5px, 5px) scale(1);
+      }
+    }
+    @keyframes fadeInAnimation {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  
+          * { animation-duration: 0s !important; animation-delay: 0s !important; }
+        </style>
+
+        
+
+        <rect
+          data-testid="card-bg"
+          x="0.5"
+          y="0.5"
+          rx="4.5"
+          height="99%"
+          stroke="#e4e2e2"
+          width="399"
+          fill="#fffefe"
+          stroke-opacity="1"
+        />
+
+        
+      <g
+        data-testid="card-title"
+        transform="translate(25, 35)"
+      >
+        <g transform="translate(0, 0)">
+      <svg
+        class="icon"
+        x="0"
+        y="-13"
+        viewBox="0 0 16 16"
+        version="1.1"
+        width="16"
+        height="16"
+      >
+        <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z"/>
+      </svg>
+    </g><g transform="translate(25, 0)">
+      <text
+        x="0"
+        y="0"
+        class="header"
+        data-testid="header"
+      >github-readme-stats</text>
+    </g>
+      </g>
+    
+
+        <g
+          data-testid="main-card-body"
+          transform="translate(0, 55)"
+        >
+          
+    
+
+    <text class="description" x="25" y="-5">
+      <tspan dy="1.2em" x="25">&#9889; Dynamically generated stats for your github readmes</tspan>
+    </text>
+
+    <g transform="translate(30, 45)">
+      <g transform="translate(0, 0)">
+  <g data-testid="primary-lang">
+    <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="#f1e05a" />
+    <text data-testid="lang-name" class="gray" x="15">JavaScript</text>
+  </g>
+  </g><g transform="translate(80.93125, 0)"><g transform="translate(0, 0)">
+    <svg
+      class="icon"
+      y="-12"
+      viewBox="0 0 16 16"
+      version="1.1"
+      width="16"
+      height="16"
+    >
+      <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25zm0 2.445L6.615 5.5a.75.75 0 01-.564.41l-3.097.45 2.24 2.184a.75.75 0 01.216.664l-.528 3.084 2.769-1.456a.75.75 0 01.698 0l2.77 1.456-.53-3.084a.75.75 0 01.216-.664l2.24-2.183-3.096-.45a.75.75 0 01-.564-.41L8 2.694v.001z"/>
+    </svg>
+  </g><g transform="translate(20, 0)"><text data-testid="stargazers" class="gray">46.2k</text></g></g><g transform="translate(151.21875, 0)"><g transform="translate(0, 0)">
+    <svg
+      class="icon"
+      y="-12"
+      viewBox="0 0 16 16"
+      version="1.1"
+      width="16"
+      height="16"
+    >
+      <path fill-rule="evenodd" d="M5 3.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm0 2.122a2.25 2.25 0 10-1.5 0v.878A2.25 2.25 0 005.75 8.5h1.5v2.128a2.251 2.251 0 101.5 0V8.5h1.5a2.25 2.25 0 002.25-2.25v-.878a2.25 2.25 0 10-1.5 0v.878a.75.75 0 01-.75.75h-4.5A.75.75 0 015 6.25v-.878zm3.75 7.378a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm3-8.75a.75.75 0 100-1.5.75.75 0 000 1.5z"></path>
+    </svg>
+  </g><g transform="translate(20, 0)"><text data-testid="forkcount" class="gray">11.3k</text></g></g>
+    </g>
+  
+        </g>
+      </svg>
+    "
+`;
+
+exports[`Fetch Cards retrieve stats card 1`] = `
+"
+      <svg
+        width="495"
+        height="195"
+        viewBox="0 0 495 195"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-labelledby="descId"
+      >
+        <title id="titleId">Willian Rodrigues' GitHub Stats, Rank: A+</title>
+        <desc id="descId">Total Stars Earned: 57, Total Commits in 2022 : 57, Total PRs: 35, Total Issues: 10, Contributed to: 3</desc>
+        <style>
+          .header {
+            font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
+            fill: #2f80ed;
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
+          }
+          @supports(-moz-appearance: auto) {
+            /* Selector detects Firefox */
+            .header { font-size: 15.5px; }
+          }
+          
+    .stat {
+      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #434d58;
+    }
+    @supports(-moz-appearance: auto) {
+      /* Selector detects Firefox */
+      .stat { font-size:12px; }
+    }
+    .stagger {
+      opacity: 0;
+      animation: fadeInAnimation 0.3s ease-in-out forwards;
+    }
+    .rank-text {
+      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58;
+      animation: scaleInAnimation 0.3s ease-in-out forwards;
+    }
+    
+    .not_bold { font-weight: 400 }
+    .bold { font-weight: 700 }
+    .icon {
+      fill: #4c71f2;
+      display: none;
+    }
+
+    .rank-circle-rim {
+      stroke: #2f80ed;
+      fill: none;
+      stroke-width: 6;
+      opacity: 0.2;
+    }
+    .rank-circle {
+      stroke: #2f80ed;
+      stroke-dasharray: 250;
+      fill: none;
+      stroke-width: 6;
+      stroke-linecap: round;
+      opacity: 0.8;
+      transform-origin: -10px 8px;
+      transform: rotate(-90deg);
+      animation: rankAnimation 1s forwards ease-in-out;
+    }
+    
+    @keyframes rankAnimation {
+      from {
+        stroke-dashoffset: 251.32741228718345;
+      }
+      to {
+        stroke-dashoffset: 127.23868847077307;
+      }
+    }
+  
+  
+
+          
+    /* Animations */
+    @keyframes scaleInAnimation {
+      from {
+        transform: translate(-5px, 5px) scale(0);
+      }
+      to {
+        transform: translate(-5px, 5px) scale(1);
+      }
+    }
+    @keyframes fadeInAnimation {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  
+          
+        </style>
+
+        
+
+        <rect
+          data-testid="card-bg"
+          x="0.5"
+          y="0.5"
+          rx="4.5"
+          height="99%"
+          stroke="#e4e2e2"
+          width="494"
+          fill="#fffefe"
+          stroke-opacity="1"
+        />
+
+        
+      <g
+        data-testid="card-title"
+        transform="translate(25, 35)"
+      >
+        <g transform="translate(0, 0)">
+      <text
+        x="0"
+        y="0"
+        class="header"
+        data-testid="header"
+      >Willian Rodrigues' GitHub Stats</text>
+    </g>
+      </g>
+    
+
+        <g
+          data-testid="main-card-body"
+          transform="translate(0, 55)"
+        >
+          
+    <g data-testid="rank-circle"
+          transform="translate(400, 47.5)">
+        <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
+        <circle class="rank-circle" cx="-10" cy="8" r="40" />
+        <g class="rank-text">
+          <text
+            x="-5"
+            y="3"
+            alignment-baseline="central"
+            dominant-baseline="central"
+            text-anchor="middle"
+          >
+            A+
+          </text>
+        </g>
+      </g>
+    <svg x="0" y="0">
+      <g transform="translate(0, 0)">
+    <g class="stagger" style="animation-delay: 450ms" transform="translate(25, 0)">
+      
+      <text class="stat  bold"  y="12.5">Total Stars Earned:</text>
+      <text
+        class="stat  bold"
+        x="170"
+        y="12.5"
+        data-testid="stars"
+      >57</text>
+    </g>
+  </g><g transform="translate(0, 25)">
+    <g class="stagger" style="animation-delay: 600ms" transform="translate(25, 0)">
+      
+      <text class="stat  bold"  y="12.5">Total Commits (2022):</text>
+      <text
+        class="stat  bold"
+        x="170"
+        y="12.5"
+        data-testid="commits"
+      >49</text>
+    </g>
+  </g><g transform="translate(0, 50)">
+    <g class="stagger" style="animation-delay: 750ms" transform="translate(25, 0)">
+      
+      <text class="stat  bold"  y="12.5">Total PRs:</text>
+      <text
+        class="stat  bold"
+        x="170"
+        y="12.5"
+        data-testid="prs"
+      >35</text>
+    </g>
+  </g><g transform="translate(0, 75)">
+    <g class="stagger" style="animation-delay: 900ms" transform="translate(25, 0)">
+      
+      <text class="stat  bold"  y="12.5">Total Issues:</text>
+      <text
+        class="stat  bold"
+        x="170"
+        y="12.5"
+        data-testid="issues"
+      >10</text>
+    </g>
+  </g><g transform="translate(0, 100)">
+    <g class="stagger" style="animation-delay: 1050ms" transform="translate(25, 0)">
+      
+      <text class="stat  bold"  y="12.5">Contributed to:</text>
+      <text
+        class="stat  bold"
+        x="170"
+        y="12.5"
+        data-testid="contribs"
+      >3</text>
+    </g>
+  </g>
+    </svg>
+  
+        </g>
+      </svg>
+    "
+`;
