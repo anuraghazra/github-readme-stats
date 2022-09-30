@@ -361,6 +361,12 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  ring: {
+    title_color: "0047AB",
+    icon_color: "FFA500",
+    text_color: "A020F0",
+    bg_color: "00000"
+  }
 };
 
 export default themes;
