@@ -105,10 +105,10 @@ function isValidGradient(colors) {
  * @returns {string | string[]}
  */
 function fallbackColor(color, fallbackColor) {
-  let colors = color.split(",");
+  let colors = color?.split(",");
   let gradient = null;
 
-  if (colors.length > 1 && isValidGradient(colors)) {
+  if (colors?.length > 1 && isValidGradient(colors)) {
     gradient = colors;
   }
 
