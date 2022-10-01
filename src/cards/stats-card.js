@@ -74,6 +74,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     include_all_commits = false,
     line_height = 25,
     title_color,
+    ring_color,
     icon_color,
     text_color,
     text_bold = true,
@@ -89,9 +90,10 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const lheight = parseInt(String(line_height), 10);
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, iconColor, bgColor, borderColor } =
+  const { titleColor, ringColor, textColor, iconColor, bgColor, borderColor } =
     getCardColors({
       title_color,
+      ring_color,
       icon_color,
       text_color,
       bg_color,
@@ -185,6 +187,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const progress = 100 - rank.score;
   const cssStyles = getStyles({
     titleColor,
+    ringColor,
     textColor,
     iconColor,
     show_icons,

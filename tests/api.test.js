@@ -222,4 +222,39 @@ describe("Test /api/", () => {
       ),
     );
   });
+
+  it("should allow changing ring_color", async () => {
+    const { req, res } = faker(
+      {
+        username: "anuraghazra",
+        hide: "issues,prs,contribs",
+        show_icons: true,
+        hide_border: true,
+        line_height: 100,
+        title_color: "fff",
+        ring_color: "0000ff",
+        icon_color: "fff",
+        text_color: "fff",
+        bg_color: "fff",
+      },
+      data,
+    );
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderStatsCard(stats, {
+        hide: ["issues", "prs", "contribs"],
+        show_icons: true,
+        hide_border: true,
+        line_height: 100,
+        title_color: "fff",
+        ring_color: "0000ff",
+        icon_color: "fff",
+        text_color: "fff",
+        bg_color: "fff",
+      }),
+    );
+  });
 });

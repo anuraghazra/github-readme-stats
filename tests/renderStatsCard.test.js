@@ -239,6 +239,37 @@ describe("Test renderStatsCard", () => {
     );
   });
 
+  it("should render custom ring_color properly", () => {
+    const customColors = {
+      title_color: "5a0",
+      ring_color: "0000ff",
+      icon_color: "1b998b",
+      text_color: "9991",
+      bg_color: "252525",
+    };
+
+    document.body.innerHTML = renderStatsCard(stats, { ...customColors });
+
+    const styleTag = document.querySelector("style");
+    const stylesObject = cssToObject(styleTag.innerHTML);
+
+    const headerClassStyles = stylesObject[":host"][".header "];
+    const statClassStyles = stylesObject[":host"][".stat "];
+    const iconClassStyles = stylesObject[":host"][".icon "];
+    const rankCircleStyles = stylesObject[":host"][".rank-circle "];
+    const rankCircleRimStyles = stylesObject[":host"][".rank-circle-rim "];
+
+    expect(headerClassStyles.fill.trim()).toBe(`#${customColors.title_color}`);
+    expect(statClassStyles.fill.trim()).toBe(`#${customColors.text_color}`);
+    expect(iconClassStyles.fill.trim()).toBe(`#${customColors.icon_color}`);
+    expect(rankCircleStyles.stroke.trim()).toBe(`#${customColors.ring_color}`);
+    expect(rankCircleRimStyles.stroke.trim()).toBe(`#${customColors.ring_color}`);
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "fill",
+      "#252525",
+    );
+  });
+
   it("should render icons correctly", () => {
     document.body.innerHTML = renderStatsCard(stats, {
       show_icons: true,

@@ -175,6 +175,7 @@ function flexLayout({ items, gap, direction, sizes = [] }) {
  */
 function getCardColors({
   title_color,
+  ring_color,
   text_color,
   icon_color,
   bg_color,
@@ -192,6 +193,13 @@ function getCardColors({
   const titleColor = fallbackColor(
     title_color || selectedTheme.title_color,
     "#" + defaultTheme.title_color,
+  );
+
+  // get the color provided by the user else the theme color
+  // finally if both colors are invalid we use the titleColor
+  const ringColor = fallbackColor(
+    ring_color || selectedTheme.ring_color,
+    titleColor
   );
   const iconColor = fallbackColor(
     icon_color || selectedTheme.icon_color,
@@ -211,7 +219,7 @@ function getCardColors({
     "#" + defaultBorderColor,
   );
 
-  return { titleColor, iconColor, textColor, bgColor, borderColor };
+  return { titleColor, ringColor, iconColor, textColor, bgColor, borderColor };
 }
 
 /**

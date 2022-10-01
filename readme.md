@@ -197,6 +197,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 - `custom_title` - Sets a custom title for the card
 - `text_bold` - Use bold text _(boolean)_
 - `disable_animations` - Disables all animations in the card _(boolean)_
+- `ring_color` - Color of the rank circle _(hex color)_
 
 #### Repo Card Exclusive Options:
 
