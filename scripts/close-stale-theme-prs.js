@@ -126,7 +126,7 @@ const run = async () => {
     const prs = await fetchOpenPRs(octokit, owner, repo);
     const themePRs = pullsWithLabel(prs, "themes");
     const invalidThemePRs = pullsWithLabel(themePRs, "invalid");
-    debug("Retrieving stale themePRs...");
+    debug("Retrieving stale theme PRs...");
     const staleThemePRs = invalidThemePRs.filter((pr) =>
       isStale(pr, staleDays),
     );
