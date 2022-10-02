@@ -63,7 +63,7 @@
 
 <p>
 <a href="https://indiafightscorona.giveindia.org">
-<img src="https://cdn.givind.org/static/images/giveindia-logo-v2.jpg" alt="Give india logo" width="200" />
+<img src="https://indiaspora.org/wp-content/uploads/2021/04/give-India-logo.png" alt="Give india logo" width="200" />
 </a>
 
 Are you considering supporting the project by donating? Please DON'T!!
