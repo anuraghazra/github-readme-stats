@@ -11,16 +11,24 @@ on:
 jobs:
   previewTheme:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
     name: Install & Preview
 
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
       - uses: bahmutov/npm-install@v1
         with:
           useLockFile: false
+
       - run: npm run preview-theme
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
