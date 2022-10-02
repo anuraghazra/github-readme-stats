@@ -4,7 +4,7 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import core, { debug, setFailed } from "@actions/core";
+import { debug, setFailed } from "@actions/core";
 import github from "@actions/github";
 import ColorContrastChecker from "color-contrast-checker";
 import { info } from "console";
@@ -14,10 +14,9 @@ import parse from "parse-diff";
 import { inspect } from "util";
 import { isValidHexColor } from "../src/common/utils.js";
 import { themes } from "../themes/index.js";
+import { getGithubToken, getRepoInfo } from "./helpers.js";
 
-// Script variables
-const OWNER = "anuraghazra";
-const REPO = "github-readme-stats";
+// Script variables.
 const COMMENTER = "github-actions[bot]";
 
 const COMMENT_TITLE = "Automated Theme Preview";
@@ -44,26 +43,6 @@ const INVALID_REVIEW_COMMENT = (commentUrl) =>
   `Some themes are invalid. See the [Automated Theme Preview](${commentUrl}) comment above for more information.`;
 
 /**
- * Retrieve information about the repository that ran the action.
- *
- * @param {Object} context Action context.
- * @returns {Object} Repository information.
- */
-export const getRepoInfo = (ctx) => {
-  try {
-    return {
-      owner: ctx.repo.owner,
-      repo: ctx.repo.repo,
-    };
-  } catch (error) {
-    return {
-      owner: OWNER,
-      repo: REPO,
-    };
-  }
-};
-
-/**
  * Retrieve PR number from the event payload.
  *
  * @returns {number} PR number.
@@ -84,19 +63,6 @@ const getPrNumber = () => {
  */
 const getCommenter = () => {
   return process.env.COMMENTER ? process.env.COMMENTER : COMMENTER;
-};
-
-/**
- * Retrieve github token and throw error if it is not found.
- *
- * @returns {string} Github token.
- */
-const getGithubToken = () => {
-  const token = core.getInput("github_token") || process.env.GITHUB_TOKEN;
-  if (!token) {
-    throw Error("Could not find github token");
-  }
-  return token;
 };
 
 /**

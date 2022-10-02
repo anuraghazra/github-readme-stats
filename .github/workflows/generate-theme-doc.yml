@@ -1,5 +1,4 @@
 name: Generate Theme Readme
-
 on:
   push:
     branches:
@@ -8,8 +7,9 @@ on:
       - "themes/index.js"
 
 jobs:
-  build:
+  generateThemeDoc:
     runs-on: ubuntu-latest
+    name: Generate theme doc
     strategy:
       matrix:
         node-version: [16.x]

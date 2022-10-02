@@ -1,5 +1,4 @@
 name: Test
-
 on:
   push:
     branches:
@@ -10,6 +9,7 @@ on:
 
 jobs:
   build:
+    name: Perform tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
