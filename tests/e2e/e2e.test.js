@@ -16,7 +16,7 @@ const REPO = "dummy-cra";
 const USER = "grsdummy";
 const STATS_DATA = {
   name: "grsdummy",
-  totalPRs: 1,
+  totalPRs: 2,
   totalCommits: 2,
   totalIssues: 1,
   totalStars: 1,
