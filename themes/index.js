@@ -17,7 +17,6 @@ export const themes = {
     icon_color: "0579C3",
     text_color: "417E87",
     bg_color: "ffffff00",
-    border_color: "e4e2e2",
   },
   dark: {
     title_color: "fff",
