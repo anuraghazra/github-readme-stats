@@ -203,17 +203,17 @@ When hide_rank=`true`, the minimum card width is 270 px + the title length and p
 
 #### Repo Card Exclusive Options:
 
-- `show_owner` - Show the repo's owner name _(boolean)_
+- `show_owner` - Show the repo's owner name _(boolean)_. Default: `false`.
 
 #### Language Card Exclusive Options:
 
-- `hide` - Hide the languages specified from the card _(Comma-separated values)_
-- `hide_title` - _(boolean)_
-- `layout` - Switch between two available layouts `default` & `compact`
-- `card_width` - Set the card's width manually _(number)_
-- `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
-- `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
-- `custom_title` - Sets a custom title for the card
+- `hide` - Hide the languages specified from the card _(Comma-separated values)_ .Default: `[] (blank array)`.
+- `hide_title` - _(boolean)_. Default: `false`.
+- `layout` - Switch between two available layouts `default` & `compact`. Default: `default`.
+- `card_width` - Set the card's width manually _(number)_. Default `300`.
+- `langs_count` - Show more languages on the card, between 1-10 _(number)_. Default `5`.
+- `exclude_repo` - Exclude specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
+- `custom_title` - Sets a custom title for the card _String_. Default `Most Used Languages`.
 
 > :warning: **Important:**
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
