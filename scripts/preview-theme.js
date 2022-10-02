@@ -33,12 +33,15 @@ const THEME_CONTRIB_GUIDELINESS = `
 
   \r> Also, note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection, you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization).
 `;
-const REQUIRED_COLOR_PROPS = [
-  "title_color",
-  "icon_color",
-  "text_color",
-  "bg_color",
-];
+const COLOR_PROPS = {
+  title_color: 6,
+  icon_color: 6,
+  text_color: 6,
+  bg_color: 8,
+  border_color: 6,
+};
+const ACCEPTED_COLOR_PROPS = Object.keys(COLOR_PROPS);
+const REQUIRED_COLOR_PROPS = ACCEPTED_COLOR_PROPS.slice(0, 4);
 const INVALID_REVIEW_COMMENT = (commentUrl) =>
   `Some themes are invalid. See the [Automated Theme Preview](${commentUrl}) comment above for more information.`;
 
@@ -271,11 +274,11 @@ const parseJSON = (json) => {
     }
   } catch (error) {
     let parsedJson = json
-      .split(/(?:\s*)(}\s*,?)(?:\s*)(?=\s*[a-z_"]+:+)/)
+      .split(/([\s\r\s]*}[\s\r\s]*,[\s\r\s]*)(?=[\w"-]+:)/)
       .filter((x) => typeof x !== "string" || !!x.trim());
     if (parsedJson[0].replace(/\s+/g, "") === "},") {
       parsedJson[0] = "},";
-      if (!/\s*}\s*,?\s*$/.test(parsedJson[0])) {
+      if (!/\s*}\s*,?\s*$/.test(parsedJson[1])) {
         parsedJson.push(parsedJson.shift());
       } else {
         parsedJson.shift();
@@ -299,7 +302,7 @@ const themeNameAlreadyExists = (name) => {
 /**
  * Main function.
  */
-const run = async () => {
+export const run = async (prNumber) => {
   try {
     const dryRun = process.env.DRY_RUN === "true" || false;
     debug("Retrieve action information from context...");
@@ -310,7 +313,7 @@ const run = async () => {
     `;
     const ccc = new ColorContrastChecker();
     const octokit = github.getOctokit(getGithubToken());
-    const pullRequestId = getPrNumber();
+    const pullRequestId = prNumber ? prNumber : getPrNumber();
     const commenter = getCommenter();
     const { owner, repo } = getRepoInfo(github.context);
     debug(`Owner: ${owner}`);
@@ -387,9 +390,18 @@ const run = async () => {
         const missingKeys = REQUIRED_COLOR_PROPS.filter(
           (x) => !Object.keys(colors).includes(x),
         );
-        if (missingKeys.length > 0) {
+        const extraKeys = Object.keys(colors).filter(
+          (x) => !ACCEPTED_COLOR_PROPS.includes(x),
+        );
+        if (missingKeys.length > 0 || extraKeys.length > 0) {
           for (const missingKey of missingKeys) {
             errors.push(`Theme color properties \`${missingKey}\` are missing`);
+          }
+
+          for (const extraKey of extraKeys) {
+            warnings.push(
+              `Theme color properties \`${extraKey}\` is not supported`,
+            );
           }
           invalidColors = true;
         } else {
@@ -397,6 +409,11 @@ const run = async () => {
             if (colorValue[0] === "#") {
               errors.push(
                 `Theme color property \`${colorKey}\` should not start with '#'`,
+              );
+              invalidColors = true;
+            } else if (colorValue.length > COLOR_PROPS[colorKey]) {
+              errors.push(
+                `Theme color property \`${colorKey}\` can not be longer than \`${COLOR_PROPS[colorKey]}\` characters`,
               );
               invalidColors = true;
             } else if (!isValidHexColor(colorValue)) {
@@ -437,8 +454,10 @@ const run = async () => {
         text_color: [textColor, bgColor],
       };
       Object.keys(colorPairs).forEach((item) => {
-        const color1 = colorPairs[item][0];
-        const color2 = colorPairs[item][1];
+        let color1 = colorPairs[item][0];
+        let color2 = colorPairs[item][1];
+        color1 = color1.length === 4 ? color1.slice(0, 3) : color1.slice(0, 6);
+        color2 = color2.length === 4 ? color2.slice(0, 3) : color2.slice(0, 6);
         if (!ccc.isLevelAA(`#${color1}`, `#${color2}`)) {
           const permalink = getWebAimLink(color1, color2);
           warnings.push(
@@ -543,4 +562,6 @@ const run = async () => {
   }
 };
 
-run();
+if (typeof require !== "undefined" && require.main === module) {
+  run();
+}
