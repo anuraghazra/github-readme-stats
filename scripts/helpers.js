@@ -2,7 +2,7 @@
  * @file Contains helper functions used in the scripts.
  */
 
-import {getInput} from "@actions/core";
+import { getInput } from "@actions/core";
 
 // Script variables.
 const OWNER = "anuraghazra";

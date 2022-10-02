@@ -38,8 +38,8 @@ const COLOR_PROPS = {
   icon_color: 6,
   text_color: 6,
   bg_color: 8,
-  border_color: 6
-}
+  border_color: 6,
+};
 const ACCEPTED_COLOR_PROPS = Object.keys(COLOR_PROPS);
 const REQUIRED_COLOR_PROPS = ACCEPTED_COLOR_PROPS.slice(0, 4);
 const INVALID_REVIEW_COMMENT = (commentUrl) =>
@@ -399,7 +399,9 @@ export const run = async (prNumber) => {
           }
 
           for (const extraKey of extraKeys) {
-            warnings.push(`Theme color properties \`${extraKey}\` is not supported`);
+            warnings.push(
+              `Theme color properties \`${extraKey}\` is not supported`,
+            );
           }
           invalidColors = true;
         } else {
@@ -454,8 +456,8 @@ export const run = async (prNumber) => {
       Object.keys(colorPairs).forEach((item) => {
         let color1 = colorPairs[item][0];
         let color2 = colorPairs[item][1];
-        color1 = color1.length === 4 ? color1.slice(0,3) : color1.slice(0,6); 
-        color2 = color2.length === 4 ? color2.slice(0,3) : color2.slice(0,6); 
+        color1 = color1.length === 4 ? color1.slice(0, 3) : color1.slice(0, 6);
+        color2 = color2.length === 4 ? color2.slice(0, 3) : color2.slice(0, 6);
         if (!ccc.isLevelAA(`#${color1}`, `#${color2}`)) {
           const permalink = getWebAimLink(color1, color2);
           warnings.push(
@@ -560,6 +562,6 @@ export const run = async (prNumber) => {
   }
 };
 
-if (typeof require !== 'undefined' && require.main === module) {
+if (typeof require !== "undefined" && require.main === module) {
   run();
 }
