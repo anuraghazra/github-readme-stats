@@ -1,5 +1,4 @@
 name: Theme preview
-
 on:
   pull_request_target:
     types: [opened, edited, reopened, synchronize]
@@ -10,11 +9,11 @@ on:
 
 jobs:
   previewTheme:
+    name: Install & Preview
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16.x]
-    name: Install & Preview
 
     steps:
       - uses: actions/checkout@v3

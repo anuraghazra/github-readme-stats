@@ -4,9 +4,10 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-import core, { debug, setFailed } from "@actions/core";
+import { debug, setFailed } from "@actions/core";
 import github from "@actions/github";
 import { RequestError } from "@octokit/request-error";
+import { getGithubToken, getRepoInfo } from "./helpers.js";
 
 // Script parameters
 const CLOSING_COMMENT = `
@@ -14,38 +15,6 @@ const CLOSING_COMMENT = `
 	\rThank you for your contributions.
 `;
 
-/**
- * Retrieve information about the repository that ran the action.
- *
- * @param {Object} context Action context.
- * @returns {Object} Repository information.
- */
-export const getRepoInfo = (ctx) => {
-  try {
-    return {
-      owner: ctx.repo.owner,
-      repo: ctx.repo.repo,
-    };
-  } catch (error) {
-    return {
-      owner: OWNER,
-      repo: REPO,
-    };
-  }
-};
-
-/**
- * Retrieve github token and throw error if it is not found.
- *
- * @returns {string} Github token.
- */
-export const getGithubToken = () => {
-  const token = core.getInput("github_token") || process.env.GITHUB_TOKEN;
-  if (!token) {
-    throw Error("Could not find github token");
-  }
-  return token;
-};
 /**
  * Fetch open PRs from a given repository.
  * @param user The user name of the repository owner.
