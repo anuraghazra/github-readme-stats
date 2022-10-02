@@ -213,7 +213,7 @@ When hide_rank=`true`, the minimum card width is 270 px + the title length and p
 - `card_width` - Set the card's width manually _(number)_. Default `300`.
 - `langs_count` - Show more languages on the card, between 1-10 _(number)_. Default `5`.
 - `exclude_repo` - Exclude specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
-- `custom_title` - Sets a custom title for the card _String_. Default `Most Used Languages`.
+- `custom_title` - Sets a custom title for the card _(string)_. Default `Most Used Languages`.
 
 > :warning: **Important:**
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
@@ -222,15 +222,15 @@ When hide_rank=`true`, the minimum card width is 270 px + the title length and p
 
 #### Wakatime Card Exclusive Options:
 
-- `hide` - Hide the languages specified from the card _(Comma-separated values)_
-- `hide_title` - _(boolean)_
-- `line_height` - Sets the line-height between text _(number)_
-- `hide_progress` - Hides the progress bar and percentage _(boolean)_
-- `custom_title` - Sets a custom title for the card
-- `layout` - Switch between two available layouts `default` & `compact`
-- `langs_count` - Limit the number of languages on the card, defaults to all reported languages
-- `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
-- `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options.
+- `hide` - Hide the languages specified from the card _(Comma-separated values)_. Default: `[] (blank array)`.
+- `hide_title` - _(boolean)_. Default `false`.
+- `line_height` - Sets the line-height between text _(number)_. Default `25`.
+- `hide_progress` - Hides the progress bar and percentage _(boolean)_. Default `false`.
+- `custom_title` - Sets a custom title for the card _(string)_. Default `Wakatime Stats`.
+- `layout` - Switch between two available layouts `default` & `compact`.  Default `default`.
+- `langs_count` - Limit the number of languages on the card, defaults to all reported languages _(number)_. Default `50`.
+- `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) _(string)_. Default `Wakapi`.
+- `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options. _(YYYY-MM, last\_7\_days, last\_30\_days, last\_6\_months, last\_year, or all\_time)_. Default `all_time`.
 
 ---
 
