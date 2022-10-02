@@ -361,6 +361,18 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  kronuz: {
+    title_color: "9aa83a",
+    icon_color: "caa473",
+    text_color: "e8e6e5",
+    bg_color: "383838",
+  },
+  darker: {
+    title_color: "f1c410",
+    icon_color: "2dcc68",
+    text_color: "f5f6d1",
+    bg_color: "1b202b",
+  }, 
 };
 
 export default themes;
