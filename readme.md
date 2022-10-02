@@ -186,26 +186,26 @@ You can provide multiple comma-separated values in the bg_color option to render
 #### Stats Card Exclusive Options:
 
 - `hide` - Hides the [specified items](#hiding-individual-stats) from stats _(Comma-separated values)_
-- `hide_title` - _(boolean)_
+- `hide_title` - _(boolean)_. Defaults to `false`
 - `card_width` - Set the card's width manually _(number)_
-- `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width
-- `show_icons` - _(boolean)_
-- `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
-- `count_private` - Count private commits _(boolean)_
-- `line_height` - Sets the line-height between text _(number)_
+- `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width. Defaults to `false`
+- `show_icons` - _(boolean)_. Defaults to `false`
+- `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_. Defaults to `false`
+- `count_private` - Count private commits _(boolean)_. Defaults to `false`
+- `line_height` - Sets the line-height between text _(number)_. Default Value: `25`
 - `exclude_repo` - Exclude stars from specified repositories _(Comma-separated values)_
 - `custom_title` - Sets a custom title for the card
-- `text_bold` - Use bold text _(boolean)_
-- `disable_animations` - Disables all animations in the card _(boolean)_
+- `text_bold` - Use bold text _(boolean)_. Defaults to `true`
+- `disable_animations` - Disables all animations in the card _(boolean)_. Defaults to `false`
 
 #### Repo Card Exclusive Options:
 
-- `show_owner` - Show the repo's owner name _(boolean)_
+- `show_owner` - Show the repo's owner name _(boolean)_. Defaults to `false`
 
 #### Language Card Exclusive Options:
 
 - `hide` - Hide the languages specified from the card _(Comma-separated values)_
-- `hide_title` - _(boolean)_
+- `hide_title` - _(boolean)_. Defaults to `false`
 - `layout` - Switch between two available layouts `default` & `compact`
 - `card_width` - Set the card's width manually _(number)_
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
@@ -220,8 +220,8 @@ You can provide multiple comma-separated values in the bg_color option to render
 #### Wakatime Card Exclusive Options:
 
 - `hide` - Hide the languages specified from the card _(Comma-separated values)_
-- `hide_title` - _(boolean)_
-- `line_height` - Sets the line-height between text _(number)_
+- `hide_title` - _(boolean)_. Defaults to `false`
+- `line_height` - Sets the line-height between text _(number)_. Default Value: `25`
 - `hide_progress` - Hides the progress bar and percentage _(boolean)_
 - `custom_title` - Sets a custom title for the card
 - `layout` - Switch between two available layouts `default` & `compact`
