@@ -78,7 +78,7 @@ Alt kısımdaki kodu Kopyalayın ve yapıştırın. İşte bu kadar. Çok basit!
 ```md
 [![Anurag'nın Github İstatistikleri](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
-_Not: Şu sıralamalar mevcut: S+ (en üst 1%), S (en üst 25%), A++ (en üst 45%), A+ (en üst 60%), and B+ (herkes).
+_Not: Şu sıralamalar mevcut: S+ (en üst 1%), S (en üst 25%), A+ (en üst 45%), A (en üst 60%), and B+ (herkes).
 Buradaki değerler [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) ile hesaplanırken; commitler, katkılar, hatalar, yıldızlar, çekme istekleri, takipçiler ve sahip olunan depolar (repository) göz önünde bulundurulamaktadır.
 Uygulamanın yapısı [src/calculateRank.js](./src/calculateRank.js)'te daha detaylı incelenebilir._
 

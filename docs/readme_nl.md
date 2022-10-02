@@ -77,7 +77,7 @@ Verander de waarde `?username=` naar jou gebruikersnaam.
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Notitie: Beschikbare rangen zijn S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (iedereen).
+_Notitie: Beschikbare rangen zijn S+ (top 1%), S (top 25%), A+ (top 45%), A (top 60%), and B+ (iedereen).
 De waarden worden berekend met behulp van de zogeheten [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) met de waardes van de commits, bijdragens, issues, sterren, PR's, volgers en eigen repositories.
 De implementatie hiervan kan bekijken op [src/calculateRank.js](../src/calculateRank.js)_
 
