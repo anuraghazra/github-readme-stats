@@ -160,16 +160,16 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 #### Common Options:
 
-- `title_color` - Card's title color _(hex color)_
-- `text_color` - Body text color _(hex color)_
-- `icon_color` - Icons color if available _(hex color)_
-- `border_color` - Card's border color _(hex color)_. (Does not apply when `hide_border` is enabled)
-- `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_
-- `hide_border` - Hides the card's border _(boolean)_
-- `theme` - name of the theme, choose from [all available themes](./themes/README.md)
-- `cache_seconds` - set the cache header manually _(min: 7200, max: 86400)_
-- `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
-- `border_radius` - Corner rounding on the card
+- `title_color` - Card's title color _(hex color)_. Default: `2f80ed`.
+- `text_color` - Body text color _(hex color)_. Default: `434d58`.
+- `icon_color` - Icons color if available _(hex color)_. Default: `4c71f2`.
+- `border_color` - Card's border color _(hex color)_. Default: `e4e2e2` (Does not apply when `hide_border` is enabled).
+- `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_. Default: `fffefe`
+- `hide_border` - Hides the card's border _(boolean)_. Default: `false`
+- `theme` - name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme. 
+- `cache_seconds` - set the cache header manually _(min: 7200, max: 86400)_. Default: `14400 seconds (4 hours)`.
+- `locale` - set the language in the card _(e.g. cn, de, es, etc.)_. Default: `en`.
+- `border_radius` - Corner rounding on the card. Default: `4.5`.
 
 > Note: The minimum of cache_seconds is currently 4 hours as a temporary fix for PATs exhaustion.
 
@@ -185,18 +185,21 @@ You can provide multiple comma-separated values in the bg_color option to render
 
 #### Stats Card Exclusive Options:
 
-- `hide` - Hides the [specified items](#hiding-individual-stats) from stats _(Comma-separated values)_
-- `hide_title` - _(boolean)_
-- `card_width` - Set the card's width manually _(number)_
-- `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width
-- `show_icons` - _(boolean)_
-- `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_
-- `count_private` - Count private commits _(boolean)_
-- `line_height` - Sets the line-height between text _(number)_
-- `exclude_repo` - Exclude stars from specified repositories _(Comma-separated values)_
-- `custom_title` - Sets a custom title for the card
-- `text_bold` - Use bold text _(boolean)_
-- `disable_animations` - Disables all animations in the card _(boolean)_
+- `hide` - Hides the [specified items](#hiding-individual-stats) from stats _(Comma-separated values)_. Default: `[] (blank array)`.
+- `hide_title` - _(boolean)_. Default: `false`.
+- `card_width` - Set the card's width manually _(number)_. Default: `500px  (approx.)`.
+- `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width. Default: `false`.
+- `show_icons` - _(boolean)_. Default: `false`.
+- `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_. Default: `false`.
+- `count_private` - Count private commits _(boolean)_. Default: `false`.
+- `line_height` - Sets the line-height between text _(number)_.  Default: `25`.
+- `exclude_repo` - Exclude stars from specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
+- `custom_title` - Sets a custom title for the card. Default:  `<username> Github Stats`.
+- `text_bold` - Use bold text _(boolean)_. Default: `true`.
+- `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
+
+> Note on `hide_rank`:
+When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.
 
 #### Repo Card Exclusive Options:
 
@@ -454,4 +457,3 @@ Thanks! :heart:
 Contributions are welcome! <3
 
 Made with :heart: and JavaScript.
-
