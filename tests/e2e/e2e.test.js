@@ -20,7 +20,7 @@ const STATS_DATA = {
   totalCommits: 2,
   totalIssues: 1,
   totalStars: 1,
-  contributedTo: 1,
+  contributedTo: 2,
   rank: {
     level: "A+",
     score: 51.01622937949586,
