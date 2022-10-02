@@ -12,6 +12,7 @@ import Hjson from "hjson";
 import snakeCase from "lodash.snakecase";
 import parse from "parse-diff";
 import { inspect } from "util";
+import { isValidHexColor } from "../src/common/utils.js";
 import { themes } from "../themes/index.js";
 
 // Script variables
@@ -33,11 +34,11 @@ const THEME_CONTRIB_GUIDELINESS = `
 
   \r> Also, note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection, you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization).
 `;
-const AVAILABLE_COLOR_PROPS = [
-  "bg_color",
+const REQUIRED_COLOR_PROPS = [
+  "title_color",
   "icon_color",
   "text_color",
-  "title_color",
+  "bg_color",
 ];
 const INVALID_REVIEW_COMMENT = (commentUrl) =>
   `Some themes are invalid. See the [Automated Theme Preview](${commentUrl}) comment above for more information.`;
@@ -321,20 +322,6 @@ const parseJSON = (json) => {
 };
 
 /**
- * Check if string is a valid hex color.
- *
- * @param {string} str String to check.
- * @returns {boolean} Whether the string is a valid hex color.
- */
-const isHexColor = (str, prefix = false) => {
-  if (prefix) {
-    return /^#[a-f0-9]{6}$/i.exec(str);
-  } else {
-    return /^[a-f0-9]{6}$/i.exec(str);
-  }
-};
-
-/**
  * Check whether the theme name is still available.
  * @param {string} name Theme name.
  * @returns {boolean} Whether the theme name is available.
@@ -431,7 +418,7 @@ const run = async () => {
         warning.push("Theme colors are missing");
         invalidColors = true;
       } else {
-        const missingKeys = AVAILABLE_COLOR_PROPS.filter(
+        const missingKeys = REQUIRED_COLOR_PROPS.filter(
           (x) => !Object.keys(colors).includes(x),
         );
         if (missingKeys.length > 0) {
@@ -446,7 +433,7 @@ const run = async () => {
                 `Theme color property \`${colorKey}\` should not start with '#'`,
               );
               invalidColors = true;
-            } else if (!isHexColor(colorValue)) {
+            } else if (!isValidHexColor(colorValue)) {
               errors.push(
                 `Theme color property \`${colorKey}\` is not a valid hex color: <code>#${colorValue}</code>`,
               );
@@ -476,6 +463,7 @@ const run = async () => {
       const iconColor = colors.icon_color;
       const textColor = colors.text_color;
       const bgColor = colors.bg_color;
+      const borderColor = colors.border_color;
       const url = getGRSLink(colors);
       const colorPairs = {
         title_color: [titleColor, bgColor],
@@ -503,7 +491,9 @@ const run = async () => {
         
         \r${warnings.map((warning) => `- :warning: ${warning}.\n`).join("")}
 
-        \ntitle_color: <code>#${titleColor}</code> | icon_color: <code>#${iconColor}</code> | text_color: <code>#${textColor}</code> | bg_color: <code>#${bgColor}</code>
+        \ntitle_color: <code>#${titleColor}</code> | icon_color: <code>#${iconColor}</code> | text_color: <code>#${textColor}</code> | bg_color: <code>#${bgColor}</code>${
+        borderColor ? ` | border_color: <code>#${borderColor}</code>` : ""
+      }
 
         \r[Preview Link](${url})
 
