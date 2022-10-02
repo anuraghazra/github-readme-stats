@@ -562,6 +562,4 @@ export const run = async (prNumber) => {
   }
 };
 
-if (typeof require !== "undefined" && require.main === module) {
-  run();
-}
+run();
