@@ -23,7 +23,7 @@ const STATS_DATA = {
   contributedTo: 2,
   rank: {
     level: "A+",
-    score: 51.01622937949586,
+    score: 51.01013099671447,
   },
 };
 const LANGS_DATA = {
