@@ -1,5 +1,4 @@
 name: Generate Theme Readme
-
 on:
   push:
     branches:
@@ -8,19 +7,25 @@ on:
       - "themes/index.js"
 
 jobs:
-  build:
+  generateThemeDoc:
     runs-on: ubuntu-latest
+    name: Generate theme doc
+    strategy:
+      matrix:
+        node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v1
-      - name: setup node
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
         with:
-          node-version: "12.x"
+          node-version: ${{ matrix.node-version }}
+          cache: npm
 
       - name: npm install, generate readme
         run: |
-          npm install
+          npm ci
           npm run theme-readme-gen
         env:
           CI: true

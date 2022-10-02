@@ -1,4 +1,4 @@
-const { logger, CustomError } = require("../common/utils");
+import { CustomError, logger } from "./utils.js";
 
 const retryer = async (fetcher, variables, retries = 0) => {
   if (retries > 7) {
@@ -40,4 +40,5 @@ const retryer = async (fetcher, variables, retries = 0) => {
   }
 };
 
-module.exports = retryer;
+export { retryer };
+export default retryer;

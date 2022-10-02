@@ -57,37 +57,22 @@ function calculateRank({
     issues * ISSUES_OFFSET +
     stargazers * STARS_OFFSET +
     prs * PRS_OFFSET +
-    followers * FOLLOWERS_OFFSET + 
-    totalRepos * REPO_OFFSET 
+    followers * FOLLOWERS_OFFSET +
+    totalRepos * REPO_OFFSET
   ) / 100;
 
   const normalizedScore = normalcdf(score, TOTAL_VALUES, ALL_OFFSETS) * 100;
 
-  let level = "";
-
-  if (normalizedScore < RANK_S_VALUE) {
-    level = "S+";
-  }
-  if (
-    normalizedScore >= RANK_S_VALUE &&
-    normalizedScore < RANK_DOUBLE_A_VALUE
-  ) {
-    level = "S";
-  }
-  if (
-    normalizedScore >= RANK_DOUBLE_A_VALUE &&
-    normalizedScore < RANK_A2_VALUE
-  ) {
-    level = "A++";
-  }
-  if (normalizedScore >= RANK_A2_VALUE && normalizedScore < RANK_A3_VALUE) {
-    level = "A+";
-  }
-  if (normalizedScore >= RANK_A3_VALUE && normalizedScore < RANK_B_VALUE) {
-    level = "B+";
-  }
+  const level = (() => {
+    if (normalizedScore < RANK_S_VALUE) return "S+";
+    if (normalizedScore < RANK_DOUBLE_A_VALUE) return "S";
+    if (normalizedScore < RANK_A2_VALUE) return "A++";
+    if (normalizedScore < RANK_A3_VALUE) return "A+";
+    return "B+";
+  })();
 
   return { level, score: normalizedScore };
 }
 
-module.exports = calculateRank;
+export { calculateRank };
+export default calculateRank;
