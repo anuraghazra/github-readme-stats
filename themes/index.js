@@ -324,12 +324,6 @@ const themes = {
     text_color: "000000",
     bg_color: "8B9AA3",
   },
-  berry_snow : {
-    title_color: "FFFFFF",
-    icon_color: "FFFFFF",
-    text_color: "2b2525",
-    bg_color: "C26969",
-  },
 };
 
 module.exports = themes;
