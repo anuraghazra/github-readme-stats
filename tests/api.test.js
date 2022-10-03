@@ -39,8 +39,21 @@ const data = {
       closedIssues: { totalCount: 0 },
       followers: { totalCount: 0 },
       repositories: {
-        totalCount: 1,
+        totalCount: 1
+      },
+    },
+  },
+};
+
+const repositoriesData = {
+  data: {
+    user: {
+      repositories: {
         nodes: [{ stargazers: { totalCount: 100 } }],
+        pageInfo: {
+          hasNextPage: false,
+          cursor: "cursor"
+        }
       },
     },
   },
@@ -70,7 +83,10 @@ const faker = (query, data) => {
     setHeader: jest.fn(),
     send: jest.fn(),
   };
-  mock.onPost("https://api.github.com/graphql").reply(200, data);
+  mock.onPost("https://api.github.com/graphql")
+    .replyOnce(200, data)
+    .onPost("https://api.github.com/graphql")
+    .replyOnce(200, repositoriesData);
 
   return { req, res };
 };
@@ -138,7 +154,10 @@ describe("Test /api/", () => {
 
   it("should have proper cache", async () => {
     const { req, res } = faker({}, data);
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
+    mock.onPost("https://api.github.com/graphql")
+      .replyOnce(200, data)
+      .onPost("https://api.github.com/graphql")
+      .replyOnce(200, repositoriesData);
 
     await api(req, res);
 

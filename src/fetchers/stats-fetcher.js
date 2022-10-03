@@ -44,13 +44,40 @@ const fetcher = (variables, token) => {
           followers {
             totalCount
           }
-          repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}) {
+          repositories(ownerAffiliations: OWNER) {
             totalCount
+          }
+        }
+      }
+      `,
+      variables,
+    },
+    {
+      Authorization: `bearer ${token}`,
+    },
+  );
+};
+
+/**
+ * @param {import('axios').AxiosRequestHeaders} variables
+ * @param {string} token
+ */
+const repositoriesFetcher = (variables, token) => {
+  return request(
+    {
+      query: `
+      query userInfo($login: String!, $after: String) {
+        user(login: $login) {
+          repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
             nodes {
               name
               stargazers {
                 totalCount
               }
+            }
+            pageInfo {
+              hasNextPage
+              endCursor
             }
           }
         }
@@ -98,6 +125,32 @@ const totalCommitsFetcher = async (username) => {
   // we don't break the whole app
   return 0;
 };
+
+const totalStarsFetcher = async (username, repoToHide) => {
+  let nodes = [];
+  let hasNextPage = true
+  let endCursor = null
+  while (hasNextPage) {
+    const variables = { login: username, first: 100, after: endCursor };
+    let res = await retryer(repositoriesFetcher, variables);
+
+    if (res.data.errors) {
+      logger.error(res.data.errors);
+      throw new CustomError(
+        res.data.errors[0].message || "Could not fetch user",
+        CustomError.USER_NOT_FOUND,
+      );
+    }
+
+    nodes.push(...res.data.data.user.repositories.nodes);
+    hasNextPage = res.data.data.user.repositories.pageInfo.hasNextPage
+    endCursor = res.data.data.user.repositories.pageInfo.endCursor
+  }
+
+  return nodes
+    .filter((data) => !repoToHide[data.name])
+    .reduce((prev, curr) => prev + curr.stargazers.totalCount, 0);
+}
 
 /**
  * @param {string} username
@@ -166,13 +219,7 @@ async function fetchStats(
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
   // Retrieve stars while filtering out repositories to be hidden
-  stats.totalStars = user.repositories.nodes
-    .filter((data) => {
-      return !repoToHide[data.name];
-    })
-    .reduce((prev, curr) => {
-      return prev + curr.stargazers.totalCount;
-    }, 0);
+  stats.totalStars = await totalStarsFetcher(username, repoToHide);
 
   stats.rank = calculateRank({
     totalCommits: stats.totalCommits,

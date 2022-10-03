@@ -18,14 +18,42 @@ const data = {
       closedIssues: { totalCount: 100 },
       followers: { totalCount: 100 },
       repositories: {
-        totalCount: 5,
+        totalCount: 5
+      },
+    },
+  },
+};
+
+const firstRepositoriesData = {
+  data: {
+    user: {
+      repositories: {
         nodes: [
           { name: "test-repo-1", stargazers: { totalCount: 100 } },
           { name: "test-repo-2", stargazers: { totalCount: 100 } },
-          { name: "test-repo-3", stargazers: { totalCount: 100 } },
+          { name: "test-repo-3", stargazers: { totalCount: 100 } }
+        ],
+        pageInfo: {
+          hasNextPage: true,
+          cursor: "cursor"
+        }
+      },
+    },
+  },
+};
+
+const secondRepositoriesData = {
+  data: {
+    user: {
+      repositories: {
+        nodes: [
           { name: "test-repo-4", stargazers: { totalCount: 50 } },
           { name: "test-repo-5", stargazers: { totalCount: 50 } },
         ],
+        pageInfo: {
+          hasNextPage: false,
+          cursor: "cursor"
+        }
       },
     },
   },
@@ -44,14 +72,21 @@ const error = {
 
 const mock = new MockAdapter(axios);
 
+beforeEach( () => {
+  mock.onPost("https://api.github.com/graphql")
+    .replyOnce(200, data)
+    .onPost("https://api.github.com/graphql")
+    .replyOnce(200, firstRepositoriesData)
+    .onPost("https://api.github.com/graphql")
+    .replyOnce(200, secondRepositoriesData);
+});
+
 afterEach(() => {
   mock.reset();
 });
 
 describe("Test fetchStats", () => {
   it("should fetch correct stats", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
-
     let stats = await fetchStats("anuraghazra");
     const rank = calculateRank({
       totalCommits: 100,
@@ -75,6 +110,7 @@ describe("Test fetchStats", () => {
   });
 
   it("should throw error", async () => {
+    mock.reset();
     mock.onPost("https://api.github.com/graphql").reply(200, error);
 
     await expect(fetchStats("anuraghazra")).rejects.toThrow(
@@ -83,8 +119,6 @@ describe("Test fetchStats", () => {
   });
 
   it("should fetch and add private contributions", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
-
     let stats = await fetchStats("anuraghazra", true);
     const rank = calculateRank({
       totalCommits: 150,
@@ -108,7 +142,6 @@ describe("Test fetchStats", () => {
   });
 
   it("should fetch total commits", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
     mock
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
@@ -136,7 +169,6 @@ describe("Test fetchStats", () => {
   });
 
   it("should exclude stars of the `test-repo-1` repository", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
     mock
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
