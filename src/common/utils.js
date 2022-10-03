@@ -74,7 +74,10 @@ function parseBoolean(value) {
 }
 
 /**
- * @param {string} str
+ * Parse string to array of strings.
+ *
+ * @param {string} str The string to parse.
+ * @returns {string[]} The array of strings.
  */
 function parseArray(str) {
   if (!str) return [];
@@ -82,9 +85,12 @@ function parseArray(str) {
 }
 
 /**
- * @param {number} number
- * @param {number} min
- * @param {number} max
+ * Clamp the given number between the given range.
+ *
+ * @param {number} number The number to clamp.
+ * @param {number} min The minimum value.
+ * @param {number} max The maximum value.
+ * returns {number} The clamped number.
  */
 function clampValue(number, min, max) {
   // @ts-ignore
@@ -93,7 +99,10 @@ function clampValue(number, min, max) {
 }
 
 /**
- * @param {string[]} colors
+ * Check if the given string is a valid gradient.
+ *
+ * @param {string[]} colors Array of colors.
+ * returns {boolean} True if the given string is a valid gradient.
  */
 function isValidGradient(colors) {
   return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
