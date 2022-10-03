@@ -4,6 +4,7 @@ export type CommonOptions = {
   title_color: string;
   icon_color: string;
   text_color: string;
+  text_bold: boolean;
   bg_color: string;
   theme: ThemeNames;
   border_radius: number;

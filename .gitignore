@@ -10,3 +10,6 @@ vercel_token
 # IDE
 .vscode
 *.code-workspace
+
+# source map
+*.js.map

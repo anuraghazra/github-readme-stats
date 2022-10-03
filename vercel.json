@@ -1,14 +1,15 @@
 {
-  "functions": {
-    "api/*.js": {
-      "memory": 128,
-      "maxDuration": 30
-    }
-  },
-  "redirects": [
+  "builds": [
     {
-      "source": "/",
-      "destination": "https://github.com/anuraghazra/github-readme-stats"
+      "src": "index.js",
+      "use": "@now/node"
     }
-  ]
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/"
+    }
+  ],
+  "outputDirectory": "./"
 }

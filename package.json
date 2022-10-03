@@ -14,7 +14,8 @@
     "close-stale-theme-prs": "node scripts/close-stale-theme-prs",
     "generate-langs-json": "node scripts/generate-langs-json",
     "format": "./node_modules/.bin/prettier --write .",
-    "format:check": "./node_modules/.bin/prettier --check ."
+    "format:check": "./node_modules/.bin/prettier --check .",
+    "build": "webpack --mode development --config webpack.config.js"
   },
   "author": "Anurag Hazra",
   "license": "MIT",
@@ -33,19 +34,21 @@
     "js-yaml": "^4.1.0",
     "lodash.snakecase": "^4.1.1",
     "parse-diff": "^0.7.0",
-    "prettier": "^2.1.2"
+    "prettier": "^2.1.2",
+    "ts-loader": "^9.4.1",
+    "tsconfig-paths-webpack-plugin": "^4.0.0",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   },
   "dependencies": {
     "axios": "^0.24.0",
     "dotenv": "^8.2.0",
     "emoji-name-map": "^1.2.8",
+    "express": "^4.18.1",
     "github-username-regex": "^1.0.0",
     "upgrade": "^1.1.0",
     "word-wrap": "^1.2.3"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm test"
-    }
-  }
+  "husky": {}
 }

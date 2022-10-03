@@ -1,19 +1,24 @@
-import * as dotenv from "dotenv";
-import { renderStatsCard } from "../src/cards/stats-card.js";
-import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
   CONSTANTS,
+  isLocaleAvailable,
   parseArray,
   parseBoolean,
   renderError,
-} from "../src/common/utils.js";
-import { fetchStats } from "../src/fetchers/stats-fetcher.js";
-import { isLocaleAvailable } from "../src/translations.js";
+} from "@/index.js";
+import renderStatsCard from "@/src/cards/stats-card";
+import blacklist from "@/src/common/blacklist";
+import fetchStats from "@/src/fetchers/stats-fetcher";
+import * as dotenv from "dotenv";
+import express from "express";
+
+// Initialize Express
+const app = express();
+const port = 3000;
 
 dotenv.config();
 
-export default async (req, res) => {
+const api = async (req, res) => {
   const {
     username,
     hide,
@@ -88,7 +93,15 @@ export default async (req, res) => {
         disable_animations: parseBoolean(disable_animations),
       }),
     );
-  } catch (err) {
+  } catch (err: any) {
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };
+
+app.get("/api", api);
+
+if (process.env.NODE_ENV !== "test") {
+  app.listen(port, () => {});
+}
+
+export default api;
