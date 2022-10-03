@@ -4,7 +4,7 @@ export type CommonOptions = {
   title_color: string;
   icon_color: string;
   text_color: string;
-  text_bold: boolean;
+  text_bold: boolean | string;
   bg_color: string;
   theme: ThemeNames;
   border_radius: number;
@@ -14,15 +14,15 @@ export type CommonOptions = {
 
 export type StatCardOptions = CommonOptions & {
   hide: string[];
-  show_icons: boolean;
-  hide_title: boolean;
-  hide_border: boolean;
+  show_icons: boolean | string;
+  hide_title: boolean | string;
+  hide_border: boolean | string;
   card_width: number;
-  hide_rank: boolean;
-  include_all_commits: boolean;
+  hide_rank: boolean | string;
+  include_all_commits: boolean | string;
   line_height: number | string;
   custom_title: string;
-  disable_animations: boolean;
+  disable_animations: boolean | string;
 };
 
 export type RepoCardOptions = CommonOptions & {

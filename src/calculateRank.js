@@ -26,18 +26,6 @@ function normalcdf(mean, sigma, to) {
   return (1 / 2) * (1 + sign * erf);
 }
 
-/**
- * Calculates the users rank.
- *
- * @param {number} totalRepos
- * @param {number} totalCommits
- * @param {number} contributions
- * @param {number} followers
- * @param {number} prs
- * @param {number} issues
- * @param {number} stargazers
- * @returns {{level: string, score: number}}} The users rank.
- */
 function calculateRank({
   totalRepos,
   totalCommits,
@@ -97,4 +85,3 @@ function calculateRank({
 }
 
 export { calculateRank };
-export default calculateRank;

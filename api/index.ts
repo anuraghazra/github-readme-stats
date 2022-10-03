@@ -1,14 +1,14 @@
+import { renderStatsCard } from "@/src/cards/stats-card";
+import blacklist from "@/src/common/blacklist";
 import {
   clampValue,
   CONSTANTS,
-  isLocaleAvailable,
   parseArray,
   parseBoolean,
   renderError,
-} from "@/index.js";
-import renderStatsCard from "@/src/cards/stats-card";
-import blacklist from "@/src/common/blacklist";
+} from "@/src/common/utils";
 import fetchStats from "@/src/fetchers/stats-fetcher";
+import { isLocaleAvailable } from "@/src/translations";
 import * as dotenv from "dotenv";
 import express from "express";
 

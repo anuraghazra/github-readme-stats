@@ -314,4 +314,3 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 };
 
 export { renderStatsCard };
-export default renderStatsCard;

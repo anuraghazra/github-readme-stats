@@ -22,10 +22,14 @@
   "devDependencies": {
     "@actions/core": "^1.9.1",
     "@actions/github": "^4.0.0",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.3",
     "@testing-library/dom": "^8.17.1",
     "@testing-library/jest-dom": "^5.16.5",
+    "@types/jest": "^29.1.1",
     "@uppercod/css-to-object": "^1.1.1",
     "axios-mock-adapter": "^1.18.1",
+    "babel-jest": "^29.1.2",
     "color-contrast-checker": "^2.1.0",
     "hjson": "^3.2.2",
     "husky": "^4.2.5",
@@ -35,7 +39,9 @@
     "lodash.snakecase": "^4.1.1",
     "parse-diff": "^0.7.0",
     "prettier": "^2.1.2",
+    "ts-jest": "^29.0.3",
     "ts-loader": "^9.4.1",
+    "tsconfig-paths-jest": "^0.0.1",
     "tsconfig-paths-webpack-plugin": "^4.0.0",
     "typescript": "^4.8.4",
     "webpack": "^5.74.0",
@@ -50,5 +56,9 @@
     "upgrade": "^1.1.0",
     "word-wrap": "^1.2.3"
   },
-  "husky": {}
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  }
 }
