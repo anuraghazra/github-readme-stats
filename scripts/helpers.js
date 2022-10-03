@@ -2,6 +2,8 @@
  * @file Contains helper functions used in the scripts.
  */
 
+import { getInput } from "@actions/core";
+
 // Script variables.
 const OWNER = "anuraghazra";
 const REPO = "github-readme-stats";
@@ -32,7 +34,7 @@ export const getRepoInfo = (ctx) => {
  * @returns {string} Github token.
  */
 export const getGithubToken = () => {
-  const token = core.getInput("github_token") || process.env.GITHUB_TOKEN;
+  const token = getInput("github_token") || process.env.GITHUB_TOKEN;
   if (!token) {
     throw Error("Could not find github token");
   }
