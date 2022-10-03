@@ -59,6 +59,26 @@ const secondRepositoriesData = {
   },
 };
 
+const repositoriesWithZeroStarsData = {
+  data: {
+    user: {
+      repositories: {
+        nodes: [
+          { name: "test-repo-1", stargazers: { totalCount: 100 } },
+          { name: "test-repo-2", stargazers: { totalCount: 100 } },
+          { name: "test-repo-3", stargazers: { totalCount: 100 } },
+          { name: "test-repo-4", stargazers: { totalCount: 0 } },
+          { name: "test-repo-5", stargazers: { totalCount: 0 } }
+        ],
+        pageInfo: {
+          hasNextPage: true,
+          cursor: "cursor"
+        }
+      },
+    },
+  },
+};
+
 const error = {
   errors: [
     {
@@ -105,6 +125,35 @@ describe("Test fetchStats", () => {
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 400,
+      rank,
+    });
+  });
+
+  it("should stop fetching when there are repos with zero stars", async () => {
+    mock.reset();
+    mock.onPost("https://api.github.com/graphql")
+      .replyOnce(200, data)
+      .onPost("https://api.github.com/graphql")
+      .replyOnce(200, repositoriesWithZeroStarsData)
+
+    let stats = await fetchStats("anuraghazra");
+    const rank = calculateRank({
+      totalCommits: 100,
+      totalRepos: 5,
+      followers: 100,
+      contributions: 61,
+      stargazers: 300,
+      prs: 300,
+      issues: 200,
+    });
+
+    expect(stats).toStrictEqual({
+      contributedTo: 61,
+      name: "Anurag Hazra",
+      totalCommits: 100,
+      totalIssues: 200,
+      totalPRs: 300,
+      totalStars: 300,
       rank,
     });
   });

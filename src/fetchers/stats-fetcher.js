@@ -142,8 +142,10 @@ const totalStarsFetcher = async (username, repoToHide) => {
       );
     }
 
-    nodes.push(...res.data.data.user.repositories.nodes);
-    hasNextPage = res.data.data.user.repositories.pageInfo.hasNextPage
+    const allNodes = res.data.data.user.repositories.nodes;
+    const nodesWithStars = allNodes.filter((node) => node.stargazers.totalCount !== 0)
+    nodes.push(...nodesWithStars);
+    hasNextPage = (allNodes.length === nodesWithStars.length) && res.data.data.user.repositories.pageInfo.hasNextPage
     endCursor = res.data.data.user.repositories.pageInfo.endCursor
   }
 
