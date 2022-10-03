@@ -333,7 +333,7 @@ const useLanguages = (topLangs, hide, langs_count) => {
  */
 const renderTopLanguages = (topLangs, options = {}) => {
   const {
-    hide_title,
+    hide_title = false,
     hide_border,
     card_width,
     title_color,
