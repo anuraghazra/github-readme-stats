@@ -97,7 +97,7 @@ function clampValue(number, min, max) {
 
 /**
  * @param {string[]} colors
- * returns {boolean} 
+ * returns {boolean}
  */
 function isValidGradient(colors) {
   return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);

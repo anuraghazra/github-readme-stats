@@ -34,7 +34,6 @@ function normalcdf(mean, sigma, to) {
  * @returns {{level: string, score: number}}}
  */
 
-
 function calculateRank({
   totalRepos,
   totalCommits,
