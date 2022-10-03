@@ -1,16 +1,15 @@
-require("dotenv").config();
-const {
-  renderError,
-  parseBoolean,
+import { renderRepoCard } from "../src/cards/repo-card.js";
+import { blacklist } from "../src/common/blacklist.js";
+import {
   clampValue,
   CONSTANTS,
-} = require("../src/common/utils");
-const fetchRepo = require("../src/fetchers/repo-fetcher");
-const renderRepoCard = require("../src/cards/repo-card");
-const blacklist = require("../src/common/blacklist");
-const { isLocaleAvailable } = require("../src/translations");
+  parseBoolean,
+  renderError,
+} from "../src/common/utils.js";
+import { fetchRepo } from "../src/fetchers/repo-fetcher.js";
+import { isLocaleAvailable } from "../src/translations.js";
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const {
     username,
     repo,
@@ -41,16 +40,16 @@ module.exports = async (req, res) => {
     const repoData = await fetchRepo(username, repo);
 
     let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
-      CONSTANTS.TWO_HOURS,
+      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
+      CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
 
     /*
-    if star count & fork count is over 1k then we are kFormating the text
-    and if both are zero we are not showing the stats
-    so we can just make the cache longer, since there is no need to frequent updates
-  */
+      if star count & fork count is over 1k then we are kFormating the text
+      and if both are zero we are not showing the stats
+      so we can just make the cache longer, since there is no need to frequent updates
+    */
     const stars = repoData.starCount;
     const forks = repoData.forkCount;
     const isBothOver1K = stars > 1000 && forks > 1000;

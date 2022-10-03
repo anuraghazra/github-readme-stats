@@ -1,12 +1,22 @@
-const axios = require("axios");
-const githubUsernameRegex = require("github-username-regex");
+// @ts-check
+import axios from "axios";
+import * as dotenv from "dotenv";
+import githubUsernameRegex from "github-username-regex";
+import { calculateRank } from "../calculateRank.js";
+import { retryer } from "../common/retryer.js";
+import {
+  CustomError,
+  logger,
+  MissingParamError,
+  request,
+} from "../common/utils.js";
 
-const retryer = require("../common/retryer");
-const calculateRank = require("../calculateRank");
-const { request, logger, CustomError } = require("../common/utils");
+dotenv.config();
 
-require("dotenv").config();
-
+/**
+ * @param {import('axios').AxiosRequestHeaders} variables
+ * @param {string} token
+ */
 const fetcher = (variables, token) => {
   return request(
     {
@@ -37,6 +47,7 @@ const fetcher = (variables, token) => {
           repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}) {
             totalCount
             nodes {
+              name
               stargazers {
                 totalCount
               }
@@ -69,30 +80,38 @@ const totalCommitsFetcher = async (username) => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/vnd.github.cloak-preview",
-        Authorization: `bearer ${token}`,
+        Authorization: `token ${token}`,
       },
     });
   };
 
   try {
     let res = await retryer(fetchTotalCommits, { login: username });
-    if (res.data.total_count) {
+    let total_count = res.data.total_count;
+    if (!!total_count && !isNaN(total_count)) {
       return res.data.total_count;
     }
   } catch (err) {
     logger.log(err);
-    // just return 0 if there is something wrong so that
-    // we don't break the whole app
-    return 0;
   }
+  // just return 0 if there is something wrong so that
+  // we don't break the whole app
+  return 0;
 };
 
+/**
+ * @param {string} username
+ * @param {boolean} count_private
+ * @param {boolean} include_all_commits
+ * @returns {Promise<import("./types").StatsData>}
+ */
 async function fetchStats(
   username,
   count_private = false,
   include_all_commits = false,
+  exclude_repo = [],
 ) {
-  if (!username) throw Error("Invalid username");
+  if (!username) throw new MissingParamError(["username"]);
 
   const stats = {
     name: "",
@@ -116,6 +135,15 @@ async function fetchStats(
 
   const user = res.data.data.user;
 
+  // populate repoToHide map for quick lookup
+  // while filtering out
+  let repoToHide = {};
+  if (exclude_repo) {
+    exclude_repo.forEach((repoName) => {
+      repoToHide[repoName] = true;
+    });
+  }
+
   stats.name = user.name || user.login;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
 
@@ -137,9 +165,14 @@ async function fetchStats(
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
-  stats.totalStars = user.repositories.nodes.reduce((prev, curr) => {
-    return prev + curr.stargazers.totalCount;
-  }, 0);
+  // Retrieve stars while filtering out repositories to be hidden
+  stats.totalStars = user.repositories.nodes
+    .filter((data) => {
+      return !repoToHide[data.name];
+    })
+    .reduce((prev, curr) => {
+      return prev + curr.stargazers.totalCount;
+    }, 0);
 
   stats.rank = calculateRank({
     totalCommits: stats.totalCommits,
@@ -154,4 +187,5 @@ async function fetchStats(
   return stats;
 }
 
-module.exports = fetchStats;
+export { fetchStats };
+export default fetchStats;

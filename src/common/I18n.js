@@ -18,4 +18,5 @@ class I18n {
   }
 }
 
-module.exports = I18n;
+export { I18n };
+export default I18n;

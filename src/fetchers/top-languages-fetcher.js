@@ -1,7 +1,14 @@
-const { request, logger } = require("../common/utils");
-const retryer = require("../common/retryer");
-require("dotenv").config();
+// @ts-check
+import * as dotenv from "dotenv";
+import { retryer } from "../common/retryer.js";
+import { logger, MissingParamError, request } from "../common/utils.js";
 
+dotenv.config();
+
+/**
+ * @param {import('Axios').AxiosRequestHeaders} variables
+ * @param {string} token
+ */
 const fetcher = (variables, token) => {
   return request(
     {
@@ -29,13 +36,18 @@ const fetcher = (variables, token) => {
       variables,
     },
     {
-      Authorization: `bearer ${token}`,
+      Authorization: `token ${token}`,
     },
   );
 };
 
+/**
+ * @param {string} username
+ * @param {string[]} exclude_repo
+ * @returns {Promise<import("./types").TopLangData>}
+ */
 async function fetchTopLanguages(username, exclude_repo = []) {
-  if (!username) throw Error("Invalid username");
+  if (!username) throw new MissingParamError(["username"]);
 
   const res = await retryer(fetcher, { login: username });
 
@@ -58,14 +70,10 @@ async function fetchTopLanguages(username, exclude_repo = []) {
   // filter out repositories to be hidden
   repoNodes = repoNodes
     .sort((a, b) => b.size - a.size)
-    .filter((name) => {
-      return !repoToHide[name.name];
-    });
+    .filter((name) => !repoToHide[name.name]);
 
   repoNodes = repoNodes
-    .filter((node) => {
-      return node.languages.edges.length > 0;
-    })
+    .filter((node) => node.languages.edges.length > 0)
     // flatten the list of language nodes
     .reduce((acc, curr) => curr.languages.edges.concat(acc), [])
     .reduce((acc, prev) => {
@@ -98,4 +106,5 @@ async function fetchTopLanguages(username, exclude_repo = []) {
   return topLangs;
 }
 
-module.exports = fetchTopLanguages;
+export { fetchTopLanguages };
+export default fetchTopLanguages;

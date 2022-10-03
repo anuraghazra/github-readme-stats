@@ -1,16 +1,22 @@
-const themes = {
+export const themes = {
   default: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
-    text_color: "333",
+    text_color: "434d58",
     bg_color: "fffefe",
     border_color: "e4e2e2",
   },
   default_repocard: {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
-    text_color: "333",
+    text_color: "434d58",
     bg_color: "fffefe",
+  },
+  transparent: {
+    title_color: "006AFF",
+    icon_color: "0579C3",
+    text_color: "417E87",
+    bg_color: "ffffff00",
   },
   dark: {
     title_color: "fff",
@@ -342,13 +348,32 @@ const themes = {
     text_color: "bcbcbc",
     bg_color: "262626",
   },
-  black_cyan:{
+  black_cyan: {
    title_color: "00FFFF",
    icon_color: "FFFFFF",
    text_color: "FFFFFF",
    bg_color: "000000",
    border_color: "00FFFF",
   },
+  moltack: {
+    title_color: "86092C",
+    icon_color: "86092C",
+    text_color: "574038",
+    bg_color: "F5E1C0",
+  },
+  codeSTACKr: {
+    title_color: "ff652f",
+    icon_color: "FFE400",
+    text_color: "ffffff",
+    bg_color: "09131B",
+    border_color: "0c1a25",
+  },
+  rose_pine: {
+    title_color: "9ccfd8",
+    icon_color: "ebbcba",
+    text_color: "e0def4",
+    bg_color: "191724",
+  },
 };
 
-module.exports = themes;
+export default themes;

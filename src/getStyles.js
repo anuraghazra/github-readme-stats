@@ -1,3 +1,4 @@
+// @ts-check
 /**
  * @param {number} value
  */
@@ -53,11 +54,11 @@ const getAnimations = () => {
 
 /**
  * @param {{
- *  titleColor: string;
- *  textColor: string;
- *  iconColor: string;
- *  show_icons: boolean;
- *  progress: number;
+ *  titleColor?: string | string[]
+ *  textColor?: string | string[]
+ *  iconColor?: string | string[]
+ *  show_icons?: boolean;
+ *  progress?: number;
  * }} args
  */
 const getStyles = ({
@@ -71,21 +72,26 @@ const getStyles = ({
     .stat {
       font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
     }
+    @supports(-moz-appearance: auto) {
+      /* Selector detects Firefox */
+      .stat { font-size:12px; }
+    }
     .stagger {
       opacity: 0;
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
     .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; 
+      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor};
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
     
+    .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
     .icon {
       fill: ${iconColor};
       display: ${!!show_icons ? "block" : "none"};
     }
-    
+
     .rank-circle-rim {
       stroke: ${titleColor};
       fill: none;
@@ -107,4 +113,4 @@ const getStyles = ({
   `;
 };
 
-module.exports = { getStyles, getAnimations };
+export { getStyles, getAnimations };

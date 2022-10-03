@@ -27,7 +27,7 @@
   </p>
 
   <p align="center">
-    <a href="#demo">Ver demonstração</a>
+    <a href="#demonstração">Ver demonstração</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Reportar erros</a>
     ·
@@ -147,7 +147,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 #### Opções exclusivas do cartão de estatísticas:
 
 - `hide` - Oculta itens específicos das estatísticas _(Valores separados por vírgulas)_
-- `hide_title` - Ocutar o título _(boolean)_
+- `hide_title` - Ocultar o título _(boolean)_
 - `hide_rank` - Ocultar a classificação _(boolean)_
 - `show_icons` - Mostrar ícones _(boolean)_
 - `include_all_commits` - Contabiliza todos os commits ao invés de apenas os atual ano _(boolean)_
@@ -295,7 +295,7 @@ Escolha entre um dos [temas predefinidos](#temas)
 
 Por padrão, você não poderá organizar as imagens lado a lado. Para fazer isso, você pode usar a seguinte abordagem:
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
