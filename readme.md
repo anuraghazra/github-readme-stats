@@ -222,8 +222,6 @@ You can provide multiple comma-separated values in the bg_color option to render
 
 #### Wakatime Card Exclusive Options:
 
-&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-
 -   `hide` - Hide the languages specified from the card _(Comma-separated values)_. Default: `[] (blank array)`.
 -   `hide_title` - _(boolean)_. Default `false`.
 -   `line_height` - Sets the line-height between text _(number)_. Default `25`.
@@ -232,17 +230,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `layout` - Switch between two available layouts `default` & `compact`.  Default `default`.
 -   `langs_count` - Limit the number of languages on the card, defaults to all reported languages _(number)_. Default `50`.
 -   `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) _(string)_. Default `Wakapi`.
--   # `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options. _(YYYY-MM, last_7_days, last_30_days, last_6_months, last_year, or all_time)_. Default `all_time`.
--   `hide` - Hide the languages specified from the card _(Comma-separated values)_
--   `hide_title` - _(boolean)_. Defaults to `false`.
--   `line_height` - Sets the line-height between text _(number)_. Default Value: `25`.
--   `hide_progress` - Hides the progress bar and percentage _(boolean)_
--   `custom_title` - Sets a custom title for the card
--   `layout` - Switch between two available layouts `default` & `compact`
--   `langs_count` - Limit the number of languages on the card, defaults to all reported languages
--   `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
--   `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options.
-    > > > > > > > master
+-   `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options. _(YYYY-MM, last_7_days, last_30_days, last_6_months, last_year, or all_time)_. Default `all_time`.
 
 * * *
 
