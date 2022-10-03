@@ -1,11 +1,14 @@
 /**
+ * Calculates the probability of x taking on x or a value less than x in a normal distribution
+ * with mean and standard deviation.
+ *
  * @see https://stackoverflow.com/a/5263759/10629172
+ *
  * @param {string} mean
  * @param {number} sigma
  * @param {number} to
- * @returns {number}
+ * @returns {number} Probability.
  */
-
 function normalcdf(mean, sigma, to) {
   var z = (to - mean) / Math.sqrt(2 * sigma * sigma);
   var t = 1 / (1 + 0.3275911 * Math.abs(z));
@@ -24,16 +27,17 @@ function normalcdf(mean, sigma, to) {
 }
 
 /**
- * @param {any} totalRepos
- * @param {any} totalCommits
- * @param {any} contributions
- * @params {ant} followers
- * @param {any} prs
- * @param {any} issues
- * @param {any} stargazers
- * @returns {{level: string, score: number}}}
+ * Calculates the users rank.
+ *
+ * @param {number} totalRepos
+ * @param {number} totalCommits
+ * @param {number} contributions
+ * @param {number} followers
+ * @param {number} prs
+ * @param {number} issues
+ * @param {number} stargazers
+ * @returns {{level: string, score: number}}} The users rank.
  */
-
 function calculateRank({
   totalRepos,
   totalCommits,
