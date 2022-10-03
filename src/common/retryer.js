@@ -1,5 +1,9 @@
 import { CustomError, logger } from "./utils.js";
 
+/**
+ * @param {{fetcher: any, variables: any, retries: number}} params
+ * @returns Promise<retryer>
+*/
 const retryer = async (fetcher, variables, retries = 0) => {
   if (retries > 7) {
     throw new CustomError("Maximum retries exceeded", CustomError.MAX_RETRY);

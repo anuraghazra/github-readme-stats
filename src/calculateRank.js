@@ -1,4 +1,11 @@
-// https://stackoverflow.com/a/5263759/10629172
+/**
+ * @see https://stackoverflow.com/a/5263759/10629172
+ * @param {string} mean
+ * @param {number} sigma
+ * @param {number} to
+ * @returns {number}
+ */
+
 function normalcdf(mean, sigma, to) {
   var z = (to - mean) / Math.sqrt(2 * sigma * sigma);
   var t = 1 / (1 + 0.3275911 * Math.abs(z));
@@ -15,6 +22,18 @@ function normalcdf(mean, sigma, to) {
   }
   return (1 / 2) * (1 + sign * erf);
 }
+
+/**
+ * @param {any} totalRepos
+ * @param {any} totalCommits
+ * @param {any} contributions
+ * @params {ant} followers
+ * @param {any} prs
+ * @param {any} issues
+ * @param {any} stargazers
+ * @returns {{level: string, score: number}}}
+ */
+
 
 function calculateRank({
   totalRepos,

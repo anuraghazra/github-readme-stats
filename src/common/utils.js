@@ -75,6 +75,8 @@ function parseBoolean(value) {
 
 /**
  * @param {string} str
+ * @returns {string[]}
+
  */
 function parseArray(str) {
   if (!str) return [];
@@ -85,6 +87,7 @@ function parseArray(str) {
  * @param {number} number
  * @param {number} min
  * @param {number} max
+ * returns {number}
  */
 function clampValue(number, min, max) {
   // @ts-ignore
@@ -94,6 +97,7 @@ function clampValue(number, min, max) {
 
 /**
  * @param {string[]} colors
+ * returns {boolean} 
  */
 function isValidGradient(colors) {
   return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);

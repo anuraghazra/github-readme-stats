@@ -12,6 +12,10 @@ import {
 import { getStyles } from "../getStyles.js";
 import { statCardLocales } from "../translations.js";
 
+/**
+ * @param {{icon: string, label: string, value: number, id: string, index:number, showIcons: boolean, shiftValuePos: number, bold:boolean}} params
+ * @returns {string} 
+*/
 const createTextNode = ({
   icon,
   label,
