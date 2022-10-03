@@ -236,6 +236,38 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
+  it("should render with layout pie", () => {
+    document.body.innerHTML = renderTopLanguages(langs, { layout: "pie" });
+
+    expect(queryByTestId(document.body, "header")).toHaveTextContent(
+      "Most Used Languages",
+    );
+
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
+      "HTML 40.00%",
+    );
+    expect(queryAllByTestId(document.body, "lang-pie")[0]).toHaveAttribute(
+      "size",
+      "40.00",
+    );
+
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
+      "javascript 40.00%",
+    );
+    expect(queryAllByTestId(document.body, "lang-pie")[1]).toHaveAttribute(
+      "size",
+      "40.00",
+    );
+
+    expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
+      "css 20.00%",
+    );
+    expect(queryAllByTestId(document.body, "lang-pie")[2]).toHaveAttribute(
+      "size",
+      "20.00",
+    );
+  });
+
   it("should render a translated title", () => {
     document.body.innerHTML = renderTopLanguages(langs, { locale: "cn" });
     expect(document.getElementsByClassName("header")[0].textContent).toBe(

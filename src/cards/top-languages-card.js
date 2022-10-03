@@ -12,6 +12,9 @@ import {
 } from "../common/utils.js";
 import { langCardLocales } from "../translations.js";
 
+import * as d3 from 'd3';
+import {JSDOM} from 'jsdom';
+
 const DEFAULT_CARD_WIDTH = 300;
 const MIN_CARD_WIDTH = 230;
 const DEFAULT_LANGS_COUNT = 5;
@@ -60,7 +63,7 @@ const createProgressTextNode = ({ width, color, name, progress }) => {
 };
 
 /**
- * @param {{ lang: Lang, totalSize: number }} props
+ * @param {{ lang: Lang, totalSize: number, isDonut: boolean }} props
  */
 const createCompactLangNode = ({ lang, totalSize }) => {
   const percentage = ((lang.size / totalSize) * 100).toFixed(2);
@@ -105,6 +108,23 @@ const createLanguageTextNode = ({ langs, totalSize }) => {
   return flexLayout({
     items: layouts,
     gap: maxGap < minGap ? minGap : maxGap,
+  }).join("");
+};
+
+
+/**
+ * @param {{ langs: Lang[], totalLanguageSize: number }} props
+ */
+const createDonutTextNode = (langs, totalLanguageSize) => {
+  return flexLayout({
+    items: langs.map((lang) => {
+      return createCompactLangNode({
+        lang,
+        totalSize: totalLanguageSize,
+      });
+    }),
+    gap: 32,
+    direction: "column",
   }).join("");
 };
 
@@ -176,6 +196,84 @@ const renderCompactLayout = (langs, width, totalLanguageSize) => {
         langs,
         totalSize: totalLanguageSize,
       })}
+    </g>
+  `;
+};
+
+/**
+ * @param {Lang[]} langs
+ * @param {number} width
+ * @param {number} height
+ * @param {number} totalLanguageSize
+ * @returns {string}
+ */
+const renderDonutLayout = (langs, width, height, totalLanguageSize) => {
+  const pie = d3.pie().value(function (d) {
+    return d.size;
+  });
+  
+  const pieData = pie(langs);
+
+  const xPadding = 50;
+  const yPadding = 60;
+
+  const widthOffset = 80;
+  const heightOffset = 25;
+  
+  const margin = 10;
+  const radius = ((width - widthOffset) - 2 * margin - yPadding) / 2;
+
+  const arc = d3.
+    arc()
+    .outerRadius(radius - 30)
+    .innerRadius(radius / 2);
+
+  const fakeDom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
+  const body = d3.select(fakeDom.window.document).select('body');
+
+  const svg = body
+    .append('div')
+    .attr('class', 'container')
+    .append('svg')
+    .attr('xmlns', 'http://www.w3.org/2000/svg')
+    .attr('width', width)
+    .attr('height', height)
+    .attr('viewBox', `0 0 ${width} ${height}`);
+
+
+  const g = svg
+    .append('g')
+    .attr(
+        'transform',
+        `translate( ${(width - xPadding - widthOffset)}, ${(height - yPadding + heightOffset) / 2} )`
+    )
+    .selectAll('.arc')
+    .data(pieData)
+    .enter()
+    .append('g')
+    .attr('class', 'arc')
+    .attr('data-testid', 'lang-pie')
+    .attr('size', function (pieData) {
+      return ((pieData.data.size / totalLanguageSize) * 100).toFixed(2);
+    });
+
+    
+  g.append('path')
+    .attr('d', arc)
+    .style('fill', function (pieData) {
+        return pieData.data.color;
+    })
+    .style('stroke-width', '2px');
+
+  const donut = body.select('.container').html();
+
+  return `
+    <g transform="translate(0, -21)">
+      <g transform="translate(0, 42)">
+        ${createDonutTextNode(langs, totalLanguageSize)}
+      </g>
+
+      ${donut}
     </g>
   `;
 };
@@ -275,6 +373,10 @@ const renderTopLanguages = (topLangs, options = {}) => {
     height = calculateCompactLayoutHeight(langs.length);
 
     finalLayout = renderCompactLayout(langs, width, totalLanguageSize);
+  } else if (layout === "pie") {
+    height = height - 25 // padding
+    width = width + 80; // padding
+    finalLayout = renderDonutLayout(langs, width, height, totalLanguageSize);
   } else {
     finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
   }
