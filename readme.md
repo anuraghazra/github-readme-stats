@@ -200,17 +200,17 @@ You can provide multiple comma-separated values in the bg_color option to render
 
 #### Repo Card Exclusive Options:
 
-- `show_owner` - Show the repo's owner name _(boolean)_. Defaults to `false`
+-   `show_owner` - Show the repo's owner name _(boolean)_. Defaults to `false`
 
 #### Language Card Exclusive Options:
 
-- `hide` - Hide the languages specified from the card _(Comma-separated values)_
-- `hide_title` - _(boolean)_. Defaults to `false`
-- `layout` - Switch between two available layouts `default` & `compact`
-- `card_width` - Set the card's width manually _(number)_
-- `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
-- `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
-- `custom_title` - Sets a custom title for the card
+-   `hide` - Hide the languages specified from the card _(Comma-separated values)_
+-   `hide_title` - _(boolean)_. Defaults to `false`
+-   `layout` - Switch between two available layouts `default` & `compact`
+-   `card_width` - Set the card's width manually _(number)_
+-   `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
+-   `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
+-   `custom_title` - Sets a custom title for the card
 
 > :warning: **Important:**
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
@@ -219,15 +219,15 @@ You can provide multiple comma-separated values in the bg_color option to render
 
 #### Wakatime Card Exclusive Options:
 
-- `hide` - Hide the languages specified from the card _(Comma-separated values)_
-- `hide_title` - _(boolean)_. Defaults to `false`
-- `line_height` - Sets the line-height between text _(number)_. Default Value: `25`
-- `hide_progress` - Hides the progress bar and percentage _(boolean)_
-- `custom_title` - Sets a custom title for the card
-- `layout` - Switch between two available layouts `default` & `compact`
-- `langs_count` - Limit the number of languages on the card, defaults to all reported languages
-- `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
-- `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options.
+-   `hide` - Hide the languages specified from the card _(Comma-separated values)_
+-   `hide_title` - _(boolean)_. Defaults to `false`
+-   `line_height` - Sets the line-height between text _(number)_. Default Value: `25`
+-   `hide_progress` - Hides the progress bar and percentage _(boolean)_
+-   `custom_title` - Sets a custom title for the card
+-   `layout` - Switch between two available layouts `default` & `compact`
+-   `langs_count` - Limit the number of languages on the card, defaults to all reported languages
+-   `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
+-   `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options.
 
 * * *
 
