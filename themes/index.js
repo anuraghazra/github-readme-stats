@@ -369,7 +369,7 @@ export const themes = {
   },
   nu_disco: {
     title_color: "54D0CD",
-    icon_color: "A75781",
+    icon_color: "54D0CD",
     text_color: "BDA8E6",
     bg_color: "0C011F",
   },
