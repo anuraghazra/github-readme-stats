@@ -18,7 +18,7 @@ const data = {
       closedIssues: { totalCount: 100 },
       followers: { totalCount: 100 },
       repositories: {
-        totalCount: 5
+        totalCount: 5,
       },
     },
   },
@@ -31,12 +31,12 @@ const firstRepositoriesData = {
         nodes: [
           { name: "test-repo-1", stargazers: { totalCount: 100 } },
           { name: "test-repo-2", stargazers: { totalCount: 100 } },
-          { name: "test-repo-3", stargazers: { totalCount: 100 } }
+          { name: "test-repo-3", stargazers: { totalCount: 100 } },
         ],
         pageInfo: {
           hasNextPage: true,
-          cursor: "cursor"
-        }
+          cursor: "cursor",
+        },
       },
     },
   },
@@ -52,8 +52,8 @@ const secondRepositoriesData = {
         ],
         pageInfo: {
           hasNextPage: false,
-          cursor: "cursor"
-        }
+          cursor: "cursor",
+        },
       },
     },
   },
@@ -68,12 +68,12 @@ const repositoriesWithZeroStarsData = {
           { name: "test-repo-2", stargazers: { totalCount: 100 } },
           { name: "test-repo-3", stargazers: { totalCount: 100 } },
           { name: "test-repo-4", stargazers: { totalCount: 0 } },
-          { name: "test-repo-5", stargazers: { totalCount: 0 } }
+          { name: "test-repo-5", stargazers: { totalCount: 0 } },
         ],
         pageInfo: {
           hasNextPage: true,
-          cursor: "cursor"
-        }
+          cursor: "cursor",
+        },
       },
     },
   },
@@ -92,8 +92,9 @@ const error = {
 
 const mock = new MockAdapter(axios);
 
-beforeEach( () => {
-  mock.onPost("https://api.github.com/graphql")
+beforeEach(() => {
+  mock
+    .onPost("https://api.github.com/graphql")
     .replyOnce(200, data)
     .onPost("https://api.github.com/graphql")
     .replyOnce(200, firstRepositoriesData)
@@ -131,10 +132,11 @@ describe("Test fetchStats", () => {
 
   it("should stop fetching when there are repos with zero stars", async () => {
     mock.reset();
-    mock.onPost("https://api.github.com/graphql")
+    mock
+      .onPost("https://api.github.com/graphql")
       .replyOnce(200, data)
       .onPost("https://api.github.com/graphql")
-      .replyOnce(200, repositoriesWithZeroStarsData)
+      .replyOnce(200, repositoriesWithZeroStarsData);
 
     let stats = await fetchStats("anuraghazra");
     const rank = calculateRank({

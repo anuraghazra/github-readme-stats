@@ -39,7 +39,7 @@ const data = {
       closedIssues: { totalCount: 0 },
       followers: { totalCount: 0 },
       repositories: {
-        totalCount: 1
+        totalCount: 1,
       },
     },
   },
@@ -52,8 +52,8 @@ const repositoriesData = {
         nodes: [{ stargazers: { totalCount: 100 } }],
         pageInfo: {
           hasNextPage: false,
-          cursor: "cursor"
-        }
+          cursor: "cursor",
+        },
       },
     },
   },
@@ -83,7 +83,8 @@ const faker = (query, data) => {
     setHeader: jest.fn(),
     send: jest.fn(),
   };
-  mock.onPost("https://api.github.com/graphql")
+  mock
+    .onPost("https://api.github.com/graphql")
     .replyOnce(200, data)
     .onPost("https://api.github.com/graphql")
     .replyOnce(200, repositoriesData);

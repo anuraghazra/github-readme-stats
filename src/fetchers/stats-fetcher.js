@@ -133,8 +133,8 @@ const totalCommitsFetcher = async (username) => {
  */
 const totalStarsFetcher = async (username, repoToHide) => {
   let nodes = [];
-  let hasNextPage = true
-  let endCursor = null
+  let hasNextPage = true;
+  let endCursor = null;
   while (hasNextPage) {
     const variables = { login: username, first: 100, after: endCursor };
     let res = await retryer(repositoriesFetcher, variables);
@@ -148,16 +148,20 @@ const totalStarsFetcher = async (username, repoToHide) => {
     }
 
     const allNodes = res.data.data.user.repositories.nodes;
-    const nodesWithStars = allNodes.filter((node) => node.stargazers.totalCount !== 0)
+    const nodesWithStars = allNodes.filter(
+      (node) => node.stargazers.totalCount !== 0,
+    );
     nodes.push(...nodesWithStars);
-    hasNextPage = (allNodes.length === nodesWithStars.length) && res.data.data.user.repositories.pageInfo.hasNextPage
-    endCursor = res.data.data.user.repositories.pageInfo.endCursor
+    hasNextPage =
+      allNodes.length === nodesWithStars.length &&
+      res.data.data.user.repositories.pageInfo.hasNextPage;
+    endCursor = res.data.data.user.repositories.pageInfo.endCursor;
   }
 
   return nodes
     .filter((data) => !repoToHide[data.name])
     .reduce((prev, curr) => prev + curr.stargazers.totalCount, 0);
-}
+};
 
 /**
  * @param {string} username
