@@ -12,6 +12,19 @@ import {
 import { getStyles } from "../getStyles.js";
 import { statCardLocales } from "../translations.js";
 
+/**
+ * Create a stats card text item.
+ *
+ * @param {object[]} createTextNodeParams Object that contains the createTextNode parameters.
+ * @param {string} createTextNodeParams.label The label to display.
+ * @param {string} createTextNodeParams.value The value to display.
+ * @param {string} createTextNodeParams.id The id of the stat.
+ * @param {number} createTextNodeParams.index The index of the stat.
+ * @param {boolean} createTextNodeParams.showIcons Whether to show icons.
+ * @param {number} createTextNodeParams.shiftValuePos Number of pixels the value has to be shifted to the right.
+ * @param {boolean} createTextNodeParams.bold Whether to bold the label.
+ * @returns
+ */
 const createTextNode = ({
   icon,
   label,

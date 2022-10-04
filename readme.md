@@ -7,6 +7,9 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
       <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
@@ -61,18 +64,16 @@
 </p>
 <p align="center">Love the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
 
-<p>
 <a href="https://indiafightscorona.giveindia.org">
-<img src="https://indiaspora.org/wp-content/uploads/2021/04/give-India-logo.png" alt="Give india logo" width="200" />
+  <img src="https://indiaspora.org/wp-content/uploads/2021/04/give-India-logo.png" alt="Give india logo" width="200" />
 </a>
 
-Are you considering supporting the project by donating? Please DON'T!!
+Are you considering supporting the project by donating? Please DO NOT!!
 
-Instead, Help India fight the 2nd deadly wave of COVID-19.
+Instead, Help India fight the second deadly wave of COVID-19.
 Thousands of people are dying in India because of a lack of Oxygen & also COVID-related infrastructure.
 
-Visit <https://indiafightscorona.giveindia.org> and make a small donation to help us fight COVID and overcome this crisis.
-A small donation goes a long way. :heart:
+Visit <https://indiafightscorona.giveindia.org> and make a small donation to help us fight COVID and overcome this crisis. A small donation goes a long way. :heart:
 
 </p>
 
@@ -93,7 +94,7 @@ A small donation goes a long way. :heart:
 
 # GitHub Stats Card
 
-Copy-paste this into your markdown content, and that's it. Simple!
+Copy-paste this into your markdown content, and that is it. Simple!
 
 Change the `?username=` value to your GitHub username.
 
@@ -107,7 +108,7 @@ The implementation can be investigated at [src/calculateRank.js](./src/calculate
 
 ### Hiding individual stats
 
-To hide any specific stats, you can pass a query parameter `&hide=` with comma-separated values.
+You can pass a query parameter `&hide=` to hide any specific stats with comma-separated values.
 
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
@@ -119,7 +120,7 @@ To hide any specific stats, you can pass a query parameter `&hide=` with comma-s
 
 You can add the count of all your private contributions to the total commits count by using the query parameter `&count_private=true`.
 
-_Note: If you are deploying this project yourself, the private contributions will be counted by default. Otherwise, you need to choose to share your private contribution counts._
+_Note: If you are deploying this project yourself, the private contributions will be counted by default. If you are using the public Vercel instance, you need to choose to [share your private contributions](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/showing-your-private-contributions-and-achievements-on-your-profile)._
 
 > Options: `&count_private=true`
 
@@ -139,15 +140,15 @@ To enable icons, you can pass `show_icons=true` in the query param, like so:
 
 With inbuilt themes, you can customize the look of the card without doing any [manual customization](#customization).
 
-Use `&theme=THEME_NAME` parameter like so :-
+Use `&theme=THEME_NAME` parameter like so :
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
-#### All inbuilt themes:-
+#### All inbuilt themes
 
-dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
+Github readme stats comes with several built-in themes (e.g. `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `onedark`, `cobalt`, `synthwave`, `highcontrast`, `dracula`).
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stats Themes" width="600px"/>
 
@@ -155,9 +156,9 @@ You can look at a preview for [all available themes](./themes/README.md) or chec
 
 ### Customization
 
-You can customize the appearance of your `Stats Card` or `Repo Card` however you wish with URL params.
+You can customize the appearance of your `Stats Card` or `Repo Card` however you wish with URL parameters.
 
-#### Common Options:
+#### Common Options
 
 -   `title_color` - Card's title color _(hex color)_. Default: `2f80ed`.
 -   `text_color` - Body text color _(hex color)_. Default: `434d58`.
@@ -174,13 +175,13 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 ##### Gradient in bg_color
 
-You can provide multiple comma-separated values in the bg_color option to render a gradient, with the following format:
+You can provide multiple comma-separated values in the bg_color option to render a gradient with the following format:
 
     &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 
-> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k, otherwise, it's 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours.
+> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k; otherwise, it is 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours.
 
-#### Stats Card Exclusive Options:
+#### Stats Card Exclusive Options
 
 -   `hide` - Hides the [specified items](#hiding-individual-stats) from stats _(Comma-separated values)_. Default: `[] (blank array)`.
 -   `hide_title` - _(boolean)_. Default: `false`.
@@ -189,7 +190,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `show_icons` - _(boolean)_. Default: `false`.
 -   `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_. Default: `false`.
 -   `count_private` - Count private commits _(boolean)_. Default: `false`.
--   `line_height` - Sets the line-height between text _(number)_.  Default: `25`.
+-   `line_height` - Sets the line height between text _(number)_. Default: `25`.
 -   `exclude_repo` - Exclude stars from specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
 -   `custom_title` - Sets a custom title for the card. Default:  `<username> Github Stats`.
 -   `text_bold` - Use bold text _(boolean)_. Default: `true`.
@@ -198,42 +199,42 @@ You can provide multiple comma-separated values in the bg_color option to render
 > Note on `hide_rank`:
 > When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.
 
-#### Repo Card Exclusive Options:
+#### Repo Card Exclusive Options
 
--   `show_owner` - Show the repo's owner name _(boolean)_
+-   `show_owner` - Show the repo's owner name _(boolean)_. Default: `false`.
 
-#### Language Card Exclusive Options:
+#### Language Card Exclusive Options
 
--   `hide` - Hide the languages specified from the card _(Comma-separated values)_
--   `hide_title` - _(boolean)_
--   `layout` - Switch between two available layouts `default` & `compact`
--   `card_width` - Set the card's width manually _(number)_
--   `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
--   `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
--   `custom_title` - Sets a custom title for the card
+-   `hide` - Hide the languages specified from the card _(Comma-separated values)_. Default: `[] (blank array)`.
+-   `hide_title` - _(boolean)_. Default: `false`.
+-   `layout` - Switch between two available layouts `default` & `compact`. Default: `default`.
+-   `card_width` - Set the card's width manually _(number)_. Default `300`.
+-   `langs_count` - Show more languages on the card, between 1-10 _(number)_. Default `5`.
+-   `exclude_repo` - Exclude specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
+-   `custom_title` - Sets a custom title for the card _(string)_. Default `Most Used Languages`.
 
 > :warning: **Important:**
-> Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
+> Language names should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
 > (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
 > [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
 
-#### Wakatime Card Exclusive Options:
+#### Wakatime Card Exclusive Options
 
--   `hide` - Hide the languages specified from the card _(Comma-separated values)_
--   `hide_title` - _(boolean)_
--   `line_height` - Sets the line-height between text _(number)_
--   `hide_progress` - Hides the progress bar and percentage _(boolean)_
--   `custom_title` - Sets a custom title for the card
--   `layout` - Switch between two available layouts `default` & `compact`
--   `langs_count` - Limit the number of languages on the card, defaults to all reported languages
--   `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi)
--   `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options.
+-   `hide` - Hide the languages specified from the card _(Comma-separated values)_. Default: `[] (blank array)`.
+-   `hide_title` - _(boolean)_. Default `false`.
+-   `line_height` - Sets the line height between text _(number)_. Default `25`.
+-   `hide_progress` - Hides the progress bar and percentage _(boolean)_. Default `false`.
+-   `custom_title` - Sets a custom title for the card _(string)_. Default `Wakatime Stats`.
+-   `layout` - Switch between two available layouts `default` & `compact`.  Default `default`.
+-   `langs_count` - Limit the number of languages on the card, defaults to all reported languages _(number)_.
+-   `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) _(string)_. Default `Waka API`.
+-   `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options. _(YYYY-MM, last_7_days, last_30_days, last_6_months, last_year, or all_time)_. Default `all_time`.
 
 * * *
 
 # GitHub Extra Pins
 
-GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
+GitHub extra pins allow you to pin more than six repositories in your profile using a GitHub readme profile.
 
 Yay! You are no longer limited to 6 pinned repositories.
 
@@ -259,7 +260,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 The top languages card shows a GitHub user's most frequently used top language.
 
-_NOTE: Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It's a new feature of github-readme-stats._
+_NOTE: Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats._
 
 ### Usage
 
@@ -273,7 +274,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 
 ### Exclude individual repositories
 
-You can use `&exclude_repo=repo1,repo2` parameter to exclude individual repositories.
+You can use the `&exclude_repo=repo1,repo2` parameter to exclude individual repositories.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
@@ -381,7 +382,7 @@ Choose from any of the [default themes](#themes)
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
--   Wakatime card
+-   WakaTime card
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
@@ -389,7 +390,7 @@ Choose from any of the [default themes](#themes)
 
 ### Quick Tip (Align The Repo Cards)
 
-You usually won't be able to layout the images side by side. To do that you can use this approach:
+By default, GitHub does not lay out the cards side by side. To do that, you can use this approach:
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -404,7 +405,7 @@ You usually won't be able to layout the images side by side. To do that you can 
 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-Since the GitHub API only allows 5k requests per hour, my `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
+Since the GitHub API only allows 5k requests per hour, my `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter. If you host it on your own Vercel server, then you do not have to worry about anything. Click on the deploy button to get started!
 
 NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we should be able to handle more than 5k requests and have no issues with downtime :D
 
@@ -435,10 +436,10 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 
 ## :sparkling_heart: Support the project
 
-I open-source almost everything I can, and I try to reply to everyone needing help using these projects. Obviously,
+I open-source almost everything I can and try to reply to everyone needing help using these projects. Obviously,
 this takes time. You can use this service for free.
 
-However, if you are using this project and are happy with it or just want to encourage me to continue creating stuff, there are a few ways you can do it:-
+However, if you are using this project and are happy with it or just want to encourage me to continue creating stuff, there are a few ways you can do it:
 
 -   Giving proper credit when you use github-readme-stats on your readme, linking back to it :D
 -   Starring and sharing the project :rocket:
