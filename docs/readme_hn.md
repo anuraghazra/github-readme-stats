@@ -57,15 +57,15 @@
     <a href="/docs/readme_hi.md">हिन्दी</a>
   </p>
 </p>
-
-
 <a href="https://indiafightscorona.giveindia.org">
   <img src="https://indiaspora.org/wp-content/uploads/2021/04/give-India-logo.png" alt="Give india logo" width="200" />
 </a>
 
 
 
+
 <p align="center">परियोजना से प्यार है? कृपया ध्यान रखें <a href="https://www.paypal.me/anuraghazra">दान</a> इसे सुधारने में मदद करने के लिए!
+
 
 
 क्या आप दान करके परियोजना का समर्थन करने पर विचार कर रहे हैं? कृपया ना करें!!
@@ -349,27 +349,27 @@ _नोट: शीर्ष भाषाएं मेरे कौशल स्�
 
 - ढाल
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuragazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
 - आँकड़े कार्ड अनुकूलित करना
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuragazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
 - कार्ड लोकेल सेट करना
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuragazra&locale=es)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=es)
 
 - रेपो कार्ड को अनुकूलित करना
 
-![कस्टमाइज्ड कार्ड](https://github-readme-stats.vercel.app/api/pin?username=anuragazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
 - शीर्ष भाषाएं
 
-[![शीर्ष भाषाएं](https://github-readme-stats.vercel.app/api/top-langs/?username=anuragazra)](https://github.com/anuragazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 - वाकाटाइम कार्ड
 
-[![विलियनरोड के वाकाटाइम आँकड़े](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuragazra/github-readme-stats)
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
 * * *
 
