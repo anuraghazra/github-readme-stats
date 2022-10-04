@@ -208,11 +208,12 @@ const useLanguages = (topLangs, hide, langs_count, merge_others) => {
   let langsToHide = {};
   let langsCount = parseInt(langs_count);
   let langsCountClamped = clampValue(langsCount, 1, 10);
-  let hideCount = hide.length;
+  let hideCount = 0;
 
   // populate langsToHide map for quick lookup
   // while filtering out
   if (hide) {
+    hideCount = hide.length
     hide.forEach((langName) => {
       langsToHide[lowercaseTrim(langName)] = true;
     });
