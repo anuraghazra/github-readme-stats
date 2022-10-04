@@ -37,6 +37,7 @@ export type TopLangOptions = CommonOptions & {
   layout: "compact" | "normal";
   custom_title: string;
   langs_count: number;
+  merge_others: boolean;
 };
 
 type WakaTimeOptions = CommonOptions & {

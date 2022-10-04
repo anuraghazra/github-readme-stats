@@ -201,11 +201,14 @@ const calculateNormalLayoutHeight = (totalLangs) => {
  * @param {Record<string, Lang>} topLangs
  * @param {string[]} hide
  * @param {string} langs_count
+ * @param {boolean} merge_others
  */
-const useLanguages = (topLangs, hide, langs_count) => {
+const useLanguages = (topLangs, hide, langs_count, merge_others) => {
   let langs = Object.values(topLangs);
   let langsToHide = {};
-  let langsCount = clampValue(parseInt(langs_count), 1, 10);
+  let langsCount = parseInt(langs_count);
+  let langsCountClamped = clampValue(langsCount, 1, 10);
+  let hideCount = hide.length;
 
   // populate langsToHide map for quick lookup
   // while filtering out
@@ -221,7 +224,22 @@ const useLanguages = (topLangs, hide, langs_count) => {
     .filter((lang) => {
       return !langsToHide[lowercaseTrim(lang.name)];
     })
-    .slice(0, langsCount);
+  
+  if (merge_others && (langsCount-hideCount)>10){
+    let others = {
+      name: "Others",
+      color: "#9E9F9E",
+      size: 0
+    }
+    for(let i=9;i<(langsCount-hideCount);i++){
+      others.size += langs[i].size;
+    }
+    langs = langs.slice(0, 9);
+    langs.push(others)
+  }
+  else{
+    langs = langs.slice(0, langsCountClamped);
+  }
 
   const totalLanguageSize = langs.reduce((acc, curr) => acc + curr.size, 0);
 
@@ -249,6 +267,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     langs_count = DEFAULT_LANGS_COUNT,
     border_radius,
     border_color,
+    merge_others,
   } = options;
 
   const i18n = new I18n({
@@ -260,6 +279,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     topLangs,
     hide,
     String(langs_count),
+    merge_others,
   );
 
   let width = isNaN(card_width)
