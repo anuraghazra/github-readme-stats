@@ -53,6 +53,8 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
     <a href="/docs/readme_np.md">नेपाली</a>
+    ·
+    <a href="/docs/readme_hi.md">हिन्दी</a>
   </p>
 </p>
 <p align="center">このプロジェクトを気に入っていただけましたか？<br>もしよろしければ、プロジェクトのさらなる改善のために<a href="https://www.paypal.me/anuraghazra">寄付</a>を検討して頂けると嬉しいです！</p>
