@@ -58,11 +58,11 @@
   </p>
 </p>
 
-<p align="center">परियोजना से प्यार है? कृपया ध्यान रखें <a href="https://www.paypal.me/anuraghazra">दान</a> इसे सुधारने में मदद करने के लिए!
-
 <a href="https://indiafightscorona.giveindia.org">
   <img src="https://indiaspora.org/wp-content/uploads/2021/04/give-India-logo.png" alt="Give india logo" width="200" />
 </a>
+
+<p align="center">परियोजना से प्यार है? कृपया ध्यान रखें <a href="https://www.paypal.me/anuraghazra">दान</a> इसे सुधारने में मदद करने के लिए!
 
 क्या आप दान करके परियोजना का समर्थन करने पर विचार कर रहे हैं? कृपया ना करें!!
 
