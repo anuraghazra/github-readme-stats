@@ -2,8 +2,8 @@ import { CustomError, logger } from "./utils.js";
 
 // Script variables.
 const PATs = Object.keys(process.env).filter((key) =>
-/PAT_\d*$/.exec(key),
-).length
+  /PAT_\d*$/.exec(key),
+).length;
 const RETRIES = PATs ? PATs : 7;
 
 /**
