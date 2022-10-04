@@ -213,7 +213,7 @@ const useLanguages = (topLangs, hide, langs_count, merge_others) => {
   // populate langsToHide map for quick lookup
   // while filtering out
   if (hide) {
-    hideCount = hide.length
+    hideCount = hide.length;
     hide.forEach((langName) => {
       langsToHide[lowercaseTrim(langName)] = true;
     });
@@ -224,21 +224,20 @@ const useLanguages = (topLangs, hide, langs_count, merge_others) => {
     .sort((a, b) => b.size - a.size)
     .filter((lang) => {
       return !langsToHide[lowercaseTrim(lang.name)];
-    })
-  
-  if (merge_others && (langsCount-hideCount)>10){
+    });
+
+  if (merge_others && langsCount - hideCount > 10) {
     let others = {
       name: "Others",
       color: "#9E9F9E",
-      size: 0
-    }
-    for(let i=9;i<(langsCount-hideCount);i++){
+      size: 0,
+    };
+    for (let i = 9; i < langsCount - hideCount; i++) {
       others.size += langs[i].size;
     }
     langs = langs.slice(0, 9);
-    langs.push(others)
-  }
-  else{
+    langs.push(others);
+  } else {
     langs = langs.slice(0, langsCountClamped);
   }
 
