@@ -126,6 +126,11 @@ const totalCommitsFetcher = async (username) => {
   return 0;
 };
 
+/**
+ * Fetch all the stars for all the repositories of a given username
+ * @param {string} username
+ * @param {array} repoToHide
+ */
 const totalStarsFetcher = async (username, repoToHide) => {
   let nodes = [];
   let hasNextPage = true
