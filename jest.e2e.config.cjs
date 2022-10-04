@@ -3,5 +3,5 @@ module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
   clearMocks: true,
-  testMatch: ["<rootDir>/tests/e2e/**/*.test.js"],
+  testMatch: ["<rootDir>/tests/e2e/**/*.test.ts"],
 };

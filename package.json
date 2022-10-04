@@ -8,7 +8,7 @@
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "test:update:snapshot": "jest -u",
-    "test:e2e": "jest --config jest.e2e.config.js",
+    "test:e2e": "jest --config jest.e2e.config.cjs",
     "theme-readme-gen": "node scripts/generate-theme-doc",
     "preview-theme": "node scripts/preview-theme",
     "close-stale-theme-prs": "node scripts/close-stale-theme-prs",
