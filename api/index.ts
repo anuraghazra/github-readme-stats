@@ -101,7 +101,9 @@ const api = async (req, res) => {
 app.get("/api", api);
 
 if (process.env.NODE_ENV !== "test") {
-  app.listen(port, () => {});
+  app.listen(port, () => {
+    console.log(`GRS express server listening on port ${port}`);
+  });
 }
 
 export default api;

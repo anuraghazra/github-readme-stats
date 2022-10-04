@@ -1,13 +1,23 @@
-const path = require("path");
-const TsconfigPathsWebpackPlugin = require("tsconfig-paths-webpack-plugin");
+import path from "path";
+import TsconfigPathsWebpackPlugin from "tsconfig-paths-webpack-plugin";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-module.exports = {
+export default {
   output: {
     path: path.resolve(__dirname),
+    library: {
+      type: "module",
+    },
     filename: "index.js",
   },
-  target: "node",
+  experiments: {
+    outputModule: true,
+  },
+  target: "node16",
   stats: {
+    warnings: false,
     builtAt: true,
     errorDetails: true,
     errorStack: true,
@@ -24,9 +34,6 @@ module.exports = {
         extensions: [".js", ".ts", ".json"],
       }),
     ],
-    fallback: {
-      util: require.resolve("util"),
-    },
   },
   module: {
     rules: [
