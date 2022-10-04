@@ -74,7 +74,7 @@ export default async (req, res) => {
         border_radius,
         border_color,
         locale: locale ? locale.toLowerCase() : null,
-        merge_others,
+        merge_others: parseBoolean(merge_others),
       }),
     );
   } catch (err) {
