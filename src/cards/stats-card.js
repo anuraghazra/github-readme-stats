@@ -72,6 +72,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     card_width,
     hide_rank = false,
     include_all_commits = false,
+    year,
     line_height = 25,
     title_color,
     icon_color,
@@ -118,7 +119,11 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     commits: {
       icon: icons.commits,
       label: `${i18n.t("statcard.commits")}${
-        include_all_commits ? "" : ` (${new Date().getFullYear()})`
+        include_all_commits 
+          ? "" 
+          : year
+            ? ` (${year})`
+            : ` (${new Date().getFullYear()})`
       }`,
       value: totalCommits,
       id: "commits",

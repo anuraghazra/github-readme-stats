@@ -41,6 +41,7 @@ const fetcher = (variables, token) => {
           closedIssues: issues(states: CLOSED) {
             totalCount
           }
+          
           followers {
             totalCount
           }
@@ -103,6 +104,7 @@ const totalCommitsFetcher = async (username) => {
  * @param {string} username
  * @param {boolean} count_private
  * @param {boolean} include_all_commits
+ * @param {number|undefined} year
  * @returns {Promise<import("./types").StatsData>}
  */
 async function fetchStats(
@@ -110,6 +112,7 @@ async function fetchStats(
   count_private = false,
   include_all_commits = false,
   exclude_repo = [],
+  year,
 ) {
   if (!username) throw new MissingParamError(["username"]);
 
@@ -123,7 +126,10 @@ async function fetchStats(
     rank: { level: "C", score: 0 },
   };
 
-  let res = await retryer(fetcher, { login: username });
+  let res = await retryer(fetcher, { 
+    login: username, 
+    starttime: year ? `${year}-01-01T00:00:00Z` : undefined
+  });
 
   if (res.data.errors) {
     logger.error(res.data.errors);

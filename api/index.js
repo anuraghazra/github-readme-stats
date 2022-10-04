@@ -24,6 +24,7 @@ export default async (req, res) => {
     show_icons,
     count_private,
     include_all_commits,
+    year,
     line_height,
     title_color,
     icon_color,
@@ -55,6 +56,7 @@ export default async (req, res) => {
       parseBoolean(count_private),
       parseBoolean(include_all_commits),
       parseArray(exclude_repo),
+      parseInt(year),
     );
 
     const cacheSeconds = clampValue(
@@ -74,6 +76,7 @@ export default async (req, res) => {
         card_width: parseInt(card_width, 10),
         hide_rank: parseBoolean(hide_rank),
         include_all_commits: parseBoolean(include_all_commits),
+        year: parseInt(year),
         line_height,
         title_color,
         icon_color,
