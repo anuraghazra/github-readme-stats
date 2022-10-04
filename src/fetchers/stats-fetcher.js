@@ -152,9 +152,10 @@ const totalStarsFetcher = async (username, repoToHide) => {
       (node) => node.stargazers.totalCount !== 0,
     );
     nodes.push(...nodesWithStars);
-    hasNextPage =
-      allNodes.length === nodesWithStars.length &&
-      res.data.data.user.repositories.pageInfo.hasNextPage;
+    // hasNextPage =
+    //   allNodes.length === nodesWithStars.length &&
+    //   res.data.data.user.repositories.pageInfo.hasNextPage;
+    hasNextPage = false // NOTE: Temporarily disable fetching of multiple pages.
     endCursor = res.data.data.user.repositories.pageInfo.endCursor;
   }
 
