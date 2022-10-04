@@ -51,6 +51,8 @@
     <a href="/docs/readme_kr.md">한국어</a>
     ·
     <a href="/docs/readme_np.md">नेपाली</a>
+    ·
+    <a href="/docs/readme_hi.md">हिन्दी</a>
   </p>
 </p>
 <p align="center">परियोजना मनपर्‍यो? तपाईं मद्दत गर्न सक्नुहुन्छ <a href="https://www.paypal.me/anuraghazra">यो परियोजना</a> बढ्न 
