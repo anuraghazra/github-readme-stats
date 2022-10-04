@@ -66,8 +66,8 @@ async function fetchTopLanguages(username, exclude_repo = []) {
     }
 
     repoNodes.push(...res.data.data.user.repositories.nodes);
-    hasNextPage = res.data.data.user.repositories.pageInfo.hasNextPage
-    endCursor = res.data.data.user.repositories.pageInfo.endCursor
+    hasNextPage = res.data.data.user.repositories.pageInfo.hasNextPage;
+    endCursor = res.data.data.user.repositories.pageInfo.endCursor;
   }
 
   let repoToHide = {};
