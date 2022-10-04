@@ -1,5 +1,8 @@
 import { CustomError, logger } from "./utils.js";
 
+// Script variables.
+const RETRIES = Object.keys(process.env).filter(key => /PAT_\d*$/.exec(key)).length
+
 /**
  * Try to execute the fetcher function until it succeeds or the max number of retries is reached.
  *
@@ -10,7 +13,7 @@ import { CustomError, logger } from "./utils.js";
  * @returns Promise<retryer>
  */
 const retryer = async (fetcher, variables, retries = 0) => {
-  if (retries > 7) {
+  if (retries > RETRIES) {
     throw new CustomError("Maximum retries exceeded", CustomError.MAX_RETRY);
   }
   try {
