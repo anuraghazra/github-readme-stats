@@ -57,12 +57,11 @@
     <a href="/docs/readme_hi.md">हिन्दी</a>
   </p>
 </p>
+<p align="center">परियोजना से प्यार है? कृपया ध्यान रखें <a href="https://www.paypal.me/anuraghazra">दान</a> इसे सुधारने में मदद करने के लिए!
 
 <a href="https://indiafightscorona.giveindia.org">
   <img src="https://indiaspora.org/wp-content/uploads/2021/04/give-India-logo.png" alt="Give india logo" width="200" />
 </a>
-
-<p align="center">परियोजना से प्यार है? कृपया ध्यान रखें <a href="https://www.paypal.me/anuraghazra">दान</a> इसे सुधारने में मदद करने के लिए!
 
 क्या आप दान करके परियोजना का समर्थन करने पर विचार कर रहे हैं? कृपया ना करें!!
 
@@ -235,7 +234,7 @@ GitHub अतिरिक्त पिन आपको GitHub रीडमी �
 
 रेपो के मालिक का उपयोगकर्ता नाम शामिल करने के लिए [show_owner](#customization) वैरिएबल का इस्तेमाल करें
 
-[![रीडमी कार्ड](https://github-readme-stats.vercel.app/api/pin/?username=anuragazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuragazra/ जीथब-रीडमे-आंकड़े)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
 # शीर्ष भाषा कार्ड
 
@@ -249,8 +248,8 @@ _नोट: शीर्ष भाषाएं मेरे कौशल स्�
 
 समापन बिंदु: `एपीआई/टॉप-लैंग्स? उपयोगकर्ता नाम = अनुराघजरा`
 
-``` एमडी
-[![शीर्ष भाषाएं](https://github-readme-stats.vercel.app/api/top-langs/?username=anuragazra)](https://github.com/anuragazra/github-readme-stats)
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### अलग-अलग रिपॉजिटरी को छोड़ दें
@@ -273,87 +272,87 @@ _नोट: शीर्ष भाषाएं मेरे कौशल स्�
 
 आप कार्ड पर दिखाई जाने वाली भाषाओं की संख्या बढ़ाने या घटाने के लिए `&langs_count=` विकल्प का उपयोग कर सकते हैं। मान्य मान 1 और 10 (समावेशी) के बीच के पूर्णांक हैं, और डिफ़ॉल्ट 5 है।
 
-``` एमडी
-[![शीर्ष भाषाएं](https://github-readme-stats.vercel.app/api/top-langs/?username=anuragazra&langs_count=8)](https://github.com/anuragazra/github-readme- आँकड़े)
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### संक्षिप्त भाषा कार्ड लेआउट
 
 आप कार्ड का डिज़ाइन बदलने के लिए `&layout=compact` विकल्प का उपयोग कर सकते हैं।
 
-``` एमडी
-[![शीर्ष भाषाएं](https://github-readme-stats.vercel.app/api/top-langs/?username=anuragazra&layout=compact)](https://github.com/anuragazra/github-readme- आँकड़े)
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### डेमो
 
-[![शीर्ष भाषाएं](https://github-readme-stats.vercel.app/api/top-langs/?username=anuragazra)](https://github.com/anuragazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 - कॉम्पैक्ट लेआउट
 
-[![शीर्ष भाषाएं](https://github-readme-stats.vercel.app/api/top-langs/?username=anuragazra&layout=compact)](https://github.com/anuragazra/github-readme- आँकड़े)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 # वाकाटाइम वीक आँकड़े
 
 `?username=` मान को अपने [Wakatime](https://wakatime.com) उपयोगकर्ता नाम में बदलें।
 
-``` एमडी
-[![विलियनरोड के वाकाटाइम आँकड़े](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuragazra/github-readme-stats)
+```md
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 > नोट: कृपया ध्यान रखें कि वर्तमान में हम केवल वाकाटाइम प्रोफाइल से डेटा दिखाते हैं जो सार्वजनिक हैं।
 
 ### डेमो
 
-[![विलियनरोड के वाकाटाइम आँकड़े](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuragazra/github-readme-stats)
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
-[![विलियनरोड के वाकाटाइम आँकड़े](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuragazra/github-readme-stats)
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
-- कॉम्पैक्ट लेआउट
+-   Compact layout
 
-[![विलियनरोड के वाकाटाइम आँकड़े](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuragazra/github-readme-stats)
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 * * *
 
 ### सभी डेमो
 
--   चूक
+-   Default
 
-![अनुराग के गिटहब आँकड़े](https://github-readme-stats.vercel.app/api?username=anuragazra)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
 - विशिष्ट आँकड़े छिपाना
 
-![अनुराग के GitHub आँकड़े](https://github-readme-stats.vercel.app/api?username=anuragazra&hide=contribs,issues)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
 
 - चिह्न दिखा रहा है
 
-![अनुराग के GitHub आँकड़े](https://github-readme-stats.vercel.app/api?username=anuragazra&hide=issues&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
 - सीमा रंग अनुकूलित करें
 
-![अनुराग के GitHub आँकड़े](https://github-readme-stats.vercel.app/api?username=anuragazra&border_color=2e4058)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&border_color=2e4058)
 
 - सभी कमिट शामिल करें
 
-![अनुराग के GitHub आँकड़े](https://github-readme-stats.vercel.app/api?username=anuragazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
 
 - विषय-वस्तु
 
 किसी भी [डिफ़ॉल्ट थीम](#themes) में से चुनें
 
-![अनुराग के GitHub आँकड़े](https://github-readme-stats.vercel.app/api?username=anuragazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
 - ढाल
 
-![अनुराग के GitHub आँकड़े](https://github-readme-stats.vercel.app/api?username=anuragazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuragazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
 - आँकड़े कार्ड अनुकूलित करना
 
-![अनुराग के GitHub आँकड़े](https://github-readme-stats.vercel.app/api/?username=anuragazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuragazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
 - कार्ड लोकेल सेट करना
 
-![अनुराग के गिटहब आँकड़े](https://github-readme-stats.vercel.app/api/?username=anuragazra&locale=es)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuragazra&locale=es)
 
 - रेपो कार्ड को अनुकूलित करना
 
