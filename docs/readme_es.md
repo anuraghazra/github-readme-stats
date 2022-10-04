@@ -56,6 +56,8 @@
     <a href="/docs/readme_tr.md">Türkçe</a>
     .
     <a href="/docs/readme_np.md">नेपाली</a>
+    ·
+    <a href="/docs/readme_hi.md">हिन्दी</a>
   </p>
 </p>
 <p align="center">¿Te gusta este proyecto? ¡Por favor, considera <a href="https://www.paypal.me/anuraghazra">donar</a> para ayudar a mejorarlo!
