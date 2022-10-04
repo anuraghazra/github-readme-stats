@@ -416,20 +416,20 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 <details>
  <summary><b> Guide on setting up Vercel  🔨 </b></summary>
 
-1.  Go to [vercel.com](https://vercel.com/)
-2.  Click on `Log in`
+1.  Go to [vercel.com](https://vercel.com/).
+2.  Click on `Log in`.
     ![](https://files.catbox.moe/pcxk33.png)
-3.  Sign in with GitHub by pressing `Continue with GitHub`
+3.  Sign in with GitHub by pressing `Continue with GitHub`.
     ![](https://files.catbox.moe/b9oxey.png)
-4.  Sign in to GitHub and allow access to all repositories, if prompted
-5.  Fork this repo
-6.  After forking the repo, open the [`vercel.json`](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json#L5) file and change the `maxDuration` field to `10`
-7.  Go back to your [Vercel dashboard](https://vercel.com/dashboard)
-8.  Select `Import Project`
+4.  Sign in to GitHub and allow access to all repositories if prompted.
+5.  Fork this repo.
+6.  After forking the repo, open the [`vercel.json`](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json#L5) file and change the `maxDuration` field to `10`.
+7.  Go back to your [Vercel dashboard](https://vercel.com/dashboard).
+8.  To import a project, click the `Add New...` button and select the `Project` option.
     ![](https://files.catbox.moe/3n76fh.png)
-9.  Search for the required Git Repository under the signed in user and import it or import a Third-Party Git Repository using the small link given at the bottom of the import repository card 
+9.  Click the `Continue with GitHub` button, search for the required Git Repository and import it by clicking the `Import` button. Alternatively, you can import a Third-Party Git Repository using the `Import Third-Party Git Repository ->` link at the bottom of the page.
     ![](https://files.catbox.moe/mg5p04.png)
-10. Create a personal access token (PAT) [here](https://github.com/settings/tokens/new) and enable the `repo` permissions (this allows access to see private repo stats)
+10. Create a personal access token (PAT) [here](https://github.com/settings/tokens/new) and enable the `repo` permissions (this allows access to see private repo stats).
 11. Add the PAT as an environment variable named `PAT_1` (as shown).
     ![](https://files.catbox.moe/0yclio.png)
 12. Click deploy, and you're good to go. See your domains to use the API!
