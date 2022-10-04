@@ -49,6 +49,10 @@ const data_langs = {
             },
           },
         ],
+        pageInfo: {
+          hasNextPage: false,
+          cursor: "cursor",
+        },
       },
     },
   },
