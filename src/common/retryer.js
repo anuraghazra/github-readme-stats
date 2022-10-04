@@ -1,9 +1,10 @@
 import { CustomError, logger } from "./utils.js";
 
 // Script variables.
-const RETRIES = Object.keys(process.env).filter((key) =>
-  /PAT_\d*$/.exec(key),
-).length;
+const PATs = Object.keys(process.env).filter((key) =>
+/PAT_\d*$/.exec(key),
+).length
+const RETRIES = PATs ? PATs : 7;
 
 /**
  * Try to execute the fetcher function until it succeeds or the max number of retries is reached.
