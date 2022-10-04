@@ -155,7 +155,7 @@ const totalStarsFetcher = async (username, repoToHide) => {
     // hasNextPage =
     //   allNodes.length === nodesWithStars.length &&
     //   res.data.data.user.repositories.pageInfo.hasNextPage;
-    hasNextPage = false // NOTE: Temporarily disable fetching of multiple pages.
+    hasNextPage = false; // NOTE: Temporarily disable fetching of multiple pages.
     endCursor = res.data.data.user.repositories.pageInfo.endCursor;
   }
 

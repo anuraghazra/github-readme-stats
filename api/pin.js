@@ -58,7 +58,10 @@ export default async (req, res) => {
       cacheSeconds = CONSTANTS.FOUR_HOURS;
     }
 
-    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    res.setHeader(
+      "Cache-Control",
+      `public, max-age=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    );
 
     return res.send(
       renderRepoCard(repoData, {
