@@ -367,6 +367,13 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  yaru: {
+    title_color: "#ffc107",
+    icon_color: "#ffc107",
+    text_color: "ffffff",
+    bg_color: "212121",
+    border_color:"#181818",
+  },
 };
 
 export default themes;
