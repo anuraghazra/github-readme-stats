@@ -1,5 +1,17 @@
 import { clampValue } from "./utils.js";
 
+/**
+ * Create a node to indicate progress in percentage along a horizontal line
+ *
+ * @param {Object} createProgressNodeParams Object that contains the createProgressNode parameters.
+ * @param {number} createProgressNodeParams.x x-axis position
+ * @param {number} createProgressNodeParams.y y-axis position
+ * @param {number} createProgressNodeParams.width width of progress bar
+ * @param {string} createProgressNodeParams.color progress color
+ * @param {string} createProgressNodeParams.progress progress value
+ * @param {string} createProgressNodeParams.progressBarBackgroundColor progress bar bg color
+ * @returns {string} progress node
+ */
 const createProgressNode = ({
   x,
   y,

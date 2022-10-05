@@ -23,7 +23,10 @@ const CARD_PADDING = 25;
  */
 
 /**
+ * Retrieves the programming language whose name is the longest
+ *
  * @param {Lang[]} arr
+ * @returns {Object} longest lang obj
  */
 const getLongestLang = (arr) =>
   arr.reduce(
@@ -33,12 +36,16 @@ const getLongestLang = (arr) =>
   );
 
 /**
+ * Creates a node to display usage of a programming language in percentage
+ * using text and a horizontal progress bar
+ *
  * @param {{
  *  width: number,
  *  color: string,
  *  name: string,
  *  progress: string
  * }} props
+ * @returns {string} progress text node
  */
 const createProgressTextNode = ({ width, color, name, progress }) => {
   const paddingRight = 95;
@@ -60,7 +67,10 @@ const createProgressTextNode = ({ width, color, name, progress }) => {
 };
 
 /**
+ * Creates a text only node to display usage of a programming language in percentage
+ *
  * @param {{ lang: Lang, totalSize: number }} props
+ * @returns {string} text node
  */
 const createCompactLangNode = ({ lang, totalSize }) => {
   const percentage = ((lang.size / totalSize) * 100).toFixed(2);
@@ -77,7 +87,10 @@ const createCompactLangNode = ({ lang, totalSize }) => {
 };
 
 /**
+ * Creates compact layout of text only language nodes
+ *
  * @param {{ langs: Lang[], totalSize: number }} props
+ * @returns {string} text nodes layout
  */
 const createLanguageTextNode = ({ langs, totalSize }) => {
   const longestLang = getLongestLang(langs);
@@ -109,10 +122,12 @@ const createLanguageTextNode = ({ langs, totalSize }) => {
 };
 
 /**
+ * Renders layout to display user's most frequently used programming languages
+ *
  * @param {Lang[]} langs
  * @param {number} width
  * @param {number} totalLanguageSize
- * @returns {string}
+ * @returns {string} normal layout
  */
 const renderNormalLayout = (langs, width, totalLanguageSize) => {
   return flexLayout({
@@ -130,10 +145,12 @@ const renderNormalLayout = (langs, width, totalLanguageSize) => {
 };
 
 /**
+ * Renders compact layout to display user's most frequently used programming languages
+ *
  * @param {Lang[]} langs
  * @param {number} width
  * @param {number} totalLanguageSize
- * @returns {string}
+ * @returns {string} compact layout
  */
 const renderCompactLayout = (langs, width, totalLanguageSize) => {
   const paddingRight = 50;
@@ -181,16 +198,20 @@ const renderCompactLayout = (langs, width, totalLanguageSize) => {
 };
 
 /**
+ * Calculates height for the compact layout
+ *
  * @param {number} totalLangs
- * @returns {number}
+ * @returns {number} height
  */
 const calculateCompactLayoutHeight = (totalLangs) => {
   return 90 + Math.round(totalLangs / 2) * 25;
 };
 
 /**
+ * Calculates height for the normal layout
+ *
  * @param {number} totalLangs
- * @returns {number}
+ * @returns {number} height
  */
 const calculateNormalLayoutHeight = (totalLangs) => {
   return 45 + (totalLangs + 1) * 40;
@@ -229,6 +250,8 @@ const useLanguages = (topLangs, hide, langs_count) => {
 };
 
 /**
+ * Renders card to display user's most frequently used programming languages
+ *
  * @param {import('../fetchers/types').TopLangData} topLangs
  * @param {Partial<import("./types").TopLangOptions>} options
  * @returns {string}

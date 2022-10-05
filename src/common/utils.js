@@ -5,6 +5,8 @@ import wrap from "word-wrap";
 import { themes } from "../../themes/index.js";
 
 /**
+ * Renders error message on the card
+ *
  * @param {string} message
  * @param {string} secondaryMessage
  * @returns {string}
@@ -41,7 +43,10 @@ function encodeHTML(str) {
 }
 
 /**
+ * Retrieves num with suffix k(thousands) precise to 1 decimal if greater than 999
+ *
  * @param {number} num
+ * @returns {string|number} formatted number
  */
 function kFormatter(num) {
   return Math.abs(num) > 999
@@ -50,6 +55,8 @@ function kFormatter(num) {
 }
 
 /**
+ * Checks if hexColor is valid or not
+ *
  * @param {string} hexColor
  * @returns {boolean}
  */
@@ -60,6 +67,8 @@ function isValidHexColor(hexColor) {
 }
 
 /**
+ * Returns boolean if value is either "true" or "false" else the value as it is
+ *
  * @param {string} value
  * @returns {boolean | string}
  */
@@ -109,6 +118,8 @@ function isValidGradient(colors) {
 }
 
 /**
+ * Retrieves a gradient if color has more than one valid hex codes else a single color
+ *
  * @param {string} color
  * @param {string} fallbackColor
  * @returns {string | string[]}

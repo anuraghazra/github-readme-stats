@@ -14,9 +14,11 @@ import {
 import { repoCardLocales } from "../translations.js";
 
 /**
+ * Retrieves a badge to display the type of repo like template, archived, etc
+ *
  * @param {string} label
  * @param {string} textColor
- * @returns {string}
+ * @returns {string} svg badge
  */
 const getBadgeSVG = (label, textColor) => `
   <g data-testid="badge" class="badge" transform="translate(320, -18)">
@@ -34,9 +36,11 @@ const getBadgeSVG = (label, textColor) => `
 `;
 
 /**
+ * Creates a node to display the primary programming language of the repository
+ *
  * @param {string} langName
  * @param {string} langColor
- * @returns {string}
+ * @returns {string} language node
  */
 const createLanguageNode = (langName, langColor) => {
   return `
@@ -48,6 +52,15 @@ const createLanguageNode = (langName, langColor) => {
 };
 
 const ICON_SIZE = 16;
+
+/**
+ * Creates an icon with label to display repository stats like forks, stars, etc.
+ *
+ * @param {string} icon
+ * @param {number|string} label
+ * @param {string} testid
+ * @returns {string} icon with label
+ */
 const iconWithLabel = (icon, label, testid) => {
   if (label <= 0) return "";
   const iconSvg = `
@@ -67,9 +80,11 @@ const iconWithLabel = (icon, label, testid) => {
 };
 
 /**
+ * Renders repository card details
+ *
  * @param {import('../fetchers/types').RepositoryData} repo
  * @param {Partial<import("./types").RepoCardOptions>} options
- * @returns {string}
+ * @returns {string} repository card
  */
 const renderRepoCard = (repo, options = {}) => {
   const {

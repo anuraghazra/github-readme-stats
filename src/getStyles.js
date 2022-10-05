@@ -1,6 +1,9 @@
 // @ts-check
 /**
+ * Calculates progress along the boundary of the circle i.e it's circumference
+ *
  * @param {number} value
+ * @returns {number} Progress
  */
 const calculateCircleProgress = (value) => {
   const radius = 40;
@@ -13,9 +16,11 @@ const calculateCircleProgress = (value) => {
 };
 
 /**
+ * Retrieves the animation to display progress along the circumference of circle
+ * from the beginning to the given value in a clockwise direction
  *
  * @param {{progress: number}} param0
- * @returns
+ * @returns {string} progress animation
  */
 const getProgressAnimation = ({ progress }) => {
   return `
@@ -30,6 +35,11 @@ const getProgressAnimation = ({ progress }) => {
   `;
 };
 
+/**
+ * Retrieves css animations for a card
+ *
+ * @returns {string} animations
+ */
 const getAnimations = () => {
   return `
     /* Animations */
@@ -53,6 +63,8 @@ const getAnimations = () => {
 };
 
 /**
+ * Retrieves css styles for a card
+ *
  * @param {{
  *  titleColor?: string | string[]
  *  textColor?: string | string[]
@@ -60,6 +72,8 @@ const getAnimations = () => {
  *  show_icons?: boolean;
  *  progress?: number;
  * }} args
+ *
+ * @returns {string} css styles
  */
 const getStyles = ({
   titleColor,

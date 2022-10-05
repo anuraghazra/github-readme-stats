@@ -1,5 +1,12 @@
 import { encodeHTML } from "./common/utils.js";
 
+/**
+ * Retrieves stat card labels in the available locales
+ *
+ * @param {string} name
+ * @param {string} apostrophe
+ * @returns {Object} locales object
+ */
 const statCardLocales = ({ name, apostrophe }) => {
   const encodedName = encodeHTML(name);
   return {
@@ -354,6 +361,12 @@ const wakatimeCardLocales = {
 
 const availableLocales = Object.keys(repoCardLocales["repocard.archived"]);
 
+/**
+ * Checks whether the locale is available or not
+ *
+ * @param {string} locale
+ * @returns {boolean} locale available or not
+ */
 function isLocaleAvailable(locale) {
   return availableLocales.includes(locale.toLowerCase());
 }
