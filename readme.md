@@ -196,6 +196,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `custom_title` - Sets a custom title for the card. Default:  `<username> Github Stats`.
 -   `text_bold` - Use bold text _(boolean)_. Default: `true`.
 -   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
+-   `format_stats` Formats stats with a `k` _(boolean)_. Default: `true`
 
 > Note on `hide_rank`:
 > When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.

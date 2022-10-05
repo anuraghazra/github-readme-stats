@@ -22,6 +22,7 @@ export type StatCardOptions = CommonOptions & {
   line_height: number | string;
   custom_title: string;
   disable_animations: boolean;
+  format_stats: boolean;
 };
 
 export type RepoCardOptions = CommonOptions & {
