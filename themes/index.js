@@ -367,6 +367,20 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+   yaru_dark: {
+    title_color: "ffc107",
+    icon_color: "ffc107",
+    text_color: "ffffff",
+    bg_color: "212121",
+    border_color: "181818",
+  },
+  github_dark2: {
+    title_color: "cdd9e5",
+    icon_color: "ffc107",
+    text_color: "ffffff",
+    bg_color: "373e47",
+    border_color: "c9d1d9",
+  },
 };
 
 export default themes;
