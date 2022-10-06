@@ -13,8 +13,8 @@
     "preview-theme": "node scripts/preview-theme",
     "close-stale-theme-prs": "node scripts/close-stale-theme-prs",
     "generate-langs-json": "node scripts/generate-langs-json",
-    "format": "./node_modules/.bin/prettier --write .",
-    "format:check": "./node_modules/.bin/prettier --check ."
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "author": "Anurag Hazra",
   "license": "MIT",
@@ -45,7 +45,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm test"
+      "pre-commit": "npm test && npm format"
     }
   }
 }
