@@ -88,9 +88,9 @@ function calculateRank({
   const level = (() => {
     if (normalizedScore < RANK_S_VALUE) return "S+";
     if (normalizedScore < RANK_DOUBLE_A_VALUE) return "S";
-    if (normalizedScore < RANK_A2_VALUE) return "A++";
-    if (normalizedScore < RANK_A3_VALUE) return "A+";
-    return "B+";
+    if (normalizedScore < RANK_A2_VALUE) return "A+";
+    if (normalizedScore < RANK_A3_VALUE) return "A";
+    return "B";
   })();
 
   return { level, score: normalizedScore };
