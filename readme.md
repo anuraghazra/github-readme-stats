@@ -182,7 +182,7 @@ You can provide multiple comma-separated values in the bg_color option to render
     &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 
 > **Note**
-> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k; otherwise, it is 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours.
+> Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k; otherwise, it is 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours.
 
 #### Stats Card Exclusive Options
 
@@ -200,7 +200,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
 
 > **Note**
-> Note on `hide_rank`: When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.
+> When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.
 
 #### Repo Card Exclusive Options
 
@@ -216,7 +216,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `exclude_repo` - Exclude specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
 -   `custom_title` - Sets a custom title for the card _(string)_. Default `Most Used Languages`.
 
-> :warning: **Important:**
+> **Warning**
 > Language names should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
 > (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
 > [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
@@ -263,7 +263,8 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 The top languages card shows a GitHub user's most frequently used top language.
 
-_NOTE: Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats._
+> **Note**
+> Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats._
 
 ### Usage
 
