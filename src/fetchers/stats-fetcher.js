@@ -2,7 +2,7 @@
 import axios from "axios";
 import * as dotenv from "dotenv";
 import githubUsernameRegex from "github-username-regex";
-import { calculateRank } from "./helpers/calculateRank.js";
+import { calculateRank } from "../calculateRank.js";
 import { retryer } from "../common/retryer.js";
 import {
   CustomError,

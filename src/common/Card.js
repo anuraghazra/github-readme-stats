@@ -1,4 +1,4 @@
-import { getAnimations } from "./getStyles.js";
+import { getAnimations } from "../getStyles.js";
 import { encodeHTML, flexLayout } from "./utils.js";
 
 class Card {
