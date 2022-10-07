@@ -13,6 +13,12 @@ const data_langs = {
   data: {
     user: {
       repositories: {
+        edges: [
+          { cursor: "1" },
+          { cursor: "2" },
+          { cursor: "3" },
+          { cursor: "4" },
+        ],
         nodes: [
           {
             name: "test-repo-1",
@@ -43,6 +49,10 @@ const data_langs = {
             },
           },
         ],
+        pageInfo: {
+          hasNextPage: false,
+          cursor: "cursor",
+        },
       },
     },
   },

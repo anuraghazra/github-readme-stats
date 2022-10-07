@@ -16,10 +16,10 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!, $after: String) {
         user(login: $login) {
           # fetch only owner repos & not forks
-          repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
+          repositories(ownerAffiliations: OWNER, isFork: false, first: 100, after: $after) {
             nodes {
               name
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
@@ -31,6 +31,10 @@ const fetcher = (variables, token) => {
                   }
                 }
               }
+            }
+            pageInfo {
+              hasNextPage
+              endCursor
             }
           }
         }
@@ -54,14 +58,23 @@ const fetcher = (variables, token) => {
 async function fetchTopLanguages(username, exclude_repo = []) {
   if (!username) throw new MissingParamError(["username"]);
 
-  const res = await retryer(fetcher, { login: username });
+  let repoNodes = [];
+  let hasNextPage = true;
+  let endCursor = null;
+  while (hasNextPage) {
+    const variables = { login: username, first: 100, after: endCursor };
+    const res = await retryer(fetcher, variables);
 
-  if (res.data.errors) {
-    logger.error(res.data.errors);
-    throw Error(res.data.errors[0].message || "Could not fetch user");
+    if (res.data.errors) {
+      logger.error(res.data.errors);
+      throw Error(res.data.errors[0].message || "Could not fetch user");
+    }
+
+    repoNodes.push(...res.data.data.user.repositories.nodes);
+    hasNextPage = res.data.data.user.repositories.pageInfo.hasNextPage;
+    endCursor = res.data.data.user.repositories.pageInfo.endCursor;
   }
 
-  let repoNodes = res.data.data.user.repositories.nodes;
   let repoToHide = {};
 
   // populate repoToHide map for quick lookup
@@ -101,14 +114,12 @@ async function fetchTopLanguages(username, exclude_repo = []) {
       };
     }, {});
 
-  const topLangs = Object.keys(repoNodes)
+  return Object.keys(repoNodes)
     .sort((a, b) => repoNodes[b].size - repoNodes[a].size)
     .reduce((result, key) => {
       result[key] = repoNodes[key];
       return result;
     }, {});
-
-  return topLangs;
 }
 
 export { fetchTopLanguages };
