@@ -24,7 +24,7 @@ const THEME_PR_FAIL_TEXT = ":x: Theme PR does not adhere to our guidelines.";
 const THEME_PR_SUCCESS_TEXT =
   ":heavy_check_mark: Theme PR does adhere to our guidelines.";
 const FAIL_TEXT = `
-  \rUnfortunately, your theme PR does not adhere to our [theme guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution). Please fix the issues below, and we will review your\
+  \r  Unfortunately, your theme PR contains an error or does not adhere to our [theme guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution). Please fix the issues below, and we will review your\
   \r PR again. This pull request will **automatically close in 15 days** if no changes are made. After this time, you must re-open the PR for it to be reviewed.
 `;
 const THEME_CONTRIB_GUIDELINESS = `
@@ -558,6 +558,21 @@ export const run = async (prNumber) => {
       info(`DRY_RUN: Review reason: ${reviewReason}`);
     }
   } catch (error) {
+    debug("Set review state to `REQUEST_CHANGES` and add `invalid` label...");
+    if (!dryRun) {
+      await addReview(
+        octokit,
+        pullRequestId,
+        owner,
+        repo,
+        "REQUEST_CHANGES",
+        error.message,
+      );
+      await addRemoveLabel(octokit, pullRequestId, owner, repo, "invalid", true);
+    } else {
+      info(`DRY_RUN: Review state: REQUEST_CHANGES`);
+      info(`DRY_RUN: Review reason: ${error.message}`);
+    }
     setFailed(error.message);
   }
 };
