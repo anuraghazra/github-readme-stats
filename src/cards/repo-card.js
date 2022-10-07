@@ -11,7 +11,7 @@ import {
   parseEmojis,
   wrapTextMultiline,
 } from "../common/utils.js";
-import { repoCardLocales } from "../translations.js";
+import { repoCardLocales } from "../assets/translations.js";
 
 /**
  * @param {string} label

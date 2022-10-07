@@ -9,7 +9,7 @@ import {
   renderError,
 } from "../src/common/utils.js";
 import { fetchStats } from "../src/fetchers/stats-fetcher.js";
-import { isLocaleAvailable } from "../src/translations.js";
+import { isLocaleAvailable } from "../src/assets/translations.js";
 
 dotenv.config();
 

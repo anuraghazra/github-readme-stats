@@ -1,4 +1,4 @@
-import { encodeHTML } from "./common/utils.js";
+import { encodeHTML } from "../common/utils.js";
 
 const statCardLocales = ({ name, apostrophe }) => {
   const encodedName = encodeHTML(name);
