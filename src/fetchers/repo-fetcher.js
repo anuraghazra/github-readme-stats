@@ -1,6 +1,6 @@
 // @ts-check
-const retryer = require("../common/retryer");
-const { request, MissingParamError } = require("../common/utils");
+import { retryer } from "../common/retryer.js";
+import { MissingParamError, request } from "../common/utils.js";
 
 /**
  * @param {import('Axios').AxiosRequestHeaders} variables
@@ -97,4 +97,5 @@ async function fetchRepo(username, reponame) {
   }
 }
 
-module.exports = fetchRepo;
+export { fetchRepo };
+export default fetchRepo;

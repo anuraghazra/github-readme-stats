@@ -1,17 +1,17 @@
 // @ts-check
-const axios = require("axios").default;
-const githubUsernameRegex = require("github-username-regex");
-
-const retryer = require("../common/retryer");
-const calculateRank = require("../calculateRank");
-const {
-  request,
-  logger,
+import axios from "axios";
+import * as dotenv from "dotenv";
+import githubUsernameRegex from "github-username-regex";
+import { calculateRank } from "../calculateRank.js";
+import { retryer } from "../common/retryer.js";
+import {
   CustomError,
+  logger,
   MissingParamError,
-} = require("../common/utils");
+  request,
+} from "../common/utils.js";
 
-require("dotenv").config();
+dotenv.config();
 
 /**
  * @param {import('axios').AxiosRequestHeaders} variables
@@ -29,10 +29,10 @@ const fetcher = (variables, token) => {
             totalCommitContributions
             restrictedContributionsCount
           }
-          repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
+          repositoriesContributedTo(contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
             totalCount
           }
-          pullRequests(first: 1) {
+          pullRequests {
             totalCount
           }
           openIssues: issues(states: OPEN) {
@@ -44,12 +44,40 @@ const fetcher = (variables, token) => {
           followers {
             totalCount
           }
-          repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}) {
+          repositories(ownerAffiliations: OWNER) {
             totalCount
+          }
+        }
+      }
+      `,
+      variables,
+    },
+    {
+      Authorization: `bearer ${token}`,
+    },
+  );
+};
+
+/**
+ * @param {import('axios').AxiosRequestHeaders} variables
+ * @param {string} token
+ */
+const repositoriesFetcher = (variables, token) => {
+  return request(
+    {
+      query: `
+      query userInfo($login: String!, $after: String) {
+        user(login: $login) {
+          repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
             nodes {
+              name
               stargazers {
                 totalCount
               }
+            }
+            pageInfo {
+              hasNextPage
+              endCursor
             }
           }
         }
@@ -99,6 +127,44 @@ const totalCommitsFetcher = async (username) => {
 };
 
 /**
+ * Fetch all the stars for all the repositories of a given username
+ * @param {string} username
+ * @param {array} repoToHide
+ */
+const totalStarsFetcher = async (username, repoToHide) => {
+  let nodes = [];
+  let hasNextPage = true;
+  let endCursor = null;
+  while (hasNextPage) {
+    const variables = { login: username, first: 100, after: endCursor };
+    let res = await retryer(repositoriesFetcher, variables);
+
+    if (res.data.errors) {
+      logger.error(res.data.errors);
+      throw new CustomError(
+        res.data.errors[0].message || "Could not fetch user",
+        CustomError.USER_NOT_FOUND,
+      );
+    }
+
+    const allNodes = res.data.data.user.repositories.nodes;
+    const nodesWithStars = allNodes.filter(
+      (node) => node.stargazers.totalCount !== 0,
+    );
+    nodes.push(...nodesWithStars);
+    // hasNextPage =
+    //   allNodes.length === nodesWithStars.length &&
+    //   res.data.data.user.repositories.pageInfo.hasNextPage;
+    hasNextPage = false // NOTE: Temporarily disable fetching of multiple pages.
+    endCursor = res.data.data.user.repositories.pageInfo.endCursor;
+  }
+
+  return nodes
+    .filter((data) => !repoToHide[data.name])
+    .reduce((prev, curr) => prev + curr.stargazers.totalCount, 0);
+};
+
+/**
  * @param {string} username
  * @param {boolean} count_private
  * @param {boolean} include_all_commits
@@ -108,6 +174,7 @@ async function fetchStats(
   username,
   count_private = false,
   include_all_commits = false,
+  exclude_repo = [],
 ) {
   if (!username) throw new MissingParamError(["username"]);
 
@@ -133,6 +200,15 @@ async function fetchStats(
 
   const user = res.data.data.user;
 
+  // populate repoToHide map for quick lookup
+  // while filtering out
+  let repoToHide = {};
+  if (exclude_repo) {
+    exclude_repo.forEach((repoName) => {
+      repoToHide[repoName] = true;
+    });
+  }
+
   stats.name = user.name || user.login;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
 
@@ -154,9 +230,8 @@ async function fetchStats(
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
-  stats.totalStars = user.repositories.nodes.reduce((prev, curr) => {
-    return prev + curr.stargazers.totalCount;
-  }, 0);
+  // Retrieve stars while filtering out repositories to be hidden
+  stats.totalStars = await totalStarsFetcher(username, repoToHide);
 
   stats.rank = calculateRank({
     totalCommits: stats.totalCommits,
@@ -171,4 +246,5 @@ async function fetchStats(
   return stats;
 }
 
-module.exports = fetchStats;
+export { fetchStats };
+export default fetchStats;

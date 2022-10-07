@@ -81,16 +81,17 @@ const getStyles = ({
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
     .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}; 
+      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor};
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
     
+    .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
     .icon {
       fill: ${iconColor};
       display: ${!!show_icons ? "block" : "none"};
     }
-    
+
     .rank-circle-rim {
       stroke: ${titleColor};
       fill: none;
@@ -112,4 +113,4 @@ const getStyles = ({
   `;
 };
 
-module.exports = { getStyles, getAnimations };
+export { getStyles, getAnimations };

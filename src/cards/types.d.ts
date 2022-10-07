@@ -1,4 +1,4 @@
-type ThemeNames = keyof typeof import("../../themes");
+type ThemeNames = keyof typeof import("../../themes/index.js");
 
 export type CommonOptions = {
   title_color: string;
@@ -16,6 +16,7 @@ export type StatCardOptions = CommonOptions & {
   show_icons: boolean;
   hide_title: boolean;
   hide_border: boolean;
+  card_width: number;
   hide_rank: boolean;
   include_all_commits: boolean;
   line_height: number | string;
