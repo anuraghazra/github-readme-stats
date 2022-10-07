@@ -4,6 +4,9 @@ import toEmoji from "emoji-name-map";
 import wrap from "word-wrap";
 import { themes } from "../../themes/index.js";
 
+// Script parameters.
+const ERROR_CARD_LENGTH = 576.5;
+
 /**
  * Renders error message on the card.
  *
@@ -13,13 +16,15 @@ import { themes } from "../../themes/index.js";
  */
 const renderError = (message, secondaryMessage = "") => {
   return `
-    <svg width="576.5" height="120" viewBox="0 0 576.5 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="${ERROR_CARD_LENGTH}" height="120" viewBox="0 0 ${ERROR_CARD_LENGTH} 120" fill="none" xmlns="http://www.w3.org/2000/svg">
     <style>
     .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2F80ED }
     .small { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #252525 }
     .gray { fill: #858585 }
     </style>
-    <rect x="0.5" y="0.5" width="575.5" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
+    <rect x="0.5" y="0.5" width="${
+      ERROR_CARD_LENGTH - 1
+    }" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
     <text x="25" y="45" class="text">Something went wrong! file an issue at https://tiny.one/readme-stats</text>
     <text data-testid="message" x="25" y="55" class="text small">
       <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
@@ -241,7 +246,7 @@ function getCardColors({
  * Split text over multiple lines based on the card width.
  *
  * @param {string} text Text to split.
- * @param {number} width Card width.
+ * @param {number} width Line width in number of characters.
  * @param {number} maxLines Maximum number of lines.
  * @returns {string[]} Array of lines.
  */
@@ -288,6 +293,7 @@ const SECONDARY_ERROR_MESSAGES = {
   MAX_RETRY:
     "Please add an env variable called PAT_1 with your github token in vercel",
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
+  GRAPHQL_ERROR: "Please try again later",
 };
 
 /**
@@ -306,6 +312,7 @@ class CustomError extends Error {
 
   static MAX_RETRY = "MAX_RETRY";
   static USER_NOT_FOUND = "USER_NOT_FOUND";
+  static GRAPHQL_ERROR = "GRAPHQL_ERROR";
 }
 
 /**
@@ -427,4 +434,5 @@ export {
   lowercaseTrim,
   chunkArray,
   parseEmojis,
+  ERROR_CARD_LENGTH,
 };

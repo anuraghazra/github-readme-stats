@@ -1,7 +1,13 @@
 // @ts-check
 import * as dotenv from "dotenv";
 import { retryer } from "../common/retryer.js";
-import { logger, MissingParamError, request } from "../common/utils.js";
+import {
+  CustomError,
+  logger,
+  MissingParamError,
+  request,
+  wrapTextMultiline,
+} from "../common/utils.js";
 
 dotenv.config();
 
@@ -59,6 +65,27 @@ async function fetchTopLanguages(username, exclude_repo = []) {
   if (res.data.errors) {
     logger.error(res.data.errors);
     throw Error(res.data.errors[0].message || "Could not fetch user");
+  }
+
+  // Catch GraphQL errors.
+  if (res.data.errors) {
+    logger.error(res.data.errors);
+    if (res.data.errors[0].type === "NOT_FOUND") {
+      throw new CustomError(
+        res.data.errors[0].message || "Could not fetch user.",
+        CustomError.USER_NOT_FOUND,
+      );
+    }
+    if (res.data.errors[0].message) {
+      throw new CustomError(
+        wrapTextMultiline(res.data.errors[0].message, 90, 1)[0],
+        res.statusText,
+      );
+    }
+    throw new CustomError(
+      "Something went while trying to retrieve the language data using the GraphQL API.",
+      CustomError.GRAPHQL_ERROR,
+    );
   }
 
   let repoNodes = res.data.data.user.repositories.nodes;

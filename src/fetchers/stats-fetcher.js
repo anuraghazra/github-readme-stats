@@ -9,6 +9,7 @@ import {
   logger,
   MissingParamError,
   request,
+  wrapTextMultiline,
 } from "../common/utils.js";
 
 dotenv.config();
@@ -207,11 +208,24 @@ async function fetchStats(
 
   let res = await retryer(fetcher, { login: username });
 
+  // Catch GraphQL errors.
   if (res.data.errors) {
     logger.error(res.data.errors);
+    if (res.data.errors[0].type === "NOT_FOUND") {
+      throw new CustomError(
+        res.data.errors[0].message || "Could not fetch user.",
+        CustomError.USER_NOT_FOUND,
+      );
+    }
+    if (res.data.errors[0].message) {
+      throw new CustomError(
+        wrapTextMultiline(res.data.errors[0].message, 90, 1)[0],
+        res.statusText,
+      );
+    }
     throw new CustomError(
-      res.data.errors[0].message || "Could not fetch user",
-      CustomError.USER_NOT_FOUND,
+      "Something went while trying to retrieve the stats data using the GraphQL API.",
+      CustomError.GRAPHQL_ERROR,
     );
   }
 
