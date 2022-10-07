@@ -6,8 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        > **Warning**
-        > PLEASE FIRST READ THE FAQ [(#1770)](https://github.com/anuraghazra/github-readme-stats/discussions/1770) AND COMMON ERROR CODES [(#1772)](https://github.com/anuraghazra/github-readme-stats/issues/1772)!!!
+        :warning: PLEASE FIRST READ THE FAQ [(#1770)](https://github.com/anuraghazra/github-readme-stats/discussions/1770) AND COMMON ERROR CODES [(#1772)](https://github.com/anuraghazra/github-readme-stats/issues/1772)!!!
   - type: textarea
     attributes:
       label: Describe the bug
@@ -29,7 +28,8 @@ body:
   - type: markdown
     attributes:
       value: |
-        ### FAQ
+        ---
+        ### FAQ (Snippet)
 
         Below are some questions that are found in the FAQ. The full FAQ can be found in [#1770](https://github.com/anuraghazra/github-readme-stats/discussions/1770).
 
