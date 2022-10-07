@@ -1,7 +1,21 @@
 import { getAnimations } from "../getStyles";
 import { encodeHTML, flexLayout } from "./utils";
 
-class Card {
+export class Card {
+  width: number;
+  height: number;
+  hideBorder: boolean;
+  hideTitle: boolean;
+  border_radius: number;
+  colors: any;
+  title: any;
+  css: string;
+  paddingX: number;
+  paddingY: number;
+  titlePrefixIcon: string;
+  animations: boolean;
+  a11yTitle: string;
+  a11yDesc: string;
   /**
    * @param {object} args
    * @param {number?=} args.width
@@ -17,9 +31,9 @@ class Card {
     height = 100,
     border_radius = 4.5,
     colors = {},
-    customTitle,
+    customTitle = "",
     defaultTitle = "",
-    titlePrefixIcon,
+    titlePrefixIcon = "",
   }) {
     this.width = width;
     this.height = height;
@@ -53,7 +67,7 @@ class Card {
   /**
    * @param {{title: string, desc: string}} prop
    */
-  setAccessibilityLabel({ title, desc }) {
+  setAccessibilityLabel({ title, desc }: Record<string, string>) {
     this.a11yTitle = title;
     this.a11yDesc = desc;
   }
@@ -61,21 +75,21 @@ class Card {
   /**
    * @param {string} value
    */
-  setCSS(value) {
+  setCSS(value: string) {
     this.css = value;
   }
 
   /**
    * @param {boolean} value
    */
-  setHideBorder(value) {
+  setHideBorder(value: boolean) {
     this.hideBorder = value;
   }
 
   /**
    * @param {boolean} value
    */
-  setHideTitle(value) {
+  setHideTitle(value: boolean) {
     this.hideTitle = value;
     if (value) {
       this.height -= 30;
@@ -85,7 +99,7 @@ class Card {
   /**
    * @param {string} text
    */
-  setTitle(text) {
+  setTitle(text: string) {
     this.title = text;
   }
 
@@ -137,7 +151,7 @@ class Card {
             gradientTransform="rotate(${this.colors.bgColor[0]})"
             gradientUnits="userSpaceOnUse"
           >
-            ${gradients.map((grad, index) => {
+            ${gradients.map((grad: string, index: number) => {
               let offset = (index * 100) / (gradients.length - 1);
               return `<stop offset="${offset}%" stop-color="#${grad}" />`;
             })}
@@ -150,7 +164,7 @@ class Card {
   /**
    * @param {string} body
    */
-  render(body) {
+  render(body: string) {
     return `
       <svg
         width="${this.width}"
@@ -215,6 +229,3 @@ class Card {
     `;
   }
 }
-
-export { Card };
-export default Card;

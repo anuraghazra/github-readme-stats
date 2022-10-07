@@ -1,11 +1,21 @@
-class I18n {
-  constructor({ locale, translations }) {
+export class I18n {
+  locale: string | undefined;
+  translations: Record<string, Record<string, string>>;
+  fallbackLocale: string;
+
+  constructor({
+    locale,
+    translations,
+  }: {
+    locale?: string;
+    translations: Record<string, Record<string, string>>;
+  }) {
     this.locale = locale;
     this.translations = translations;
     this.fallbackLocale = "en";
   }
 
-  t(str) {
+  t(str: string) {
     if (!this.translations[str]) {
       throw new Error(`${str} Translation string not found`);
     }
@@ -17,6 +27,3 @@ class I18n {
     return this.translations[str][this.locale || this.fallbackLocale];
   }
 }
-
-export { I18n };
-export default I18n;

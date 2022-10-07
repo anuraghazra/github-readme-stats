@@ -1,12 +1,13 @@
 // @ts-check
+import { AxiosRequestHeaders } from "axios";
 import { retryer } from "../common/retryer";
 import { MissingParamError, request } from "../common/utils";
 
 /**
- * @param {import('Axios').AxiosRequestHeaders} variables
+ * @param {AxiosRequestHeaders} variables
  * @param {string} token
  */
-const fetcher = (variables, token) => {
+const fetcher = (variables: AxiosRequestHeaders, token: string) => {
   return request(
     {
       query: `
@@ -55,7 +56,7 @@ const urlExample = "/api/pin?username=USERNAME&amp;repo=REPO_NAME";
  * @param {string} reponame
  * @returns {Promise<import("./types").RepositoryData>}
  */
-async function fetchRepo(username, reponame) {
+async function fetchRepo(username: string, reponame: string) {
   if (!username && !reponame) {
     throw new MissingParamError(["username", "repo"], urlExample);
   }
