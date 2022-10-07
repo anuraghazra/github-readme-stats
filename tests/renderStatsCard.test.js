@@ -1,13 +1,14 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("@uppercod/css-to-object").cssToObject;
-const renderStatsCard = require("../src/cards/stats-card");
-
-const {
+import {
   getByTestId,
-  queryByTestId,
   queryAllByTestId,
-} = require("@testing-library/dom");
-const themes = require("../themes");
+  queryByTestId,
+} from "@testing-library/dom";
+import { cssToObject } from "@uppercod/css-to-object";
+import { renderStatsCard } from "../src/cards/stats-card.js";
+// adds special assertions like toHaveTextContent
+import "@testing-library/jest-dom";
+
+import { themes } from "../themes/index.js";
 
 describe("Test renderStatsCard", () => {
   const stats = {
@@ -73,6 +74,52 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard(stats, { hide_rank: true });
 
     expect(queryByTestId(document.body, "rank-circle")).not.toBeInTheDocument();
+  });
+
+  it("should render with custom width set", () => {
+    document.body.innerHTML = renderStatsCard(stats);
+    expect(document.querySelector("svg")).toHaveAttribute("width", "495");
+
+    document.body.innerHTML = renderStatsCard(stats, { card_width: 400 });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "400");
+  });
+
+  it("should render with custom width set and limit minimum width", () => {
+    document.body.innerHTML = renderStatsCard(stats, { card_width: 1 });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "340");
+
+    document.body.innerHTML = renderStatsCard(stats, {
+      card_width: 1,
+      hide_rank: true,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      "305.81250000000006",
+    );
+
+    document.body.innerHTML = renderStatsCard(stats, {
+      card_width: 1,
+      hide_rank: true,
+      show_icons: true,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      "305.81250000000006",
+    );
+
+    document.body.innerHTML = renderStatsCard(stats, {
+      card_width: 1,
+      hide_rank: false,
+      show_icons: true,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "356");
+
+    document.body.innerHTML = renderStatsCard(stats, {
+      card_width: 1,
+      hide_rank: false,
+      show_icons: false,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "340");
   });
 
   it("should render default colors properly", () => {

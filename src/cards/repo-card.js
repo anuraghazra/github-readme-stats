@@ -1,17 +1,17 @@
 // @ts-check
-const {
-  kFormatter,
+import { Card } from "../common/Card.js";
+import { I18n } from "../common/I18n.js";
+import { icons } from "../common/icons.js";
+import {
   encodeHTML,
-  getCardColors,
   flexLayout,
-  wrapTextMultiline,
+  getCardColors,
+  kFormatter,
   measureText,
   parseEmojis,
-} = require("../common/utils");
-const I18n = require("../common/I18n");
-const Card = require("../common/Card");
-const icons = require("../common/icons");
-const { repoCardLocales } = require("../translations");
+  wrapTextMultiline,
+} from "../common/utils.js";
+import { repoCardLocales } from "../translations.js";
 
 /**
  * @param {string} label
@@ -67,8 +67,8 @@ const iconWithLabel = (icon, label, testid) => {
 };
 
 /**
- * @param {import('../fetchers/types').RepositoryData} repo 
- * @param {Partial<import("./types").RepoCardOptions>} options 
+ * @param {import('../fetchers/types').RepositoryData} repo
+ * @param {Partial<import("./types").RepoCardOptions>} options
  * @returns {string}
  */
 const renderRepoCard = (repo, options = {}) => {
@@ -88,7 +88,7 @@ const renderRepoCard = (repo, options = {}) => {
     icon_color,
     text_color,
     bg_color,
-    show_owner,
+    show_owner = false,
     theme = "default_repocard",
     border_radius,
     border_color,
@@ -167,11 +167,11 @@ const renderRepoCard = (repo, options = {}) => {
   return card.render(`
     ${
       isTemplate
-        // @ts-ignore
-        ? getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
+        ? // @ts-ignore
+          getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
         : isArchived
-        // @ts-ignore
-        ? getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
+        ? // @ts-ignore
+          getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
         : ""
     }
 
@@ -185,4 +185,5 @@ const renderRepoCard = (repo, options = {}) => {
   `);
 };
 
-module.exports = renderRepoCard;
+export { renderRepoCard };
+export default renderRepoCard;

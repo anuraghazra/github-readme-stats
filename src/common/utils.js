@@ -1,8 +1,8 @@
 // @ts-check
-const axios = require("axios");
-const wrap = require("word-wrap");
-const themes = require("../../themes");
-const toEmoji = require("emoji-name-map");
+import axios from "axios";
+import toEmoji from "emoji-name-map";
+import wrap from "word-wrap";
+import { themes } from "../../themes/index.js";
 
 /**
  * @param {string} message
@@ -11,13 +11,13 @@ const toEmoji = require("emoji-name-map");
  */
 const renderError = (message, secondaryMessage = "") => {
   return `
-    <svg width="495" height="120" viewBox="0 0 495 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="576.5" height="120" viewBox="0 0 576.5 120" fill="none" xmlns="http://www.w3.org/2000/svg">
     <style>
     .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2F80ED }
     .small { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #252525 }
     .gray { fill: #858585 }
     </style>
-    <rect x="0.5" y="0.5" width="494" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
+    <rect x="0.5" y="0.5" width="575.5" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
     <text x="25" y="45" class="text">Something went wrong! file an issue at https://tiny.one/readme-stats</text>
     <text data-testid="message" x="25" y="55" class="text small">
       <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
@@ -74,7 +74,10 @@ function parseBoolean(value) {
 }
 
 /**
- * @param {string} str
+ * Parse string to array of strings.
+ *
+ * @param {string} str The string to parse.
+ * @returns {string[]} The array of strings.
  */
 function parseArray(str) {
   if (!str) return [];
@@ -82,9 +85,12 @@ function parseArray(str) {
 }
 
 /**
- * @param {number} number
- * @param {number} min
- * @param {number} max
+ * Clamp the given number between the given range.
+ *
+ * @param {number} number The number to clamp.
+ * @param {number} min The minimum value.
+ * @param {number} max The maximum value.
+ * returns {number} The clamped number.
  */
 function clampValue(number, min, max) {
   // @ts-ignore
@@ -93,7 +99,10 @@ function clampValue(number, min, max) {
 }
 
 /**
- * @param {string[]} colors
+ * Check if the given string is a valid gradient.
+ *
+ * @param {string[]} colors Array of colors.
+ * returns {boolean} True if the given string is a valid gradient.
  */
 function isValidGradient(colors) {
   return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
@@ -370,7 +379,7 @@ function parseEmojis(str) {
   });
 }
 
-module.exports = {
+export {
   renderError,
   kFormatter,
   encodeHTML,

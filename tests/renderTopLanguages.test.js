@@ -1,9 +1,13 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("@uppercod/css-to-object").cssToObject;
-const renderTopLanguages = require("../src/cards/top-languages-card");
+import { queryAllByTestId, queryByTestId } from "@testing-library/dom";
+import { cssToObject } from "@uppercod/css-to-object";
+import {
+  MIN_CARD_WIDTH,
+  renderTopLanguages,
+} from "../src/cards/top-languages-card.js";
+// adds special assertions like toHaveTextContent
+import "@testing-library/jest-dom";
 
-const { queryByTestId, queryAllByTestId } = require("@testing-library/dom");
-const themes = require("../themes");
+import { themes } from "../themes/index.js";
 
 describe("Test renderTopLanguages", () => {
   const langs = {
@@ -108,13 +112,13 @@ describe("Test renderTopLanguages", () => {
 
     expect(document.querySelector("svg")).toHaveAttribute(
       "width",
-      renderTopLanguages.MIN_CARD_WIDTH.toString(),
+      MIN_CARD_WIDTH.toString(),
     );
 
     document.body.innerHTML = renderTopLanguages(langs, { card_width: 100 });
     expect(document.querySelector("svg")).toHaveAttribute(
       "width",
-      renderTopLanguages.MIN_CARD_WIDTH.toString(),
+      MIN_CARD_WIDTH.toString(),
     );
   });
 
@@ -247,7 +251,7 @@ describe("Test renderTopLanguages", () => {
   });
 
   it("should render langs with specified langs_count", async () => {
-    options = {
+    const options = {
       langs_count: 1,
     };
     document.body.innerHTML = renderTopLanguages(langs, { ...options });
@@ -257,7 +261,7 @@ describe("Test renderTopLanguages", () => {
   });
 
   it("should render langs with specified langs_count even when hide is set", async () => {
-    options = {
+    const options = {
       hide: ["HTML"],
       langs_count: 2,
     };

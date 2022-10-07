@@ -1,5 +1,14 @@
-const { logger, CustomError } = require("../common/utils");
+import { CustomError, logger } from "./utils.js";
 
+/**
+ * Try to execute the fetcher function until it succeeds or the max number of retries is reached.
+ *
+ * @param {object[]} retryerParams Object that contains the createTextNode parameters.
+ * @param {object[]} retryerParams.fetcher The fetcher function.
+ * @param {object[]} retryerParams.variables Object with arguments to pass to the fetcher function.
+ * @param {number} retryerParams.retries How many times to retry.
+ * @returns Promise<retryer>
+ */
 const retryer = async (fetcher, variables, retries = 0) => {
   if (retries > 7) {
     throw new CustomError("Maximum retries exceeded", CustomError.MAX_RETRY);
@@ -40,4 +49,5 @@ const retryer = async (fetcher, variables, retries = 0) => {
   }
 };
 
-module.exports = retryer;
+export { retryer };
+export default retryer;

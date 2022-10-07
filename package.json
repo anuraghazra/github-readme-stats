@@ -3,29 +3,33 @@
   "version": "1.0.0",
   "description": "Dynamically generate stats for your github readmes",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "jest --coverage",
-    "test:watch": "jest --watch",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
+    "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
+    "test:update:snapshot": "node --experimental-vm-modules node_modules/jest/bin/jest.js -u",
+    "test:e2e": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.e2e.config.js",
     "theme-readme-gen": "node scripts/generate-theme-doc",
     "preview-theme": "node scripts/preview-theme",
-    "generate-langs-json": "node scripts/generate-langs-json"
+    "close-stale-theme-prs": "node scripts/close-stale-theme-prs",
+    "generate-langs-json": "node scripts/generate-langs-json",
+    "format": "./node_modules/.bin/prettier --write .",
+    "format:check": "./node_modules/.bin/prettier --check ."
   },
   "author": "Anurag Hazra",
   "license": "MIT",
-  "engines": {
-    "node": ">=13"
-  },
   "devDependencies": {
-    "@actions/core": "^1.2.4",
+    "@actions/core": "^1.9.1",
     "@actions/github": "^4.0.0",
-    "@testing-library/dom": "^7.20.0",
-    "@testing-library/jest-dom": "^5.11.0",
+    "@testing-library/dom": "^8.17.1",
+    "@testing-library/jest-dom": "^5.16.5",
     "@uppercod/css-to-object": "^1.1.1",
     "axios-mock-adapter": "^1.18.1",
     "color-contrast-checker": "^2.1.0",
     "hjson": "^3.2.2",
     "husky": "^4.2.5",
-    "jest": "^26.1.0",
+    "jest": "^29.0.3",
+    "jest-environment-jsdom": "^29.0.3",
     "js-yaml": "^4.1.0",
     "lodash.snakecase": "^4.1.1",
     "parse-diff": "^0.7.0",
@@ -36,6 +40,7 @@
     "dotenv": "^8.2.0",
     "emoji-name-map": "^1.2.8",
     "github-username-regex": "^1.0.0",
+    "upgrade": "^1.1.0",
     "word-wrap": "^1.2.3"
   },
   "husky": {

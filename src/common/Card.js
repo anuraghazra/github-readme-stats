@@ -1,5 +1,5 @@
-const { getAnimations } = require("../getStyles");
-const { flexLayout, encodeHTML } = require("../common/utils");
+import { getAnimations } from "../getStyles.js";
+import { encodeHTML, flexLayout } from "./utils.js";
 
 class Card {
   /**
@@ -10,7 +10,7 @@ class Card {
    * @param {string?=} args.customTitle
    * @param {string?=} args.defaultTitle
    * @param {string?=} args.titlePrefixIcon
-   * @param {ReturnType<import('../common/utils').getCardColors>?=} args.colors
+   * @param {ReturnType<import('../common/utils.js').getCardColors>?=} args.colors
    */
   constructor({
     width = 100,
@@ -216,4 +216,5 @@ class Card {
   }
 }
 
-module.exports = Card;
+export { Card };
+export default Card;

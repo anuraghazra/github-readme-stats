@@ -1,16 +1,26 @@
 // @ts-check
-const Card = require("../common/Card");
-const I18n = require("../common/I18n");
-const { getStyles } = require("../getStyles");
-const { wakatimeCardLocales } = require("../translations");
-const languageColors = require("../common/languageColors.json");
-const { createProgressNode } = require("../common/createProgressNode");
-const {
+import { Card } from "../common/Card.js";
+import { createProgressNode } from "../common/createProgressNode.js";
+import { I18n } from "../common/I18n.js";
+import {
   clampValue,
-  getCardColors,
   flexLayout,
+  getCardColors,
   lowercaseTrim,
-} = require("../common/utils");
+} from "../common/utils.js";
+import { getStyles } from "../getStyles.js";
+import { wakatimeCardLocales } from "../translations.js";
+
+/** Import language colors.
+ *
+ * @description Here we use the workaround found in
+ * https://stackoverflow.com/questions/66726365/how-should-i-import-json-in-node
+ * since vercel is using v16.14.0 which does not yet support json imports without the
+ * --experimental-json-modules flag.
+ */
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const languageColors = require("../common/languageColors.json"); // now works
 
 /**
  * @param {{color: string, text: string}} param0
@@ -314,5 +324,5 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   `);
 };
 
-module.exports = renderWakatimeCard;
-exports.createProgressNode = createProgressNode;
+export { renderWakatimeCard };
+export default renderWakatimeCard;
