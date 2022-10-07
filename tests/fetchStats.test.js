@@ -97,9 +97,9 @@ beforeEach(() => {
     .onPost("https://api.github.com/graphql")
     .replyOnce(200, data)
     .onPost("https://api.github.com/graphql")
-    .replyOnce(200, firstRepositoriesData)
-    .onPost("https://api.github.com/graphql")
-    .replyOnce(200, secondRepositoriesData);
+    .replyOnce(200, firstRepositoriesData);
+  // .onPost("https://api.github.com/graphql") // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+  // .replyOnce(200, secondRepositoriesData); // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
 });
 
 afterEach(() => {
@@ -114,7 +114,8 @@ describe("Test fetchStats", () => {
       totalRepos: 5,
       followers: 100,
       contributions: 61,
-      stargazers: 400,
+      // stargazers: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      stargazers: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
       prs: 300,
       issues: 200,
     });
@@ -125,7 +126,8 @@ describe("Test fetchStats", () => {
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,
-      totalStars: 400,
+      // totalStars: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      totalStars: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
       rank,
     });
   });
@@ -176,7 +178,8 @@ describe("Test fetchStats", () => {
       totalRepos: 5,
       followers: 100,
       contributions: 61,
-      stargazers: 400,
+      // stargazers: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      stargazers: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
       prs: 300,
       issues: 200,
     });
@@ -187,7 +190,8 @@ describe("Test fetchStats", () => {
       totalCommits: 150,
       totalIssues: 200,
       totalPRs: 300,
-      totalStars: 400,
+      // totalStars: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      totalStars: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
       rank,
     });
   });
@@ -203,7 +207,8 @@ describe("Test fetchStats", () => {
       totalRepos: 5,
       followers: 100,
       contributions: 61,
-      stargazers: 400,
+      // stargazers: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      stargazers: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
       prs: 300,
       issues: 200,
     });
@@ -214,7 +219,8 @@ describe("Test fetchStats", () => {
       totalCommits: 1050,
       totalIssues: 200,
       totalPRs: 300,
-      totalStars: 400,
+      // totalStars: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      totalStars: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
       rank,
     });
   });
@@ -230,7 +236,8 @@ describe("Test fetchStats", () => {
       totalRepos: 5,
       followers: 100,
       contributions: 61,
-      stargazers: 300,
+      // stargazers: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      stargazers: 200, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
       prs: 300,
       issues: 200,
     });
@@ -241,7 +248,8 @@ describe("Test fetchStats", () => {
       totalCommits: 1050,
       totalIssues: 200,
       totalPRs: 300,
-      totalStars: 300,
+      // totalStars: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      totalStars: 200, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
       rank,
     });
   });
