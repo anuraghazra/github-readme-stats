@@ -4,14 +4,14 @@ import { encodeHTML, flexLayout } from "./utils.js";
 class Card {
   /**
    * Creates a new card instance.
-   * 
+   *
    * @param {object} args Card arguments.
    * @param {number?=} args.width Card width.
    * @param {number?=} args.height Card height.
    * @param {number?=} args.border_radius Card border radius.
    * @param {string?=} args.customTitle Card custom title.
    * @param {string?=} args.defaultTitle Card default title.
-   * @param {string?=} args.titlePrefixIcon Card title prefix icon. 
+   * @param {string?=} args.titlePrefixIcon Card title prefix icon.
    * @returns {Card} Card instance.
    */
   constructor({

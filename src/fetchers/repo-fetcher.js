@@ -4,7 +4,7 @@ import { MissingParamError, request } from "../common/utils.js";
 
 /**
  * Repo data fetcher.
- * 
+ *
  * @param {import('Axios').AxiosRequestHeaders} variables Fetcher variables.
  * @param {string} token Github token.
  * @returns {Promise<import('Axios').AxiosResponse>} The response.
@@ -55,7 +55,7 @@ const urlExample = "/api/pin?username=USERNAME&amp;repo=REPO_NAME";
 
 /**
  * Fetch repository data.
- * 
+ *
  * @param {string} username Github username.
  * @param {string} reponame Github repository name.
  * @returns {Promise<import("./types").RepositoryData>} Repository data.

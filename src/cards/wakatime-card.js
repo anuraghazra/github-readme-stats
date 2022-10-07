@@ -24,7 +24,7 @@ const languageColors = require("../common/languageColors.json"); // now works
 
 /**
  * Creates the no coding activity SVG node.
- * 
+ *
  * @param {{color: string, text: string}} The function prop
  */
 const noCodingActivityNode = ({ color, text }) => {
@@ -35,7 +35,7 @@ const noCodingActivityNode = ({ color, text }) => {
 
 /**
  * Create compact WakaTime layout.
- * 
+ *
  * @param {Object[]} args The function arguments.
  * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
  * @param {number} totalSize The total size of the languages.
@@ -57,7 +57,7 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
 
 /**
  * Create WakaTime language text node item.
- * 
+ *
  * @param {Object[]} args The function arguments.
  * @param {import("../fetchers/types").WakaTimeLang} lang The language object.
  * @param {number} totalSize The total size of the languages.
@@ -85,7 +85,7 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
 
 /**
  * Create WakaTime text item.
- * 
+ *
  * @param {Object[]} args The function arguments.
  * @param {string} id The id of the text node item.
  * @param {string} label The label of the text node item.
@@ -134,9 +134,9 @@ const createTextNode = ({
 };
 
 /**
- * Recalculating percentages so that, compact layout's progress bar does not break when 
+ * Recalculating percentages so that, compact layout's progress bar does not break when
  * hiding languages.
- * 
+ *
  * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
  * @return {import("../fetchers/types").WakaTimeLang[]} The recalculated languages array.
  */
@@ -153,7 +153,7 @@ const recalculatePercentages = (languages) => {
 
 /**
  * Renders WakaTime card.
- * 
+ *
  * @param {Partial<import('../fetchers/types').WakaTimeData>} stats WakaTime stats.
  * @param {Partial<import('./types').WakaTimeOptions>} options Card options.
  * @returns {string} WakaTime card SVG.

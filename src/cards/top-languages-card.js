@@ -222,7 +222,7 @@ const calculateNormalLayoutHeight = (totalLangs) => {
 
 /**
  *  Hides languages and trims the list to show only the top N languages.
- * 
+ *
  * @param {Record<string, Lang>} topLangs Top languages.
  * @param {string[]} hide Languages to hide.
  * @param {string} langs_count Number of languages to show.

@@ -1,4 +1,3 @@
-
 /**
  * I18n translation class.
  */

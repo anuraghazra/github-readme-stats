@@ -3,7 +3,7 @@ import { MissingParamError } from "../common/utils.js";
 
 /**
  * WakaTime data fetcher.
- * 
+ *
  * @param {{username: string, api_domain: string, range: string}} props Fetcher props.
  * @returns {Promise<WakaTimeData>} WakaTime data response.
  */

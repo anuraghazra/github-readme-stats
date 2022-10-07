@@ -31,9 +31,9 @@ const renderError = (message, secondaryMessage = "") => {
 
 /**
  * Encode string as HTML.
- * 
+ *
  * @see https://stackoverflow.com/a/48073476/10629172
- * 
+ *
  * @param {string} str String to encode.
  * @returns {string} Encoded string.
  */
@@ -143,7 +143,7 @@ function fallbackColor(color, fallbackColor) {
 
 /**
  * Send GraphQL request to GitHub API.
- * 
+ *
  * @param {import('axios').AxiosRequestConfig['data']} data Request data.
  * @param {import('axios').AxiosRequestConfig['headers']} headers Request headers.
  * @returns {Promise<any>} Request response.
@@ -159,12 +159,12 @@ function request(data, headers) {
 }
 
 /**
- * Auto layout utility, allows us to layout things vertically or horizontally with 
+ * Auto layout utility, allows us to layout things vertically or horizontally with
  * proper gaping.
- * 
+ *
  * @param {object} props Function properties.
  * @param {string[]} props.items Array of items to layout.
- * @param {number} props.gap Gap between items. 
+ * @param {number} props.gap Gap between items.
  * @param {number[]?=} props.sizes Array of sizes for each item.
  * @param {"column" | "row"?=} props.direction Direction to layout items.
  * @returns {string[]} Array of items with proper layout.
@@ -185,7 +185,7 @@ function flexLayout({ items, gap, direction, sizes = [] }) {
 
 /**
  * Returns theme based colors with proper overrides and defaults.
- * 
+ *
  * @param {Object[]} args Function arguments.
  * @param {string} args.title_color Card title color.
  * @param {string} args.text_color Card text color.
@@ -194,7 +194,7 @@ function flexLayout({ items, gap, direction, sizes = [] }) {
  * @param {string} args.border_color Card border color.
  * @param {string} args.theme Card theme.
  * @param {string} args.fallbackTheme Fallback theme.
- * 
+ *
  */
 function getCardColors({
   title_color,
@@ -239,7 +239,7 @@ function getCardColors({
 
 /**
  * Split text over multiple lines based on the card width.
- * 
+ *
  * @param {string} text Text to split.
  * @param {number} width Card width.
  * @param {number} maxLines Maximum number of lines.
@@ -328,7 +328,7 @@ class MissingParamError extends Error {
 
 /**
  * Retrieve text length.
- * 
+ *
  * @see https://stackoverflow.com/a/48172630/10629172
  * @param {string} str String to measure.
  * @param {number} fontSize Font size.
@@ -373,7 +373,7 @@ const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 /**
  * Split array of languages in two columns.
- * 
+ *
  * @template T Langauge object.
  * @param {Array<T>} arr Array of languages.
  * @param {number} perChunk Number of languages per column.
@@ -395,7 +395,7 @@ function chunkArray(arr, perChunk) {
 
 /**
  * Parse emoji from string.
- * 
+ *
  * @param {string} str String to parse emoji from.
  * @returns {string} String with emoji parsed.
  */
