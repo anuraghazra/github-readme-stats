@@ -172,17 +172,14 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 -   `locale` - set the language in the card _(e.g. cn, de, es, etc.)_. Default: `en`.
 -   `border_radius` - Corner rounding on the card. Default: `4.5`.
 
-> **Note**
-> The minimum of cache_seconds is currently 4 hours as a temporary fix for PATs exhaustion.
+> **Warning**
+> We use caching to decrease the load on our servers (see https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours.
 
 ##### Gradient in bg_color
 
 You can provide multiple comma-separated values in the bg_color option to render a gradient with the following format:
 
     &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
-
-> **Note**
-> Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k; otherwise, it is 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours.
 
 #### Stats Card Exclusive Options
 
@@ -411,8 +408,8 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
 > **Warning**
-> If you are on the [hobby (i.e. free)](https://vercel.com/pricing) Vercel plan, please make sure you change the `maxDuration` parameter in the [vercel.json](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json) file from `30` to `10` (see #1416 for more information).
-> 
+> If you are on the [hobby (i.e. free)](https://vercel.com/pricing) Vercel plan, please make sure you change the `maxDuration` parameter in the [vercel.json](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json) file from `30` to `10` (see [#1416](https://github.com/anuraghazra/github-readme-stats/issues/1416#issuecomment-950275476) for more information).
+
 Since the GitHub API only allows 5k requests per hour, my `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter. If you host it on your own Vercel server, then you do not have to worry about anything. Click on the deploy button to get started!
 
 > **Note**
