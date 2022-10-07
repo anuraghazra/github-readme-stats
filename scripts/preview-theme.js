@@ -568,7 +568,14 @@ export const run = async (prNumber) => {
         "REQUEST_CHANGES",
         error.message,
       );
-      await addRemoveLabel(octokit, pullRequestId, owner, repo, "invalid", true);
+      await addRemoveLabel(
+        octokit,
+        pullRequestId,
+        owner,
+        repo,
+        "invalid",
+        true,
+      );
     } else {
       info(`DRY_RUN: Review state: REQUEST_CHANGES`);
       info(`DRY_RUN: Review reason: ${error.message}`);
