@@ -5,9 +5,11 @@ import wrap from "word-wrap";
 import { themes } from "../../themes/index.js";
 
 /**
- * @param {string} message
- * @param {string} secondaryMessage
- * @returns {string}
+ * Renders error message on the card.
+ *
+ * @param {string} message Main error message.
+ * @param {string} secondaryMessage The secondary error message.
+ * @returns {string} The SVG markup.
  */
 const renderError = (message, secondaryMessage = "") => {
   return `
@@ -28,9 +30,12 @@ const renderError = (message, secondaryMessage = "") => {
 };
 
 /**
+ * Encode string as HTML.
+ *
  * @see https://stackoverflow.com/a/48073476/10629172
- * @param {string} str
- * @returns {string}
+ *
+ * @param {string} str String to encode.
+ * @returns {string} Encoded string.
  */
 function encodeHTML(str) {
   return str
@@ -41,7 +46,10 @@ function encodeHTML(str) {
 }
 
 /**
- * @param {number} num
+ * Retrieves num with suffix k(thousands) precise to 1 decimal if greater than 999.
+ *
+ * @param {number} num The number to format.
+ * @returns {string|number} The formatted number.
  */
 function kFormatter(num) {
   return Math.abs(num) > 999
@@ -50,8 +58,10 @@ function kFormatter(num) {
 }
 
 /**
- * @param {string} hexColor
- * @returns {boolean}
+ * Checks if a string is a valid hex color.
+ *
+ * @param {string} hexColor String to check.
+ * @returns {boolean} True if the given string is a valid hex color.
  */
 function isValidHexColor(hexColor) {
   return new RegExp(
@@ -60,8 +70,10 @@ function isValidHexColor(hexColor) {
 }
 
 /**
- * @param {string} value
- * @returns {boolean | string}
+ * Returns boolean if value is either "true" or "false" else the value as it is.
+ *
+ * @param {string} value The value to parse.
+ * @returns {boolean | string} The parsed value.
  */
 function parseBoolean(value) {
   if (value === "true") {
@@ -102,16 +114,18 @@ function clampValue(number, min, max) {
  * Check if the given string is a valid gradient.
  *
  * @param {string[]} colors Array of colors.
- * returns {boolean} True if the given string is a valid gradient.
+ * @returns {boolean} True if the given string is a valid gradient.
  */
 function isValidGradient(colors) {
   return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
 }
 
 /**
- * @param {string} color
- * @param {string} fallbackColor
- * @returns {string | string[]}
+ * Retrieves a gradient if color has more than one valid hex codes else a single color.
+ *
+ * @param {string} color The color to parse.
+ * @param {string} fallbackColor The fallback color.
+ * @returns {string | string[]} The gradient or color.
  */
 function fallbackColor(color, fallbackColor) {
   let colors = color.split(",");
@@ -128,8 +142,11 @@ function fallbackColor(color, fallbackColor) {
 }
 
 /**
- * @param {import('axios').AxiosRequestConfig['data']} data
- * @param {import('axios').AxiosRequestConfig['headers']} headers
+ * Send GraphQL request to GitHub API.
+ *
+ * @param {import('axios').AxiosRequestConfig['data']} data Request data.
+ * @param {import('axios').AxiosRequestConfig['headers']} headers Request headers.
+ * @returns {Promise<any>} Request response.
  */
 function request(data, headers) {
   // @ts-ignore
@@ -142,17 +159,15 @@ function request(data, headers) {
 }
 
 /**
- * @param {object} props
- * @param {string[]} props.items
- * @param {number} props.gap
- * @param {number[]?=} props.sizes
- * @param {"column" | "row"?=} props.direction
+ * Auto layout utility, allows us to layout things vertically or horizontally with
+ * proper gaping.
  *
- * @returns {string[]}
- *
- * @description
- * Auto layout utility, allows us to layout things
- * vertically or horizontally with proper gaping
+ * @param {object} props Function properties.
+ * @param {string[]} props.items Array of items to layout.
+ * @param {number} props.gap Gap between items.
+ * @param {number[]?=} props.sizes Array of sizes for each item.
+ * @param {"column" | "row"?=} props.direction Direction to layout items.
+ * @returns {string[]} Array of items with proper layout.
  */
 function flexLayout({ items, gap, direction, sizes = [] }) {
   let lastSize = 0;
@@ -169,18 +184,17 @@ function flexLayout({ items, gap, direction, sizes = [] }) {
 }
 
 /**
- * @typedef {object} CardColors
- * @prop {string?=} title_color
- * @prop {string?=} text_color
- * @prop {string?=} icon_color
- * @prop {string?=} bg_color
- * @prop {string?=} border_color
- * @prop {keyof typeof import('../../themes')?=} fallbackTheme
- * @prop {keyof typeof import('../../themes')?=} theme
- */
-/**
- * returns theme based colors with proper overrides and defaults
- * @param {CardColors} options
+ * Returns theme based colors with proper overrides and defaults.
+ *
+ * @param {Object[]} args Function arguments.
+ * @param {string} args.title_color Card title color.
+ * @param {string} args.text_color Card text color.
+ * @param {string} args.icon_color Card icon color.
+ * @param {string} args.bg_color Card background color.
+ * @param {string} args.border_color Card border color.
+ * @param {string} args.theme Card theme.
+ * @param {string} args.fallbackTheme Fallback theme.
+ *
  */
 function getCardColors({
   title_color,
@@ -224,10 +238,12 @@ function getCardColors({
 }
 
 /**
- * @param {string} text
- * @param {number} width
- * @param {number} maxLines
- * @returns {string[]}
+ * Split text over multiple lines based on the card width.
+ *
+ * @param {string} text Text to split.
+ * @param {number} width Card width.
+ * @param {number} maxLines Maximum number of lines.
+ * @returns {string[]} Array of lines.
  */
 function wrapTextMultiline(text, width = 59, maxLines = 3) {
   const fullWidthComma = "，";
@@ -274,10 +290,13 @@ const SECONDARY_ERROR_MESSAGES = {
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
 };
 
+/**
+ * Custom error class to handle custom GRS errors.
+ */
 class CustomError extends Error {
   /**
-   * @param {string} message
-   * @param {string} type
+   * @param {string} message Error message.
+   * @param {string} type Error type.
    */
   constructor(message, type) {
     super(message);
@@ -289,6 +308,9 @@ class CustomError extends Error {
   static USER_NOT_FOUND = "USER_NOT_FOUND";
 }
 
+/**
+ * Missing query parameter class.
+ */
 class MissingParamError extends Error {
   /**
    * @param {string[]} missedParams
@@ -305,10 +327,12 @@ class MissingParamError extends Error {
 }
 
 /**
+ * Retrieve text length.
+ *
  * @see https://stackoverflow.com/a/48172630/10629172
- * @param {string} str
- * @param {number} fontSize
- * @returns
+ * @param {string} str String to measure.
+ * @param {number} fontSize Font size.
+ * @returns {number} Text length.
  */
 function measureText(str, fontSize = 10) {
   // prettier-ignore
@@ -348,10 +372,12 @@ function measureText(str, fontSize = 10) {
 const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 /**
- * @template T
- * @param {Array<T>} arr
- * @param {number} perChunk
- * @returns {Array<T>}
+ * Split array of languages in two columns.
+ *
+ * @template T Langauge object.
+ * @param {Array<T>} arr Array of languages.
+ * @param {number} perChunk Number of languages per column.
+ * @returns {Array<T>} Array of languages split in two columns.
  */
 function chunkArray(arr, perChunk) {
   return arr.reduce((resultArray, item, index) => {
@@ -368,9 +394,10 @@ function chunkArray(arr, perChunk) {
 }
 
 /**
+ * Parse emoji from string.
  *
- * @param {string} str
- * @returns {string}
+ * @param {string} str String to parse emoji from.
+ * @returns {string} String with emoji parsed.
  */
 function parseEmojis(str) {
   if (!str) throw new Error("[parseEmoji]: str argument not provided");
