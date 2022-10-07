@@ -1,6 +1,6 @@
 name: Bug report
 description: Create a report to help us improve
-labels: 
+labels:
   - "bug"
 body:
   - type: markdown
@@ -15,7 +15,8 @@ body:
   - type: textarea
     attributes:
       label: Expected behaviour
-      description: A clear and concise description of what you expected to happen.
+      description:
+        A clear and concise description of what you expected to happen.
   - type: textarea
     attributes:
       label: Screenshots / Live demo link
