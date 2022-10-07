@@ -14,11 +14,11 @@ import {
 import { repoCardLocales } from "../translations.js";
 
 /**
- * Retrieves a badge to display the type of repo like template, archived, etc
+ * Retrieves the repository description and wraps it to fit the card width.
  *
- * @param {string} label
- * @param {string} textColor
- * @returns {string} svg badge
+ * @param {string} label The repository description.
+ * @param {string} textColor The color of the text.
+ * @returns {string} Wrapped repo description SVG object.
  */
 const getBadgeSVG = (label, textColor) => `
   <g data-testid="badge" class="badge" transform="translate(320, -18)">
@@ -36,11 +36,11 @@ const getBadgeSVG = (label, textColor) => `
 `;
 
 /**
- * Creates a node to display the primary programming language of the repository
+ * Creates a node to display the primary programming language of the repository.
  *
- * @param {string} langName
- * @param {string} langColor
- * @returns {string} language node
+ * @param {string} langName Language name.
+ * @param {string} langColor Language color.
+ * @returns {string} Language display SVG object.
  */
 const createLanguageNode = (langName, langColor) => {
   return `
@@ -56,10 +56,10 @@ const ICON_SIZE = 16;
 /**
  * Creates an icon with label to display repository stats like forks, stars, etc.
  *
- * @param {string} icon
- * @param {number|string} label
- * @param {string} testid
- * @returns {string} icon with label
+ * @param {string} icon The icon to display.
+ * @param {number|string} label The label to display.
+ * @param {string} testid The testid to assign to the label.
+ * @returns {string} Icon with label SVG object.
  */
 const iconWithLabel = (icon, label, testid) => {
   if (label <= 0) return "";
@@ -80,11 +80,11 @@ const iconWithLabel = (icon, label, testid) => {
 };
 
 /**
- * Renders repository card details
+ * Renders repository card details.
  *
- * @param {import('../fetchers/types').RepositoryData} repo
- * @param {Partial<import("./types").RepoCardOptions>} options
- * @returns {string} repository card
+ * @param {import('../fetchers/types').RepositoryData} repo Repository data.
+ * @param {Partial<import("./types").RepoCardOptions>} options Card options.
+ * @returns {string} Repository card SVG object.
  */
 const renderRepoCard = (repo, options = {}) => {
   const {

@@ -2,8 +2,10 @@ import axios from "axios";
 import { MissingParamError } from "../common/utils.js";
 
 /**
- * @param {{username: string, api_domain: string, range: string}} props
- * @returns {Promise<WakaTimeData>}
+ * WakaTime data fetcher.
+ * 
+ * @param {{username: string, api_domain: string, range: string}} props Fetcher props.
+ * @returns {Promise<WakaTimeData>} WakaTime data response.
  */
 const fetchWakatimeStats = async ({ username, api_domain, range }) => {
   if (!username) throw new MissingParamError(["username"]);

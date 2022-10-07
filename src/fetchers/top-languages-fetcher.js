@@ -6,8 +6,11 @@ import { logger, MissingParamError, request } from "../common/utils.js";
 dotenv.config();
 
 /**
- * @param {import('Axios').AxiosRequestHeaders} variables
- * @param {string} token
+ * Top languages fetcher object.
+ * 
+ * @param {import('Axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token Github token.
+ * @returns {Promise<import('../common/types').StatsFetcherResponse>} Languages fetcher response.
  */
 const fetcher = (variables, token) => {
   return request(
@@ -42,9 +45,11 @@ const fetcher = (variables, token) => {
 };
 
 /**
- * @param {string} username
- * @param {string[]} exclude_repo
- * @returns {Promise<import("./types").TopLangData>}
+ * Fetch top languages for a given username.
+ * 
+ * @param {string} username Github username.
+ * @param {string[]} exclude_repo List of repositories to exclude.
+ * @returns {Promise<import("./types").TopLangData>} Top languages data.
  */
 async function fetchTopLanguages(username, exclude_repo = []) {
   if (!username) throw new MissingParamError(["username"]);

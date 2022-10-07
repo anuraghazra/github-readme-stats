@@ -1,3 +1,7 @@
+
+/**
+ * I18n translation class.
+ */
 class I18n {
   constructor({ locale, translations }) {
     this.locale = locale;

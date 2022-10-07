@@ -3,8 +3,11 @@ import { retryer } from "../common/retryer.js";
 import { MissingParamError, request } from "../common/utils.js";
 
 /**
- * @param {import('Axios').AxiosRequestHeaders} variables
- * @param {string} token
+ * Repo data fetcher.
+ * 
+ * @param {import('Axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token Github token.
+ * @returns {Promise<import('Axios').AxiosResponse>} The response.
  */
 const fetcher = (variables, token) => {
   return request(
@@ -51,9 +54,11 @@ const fetcher = (variables, token) => {
 const urlExample = "/api/pin?username=USERNAME&amp;repo=REPO_NAME";
 
 /**
- * @param {string} username
- * @param {string} reponame
- * @returns {Promise<import("./types").RepositoryData>}
+ * Fetch repository data.
+ * 
+ * @param {string} username Github username.
+ * @param {string} reponame Github repository name.
+ * @returns {Promise<import("./types").RepositoryData>} Repository data.
  */
 async function fetchRepo(username, reponame) {
   if (!username && !reponame) {
