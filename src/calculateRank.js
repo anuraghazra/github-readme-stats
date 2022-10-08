@@ -4,9 +4,9 @@
  *
  * @see https://stackoverflow.com/a/5263759/10629172
  *
- * @param {string} mean
- * @param {number} sigma
- * @param {number} to
+ * @param {string} mean The mean of the normal distribution.
+ * @param {number} sigma The standard deviation of the normal distribution.
+ * @param {number} to The value to calculate the probability for.
  * @returns {number} Probability.
  */
 function normalcdf(mean, sigma, to) {
@@ -29,13 +29,13 @@ function normalcdf(mean, sigma, to) {
 /**
  * Calculates the users rank.
  *
- * @param {number} totalRepos
- * @param {number} totalCommits
- * @param {number} contributions
- * @param {number} followers
- * @param {number} prs
- * @param {number} issues
- * @param {number} stargazers
+ * @param {number} totalRepos Total number of repos.
+ * @param {number} totalCommits Total number of commits.
+ * @param {number} contributions The number of contributions.
+ * @param {number} followers The number of followers.
+ * @param {number} prs The number of pull requests.
+ * @param {number} issues The number of issues.
+ * @param {number} stargazers The number of stars.
  * @returns {{level: string, score: number}}} The users rank.
  */
 function calculateRank({
