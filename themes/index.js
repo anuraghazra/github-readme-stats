@@ -368,10 +368,10 @@ export const themes = {
     bg_color: "191724",
   },
   lamya: {
-    title_color: "4a0f73",
-    icon_color: "410f73",
+    title_color: "bd70dc",
+    icon_color: "bb50de",
     text_color: "D3D3D3",
-    bg_color: "0,000000,0d0827",
+    bg_color: "0d0827",
   },
 };
 
