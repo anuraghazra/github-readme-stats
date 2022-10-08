@@ -231,14 +231,11 @@ const calculateNormalLayoutHeight = (totalLangs) => {
 const useLanguages = (topLangs, hide, langs_count, merge_others) => {
   let langs = Object.values(topLangs);
   let langsToHide = {};
-  let langsCount = parseInt(langs_count);
-  let langsCountClamped = clampValue(langsCount, 1, 10);
-  let hideCount = 0;
+  let langsCountClamped = clampValue(parseInt(langs_count), 1, 10);
 
   // populate langsToHide map for quick lookup
   // while filtering out
   if (hide) {
-    hideCount = hide.length;
     hide.forEach((langName) => {
       langsToHide[lowercaseTrim(langName)] = true;
     });
@@ -251,18 +248,19 @@ const useLanguages = (topLangs, hide, langs_count, merge_others) => {
       return !langsToHide[lowercaseTrim(lang.name)];
     });
 
-  if (merge_others && langsCount - hideCount > 10) {
-    let others = {
+  if (merge_others) {
+    // Return 'langs_count' -1 top languages and merge the rest of the languages into "others" category.
+    const others = langs.splice(langsCountClamped - 1);
+    const othersSize = others.reduce((accumulator, object) => {
+      return accumulator + object.size;
+    }, 0);
+    langs.push({
       name: "Others",
       color: "#9E9F9E",
-      size: 0,
-    };
-    for (let i = 9; i < langsCount - hideCount; i++) {
-      others.size += langs[i].size;
-    }
-    langs = langs.slice(0, 9);
-    langs.push(others);
+      size: othersSize,
+    });
   } else {
+    // Return 'langs_count' top languages.
     langs = langs.slice(0, langsCountClamped);
   }
 
