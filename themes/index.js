@@ -367,6 +367,13 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  hacktoberfest_2022: {
+    title_color: "E5E1E6",
+    icon_color: "49cfff",
+    text_color: "f7d85b",
+    bg_color: "170F1E",
+    border_color: "170F1E",
+  },
 };
 
 export default themes;
