@@ -367,6 +367,12 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  punk: {
+    title_color: "b026ff",
+    icon_color: "b026ff",
+    text_color: "fefefe",
+    bg_color: "-60,000000,000370,000000",
+  },
 };
 
 export default themes;
