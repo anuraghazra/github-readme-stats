@@ -45,6 +45,8 @@ const retryer = async (fetcher, variables, retries = 0) => {
       retries++;
       // directly return from the function
       return retryer(fetcher, variables, retries);
+    } else {
+      return err.response;
     }
   }
 };
