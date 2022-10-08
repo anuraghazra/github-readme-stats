@@ -367,6 +367,13 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  MrRobot: {
+    title_color: "6d62b8",
+    icon_color: "f9f7ff",
+    text_color: "9c97ae",
+    bg_color: "04030b",
+    border_color: "04030b",
+  },
 };
 
 export default themes;
