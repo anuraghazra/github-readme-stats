@@ -165,10 +165,14 @@ const totalStarsFetcher = async (username, repoToHide) => {
       (node) => node.stargazers.totalCount !== 0,
     );
     nodes.push(...nodesWithStars);
-    // hasNextPage =
-    //   allNodes.length === nodesWithStars.length &&
-    //   res.data.data.user.repositories.pageInfo.hasNextPage;
-    hasNextPage = false; // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+
+    // Disable multi page fetching on public Vercel instance due to rate limits.
+    hasNextPage =
+      process.env.FETCH_SINGLE_PAGE_STARS === "true"
+        ? false
+        : allNodes.length === nodesWithStars.length &&
+          res.data.data.user.repositories.pageInfo.hasNextPage;
+
     endCursor = res.data.data.user.repositories.pageInfo.endCursor;
   }
 

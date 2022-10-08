@@ -80,6 +80,7 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
 
 # Features
 
+-   [Important Notice](#important-notice)
 -   [GitHub Stats Card](#github-stats-card)
 -   [GitHub Extra Pins](#github-extra-pins)
 -   [Top Languages Card](#top-languages-card)
@@ -94,6 +95,11 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
     -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
 -   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
     - [Keep your fork up to date](#keep-your-fork-up-to-date)   
+
+# Important Notice
+
+> **Warning**
+> Since the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see #1471). Because of this, we have limited the public API to only fetch the first 100 repositories with stars and languages. As a result, for a very active GitHub account, the language, stars and commits results might be off when using the public API. These limits do not apply when you deploy [your own Vercel instance](#deploy-on-your-own-vercel-instance), so in that case, you do not have to worry about anything! :rocket:
 
 # GitHub Stats Card
 
@@ -264,7 +270,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 -   `border_radius` - Corner rounding on the card. Default: `4.5`.
 
 > **Warning**
-> We use caching to decrease the load on our servers (see https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours.
+> We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours.
 
 ##### Gradient in bg_color
 
@@ -354,7 +360,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 The top languages card shows a GitHub user's most frequently used top language.
 
 > **Note**
-> Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats._
+> Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats.\_
 
 ### Usage
 
@@ -498,17 +504,14 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 ## Deploy on your own Vercel instance
 
-#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+As explained [above](#important-notice) the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see #1471). Because of this, we have limited the public API to only fetch the first 100 repositories with stars and languages. As a result, for a very active GitHub account, the language, stars and commits results might be off when using the public API. These limits do not apply when you deploy [your own Vercel instance](#deploy-on-your-own-vercel-instance), so in that case, you do not have to worry about anything! Click on [the deploy button](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats) and follow the video or step-to-step guides below to get started! :rocket:
+
+[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 > **Warning**
 > If you are on the [hobby (i.e. free)](https://vercel.com/pricing) Vercel plan, please make sure you change the `maxDuration` parameter in the [vercel.json](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json) file from `30` to `10` (see [#1416](https://github.com/anuraghazra/github-readme-stats/issues/1416#issuecomment-950275476) for more information).
 
-Since the GitHub API only allows 5k requests per hour, my `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter. If you host it on your own Vercel server, then you do not have to worry about anything. Click on the deploy button to get started!
-
-> **Note**
-> Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58), we should be able to handle more than 5k requests and have fewer issues with downtime :grin:.
-
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
+#### :film_projector: [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
 <details>
  <summary><b>:hammer_and_wrench: Step-by-step guide on setting up your own Vercel instance</b></summary>

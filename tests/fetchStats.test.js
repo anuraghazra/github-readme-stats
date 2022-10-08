@@ -4,6 +4,7 @@ import MockAdapter from "axios-mock-adapter";
 import { calculateRank } from "../src/calculateRank.js";
 import { fetchStats } from "../src/fetchers/stats-fetcher.js";
 
+// Test parameters.
 const data = {
   data: {
     user: {
@@ -93,13 +94,14 @@ const error = {
 const mock = new MockAdapter(axios);
 
 beforeEach(() => {
+  process.env.FETCH_SINGLE_PAGE_STARS = "true"; // Set to true to fetch only one page of stars.
   mock
     .onPost("https://api.github.com/graphql")
     .replyOnce(200, data)
     .onPost("https://api.github.com/graphql")
-    .replyOnce(200, firstRepositoriesData);
-  // .onPost("https://api.github.com/graphql") // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
-  // .replyOnce(200, secondRepositoriesData); // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+    .replyOnce(200, firstRepositoriesData)
+    .onPost("https://api.github.com/graphql")
+    .replyOnce(200, secondRepositoriesData);
 });
 
 afterEach(() => {
@@ -114,8 +116,7 @@ describe("Test fetchStats", () => {
       totalRepos: 5,
       followers: 100,
       contributions: 61,
-      // stargazers: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
-      stargazers: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      stargazers: 300,
       prs: 300,
       issues: 200,
     });
@@ -126,8 +127,7 @@ describe("Test fetchStats", () => {
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,
-      // totalStars: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
-      totalStars: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      totalStars: 300,
       rank,
     });
   });
@@ -178,8 +178,7 @@ describe("Test fetchStats", () => {
       totalRepos: 5,
       followers: 100,
       contributions: 61,
-      // stargazers: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
-      stargazers: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      stargazers: 300,
       prs: 300,
       issues: 200,
     });
@@ -190,8 +189,7 @@ describe("Test fetchStats", () => {
       totalCommits: 150,
       totalIssues: 200,
       totalPRs: 300,
-      // totalStars: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
-      totalStars: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      totalStars: 300,
       rank,
     });
   });
@@ -207,8 +205,7 @@ describe("Test fetchStats", () => {
       totalRepos: 5,
       followers: 100,
       contributions: 61,
-      // stargazers: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
-      stargazers: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      stargazers: 300,
       prs: 300,
       issues: 200,
     });
@@ -219,8 +216,7 @@ describe("Test fetchStats", () => {
       totalCommits: 1050,
       totalIssues: 200,
       totalPRs: 300,
-      // totalStars: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
-      totalStars: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      totalStars: 300,
       rank,
     });
   });
@@ -236,8 +232,7 @@ describe("Test fetchStats", () => {
       totalRepos: 5,
       followers: 100,
       contributions: 61,
-      // stargazers: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
-      stargazers: 200, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      stargazers: 200,
       prs: 300,
       issues: 200,
     });
@@ -248,8 +243,57 @@ describe("Test fetchStats", () => {
       totalCommits: 1050,
       totalIssues: 200,
       totalPRs: 300,
-      // totalStars: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
-      totalStars: 200, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      totalStars: 200,
+      rank,
+    });
+  });
+
+  it("should fetch two pages of stars if 'FETCH_SINGLE_PAGE_STARS' env variable is not defined", async () => {
+    process.env.FETCH_SINGLE_PAGE_STARS = undefined;
+
+    let stats = await fetchStats("anuraghazra");
+    const rank = calculateRank({
+      totalCommits: 100,
+      totalRepos: 5,
+      followers: 100,
+      contributions: 61,
+      stargazers: 400,
+      prs: 300,
+      issues: 200,
+    });
+
+    expect(stats).toStrictEqual({
+      contributedTo: 61,
+      name: "Anurag Hazra",
+      totalCommits: 100,
+      totalIssues: 200,
+      totalPRs: 300,
+      totalStars: 400,
+      rank,
+    });
+  });
+
+  it("should fetch two pages of stars if 'FETCH_SINGLE_PAGE_STARS' env variable is set to `false`", async () => {
+    process.env.FETCH_SINGLE_PAGE_STARS = "false";
+
+    let stats = await fetchStats("anuraghazra");
+    const rank = calculateRank({
+      totalCommits: 100,
+      totalRepos: 5,
+      followers: 100,
+      contributions: 61,
+      stargazers: 400,
+      prs: 300,
+      issues: 200,
+    });
+
+    expect(stats).toStrictEqual({
+      contributedTo: 61,
+      name: "Anurag Hazra",
+      totalCommits: 100,
+      totalIssues: 200,
+      totalPRs: 300,
+      totalStars: 400,
       rank,
     });
   });
