@@ -263,7 +263,9 @@ describe("Test renderStatsCard", () => {
     expect(statClassStyles.fill.trim()).toBe(`#${customColors.text_color}`);
     expect(iconClassStyles.fill.trim()).toBe(`#${customColors.icon_color}`);
     expect(rankCircleStyles.stroke.trim()).toBe(`#${customColors.ring_color}`);
-    expect(rankCircleRimStyles.stroke.trim()).toBe(`#${customColors.ring_color}`);
+    expect(rankCircleRimStyles.stroke.trim()).toBe(
+      `#${customColors.ring_color}`,
+    );
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#252525",

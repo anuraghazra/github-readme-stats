@@ -133,10 +133,10 @@ function isValidGradient(colors) {
  * @returns {string | string[]} The gradient or color.
  */
 function fallbackColor(color, fallbackColor) {
-  let colors = color?.split(",");
   let gradient = null;
 
-  if (colors?.length > 1 && isValidGradient(colors)) {
+  let colors = color ? color.split(",") : [];
+  if (colors.length > 1 && isValidGradient(colors)) {
     gradient = colors;
   }
 
@@ -203,11 +203,11 @@ function flexLayout({ items, gap, direction, sizes = [] }) {
  */
 function getCardColors({
   title_color,
-  ring_color,
   text_color,
   icon_color,
   bg_color,
   border_color,
+  ring_color,
   theme,
   fallbackTheme = "default",
 }) {
@@ -247,7 +247,7 @@ function getCardColors({
     "#" + defaultBorderColor,
   );
 
-  return { titleColor, ringColor, iconColor, textColor, bgColor, borderColor };
+  return { titleColor, iconColor, textColor, bgColor, borderColor, ringColor };
 }
 
 /**

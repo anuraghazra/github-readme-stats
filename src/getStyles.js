@@ -75,9 +75,9 @@ const getAnimations = () => {
  */
 const getStyles = ({
   titleColor,
-  ringColor,
   textColor,
   iconColor,
+  ringColor,
   show_icons,
   progress,
 }) => {
