@@ -367,6 +367,13 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  atomic_green: {
+    title_color: "158329",
+    icon_color: "078634",
+    text_color: "efedef",
+    bg_color: "050c07",
+    border_color: "978634",
+  },
 };
 
 export default themes;
