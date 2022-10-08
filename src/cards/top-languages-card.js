@@ -248,7 +248,7 @@ const useLanguages = (topLangs, hide, langs_count, merge_others) => {
       return !langsToHide[lowercaseTrim(lang.name)];
     });
 
-  if (merge_others) {
+  if (merge_others && langs.length > langsCountClamped) {
     // Return 'langs_count' -1 top languages and merge the rest of the languages into "others" category.
     const others = langs.splice(langsCountClamped - 1);
     const othersSize = others.reduce((accumulator, object) => {

@@ -58,6 +58,95 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
+  const langs2 = {
+    python: {
+      color: "#f00",
+      name: "python",
+      size: 500,
+    },
+    HTML: {
+      color: "#0f0",
+      name: "HTML",
+      size: 200,
+    },
+    javascript: {
+      color: "#0ff",
+      name: "javascript",
+      size: 200,
+    },
+    css: {
+      color: "#ff0",
+      name: "css",
+      size: 100,
+    },
+  }
+
+
+  it("should merge others when langs is more than langs_count", () => {
+    document.body.innerHTML = renderTopLanguages(langs2, {
+      langs_count: 3,
+      merge_others: true,
+    });
+
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
+      "python",
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
+      "HTML",
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
+      "Others",
+    );
+    expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
+      "width",
+      "50%",
+    );
+    expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
+      "width",
+      "20%",
+    );
+    expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
+      "width",
+      "30%",
+    );
+  });
+
+  it("shouldn't merge others when langs is less than langs_count", () => {
+    document.body.innerHTML = renderTopLanguages(langs2, {
+      langs_count: 4,
+      merge_others: true,
+    });
+
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
+      "python",
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
+      "HTML",
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
+      "javascript",
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[3]).toHaveTextContent(
+      "css",
+    );
+    expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
+      "width",
+      "50%",
+    );
+    expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
+      "width",
+      "20%",
+    );
+    expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
+      "width",
+      "20%",
+    );
+    expect(queryAllByTestId(document.body, "lang-progress")[3]).toHaveAttribute(
+      "width",
+      "10%",
+    );
+  });
+
   it("should hide languages when hide is passed", () => {
     document.body.innerHTML = renderTopLanguages(langs, {
       hide: ["HTML"],
