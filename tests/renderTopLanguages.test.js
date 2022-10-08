@@ -79,8 +79,7 @@ describe("Test renderTopLanguages", () => {
       name: "css",
       size: 100,
     },
-  }
-
+  };
 
   it("should merge others when langs is more than langs_count", () => {
     document.body.innerHTML = renderTopLanguages(langs2, {
