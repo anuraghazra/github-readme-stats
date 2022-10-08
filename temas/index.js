@@ -211,10 +211,10 @@ export const themes = {
     bg_color: "1f2430",
   },
   "midnight-purple": {
-    title_color: "9745f5",
-    icon_color: "9f4bff",
+    title_color: "C77DFF",
+    icon_color: "00bfbf",
     text_color: "ffffff",
-    bg_color: "000000",
+    bg_color: "0d1117",
   },
   calm: {
     title_color: "e07a5f",
