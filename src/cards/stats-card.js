@@ -34,10 +34,9 @@ const createTextNode = ({
   showIcons,
   shiftValuePos,
   bold,
-  format_stats,
+  short_values,
 }) => {
-  const kValue = format_stats ? kFormatter(value) : value;
-  console.log(kValue, format_stats);
+  const kValue = short_values ? kFormatter(value) : value;
   const staggerDelay = (index + 3) * 150;
 
   const labelOffset = showIcons ? `x="25"` : "";
@@ -99,7 +98,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     custom_title,
     border_radius,
     border_color,
-    format_stats = true,
+    short_values = true,
     locale,
     disable_animations = false,
   } = options;
@@ -188,7 +187,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         shiftValuePos:
           (!include_all_commits ? 50 : 35) + (isLongLocale ? 50 : 0),
         bold: text_bold,
-        format_stats,
+        short_values,
       }),
     );
 
