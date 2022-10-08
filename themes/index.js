@@ -368,11 +368,11 @@ export const themes = {
     bg_color: "191724",
   },
   blue_amar: {
-    title_color: "d41e8b",
-    icon_color: "d41e9f",
-    text_color: "eebde0",
-    bg_color: "420cca",
-    border_color: "a41b7b",
+    title_color: "ee1bc7",
+    icon_color: "ed1ae5",
+    text_color: "eeedef",
+    bg_color: "160467",
+    border_color: "210469",
   },
 };
 
