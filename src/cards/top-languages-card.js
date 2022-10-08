@@ -234,11 +234,11 @@ const renderDonutLayout = (langs, width, height, totalLanguageSize) => {
   
   const pieData = pie(langs);
 
-  const xPadding = 50;
-  const yPadding = 60;
+  const xPadding = 80;
+  const yPadding = 90;
 
-  const widthOffset = 80;
-  const heightOffset = 25;
+  const widthOffset = 50;
+  const heightOffset = 60;
   
   const margin = 10;
   const radius = ((width - widthOffset) - 2 * margin - yPadding) / 2;
@@ -288,12 +288,14 @@ const renderDonutLayout = (langs, width, height, totalLanguageSize) => {
   const donut = body.select('.container').html();
 
   return `
-    <g transform="translate(0, -21)">
-      <g transform="translate(0, 42)">
+    <g transform="translate(0, 0)">
+      <g transform="translate(0, 0)">
         ${createDonutTextNode(langs, totalLanguageSize)}
       </g>
 
-      ${donut}
+      <g transform="translate(0, -25.36)">
+        ${donut}    
+      </g>
     </g>
   `;
 };
@@ -401,8 +403,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
     finalLayout = renderCompactLayout(langs, width, totalLanguageSize);
   } else if (layout === "pie") {
-    height = height - 25 // padding
-    width = width + 80; // padding
+    height = height - 60 // padding
+    width = width + 50; // padding
     finalLayout = renderDonutLayout(langs, width, height, totalLanguageSize);
   } else {
     finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
