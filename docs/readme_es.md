@@ -104,9 +104,9 @@ _Nota: Si estás desplegando este proyecto tú mismo, las contribuciones privada
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
-### Mostrar íconos
+### Mostrar iconos
 
-Para habilitar los íconos, puedes utilizar `show_icons=true` como parámetro, de esta manera:
+Para habilitar los iconos, puedes utilizar `show_icons=true` como parámetro, de esta manera:
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -205,7 +205,7 @@ Los pines adicionales de GitHub le permiten fijar más de 6 repositorios en su p
 
 ### Utilización
 
-Copia y pegua este código en tu Readme y cambia los enlaces.
+Copia y pega este código en tu Readme y cambia los enlaces.
 
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
@@ -279,7 +279,7 @@ Puedes usar la opción `& layout = compact` para cambiar el diseño de la tarjet
 
 # Estadísticas de la semana de Wakatime
 
-cambia el valor del parámetro `?username=` a tu username en [Wakatime](https://wakatime.com).
+Cambia el valor del parámetro `?username=` a tu username en [Wakatime](https://wakatime.com).
 
 ```md
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
@@ -307,7 +307,7 @@ cambia el valor del parámetro `?username=` a tu username en [Wakatime](https://
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
 
-- Mostrando íconos
+- Mostrando iconos
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
