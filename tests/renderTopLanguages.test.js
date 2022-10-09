@@ -9,25 +9,25 @@ import "@testing-library/jest-dom";
 
 import { themes } from "../themes/index.js";
 
-describe("Test renderTopLanguages", () => {
-  const langs = {
-    HTML: {
-      color: "#0f0",
-      name: "HTML",
-      size: 200,
-    },
-    javascript: {
-      color: "#0ff",
-      name: "javascript",
-      size: 200,
-    },
-    css: {
-      color: "#ff0",
-      name: "css",
-      size: 100,
-    },
-  };
+const langs = {
+  HTML: {
+    color: "#0f0",
+    name: "HTML",
+    size: 200,
+  },
+  javascript: {
+    color: "#0ff",
+    name: "javascript",
+    size: 200,
+  },
+  css: {
+    color: "#ff0",
+    name: "css",
+    size: 100,
+  },
+};
 
+describe("Test renderTopLanguages", () => {
   it("should render correctly", () => {
     document.body.innerHTML = renderTopLanguages(langs);
 
@@ -58,91 +58,88 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
-  const langs2 = {
-    python: {
-      color: "#f00",
-      name: "python",
-      size: 500,
-    },
-    HTML: {
-      color: "#0f0",
-      name: "HTML",
-      size: 200,
-    },
-    javascript: {
-      color: "#0ff",
-      name: "javascript",
-      size: 200,
-    },
-    css: {
-      color: "#ff0",
-      name: "css",
-      size: 100,
-    },
-  };
-
   it("should merge others when langs is more than langs_count", () => {
-    document.body.innerHTML = renderTopLanguages(langs2, {
-      langs_count: 3,
-      merge_others: true,
-    });
+    document.body.innerHTML = renderTopLanguages(
+      {
+        ...langs,
+        python: {
+          color: "#ff0",
+          name: "python",
+          size: 100,
+        },
+      },
+      {
+        langs_count: 3,
+        merge_others: true,
+      },
+    );
 
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
-      "python",
+      "HTML",
     );
     expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
-      "HTML",
+      "javascript",
     );
     expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
       "Others",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
       "width",
-      "50%",
+      "33.33%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
       "width",
-      "20%",
+      "33.33%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
       "width",
-      "30%",
+      "33.33%",
     );
   });
 
   it("shouldn't merge others when langs is less than langs_count", () => {
-    document.body.innerHTML = renderTopLanguages(langs2, {
-      langs_count: 4,
-      merge_others: true,
-    });
+    document.body.innerHTML = renderTopLanguages(
+      {
+        ...langs,
+        python: {
+          color: "#ff0",
+          name: "python",
+          size: 100,
+        },
+      },
+      {
+        langs_count: 4,
+        merge_others: true,
+      },
+    );
 
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
-      "python",
-    );
-    expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
       "HTML",
     );
-    expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
       "javascript",
     );
-    expect(queryAllByTestId(document.body, "lang-name")[3]).toHaveTextContent(
+    expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
       "css",
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[3]).toHaveTextContent(
+      "python",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
       "width",
-      "50%",
+      "33.33%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
       "width",
-      "20%",
+      "33.33%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
       "width",
-      "20%",
+      "16.67%",
     );
     expect(queryAllByTestId(document.body, "lang-progress")[3]).toHaveAttribute(
       "width",
-      "10%",
+      "16.67%",
     );
   });
 
