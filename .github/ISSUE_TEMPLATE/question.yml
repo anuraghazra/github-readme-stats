@@ -1,0 +1,9 @@
+name: Question
+description: Ask a question
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We use the Issues tab for bug reports and feature requests. If you have a question, please start a discussion in the Discussions tab.
+
+        [![Start New Discussion](https://dabuttonfactory.com/button.png?t=Start+New+Discussion&f=Roboto-Bold&ts=26&tc=fff&hp=45&vp=20&c=11&bgt=unicolored&bgc=238636)](https://github.com/anuraghazra/github-readme-stats/discussions/new)
