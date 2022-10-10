@@ -5,7 +5,7 @@ import { calculateRank } from "../src/calculateRank.js";
 import { fetchStats } from "../src/fetchers/stats-fetcher.js";
 
 // Test parameters.
-const data = {
+const data_stats = {
   data: {
     user: {
       name: "Anurag Hazra",
@@ -20,15 +20,6 @@ const data = {
       followers: { totalCount: 100 },
       repositories: {
         totalCount: 5,
-      },
-    },
-  },
-};
-
-const firstRepositoriesData = {
-  data: {
-    user: {
-      repositories: {
         nodes: [
           { name: "test-repo-1", stargazers: { totalCount: 100 } },
           { name: "test-repo-2", stargazers: { totalCount: 100 } },
@@ -43,7 +34,7 @@ const firstRepositoriesData = {
   },
 };
 
-const secondRepositoriesData = {
+const data_repo = {
   data: {
     user: {
       repositories: {
@@ -60,7 +51,7 @@ const secondRepositoriesData = {
   },
 };
 
-const repositoriesWithZeroStarsData = {
+const data_repo_zero_stars = {
   data: {
     user: {
       repositories: {
@@ -94,14 +85,12 @@ const error = {
 const mock = new MockAdapter(axios);
 
 beforeEach(() => {
-  process.env.FETCH_SINGLE_PAGE_STARS = "true"; // Set to true to fetch only one page of stars.
+  process.env.FETCH_MULTI_PAGE_STARS = "false"; // Set to `false` to fetch only one page of stars.
   mock
     .onPost("https://api.github.com/graphql")
-    .replyOnce(200, data)
+    .replyOnce(200, data_stats)
     .onPost("https://api.github.com/graphql")
-    .replyOnce(200, firstRepositoriesData)
-    .onPost("https://api.github.com/graphql")
-    .replyOnce(200, secondRepositoriesData);
+    .replyOnce(200, data_repo);
 });
 
 afterEach(() => {
@@ -136,9 +125,9 @@ describe("Test fetchStats", () => {
     mock.reset();
     mock
       .onPost("https://api.github.com/graphql")
-      .replyOnce(200, data)
+      .replyOnce(200, data_stats)
       .onPost("https://api.github.com/graphql")
-      .replyOnce(200, repositoriesWithZeroStarsData);
+      .replyOnce(200, data_repo_zero_stars);
 
     let stats = await fetchStats("anuraghazra");
     const rank = calculateRank({
@@ -248,8 +237,8 @@ describe("Test fetchStats", () => {
     });
   });
 
-  it("should fetch two pages of stars if 'FETCH_SINGLE_PAGE_STARS' env variable is not defined", async () => {
-    process.env.FETCH_SINGLE_PAGE_STARS = undefined;
+  it("should fetch two pages of stars if 'FETCH_MULTI_PAGE_STARS' env variable is set to `true`", async () => {
+    process.env.FETCH_MULTI_PAGE_STARS = true;
 
     let stats = await fetchStats("anuraghazra");
     const rank = calculateRank({
@@ -273,8 +262,8 @@ describe("Test fetchStats", () => {
     });
   });
 
-  it("should fetch two pages of stars if 'FETCH_SINGLE_PAGE_STARS' env variable is set to `false`", async () => {
-    process.env.FETCH_SINGLE_PAGE_STARS = "false";
+  it("should fetch one page of stars if 'FETCH_MULTI_PAGE_STARS' env variable is set to `false`", async () => {
+    process.env.FETCH_MULTI_PAGE_STARS = "false";
 
     let stats = await fetchStats("anuraghazra");
     const rank = calculateRank({
@@ -282,7 +271,7 @@ describe("Test fetchStats", () => {
       totalRepos: 5,
       followers: 100,
       contributions: 61,
-      stargazers: 400,
+      stargazers: 300,
       prs: 300,
       issues: 200,
     });
@@ -293,7 +282,32 @@ describe("Test fetchStats", () => {
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,
-      totalStars: 400,
+      totalStars: 300,
+      rank,
+    });
+  });
+
+  it("should fetch one page of stars if 'FETCH_MULTI_PAGE_STARS' env variable is not set", async () => {
+    process.env.FETCH_MULTI_PAGE_STARS = undefined;
+
+    let stats = await fetchStats("anuraghazra");
+    const rank = calculateRank({
+      totalCommits: 100,
+      totalRepos: 5,
+      followers: 100,
+      contributions: 61,
+      stargazers: 300,
+      prs: 300,
+      issues: 200,
+    });
+
+    expect(stats).toStrictEqual({
+      contributedTo: 61,
+      name: "Anurag Hazra",
+      totalCommits: 100,
+      totalIssues: 200,
+      totalPRs: 300,
+      totalStars: 300,
       rank,
     });
   });
