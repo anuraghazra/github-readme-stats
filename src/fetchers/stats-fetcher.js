@@ -21,11 +21,11 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!, $starttime: DateTime!) {
         user(login: $login) {
           name
           login
-          contributionsCollection {
+          contributionsCollection(from: $starttime) {
             totalCommitContributions
             restrictedContributionsCount
           }
@@ -41,7 +41,6 @@ const fetcher = (variables, token) => {
           closedIssues: issues(states: CLOSED) {
             totalCount
           }
-          
           followers {
             totalCount
           }
