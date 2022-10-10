@@ -326,7 +326,7 @@ describe("Test renderStatsCard", () => {
 
     document.body.innerHTML = renderStatsCard(stats);
     expect(getByTestId(document.body, "commits").textContent).toBe("2k");
-    document.body.innerHTML = renderStatsCard(stats, { short_values: false });
+    document.body.innerHTML = renderStatsCard(stats, { number_format: "long" });
     expect(getByTestId(document.body, "commits").textContent).toBe("1999");
   });
 });
