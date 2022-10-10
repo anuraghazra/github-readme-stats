@@ -11,7 +11,6 @@ import { renderStatsCard } from "../../src/cards/stats-card.js";
 import { renderTopLanguages } from "../../src/cards/top-languages-card.js";
 import { renderWakatimeCard } from "../../src/cards/wakatime-card.js";
 
-// Script variables
 const REPO = "dummy-cra";
 const USER = "grsdummy";
 const STATS_DATA = {
@@ -26,6 +25,7 @@ const STATS_DATA = {
     score: 51.01013099671447,
   },
 };
+
 const LANGS_DATA = {
   TypeScript: {
     color: "#3178c6",
@@ -48,6 +48,7 @@ const LANGS_DATA = {
     size: 671,
   },
 };
+
 const WAKATIME_DATA = {
   human_readable_range: "last week",
   is_already_updating: false,
@@ -64,6 +65,7 @@ const WAKATIME_DATA = {
   username: "grsdummy",
   writes_only: false,
 };
+
 const REPOSITORY_DATA = {
   name: "dummy-cra",
   nameWithOwner: "grsdummy/dummy-cra",
@@ -82,6 +84,8 @@ const REPOSITORY_DATA = {
   forkCount: 0,
   starCount: 1,
 };
+
+const CACHE_BURST_STRING = `v=${new Date().getTime()}`;
 
 describe("Fetch Cards", () => {
   let VERCEL_PREVIEW_URL;
@@ -104,19 +108,24 @@ describe("Fetch Cards", () => {
 
     // Get the Vercel preview stats card response.
     const serverStatsSvg = await axios.get(
-      `${VERCEL_PREVIEW_URL}/api?username=${USER}`,
+      `${VERCEL_PREVIEW_URL}/api?username=${USER}&${CACHE_BURST_STRING}`,
     );
 
     // Check if stats card from deployment matches the stats card from local.
     expect(serverStatsSvg.data).toEqual(localStatsCardSVG);
-  });
+  }, 6000);
 
   test("retrieve language card", async () => {
     expect(VERCEL_PREVIEW_URL).toBeDefined();
 
     // Check if the Vercel preview instance language card function is up and running.
+    console.log(
+      `${VERCEL_PREVIEW_URL}/api/top-langs/?username=${USER}&${CACHE_BURST_STRING}`,
+    );
     await expect(
-      axios.get(`${VERCEL_PREVIEW_URL}/api/top-langs/?username=${USER}`),
+      axios.get(
+        `${VERCEL_PREVIEW_URL}/api/top-langs/?username=${USER}&${CACHE_BURST_STRING}`,
+      ),
     ).resolves.not.toThrow();
 
     // Get local language card.
@@ -124,7 +133,7 @@ describe("Fetch Cards", () => {
 
     // Get the Vercel preview language card response.
     const severLanguageSVG = await axios.get(
-      `${VERCEL_PREVIEW_URL}/api/top-langs/?username=${USER}`,
+      `${VERCEL_PREVIEW_URL}/api/top-langs/?username=${USER}&${CACHE_BURST_STRING}`,
     );
 
     // Check if language card from deployment matches the local language card.
@@ -144,7 +153,7 @@ describe("Fetch Cards", () => {
 
     // Get the Vercel preview WakaTime card response.
     const serverWakaTimeSvg = await axios.get(
-      `${VERCEL_PREVIEW_URL}/api/wakatime?username=${USER}`,
+      `${VERCEL_PREVIEW_URL}/api/wakatime?username=${USER}&${CACHE_BURST_STRING}`,
     );
 
     // Check if WakaTime card from deployment matches the local WakaTime card.
@@ -156,7 +165,9 @@ describe("Fetch Cards", () => {
 
     // Check if the Vercel preview instance Repo function is up and running.
     await expect(
-      axios.get(`${VERCEL_PREVIEW_URL}/api/pin/?username=${USER}&repo=${REPO}`),
+      axios.get(
+        `${VERCEL_PREVIEW_URL}/api/pin/?username=${USER}&repo=${REPO}&${CACHE_BURST_STRING}`,
+      ),
     ).resolves.not.toThrow();
 
     // Get local repo card.
@@ -164,7 +175,7 @@ describe("Fetch Cards", () => {
 
     // Get the Vercel preview repo card response.
     const serverRepoSvg = await axios.get(
-      `${VERCEL_PREVIEW_URL}/api/pin/?username=${USER}&repo=${REPO}`,
+      `${VERCEL_PREVIEW_URL}/api/pin/?username=${USER}&repo=${REPO}&${CACHE_BURST_STRING}`,
     );
 
     // Check if Repo card from deployment matches the local Repo card.

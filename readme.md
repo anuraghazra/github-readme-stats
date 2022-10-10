@@ -62,7 +62,8 @@
     <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
-<p align="center">Love the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!
+
+<p align="center">Love the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!</p>
 
 <a href="https://indiafightscorona.giveindia.org">
   <img src="https://indiaspora.org/wp-content/uploads/2021/04/give-India-logo.png" alt="Give india logo" width="200" />
@@ -79,38 +80,19 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
 
 # Features
 
-- [Features](#features)
-- [GitHub Stats Card](#github-stats-card)
-    - [Hiding individual stats](#hiding-individual-stats)
-    - [Adding private contributions count to total commits count](#adding-private-contributions-count-to-total-commits-count)
-    - [Specifying Year](#specifying-year)
-    - [Showing icons](#showing-icons)
-    - [Themes](#themes)
-      - [All inbuilt themes](#all-inbuilt-themes)
-    - [Customization](#customization)
-      - [Common Options](#common-options)
-        - [Gradient in bg_color](#gradient-in-bg_color)
-      - [Stats Card Exclusive Options](#stats-card-exclusive-options)
-      - [Repo Card Exclusive Options](#repo-card-exclusive-options)
-      - [Language Card Exclusive Options](#language-card-exclusive-options)
-      - [Wakatime Card Exclusive Options](#wakatime-card-exclusive-options)
-- [GitHub Extra Pins](#github-extra-pins)
-    - [Usage](#usage)
-    - [Demo](#demo)
-- [Top Languages Card](#top-languages-card)
-    - [Usage](#usage-1)
-    - [Exclude individual repositories](#exclude-individual-repositories)
-    - [Hide individual languages](#hide-individual-languages)
-    - [Show more languages](#show-more-languages)
-    - [Compact Language Card Layout](#compact-language-card-layout)
-    - [Demo](#demo-1)
-- [Wakatime Week Stats](#wakatime-week-stats)
-    - [Demo](#demo-2)
-    - [All Demos](#all-demos)
-    - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
-  - [Deploy on your own Vercel instance](#deploy-on-your-own-vercel-instance)
-      - [Check Out Step By Step Video Tutorial By @codeSTACKr](#check-out-step-by-step-video-tutorial-by-codestackr)
-  - [:sparkling_heart: Support the project](#sparkling_heart-support-the-project)
+-   [GitHub Stats Card](#github-stats-card)
+-   [GitHub Extra Pins](#github-extra-pins)
+-   [Top Languages Card](#top-languages-card)
+-   [Wakatime Week Stats](#wakatime-week-stats)
+-   [Themes](#themes)
+-   [Customization](#customization)
+    -   [Common Options](#common-options)
+    -   [Stats Card Exclusive Options](#stats-card-exclusive-options)
+    -   [Repo Card Exclusive Options](#repo-card-exclusive-options)
+    -   [Language Card Exclusive Options](#language-card-exclusive-options)
+    -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
+-   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
+    - [Keep your fork up to date](#keep-your-fork-up-to-date)   
 
 # GitHub Stats Card
 
@@ -122,9 +104,8 @@ Change the `?username=` value to your GitHub username.
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Note: Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone).
-The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories.
-The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js)._
+> **Note**
+> Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone). The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories. The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js).
 
 ### Hiding individual stats
 
@@ -140,7 +121,8 @@ You can pass a query parameter `&hide=` to hide any specific stats with comma-se
 
 You can add the count of all your private contributions to the total commits count by using the query parameter `&count_private=true`.
 
-_Note: If you are deploying this project yourself, the private contributions will be counted by default. If you are using the public Vercel instance, you need to choose to [share your private contributions](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/showing-your-private-contributions-and-achievements-on-your-profile)._
+> **Note**
+> If you are deploying this project yourself, the private contributions will be counted by default. If you are using the public Vercel instance, you need to choose to [share your private contributions](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/showing-your-private-contributions-and-achievements-on-your-profile).
 
 > Options: `&count_private=true`
 
@@ -198,15 +180,14 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 -   `locale` - set the language in the card _(e.g. cn, de, es, etc.)_. Default: `en`.
 -   `border_radius` - Corner rounding on the card. Default: `4.5`.
 
-> Note: The minimum of cache_seconds is currently 4 hours as a temporary fix for PATs exhaustion.
+> **Warning**
+> We use caching to decrease the load on our servers (see https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours.
 
 ##### Gradient in bg_color
 
 You can provide multiple comma-separated values in the bg_color option to render a gradient with the following format:
 
     &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
-
-> Note on cache: Repo cards have a default cache of 4 hours (14400 seconds) if the fork count & star count is less than 1k; otherwise, it is 2 hours (7200 seconds). Also, note that the cache is clamped to a minimum of 2 hours and a maximum of 24 hours.
 
 #### Stats Card Exclusive Options
 
@@ -223,7 +204,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `text_bold` - Use bold text _(boolean)_. Default: `true`.
 -   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
 
-> Note on `hide_rank`:
+> **Note**
 > When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.
 
 #### Repo Card Exclusive Options
@@ -240,7 +221,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `exclude_repo` - Exclude specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
 -   `custom_title` - Sets a custom title for the card _(string)_. Default `Most Used Languages`.
 
-> :warning: **Important:**
+> **Warning**
 > Language names should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
 > (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
 > [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
@@ -287,7 +268,8 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 The top languages card shows a GitHub user's most frequently used top language.
 
-_NOTE: Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats._
+> **Note**
+> Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats._
 
 ### Usage
 
@@ -347,7 +329,8 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-> Note: Please be aware that we currently only show data from Wakatime profiles that are public.
+> **Note**:
+> Please be aware that we currently only show data from Wakatime profiles that are public.
 
 ### Demo
 
@@ -432,34 +415,42 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
+> **Warning**
+> If you are on the [hobby (i.e. free)](https://vercel.com/pricing) Vercel plan, please make sure you change the `maxDuration` parameter in the [vercel.json](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json) file from `30` to `10` (see [#1416](https://github.com/anuraghazra/github-readme-stats/issues/1416#issuecomment-950275476) for more information).
+
 Since the GitHub API only allows 5k requests per hour, my `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter. If you host it on your own Vercel server, then you do not have to worry about anything. Click on the deploy button to get started!
 
-NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we should be able to handle more than 5k requests and have no issues with downtime :D
+> **Note**
+> Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58), we should be able to handle more than 5k requests and have fewer issues with downtime :grin:.
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary><b> Guide on setting up Vercel  🔨 </b></summary>
+ <summary><b>:hammer_and_wrench: Step-by-step guide on setting up your own Vercel instance</b></summary>
 
-1.  Go to [vercel.com](https://vercel.com/)
-2.  Click on `Log in`
-    ![](https://files.catbox.moe/tct1wg.png)
-3.  Sign in with GitHub by pressing `Continue with GitHub`
-    ![](https://files.catbox.moe/btd78j.jpeg)
-4.  Sign in to GitHub and allow access to all repositories, if prompted
-5.  Fork this repo
-6.  After forking the repo, open the [`vercel.json`](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json#L5) file and change the `maxDuration` field to `10`
-7.  Go back to your [Vercel dashboard](https://vercel.com/dashboard)
-8.  Select `Import Project`
-    ![](https://files.catbox.moe/qckos0.png)
-9.  Select `Import Git Repository`. Select root and keep everything as is.
-    ![](https://files.catbox.moe/pqub9q.png)
-10. Create a personal access token (PAT) [here](https://github.com/settings/tokens/new) and enable the `repo` permissions (this allows access to see private repo stats)
+1.  Go to [vercel.com](https://vercel.com/).
+2.  Click on `Log in`.
+    ![](https://files.catbox.moe/pcxk33.png)
+3.  Sign in with GitHub by pressing `Continue with GitHub`.
+    ![](https://files.catbox.moe/b9oxey.png)
+4.  Sign in to GitHub and allow access to all repositories if prompted.
+5.  Fork this repo.
+6.  After forking the repo, open the [`vercel.json`](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json#L5) file and change the `maxDuration` field to `10`.
+7.  Go back to your [Vercel dashboard](https://vercel.com/dashboard).
+8.  To import a project, click the `Add New...` button and select the `Project` option.
+    ![](https://files.catbox.moe/3n76fh.png)
+9.  Click the `Continue with GitHub` button, search for the required Git Repository and import it by clicking the `Import` button. Alternatively, you can import a Third-Party Git Repository using the `Import Third-Party Git Repository ->` link at the bottom of the page.
+    ![](https://files.catbox.moe/mg5p04.png)
+10. Create a personal access token (PAT) [here](https://github.com/settings/tokens/new) and enable the `repo` permissions (this allows access to see private repo stats).
 11. Add the PAT as an environment variable named `PAT_1` (as shown).
-    ![](https://files.catbox.moe/0ez4g7.png)
+    ![](https://files.catbox.moe/0yclio.png)
 12. Click deploy, and you're good to go. See your domains to use the API!
 
 </details>
+
+### Keep your fork up to date
+
+You can keep your fork, and thus your private Vercel instance up to date with the upstream using GitHubs' [Sync Fork button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). You can also use the [pull](https://github.com/wei/pull) package created by [@wei](https://github.com/wei) to automate this process.
 
 ## :sparkling_heart: Support the project
 

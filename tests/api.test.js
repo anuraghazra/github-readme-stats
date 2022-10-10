@@ -40,7 +40,20 @@ const data = {
       followers: { totalCount: 0 },
       repositories: {
         totalCount: 1,
+      },
+    },
+  },
+};
+
+const repositoriesData = {
+  data: {
+    user: {
+      repositories: {
         nodes: [{ stargazers: { totalCount: 100 } }],
+        pageInfo: {
+          hasNextPage: false,
+          cursor: "cursor",
+        },
       },
     },
   },
@@ -70,7 +83,11 @@ const faker = (query, data) => {
     setHeader: jest.fn(),
     send: jest.fn(),
   };
-  mock.onPost("https://api.github.com/graphql").reply(200, data);
+  mock
+    .onPost("https://api.github.com/graphql")
+    .replyOnce(200, data)
+    .onPost("https://api.github.com/graphql")
+    .replyOnce(200, repositoriesData);
 
   return { req, res };
 };
@@ -138,7 +155,6 @@ describe("Test /api/", () => {
 
   it("should have proper cache", async () => {
     const { req, res } = faker({}, data);
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
 
     await api(req, res);
 
@@ -155,6 +171,16 @@ describe("Test /api/", () => {
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
       ["Cache-Control", `public, max-age=${15000}`],
+    ]);
+  });
+
+  it("should not store cache when error", async () => {
+    const { req, res } = faker({}, error);
+    await api(req, res);
+
+    expect(res.setHeader.mock.calls).toEqual([
+      ["Content-Type", "image/svg+xml"],
+      ["Cache-Control", `no-store`],
     ]);
   });
 
