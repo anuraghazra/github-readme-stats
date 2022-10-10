@@ -79,18 +79,38 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
 
 # Features
 
--   [GitHub Stats Card](#github-stats-card)
--   [GitHub Extra Pins](#github-extra-pins)
--   [Top Languages Card](#top-languages-card)
--   [Wakatime Week Stats](#wakatime-week-stats)
--   [Themes](#themes)
--   [Customization](#customization)
-    -   [Common Options](#common-options)
-    -   [Stats Card Exclusive Options](#stats-card-exclusive-options)
-    -   [Repo Card Exclusive Options](#repo-card-exclusive-options)
-    -   [Language Card Exclusive Options](#language-card-exclusive-options)
-    -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
--   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
+- [Features](#features)
+- [GitHub Stats Card](#github-stats-card)
+    - [Hiding individual stats](#hiding-individual-stats)
+    - [Adding private contributions count to total commits count](#adding-private-contributions-count-to-total-commits-count)
+    - [Specifying Year](#specifying-year)
+    - [Showing icons](#showing-icons)
+    - [Themes](#themes)
+      - [All inbuilt themes](#all-inbuilt-themes)
+    - [Customization](#customization)
+      - [Common Options](#common-options)
+        - [Gradient in bg_color](#gradient-in-bg_color)
+      - [Stats Card Exclusive Options](#stats-card-exclusive-options)
+      - [Repo Card Exclusive Options](#repo-card-exclusive-options)
+      - [Language Card Exclusive Options](#language-card-exclusive-options)
+      - [Wakatime Card Exclusive Options](#wakatime-card-exclusive-options)
+- [GitHub Extra Pins](#github-extra-pins)
+    - [Usage](#usage)
+    - [Demo](#demo)
+- [Top Languages Card](#top-languages-card)
+    - [Usage](#usage-1)
+    - [Exclude individual repositories](#exclude-individual-repositories)
+    - [Hide individual languages](#hide-individual-languages)
+    - [Show more languages](#show-more-languages)
+    - [Compact Language Card Layout](#compact-language-card-layout)
+    - [Demo](#demo-1)
+- [Wakatime Week Stats](#wakatime-week-stats)
+    - [Demo](#demo-2)
+    - [All Demos](#all-demos)
+    - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
+  - [Deploy on your own Vercel instance](#deploy-on-your-own-vercel-instance)
+      - [Check Out Step By Step Video Tutorial By @codeSTACKr](#check-out-step-by-step-video-tutorial-by-codestackr)
+  - [:sparkling_heart: Support the project](#sparkling_heart-support-the-project)
 
 # GitHub Stats Card
 
@@ -128,6 +148,13 @@ _Note: If you are deploying this project yourself, the private contributions wil
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
+### Specifying Year
+
+You can specify a year and fetch only the commits that were made in that year by passing `&year=YYYY` to the parameter.
+
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&year=2020)
+```
 ### Showing icons
 
 To enable icons, you can pass `show_icons=true` in the query param, like so:
