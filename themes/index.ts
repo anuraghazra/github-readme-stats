@@ -1,4 +1,16 @@
-export const themes = {
+interface ThemeProperty {
+  title_color: string;
+  icon_color: string;
+  text_color: string;
+  bg_color: string;
+  border_color: string;
+}
+
+interface Theme {
+  [index: string]: ThemeProperty;
+}
+
+export const themes: Theme = {
   default: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
