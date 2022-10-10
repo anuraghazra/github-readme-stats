@@ -13,6 +13,7 @@ const data_stats = {
       contributionsCollection: {
         totalCommitContributions: 100,
         restrictedContributionsCount: 50,
+        contributionYears: [2022, 2021, 2020, 2019, 2018, 2017, 2016],
       },
       pullRequests: { totalCount: 300 },
       openIssues: { totalCount: 100 },
@@ -185,13 +186,9 @@ describe("Test fetchStats", () => {
   });
 
   it("should fetch total commits", async () => {
-    mock
-      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
-      .reply(200, { total_count: 1000 });
-
     let stats = await fetchStats("anuraghazra", true, true);
     const rank = calculateRank({
-      totalCommits: 1050,
+      totalCommits: 1050, // (100 + 50) * 7
       totalRepos: 5,
       followers: 100,
       contributions: 61,
@@ -212,10 +209,6 @@ describe("Test fetchStats", () => {
   });
 
   it("should exclude stars of the `test-repo-1` repository", async () => {
-    mock
-      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
-      .reply(200, { total_count: 1000 });
-
     let stats = await fetchStats("anuraghazra", true, true, ["test-repo-1"]);
     const rank = calculateRank({
       totalCommits: 1050,
