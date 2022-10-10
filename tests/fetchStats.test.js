@@ -31,6 +31,33 @@ const data = {
   },
 };
 
+const data2 = {
+  data: {
+    user: {
+      name: "Anurag Hazra",
+      repositoriesContributedTo: { totalCount: 61 },
+      contributionsCollection: {
+        totalCommitContributions: 1000,
+        restrictedContributionsCount: 50,
+      },
+      pullRequests: { totalCount: 300 },
+      openIssues: { totalCount: 100 },
+      closedIssues: { totalCount: 100 },
+      followers: { totalCount: 100 },
+      repositories: {
+        totalCount: 5,
+        nodes: [
+          { name: "test-repo-1", stargazers: { totalCount: 100 } },
+          { name: "test-repo-2", stargazers: { totalCount: 100 } },
+          { name: "test-repo-3", stargazers: { totalCount: 100 } },
+          { name: "test-repo-4", stargazers: { totalCount: 50 } },
+          { name: "test-repo-5", stargazers: { totalCount: 50 } },
+        ],
+      },
+    },
+  },
+};
+
 const error = {
   errors: [
     {
@@ -159,6 +186,76 @@ describe("Test fetchStats", () => {
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 300,
+      rank,
+    });
+  });
+
+  it("should get present year commits when provide no year", async () => {
+    const data2003 = {...data, data: 
+      {...data.data, user: 
+        {...data.data.user, contributionsCollection: {
+      totalCommitContributions: 2003,
+      restrictedContributionsCount: 3,
+    }}}}
+    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+      if (cfg.data.includes("contributionsCollection(from: 2003-01-01T00:00:00Z)"))
+        return [200, data2003];
+      return [200, data];
+    });
+
+    let stats = await fetchStats("anuraghazra", true, false, []);
+    const rank = calculateRank({
+      totalCommits: 150,
+      totalRepos: 5,
+      followers: 100,
+      contributions: 61,
+      stargazers: 400,
+      prs: 300,
+      issues: 200,
+    });
+
+    expect(stats).toStrictEqual({
+      contributedTo: 61,
+      name: "Anurag Hazra",
+      totalCommits: 150,
+      totalIssues: 200,
+      totalPRs: 300,
+      totalStars: 400,
+      rank,
+    });
+  });
+
+  it("should get commits of provided year", async () => {
+    const data2003 = {...data, data: 
+      {...data.data, user: 
+        {...data.data.user, contributionsCollection: {
+      totalCommitContributions: 2003,
+      restrictedContributionsCount: 3,
+    }}}}
+    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+      if (cfg.data.includes(`"starttime":"2003-01-01T00:00:00Z"`)) 
+        return [200, data2003];
+      return [200, data];
+    });
+
+    let stats = await fetchStats("anuraghazra", true, false, [], 2003);
+    const rank = calculateRank({
+      totalCommits: 2006,
+      totalRepos: 5,
+      followers: 100,
+      contributions: 61,
+      stargazers: 400,
+      prs: 300,
+      issues: 200,
+    });
+
+    expect(stats).toStrictEqual({
+      contributedTo: 61,
+      name: "Anurag Hazra",
+      totalCommits: 2006,
+      totalIssues: 200,
+      totalPRs: 300,
+      totalStars: 400,
       rank,
     });
   });
