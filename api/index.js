@@ -50,12 +50,13 @@ export default async (req, res) => {
   }
 
   try {
-    const stats = await fetchStats(
+    const statsResp = await fetchStats(
       username,
       parseBoolean(count_private),
       parseBoolean(include_all_commits),
       parseArray(exclude_repo),
     );
+    const stats = statsResp.stats;
 
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
@@ -63,7 +64,11 @@ export default async (req, res) => {
       CONSTANTS.ONE_DAY,
     );
 
-    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    if (statsResp.success) {
+      res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    } else {
+      res.setHeader("Cache-Control", `no-cache, no-store, must-revalidate`); // Don't cache unsuccessful responses.
+    }
 
     return res.send(
       renderStatsCard(stats, {

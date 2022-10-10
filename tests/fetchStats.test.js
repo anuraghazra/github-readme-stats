@@ -108,7 +108,7 @@ afterEach(() => {
 
 describe("Test fetchStats", () => {
   it("should fetch correct stats", async () => {
-    let stats = await fetchStats("anuraghazra");
+    let { stats } = await fetchStats("anuraghazra");
     const rank = calculateRank({
       totalCommits: 100,
       totalRepos: 5,
@@ -140,7 +140,7 @@ describe("Test fetchStats", () => {
       .onPost("https://api.github.com/graphql")
       .replyOnce(200, repositoriesWithZeroStarsData);
 
-    let stats = await fetchStats("anuraghazra");
+    let { stats } = await fetchStats("anuraghazra");
     const rank = calculateRank({
       totalCommits: 100,
       totalRepos: 5,
@@ -172,7 +172,7 @@ describe("Test fetchStats", () => {
   });
 
   it("should fetch and add private contributions", async () => {
-    let stats = await fetchStats("anuraghazra", true);
+    let { stats } = await fetchStats("anuraghazra", true);
     const rank = calculateRank({
       totalCommits: 150,
       totalRepos: 5,
@@ -201,7 +201,7 @@ describe("Test fetchStats", () => {
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", true, true);
+    let { stats } = await fetchStats("anuraghazra", true, true);
     const rank = calculateRank({
       totalCommits: 1050,
       totalRepos: 5,
@@ -225,12 +225,37 @@ describe("Test fetchStats", () => {
     });
   });
 
+  it("should return `true` success boolean when 'include_all_commits' is `false`", async () => {
+    let { success } = await fetchStats("anuraghazra", true, false);
+    expect(success).toStrictEqual(true);
+  });
+
+  it("should return `true` success boolean when 'include_all_commits' is `true` and total commits were fetched successfully", async () => {
+    mock
+      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .reply(200, { total_count: 1000 });
+
+    let { success } = await fetchStats("anuraghazra", true, true);
+    expect(success).toStrictEqual(true);
+  });
+
+  it("should return `false` success boolean when 'include_all_commits' is `true` and total commits could not be fetched", async () => {
+    mock
+      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .reply(404, "Could not fetch total commits");
+
+    let { success } = await fetchStats("anuraghazra", true, true);
+    expect(success).toStrictEqual(false);
+  });
+
   it("should exclude stars of the `test-repo-1` repository", async () => {
     mock
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", true, true, ["test-repo-1"]);
+    let { stats } = await fetchStats("anuraghazra", true, true, [
+      "test-repo-1",
+    ]);
     const rank = calculateRank({
       totalCommits: 1050,
       totalRepos: 5,

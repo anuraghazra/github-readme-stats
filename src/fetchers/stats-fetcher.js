@@ -67,7 +67,7 @@ const fetcher = (variables, token) => {
  *
  * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
  * @param {string} token Github token.
- * @returns {Promise<import('../common/types').StatsFetcherResponse>} Repositories fetcher response.
+ * @returns {Promise<import('../common/types').RepositoriesFetcherResponse>} Repositories fetcher response.
  */
 const repositoriesFetcher = (variables, token) => {
   return request(
@@ -99,45 +99,53 @@ const repositoriesFetcher = (variables, token) => {
 };
 
 /**
+ * Fetch all commits for a given username.
+ *
+ * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token Github token.
+ * @returns {Promise<import('../common/types').TotalCommitsFetcherResponse>} Total commits fetcher response.
+ *
+ * @see https://developer.github.com/v3/search/#search-commits.
+ */
+const totalCommitsFetcher = (variables, token) => {
+  return axios({
+    method: "get",
+    url: `https://api.github.com/search/commits?q=author:${variables.login}`,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/vnd.github.cloak-preview",
+      Authorization: `token ${token}`,
+    },
+  });
+};
+
+/**
  * Fetch all the commits for all the repositories of a given username.
  *
  * @param {*} username Github username.
- * @returns {Promise<number>} Total commits.
+ * @returns {Promise<Object>} Object containing the total number of commits and a success boolean.
  *
  * @description Done like this because the Github API does not provide a way to fetch all the commits. See
  * #92#issuecomment-661026467 and #211 for more information.
  */
-const totalCommitsFetcher = async (username) => {
+const fetchTotalCommits = async (username) => {
   if (!githubUsernameRegex.test(username)) {
     logger.log("Invalid username");
-    return 0;
+    return { totalCommits: 0, success: false };
   }
 
-  // https://developer.github.com/v3/search/#search-commits
-  const fetchTotalCommits = (variables, token) => {
-    return axios({
-      method: "get",
-      url: `https://api.github.com/search/commits?q=author:${variables.login}`,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/vnd.github.cloak-preview",
-        Authorization: `token ${token}`,
-      },
-    });
-  };
-
   try {
-    let res = await retryer(fetchTotalCommits, { login: username });
+    let res = await retryer(totalCommitsFetcher, { login: username });
     let total_count = res.data.total_count;
     if (!!total_count && !isNaN(total_count)) {
-      return res.data.total_count;
+      return { totalCommits: res.data.total_count, success: true };
     }
   } catch (err) {
     logger.log(err);
   }
   // just return 0 if there is something wrong so that
   // we don't break the whole app
-  return 0;
+  return { totalCommits: 0, success: false };
 };
 
 /**
@@ -186,7 +194,7 @@ const totalStarsFetcher = async (username, repoToHide) => {
  * @param {string} username Github username.
  * @param {boolean} count_private Include private contributions.
  * @param {boolean} include_all_commits Include all commits.
- * @returns {Promise<import("./types").StatsData>} Stats data.
+ * @returns {Promise<Object>}  Object containing the stats data a success boolean that can be used to handle the caching behavior.
  */
 async function fetchStats(
   username,
@@ -247,9 +255,13 @@ async function fetchStats(
   stats.totalCommits = user.contributionsCollection.totalCommitContributions;
 
   // if include_all_commits then just get that,
-  // since totalCommitsFetcher already sends totalCommits no need to +=
+  // NOTE: Since fetchTotalCommits already sends totalCommits no need to +=.
+  let totalCommitsResp;
+  let success = true;
   if (include_all_commits) {
-    stats.totalCommits = await totalCommitsFetcher(username);
+    totalCommitsResp = await fetchTotalCommits(username);
+    stats.totalCommits = totalCommitsResp.totalCommits;
+    success = totalCommitsResp.success;
   }
 
   // if count_private then add private commits to totalCommits so far.
@@ -274,7 +286,7 @@ async function fetchStats(
     issues: stats.totalIssues,
   });
 
-  return stats;
+  return { stats, success };
 }
 
 export { fetchStats };
