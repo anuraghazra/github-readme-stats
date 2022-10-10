@@ -10,17 +10,17 @@ import "@testing-library/jest-dom";
 
 import { themes } from "../themes/index.js";
 
-describe("Test renderStatsCard", () => {
-  const stats = {
-    name: "Anurag Hazra",
-    totalStars: 100,
-    totalCommits: 200,
-    totalIssues: 300,
-    totalPRs: 400,
-    contributedTo: 500,
-    rank: { level: "A+", score: 40 },
-  };
+const stats = {
+  name: "Anurag Hazra",
+  totalStars: 100,
+  totalCommits: 200,
+  totalIssues: 300,
+  totalPRs: 400,
+  contributedTo: 500,
+  rank: { level: "A+", score: 40 },
+};
 
+describe("Test renderStatsCard", () => {
   it("should render correctly", () => {
     document.body.innerHTML = renderStatsCard(stats);
 
