@@ -94,12 +94,12 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
     -   [Language Card Exclusive Options](#language-card-exclusive-options)
     -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
 -   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
-    - [Keep your fork up to date](#keep-your-fork-up-to-date)   
+    -   [Disable rate limit protections](#disable-rate-limit-protections)
 
 # Important Notice
 
 > **Warning**
-> Since the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see #1471). Because of this, we have limited the public API to only fetch the first 100 repositories with stars and languages. As a result, for a very active GitHub account, the language, stars and commits results might be off when using the public API. These limits do not apply when you deploy [your own Vercel instance](#deploy-on-your-own-vercel-instance), so in that case, you do not have to worry about anything! :rocket:
+> Since the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see #1471). Because of this, we have limited the public API to only fetch the first 100 repositories with stars and languages. As a result, for a very active GitHub account, the language, stars and commits results might be off when using the public API. You can disable these rate limit protections by deploying [your own Vercel instance](#deploy-on-your-own-vercel-instance), so in that case, you will have more accurate results and do not have to worry about downtime! :rocket:
 
 # GitHub Stats Card
 
@@ -504,7 +504,7 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 ## Deploy on your own Vercel instance
 
-As explained [above](#important-notice) the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see #1471). Because of this, we have limited the public API to only fetch the first 100 repositories with stars and languages. As a result, for a very active GitHub account, the language, stars and commits results might be off when using the public API. These limits do not apply when you deploy [your own Vercel instance](#deploy-on-your-own-vercel-instance), so in that case, you do not have to worry about anything! Click on [the deploy button](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats) and follow the video or step-to-step guides below to get started! :rocket:
+As explained [above](#important-notice), the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see #1471). Because of this, we have limited the public API to only fetch the first 100 repositories with stars and languages. As a result, for a very active GitHub account, the language, stars and commits results might be off when using the public API. You can disable these [rate limit protections](#disable-rate-limit-protections) using Vercel environment variables when you deploy [your own Vercel instance](#deploy-on-your-own-vercel-instance), so in that case, you will have more accurate results and do not have to worry about downtime! Click on [the deploy button](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats) and follow the video or step-to-step guides below to get started! :rocket:
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
