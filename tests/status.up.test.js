@@ -38,6 +38,21 @@ const bad_credentials_error = {
   message: "Bad credentials",
 };
 
+const shields_up = {
+  schemaVersion: 1,
+  label: "Public Instance",
+  isError: true,
+  message: "up",
+  color: "brightgreen",
+};
+const shields_down = {
+  schemaVersion: 1,
+  label: "Public Instance",
+  isError: true,
+  message: "down",
+  color: "red",
+};
+
 afterEach(() => {
   mock.reset();
 });
@@ -61,6 +76,46 @@ describe("Test /api/status/up", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
     expect(res.send).toBeCalledWith(false);
+  });
+
+  it("should return JSON `true` if request was successful and type='json'", async () => {
+    mock.onPost("https://api.github.com/graphql").replyOnce(200, successData);
+
+    const { req, res } = faker({ type: "json" }, {});
+    await up(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
+    expect(res.send).toBeCalledWith({ up: true });
+  });
+
+  it("should return JSON `false` if all PATs are rate limited and type='json'", async () => {
+    mock.onPost("https://api.github.com/graphql").reply(200, rate_limit_error);
+
+    const { req, res } = faker({ type: "json" }, {});
+    await up(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
+    expect(res.send).toBeCalledWith({ up: false });
+  });
+
+  it("should return UP shields.io config if request was successful and type='shields'", async () => {
+    mock.onPost("https://api.github.com/graphql").replyOnce(200, successData);
+
+    const { req, res } = faker({ type: "shields" }, {});
+    await up(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
+    expect(res.send).toBeCalledWith(shields_up);
+  });
+
+  it("should return DOWN shields.io config if all PATs are rate limited and type='shields'", async () => {
+    mock.onPost("https://api.github.com/graphql").reply(200, rate_limit_error);
+
+    const { req, res } = faker({ type: "shields" }, {});
+    await up(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
+    expect(res.send).toBeCalledWith(shields_down);
   });
 
   it("should return `true` if the first PAT is rate limited but the second PATs works", async () => {
