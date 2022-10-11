@@ -3,3 +3,9 @@ contact_links:
   - name: Question
     url: https://github.com/anuraghazra/github-readme-stats/discussions
     about: Please ask and answer questions here.
+  - name: Error
+    url: https://github.com/anuraghazra/github-readme-stats/issues/1772
+    about: Before opening a bug report, please check the 'Common Error Codes' issue.
+  - name: FAQ
+    url: https://github.com/anuraghazra/github-readme-stats/discussions/1770
+    about: Please first check the FAQ before asking a question.
