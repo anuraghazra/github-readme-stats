@@ -79,33 +79,6 @@ const repositoriesWithZeroStarsData = {
   },
 };
 
-const data2 = {
-  data: {
-    user: {
-      name: "Anurag Hazra",
-      repositoriesContributedTo: { totalCount: 61 },
-      contributionsCollection: {
-        totalCommitContributions: 1000,
-        restrictedContributionsCount: 50,
-      },
-      pullRequests: { totalCount: 300 },
-      openIssues: { totalCount: 100 },
-      closedIssues: { totalCount: 100 },
-      followers: { totalCount: 100 },
-      repositories: {
-        totalCount: 5,
-        nodes: [
-          { name: "test-repo-1", stargazers: { totalCount: 100 } },
-          { name: "test-repo-2", stargazers: { totalCount: 100 } },
-          { name: "test-repo-3", stargazers: { totalCount: 100 } },
-          { name: "test-repo-4", stargazers: { totalCount: 50 } },
-          { name: "test-repo-5", stargazers: { totalCount: 50 } },
-        ],
-      },
-    },
-  },
-};
-
 const error = {
   errors: [
     {
