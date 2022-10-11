@@ -132,6 +132,9 @@ export default async (req, res) => {
       case "shields":
         res.send(shieldsUptimeBadge(PATsValid));
         break;
+      case "json":
+        res.send({ up: PATsValid });
+        break;
       default:
         res.send(PATsValid);
         break;
