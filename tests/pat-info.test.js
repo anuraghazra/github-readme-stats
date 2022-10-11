@@ -12,8 +12,10 @@ import patInfo, { RATE_LIMIT_SECONDS } from "../api/status/pat-info.js";
 const mock = new MockAdapter(axios);
 
 const successData = {
-  rateLimit: {
-    remaining: 4986,
+  data: {
+    rateLimit: {
+      remaining: 4986,
+    },
   },
 };
 
@@ -33,6 +35,7 @@ const rate_limit_error = {
   errors: [
     {
       type: "RATE_LIMITED",
+      message: "API rate limit exceeded for user ID.",
     },
   ],
 };
@@ -77,6 +80,24 @@ describe("Test /api/status/pat-info", () => {
       errorPATs: [],
       expiredPATs: [],
       validPATs: ["PAT_1", "PAT_2", "PAT_3", "PAT_4"],
+      details: {
+        PAT_1: {
+          status: "limited",
+          remaining: 0,
+        },
+        PAT_2: {
+          status: "valid",
+          remaining: 4986,
+        },
+        PAT_3: {
+          status: "valid",
+          remaining: 4986,
+        },
+        PAT_4: {
+          status: "valid",
+          remaining: 4986,
+        },
+      },
     });
   });
 
@@ -92,11 +113,30 @@ describe("Test /api/status/pat-info", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
     expect(res.send).toBeCalledWith({
-      errorPATs: [
-        { PAT_1: { type: "SOME_ERROR", message: "This is a error" } },
-      ],
+      errorPATs: ["PAT_1"],
       expiredPATs: [],
       validPATs: ["PAT_2", "PAT_3", "PAT_4"],
+      details: {
+        PAT_1: {
+          status: "error",
+          error: {
+            type: "SOME_ERROR",
+            message: "This is a error",
+          },
+        },
+        PAT_2: {
+          status: "valid",
+          remaining: 4986,
+        },
+        PAT_3: {
+          status: "valid",
+          remaining: 4986,
+        },
+        PAT_4: {
+          status: "valid",
+          remaining: 4986,
+        },
+      },
     });
   });
 
@@ -115,6 +155,23 @@ describe("Test /api/status/pat-info", () => {
       errorPATs: [],
       expiredPATs: ["PAT_1"],
       validPATs: ["PAT_2", "PAT_3", "PAT_4"],
+      details: {
+        PAT_1: {
+          status: "expired",
+        },
+        PAT_2: {
+          status: "valid",
+          remaining: 4986,
+        },
+        PAT_3: {
+          status: "valid",
+          remaining: 4986,
+        },
+        PAT_4: {
+          status: "valid",
+          remaining: 4986,
+        },
+      },
     });
   });
 

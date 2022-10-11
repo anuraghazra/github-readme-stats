@@ -58,12 +58,14 @@ const PATsWorking = async (fetcher, variables, retries = 0) => {
       process.env[`PAT_${retries + 1}`],
     );
 
-    const isRateExceeded =
-      response.data.errors && response.data.errors[0].type === "RATE_LIMITED";
+    const isRateLimited =
+      (response.data.errors &&
+        response.data.errors[0]?.type === "RATE_LIMITED") ||
+      response.data.data?.rateLimit?.remaining === 0;
 
     // If rate limit is hit increase RETRIES and recursively call the PATsWorking
     // with username, and current RETRIES
-    if (isRateExceeded) {
+    if (isRateLimited) {
       logger.log(`PAT_${retries + 1} Failed`);
       retries++;
       return PATsWorking(fetcher, variables, retries);
@@ -72,12 +74,7 @@ const PATsWorking = async (fetcher, variables, retries = 0) => {
     return true; // Return true if a PAT was working.
   } catch (err) {
     // also checking for bad credentials if any tokens gets invalidated
-    const isBadCredential =
-      err.response &&
-      err.response.data &&
-      err.response.data.message === "Bad credentials";
-
-    if (isBadCredential) {
+    if (err.response?.data?.message === "Bad credentials") {
       logger.log(`PAT_${retries + 1} Failed`);
       retries++;
       // directly return from the function
