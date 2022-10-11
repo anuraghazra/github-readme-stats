@@ -89,9 +89,35 @@ const PATsWorking = async (fetcher, variables, retries = 0) => {
 };
 
 /**
+ * Creates Json response that can be used for shields.io dynamic card generation.
+ *
+ * @param {*} up Whether the PATs are up or not.
+ * @returns Dynamic shields.io JSON response object.
+ *
+ * @see https://shields.io/endpoint.
+ */
+const shieldsUptimeBadge = (up) => {
+  const schemaVersion = 1;
+  const isError = true;
+  const label = "Public Instance";
+  const message = up ? "up" : "down";
+  const color = up ? "brightgreen" : "red";
+  return {
+    schemaVersion,
+    label,
+    message,
+    color,
+    isError,
+  };
+};
+
+/**
  * Cloud function that returns whether the PATs are still functional.
  */
-export default async (_, res) => {
+export default async (req, res) => {
+  let { type } = req.query;
+  type = type ? type.toLowerCase() : "boolean";
+
   res.setHeader("Content-Type", "application/json");
   try {
     // Add header to prevent abuse.
@@ -102,7 +128,14 @@ export default async (_, res) => {
         `max-age=0, s-maxage=${RATE_LIMIT_SECONDS}`,
       );
     }
-    res.send(PATsValid);
+    switch (type) {
+      case "shields":
+        res.send(shieldsUptimeBadge(PATsValid));
+        break;
+      default:
+        res.send(PATsValid);
+        break;
+    }
   } catch (err) {
     // Return fail boolean if something went wrong.
     logger.error(err);
