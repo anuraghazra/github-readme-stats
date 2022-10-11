@@ -92,6 +92,7 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
     -   [Language Card Exclusive Options](#language-card-exclusive-options)
     -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
 -   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
+    - [Keep your fork up to date](#keep-your-fork-up-to-date)   
 
 # GitHub Stats Card
 
@@ -439,6 +440,10 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 12. Click deploy, and you're good to go. See your domains to use the API!
 
 </details>
+
+### Keep your fork up to date
+
+You can keep your fork, and thus your private Vercel instance up to date with the upstream using GitHubs' [Sync Fork button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). You can also use the [pull](https://github.com/wei/pull) package created by [@wei](https://github.com/wei) to automate this process.
 
 ## :sparkling_heart: Support the project
 
