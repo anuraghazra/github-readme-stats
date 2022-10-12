@@ -1,6 +1,14 @@
-const retryer = require("../common/retryer");
-const { request } = require("../common/utils");
+// @ts-check
+import { retryer } from "../common/retryer.js";
+import { MissingParamError, request } from "../common/utils.js";
 
+/**
+ * Repo data fetcher.
+ *
+ * @param {import('Axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token Github token.
+ * @returns {Promise<import('Axios').AxiosResponse>} The response.
+ */
 const fetcher = (variables, token) => {
   return request(
     {
@@ -38,15 +46,26 @@ const fetcher = (variables, token) => {
       variables,
     },
     {
-      Authorization: `bearer ${token}`,
+      Authorization: `token ${token}`,
     },
   );
 };
 
+const urlExample = "/api/pin?username=USERNAME&amp;repo=REPO_NAME";
+
+/**
+ * Fetch repository data.
+ *
+ * @param {string} username Github username.
+ * @param {string} reponame Github repository name.
+ * @returns {Promise<import("./types").RepositoryData>} Repository data.
+ */
 async function fetchRepo(username, reponame) {
-  if (!username || !reponame) {
-    throw new Error("Invalid username or reponame");
+  if (!username && !reponame) {
+    throw new MissingParamError(["username", "repo"], urlExample);
   }
+  if (!username) throw new MissingParamError(["username"], urlExample);
+  if (!reponame) throw new MissingParamError(["repo"], urlExample);
 
   let res = await retryer(fetcher, { login: username, repo: reponame });
 
@@ -63,7 +82,10 @@ async function fetchRepo(username, reponame) {
     if (!data.user.repository || data.user.repository.isPrivate) {
       throw new Error("User Repository Not found");
     }
-    return data.user.repository;
+    return {
+      ...data.user.repository,
+      starCount: data.user.repository.stargazers.totalCount,
+    };
   }
 
   if (isOrg) {
@@ -73,8 +95,12 @@ async function fetchRepo(username, reponame) {
     ) {
       throw new Error("Organization Repository Not found");
     }
-    return data.organization.repository;
+    return {
+      ...data.organization.repository,
+      starCount: data.organization.repository.stargazers.totalCount,
+    };
   }
 }
 
-module.exports = fetchRepo;
+export { fetchRepo };
+export default fetchRepo;

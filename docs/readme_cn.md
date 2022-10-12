@@ -290,7 +290,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 你通常无法将图片靠边显示。为此，您可以使用以下方法：
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>

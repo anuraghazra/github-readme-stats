@@ -1,15 +1,18 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const pin = require("../api/pin");
-const renderRepoCard = require("../src/cards/repo-card");
-const { renderError } = require("../src/common/utils");
+import { jest } from "@jest/globals";
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import pin from "../api/pin.js";
+import { renderRepoCard } from "../src/cards/repo-card.js";
+import { renderError } from "../src/common/utils.js";
 
 const data_repo = {
   repository: {
     username: "anuraghazra",
     name: "convoychat",
-    stargazers: { totalCount: 38000 },
+    stargazers: {
+      totalCount: 38000,
+    },
     description: "Help us take over the world! React + TS + GraphQL Chat App",
     primaryLanguage: {
       color: "#2b7489",
@@ -51,7 +54,12 @@ describe("Test /api/pin", () => {
     await pin(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(renderRepoCard(data_repo.repository));
+    expect(res.send).toBeCalledWith(
+      renderRepoCard({
+        ...data_repo.repository,
+        starCount: data_repo.repository.stargazers.totalCount,
+      }),
+    );
   });
 
   it("should get the query options", async () => {
@@ -76,7 +84,13 @@ describe("Test /api/pin", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderRepoCard(data_repo.repository, { ...req.query }),
+      renderRepoCard(
+        {
+          ...data_repo.repository,
+          starCount: data_repo.repository.stargazers.totalCount,
+        },
+        { ...req.query },
+      ),
     );
   });
 

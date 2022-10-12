@@ -1,30 +1,33 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("css-to-object");
-const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
-const renderTopLanguages = require("../src/cards/top-languages-card");
+import { queryAllByTestId, queryByTestId } from "@testing-library/dom";
+import { cssToObject } from "@uppercod/css-to-object";
+import {
+  MIN_CARD_WIDTH,
+  renderTopLanguages,
+} from "../src/cards/top-languages-card.js";
+// adds special assertions like toHaveTextContent
+import "@testing-library/jest-dom";
 
-const { queryByTestId, queryAllByTestId } = require("@testing-library/dom");
-const themes = require("../themes");
+import { themes } from "../themes/index.js";
+
+const langs = {
+  HTML: {
+    color: "#0f0",
+    name: "HTML",
+    size: 200,
+  },
+  javascript: {
+    color: "#0ff",
+    name: "javascript",
+    size: 200,
+  },
+  css: {
+    color: "#ff0",
+    name: "css",
+    size: 100,
+  },
+};
 
 describe("Test renderTopLanguages", () => {
-  const langs = {
-    HTML: {
-      color: "#0f0",
-      name: "HTML",
-      size: 200,
-    },
-    javascript: {
-      color: "#0ff",
-      name: "javascript",
-      size: 200,
-    },
-    css: {
-      color: "#ff0",
-      name: "css",
-      size: 100,
-    },
-  };
-
   it("should render correctly", () => {
     document.body.innerHTML = renderTopLanguages(langs);
 
@@ -104,17 +107,32 @@ describe("Test renderTopLanguages", () => {
     expect(document.querySelector("svg")).toHaveAttribute("width", "400");
   });
 
+  it("should render with min width", () => {
+    document.body.innerHTML = renderTopLanguages(langs, { card_width: 190 });
+
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      MIN_CARD_WIDTH.toString(),
+    );
+
+    document.body.innerHTML = renderTopLanguages(langs, { card_width: 100 });
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      MIN_CARD_WIDTH.toString(),
+    );
+  });
+
   it("should render default colors properly", () => {
     document.body.innerHTML = renderTopLanguages(langs);
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.textContent);
 
-    const headerStyles = stylesObject[".header"];
-    const langNameStyles = stylesObject[".lang-name"];
+    const headerStyles = stylesObject[":host"][".header "];
+    const langNameStyles = stylesObject[":host"][".lang-name "];
 
-    expect(headerStyles.fill).toBe("#2f80ed");
-    expect(langNameStyles.fill).toBe("#333");
+    expect(headerStyles.fill.trim()).toBe("#2f80ed");
+    expect(langNameStyles.fill.trim()).toBe("#434d58");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#fffefe",
@@ -134,11 +152,11 @@ describe("Test renderTopLanguages", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerStyles = stylesObject[".header"];
-    const langNameStyles = stylesObject[".lang-name"];
+    const headerStyles = stylesObject[":host"][".header "];
+    const langNameStyles = stylesObject[":host"][".lang-name "];
 
-    expect(headerStyles.fill).toBe(`#${customColors.title_color}`);
-    expect(langNameStyles.fill).toBe(`#${customColors.text_color}`);
+    expect(headerStyles.fill.trim()).toBe(`#${customColors.title_color}`);
+    expect(langNameStyles.fill.trim()).toBe(`#${customColors.text_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#252525",
@@ -154,11 +172,11 @@ describe("Test renderTopLanguages", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerStyles = stylesObject[".header"];
-    const langNameStyles = stylesObject[".lang-name"];
+    const headerStyles = stylesObject[":host"][".header "];
+    const langNameStyles = stylesObject[":host"][".lang-name "];
 
-    expect(headerStyles.fill).toBe("#5a0");
-    expect(langNameStyles.fill).toBe(`#${themes.radical.text_color}`);
+    expect(headerStyles.fill.trim()).toBe("#5a0");
+    expect(langNameStyles.fill.trim()).toBe(`#${themes.radical.text_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       `#${themes.radical.bg_color}`,
@@ -174,11 +192,11 @@ describe("Test renderTopLanguages", () => {
       const styleTag = document.querySelector("style");
       const stylesObject = cssToObject(styleTag.innerHTML);
 
-      const headerStyles = stylesObject[".header"];
-      const langNameStyles = stylesObject[".lang-name"];
+      const headerStyles = stylesObject[":host"][".header "];
+      const langNameStyles = stylesObject[":host"][".lang-name "];
 
-      expect(headerStyles.fill).toBe(`#${themes[name].title_color}`);
-      expect(langNameStyles.fill).toBe(`#${themes[name].text_color}`);
+      expect(headerStyles.fill.trim()).toBe(`#${themes[name].title_color}`);
+      expect(langNameStyles.fill.trim()).toBe(`#${themes[name].text_color}`);
       expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
         "fill",
         `#${themes[name].bg_color}`,
@@ -233,7 +251,7 @@ describe("Test renderTopLanguages", () => {
   });
 
   it("should render langs with specified langs_count", async () => {
-    options = {
+    const options = {
       langs_count: 1,
     };
     document.body.innerHTML = renderTopLanguages(langs, { ...options });
@@ -243,7 +261,7 @@ describe("Test renderTopLanguages", () => {
   });
 
   it("should render langs with specified langs_count even when hide is set", async () => {
-    options = {
+    const options = {
       hide: ["HTML"],
       langs_count: 2,
     };

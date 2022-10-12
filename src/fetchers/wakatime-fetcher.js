@@ -1,11 +1,20 @@
-const axios = require("axios");
+import axios from "axios";
+import { MissingParamError } from "../common/utils.js";
 
+/**
+ * WakaTime data fetcher.
+ *
+ * @param {{username: string, api_domain: string, range: string}} props Fetcher props.
+ * @returns {Promise<WakaTimeData>} WakaTime data response.
+ */
 const fetchWakatimeStats = async ({ username, api_domain, range }) => {
+  if (!username) throw new MissingParamError(["username"]);
+
   try {
     const { data } = await axios.get(
       `https://${
         api_domain ? api_domain.replace(/\/$/gi, "") : "wakatime.com"
-      }/api/v1/users/${username}/stats/${range || ''}?is_including_today=true`,
+      }/api/v1/users/${username}/stats/${range || ""}?is_including_today=true`,
     );
 
     return data.data;
@@ -19,6 +28,5 @@ const fetchWakatimeStats = async ({ username, api_domain, range }) => {
   }
 };
 
-module.exports = {
-  fetchWakatimeStats,
-};
+export { fetchWakatimeStats };
+export default fetchWakatimeStats;

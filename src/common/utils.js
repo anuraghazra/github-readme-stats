@@ -1,17 +1,31 @@
-const axios = require("axios");
-const wrap = require("word-wrap");
-const themes = require("../../themes");
+// @ts-check
+import axios from "axios";
+import toEmoji from "emoji-name-map";
+import wrap from "word-wrap";
+import { themes } from "../../themes/index.js";
 
+// Script parameters.
+const ERROR_CARD_LENGTH = 576.5;
+
+/**
+ * Renders error message on the card.
+ *
+ * @param {string} message Main error message.
+ * @param {string} secondaryMessage The secondary error message.
+ * @returns {string} The SVG markup.
+ */
 const renderError = (message, secondaryMessage = "") => {
   return `
-    <svg width="495" height="120" viewBox="0 0 495 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width="${ERROR_CARD_LENGTH}" height="120" viewBox="0 0 ${ERROR_CARD_LENGTH} 120" fill="none" xmlns="http://www.w3.org/2000/svg">
     <style>
     .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2F80ED }
     .small { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #252525 }
     .gray { fill: #858585 }
     </style>
-    <rect x="0.5" y="0.5" width="494" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
-    <text x="25" y="45" class="text">Something went wrong! file an issue at https://git.io/JJmN9</text>
+    <rect x="0.5" y="0.5" width="${
+      ERROR_CARD_LENGTH - 1
+    }" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
+    <text x="25" y="45" class="text">Something went wrong! file an issue at https://tiny.one/readme-stats</text>
     <text data-testid="message" x="25" y="55" class="text small">
       <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
       <tspan x="25" dy="18" class="gray">${secondaryMessage}</tspan>
@@ -20,7 +34,14 @@ const renderError = (message, secondaryMessage = "") => {
   `;
 };
 
-// https://stackoverflow.com/a/48073476/10629172
+/**
+ * Encode string as HTML.
+ *
+ * @see https://stackoverflow.com/a/48073476/10629172
+ *
+ * @param {string} str String to encode.
+ * @returns {string} Encoded string.
+ */
 function encodeHTML(str) {
   return str
     .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
@@ -29,18 +50,36 @@ function encodeHTML(str) {
     .replace(/\u0008/gim, "");
 }
 
+/**
+ * Retrieves num with suffix k(thousands) precise to 1 decimal if greater than 999.
+ *
+ * @param {number} num The number to format.
+ * @returns {string|number} The formatted number.
+ */
 function kFormatter(num) {
   return Math.abs(num) > 999
-    ? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
+    ? Math.sign(num) * parseFloat((Math.abs(num) / 1000).toFixed(1)) + "k"
     : Math.sign(num) * Math.abs(num);
 }
 
+/**
+ * Checks if a string is a valid hex color.
+ *
+ * @param {string} hexColor String to check.
+ * @returns {boolean} True if the given string is a valid hex color.
+ */
 function isValidHexColor(hexColor) {
   return new RegExp(
     /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/,
   ).test(hexColor);
 }
 
+/**
+ * Returns boolean if value is either "true" or "false" else the value as it is.
+ *
+ * @param {string} value The value to parse.
+ * @returns {boolean | string} The parsed value.
+ */
 function parseBoolean(value) {
   if (value === "true") {
     return true;
@@ -51,19 +90,48 @@ function parseBoolean(value) {
   }
 }
 
+/**
+ * Parse string to array of strings.
+ *
+ * @param {string} str The string to parse.
+ * @returns {string[]} The array of strings.
+ */
 function parseArray(str) {
   if (!str) return [];
   return str.split(",");
 }
 
+/**
+ * Clamp the given number between the given range.
+ *
+ * @param {number} number The number to clamp.
+ * @param {number} min The minimum value.
+ * @param {number} max The maximum value.
+ * returns {number} The clamped number.
+ */
 function clampValue(number, min, max) {
+  // @ts-ignore
+  if (Number.isNaN(parseInt(number))) return min;
   return Math.max(min, Math.min(number, max));
 }
 
+/**
+ * Check if the given string is a valid gradient.
+ *
+ * @param {string[]} colors Array of colors.
+ * @returns {boolean} True if the given string is a valid gradient.
+ */
 function isValidGradient(colors) {
   return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
 }
 
+/**
+ * Retrieves a gradient if color has more than one valid hex codes else a single color.
+ *
+ * @param {string} color The color to parse.
+ * @param {string} fallbackColor The fallback color.
+ * @returns {string | string[]} The gradient or color.
+ */
 function fallbackColor(color, fallbackColor) {
   let colors = color.split(",");
   let gradient = null;
@@ -78,7 +146,15 @@ function fallbackColor(color, fallbackColor) {
   );
 }
 
+/**
+ * Send GraphQL request to GitHub API.
+ *
+ * @param {import('axios').AxiosRequestConfig['data']} data Request data.
+ * @param {import('axios').AxiosRequestConfig['headers']} headers Request headers.
+ * @returns {Promise<any>} Request response.
+ */
 function request(data, headers) {
+  // @ts-ignore
   return axios({
     url: "https://api.github.com/graphql",
     method: "post",
@@ -88,34 +164,50 @@ function request(data, headers) {
 }
 
 /**
+ * Auto layout utility, allows us to layout things vertically or horizontally with
+ * proper gaping.
  *
- * @param {String[]} items
- * @param {Number} gap
- * @param {string} direction
- *
- * @description
- * Auto layout utility, allows us to layout things
- * vertically or horizontally with proper gaping
+ * @param {object} props Function properties.
+ * @param {string[]} props.items Array of items to layout.
+ * @param {number} props.gap Gap between items.
+ * @param {number[]?=} props.sizes Array of sizes for each item.
+ * @param {"column" | "row"?=} props.direction Direction to layout items.
+ * @returns {string[]} Array of items with proper layout.
  */
-function flexLayout({ items, gap, direction }) {
+function flexLayout({ items, gap, direction, sizes = [] }) {
+  let lastSize = 0;
   // filter() for filtering out empty strings
   return items.filter(Boolean).map((item, i) => {
-    let transform = `translate(${gap * i}, 0)`;
+    const size = sizes[i] || 0;
+    let transform = `translate(${lastSize}, 0)`;
     if (direction === "column") {
-      transform = `translate(0, ${gap * i})`;
+      transform = `translate(0, ${lastSize})`;
     }
+    lastSize += size + gap;
     return `<g transform="${transform}">${item}</g>`;
   });
 }
 
-// returns theme based colors with proper overrides and defaults
+/**
+ * Returns theme based colors with proper overrides and defaults.
+ *
+ * @param {Object[]} args Function arguments.
+ * @param {string} args.title_color Card title color.
+ * @param {string} args.text_color Card text color.
+ * @param {string} args.icon_color Card icon color.
+ * @param {string} args.bg_color Card background color.
+ * @param {string} args.border_color Card border color.
+ * @param {string} args.theme Card theme.
+ * @param {string} args.fallbackTheme Fallback theme.
+ *
+ */
 function getCardColors({
   title_color,
   text_color,
   icon_color,
   bg_color,
-  theme,
   border_color,
+  theme,
   fallbackTheme = "default",
 }) {
   const defaultTheme = themes[fallbackTheme];
@@ -150,12 +242,30 @@ function getCardColors({
   return { titleColor, iconColor, textColor, bgColor, borderColor };
 }
 
-function wrapTextMultiline(text, width = 60, maxLines = 3) {
-  const wrapped = wrap(encodeHTML(text), { width })
-    .split("\n") // Split wrapped lines to get an array of lines
-    .map((line) => line.trim()); // Remove leading and trailing whitespace of each line
+/**
+ * Split text over multiple lines based on the card width.
+ *
+ * @param {string} text Text to split.
+ * @param {number} width Line width in number of characters.
+ * @param {number} maxLines Maximum number of lines.
+ * @returns {string[]} Array of lines.
+ */
+function wrapTextMultiline(text, width = 59, maxLines = 3) {
+  const fullWidthComma = "，";
+  const encoded = encodeHTML(text);
+  const isChinese = encoded.includes(fullWidthComma);
 
-  const lines = wrapped.slice(0, maxLines); // Only consider maxLines lines
+  let wrapped = [];
+
+  if (isChinese) {
+    wrapped = encoded.split(fullWidthComma); // Chinese full punctuation
+  } else {
+    wrapped = wrap(encoded, {
+      width,
+    }).split("\n"); // Split wrapped lines to get an array of lines
+  }
+
+  const lines = wrapped.map((line) => line.trim()).slice(0, maxLines); // Only consider maxLines lines
 
   // Add "..." to the last line if the text exceeds maxLines
   if (wrapped.length > maxLines) {
@@ -183,20 +293,54 @@ const SECONDARY_ERROR_MESSAGES = {
   MAX_RETRY:
     "Please add an env variable called PAT_1 with your github token in vercel",
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
+  GRAPHQL_ERROR: "Please try again later",
 };
 
+/**
+ * Custom error class to handle custom GRS errors.
+ */
 class CustomError extends Error {
+  /**
+   * @param {string} message Error message.
+   * @param {string} type Error type.
+   */
   constructor(message, type) {
     super(message);
     this.type = type;
-    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || "adsad";
+    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || type;
   }
 
   static MAX_RETRY = "MAX_RETRY";
   static USER_NOT_FOUND = "USER_NOT_FOUND";
+  static GRAPHQL_ERROR = "GRAPHQL_ERROR";
 }
 
-// https://stackoverflow.com/a/48172630/10629172
+/**
+ * Missing query parameter class.
+ */
+class MissingParamError extends Error {
+  /**
+   * @param {string[]} missedParams
+   * @param {string?=} secondaryMessage
+   */
+  constructor(missedParams, secondaryMessage) {
+    const msg = `Missing params ${missedParams
+      .map((p) => `"${p}"`)
+      .join(", ")} make sure you pass the parameters in URL`;
+    super(msg);
+    this.missedParams = missedParams;
+    this.secondaryMessage = secondaryMessage;
+  }
+}
+
+/**
+ * Retrieve text length.
+ *
+ * @see https://stackoverflow.com/a/48172630/10629172
+ * @param {string} str String to measure.
+ * @param {number} fontSize Font size.
+ * @returns {number} Text length.
+ */
 function measureText(str, fontSize = 10) {
   // prettier-ignore
   const widths = [
@@ -231,7 +375,45 @@ function measureText(str, fontSize = 10) {
   );
 }
 
-module.exports = {
+/** @param {string} name */
+const lowercaseTrim = (name) => name.toLowerCase().trim();
+
+/**
+ * Split array of languages in two columns.
+ *
+ * @template T Langauge object.
+ * @param {Array<T>} arr Array of languages.
+ * @param {number} perChunk Number of languages per column.
+ * @returns {Array<T>} Array of languages split in two columns.
+ */
+function chunkArray(arr, perChunk) {
+  return arr.reduce((resultArray, item, index) => {
+    const chunkIndex = Math.floor(index / perChunk);
+
+    if (!resultArray[chunkIndex]) {
+      resultArray[chunkIndex] = []; // start a new chunk
+    }
+
+    resultArray[chunkIndex].push(item);
+
+    return resultArray;
+  }, []);
+}
+
+/**
+ * Parse emoji from string.
+ *
+ * @param {string} str String to parse emoji from.
+ * @returns {string} String with emoji parsed.
+ */
+function parseEmojis(str) {
+  if (!str) throw new Error("[parseEmoji]: str argument not provided");
+  return str.replace(/:\w+:/gm, (emoji) => {
+    return toEmoji.get(emoji) || "";
+  });
+}
+
+export {
   renderError,
   kFormatter,
   encodeHTML,
@@ -248,4 +430,9 @@ module.exports = {
   logger,
   CONSTANTS,
   CustomError,
+  MissingParamError,
+  lowercaseTrim,
+  chunkArray,
+  parseEmojis,
+  ERROR_CARD_LENGTH,
 };
