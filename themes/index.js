@@ -180,10 +180,10 @@ export const themes = {
     icon_color: "88c0d0",
     bg_color: "2e3440",
   },
-  "nord-light-aurora": {
-    title_color: "d08770",
-    text_color: "5e81ac",
-    icon_color: "a3be8c",
+  "nord_light_aurora": {
+    title_color: "4c566a",
+    text_color: "2e3440",
+    icon_color: "bf616a",
     bg_color: "ffffff",
     border_color: "b48ead",
   },
