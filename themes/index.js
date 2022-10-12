@@ -367,7 +367,7 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
-  flag-korea: {
+  flag_korea: {
     title_color: "0047A0",
     icon_color: "CC303B",
     text_color: "000000",
