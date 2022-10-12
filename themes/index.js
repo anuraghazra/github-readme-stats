@@ -181,7 +181,6 @@ export const themes = {
     bg_color: "2e3440",
   },
   "nord-light-aurora": {
-    // Based on the Nord theme colour palettes: https://www.nordtheme.com/docs/colors-and-palettes
     title_color: "d08770",
     text_color: "5e81ac",
     icon_color: "a3be8c",
