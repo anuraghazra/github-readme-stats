@@ -367,6 +367,12 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  yousafsabir: {
+    title_color: "d8582c",
+    icon_color: "22d3ee",
+    text_color: "f9fafb",
+    bg_color: "09131B",
+  },
 };
 
 export default themes;
