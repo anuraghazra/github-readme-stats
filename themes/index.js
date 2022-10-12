@@ -180,13 +180,6 @@ export const themes = {
     icon_color: "88c0d0",
     bg_color: "2e3440",
   },
-  "nord_light_aurora": {
-    title_color: "4c566a",
-    text_color: "2e3440",
-    icon_color: "bf616a",
-    bg_color: "ffffff",
-    border_color: "b48ead",
-  },
   gotham: {
     title_color: "2aa889",
     icon_color: "599cab",
