@@ -1,10 +1,10 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const api = require("../api/index");
-const renderStatsCard = require("../src/cards/stats-card");
-const { renderError, CONSTANTS } = require("../src/common/utils");
-const calculateRank = require("../src/calculateRank");
+import { jest } from "@jest/globals";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import api from "../api/index.js";
+import { calculateRank } from "../src/calculateRank.js";
+import { renderStatsCard } from "../src/cards/stats-card.js";
+import { CONSTANTS, renderError } from "../src/common/utils.js";
 
 const stats = {
   name: "Anurag Hazra",
@@ -35,11 +35,25 @@ const data = {
         restrictedContributionsCount: 100,
       },
       pullRequests: { totalCount: stats.totalPRs },
-      issues: { totalCount: stats.totalIssues },
+      openIssues: { totalCount: stats.totalIssues },
+      closedIssues: { totalCount: 0 },
       followers: { totalCount: 0 },
       repositories: {
         totalCount: 1,
+      },
+    },
+  },
+};
+
+const repositoriesData = {
+  data: {
+    user: {
+      repositories: {
         nodes: [{ stargazers: { totalCount: 100 } }],
+        pageInfo: {
+          hasNextPage: false,
+          cursor: "cursor",
+        },
       },
     },
   },
@@ -69,7 +83,11 @@ const faker = (query, data) => {
     setHeader: jest.fn(),
     send: jest.fn(),
   };
-  mock.onPost("https://api.github.com/graphql").reply(200, data);
+  mock
+    .onPost("https://api.github.com/graphql")
+    .replyOnce(200, data)
+    .onPost("https://api.github.com/graphql")
+    .replyOnce(200, repositoriesData);
 
   return { req, res };
 };
@@ -137,23 +155,32 @@ describe("Test /api/", () => {
 
   it("should have proper cache", async () => {
     const { req, res } = faker({}, data);
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
 
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
+      ["Cache-Control", `public, max-age=${CONSTANTS.FOUR_HOURS}`],
     ]);
   });
 
   it("should set proper cache", async () => {
-    const { req, res } = faker({ cache_seconds: 8000 }, data);
+    const { req, res } = faker({ cache_seconds: 15000 }, data);
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${8000}`],
+      ["Cache-Control", `public, max-age=${15000}`],
+    ]);
+  });
+
+  it("should not store cache when error", async () => {
+    const { req, res } = faker({}, error);
+    await api(req, res);
+
+    expect(res.setHeader.mock.calls).toEqual([
+      ["Content-Type", "image/svg+xml"],
+      ["Cache-Control", `no-store`],
     ]);
   });
 
@@ -175,7 +202,7 @@ describe("Test /api/", () => {
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
+        ["Cache-Control", `public, max-age=${CONSTANTS.FOUR_HOURS}`],
       ]);
     }
 
@@ -185,7 +212,7 @@ describe("Test /api/", () => {
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
+        ["Cache-Control", `public, max-age=${CONSTANTS.FOUR_HOURS}`],
       ]);
     }
   });

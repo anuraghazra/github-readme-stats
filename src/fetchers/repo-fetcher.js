@@ -1,6 +1,14 @@
-const retryer = require("../common/retryer");
-const { request } = require("../common/utils");
+// @ts-check
+import { retryer } from "../common/retryer.js";
+import { MissingParamError, request } from "../common/utils.js";
 
+/**
+ * Repo data fetcher.
+ *
+ * @param {import('Axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token Github token.
+ * @returns {Promise<import('Axios').AxiosResponse>} The response.
+ */
 const fetcher = (variables, token) => {
   return request(
     {
@@ -38,15 +46,26 @@ const fetcher = (variables, token) => {
       variables,
     },
     {
-      Authorization: `bearer ${token}`,
+      Authorization: `token ${token}`,
     },
   );
 };
 
+const urlExample = "/api/pin?username=USERNAME&amp;repo=REPO_NAME";
+
+/**
+ * Fetch repository data.
+ *
+ * @param {string} username Github username.
+ * @param {string} reponame Github repository name.
+ * @returns {Promise<import("./types").RepositoryData>} Repository data.
+ */
 async function fetchRepo(username, reponame) {
-  if (!username || !reponame) {
-    throw new Error("Invalid username or reponame");
+  if (!username && !reponame) {
+    throw new MissingParamError(["username", "repo"], urlExample);
   }
+  if (!username) throw new MissingParamError(["username"], urlExample);
+  if (!reponame) throw new MissingParamError(["repo"], urlExample);
 
   let res = await retryer(fetcher, { login: username, repo: reponame });
 
@@ -83,4 +102,5 @@ async function fetchRepo(username, reponame) {
   }
 }
 
-module.exports = fetchRepo;
+export { fetchRepo };
+export default fetchRepo;

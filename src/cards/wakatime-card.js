@@ -1,22 +1,47 @@
-const Card = require("../common/Card");
-const I18n = require("../common/I18n");
-const { getStyles } = require("../getStyles");
-const { wakatimeCardLocales } = require("../translations");
-const languageColors = require("../common/languageColors.json");
-const { createProgressNode } = require("../common/createProgressNode");
-const {
+// @ts-check
+import { Card } from "../common/Card.js";
+import { createProgressNode } from "../common/createProgressNode.js";
+import { I18n } from "../common/I18n.js";
+import {
   clampValue,
-  getCardColors,
   flexLayout,
+  getCardColors,
   lowercaseTrim,
-} = require("../common/utils");
+} from "../common/utils.js";
+import { getStyles } from "../getStyles.js";
+import { wakatimeCardLocales } from "../translations.js";
 
+/** Import language colors.
+ *
+ * @description Here we use the workaround found in
+ * https://stackoverflow.com/questions/66726365/how-should-i-import-json-in-node
+ * since vercel is using v16.14.0 which does not yet support json imports without the
+ * --experimental-json-modules flag.
+ */
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const languageColors = require("../common/languageColors.json"); // now works
+
+/**
+ * Creates the no coding activity SVG node.
+ *
+ * @param {{color: string, text: string}} The function prop
+ */
 const noCodingActivityNode = ({ color, text }) => {
   return `
     <text x="25" y="11" class="stat bold" fill="${color}">${text}</text>
   `;
 };
 
+/**
+ * Create compact WakaTime layout.
+ *
+ * @param {Object[]} args The function arguments.
+ * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
+ * @param {number} totalSize The total size of the languages.
+ * @param {number} x The x position of the language node.
+ * @param {number} y The y position of the language node.
+ */
 const createCompactLangNode = ({ lang, totalSize, x, y }) => {
   const color = languageColors[lang.name] || "#858585";
 
@@ -30,6 +55,15 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
   `;
 };
 
+/**
+ * Create WakaTime language text node item.
+ *
+ * @param {Object[]} args The function arguments.
+ * @param {import("../fetchers/types").WakaTimeLang} lang The language object.
+ * @param {number} totalSize The total size of the languages.
+ * @param {number} x The x position of the language node.
+ * @param {number} y The y position of the language node.
+ */
 const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
   return langs.map((lang, index) => {
     if (index % 2 === 0) {
@@ -38,7 +72,6 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
         x: 25,
         y: 12.5 * index + y,
         totalSize,
-        index,
       });
     }
     return createCompactLangNode({
@@ -46,11 +79,22 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
       x: 230,
       y: 12.5 + 12.5 * index,
       totalSize,
-      index,
     });
   });
 };
 
+/**
+ * Create WakaTime text item.
+ *
+ * @param {Object[]} args The function arguments.
+ * @param {string} id The id of the text node item.
+ * @param {string} label The label of the text node item.
+ * @param {string} value The value of the text node item.
+ * @param {number} index The index of the text node item.
+ * @param {percent} percent Percentage of the text node item.
+ * @param {boolean} hideProgress Whether to hide the progress bar.
+ * @param {string} progressBarBackgroundColor The color of the progress bar background.
+ */
 const createTextNode = ({
   id,
   label,
@@ -71,6 +115,7 @@ const createTextNode = ({
         progress: percent,
         color: progressBarColor,
         width: 220,
+        // @ts-ignore
         name: label,
         progressBarBackgroundColor,
       });
@@ -88,19 +133,31 @@ const createTextNode = ({
   `;
 };
 
+/**
+ * Recalculating percentages so that, compact layout's progress bar does not break when
+ * hiding languages.
+ *
+ * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
+ * @return {import("../fetchers/types").WakaTimeLang[]} The recalculated languages array.
+ */
 const recalculatePercentages = (languages) => {
-  // recalculating percentages so that,
-  // compact layout's progress bar does not break when hiding languages
   const totalSum = languages.reduce(
     (totalSum, language) => totalSum + language.percent,
     0,
   );
-  const weight = (100 / totalSum).toFixed(2);
+  const weight = +(100 / totalSum).toFixed(2);
   languages.forEach((language) => {
-    language.percent = (language.percent * weight).toFixed(2);
+    language.percent = +(language.percent * weight).toFixed(2);
   });
 };
 
+/**
+ * Renders WakaTime card.
+ *
+ * @param {Partial<import('../fetchers/types').WakaTimeData>} stats WakaTime stats.
+ * @param {Partial<import('./types').WakaTimeOptions>} options Card options.
+ * @returns {string} WakaTime card SVG.
+ */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   let { languages } = stats;
   const {
@@ -123,7 +180,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
-  if (shouldHideLangs) {
+  if (shouldHideLangs && languages !== undefined) {
     const languagesToHide = new Set(hide.map((lang) => lowercaseTrim(lang)));
     languages = languages.filter(
       (lang) => !languagesToHide.has(lowercaseTrim(lang.name)),
@@ -136,25 +193,20 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     translations: wakatimeCardLocales,
   });
 
-  const lheight = parseInt(line_height, 10);
+  const lheight = parseInt(String(line_height), 10);
 
-  langsCount = clampValue(parseInt(langs_count), 1, langs_count);
+  const langsCount = clampValue(parseInt(String(langs_count)), 1, langs_count);
 
   // returns theme based colors with proper overrides and defaults
-  const {
-    titleColor,
-    textColor,
-    iconColor,
-    bgColor,
-    borderColor,
-  } = getCardColors({
-    title_color,
-    icon_color,
-    text_color,
-    bg_color,
-    border_color,
-    theme,
-  });
+  const { titleColor, textColor, iconColor, bgColor, borderColor } =
+    getCardColors({
+      title_color,
+      icon_color,
+      text_color,
+      bg_color,
+      border_color,
+      theme,
+    });
 
   const filteredLanguages = languages
     ? languages
@@ -228,13 +280,16 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               label: language.name,
               value: language.text,
               percent: language.percent,
+              // @ts-ignore
               progressBarColor: titleColor,
+              // @ts-ignore
               progressBarBackgroundColor: textColor,
               hideProgress: hide_progress,
             });
           })
         : [
             noCodingActivityNode({
+              // @ts-ignore
               color: textColor,
               text: i18n.t("wakatimecard.nocodingactivity"),
             }),
@@ -275,5 +330,5 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   `);
 };
 
-module.exports = renderWakatimeCard;
-exports.createProgressNode = createProgressNode;
+export { renderWakatimeCard };
+export default renderWakatimeCard;

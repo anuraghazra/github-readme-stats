@@ -1,12 +1,26 @@
-const axios = require("axios");
-const githubUsernameRegex = require("github-username-regex");
+// @ts-check
+import axios from "axios";
+import * as dotenv from "dotenv";
+import githubUsernameRegex from "github-username-regex";
+import { calculateRank } from "../calculateRank.js";
+import { retryer } from "../common/retryer.js";
+import {
+  CustomError,
+  logger,
+  MissingParamError,
+  request,
+  wrapTextMultiline,
+} from "../common/utils.js";
 
-const retryer = require("../common/retryer");
-const calculateRank = require("../calculateRank");
-const { request, logger, CustomError } = require("../common/utils");
+dotenv.config();
 
-require("dotenv").config();
-
+/**
+ * Stats fetcher object.
+ *
+ * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token Github token.
+ * @returns {Promise<import('../common/types').StatsFetcherResponse>} Stats fetcher response.
+ */
 const fetcher = (variables, token) => {
   return request(
     {
@@ -19,24 +33,58 @@ const fetcher = (variables, token) => {
             totalCommitContributions
             restrictedContributionsCount
           }
-          repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
+          repositoriesContributedTo(contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
             totalCount
           }
-          pullRequests(first: 1) {
+          pullRequests {
             totalCount
           }
-          issues(first: 1) {
+          openIssues: issues(states: OPEN) {
+            totalCount
+          }
+          closedIssues: issues(states: CLOSED) {
             totalCount
           }
           followers {
             totalCount
           }
-          repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}) {
+          repositories(ownerAffiliations: OWNER) {
             totalCount
+          }
+        }
+      }
+      `,
+      variables,
+    },
+    {
+      Authorization: `bearer ${token}`,
+    },
+  );
+};
+
+/**
+ * Fetch first 100 repositories for a given username.
+ *
+ * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token Github token.
+ * @returns {Promise<import('../common/types').StatsFetcherResponse>} Repositories fetcher response.
+ */
+const repositoriesFetcher = (variables, token) => {
+  return request(
+    {
+      query: `
+      query userInfo($login: String!, $after: String) {
+        user(login: $login) {
+          repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
             nodes {
+              name
               stargazers {
                 totalCount
               }
+            }
+            pageInfo {
+              hasNextPage
+              endCursor
             }
           }
         }
@@ -50,8 +98,15 @@ const fetcher = (variables, token) => {
   );
 };
 
-// https://github.com/anuraghazra/github-readme-stats/issues/92#issuecomment-661026467
-// https://github.com/anuraghazra/github-readme-stats/pull/211/
+/**
+ * Fetch all the commits for all the repositories of a given username.
+ *
+ * @param {*} username Github username.
+ * @returns {Promise<number>} Total commits.
+ *
+ * @description Done like this because the Github API does not provide a way to fetch all the commits. See
+ * #92#issuecomment-661026467 and #211 for more information.
+ */
 const totalCommitsFetcher = async (username) => {
   if (!githubUsernameRegex.test(username)) {
     logger.log("Invalid username");
@@ -66,30 +121,80 @@ const totalCommitsFetcher = async (username) => {
       headers: {
         "Content-Type": "application/json",
         Accept: "application/vnd.github.cloak-preview",
-        Authorization: `bearer ${token}`,
+        Authorization: `token ${token}`,
       },
     });
   };
 
   try {
     let res = await retryer(fetchTotalCommits, { login: username });
-    if (res.data.total_count) {
+    let total_count = res.data.total_count;
+    if (!!total_count && !isNaN(total_count)) {
       return res.data.total_count;
     }
   } catch (err) {
     logger.log(err);
-    // just return 0 if there is something wrong so that
-    // we don't break the whole app
-    return 0;
   }
+  // just return 0 if there is something wrong so that
+  // we don't break the whole app
+  return 0;
 };
 
+/**
+ * Fetch all the stars for all the repositories of a given username.
+ *
+ * @param {string} username Github username.
+ * @param {array} repoToHide Repositories to hide.
+ * @returns {Promise<number>} Total stars.
+ */
+const totalStarsFetcher = async (username, repoToHide) => {
+  let nodes = [];
+  let hasNextPage = true;
+  let endCursor = null;
+  while (hasNextPage) {
+    const variables = { login: username, first: 100, after: endCursor };
+    let res = await retryer(repositoriesFetcher, variables);
+
+    if (res.data.errors) {
+      logger.error(res.data.errors);
+      throw new CustomError(
+        res.data.errors[0].message || "Could not fetch user",
+        CustomError.USER_NOT_FOUND,
+      );
+    }
+
+    const allNodes = res.data.data.user.repositories.nodes;
+    const nodesWithStars = allNodes.filter(
+      (node) => node.stargazers.totalCount !== 0,
+    );
+    nodes.push(...nodesWithStars);
+    // hasNextPage =
+    //   allNodes.length === nodesWithStars.length &&
+    //   res.data.data.user.repositories.pageInfo.hasNextPage;
+    hasNextPage = false; // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+    endCursor = res.data.data.user.repositories.pageInfo.endCursor;
+  }
+
+  return nodes
+    .filter((data) => !repoToHide[data.name])
+    .reduce((prev, curr) => prev + curr.stargazers.totalCount, 0);
+};
+
+/**
+ * Fetch stats for a given username.
+ *
+ * @param {string} username Github username.
+ * @param {boolean} count_private Include private contributions.
+ * @param {boolean} include_all_commits Include all commits.
+ * @returns {Promise<import("./types").StatsData>} Stats data.
+ */
 async function fetchStats(
   username,
   count_private = false,
   include_all_commits = false,
+  exclude_repo = [],
 ) {
-  if (!username) throw Error("Invalid username");
+  if (!username) throw new MissingParamError(["username"]);
 
   const stats = {
     name: "",
@@ -103,18 +208,40 @@ async function fetchStats(
 
   let res = await retryer(fetcher, { login: username });
 
+  // Catch GraphQL errors.
   if (res.data.errors) {
     logger.error(res.data.errors);
+    if (res.data.errors[0].type === "NOT_FOUND") {
+      throw new CustomError(
+        res.data.errors[0].message || "Could not fetch user.",
+        CustomError.USER_NOT_FOUND,
+      );
+    }
+    if (res.data.errors[0].message) {
+      throw new CustomError(
+        wrapTextMultiline(res.data.errors[0].message, 90, 1)[0],
+        res.statusText,
+      );
+    }
     throw new CustomError(
-      res.data.errors[0].message || "Could not fetch user",
-      CustomError.USER_NOT_FOUND,
+      "Something went while trying to retrieve the stats data using the GraphQL API.",
+      CustomError.GRAPHQL_ERROR,
     );
   }
 
   const user = res.data.data.user;
 
+  // populate repoToHide map for quick lookup
+  // while filtering out
+  let repoToHide = {};
+  if (exclude_repo) {
+    exclude_repo.forEach((repoName) => {
+      repoToHide[repoName] = true;
+    });
+  }
+
   stats.name = user.name || user.login;
-  stats.totalIssues = user.issues.totalCount;
+  stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
 
   // normal commits
   stats.totalCommits = user.contributionsCollection.totalCommitContributions;
@@ -134,9 +261,8 @@ async function fetchStats(
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
-  stats.totalStars = user.repositories.nodes.reduce((prev, curr) => {
-    return prev + curr.stargazers.totalCount;
-  }, 0);
+  // Retrieve stars while filtering out repositories to be hidden
+  stats.totalStars = await totalStarsFetcher(username, repoToHide);
 
   stats.rank = calculateRank({
     totalCommits: stats.totalCommits,
@@ -151,4 +277,5 @@ async function fetchStats(
   return stats;
 }
 
-module.exports = fetchStats;
+export { fetchStats };
+export default fetchStats;

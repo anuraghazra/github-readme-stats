@@ -1,21 +1,24 @@
-const {
-  kFormatter,
+// @ts-check
+import { Card } from "../common/Card.js";
+import { I18n } from "../common/I18n.js";
+import { icons } from "../common/icons.js";
+import {
   encodeHTML,
-  getCardColors,
   flexLayout,
-  wrapTextMultiline,
+  getCardColors,
+  kFormatter,
   measureText,
   parseEmojis,
-} = require("../common/utils");
-const I18n = require("../common/I18n");
-const Card = require("../common/Card");
-const icons = require("../common/icons");
-const { repoCardLocales } = require("../translations");
+  wrapTextMultiline,
+} from "../common/utils.js";
+import { repoCardLocales } from "../translations.js";
 
 /**
- * @param {string} label
- * @param {string} textColor
- * @returns {string}
+ * Retrieves the repository description and wraps it to fit the card width.
+ *
+ * @param {string} label The repository description.
+ * @param {string} textColor The color of the text.
+ * @returns {string} Wrapped repo description SVG object.
  */
 const getBadgeSVG = (label, textColor) => `
   <g data-testid="badge" class="badge" transform="translate(320, -18)">
@@ -33,9 +36,11 @@ const getBadgeSVG = (label, textColor) => `
 `;
 
 /**
- * @param {string} langName
- * @param {string} langColor
- * @returns {string}
+ * Creates a node to display the primary programming language of the repository.
+ *
+ * @param {string} langName Language name.
+ * @param {string} langColor Language color.
+ * @returns {string} Language display SVG object.
  */
 const createLanguageNode = (langName, langColor) => {
   return `
@@ -47,6 +52,15 @@ const createLanguageNode = (langName, langColor) => {
 };
 
 const ICON_SIZE = 16;
+
+/**
+ * Creates an icon with label to display repository stats like forks, stars, etc.
+ *
+ * @param {string} icon The icon to display.
+ * @param {number|string} label The label to display.
+ * @param {string} testid The testid to assign to the label.
+ * @returns {string} Icon with label SVG object.
+ */
 const iconWithLabel = (icon, label, testid) => {
   if (label <= 0) return "";
   const iconSvg = `
@@ -65,6 +79,13 @@ const iconWithLabel = (icon, label, testid) => {
   return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
 };
 
+/**
+ * Renders repository card details.
+ *
+ * @param {import('../fetchers/types').RepositoryData} repo Repository data.
+ * @param {Partial<import("./types").RepoCardOptions>} options Card options.
+ * @returns {string} Repository card SVG object.
+ */
 const renderRepoCard = (repo, options = {}) => {
   const {
     name,
@@ -82,7 +103,7 @@ const renderRepoCard = (repo, options = {}) => {
     icon_color,
     text_color,
     bg_color,
-    show_owner,
+    show_owner = false,
     theme = "default_repocard",
     border_radius,
     border_color,
@@ -161,9 +182,11 @@ const renderRepoCard = (repo, options = {}) => {
   return card.render(`
     ${
       isTemplate
-        ? getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
+        ? // @ts-ignore
+          getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
         : isArchived
-        ? getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
+        ? // @ts-ignore
+          getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
         : ""
     }
 
@@ -177,4 +200,5 @@ const renderRepoCard = (repo, options = {}) => {
   `);
 };
 
-module.exports = renderRepoCard;
+export { renderRepoCard };
+export default renderRepoCard;
