@@ -10,6 +10,7 @@ import {
   lowercaseTrim,
   measureText,
 } from "../common/utils.js";
+import { getStyles } from "../getStyles.js";
 import { langCardLocales } from "../translations.js";
 
 const DEFAULT_CARD_WIDTH = 300;
@@ -39,21 +40,25 @@ const getLongestLang = (arr) =>
  * Creates a node to display usage of a programming language in percentage
  * using text and a horizontal progress bar.
  *
- * @param {object[]} props Function properties.
+ * @param {object} props Function properties.
  * @param {number} props.width The card width
  * @param {string} props.name Name of the programming language.
  * @param {string} props.color Color of the programming language.
  * @param {string} props.progress Usage of the programming language in percentage.
+ * @param {number} props.index Index of the programming language.
  * @returns {string} Programming language SVG node.
  */
-const createProgressTextNode = ({ width, color, name, progress }) => {
+const createProgressTextNode = ({ width, color, name, progress, index }) => {
+  const staggerDelay = (index + 3) * 150;
   const paddingRight = 95;
   const progressTextX = width - paddingRight + 10;
   const progressWidth = width - paddingRight;
 
   return `
-    <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
-    <text x="${progressTextX}" y="34" class="lang-name">${progress}%</text>
+    <g class="stagger" style="animation-delay: ${staggerDelay}ms">
+      <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
+      <text x="${progressTextX}" y="34" class="lang-name">${progress}%</text>
+    </g>
     ${createProgressNode({
       x: 0,
       y: 25,
@@ -68,17 +73,19 @@ const createProgressTextNode = ({ width, color, name, progress }) => {
 /**
  * Creates a text only node to display usage of a programming language in percentage.
  *
- * @param {object[]} props Function properties.
+ * @param {object} props Function properties.
  * @param {Lang} props.lang Programming language object.
  * @param {number} props.totalSize Total size of all languages.
+ * @param {number} props.index Index of the programming language.
  * @returns {string} Compact layout programming language SVG node.
  */
-const createCompactLangNode = ({ lang, totalSize }) => {
+const createCompactLangNode = ({ lang, totalSize, index }) => {
   const percentage = ((lang.size / totalSize) * 100).toFixed(2);
+  const staggerDelay = (index + 3) * 150;
   const color = lang.color || "#858585";
 
   return `
-    <g>
+    <g class="stagger" style="animation-delay: ${staggerDelay}ms">
       <circle cx="5" cy="6" r="5" fill="${color}" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
         ${lang.name} ${percentage}%
@@ -104,7 +111,6 @@ const createLanguageTextNode = ({ langs, totalSize }) => {
       createCompactLangNode({
         lang,
         totalSize,
-        // @ts-ignore
         index,
       }),
     );
@@ -134,12 +140,13 @@ const createLanguageTextNode = ({ langs, totalSize }) => {
  */
 const renderNormalLayout = (langs, width, totalLanguageSize) => {
   return flexLayout({
-    items: langs.map((lang) => {
+    items: langs.map((lang,index) => {
       return createProgressTextNode({
-        width: width,
+        width,
         name: lang.name,
         color: lang.color || DEFAULT_LANG_COLOR,
         progress: ((lang.size / totalLanguageSize) * 100).toFixed(2),
+        index,
       });
     }),
     gap: 40,
@@ -276,6 +283,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     langs_count = DEFAULT_LANGS_COUNT,
     border_radius,
     border_color,
+    disable_animations,
   } = options;
 
   const i18n = new I18n({
@@ -324,11 +332,19 @@ const renderTopLanguages = (topLangs, options = {}) => {
     colors,
   });
 
-  card.disableAnimations();
+  if (disable_animations) card.disableAnimations();
+
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
   card.setCSS(
-    `.lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.textColor} }`,
+    `.lang-name {
+      font: 400 11px "Segoe UI", Ubuntu, Sans-Serif;
+      fill: ${colors.textColor};
+    }
+    .stagger {
+      opacity: 0;
+      animation: fadeInAnimation 0.3s ease-in-out forwards;
+    }`,
   );
 
   return card.render(`
