@@ -194,7 +194,7 @@ const renderCompactLayout = (langs, width, totalLanguageSize) => {
 
   return `
     <mask id="rect-mask">
-      <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5" />
+      <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5" style="animation: slideInAnimation 1s ease-in-out forwards;"/>
     </mask>
     ${compactProgressBar}
 
