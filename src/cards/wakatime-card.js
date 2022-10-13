@@ -1,19 +1,31 @@
 // @ts-check
-const Card = require("../common/Card");
-const I18n = require("../common/I18n");
-const { getStyles } = require("../getStyles");
-const { wakatimeCardLocales } = require("../translations");
-const languageColors = require("../common/languageColors.json");
-const { createProgressNode } = require("../common/createProgressNode");
-const {
+import { Card } from "../common/Card.js";
+import { createProgressNode } from "../common/createProgressNode.js";
+import { I18n } from "../common/I18n.js";
+import {
   clampValue,
-  getCardColors,
   flexLayout,
+  getCardColors,
   lowercaseTrim,
-} = require("../common/utils");
+} from "../common/utils.js";
+import { getStyles } from "../getStyles.js";
+import { wakatimeCardLocales } from "../translations.js";
+
+/** Import language colors.
+ *
+ * @description Here we use the workaround found in
+ * https://stackoverflow.com/questions/66726365/how-should-i-import-json-in-node
+ * since vercel is using v16.14.0 which does not yet support json imports without the
+ * --experimental-json-modules flag.
+ */
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+const languageColors = require("../common/languageColors.json"); // now works
 
 /**
- * @param {{color: string, text: string}} param0
+ * Creates the no coding activity SVG node.
+ *
+ * @param {{color: string, text: string}} The function prop
  */
 const noCodingActivityNode = ({ color, text }) => {
   return `
@@ -22,13 +34,13 @@ const noCodingActivityNode = ({ color, text }) => {
 };
 
 /**
+ * Create compact WakaTime layout.
  *
- * @param {{
- *  lang: import("../fetchers/types").WakaTimeLang,
- *  totalSize: number,
- *  x: number,
- *  y: number
- * }} props
+ * @param {Object[]} args The function arguments.
+ * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
+ * @param {number} totalSize The total size of the languages.
+ * @param {number} x The x position of the language node.
+ * @param {number} y The y position of the language node.
  */
 const createCompactLangNode = ({ lang, totalSize, x, y }) => {
   const color = languageColors[lang.name] || "#858585";
@@ -44,12 +56,13 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
 };
 
 /**
- * @param {{
- *  langs: import("../fetchers/types").WakaTimeLang[],
- *  totalSize: number,
- *  x: number,
- *  y: number
- * }} props
+ * Create WakaTime language text node item.
+ *
+ * @param {Object[]} args The function arguments.
+ * @param {import("../fetchers/types").WakaTimeLang} lang The language object.
+ * @param {number} totalSize The total size of the languages.
+ * @param {number} x The x position of the language node.
+ * @param {number} y The y position of the language node.
  */
 const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
   return langs.map((lang, index) => {
@@ -71,17 +84,16 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
 };
 
 /**
+ * Create WakaTime text item.
  *
- * @param {{
- *  id: string;
- *  label: string;
- *  value: string;
- *  index: number;
- *  percent: number;
- *  hideProgress: boolean;
- *  progressBarColor: string;
- *  progressBarBackgroundColor: string
- * }} props
+ * @param {Object[]} args The function arguments.
+ * @param {string} id The id of the text node item.
+ * @param {string} label The label of the text node item.
+ * @param {string} value The value of the text node item.
+ * @param {number} index The index of the text node item.
+ * @param {percent} percent Percentage of the text node item.
+ * @param {boolean} hideProgress Whether to hide the progress bar.
+ * @param {string} progressBarBackgroundColor The color of the progress bar background.
  */
 const createTextNode = ({
   id,
@@ -122,11 +134,13 @@ const createTextNode = ({
 };
 
 /**
- * @param {import("../fetchers/types").WakaTimeLang[]} languages
+ * Recalculating percentages so that, compact layout's progress bar does not break when
+ * hiding languages.
+ *
+ * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
+ * @return {import("../fetchers/types").WakaTimeLang[]} The recalculated languages array.
  */
 const recalculatePercentages = (languages) => {
-  // recalculating percentages so that,
-  // compact layout's progress bar does not break when hiding languages
   const totalSum = languages.reduce(
     (totalSum, language) => totalSum + language.percent,
     0,
@@ -138,9 +152,11 @@ const recalculatePercentages = (languages) => {
 };
 
 /**
- * @param {Partial<import('../fetchers/types').WakaTimeData>} stats
- * @param {Partial<import('./types').WakaTimeOptions>} options
- * @returns {string}
+ * Renders WakaTime card.
+ *
+ * @param {Partial<import('../fetchers/types').WakaTimeData>} stats WakaTime stats.
+ * @param {Partial<import('./types').WakaTimeOptions>} options Card options.
+ * @returns {string} WakaTime card SVG.
  */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   let { languages } = stats;
@@ -314,5 +330,5 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   `);
 };
 
-module.exports = renderWakatimeCard;
-exports.createProgressNode = createProgressNode;
+export { renderWakatimeCard };
+export default renderWakatimeCard;

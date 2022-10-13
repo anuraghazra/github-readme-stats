@@ -1,7 +1,7 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import { fetchTopLanguages } from "../src/fetchers/top-languages-fetcher.js";
 
 const mock = new MockAdapter(axios);
 
@@ -81,10 +81,7 @@ describe("FetchTopLanguages", () => {
   it("should fetch correct language data while excluding the 'test-repo-1' repository", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
-    let repo = await fetchTopLanguages(
-      "anuraghazra",
-      (exclude_repo = ["test-repo-1"]),
-    );
+    let repo = await fetchTopLanguages("anuraghazra", ["test-repo-1"]);
     expect(repo).toStrictEqual({
       HTML: {
         color: "#0f0",

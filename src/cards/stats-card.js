@@ -1,17 +1,30 @@
 // @ts-check
-const I18n = require("../common/I18n");
-const Card = require("../common/Card");
-const icons = require("../common/icons");
-const { getStyles } = require("../getStyles");
-const { statCardLocales } = require("../translations");
-const {
-  kFormatter,
-  flexLayout,
+import { Card } from "../common/Card.js";
+import { I18n } from "../common/I18n.js";
+import { icons } from "../common/icons.js";
+import {
   clampValue,
-  measureText,
+  flexLayout,
   getCardColors,
-} = require("../common/utils");
+  kFormatter,
+  measureText,
+} from "../common/utils.js";
+import { getStyles } from "../getStyles.js";
+import { statCardLocales } from "../translations.js";
 
+/**
+ * Create a stats card text item.
+ *
+ * @param {object[]} createTextNodeParams Object that contains the createTextNode parameters.
+ * @param {string} createTextNodeParams.label The label to display.
+ * @param {string} createTextNodeParams.value The value to display.
+ * @param {string} createTextNodeParams.id The id of the stat.
+ * @param {number} createTextNodeParams.index The index of the stat.
+ * @param {boolean} createTextNodeParams.showIcons Whether to show icons.
+ * @param {number} createTextNodeParams.shiftValuePos Number of pixels the value has to be shifted to the right.
+ * @param {boolean} createTextNodeParams.bold Whether to bold the label.
+ * @returns
+ */
 const createTextNode = ({
   icon,
   label,
@@ -20,6 +33,7 @@ const createTextNode = ({
   index,
   showIcons,
   shiftValuePos,
+  bold,
 }) => {
   const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
@@ -35,9 +49,11 @@ const createTextNode = ({
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
       ${iconSvg}
-      <text class="stat bold" ${labelOffset} y="12.5">${label}:</text>
+      <text class="stat ${
+        bold ? " bold" : "not_bold"
+      }" ${labelOffset} y="12.5">${label}:</text>
       <text
-        class="stat"
+        class="stat ${bold ? " bold" : "not_bold"}"
         x="${(showIcons ? 140 : 120) + shiftValuePos}"
         y="12.5"
         data-testid="${id}"
@@ -47,9 +63,11 @@ const createTextNode = ({
 };
 
 /**
- * @param {Partial<import('../fetchers/types').StatsData>} stats
- * @param {Partial<import("./types").StatCardOptions>} options
- * @returns {string}
+ * Renders the stats card.
+ *
+ * @param {Partial<import('../fetchers/types').StatsData>} stats The stats data.
+ * @param {Partial<import("./types").StatCardOptions>} options The card options.
+ * @returns {string} The stats card SVG object.
  */
 const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const {
@@ -73,6 +91,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     title_color,
     icon_color,
     text_color,
+    text_bold = true,
     bg_color,
     theme = "default",
     custom_title,
@@ -165,6 +184,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         showIcons: show_icons,
         shiftValuePos:
           (!include_all_commits ? 50 : 35) + (isLongLocale ? 50 : 0),
+        bold: text_bold,
       }),
     );
 
@@ -295,4 +315,5 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   `);
 };
 
-module.exports = renderStatsCard;
+export { renderStatsCard };
+export default renderStatsCard;

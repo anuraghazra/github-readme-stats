@@ -1,15 +1,11 @@
-name: Theme preview
+name: Close stale theme pull requests that have the 'invalid' label.
 on:
-  pull_request_target:
-    types: [opened, edited, reopened, synchronize]
-    branches:
-      - master
-    paths:
-      - "themes/index.js"
+  schedule:
+    - cron: "0 0 */7 * *"
 
 jobs:
-  previewTheme:
-    name: Install & Preview
+  closeOldThemePrs:
+    name: Close stale 'invalid' theme PRs
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -28,6 +24,7 @@ jobs:
         with:
           useLockFile: false
 
-      - run: npm run preview-theme
+      - run: npm run close-stale-theme-prs
         env:
+          STALE_DAYS: 15
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
