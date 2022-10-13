@@ -203,7 +203,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `custom_title` - Sets a custom title for the card. Default:  `<username> Github Stats`.
 -   `text_bold` - Use bold text _(boolean)_. Default: `true`.
 -   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
--   `year` - Count commit of the entire year _(YYYY)_. Default: `<current year> (one year to date)`
+-   `year` - Count commits of the entire year _(YYYY)_. Default: `<current year> (one year to date)`.
 
 > **Note**
 > When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.
