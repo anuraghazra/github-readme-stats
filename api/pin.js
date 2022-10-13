@@ -7,7 +7,7 @@ import {
   renderError,
 } from "../src/common/utils.js";
 import { fetchRepo } from "../src/fetchers/repo-fetcher.js";
-import { isLocaleAvailable } from "../src/translations.js";
+import { isLocaleAvailable } from "../src/assets/translations.js";
 
 export default async (req, res) => {
   const {

@@ -11,7 +11,7 @@ import {
   parseEmojis,
   wrapTextMultiline,
 } from "../common/utils.js";
-import { repoCardLocales } from "../translations.js";
+import { repoCardLocales } from "../assets/translations.js";
 
 /**
  * Retrieves the repository description and wraps it to fit the card width.

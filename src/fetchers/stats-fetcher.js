@@ -1,7 +1,7 @@
 // @ts-check
 import axios from "axios";
 import githubUsernameRegex from "github-username-regex";
-import { calculateRank } from "../calculateRank.js";
+import { calculateRank } from "./helpers/calculateRank.js";
 import { retryer } from "../common/retryer.js";
 import {
   CustomError,

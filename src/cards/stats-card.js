@@ -9,8 +9,8 @@ import {
   kFormatter,
   measureText,
 } from "../common/utils.js";
-import { getStyles } from "../getStyles.js";
-import { statCardLocales } from "../translations.js";
+import { getStyles } from "../common/getStyles.js";
+import { statCardLocales } from "../assets/translations.js";
 
 /**
  * Create a stats card text item.
