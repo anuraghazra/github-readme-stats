@@ -1,28 +1,29 @@
 export { blacklist } from "./blacklist.js";
 export { Card } from "./Card.js";
 export { createProgressNode } from "./createProgressNode.js";
-export { getStyles, getAnimations } from "./getStyles.js";
 export { i18n } from "./i18n.js";
 export { icons } from "./icons.js";
 export { retryer } from "./retryer.js";
 export {
+  ERROR_CARD_LENGTH,
   renderError,
-  kFormatter,
   encodeHTML,
+  kFormatter,
   isValidHexColor,
-  request,
-  parseArray,
   parseBoolean,
+  parseArray,
+  clampValue,
+  isValidGradient,
   fallbackColor,
+  request,
   flexLayout,
   getCardColors,
-  clampValue,
   wrapTextMultiline,
-  measureText,
   logger,
   CONSTANTS,
   CustomError,
   MissingParamError,
+  measureText,
   lowercaseTrim,
   chunkArray,
   parseEmojis,
