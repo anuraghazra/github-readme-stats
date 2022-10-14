@@ -367,6 +367,14 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  blueside: {
+    title_color: "32D1F7",
+    icon_color: "F7613E",
+    text_color: "ffffff",
+    bg_color: "22272E",
+    border_color: "22272E",
+  },
 };
+
 
 export default themes;
