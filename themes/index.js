@@ -367,6 +367,12 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  spotify_dark: {
+    title_color: "1dd65f",
+    icon_color: "1dd65f",
+    text_color: "f0f8ff",
+    bg_color: "161b22",
+  },
 };
 
 export default themes;
