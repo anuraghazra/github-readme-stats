@@ -12,9 +12,6 @@ import {
 } from "../common/utils.js";
 import { langCardLocales } from "../translations.js";
 
-import * as d3 from 'd3';
-import {JSDOM} from 'jsdom';
-
 const DEFAULT_CARD_WIDTH = 300;
 const MIN_CARD_WIDTH = 230;
 const DEFAULT_LANGS_COUNT = 5;
@@ -221,71 +218,115 @@ const renderCompactLayout = (langs, width, totalLanguageSize) => {
 };
 
 /**
- * @param {Lang[]} langs
- * @param {number} width
- * @param {number} height
- * @param {number} totalLanguageSize
- * @returns {string}
+ * Renders donut layout to display user's most frequently used programming languages.
+ * 
+ * @param {number} cx Center position x-axis.
+ * @param {number} cy Center position y-axis.
+ * @param {number} radius Arc Radius.
+ * @param {{value: string}[]} data Array of donut section values.
+ * @returns {string[]}  Array of svg path elements
  */
-const renderDonutLayout = (langs, width, height, totalLanguageSize) => {
-  const pie = d3.pie().value(function (d) {
-    return d.size;
-  });
+const createDonutPaths = (cx, cy, radius, data) => {
+
+  const arcradius = (cx, cy, radius, degrees) => {
+    const radians = ((degrees - 90) * Math.PI) / 180.0;
+ 
+    return {
+      x: cx + radius * Math.cos(radians),
+      y: cy + radius * Math.sin(radians),
+    };
+  }
+
+  const decimals = 4;
+  let total = 0;
+  const arr = [];
+
+  let beginning = 0;
+  let end = 0;
+  let count = 0;
+
+  for (let i = 0; i < data.length; i++) total += data[i].value;
+
+  for (let i = 0; i < data.length; i++) {
+    const item = data[i];
+    const tmp = {};
+
+    const p = Number((((item.value + 1) / total) * 100).toFixed(2));
+
+    count += p;
+
+    if (i === data.length - 1 && count < 100) p = p + (100 - count);
+
+    end = beginning + (360 / 100) * p;
+    tmp.value = item.value;
+
+    const b = arcradius(cx, cy, radius, end);
+    const e = arcradius(cx, cy, radius, beginning);
+    const la = end - beginning <= 180 ? 0 : 1;
+
+    tmp.d = [
+      "M",
+      // Math.floor(b.x, decimals),
+      Number((b.x).toFixed(decimals)),
+      // Math.floor(b.y, decimals),
+      Number((b.y).toFixed(decimals)),
+      "A",
+      radius,
+      radius,
+      0,
+      la,
+      0,
+      // Math.floor(e.x, decimals),
+      Number((e.x).toFixed(decimals)),
+      // Math.floor(e.y, decimals),
+      Number((e.y).toFixed(decimals)),
+    ].join(" ");
+
+    arr.push(tmp);
+    beginning = end;
+  }
+
+  return arr;
+}
+
+/**
+ * Renders donut layout to display user's most frequently used programming languages.
+ * 
+ * @param {Lang[]} langs Array of programming languages.
+ * @param {number} width Card width.
+ * @param {number} totalLanguageSize Total size of all languages.
+ * @returns {string} Donut layout card SVG object.
+ */
+const renderDonutLayout = (langs, width, totalLanguageSize) => {
+  const centerX = width / 3;
+  const centerY = width / 3;
+  const radius = centerX - 60
   
-  const pieData = pie(langs);
+  const strokeWidth = 12;
 
-  const xPadding = 80;
-  const yPadding = 90;
+  const colors = langs.map((lang) => lang.color);
+  const langSections = langs.map((lang) => ({
+    value: Number(((lang.size / totalLanguageSize) * 100).toFixed(2))
+  }));
 
-  const widthOffset = 50;
-  const heightOffset = 60;
-  
-  const margin = 10;
-  const radius = ((width - widthOffset) - 2 * margin - yPadding) / 2;
+  const langArray = createDonutPaths(centerX, centerY, radius, langSections);
 
-  const arc = d3.
-    arc()
-    .outerRadius(radius - 30)
-    .innerRadius(radius / 2);
+  const paths = langArray.map((section, i) => {
+    const output = `
+       <g>
+        <path
+          d="${section.d}"
+          stroke="${colors[i]}"
+          fill="none"
+          stroke-width="${strokeWidth}">
+        </path>
+      </g>
+      `;
 
-  const fakeDom = new JSDOM('<!DOCTYPE html><html><body></body></html>');
-  const body = d3.select(fakeDom.window.document).select('body');
+    return output;
+  }).join("");
 
-  const svg = body
-    .append('div')
-    .attr('class', 'container')
-    .append('svg')
-    .attr('xmlns', 'http://www.w3.org/2000/svg')
-    .attr('width', width)
-    .attr('height', height)
-    .attr('viewBox', `0 0 ${width} ${height}`);
-
-
-  const g = svg
-    .append('g')
-    .attr(
-        'transform',
-        `translate( ${(width - xPadding - widthOffset)}, ${(height - yPadding + heightOffset) / 2} )`
-    )
-    .selectAll('.arc')
-    .data(pieData)
-    .enter()
-    .append('g')
-    .attr('class', 'arc')
-    .attr('data-testid', 'lang-pie')
-    .attr('size', function (pieData) {
-      return ((pieData.data.size / totalLanguageSize) * 100).toFixed(2);
-    });
-
-    
-  g.append('path')
-    .attr('d', arc)
-    .style('fill', function (pieData) {
-        return pieData.data.color;
-    })
-    .style('stroke-width', '2px');
-
-  const donut = body.select('.container').html();
+  const donut = `<svg width="${width}" height="${width}">${paths}</svg>`;
 
   return `
     <g transform="translate(0, 0)">
@@ -293,8 +334,8 @@ const renderDonutLayout = (langs, width, height, totalLanguageSize) => {
         ${createDonutTextNode(langs, totalLanguageSize)}
       </g>
 
-      <g transform="translate(0, -25.36)">
-        ${donut}    
+      <g transform="translate(125, -45)">
+        ${donut}
       </g>
     </g>
   `;
@@ -405,7 +446,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
   } else if (layout === "pie") {
     height = height - 60 // padding
     width = width + 50; // padding
-    finalLayout = renderDonutLayout(langs, width, height, totalLanguageSize);
+    finalLayout = renderDonutLayout(langs, width, totalLanguageSize);
   } else {
     finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
   }
