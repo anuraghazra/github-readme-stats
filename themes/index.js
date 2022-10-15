@@ -385,6 +385,12 @@ export const themes = {
     text_color: "e60012",
     bg_color: "1f2021",
   },
+  vscode: {
+    title_color: "23a9f2",
+    icon_color: "ff4d35",
+    text_color: "11b2d9",
+    bg_color: "333333",
+  },
 };
 
 export default themes;

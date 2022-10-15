@@ -37,7 +37,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `swift` ![swift][swift] | `aura` ![aura][aura] | `apprentice` ![apprentice][apprentice] |
 | `moltack` ![moltack][moltack] | `codeSTACKr` ![codeSTACKr][codeSTACKr] | `rose_pine` ![rose_pine][rose_pine] |
 | `forest` ![forest][forest] | `blood` ![blood][blood] | `nswitch` ![nswitch][nswitch] |
-| [Add your theme][add-theme] | | |
+| `vscode` ![vscode][vscode] |  | [Add your theme][add-theme] |
 
 ## Repo Card
 
@@ -66,7 +66,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `swift` ![swift][swift_repo] | `aura` ![aura][aura_repo] | `apprentice` ![apprentice][apprentice_repo] |
 | `moltack` ![moltack][moltack_repo] | `codeSTACKr` ![codeSTACKr][codeSTACKr_repo] | `rose_pine` ![rose_pine][rose_pine_repo] |
 | `forest` ![forest][forest_repo] | `blood` ![blood][blood_repo] | `nswitch` ![nswitch][nswitch_repo] |
-| [Add your theme][add-theme] | | |
+| `vscode` ![vscode][vscode_repo] |  | [Add your theme][add-theme] |
 
 
 [default]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
@@ -133,6 +133,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [forest]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=forest
 [blood]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=blood
 [nswitch]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=nswitch
+[vscode]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=vscode
 
 
 [default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
@@ -199,6 +200,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [forest_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=forest
 [blood_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=blood
 [nswitch_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=nswitch
+[vscode_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=vscode
 
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
