@@ -397,6 +397,12 @@ export const themes = {
     text_color: "8e65eb",
     bg_color: "333333",
   },
+  sky: {
+    title_color: "0651ff",
+    icon_color: "ffffff",
+    text_color: "0672ff",
+    bg_color: "00bbff",
+  },
 };
 
 export default themes;
