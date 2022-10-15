@@ -179,7 +179,9 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 
 You can provide multiple comma-separated values in the bg_color option to render a gradient with the following format:
 
+```
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
+```
 
 #### Stats Card Exclusive Options
 

@@ -124,7 +124,6 @@ const createLanguageTextNode = ({ langs, totalSize }) => {
   }).join("");
 };
 
-
 /**
  * @param {{ langs: Lang[], totalLanguageSize: number }} props
  */
@@ -223,8 +222,8 @@ const renderCompactLayout = (langs, width, totalLanguageSize) => {
  * @param {number} cx Center position x-axis.
  * @param {number} cy Center position y-axis.
  * @param {number} radius Arc Radius.
- * @param {{value: string}[]} data Array of donut section values.
- * @returns {string[]}  Array of svg path elements
+ * @param {{value: number}[]} data Array of donut section values.
+ * @returns {{d: string}[]}  Array of svg path elements
  */
 const createDonutPaths = (cx, cy, radius, data) => {
 
@@ -258,7 +257,6 @@ const createDonutPaths = (cx, cy, radius, data) => {
     if (i === data.length - 1 && count < 100) p = p + (100 - count);
 
     end = beginning + (360 / 100) * p;
-    tmp.value = item.value;
 
     const b = arcradius(cx, cy, radius, end);
     const e = arcradius(cx, cy, radius, beginning);
@@ -266,9 +264,7 @@ const createDonutPaths = (cx, cy, radius, data) => {
 
     tmp.d = [
       "M",
-      // Math.floor(b.x, decimals),
       Number((b.x).toFixed(decimals)),
-      // Math.floor(b.y, decimals),
       Number((b.y).toFixed(decimals)),
       "A",
       radius,
@@ -276,9 +272,7 @@ const createDonutPaths = (cx, cy, radius, data) => {
       0,
       la,
       0,
-      // Math.floor(e.x, decimals),
       Number((e.x).toFixed(decimals)),
-      // Math.floor(e.y, decimals),
       Number((e.y).toFixed(decimals)),
     ].join(" ");
 
@@ -444,7 +438,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
     finalLayout = renderCompactLayout(langs, width, totalLanguageSize);
   } else if (layout === "pie") {
-    height = height - 60 // padding
+    height = height - 60; // padding
     width = width + 50; // padding
     finalLayout = renderDonutLayout(langs, width, totalLanguageSize);
   } else {
