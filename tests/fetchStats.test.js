@@ -24,6 +24,10 @@ const data = {
   },
 };
 
+const dataYear = JSON.parse(JSON.stringify(data));
+dataYear.data.user.contributionsCollection.totalCommitContributions = 2003;
+dataYear.data.user.contributionsCollection.restrictedContributionsCount = 3;
+
 const firstRepositoriesData = {
   data: {
     user: {
@@ -92,10 +96,23 @@ const error = {
 
 const mock = new MockAdapter(axios);
 
+/**
+ * Mocks the GraphQL API based on certain conditions.
+ *
+ * @param {*} config Axios config object.
+ * @returns Axios response object.
+ */
+const mockData = (config) => {
+  // If year is 2003, return dataYear.
+  if (config.data.includes("contributionsCollection(from: $starttime)"))
+    return [200, dataYear];
+  return [200, data];
+};
+
 beforeEach(() => {
   mock
     .onPost("https://api.github.com/graphql")
-    .replyOnce(200, data)
+    .replyOnce(mockData)
     .onPost("https://api.github.com/graphql")
     .replyOnce(200, firstRepositoriesData);
   // .onPost("https://api.github.com/graphql") // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
@@ -254,61 +271,15 @@ describe("Test fetchStats", () => {
     });
   });
 
-  it("should get present year commits when provide no year", async () => {
-    const data2003 = {...data, data: 
-      {...data.data, user: 
-        {...data.data.user, contributionsCollection: {
-      totalCommitContributions: 2003,
-      restrictedContributionsCount: 3,
-    }}}}
-    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
-      if (cfg.data.includes("contributionsCollection(from: 2003-01-01T00:00:00Z)"))
-        return [200, data2003];
-      return [200, data];
-    });
-
-    let stats = await fetchStats("anuraghazra", true, false, []);
-    const rank = calculateRank({
-      totalCommits: 150,
-      totalRepos: 5,
-      followers: 100,
-      contributions: 61,
-      stargazers: 400,
-      prs: 300,
-      issues: 200,
-    });
-
-    expect(stats).toStrictEqual({
-      contributedTo: 61,
-      name: "Anurag Hazra",
-      totalCommits: 150,
-      totalIssues: 200,
-      totalPRs: 300,
-      totalStars: 400,
-      rank,
-    });
-  });
-
   it("should get commits of provided year", async () => {
-    const data2003 = {...data, data: 
-      {...data.data, user: 
-        {...data.data.user, contributionsCollection: {
-      totalCommitContributions: 2003,
-      restrictedContributionsCount: 3,
-    }}}}
-    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
-      if (cfg.data.includes(`"starttime":"2003-01-01T00:00:00Z"`)) 
-        return [200, data2003];
-      return [200, data];
-    });
-
     let stats = await fetchStats("anuraghazra", true, false, [], 2003);
     const rank = calculateRank({
       totalCommits: 2006,
       totalRepos: 5,
       followers: 100,
       contributions: 61,
-      stargazers: 400,
+      // stargazers: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      stargazers: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
       prs: 300,
       issues: 200,
     });
@@ -319,7 +290,8 @@ describe("Test fetchStats", () => {
       totalCommits: 2006,
       totalIssues: 200,
       totalPRs: 300,
-      totalStars: 400,
+      // totalStars: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      totalStars: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
       rank,
     });
   });

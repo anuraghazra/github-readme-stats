@@ -137,6 +137,7 @@ You can specify a year and fetch only the commits that were made in that year by
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&year=2020)
 ```
+
 ### Showing icons
 
 To enable icons, you can pass `show_icons=true` in the query param, like so:

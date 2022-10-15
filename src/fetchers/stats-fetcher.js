@@ -25,11 +25,15 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!, $starttime: DateTime!) {
+      query userInfo($login: String!${
+        variables.starttime ? ", $starttime: DateTime!" : ""
+      }) {
         user(login: $login) {
           name
           login
-          contributionsCollection(from: $starttime) {
+          contributionsCollection${
+            variables.starttime ? "(from: $starttime)" : ""
+          } {
             totalCommitContributions
             restrictedContributionsCount
           }
@@ -208,9 +212,9 @@ async function fetchStats(
     rank: { level: "C", score: 0 },
   };
 
-  let res = await retryer(fetcher, { 
-    login: username, 
-    starttime: year ? `${year}-01-01T00:00:00Z` : undefined
+  let res = await retryer(fetcher, {
+    login: username,
+    starttime: year ? `${year}-01-01T00:00:00Z` : undefined,
   });
 
   // Catch GraphQL errors.
