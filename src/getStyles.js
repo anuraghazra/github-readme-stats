@@ -59,14 +59,6 @@ const getAnimations = () => {
         opacity: 1;
       }
     }
-    @keyframes slideInAnimation {
-      from {
-        width: 0;
-      }
-      to {
-        width: calc(100%-100px);
-      }
-    }
   `;
 };
 

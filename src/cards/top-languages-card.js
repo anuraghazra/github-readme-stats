@@ -194,7 +194,7 @@ const renderCompactLayout = (langs, width, totalLanguageSize) => {
 
   return `
     <mask id="rect-mask">
-      <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5" style="animation: slideInAnimation 1s ease-in-out forwards;"/>
+      <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5"/>
     </mask>
     ${compactProgressBar}
 
@@ -337,14 +337,27 @@ const renderTopLanguages = (topLangs, options = {}) => {
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
   card.setCSS(
-    `.lang-name {
+    `
+    @keyframes slideInAnimation {
+      from {
+        width: 0;
+      }
+      to {
+        width: calc(100%-100px);
+      }
+    }
+    .lang-name {
       font: 400 11px "Segoe UI", Ubuntu, Sans-Serif;
       fill: ${colors.textColor};
     }
     .stagger {
       opacity: 0;
       animation: fadeInAnimation 0.3s ease-in-out forwards;
-    }`,
+    }
+    #rect-mask rect{
+      animation: slideInAnimation 1s ease-in-out forwards;
+    }
+    `,
   );
 
   return card.render(`
