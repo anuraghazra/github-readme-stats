@@ -374,27 +374,27 @@ export const themes = {
     bg_color: "000000",
   },
   blood: {
-    title_color: "ff0000",
+    title_color: "ff5252",
     icon_color: "fc7a0f",
-    text_color: "d11d1d",
+    text_color: "ea6262",
     bg_color: "520b0b",
   },
   nswitch: {
     title_color: "00c3e3",
     icon_color: "00c3e3",
-    text_color: "FF3344",
+    text_color: "ff3344",
     bg_color: "1f2021",
   },
   vscode: {
     title_color: "23a9f2",
-    icon_color: "ff4d35",
+    icon_color: "ff6f5c",
     text_color: "11b2d9",
     bg_color: "333333",
   },
   visual_studio: {
     title_color: "cb95f7",
     icon_color: "ffffff",
-    text_color: "8e65eb",
+    text_color: "a78cee",
     bg_color: "333333",
   },
   sky: {
