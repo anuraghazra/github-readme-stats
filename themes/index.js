@@ -373,6 +373,12 @@ export const themes = {
     text_color: "31b573",
     bg_color: "000000",
   },
+  blood: {
+    title_color: "ff0000",
+    icon_color: "fc7a0f",
+    text_color: "d11d1d",
+    bg_color: "520b0b",
+  },
 };
 
 export default themes;
