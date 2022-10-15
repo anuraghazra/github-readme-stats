@@ -1,0 +1,3 @@
+/**
+ * @file Contains shared types.
+ */
