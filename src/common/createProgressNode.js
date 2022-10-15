@@ -34,8 +34,7 @@ const createProgressNode = ({
             rx="5" ry="5" x="0" y="0"
             class="lang-progress"
             style="animation-delay: ${delay}ms;"
-        >
-        </rect>
+        />
       </svg>
     </svg>
   `;
