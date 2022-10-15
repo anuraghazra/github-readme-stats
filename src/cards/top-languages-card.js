@@ -65,7 +65,7 @@ const createProgressTextNode = ({ width, color, name, progress, index }) => {
         width: progressWidth,
         progress,
         progressBarBackgroundColor: "#ddd",
-        delay: (staggerDelay+300),
+        delay: staggerDelay + 300,
       })}
     </g>
   `;
@@ -141,7 +141,7 @@ const createLanguageTextNode = ({ langs, totalSize }) => {
  */
 const renderNormalLayout = (langs, width, totalLanguageSize) => {
   return flexLayout({
-    items: langs.map((lang,index) => {
+    items: langs.map((lang, index) => {
       return createProgressTextNode({
         width,
         name: lang.name,

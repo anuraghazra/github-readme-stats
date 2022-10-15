@@ -27,12 +27,11 @@ const createProgressNode = ({
   return `
     <svg width="${width}" x="${x}" y="${y}">
       <rect rx="5" ry="5" x="0" y="0" width="${width}" height="8" fill="${progressBarBackgroundColor}"></rect>
-      <svg width="${progressPercentage}%">
+      <svg data-testid="lang-progress" width="${progressPercentage}%">
         <rect
             height="8"
             fill="${color}"
             rx="5" ry="5" x="0" y="0"
-            data-testid="lang-progress"
             class="lang-progress"
             style="animation-delay: ${delay}ms;"
         >
