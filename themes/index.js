@@ -391,6 +391,12 @@ export const themes = {
     text_color: "11b2d9",
     bg_color: "333333",
   },
+  visual_studio: {
+    title_color: "cb95f7",
+    icon_color: "ffffff",
+    text_color: "8e65eb",
+    bg_color: "333333",
+  },
 };
 
 export default themes;
