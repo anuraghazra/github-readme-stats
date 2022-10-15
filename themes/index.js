@@ -382,7 +382,7 @@ export const themes = {
   nswitch: {
     title_color: "00c3e3",
     icon_color: "00c3e3",
-    text_color: "e60012",
+    text_color: "FF3344",
     bg_color: "1f2021",
   },
   vscode: {
