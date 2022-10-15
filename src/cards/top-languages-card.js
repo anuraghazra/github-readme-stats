@@ -58,15 +58,16 @@ const createProgressTextNode = ({ width, color, name, progress, index }) => {
     <g class="stagger" style="animation-delay: ${staggerDelay}ms">
       <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
       <text x="${progressTextX}" y="34" class="lang-name">${progress}%</text>
+      ${createProgressNode({
+        x: 0,
+        y: 25,
+        color,
+        width: progressWidth,
+        progress,
+        progressBarBackgroundColor: "#ddd",
+        delay: (staggerDelay+300),
+      })}
     </g>
-    ${createProgressNode({
-      x: 0,
-      y: 25,
-      color,
-      width: progressWidth,
-      progress,
-      progressBarBackgroundColor: "#ddd",
-    })}
   `;
 };
 
@@ -346,6 +347,14 @@ const renderTopLanguages = (topLangs, options = {}) => {
         width: calc(100%-100px);
       }
     }
+    @keyframes growWidthAnimation {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
     .lang-name {
       font: 400 11px "Segoe UI", Ubuntu, Sans-Serif;
       fill: ${colors.textColor};
@@ -356,6 +365,9 @@ const renderTopLanguages = (topLangs, options = {}) => {
     }
     #rect-mask rect{
       animation: slideInAnimation 1s ease-in-out forwards;
+    }
+    .lang-progress{
+      animation: growWidthAnimation 0.6s ease-in-out forwards;
     }
     `,
   );
