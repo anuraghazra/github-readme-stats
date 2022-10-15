@@ -250,7 +250,7 @@ const createDonutPaths = (cx, cy, radius, data) => {
     const item = data[i];
     const tmp = {};
 
-    const p = Number((((item.value + 1) / total) * 100).toFixed(2));
+    let p = Number((((item.value + 1) / total) * 100).toFixed(2));
 
     count += p;
 
