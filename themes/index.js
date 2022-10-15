@@ -367,6 +367,12 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  forest: {
+    title_color: "009f3c",
+    icon_color: "ffffff",
+    text_color: "31b573",
+    bg_color: "000000",
+  },
 };
 
 export default themes;
