@@ -379,6 +379,12 @@ export const themes = {
     text_color: "d11d1d",
     bg_color: "520b0b",
   },
+  nswitch: {
+    title_color: "00c3e3",
+    icon_color: "00c3e3",
+    text_color: "e60012",
+    bg_color: "1f2021",
+  },
 };
 
 export default themes;
