@@ -398,10 +398,10 @@ export const themes = {
     bg_color: "333333",
   },
   sky: {
-    title_color: "0651ff",
-    icon_color: "ffffff",
-    text_color: "0672ff",
-    bg_color: "00bbff",
+    title_color: "0008e6",
+    icon_color: "1d7887",
+    text_color: "0063e6",
+    bg_color: "cdf9ff",
   },
 };
 
