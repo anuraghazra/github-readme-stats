@@ -10,7 +10,6 @@ import {
   lowercaseTrim,
   measureText,
 } from "../common/utils.js";
-import { getStyles } from "../getStyles.js";
 import { langCardLocales } from "../translations.js";
 
 const DEFAULT_CARD_WIDTH = 300;
