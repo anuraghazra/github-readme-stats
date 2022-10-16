@@ -368,11 +368,11 @@ export const themes = {
     bg_color: "191724",
   },
   horizon : {
-    title_color: "E95678",
-    icon_color: "#FAB795",
-    text_color: "#59E1E3",
-    bg_color: "#1C1E26",
-    border_color: "#1C1E26",
+    title_color: "e95678",
+    icon_color: "fab795",
+    text_color: "59e1e3",
+    bg_color: "1c1e26",
+    border_color: "1c1e26",
   },
 };
 
