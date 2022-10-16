@@ -1,4 +1,2 @@
-const blacklist = ["renovate-bot", "technote-space", "sw-yx"];
-
-export { blacklist };
-export default blacklist;
+/** User blacklist. */
+export const blacklist = ["renovate-bot", "technote-space", "sw-yx"];

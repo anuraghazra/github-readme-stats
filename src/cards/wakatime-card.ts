@@ -11,16 +11,7 @@ import {
 import { getStyles } from "../getStyles";
 import { wakatimeCardLocales } from "../translations";
 
-/** Import language colors.
- *
- * @description Here we use the workaround found in
- * https://stackoverflow.com/questions/66726365/how-should-i-import-json-in-node
- * since vercel is using v16.14.0 which does not yet support json imports without the
- * --experimental-json-modules flag.
- */
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-const languageColors = require("../common/languageColorson"); // now works
+import languageColors from "../common/languageColors.json";
 
 /**
  * @param {{color: string, text: string}} param0
