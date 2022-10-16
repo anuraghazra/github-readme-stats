@@ -223,7 +223,7 @@ const renderCompactLayout = (langs, width, totalLanguageSize) => {
  * @param {number} cy Center position y-axis.
  * @param {number} radius Arc Radius.
  * @param {{value: number}[]} data Array of donut section values.
- * @returns {{d: string}[]}  Array of svg path elements
+ * @returns {{d: string, value: number}[]}  Array of svg path elements
  */
 const createDonutPaths = (cx, cy, radius, data) => {
 
@@ -261,6 +261,8 @@ const createDonutPaths = (cx, cy, radius, data) => {
     const b = arcradius(cx, cy, radius, end);
     const e = arcradius(cx, cy, radius, beginning);
     const la = end - beginning <= 180 ? 0 : 1;
+
+    tmp.value = Number(item.value).toFixed(2);
 
     tmp.d = [
       "M",
@@ -309,6 +311,8 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
     const output = `
        <g>
         <path
+          data-testid="lang-pie"
+          size="${section.value}"
           d="${section.d}"
           stroke="${colors[i]}"
           fill="none"
