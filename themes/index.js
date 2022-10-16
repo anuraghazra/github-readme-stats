@@ -367,6 +367,13 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  horizon : {
+    title_color: "E95678",
+    icon_color: "#FAB795",
+    text_color: "#59E1E3",
+    bg_color: "#1C1E26",
+    border_color: "#1C1E26",
+  },
 };
 
 export default themes;
