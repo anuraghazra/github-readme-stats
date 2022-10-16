@@ -1,16 +1,18 @@
-require("dotenv").config();
-const {
-  renderError,
-  parseBoolean,
+import * as dotenv from "dotenv";
+import { renderWakatimeCard } from "../src/cards/wakatime-card.js";
+import {
   clampValue,
-  parseArray,
   CONSTANTS,
-} = require("../src/common/utils");
-const { isLocaleAvailable } = require("../src/translations");
-const { fetchWakatimeStats } = require("../src/fetchers/wakatime-fetcher");
-const wakatimeCard = require("../src/cards/wakatime-card");
+  parseArray,
+  parseBoolean,
+  renderError,
+} from "../src/common/utils.js";
+import { fetchWakatimeStats } from "../src/fetchers/wakatime-fetcher.js";
+import { isLocaleAvailable } from "../src/translations.js";
 
-module.exports = async (req, res) => {
+dotenv.config();
+
+export default async (req, res) => {
   const {
     username,
     title_color,
@@ -44,8 +46,8 @@ module.exports = async (req, res) => {
     const stats = await fetchWakatimeStats({ username, api_domain, range });
 
     let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
-      CONSTANTS.TWO_HOURS,
+      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
+      CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
 
@@ -56,7 +58,7 @@ module.exports = async (req, res) => {
     res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
 
     return res.send(
-      wakatimeCard(stats, {
+      renderWakatimeCard(stats, {
         custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
@@ -76,6 +78,7 @@ module.exports = async (req, res) => {
       }),
     );
   } catch (err) {
+    res.setHeader("Cache-Control", `no-store`); // Don't cache error responses.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };

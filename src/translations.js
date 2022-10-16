@@ -1,5 +1,12 @@
-const { encodeHTML } = require("./common/utils");
+import { encodeHTML } from "./common/utils.js";
 
+/**
+ * Retrieves stat card labels in the available locales.
+ *
+ * @param {string} name The name of the locale.
+ * @param {string} apostrophe Whether to use apostrophe or not.
+ * @returns {Object} The locales object.
+ */
 const statCardLocales = ({ name, apostrophe }) => {
   const encodedName = encodeHTML(name);
   return {
@@ -31,7 +38,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       tr: `${encodedName} Hesabının GitHub Yıldızları`,
       pl: `Statystyki GitHub użytkownika ${encodedName}`,
       uz: `${encodedName}ning Github'dagi statistikasi`,
-      vi: `Thống Kê GitHub ${encodedName}`
+      vi: `Thống Kê GitHub ${encodedName}`,
+      se: `GitHubstatistik för ${encodedName}`,
     },
     "statcard.totalstars": {
       ar: "مجموع النجوم",
@@ -61,7 +69,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       tr: "Toplam Yıldız",
       pl: "Liczba Gwiazdek dostanych",
       uz: "Yulduzchalar",
-      vi: "Tổng Số Sao"
+      vi: "Tổng Số Sao",
+      se: "Antal intjänade stjärnor",
     },
     "statcard.commits": {
       ar: "مجموع الحفظ",
@@ -92,6 +101,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie commity",
       uz: "'Commit'lar",
       vi: "Tổng Số Cam Kết",
+      se: "Totalt antal commits",
     },
     "statcard.prs": {
       ar: "مجموع طلبات السحب",
@@ -122,6 +132,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie PR-y",
       uz: "'Pull Request'lar",
       vi: "Tổng Số PR",
+      se: "Totalt antal PR",
     },
     "statcard.issues": {
       ar: "مجموع التحسينات",
@@ -152,6 +163,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       pl: "Wszystkie Issues",
       uz: "'Issue'lar",
       vi: "Tổng Số Vấn Đề",
+      se: "Total antal issues",
     },
     "statcard.contribs": {
       ar: "ساهم في",
@@ -165,7 +177,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       fr: "Contribué à",
       hu: "Hozzájárulások",
       it: "Ha contribuito a",
-      ja: "コントリビュートしたリポジトリ",
+      ja: "貢献したリポジトリ",
       kr: "전체 기여도",
       nl: "Bijgedragen aan",
       "pt-pt": "Contribuiu em",
@@ -181,7 +193,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       tr: "Katkı Verildi",
       pl: "Kontrybucje",
       uz: "Hissa qoʻshgan",
-      vi: "Đã Đóng Góp"
+      vi: "Đã Đóng Góp",
+      se: "Bidragit till",
     },
   };
 };
@@ -195,7 +208,7 @@ const repoCardLocales = {
     cs: "Šablona",
     de: "Vorlage",
     en: "Template",
-    es: "Planitlla",
+    es: "Plantilla",
     fr: "Modèle",
     hu: "Sablon",
     it: "Template",
@@ -215,6 +228,7 @@ const repoCardLocales = {
     tr: "Şablon",
     pl: "Szablony",
     vi: "Mẫu",
+    se: "Mall",
   },
   "repocard.archived": {
     ar: "محفوظ",
@@ -244,6 +258,7 @@ const repoCardLocales = {
     tr: "Arşiv",
     pl: "Zarchiwizowano",
     vi: "Đã Lưu Trữ",
+    se: "Arkiverade",
   },
 };
 
@@ -276,6 +291,7 @@ const langCardLocales = {
     tr: "En Çok Kullanılan Diller",
     pl: "Najczęściej używane języki",
     vi: "Ngôn Ngữ Thường Sử Dụng",
+    se: "Mest använda språken",
   },
 };
 
@@ -308,6 +324,7 @@ const wakatimeCardLocales = {
     tr: "Waketime İstatistikler",
     pl: "statystyki Wakatime",
     vi: "Thống Kê Wakatime",
+    se: "Wakatime statistik",
   },
   "wakatimecard.nocodingactivity": {
     ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
@@ -337,17 +354,24 @@ const wakatimeCardLocales = {
     tr: "Bu hafta herhangi bir kod yazma aktivitesi olmadı",
     pl: "Brak aktywności w tym tygodniu",
     uz: "Bu hafta faol bo'lmadi",
-    vi: "Không Có Hoạt Động Trong Tuần Này"
+    vi: "Không Có Hoạt Động Trong Tuần Này",
+    se: "Ingen aktivitet denna vecka",
   },
 };
 
 const availableLocales = Object.keys(repoCardLocales["repocard.archived"]);
 
+/**
+ * Checks whether the locale is available or not.
+ *
+ * @param {string} locale The locale to check.
+ * @returns {boolean} Boolean specifying whether the locale is available or not.
+ */
 function isLocaleAvailable(locale) {
   return availableLocales.includes(locale.toLowerCase());
 }
 
-module.exports = {
+export {
   isLocaleAvailable,
   availableLocales,
   statCardLocales,

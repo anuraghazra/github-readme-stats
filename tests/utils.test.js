@@ -1,14 +1,12 @@
-require("@testing-library/jest-dom");
-const {
-  kFormatter,
+import { queryByTestId } from "@testing-library/dom";
+import "@testing-library/jest-dom";
+import {
   encodeHTML,
-  renderError,
-  flexLayout,
   getCardColors,
+  kFormatter,
+  renderError,
   wrapTextMultiline,
-} = require("../src/common/utils");
-
-const { queryByTestId } = require("@testing-library/dom");
+} from "../src/common/utils.js";
 
 describe("Test utils.js", () => {
   it("should test kFormatter", () => {
@@ -23,7 +21,7 @@ describe("Test utils.js", () => {
 
   it("should test encodeHTML", () => {
     expect(encodeHTML(`<html lang="">hello world<,.#4^&^@%!))`)).toBe(
-      "&#60;html lang=\"\"&#62;hello world&#60;,.#4^&#38;^@%!))",
+      '&#60;html lang=""&#62;hello world&#60;,.#4^&#38;^@%!))',
     );
   });
 
@@ -32,7 +30,9 @@ describe("Test utils.js", () => {
     expect(
       queryByTestId(document.body, "message").children[0],
     ).toHaveTextContent(/Something went wrong/gim);
-    expect(queryByTestId(document.body, "message").children[1]).toBeEmptyDOMElement();
+    expect(
+      queryByTestId(document.body, "message").children[1],
+    ).toBeEmptyDOMElement();
 
     // Secondary message
     document.body.innerHTML = renderError(

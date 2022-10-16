@@ -1,9 +1,9 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("@uppercod/css-to-object").cssToObject;
-const renderRepoCard = require("../src/cards/repo-card");
+import { queryByTestId } from "@testing-library/dom";
+import "@testing-library/jest-dom";
+import { cssToObject } from "@uppercod/css-to-object";
+import { renderRepoCard } from "../src/cards/repo-card.js";
 
-const { queryByTestId } = require("@testing-library/dom");
-const themes = require("../themes");
+import { themes } from "../themes/index.js";
 
 const data_repo = {
   repository: {
@@ -130,12 +130,7 @@ describe("Test renderRepoCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    expectColors(stylesObject,
-      "#2f80ed",
-      "#434d58",
-      "#586069",
-      "#fffefe",
-    );
+    expectColors(stylesObject, "#2f80ed", "#434d58", "#586069", "#fffefe");
   });
 
   it("should render custom colors properly", () => {
@@ -153,7 +148,8 @@ describe("Test renderRepoCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    expectColors(stylesObject,
+    expectColors(
+      stylesObject,
       `#${customColors.title_color}`,
       `#${customColors.text_color}`,
       `#${customColors.icon_color}`,
@@ -170,7 +166,8 @@ describe("Test renderRepoCard", () => {
       const styleTag = document.querySelector("style");
       const stylesObject = cssToObject(styleTag.innerHTML);
 
-      expectColors(stylesObject,
+      expectColors(
+        stylesObject,
         `#${themes[name].title_color}`,
         `#${themes[name].text_color}`,
         `#${themes[name].icon_color}`,
@@ -188,7 +185,8 @@ describe("Test renderRepoCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    expectColors(stylesObject,
+    expectColors(
+      stylesObject,
       "#5a0",
       `#${themes.radical.text_color}`,
       `#${themes.radical.icon_color}`,
@@ -206,7 +204,8 @@ describe("Test renderRepoCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    expectColors(stylesObject,
+    expectColors(
+      stylesObject,
       `#${themes.default.title_color}`,
       `#${themes.default.text_color}`,
       `#${themes.radical.icon_color}`,
@@ -309,7 +308,13 @@ describe("Test renderRepoCard", () => {
     );
   });
 
-  function expectColors(stylesObject, headerColor, descriptionColor, iconColor, cardColor) {
+  function expectColors(
+    stylesObject,
+    headerColor,
+    descriptionColor,
+    iconColor,
+    cardColor,
+  ) {
     const headerClassStyles = stylesObject[":host"][".header "];
     const descClassStyles = stylesObject[":host"][".description "];
     const iconClassStyles = stylesObject[":host"][".icon "];

@@ -1,25 +1,26 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("@uppercod/css-to-object").cssToObject;
-const renderStatsCard = require("../src/cards/stats-card");
-
-const {
+import {
   getByTestId,
-  queryByTestId,
   queryAllByTestId,
-} = require("@testing-library/dom");
-const themes = require("../themes");
+  queryByTestId,
+} from "@testing-library/dom";
+import { cssToObject } from "@uppercod/css-to-object";
+import { renderStatsCard } from "../src/cards/stats-card.js";
+// adds special assertions like toHaveTextContent
+import "@testing-library/jest-dom";
+
+import { themes } from "../themes/index.js";
+
+const stats = {
+  name: "Anurag Hazra",
+  totalStars: 100,
+  totalCommits: 200,
+  totalIssues: 300,
+  totalPRs: 400,
+  contributedTo: 500,
+  rank: { level: "A+", score: 40 },
+};
 
 describe("Test renderStatsCard", () => {
-  const stats = {
-    name: "Anurag Hazra",
-    totalStars: 100,
-    totalCommits: 200,
-    totalIssues: 300,
-    totalPRs: 400,
-    contributedTo: 500,
-    rank: { level: "A+", score: 40 },
-  };
-
   it("should render correctly", () => {
     document.body.innerHTML = renderStatsCard(stats);
 
@@ -75,18 +76,59 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "rank-circle")).not.toBeInTheDocument();
   });
 
+  it("should render with custom width set", () => {
+    document.body.innerHTML = renderStatsCard(stats);
+    expect(document.querySelector("svg")).toHaveAttribute("width", "495");
+
+    document.body.innerHTML = renderStatsCard(stats, { card_width: 400 });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "400");
+  });
+
+  it("should render with custom width set and limit minimum width", () => {
+    document.body.innerHTML = renderStatsCard(stats, { card_width: 1 });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "340");
+
+    document.body.innerHTML = renderStatsCard(stats, {
+      card_width: 1,
+      hide_rank: true,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      "305.81250000000006",
+    );
+
+    document.body.innerHTML = renderStatsCard(stats, {
+      card_width: 1,
+      hide_rank: true,
+      show_icons: true,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      "305.81250000000006",
+    );
+
+    document.body.innerHTML = renderStatsCard(stats, {
+      card_width: 1,
+      hide_rank: false,
+      show_icons: true,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "356");
+
+    document.body.innerHTML = renderStatsCard(stats, {
+      card_width: 1,
+      hide_rank: false,
+      show_icons: false,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "340");
+  });
+
   it("should render default colors properly", () => {
     document.body.innerHTML = renderStatsCard(stats);
 
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.textContent);
 
-    expectColors(stylesObject,
-      "#2f80ed",
-      "#434d58",
-      "#4c71f2",
-      "#fffefe",
-    );
+    expectColors(stylesObject, "#2f80ed", "#434d58", "#4c71f2", "#fffefe");
   });
 
   it("should render custom colors properly", () => {
@@ -102,7 +144,8 @@ describe("Test renderStatsCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    expectColors(stylesObject,
+    expectColors(
+      stylesObject,
       `#${customColors.title_color}`,
       `#${customColors.text_color}`,
       `#${customColors.icon_color}`,
@@ -119,7 +162,8 @@ describe("Test renderStatsCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    expectColors(stylesObject,
+    expectColors(
+      stylesObject,
       "#5a0",
       `#${themes.radical.text_color}`,
       `#${themes.radical.icon_color}`,
@@ -136,7 +180,8 @@ describe("Test renderStatsCard", () => {
       const styleTag = document.querySelector("style");
       const stylesObject = cssToObject(styleTag.innerHTML);
 
-      expectColors(stylesObject,
+      expectColors(
+        stylesObject,
         `#${themes[name].title_color}`,
         `#${themes[name].text_color}`,
         `#${themes[name].icon_color}`,
@@ -155,7 +200,8 @@ describe("Test renderStatsCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    expectColors(stylesObject,
+    expectColors(
+      stylesObject,
       `#${themes.default.title_color}`,
       `#${themes.default.text_color}`,
       `#${themes.radical.icon_color}`,
@@ -213,27 +259,27 @@ describe("Test renderStatsCard", () => {
     );
     expect(
       document.querySelector(
-        "g[transform=\"translate(0, 0)\"]>.stagger>.stat.bold",
+        'g[transform="translate(0, 0)"]>.stagger>.stat.bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"获标星数（star）:"`);
     expect(
       document.querySelector(
-        "g[transform=\"translate(0, 25)\"]>.stagger>.stat.bold",
+        'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"累计提交数（commit） (2022):"`);
     expect(
       document.querySelector(
-        "g[transform=\"translate(0, 50)\"]>.stagger>.stat.bold",
+        'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"拉取请求数（PR）:"`);
     expect(
       document.querySelector(
-        "g[transform=\"translate(0, 75)\"]>.stagger>.stat.bold",
+        'g[transform="translate(0, 75)"]>.stagger>.stat.bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"指出问题数（issue）:"`);
     expect(
       document.querySelector(
-        "g[transform=\"translate(0, 100)\"]>.stagger>.stat.bold",
+        'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
       ).textContent,
     ).toMatchInlineSnapshot(`"参与项目数:"`);
   });
@@ -245,7 +291,13 @@ describe("Test renderStatsCard", () => {
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
   });
 
-  function expectColors(stylesObject, headerColor, statColor, iconColor, cardColor) {
+  function expectColors(
+    stylesObject,
+    headerColor,
+    statColor,
+    iconColor,
+    cardColor,
+  ) {
     const headerClassStyles = stylesObject[":host"][".header "];
     const statClassStyles = stylesObject[":host"][".stat "];
     const iconClassStyles = stylesObject[":host"][".icon "];
