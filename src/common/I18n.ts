@@ -5,7 +5,7 @@ type Translations = Record<string, Record<string, string>>;
  */
 export class I18n {
   /** The language locale. */
-  locale: string | undefined;
+  locale?: string;
   /** The translations object. */
   translations: Translations;
   /** The fallback language locale. */

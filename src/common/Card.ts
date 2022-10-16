@@ -66,7 +66,7 @@ export class Card {
   /** Card y padding. */
   paddingY: number;
   /** Card title prefix icon. */
-  titlePrefixIcon: string | undefined;
+  titlePrefixIcon?: string;
   /** Whether the card is animated. */
   animations: boolean;
   /** Accessibility label title. */
