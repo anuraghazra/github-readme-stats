@@ -1,7 +1,7 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const { fetchWakatimeStats } = require("../src/fetchers/wakatime-fetcher");
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import { fetchWakatimeStats } from "../src/fetchers/wakatime-fetcher.js";
 const mock = new MockAdapter(axios);
 
 afterEach(() => {
@@ -111,9 +111,9 @@ describe("Wakatime fetcher", () => {
 
     const repo = await fetchWakatimeStats({ username });
     expect(repo).toMatchInlineSnapshot(`
-      Object {
-        "categories": Array [
-          Object {
+      {
+        "categories": [
+          {
             "digital": "22:40",
             "hours": 22,
             "minutes": 40,
@@ -127,8 +127,8 @@ describe("Wakatime fetcher", () => {
         "daily_average_including_other_language": 16329,
         "days_including_holidays": 7,
         "days_minus_holidays": 5,
-        "editors": Array [
-          Object {
+        "editors": [
+          {
             "digital": "22:40",
             "hours": 22,
             "minutes": 40,
@@ -150,8 +150,8 @@ describe("Wakatime fetcher", () => {
         "is_other_usage_visible": true,
         "is_stuck": false,
         "is_up_to_date": true,
-        "languages": Array [
-          Object {
+        "languages": [
+          {
             "digital": "0:19",
             "hours": 0,
             "minutes": 19,
@@ -160,7 +160,7 @@ describe("Wakatime fetcher", () => {
             "text": "19 mins",
             "total_seconds": 1170.434361,
           },
-          Object {
+          {
             "digital": "0:01",
             "hours": 0,
             "minutes": 1,
@@ -169,7 +169,7 @@ describe("Wakatime fetcher", () => {
             "text": "1 min",
             "total_seconds": 83.293809,
           },
-          Object {
+          {
             "digital": "0:00",
             "hours": 0,
             "minutes": 0,
@@ -179,8 +179,8 @@ describe("Wakatime fetcher", () => {
             "total_seconds": 54.975151,
           },
         ],
-        "operating_systems": Array [
-          Object {
+        "operating_systems": [
+          {
             "digital": "22:40",
             "hours": 22,
             "minutes": 40,
@@ -207,9 +207,9 @@ describe("Wakatime fetcher", () => {
     mock.onGet(/\/https:\/\/wakatime\.com\/api/).reply(404, wakaTimeData);
 
     await expect(fetchWakatimeStats("noone")).rejects.toThrow(
-      "Missing params \"username\" make sure you pass the parameters in URL",
+      'Missing params "username" make sure you pass the parameters in URL',
     );
   });
 });
 
-module.exports = { wakaTimeData };
+export { wakaTimeData };
