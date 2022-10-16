@@ -29,7 +29,7 @@
     </a>
   </p>
 
-<p align="center">
+  <p align="center">
     <a href="#demo">View Demo</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Report Bug</a>
@@ -167,28 +167,26 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 -   `border_color` - Card's border color _(hex color)_. Default: `e4e2e2` (Does not apply when `hide_border` is enabled).
 -   `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_. Default: `fffefe`
 -   `hide_border` - Hides the card's border _(boolean)_. Default: `false`
--   `theme` - name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme.
--   `cache_seconds` - set the cache header manually _(min: 7200, max: 86400)_. Default: `14400 seconds (4 hours)`.
--   `locale` - set the language in the card _(e.g. cn, de, es, etc.)_. Default: `en`.
+-   `theme` - Name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme.
+-   `cache_seconds` - Set the cache header manually _(min: 7200, max: 86400)_. Default: `14400 seconds (4 hours)`.
+-   `locale` - Set the language in the card _(e.g. cn, de, es, etc.)_. Default: `en`.
 -   `border_radius` - Corner rounding on the card. Default: `4.5`.
 
 > **Warning**
-> We use caching to decrease the load on our servers (see https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours.
+> We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours.
 
 ##### Gradient in bg_color
 
 You can provide multiple comma-separated values in the bg_color option to render a gradient with the following format:
 
-```
-&bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
-```
+    &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 
 #### Stats Card Exclusive Options
 
 -   `hide` - Hides the [specified items](#hiding-individual-stats) from stats _(Comma-separated values)_. Default: `[] (blank array)`.
 -   `hide_title` - _(boolean)_. Default: `false`.
 -   `card_width` - Set the card's width manually _(number)_. Default: `500px  (approx.)`.
--   `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width. Default: `false`.
+-   `hide_rank` - _(boolean)_ Hides the rank and automatically resizes the card width. Default: `false`.
 -   `show_icons` - _(boolean)_. Default: `false`.
 -   `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_. Default: `false`.
 -   `count_private` - Count private commits _(boolean)_. Default: `false`.
@@ -263,7 +261,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 The top languages card shows a GitHub user's most frequently used top language.
 
 > **Note**
-> Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats._
+> Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats.\_
 
 ### Usage
 
