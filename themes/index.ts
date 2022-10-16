@@ -1,15 +1,26 @@
-interface ThemeProperty {
+
+/** Theme properties. */
+interface ThemeProperties {
+  /** Title color. */
   title_color: string;
+  /** Icon color. */
   icon_color: string;
+  /** Text color. */
   text_color: string;
+  /** Background color. */
   bg_color: string;
+  /** Border color. */
   border_color: string;
 }
 
+/** Card theme. */
 interface Theme {
-  [index: string]: ThemeProperty;
+  [index: string]: ThemeProperties;
 }
 
+/**
+ * Themes for the cards.
+ */
 export const themes: Theme = {
   default: {
     title_color: "2f80ed",

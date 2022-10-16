@@ -1,11 +1,19 @@
 import { clampValue } from "./utils";
 
-interface IcreateProgressNode {
+
+/** CreateProgressNode properties. */
+interface CreateProgressNodeProps {
+  /** Progress bar item x position. */
   x: number;
+  /** Progress bar item y position.. */
   y: number;
+  /** Progress bar item width. */
   width: number;
+  /** Progress bar item color. */
   color: string;
+  /** Progress value. */
   progress: number;
+  /** Progress bar item background color. */
   progressBarBackgroundColor: string;
 }
 
@@ -16,7 +24,7 @@ const createProgressNode = ({
   color,
   progress,
   progressBarBackgroundColor,
-}: IcreateProgressNode) => {
+}: CreateProgressNodeProps) => {
   const progressPercentage = clampValue(progress, 2, 100);
 
   return `

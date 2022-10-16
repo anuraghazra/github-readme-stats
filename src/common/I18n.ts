@@ -1,6 +1,14 @@
+type Translations = Record<string, Record<string, string>>;
+
+/**
+ * I18n translation class.
+ */
 export class I18n {
-  locale: string | undefined;
-  translations: Record<string, Record<string, string>>;
+  /** The language locale. */
+  locale?: string;
+  /** The translations object. */
+  translations: Translations;
+  /** The fallback language locale. */
   fallbackLocale: string;
 
   constructor({
@@ -8,7 +16,7 @@ export class I18n {
     translations,
   }: {
     locale?: string;
-    translations: Record<string, Record<string, string>>;
+    translations: Translations;
   }) {
     this.locale = locale;
     this.translations = translations;

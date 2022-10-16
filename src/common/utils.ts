@@ -298,7 +298,7 @@ const SECONDARY_ERROR_MESSAGES = {
 
 class CustomError extends Error {
   type: string;
-  secondaryMessage: string;
+  secondaryMessage?: string;
   /**
    * @param {string} message
    * @param {string} type
@@ -315,7 +315,7 @@ class CustomError extends Error {
 
 class MissingParamError extends Error {
   missedParams: string[];
-  secondaryMessage: string | undefined;
+  secondaryMessage?: string;
   /**
    * @param {string[]} missedParams
    * @param {string?=} secondaryMessage

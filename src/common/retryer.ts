@@ -6,6 +6,17 @@ import axios, {
 } from "axios";
 import { CustomError, logger } from "./utils";
 
+
+/** Data fetcher. */
+type Fetcher = (
+  /** Fetcher variables. */
+  variables: AxiosRequestHeaders,
+  /** Authentication token. */
+  token: string,
+  /** The number of retries. */
+  retries?: number,
+) => AxiosPromise<any>
+
 /**
  * Try to execute the fetcher function until it succeeds or the max number of retries is reached.
  *
@@ -16,11 +27,7 @@ import { CustomError, logger } from "./utils";
  * @returns Promise<retryer>
  */
 export const retryer = async (
-  fetcher: (
-    variables: AxiosRequestHeaders,
-    token: string,
-    retries?: number,
-  ) => AxiosPromise<any>,
+  fetcher: Fetcher,
   variables: AxiosRequestHeaders,
   retries = 0,
 ): Promise<any> => {
