@@ -134,11 +134,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     commits: {
       icon: icons.commits,
       label: `${i18n.t("statcard.commits")}${
-        include_all_commits
-          ? ""
-          : year
-          ? ` (${year})`
-          : ` (${new Date().getFullYear()})`
+        include_all_commits ? "" : year ? ` (${year})` : ` (last year)`
       }`,
       value: totalCommits,
       id: "commits",
@@ -188,7 +184,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         index,
         showIcons: show_icons,
         shiftValuePos:
-          (!include_all_commits ? 50 : 35) + (isLongLocale ? 50 : 0),
+          (include_all_commits ? 35 : year ? 50 : 80.22) +
+          (isLongLocale ? 50 : 0),
         bold: text_bold,
       }),
     );
@@ -296,7 +293,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     .map((key) => {
       if (key === "commits") {
         return `${i18n.t("statcard.commits")} ${
-          include_all_commits ? "" : `in ${new Date().getFullYear()}`
+          include_all_commits ? "" : year ? ` (${year})` : ` (last year)`
         } : ${totalStars}`;
       }
       return `${STATS[key].label}: ${STATS[key].value}`;
