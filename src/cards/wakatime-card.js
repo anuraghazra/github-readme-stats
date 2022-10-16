@@ -19,6 +19,7 @@ import { wakatimeCardLocales } from "../translations.js";
  * --experimental-json-modules flag.
  */
 import { createRequire } from "module";
+
 const require = createRequire(import.meta.url);
 const languageColors = require("../common/languageColors.json"); // now works
 
@@ -48,7 +49,7 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
   return `
     <g transform="translate(${x}, ${y})">
       <circle cx="5" cy="6" r="5" fill="${color}" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
+      <text data-testid="lang-name" x="15" y="10" class="lang-name">
         ${lang.name} - ${lang.text}
       </text>
     </g>
@@ -110,15 +111,15 @@ const createTextNode = ({
   const cardProgress = hideProgress
     ? null
     : createProgressNode({
-      x: 110,
-      y: 4,
-      progress: percent,
-      color: progressBarColor,
-      width: 220,
-      // @ts-ignore
-      name: label,
-      progressBarBackgroundColor,
-    });
+        x: 110,
+        y: 4,
+        progress: percent,
+        color: progressBarColor,
+        width: 220,
+        // @ts-ignore
+        name: label,
+        progressBarBackgroundColor,
+      });
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
@@ -222,9 +223,7 @@ function renderItemCard(items, options) {
     });
 
   const filteredItems = items
-    ? items
-      .filter((item) => item.hours || item.minutes)
-      .slice(0, langsCount)
+    ? items.filter((item) => item.hours || item.minutes).slice(0, langsCount)
     : [];
 
   // Calculate the card height depending on how many items there are
@@ -278,35 +277,35 @@ function renderItemCard(items, options) {
       </mask>
       ${compactProgressBar}
       ${createLanguageTextNode({
-      x: 0,
-      y: 25,
-      langs: filteredItems,
-      totalSize: 100,
-    }).join("")}
+        x: 0,
+        y: 25,
+        langs: filteredItems,
+        totalSize: 100,
+      }).join("")}
     `;
   } else {
     finalLayout = flexLayout({
       items: filteredItems.length
         ? filteredItems.map((item) => {
-          return createTextNode({
-            id: item.name,
-            label: item.name,
-            value: item.text,
-            percent: item.percent,
-            // @ts-ignore
-            progressBarColor: titleColor,
-            // @ts-ignore
-            progressBarBackgroundColor: textColor,
-            hideProgress: hide_progress,
-          });
-        })
+            return createTextNode({
+              id: item.name,
+              label: item.name,
+              value: item.text,
+              percent: item.percent,
+              // @ts-ignore
+              progressBarColor: titleColor,
+              // @ts-ignore
+              progressBarBackgroundColor: textColor,
+              hideProgress: hide_progress,
+            });
+          })
         : [
-          noCodingActivityNode({
-            // @ts-ignore
-            color: textColor,
-            text: i18n.t("wakatimecard.nocodingactivity"),
-          }),
-        ],
+            noCodingActivityNode({
+              // @ts-ignore
+              color: textColor,
+              text: i18n.t("wakatimecard.nocodingactivity"),
+            }),
+          ],
       gap: lheight,
       direction: "column",
     }).join("");
