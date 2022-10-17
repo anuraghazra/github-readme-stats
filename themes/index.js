@@ -10,7 +10,7 @@ export const themes = {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
     text_color: "434d58",
-    bg_color: "e3dfee",
+    bg_color: "fffefe",
   },
   meko_blue: {
     title_color: "080218",
