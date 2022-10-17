@@ -144,6 +144,12 @@ export const themes = {
     text_color: "ffd95b",
     bg_color: "000000",
   },
+   bili_blue: {
+    title_color: "f0f3fa",
+    icon_color: "aabbe3",
+    text_color: "D3D3D3",
+    bg_color: "140F40",
+  },
   darcula: {
     title_color: "BA5F17",
     icon_color: "84628F",
