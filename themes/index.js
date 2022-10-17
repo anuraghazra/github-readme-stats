@@ -10,7 +10,7 @@ export const themes = {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
     text_color: "434d58",
-    bg_color: "fffefe",
+    bg_color: "e3dfee",
   },
    g_blue: {
     title_color: "7a56d4",
