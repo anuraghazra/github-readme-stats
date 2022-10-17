@@ -7,6 +7,15 @@ We love your input! We want to make contributing to this project as easy and tra
 -   Submitting a fix
 -   Proposing new features
 -   Becoming a maintainer
+-   Becoming a maintainer
+-   Becoming a maintainer
+-   Becoming a maintainerBecoming a maintainer
+-   Becoming a maintainer
+-   Becoming a maintainer
+-   Becoming a maintainerv
+-   Becoming a maintainer
+-   Becoming a maintainer
+-   Becoming a maintainer
 
 ## All Changes Happen Through Pull Requests
 
