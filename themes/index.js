@@ -12,6 +12,12 @@ export const themes = {
     text_color: "434d58",
     bg_color: "fffefe",
   },
+   g_blue: {
+    title_color: "7a56d4",
+    icon_color: "865cf0",
+    text_color: "7342ed",
+    bg_color: "f2dee2",
+  },
   transparent: {
     title_color: "006AFF",
     icon_color: "0579C3",
