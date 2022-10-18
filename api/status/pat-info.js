@@ -2,12 +2,12 @@
  * @file Contains a simple cloud function that can be used to check which PATs are no
  * longer working. It returns a list of valid PATs, expired PATs and PATs with errors.
  *
- * @description This function is currently rate limited to 1 request per day.
+ * @description This function is currently rate limited to 1 request per 15 minutes.
  */
 
 import { logger, request } from "../../src/common/utils.js";
 
-export const RATE_LIMIT_SECONDS = 60 * 60 * 24; // 1 request per day.
+export const RATE_LIMIT_SECONDS = 60 * 15; // 1 request per 15 minutes
 
 /**
  * Simple uptime check fetcher for the PATs.
