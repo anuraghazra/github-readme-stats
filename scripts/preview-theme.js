@@ -24,7 +24,7 @@ const THEME_PR_SUCCESS_TEXT =
   ":heavy_check_mark: Theme PR does adhere to our guidelines.";
 const FAIL_TEXT = `
   \rUnfortunately, your theme PR contains an error or does not adhere to our [theme guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution). Please fix the issues below, and we will review your\
-  \r PR again. This pull request will **automatically close in 15 days** if no changes are made. After this time, you must re-open the PR for it to be reviewed.
+  \r PR again. This pull request will **automatically close in 20 days** if no changes are made. After this time, you must re-open the PR for it to be reviewed.
 `;
 const THEME_CONTRIB_GUIDELINESS = `
   \rHi, thanks for the theme contribution. Please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).

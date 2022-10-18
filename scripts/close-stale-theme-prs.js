@@ -127,7 +127,7 @@ const run = async () => {
   try {
     // Create octokit client.
     const dryRun = process.env.DRY_RUN === "true" || false;
-    const staleDays = process.env.STALE_DAYS || 15;
+    const staleDays = process.env.STALE_DAYS || 20;
     debug("Creating octokit client...");
     const octokit = github.getOctokit(getGithubToken());
     const { owner, repo } = getRepoInfo(github.context);
