@@ -11,7 +11,6 @@ import { renderStatsCard } from "../../src/cards/stats-card.js";
 import { renderTopLanguages } from "../../src/cards/top-languages-card.js";
 import { renderWakatimeCard } from "../../src/cards/wakatime-card.js";
 
-// Script variables
 const REPO = "dummy-cra";
 const USER = "grsdummy";
 const STATS_DATA = {
@@ -26,6 +25,7 @@ const STATS_DATA = {
     score: 51.01013099671447,
   },
 };
+
 const LANGS_DATA = {
   TypeScript: {
     color: "#3178c6",
@@ -48,6 +48,7 @@ const LANGS_DATA = {
     size: 671,
   },
 };
+
 const WAKATIME_DATA = {
   human_readable_range: "last week",
   is_already_updating: false,
@@ -64,6 +65,7 @@ const WAKATIME_DATA = {
   username: "grsdummy",
   writes_only: false,
 };
+
 const REPOSITORY_DATA = {
   name: "dummy-cra",
   nameWithOwner: "grsdummy/dummy-cra",
@@ -82,6 +84,7 @@ const REPOSITORY_DATA = {
   forkCount: 0,
   starCount: 1,
 };
+
 const CACHE_BURST_STRING = `v=${new Date().getTime()}`;
 
 describe("Fetch Cards", () => {
@@ -110,7 +113,7 @@ describe("Fetch Cards", () => {
 
     // Check if stats card from deployment matches the stats card from local.
     expect(serverStatsSvg.data).toEqual(localStatsCardSVG);
-  });
+  }, 7000);
 
   test("retrieve language card", async () => {
     expect(VERCEL_PREVIEW_URL).toBeDefined();

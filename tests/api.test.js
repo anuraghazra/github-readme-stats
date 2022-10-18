@@ -184,6 +184,16 @@ describe("Test /api/", () => {
     ]);
   });
 
+  it("should not store cache when error", async () => {
+    const { req, res } = faker({}, error);
+    await api(req, res);
+
+    expect(res.setHeader.mock.calls).toEqual([
+      ["Content-Type", "image/svg+xml"],
+      ["Cache-Control", `no-cache, no-store, must-revalidate`],
+    ]);
+  });
+
   it("should set proper cache with clamped values", async () => {
     {
       let { req, res } = faker({ cache_seconds: 200000 }, data);
