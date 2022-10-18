@@ -162,7 +162,9 @@ describe("Test /api/", () => {
       ["Content-Type", "image/svg+xml"],
       [
         "Cache-Control",
-        `public, max-age=${CONSTANTS.FOUR_HOURS}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+        `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
+          CONSTANTS.FOUR_HOURS
+        }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
       ],
     ]);
   });
@@ -175,7 +177,9 @@ describe("Test /api/", () => {
       ["Content-Type", "image/svg+xml"],
       [
         "Cache-Control",
-        `public, max-age=${15000}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+        `max-age=7500, s-maxage=${15000}, stale-while-revalidate=${
+          CONSTANTS.ONE_DAY
+        }`,
       ],
     ]);
   });
@@ -189,7 +193,9 @@ describe("Test /api/", () => {
         ["Content-Type", "image/svg+xml"],
         [
           "Cache-Control",
-          `public, max-age=${CONSTANTS.ONE_DAY}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+          `max-age=${CONSTANTS.ONE_DAY / 2}, s-maxage=${
+            CONSTANTS.ONE_DAY
+          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
         ],
       ]);
     }
@@ -203,7 +209,9 @@ describe("Test /api/", () => {
         ["Content-Type", "image/svg+xml"],
         [
           "Cache-Control",
-          `public, max-age=${CONSTANTS.FOUR_HOURS}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+          `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
+            CONSTANTS.FOUR_HOURS
+          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
         ],
       ]);
     }
@@ -216,7 +224,9 @@ describe("Test /api/", () => {
         ["Content-Type", "image/svg+xml"],
         [
           "Cache-Control",
-          `public, max-age=${CONSTANTS.FOUR_HOURS}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+          `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
+            CONSTANTS.FOUR_HOURS
+          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
         ],
       ]);
     }
