@@ -367,6 +367,13 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  PhantomXY: {
+    title_color: "cd2727",
+    icon_color: "cd2727",
+    text_color: "edf0f1",
+    bg_color: "000000",
+    border_color: "cd2727",
+  },
 };
 
 export default themes;
