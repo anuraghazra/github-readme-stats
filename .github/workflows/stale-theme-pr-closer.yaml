@@ -26,5 +26,5 @@ jobs:
 
       - run: npm run close-stale-theme-prs
         env:
-          STALE_DAYS: 15
+          STALE_DAYS: 20
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

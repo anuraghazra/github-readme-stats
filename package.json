@@ -1,9 +1,23 @@
 {
   "name": "github-readme-stats",
   "version": "1.0.0",
-  "description": "Dynamically generate stats for your github readmes",
-  "main": "index.js",
+  "description": "Dynamically generate stats for your GitHub readme",
+  "keywords": [
+    "github-readme-stats",
+    "readme-stats",
+    "cards",
+    "card-generator"
+  ],
+  "main": "src/index.js",
   "type": "module",
+  "homepage": "https://github.com/anuraghazra/github-readme-stats",
+  "bugs": {
+    "url": "https://github.com/anuraghazra/github-readme-stats/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anuraghazra/github-readme-stats.git"
+  },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
     "test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch",
