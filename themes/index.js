@@ -367,6 +367,11 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  modern_lilac: {
+    title_color: "c770f0",
+    icon_color: "5d417a",
+    text_color: "ebebeb",
+    bg_color: "0a0e12",
 };
 
 export default themes;
