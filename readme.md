@@ -80,19 +80,38 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
 
 # Features
 
--   [GitHub Stats Card](#github-stats-card)
--   [GitHub Extra Pins](#github-extra-pins)
--   [Top Languages Card](#top-languages-card)
--   [Wakatime Week Stats](#wakatime-week-stats)
--   [Themes](#themes)
--   [Customization](#customization)
-    -   [Common Options](#common-options)
-    -   [Stats Card Exclusive Options](#stats-card-exclusive-options)
-    -   [Repo Card Exclusive Options](#repo-card-exclusive-options)
-    -   [Language Card Exclusive Options](#language-card-exclusive-options)
-    -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
--   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
-    - [Keep your fork up to date](#keep-your-fork-up-to-date)   
+- [Features](#features)
+- [GitHub Stats Card](#github-stats-card)
+    - [Hiding individual stats](#hiding-individual-stats)
+    - [Adding private contributions count to total commits count](#adding-private-contributions-count-to-total-commits-count)
+    - [Showing icons](#showing-icons)
+    - [Themes](#themes)
+      - [All inbuilt themes](#all-inbuilt-themes)
+    - [Customization](#customization)
+      - [Common Options](#common-options)
+        - [Gradient in bg_color](#gradient-in-bg_color)
+      - [Stats Card Exclusive Options](#stats-card-exclusive-options)
+      - [Repo Card Exclusive Options](#repo-card-exclusive-options)
+      - [Language Card Exclusive Options](#language-card-exclusive-options)
+      - [Wakatime Card Exclusive Options](#wakatime-card-exclusive-options)
+- [GitHub Extra Pins](#github-extra-pins)
+    - [Usage](#usage)
+    - [Demo](#demo)
+- [Top Languages Card](#top-languages-card)
+    - [Usage](#usage-1)
+    - [Exclude individual repositories](#exclude-individual-repositories)
+    - [Hide individual languages](#hide-individual-languages)
+    - [Show more languages](#show-more-languages)
+    - [Compact Language Card Layout](#compact-language-card-layout)
+    - [Demo](#demo-1)
+- [Wakatime Week Stats](#wakatime-week-stats)
+    - [Demo](#demo-2)
+    - [All Demos](#all-demos)
+    - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
+  - [Deploy on your own Vercel instance](#deploy-on-your-own-vercel-instance)
+      - [Check Out Step By Step Video Tutorial By @codeSTACKr](#check-out-step-by-step-video-tutorial-by-codestackr)
+    - [Keep your fork up to date](#keep-your-fork-up-to-date)
+  - [:sparkling_heart: Support the project](#sparkling_heart-support-the-project)
 
 # GitHub Stats Card
 
@@ -262,7 +281,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 The top languages card shows a GitHub user's most frequently used top language.
 
 > **Note**
-> Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats._
+> Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats.
 
 ### Usage
 

@@ -133,43 +133,76 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 
 #### Opções comuns
 
-- `title_color` - Cor do título do cartão _(hex color)_
-- `text_color` - Cor de texto do conteúdo _(hex color)_
-- `icon_color` - Cor dos ícones (se disponível) _(hex color)_
-- `bg_color` - Cor de fundo do cartão _(hex color)_
-- `hide_border` - Esconde a borda do cartão _(boleano)_
-- `theme` - Nome do tema, escolha em [todos os temas disponíveis](../themes/README.md)
-- `cache_seconds` - Defina o cabeçalho do cache manualmente _(min: 1800, max: 86400)_
-- `locale` - defina o idioma no cartão _(por exemplo. cn, de, es, etc.)_
+- `title_color` - Cor do título do cartão _(hex color)_. Padrão: `2f80ed`. 
+- `text_color` - Cor de texto do conteúdo _(hex color)_. Padrão: `434d58`.
+- `icon_color` - Cor dos ícones (se disponível) _(hex color)_. Padrão: `4c71f2`.
+- `border_color` - Cor da corda do cartão _(hex color)_. Padrão: `e4e2e2`. (Não se aplica quando `hide_border` estiver ativado)
+- `bg_color` - Cor de fundo do cartão _(hex color)_ **ou** um gradiente com a forma de _angle,start,end_. Padrão: `fffefe`.
+- `hide_border` - Esconde a borda do cartão _(boleano)_. Padrão: `false`.
+- `theme` - Nome do tema, escolha em [todos os temas disponíveis](../themes/README.md). Padrão: `default`.
+- `cache_seconds` - Defina o cabeçalho do cache manualmente _(min: 7200, max: 86400)_. Padrão: `14400 segundos (4 horas)`.
+- `locale` - defina o idioma no cartão _(por exemplo. cn, de, es, etc.)_. Padrão: `en`.
+- `border_radius` - Arredondamento dos cantos do cartão. Padrão: `4.5`
 
-> Nota sobre o cache: Cartões de repositório tem um cache padrão de 30 minutos (1800 segundos), se o número a contagem de forks e contagem de estrelas é menor que 1 mil o padrão é 2 horas (7200). Note também que o cache é limitado a um mínimo de 30 minutos e um máximo de 24 horas.
+> :warning: **Atenção:**
+> Usamos o cache para diminuir a carga em nossos servidores (consulte https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425). Nossos cartões têm um cache padrão de 4 horas (14400 segundos). Além disso, observe que o cache é limitado a um mínimo de 4 horas e um máximo de 24 horas.
+
+##### Gradient in bg_color
+
+Você pode fornecer vários valores separados por vírgula na opção bg_color para renderizar um gradiente com o seguinte formato:
+
+    &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 
 #### Opções exclusivas do cartão de estatísticas:
 
-- `hide` - Oculta itens específicos das estatísticas _(Valores separados por vírgulas)_
-- `hide_title` - Ocultar o título _(boolean)_
-- `hide_rank` - Ocultar a classificação _(boolean)_
-- `show_icons` - Mostrar ícones _(boolean)_
-- `include_all_commits` - Contabiliza todos os commits ao invés de apenas os atual ano _(boolean)_
-- `count_private` - Contabiliza commits privados _(boolean)_
-- `line_height` - Define a altura do espaçamento entre o texto _(number)_
+- `hide` - Oculta [itens específicos](#ocultando-estatísticas-específicas) das estatísticas _(Valores separados por vírgulas)_. Padrão: `[] (Array vazio)`.
+- `hide_title` - Ocultar o título _(boolean)_. Padrão: `false`.
+- `card_width` - Definir largura do cartão manualmente _(number)_. Padrão: `500px (aprox.)`.
+- `hide_rank` - Ocultar a classificação _(boolean)_. Padrão: `false`.
+- `show_icons` - Mostrar ícones _(boolean)_. Padrão: `false`.
+- `include_all_commits` - Contabiliza todos os commits ao invés de apenas os atual ano _(boolean)_. Padrão: `false`.
+- `count_private` - Contabiliza commits privados _(boolean)_. Padrão: `false`.
+- `line_height` - Define a altura do espaçamento entre o texto _(number)_. Padrão: `25`.
+- `exclude_repo` - Excluí estrelas de repositórios especificados _(Comma-separated values)_. Padrão: `[] (Array vazio)`.
+- `custom_title` - Define um título personalizado para o cartão. Padrão:  `<username> Github Stats`.
+- `text_bold` - Usar fonte bold _(boolean)_. Padrão: `true`.
+- `disable_animations` - Desativa todas as animações no cartão _(boolean)_. Padrão: `false`.
+
+>**Nota:**
+> Quando hide_rank=`true`, a largura mínima do cartão é de 270px + comprimento do título e padding.
 
 #### Opções exclusivas do cartão de repositórios:
 
-- `show_owner` - Exibir o nome da pessoa a quem o repositório pertence _(boolean)_
+- `show_owner` - Exibir o nome da pessoa a quem o repositório pertence _(boolean)_. Padrão: `false`.
 
 #### Opções exclusivas do cartão de linguagens:
 
-- `hide` - Oculta linguagens específicas _(Valores separados por vírgulas)_
-- `hide_title` - Oculta o título _(boolean)_
-- `layout` - Alterna entre os dois layouts disponíveis `default` & `compact`
-- `card_width` - Define a largura do cartão manualmente _(number)_
+- `hide` - Oculta linguagens específicas _(Valores separados por vírgulas)_. Padrão: `[] (Array vazio)`.
+- `hide_title` - Oculta o título _(boolean)_. Padrão: `false`.
+- `layout` - Alterna entre os dois layouts disponíveis `default` & `compact`. Padrão: `defautl`.
+- `card_width` - Define a largura do cartão manualmente _(number)_. Padrão `300`
+- `langs_count` - Mostrar mais idiomas no cartão, entre 1 e 10 _(number)_. Padrão: `5`.
+- `exclude_repo` - Exclui repositorios específicos _(Valores separados por vírgulas)_. Padrão: `[] (Array vazio)`.
+- `custom_title` - Define um título personalizado para o cartão _(string)_. Padrão: `Most Used Languages`.
 
 > :warning: **Importante:**
 > Nomes de linguagens devem ser uma sequência escapada de URI, como específicado em [Codificação por cento](https://pt.wikipedia.org/wiki/Codificação_por_cento)
-> (Isso é: `c++` deve se tornar `c%2B%2B`, `jupyter notebook` deve se tornar `jupyter%20notebook`, etc.)
+> (Isso é: `c++` deve se tornar `c%2B%2B`, `jupyter notebook` deve se tornar `jupyter%20notebook`, etc.) Você pode usar
+> [urlencoder.org](https://www.urlencoder.org/) para ajudar você a fazer isso automaticamente.
 
----
+#### Opções exclusivas do cartão Wakatime
+
+- `hide` - Oculta linguagens específicas do cartão _(Valores separados por vírgula)_. Default: `[] (Array vazio)`.
+- `hide_title` - Oculta o título _(boolean)_. Padrão: `false`.
+- `line_height` - Define a altura da linha entre o texto _(number)_. Padrão: `25`.
+- `hide_progress` - Oculta a barra de progresso e a porcentagem _(boolean)_. Padrão: `false`.
+- `custom_title` - Define um título personalizado para o cartão _(string)_. Padrão: `Wakatime Stats`.
+- `layout` - Alternar entre dois layouts disponíveis `default` & `compact`.  Padrão: `default`.
+- `langs_count` - Limite o número de idiomas no cartão, o padrão é todos os idiomas relatados _(number)_.
+- `api_domain` - Defina um domínio de API personalizado para o cartão, por exemplo usar serviços como [Hakatime](https://github.com/mujx/hakatime) ou [Wakapi](https://github.com/muety/wakapi) _(string)_. Padrão: `Waka API`.
+- `range` – Solicita um intervalo diferente do padrão do WakaTime, por exemplo `last_7_days`. Vejaa [WakaTime API docs](https://wakatime.com/developers#stats) para obter uma lista de opções disponíveis. _(YYYY-MM, last_7_days, last_30_days, last_6_months, last_year, or all_time)_. Padrão: `all_time`.
+
+* * *
 
 # Pins extras do GitHub
 
@@ -199,7 +232,8 @@ Utilize a variável [show_owner](#personalização) para incluir o nome de usuá
 
 Exibe uma métrica de linguagens de programação mais usadas pelo usuário do GitHub.
 
-_Nota: As principais linguagens de programação não fazem declarações sobre habilidades pessoais ou similares, é apenas uma figura-chave com base nas estatísticas do GitHub do usuário indicando a frequência com que cada uma foi utilizada._
+> **Nota:**
+>  As principais linguagens de programação não fazem declarações sobre habilidades pessoais ou similares, é apenas uma figura-chave com base nas estatísticas do GitHub do usuário indicando a frequência com que cada uma foi utilizada.
 
 ### Utilização
 
