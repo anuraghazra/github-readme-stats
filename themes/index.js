@@ -372,6 +372,7 @@ export const themes = {
     icon_color: "5d417a",
     text_color: "ebebeb",
     bg_color: "0a0e12",
+  },
 };
 
 export default themes;
