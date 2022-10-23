@@ -85,6 +85,7 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
 -   [Top Languages Card](#top-languages-card)
 -   [Wakatime Week Stats](#wakatime-week-stats)
 -   [Themes](#themes)
+    -   [Responsive Card Theme](#responsive-card-theme)
 -   [Customization](#customization)
     -   [Common Options](#common-options)
     -   [Stats Card Exclusive Options](#stats-card-exclusive-options)
@@ -155,6 +156,62 @@ Github readme stats comes with several built-in themes (e.g. `dark`, `radical`, 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stats Themes" width="600px"/>
 
 You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
+
+#### Responsive Card Theme
+
+We can not infer the browser theme on the server since GitHub will re-upload the cards and serve them from their CDN.
+
+The four methods you can use to create dynamics themes on the client side:
+
+- Simplest one: Use the `transparent` theme
+
+  With inbuilt theme, you can keep the look of the card dynamic to theme.
+
+  Use `&theme=transparent` parameter like so:
+
+  ```md
+  ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=transparent)
+  ```
+
+- Set the `bg_color` to a color with a transparent alpha channel `bg_color=00000000`
+
+  You can keep your background transparent in-order to keep it align with themes.
+
+  Use `&bg_color=00000000` parameter like so:
+
+  ```md
+  ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&bg_color=00000000)
+  ```
+  ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&bg_color=00000000)
+  
+- Use GitHub's theme context tags to automatically switch the theme based
+
+  You can now specify the theme an image is displayed for in Markdown. Appending `#gh-dark-mode-only` or `#gh-light-mode-only` to the end of an image url will define whether it's only shown to viewers using a light or a dark GitHub theme.
+
+  ```md
+  ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)
+  ```
+  ```md
+  ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true#gh-light-mode-only)
+  ```
+  
+- Use GitHub's new media feature in the HTML
+
+  You can now specify whether to display images for light or dark themes in Markdown, using the HTML `<picture>` element in combination with the `prefers-color-scheme` media feature.
+  
+  ```html
+  <picture>
+    <source 
+      srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark"
+      media="(prefers-color-scheme: dark)"
+    />
+    <source
+      srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true"
+      media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+    />
+    <img src="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true" />
+  </picture>
+  ```
 
 ### Customization
 
