@@ -189,11 +189,9 @@ The four methods you can use to create dynamics themes on the client side:
   You can now specify the theme an image is displayed for in Markdown. Appending `#gh-dark-mode-only` or `#gh-light-mode-only` to the end of an image url will define whether it's only shown to viewers using a light or a dark GitHub theme.
 
   ```md
-  ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)
+  ![GitHub-Mark-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)![GitHub-Mark-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true#gh-light-mode-only)
   ```
-  ```md
-  ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true#gh-light-mode-only)
-  ```
+  ![GitHub-Mark-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)![GitHub-Mark-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true#gh-light-mode-only)
   
 - Use GitHub's new media feature in the HTML
 
