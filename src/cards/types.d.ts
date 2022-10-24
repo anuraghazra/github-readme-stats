@@ -34,7 +34,7 @@ export type TopLangOptions = CommonOptions & {
   hide_border: boolean;
   card_width: number;
   hide: string[];
-  layout: "compact" | "normal";
+  layout: "compact" | "normal" | "pie";
   custom_title: string;
   langs_count: number;
 };
