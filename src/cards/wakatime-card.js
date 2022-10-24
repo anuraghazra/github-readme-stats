@@ -159,7 +159,7 @@ const recalculatePercentages = (languages) => {
  * @returns {string} WakaTime card SVG.
  */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  let { languages } = stats;
+  let { languages = [] } = stats;
   const {
     hide_title = false,
     hide_border = false,
@@ -174,13 +174,13 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     custom_title,
     locale,
     layout,
-    langs_count = languages ? languages.length : 0,
+    langs_count = languages.length,
     border_radius,
     border_color,
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
-  if (shouldHideLangs && languages !== undefined) {
+  if (shouldHideLangs) {
     const languagesToHide = new Set(hide.map((lang) => lowercaseTrim(lang)));
     languages = languages.filter(
       (lang) => !languagesToHide.has(lowercaseTrim(lang.name)),
@@ -209,10 +209,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     });
 
   const filteredLanguages = languages
-    ? languages
-        .filter((language) => language.hours || language.minutes)
-        .slice(0, langsCount)
-    : [];
+    .filter((language) => language.hours || language.minutes)
+    .slice(0, langsCount);
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
