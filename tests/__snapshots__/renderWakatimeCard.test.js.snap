@@ -122,7 +122,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
             data-testid="lang-progress"
             x="0"
             y="0"
-            width="6.6495"
+            width="415.61699999999996"
             height="8"
             fill="#858585"
           />
@@ -130,9 +130,9 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
           <rect
             mask="url(#rect-mask)"
             data-testid="lang-progress"
-            x="6.6495"
+            x="415.61699999999996"
             y="0"
-            width="0.465"
+            width="29.0625"
             height="8"
             fill="#3178c6"
           />

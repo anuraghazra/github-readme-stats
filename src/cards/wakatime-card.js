@@ -185,8 +185,12 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     languages = languages.filter(
       (lang) => !languagesToHide.has(lowercaseTrim(lang.name)),
     );
-    recalculatePercentages(languages);
   }
+
+  // Since the percentages are sorted in descending order, we can just
+  // slice from the beginning without sorting.
+  languages = languages.slice(0, langs_count);
+  recalculatePercentages(languages);
 
   const i18n = new I18n({
     locale,
