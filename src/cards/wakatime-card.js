@@ -274,7 +274,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   } else {
     finalLayout = flexLayout({
       items: filteredLanguages.length
-        ? filteredLanguages.map((language) => {
+        ? filteredLanguages.map((language, index) => {
             return createTextNode({
               id: language.name,
               label: language.name,
@@ -285,6 +285,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               // @ts-ignore
               progressBarBackgroundColor: textColor,
               hideProgress: hide_progress,
+              index,
             });
           })
         : [
