@@ -367,6 +367,18 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  mono: {
+    title_color: "000000",
+    icon_color: "000000",
+    text_color: "000000",
+    bg_color: "ffffff",
+  },
+  mono_inverted: {
+    title_color: "ffffff",
+    icon_color: "ffffff",
+    text_color: "ffffff",
+    bg_color: "000000",
+  },
 };
 
 export default themes;
