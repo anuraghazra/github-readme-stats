@@ -105,6 +105,25 @@ const calculateNormalLayoutHeight = (totalLangs) => {
 };
 
 /**
+ * Calculates height for the pie layout.
+ *
+ * @param {number} totalLangs Total number of languages.
+ * @returns {number} Card height.
+ */
+const calculatePieLayoutHeight = (totalLangs) => {
+  return 215 + Math.max(totalLangs - 5, 0) * 32;
+};
+
+/**
+ * Calculates the center translation needed to keep the doughnut chart centred.
+ * @param {number} totalLangs Total number of languages.
+ * @returns {number} Doughnut center translation.
+ */
+const doughnutCenterTranslation = (totalLangs) => {
+  return -45 + Math.max(totalLangs - 5, 0) * 16;
+};
+
+/**
  * Trim top languages to lang_count while also hiding certain languages.
  *
  * @param {Record<string, Lang>} topLangs Top languages.
@@ -334,7 +353,6 @@ const createDoughnutPaths = (cx, cy, radius, percentages) => {
   const paths = [];
   let startAngle = 0;
   let endAngle = 0;
-  let doughnutPercent = 0;
 
   const totalPercent = percentages.reduce((acc, curr) => acc + curr, 0);
   for (let i = 0; i < percentages.length; i++) {
@@ -343,7 +361,6 @@ const createDoughnutPaths = (cx, cy, radius, percentages) => {
     let percent = parseFloat(
       ((percentages[i] / totalPercent) * 100).toFixed(2),
     );
-    doughnutPercent += percent;
 
     endAngle = 3.6 * percent + startAngle;
     const startPoint = polarToCartesian(cx, cy, radius, endAngle - 90); // rotate doughnut 90 degrees counter-clockwise.
@@ -386,9 +403,12 @@ const renderDoughnutLayout = (langs, width, totalLanguageSize) => {
     langsPercents,
   );
 
-  const doughnutPaths = langPaths
-    .map((section, i) => {
-      const output = `
+  const doughnutPaths =
+    langs.length === 1
+      ? `<circle cx="${centerX}" cy="${centerY}" r="${radius}" stroke="${colors[0]}" fill="none" stroke-width="${strokeWidth}" data-testid="lang-doughnut" size="100"/>`
+      : langPaths
+          .map((section, i) => {
+            const output = `
        <g>
         <path
           data-testid="lang-doughnut"
@@ -401,9 +421,9 @@ const renderDoughnutLayout = (langs, width, totalLanguageSize) => {
       </g>
       `;
 
-      return output;
-    })
-    .join("");
+            return output;
+          })
+          .join("");
 
   const donut = `<svg width="${width}" height="${width}">${doughnutPaths}</svg>`;
 
@@ -413,7 +433,7 @@ const renderDoughnutLayout = (langs, width, totalLanguageSize) => {
         ${createDoughnutLanguagesNode({ langs, totalSize: totalLanguageSize })}
       </g>
 
-      <g transform="translate(125, -45)">
+      <g transform="translate(125, ${doughnutCenterTranslation(langs.length)})">
         ${donut}
       </g>
     </g>
@@ -469,7 +489,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     height = calculateCompactLayoutHeight(langs.length);
     finalLayout = renderCompactLayout(langs, width, totalLanguageSize);
   } else if (layout?.toLowerCase() === "pie") {
-    height = height - 60; // padding
+    height = calculatePieLayoutHeight(langs.length);
     width = width + 50; // padding
     finalLayout = renderDoughnutLayout(langs, width, totalLanguageSize);
   } else {
@@ -516,6 +536,8 @@ export {
   cartesianToPolar,
   calculateCompactLayoutHeight,
   calculateNormalLayoutHeight,
+  calculatePieLayoutHeight,
+  doughnutCenterTranslation,
   trimTopLanguages,
   renderTopLanguages,
   MIN_CARD_WIDTH,

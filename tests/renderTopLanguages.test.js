@@ -1,18 +1,18 @@
 import { queryAllByTestId, queryByTestId } from "@testing-library/dom";
 import { cssToObject } from "@uppercod/css-to-object";
 import {
-  MIN_CARD_WIDTH,
-  radiansToDegrees,
-  renderTopLanguages,
-  calculateCompactLayoutHeight,
-  calculateNormalLayoutHeight,
-  trimTopLanguages,
-} from "../src/cards/top-languages-card.js";
-import {
   getLongestLang,
   degreesToRadians,
+  radiansToDegrees,
   polarToCartesian,
   cartesianToPolar,
+  calculateCompactLayoutHeight,
+  calculateNormalLayoutHeight,
+  calculatePieLayoutHeight,
+  doughnutCenterTranslation,
+  trimTopLanguages,
+  renderTopLanguages,
+  MIN_CARD_WIDTH,
 } from "../src/cards/top-languages-card.js";
 
 // adds special assertions like toHaveTextContent
@@ -177,6 +177,34 @@ describe("Test renderTopLanguages helper functions", () => {
     expect(calculateNormalLayoutHeight(8)).toBe(405);
     expect(calculateNormalLayoutHeight(9)).toBe(445);
     expect(calculateNormalLayoutHeight(10)).toBe(485);
+  });
+
+  it("calculatePieLayoutHeight", () => {
+    expect(calculatePieLayoutHeight(0)).toBe(215);
+    expect(calculatePieLayoutHeight(1)).toBe(215);
+    expect(calculatePieLayoutHeight(2)).toBe(215);
+    expect(calculatePieLayoutHeight(3)).toBe(215);
+    expect(calculatePieLayoutHeight(4)).toBe(215);
+    expect(calculatePieLayoutHeight(5)).toBe(215);
+    expect(calculatePieLayoutHeight(6)).toBe(247);
+    expect(calculatePieLayoutHeight(7)).toBe(279);
+    expect(calculatePieLayoutHeight(8)).toBe(311);
+    expect(calculatePieLayoutHeight(9)).toBe(343);
+    expect(calculatePieLayoutHeight(10)).toBe(375);
+  });
+
+  it("doughnutCenterTranslation", () => {
+    expect(doughnutCenterTranslation(0)).toBe(-45);
+    expect(doughnutCenterTranslation(1)).toBe(-45);
+    expect(doughnutCenterTranslation(2)).toBe(-45);
+    expect(doughnutCenterTranslation(3)).toBe(-45);
+    expect(doughnutCenterTranslation(4)).toBe(-45);
+    expect(doughnutCenterTranslation(5)).toBe(-45);
+    expect(doughnutCenterTranslation(6)).toBe(-29);
+    expect(doughnutCenterTranslation(7)).toBe(-13);
+    expect(doughnutCenterTranslation(8)).toBe(3);
+    expect(doughnutCenterTranslation(9)).toBe(19);
+    expect(doughnutCenterTranslation(10)).toBe(35);
   });
 
   it("trimTopLanguages", () => {
@@ -474,6 +502,23 @@ describe("Test renderTopLanguages", () => {
     expect(cssLangPercent).toBeCloseTo(20);
 
     expect(HTMLLangPercent + javascriptLangPercent + cssLangPercent).toBe(100);
+
+    // Should render full doughnut (circle) if one language is 100%.
+    document.body.innerHTML = renderTopLanguages(
+      { HTML: langs.HTML },
+      { layout: "pie" },
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
+      "HTML 100.00%",
+    );
+    expect(queryAllByTestId(document.body, "lang-doughnut")[0]).toHaveAttribute(
+      "size",
+      "100",
+    );
+    expect(queryAllByTestId(document.body, "lang-doughnut")).toHaveLength(1);
+    expect(queryAllByTestId(document.body, "lang-doughnut")[0].tagName).toBe(
+      "circle",
+    );
   });
 
   it("should render a translated title", () => {
