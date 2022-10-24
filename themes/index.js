@@ -367,6 +367,13 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  purpleHaze: {
+    title_color: "8758ff",
+    icon_color: "645CAA",
+    text_color: "F2F2F2",
+    bg_color: "EBC7E8",
+    border_color: "BFACE0",
+  },
 };
 
 export default themes;
