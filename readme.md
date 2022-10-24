@@ -175,7 +175,7 @@ The four methods you can use to create dynamics themes on the client side:
 
 - Set the `bg_color` to a color with a transparent alpha channel `bg_color=00000000`
 
-  You can keep your background transparent in-order to keep it align with themes.
+  You can keep your background transparent by keeping the `bg_color` to a color with a transparent alpha channel `bg_color=00000000` in-order to keep it align with themes.
 
   Use `&bg_color=00000000` parameter like so:
 
@@ -189,9 +189,11 @@ The four methods you can use to create dynamics themes on the client side:
   You can now specify the theme an image is displayed for in Markdown. Appending `#gh-dark-mode-only` or `#gh-light-mode-only` to the end of an image url will define whether it's only shown to viewers using a light or a dark GitHub theme.
 
   ```md
-  ![GitHub-Mark-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)![GitHub-Mark-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true#gh-light-mode-only)
+  [![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
+  [![Anurag's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
   ```
-  ![GitHub-Mark-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)![GitHub-Mark-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true#gh-light-mode-only)
+  [![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
+  [![Anurag's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
   
 - Use GitHub's new media feature in the HTML
 
@@ -209,7 +211,18 @@ The four methods you can use to create dynamics themes on the client side:
     />
     <img src="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true" />
   </picture>
-  ```
+  ```  
+  <picture>
+    <source 
+      srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark"
+      media="(prefers-color-scheme: dark)"
+    />
+    <source
+      srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true"
+      media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+    />
+    <img src="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true" />
+  </picture>
 
 ### Customization
 
