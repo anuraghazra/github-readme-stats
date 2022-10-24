@@ -374,6 +374,13 @@ export const themes = {
     bg_color: "EBC7E8",
     border_color: "BFACE0",
   },
+  dareDevil: {
+    title_color: "C62923",
+    icon_color: "88A242",
+    text_color: "E3DCD5",
+    bg_color: "1C1C1C",
+    border_color: "8A8783",
+  },
 };
 
 export default themes;
