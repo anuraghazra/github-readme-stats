@@ -4,7 +4,6 @@
 
 import { getInput } from "@actions/core";
 
-// Script variables.
 const OWNER = "anuraghazra";
 const REPO = "github-readme-stats";
 
