@@ -2,7 +2,7 @@
  * @file Contains a simple cloud function that can be used to check if the PATs are still
  * functional.
  *
- * @description This function is currently rate limited to 1 request per 15 minutes.
+ * @description This function is currently rate limited to 1 request per 10 minutes.
  */
 
 import { logger, request } from "../../src/common/utils.js";
@@ -12,7 +12,7 @@ const PATs = Object.keys(process.env).filter((key) =>
   /PAT_\d*$/.exec(key),
 ).length;
 const RETRIES = PATs ? PATs : 7;
-export const RATE_LIMIT_SECONDS = 60 * 15; // 1 request per 15 minutes
+export const RATE_LIMIT_SECONDS = 60 * 10; // 1 request per 10 minutes
 
 /**
  * Simple uptime check fetcher for the PATs.
