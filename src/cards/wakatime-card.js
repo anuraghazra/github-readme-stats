@@ -84,6 +84,25 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
 };
 
 /**
+ * Calculate the animation delay for an item.
+ *
+ * @param {number} languageCount Number of languages.
+ * @param {number} index The index of the item.
+ * @returns {number} The animation delay in ms.
+ */
+const calculateAnimationDelay = (languageCount, index) => {
+  if (languageCount === 0) {
+    return 0;
+  }
+
+  const MAX_ANIMATION_DELAY = 1250;
+  const delayPerItem = MAX_ANIMATION_DELAY / languageCount;
+  const delay = delayPerItem * (index + 3);
+
+  return Math.round(delay);
+};
+
+/**
  * Create WakaTime text item.
  *
  * @param {Object[]} args The function arguments.
@@ -94,6 +113,7 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
  * @param {percent} percent Percentage of the text node item.
  * @param {boolean} hideProgress Whether to hide the progress bar.
  * @param {string} progressBarBackgroundColor The color of the progress bar background.
+ * @param {number} languageCount Number of languages.
  */
 const createTextNode = ({
   id,
@@ -104,11 +124,12 @@ const createTextNode = ({
   hideProgress,
   progressBarColor,
   progressBarBackgroundColor,
+  languageCount,
 }) => {
-  const staggerDelay = (index + 3) * 150;
+  const staggerDelay = calculateAnimationDelay(languageCount, index);
 
   const cardProgress = hideProgress
-    ? null
+    ? ""
     : createProgressNode({
         x: 110,
         y: 4,
@@ -285,6 +306,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               // @ts-ignore
               progressBarBackgroundColor: textColor,
               hideProgress: hide_progress,
+              languageCount: filteredLanguages.length,
               index,
             });
           })
