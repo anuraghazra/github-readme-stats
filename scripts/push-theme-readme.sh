@@ -5,7 +5,7 @@ set -e
 export BRANCH_NAME=updated-theme-readme
 git --version
 git config --global user.email "no-reply@githubreadmestats.com"
-git config --global user.name "Github Readme Stats Bot"
+git config --global user.name "GitHub Readme Stats Bot"
 git branch -d $BRANCH_NAME || true
 git checkout -b $BRANCH_NAME
 git add --all

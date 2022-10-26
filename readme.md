@@ -150,7 +150,7 @@ Use `&theme=THEME_NAME` parameter like so :
 
 #### All inbuilt themes
 
-Github readme stats comes with several built-in themes (e.g. `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `onedark`, `cobalt`, `synthwave`, `highcontrast`, `dracula`).
+GitHub readme stats comes with several built-in themes (e.g. `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `onedark`, `cobalt`, `synthwave`, `highcontrast`, `dracula`).
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stats Themes" width="600px"/>
 
@@ -193,7 +193,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `count_private` - Count private commits _(boolean)_. Default: `false`.
 -   `line_height` - Sets the line height between text _(number)_. Default: `25`.
 -   `exclude_repo` - Exclude stars from specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
--   `custom_title` - Sets a custom title for the card. Default:  `<username> Github Stats`.
+-   `custom_title` - Sets a custom title for the card. Default:  `<username> GitHub Stats`.
 -   `text_bold` - Use bold text _(boolean)_. Default: `true`.
 -   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
 
