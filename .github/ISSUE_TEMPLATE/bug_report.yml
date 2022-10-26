@@ -1,5 +1,5 @@
 name: Bug report
-description: Create a report to help us improve
+description: Create a report to help us improve.
 labels:
   - "bug"
 body:
@@ -11,6 +11,8 @@ body:
     attributes:
       label: Describe the bug
       description: A clear and concise description of what the bug is.
+    validations:
+      required: true
   - type: textarea
     attributes:
       label: Expected behaviour

@@ -180,7 +180,7 @@ describe("Test /api/", () => {
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `no-store`],
+      ["Cache-Control", `no-cache, no-store, must-revalidate`],
     ]);
   });
 

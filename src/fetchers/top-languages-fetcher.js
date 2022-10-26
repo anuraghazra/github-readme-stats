@@ -15,7 +15,7 @@ dotenv.config();
  * Top languages fetcher object.
  *
  * @param {import('Axios').AxiosRequestHeaders} variables Fetcher variables.
- * @param {string} token Github token.
+ * @param {string} token GitHub token.
  * @returns {Promise<import('../common/types').StatsFetcherResponse>} Languages fetcher response.
  */
 const fetcher = (variables, token) => {
@@ -53,7 +53,7 @@ const fetcher = (variables, token) => {
 /**
  * Fetch top languages for a given username.
  *
- * @param {string} username Github username.
+ * @param {string} username GitHub username.
  * @param {string[]} exclude_repo List of repositories to exclude.
  * @returns {Promise<import("./types").TopLangData>} Top languages data.
  */

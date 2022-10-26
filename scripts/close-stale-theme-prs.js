@@ -9,19 +9,28 @@ import github from "@actions/github";
 import { RequestError } from "@octokit/request-error";
 import { getGithubToken, getRepoInfo } from "./helpers.js";
 
-// Script parameters
 const CLOSING_COMMENT = `
 	\rThis PR has been automatically closed due to inactivity. Please feel free to reopen it if you need to continue working on it.\
 	\rThank you for your contributions.
 `;
+const REVIEWER = "github-actions[bot]";
+
+/**
+ * Retrieve the review user.
+ * @returns {string} review user.
+ */
+const getReviewer = () => {
+  return process.env.REVIEWER ? process.env.REVIEWER : REVIEWER;
+};
 
 /**
  * Fetch open PRs from a given repository.
  * @param user The user name of the repository owner.
  * @param repo The name of the repository.
+ * @param reviewer The reviewer to filter by.
  * @returns The open PRs.
  */
-export const fetchOpenPRs = async (octokit, user, repo) => {
+export const fetchOpenPRs = async (octokit, user, repo, reviewer) => {
   const openPRs = [];
   let hasNextPage = true;
   let endCursor;
@@ -49,9 +58,9 @@ export const fetchOpenPRs = async (octokit, user, repo) => {
 												name
                       }
                     }
-                    reviews(first: 1, states: CHANGES_REQUESTED, author: "github-actions[bot]") {
+                    reviews(first: 100, states: CHANGES_REQUESTED, author: "${reviewer}") {
 											nodes {
-												updatedAt
+                        submittedAt
 											}
                     }
                   }
@@ -99,11 +108,13 @@ const isStale = (pullRequest, staleDays) => {
     pullRequest.commits.nodes[0].commit.pushedDate,
   );
   if (pullRequest.reviews.nodes[0]) {
-    const lastReviewDate = new Date(pullRequest.reviews.nodes[0].updatedAt);
+    const lastReviewDate = new Date(
+      pullRequest.reviews.nodes.sort((a, b) => (a < b ? 1 : -1))[0].submittedAt,
+    );
     const lastUpdateDate =
       lastCommitDate >= lastReviewDate ? lastCommitDate : lastReviewDate;
     const now = new Date();
-    return now - lastUpdateDate > 1000 * 60 * 60 * 24 * staleDays;
+    return (now - lastUpdateDate) / (1000 * 60 * 60 * 24) >= staleDays;
   } else {
     return false;
   }
@@ -116,14 +127,15 @@ const run = async () => {
   try {
     // Create octokit client.
     const dryRun = process.env.DRY_RUN === "true" || false;
-    const staleDays = process.env.STALE_DAYS || 15;
+    const staleDays = process.env.STALE_DAYS || 20;
     debug("Creating octokit client...");
     const octokit = github.getOctokit(getGithubToken());
     const { owner, repo } = getRepoInfo(github.context);
+    const reviewer = getReviewer();
 
     // Retrieve all theme pull requests.
     debug("Retrieving all theme pull requests...");
-    const prs = await fetchOpenPRs(octokit, owner, repo);
+    const prs = await fetchOpenPRs(octokit, owner, repo, reviewer);
     const themePRs = pullsWithLabel(prs, "themes");
     const invalidThemePRs = pullsWithLabel(themePRs, "invalid");
     debug("Retrieving stale theme PRs...");
