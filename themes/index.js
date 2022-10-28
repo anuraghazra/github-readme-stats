@@ -367,6 +367,12 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+    arsalan_light: {
+    title_color: "2978b5",
+     icon_color: "4c71f2",
+    text_color: "434d58",
+    bg_color: "fcfcfc",
+  },
 };
 
 export default themes;
