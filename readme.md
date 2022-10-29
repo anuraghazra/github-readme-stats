@@ -60,6 +60,8 @@
     <a href="/docs/readme_np.md">नेपाली</a>
     .
     <a href="/docs/readme_tr.md">Türkçe</a>
+    .
+    <a href="/docs/readme_pl.md">Polski</a>
   </p>
 </p>
 
@@ -80,20 +82,43 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
 
 # Features
 
--   [GitHub Stats Card](#github-stats-card)
--   [GitHub Extra Pins](#github-extra-pins)
--   [Top Languages Card](#top-languages-card)
--   [Wakatime Week Stats](#wakatime-week-stats)
--   [Themes](#themes)
-    -   [Responsive Card Theme](#responsive-card-theme)
--   [Customization](#customization)
-    -   [Common Options](#common-options)
-    -   [Stats Card Exclusive Options](#stats-card-exclusive-options)
-    -   [Repo Card Exclusive Options](#repo-card-exclusive-options)
-    -   [Language Card Exclusive Options](#language-card-exclusive-options)
-    -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
--   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
-    - [Keep your fork up to date](#keep-your-fork-up-to-date)   
+- [Features](#features)
+- [GitHub Stats Card](#github-stats-card)
+    - [Hiding individual stats](#hiding-individual-stats)
+    - [Adding private contributions count to total commits count](#adding-private-contributions-count-to-total-commits-count)
+    - [Showing icons](#showing-icons)
+    - [Themes](#themes)
+      - [All inbuilt themes](#all-inbuilt-themes)
+      - [Responsive Card Theme](#responsive-card-theme)
+        - [Use the transparent theme](#use-the-transparent-theme)
+        - [Add transparent alpha channel to a themes bg_color](#add-transparent-alpha-channel-to-a-themes-bg_color)
+        - [Use GitHub's theme context tag](#use-githubs-theme-context-tag)
+        - [Use GitHub's new media feature](#use-githubs-new-media-feature)
+    - [Customization](#customization)
+      - [Common Options](#common-options)
+        - [Gradient in bg_color](#gradient-in-bg_color)
+      - [Stats Card Exclusive Options](#stats-card-exclusive-options)
+      - [Repo Card Exclusive Options](#repo-card-exclusive-options)
+      - [Language Card Exclusive Options](#language-card-exclusive-options)
+      - [Wakatime Card Exclusive Options](#wakatime-card-exclusive-options)
+- [GitHub Extra Pins](#github-extra-pins)
+    - [Usage](#usage)
+    - [Demo](#demo)
+- [Top Languages Card](#top-languages-card)
+    - [Usage](#usage-1)
+    - [Exclude individual repositories](#exclude-individual-repositories)
+    - [Hide individual languages](#hide-individual-languages)
+    - [Show more languages](#show-more-languages)
+    - [Compact Language Card Layout](#compact-language-card-layout)
+    - [Demo](#demo-1)
+- [Wakatime Week Stats](#wakatime-week-stats)
+    - [Demo](#demo-2)
+    - [All Demos](#all-demos)
+    - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
+  - [Deploy on your own Vercel instance](#deploy-on-your-own-vercel-instance)
+      - [Check Out Step By Step Video Tutorial By @codeSTACKr](#check-out-step-by-step-video-tutorial-by-codestackr)
+    - [Keep your fork up to date](#keep-your-fork-up-to-date)
+  - [:sparkling_heart: Support the project](#sparkling_heart-support-the-project)
 
 # GitHub Stats Card
 
