@@ -24,6 +24,12 @@ export const themes = {
     text_color: "9f9f9f",
     bg_color: "151515",
   },
+  dark_1: {
+    title_color: "fff",
+    icon_color: "79ff97",
+    text_color: "9f9f9f",
+    bg_color: "0d1117",
+  },
   radical: {
     title_color: "fe428e",
     icon_color: "f8d847",
