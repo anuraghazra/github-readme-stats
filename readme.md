@@ -60,6 +60,8 @@
     <a href="/docs/readme_np.md">नेपाली</a>
     .
     <a href="/docs/readme_tr.md">Türkçe</a>
+    .
+    <a href="/docs/readme_pl.md">Polski</a>
   </p>
 </p>
 
@@ -93,7 +95,7 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
     -   [Language Card Exclusive Options](#language-card-exclusive-options)
     -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
 -   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
-    - [Keep your fork up to date](#keep-your-fork-up-to-date)   
+    - [Keep your fork up to date](#keep-your-fork-up-to-date)
 
 # GitHub Stats Card
 
