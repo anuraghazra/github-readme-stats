@@ -1,6 +1,6 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
- <h2 align="center">GitHub Readme Stats</h2>
+ <h1 align="center">GitHub Readme Stats</h1>
  <p align="center">Get dynamically generated GitHub stats on your READMEs!</p>
 </p>
   <p align="center">
@@ -84,14 +84,6 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
 -   [GitHub Extra Pins](#github-extra-pins)
 -   [Top Languages Card](#top-languages-card)
 -   [Wakatime Week Stats](#wakatime-week-stats)
--   [Themes](#themes)
-    -   [Responsive Card Theme](#responsive-card-theme)
--   [Customization](#customization)
-    -   [Common Options](#common-options)
-    -   [Stats Card Exclusive Options](#stats-card-exclusive-options)
-    -   [Repo Card Exclusive Options](#repo-card-exclusive-options)
-    -   [Language Card Exclusive Options](#language-card-exclusive-options)
-    -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
 -   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
     - [Keep your fork up to date](#keep-your-fork-up-to-date)
 
@@ -436,7 +428,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 * * *
 
-### All Demos
+# All Demos
 
 -   Default
 
@@ -503,7 +495,7 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 </a>
 ```
 
-## Deploy on your own Vercel instance
+# Deploy on your own Vercel instance
 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
@@ -544,7 +536,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 
 You can keep your fork, and thus your private Vercel instance up to date with the upstream using GitHubs' [Sync Fork button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). You can also use the [pull](https://github.com/wei/pull) package created by [@wei](https://github.com/wei) to automate this process.
 
-## :sparkling_heart: Support the project
+# :sparkling_heart: Support the project
 
 I open-source almost everything I can and try to reply to everyone needing help using these projects. Obviously,
 this takes time. You can use this service for free.
