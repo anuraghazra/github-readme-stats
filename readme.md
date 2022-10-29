@@ -294,18 +294,6 @@ You can provide multiple comma-separated values in the bg_color option to render
 
 -   `show_owner` - Show the repo's owner name _(boolean)_. Default: `false`.
 
-#### Wakatime Card Exclusive Options
-
--   `hide` - Hide the languages specified from the card _(Comma-separated values)_. Default: `[] (blank array)`.
--   `hide_title` - _(boolean)_. Default `false`.
--   `line_height` - Sets the line height between text _(number)_. Default `25`.
--   `hide_progress` - Hides the progress bar and percentage _(boolean)_. Default `false`.
--   `custom_title` - Sets a custom title for the card _(string)_. Default `Wakatime Stats`.
--   `layout` - Switch between two available layouts `default` & `compact`.  Default `default`.
--   `langs_count` - Limit the number of languages on the card, defaults to all reported languages _(number)_.
--   `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) _(string)_. Default `Waka API`.
--   `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options. _(YYYY-MM, last_7_days, last_30_days, last_6_months, last_year, or all_time)_. Default `all_time`.
-
 * * *
 
 # GitHub Extra Pins
@@ -411,6 +399,18 @@ You can use the `&layout=compact` option to change the card design.
 
 # Wakatime Week Stats
 
+## Demo
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
+### Compact layout
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
+## Usage
+
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ```md
@@ -420,15 +420,17 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 > **Note**:
 > Please be aware that we currently only show data from Wakatime profiles that are public.
 
-### Demo
+### Wakatime Card Exclusive Options
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
-
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-
--   Compact layout
-
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+-   `hide` - Hide the languages specified from the card _(Comma-separated values)_. Default: `[] (blank array)`.
+-   `hide_title` - _(boolean)_. Default `false`.
+-   `line_height` - Sets the line height between text _(number)_. Default `25`.
+-   `hide_progress` - Hides the progress bar and percentage _(boolean)_. Default `false`.
+-   `custom_title` - Sets a custom title for the card _(string)_. Default `Wakatime Stats`.
+-   `layout` - Switch between two available layouts `default` & `compact`.  Default `default`.
+-   `langs_count` - Limit the number of languages on the card, defaults to all reported languages _(number)_.
+-   `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) _(string)_. Default `Waka API`.
+-   `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options. _(YYYY-MM, last_7_days, last_30_days, last_6_months, last_year, or all_time)_. Default `all_time`.
 
 * * *
 
