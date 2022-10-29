@@ -97,6 +97,10 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
 
 # GitHub Stats Card
 
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+
+## Usage
+
 Copy-paste this into your markdown content, and that is it. Simple!
 
 Change the `?username=` value to your GitHub username.
@@ -107,6 +111,46 @@ Change the `?username=` value to your GitHub username.
 
 > **Note**
 > Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone). The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories. The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js).
+
+You can customize the appearance of your `Stats Card` or `Repo Card` however you wish with URL parameters.
+
+### Common Options
+
+-   `title_color` - Card's title color _(hex color)_. Default: `2f80ed`.
+-   `text_color` - Body text color _(hex color)_. Default: `434d58`.
+-   `icon_color` - Icons color if available _(hex color)_. Default: `4c71f2`.
+-   `border_color` - Card's border color _(hex color)_. Default: `e4e2e2` (Does not apply when `hide_border` is enabled).
+-   `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_. Default: `fffefe`
+    - You can provide multiple comma-separated values in the bg_color option to render a gradient with the following format: `&bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10`
+-   `hide_border` - Hides the card's border _(boolean)_. Default: `false`
+-   `theme` - name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme.
+-   `cache_seconds` - set the cache header manually _(min: 7200, max: 86400)_. Default: `14400 seconds (4 hours)`.
+-   `locale` - set the language in the card _(e.g. cn, de, es, etc.)_. Default: `en`.
+-   `border_radius` - Corner rounding on the card. Default: `4.5`.
+
+> **Warning**
+> We use caching to decrease the load on our servers (see https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours.
+
+### Stats Card Exclusive Options
+
+-   `hide` - Hides the [specified items](#hiding-individual-stats) from stats _(Comma-separated values)_. Default: `[] (blank array)`.
+-   `hide_title` - _(boolean)_. Default: `false`.
+-   `card_width` - Set the card's width manually _(number)_. Default: `500px  (approx.)`.
+-   `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width. Default: `false`.
+-   `show_icons` - _(boolean)_. Default: `false`.
+-   `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_. Default: `false`.
+-   `count_private` - Count private commits _(boolean)_. Default: `false`.
+-   `line_height` - Sets the line height between text _(number)_. Default: `25`.
+-   `exclude_repo` - Exclude stars from specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
+-   `custom_title` - Sets a custom title for the card. Default:  `<username> GitHub Stats`.
+-   `text_bold` - Use bold text _(boolean)_. Default: `true`.
+-   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
+
+> **Note**
+> When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.
+
+<details>
+<summary><h3>Examples</h3></summary>
 
 ### Hiding individual stats
 
@@ -246,53 +290,7 @@ You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-1
 
 </details>
 
-### Customization
-
-You can customize the appearance of your `Stats Card` or `Repo Card` however you wish with URL parameters.
-
-#### Common Options
-
--   `title_color` - Card's title color _(hex color)_. Default: `2f80ed`.
--   `text_color` - Body text color _(hex color)_. Default: `434d58`.
--   `icon_color` - Icons color if available _(hex color)_. Default: `4c71f2`.
--   `border_color` - Card's border color _(hex color)_. Default: `e4e2e2` (Does not apply when `hide_border` is enabled).
--   `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_. Default: `fffefe`
--   `hide_border` - Hides the card's border _(boolean)_. Default: `false`
--   `theme` - name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme.
--   `cache_seconds` - set the cache header manually _(min: 7200, max: 86400)_. Default: `14400 seconds (4 hours)`.
--   `locale` - set the language in the card _(e.g. cn, de, es, etc.)_. Default: `en`.
--   `border_radius` - Corner rounding on the card. Default: `4.5`.
-
-> **Warning**
-> We use caching to decrease the load on our servers (see https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours.
-
-##### Gradient in bg_color
-
-You can provide multiple comma-separated values in the bg_color option to render a gradient with the following format:
-
-    &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
-
-#### Stats Card Exclusive Options
-
--   `hide` - Hides the [specified items](#hiding-individual-stats) from stats _(Comma-separated values)_. Default: `[] (blank array)`.
--   `hide_title` - _(boolean)_. Default: `false`.
--   `card_width` - Set the card's width manually _(number)_. Default: `500px  (approx.)`.
--   `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width. Default: `false`.
--   `show_icons` - _(boolean)_. Default: `false`.
--   `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_. Default: `false`.
--   `count_private` - Count private commits _(boolean)_. Default: `false`.
--   `line_height` - Sets the line height between text _(number)_. Default: `25`.
--   `exclude_repo` - Exclude stars from specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
--   `custom_title` - Sets a custom title for the card. Default:  `<username> GitHub Stats`.
--   `text_bold` - Use bold text _(boolean)_. Default: `true`.
--   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
-
-> **Note**
-> When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.
-
-#### Repo Card Exclusive Options
-
--   `show_owner` - Show the repo's owner name _(boolean)_. Default: `false`.
+</details>
 
 * * *
 
@@ -302,7 +300,15 @@ GitHub extra pins allow you to pin more than six repositories in your profile us
 
 Yay! You are no longer limited to 6 pinned repositories.
 
-### Usage
+## Demo
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+
+Use [show_owner](#customization) variable to include the repo's owner username
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+
+## Usage
 
 Copy-paste this code into your readme and change the links.
 
@@ -312,13 +318,9 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Demo
+### Repo Card Exclusive Options
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
-
-Use [show_owner](#customization) variable to include the repo's owner username
-
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+-   `show_owner` - Show the repo's owner name _(boolean)_. Default: `false`.
 
 # Top Languages Card
 
