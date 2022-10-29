@@ -310,6 +310,9 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
+### Common Options
+- See [above](#common-options)
+
 ### Repo Card Exclusive Options
 
 -   `show_owner` - Show the repo's owner name _(boolean)_. Default: `false`.
@@ -338,6 +341,9 @@ Endpoint: `api/top-langs?username=anuraghazra`
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
+
+### Common Options
+- See [above](#common-options)
 
 ### Language Card Exclusive Options
 
@@ -413,6 +419,9 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 > **Note**:
 > Please be aware that we currently only show data from Wakatime profiles that are public.
+
+### Common Options
+- See [above](#common-options)
 
 ### Wakatime Card Exclusive Options
 
