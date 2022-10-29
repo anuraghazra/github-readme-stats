@@ -93,7 +93,7 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
     -   [Language Card Exclusive Options](#language-card-exclusive-options)
     -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
 -   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
-    - [Keep your fork up to date](#keep-your-fork-up-to-date)   
+    - [Keep your fork up to date](#keep-your-fork-up-to-date)
 
 # GitHub Stats Card
 
@@ -214,10 +214,10 @@ You can use [GitHub's theme context](https://github.blog/changelog/2021-11-24-sp
 ##### Use GitHub's new media feature
 
 You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-19-specify-theme-context-for-images-in-markdown-beta/) in HTML to specify whether to display images for light or dark themes. This is done using the HTML `<picture>` element in combination with the `prefers-color-scheme` media feature.
-  
+
 ```html
 <picture>
-<source 
+<source
   srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark"
   media="(prefers-color-scheme: dark)"
 />
@@ -233,7 +233,7 @@ You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-1
 <summary>:eyes: Show example</summary>
 
 <picture>
-<source 
+<source
   srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark"
   media="(prefers-color-scheme: dark)"
 />
@@ -258,7 +258,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 -   `border_color` - Card's border color _(hex color)_. Default: `e4e2e2` (Does not apply when `hide_border` is enabled).
 -   `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_. Default: `fffefe`
 -   `hide_border` - Hides the card's border _(boolean)_. Default: `false`
--   `theme` - name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme. 
+-   `theme` - name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme.
 -   `cache_seconds` - set the cache header manually _(min: 7200, max: 86400)_. Default: `14400 seconds (4 hours)`.
 -   `locale` - set the language in the card _(e.g. cn, de, es, etc.)_. Default: `en`.
 -   `border_radius` - Corner rounding on the card. Default: `4.5`.
@@ -293,21 +293,6 @@ You can provide multiple comma-separated values in the bg_color option to render
 #### Repo Card Exclusive Options
 
 -   `show_owner` - Show the repo's owner name _(boolean)_. Default: `false`.
-
-#### Language Card Exclusive Options
-
--   `hide` - Hide the languages specified from the card _(Comma-separated values)_. Default: `[] (blank array)`.
--   `hide_title` - _(boolean)_. Default: `false`.
--   `layout` - Switch between two available layouts `default` & `compact`. Default: `default`.
--   `card_width` - Set the card's width manually _(number)_. Default `300`.
--   `langs_count` - Show more languages on the card, between 1-10 _(number)_. Default `5`.
--   `exclude_repo` - Exclude specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
--   `custom_title` - Sets a custom title for the card _(string)_. Default `Most Used Languages`.
-
-> **Warning**
-> Language names should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
-> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
-> [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
 
 #### Wakatime Card Exclusive Options
 
@@ -354,7 +339,15 @@ The top languages card shows a GitHub user's most frequently used top language.
 > **Note**
 > Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats._
 
-### Usage
+## Demo
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+### Compact layout
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
+## Usage
 
 Copy-paste this code into your readme and change the links.
 
@@ -363,6 +356,24 @@ Endpoint: `api/top-langs?username=anuraghazra`
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
+
+### Language Card Exclusive Options
+
+-   `hide` - Hide the languages specified from the card _(Comma-separated values)_. Default: `[] (blank array)`.
+-   `hide_title` - _(boolean)_. Default: `false`.
+-   `layout` - Switch between two available layouts `default` & `compact`. Default: `default`.
+-   `card_width` - Set the card's width manually _(number)_. Default `300`.
+-   `langs_count` - Show more languages on the card, between 1-10 _(number)_. Default `5`.
+-   `exclude_repo` - Exclude specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
+-   `custom_title` - Sets a custom title for the card _(string)_. Default `Most Used Languages`.
+
+> **Warning**
+> Language names should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
+> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
+> [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
+
+<details>
+<summary><h3>Examples</h3></summary>
 
 ### Exclude individual repositories
 
@@ -396,13 +407,7 @@ You can use the `&layout=compact` option to change the card design.
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Demo
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
-
--   Compact layout
-
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+</details>
 
 # Wakatime Week Stats
 
