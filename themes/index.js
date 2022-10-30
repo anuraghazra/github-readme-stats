@@ -368,9 +368,9 @@ export const themes = {
     bg_color: "191724",
   },
     transparent_gittheme: {
-    title_color: "4184e4",
-    icon_color: "cdd9e5",
-    text_color: "cdd9e5",
+    title_color: "1855AA",
+    icon_color: "575757",
+    text_color: "575757",
     bg_color: "ffffff00",
   },
 };
