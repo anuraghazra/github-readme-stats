@@ -367,6 +367,12 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+    transparent_gittheme: {
+    title_color: "#4184e4",
+    icon_color: "#cdd9e5",
+    text_color: "#cdd9e5",
+    bg_color: "ffffff00",
+  },
 };
 
 export default themes;
