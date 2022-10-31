@@ -367,6 +367,15 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  
+  hg_dark : {
+    title_color: "fffff",
+    icon_color: "fea349",
+    text_color: "e6e6de",
+    bg_color: "3d424a",
+  },
+
+  
 };
 
 export default themes;
