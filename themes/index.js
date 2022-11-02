@@ -367,6 +367,14 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  
+  darth: {
+    title_color: "c51443",
+    icon_color: "#7f1d3a",
+    text_color: "#f3f2ef",
+    bg_color: "000",
+    border_color: "7A0E00",
+  },
 };
 
 export default themes;
