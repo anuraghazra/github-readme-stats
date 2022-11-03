@@ -367,6 +367,12 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  mustardOlive: {
+    title_color: "6cae37",
+    icon_color: "dcc12f",
+    text_color: "cfc79a",
+    bg_color: "202124",
+  },
 };
 
 export default themes;
