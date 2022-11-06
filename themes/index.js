@@ -367,6 +367,12 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  "blue_tech":{
+    title_color: "01ffff",
+    icon_color: "01ffff",
+    text_color: "fefefe",
+    bg_color: "243642",
+  }
 };
 
 export default themes;
