@@ -355,9 +355,9 @@ export const themes = {
     bg_color: "F5E1C0",
   },
   codeSTACKr: {
-    title_color: "ff652f",
-    icon_color: "FFE400",
-    text_color: "ffffff",
+    title_color: "539bf5",
+    icon_color: "539bf5",
+    text_color: "cdd9e5",
     bg_color: "09131B",
     border_color: "0c1a25",
   },
@@ -366,6 +366,20 @@ export const themes = {
     icon_color: "ebbcba",
     text_color: "e0def4",
     bg_color: "191724",
+  },
+  yaru_dark: {
+    title_color: "ffc107",
+    icon_color: "ffc107",
+    text_color: "ffffff",
+    bg_color: "212121",
+    border_color: "181818",
+  },
+  github_dark2:{
+    title_color: "cdd9e5",
+    icon_color: "ffc107",
+    text_color: "ffffff",
+    bg_color: "373e47",
+    border_color: "c9d1d9",
   },
 };
 
