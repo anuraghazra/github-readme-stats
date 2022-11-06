@@ -57,30 +57,48 @@
 </p>
 <p align="center">Se ti piace questo progetto, considera la possibilità di <a href="https://www.paypal.me/anuraghazra">donare</a> per aiutare a renderlo migliore!
 
+ 
+<p>
+<a href="https://indiafightscorona.giveindia.org">
+<img src="https://d2wvdrxmr8p0wf.cloudfront.net/static/giveindia.svg" alt="Give india logo" width="200" />
+</a>
+
+Stai prendendo in cosiderazione di supportare il progetto donando a me? Per favore, NON farlo!!  
+
+Piuttosto, aiuta l'India a combattere la seconda ondata mortale di COVID-19,  
+Migliaia di persone stanno morendo in India per mancanza di ossigeno e infrastrutture necessarie a contrastare il COVID-19. 
+
+Visita [https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org) ed effettua una piccola donazione per aiutarci a combattere il COVID e superare questa crisi.  
+Il tuo piccolo contributo sarà molto utile. :heart:
+</p>
+
 # Caratteristiche
 
 - [Statistiche GitHub (GitHub Stats Card)](#github-stats-card)
 - [GitHub Extra Pin](#github-extra-pins)
 - [Linguaggi più usati (Top Languages Card)](#top-languages-card)
+- [Wakatime Statistiche Settimanali](#wakatime-statistiche-settimanali)
 - [Temi](#temi)
 - [Personalizzazione](#personalizzazione)
-- [Effettua il Deploy](#deploy-su-vercel)
+- [Effettua il Deploy](#implementa-la-tua-istanza-su-vercel)
 
 # GitHub Stats Card
 
-Per creare una Card con le statistiche GitHub, copia e incolla nel tuo file markdown, tutto qua: è semplice!
+Per creare una Card con le statistiche GitHub, copia e incolla il seguente codice nel tuo file markdown, tutto qua: è semplice!
 
-Ricorda di cambiare il valore `?username=` con il tuo nome utente GitHub.
+Ricorda di cambiare il valore di `?username=` con il tuo nome utente GitHub.
 
 ```md
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-_Nota: I punteggi sono calcolati sulla base delle tue statistiche, dai un'occhiata a [src/calculateRank.js](../src/calculateRank.js) per ulteriori informazioni_
+_Nota: I punteggi disponibili sono S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (tutti i restanti).
+I valori sono calcolati utilizzando la [funzione di ripartizione](https://it.wikipedia.org/wiki/Funzione_di_ripartizione) utilizzando commits, contributi, issues, stelle, pull requests, followers, e i tuoi repositories.
+Per ulteriori informazioni sull'implementazione, visita [src/calculateRank.js](./src/calculateRank.js)_
 
 ### Nascondere statistiche individuali
 
-Per nascondere qualche dato, puoi aggiungere i parametri `?hide=`, separando i valori con una virgola.
+Per nascondere qualche dato, puoi aggiungere il parametro `?hide=`, separando i valori con una virgola.
 
 > Opzioni: `&hide=stars,commits,prs,issues,contribs`
 
@@ -88,11 +106,11 @@ Per nascondere qualche dato, puoi aggiungere i parametri `?hide=`, separando i v
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
-### Includere i contributi privati nel computo totale
+### Includere i contributi privati nel calcolo totale
 
 Puoi aggiungere i tuoi contributi privati al totale dei commit, utilizzando il parametro `?count_private=true`.
 
-_Nota: se hai deciso di fare il deploy del progetto, i contributi privati verranno inclusi in automatico._
+_Nota: se hai deciso di fare tu stesso il deploy del progetto, i contributi privati verranno inclusi in automatico. Altrimenti, è necessario specificare il valore esplicitamente._
 
 > Opzioni: `&count_private=true`
 
@@ -102,7 +120,7 @@ _Nota: se hai deciso di fare il deploy del progetto, i contributi privati verran
 
 ### Mostrare le icone
 
-Per abilitare le icone, puoi specificare `show_icons=true`, ad esempio:
+Per abilitare le icone, puoi includere il parametro `show_icons=true`, come in esempio:
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -110,7 +128,7 @@ Per abilitare le icone, puoi specificare `show_icons=true`, ad esempio:
 
 ### Temi
 
-Esistono alcuni temi predefiniti coi quali è possibile personalizzare l'aspetto delle card. In alternativa, è possibile effettuare una [personalizzazione manuale](#personalizzazione).
+Esistono alcuni temi predefiniti con i quali è possibile personalizzare l'aspetto delle card. In alternativa, è possibile effettuare una [personalizzazione manuale](#personalizzazione).
 
 Usa il parametro `?theme=NOME_TEMA` in questo modo:-
 
@@ -124,7 +142,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-Puoi avere un'anteprima di [tutti i temi supportati](../themes/README.md) o controllare il [file di configurazione dei temi](../themes/index.js) e **puoi anche contribuire creando un nuovo tema** se vuoi :D
+Puoi avere un'anteprima di [tutti i temi supportati](../themes/README.md) o controllare il [file di configurazione dei temi](../themes/index.js) e **puoi anche contribuire creando nuovi temi** se vuoi :D
 
 ### Personalizzazione
 
@@ -135,11 +153,13 @@ Puoi personalizzare l'aspetto delle tue `Stats Card` o delle `Repo Card` in qual
 - `title_color` - Colore del titolo _(in esadecimale)_
 - `text_color` - Colore del testo _(in esadecimale)_
 - `icon_color` - Colore delle icone, se disponibili _(in esadecimale)_
+- `border_color` - Colore del bordo _(in esadecimale)_. (Non viene applicato quando `hide_border` è abilitato)
 - `bg_color` - Colore dello sfondo _(in esadecimale)_ **oppure** un gradiente nella forma _angolo,inizio,fine_
 - `hide_border` - Nasconde il bordo della carta _(booleano)_
 - `theme` - Nome del tema, dai un'occhiata a [tutti i temi disponibili](../themes/README.md)
 - `cache_seconds` - Specifica manualmente il valore di cache, in secondi _(min: 1800, max: 86400)_
 - `locale` - Impostare la lingua nella scheda _(per esempio. cn, de, es, eccetera.)_
+- `border_radius` - Arrotondamento degli angoli della carta
 
 ##### Gradiente nello sfondo
 
@@ -149,17 +169,19 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 ```
 
-> Nota sulla cache: le card hanno un valore di cache di 4 ore (14400 seconds) di default se il numero di fork & il numero di stelle è inferiore a 1000; altrimenti è pari a 2 ore (7200).
+> Nota sulla cache: le card hanno un valore di cache di 4 ore (14400 seconds) di default se il numero di fork & il numero di stelle è inferiore a 1000; altrimenti è pari a 2 ore (7200). Nota anche che la cache è limitata ad un minimo di 2 ore e un massimo di 24 ore.
 
 #### Opzioni valide solo per le card delle statistiche:
 
 - `hide` - Nasconde gli oggetti selezionati _(valori separati da virgola)_
 - `hide_title` - Nasconde il titolo _(booleano)_
-- `hide_rank` - Nasconde il punteggio _(booleano)_
+- `hide_rank` - Nasconde il punteggio e ridimensione automanticamente la larghezza della carta _(booleano)_
 - `show_icons` - Mostra le icone _(booleano)_
 - `include_all_commits` - Mostra tutti i commit e non solo quelli dell'anno corrente _(booleano)_
 - `count_private` - Include i contributi privati _(booleano)_
 - `line_height` - Specifica il valore dell'altezza di riga _(numero)_
+- `custom_title` - Imposta un titolo personalizzato
+- `disable_animations` - Disabilita tutte le animazioni _(booleano)_
 
 #### Opzioni valide solo per le Repo Card:
 
@@ -171,10 +193,27 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 - `hide_title` - Nasconde il titolo _(booleano)_
 - `layout` - Specifica il tipo di layout, `default` (esteso) o `compact` (compatto)
 - `card_width` - Specifica il valore della larghezza _(numero)_
+- `langs_count` - Modifica il numero di linguaggi mostrati sulla carta, da 1 a 10 (default: 5) _(numero)_
+- `exclude_repo` - Escludi alcuni repositories _(valori separati da virgola)_
+- `custom_title` - Imposta un titolo personalizzato per la carta
 
 > :warning: **Importante:**
 > Per i nomi dei linguaggi, assicurati di effettuare l'encoding giusto nell'uri, come specificato in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
-> (ad esempio: `c++` diventa `c%2B%2B`, `jupyter notebook` diventa `jupyter%20notebook`, ecc.)
+> (ad esempio: `c++` diventa `c%2B%2B`, `jupyter notebook` diventa `jupyter%20notebook`, ecc.) Puoi utilizzare
+> [urlencoder.org](https://www.urlencoder.org/) per farlo automaticamente.
+
+#### Opzioni valide solo per la Wakatime Card:
+
+- `hide` - Nascondi dalla carta i linguaggi specificati _(valori separati da virgola)_
+- `hide_title` - Nascondi il titolo _(booleano)_
+- `line_height` - Specifica il valore dell'altezza di riga _(numero)_
+- `hide_progress` - Nascondi la barra di progresso e la percentuale _(booleano)_
+- `custom_title` - Imposta un titolo personalizzato per la carta
+- `layout` - Specifica il tipo di layout, `default` (esteso) o `compact` (compatto)
+- `langs_count` - Modifica il numero di linguaggi mostrati sulla carta, di default il numero di linguaggi utilizzati
+- `api_domain` - Imposta un dominio personalizzato per le API, per esempio [Hakatime](https://github.com/mujx/hakatime) o [Wakapi](https://github.com/muety/wakapi)
+- `range` – Richiedi un intervallo differente dal tuo WakaTime default, es: `last_7_days`. Vedi [WakaTime API docs](https://wakatime.com/developers#stats) per una lista di opzioni disponibili.
+
 
 ---
 
@@ -182,9 +221,11 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 
 GitHub Extra Pins ti permette di fissare in alto più di 6 repository nel tuo profilo, sfruttando il README del profilo.
 
+Evviva! Non sei più limitato a 6 repositories.
+
 ### Utilizzo
 
-Copia e incolla il seguente codice, premurandoti di cambiare il link.
+Copia e incolla il seguente codice nel tuo README.md, premurandoti di cambiare il link.
 
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
@@ -204,7 +245,7 @@ Usa la variabile [show_owner](#personalizzazione) per includere il nome utente d
 
 La Top Languages Card mostra i linguaggi che utilizzi di più su GitHub.
 
-_NOTA: questa card non indica il livello di abilità, ma piuttosto quanto codice hai scritto in un determinato linguaggio_
+_NOTA: questa card non indica il livello di abilità, ma piuttosto quanto codice hai scritto in un determinato linguaggio. È una nuova funzionalità di github-readme-stats._
 
 ### Utilizzo
 
@@ -216,12 +257,28 @@ Endpoint: `api/top-langs?username=anuraghazra`
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
+### Escludi repositories specifici
+
+Puoi utilizzare il parametro `?exclude_repo=repo1,repo2` per nascondere repositories specifici.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
+```
+
 ### Nascondi linguaggi specifici
 
-Puoi utilizzare il parametro `?hide=linguaggio1,linguaggio2` per nascondere alcuni linguaggi.
+Puoi utilizzare il parametro `?hide=linguaggio1,linguaggio2` per nascondere individualmente linguaggi.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Modifica il numero di linguaggi
+
+Puoi utilizzare il parametro `&langs_count=` per aumentare o diminuire il numero di linguaggi mostrati sulla carta. I valori considerati validi sono numeri interi tra 1 e 10 (inclusi), e il numero predefinito è 5.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Layout compatto
@@ -240,6 +297,25 @@ Puoi utilizzare l'opzione `&layout=compact` per cambiare l'aspetto della card.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
+# Wakatime statistiche settimanali
+
+Modifica il valore di `?username=` con l'username che utilizzi per [Wakatime](https://wakatime.com).
+
+```md
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Demo
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
+- Layout compatto
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
+
 ---
 
 ### Galleria di esempi
@@ -256,13 +332,17 @@ Puoi utilizzare l'opzione `&layout=compact` per cambiare l'aspetto della card.
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
+- Modificare il colore del bordo
+
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&border_color=2e4058)
+
 - Includere tutti i commit
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
 
 - Temi
 
-Scegli uno dei [temi di default](#themes)
+Scegli uno dei [temi di default](#temi)
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
@@ -282,6 +362,10 @@ Scegli uno dei [temi di default](#themes)
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
+- Wakatime card
+
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+
 ---
 
 ### Consiglio veloce (Allineare le Card)
@@ -297,47 +381,48 @@ Per allineare le card una accanto all'altra, puoi adottare questo approccio:
 </a>
 ```
 
-## Deploy su Vercel
+## Implementa la tua istanza su Vercel
 
 #### [Guarda questo Video Tutorial, realizzato da @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-Since the GitHub API only allows 5k requests per hour, it is possible that my `https://github-readme-stats.vercel.app/api` could hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
+Siccome le API di GitHub consentono solo 5mila richieste per ora, il mio `https://github-readme-stats.vercel.app/api` potrebbe raggiungere il tasso limite. Se decidi di implementarlo sul tuo server Vercel, non dovrai preoccuparti di nulla. Clicca sul bottone "Deploy" per iniziare!
 
-NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we should be able to handle more than 5k requests and have no issues with downtime :D
+NOTA: Da [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) dovremmo essere in grado di gestire oltre 5mila richieste senza problemi di inattività :D
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary><b> Guide on setting up Vercel  🔨 </b></summary>
+ <summary><b> Guida per impostare Vercel  🔨 </b></summary>
 
-1. Go to [vercel.com](https://vercel.com/)
-1. Click on `Log in`
+1. Vai su [vercel.com](https://vercel.com/)
+1. Clicca su `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
-1. Sign in with GitHub by pressing `Continue with GitHub`
+1. Effettua il log in con GitHub cliccando su `Continue with GitHub`
    ![](https://files.catbox.moe/btd78j.jpeg)
-1. Sign into GitHub and allow access to all repositories, if prompted
-1. Fork this repo
-1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
-1. Select `Import Project`
+1. Effettua il log in su GitHub e consenti l'accesso a tutti i repositories, se richiesto
+1. Crea un fork di questo repository
+1. Apri il file [`vercel.json`](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json#L5) e modifica il campo `maxDuration` in `10`
+1. Ritorna sulla [Dashboard di Vercel](https://vercel.com/dashboard)
+1. Seleziona `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
-1. Select `Import Git Repository`
+1. Seleziona `Import Git Repository`. Seleziona root e mantieni tutto il resto come lo trovi.
    ![](https://files.catbox.moe/pqub9q.png)
-1. Select root and keep everything as is, just add your environment variable named PAT_1 (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)
+1. Crea un Token di Accesso Personale (PAT) [qui](https://github.com/settings/tokens/new) e abilita i permessi `repo` (questo consente l'accesso alle statistiche dei repositories privati)
+1. Aggiungi il PAT come environment variable chiamata PAT_1 (come mostrato)
    ![](https://files.catbox.moe/0ez4g7.png)
-1. Click deploy, and you're good to go. See your domains to use the API!
+1. Clicca deploy, e sei a posto. Controlla i tuoi domini per utilizzare le API!
 
 </details>
 
 ## :sparkling_heart: Supporta il progetto
 
-Rendo open-source quasi tutto ciò che posso e provo a rispondere a chiunque sia in difficoltà nell'utilizzare questi progetti. Ovviamente, mi richiede del tempo.
-Puoi utilizzare questo servizio gratuitamente.
+Rendo open-source quasi tutto ciò che posso e provo a rispondere a chiunque sia in difficoltà nell'utilizzare questi progetti. Ovviamente, mi richiede del tempo. Puoi utilizzare questo servizio gratuitamente.
 
-Tuttavia, se usi il progetto e ti piace e vuoi sostenermi, puoi:-
+Tuttavia, se usi il progetto e ti piace e vuoi sostenermi nella creazione di altre cose, puoi:-
 
 - Dare il giusto riconoscimento quando usi github-readme-stats nei tuoi readme, includendo un link :D
 - Mettere una stella e condividere il progetto :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - Fare una donazione via PayPal. Probabilmente compreròun ~~caffè~~ tè. :tea:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - Fare una donazione tramite PayPal. Probabilmente compreròun ~~caffè~~ tè. :tea:
 
 Grazie! :heart:
 
@@ -347,4 +432,4 @@ Grazie! :heart:
 
 I contributi sono benvenuti! <3
 
-Realizzato col :heart: e in JavaScript.
+Realizzato col :heart: e JavaScript.
