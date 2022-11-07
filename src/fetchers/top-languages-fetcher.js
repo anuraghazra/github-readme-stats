@@ -22,10 +22,10 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!, $ownerAffiliations: [RepositoryAffiliation]) {
         user(login: $login) {
-          # fetch only owner repos & not forks
-          repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
+          # do not fetch forks
+          repositories(ownerAffiliations: $ownerAffiliations, isFork: false, first: 100) {
             nodes {
               name
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
@@ -55,12 +55,25 @@ const fetcher = (variables, token) => {
  *
  * @param {string} username GitHub username.
  * @param {string[]} exclude_repo List of repositories to exclude.
+ * @param {string[]} ownerAffiliations The owner affiliations to filter by.
  * @returns {Promise<import("./types").TopLangData>} Top languages data.
  */
-async function fetchTopLanguages(username, exclude_repo = []) {
+async function fetchTopLanguages(
+  username,
+  ownerAffiliations,
+  exclude_repo = [],
+) {
   if (!username) throw new MissingParamError(["username"]);
 
-  const res = await retryer(fetcher, { login: username });
+  // Set default value for ownerAffiliations in GraphQL query won't work because
+  // parseArray() will always return an empty array even nothing was specified
+  // and GraphQL would consider that empty arr as a valid value. Nothing will be
+  // queried in that case as no affiliation is presented.
+  ownerAffiliations =
+    ownerAffiliations && ownerAffiliations.length > 0
+      ? ownerAffiliations
+      : ["OWNER"];
+  const res = await retryer(fetcher, { login: username, ownerAffiliations });
 
   if (res.data.errors) {
     logger.error(res.data.errors);

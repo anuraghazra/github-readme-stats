@@ -25,7 +25,7 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!, $ownerAffiliations: [RepositoryAffiliation]) {
         user(login: $login) {
           name
           login
@@ -48,7 +48,7 @@ const fetcher = (variables, token) => {
           followers {
             totalCount
           }
-          repositories(ownerAffiliations: OWNER) {
+          repositories(ownerAffiliations: $ownerAffiliations) {
             totalCount
           }
         }
@@ -190,6 +190,7 @@ const totalStarsFetcher = async (username, repoToHide) => {
  */
 async function fetchStats(
   username,
+  ownerAffiliations,
   count_private = false,
   include_all_commits = false,
   exclude_repo = [],
@@ -206,7 +207,15 @@ async function fetchStats(
     rank: { level: "C", score: 0 },
   };
 
-  let res = await retryer(fetcher, { login: username });
+  // Set default value for ownerAffiliations in GraphQL query won't work because
+  // parseArray() will always return an empty array even nothing was specified
+  // and GraphQL would consider that empty arr as a valid value. Nothing will be
+  // queried in that case as no affiliation is presented.
+  ownerAffiliations =
+    ownerAffiliations && ownerAffiliations.length > 0
+      ? ownerAffiliations
+      : ["OWNER"];
+  let res = await retryer(fetcher, { login: username, ownerAffiliations });
 
   // Catch GraphQL errors.
   if (res.data.errors) {
