@@ -367,6 +367,12 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  danger: {
+    title_color: "000000",
+    icon_color: "000000",
+    text_color: "343434",
+    bg_color: "fbdc43",
+  },
 };
 
 export default themes;
