@@ -367,6 +367,12 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  transp_magenta: {
+    title_color: "ab1f87",
+    icon_color: "9625f3",
+    text_color: "417E87",
+    bg_color: "ffffff00",
+  },
 };
 
 export default themes;
