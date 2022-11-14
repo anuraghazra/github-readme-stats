@@ -367,6 +367,13 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  dateNight: {
+    title_color: "DA7885",
+    text_color: "E1B2A2",
+    icon_color: "BB8470",
+    border_color: "170F0C",
+    bg_color: "170F0C",
+  },
 };
 
 export default themes;
