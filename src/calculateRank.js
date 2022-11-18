@@ -70,7 +70,11 @@ function calculateRank({
   const RANK_B_VALUE = 100;
 
   const TOTAL_VALUES =
-    RANK_S_VALUE + RANK_A2_VALUE + RANK_A3_VALUE + RANK_B_VALUE;
+    RANK_S_VALUE +
+    RANK_DOUBLE_A_VALUE +
+    RANK_A2_VALUE +
+    RANK_A3_VALUE +
+    RANK_B_VALUE;
 
   // prettier-ignore
   const score = (
