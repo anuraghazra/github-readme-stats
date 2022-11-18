@@ -39,12 +39,14 @@ export default async (req, res) => {
   try {
     const repoData = await fetchRepo(username, repo);
 
-    let cacheSeconds = process.env.CACHE_SECONDS ? process.env.CACHE_SECONDS : cache_seconds;
-    cacheSeconds = clampValue(
-      parseInt(cacheSeconds || CONSTANTS.FOUR_HOURS, 10),
+    let cacheSeconds = clampValue(
+      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
       CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
+    cacheSeconds = process.env.CACHE_SECONDS
+      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+      : cacheSeconds;
 
     /*
       if star count & fork count is over 1k then we are kFormating the text

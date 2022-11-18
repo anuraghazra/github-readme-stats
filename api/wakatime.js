@@ -45,12 +45,14 @@ export default async (req, res) => {
   try {
     const stats = await fetchWakatimeStats({ username, api_domain, range });
 
-    let cacheSeconds = process.env.CACHE_SECONDS ? process.env.CACHE_SECONDS : cache_seconds;
-    cacheSeconds = clampValue(
-      parseInt(cacheSeconds || CONSTANTS.FOUR_HOURS, 10),
+    let cacheSeconds = clampValue(
+      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
       CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
+    cacheSeconds = process.env.CACHE_SECONDS
+      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+      : cacheSeconds;
 
     if (!cache_seconds) {
       cacheSeconds = CONSTANTS.FOUR_HOURS;
