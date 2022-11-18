@@ -80,6 +80,7 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
 
 # Features
 
+-   [Important Notice](#important-notice)
 -   [GitHub Stats Card](#github-stats-card)
 -   [GitHub Extra Pins](#github-extra-pins)
 -   [Top Languages Card](#top-languages-card)
@@ -93,7 +94,13 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
     -   [Language Card Exclusive Options](#language-card-exclusive-options)
     -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
 -   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
+    - [Disable rate limit protections](#disable-rate-limit-protections)
     - [Keep your fork up to date](#keep-your-fork-up-to-date)   
+
+# Important Notice
+
+> **Warning**
+> Since the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see #1471). We use caching to prevent this from hapening (see https://github.com/anuraghazra/github-readme-stats#common-options). You can disable these rate limit protections by deploying [your own Vercel instance](#disable-rate-limit-protections).
 
 # GitHub Stats Card
 
@@ -530,6 +537,14 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 12. Click deploy, and you're good to go. See your domains to use the API!
 
 </details>
+
+### Disable rate limit protections
+
+Github Readme Stats contains several Vercel environment variables that can be used to remove the rate limit protections:
+
+- `CACHE_SECONDS`: This environment variable takes precedence over our cache minimum and maximum values and can be used to circumvent these values for self Hosted Vercel instances.
+
+See [the Vercel documentation](https://vercel.com/docs/concepts/projects/environment-variables) on how to add these environment variables to your Vercel instance.
 
 ### Keep your fork up to date
 
