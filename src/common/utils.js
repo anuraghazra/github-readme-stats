@@ -67,6 +67,8 @@ function kFormatter(num) {
  *
  * @param {string} hexColor String to check.
  * @returns {boolean} True if the given string is a valid hex color.
+ *
+ * @description: Tests color codes without the hash (#) prefix.
  */
 function isValidHexColor(hexColor) {
   return new RegExp(
@@ -122,7 +124,8 @@ function clampValue(number, min, max) {
  * @returns {boolean} True if the given string is a valid gradient.
  */
 function isValidGradient(colors) {
-  return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
+  if (isNaN(colors[0])) return false;
+  return colors.slice(1).every((color) => isValidHexColor(color));
 }
 
 /**
@@ -170,8 +173,8 @@ function request(data, headers) {
  * @param {object} props Function properties.
  * @param {string[]} props.items Array of items to layout.
  * @param {number} props.gap Gap between items.
- * @param {number[]?=} props.sizes Array of sizes for each item.
  * @param {"column" | "row"?=} props.direction Direction to layout items.
+ * @param {number[]?=} props.sizes Array of sizes for each item.
  * @returns {string[]} Array of items with proper layout.
  */
 function flexLayout({ items, gap, direction, sizes = [] }) {
@@ -379,12 +382,12 @@ function measureText(str, fontSize = 10) {
 const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 /**
- * Split array of languages in two columns.
+ * Split array of languages in columns.
  *
  * @template T Langauge object.
  * @param {Array<T>} arr Array of languages.
  * @param {number} perChunk Number of languages per column.
- * @returns {Array<T>} Array of languages split in two columns.
+ * @returns {Array<T>} Array of languages split in columns.
  */
 function chunkArray(arr, perChunk) {
   return arr.reduce((resultArray, item, index) => {
@@ -408,7 +411,7 @@ function chunkArray(arr, perChunk) {
  */
 function parseEmojis(str) {
   if (!str) throw new Error("[parseEmoji]: str argument not provided");
-  return str.replace(/:\w+:/gm, (emoji) => {
+  return str.replace(/:[\w+-]+:/gm, (emoji) => {
     return toEmoji.get(emoji) || "";
   });
 }

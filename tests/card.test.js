@@ -145,6 +145,7 @@ describe("Card", () => {
       "#fff",
     );
   });
+
   it("should render gradient backgrounds", () => {
     const { titleColor, textColor, iconColor, bgColor } = getCardColors({
       title_color: "f00",
