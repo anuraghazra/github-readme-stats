@@ -133,9 +133,9 @@ function isValidGradient(colors) {
  * @returns {string | string[]} The gradient or color.
  */
 function fallbackColor(color, fallbackColor) {
-  let colors = color.split(",");
   let gradient = null;
 
+  let colors = color ? color.split(",") : [];
   if (colors.length > 1 && isValidGradient(colors)) {
     gradient = colors;
   }
@@ -207,6 +207,7 @@ function getCardColors({
   icon_color,
   bg_color,
   border_color,
+  ring_color,
   theme,
   fallbackTheme = "default",
 }) {
@@ -220,6 +221,13 @@ function getCardColors({
   const titleColor = fallbackColor(
     title_color || selectedTheme.title_color,
     "#" + defaultTheme.title_color,
+  );
+
+  // get the color provided by the user else the theme color
+  // finally if both colors are invalid we use the titleColor
+  const ringColor = fallbackColor(
+    ring_color || selectedTheme.ring_color,
+    titleColor,
   );
   const iconColor = fallbackColor(
     icon_color || selectedTheme.icon_color,
@@ -239,7 +247,7 @@ function getCardColors({
     "#" + defaultBorderColor,
   );
 
-  return { titleColor, iconColor, textColor, bgColor, borderColor };
+  return { titleColor, iconColor, textColor, bgColor, borderColor, ringColor };
 }
 
 /**

@@ -51,13 +51,13 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
     }
 
     .rank-circle-rim {
-      stroke: #2f80ed;
+      stroke: undefined;
       fill: none;
       stroke-width: 6;
       opacity: 0.2;
     }
     .rank-circle {
-      stroke: #2f80ed;
+      stroke: undefined;
       stroke-dasharray: 250;
       fill: none;
       stroke-width: 6;
