@@ -1,5 +1,4 @@
 // @ts-check
-import * as dotenv from "dotenv";
 import { retryer } from "../common/retryer.js";
 import {
   CustomError,
@@ -8,8 +7,6 @@ import {
   request,
   wrapTextMultiline,
 } from "../common/utils.js";
-
-dotenv.config();
 
 /**
  * Top languages fetcher object.
