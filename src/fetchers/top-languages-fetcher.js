@@ -57,7 +57,7 @@ const fetcher = (variables, token) => {
  * @param {string[]} exclude_repo List of repositories to exclude.
  * @returns {Promise<import("./types").TopLangData>} Top languages data.
  */
-async function fetchTopLanguages(username, exclude_repo = []) {
+const fetchTopLanguages = async (username, exclude_repo = []) => {
   if (!username) throw new MissingParamError(["username"]);
 
   const res = await retryer(fetcher, { login: username });
@@ -136,7 +136,7 @@ async function fetchTopLanguages(username, exclude_repo = []) {
     }, {});
 
   return topLangs;
-}
+};
 
 export { fetchTopLanguages };
 export default fetchTopLanguages;
