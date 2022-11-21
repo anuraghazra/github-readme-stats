@@ -60,7 +60,7 @@ const urlExample = "/api/pin?username=USERNAME&amp;repo=REPO_NAME";
  * @param {string} reponame GitHub repository name.
  * @returns {Promise<import("./types").RepositoryData>} Repository data.
  */
-async function fetchRepo(username, reponame) {
+const fetchRepo = async (username, reponame) => {
   if (!username && !reponame) {
     throw new MissingParamError(["username", "repo"], urlExample);
   }
@@ -100,7 +100,7 @@ async function fetchRepo(username, reponame) {
       starCount: data.organization.repository.stargazers.totalCount,
     };
   }
-}
+};
 
 export { fetchRepo };
 export default fetchRepo;

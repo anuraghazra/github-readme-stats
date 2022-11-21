@@ -67,7 +67,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: "Jumlah Bintang",
       sk: "Hviezdy",
       tr: "Toplam Yıldız",
-      pl: "Liczba Gwiazdek dostanych",
+      pl: "Liczba otrzymanych gwiazdek",
       uz: "Yulduzchalar",
       vi: "Tổng Số Sao",
       se: "Antal intjänade stjärnor",
@@ -160,7 +160,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: "Jumlah Isu Dilaporkan",
       sk: "Všetky problémy",
       tr: "Toplam Hata",
-      pl: "Wszystkie Issues",
+      pl: "Wszystkie problemy",
       uz: "'Issue'lar",
       vi: "Tổng Số Vấn Đề",
       se: "Total antal issues",
@@ -322,7 +322,7 @@ const wakatimeCardLocales = {
     my: "Statistik Wakatime",
     sk: "Wakatime štatistika",
     tr: "Waketime İstatistikler",
-    pl: "statystyki Wakatime",
+    pl: "Statystyki Wakatime",
     vi: "Thống Kê Wakatime",
     se: "Wakatime statistik",
   },
@@ -367,9 +367,9 @@ const availableLocales = Object.keys(repoCardLocales["repocard.archived"]);
  * @param {string} locale The locale to check.
  * @returns {boolean} Boolean specifying whether the locale is available or not.
  */
-function isLocaleAvailable(locale) {
+const isLocaleAvailable = (locale) => {
   return availableLocales.includes(locale.toLowerCase());
-}
+};
 
 export {
   isLocaleAvailable,
