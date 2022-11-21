@@ -375,8 +375,8 @@ export const themes = {
     bg_color: "170F0C",
   },
     dark_lilac: {
-    title_color: "#A777EA",
-    icon_color: "#B0A7B6",
+    title_color: "A777EA",
+    icon_color: "B0A7B6",
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
