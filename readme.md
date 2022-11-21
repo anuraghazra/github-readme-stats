@@ -142,9 +142,9 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 > When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.
 
 <details>
-<summary><h3>Examples</h3></summary>
+<summary><h3>:eyes: Show examples</h3></summary>
 
-### Hiding individual stats
+#### Hiding individual stats
 
 You can pass a query parameter `&hide=` to hide any specific stats with comma-separated values.
 
@@ -154,7 +154,7 @@ You can pass a query parameter `&hide=` to hide any specific stats with comma-se
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
-### Adding private contributions count to total commits count
+#### Adding private contributions count to total commits count
 
 You can add the count of all your private contributions to the total commits count by using the query parameter `&count_private=true`.
 
@@ -167,13 +167,14 @@ You can add the count of all your private contributions to the total commits cou
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
-### Showing icons
+#### Showing icons
 
 To enable icons, you can pass `show_icons=true` in the query param, like so:
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
+</details>
 
 ### Themes
 
@@ -279,8 +280,6 @@ You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-1
 />
 <img src="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true" />
 </picture>
-
-</details>
 
 </details>
 
