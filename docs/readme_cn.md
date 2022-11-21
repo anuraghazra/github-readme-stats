@@ -134,12 +134,14 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - `title_color` - 卡片标题颜色 _（十六进制色码）_
 - `text_color` - 内容文本颜色 _（十六进制色码）_
+- `border_color` - 卡片边框颜色 _(十六进制色码)_. 默认: `e4e2e2` (当 `hide_border` 被设置时无效).
 - `icon_color` - 图标颜色（如果可用）_（十六进制色码）_
 - `bg_color` - 卡片背景颜色 _（十六进制色码）_ **或者** 以 _angle,start,end_ 的形式渐变
 - `hide_border` - 隐藏卡的边框 _(布尔值)_
 - `theme` - 主题名称，从[所有可用主题](../themes/README.md)中选择
 - `cache_seconds` - 手动设置缓存头 _（最小值: 1800，最大值: 86400）_
 - `locale` - 在卡片中设置语言 _(例如 cn, de, es, 等等)_
+- `border_radius` - 卡片圆角. 默认: `4.5`.
 
 ##### bg_color 渐变
 
@@ -155,11 +157,20 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - `hide` - 隐藏特定统计信息 _(以逗号分隔)_
 - `hide_title` - _(boolean)_
+- `card_width` - 手动设置卡片宽度 _(number)_. 默认: `500px  (approx.)`.
 - `hide_rank` - _(boolean)_
 - `show_icons` - _(boolean)_
 - `include_all_commits` - 统计总提交次数而不是仅统计今年的提交次数 _(boolean)_
 - `count_private` - 统计私人提交 _(boolean)_
 - `line_height` - 设置文本之间的行高 _(number)_
+- `exclude_repo` - 从特殊存储库中排除星标 _(Comma-separated values)_. 默认: `[] (blank array)`.
+- `custom_title` - 为卡片自定义标题. 默认:  `<username> GitHub Stats`.
+- `text_bold` - 文字粗体 _(boolean)_. 默认: `true`.
+- `disable_animations` - 禁用卡片的所有动画 _(boolean)_. 默认: `false`.
+- `ring_color` - 卡片环的颜色 _(hex color)_. 如果设定则默认作为主题的环的颜色, 否则使用标题颜色.
+
+> **注意**
+> 如果设定 hide_rank=`true`, 则最小卡宽度为270px + 标题长度和padding.
 
 #### Repo 卡片专属选项:
 
@@ -171,6 +182,9 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `hide_title` - _(boolean)_
 - `layout` - 在两个可用布局 `default` & `compact` 间切换
 - `card_width` - 手动设置卡片的宽度 _(number)_
+- `langs_count` - 在卡片中显示更多语言, 从1到10 _(number)_. 默认 `5`.
+- `exclude_repo` - 排除特殊的存储库 _(Comma-separated values)_. 默认: `[] (blank array)`.
+- `custom_title` - 设定自定义标题 _(string)_. 默认 `Most Used Languages`.
 
 > :warning: **重要:**
 > 如 [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) 所指定，语言名称应使用 uri 转义。
