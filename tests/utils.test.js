@@ -4,6 +4,7 @@ import {
   encodeHTML,
   getCardColors,
   kFormatter,
+  parseBoolean,
   renderError,
   wrapTextMultiline,
 } from "../src/common/utils.js";
@@ -17,6 +18,23 @@ describe("Test utils.js", () => {
     expect(kFormatter(10000)).toBe("10k");
     expect(kFormatter(12345)).toBe("12.3k");
     expect(kFormatter(9900000)).toBe("9900k");
+  });
+
+  it("should test parseBoolean", () => {
+    expect(parseBoolean(true)).toBe(true);
+    expect(parseBoolean(false)).toBe(false);
+
+    expect(parseBoolean("true")).toBe(true);
+    expect(parseBoolean("false")).toBe(false);
+    expect(parseBoolean("True")).toBe(true);
+    expect(parseBoolean("False")).toBe(false);
+    expect(parseBoolean("TRUE")).toBe(true);
+    expect(parseBoolean("FALSE")).toBe(false);
+
+    expect(parseBoolean("1")).toBe(undefined);
+    expect(parseBoolean("0")).toBe(undefined);
+    expect(parseBoolean("")).toBe(undefined);
+    expect(parseBoolean(undefined)).toBe(undefined);
   });
 
   it("should test encodeHTML", () => {

@@ -77,17 +77,20 @@ const isValidHexColor = (hexColor) => {
 /**
  * Returns boolean if value is either "true" or "false" else the value as it is.
  *
- * @param {string} value The value to parse.
- * @returns {boolean | string} The parsed value.
+ * @param {string | boolean} value The value to parse.
+ * @returns {boolean | undefined } The parsed value.
  */
 const parseBoolean = (value) => {
-  if (value === "true") {
-    return true;
-  } else if (value === "false") {
-    return false;
-  } else {
-    return value;
+  if (typeof value === "boolean") return value;
+
+  if (typeof value === "string") {
+    if (value.toLowerCase() === "true") {
+      return true;
+    } else if (value.toLowerCase() === "false") {
+      return false;
+    }
   }
+  return undefined;
 };
 
 /**
