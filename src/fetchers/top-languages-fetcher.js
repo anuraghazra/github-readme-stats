@@ -4,7 +4,6 @@ import {
   CustomError,
   logger,
   MissingParamError,
-  parseBoolean,
   request,
   wrapTextMultiline,
 } from "../common/utils.js";
@@ -20,10 +19,10 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!, $ownerAffiliations: [RepositoryAffiliation]) {
+      query userInfo($login: String!) {
         user(login: $login) {
           # fetch only owner repos & not forks
-          repositories(ownerAffiliations: $ownerAffiliations, isFork: false, first: 100) {
+          repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
             nodes {
               name
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
@@ -58,12 +57,7 @@ const fetcher = (variables, token) => {
 const fetchTopLanguages = async (username, exclude_repo = []) => {
   if (!username) throw new MissingParamError(["username"]);
 
-  const res = await retryer(fetcher, {
-    login: username,
-    ownerAffiliations: parseBoolean(process.env.INCLUDE_ORGS)
-      ? ["OWNER", "COLLABORATOR"]
-      : ["OWNER"],
-  });
+  const res = await retryer(fetcher, { login: username });
 
   if (res.data.errors) {
     logger.error(res.data.errors);

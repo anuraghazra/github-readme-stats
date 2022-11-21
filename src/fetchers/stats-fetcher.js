@@ -7,7 +7,6 @@ import {
   CustomError,
   logger,
   MissingParamError,
-  parseBoolean,
   request,
   wrapTextMultiline,
 } from "../common/utils.js";
@@ -23,7 +22,7 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!, $ownerAffiliations: [RepositoryAffiliation]) {
+      query userInfo($login: String!) {
         user(login: $login) {
           name
           login
@@ -46,7 +45,7 @@ const fetcher = (variables, token) => {
           followers {
             totalCount
           }
-          repositories(ownerAffiliations: $ownerAffiliations) {
+          repositories(ownerAffiliations: OWNER) {
             totalCount
           }
         }
@@ -71,9 +70,9 @@ const repositoriesFetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!, $after: String, $ownerAffiliations: [RepositoryAffiliation]) {
+      query userInfo($login: String!, $after: String) {
         user(login: $login) {
-          repositories(first: 100, ownerAffiliations: $ownerAffiliations, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
+          repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
             nodes {
               name
               stargazers {
@@ -150,14 +149,7 @@ const totalStarsFetcher = async (username, repoToHide) => {
   let hasNextPage = true;
   let endCursor = null;
   while (hasNextPage) {
-    const variables = {
-      login: username,
-      first: 100,
-      after: endCursor,
-      ownerAffiliations: parseBoolean(process.env.INCLUDE_ORGS)
-        ? ["OWNER", "COLLABORATOR"]
-        : ["OWNER"],
-    };
+    const variables = { login: username, first: 100, after: endCursor };
     let res = await retryer(repositoriesFetcher, variables);
 
     if (res.data.errors) {
@@ -211,12 +203,7 @@ const fetchStats = async (
     rank: { level: "C", score: 0 },
   };
 
-  let res = await retryer(fetcher, {
-    login: username,
-    ownerAffiliations: parseBoolean(process.env.INCLUDE_ORGS)
-      ? ["OWNER", "COLLABORATOR"]
-      : ["OWNER"],
-  });
+  let res = await retryer(fetcher, { login: username });
 
   // Catch GraphQL errors.
   if (res.data.errors) {
