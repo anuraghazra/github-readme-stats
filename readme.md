@@ -280,6 +280,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width. Default: `false`.
 -   `show_icons` - _(boolean)_. Default: `false`.
 -   `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_. Default: `false`.
+-   `include_orgs` - Include stats from organization repositories. Default: `false`.
 -   `count_private` - Count private commits _(boolean)_. Default: `false`.
 -   `line_height` - Sets the line height between text _(number)_. Default: `25`.
 -   `exclude_repo` - Exclude stars from specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
@@ -302,6 +303,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `layout` - Switch between two available layouts `default` & `compact`. Default: `default`.
 -   `card_width` - Set the card's width manually _(number)_. Default `300`.
 -   `langs_count` - Show more languages on the card, between 1-10 _(number)_. Default `5`.
+-   `include_orgs` - Include language stats from organization repositories. Default: `false`.
 -   `exclude_repo` - Exclude specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
 -   `custom_title` - Sets a custom title for the card _(string)_. Default `Most Used Languages`.
 

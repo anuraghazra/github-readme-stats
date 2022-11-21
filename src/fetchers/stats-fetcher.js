@@ -22,7 +22,7 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!, $ownerAffiliations: [RepositoryAffiliation]) {
         user(login: $login) {
           name
           login
@@ -45,7 +45,7 @@ const fetcher = (variables, token) => {
           followers {
             totalCount
           }
-          repositories(ownerAffiliations: OWNER) {
+          repositories(ownerAffiliations: $ownerAffiliations) {
             totalCount
           }
         }
@@ -70,9 +70,9 @@ const repositoriesFetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!, $after: String) {
+      query userInfo($login: String!, $after: String, $ownerAffiliations: [RepositoryAffiliation]) {
         user(login: $login) {
-          repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
+          repositories(first: 100, ownerAffiliations: $ownerAffiliations, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
             nodes {
               name
               stargazers {
@@ -141,15 +141,21 @@ const totalCommitsFetcher = async (username) => {
  * Fetch all the stars for all the repositories of a given username.
  *
  * @param {string} username GitHub username.
+ * @param {boolean} include_orgs Include stats from organization repos.
  * @param {array} repoToHide Repositories to hide.
  * @returns {Promise<number>} Total stars.
  */
-const totalStarsFetcher = async (username, repoToHide) => {
+const totalStarsFetcher = async (username, include_orgs, repoToHide) => {
   let nodes = [];
   let hasNextPage = true;
   let endCursor = null;
   while (hasNextPage) {
-    const variables = { login: username, first: 100, after: endCursor };
+    const variables = {
+      login: username,
+      first: 100,
+      after: endCursor,
+      ownerAffiliations: include_orgs ? ["OWNER", "COLLABORATOR"] : ["OWNER"],
+    };
     let res = await retryer(repositoriesFetcher, variables);
 
     if (res.data.errors) {
@@ -183,12 +189,14 @@ const totalStarsFetcher = async (username, repoToHide) => {
  * @param {string} username GitHub username.
  * @param {boolean} count_private Include private contributions.
  * @param {boolean} include_all_commits Include all commits.
+ * @param {boolean} include_orgs Include stats from organization repos.
  * @returns {Promise<import("./types").StatsData>} Stats data.
  */
 const fetchStats = async (
   username,
   count_private = false,
   include_all_commits = false,
+  include_orgs = false,
   exclude_repo = [],
 ) => {
   if (!username) throw new MissingParamError(["username"]);
@@ -203,7 +211,10 @@ const fetchStats = async (
     rank: { level: "C", score: 0 },
   };
 
-  let res = await retryer(fetcher, { login: username });
+  let res = await retryer(fetcher, {
+    login: username,
+    ownerAffiliations: include_orgs ? ["OWNER", "COLLABORATOR"] : ["OWNER"],
+  });
 
   // Catch GraphQL errors.
   if (res.data.errors) {
@@ -259,7 +270,11 @@ const fetchStats = async (
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
   // Retrieve stars while filtering out repositories to be hidden
-  stats.totalStars = await totalStarsFetcher(username, repoToHide);
+  stats.totalStars = await totalStarsFetcher(
+    username,
+    include_orgs,
+    repoToHide,
+  );
 
   stats.rank = calculateRank({
     totalCommits: stats.totalCommits,

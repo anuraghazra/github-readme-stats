@@ -21,6 +21,7 @@ export default async (req, res) => {
     show_icons,
     count_private,
     include_all_commits,
+    include_orgs,
     line_height,
     title_color,
     ring_color,
@@ -52,6 +53,7 @@ export default async (req, res) => {
       username,
       parseBoolean(count_private),
       parseBoolean(include_all_commits),
+      parseBoolean(include_orgs),
       parseArray(exclude_repo),
     );
 
