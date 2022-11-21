@@ -42,13 +42,13 @@ const renderError = (message, secondaryMessage = "") => {
  * @param {string} str String to encode.
  * @returns {string} Encoded string.
  */
-function encodeHTML(str) {
+const encodeHTML = (str) => {
   return str
     .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
       return "&#" + i.charCodeAt(0) + ";";
     })
     .replace(/\u0008/gim, "");
-}
+};
 
 /**
  * Retrieves num with suffix k(thousands) precise to 1 decimal if greater than 999.
@@ -56,11 +56,11 @@ function encodeHTML(str) {
  * @param {number} num The number to format.
  * @returns {string|number} The formatted number.
  */
-function kFormatter(num) {
+const kFormatter = (num) => {
   return Math.abs(num) > 999
     ? Math.sign(num) * parseFloat((Math.abs(num) / 1000).toFixed(1)) + "k"
     : Math.sign(num) * Math.abs(num);
-}
+};
 
 /**
  * Checks if a string is a valid hex color.
@@ -68,11 +68,11 @@ function kFormatter(num) {
  * @param {string} hexColor String to check.
  * @returns {boolean} True if the given string is a valid hex color.
  */
-function isValidHexColor(hexColor) {
+const isValidHexColor = (hexColor) => {
   return new RegExp(
     /^([A-Fa-f0-9]{8}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{3}|[A-Fa-f0-9]{4})$/,
   ).test(hexColor);
-}
+};
 
 /**
  * Returns boolean if value is either "true" or "false" else the value as it is.
@@ -80,7 +80,7 @@ function isValidHexColor(hexColor) {
  * @param {string | boolean} value The value to parse.
  * @returns {boolean | undefined } The parsed value.
  */
-function parseBoolean(value) {
+const parseBoolean = (value) => {
   if (typeof value === "boolean") return value;
 
   if (typeof value === "string") {
@@ -91,7 +91,7 @@ function parseBoolean(value) {
     }
   }
   return undefined;
-}
+};
 
 /**
  * Parse string to array of strings.
@@ -99,10 +99,10 @@ function parseBoolean(value) {
  * @param {string} str The string to parse.
  * @returns {string[]} The array of strings.
  */
-function parseArray(str) {
+const parseArray = (str) => {
   if (!str) return [];
   return str.split(",");
-}
+};
 
 /**
  * Clamp the given number between the given range.
@@ -112,11 +112,11 @@ function parseArray(str) {
  * @param {number} max The maximum value.
  * returns {number} The clamped number.
  */
-function clampValue(number, min, max) {
+const clampValue = (number, min, max) => {
   // @ts-ignore
   if (Number.isNaN(parseInt(number))) return min;
   return Math.max(min, Math.min(number, max));
-}
+};
 
 /**
  * Check if the given string is a valid gradient.
@@ -124,9 +124,9 @@ function clampValue(number, min, max) {
  * @param {string[]} colors Array of colors.
  * @returns {boolean} True if the given string is a valid gradient.
  */
-function isValidGradient(colors) {
+const isValidGradient = (colors) => {
   return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
-}
+};
 
 /**
  * Retrieves a gradient if color has more than one valid hex codes else a single color.
@@ -135,10 +135,10 @@ function isValidGradient(colors) {
  * @param {string} fallbackColor The fallback color.
  * @returns {string | string[]} The gradient or color.
  */
-function fallbackColor(color, fallbackColor) {
-  let colors = color.split(",");
+const fallbackColor = (color, fallbackColor) => {
   let gradient = null;
 
+  let colors = color ? color.split(",") : [];
   if (colors.length > 1 && isValidGradient(colors)) {
     gradient = colors;
   }
@@ -147,7 +147,7 @@ function fallbackColor(color, fallbackColor) {
     (gradient ? gradient : isValidHexColor(color) && `#${color}`) ||
     fallbackColor
   );
-}
+};
 
 /**
  * Send GraphQL request to GitHub API.
@@ -156,7 +156,7 @@ function fallbackColor(color, fallbackColor) {
  * @param {import('axios').AxiosRequestConfig['headers']} headers Request headers.
  * @returns {Promise<any>} Request response.
  */
-function request(data, headers) {
+const request = (data, headers) => {
   // @ts-ignore
   return axios({
     url: "https://api.github.com/graphql",
@@ -164,7 +164,7 @@ function request(data, headers) {
     headers,
     data,
   });
-}
+};
 
 /**
  * Auto layout utility, allows us to layout things vertically or horizontally with
@@ -177,7 +177,7 @@ function request(data, headers) {
  * @param {"column" | "row"?=} props.direction Direction to layout items.
  * @returns {string[]} Array of items with proper layout.
  */
-function flexLayout({ items, gap, direction, sizes = [] }) {
+const flexLayout = ({ items, gap, direction, sizes = [] }) => {
   let lastSize = 0;
   // filter() for filtering out empty strings
   return items.filter(Boolean).map((item, i) => {
@@ -189,7 +189,7 @@ function flexLayout({ items, gap, direction, sizes = [] }) {
     lastSize += size + gap;
     return `<g transform="${transform}">${item}</g>`;
   });
-}
+};
 
 /**
  * Returns theme based colors with proper overrides and defaults.
@@ -204,15 +204,16 @@ function flexLayout({ items, gap, direction, sizes = [] }) {
  * @param {string} args.fallbackTheme Fallback theme.
  *
  */
-function getCardColors({
+const getCardColors = ({
   title_color,
   text_color,
   icon_color,
   bg_color,
   border_color,
+  ring_color,
   theme,
   fallbackTheme = "default",
-}) {
+}) => {
   const defaultTheme = themes[fallbackTheme];
   const selectedTheme = themes[theme] || defaultTheme;
   const defaultBorderColor =
@@ -223,6 +224,13 @@ function getCardColors({
   const titleColor = fallbackColor(
     title_color || selectedTheme.title_color,
     "#" + defaultTheme.title_color,
+  );
+
+  // get the color provided by the user else the theme color
+  // finally if both colors are invalid we use the titleColor
+  const ringColor = fallbackColor(
+    ring_color || selectedTheme.ring_color,
+    titleColor,
   );
   const iconColor = fallbackColor(
     icon_color || selectedTheme.icon_color,
@@ -242,8 +250,8 @@ function getCardColors({
     "#" + defaultBorderColor,
   );
 
-  return { titleColor, iconColor, textColor, bgColor, borderColor };
-}
+  return { titleColor, iconColor, textColor, bgColor, borderColor, ringColor };
+};
 
 /**
  * Split text over multiple lines based on the card width.
@@ -253,7 +261,7 @@ function getCardColors({
  * @param {number} maxLines Maximum number of lines.
  * @returns {string[]} Array of lines.
  */
-function wrapTextMultiline(text, width = 59, maxLines = 3) {
+const wrapTextMultiline = (text, width = 59, maxLines = 3) => {
   const fullWidthComma = "，";
   const encoded = encodeHTML(text);
   const isChinese = encoded.includes(fullWidthComma);
@@ -278,7 +286,7 @@ function wrapTextMultiline(text, width = 59, maxLines = 3) {
   // Remove empty lines if text fits in less than maxLines lines
   const multiLineText = lines.filter(Boolean);
   return multiLineText;
-}
+};
 
 const noop = () => {};
 // return console instance based on the environment
@@ -344,7 +352,7 @@ class MissingParamError extends Error {
  * @param {number} fontSize Font size.
  * @returns {number} Text length.
  */
-function measureText(str, fontSize = 10) {
+const measureText = (str, fontSize = 10) => {
   // prettier-ignore
   const widths = [
     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -376,7 +384,7 @@ function measureText(str, fontSize = 10) {
       )
       .reduce((cur, acc) => acc + cur) * fontSize
   );
-}
+};
 
 /** @param {string} name */
 const lowercaseTrim = (name) => name.toLowerCase().trim();
@@ -389,7 +397,7 @@ const lowercaseTrim = (name) => name.toLowerCase().trim();
  * @param {number} perChunk Number of languages per column.
  * @returns {Array<T>} Array of languages split in two columns.
  */
-function chunkArray(arr, perChunk) {
+const chunkArray = (arr, perChunk) => {
   return arr.reduce((resultArray, item, index) => {
     const chunkIndex = Math.floor(index / perChunk);
 
@@ -401,7 +409,7 @@ function chunkArray(arr, perChunk) {
 
     return resultArray;
   }, []);
-}
+};
 
 /**
  * Parse emoji from string.
@@ -409,12 +417,12 @@ function chunkArray(arr, perChunk) {
  * @param {string} str String to parse emoji from.
  * @returns {string} String with emoji parsed.
  */
-function parseEmojis(str) {
+const parseEmojis = (str) => {
   if (!str) throw new Error("[parseEmoji]: str argument not provided");
   return str.replace(/:\w+:/gm, (emoji) => {
     return toEmoji.get(emoji) || "";
   });
-}
+};
 
 export {
   ERROR_CARD_LENGTH,

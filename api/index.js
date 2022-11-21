@@ -26,6 +26,7 @@ export default async (req, res) => {
     include_all_commits,
     line_height,
     title_color,
+    ring_color,
     icon_color,
     text_color,
     text_bold,
@@ -76,6 +77,7 @@ export default async (req, res) => {
         include_all_commits: parseBoolean(include_all_commits),
         line_height,
         title_color,
+        ring_color,
         icon_color,
         text_color,
         text_bold: parseBoolean(text_bold),
@@ -89,7 +91,7 @@ export default async (req, res) => {
       }),
     );
   } catch (err) {
-    res.setHeader("Cache-Control", `no-store`); // Don't cache error responses.
+    res.setHeader("Cache-Control", `no-cache, no-store, must-revalidate`); // Don't cache error responses.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };
