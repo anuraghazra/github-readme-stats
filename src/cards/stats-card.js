@@ -185,8 +185,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         ...STATS[key],
         index,
         showIcons: show_icons,
-        shiftValuePos:
-          (!include_all_commits ? 79.01 : 35) + (isLongLocale ? 50 : 0),
+        shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
         bold: text_bold,
       }),
     );
