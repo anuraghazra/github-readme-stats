@@ -1,7 +1,7 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">Get dynamically generated GitHub stats on your READMEs!</p>
+ <p align="center">Получавайте динамично генерирани GitHub статистики във вашите READMEs!</p>
 </p>
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
@@ -30,13 +30,13 @@
   </p>
 
   <p align="center">
-    <a href="#demo">View Demo</a>
+    <a href="#demo">Вижте пример</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Съобщи за проблем</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Направете предложение</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/discussions">Ask Question</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/discussions">Задай въпрос</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français </a>
@@ -51,6 +51,8 @@
     ·
     <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
     ·
+    <a href="/docs/readme_bg.md">Български</a>
+    ·
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
@@ -63,39 +65,39 @@
   </p>
 </p>
 
-<p align="center">Love the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!</p>
+<p align="center">Обичате проекта? Моля обмислете <a href="https://www.paypal.me/anuraghazra">дарение</a> за да ни помогнете да го подобрим!</p>
 
 <a href="https://indiafightscorona.giveindia.org">
   <img src="https://indiaspora.org/wp-content/uploads/2021/04/give-India-logo.png" alt="Give india logo" width="200" />
 </a>
 
-Are you considering supporting the project by donating? Please DO NOT!!
+Обмисляте ли да подкрепите проекта чрез дарение? Моля ви недейте!!
 
-Instead, Help India fight the second deadly wave of COVID-19.
-Thousands of people are dying in India because of a lack of Oxygen & also COVID-related infrastructure.
+Вместо това, помогнете на Индия да се пребори с втората смъртоносна вълна на COVID-19.
+Хиляди хора умират в Индия поради липса на кислород и свързана с COVID инфраструктура.
 
-Visit <https://indiafightscorona.giveindia.org> and make a small donation to help us fight COVID and overcome this crisis. A small donation goes a long way. :heart:
+Посетете <https://indiafightscorona.giveindia.org> и направете малко дарение, за да ни помогнете да се борим с COVID и да преодолеем тази криза. Едно малко дарение е много важно. :heart:
 
 </p>
 
-# Features
+# Характеристики
 
--   [GitHub Stats Card](#github-stats-card)
--   [GitHub Extra Pins](#github-extra-pins)
--   [Top Languages Card](#top-languages-card)
--   [Wakatime Week Stats](#wakatime-week-stats)
--   [Themes](#themes)
-    -   [Responsive Card Theme](#responsive-card-theme)
--   [Customization](#customization)
-    -   [Common Options](#common-options)
-    -   [Stats Card Exclusive Options](#stats-card-exclusive-options)
-    -   [Repo Card Exclusive Options](#repo-card-exclusive-options)
-    -   [Language Card Exclusive Options](#language-card-exclusive-options)
-    -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
--   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
-    - [Keep your fork up to date](#keep-your-fork-up-to-date)   
+-   [GitHub Карта със статистика](#github-карта-със-статистика)
+-   [GitHub допълнителни щифтове](#github-extra-pins)
+-   [Карта с топ програмни езици](#top-languages-card)
+-   [Wakatime Седмична статистика](#wakatime-week-stats)
+-   [Теми](#themes)
+    -   [Отзивчива тема на картата](#responsive-card-theme)
+-   [Персонализиране](#customization)
+    -   [Често срещани опци](#common-options)
+    -   [Изключителни опци за карта със статистика](#stats-card-exclusive-options)
+    -   [Изключителни опци за карта на хранилище/repo](#repo-card-exclusive-options)
+    -   [Изключителни опци за карта с програмни езици](#language-card-exclusive-options)
+    -   [Изключителни опци за Wakatime карта](#wakatime-card-exclusive-options)
+-   [Направете си сами](#deploy-on-your-own-vercel-instance)
+    - [Поддържайте вашият **fork** актуален](#keep-your-fork-up-to-date)   
 
-# GitHub Stats Card
+# GitHub Карта Със Статистика
 
 Copy-paste this into your markdown content, and that is it. Simple!
 
