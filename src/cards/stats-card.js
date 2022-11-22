@@ -154,7 +154,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     contribs: {
       icon: icons.contribs,
-      label: i18n.t("statcard.contribs"),
+      label: i18n.t("statcard.contribs") + " (last year)",
       value: contributedTo,
       id: "contribs",
     },
@@ -186,7 +186,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         index,
         showIcons: show_icons,
         shiftValuePos:
-          (!include_all_commits ? 50 : 35) + (isLongLocale ? 50 : 0),
+          (!include_all_commits ? 79.01 : 35) + (isLongLocale ? 50 : 0),
         bold: text_bold,
       }),
     );
