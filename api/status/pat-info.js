@@ -32,61 +32,70 @@ const uptimeFetcher = (variables, token) => {
   );
 };
 
+const getAllPATs = () => {
+  return Object.keys(process.env).filter((key) => /PAT_\d*$/.exec(key));
+};
+
 /**
  * Check whether any of the PATs is expired.
  */
 const getPATInfo = async (fetcher, variables) => {
-  let PATsInfo = { expiredPATs: [], errorPATs: [], validPATs: [], details: {} };
-  const PATs = Object.keys(process.env).filter((key) => /PAT_\d*$/.exec(key));
+  const details = {};
+  const PATs = getAllPATs();
+
   for (const pat of PATs) {
     try {
       const response = await fetcher(variables, process.env[pat]);
+      const errors = response.data.errors;
+      const hasErrors = Boolean(errors);
+      const errorType = errors?.[0]?.type;
       const isRateLimited =
-        (response.data.errors &&
-          response.data.errors[0]?.type === "RATE_LIMITED") ||
+        (hasErrors && errorType === "RATE_LIMITED") ||
         response.data.data?.rateLimit?.remaining === 0;
 
       // Store PATs with errors.
-      if (
-        response.data.errors &&
-        !(response.data.errors[0]?.type === "RATE_LIMITED")
-      ) {
-        PATsInfo.details[pat] = {
+      if (hasErrors && errorType !== "RATE_LIMITED") {
+        details[pat] = {
           status: "error",
           error: {
-            type: response.data.errors[0].type,
-            message: response.data.errors[0].message,
+            type: errors[0].type,
+            message: errors[0].message,
           },
         };
-        PATsInfo.errorPATs.push(pat);
         continue;
       } else if (isRateLimited) {
-        PATsInfo.details[pat] = {
-          status: "limited",
+        details[pat] = {
+          status: "exhausted",
           remaining: 0,
         };
       } else {
-        PATsInfo.details[pat] = {
+        details[pat] = {
           status: "valid",
           remaining: response.data.data.rateLimit.remaining,
         };
       }
-
-      // Store valid PATs.
-      PATsInfo.validPATs.push(pat);
     } catch (err) {
       // Store the PAT if it is expired.
-      if (err.response?.data?.message === "Bad credentials") {
-        PATsInfo.details[pat] = {
+      const errorMessage = err.response?.data?.message;
+      if (errorMessage?.toLowerCase() === "bad credentials") {
+        details[pat] = {
           status: "expired",
         };
-        PATsInfo.expiredPATs.push(pat);
-      } else {
-        throw err;
       }
     }
   }
-  return PATsInfo;
+
+  const filterPATsByStatus = (status) => {
+    return Object.keys(details).filter((pat) => details[pat].status === status);
+  };
+
+  return {
+    validPATs: filterPATsByStatus("valid"),
+    expiredPATs: filterPATsByStatus("expired"),
+    exhaustedPATS: filterPATsByStatus("exhausted"),
+    errorPATs: filterPATsByStatus("error"),
+    details,
+  };
 };
 
 /**
@@ -103,7 +112,7 @@ export default async (_, res) => {
         `max-age=0, s-maxage=${RATE_LIMIT_SECONDS}`,
       );
     }
-    res.send(pATsInfo);
+    res.send(JSON.stringify(pATsInfo, null, 2));
   } catch (err) {
     // Throw error if something went wrong.
     logger.error(err);
