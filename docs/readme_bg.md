@@ -99,22 +99,22 @@
 
 # GitHub Карта Със Статистика
 
-Copy-paste this into your markdown content, and that is it. Simple!
+Копирайте и поставете това във вашето README. Това е. Толкова е лесно!
 
-Change the `?username=` value to your GitHub username.
+Променете съдаржанието на `?username=` с вашето GitHub потребителско име.
 
 ```md
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-> **Note**
-> Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone). The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories. The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js).
+> **Важно**
+> Наличните рангове са S+ (топ 1%), S (топ 25%), A++ (топ 45%), A+ (топ 60%), and B+ (всички). Стойностите се изчисляват използвайки [кумулативна функция на разпределение](https://en.wikipedia.org/wiki/Cumulative_distribution_function) използвайки ангажименти/commits, приноси/contributions, въпроси/проблеми, звезди, заявки за изтегляне/pull requests, последователи, и брой притежавани хранилища. Изпълнението може да бъде проучено на [src/calculateRank.js](./src/calculateRank.js).
 
-### Hiding individual stats
+### Скриване на отделни статистики
 
-You can pass a query parameter `&hide=` to hide any specific stats with comma-separated values.
+Можете да подадете параметър на заявката `&hide=`, за да скриете всякакви конкретни статистики разделена със запетая `,`.
 
-> Options: `&hide=stars,commits,prs,issues,contribs`
+> Опци: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
