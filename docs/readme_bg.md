@@ -120,55 +120,55 @@
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
-### Adding private contributions count to total commits count
+### Добавяне на брой частни приноси/contributions към общия брои ангажименти/commits
 
-You can add the count of all your private contributions to the total commits count by using the query parameter `&count_private=true`.
+Можете да добавите броя на всички ваши лични приноси към общия брой ангажименти, като използвате параметъра `&count_private=true`.
 
-> **Note**
-> If you are deploying this project yourself, the private contributions will be counted by default. If you are using the public Vercel instance, you need to choose to [share your private contributions](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/showing-your-private-contributions-and-achievements-on-your-profile).
+> **Важно**
+> Ако внедрявате този проект сами, частните вноски ще бъдат отчетени по подразбиране. Ако използвате публичния екземпляр на Vercel, трябва да изберете да [споделите вашите лични приноси](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/showing-your-private-contributions-and-achievements-on-your-profile).
 
-> Options: `&count_private=true`
+> Опци: `&count_private=true`
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
-### Showing icons
+### Показване на икони
 
-To enable icons, you can pass `show_icons=true` in the query param, like so:
+За да позволите икони, можете да подадете `show_icons=true` в параметъра на заявката, по този начин:
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
 
-### Themes
+### Теми
 
-With inbuilt themes, you can customize the look of the card without doing any [manual customization](#customization).
+С вградените теми можете да персонализирате външния вид на картата, без да правите [ръчно персонализиране](#customization).
 
-Use `&theme=THEME_NAME` parameter like so :
+Използвайте параметъра `&theme=THEME_NAME` ето така:
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
-#### All inbuilt themes
+#### Всички вградени теми
 
-GitHub readme stats comes with several built-in themes (e.g. `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `onedark`, `cobalt`, `synthwave`, `highcontrast`, `dracula`).
+GitHub readme статистиките идват с няколко вградени теми (e.g. `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `onedark`, `cobalt`, `synthwave`, `highcontrast`, `dracula`).
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stats Themes" width="600px"/>
 
-You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
+Можете да направите предварителен преглед на [всички налични теми](./themes/README.md) или да проверите [конфигурациония файл на темата](./themes/index.js) също **можете да допринесете за нови теми** ако искате :D
 
-#### Responsive Card Theme
+#### Отзивчива тема на картата
 
 [![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
 [![Anurag's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
 
-Since GitHub will re-upload the cards and serve them from their [CDN](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-anonymized-urls), we can not infer the browser/GitHub theme on the server side. There are, however, four methods you can use to create dynamics themes on the client side.
+Тъй като GitHub ще качи отново картите и ще ги обслужва от своите [мрежи за доставка на съдържание](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-anonymized-urls), не можем да заключим темата на браузъра/GitHub от страна на сървъра. Има обаче четири метода, които можете да използвате за създаване на динамични теми от страна на клиента.
 
-##### Use the transparent theme
+##### Използвайте прозрачната тема
 
-We have included a `transparent` theme that has a transparent background. This theme is optimized to look good on GitHub's dark and light default themes. You can enable this theme using the `&theme=transparent` parameter like so:
+Включихме `прозрачна` тема, която има прозрачен фон. Тази тема е оптимизирана да изглежда добре на тъмните и светлите теми по подразбиране на GitHub. Можете да активирате тази тема, като използвате параметъра `&theme=transparent` така:
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=transparent)
@@ -190,13 +190,13 @@ You can use the `bg_color` parameter to make any of [the available themes](./the
 ```
 
 <details>
-<summary>:eyes: Show example</summary>
+<summary>:eyes: Покажи пример</summary>
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&bg_color=00000000)
 
 </details>
 
-##### Use GitHub's theme context tag
+##### Използвайте маркера за контекст на темата на GitHub
 
 You can use [GitHub's theme context](https://github.blog/changelog/2021-11-24-specify-theme-context-for-images-in-markdown/) tags to switch the theme based on the user GitHub theme automatically. This is done by appending `#gh-dark-mode-only` or `#gh-light-mode-only` to the end of an image URL. This tag will define whether the image specified in the markdown is only shown to viewers using a light or a dark GitHub theme:
 
