@@ -196,3 +196,9 @@ Use `?theme=THEME_NAME` parameter like so :-
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
 
 Want to add a new theme? Consider reading the [contribution guidelines](../CONTRIBUTING.md#themes-contribution) :D
+
+|UPDATE ©Bylickilabs|
+|---|
+
+|![](https://github-profile-trophy.vercel.app/?username=bylickilabs&margin-w=10&no-bg=false&no-frame=true&column=-1)|
+|---|
