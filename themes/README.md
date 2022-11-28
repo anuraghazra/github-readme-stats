@@ -38,7 +38,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `moltack` ![moltack][moltack] | `codeSTACKr` ![codeSTACKr][codeSTACKr] | `rose_pine` ![rose_pine][rose_pine] |
 | [Add your theme][add-theme] | | |
 
-## Repo Card
+## Repo Card's
 
 > These themes work both for the Stats Card and Repo Card.
 
