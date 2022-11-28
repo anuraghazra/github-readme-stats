@@ -175,15 +175,15 @@ GitHub readme статистиките идват с няколко вграде
 ```
 
 <details>
-<summary>:eyes: Show example</summary>
+<summary>:eyes: Покажи пример</summary>
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=transparent)
 
 </details>
 
-##### Add transparent alpha channel to a themes bg_color
+##### Добавете прозрачен алфа канал към цвета на фона на темата
 
-You can use the `bg_color` parameter to make any of [the available themes](./themes/README.md) transparent. This is done by setting the `bg_color` to a colour with a transparent alpha channel (i.e. `bg_color=00000000`):
+Можете да използвате параметъра `bg_color`, за да направите всяка от [наличните теми](./themes/README.md) прозрачна. Това става чрез настройка на `bg_color` на цвят с прозрачен алфа канал (т.е. `bg_color=00000000`):
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&bg_color=00000000)
@@ -198,7 +198,7 @@ You can use the `bg_color` parameter to make any of [the available themes](./the
 
 ##### Използвайте маркера за контекст на темата на GitHub
 
-You can use [GitHub's theme context](https://github.blog/changelog/2021-11-24-specify-theme-context-for-images-in-markdown/) tags to switch the theme based on the user GitHub theme automatically. This is done by appending `#gh-dark-mode-only` or `#gh-light-mode-only` to the end of an image URL. This tag will define whether the image specified in the markdown is only shown to viewers using a light or a dark GitHub theme:
+Може да използвате [контекста на темата на GitHub](https://github.blog/changelog/2021-11-24-specify-theme-context-for-images-in-markdown/) таговете за автоматично превключване на темата въз основа на потребителската тема на GitHub. Това става чрез добавяне на `#gh-dark-mode-only` или `#gh-light-mode-only` в края на URL адреса на изображението. Този маркер ще определи дали изображението, посочено в маркдауна, се показва само на зрители, използващи светла или тъмна GitHub тема:
 
 ```md
 [![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
@@ -206,16 +206,16 @@ You can use [GitHub's theme context](https://github.blog/changelog/2021-11-24-sp
 ```
 
 <details>
-<summary>:eyes: Show example</summary>
+<summary>:eyes: Покажи пример</summary>
 
 [![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
 [![Anurag's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
 
 </details>
 
-##### Use GitHub's new media feature
+##### Използвайте новата медийна функция на GitHub
 
-You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-19-specify-theme-context-for-images-in-markdown-beta/) in HTML to specify whether to display images for light or dark themes. This is done using the HTML `<picture>` element in combination with the `prefers-color-scheme` media feature.
+Можете да използвате [Новата медийна функция на GitHub](https://github.blog/changelog/2022-05-19-specify-theme-context-for-images-in-markdown-beta/) в HTML, за да укажете дали да се показват изображения за светли или тъмни теми. Това се прави с помощта на HTML елемента `<picture>` в комбинация с медийната функция `prefers-color-scheme`.
   
 ```html
 <picture>
@@ -232,7 +232,7 @@ You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-1
 ```
 
 <details>
-<summary>:eyes: Show example</summary>
+<summary>:eyes: Покажи пример</summary>
 
 <picture>
 <source 
@@ -248,69 +248,69 @@ You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-1
 
 </details>
 
-### Customization
+### Къстомизация
 
-You can customize the appearance of your `Stats Card` or `Repo Card` however you wish with URL parameters.
+Можете да персонализирате външния вид на вашата `Stats Card` или `Repo Card`, както желаете, с URL параметри.
 
-#### Common Options
+#### Често срещани опци
 
--   `title_color` - Card's title color _(hex color)_. Default: `2f80ed`.
--   `text_color` - Body text color _(hex color)_. Default: `434d58`.
--   `icon_color` - Icons color if available _(hex color)_. Default: `4c71f2`.
--   `border_color` - Card's border color _(hex color)_. Default: `e4e2e2` (Does not apply when `hide_border` is enabled).
--   `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_. Default: `fffefe`
--   `hide_border` - Hides the card's border _(boolean)_. Default: `false`
--   `theme` - name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme. 
--   `cache_seconds` - set the cache header manually _(min: 7200, max: 86400)_. Default: `14400 seconds (4 hours)`.
--   `locale` - set the language in the card _(e.g. cn, de, es, etc.)_. Default: `en`.
--   `border_radius` - Corner rounding on the card. Default: `4.5`.
+-   `title_color` - Цвят на заглавието на картата _(шестнадесетичен цвят)_. Дефалтна опция: `2f80ed`.
+-   `text_color` - Цвят на основния текст _(шестнадесетичен цвят)_. Дефалтна опция: `434d58`.
+-   `icon_color` - Цвят на иконите, ако е наличен _(шестнадесетичен цвят)_. Дефалтна опция: `4c71f2`.
+-   `border_color` - Цвят на рамката на картата _(шестнадесетичен цвят)_. Дефалтна опция: `e4e2e2` (Не важи когато `hide_border` е активиран).
+-   `bg_color` - Цвят на фона на картата _(шестнадесетичен цвят)_ **или** градиент под формата на _ъгъл,начало,край_. Дефалтна опция: `fffefe`
+-   `hide_border` - Скрива рамката на картата _(Булева)_. Дефалтна опция: `false`
+-   `theme` - име на темата, изберете от [всички налични теми](./themes/README.md). Дефалтна опция: `default` тема. 
+-   `cache_seconds` - задайте ръчно заглавката на кеша _(минимум: 7200, максимум: 86400)_. Дефалтна опция: `14400 seconds (4 hours)`.
+-   `locale` - задайте езика в картата _(пример bg, de, es, и т.н.)_. Дефалтна опция: `en`.
+-   `border_radius` - Заобляне на ъглите на картата. Дефалтна опция: `4.5`.
 
-> **Warning**
-> We use caching to decrease the load on our servers (see https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours.
+> **Внимание**
+> Ние използваме кеширане, за да намалим натоварването на нашите сървъри (вижте https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425). Нашите карти имат кеш по подразбиране от 4 часа (14400 секунди). Също така имайте предвид, че кешът е ограничен до минимум 4 часа и максимум 24 часа.
 
-##### Gradient in bg_color
+##### Градиент в цвета на фона
 
-You can provide multiple comma-separated values in the bg_color option to render a gradient with the following format:
+Можете да предоставите множество стойности, разделени със запетая, в опцията за цвят на фона, за да изобразите градиент със следния формат:
 
     &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 
-#### Stats Card Exclusive Options
+#### Ексклузивни опции за карти със статистики
 
--   `hide` - Hides the [specified items](#hiding-individual-stats) from stats _(Comma-separated values)_. Default: `[] (blank array)`.
--   `hide_title` - _(boolean)_. Default: `false`.
--   `card_width` - Set the card's width manually _(number)_. Default: `500px  (approx.)`.
--   `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width. Default: `false`.
--   `show_icons` - _(boolean)_. Default: `false`.
--   `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_. Default: `false`.
--   `count_private` - Count private commits _(boolean)_. Default: `false`.
--   `line_height` - Sets the line height between text _(number)_. Default: `25`.
--   `exclude_repo` - Exclude stars from specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
--   `custom_title` - Sets a custom title for the card. Default:  `<username> GitHub Stats`.
--   `text_bold` - Use bold text _(boolean)_. Default: `true`.
--   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
--   `ring_color` - Color of the rank circle _(hex color)_. Defaults to the theme ring color if it exists and otherwise the title color.
+-   `hide` - Скрива [посочените елементи](#hiding-individual-stats) от статистиката _(Стойности, разделени със запетая)_. Дефалтна опция: `[] (blank array)`.
+-   `hide_title` - _(булева)_. Дефалтна опция: `false`.
+-   `card_width` - Задайте ширината на картата ръчно _(число)_. Дефалтна опция: `500px  (approx.)`.
+-   `hide_rank` - _(булева)_ скрива ранга и автоматично преоразмерява ширината на картата. Дефалтна опция: `false`.
+-   `show_icons` - _(булева)_. Дефалтна опция: `false`.
+-   `include_all_commits` - Брои общите ангажименти/commits вместо само ангажиментите за текущата година _(булева)_. Дефалтна опция: `false`.
+-   `count_private` - Брои частните ангажименти/commits _(булева)_. Дефалтна опция: `false`.
+-   `line_height` - Задава височината на реда между текста _(число)_. Дефалтна опция: `25`.
+-   `exclude_repo` - Изключва звезди от определени хранилища/repos _(Стойности, разделени със запетая)_. Дефалтна опция: `[] (blank array)`.
+-   `custom_title` - Задава персонализирано заглавие за картата. Дефалтна опция:  `<username> GitHub Stats`.
+-   `text_bold` - Използва удебелен текст _(булева)_. Дефалтна опция: `true`.
+-   `disable_animations` - Деактивира всички анимации в картата _(булева)_. Дефалтна опция: `false`.
+-   `ring_color` - Цвят на ранговия кръг _(шестнадесетичен цвят)_. По подразбиране е цветът на пръстена на темата, ако съществува, а в противен случай цвета на заглавието.
 
-> **Note**
-> When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.
+> **Важно**
+> Когато hide_rank=`true`, минималната ширина на картата е 270 px + дължината на заглавието и подложката.
 
-#### Repo Card Exclusive Options
+#### Ексклузивни опции за репо картата
 
--   `show_owner` - Show the repo's owner name _(boolean)_. Default: `false`.
+-   `show_owner` - Покажете името на собственика на репото _(булева)_. Дефалтна опция: `false`.
 
-#### Language Card Exclusive Options
+#### Изключителни опции за езикова карта
 
--   `hide` - Hide the languages specified from the card _(Comma-separated values)_. Default: `[] (blank array)`.
--   `hide_title` - _(boolean)_. Default: `false`.
--   `layout` - Switch between two available layouts `default` & `compact`. Default: `default`.
--   `card_width` - Set the card's width manually _(number)_. Default `300`.
--   `langs_count` - Show more languages on the card, between 1-10 _(number)_. Default `5`.
--   `exclude_repo` - Exclude specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
--   `custom_title` - Sets a custom title for the card _(string)_. Default `Most Used Languages`.
+-   `hide` - Скрийте посочените езици от картата _(Стойности, разделени със запетая)_. Дефалтна опция: `[] (blank array)`.
+-   `hide_title` - _(булева)_. Дефалтна опция: `false`.
+-   `layout` - Превключете между две налични оформления `default` & `compact`. Дефалтна опция: `default`.
+-   `card_width` - Задайте ширината на картата ръчно _(число)_. Дефалтна опция `300`.
+-   `langs_count` - Показване на повече езици на картата, между 1-10 _(число)_. Дефалтна опция `5`.
+-   `exclude_repo` - Изключете определени хранилища/repos _(Стойности, разделени със запетая)_. Дефалтна опция: `[] (blank array)`.
+-   `custom_title` - Задава персонализирано заглавие за картата _(низ/стринг)_. Дефалтна опция `Most Used Languages`.
 
-> **Warning**
-> Language names should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
-> (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
-> [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
+> **Внимание**
+> Имената на езиците трябва да бъдат URI екранирани, както е посочено в [Процентно кодиране](https://en.wikipedia.org/wiki/Percent-encoding)
+> (т.е: `c++` трябва да стане `c%2B%2B`, `jupyter notebook` трябва да стане `jupyter%20notebook`, и т.н.) Може да използвате
+> [urlencoder.org](https://www.urlencoder.org/) за да ви помогне да направите това автоматично.
 
 #### Wakatime Card Exclusive Options
 
