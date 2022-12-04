@@ -1,9 +1,9 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("@uppercod/css-to-object").cssToObject;
-const renderRepoCard = require("../src/cards/repo-card");
+import { queryByTestId } from "@testing-library/dom";
+import "@testing-library/jest-dom";
+import { cssToObject } from "@uppercod/css-to-object";
+import { renderRepoCard } from "../src/cards/repo-card.js";
 
-const { queryByTestId } = require("@testing-library/dom");
-const themes = require("../themes");
+import { themes } from "../themes/index.js";
 
 const data_repo = {
   repository: {
@@ -135,7 +135,7 @@ describe("Test renderRepoCard", () => {
     const iconClassStyles = stylesObject[":host"][".icon "];
 
     expect(headerClassStyles.fill.trim()).toBe("#2f80ed");
-    expect(descClassStyles.fill.trim()).toBe("#333");
+    expect(descClassStyles.fill.trim()).toBe("#434d58");
     expect(iconClassStyles.fill.trim()).toBe("#586069");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",

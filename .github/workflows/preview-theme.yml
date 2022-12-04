@@ -1,24 +1,33 @@
 name: Theme preview
-
 on:
   pull_request_target:
-    types: [opened, synchronize, reopened]
+    types: [opened, edited, reopened, synchronize]
     branches:
       - master
-      - theme-preview-script
+    paths:
       - "themes/index.js"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  previewTheme:
     name: Install & Preview
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
       - uses: bahmutov/npm-install@v1
         with:
           useLockFile: false
+
       - run: npm run preview-theme
         env:
-          CI: true
-          PERSONAL_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
