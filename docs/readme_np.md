@@ -219,7 +219,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 टोप भाषाकार्डले github परयोग गर्नेहरुको प्रोग्रम्मिंग भाषाहरु देखाऊने गर्दछ |. 
 
-_NOTE: टोप भाषाहरुले आफ्नो सिपलाए संकेत गरेको होईन | योचै Github  Metricबाट धेरै कुन भाषा परयोग भाकोलाए संकेत गरेको हो |
+_NOTE: टोप भाषाहरुले आफ्नो सिपलाए संकेत गरेको होईन | योचै GitHub  Metricबाट धेरै कुन भाषा परयोग भाकोलाए संकेत गरेको हो |
 ### प्रयोग 
 
 कोदलाए  कपी- पेसेत  readme मा गर्नु होला र लिंक परिवतन गर्नु होला |
@@ -340,7 +340,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 तपाइले इमेजलाई सइद बय सइद  अलीग्न गर्न सक्नु हुदैन तेसैले येसरी गर्नु होस् :
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
@@ -389,7 +389,7 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 येदि तपाइले यो प्रोजेक्ट चलाउनु बाकोक्ष बने र मलाई अझै प्रसंसा गर्ने हो बने तपाइले थुप्रै तरिका ले गर्नु सक्नु हुने छ :-
 
 - यो प्रोजेक्टमा तपाइले प्रहयोग गर्दा मलाई क्रेडिट दिन सक्नु हुनेक्ष ।
-- तपाइले Github ReadMe Stats स्तार्रेड गर्न सक्नु हुनेक्ष  :rocket:
+- तपाइले GitHub ReadMe Stats स्तार्रेड गर्न सक्नु हुनेक्ष  :rocket:
 - [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - तपाइले पेपाल बाट पनि सहयोग (डक्क्षिन) गर्न सक्नु हुनेक्ष | म  ~~कोफी ~~ चिया . :tea: किन्न सक्क्षु ।
 
 धन्याबाद! :heart:
