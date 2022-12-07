@@ -374,6 +374,13 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
+  orange_github_dark: {
+    title_color: "F78E1AFF",
+    text_color: "FFF",
+    icon_color: "F78E1AFF",
+    border_color: "FFF",
+    bg_color: "0D1117",
+  },
 };
 
 export default themes;
