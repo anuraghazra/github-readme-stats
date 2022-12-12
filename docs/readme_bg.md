@@ -505,7 +505,7 @@ GitHub readme статистиките идват с няколко вграде
 
 [![Внедряване във Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
-<подробности>
+<details>
  <summary><b>:hammer_and_wrench: Ръководство стъпка по стъпка за настройка на ваш собствен екземпляр на Vercel</b></summary>
 
 1. Отидете на [vercel.com](https://vercel.com/).
@@ -526,6 +526,8 @@ GitHub readme статистиките идват с няколко вграде
     ![](https://files.catbox.moe/0yclio.png)
 12. Щракнете върху внедряване и сте готови. Вижте вашите домейни, за да използвате API!
 
+ </details>
+ 
 ### Поддържайте форкът си актуален
 
 Можете да поддържате своето разклонение и по този начин личния си екземпляр на Vercel актуален с upstream, като използвате [бутона за синхронизиране на разклонението] на GitHubs [Sync Fork button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). Можете също да използвате пакета [pull](https://github.com/wei/pull), създаден от [@wei](https://github.com/wei), за да автоматизирате този процес.
@@ -541,7 +543,7 @@ GitHub readme статистиките идват с няколко вграде
 - С участието и споделянето на проекта :rocket:
 - [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - Можете да правите еднократни дарения чрез PayPal. Вероятно ще си купя ~~кафе~~ чай. :чай:
 
-Благодаря! :сърце:
+Благодаря! :heart:
 
 * * *
 
