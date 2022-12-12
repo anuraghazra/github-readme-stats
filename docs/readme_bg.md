@@ -82,11 +82,11 @@
 
 # Характеристики
 
--   [GitHub Карта със статистика](#github-карта-със-статистика)
--   [GitHub допълнителни щифтове](#github-extra-pins)
--   [Карта с топ програмни езици](#top-languages-card)
--   [Wakatime Седмична статистика](#wakatime-week-stats)
--   [Теми](#themes)
+-   [GitHub Карта със статистика](#Github Карта Със Статистика)
+-   [GitHub допълнителни щифтове](#Допълнителни пинове на GitHub)
+-   [Карта с топ програмни езици](#Карта най-използвани езици)
+-   [Wakatime Седмична статистика](#Статистика за седмицата на Wakatime)
+-   [Теми](#Теми)
     -   [Отзивчива тема на картата](#responsive-card-theme)
 -   [Персонализиране](#customization)
     -   [Често срещани опци](#common-options)
@@ -312,181 +312,175 @@ GitHub readme статистиките идват с няколко вграде
 > (т.е: `c++` трябва да стане `c%2B%2B`, `jupyter notebook` трябва да стане `jupyter%20notebook`, и т.н.) Може да използвате
 > [urlencoder.org](https://www.urlencoder.org/) за да ви помогне да направите това автоматично.
 
-#### Wakatime Card Exclusive Options
 
--   `hide` - Hide the languages specified from the card _(Comma-separated values)_. Default: `[] (blank array)`.
--   `hide_title` - _(boolean)_. Default `false`.
--   `line_height` - Sets the line height between text _(number)_. Default `25`.
--   `hide_progress` - Hides the progress bar and percentage _(boolean)_. Default `false`.
--   `custom_title` - Sets a custom title for the card _(string)_. Default `Wakatime Stats`.
--   `layout` - Switch between two available layouts `default` & `compact`.  Default `default`.
--   `langs_count` - Limit the number of languages on the card, defaults to all reported languages _(number)_.
--   `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) _(string)_. Default `Waka API`.
--   `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options. _(YYYY-MM, last_7_days, last_30_days, last_6_months, last_year, or all_time)_. Default `all_time`.
+#### Изключителни опции за Wakatime Card
+
+- `hide` - Скриване на посочените езици от картата _(стойности, разделени със запетая)_. По подразбиране: „[] (празен масив)“.
+- `скрий_заглавие` - _(булев)_. По подразбиране `false`.
+- `line_height` - Задава височината на реда между текст _(число)_. По подразбиране „25“.
+- `hide_progress` - Скрива лентата за прогрес и процента _(булев)_. По подразбиране `false`.
+- `custom_title` - Задава персонализирано заглавие за картата _(низ)_. По подразбиране `Wakatime Stats`.
+- `layout` - Превключване между две налични оформления `default` & `compact`. По подразбиране `default`.
+- `langs_count` - Ограничава броя на езиците на картата, по подразбиране всички докладвани езици _(число)_.
+- `api_domain` - Задайте персонализиран API домейн за картата, напр. да използвате услуги като [Hakatime](https://github.com/mujx/hakatime) или [Wakapi](https://github.com/muety/wakapi) _(string)_. По подразбиране `Waka API`.
+- `range` – Поискайте диапазон, различен от вашия WakaTime по подразбиране, напр. `последните_7_дни`. Вижте [документи за API на WakaTime](https://wakatime.com/developers#stats) за списък с налични опции. _(ГГГГ-ММ, last_7_days, last_30_days, last_6_months, last_year или all_time)_. По подразбиране `all_time`.
 
 * * *
 
-# GitHub Extra Pins
+# Допълнителни пинове на GitHub
 
-GitHub extra pins allow you to pin more than six repositories in your profile using a GitHub readme profile.
+Допълнителните щифтове на GitHub ви позволяват да закачите повече от шест хранилища във вашия профил, като използвате профил за readme на GitHub.
 
-Yay! You are no longer limited to 6 pinned repositories.
+Ура! Вече не сте ограничени до 6 фиксирани хранилища.
 
-### Usage
+### Използване
 
-Copy-paste this code into your readme and change the links.
+Копирайте и поставете този код във вашия readme и променете връзките.
 
-Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
+Крайна точка: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Карта Readme](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github- readme-stats)
 ```
 
-### Demo
+### Демонстрация
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Карта Readme](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github- readme-stats)
 
-Use [show_owner](#customization) variable to include the repo's owner username
+Използвайте променливата [show_owner](#customization), за да включите потребителското име на собственика на репото
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Карта Readme](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/ github-readme-stats)
 
-# Top Languages Card
+# Карта най-използвани езици
 
-The top languages card shows a GitHub user's most frequently used top language.
+Картата с най-популярните езици показва най-често използвания от потребителите на GitHub най-често използван език.
 
-> **Note**
-> Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats._
+> **Забележка**
+> Най-добрите езици не показват моето ниво на умения или нещо подобно; това е метрика на GitHub, за да се определи кои езици имат най-много код в GitHub. Това е нова функция на github-readme-stats._
 
-### Usage
+### Използване
 
-Copy-paste this code into your readme and change the links.
+Копирайте и поставете този код във вашия readme и променете връзките.
 
-Endpoint: `api/top-langs?username=anuraghazra`
+Крайна точка: `api/top-langs?username=anuraghazra`
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Exclude individual repositories
+### Скриване на отделни езици
 
-You can use the `&exclude_repo=repo1,repo2` parameter to exclude individual repositories.
-
-```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
-```
-
-### Hide individual languages
-
-You can use `&hide=language1,language2` parameter to hide individual languages.
+Можете да използвате параметъра `&hide=language1,language2`, за да скриете отделни езици.
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
+[![Топ езици](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github- readme-stats)
 ```
 
-### Show more languages
+### Показване на още езици
 
-You can use the `&langs_count=` option to increase or decrease the number of languages shown on the card. Valid values are integers between 1 and 10 (inclusive), and the default is 5.
+Можете да използвате опцията `&langs_count=`, за да увеличите или намалите броя на езиците, показани на картата. Валидните стойности са цели числа между 1 и 10 (включително), а по подразбиране е 5.
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
+[![Топ езици](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme- статистика)
 ```
 
-### Compact Language Card Layout
+### Оформление на компактна езикова карта
 
-You can use the `&layout=compact` option to change the card design.
+Можете да използвате опцията `&layout=compact`, за да промените дизайна на картата.
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Топ езици](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme- статистика)
 ```
 
-### Demo
+### Демонстрация
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Топ езици](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
--   Compact layout
+- Компактно оформление
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Топ езици](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme- статистика)
 
-# Wakatime Week Stats
+# Статистика за седмицата на Wakatime
 
-Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
+Променете стойността `?username=` на вашето [Wakatime](https://wakatime.com) потребителско име.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![wakatime статистика на willianrod](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-> **Note**:
-> Please be aware that we currently only show data from Wakatime profiles that are public.
+> **Забележка**:
+> Моля, имайте предвид, че в момента показваме само данни от профили на Wakatime, които са публични.
 
-### Demo
+### Демонстрация
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
--   Compact layout
+-   Компактно оформление
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 * * *
 
-### All Demos
+### Всички демонстрации
 
--   Default
+-   По подразбиране
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
--   Hiding specific stats
+- Скриване на конкретни статистики
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
 
--   Showing icons
+- Показване на икони
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
--   Customize Border Color
+- Персонализиране на цвета на границата
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&border_color=2e4058)
 
--   Include All Commits
+- Включете всички ангажименти
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
 
--   Themes
+-   Теми
 
-Choose from any of the [default themes](#themes)
+Изберете от някоя от [темите по подразбиране](#themes)
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
--   Gradient
+- Градиент
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
--   Customizing stats card
+- Персонализиране на карта със статистика
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
--   Setting card locale
+- Задаване на локал на картата
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=es)
 
--   Customizing repo card
+- Персонализиране на репо карта
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
--   Top languages
+- Топ езици
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
--   WakaTime card
+- WakaTime карта
 
 [![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 
 * * *
 
-### Quick Tip (Align The Repo Cards)
 
-By default, GitHub does not lay out the cards side by side. To do that, you can use this approach:
+### Бърз съвет (Подравнете репо картите)
+
+По подразбиране GitHub не подрежда картите една до друга. За да направите това, можете да използвате този подход:
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -497,64 +491,62 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 </a>
 ```
 
-## Deploy on your own Vercel instance
+## Внедряване на собствен екземпляр на Vercel
 
-#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+#### [Вижте стъпка по стъпка видео урок от @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-> **Warning**
-> If you are on the [hobby (i.e. free)](https://vercel.com/pricing) Vercel plan, please make sure you change the `maxDuration` parameter in the [vercel.json](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json) file from `30` to `10` (see [#1416](https://github.com/anuraghazra/github-readme-stats/issues/1416#issuecomment-950275476) for more information).
+> **Предупреждение**
+> Ако използвате [хоби (т.е. безплатно)](https://vercel.com/pricing) план Vercel, моля, уверете се, че сте променили параметъра `maxDuration` в [vercel.json](https://github .com/anuraghazra/github-readme-stats/blob/master/vercel.json) файл от „30“ до „10“ (вижте [#1416](https://github.com/anuraghazra/github-readme-stats) /issues/1416#issuecomment-950275476) за повече информация).
 
-Since the GitHub API only allows 5k requests per hour, my `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter. If you host it on your own Vercel server, then you do not have to worry about anything. Click on the deploy button to get started!
+Тъй като API на GitHub позволява само 5k заявки на час, моят `https://github-readme-stats.vercel.app/api` може евентуално да удари ограничителя на скоростта. Ако го хоствате на собствен сървър на Vercel, тогава не е нужно да се притеснявате за нищо. Кликнете върху бутона за внедряване, за да започнете!
 
-> **Note**
-> Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58), we should be able to handle more than 5k requests and have fewer issues with downtime :grin:.
+> **Забележка**
+> От [#58](https://github.com/anuraghazra/github-readme-stats/pull/58), би трябвало да можем да обработваме повече от 5k заявки и да имаме по-малко проблеми с престой :grin:.
 
-[![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
+[![Внедряване във Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
-<details>
- <summary><b>:hammer_and_wrench: Step-by-step guide on setting up your own Vercel instance</b></summary>
+<подробности>
+ <summary><b>:hammer_and_wrench: Ръководство стъпка по стъпка за настройка на ваш собствен екземпляр на Vercel</b></summary>
 
-1.  Go to [vercel.com](https://vercel.com/).
-2.  Click on `Log in`.
+1. Отидете на [vercel.com](https://vercel.com/).
+2. Кликнете върху `Вход`.
     ![](https://files.catbox.moe/pcxk33.png)
-3.  Sign in with GitHub by pressing `Continue with GitHub`.
+3. Влезте с GitHub, като натиснете `Продължи с GitHub`.
     ![](https://files.catbox.moe/b9oxey.png)
-4.  Sign in to GitHub and allow access to all repositories if prompted.
-5.  Fork this repo.
-6.  After forking the repo, open the [`vercel.json`](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json#L5) file and change the `maxDuration` field to `10`.
-7.  Go back to your [Vercel dashboard](https://vercel.com/dashboard).
-8.  To import a project, click the `Add New...` button and select the `Project` option.
+4. Влезте в GitHub и разрешете достъп до всички хранилища, ако бъдете подканени.
+5. Разклонете това репо.
+6. След разклоняването на репото отворете файла [`vercel.json`](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json#L5) и променете `maxDuration` поле до „10“.
+7. Върнете се към вашето [табло за управление на Vercel](https://vercel.com/dashboard).
+8. За да импортирате проект, щракнете върху бутона `Добави нов...` и изберете опцията `Проект`.
     ![](https://files.catbox.moe/3n76fh.png)
-9.  Click the `Continue with GitHub` button, search for the required Git Repository and import it by clicking the `Import` button. Alternatively, you can import a Third-Party Git Repository using the `Import Third-Party Git Repository ->` link at the bottom of the page.
+9. Щракнете върху бутона „Продължете с GitHub“, потърсете необходимото Git хранилище и го импортирайте, като щракнете върху бутона „Импортиране“. Като алтернатива можете да импортирате Git хранилище на трета страна, като използвате връзката `Импортиране на Git хранилище на трета страна ->` в долната част на страницата.
     ![](https://files.catbox.moe/mg5p04.png)
-10. Create a personal access token (PAT) [here](https://github.com/settings/tokens/new) and enable the `repo` permissions (this allows access to see private repo stats).
-11. Add the PAT as an environment variable named `PAT_1` (as shown).
+10. Създайте личен токен за достъп (PAT) [тук](https://github.com/settings/tokens/new) и активирайте разрешенията за `repo` (това позволява достъп, за да видите лични статистики за репо).
+11. Добавете PAT като променлива на средата с име `PAT_1` (както е показано).
     ![](https://files.catbox.moe/0yclio.png)
-12. Click deploy, and you're good to go. See your domains to use the API!
+12. Щракнете върху внедряване и сте готови. Вижте вашите домейни, за да използвате API!
 
-</details>
+### Поддържайте форкът си актуален
 
-### Keep your fork up to date
+Можете да поддържате своето разклонение и по този начин личния си екземпляр на Vercel актуален с upstream, като използвате [бутона за синхронизиране на разклонението] на GitHubs [Sync Fork button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). Можете също да използвате пакета [pull](https://github.com/wei/pull), създаден от [@wei](https://github.com/wei), за да автоматизирате този процес.
 
-You can keep your fork, and thus your private Vercel instance up to date with the upstream using GitHubs' [Sync Fork button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). You can also use the [pull](https://github.com/wei/pull) package created by [@wei](https://github.com/wei) to automate this process.
+## :sparkling_heart: Подкрепете проекта
 
-## :sparkling_heart: Support the project
+Отворявам почти всичко, което мога, и се опитвам да отговоря на всеки, който се нуждае от помощ, използвайки тези проекти. очевидно,
+това отнема време. Можете да използвате тази услуга безплатно.
 
-I open-source almost everything I can and try to reply to everyone needing help using these projects. Obviously,
-this takes time. You can use this service for free.
+Ако обаче използвате този проект и сте доволни от него или просто искате да ме насърчите да продължа да създавам неща, има няколко начина, по които можете да го направите:
 
-However, if you are using this project and are happy with it or just want to encourage me to continue creating stuff, there are a few ways you can do it:
+- Даване на подходящ кредит, когато използвате github-readme-stats във вашия readme, свързване обратно към него :D
+- С участието и споделянето на проекта :rocket:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - Можете да правите еднократни дарения чрез PayPal. Вероятно ще си купя ~~кафе~~ чай. :чай:
 
--   Giving proper credit when you use github-readme-stats on your readme, linking back to it :D
--   Starring and sharing the project :rocket:
--   [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - You can make one-time donations via PayPal. I'll probably buy a ~~coffee~~ tea. :tea:
-
-Thanks! :heart:
+Благодаря! :сърце:
 
 * * *
 
 [![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
-Contributions are welcome! &lt;3
+Приносите са добре дошли! &lt;3
 
-Made with :heart: and JavaScript.
+Направено с :heart: и JavaScript.
