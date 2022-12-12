@@ -35,7 +35,7 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Funktion wünschen</a>
   </p>
   <p align="center">
-    <a href="/docs/readme_fr.md">Français</a>
+    <a href="/docs/readme_fr.md">Français </a>
     ·
     <a href="/docs/readme_cn.md">简体中文</a>
     ·
@@ -47,6 +47,8 @@
     ·
     <a href="/docs/readme_pt-BR.md">Português Brasileiro</a>
     ·
+    <a href="/docs/readme_bg.md">Български</a>
+    ·
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
@@ -54,6 +56,8 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">Du magst das Projekt? Wie wäre es mit einer kleinen <a href="https://www.paypal.me/anuraghazra">Spende</a> um es weiterhin am Leben zu erhalten?
