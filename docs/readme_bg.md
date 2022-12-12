@@ -340,16 +340,16 @@ GitHub readme статистиките идват с няколко вграде
 Крайна точка: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
-[![Карта Readme](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github- readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github- readme-stats)
 ```
 
 ### Демонстрация
 
-[![Карта Readme](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github- readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github- readme-stats)
 
 Използвайте променливата [show_owner](#Къстомизация), за да включите потребителското име на собственика на репото
 
-[![Карта Readme](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/ github-readme-stats)
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/ github-readme-stats)
 
 # Карта най-използвани езици
 
@@ -373,7 +373,7 @@ GitHub readme статистиките идват с няколко вграде
 Можете да използвате параметъра `&hide=language1,language2`, за да скриете отделни езици.
 
 ```md
-[![Топ езици](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github- readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github- readme-stats)
 ```
 
 ### Показване на още езици
@@ -381,7 +381,7 @@ GitHub readme статистиките идват с няколко вграде
 Можете да използвате опцията `&langs_count=`, за да увеличите или намалите броя на езиците, показани на картата. Валидните стойности са цели числа между 1 и 10 (включително), а по подразбиране е 5.
 
 ```md
-[![Топ езици](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme- статистика)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme- статистика)
 ```
 
 ### Оформление на компактна езикова карта
@@ -389,7 +389,7 @@ GitHub readme статистиките идват с няколко вграде
 Можете да използвате опцията `&layout=compact`, за да промените дизайна на картата.
 
 ```md
-[![Топ езици](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme- статистика)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme- статистика)
 ```
 
 ### Демонстрация
@@ -405,7 +405,7 @@ GitHub readme статистиките идват с няколко вграде
 Променете стойността `?username=` на вашето [Wakatime](https://wakatime.com) потребителско име.
 
 ```md
-[![wakatime статистика на willianrod](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 > **Забележка**:
