@@ -313,20 +313,20 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
  <summary>设置 Vercel 的指导</summary>
 
 1. 前往 [vercel.com](https://vercel.com/)
-1. 点击 `Log in`
+2. 点击 `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
-1. 点击 `Continue with GitHub` 通过 GitHub 进行登录
+3. 点击 `Continue with GitHub` 通过 GitHub 进行登录
    ![](https://files.catbox.moe/btd78j.jpeg)
-1. 登录 GitHub 并允许访问所有存储库（如果系统这样提示）
-1. Fork 这个仓库
-1. 返回到你的 [Vercel dashboard](https://vercel.com/dashboard)
-1. 选择 `Import Project`
-   ![](https://files.catbox.moe/qckos0.png)
-1. 选择 `Import Git Repository`
-   ![](https://files.catbox.moe/pqub9q.png)
-1. 选择 root 并将所有内容保持不变，并且只需添加名为 PAT_1 的环境变量（如图所示），其中将包含一个个人访问令牌（PAT），你可以在[这里](https://github.com/settings/tokens/new)轻松创建（保留默认，并且只需要命名下，名字随便）
-   ![](https://files.catbox.moe/0ez4g7.png)
-1. 点击 deploy，这就完成了，查看你的域名就可使用 API 了！
+4. 登录 GitHub 并允许访问所有存储库（如果系统这样提示）
+5. Fork 这个仓库, 打开 [`vercel.json`](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json#L5) 文件并修改 maxDuration 的值为 10.
+6. 返回到你的 [Vercel](https://vercel.com/),点击 `Add New...` 按钮并选择 `Project`.
+   ![](https://files.catbox.moe/0j91zs.png)
+7. 单击 `Continue with GitHub` 按钮, 搜索仓库名称并点击 `Import` . 
+   ![](https://files.catbox.moe/gi817g.png)
+8. 在[这里](https://github.com/settings/tokens/new)创建一个 token (PAT) ，勾选 repo 权限 (这样可以允许访问私有仓库).
+9. 添加一个名称为 `PAT_1` , 值为你的 token (PAT) 的环境变量 (就像下图所展示的).
+   ![](https://files.catbox.moe/0yclio.png)
+10. 点击 deploy，这就完成了，查看你的域名就可使用 API 了！
 
 </details>
 
