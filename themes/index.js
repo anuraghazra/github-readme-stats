@@ -383,7 +383,7 @@ export const themes = {
   },
   mrgeminus_dark: {
     title_color: "C9D1D9",
-    icon_color: "1565C0",
+    icon_color: "1E7CE6",
     text_color: "C9D1D9",
     bg_color: "0D1117",
     border_color: "30363D",
