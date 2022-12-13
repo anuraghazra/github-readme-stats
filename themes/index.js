@@ -379,7 +379,6 @@ export const themes = {
     icon_color: "1565C0",
     text_color: "24292F",
     bg_color: "FFFFFF",
-    ring_color: "1565C0",
     border_color: "D0D7DE",
   },
   mrgeminus_dark: {
@@ -387,7 +386,6 @@ export const themes = {
     icon_color: "1565C0",
     text_color: "C9D1D9",
     bg_color: "0D1117",
-    ring_color: "1565C0",
     border_color: "30363D",
   },
 };
