@@ -9,7 +9,10 @@ import { MissingParamError } from "../common/utils.js";
  */
 const fetchWakatimeStats = async ({ username, api_domain, range }) => {
   if (!username) throw new MissingParamError(["username"]);
-
+  
+  if (username[0] !== '@'){
+    username = '@' + username;
+  }
   try {
     const { data } = await axios.get(
       `https://${
