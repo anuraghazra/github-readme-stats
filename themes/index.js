@@ -374,6 +374,13 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
+    github_dark: {
+    title_color: "1e6eea",
+    text_color: "39d353",
+    icon_color: "fefefe",
+    border_color: "39d353",
+    bg_color: "0d1117",
+  },
 };
 
 export default themes;
