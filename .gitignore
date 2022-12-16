@@ -1,3 +1,4 @@
+# Ignore Files
 .vercel
 .env
 node_modules
@@ -7,6 +8,6 @@ node_modules
 coverage
 vercel_token
 
-# IDE
+# Ignore IDE
 .vscode
 *.code-workspace
