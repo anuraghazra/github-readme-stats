@@ -374,6 +374,13 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
+  Greeney.:{
+    title_color: "#63ffe2",
+    text_color: "#00ddff",
+    icon_color: "#ffb08c",
+    border_color: "#ffb08c",
+    bg_color: "#021c23",
+  },
 };
 
 export default themes;
