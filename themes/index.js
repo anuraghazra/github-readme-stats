@@ -173,6 +173,7 @@ export const themes = {
     icon_color: "00AEFF",
     text_color: "fff",
     bg_color: "000",
+    icon_color: "00e21c",
   },
   nord: {
     title_color: "81a1c1",
