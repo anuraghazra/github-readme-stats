@@ -374,6 +374,14 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
+  server: {
+    title_color: "03c04a",
+    text_color: "CFF5E7",
+    icon_color: "CFF5E7",
+    border_color: "A0E4CB",
+    bg_color: "111",
+    custom_title: "server@dev-[user]:~$%20git%20status",
+  },
 };
 
 export default themes;
