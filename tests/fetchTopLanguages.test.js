@@ -1,7 +1,7 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import { fetchTopLanguages } from "../src/fetchers/top-languages-fetcher.js";
 
 const mock = new MockAdapter(axios);
 
@@ -119,6 +119,7 @@ describe("FetchTopLanguages", () => {
       (exclude_repo = ["test-repo-1"]),
       (exclude_archived = true),
     );
+    
     expect(repo).toStrictEqual({
       HTML: {
         color: "#0f0",
@@ -128,7 +129,7 @@ describe("FetchTopLanguages", () => {
       javascript: {
         color: "#0ff",
         name: "javascript",
-        size: 200,
+        size: 200, 
       },
     });
   });

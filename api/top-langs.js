@@ -1,17 +1,16 @@
-require("dotenv").config();
-const {
-  renderError,
+import { renderTopLanguages } from "../src/cards/top-languages-card.js";
+import { blacklist } from "../src/common/blacklist.js";
+import {
   clampValue,
-  parseBoolean,
-  parseArray,
   CONSTANTS,
-} = require("../src/common/utils");
-const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
-const renderTopLanguages = require("../src/cards/top-languages-card");
-const blacklist = require("../src/common/blacklist");
-const { isLocaleAvailable } = require("../src/translations");
+  parseArray,
+  parseBoolean,
+  renderError,
+} from "../src/common/utils.js";
+import { fetchTopLanguages } from "../src/fetchers/top-languages-fetcher.js";
+import { isLocaleAvailable } from "../src/translations.js";
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const {
     username,
     hide,
@@ -50,12 +49,17 @@ module.exports = async (req, res) => {
     );
 
     const cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
-      CONSTANTS.TWO_HOURS,
+      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
+      CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
 
-    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${
+        cacheSeconds / 2
+      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    );
 
     return res.send(
       renderTopLanguages(topLangs, {
@@ -76,6 +80,7 @@ module.exports = async (req, res) => {
       }),
     );
   } catch (err) {
+    res.setHeader("Cache-Control", `no-cache, no-store, must-revalidate`); // Don't cache error responses.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };

@@ -1,0 +1,31 @@
+name: Close empty issues and templates
+on:
+  issues:
+    types:
+      - reopened
+      - opened
+      - edited
+
+jobs:
+  closeEmptyIssuesAndTemplates:
+    name: Close empty issues
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3 # NOTE: Retrieve issue templates.
+
+      - name: Run empty issues closer action
+        uses: rickstaa/empty-issues-closer-action@v1
+        env:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          close_comment:
+            Closing this issue because it appears to be empty. Please update the
+            issue for it to be reopened.
+          open_comment:
+            Reopening this issue because the author provided more information.
+          check_templates: true
+          template_close_comment:
+            Closing this issue since the issue template was not filled in.
+            Please provide us with more information to have this issue reopened.
+          template_open_comment:
+            Reopening this issue because the author provided more information.

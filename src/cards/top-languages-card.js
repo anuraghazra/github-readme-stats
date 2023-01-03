@@ -1,18 +1,19 @@
 // @ts-check
-const Card = require("../common/Card");
-const I18n = require("../common/I18n");
-const { langCardLocales } = require("../translations");
-const { createProgressNode } = require("../common/createProgressNode");
-const {
+import { Card } from "../common/Card.js";
+import { createProgressNode } from "../common/createProgressNode.js";
+import { I18n } from "../common/I18n.js";
+import {
+  chunkArray,
   clampValue,
-  getCardColors,
   flexLayout,
+  getCardColors,
   lowercaseTrim,
   measureText,
-  chunkArray,
-} = require("../common/utils");
+} from "../common/utils.js";
+import { langCardLocales } from "../translations.js";
 
 const DEFAULT_CARD_WIDTH = 300;
+const MIN_CARD_WIDTH = 230;
 const DEFAULT_LANGS_COUNT = 5;
 const DEFAULT_LANG_COLOR = "#858585";
 const CARD_PADDING = 25;
@@ -22,22 +23,28 @@ const CARD_PADDING = 25;
  */
 
 /**
- * @param {Lang[]} arr
+ * Retrieves the programming language whose name is the longest.
+ *
+ * @param {Lang[]} arr Array of programming languages.
+ * @returns {Object} Longest programming language object.
  */
- const getLongestLang = (arr) =>
- arr.reduce(
-   (savedLang, lang) =>
-     lang.name.length > savedLang.name.length ? lang : savedLang,
-   { name: "", size: null, color: "" },
- );
+const getLongestLang = (arr) =>
+  arr.reduce(
+    (savedLang, lang) =>
+      lang.name.length > savedLang.name.length ? lang : savedLang,
+    { name: "", size: null, color: "" },
+  );
 
 /**
- * @param {{
- *  width: number,
- *  color: string,
- *  name: string,
- *  progress: string
- * }} props
+ * Creates a node to display usage of a programming language in percentage
+ * using text and a horizontal progress bar.
+ *
+ * @param {object[]} props Function properties.
+ * @param {number} props.width The card width
+ * @param {string} props.name Name of the programming language.
+ * @param {string} props.color Color of the programming language.
+ * @param {string} props.progress Usage of the programming language in percentage.
+ * @returns {string} Programming language SVG node.
  */
 const createProgressTextNode = ({ width, color, name, progress }) => {
   const paddingRight = 95;
@@ -59,7 +66,12 @@ const createProgressTextNode = ({ width, color, name, progress }) => {
 };
 
 /**
- * @param {{ lang: Lang, totalSize: number }} props
+ * Creates a text only node to display usage of a programming language in percentage.
+ *
+ * @param {object[]} props Function properties.
+ * @param {Lang} props.lang Programming language object.
+ * @param {number} props.totalSize Total size of all languages.
+ * @returns {string} Compact layout programming language SVG node.
  */
 const createCompactLangNode = ({ lang, totalSize }) => {
   const percentage = ((lang.size / totalSize) * 100).toFixed(2);
@@ -76,7 +88,12 @@ const createCompactLangNode = ({ lang, totalSize }) => {
 };
 
 /**
- * @param {{ langs: Lang[], totalSize: number }} props
+ * Creates compact layout of text only language nodes.
+ *
+ * @param {object[]} props Function properties.
+ * @param {Lang[]} props.langs Array of programming languages.
+ * @param {number} props.totalSize Total size of all languages.
+ * @returns {string} Programming languages SVG node.
  */
 const createLanguageTextNode = ({ langs, totalSize }) => {
   const longestLang = getLongestLang(langs);
@@ -108,10 +125,12 @@ const createLanguageTextNode = ({ langs, totalSize }) => {
 };
 
 /**
- * @param {Lang[]} langs
- * @param {number} width
- * @param {number} totalLanguageSize
- * @returns {string}
+ * Renders layout to display user's most frequently used programming languages.
+ *
+ * @param {Lang[]} langs Array of programming languages.
+ * @param {number} width Card width.
+ * @param {number} totalLanguageSize Total size of all languages.
+ * @returns {string} Normal layout card SVG object.
  */
 const renderNormalLayout = (langs, width, totalLanguageSize) => {
   return flexLayout({
@@ -129,10 +148,12 @@ const renderNormalLayout = (langs, width, totalLanguageSize) => {
 };
 
 /**
- * @param {Lang[]} langs
- * @param {number} width
- * @param {number} totalLanguageSize
- * @returns {string}
+ * Renders compact layout to display user's most frequently used programming languages.
+ *
+ * @param {Lang[]} langs Array of programming languages.
+ * @param {number} width Card width.
+ * @param {number} totalLanguageSize Total size of all languages.
+ * @returns {string} Compact layout card SVG object.
  */
 const renderCompactLayout = (langs, width, totalLanguageSize) => {
   const paddingRight = 50;
@@ -180,26 +201,31 @@ const renderCompactLayout = (langs, width, totalLanguageSize) => {
 };
 
 /**
- * @param {number} totalLangs
- * @returns {number}
+ * Calculates height for the compact layout.
+ *
+ * @param {number} totalLangs Total number of languages.
+ * @returns {number} Card height.
  */
 const calculateCompactLayoutHeight = (totalLangs) => {
   return 90 + Math.round(totalLangs / 2) * 25;
 };
 
 /**
- * @param {number} totalLangs
- * @returns {number}
+ * Calculates height for the normal layout.
+ *
+ * @param {number} totalLangs Total number of languages.
+ * @returns {number} Card height.
  */
 const calculateNormalLayoutHeight = (totalLangs) => {
   return 45 + (totalLangs + 1) * 40;
 };
 
 /**
+ *  Hides languages and trims the list to show only the top N languages.
  *
- * @param {Record<string, Lang>} topLangs
- * @param {string[]} hide
- * @param {string} langs_count
+ * @param {Record<string, Lang>} topLangs Top languages.
+ * @param {string[]} hide Languages to hide.
+ * @param {string} langs_count Number of languages to show.
  */
 const useLanguages = (topLangs, hide, langs_count) => {
   let langs = Object.values(topLangs);
@@ -214,7 +240,7 @@ const useLanguages = (topLangs, hide, langs_count) => {
     });
   }
 
-  // filter out langauges to be hidden
+  // filter out languages to be hidden
   langs = langs
     .sort((a, b) => b.size - a.size)
     .filter((lang) => {
@@ -228,13 +254,15 @@ const useLanguages = (topLangs, hide, langs_count) => {
 };
 
 /**
- * @param {import('../fetchers/types').TopLangData} topLangs
- * @param {Partial<import("./types").TopLangOptions>} options
- * @returns {string}
+ * Renders card to display user's most frequently used programming languages.
+ *
+ * @param {import('../fetchers/types').TopLangData} topLangs User's most frequently used programming languages.
+ * @param {Partial<import("./types").TopLangOptions>} options Card options.
+ * @returns {string} Language card SVG object.
  */
 const renderTopLanguages = (topLangs, options = {}) => {
   const {
-    hide_title,
+    hide_title = false,
     hide_border,
     card_width,
     title_color,
@@ -261,7 +289,11 @@ const renderTopLanguages = (topLangs, options = {}) => {
     String(langs_count),
   );
 
-  let width = isNaN(card_width) ? DEFAULT_CARD_WIDTH : card_width;
+  let width = isNaN(card_width)
+    ? DEFAULT_CARD_WIDTH
+    : card_width < MIN_CARD_WIDTH
+    ? MIN_CARD_WIDTH
+    : card_width;
   let height = calculateNormalLayoutHeight(langs.length);
 
   let finalLayout = "";
@@ -306,4 +338,4 @@ const renderTopLanguages = (topLangs, options = {}) => {
   `);
 };
 
-module.exports = renderTopLanguages;
+export { renderTopLanguages, MIN_CARD_WIDTH };
