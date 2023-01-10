@@ -1,4 +1,3 @@
-import * as dotenv from "dotenv";
 import { renderStatsCard } from "../src/cards/stats-card.js";
 import { blacklist } from "../src/common/blacklist.js";
 import {
@@ -10,8 +9,6 @@ import {
 } from "../src/common/utils.js";
 import { fetchStats } from "../src/fetchers/stats-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
-
-dotenv.config();
 
 export default async (req, res) => {
   const {
@@ -26,6 +23,7 @@ export default async (req, res) => {
     include_all_commits,
     line_height,
     title_color,
+    ring_color,
     icon_color,
     text_color,
     text_bold,
@@ -65,7 +63,14 @@ export default async (req, res) => {
     );
 
     if (statsResp.success) {
-      res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+      res.setHeader(
+        "Cache-Control",
+        `max-age=${
+          cacheSeconds / 2
+        }, s-maxage=${cacheSeconds}, stale-while-revalidate=${
+          CONSTANTS.ONE_DAY
+        }`,
+      );
     } else {
       res.setHeader("Cache-Control", `no-cache, no-store, must-revalidate`); // Don't cache unsuccessful responses.
     }
@@ -81,6 +86,7 @@ export default async (req, res) => {
         include_all_commits: parseBoolean(include_all_commits),
         line_height,
         title_color,
+        ring_color,
         icon_color,
         text_color,
         text_bold: parseBoolean(text_bold),

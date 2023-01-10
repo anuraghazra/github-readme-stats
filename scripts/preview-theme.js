@@ -92,7 +92,7 @@ const isPreviewComment = (inputs, comment) => {
  * @param {number} issueNumber Issue number.
  * @param {string} repo Repository name.
  * @param {string} owner Owner of the repository.
- * @returns {Object} The Github comment object.
+ * @returns {Object} The GitHub comment object.
  */
 const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
   const parameters = {
