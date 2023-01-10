@@ -1,5 +1,4 @@
 name: Test
-
 on:
   push:
     branches:
@@ -10,24 +9,29 @@ on:
 
 jobs:
   build:
+    name: Perform tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: "12.x"
+          node-version: ${{ matrix.node-version }}
+          cache: npm
 
       - name: Install & Test
         run: |
-          npm install
+          npm ci
           npm run test
 
       - name: Run Prettier
         run: |
-          npm run prettier:check:ci
+          npm run format:check
 
       - name: Code Coverage
         uses: codecov/codecov-action@v1

@@ -1,21 +1,22 @@
 // @ts-check
-const axios = require("axios").default;
-const githubUsernameRegex = require("github-username-regex");
-
-const retryer = require("../common/retryer");
-const calculateRank = require("../calculateRank");
-const {
-  request,
-  logger,
+import axios from "axios";
+import githubUsernameRegex from "github-username-regex";
+import { calculateRank } from "../calculateRank.js";
+import { retryer } from "../common/retryer.js";
+import {
   CustomError,
+  logger,
   MissingParamError,
-} = require("../common/utils");
-
-require("dotenv").config();
+  request,
+  wrapTextMultiline,
+} from "../common/utils.js";
 
 /**
- * @param {import('axios').AxiosRequestHeaders} variables
- * @param {string} token
+ * Stats fetcher object.
+ *
+ * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token GitHub token.
+ * @returns {Promise<import('../common/types').StatsFetcherResponse>} Stats fetcher response.
  */
 const fetcher = (variables, token) => {
   return request(
@@ -29,10 +30,10 @@ const fetcher = (variables, token) => {
             totalCommitContributions
             restrictedContributionsCount
           }
-          repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
+          repositoriesContributedTo(contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
             totalCount
           }
-          pullRequests(first: 1) {
+          pullRequests {
             totalCount
           }
           openIssues: issues(states: OPEN) {
@@ -44,12 +45,43 @@ const fetcher = (variables, token) => {
           followers {
             totalCount
           }
-          repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}) {
+          repositories(ownerAffiliations: OWNER) {
             totalCount
+          }
+        }
+      }
+      `,
+      variables,
+    },
+    {
+      Authorization: `bearer ${token}`,
+    },
+  );
+};
+
+/**
+ * Fetch first 100 repositories for a given username.
+ *
+ * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token GitHub token.
+ * @returns {Promise<import('../common/types').StatsFetcherResponse>} Repositories fetcher response.
+ */
+const repositoriesFetcher = (variables, token) => {
+  return request(
+    {
+      query: `
+      query userInfo($login: String!, $after: String) {
+        user(login: $login) {
+          repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
             nodes {
+              name
               stargazers {
                 totalCount
               }
+            }
+            pageInfo {
+              hasNextPage
+              endCursor
             }
           }
         }
@@ -63,8 +95,15 @@ const fetcher = (variables, token) => {
   );
 };
 
-// https://github.com/anuraghazra/github-readme-stats/issues/92#issuecomment-661026467
-// https://github.com/anuraghazra/github-readme-stats/pull/211/
+/**
+ * Fetch all the commits for all the repositories of a given username.
+ *
+ * @param {*} username GitHub username.
+ * @returns {Promise<number>} Total commits.
+ *
+ * @description Done like this because the GitHub API does not provide a way to fetch all the commits. See
+ * #92#issuecomment-661026467 and #211 for more information.
+ */
 const totalCommitsFetcher = async (username) => {
   if (!githubUsernameRegex.test(username)) {
     logger.log("Invalid username");
@@ -99,16 +138,59 @@ const totalCommitsFetcher = async (username) => {
 };
 
 /**
- * @param {string} username
- * @param {boolean} count_private
- * @param {boolean} include_all_commits
- * @returns {Promise<import("./types").StatsData>}
+ * Fetch all the stars for all the repositories of a given username.
+ *
+ * @param {string} username GitHub username.
+ * @param {array} repoToHide Repositories to hide.
+ * @returns {Promise<number>} Total stars.
  */
-async function fetchStats(
+const totalStarsFetcher = async (username, repoToHide) => {
+  let nodes = [];
+  let hasNextPage = true;
+  let endCursor = null;
+  while (hasNextPage) {
+    const variables = { login: username, first: 100, after: endCursor };
+    let res = await retryer(repositoriesFetcher, variables);
+
+    if (res.data.errors) {
+      logger.error(res.data.errors);
+      throw new CustomError(
+        res.data.errors[0].message || "Could not fetch user",
+        CustomError.USER_NOT_FOUND,
+      );
+    }
+
+    const allNodes = res.data.data.user.repositories.nodes;
+    const nodesWithStars = allNodes.filter(
+      (node) => node.stargazers.totalCount !== 0,
+    );
+    nodes.push(...nodesWithStars);
+    // hasNextPage =
+    //   allNodes.length === nodesWithStars.length &&
+    //   res.data.data.user.repositories.pageInfo.hasNextPage;
+    hasNextPage = false; // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+    endCursor = res.data.data.user.repositories.pageInfo.endCursor;
+  }
+
+  return nodes
+    .filter((data) => !repoToHide[data.name])
+    .reduce((prev, curr) => prev + curr.stargazers.totalCount, 0);
+};
+
+/**
+ * Fetch stats for a given username.
+ *
+ * @param {string} username GitHub username.
+ * @param {boolean} count_private Include private contributions.
+ * @param {boolean} include_all_commits Include all commits.
+ * @returns {Promise<import("./types").StatsData>} Stats data.
+ */
+const fetchStats = async (
   username,
   count_private = false,
   include_all_commits = false,
-) {
+  exclude_repo = [],
+) => {
   if (!username) throw new MissingParamError(["username"]);
 
   const stats = {
@@ -123,15 +205,37 @@ async function fetchStats(
 
   let res = await retryer(fetcher, { login: username });
 
+  // Catch GraphQL errors.
   if (res.data.errors) {
     logger.error(res.data.errors);
+    if (res.data.errors[0].type === "NOT_FOUND") {
+      throw new CustomError(
+        res.data.errors[0].message || "Could not fetch user.",
+        CustomError.USER_NOT_FOUND,
+      );
+    }
+    if (res.data.errors[0].message) {
+      throw new CustomError(
+        wrapTextMultiline(res.data.errors[0].message, 90, 1)[0],
+        res.statusText,
+      );
+    }
     throw new CustomError(
-      res.data.errors[0].message || "Could not fetch user",
-      CustomError.USER_NOT_FOUND,
+      "Something went while trying to retrieve the stats data using the GraphQL API.",
+      CustomError.GRAPHQL_ERROR,
     );
   }
 
   const user = res.data.data.user;
+
+  // populate repoToHide map for quick lookup
+  // while filtering out
+  let repoToHide = {};
+  if (exclude_repo) {
+    exclude_repo.forEach((repoName) => {
+      repoToHide[repoName] = true;
+    });
+  }
 
   stats.name = user.name || user.login;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
@@ -154,9 +258,8 @@ async function fetchStats(
   stats.totalPRs = user.pullRequests.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
-  stats.totalStars = user.repositories.nodes.reduce((prev, curr) => {
-    return prev + curr.stargazers.totalCount;
-  }, 0);
+  // Retrieve stars while filtering out repositories to be hidden
+  stats.totalStars = await totalStarsFetcher(username, repoToHide);
 
   stats.rank = calculateRank({
     totalCommits: stats.totalCommits,
@@ -169,6 +272,7 @@ async function fetchStats(
   });
 
   return stats;
-}
+};
 
-module.exports = fetchStats;
+export { fetchStats };
+export default fetchStats;

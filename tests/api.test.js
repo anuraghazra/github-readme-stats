@@ -1,10 +1,10 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const api = require("../api/index");
-const renderStatsCard = require("../src/cards/stats-card");
-const { renderError, CONSTANTS } = require("../src/common/utils");
-const calculateRank = require("../src/calculateRank");
+import { jest } from "@jest/globals";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import api from "../api/index.js";
+import { calculateRank } from "../src/calculateRank.js";
+import { renderStatsCard } from "../src/cards/stats-card.js";
+import { CONSTANTS, renderError } from "../src/common/utils.js";
 
 const stats = {
   name: "Anurag Hazra",
@@ -40,7 +40,20 @@ const data = {
       followers: { totalCount: 0 },
       repositories: {
         totalCount: 1,
+      },
+    },
+  },
+};
+
+const repositoriesData = {
+  data: {
+    user: {
+      repositories: {
         nodes: [{ stargazers: { totalCount: 100 } }],
+        pageInfo: {
+          hasNextPage: false,
+          cursor: "cursor",
+        },
       },
     },
   },
@@ -70,7 +83,11 @@ const faker = (query, data) => {
     setHeader: jest.fn(),
     send: jest.fn(),
   };
-  mock.onPost("https://api.github.com/graphql").reply(200, data);
+  mock
+    .onPost("https://api.github.com/graphql")
+    .replyOnce(200, data)
+    .onPost("https://api.github.com/graphql")
+    .replyOnce(200, repositoriesData);
 
   return { req, res };
 };
@@ -138,13 +155,17 @@ describe("Test /api/", () => {
 
   it("should have proper cache", async () => {
     const { req, res } = faker({}, data);
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
 
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${CONSTANTS.FOUR_HOURS}`],
+      [
+        "Cache-Control",
+        `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
+          CONSTANTS.FOUR_HOURS
+        }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      ],
     ]);
   });
 
@@ -154,7 +175,22 @@ describe("Test /api/", () => {
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${15000}`],
+      [
+        "Cache-Control",
+        `max-age=7500, s-maxage=${15000}, stale-while-revalidate=${
+          CONSTANTS.ONE_DAY
+        }`,
+      ],
+    ]);
+  });
+
+  it("should not store cache when error", async () => {
+    const { req, res } = faker({}, error);
+    await api(req, res);
+
+    expect(res.setHeader.mock.calls).toEqual([
+      ["Content-Type", "image/svg+xml"],
+      ["Cache-Control", `no-cache, no-store, must-revalidate`],
     ]);
   });
 
@@ -165,7 +201,12 @@ describe("Test /api/", () => {
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.ONE_DAY}`],
+        [
+          "Cache-Control",
+          `max-age=${CONSTANTS.ONE_DAY / 2}, s-maxage=${
+            CONSTANTS.ONE_DAY
+          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+        ],
       ]);
     }
 
@@ -176,7 +217,12 @@ describe("Test /api/", () => {
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.FOUR_HOURS}`],
+        [
+          "Cache-Control",
+          `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
+            CONSTANTS.FOUR_HOURS
+          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+        ],
       ]);
     }
 
@@ -186,7 +232,12 @@ describe("Test /api/", () => {
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.FOUR_HOURS}`],
+        [
+          "Cache-Control",
+          `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
+            CONSTANTS.FOUR_HOURS
+          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+        ],
       ]);
     }
   });
@@ -220,6 +271,41 @@ describe("Test /api/", () => {
         },
         {},
       ),
+    );
+  });
+
+  it("should allow changing ring_color", async () => {
+    const { req, res } = faker(
+      {
+        username: "anuraghazra",
+        hide: "issues,prs,contribs",
+        show_icons: true,
+        hide_border: true,
+        line_height: 100,
+        title_color: "fff",
+        ring_color: "0000ff",
+        icon_color: "fff",
+        text_color: "fff",
+        bg_color: "fff",
+      },
+      data,
+    );
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderStatsCard(stats, {
+        hide: ["issues", "prs", "contribs"],
+        show_icons: true,
+        hide_border: true,
+        line_height: 100,
+        title_color: "fff",
+        ring_color: "0000ff",
+        icon_color: "fff",
+        text_color: "fff",
+        bg_color: "fff",
+      }),
     );
   });
 });
