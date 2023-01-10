@@ -1,6 +1,5 @@
 // @ts-check
 import axios from "axios";
-import * as dotenv from "dotenv";
 import githubUsernameRegex from "github-username-regex";
 import { calculateRank } from "../calculateRank.js";
 import { retryer } from "../common/retryer.js";
@@ -12,13 +11,11 @@ import {
   wrapTextMultiline,
 } from "../common/utils.js";
 
-dotenv.config();
-
 /**
  * Stats fetcher object.
  *
  * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
- * @param {string} token Github token.
+ * @param {string} token GitHub token.
  * @returns {Promise<import('../common/types').StatsFetcherResponse>} Stats fetcher response.
  */
 const fetcher = (variables, token) => {
@@ -66,7 +63,7 @@ const fetcher = (variables, token) => {
  * Fetch first 100 repositories for a given username.
  *
  * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
- * @param {string} token Github token.
+ * @param {string} token GitHub token.
  * @returns {Promise<import('../common/types').StatsFetcherResponse>} Repositories fetcher response.
  */
 const repositoriesFetcher = (variables, token) => {
@@ -101,10 +98,10 @@ const repositoriesFetcher = (variables, token) => {
 /**
  * Fetch all the commits for all the repositories of a given username.
  *
- * @param {*} username Github username.
+ * @param {*} username GitHub username.
  * @returns {Promise<number>} Total commits.
  *
- * @description Done like this because the Github API does not provide a way to fetch all the commits. See
+ * @description Done like this because the GitHub API does not provide a way to fetch all the commits. See
  * #92#issuecomment-661026467 and #211 for more information.
  */
 const totalCommitsFetcher = async (username) => {
@@ -143,7 +140,7 @@ const totalCommitsFetcher = async (username) => {
 /**
  * Fetch all the stars for all the repositories of a given username.
  *
- * @param {string} username Github username.
+ * @param {string} username GitHub username.
  * @param {array} repoToHide Repositories to hide.
  * @returns {Promise<number>} Total stars.
  */
@@ -183,17 +180,17 @@ const totalStarsFetcher = async (username, repoToHide) => {
 /**
  * Fetch stats for a given username.
  *
- * @param {string} username Github username.
+ * @param {string} username GitHub username.
  * @param {boolean} count_private Include private contributions.
  * @param {boolean} include_all_commits Include all commits.
  * @returns {Promise<import("./types").StatsData>} Stats data.
  */
-async function fetchStats(
+const fetchStats = async (
   username,
   count_private = false,
   include_all_commits = false,
   exclude_repo = [],
-) {
+) => {
   if (!username) throw new MissingParamError(["username"]);
 
   const stats = {
@@ -275,7 +272,7 @@ async function fetchStats(
   });
 
   return stats;
-}
+};
 
 export { fetchStats };
 export default fetchStats;
