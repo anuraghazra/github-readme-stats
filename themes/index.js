@@ -362,7 +362,7 @@ const themes = {
     bg_color: "191724",
   },
   catppuccin_latte: {
-    title_color: "179299",
+    title_color: "137980",
     icon_color: "8839ef",
     text_color: "4c4f69",
     bg_color: "eff1f5",
