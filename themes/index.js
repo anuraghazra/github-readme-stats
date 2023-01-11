@@ -374,6 +374,12 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
+  ruby: {
+    title_color: "b3209f",
+    text_color: "203bb3",
+    icon_color: "61ae1d",
+    bg_color: "b3203a",
+  },
 };
 
 export default themes;
