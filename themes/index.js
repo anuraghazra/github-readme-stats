@@ -375,7 +375,7 @@ export const themes = {
     bg_color: "170F0C",
   },
   mike-koala-bear: {
-    title_color: "b3209f",
+    title_color: "D1FCFF",
     text_color: "FBFF05",
     icon_color: "61ae1d",
     bg_color: "7B1DB9",
