@@ -78,6 +78,12 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     totalPRs,
     contributedTo,
     rank,
+    starsTitle,
+    commitsTitle,
+    issuesTitle,
+    PRsTitle,
+    contribsTitle,
+    title,
   } = stats;
   const {
     hide = [],
@@ -128,33 +134,31 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const STATS = {
     stars: {
       icon: icons.star,
-      label: i18n.t("statcard.totalstars"),
+      label: starsTitle,
       value: totalStars,
       id: "stars",
     },
     commits: {
       icon: icons.commits,
-      label: `${i18n.t("statcard.commits")}${
-        include_all_commits ? "" : ` (${new Date().getFullYear()})`
-      }`,
+      label: commitsTitle,
       value: totalCommits,
       id: "commits",
     },
     prs: {
       icon: icons.prs,
-      label: i18n.t("statcard.prs"),
+      label: PRsTitle,
       value: totalPRs,
       id: "prs",
     },
     issues: {
       icon: icons.issues,
-      label: i18n.t("statcard.issues"),
+      label: issuesTitle,
       value: totalIssues,
       id: "issues",
     },
     contribs: {
       icon: icons.contribs,
-      label: i18n.t("statcard.contribs") + " (last year)",
+      label: contribsTitle,
       value: contributedTo,
       id: "contribs",
     },
@@ -210,7 +214,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   });
 
   const calculateTextWidth = () => {
-    return measureText(custom_title ? custom_title : i18n.t("statcard.title"));
+    return measureText(title);
   };
 
   /*
@@ -230,7 +234,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: i18n.t("statcard.title"),
+    defaultTitle: title,
     width,
     height,
     border_radius,
@@ -293,9 +297,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     .filter((key) => !hide.includes(key))
     .map((key) => {
       if (key === "commits") {
-        return `${i18n.t("statcard.commits")} ${
-          include_all_commits ? "" : `in ${new Date().getFullYear()}`
-        } : ${totalStars}`;
+        return commitsTitle;
       }
       return `${STATS[key].label}: ${STATS[key].value}`;
     })
