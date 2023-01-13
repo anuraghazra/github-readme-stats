@@ -48,12 +48,20 @@ export default async (req, res) => {
   }
 
   try {
-    const stats = await fetchStats(
-      username,
-      parseBoolean(count_private),
-      parseBoolean(include_all_commits),
-      parseArray(exclude_repo),
-    );
+    const stats = {
+      req.query.totalStars,
+      req.query.totalCommits,
+      req.query.totalIssues,
+      req.query.totalPRs,
+      req.query.contributedTo,
+      req.query.rank,
+      req.query.starsTitle,
+      req.query.commitsTitle,
+      req.query.issuesTitle,
+      req.query.PRsTitle,
+      req.query.contribsTitle,
+      req.query.title,
+    };
 
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
