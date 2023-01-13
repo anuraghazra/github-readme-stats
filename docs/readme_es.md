@@ -8,6 +8,9 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+     <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
       <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
@@ -33,6 +36,8 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Reportar un bug</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicitar una mejora</a>
+    ·
+    <a href="https://github.com/anuraghazra/github-readme-stats/discussions">Haz tu pregunta</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
@@ -58,7 +63,17 @@
     <a href="/docs/readme_np.md">नेपाली</a>
   </p>
 </p>
-<p align="center">¿Te gusta este proyecto? ¡Por favor, considera <a href="https://www.paypal.me/anuraghazra">donar</a> para ayudar a mejorarlo!
+<p align="center">¿Te gusta este proyecto? ¡Por favor, considera <a href="https://www.paypal.me/anuraghazra">donar</a> para ayudar a mejorarlo!</p>
+
+<a href="https://indiafightscorona.giveindia.org">
+  <img src="https://indiaspora.org/wp-content/uploads/2021/04/give-India-logo.png" alt="Give india logo" width="200" />
+</a>
+
+¿Está considerando apoyar el proyecto mediante una donación? ¡Por favor NO LO HAGA!
+
+En lugar de eso, ayuda a India a luchar contra la segunda ola mortal de COVID-19. Miles de personas están muriendo en India debido a la falta de oxígeno y también a la infraestructura relacionada con COVID.
+
+Visita <https://indiafightscorona.giveindia.org> y haz una pequeña donación para ayudarnos a luchar contra COVID y superar esta crisis. Una pequeña donación puede marcar una gran diferencia. ❤️
 
 # Características
 
@@ -371,23 +386,25 @@ NOTA: Debido a [#58](https://github.com/anuraghazra/github-readme-stats/pull/58)
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary>Guía para comenzar en Vercel</summary>
+ <summary><b>Guía para comenzar en Vercel</b></summary>
 
-1. Ve a [vercel.com](https://vercel.com/)
-2. Clickea en `Log in`
-   ![](https://files.catbox.moe/tct1wg.png)
-3. Inicia sesión con GitHub presionando `Continue with GitHub`
-   ![](https://files.catbox.moe/btd78j.jpeg)
-4. Permite el acceso a todos los repositorios (si se te pregunta)
-5. Haz un Fork de este repositorio
-6. Dirígete de nuevo a tu [Vercel dashboard](https://vercel.com/dashboard)
-7. Selecciona `Import Project`
-   ![](https://files.catbox.moe/qckos0.png)
-8. Selecciona `Import Git Repository`
-   ![](https://files.catbox.moe/pqub9q.png)
-9. Selecciona "root" y matén todo como está, simplemente añade tu variable de entorno llamada PAT_1 (como se muestra), la cual contendrá un token de acceso personal (PAT), el cual puedes crear fácilmente [aquí](https://github.com/settings/tokens/new) (mantén todo como está, simplemente asígnale un nombre, puede ser cualquiera que desees)
-   ![](https://files.catbox.moe/0ez4g7.png)
-10. Clickea "Deploy" y ya está listo. ¡Ve tus dominios para usar la API!
+1.  Ve a [vercel.com](https://vercel.com/)
+2.  Haz click en `Log in`.
+    ![](https://files.catbox.moe/pcxk33.png)
+3.  Inicia sesión con GitHub presionando `Continue with GitHub`.
+    ![](https://files.catbox.moe/b9oxey.png)
+4.  Permite el acceso a todos los repositorios (si se te pregunta).
+5.  Haz un **Fork** de este repositorio.
+6.  Despues de realizar el **Fork**, abra el archivo [`vercel.json`](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json#L5) y cambie el campo `maxDuration` a `10`.
+7.  Dirígete de nuevo a tu [Vercel dashboard](https://vercel.com/dashboard).
+8.  Para importar un proyecto, haga clic en el botón `Add New...` y seleccione la opción `Project`.
+    ![](https://files.catbox.moe/3n76fh.png)
+9.  Haga clic en el botón `Continue with Github`, busque el Repositorio Git requerido e impórtelo haciendo clic en el botón `Import`. Alternativamente, puede importar un repositorio Git de terceros usando el enlace `Import Third-Party Git Repository ->` en la parte inferior de la página.
+    ![](https://files.catbox.moe/mg5p04.png)
+10. Cree un token de acceso personal (PAT) [aquí] (https://github.com/settings/tokens/new) y habilite los permisos de `repo` (esto permite el acceso para ver las estadísticas del repositorio privado).
+11. Agregue la PAT como una variable de entorno denominada `PAT_1` (como se muestra).
+    ![](https://files.catbox.moe/0yclio.png)
+12. Haga clic en `deploy` y listo. ¡Vea sus dominios para usar la API!
 
 </details>
 
