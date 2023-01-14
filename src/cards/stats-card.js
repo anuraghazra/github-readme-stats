@@ -97,8 +97,19 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     locale,
     disable_animations = false,
   } = options;
+  
+  const name = stats.name || "GitHub User",
+  
+  const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
+    ? ""
+    : "s";
+  
+  const i18n = new I18n({
+    locale,
+    translations: statCardLocales({ name, apostrophe }),
+  });
+  
   const {
-    name = "GitHub User",
     totalStars = "2018",
     totalCommits = "29019",
     totalIssues = "203",
@@ -131,14 +142,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       ring_color,
       theme,
     });
-
-  const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
-    ? ""
-    : "s";
-  const i18n = new I18n({
-    locale,
-    translations: statCardLocales({ name, apostrophe }),
-  });
 
   // Meta data for creating text nodes with createTextNode function
   const STATS = {
