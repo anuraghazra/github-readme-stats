@@ -305,6 +305,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `exclude_repo` - Exclude specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
 -   `custom_title` - Sets a custom title for the card _(string)_. Default `Most Used Languages`.
 -   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
+-   `merge_others` - Shows an "Other" percentage when limiting the amount of languages _(boolean)_. Default: `false`.
 
 > **Warning**
 > Language names should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)

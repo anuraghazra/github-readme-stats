@@ -233,11 +233,12 @@ const calculateNormalLayoutHeight = (totalLangs) => {
  * @param {Record<string, Lang>} topLangs Top languages.
  * @param {string[]} hide Languages to hide.
  * @param {string} langs_count Number of languages to show.
+ * @param {boolean} merge_others Merge the rest of the languages into "Others" category.
  */
-const useLanguages = (topLangs, hide, langs_count) => {
+const useLanguages = (topLangs, hide, langs_count, merge_others) => {
   let langs = Object.values(topLangs);
   let langsToHide = {};
-  let langsCount = clampValue(parseInt(langs_count), 1, 10);
+  let langsCountClamped = clampValue(parseInt(langs_count), 1, 10);
 
   // populate langsToHide map for quick lookup
   // while filtering out
@@ -252,8 +253,23 @@ const useLanguages = (topLangs, hide, langs_count) => {
     .sort((a, b) => b.size - a.size)
     .filter((lang) => {
       return !langsToHide[lowercaseTrim(lang.name)];
-    })
-    .slice(0, langsCount);
+    });
+
+  if (merge_others && langs.length > langsCountClamped) {
+    // Return 'langs_count' -1 top languages and merge the rest of the languages into "others" category.
+    const others = langs.splice(langsCountClamped - 1);
+    const othersSize = others.reduce((accumulator, object) => {
+      return accumulator + object.size;
+    }, 0);
+    langs.push({
+      name: "Others",
+      color: "#9E9F9E",
+      size: othersSize,
+    });
+  } else {
+    // Return 'langs_count' top languages.
+    langs = langs.slice(0, langsCountClamped);
+  }
 
   const totalLanguageSize = langs.reduce((acc, curr) => acc + curr.size, 0);
 
@@ -284,6 +300,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     border_radius,
     border_color,
     disable_animations,
+    merge_others,
   } = options;
 
   const i18n = new I18n({
@@ -295,6 +312,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     topLangs,
     hide,
     String(langs_count),
+    merge_others,
   );
 
   let width = isNaN(card_width)
