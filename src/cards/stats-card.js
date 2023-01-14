@@ -35,7 +35,12 @@ const createTextNode = ({
   shiftValuePos,
   bold,
 }) => {
-  const kValue = kFormatter(value);
+  let kValue
+  if(isNaN(value)){
+    kValue = value
+  } else {
+    kValue = kFormatter(value)
+  }
   const staggerDelay = (index + 3) * 150;
 
   const labelOffset = showIcons ? `x="25"` : "";
