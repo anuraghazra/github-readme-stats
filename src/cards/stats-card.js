@@ -71,19 +71,19 @@ const createTextNode = ({
  */
 const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const {
-    name,
-    totalStars,
-    totalCommits,
-    totalIssues,
-    totalPRs,
-    contributedTo,
-    rank,
-    starsTitle,
-    commitsTitle,
-    issuesTitle,
-    PRsTitle,
-    contribsTitle,
-    title,
+    name = "GitHub User",
+    totalStars = "2018",
+    totalCommits = "29019",
+    totalIssues = "203",
+    totalPRs = "127",
+    contributedTo = "232",
+    rank = "S",
+    starsTitle = "Total Stars:",
+    commitsTitle = "Total Commits:",
+    issuesTitle = "Total Issues:",
+    PRsTitle = "Total PRs:",
+    contribsTitle = "Total Contributions:",
+    title = "Your GitHub Stats",
   } = stats;
   const {
     hide = [],
