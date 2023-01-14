@@ -54,7 +54,10 @@ export default async (req, res) => {
       totalIssues: req.query.totalIssues,
       totalPRs: req.query.totalPRs,
       contributedTo: req.query.contributedTo,
-      rank: req.query.rank,
+      rank: {
+        level: req.query.level,
+        score: req.query.score
+      },
       starsTitle: req.query.starsTitle,
       commitsTitle: req.query.commitsTitle,
       issuesTitle: req.query.issuesTitle,
