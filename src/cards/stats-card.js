@@ -76,26 +76,6 @@ const createTextNode = ({
  */
 const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const {
-    name = "GitHub User",
-    totalStars = "2018",
-    totalCommits = "29019",
-    totalIssues = "203",
-    totalPRs = "127",
-    contributedTo = "232",
-    rank = {
-      level: "S",
-      score: 10
-    },
-    starsTitle = i18n.t("statcard.totalstars"),
-    commitsTitle = `${i18n.t("statcard.commits")}${
-        include_all_commits ? "" : ` (${new Date().getFullYear()})`
-      }`,
-    issuesTitle = i18n.t("statcard.issues"),
-    PRsTitle = i18n.t("statcard.prs"),
-    contribsTitle = i18n.t("statcard.contribs") + " (last year)",
-    title = i18n.t("statcard.title"),
-  } = stats;
-  const {
     hide = [],
     show_icons = false,
     hide_title = false,
@@ -117,6 +97,26 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     locale,
     disable_animations = false,
   } = options;
+  const {
+    name = "GitHub User",
+    totalStars = "2018",
+    totalCommits = "29019",
+    totalIssues = "203",
+    totalPRs = "127",
+    contributedTo = "232",
+    rank = {
+      level: "S",
+      score: 10
+    },
+    starsTitle = i18n.t("statcard.totalstars"),
+    commitsTitle = `${i18n.t("statcard.commits")}${
+        include_all_commits ? "" : ` (${new Date().getFullYear()})`
+      }`,
+    issuesTitle = i18n.t("statcard.issues"),
+    PRsTitle = i18n.t("statcard.prs"),
+    contribsTitle = i18n.t("statcard.contribs") + " (last year)",
+    title = i18n.t("statcard.title"),
+  } = stats;
 
   const lheight = parseInt(String(line_height), 10);
 
