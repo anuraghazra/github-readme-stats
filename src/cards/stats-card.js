@@ -36,10 +36,10 @@ const createTextNode = ({
   bold,
 }) => {
   let kValue
-  if(isNaN(value)){
-    kValue = value
+  if (isNaN(value)) {
+    kValue = value;
   } else {
-    kValue = kFormatter(value)
+    kValue = kFormatter(value);
   }
   const staggerDelay = (index + 3) * 150;
 
@@ -86,12 +86,14 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       level: "S",
       score: 10
     },
-    starsTitle = "Total Stars",
-    commitsTitle = "Total Commits",
-    issuesTitle = "Total Issues",
-    PRsTitle = "Total PRs",
-    contribsTitle = "Total Contributions",
-    title = "Your GitHub Stats",
+    starsTitle = i18n.t("statcard.totalstars"),
+    commitsTitle = `${i18n.t("statcard.commits")}${
+        include_all_commits ? "" : ` (${new Date().getFullYear()})`
+      }`,
+    issuesTitle = i18n.t("statcard.issues"),
+    PRsTitle = i18n.t("statcard.prs"),
+    contribsTitle = i18n.t("statcard.contribs") + " (last year)",
+    title = i18n.t("statcard.title"),
   } = stats;
   const {
     hide = [],
@@ -222,7 +224,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   });
 
   const calculateTextWidth = () => {
-    return measureText(title);
+    return measureText(custom_title ? custom_title : title);
   };
 
   /*
@@ -304,9 +306,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const labels = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
     .map((key) => {
-      if (key === "commits") {
-        return commitsTitle;
-      }
       return `${STATS[key].label}: ${STATS[key].value}`;
     })
     .join(", ");
