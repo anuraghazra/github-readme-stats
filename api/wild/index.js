@@ -1,5 +1,4 @@
 import { renderStatsCard } from "../src/cards/stats-card.js";
-import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
   CONSTANTS,
@@ -7,20 +6,15 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { fetchStats } from "../src/fetchers/stats-fetcher.js";
-import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
   const {
-    username,
     hide,
     hide_title,
     hide_border,
     card_width,
     hide_rank,
     show_icons,
-    count_private,
-    include_all_commits,
     line_height,
     title_color,
     ring_color,
@@ -30,22 +24,12 @@ export default async (req, res) => {
     bg_color,
     theme,
     cache_seconds,
-    exclude_repo,
     custom_title,
-    locale,
     disable_animations,
     border_radius,
     border_color,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
-
-  if (blacklist.includes(username)) {
-    return res.send(renderError("Something went wrong"));
-  }
-
-  if (locale && !isLocaleAvailable(locale)) {
-    return res.send(renderError("Something went wrong", "Language not found"));
-  }
 
   try {
     const stats = {
@@ -87,7 +71,6 @@ export default async (req, res) => {
         hide_border: parseBoolean(hide_border),
         card_width: parseInt(card_width, 10),
         hide_rank: parseBoolean(hide_rank),
-        include_all_commits: parseBoolean(include_all_commits),
         line_height,
         title_color,
         ring_color,
@@ -99,7 +82,6 @@ export default async (req, res) => {
         custom_title,
         border_radius,
         border_color,
-        locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
       }),
     );
