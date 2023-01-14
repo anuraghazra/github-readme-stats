@@ -77,12 +77,15 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     totalIssues = "203",
     totalPRs = "127",
     contributedTo = "232",
-    rank = "S",
-    starsTitle = "Total Stars:",
-    commitsTitle = "Total Commits:",
-    issuesTitle = "Total Issues:",
-    PRsTitle = "Total PRs:",
-    contribsTitle = "Total Contributions:",
+    rank = {
+      level: "S",
+      score: 90
+    },
+    starsTitle = "Total Stars",
+    commitsTitle = "Total Commits",
+    issuesTitle = "Total Issues",
+    PRsTitle = "Total PRs",
+    contribsTitle = "Total Contributions",
     title = "Your GitHub Stats",
   } = stats;
   const {
