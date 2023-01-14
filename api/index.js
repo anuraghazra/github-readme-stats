@@ -49,19 +49,19 @@ export default async (req, res) => {
 
   try {
     const stats = {
-      totalStars,
-      totalCommits,
-      totalIssues,
-      totalPRs,
-      contributedTo,
-      rank,
-      starsTitle,
-      commitsTitle,
-      issuesTitle,
-      PRsTitle,
-      contribsTitle,
-      title,
-    } = req.query;
+      totalStars: req.query.totalStars,
+      totalCommits: req.query.totalCommits,
+      totalIssues: req.query.totalIssues,
+      totalPRs: req.query.totalPRs,
+      contributedTo: req.query.contributedTo,
+      rank: req.query.rank,
+      starsTitle: req.query.starsTitle,
+      commitsTitle: req.query.commitsTitle,
+      issuesTitle: req.query.issuesTitle,
+      PRsTitle: req.query.PRsTitle,
+      contribsTitle: req.query.contribsTitle,
+      title: req.query.title,
+    };
 
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
