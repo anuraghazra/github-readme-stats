@@ -58,7 +58,12 @@ export default async (req, res) => {
       cacheSeconds = CONSTANTS.FOUR_HOURS;
     }
 
-    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${
+        cacheSeconds / 2
+      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    );
 
     return res.send(
       renderRepoCard(repoData, {
@@ -75,6 +80,7 @@ export default async (req, res) => {
       }),
     );
   } catch (err) {
+    res.setHeader("Cache-Control", `no-cache, no-store, must-revalidate`); // Don't cache error responses.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };
