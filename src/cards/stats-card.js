@@ -79,7 +79,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     contributedTo = "232",
     rank = {
       level: "S",
-      score: 90
+      score: 10
     },
     starsTitle = "Total Stars",
     commitsTitle = "Total Commits",
