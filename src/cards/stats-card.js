@@ -98,7 +98,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     disable_animations = false,
   } = options;
   
-  const name = stats.name || "GitHub User",
+  const name = stats.name || "GitHub User"
   
   const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
     ? ""
