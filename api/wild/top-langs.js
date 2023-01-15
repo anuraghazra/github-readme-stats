@@ -28,23 +28,32 @@ export default async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    const topLangs = req.query.top_langs ? req.query.top_langs.split(",") : [
-      {
-        name: "Javascript",
-        size: 50,
-        color: "#4287f5",
-      },
-      {
-        name: "Python",
-        size: 30,
-        color: "#eb4034",
-      },
-      {
-        name: "Ruby",
-        size: 20,
-        color: "#32a852",
-      }
-    ];
+    let topLangs = []
+    if (req.query.top_langs) {
+      const split = req.query.top_langs.split(",");
+      split.forEach(lang => {
+        topLangs.push(JSON.parse(lang))
+      });
+    } else {
+      topLangs = [
+        {
+          name: "Javascript",
+          size: 50,
+          color: "#4287f5",
+        },
+        {
+          name: "Python",
+          size: 30,
+          color: "#eb4034",
+        },
+        {
+          name: "Ruby",
+          size: 20,
+          color: "#32a852",
+        }
+      ];
+    }
+      
     const title = req.query.title || "Most Used Languages";
 
     const cacheSeconds = clampValue(
