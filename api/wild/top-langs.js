@@ -28,7 +28,7 @@ export default async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    const topLangs = req.query.top_langs.split(",") || [
+    const topLangs = req.query.top_langs ? req.query.top_langs.split(",") : [
       {
         name: "Javascript",
         size: 50,
