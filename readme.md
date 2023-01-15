@@ -133,7 +133,7 @@ You can add the count of all your private contributions to the total commits cou
 
 ### Showing icons
 
-To enable icons, you can pass `show_icons=true` in the query param, like so:
+To enable icons, you can pass `&show_icons=true` in the query param, like so:
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
