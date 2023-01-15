@@ -24,7 +24,6 @@ export default async (req, res) => {
     bg_color,
     theme,
     cache_seconds,
-    custom_title,
     disable_animations,
     border_radius,
     border_color,
@@ -33,20 +32,20 @@ export default async (req, res) => {
 
   try {
     const stats = {
-      totalStars: req.query.totalStars,
-      totalCommits: req.query.totalCommits,
-      totalIssues: req.query.totalIssues,
-      totalPRs: req.query.totalPRs,
-      contributedTo: req.query.contributedTo,
+      totalStars: req.query.total_stars,
+      totalCommits: req.query.total_commits,
+      totalIssues: req.query.total_issues,
+      totalPRs: req.query.total_prs,
+      contributedTo: req.query.total_contribs,
       rank: {
         level: req.query.level || 'S',
         score: req.query.score || 10
       },
-      starsTitle: req.query.starsTitle,
-      commitsTitle: req.query.commitsTitle,
-      issuesTitle: req.query.issuesTitle,
-      PRsTitle: req.query.PRsTitle,
-      contribsTitle: req.query.contribsTitle,
+      starsTitle: req.query.stars_title,
+      commitsTitle: req.query.commits_title,
+      issuesTitle: req.query.issues_title,
+      PRsTitle: req.query.prs_title,
+      contribsTitle: req.query.contribs_title,
       title: req.query.title,
     };
 
@@ -79,7 +78,6 @@ export default async (req, res) => {
         text_bold: parseBoolean(text_bold),
         bg_color,
         theme,
-        custom_title,
         border_radius,
         border_color,
         disable_animations: parseBoolean(disable_animations),
