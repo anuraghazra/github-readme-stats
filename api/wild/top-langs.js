@@ -28,7 +28,24 @@ export default async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   try {
-    const topLangs = req.query.top_langs.split(",");
+    const topLangs = req.query.top_langs.split(",") || [
+      {
+        name: "Javascript",
+        size: 50,
+        color: "#4287f5",
+      },
+      {
+        name: "Python",
+        size: 30,
+        color: "#eb4034",
+      },
+      {
+        name: "Ruby",
+        size: 20,
+        color: "#32a852",
+      }
+    ];
+    const title = req.query.title || "Most Used Languages";
 
     const cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
@@ -58,6 +75,7 @@ export default async (req, res) => {
         border_radius,
         border_color,
         locale: locale ? locale.toLowerCase() : null,
+        title,
       }),
     );
   } catch (err) {
