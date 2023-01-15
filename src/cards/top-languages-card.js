@@ -261,6 +261,12 @@ const useLanguages = (topLangs, hide, langs_count) => {
  * @returns {string} Language card SVG object.
  */
 const renderTopLanguages = (topLangs, options = {}) => {
+  const locale = options.locale
+  const i18n = new I18n({
+    locale,
+    translations: langCardLocales,
+  });
+  
   const {
     hide_title = false,
     hide_border,
@@ -272,16 +278,11 @@ const renderTopLanguages = (topLangs, options = {}) => {
     theme,
     layout,
     custom_title,
-    locale,
     langs_count = DEFAULT_LANGS_COUNT,
     border_radius,
     border_color,
+    title = i18n.t("langcard.title"),
   } = options;
-
-  const i18n = new I18n({
-    locale,
-    translations: langCardLocales,
-  });
 
   const { langs, totalLanguageSize } = useLanguages(
     topLangs,
@@ -317,7 +318,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: i18n.t("langcard.title"),
+    defaultTitle: title,
     width,
     height,
     border_radius,
