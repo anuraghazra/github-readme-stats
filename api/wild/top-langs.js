@@ -30,7 +30,7 @@ export default async (req, res) => {
   try {
     let topLangs = []
     if (req.query.top_langs) {
-      const split = req.query.top_langs.split(",");
+      const split = req.query.top_langs.split(";");
       split.forEach(lang => {
         topLangs.push(JSON.parse(lang))
       });
