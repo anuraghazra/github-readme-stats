@@ -1,11 +1,11 @@
-import { renderTopLanguages } from "../src/cards/top-languages-card.js";
+import { renderTopLanguages } from "../../src/cards/top-languages-card.js";
 import {
   clampValue,
   CONSTANTS,
   parseArray,
   parseBoolean,
   renderError,
-} from "../src/common/utils.js";
+} from "../../src/common/utils.js";
 
 export default async (req, res) => {
   const {
