@@ -78,7 +78,6 @@ export default async (req, res) => {
         langs_count: topLangs.length,
         border_radius,
         border_color,
-        locale: locale ? locale.toLowerCase() : null,
         title,
       }),
     );
