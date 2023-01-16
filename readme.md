@@ -78,7 +78,7 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
 
 </p>
 
-# Features
+# Features:
 
 -   [GitHub Stats Card](#github-stats-card)
 -   [GitHub Extra Pins](#github-extra-pins)
