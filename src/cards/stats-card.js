@@ -10,7 +10,7 @@ import {
   measureText,
 } from "../common/utils.js";
 import { getStyles } from "../common/getStyles.js";
-import { statCardLocales } from "../assets/translations.js";
+import { statCardLocales } from "../translations.js";
 
 /**
  * Create a stats card text item.

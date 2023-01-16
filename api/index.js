@@ -8,7 +8,7 @@ import {
   renderError,
 } from "../src/common/utils.js";
 import { fetchStats } from "../src/fetchers/stats-fetcher.js";
-import { isLocaleAvailable } from "../src/assets/translations.js";
+import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
   const {

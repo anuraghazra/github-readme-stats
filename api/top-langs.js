@@ -8,7 +8,7 @@ import {
   renderError,
 } from "../src/common/utils.js";
 import { fetchTopLanguages } from "../src/fetchers/top-languages-fetcher.js";
-import { isLocaleAvailable } from "../src/assets/translations.js";
+import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
   const {
