@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { calculateRank } from "../src/calculateRank.js";
+import { calculateRank } from "../src/common/calculateRank.js";
 
 describe("Test calculateRank", () => {
   it("should calculate rank correctly", () => {

@@ -8,7 +8,7 @@ import {
   getCardColors,
   lowercaseTrim,
 } from "../common/utils.js";
-import { getStyles } from "../getStyles.js";
+import { getStyles } from "../common/getStyles.js";
 import { wakatimeCardLocales } from "../translations.js";
 
 /** Import language colors.

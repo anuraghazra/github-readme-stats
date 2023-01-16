@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { calculateRank } from "../src/calculateRank.js";
+import { calculateRank } from "../src/common/calculateRank.js";
 import { fetchStats } from "../src/fetchers/stats-fetcher.js";
 
 const data = {
