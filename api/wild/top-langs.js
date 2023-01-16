@@ -37,7 +37,7 @@ export default async (req, res) => {
         topLangs.push({
           name,
           size,
-          color,
+          color: `#${color}`,
           text,
         });
       });
