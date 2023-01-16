@@ -28,7 +28,16 @@ export default async (req, res) => {
     if (req.query.langs) {
       const split = req.query.langs.split(";");
       split.forEach(lang => {
-        topLangs.push(JSON.parse(decodeURIComponent(lang)))
+        let {
+          name = "No Name",
+          size = "0",
+          color,
+        } = JSON.parse(decodeURIComponent(lang))
+        topLangs.push({
+          name,
+          size,
+          color,
+        });
       });
     } else {
       topLangs = [
