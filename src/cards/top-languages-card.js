@@ -53,7 +53,7 @@ const createProgressTextNode = ({ width, color, name, progress, text }) => {
 
   return `
     <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
-    <text x="${progressTextX}" y="34" class="lang-name">${'test'}</text>
+    <text x="${progressTextX}" y="34" class="lang-name">${text}</text>
     ${createProgressNode({
       x: 0,
       y: 25,
