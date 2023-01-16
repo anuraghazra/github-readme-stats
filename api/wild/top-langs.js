@@ -32,7 +32,7 @@ export default async (req, res) => {
     if (req.query.top_langs) {
       const split = req.query.top_langs.split(";");
       split.forEach(lang => {
-        topLangs.push(JSON.parse(lang))
+        topLangs.push(JSON.parse(decodeURIComponent(lang)))
       });
     } else {
       topLangs = [
