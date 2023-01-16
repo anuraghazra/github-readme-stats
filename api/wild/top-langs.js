@@ -18,9 +18,6 @@ export default async (req, res) => {
     theme,
     cache_seconds,
     layout,
-    exclude_repo,
-    custom_title,
-    locale,
     border_radius,
     border_color,
   } = req.query;
