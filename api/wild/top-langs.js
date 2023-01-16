@@ -33,11 +33,12 @@ export default async (req, res) => {
           size = "0",
           color,
           text,
-        } = JSON.parse(decodeURIComponent(lang))
+        } = JSON.parse(lang)
         topLangs.push({
           name,
           size,
           color,
+          text,
         });
       });
     } else {
