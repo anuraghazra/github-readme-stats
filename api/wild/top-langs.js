@@ -32,6 +32,7 @@ export default async (req, res) => {
           name = "No Name",
           size = "0",
           color,
+          text,
         } = JSON.parse(decodeURIComponent(lang))
         topLangs.push({
           name,
