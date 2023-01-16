@@ -9,7 +9,6 @@ import {
 
 export default async (req, res) => {
   const {
-    hide,
     hide_title,
     hide_border,
     card_width,
