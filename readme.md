@@ -548,7 +548,7 @@ Colors are passed as hex codes without the `#` character. For example, `ffffff`.
 
 Parameters like `total_stars` and `forks` can accept both numbers and text. If a number is given, it will automatically be formatted to use k-notation for thousands.
 
-Parameters that apply only to the main API such as `username`, `repo`, `show_owner`, `locale, etc won't work for this API. Other parameters like `layout` and `text_color` ***will*** work.
+Parameters that apply only to the main API such as `username`, `repo`, `show_owner`, `locale`, etc won't work for this API. Other parameters like `layout` and `text_color` ***will*** work.
 
 The new parameters that have been added are explained above (shown in the images). Parameters are lowercase snake-cased like for the main API.
 
