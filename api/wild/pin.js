@@ -31,7 +31,7 @@ export default async (req, res) => {
       },
       starCount: req.query.stars || 12838,
       forkCount: req.query.forks || 8929,
-      highlight: req.query.highlight || "😎",
+      highlight: req.query.highlight || "AWESOME",
     };
 
     let cacheSeconds = clampValue(
