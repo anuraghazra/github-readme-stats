@@ -105,6 +105,15 @@ const renderRepoCard = (repo, options = {}) => {
     translations: repoCardLocales,
   });
   
+  const colors = getCardColors({
+    title_color,
+    icon_color,
+    text_color,
+    bg_color,
+    border_color,
+    theme,
+  });
+  
   const {
     name,
     nameWithOwner,
@@ -139,14 +148,6 @@ const renderRepoCard = (repo, options = {}) => {
     (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
 
   // returns theme based colors with proper overrides and defaults
-  const colors = getCardColors({
-    title_color,
-    icon_color,
-    text_color,
-    bg_color,
-    border_color,
-    theme,
-  });
 
   const svgLanguage = primaryLanguage
     ? createLanguageNode(langName, langColor)
