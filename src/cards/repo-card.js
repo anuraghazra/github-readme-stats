@@ -127,7 +127,7 @@ const renderRepoCard = (repo, options = {}) => {
   
   const highlight = repo.highlight
         ? // @ts-ignore
-          getBadgeSVG(repo.highlight)
+          getBadgeSVG(repo.highlight, colors.textColor)
         : isTemplate
         ? // @ts-ignore
           getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
