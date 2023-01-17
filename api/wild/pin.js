@@ -27,7 +27,7 @@ export default async (req, res) => {
       description: req.query.description || "What an awesome repo!",
       primaryLanguage: {
         name: req.query.footer || "Awesome",
-        color: `#${req.query.badge}` || "#4287f5",
+        color: req.query.badge ? `#${req.query.badge}` : "#4287f5",
       },
       starCount: req.query.stars || 12838,
       forkCount: req.query.forks || 8929,
