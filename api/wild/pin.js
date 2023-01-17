@@ -1,10 +1,10 @@
-import { renderRepoCard } from "../src/cards/repo-card.js";
+import { renderRepoCard } from "../../src/cards/repo-card.js";
 import {
   clampValue,
   CONSTANTS,
   parseBoolean,
   renderError,
-} from "../src/common/utils.js";
+} from "../../src/common/utils.js";
 
 export default async (req, res) => {
   const {
@@ -23,15 +23,15 @@ export default async (req, res) => {
 
   try {
     const repoData = {
-      name: req.query.title,
-      description: req.query.description,
+      name: req.query.title || "awesome/repo",
+      description: req.query.description || "What an awesome repo!",
       primaryLanguage: {
-        name: req.query.footer,
-        color: `#${req.query.badge}`,
+        name: req.query.footer || "Awesome",
+        color: `#${req.query.badge}` || "#4287f5",
       },
-      starCount: req.query.stars,
-      forkCount: req.query.forks,
-      highlight: req.query.highlight,
+      starCount: req.query.stars || 12838,
+      forkCount: req.query.forks || 8929,
+      highlight: req.query.highlight || "😎",
     };
 
     let cacheSeconds = clampValue(
