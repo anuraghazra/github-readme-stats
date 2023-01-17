@@ -123,20 +123,18 @@ const renderRepoCard = (repo, options = {}) => {
     isTemplate,
     starCount,
     forkCount,
-    highlight,
   } = repo;
   
-  if (!highlight) {
-    highlight = isTemplate
+  const highlight = repo.highlight
+        ? // @ts-ignore
+          getBadgeSVG(repo.highlight)
+        : isTemplate
         ? // @ts-ignore
           getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
         : isArchived
         ? // @ts-ignore
           getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
         : ""
-  } else {
-    highlight = getBadgeSVG(highlight); 
-  }
 
   const lineHeight = 10;
   const header = show_owner ? nameWithOwner : name;
