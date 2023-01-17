@@ -88,16 +88,6 @@ const iconWithLabel = (icon, label, testid) => {
  */
 const renderRepoCard = (repo, options = {}) => {
   const {
-    name,
-    nameWithOwner,
-    description,
-    primaryLanguage,
-    isArchived,
-    isTemplate,
-    starCount,
-    forkCount,
-  } = repo;
-  const {
     hide_border = false,
     title_color,
     icon_color,
@@ -109,6 +99,29 @@ const renderRepoCard = (repo, options = {}) => {
     border_color,
     locale,
   } = options;
+  
+  const i18n = new I18n({
+    locale,
+    translations: repoCardLocales,
+  });
+  
+  const {
+    name,
+    nameWithOwner,
+    description,
+    primaryLanguage,
+    isArchived,
+    isTemplate,
+    starCount,
+    forkCount,
+    highlight = isTemplate
+        ? // @ts-ignore
+          getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
+        : isArchived
+        ? // @ts-ignore
+          getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
+        : "",
+  } = repo;
 
   const lineHeight = 10;
   const header = show_owner ? nameWithOwner : name;
@@ -124,11 +137,6 @@ const renderRepoCard = (repo, options = {}) => {
 
   const height =
     (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
-
-  const i18n = new I18n({
-    locale,
-    translations: repoCardLocales,
-  });
 
   // returns theme based colors with proper overrides and defaults
   const colors = getCardColors({
@@ -181,13 +189,7 @@ const renderRepoCard = (repo, options = {}) => {
 
   return card.render(`
     ${
-      isTemplate
-        ? // @ts-ignore
-          getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
-        : isArchived
-        ? // @ts-ignore
-          getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
-        : ""
+      highlight
     }
 
     <text class="description" x="25" y="-5">
