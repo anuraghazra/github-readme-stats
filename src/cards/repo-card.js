@@ -200,9 +200,7 @@ const renderRepoCard = (repo, options = {}) => {
   `);
 
   return card.render(`
-    ${
-      highlight
-    }
+    ${highlight}
 
     <text class="description" x="25" y="-5">
       ${descriptionSvg}
