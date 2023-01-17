@@ -515,7 +515,7 @@ Additionally, the `score` parameter must be given a value from `0` to `100` wher
 
 ### `/api/wild/top-langs/`
 
-<img src="https://github-readme-stats.zohan.tech/api/wild/top-langs?theme=dracula&hide_border=true&title=title&langs={%22name%22:%22Category1%22,%22size%22:30,%22color%22:%224287f5%22,%22text%22:%223 thousand%22};{%22name%22:%22Category2%22,%22size%22:20,%22color%22:%22fcba03%22,%22text%22:%222 thousand%22}">
+<img src="https://github-readme-stats.zohan.tech/api/wild/top-langs?theme=dracula&hide_border=true&title=title&langs={%22name%22:%22Category1%22,%22size%22:30,%22color%22:%224287f5%22,%22text%22:%223%20thousand%22};{%22name%22:%22Category2%22,%22size%22:20,%22color%22:%22fcba03%22,%22text%22:%222%20thousand%22}">
 
 Here, the languages are defined using the `langs` parameter. It is of the following format (JSON with `;` separating the objects):
 ```json
