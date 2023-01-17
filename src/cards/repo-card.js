@@ -151,9 +151,20 @@ const renderRepoCard = (repo, options = {}) => {
   const svgLanguage = primaryLanguage
     ? createLanguageNode(langName, langColor)
     : "";
-
-  const totalStars = kFormatter(starCount);
-  const totalForks = kFormatter(forkCount);
+  
+  let totalStars
+  let totalForks
+  if (isNaN(starCount)) {
+    totalStars = starCount;
+  } else {
+    totalStars = kFormatter(starCount);
+  }
+  if (isNaN(forkCount)) {
+    totalForks = forkCount;
+  } else {
+    totalForks = kFormatter(forkCount);
+  }
+  
   const svgStars = iconWithLabel(icons.star, totalStars, "stargazers");
   const svgForks = iconWithLabel(icons.fork, totalForks, "forkcount");
 
