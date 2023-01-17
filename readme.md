@@ -552,7 +552,7 @@ Parameters that apply only to the main API such as `username`, `repo`, `show_own
 
 The new parameters that have been added are explained above (shown in the images). Parameters are lowercase snake-cased like for the main API.
 
-Finally, no parameter is required (yay!) :) If essential parameters like `total_stars` aren't given, random values will be used, which is not very useful, but this is so that no errors are formed!
+Finally, no parameter is required, and parameters that aren't given will default to the most sensible option (original titles, ambigous descriptions, theme-based colors, and fake numbers).
 
 ## Deploy on your own Vercel instance
 
