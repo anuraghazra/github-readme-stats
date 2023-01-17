@@ -1,0 +1,19 @@
+name: Deployment Prep
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  config:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set theme
+        run: python ./.github/workflows/deploy-prep.py
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: vercel
+          create_branch: true
+          push_options: '--force'
