@@ -1,7 +1,7 @@
 /**
  * Calculates the probability of x taking on x or a value less than x in a normal distribution
  * with mean and standard deviation.
- *
+ * //////
  * @see https://stackoverflow.com/a/5263759/10629172
  *
  * @param {string} mean The mean of the normal distribution.
