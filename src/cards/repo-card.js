@@ -134,6 +134,8 @@ const renderRepoCard = (repo, options = {}) => {
         ? // @ts-ignore
           getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
         : ""
+  } else {
+    highlight = getBadgeSVG(highlight); 
   }
 
   const lineHeight = 10;
