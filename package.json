@@ -29,6 +29,7 @@
     "generate-langs-json": "node scripts/generate-langs-json",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "express": "node express/index.js",
     "prepare": "husky install"
   },
   "author": "Anurag Hazra",
@@ -61,5 +62,8 @@
   },
   "lint-staged": {
     "*.{js,css,md}": "prettier --write"
+  },
+  "optionalDependencies": {
+    "express": "4.18.2"
   }
 }
