@@ -37,7 +37,6 @@ const httpsPort = getEnv(ENVS.HTTPS_PORT, 3443);
 
 if (
   getEnv(ENVS.REDIRECT_HTTPS, "true") === "true"
-  && getEnv(ENVS.HTTPS_PORT)
   && getEnv(ENVS.HTTPS_KEY)
   && getEnv(ENVS.HTTPS_CERT)
 ) {
