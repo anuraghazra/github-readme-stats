@@ -11,17 +11,30 @@ import express from "express";
 
 import { getEnv } from "../src/common/utils"
 
+const ENVS = {
+  PORT: "PORT",
+  HTTPS_PORT: "HTTPS_PORT",
+  REDIRECT_HTTPS: "REDIRECT_HTTPS",
+  HTTPS_KEY: "HTTPS_KEY",
+  HTTPS_CERT: "HTTPS_CERT",
+}
+
 const vercelConfig = JSON.parse(readFileSync("./vercel.json", "utf8"));
 const vercelFunctions = Object.keys(vercelConfig.functions);
 
 const files = vercelFunctions.map((gl) => glob.sync(gl)).flat();
 await loadApiRoutes(files);
 
-const httpPort = getEnv("PORT", 3000);
-const httpsPort = getEnv("HTTPS_PORT", 3443);
+const httpPort = getEnv(ENVS.PORT, 3000);
+const httpsPort = getEnv(ENVS.HTTPS_PORT, 3443);
 const app = express();
 
-if (getEnv("REDIRECT_HTTPS", "true") === "true") {
+if (
+  getEnv(ENVS.REDIRECT_HTTPS, "true") === "true"
+  && getEnv(ENVS.HTTPS_PORT)
+  && getEnv(ENVS.HTTPS_KEY)
+  && getEnv(ENVS.HTTPS_CERT)
+) {
   app.use("*", redirectHttps);
 }
 
@@ -113,10 +126,10 @@ class Server {
  *   key: typeof import("buffer").Buffer
  * }} The certificate and key.
  */
-function loadTLS(params) {
-  if (!getEnv("HTTPS_KEY") || !getEnv("HTTPS_CERT")) return null
+function loadTLS() {
+  if (!getEnv(ENVS.HTTPS_KEY) || !getEnv(ENVS.HTTPS_CERT)) return null
   return {
-    key: readFileSync(getEnv("HTTPS_KEY")),
-    cert: readFileSync(getEnv("HTTPS_CERT")),
+    key: readFileSync(getEnv(ENVS.HTTPS_KEY)),
+    cert: readFileSync(getEnv(ENVS.HTTPS_CERT)),
   }
 }
