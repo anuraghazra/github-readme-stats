@@ -38,7 +38,7 @@ const LANGS_DATA = {
     size: 930,
   },
   JavaScript: {
-    color: "#3572A5",
+    color: "#f1e05a",
     name: "JavaScript",
     size: 1912,
   },
