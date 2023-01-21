@@ -375,13 +375,13 @@ export const themes = {
     bg_color: "170F0C",
   },
   python: {
-    title_color: "4584b6",
+    title_color: "ffde57",
     icon_color: "ffde57",
-    text_color: "4584b6",
+    text_color: "ffde57",
     bg_color: "646464",
   },
   pyqt_green: {
-    title_color: "#41cd52",
+    title_color: "41cd52",
     icon_color: "41cd52",
     text_color: "41cd52",
     bg_color: "09102b",
