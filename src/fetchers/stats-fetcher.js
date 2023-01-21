@@ -12,53 +12,57 @@ import {
 } from "../common/utils.js";
 
 // GraphQL queries.
-const GRAPHQL_REPOS_STRING = `repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
-      totalCount
-      nodes {
-        name
-        stargazers {
-          totalCount
-        }
+const GRAPHQL_REPOS_FIELD = `
+  repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
+    totalCount
+    nodes {
+      name
+      stargazers {
+        totalCount
       }
-      pageInfo {
-        hasNextPage
-        endCursor
-      }
-    }`;
-const GRAPHQL_REPOS_QUERY = `
-query userInfo($login: String!, $after: String) {
-  user(login: $login) {
-    ${GRAPHQL_REPOS_STRING}
+    }
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
   }
-}
 `;
-const GRAPHQL_STATS_QUERY = `
-query userInfo($login: String!, $after: String) {
-  user(login: $login) {
-    name
-    login
-    contributionsCollection {
-      totalCommitContributions
-      restrictedContributionsCount
+
+const GRAPHQL_REPOS_QUERY = `
+  query userInfo($login: String!, $after: String) {
+    user(login: $login) {
+      ${GRAPHQL_REPOS_FIELD}
     }
-    repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
-      totalCount
-    }
-    pullRequests(first: 1) {
-      totalCount
-    }
-    openIssues: issues(states: OPEN) {
-      totalCount
-    }
-    closedIssues: issues(states: CLOSED) {
-      totalCount
-    }
-    followers {
-      totalCount
-    }
-    ${GRAPHQL_REPOS_STRING}
   }
-}
+`;
+
+const GRAPHQL_STATS_QUERY = `
+  query userInfo($login: String!, $after: String) {
+    user(login: $login) {
+      name
+      login
+      contributionsCollection {
+        totalCommitContributions
+        restrictedContributionsCount
+      }
+      repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
+        totalCount
+      }
+      pullRequests(first: 1) {
+        totalCount
+      }
+      openIssues: issues(states: OPEN) {
+        totalCount
+      }
+      closedIssues: issues(states: CLOSED) {
+        totalCount
+      }
+      followers {
+        totalCount
+      }
+      ${GRAPHQL_REPOS_FIELD}
+    }
+  }
 `;
 
 /**
