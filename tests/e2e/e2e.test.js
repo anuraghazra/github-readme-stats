@@ -11,7 +11,7 @@ import { renderStatsCard } from "../../src/cards/stats-card.js";
 import { renderTopLanguages } from "../../src/cards/top-languages-card.js";
 import { renderWakatimeCard } from "../../src/cards/wakatime-card.js";
 
-const REPO = "cra-test";
+const REPO = "curly-fiesta";
 const USER = "catelinemnemosyne";
 const STATS_DATA = {
   name: "Cateline Mnemosyne",
