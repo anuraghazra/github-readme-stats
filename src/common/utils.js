@@ -424,6 +424,17 @@ const parseEmojis = (str) => {
   });
 };
 
+/**
+ * Attempts to load an environment variable, returning the default value if
+ * the variable is not set.
+ * @param {string} name The name of the environment variable.
+ * @param {string} defaultValue The default value to return if the variable is not set.
+ * @returns {string | undefined} The value of the environment variable, or the default value.
+ */
+function getEnv(name, defaultValue) {
+  return process.env[name] || defaultValue;
+}
+
 export {
   ERROR_CARD_LENGTH,
   renderError,
@@ -447,4 +458,5 @@ export {
   lowercaseTrim,
   chunkArray,
   parseEmojis,
+  getEnv as env,
 };
