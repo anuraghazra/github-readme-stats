@@ -171,13 +171,18 @@ describe("Test /api/", () => {
     ]);
   });
 
-  it("should not store cache when error", async () => {
+  it("should set shorter cache when error", async () => {
     const { req, res } = faker({}, error);
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `no-cache, no-store, must-revalidate`],
+      [
+        "Cache-Control",
+        `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
+          CONSTANTS.ERROR_CACHE_SECONDS
+        }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      ],
     ]);
   });
 

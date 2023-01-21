@@ -1,6 +1,6 @@
 import { jest } from "@jest/globals";
 import "@testing-library/jest-dom";
-import { retryer } from "../src/common/retryer.js";
+import { retryer, RETRIES } from "../src/common/retryer.js";
 import { logger } from "../src/common/utils.js";
 
 const fetcher = jest.fn((variables, token) => {
@@ -45,7 +45,7 @@ describe("Test Retryer", () => {
     try {
       res = await retryer(fetcherFail, {});
     } catch (err) {
-      expect(fetcherFail).toBeCalledTimes(8);
+      expect(fetcherFail).toBeCalledTimes(RETRIES + 1);
       expect(err.message).toBe("Maximum retries exceeded");
     }
   });
