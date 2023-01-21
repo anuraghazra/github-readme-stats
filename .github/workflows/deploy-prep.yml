@@ -16,4 +16,4 @@ jobs:
         with:
           branch: vercel
           create_branch: true
-          push_options: '--force'
+          push_options: "--force"
