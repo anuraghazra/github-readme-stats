@@ -275,7 +275,7 @@ describe("Test /api/", () => {
         text_color: "fff",
         bg_color: "fff",
       },
-      data,
+      data_stats,
     );
 
     await api(req, res);

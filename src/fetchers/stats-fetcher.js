@@ -70,7 +70,7 @@ const GRAPHQL_STATS_QUERY = `
  *
  * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
  * @param {string} token GitHub token.
- * @returns {Promise<Object>} Stats fetcher response.
+ * @returns {Promise<import('../common/types').Fetcher>} Stats fetcher response.
  */
 const fetcher = (variables, token) => {
   const query = !variables.after ? GRAPHQL_STATS_QUERY : GRAPHQL_REPOS_QUERY;
@@ -89,7 +89,7 @@ const fetcher = (variables, token) => {
  * Fetch stats information for a given username.
  *
  * @param {string} username Github username.
- * @returns {Promise<Object>} GraphQL Stats object.
+ * @returns {Promise<import('../common/types').StatsFetcher>} GraphQL Stats object.
  *
  * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
  */
@@ -256,7 +256,7 @@ const fetchStats = async (
       return prev + curr.stargazers.totalCount;
     }, 0);
 
-  // @ts-ignore
+  // @ts-ignore // TODO: Fix this.
   stats.rank = calculateRank({
     totalCommits: stats.totalCommits,
     totalRepos: user.repositories.totalCount,
