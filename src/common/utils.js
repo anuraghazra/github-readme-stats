@@ -458,5 +458,5 @@ export {
   lowercaseTrim,
   chunkArray,
   parseEmojis,
-  getEnv as env,
+  getEnv,
 };

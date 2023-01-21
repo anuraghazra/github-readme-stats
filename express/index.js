@@ -9,7 +9,7 @@ import https from "https";
 import glob from "glob";
 import express from "express";
 
-import { getEnv } from "../src/common/utils"
+import { getEnv } from "../src/common/utils.js";
 
 const ENVS = {
   PORT: "PORT",
@@ -22,12 +22,13 @@ const ENVS = {
 const vercelConfig = JSON.parse(readFileSync("./vercel.json", "utf8"));
 const vercelFunctions = Object.keys(vercelConfig.functions);
 
+const app = express();
+
 const files = vercelFunctions.map((gl) => glob.sync(gl)).flat();
-await loadApiRoutes(files);
+await loadApiRoutes(app, files);
 
 const httpPort = getEnv(ENVS.PORT, 3000);
 const httpsPort = getEnv(ENVS.HTTPS_PORT, 3443);
-const app = express();
 
 if (
   getEnv(ENVS.REDIRECT_HTTPS, "true") === "true"
@@ -38,7 +39,7 @@ if (
   app.use("*", redirectHttps);
 }
 
-const server = new Server()
+const server = new Server(app)
 
 server.start(
   { http: httpPort, https: httpsPort },
@@ -49,10 +50,10 @@ server.start(
 );
 
 /**
- * Loads all api routes from the `api` directory.
+ * Loads all api routes from the given paths.
  * @param {string[]} files Api endpoint files.
  */
-async function loadApiRoutes(files) {
+async function loadApiRoutes(app, files) {
   for (const file of files) {
     const route = `/${file.replace(".js", "").replace("index", "")}`;
     console.log(`Loading route '${route}' with handler from '${file}'`);
@@ -78,42 +79,20 @@ function redirectHttps(req, res, next) {
 
 /**
  * Simple wrapper around `http` and `https` node module.
- * @class
+ * @returns {{ start: (options: { http: number, https: number }, cb: { http: () => void, https: () => void }) => void }}
  */
-class Server {
-  /**
-   * @member {http.Server} The http server.
-   */
-  http
-
-  /**
-   * @member {https.Server|undefined} The https server if any.
-   */
-  https
-
-  /**
-   * Creates a new server.
-   */
-  constructor() {
-    const tls = loadTLS();
-    if (tls) {
-      this.https = https.createServer(tls, app);
-    }
-    this.http = http.createServer(app);
+function Server (app) {
+  const tls = loadTLS();
+  if (tls) {
+    this.https = https.createServer(tls, app);
   }
-
-  /**
-   * Starts the server.
-   * @param {{ http: number, https?: number }} port The port to listen on.
-   * @param {{ http?: Function, https?: Function }} callback The callback to call when the server is ready.
-   * @returns {Promise<{ http: http.Server, https?: https.Server }>}
-   */
-  start(port, callback) {
+  this.http = http.createServer(app);
+  this.start = function (port, callback) {
     const result = {};
     if (this.https && port.https) {
-      res.https = this.https.listen(port.https, callback.https);
+      this.https = this.https.listen(port.https, callback.https);
     }
-    res.http = this.http.listen(port.http, callback.http);
+    this.http = this.http.listen(port.http, callback.http);
     return result;
   }
 }
