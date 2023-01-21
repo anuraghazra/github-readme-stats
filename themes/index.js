@@ -375,9 +375,9 @@ export const themes = {
     bg_color: "170F0C",
   },
   python: {
-    title_color: "ffde57",
-    icon_color: "ffde57",
-    text_color: "ffde57",
+    title_color: "FFD43B",
+    icon_color: "FFD43B",
+    text_color: "FFD43B",
     bg_color: "306998",
   },
   pyqt_green: {
