@@ -9,6 +9,7 @@ import https from "https";
 import glob from "glob";
 import express from "express";
 import helmet from "helmet";
+import morgan from "morgan";
 
 import { getEnv } from "../src/common/utils.js";
 
