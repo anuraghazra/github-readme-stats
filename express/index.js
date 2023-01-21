@@ -8,6 +8,7 @@ import http from "http";
 import https from "https";
 import glob from "glob";
 import express from "express";
+import helmet from "helmet";
 
 import { getEnv } from "../src/common/utils.js";
 
@@ -17,6 +18,9 @@ const ENVS = {
   REDIRECT_HTTPS: "REDIRECT_HTTPS",
   HTTPS_KEY: "HTTPS_KEY",
   HTTPS_CERT: "HTTPS_CERT",
+  USE_HELMET: "USE_HELMET",
+  USE_MORGAN: "USE_MORGAN",
+  MORGAN_FORMAT: "MORGAN_FORMAT",
 }
 
 const vercelConfig = JSON.parse(readFileSync("./vercel.json", "utf8"));
@@ -37,6 +41,14 @@ if (
   && getEnv(ENVS.HTTPS_CERT)
 ) {
   app.use("*", redirectHttps);
+}
+
+if (getEnv(ENVS.USE_HELMET, "true") === "true") {
+  app.use(helmet());
+}
+
+if (getEnv(ENVS.USE_MORGAN, "true") === "true") {
+  app.use(morgan(getEnv(ENVS.MORGAN_FORMAT, "combined")));
 }
 
 const server = new Server(app)

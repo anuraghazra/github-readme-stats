@@ -65,6 +65,8 @@
   },
   "optionalDependencies": {
     "express": "4.18.2",
-    "glob": "8.1.0"
+    "glob": "8.1.0",
+    "helmet": "6.0.1",
+    "morgan": "1.10.0"
   }
 }

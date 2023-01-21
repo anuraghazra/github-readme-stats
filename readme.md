@@ -559,11 +559,14 @@ but no error will be thrown if any are missing.
 The express server like the Vercel variant will require the `PAT_<n>` environment variables.
 In addition these optional environment variables can customize its behavior.
 
- - `PORT` - Will set the port for the http server.
- - `HTTPS_PORT` - Will set the port for the https server.
- - `REDIRECT_HTTPS` - If `true` any request to http will be redirected to https.
+ - `PORT` - Will set the port for the http server. Default `3000`.
+ - `HTTPS_PORT` - Will set the port for the https server. Default `3443`.
+ - `REDIRECT_HTTPS` - If `true` any request to http will be redirected to https. Default `true`.
  - `HTTPS_KEY` - Path to SSL/TLS key file. Relative to repo root or absolute.
  - `HTTPS_CERT` - Path to SSL/TLS cert file. Relative to repo root or absolute.
+ - `USE_HELMET` - Use the [helmet](https://www.npmjs.com/package/helmet) security middleware. Default `true`.
+ - `USE_MORGAN` - Use the [morgan](https://www.npmjs.com/package/morgan) logger middleware. Default `true`.
+ - `MORGAN_FORMAT` - Choose the morgan logger format. See [morgan](https://www.npmjs.com/package/morgan) docs. Default `combined`.
 
 # :sparkling_heart: Support the project
 
