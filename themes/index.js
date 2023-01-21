@@ -374,11 +374,11 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
-  python: {
-    title_color: "FFD43B",
-    icon_color: "FFD43B",
-    text_color: "FFD43B",
-    bg_color: "306998",
+  winter_night: {
+    title_color: "d6fffb",
+    icon_color: "d6fffb",
+    text_color: "d6fffb",
+    bg_color: "020b36",
   },
   pyqt_green: {
     title_color: "41cd52",
