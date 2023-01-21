@@ -62,7 +62,7 @@ const WAKATIME_DATA = {
 };
 
 const REPOSITORY_DATA = {
-  name: "cra-test",
+  name: REPO,
   nameWithOwner: `${USER}/cra-test`,
   isPrivate: false,
   isArchived: false,
