@@ -5,12 +5,11 @@ import githubUsernameRegex from "github-username-regex";
 import { calculateRank } from "../calculateRank.js";
 import { retryer } from "../common/retryer.js";
 import {
-  CustomError,
   logger,
-  MissingParamError,
   request,
   wrapTextMultiline,
 } from "../common/utils.js";
+import { CustomError, MissingParamError } from "../common/exceptions.js";
 
 dotenv.config();
 

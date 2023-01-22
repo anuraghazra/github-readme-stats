@@ -21,10 +21,9 @@ export {
   wrapTextMultiline,
   logger,
   CONSTANTS,
-  CustomError,
-  MissingParamError,
   measureText,
   lowercaseTrim,
   chunkArray,
   parseEmojis,
 } from "./utils.js";
+export { CustomError, MissingParamError, HttpException } from "./exceptions.js";

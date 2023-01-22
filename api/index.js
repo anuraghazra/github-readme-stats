@@ -7,6 +7,7 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
+import { HttpException } from "../src/common/exceptions.js";
 import { fetchStats } from "../src/fetchers/stats-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
@@ -65,7 +66,8 @@ export default async (req, res) => {
       "Cache-Control",
       `max-age=${
         cacheSeconds / 2
-      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}, 
+      stale-if-error=${CONSTANTS.ONE_HOUR}`,
     );
 
     return res.send(
@@ -93,12 +95,27 @@ export default async (req, res) => {
       }),
     );
   } catch (err) {
+    // Throw error if REST and GraphQL API calls fail. This way we can return a cached
+    if (err instanceof HttpException) {
+      // throw err;
+      // throw new Error(err.message);
+      // return res.status(404).;
+      // return {statusCode: 404, body: err.message}
+      return res
+        .status(500)
+        .send(
+          renderError(err.errors[0].message, err.errors[0].secondaryMessage),
+        );
+    }
+
+    // Cache the error response less frequently.
     res.setHeader(
       "Cache-Control",
       `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
         CONSTANTS.ERROR_CACHE_SECONDS
-      }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
-    ); // Cache the error response less frequently.
+      }, stale-while-revalidate=${CONSTANTS.ONE_DAY}
+      stale-if-error=${CONSTANTS.ONE_HOUR}`,
+    );
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };

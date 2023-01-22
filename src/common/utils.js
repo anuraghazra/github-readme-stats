@@ -22,8 +22,7 @@ const renderError = (message, secondaryMessage = "") => {
     .small { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #252525 }
     .gray { fill: #858585 }
     </style>
-    <rect x="0.5" y="0.5" width="${
-      ERROR_CARD_LENGTH - 1
+    <rect x="0.5" y="0.5" width="${ERROR_CARD_LENGTH - 1
     }" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
     <text x="25" y="45" class="text">Something went wrong! file an issue at https://tiny.one/readme-stats</text>
     <text data-testid="message" x="25" y="55" class="text small">
@@ -288,7 +287,7 @@ const wrapTextMultiline = (text, width = 59, maxLines = 3) => {
   return multiLineText;
 };
 
-const noop = () => {};
+const noop = () => { };
 // return console instance based on the environment
 const logger =
   process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
@@ -309,50 +308,6 @@ const CONSTANTS = {
   CARD_CACHE_SECONDS: CARD_CACHE_SECONDS,
   ERROR_CACHE_SECONDS: ERROR_CACHE_SECONDS,
 };
-
-const SECONDARY_ERROR_MESSAGES = {
-  MAX_RETRY:
-    "Please add an env variable called PAT_1 with your github token in vercel",
-  USER_NOT_FOUND: "Make sure the provided username is not an organization",
-  GRAPHQL_ERROR: "Please try again later",
-};
-
-/**
- * Custom error class to handle custom GRS errors.
- */
-class CustomError extends Error {
-  /**
-   * @param {string} message Error message.
-   * @param {string} type Error type.
-   */
-  constructor(message, type) {
-    super(message);
-    this.type = type;
-    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || type;
-  }
-
-  static MAX_RETRY = "MAX_RETRY";
-  static USER_NOT_FOUND = "USER_NOT_FOUND";
-  static GRAPHQL_ERROR = "GRAPHQL_ERROR";
-}
-
-/**
- * Missing query parameter class.
- */
-class MissingParamError extends Error {
-  /**
-   * @param {string[]} missedParams
-   * @param {string?=} secondaryMessage
-   */
-  constructor(missedParams, secondaryMessage) {
-    const msg = `Missing params ${missedParams
-      .map((p) => `"${p}"`)
-      .join(", ")} make sure you pass the parameters in URL`;
-    super(msg);
-    this.missedParams = missedParams;
-    this.secondaryMessage = secondaryMessage;
-  }
-}
 
 /**
  * Retrieve text length.
@@ -451,8 +406,6 @@ export {
   wrapTextMultiline,
   logger,
   CONSTANTS,
-  CustomError,
-  MissingParamError,
   measureText,
   lowercaseTrim,
   chunkArray,

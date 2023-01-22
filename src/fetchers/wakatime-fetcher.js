@@ -1,5 +1,5 @@
 import axios from "axios";
-import { MissingParamError } from "../common/utils.js";
+import { MissingParamError } from "../common/exceptions.js";
 
 /**
  * WakaTime data fetcher.

@@ -1,6 +1,7 @@
 // @ts-check
 import { retryer } from "../common/retryer.js";
-import { MissingParamError, request } from "../common/utils.js";
+import { request } from "../common/utils.js";
+import { MissingParamError } from "../common/exceptions.js";
 
 /**
  * Repo data fetcher.

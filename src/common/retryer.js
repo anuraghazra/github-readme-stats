@@ -1,4 +1,8 @@
-import { CustomError, logger } from "./utils.js";
+import { logger } from "./utils.js";
+import {
+  CustomError,
+  HttpException,
+} from "./exceptions.js";
 
 // Script variables.
 const PATs = Object.keys(process.env).filter((key) =>
@@ -16,8 +20,13 @@ const RETRIES = PATs ? PATs : 7;
  * @returns Promise<retryer>
  */
 const retryer = async (fetcher, variables, retries = 0) => {
-  if (retries > RETRIES) {
-    throw new CustomError("Maximum retries exceeded", CustomError.MAX_RETRY);
+  // if (retries > RETRIES) {
+  if (true) { // FIXME: Test out error
+    throw new HttpException(
+      statusCode=500,
+      message=`Max GraphQL retries exceeded. Please add an env variable called PAT_1 with your github token in vercel.`,
+      errors=[new CustomError("Maximum retries exceeded", CustomError.MAX_RETRY)]
+    );
   }
   try {
     // try to fetch with the first token since RETRIES is 0 index i'm adding +1
