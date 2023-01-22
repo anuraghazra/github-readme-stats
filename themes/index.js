@@ -374,6 +374,12 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
+  gradient: {
+    title_color: "DA7885",
+    text_color: "E1B2A2",
+    icon_color: "BB8470",
+    Canvas.toDataURL("https://i.stack.imgur.com/1Sl2L.png")
+  },
 };
 
 export default themes;
