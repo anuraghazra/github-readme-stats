@@ -1,6 +1,7 @@
 FROM node:18-alpine
 
 # Copy express/index.js, src, themes, vercel.json, package.json, and package-lock.json
+COPY api /app/api
 COPY express/*.js /app/express/
 COPY src /app/
 COPY themes /app/
