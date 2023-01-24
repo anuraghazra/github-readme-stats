@@ -77,6 +77,7 @@ const getStyles = ({
   titleColor,
   textColor,
   iconColor,
+  ringColor,
   show_icons,
   progress,
 }) => {
@@ -105,13 +106,13 @@ const getStyles = ({
     }
 
     .rank-circle-rim {
-      stroke: ${titleColor};
+      stroke: ${ringColor};
       fill: none;
       stroke-width: 6;
       opacity: 0.2;
     }
     .rank-circle {
-      stroke: ${titleColor};
+      stroke: ${ringColor};
       stroke-dasharray: 250;
       fill: none;
       stroke-width: 6;

@@ -89,6 +89,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     include_all_commits = false,
     line_height = 25,
     title_color,
+    ring_color,
     icon_color,
     text_color,
     text_bold = true,
@@ -104,13 +105,14 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const lheight = parseInt(String(line_height), 10);
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, iconColor, bgColor, borderColor } =
+  const { titleColor, iconColor, textColor, bgColor, borderColor, ringColor } =
     getCardColors({
       title_color,
-      icon_color,
       text_color,
+      icon_color,
       bg_color,
       border_color,
+      ring_color,
       theme,
     });
 
@@ -152,7 +154,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     contribs: {
       icon: icons.contribs,
-      label: i18n.t("statcard.contribs"),
+      label: i18n.t("statcard.contribs") + " (last year)",
       value: contributedTo,
       id: "contribs",
     },
@@ -170,6 +172,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     "pl",
     "de",
     "nl",
+    "zh-tw",
   ];
   const isLongLocale = longLocales.includes(locale) === true;
 
@@ -182,8 +185,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         ...STATS[key],
         index,
         showIcons: show_icons,
-        shiftValuePos:
-          (!include_all_commits ? 50 : 35) + (isLongLocale ? 50 : 0),
+        shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
         bold: text_bold,
       }),
     );
@@ -200,6 +202,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const progress = 100 - rank.score;
   const cssStyles = getStyles({
     titleColor,
+    ringColor,
     textColor,
     iconColor,
     show_icons,

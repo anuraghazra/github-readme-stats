@@ -4,7 +4,6 @@
 
 import { getInput } from "@actions/core";
 
-// Script variables.
 const OWNER = "anuraghazra";
 const REPO = "github-readme-stats";
 
@@ -31,7 +30,7 @@ export const getRepoInfo = (ctx) => {
 /**
  * Retrieve github token and throw error if it is not found.
  *
- * @returns {string} Github token.
+ * @returns {string} GitHub token.
  */
 export const getGithubToken = () => {
   const token = getInput("github_token") || process.env.GITHUB_TOKEN;

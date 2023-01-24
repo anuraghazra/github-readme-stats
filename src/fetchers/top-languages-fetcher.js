@@ -1,5 +1,4 @@
 // @ts-check
-import * as dotenv from "dotenv";
 import { retryer } from "../common/retryer.js";
 import {
   CustomError,
@@ -9,13 +8,11 @@ import {
   wrapTextMultiline,
 } from "../common/utils.js";
 
-dotenv.config();
-
 /**
  * Top languages fetcher object.
  *
  * @param {import('Axios').AxiosRequestHeaders} variables Fetcher variables.
- * @param {string} token Github token.
+ * @param {string} token GitHub token.
  * @returns {Promise<import('../common/types').StatsFetcherResponse>} Languages fetcher response.
  */
 const fetcher = (variables, token) => {
@@ -53,26 +50,26 @@ const fetcher = (variables, token) => {
 /**
  * Fetch top languages for a given username.
  *
- * @param {string} username Github username.
- * @param {string[]} exclude_repo List of repositories to exclude.
- * @param {string[]} ownerAffiliations The owner affiliations to filter by.
+ * @param {string} username GitHub username.
+ * @param {string[]} exclude_repo List of repositories to exclude. Default: [].
+ * @param {string[]} ownerAffiliations The owner affiliations to filter by. Default: OWNER.
  * @returns {Promise<import("./types").TopLangData>} Top languages data.
  */
-async function fetchTopLanguages(
+const fetchTopLanguages = async (
   username,
-  ownerAffiliations,
   exclude_repo = [],
-) {
+  ownerAffiliations = [],
+) => {
   if (!username) throw new MissingParamError(["username"]);
 
-  // Set default value for ownerAffiliations in GraphQL query won't work because
-  // parseArray() will always return an empty array even nothing was specified
-  // and GraphQL would consider that empty arr as a valid value. Nothing will be
-  // queried in that case as no affiliation is presented.
+  // Set default value for ownerAffiliations.
+  // NOTE: Done here since parseArray() will always return an empty array even nothing
+  //was specified.
   ownerAffiliations =
     ownerAffiliations && ownerAffiliations.length > 0
       ? ownerAffiliations
       : ["OWNER"];
+
   const res = await retryer(fetcher, { login: username, ownerAffiliations });
 
   if (res.data.errors) {
@@ -149,7 +146,7 @@ async function fetchTopLanguages(
     }, {});
 
   return topLangs;
-}
+};
 
 export { fetchTopLanguages };
 export default fetchTopLanguages;

@@ -1,4 +1,3 @@
-import * as dotenv from "dotenv";
 import { renderTopLanguages } from "../src/cards/top-languages-card.js";
 import { blacklist } from "../src/common/blacklist.js";
 import {
@@ -10,8 +9,6 @@ import {
 } from "../src/common/utils.js";
 import { fetchTopLanguages } from "../src/fetchers/top-languages-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
-
-dotenv.config();
 
 export default async (req, res) => {
   const {
@@ -33,6 +30,7 @@ export default async (req, res) => {
     border_radius,
     border_color,
     role,
+    disable_animations,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -57,7 +55,12 @@ export default async (req, res) => {
       CONSTANTS.ONE_DAY,
     );
 
-    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${
+        cacheSeconds / 2
+      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    );
 
     return res.send(
       renderTopLanguages(topLangs, {
@@ -75,10 +78,11 @@ export default async (req, res) => {
         border_radius,
         border_color,
         locale: locale ? locale.toLowerCase() : null,
+        disable_animations: parseBoolean(disable_animations),
       }),
     );
   } catch (err) {
-    res.setHeader("Cache-Control", `no-store`); // Don't cache error responses.
+    res.setHeader("Cache-Control", `no-cache, no-store, must-revalidate`); // Don't cache error responses.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };
