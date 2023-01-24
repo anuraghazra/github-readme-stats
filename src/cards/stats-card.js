@@ -12,6 +12,11 @@ import {
 import { getStyles } from "../getStyles.js";
 import { statCardLocales } from "../translations.js";
 
+const CARD_MIN_WIDTH = 287;
+const CARD_DEFAULT_WIDTH = 287;
+const RANK_CARD_MIN_WIDTH = 420;
+const RANK_CARD_DEFAULT_WIDTH = 450;
+
 /**
  * Create a stats card text item.
  *
@@ -218,11 +223,17 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     When hide_rank=false, the minimum card_width is 340 px + the icon width (if show_icons=true).
     Numbers are picked by looking at existing dimensions on production.
   */
-  const iconWidth = show_icons ? 16 : 0;
-  const minCardWidth = hide_rank
-    ? clampValue(50 /* padding */ + calculateTextWidth() * 2, 270, Infinity)
-    : 340 + iconWidth;
-  const defaultCardWidth = hide_rank ? 270 : 495;
+  const iconWidth = show_icons ? 16 + /* padding */ 1 : 0;
+  const minCardWidth =
+    (hide_rank
+      ? clampValue(
+          50 /* padding */ + calculateTextWidth() * 2,
+          CARD_MIN_WIDTH,
+          Infinity,
+        )
+      : RANK_CARD_MIN_WIDTH) + iconWidth;
+  const defaultCardWidth =
+    (hide_rank ? CARD_DEFAULT_WIDTH : RANK_CARD_DEFAULT_WIDTH) + iconWidth;
   let width = isNaN(card_width) ? defaultCardWidth : card_width;
   if (width < minCardWidth) {
     width = minCardWidth;
@@ -251,18 +262,21 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   /**
    * Calculates the right rank circle translation values such that the rank circle
-   * keeps respecting the padding.
+   * keeps respecting the following padding:
    *
-   * width > 450: The default left padding of 50 px will be used.
-   * width < 450: The left and right padding will shrink equally.
+   * width > RANK_CARD_DEFAULT_WIDTH: The default right padding of 70 px will be used.
+   * width < RANK_CARD_DEFAULT_WIDTH: The left and right padding will be enlarged
+   *   equally from a certain minimum at RANK_CARD_MIN_WIDTH.
    *
    * @returns {number} - Rank circle translation value.
    */
   const calculateRankXTranslation = () => {
-    if (width < 450) {
-      return width - 95 + (45 * (450 - 340)) / 110;
+    const minXTranslation = RANK_CARD_MIN_WIDTH + iconWidth - 70;
+    if (width > RANK_CARD_DEFAULT_WIDTH) {
+      const xMaxExpansion = minXTranslation + (450 - minCardWidth) / 2;
+      return xMaxExpansion + width - RANK_CARD_DEFAULT_WIDTH;
     } else {
-      return width - 95;
+      return minXTranslation + (width - minCardWidth) / 2;
     }
   };
 
