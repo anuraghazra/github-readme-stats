@@ -6,6 +6,7 @@ import {
   MissingParamError,
   request,
   wrapTextMultiline,
+  parseOwnerAffiliations,
 } from "../common/utils.js";
 
 /**
@@ -61,14 +62,7 @@ const fetchTopLanguages = async (
   ownerAffiliations = [],
 ) => {
   if (!username) throw new MissingParamError(["username"]);
-
-  // Set default value for ownerAffiliations.
-  // NOTE: Done here since parseArray() will always return an empty array even nothing
-  //was specified.
-  ownerAffiliations =
-    ownerAffiliations && ownerAffiliations.length > 0
-      ? ownerAffiliations
-      : ["OWNER"];
+  ownerAffiliations = parseOwnerAffiliations(ownerAffiliations);
 
   const res = await retryer(fetcher, { login: username, ownerAffiliations });
 
