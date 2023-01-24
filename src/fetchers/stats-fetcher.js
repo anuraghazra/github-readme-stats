@@ -10,13 +10,14 @@ import {
   MissingParamError,
   request,
   wrapTextMultiline,
+  parseOwnerAffiliations,
 } from "../common/utils.js";
 
 dotenv.config();
 
 // GraphQL queries.
 const GRAPHQL_REPOS_FIELD = `
-  repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
+  repositories(first: 100, after: $after, ownerAffiliations: $ownerAffiliations, orderBy: {direction: DESC, field: STARGAZERS}) {
     totalCount
     nodes {
       name
@@ -40,7 +41,7 @@ const GRAPHQL_REPOS_QUERY = `
 `;
 
 const GRAPHQL_STATS_QUERY = `
-  query userInfo($login: String!, $after: String) {
+  query userInfo($login: String!, $after: String, $ownerAffiliations: [RepositoryAffiliation]) {
     user(login: $login) {
       name
       login
@@ -92,6 +93,7 @@ const fetcher = (variables, token) => {
  * Fetch stats information for a given username.
  *
  * @param {string} username Github username.
+ * @param {string[]} ownerAffiliations The owner affiliations to filter by. Default: OWNER.
  * @returns {Promise<import('../common/types').StatsFetcher>} GraphQL Stats object.
  *
  * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
@@ -105,7 +107,7 @@ const statsFetcher = async (username, ownerAffiliations) => {
       login: username,
       first: 100,
       after: endCursor,
-      ownerAffiliations: [ownerAffiliations],
+      ownerAffiliations: ownerAffiliations,
     };
     let res = await retryer(fetcher, variables);
     if (res.data.errors) return res;
@@ -202,14 +204,7 @@ const fetchStats = async (
     contributedTo: 0,
     rank: { level: "C", score: 0 },
   };
-
-  // Set default value for ownerAffiliations.
-  // NOTE: Done here since parseArray() will always return an empty array even nothing
-  //was specified.
-  ownerAffiliations =
-    ownerAffiliations && ownerAffiliations.length > 0
-      ? ownerAffiliations
-      : ["OWNER"];
+  ownerAffiliations = parseOwnerAffiliations(ownerAffiliations);
 
   let res = await statsFetcher(username, ownerAffiliations);
 
