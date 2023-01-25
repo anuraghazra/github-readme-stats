@@ -377,7 +377,7 @@ export const themes = {
   lightpurple: {
     title_color: "C3B1E1",
     text_color: "24292e",
-    icon_color: "C3B1E1",
+    icon_color: "24292e",
     bg_color: "FFFFFF",
   },
 };
