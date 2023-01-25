@@ -12,6 +12,12 @@ export const themes = {
     text_color: "434d58",
     bg_color: "fffefe",
   },
+  meko_blue: {
+    title_color: "080218",
+    icon_color: "170944",
+    text_color: "20096a",
+    bg_color: "e3dfee",
+  },
   transparent: {
     title_color: "006AFF",
     icon_color: "0579C3",
