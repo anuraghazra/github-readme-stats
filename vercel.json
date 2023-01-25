@@ -10,5 +10,8 @@
       "source": "/",
       "destination": "https://github.com/anuraghazra/github-readme-stats"
     }
-  ]
+  ],
+  "github": {
+      "silent": true
+  }
 }
