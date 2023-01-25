@@ -261,7 +261,7 @@ const getCardColors = ({
  * @param {number} maxLines Maximum number of lines.
  * @returns {string[]} Array of lines.
  */
-const wrapTextMultiline = (text, width = 59, maxLines = 3) => {
+const wrapTextMultiline = (text, width = 56, maxLines = 3) => {
   const fullWidthComma = "，";
   const isChinese = text.includes(fullWidthComma);
 
