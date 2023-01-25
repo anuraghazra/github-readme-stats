@@ -374,6 +374,12 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
+  lightpurple: {
+    title_color: "C3B1E1",
+    text_color: "C3B1E1",
+    icon_color: "C3B1E1",
+    bg_color: "FFFFFF",
+  },
 };
 
 export default themes;
