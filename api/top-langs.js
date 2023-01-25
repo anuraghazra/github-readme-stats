@@ -45,8 +45,8 @@ export default async (req, res) => {
   try {
     const topLangs = await fetchTopLanguages(
       username,
-      parseArray(role),
       parseArray(exclude_repo),
+      parseArray(role),
     );
 
     const cacheSeconds = clampValue(
