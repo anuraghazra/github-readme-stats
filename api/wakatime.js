@@ -1,4 +1,4 @@
-import { generateWakatimeCard } from "../src/generators/wakatime.js";
+import generateWakatimeCard from "../src/generators/wakatime.js";
 import { renderError } from "../src/common/utils.js";
 
 export default async (req, res) => {

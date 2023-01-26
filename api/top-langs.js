@@ -1,4 +1,4 @@
-import { generateTopLanguagesCard } from "../src/generators/top-langs.js";
+import generateTopLanguagesCard from "../src/generators/top-langs.js";
 import { renderError } from "../src/common/utils.js";
 
 export default async (req, res) => {

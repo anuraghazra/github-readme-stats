@@ -1,4 +1,4 @@
-import { generateRepoCard } from "../src/generators/repo.js";
+import generateRepoCard from "../src/generators/repo.js";
 import { renderError } from "../src/common/utils.js";
 
 export default async (req, res) => {

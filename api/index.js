@@ -1,4 +1,4 @@
-import { generateStatsCard } from "../src/generators/stats-card.js";
+import generateStatsCard from "../src/generators/stats-card.js";
 import { renderError } from "../src/common/utils.js";
 
 export default async (req, res) => {
