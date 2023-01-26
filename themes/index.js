@@ -374,6 +374,12 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
+  neon_genesis_evangelion: {
+    title_color: "8ce360",
+    text_color: "ffffff",
+    bg_color: "353846",
+    icon_color: "7173e0",
+  }
 };
 
 export default themes;
