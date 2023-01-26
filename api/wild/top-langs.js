@@ -16,7 +16,6 @@ export default async (req, res) => {
     text_color,
     bg_color,
     theme,
-    cache_seconds,
     layout,
     border_radius,
     border_color,
@@ -63,19 +62,6 @@ export default async (req, res) => {
       
     const title = req.query.title || "Most Used Languages";
 
-    const cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
-      CONSTANTS.FOUR_HOURS,
-      CONSTANTS.ONE_DAY,
-    );
-
-    res.setHeader(
-      "Cache-Control",
-      `max-age=${
-        cacheSeconds / 2
-      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
-    );
-
     return res.send(
       renderTopLanguages(topLangs, {
         hide_title: parseBoolean(hide_title),
@@ -93,7 +79,6 @@ export default async (req, res) => {
       }),
     );
   } catch (err) {
-    res.setHeader("Cache-Control", `no-cache, no-store, must-revalidate`); // Don't cache error responses.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };
