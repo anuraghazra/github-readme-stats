@@ -374,7 +374,7 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
-  dry_rose: {
+  rose:
     title_color: "8d192b",
     text_color: "862931",
     icon_color: "B71F36",
