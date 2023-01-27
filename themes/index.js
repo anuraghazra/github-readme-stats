@@ -374,6 +374,13 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
+  rose: {
+    title_color: "8d192b",
+    text_color: "ba6a6a",
+    icon_color: "862931",
+    border_color: "e9d8d4",
+    bg_color: "e9d8d4",
+  },
 };
 
 export default themes;
