@@ -376,7 +376,7 @@ export const themes = {
   },
   rose: {
     title_color: "8d192b",
-    text_color: "ba6a6a",
+    text_color: "b35b5b",
     icon_color: "862931",
     border_color: "e9d8d4",
     bg_color: "e9d8d4",
