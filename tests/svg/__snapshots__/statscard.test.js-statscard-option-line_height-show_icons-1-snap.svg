@@ -1,7 +1,7 @@
 <svg
   width="467"
-  height="225"
-  viewBox="0 0 467 225"
+  height="645"
+  viewBox="0 0 467 645"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
@@ -98,7 +98,7 @@
   </g>
 
   <g data-testid="main-card-body" transform="translate(0, 55)">
-    <g data-testid="rank-circle" transform="translate(390.5, 62.5)">
+    <g data-testid="rank-circle" transform="translate(390.5, 272.5)">
       <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
       <circle class="rank-circle" cx="-10" cy="8" r="40" />
       <g class="rank-text">
@@ -140,7 +140,7 @@
           </text>
         </g>
       </g>
-      <g transform="translate(0, 30)">
+      <g transform="translate(0, 100)">
         <g
           class="stagger"
           style="animation-delay: 600ms"
@@ -166,7 +166,7 @@
           </text>
         </g>
       </g>
-      <g transform="translate(0, 60)">
+      <g transform="translate(0, 200)">
         <g
           class="stagger"
           style="animation-delay: 750ms"
@@ -190,7 +190,7 @@
           <text class="stat bold" x="219.01" y="12.5" data-testid="prs">1</text>
         </g>
       </g>
-      <g transform="translate(0, 90)">
+      <g transform="translate(0, 300)">
         <g
           class="stagger"
           style="animation-delay: 900ms"
@@ -216,7 +216,7 @@
           </text>
         </g>
       </g>
-      <g transform="translate(0, 120)">
+      <g transform="translate(0, 400)">
         <g
           class="stagger"
           style="animation-delay: 1050ms"

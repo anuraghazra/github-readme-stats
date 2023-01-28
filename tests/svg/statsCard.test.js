@@ -118,7 +118,7 @@ describe("statsCard", () => {
     const svg = format(
       renderStatsCard(STATS_DATA, {
         disable_animations: true,
-        line_height: 30,
+        line_height: 100,
         show_icons: true,
       }),
     );
