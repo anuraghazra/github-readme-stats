@@ -73,11 +73,15 @@ const PATsWorking = async (fetcher, variables, retries = 0) => {
 
     return true; // Return true if a PAT was working.
   } catch (err) {
-    // also checking for bad credentials if any tokens gets invalidated
-    if (err.response?.data?.message === "Bad credentials") {
+    // also checking for bad credentials if any tokens gets invalidated or suspended
+    const errorMessage = err.response?.data?.message;
+    const isAccountSuspended =
+      errorMessage === "Sorry. Your account was suspended.";
+    const isBadCredential = errorMessage === "Bad credentials";
+
+    if (isBadCredential || isAccountSuspended) {
       logger.log(`PAT_${retries + 1} Failed`);
       retries++;
-      // directly return from the function
       return PATsWorking(fetcher, variables, retries);
     } else {
       throw err;
