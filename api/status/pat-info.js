@@ -107,7 +107,7 @@ export default async (_, res) => {
   res.setHeader("Content-Type", "application/json");
   try {
     // Add header to prevent abuse.
-    const pATsInfo = await getPATInfo(uptimeFetcher, {});
+    const PATsInfo = await getPATInfo(uptimeFetcher, {});
     if (pATsInfo) {
       res.setHeader(
         "Cache-Control",
