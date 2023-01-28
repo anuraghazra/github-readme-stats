@@ -6,7 +6,7 @@
  */
 
 import { logger, request, dateDiff } from "../../src/common/utils.js";
-export const RATE_LIMIT_SECONDS = 60 * 10; // 1 request per 10 minutes
+export const RATE_LIMIT_SECONDS = 60 * 5; // 1 request per 10 minutes
 
 /**
  * Simple uptime check fetcher for the PATs.
@@ -98,12 +98,20 @@ const getPATInfo = async (fetcher, variables) => {
     return Object.keys(details).filter((pat) => details[pat].status === status);
   };
 
+  const sortedDetails = Object.keys(details)
+    .sort()
+    .reduce((obj, key) => {
+      obj[key] = details[key];
+      return obj;
+    }, {});
+
   return {
     validPATs: filterPATsByStatus("valid"),
     expiredPATs: filterPATsByStatus("expired"),
-    exhaustedPATS: filterPATsByStatus("exhausted"),
+    exhaustedPATs: filterPATsByStatus("exhausted"),
+    suspendedPATs: filterPATsByStatus("suspended"),
     errorPATs: filterPATsByStatus("error"),
-    details,
+    details: sortedDetails,
   };
 };
 
