@@ -5,13 +5,9 @@
  * @description This function is currently rate limited to 1 request per 10 minutes.
  */
 
+import retryer from "../../src/common/retryer.js";
 import { logger, request } from "../../src/common/utils.js";
 
-// Script variables.
-const PATs = Object.keys(process.env).filter((key) =>
-  /PAT_\d*$/.exec(key),
-).length;
-const RETRIES = PATs ? PATs : 7;
 export const RATE_LIMIT_SECONDS = 60 * 10; // 1 request per 10 minutes
 
 /**
@@ -36,57 +32,6 @@ const uptimeFetcher = (variables, token) => {
       Authorization: `bearer ${token}`,
     },
   );
-};
-
-/**
- * Check whether any of the PATs is still functional.
- *
- * @param {Object} fetcher Fetcher object.
- * @param {Object} variables Fetcher variables.
- * @param {number} retries How many times to retry.
- */
-const PATsWorking = async (fetcher, variables, retries = 0) => {
-  if (retries > RETRIES) {
-    // Return false if no PAT is working.
-    return false;
-  }
-
-  // Loop through PATs to see if any of them are working.
-  try {
-    const response = await fetcher(
-      variables,
-      process.env[`PAT_${retries + 1}`],
-    );
-
-    const isRateLimited =
-      (response.data.errors &&
-        response.data.errors[0]?.type === "RATE_LIMITED") ||
-      response.data.data?.rateLimit?.remaining === 0;
-
-    // If rate limit is hit increase RETRIES and recursively call the PATsWorking
-    // with username, and current RETRIES
-    if (isRateLimited) {
-      logger.log(`PAT_${retries + 1} Failed`);
-      retries++;
-      return PATsWorking(fetcher, variables, retries);
-    }
-
-    return true; // Return true if a PAT was working.
-  } catch (err) {
-    // also checking for bad credentials if any tokens gets invalidated or suspended
-    const errorMessage = err.response?.data?.message;
-    const isAccountSuspended =
-      errorMessage === "Sorry. Your account was suspended.";
-    const isBadCredential = errorMessage === "Bad credentials";
-
-    if (isBadCredential || isAccountSuspended) {
-      logger.log(`PAT_${retries + 1} Failed`);
-      retries++;
-      return PATsWorking(fetcher, variables, retries);
-    } else {
-      throw err;
-    }
-  }
 };
 
 /**
@@ -120,15 +65,22 @@ export default async (req, res) => {
   type = type ? type.toLowerCase() : "boolean";
 
   res.setHeader("Content-Type", "application/json");
+
   try {
-    // Add header to prevent abuse.
-    const PATsValid = await PATsWorking(uptimeFetcher, {});
+    let PATsValid = true;
+    try {
+      await retryer(uptimeFetcher, {});
+    } catch (err) {
+      PATsValid = false;
+    }
+
     if (PATsValid) {
       res.setHeader(
         "Cache-Control",
         `max-age=0, s-maxage=${RATE_LIMIT_SECONDS}`,
       );
     }
+
     switch (type) {
       case "shields":
         res.send(shieldsUptimeBadge(PATsValid));

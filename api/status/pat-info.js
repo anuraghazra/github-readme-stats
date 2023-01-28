@@ -76,10 +76,14 @@ const getPATInfo = async (fetcher, variables) => {
       }
     } catch (err) {
       // Store the PAT if it is expired.
-      const errorMessage = err.response?.data?.message;
-      if (errorMessage?.toLowerCase() === "bad credentials") {
+      const errorMessage = err.response?.data?.message?.toLowerCase();
+      if (errorMessage === "bad credentials") {
         details[pat] = {
           status: "expired",
+        };
+      } else if (errorMessage === "sorry. your account was suspended.") {
+        details[pat] = {
+          status: "suspended",
         };
       } else {
         throw err;
