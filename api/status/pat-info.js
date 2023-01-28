@@ -81,6 +81,8 @@ const getPATInfo = async (fetcher, variables) => {
         details[pat] = {
           status: "expired",
         };
+      } else {
+        throw err;
       }
     }
   }
@@ -105,14 +107,14 @@ export default async (_, res) => {
   res.setHeader("Content-Type", "application/json");
   try {
     // Add header to prevent abuse.
-    const pATsInfo = await getPATInfo(uptimeFetcher, {});
-    if (pATsInfo) {
+    const PATsInfo = await getPATInfo(uptimeFetcher, {});
+    if (PATsInfo) {
       res.setHeader(
         "Cache-Control",
         `max-age=0, s-maxage=${RATE_LIMIT_SECONDS}`,
       );
     }
-    res.send(JSON.stringify(pATsInfo, null, 2));
+    res.send(JSON.stringify(PATsInfo, null, 2));
   } catch (err) {
     // Throw error if something went wrong.
     logger.error(err);
