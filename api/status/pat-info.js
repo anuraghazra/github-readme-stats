@@ -5,8 +5,7 @@
  * @description This function is currently rate limited to 1 request per 10 minutes.
  */
 
-import { logger, request } from "../../src/common/utils.js";
-
+import { logger, request, dateDiff } from "../../src/common/utils.js";
 export const RATE_LIMIT_SECONDS = 60 * 10; // 1 request per 10 minutes
 
 /**
@@ -22,6 +21,7 @@ const uptimeFetcher = (variables, token) => {
         query {
           rateLimit {
             remaining
+            resetAt
           },
         }`,
       variables,
@@ -64,9 +64,12 @@ const getPATInfo = async (fetcher, variables) => {
         };
         continue;
       } else if (isRateLimited) {
+        const date1 = new Date();
+        const date2 = new Date(response.data?.data?.rateLimit?.resetAt);
         details[pat] = {
           status: "exhausted",
           remaining: 0,
+          resetIn: dateDiff(date2, date1) + " minutes",
         };
       } else {
         details[pat] = {

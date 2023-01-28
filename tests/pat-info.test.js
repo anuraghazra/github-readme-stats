@@ -38,6 +38,11 @@ const rate_limit_error = {
       message: "API rate limit exceeded for user ID.",
     },
   ],
+  data: {
+    rateLimit: {
+      resetAt: Date.now(),
+    },
+  },
 };
 
 const other_error = {
@@ -89,6 +94,7 @@ describe("Test /api/status/pat-info", () => {
             PAT_1: {
               status: "exhausted",
               remaining: 0,
+              resetIn: "0 minutes",
             },
             PAT_2: {
               status: "valid",
