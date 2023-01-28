@@ -88,7 +88,8 @@ describe("Test /api/status/pat-info", () => {
         {
           validPATs: ["PAT_2", "PAT_3", "PAT_4"],
           expiredPATs: [],
-          exhaustedPATS: ["PAT_1"],
+          exhaustedPATs: ["PAT_1"],
+          suspendedPATs: [],
           errorPATs: [],
           details: {
             PAT_1: {
@@ -132,7 +133,8 @@ describe("Test /api/status/pat-info", () => {
         {
           validPATs: ["PAT_2", "PAT_3", "PAT_4"],
           expiredPATs: [],
-          exhaustedPATS: [],
+          exhaustedPATs: [],
+          suspendedPATs: [],
           errorPATs: ["PAT_1"],
           details: {
             PAT_1: {
@@ -178,7 +180,8 @@ describe("Test /api/status/pat-info", () => {
         {
           validPATs: ["PAT_2", "PAT_3", "PAT_4"],
           expiredPATs: ["PAT_1"],
-          exhaustedPATS: [],
+          exhaustedPATs: [],
+          suspendedPATs: [],
           errorPATs: [],
           details: {
             PAT_1: {
