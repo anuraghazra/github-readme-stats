@@ -76,29 +76,36 @@ describe("Test /api/status/pat-info", () => {
     await patInfo(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith({
-      errorPATs: [],
-      expiredPATs: [],
-      validPATs: ["PAT_1", "PAT_2", "PAT_3", "PAT_4"],
-      details: {
-        PAT_1: {
-          status: "limited",
-          remaining: 0,
+    expect(res.send).toBeCalledWith(
+      JSON.stringify(
+        {
+          validPATs: ["PAT_2", "PAT_3", "PAT_4"],
+          expiredPATs: [],
+          exhaustedPATS: ["PAT_1"],
+          errorPATs: [],
+          details: {
+            PAT_1: {
+              status: "exhausted",
+              remaining: 0,
+            },
+            PAT_2: {
+              status: "valid",
+              remaining: 4986,
+            },
+            PAT_3: {
+              status: "valid",
+              remaining: 4986,
+            },
+            PAT_4: {
+              status: "valid",
+              remaining: 4986,
+            },
+          },
         },
-        PAT_2: {
-          status: "valid",
-          remaining: 4986,
-        },
-        PAT_3: {
-          status: "valid",
-          remaining: 4986,
-        },
-        PAT_4: {
-          status: "valid",
-          remaining: 4986,
-        },
-      },
-    });
+        null,
+        2,
+      ),
+    );
   });
 
   it("should return `errorPATs` if a PAT causes an error to be thrown", async () => {
@@ -112,32 +119,39 @@ describe("Test /api/status/pat-info", () => {
     await patInfo(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith({
-      errorPATs: ["PAT_1"],
-      expiredPATs: [],
-      validPATs: ["PAT_2", "PAT_3", "PAT_4"],
-      details: {
-        PAT_1: {
-          status: "error",
-          error: {
-            type: "SOME_ERROR",
-            message: "This is a error",
+    expect(res.send).toBeCalledWith(
+      JSON.stringify(
+        {
+          validPATs: ["PAT_2", "PAT_3", "PAT_4"],
+          expiredPATs: [],
+          exhaustedPATS: [],
+          errorPATs: ["PAT_1"],
+          details: {
+            PAT_1: {
+              status: "error",
+              error: {
+                type: "SOME_ERROR",
+                message: "This is a error",
+              },
+            },
+            PAT_2: {
+              status: "valid",
+              remaining: 4986,
+            },
+            PAT_3: {
+              status: "valid",
+              remaining: 4986,
+            },
+            PAT_4: {
+              status: "valid",
+              remaining: 4986,
+            },
           },
         },
-        PAT_2: {
-          status: "valid",
-          remaining: 4986,
-        },
-        PAT_3: {
-          status: "valid",
-          remaining: 4986,
-        },
-        PAT_4: {
-          status: "valid",
-          remaining: 4986,
-        },
-      },
-    });
+        null,
+        2,
+      ),
+    );
   });
 
   it("should return `expiredPaths` if a PAT returns a 'Bad credentials' error", async () => {
@@ -151,28 +165,35 @@ describe("Test /api/status/pat-info", () => {
     await patInfo(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith({
-      errorPATs: [],
-      expiredPATs: ["PAT_1"],
-      validPATs: ["PAT_2", "PAT_3", "PAT_4"],
-      details: {
-        PAT_1: {
-          status: "expired",
+    expect(res.send).toBeCalledWith(
+      JSON.stringify(
+        {
+          validPATs: ["PAT_2", "PAT_3", "PAT_4"],
+          expiredPATs: ["PAT_1"],
+          exhaustedPATS: [],
+          errorPATs: [],
+          details: {
+            PAT_1: {
+              status: "expired",
+            },
+            PAT_2: {
+              status: "valid",
+              remaining: 4986,
+            },
+            PAT_3: {
+              status: "valid",
+              remaining: 4986,
+            },
+            PAT_4: {
+              status: "valid",
+              remaining: 4986,
+            },
+          },
         },
-        PAT_2: {
-          status: "valid",
-          remaining: 4986,
-        },
-        PAT_3: {
-          status: "valid",
-          remaining: 4986,
-        },
-        PAT_4: {
-          status: "valid",
-          remaining: 4986,
-        },
-      },
-    });
+        null,
+        2,
+      ),
+    );
   });
 
   it("should throw an error if something goes wrong", async () => {
@@ -198,6 +219,7 @@ describe("Test /api/status/pat-info", () => {
   });
 
   it("should have proper cache when error is thrown", async () => {
+    mock.reset();
     mock.onPost("https://api.github.com/graphql").networkError();
 
     const { req, res } = faker({}, {});

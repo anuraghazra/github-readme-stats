@@ -81,6 +81,8 @@ const getPATInfo = async (fetcher, variables) => {
         details[pat] = {
           status: "expired",
         };
+      } else {
+        throw err;
       }
     }
   }
