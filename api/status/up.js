@@ -79,6 +79,8 @@ export default async (req, res) => {
         "Cache-Control",
         `max-age=0, s-maxage=${RATE_LIMIT_SECONDS}`,
       );
+    } else {
+      res.setHeader("Cache-Control", "no-store");
     }
 
     switch (type) {

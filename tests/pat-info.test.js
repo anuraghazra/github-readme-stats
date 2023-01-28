@@ -59,6 +59,8 @@ afterEach(() => {
 
 describe("Test /api/status/pat-info", () => {
   beforeAll(() => {
+    // reset patenv first so that dotenv doesn't populate them with local envs
+    process.env = {};
     process.env.PAT_1 = "testPAT1";
     process.env.PAT_2 = "testPAT2";
     process.env.PAT_3 = "testPAT3";

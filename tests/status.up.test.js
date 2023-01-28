@@ -165,7 +165,7 @@ describe("Test /api/status/up", () => {
     await up(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith("Something went wrong: Network Error");
+    expect(res.send).toBeCalledWith(false);
   });
 
   it("should have proper cache when no error is thrown", async () => {
