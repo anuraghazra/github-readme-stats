@@ -1,6 +1,6 @@
 {
-  "name": "github-readme-stats",
-  "version": "1.0.0",
+  "name": "@zo-bro-23/github-readme-stats-test",
+  "version": "1.0.5",
   "description": "Dynamically generate stats for your GitHub readme",
   "keywords": [
     "github-readme-stats",
@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/anuraghazra/github-readme-stats.git"
+    "url": "git+https://github.com/anuraghazra/github-readme-stats.git"
   },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
@@ -42,7 +42,7 @@
     "axios-mock-adapter": "^1.21.2",
     "color-contrast-checker": "^2.1.0",
     "hjson": "^3.2.2",
-    "husky": "^8.0.0",
+    "husky": "^8.0.3",
     "jest": "^29.0.3",
     "jest-environment-jsdom": "^29.0.3",
     "js-yaml": "^4.1.0",
@@ -61,5 +61,12 @@
   },
   "lint-staged": {
     "*.{js,css,md}": "prettier --write"
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
