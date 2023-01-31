@@ -1,0 +1,20 @@
+"project_id_env": "CROWDIN_PROJECT_ID"
+"api_token_env": "CROWDIN_PERSONAL_TOKEN"
+"base_path": "."
+
+"preserve_hierarchy": true
+
+"files": [
+  {
+    "source": "readme.md",
+    "translation": "docs/readme_%two_letters_code%.md",
+    "languages_mapping": {
+      "two_letters_code": {
+        "pt-BR": "pt-BR",
+        "zh-CN": "cn",
+        "ne-NP": "np",
+        "ko": "kr"
+      }
+    }
+  }
+]
