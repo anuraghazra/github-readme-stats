@@ -374,6 +374,13 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
+  red_minimal: {
+    title_color: "DA7885",
+    text_color: "000000",
+    icon_color: "BB8470",
+    border_color: "170F0C",
+    bg_color: "FFFFFF",
+  },
 };
 
 export default themes;
