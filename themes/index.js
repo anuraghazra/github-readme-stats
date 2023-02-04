@@ -374,7 +374,7 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
-  red_Minimal: {
+  red_minimal: {
     title_color: "DA2D22",
     text_color: "000000",
     icon_color: "DA2D22",
