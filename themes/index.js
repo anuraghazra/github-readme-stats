@@ -374,11 +374,11 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
-  date_night: {
-    title_color: "C9453C",
+  red_Minimal: {
+    title_color: "DA2D22",
     text_color: "000000",
-    icon_color: "C9453C",
-    border_color: "C9453C",
+    icon_color: "DA2D22",
+    border_color: "DA2D22",
     bg_color: "FFFFFF",
   },
 };
