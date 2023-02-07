@@ -120,16 +120,18 @@ You can pass a query parameter `&hide=` to hide any specific stats with comma-se
 
 ### Adding private contributions count to total commits count
 
-You can add the count of all your private contributions to the total commits count by using the query parameter `&count_private=true`.
-
-> **Note**
-> If you are deploying this project yourself, the private contributions will be counted by default. If you are using the public Vercel instance, you need to choose to [share your private contributions](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/showing-your-private-contributions-and-achievements-on-your-profile).
+You can add the count of all your private contributions to the total commits count by using the query parameter `&count_private=true`. To enable this, you need to choose to [share your private contributions](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/showing-your-private-contributions-and-achievements-on-your-profile).
 
 > Options: `&count_private=true`
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
+
+> **Warning**
+> Contributions and commits are [not the same](https://github.com/anuraghazra/github-readme-stats/discussions/1679).
+>
+> The best way to get the correct total commits (with private commits included) is to remove the `count_private` property and [deploy on your own Vercel instance](https://github.com/anuraghazra/github-readme-stats#deploy-on-your-own-vercel-instance). The private commits will then be counted by default.
 
 ### Showing icons
 
@@ -280,7 +282,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width. Default: `false`.
 -   `show_icons` - _(boolean)_. Default: `false`.
 -   `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_. Default: `false`.
--   `count_private` - Count private commits _(boolean)_. Default: `false`.
+-   `count_private` - [Add private contributions to total commits count](#adding-private-contributions-count-to-total-commits-count) _(boolean)_. Default: `false`.
 -   `line_height` - Sets the line height between text _(number)_. Default: `25`.
 -   `exclude_repo` - Exclude stars from specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
 -   `custom_title` - Sets a custom title for the card. Default:  `<username> GitHub Stats`.

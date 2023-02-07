@@ -241,7 +241,7 @@ const fetchStats = async (
     stats.totalCommits = await totalCommitsFetcher(username);
   }
 
-  // if count_private then add private commits to totalCommits so far.
+  // if count_private then add private contributions to totalCommits so far.
   if (count_private) {
     stats.totalCommits +=
       user.contributionsCollection.restrictedContributionsCount;
