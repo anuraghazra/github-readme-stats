@@ -243,7 +243,7 @@ const fetchStats = async (
 
   // if count_private then add private contributions to totalCommits so far.
   if (count_private) {
-    stats.contributedTo +=
+    stats.totalCommits +=
       user.contributionsCollection.restrictedContributionsCount;
   }
 
