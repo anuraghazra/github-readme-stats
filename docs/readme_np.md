@@ -175,6 +175,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
 - `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
 - `custom_title` - Sets a custom title for the card
+- `hide_progress` - Uses the compact layout option, and hides percentage, and make bars equal. Default `false`
 
 > :warning: **Important:**
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
@@ -269,6 +270,15 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 - Compact layout
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+
+### hide_progress
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+```
+### Demo
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
 
 # वाका समय वीक स्तट्स 
 

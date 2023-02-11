@@ -179,6 +179,7 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 - `langs_count` - Laat meer talen op de kaart zien, waarde tussen 1-10, staat standaard op to 5 _(nummer)_
 - `exclude_repo` - Verbergt specifieke repositories _(komma gescheiden waardes)_
 - `custom_title` - Stelt een eigen titel voor de kaart in
+- `hide_progress` - Gebruikt de compacte lay-outoptie en verbergt het percentage en maakt de staven gelijk. Standaard `false`
 
 > :Waarschuwing: **Belangrijk:**
 > Namen van programmeertalen moeten worden geuri-escaped, zoals gespecificeerd in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
@@ -267,6 +268,15 @@ Je kan de `&layout=compact` optie gebruiken om het kaart ontwerp aan te passen.
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
+
+### hide_progress
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+```
+### Demo
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
 
 ### Demo
 

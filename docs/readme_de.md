@@ -157,10 +157,15 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 
 #### Exklusive Optionen der Sprachen-Karte:
 
-- `hide` - Verbirgt die angegebenen Sprachen von der Karte _(Komma separierte Werte)_
-- `hide_title` - _(Boolean)_
-- `layout` - Wechsel zwischen den zwei verfügbaren Layouts `default` & `compact`
-- `card_width` - Lege die Breite der Karte manuell fest _(Zahl)_
+- `hide` - Ausblenden der angegebenen Sprachen auf der Karte _(Comma-separated values)_. Standard: `[] (leeres Array)`.
+- `hide_title` - _(boolesch)_. Voreinstellung: „false“.
+- `layout` - Umschalten zwischen zwei verfügbaren Layouts `default` & `compact`. Standard: "default".
+- `card_width` - Stellen Sie die Breite der Karte manuell ein _(number)_. Standard '300'.
+- `langs_count` - Zeige mehr Sprachen auf der Karte, zwischen 1-10 _(number)_. Standard `5`.
+- `exclude_repo` - Angegebene Repositories ausschließen _(Comma-separated values)_. Standard: `[] (leeres Array)`.
+- `custom_title` - Legt einen benutzerdefinierten Titel für die Karte fest _(string)_. Standard `Am häufigsten verwendete Sprachen`.
+- `disable_animations` - Deaktiviert alle Animationen in der Karte _(boolean)_. Voreinstellung: „false“.
+- `hide_progress` - Es verwendet die kompakte Layoutoption, blendet Prozentsätze aus und gleicht die Balken an. Standard `false`.
 
 > :warning: **Wichtig:**
 > Sprachennamen sollten uri-escaped sein, wie hier angegeben: [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
@@ -305,6 +310,14 @@ Wähle Eines von den [Standard-Themes](#themes)
 - Top Programmiersprachen
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+
+### hide_progress
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+```
+### Demo
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

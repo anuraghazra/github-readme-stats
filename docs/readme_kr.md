@@ -192,6 +192,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `langs_count` - 카드에 표시할 언어의 수 (1-10 사이, 기본 값 : 5) _(number)_
 - `exclude_repo` - 통계에 제외할 저장소 지정 _(Comma-separated values)_
 - `custom_title` - 카드의 타이틀 값 설정
+- `hide_progress` - 축소 레이아웃 옵션을 사용하고 백분율을 숨기고 막대를 동일하게 만듭니다. 기본 `false`
 
 ##### 경고! **매우 중요**
 >
@@ -282,6 +283,15 @@ _참고:
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
+
+### hide_progress
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+```
+### Demo
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
 
 ### 미리보기
 
