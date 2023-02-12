@@ -78,7 +78,7 @@ export default async (req, res) => {
         border_color,
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
-        hide_progress: parseBoolean(hide_progress) ? true : false,
+        hide_progress: parseBoolean(hide_progress),
       }),
     );
   } catch (err) {
