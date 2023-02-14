@@ -374,12 +374,22 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
+
   dark_knight: {
     title_color: "9fef00",
     text_color: "9fef00",
     icon_color: "9fef00",
     border_color: "9fef00",
     bg_color: "141d2b",
+    },
+
+  rose: {
+    title_color: "8d192b",
+    text_color: "862931",
+    icon_color: "B71F36",
+    border_color: "e9d8d4",
+    bg_color: "e9d8d4",
+
   },
 };
 
