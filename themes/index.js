@@ -375,11 +375,11 @@ export const themes = {
     bg_color: "170F0C",
   },
   dark_knight: {
-    title_color: "00ff00",
-    text_color: "00ff00",
-    icon_color: "00ff00",
-    border_color: "00ff00",
-    bg_color: "1b1c2d",
+    title_color: "9fef00",
+    text_color: "9fef00",
+    icon_color: "9fef00",
+    border_color: "9fef00",
+    bg_color: "141d2b",
   },
 };
 
