@@ -181,7 +181,6 @@ bg_color içerisinde birden fazla rengi gradient olarak göstermek için virgül
 - `langs_count` - 1-10 arasında istediğiniz kadar dil gösterebilirsiniz. Varsayılan: 5 _(number)_
 - `exclude_repo` - Belirli repoları listeden çıkartır _(Virgül ile ayırılmış değerlerle)_
 - `custom_title` - Kart için istediğiniz bir başlığı belirler
-- `hide_progress` - Kompakt düzen seçeneğini kullanır ve yüzdeyi gizler ve çubukları eşit yapar. Varsayılan=`false`
 
 > :warning: **Önemli:**
 > Dİl isimleri [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)'te belirtildiği üzere uri-escaped olarak belirtilmelidir.
@@ -277,15 +276,6 @@ Endpoint: `api/top-langs?username=mustafacagri`
 - Kompakt Düzen / Layout
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mustafacagri&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
-
-### hide_progress
-
-```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-```
-### Demo
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-
 
 # Wakatime Haftalık İstatistikler
 

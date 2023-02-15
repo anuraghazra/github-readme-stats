@@ -180,7 +180,6 @@ Puedes pasar mútliples valores separados por coma en la opción `bg_color` para
 - `langs_count` - Muestra más lenguajes en la tarjeta, entre 1-10, por defecto 5 _(número)_
 - `exclude_repo` - Excluye los repositorios especificados  _(valores separados por comas)_
 - `custom_title` - Establece un título personalizado
-- `hide_progress` - Utiliza la opción de diseño compacto, oculta porcentajes y hace que las barras sean iguales. Por defecto `false`
 
 > :warning: **Importante:**
 > Los nombres de los lenguajes deben estar codificados para URLs, como se especifica en [Código porciento](https://es.wikipedia.org/wiki/C%C3%B3digo_porciento)
@@ -277,15 +276,6 @@ Puedes usar la opción `& layout = compact` para cambiar el diseño de la tarjet
 - Diseño compacto
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
-
-### hide_progress
-
-```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-```
-### Demo
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-
 
 # Estadísticas de la semana de Wakatime
 

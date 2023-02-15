@@ -165,17 +165,12 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - `show_owner` - 显示 Repo 的所有者名字 _(boolean)_
 
-#### 语言卡专属选项
+#### 语言卡片专属选项:
 
 - `hide` - 从卡片中隐藏指定语言 _(Comma seperated values)_
-- `hide_title` - _(boolean)_。 默认值：`false`。
-- `layout` - 在两个可用布局`default` 和 `compact` 之间切换。 默认值：`default`。
-- `card_width` - 手动设置卡片的宽度 _(number)_。 默认 `300`。
-- `langs_count` - 在卡片上显示更多语言，在 1-10 _(number)_ 之间。 默认 `5`。
-- `exclude_repo` - 排除指定的存储库_（逗号分隔值）_。 默认值：`[]（空白数组）`。
-- `custom_title` - 为卡片设置自定义标题 _(string)_。 默认“最常用的语言”。
-- `disable_animations` - 禁用卡片中的所有动画_（布尔值）_。 默认值：`false`。
-- `hide_progress` - 它使用紧凑布局选项，隐藏百分比，并使条形相等。
+- `hide_title` - _(boolean)_
+- `layout` - 在两个可用布局 `default` & `compact` 间切换
+- `card_width` - 手动设置卡片的宽度 _(number)_
 
 > :warning: **重要:**
 > 如 [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) 所指定，语言名称应使用 uri 转义。
@@ -246,16 +241,6 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 - 紧凑布局
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
-
-
-### hide_progress
-
-```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-```
-### Demo
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-
 
 ---
 

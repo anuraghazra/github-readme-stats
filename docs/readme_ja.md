@@ -177,7 +177,6 @@ bg_color オプションで複数のカンマ区切りの値を指定してグ�
 - `langs_count` - 表示される言語の数　_(1 ~ 10, 初期値 5)_
 - `exclude_repo` - 指定されたリポジトリを除外する _(カンマ区切りで指定)_
 - `custom_title` - タイトル文字列を変更する
-- `hide_progress` - コンパクト レイアウト オプションを使用し、パーセンテージを非表示にし、バーを均等にします。デフォルト `false`
 
 > :warning: **重要:**
 > [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) で指定されているように、プログラミング言語の名前は URL エンコードされている必要があります。
@@ -248,16 +247,6 @@ _NOTE: Top languages は、ユーザのスキルレベルを示すものでは�
 - Compact layout の場合
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
-
-
-### hide_progress
-
-```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-```
-### Demo
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-
 
 ---
 

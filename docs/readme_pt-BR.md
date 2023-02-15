@@ -160,17 +160,12 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 
 - `show_owner` - Exibir o nome da pessoa a quem o repositório pertence _(boolean)_
 
-#### Opções exclusivas do cartão de idiomas
+#### Opções exclusivas do cartão de linguagens:
 
-- `hide` - Ocultar os idiomas especificados no cartão _(Valores separados por vírgula)_. Padrão: `[] (matriz em branco)`.
-- `hide_title` - _(booleano)_. Padrão: `false`.
-- `layout` - Alternar entre dois layouts disponíveis `default` e `compact`. Padrão: `default`.
-- `card_width` - Defina a largura do cartão manualmente _(número)_. Padrão `300`.
-- `langs_count` - Mostrar mais idiomas no cartão, entre 1-10 _(número)_. Padrão `5`.
-- `exclude_repo` - Excluir repositórios especificados _(valores separados por vírgula)_. Padrão: `[] (matriz em branco)`.
-- `custom_title` - Define um título personalizado para o cartão _(string)_. Padrão 'Idiomas Mais Usados'.
-- `disable_animations` - Desativa todas as animações no cartão _(boolean)_. Padrão: `false`.
-- `hide_progress` - Usa a opção de layout compacto, oculta porcentagens e torna as barras iguais. Padrão `false`.
+- `hide` - Oculta linguagens específicas _(Valores separados por vírgulas)_
+- `hide_title` - Oculta o título _(boolean)_
+- `layout` - Alterna entre os dois layouts disponíveis `default` & `compact`
+- `card_width` - Define a largura do cartão manualmente _(number)_
 
 > :warning: **Importante:**
 > Nomes de linguagens devem ser uma sequência escapada de URI, como específicado em [Codificação por cento](https://pt.wikipedia.org/wiki/Codificação_por_cento)
@@ -241,16 +236,6 @@ Utilize a opção `&layout=compact` para mudar o layout do cartão.
 - Layout compacto
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
-
-
-### hide_progress
-
-```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-```
-### Demo
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-
 
 # Estatística semanal Wakatime
 

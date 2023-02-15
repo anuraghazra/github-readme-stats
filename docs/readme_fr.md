@@ -167,15 +167,10 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 #### Language Card Exclusive Options:
 
-- `hide` - Cache les langues spécifiées de la carte _(Comma-separated values)_. Par défaut : `[] (tableau vide)`.
-- `hide_title` - _(booléen)_. Par défaut : "faux".
-- `layout` - Basculez entre deux mises en page disponibles `default` & `compact`. Par défaut : "par défaut".
-- `card_width` - Définissez manuellement la largeur de la carte _(nombre)_. '300' par défaut.
-- `langs_count` - Afficher plus de langues sur la carte, entre 1 et 10 _(nombre)_. '5' par défaut.
-- `exclude_repo` - Exclut les référentiels spécifiés _(valeurs séparées par des virgules)_. Par défaut : `[] (tableau vide)`.
-- `custom_title` - Définit un titre personnalisé pour la carte _(string)_. `Langues les plus utilisées` par défaut.
-- `disable_animations` - Désactive toutes les animations de la carte _(boolean)_. Par défaut : "faux".
-- `hide_progress` - Il utilise l'option de mise en page compacte, masque les pourcentages et rend les barres égales. Défaut `false`
+-   `hide` - Masquer les langages spécifiés sur la carte _(Comma seperated values)_
+-   `hide_title` - Masquer le titre _(boolean)_
+-   `layout` - Alterner entre 2 mise en page `default` & `compact`
+-   `card_width` - Fixer la largeur de la carte manuellement _(number)_
 
 > :warning: **Important:**
 > Les noms des langages doivent être en format uri, comme spécifié dans [Percent Encoding](https://fr.wikipedia.org/wiki/Percent-encoding)
@@ -246,14 +241,6 @@ Vous pouvez utiliser l'option `&layout=compact` pour changer le style de la cart
 - Carte compacte
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
-
-### hide_progress
-
-```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-```
-### Demo
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

@@ -160,7 +160,6 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 - `include_all_commits` - Mostra tutti i commit e non solo quelli dell'anno corrente _(booleano)_
 - `count_private` - Include i contributi privati _(booleano)_
 - `line_height` - Specifica il valore dell'altezza di riga _(numero)_
-- `hide_progress` - Utilizza l'opzione di layout compatto, nasconde le percentuali e rende uguali le barre. Predefinito `false`
 
 #### Opzioni valide solo per le Repo Card:
 
@@ -240,15 +239,6 @@ Puoi utilizzare l'opzione `&layout=compact` per cambiare l'aspetto della card.
 - Layout Compatto
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
-
-### hide_progress
-
-```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-```
-### Demo
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
-
 
 ---
 
