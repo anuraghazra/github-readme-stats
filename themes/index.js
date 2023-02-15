@@ -382,9 +382,9 @@ export const themes = {
     bg_color: "e9d8d4",
   },
    alyan: {
-    title_color: "ecfffd",
-    text_color: "fff",
-    icon_color: "1295f0",
+    title_color: "0796ff",
+    text_color: "9e2af1",
+    icon_color: "07a3f9",
     border_color: "303030",
     bg_color: "111111",
   },
