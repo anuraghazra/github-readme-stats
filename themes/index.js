@@ -381,6 +381,13 @@ export const themes = {
     border_color: "e9d8d4",
     bg_color: "e9d8d4",
   },
+   alyan: {
+    title_color: "ecfffd",
+    text_color: "fff",
+    icon_color: "1295f0",
+    border_color: "303030",
+    bg_color: "111111",
+  },
 };
 
 export default themes;
