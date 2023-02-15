@@ -89,7 +89,7 @@ const createCompactLangNode = ({ lang, totalSize, hideProgress, index }) => {
     <g class="stagger" style="animation-delay: ${staggerDelay}ms">
       <circle cx="5" cy="6" r="5" fill="${color}" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        ${lang.name} ${ hideProgress ? "": percentage + '%' }
+        ${lang.name} ${hideProgress ? "" : percentage + "%"}
       </text>
     </g>
   `;
@@ -174,7 +174,8 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
   let progressOffset = 0;
   const compactProgressBar = langs
     .map((lang) => {
-      const percentage = parseFloat(((hideProgress ? (1 / langs.length) : (lang.size / totalLanguageSize)) * offsetWidth).toFixed(2),
+      const percentage = parseFloat(
+        ((lang.size / totalLanguageSize) * offsetWidth).toFixed(2),
       );
 
       const progress = percentage < 10 ? percentage + 10 : percentage;
@@ -196,12 +197,17 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
     .join("");
 
   return `
-    <mask id="rect-mask">
+  ${
+    !hideProgress
+      ? `
+  <mask id="rect-mask">
       <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5"/>
     </mask>
     ${compactProgressBar}
-
-    <g transform="translate(0, 25)">
+  `
+      : ""
+  }
+    <g transform="translate(0, ${hideProgress ? "0" : "25"})">
       ${createLanguageTextNode({
         langs,
         totalSize: totalLanguageSize,
@@ -310,11 +316,17 @@ const renderTopLanguages = (topLangs, options = {}) => {
   let height = calculateNormalLayoutHeight(langs.length);
 
   let finalLayout = "";
-    if (layout === "compact" || hide_progress == true) {
+  if (layout === "compact" || hide_progress == true) {
     width = width + 50; // padding
-    height = calculateCompactLayoutHeight(langs.length);
+    height =
+      calculateCompactLayoutHeight(langs.length) + (hide_progress ? -25 : 0);
 
-    finalLayout = renderCompactLayout(langs, width, totalLanguageSize, hide_progress);
+    finalLayout = renderCompactLayout(
+      langs,
+      width,
+      totalLanguageSize,
+      hide_progress,
+    );
   } else {
     finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
   }
