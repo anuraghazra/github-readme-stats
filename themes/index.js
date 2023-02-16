@@ -381,6 +381,12 @@ export const themes = {
     border_color: "e9d8d4",
     bg_color: "e9d8d4",
   },
+  leo: {
+    title_color: "00c652",
+    text_color: "ffffff",
+    icon_color: "B71F36",
+    border_color: "e9d8d4",
+    bg_color: "151b22",
 };
 
 export default themes;
