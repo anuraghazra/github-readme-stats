@@ -76,10 +76,11 @@ const createProgressTextNode = ({ width, color, name, progress, index }) => {
  * @param {object} props Function properties.
  * @param {Lang} props.lang Programming language object.
  * @param {number} props.totalSize Total size of all languages.
+ * @param {boolean} props.hideProgress Whether to hide percentage.
  * @param {number} props.index Index of the programming language.
  * @returns {string} Compact layout programming language SVG node.
  */
-const createCompactLangNode = ({ lang, totalSize, index }) => {
+const createCompactLangNode = ({ lang, totalSize, hideProgress, index }) => {
   const percentage = ((lang.size / totalSize) * 100).toFixed(2);
   const staggerDelay = (index + 3) * 150;
   const color = lang.color || "#858585";
@@ -88,7 +89,7 @@ const createCompactLangNode = ({ lang, totalSize, index }) => {
     <g class="stagger" style="animation-delay: ${staggerDelay}ms">
       <circle cx="5" cy="6" r="5" fill="${color}" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        ${lang.name} ${percentage}%
+        ${lang.name} ${hideProgress ? "" : percentage + "%"}
       </text>
     </g>
   `;
@@ -100,9 +101,10 @@ const createCompactLangNode = ({ lang, totalSize, index }) => {
  * @param {object[]} props Function properties.
  * @param {Lang[]} props.langs Array of programming languages.
  * @param {number} props.totalSize Total size of all languages.
+ * @param {boolean} props.hideProgress Whether to hide percentage.
  * @returns {string} Programming languages SVG node.
  */
-const createLanguageTextNode = ({ langs, totalSize }) => {
+const createLanguageTextNode = ({ langs, totalSize, hideProgress }) => {
   const longestLang = getLongestLang(langs);
   const chunked = chunkArray(langs, langs.length / 2);
   const layouts = chunked.map((array) => {
@@ -111,6 +113,7 @@ const createLanguageTextNode = ({ langs, totalSize }) => {
       createCompactLangNode({
         lang,
         totalSize,
+        hideProgress,
         index,
       }),
     );
@@ -160,9 +163,10 @@ const renderNormalLayout = (langs, width, totalLanguageSize) => {
  * @param {Lang[]} langs Array of programming languages.
  * @param {number} width Card width.
  * @param {number} totalLanguageSize Total size of all languages.
+ * @param {boolean} hideProgress Whether to hide progress bar.
  * @returns {string} Compact layout card SVG object.
  */
-const renderCompactLayout = (langs, width, totalLanguageSize) => {
+const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
   const paddingRight = 50;
   const offsetWidth = width - paddingRight;
   // progressOffset holds the previous language's width and used to offset the next language
@@ -193,15 +197,21 @@ const renderCompactLayout = (langs, width, totalLanguageSize) => {
     .join("");
 
   return `
-    <mask id="rect-mask">
+  ${
+    !hideProgress
+      ? `
+  <mask id="rect-mask">
       <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5"/>
     </mask>
     ${compactProgressBar}
-
-    <g transform="translate(0, 25)">
+  `
+      : ""
+  }
+    <g transform="translate(0, ${hideProgress ? "0" : "25"})">
       ${createLanguageTextNode({
         langs,
         totalSize: totalLanguageSize,
+        hideProgress: hideProgress,
       })}
     </g>
   `;
@@ -276,6 +286,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     text_color,
     bg_color,
     hide,
+    hide_progress,
     theme,
     layout,
     custom_title,
@@ -305,11 +316,17 @@ const renderTopLanguages = (topLangs, options = {}) => {
   let height = calculateNormalLayoutHeight(langs.length);
 
   let finalLayout = "";
-  if (layout === "compact") {
+  if (layout === "compact" || hide_progress == true) {
     width = width + 50; // padding
-    height = calculateCompactLayoutHeight(langs.length);
+    height =
+      calculateCompactLayoutHeight(langs.length) + (hide_progress ? -25 : 0);
 
-    finalLayout = renderCompactLayout(langs, width, totalLanguageSize);
+    finalLayout = renderCompactLayout(
+      langs,
+      width,
+      totalLanguageSize,
+      hide_progress,
+    );
   } else {
     finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
   }
