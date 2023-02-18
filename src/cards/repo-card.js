@@ -88,16 +88,6 @@ const iconWithLabel = (icon, label, testid) => {
  */
 const renderRepoCard = (repo, options = {}) => {
   const {
-    name,
-    nameWithOwner,
-    description,
-    primaryLanguage,
-    isArchived,
-    isTemplate,
-    starCount,
-    forkCount,
-  } = repo;
-  const {
     hide_border = false,
     title_color,
     icon_color,
@@ -109,6 +99,42 @@ const renderRepoCard = (repo, options = {}) => {
     border_color,
     locale,
   } = options;
+  
+  const i18n = new I18n({
+    locale,
+    translations: repoCardLocales,
+  });
+  
+  const colors = getCardColors({
+    title_color,
+    icon_color,
+    text_color,
+    bg_color,
+    border_color,
+    theme,
+  });
+  
+  const {
+    name,
+    nameWithOwner,
+    description,
+    primaryLanguage,
+    isArchived,
+    isTemplate,
+    starCount,
+    forkCount,
+  } = repo;
+  
+  const highlight = repo.highlight
+        ? // @ts-ignore
+          getBadgeSVG(repo.highlight, colors.textColor)
+        : isTemplate
+        ? // @ts-ignore
+          getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
+        : isArchived
+        ? // @ts-ignore
+          getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
+        : ""
 
   const lineHeight = 10;
   const header = show_owner ? nameWithOwner : name;
@@ -125,27 +151,25 @@ const renderRepoCard = (repo, options = {}) => {
   const height =
     (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
 
-  const i18n = new I18n({
-    locale,
-    translations: repoCardLocales,
-  });
-
   // returns theme based colors with proper overrides and defaults
-  const colors = getCardColors({
-    title_color,
-    icon_color,
-    text_color,
-    bg_color,
-    border_color,
-    theme,
-  });
 
   const svgLanguage = primaryLanguage
     ? createLanguageNode(langName, langColor)
     : "";
-
-  const totalStars = kFormatter(starCount);
-  const totalForks = kFormatter(forkCount);
+  
+  let totalStars
+  let totalForks
+  if (isNaN(starCount)) {
+    totalStars = starCount;
+  } else {
+    totalStars = kFormatter(starCount);
+  }
+  if (isNaN(forkCount)) {
+    totalForks = forkCount;
+  } else {
+    totalForks = kFormatter(forkCount);
+  }
+  
   const svgStars = iconWithLabel(icons.star, totalStars, "stargazers");
   const svgForks = iconWithLabel(icons.fork, totalForks, "forkcount");
 
@@ -180,15 +204,7 @@ const renderRepoCard = (repo, options = {}) => {
   `);
 
   return card.render(`
-    ${
-      isTemplate
-        ? // @ts-ignore
-          getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
-        : isArchived
-        ? // @ts-ignore
-          getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
-        : ""
-    }
+    ${highlight}
 
     <text class="description" x="25" y="-5">
       ${descriptionSvg}

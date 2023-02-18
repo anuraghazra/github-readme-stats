@@ -40,7 +40,12 @@ const createTextNode = ({
   shiftValuePos,
   bold,
 }) => {
-  const kValue = kFormatter(value);
+  let kValue
+  if (isNaN(value)) {
+    kValue = value;
+  } else {
+    kValue = kFormatter(value);
+  }
   const staggerDelay = (index + 3) * 150;
 
   const labelOffset = showIcons ? `x="25"` : "";
@@ -76,15 +81,6 @@ const createTextNode = ({
  */
 const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const {
-    name,
-    totalStars,
-    totalCommits,
-    totalIssues,
-    totalPRs,
-    contributedTo,
-    rank,
-  } = stats;
-  const {
     hide = [],
     show_icons = false,
     hide_title = false,
@@ -106,6 +102,37 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     locale,
     disable_animations = false,
   } = options;
+  
+  const name = stats.name || "GitHub User"
+  
+  const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
+    ? ""
+    : "s";
+  
+  const i18n = new I18n({
+    locale,
+    translations: statCardLocales({ name, apostrophe }),
+  });
+  
+  const {
+    totalStars = "2018",
+    totalCommits = "29019",
+    totalIssues = "203",
+    totalPRs = "127",
+    contributedTo = "232",
+    rank = {
+      level: "S",
+      score: 10
+    },
+    starsTitle = i18n.t("statcard.totalstars"),
+    commitsTitle = `${i18n.t("statcard.commits")}${
+        include_all_commits ? "" : ` (${new Date().getFullYear()})`
+      }`,
+    issuesTitle = i18n.t("statcard.issues"),
+    PRsTitle = i18n.t("statcard.prs"),
+    contribsTitle = i18n.t("statcard.contribs") + " (last year)",
+    title = i18n.t("statcard.title"),
+  } = stats;
 
   const lheight = parseInt(String(line_height), 10);
 
@@ -121,45 +148,35 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
       theme,
     });
 
-  const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
-    ? ""
-    : "s";
-  const i18n = new I18n({
-    locale,
-    translations: statCardLocales({ name, apostrophe }),
-  });
-
   // Meta data for creating text nodes with createTextNode function
   const STATS = {
     stars: {
       icon: icons.star,
-      label: i18n.t("statcard.totalstars"),
+      label: starsTitle,
       value: totalStars,
       id: "stars",
     },
     commits: {
       icon: icons.commits,
-      label: `${i18n.t("statcard.commits")}${
-        include_all_commits ? "" : ` (${new Date().getFullYear()})`
-      }`,
+      label: commitsTitle,
       value: totalCommits,
       id: "commits",
     },
     prs: {
       icon: icons.prs,
-      label: i18n.t("statcard.prs"),
+      label: PRsTitle,
       value: totalPRs,
       id: "prs",
     },
     issues: {
       icon: icons.issues,
-      label: i18n.t("statcard.issues"),
+      label: issuesTitle,
       value: totalIssues,
       id: "issues",
     },
     contribs: {
       icon: icons.contribs,
-      label: i18n.t("statcard.contribs") + " (last year)",
+      label: contribsTitle,
       value: contributedTo,
       id: "contribs",
     },
@@ -215,7 +232,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   });
 
   const calculateTextWidth = () => {
-    return measureText(custom_title ? custom_title : i18n.t("statcard.title"));
+    return measureText(custom_title ? custom_title : title);
   };
 
   /*
@@ -241,7 +258,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: i18n.t("statcard.title"),
+    defaultTitle: title,
     width,
     height,
     border_radius,
@@ -306,11 +323,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const labels = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
     .map((key) => {
-      if (key === "commits") {
-        return `${i18n.t("statcard.commits")} ${
-          include_all_commits ? "" : `in ${new Date().getFullYear()}`
-        } : ${totalStars}`;
-      }
       return `${STATS[key].label}: ${STATS[key].value}`;
     })
     .join(", ");
