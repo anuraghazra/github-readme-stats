@@ -381,6 +381,27 @@ export const themes = {
     border_color: "e9d8d4",
     bg_color: "e9d8d4",
   },
+  shadow_red: {
+    title_color: "9A0000",
+    text_color: "444",
+    icon_color: "4F0000",
+    border_color: "4F0000",
+    bg_color: "1116",
+  },
+  shadow_green: {
+    title_color: "007A00",
+    text_color: "444",
+    icon_color: "003D00",
+    border_color: "003D00",
+    bg_color: "1116",
+  },
+  shadow_blue: {
+    title_color: "00779A",
+    text_color: "444",
+    icon_color: "004450",
+    border_color: "004490",
+    bg_color: "1116",
+  },
 };
 
 export default themes;
