@@ -384,7 +384,7 @@ export const themes = {
   rising_sun: {
     title_color: "F6882B",
     icon_color: "F6882B",
-    text_color: "FFEDD5",
+    text_color: "FFF7ed",
     bg_color: "0C1116",
   },
 };
