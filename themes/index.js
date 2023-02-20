@@ -381,6 +381,13 @@ export const themes = {
     border_color: "e9d8d4",
     bg_color: "e9d8d4",
   },
+  cydex: {
+    title_color: "8965d6",
+    text_color: "8282f5",
+    icon_color: "d41ed4",
+    border_color: "19051c",
+    bg_color: "291B3E",
+  },
 };
 
 export default themes;
