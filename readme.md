@@ -80,6 +80,9 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
 
 # Features
 
+-   [Getting Started](#getting-started)
+    -   [GitHub Actions](#github-actions-recommended)
+    -   [Community Deployment](#community-deployment)
 -   [GitHub Stats Card](#github-stats-card)
 -   [GitHub Extra Pins](#github-extra-pins)
 -   [Top Languages Card](#top-languages-card)
@@ -94,6 +97,129 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
     -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
 -   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
     -   [Keep your fork up to date](#keep-your-fork-up-to-date)
+    
+# Getting Started
+
+## GitHub Actions (Recommended)
+
+Using GitHub Actions over the community deployment is recommended because it provides more accurate stats and 100% uptime. Simply copy-paste the following into the `/.github/workflows/grs.yml` file in your README repo (`USERNAME/USERNAME`).
+
+```yml
+name: GitHub Readme Stats
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: 0 * * * *
+
+jobs:
+  grs:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    name: Generate Stats
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Generate Stats
+        uses: Zo-Bro-23/grs-action@v1
+        id: generate
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          options: 'username=${{ github.repository_owner }}'
+      - name: Push
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: grs
+          build_dir: grs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+If you want to generate multiple stats, such as top languages, wakatime, etc, you can use the following code.
+
+```yml
+name: GitHub Readme Stats
+on:
+  workflow_dispatch:
+  schedule:
+  - cron: 0 * * * *
+
+jobs:
+  stats:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    name: Stats Card
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Generate Stats
+        uses: Zo-Bro-23/grs-action@v1
+        id: generate
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          options: 'username=${{ github.repository_owner }}'
+      - uses: actions/upload-artifact@master
+        with:
+          name: stats
+          path: grs
+  top-langs:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    name: Top Languages Card
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Generate Top Languages
+        uses: Zo-Bro-23/grs-action@v1
+        id: generate
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          options: 'username=${{ github.repository_owner }}'
+          card: 'top-langs'
+      - uses: actions/upload-artifact@master
+        with:
+          name: top-langs
+          path: grs
+  push:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    name: Push
+    needs: [stats, top-langs]
+    steps:
+      - uses: actions/download-artifact@master
+        with:
+          name: stats
+          path: grs
+      - uses: actions/download-artifact@master
+        with:
+          name: top-langs
+          path: grs
+      - name: Push
+        uses: crazy-max/ghaction-github-pages@v3
+        with:
+          target_branch: grs
+          build_dir: grs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+You can now include the stats in your README by using the following markdown code (replace `USERNAME` with your GitHub username).
+
+```md
+[![Your GitHub stats](https://github.com/USERNAME/USERNAME/raw/grs/stats.svg)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+You can also enable GitHub Pages on the `grs` branch (root) and use that URL (replace `GH_PAGES_URL` with your GitHub Pages URL).
+
+```md
+[![Your GitHub stats](https://GH_PAGES_URL/stats.svg)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+The GitHub Action accepts the following inputs:
+- `token` - `REQUIRED` - Your GitHub Personal Access Token (PAT), or any other token that GitHub accepts.
+- `options` - `REQUIRED` - Any customization options. More below. (This is the same as the query string you would pass to the API if using the community deployment)
+- `card` - The type of card to generate. `repo`, `top-langs`, or `wakatime` (leave empty for stats card).
+- `path` - Output path for SVG file. Relative path; include filename with `.svg`.
+- `fetch_multipage` - Experimental feature that gives more accurate stats if you have >100 repos.
 
 # GitHub Stats Card
 
