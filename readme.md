@@ -221,15 +221,16 @@ The GitHub Action accepts the following inputs:
 - `path` - Output path for SVG file. Relative path; include filename with `.svg`.
 - `fetch_multipage` - Experimental feature that gives more accurate stats if you have >100 repos.
 
-# GitHub Stats Card
-
-Copy-paste this into your markdown content, and that is it. Simple!
-
-Change the `?username=` value to your GitHub username.
+## Community Deployment
+Copy-paste the following markdown code. Change the `?username=` value to your GitHub username.
 
 ```md
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
+
+Other cards can be included by using `/api/top-langs`, `/api/pin`, or `/api/wakatime`. More customization options can be added by using query parameters (`&option1=value1&option2=value2&...`).
+
+# GitHub Stats Card
 
 > **Note**
 > Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone). The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories. The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js).
@@ -241,7 +242,7 @@ You can pass a query parameter `&hide=` to hide any specific stats with comma-se
 > Options: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
+?username=anuraghazra&hide=contribs,prs
 ```
 
 ### Adding private contributions count to total commits count
@@ -254,7 +255,7 @@ You can add the count of all your private contributions to the total commits cou
 > Options: `&count_private=true`
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+?username=anuraghazra&count_private=true
 ```
 
 ### Showing icons
@@ -262,7 +263,7 @@ You can add the count of all your private contributions to the total commits cou
 To enable icons, you can pass `show_icons=true` in the query param, like so:
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+?username=anuraghazra&show_icons=true
 ```
 
 ### Themes
@@ -272,7 +273,7 @@ With inbuilt themes, you can customize the look of the card without doing any [m
 Use `&theme=THEME_NAME` parameter like so :
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+?username=anuraghazra&show_icons=true&theme=radical
 ```
 
 #### All inbuilt themes
@@ -295,7 +296,7 @@ Since GitHub will re-upload the cards and serve them from their [CDN](https://do
 We have included a `transparent` theme that has a transparent background. This theme is optimized to look good on GitHub's dark and light default themes. You can enable this theme using the `&theme=transparent` parameter like so:
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=transparent)
+?username=anuraghazra&show_icons=true&theme=transparent
 ```
 
 <details>
@@ -310,7 +311,7 @@ We have included a `transparent` theme that has a transparent background. This t
 You can use the `bg_color` parameter to make any of [the available themes](./themes/README.md) transparent. This is done by setting the `bg_color` to a colour with a transparent alpha channel (i.e. `bg_color=00000000`):
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&bg_color=00000000)
+?username=anuraghazra&show_icons=true&bg_color=00000000
 ```
 
 <details>
@@ -325,8 +326,8 @@ You can use the `bg_color` parameter to make any of [the available themes](./the
 You can use [GitHub's theme context](https://github.blog/changelog/2021-11-24-specify-theme-context-for-images-in-markdown/) tags to switch the theme based on the user GitHub theme automatically. This is done by appending `#gh-dark-mode-only` or `#gh-light-mode-only` to the end of an image URL. This tag will define whether the image specified in the markdown is only shown to viewers using a light or a dark GitHub theme:
 
 ```md
-[![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
-[![Anurag's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
+[![Anurag's GitHub stats-Dark](https://DARK_SVG_URL/#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
+[![Anurag's GitHub stats-Light](https://LIGHT_SVG_URL/#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
 ```
 
 <details>
@@ -344,14 +345,14 @@ You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-1
 ```html
 <picture>
 <source 
-  srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark"
+  srcset="https://DARK_SVG_URL/"
   media="(prefers-color-scheme: dark)"
 />
 <source
-  srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true"
+  srcset="https://LIGHT_SVG_URL/"
   media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
 />
-<img src="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true" />
+<img src="https://DEFAULT_SVG_URL/" />
 </picture>
 ```
 
@@ -374,7 +375,7 @@ You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-1
 
 ### Customization
 
-You can customize the appearance of your `Stats Card` or `Repo Card` however you wish with URL parameters.
+You can customize the appearance of your cards however you wish with these parameters.
 
 #### Common Options
 
@@ -390,7 +391,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 -   `border_radius` - Corner rounding on the card. Default: `4.5`.
 
 > **Warning**
-> We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours.
+> We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours. This is why we recommend using our GitHub Action :)
 
 ##### Gradient in bg_color
 
@@ -460,13 +461,7 @@ Yay! You are no longer limited to 6 pinned repositories.
 
 ### Usage
 
-Copy-paste this code into your readme and change the links.
-
-Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
-
-```md
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
-```
+Use the `api/pin` endpoint with the API or the `card: 'repo'` option with the GitHub Action.
 
 ### Demo
 
@@ -481,24 +476,18 @@ Use [show_owner](#customization) variable to include the repo's owner username
 The top languages card shows a GitHub user's most frequently used top language.
 
 > **Note**
-> Top Languages does not indicate my skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats.
+> Top Languages does not indicate skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub.
 
 ### Usage
 
-Copy-paste this code into your readme and change the links.
-
-Endpoint: `api/top-langs?username=anuraghazra`
-
-```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
-```
+Use the `api/top-langs` endpoint with the API or the `card: 'top-langs'` option with the GitHub Action.
 
 ### Exclude individual repositories
 
 You can use the `&exclude_repo=repo1,repo2` parameter to exclude individual repositories.
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
+?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io
 ```
 
 ### Hide individual languages
@@ -506,7 +495,7 @@ You can use the `&exclude_repo=repo1,repo2` parameter to exclude individual repo
 You can use `&hide=language1,language2` parameter to hide individual languages.
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
+?username=anuraghazra&hide=javascript,html
 ```
 
 ### Show more languages
@@ -514,7 +503,7 @@ You can use `&hide=language1,language2` parameter to hide individual languages.
 You can use the `&langs_count=` option to increase or decrease the number of languages shown on the card. Valid values are integers between 1 and 10 (inclusive), and the default is 5.
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
+?username=anuraghazra&langs_count=8
 ```
 
 ### Compact Language Card Layout
@@ -522,7 +511,7 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 You can use the `&layout=compact` option to change the card design.
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+?username=anuraghazra&layout=compact
 ```
 
 ### Hide Progress Bars
@@ -530,7 +519,7 @@ You can use the `&layout=compact` option to change the card design.
 You can use the `&hide_progress=true` option to hide the percentages and the progress bars (layout will be automatically set to `compact`).
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+?username=anuraghazra&hide_progress=true
 ```
 
 ### Demo
@@ -547,14 +536,26 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 
 # Wakatime Week Stats
 
+### Usage
+
+Use the `api/wkatime` endpoint with the API or the `card: 'wakatime'` option with the GitHub Action.
+
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+?username=willianrod
 ```
 
 > **Note**:
 > Please be aware that we currently only show data from Wakatime profiles that are public.
+
+### Compact Wakatime Card Layout
+
+You can use the `&layout=compact` option to change the card design.
+
+```md
+?username=willianrod&layout=compact
+```
 
 ### Demo
 
@@ -628,14 +629,14 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://SVG_URL/" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://SVG_URL/" />
 </a>
 ```
 
-## Deploy on your own Vercel instance
+## Deploy your own Vercel instance
 
 #### :film_projector: [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
@@ -674,7 +675,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 
 ### Keep your fork up to date
 
-You can keep your fork, and thus your private Vercel instance up to date with the upstream using GitHubs' [Sync Fork button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). You can also use the [pull](https://github.com/wei/pull) package created by [@wei](https://github.com/wei) to automate this process.
+You can keep your fork, and thus your private Vercel instance up to date with the upstream using GitHub's [Sync Fork button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). You can also use the [pull](https://github.com/wei/pull) package created by [@wei](https://github.com/wei) to automate this process.
 
 ## :sparkling_heart: Support the project
 
