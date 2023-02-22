@@ -13,7 +13,7 @@ import {
 import { langCardLocales } from "../translations.js";
 
 const DEFAULT_CARD_WIDTH = 300;
-const MIN_CARD_WIDTH = 230;
+const MIN_CARD_WIDTH = 280;
 const DEFAULT_LANGS_COUNT = 5;
 const DEFAULT_LANG_COLOR = "#858585";
 const CARD_PADDING = 25;
@@ -317,7 +317,6 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   let finalLayout = "";
   if (layout === "compact" || hide_progress == true) {
-    width = width + 50; // padding
     height =
       calculateCompactLayoutHeight(langs.length) + (hide_progress ? -25 : 0);
 
