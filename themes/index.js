@@ -382,11 +382,11 @@ export const themes = {
     bg_color: "e9d8d4",
   },
   holi_theme: {
-    title_color: "8d192b",
-    text_color: "5FABEE",
-    icon_color: "D6E7FF",
-    border_color: "2A4555",
-    bg_color: "D6E7FF",
+    title_color: "5FABEE",
+    text_color: "D6E7FF",
+    icon_color: "5FABEE",
+    border_color: "85A4C0",
+    bg_color: "030314",
   },
 };
 
