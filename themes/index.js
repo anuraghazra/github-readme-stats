@@ -381,6 +381,13 @@ export const themes = {
     border_color: "e9d8d4",
     bg_color: "e9d8d4",
   },
+  holi_theme: {
+    title_color: "8d192b",
+    text_color: "5FABEE",
+    icon_color: "D6E7FF",
+    border_color: "2A4555",
+    bg_color: "D6E7FF",
+  },
 };
 
 export default themes;
