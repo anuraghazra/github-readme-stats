@@ -380,6 +380,7 @@ export const themes = {
     icon_color: "C678DD",
     border_color: "3B4048",
     bg_color: "23272E",
+  },
   rose: {
     title_color: "8d192b",
     text_color: "862931",
