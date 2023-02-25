@@ -15,14 +15,14 @@ const REPO = "curly-fiesta";
 const USER = "catelinemnemosyne";
 const STATS_DATA = {
   name: "Cateline Mnemosyne",
-  totalPRs: 1,
-  totalCommits: 7,
+  totalPRs: 2,
+  totalCommits: 8,
   totalIssues: 1,
   totalStars: 1,
   contributedTo: 1,
   rank: {
     level: "A+",
-    score: 50.893750297869225,
+    score: 50.88831151384285,
   },
 };
 
