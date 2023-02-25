@@ -216,7 +216,7 @@ describe("Test renderTopLanguages", () => {
     );
     expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
       "width",
-      "120",
+      "100",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
@@ -224,7 +224,7 @@ describe("Test renderTopLanguages", () => {
     );
     expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
       "width",
-      "120",
+      "100",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
@@ -232,7 +232,7 @@ describe("Test renderTopLanguages", () => {
     );
     expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
       "width",
-      "60",
+      "50",
     );
   });
 
