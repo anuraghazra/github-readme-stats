@@ -298,12 +298,13 @@ const themeNameAlreadyExists = (name) => {
   return themes[name] !== undefined;
 };
 
+const DRY_RUN = process.env.DRY_RUN === "true" || false;
+
 /**
  * Main function.
  */
 export const run = async (prNumber) => {
   try {
-    const dryRun = process.env.DRY_RUN === "true" || false;
     debug("Retrieve action information from context...");
     debug(`Context: ${inspect(github.context)}`);
     let commentBody = `
@@ -513,7 +514,7 @@ export const run = async (prNumber) => {
     // Create or update theme-preview comment.
     debug("Create or update theme-preview comment...");
     let comment_url;
-    if (!dryRun) {
+    if (!DRY_RUN) {
       comment_url = await upsertComment(octokit, {
         comment_id: comment?.id,
         issue_number: pullRequestId,
@@ -535,7 +536,7 @@ export const run = async (prNumber) => {
     const reviewReason = themesValid
       ? undefined
       : INVALID_REVIEW_COMMENT(comment_url);
-    if (!dryRun) {
+    if (!DRY_RUN) {
       await addReview(
         octokit,
         pullRequestId,
@@ -558,7 +559,7 @@ export const run = async (prNumber) => {
     }
   } catch (error) {
     debug("Set review state to `REQUEST_CHANGES` and add `invalid` label...");
-    if (!dryRun) {
+    if (!DRY_RUN) {
       await addReview(
         octokit,
         pullRequestId,
