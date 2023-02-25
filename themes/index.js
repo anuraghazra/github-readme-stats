@@ -374,12 +374,26 @@ export const themes = {
     border_color: "170F0C",
     bg_color: "170F0C",
   },
+  one_dark_pro: {
+    title_color: "61AFEF",
+    text_color: "E5C06E",
+    icon_color: "C678DD",
+    border_color: "3B4048",
+    bg_color: "23272E",
+  },
   rose: {
     title_color: "8d192b",
     text_color: "862931",
     icon_color: "B71F36",
     border_color: "e9d8d4",
     bg_color: "e9d8d4",
+  },
+  holi_theme: {
+    title_color: "5FABEE",
+    text_color: "D6E7FF",
+    icon_color: "5FABEE",
+    border_color: "85A4C0",
+    bg_color: "030314",
   },
 };
 
