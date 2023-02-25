@@ -394,6 +394,13 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+    adnan_theme: {
+    title_color: "14354F",
+    text_color: "153B59",
+    icon_color: "5FABEE",
+    border_color: "85A4C0",
+    bg_color: "0A1E2D",
+  },
 };
 
 export default themes;
