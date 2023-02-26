@@ -92,7 +92,9 @@ Visit <https://indiafightscorona.giveindia.org> and make a small donation to hel
     -   [Repo Card Exclusive Options](#repo-card-exclusive-options)
     -   [Language Card Exclusive Options](#language-card-exclusive-options)
     -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
--   [Deploy Yourself](#deploy-on-your-own-vercel-instance)
+-   [Deploy Yourself](#deploy-on-your-own)
+    -   [On Vercel](#on-vercel)
+    -   [On other platforms](#on-other-platforms)
     -   [Keep your fork up to date](#keep-your-fork-up-to-date)
 
 # GitHub Stats Card
@@ -509,7 +511,9 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 </a>
 ```
 
-## Deploy on your own Vercel instance
+## Deploy on your own
+
+### On Vercel
 
 #### :film_projector: [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
@@ -544,6 +548,23 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
     ![](https://files.catbox.moe/0yclio.png)
 12. Click deploy, and you're good to go. See your domains to use the API!
 
+</details>
+
+### On other platforms
+
+> **Warning**
+> This way of using GRS is not officially supported and was added to cater to some particular use cases where Vercel could not be used (e.g. #2341). The support for this method, therefore, is limited.
+
+<details>
+<summary><b>:hammer_and_wrench: Step-by-step guide for deploying on other platforms</b></summary>
+
+1. Fork or clone this repo as per your needs
+2. Add `express` to the dependencies section of `package.json`
+https://github.com/anuraghazra/github-readme-stats/blob/ba7c2f8b55eac8452e479c8bd38b044d204d0424/package.json#L54-L61
+3. Run `npm i` if needed (initial setup)
+4. Run `node express.js` to start the server, or set the entry point to `express.js` in `package.json` if you're deploying on a managed service
+https://github.com/anuraghazra/github-readme-stats/blob/ba7c2f8b55eac8452e479c8bd38b044d204d0424/package.json#L11
+5. You're done 🎉
 </details>
 
 ### Keep your fork up to date
