@@ -300,31 +300,30 @@ Per allineare le card una accanto all'altra, puoi adottare questo approccio:
 ## Deploy su Vercel
 
 #### [Guarda questo Video Tutorial, realizzato da @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+Siccome la API di Github permette al massimo 5k richieste all'ora, e\` possibile che `https://github-readme-stats.vercel.app/api` raggiunga il limite. Non ti devi preouccpare di tutto cio` se decidi di hostarlo sul tuo Vercel server. Clicca sul bottone deploy per iniziare!
 
-Since the GitHub API only allows 5k requests per hour, it is possible that my `https://github-readme-stats.vercel.app/api` could hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
-
-NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we should be able to handle more than 5k requests and have no issues with downtime :D
+NOTE: Dal [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) dovremmo essere in grado di gestire piu` di 5k richieste senza avere problemi di downtime :D
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary><b> Guide on setting up Vercel  🔨 </b></summary>
+ <summary><b> Guida per creare un Vercel server  🔨 </b></summary>
 
-1. Go to [vercel.com](https://vercel.com/)
-1. Click on `Log in`
+1. Vai su [vercel.com](https://vercel.com/)
+1. Clicca su `Log in`
    ![](https://files.catbox.moe/tct1wg.png)
-1. Sign in with GitHub by pressing `Continue with GitHub`
+1. Accedi con Github premendo su `Continue with GitHub`
    ![](https://files.catbox.moe/btd78j.jpeg)
-1. Sign into GitHub and allow access to all repositories, if prompted
-1. Fork this repo
-1. Go back to your [Vercel dashboard](https://vercel.com/dashboard)
-1. Select `Import Project`
+1. Accedi su GitHub e concedi l'accesso alle tue repositories
+1. Forka questa repository
+1. Torna su [Vercel dashboard](https://vercel.com/dashboard)
+1. Seleziona `Import Project`
    ![](https://files.catbox.moe/qckos0.png)
-1. Select `Import Git Repository`
+1. Seleziona `Import Git Repository`
    ![](https://files.catbox.moe/pqub9q.png)
-1. Select root and keep everything as is, just add your environment variable named PAT_1 (as shown), which will contain a personal access token (PAT), which you can easily create [here](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)
+1. Seleziona root e mantieni tutto cosi\` com'e\`, aggiungi solamente la tua variabile PAT_1 (come mostrato), la quale conterra\` un token di accesso personale (PAT), che puoi creare facilmente [qui](https://github.com/settings/tokens/new) (leave everything as is, just name it something, it can be anything you want)
    ![](https://files.catbox.moe/0ez4g7.png)
-1. Click deploy, and you're good to go. See your domains to use the API!
+1. Clicca su deploy, e sei pronto a iniziare. Controlla il tuo dominio per iniziare a usare l'API!
 
 </details>
 
