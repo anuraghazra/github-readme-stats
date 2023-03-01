@@ -56,6 +56,7 @@ const createStatMdLink = (theme) => {
 const generateLinks = (fn) => {
   return Object.keys(themes)
     .map((name) => fn(name))
+    .filter((name) => !name.includes('-'))
     .join("");
 };
 
