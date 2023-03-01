@@ -46,6 +46,8 @@ const INVALID_REVIEW_COMMENT = (commentUrl) =>
 
 // Retrieve octokit instance.
 const OCTOKIT = github.getOctokit(getGithubToken());
+const PULL_REQUEST_ID = prNumber ? prNumber : getPrNumber();
+const { OWNER, REPO } = getRepoInfo(github.context);
 
 /**
  * Retrieve PR number from the event payload.
@@ -315,19 +317,17 @@ export const run = async (prNumber) => {
       \r${THEME_CONTRIB_GUIDELINESS}
     `;
     const ccc = new ColorContrastChecker();
-    const pullRequestId = prNumber ? prNumber : getPrNumber();
     const commenter = getCommenter();
-    const { owner, repo } = getRepoInfo(github.context);
-    debug(`Owner: ${owner}`);
-    debug(`Repo: ${repo}`);
+    debug(`Owner: ${OWNER}`);
+    debug(`Repo: ${REPO}`);
     debug(`Commenter: ${commenter}`);
 
     // Retrieve the PR diff and preview-theme comment.
     debug("Retrieve PR diff...");
     const res = await OCTOKIT.pulls.get({
-      owner,
-      repo,
-      pull_number: pullRequestId,
+      OWNER,
+      REPO,
+      pull_number: PULL_REQUEST_ID,
       mediaType: {
         format: "diff",
       },
@@ -335,9 +335,9 @@ export const run = async (prNumber) => {
     debug("Retrieve preview-theme comment...");
     const comment = await findComment(
       OCTOKIT,
-      pullRequestId,
-      owner,
-      repo,
+      PULL_REQUEST_ID,
+      OWNER,
+      REPO,
       commenter,
     );
 
@@ -519,9 +519,9 @@ export const run = async (prNumber) => {
     if (!DRY_RUN) {
       comment_url = await upsertComment(OCTOKIT, {
         comment_id: comment?.id,
-        issue_number: pullRequestId,
-        owner,
-        repo,
+        issue_number: PULL_REQUEST_ID,
+        OWNER,
+        REPO,
         body: commentBody,
       });
     } else {
@@ -541,17 +541,17 @@ export const run = async (prNumber) => {
     if (!DRY_RUN) {
       await addReview(
         OCTOKIT,
-        pullRequestId,
-        owner,
-        repo,
+        PULL_REQUEST_ID,
+        OWNER,
+        REPO,
         reviewState,
         reviewReason,
       );
       await addRemoveLabel(
         OCTOKIT,
-        pullRequestId,
-        owner,
-        repo,
+        PULL_REQUEST_ID,
+        OWNER,
+        REPO,
         "invalid",
         !themesValid,
       );
@@ -564,17 +564,17 @@ export const run = async (prNumber) => {
     if (!DRY_RUN) {
       await addReview(
         OCTOKIT,
-        pullRequestId,
-        owner,
-        repo,
+        PULL_REQUEST_ID,
+        OWNER,
+        REPO,
         "REQUEST_CHANGES",
         error.message,
       );
       await addRemoveLabel(
         OCTOKIT,
-        pullRequestId,
-        owner,
-        repo,
+        PULL_REQUEST_ID,
+        OWNER,
+        REPO,
         "invalid",
         true,
       );
