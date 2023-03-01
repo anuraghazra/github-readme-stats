@@ -68,7 +68,7 @@ const generateTable = ({ isRepoCard }) => {
   const rows = [];
   const themesFiltered = Object.keys(themes).filter(
     (name) => name !== (!isRepoCard ? "default_repocard" : "default"),
-  );
+  ).filter((name) => !name.includes('-'));
 
   for (let i = 0; i < themesFiltered.length; i += 3) {
     const one = themesFiltered[i];
