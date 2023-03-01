@@ -559,6 +559,7 @@ export const run = async (prNumber) => {
     }
   } catch (error) {
     debug("Set review state to `REQUEST_CHANGES` and add `invalid` label...");
+    const octokit = github.getOctokit(getGithubToken());
     if (!DRY_RUN) {
       await addReview(
         octokit,
