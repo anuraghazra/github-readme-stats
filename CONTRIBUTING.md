@@ -47,7 +47,11 @@ All you need to do is edit the [themes/index.js](./themes/index.js) file and add
 
 While creating the Pull request to add a new theme **don't forget to add a screenshot of how your theme looks**, you can also test how it looks using custom URL parameters like `title_color`, `icon_color`, `bg_color`, `text_color`, `border_color`
 
-> NOTE: If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
+> **Note**
+> If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
+
+> **Note**
+> If your theme name contains multiple words (ie, hyphenated or underscor-ed theme names), please add two versions of theme: one with hyphens and one with underscores. This is to ensure backward-compatability with when we had hyphens for some themes and underscores for others.
 
 ## Any contributions you make will be under the MIT Software License
 
