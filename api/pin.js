@@ -35,6 +35,8 @@ export default async (req, res) => {
   if (locale && !isLocaleAvailable(locale)) {
     return res.send(renderError("Something went wrong", "Language not found"));
   }
+  
+  theme = theme.replace(/-/g, "_")
 
   try {
     const repoData = await fetchRepo(username, repo);
