@@ -12,6 +12,12 @@ export const themes = {
     text_color: "434d58",
     bg_color: "fffefe",
   },
+  "default-repocard": {
+    title_color: "2f80ed",
+    icon_color: "586069", // icon color is different
+    text_color: "434d58",
+    bg_color: "fffefe",
+  },
   transparent: {
     title_color: "006AFF",
     icon_color: "0579C3",
@@ -43,6 +49,12 @@ export const themes = {
     bg_color: "282828",
   },
   gruvbox_light: {
+    title_color: "b57614",
+    icon_color: "af3a03",
+    text_color: "427b58",
+    bg_color: "fbf1c7",
+  },
+  "gruvbox-light": {
     title_color: "b57614",
     icon_color: "af3a03",
     text_color: "427b58",
@@ -108,7 +120,19 @@ export const themes = {
     text_color: "fffefe",
     bg_color: "273849",
   },
+  vue_dark: {
+    title_color: "41b883",
+    icon_color: "41b883",
+    text_color: "fffefe",
+    bg_color: "273849",
+  },
   "shades-of-purple": {
+    title_color: "fad000",
+    icon_color: "b362ff",
+    text_color: "a599e9",
+    bg_color: "2d2b55",
+  },
+  shades_of_purple: {
     title_color: "fad000",
     icon_color: "b362ff",
     text_color: "a599e9",
@@ -132,6 +156,12 @@ export const themes = {
     text_color: "0cf574",
     bg_color: "040f0f",
   },
+  blue_green: {
+    title_color: "2f97c1",
+    icon_color: "f5b700",
+    text_color: "0cf574",
+    bg_color: "040f0f",
+  },
   algolia: {
     title_color: "00AEFF",
     icon_color: "2DDE98",
@@ -139,6 +169,12 @@ export const themes = {
     bg_color: "050F2C",
   },
   "great-gatsby": {
+    title_color: "ffa726",
+    icon_color: "ffb74d",
+    text_color: "ffd95b",
+    bg_color: "000000",
+  },
+  great_gatsby: {
     title_color: "ffa726",
     icon_color: "ffb74d",
     text_color: "ffd95b",
@@ -174,6 +210,24 @@ export const themes = {
     text_color: "fff",
     bg_color: "000",
   },
+  solarized_dark: {
+    title_color: "268bd2",
+    icon_color: "b58900",
+    text_color: "859900",
+    bg_color: "002b36",
+  },
+  solarized_light: {
+    title_color: "268bd2",
+    icon_color: "b58900",
+    text_color: "859900",
+    bg_color: "fdf6e3",
+  },
+  chartreuse_dark: {
+    title_color: "7fff00",
+    icon_color: "00AEFF",
+    text_color: "fff",
+    bg_color: "000",
+  },
   nord: {
     title_color: "81a1c1",
     text_color: "d8dee9",
@@ -187,6 +241,12 @@ export const themes = {
     bg_color: "0c1014",
   },
   "material-palenight": {
+    title_color: "c792ea",
+    icon_color: "89ddff",
+    text_color: "a6accd",
+    bg_color: "292d3e",
+  },
+  material_palenight: {
     title_color: "c792ea",
     icon_color: "89ddff",
     text_color: "a6accd",
@@ -216,6 +276,24 @@ export const themes = {
     text_color: "ffffff",
     bg_color: "000000",
   },
+  vision_friendly_dark: {
+    title_color: "ffb000",
+    icon_color: "785ef0",
+    text_color: "ffffff",
+    bg_color: "000000",
+  },
+  ayu_mirage: {
+    title_color: "f4cd7c",
+    icon_color: "73d0ff",
+    text_color: "c7c8c2",
+    bg_color: "1f2430",
+  },
+  midnight_purple: {
+    title_color: "9745f5",
+    icon_color: "9f4bff",
+    text_color: "ffffff",
+    bg_color: "000000",
+  },
   calm: {
     title_color: "e07a5f",
     icon_color: "edae49",
@@ -223,6 +301,12 @@ export const themes = {
     bg_color: "373f51",
   },
   "flag-india": {
+    title_color: "ff8f1c",
+    icon_color: "250E62",
+    text_color: "509E2F",
+    bg_color: "ffffff",
+  },
+  flag_india: {
     title_color: "ff8f1c",
     icon_color: "250E62",
     text_color: "509E2F",
@@ -276,6 +360,12 @@ export const themes = {
     text_color: "d9c8a9",
     bg_color: "402b23",
   },
+  "kacho-ga": {
+    title_color: "bf4a3f",
+    icon_color: "a64833",
+    text_color: "d9c8a9",
+    bg_color: "402b23",
+  },
   outrun: {
     title_color: "ffcc00",
     icon_color: "ff1aff",
@@ -289,6 +379,18 @@ export const themes = {
     bg_color: "151A28",
   },
   city_lights: {
+    title_color: "5D8CB3",
+    icon_color: "4798FF",
+    text_color: "718CA1",
+    bg_color: "1D252C",
+  },
+  "ocean-dark": {
+    title_color: "8957B2",
+    icon_color: "FFFFFF",
+    text_color: "92D534",
+    bg_color: "151A28",
+  },
+  "city-lights": {
     title_color: "5D8CB3",
     icon_color: "4798FF",
     text_color: "718CA1",
@@ -312,6 +414,24 @@ export const themes = {
     text_color: "dbdbdb",
     bg_color: "252334",
   },
+  "github-dark": {
+    title_color: "58A6FF",
+    icon_color: "1F6FEB",
+    text_color: "C3D1D9",
+    bg_color: "0D1117",
+  },
+  "discord-old-blurple": {
+    title_color: "7289DA",
+    icon_color: "7289DA",
+    text_color: "FFFFFF",
+    bg_color: "2C2F33",
+  },
+  "aura-dark": {
+    title_color: "ff7372",
+    icon_color: "6cffd0",
+    text_color: "dbdbdb",
+    bg_color: "252334",
+  },
   panda: {
     title_color: "19f9d899",
     icon_color: "19f9d899",
@@ -319,6 +439,12 @@ export const themes = {
     bg_color: "31353a",
   },
   noctis_minimus: {
+    title_color: "d3b692",
+    icon_color: "72b7c0",
+    text_color: "c5cdd3",
+    bg_color: "1b2932",
+  },
+  "noctis-minimus": {
     title_color: "d3b692",
     icon_color: "72b7c0",
     text_color: "c5cdd3",
@@ -381,6 +507,26 @@ export const themes = {
     border_color: "3B4048",
     bg_color: "23272E",
   },
+  "rose-pine": {
+    title_color: "9ccfd8",
+    icon_color: "ebbcba",
+    text_color: "e0def4",
+    bg_color: "191724",
+  },
+  "date-night": {
+    title_color: "DA7885",
+    text_color: "E1B2A2",
+    icon_color: "BB8470",
+    border_color: "170F0C",
+    bg_color: "170F0C",
+  },
+  "one-dark-pro": {
+    title_color: "61AFEF",
+    text_color: "E5C06E",
+    icon_color: "C678DD",
+    border_color: "3B4048",
+    bg_color: "23272E",
+  },
   rose: {
     title_color: "8d192b",
     text_color: "862931",
@@ -389,6 +535,13 @@ export const themes = {
     bg_color: "e9d8d4",
   },
   holi_theme: {
+    title_color: "5FABEE",
+    text_color: "D6E7FF",
+    icon_color: "5FABEE",
+    border_color: "85A4C0",
+    bg_color: "030314",
+  },
+  "holi-theme": {
     title_color: "5FABEE",
     text_color: "D6E7FF",
     icon_color: "5FABEE",
