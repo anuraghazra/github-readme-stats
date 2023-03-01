@@ -46,6 +46,8 @@ const INVALID_REVIEW_COMMENT = (commentUrl) =>
 
 // Retrieve octokit instance.
 const OCTOKIT = github.getOctokit(getGithubToken());
+const pullRequestId = prNumber ? prNumber : getPrNumber();
+const { owner, repo } = getRepoInfo(github.context);
 
 /**
  * Retrieve PR number from the event payload.
@@ -315,9 +317,7 @@ export const run = async (prNumber) => {
       \r${THEME_CONTRIB_GUIDELINESS}
     `;
     const ccc = new ColorContrastChecker();
-    const pullRequestId = prNumber ? prNumber : getPrNumber();
     const commenter = getCommenter();
-    const { owner, repo } = getRepoInfo(github.context);
     debug(`Owner: ${owner}`);
     debug(`Repo: ${repo}`);
     debug(`Commenter: ${commenter}`);
