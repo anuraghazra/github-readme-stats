@@ -308,7 +308,7 @@ const DRY_RUN = process.env.DRY_RUN === "true" || false;
 /**
  * Main function.
  */
-export const run = async (prNumber) => {
+export const run = async () => {
   try {
     debug("Retrieve action information from context...");
     debug(`Context: ${inspect(github.context)}`);
