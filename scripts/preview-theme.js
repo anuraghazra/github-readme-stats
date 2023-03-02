@@ -46,7 +46,7 @@ const INVALID_REVIEW_COMMENT = (commentUrl) =>
 
 // Retrieve octokit instance.
 const OCTOKIT = github.getOctokit(getGithubToken());
-const PULL_REQUEST_ID = prNumber ? prNumber : getPrNumber();
+const PULL_REQUEST_ID = getPrNumber();
 const { OWNER, REPO } = getRepoInfo(github.context);
 
 /**
