@@ -43,11 +43,23 @@ const ACCEPTED_COLOR_PROPS = Object.keys(COLOR_PROPS);
 const REQUIRED_COLOR_PROPS = ACCEPTED_COLOR_PROPS.slice(0, 4);
 const INVALID_REVIEW_COMMENT = (commentUrl) =>
   `Some themes are invalid. See the [Automated Theme Preview](${commentUrl}) comment above for more information.`;
-
-// Retrieve octokit instance.
-const OCTOKIT = github.getOctokit(getGithubToken());
-const { OWNER, REPO } = getRepoInfo(github.context);
+var OCTOKIT;
+var OWNER;
+var REPO;
 var PULL_REQUEST_ID;
+
+/**
+ * Incorrect JSON format error.
+ * @extends Error
+ * @param {string} message Error message.
+ * @returns {Error} IncorrectJsonFormatError.
+ */
+class IncorrectJsonFormatError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "IncorrectJsonFormatError";
+  }
+}
 
 /**
  * Retrieve PR number from the event payload.
@@ -274,7 +286,9 @@ const parseJSON = (json) => {
     if (typeof parsedJson === "object") {
       return parsedJson;
     } else {
-      throw new Error("PR diff is not a valid theme JSON object.");
+      throw new IncorrectJsonFormatError(
+        "PR diff is not a valid theme JSON object.",
+      );
     }
   } catch (error) {
     let parsedJson = json
@@ -289,7 +303,9 @@ const parseJSON = (json) => {
       }
       return Hjson.parse(parsedJson.join(""));
     } else {
-      throw error;
+      throw new IncorrectJsonFormatError(
+        `Theme JSON file could not be parsed: ${error.message}`,
+      );
     }
   }
 };
@@ -317,6 +333,11 @@ export const run = async () => {
       \r${THEME_CONTRIB_GUIDELINESS}
     `;
     const ccc = new ColorContrastChecker();
+    OCTOKIT = github.getOctokit(getGithubToken());
+    PULL_REQUEST_ID = getPrNumber();
+    const { owner, repo } = getRepoInfo(github.context);
+    OWNER = owner;
+    REPO = repo;
     const commenter = getCommenter();
     PULL_REQUEST_ID = getPrNumber();
     debug(`Owner: ${OWNER}`);
@@ -326,8 +347,8 @@ export const run = async () => {
     // Retrieve the PR diff and preview-theme comment.
     debug("Retrieve PR diff...");
     const res = await OCTOKIT.pulls.get({
-      OWNER,
-      REPO,
+      owner: OWNER,
+      repo: REPO,
       pull_number: PULL_REQUEST_ID,
       mediaType: {
         format: "diff",
@@ -569,7 +590,9 @@ export const run = async () => {
         OWNER,
         REPO,
         "REQUEST_CHANGES",
-        error.message,
+        "**Something went wrong in the theme preview action:** `" +
+          error.message +
+          "`",
       );
       await addRemoveLabel(
         OCTOKIT,
