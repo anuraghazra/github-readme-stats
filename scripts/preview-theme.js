@@ -143,15 +143,36 @@ const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
  * Create or update the preview comment.
  *
  * @param {Object} octokit Octokit instance.
- * @param {Object} props Comment properties.
+ * @param {number} issueNumber Issue number.
+ * @param {Object} repo Repository name.
+ * @param {Object} owner Owner of the repository.
+ * @param {number} commentId Comment ID.
+ * @param {string} body Comment body.
  * @return {string} The comment URL.
  */
-const upsertComment = async (octokit, props) => {
+const upsertComment = async (
+  octokit,
+  issueNumber,
+  repo,
+  owner,
+  commentId,
+  body,
+) => {
   let resp;
-  if (props.comment_id !== undefined) {
-    resp = await octokit.issues.updateComment(props);
+  if (commentId !== undefined) {
+    resp = await octokit.issues.updateComment({
+      owner,
+      repo,
+      comment_id: commentId,
+      body,
+    });
   } else {
-    resp = await octokit.issues.createComment(props);
+    resp = await octokit.issues.createComment({
+      owner,
+      repo,
+      issue_number: issueNumber,
+      body,
+    });
   }
   return resp.data.html_url;
 };
@@ -539,13 +560,14 @@ export const run = async () => {
     debug("Create or update theme-preview comment...");
     let comment_url;
     if (!DRY_RUN) {
-      comment_url = await upsertComment(OCTOKIT, {
-        comment_id: comment?.id,
-        issue_number: PULL_REQUEST_ID,
-        OWNER,
+      comment_url = await upsertComment(
+        OCTOKIT,
+        PULL_REQUEST_ID,
         REPO,
-        body: commentBody,
-      });
+        OWNER,
+        comment?.id,
+        commentBody,
+      );
     } else {
       info(`DRY_RUN: Comment body: ${commentBody}`);
       comment_url = "";
