@@ -388,13 +388,19 @@ export const themes = {
     border_color: "e9d8d4",
     bg_color: "e9d8d4",
   },
-  holi_theme: {
-    title_color: "5FABEE",
-    text_color: "D6E7FF",
-    icon_color: "5FABEE",
-    border_color: "85A4C0",
-    bg_color: "030314",
+  "holi_theme": {
+    title_color: "5FaBEE",
+    text_color: "D6EaFF",
+    icon_color: "5FAaEE",
+    border_color: "8aA4C0",
+    bg_color: "03031a",
   },
+  "test": {
+    title_color: "5FaBEE",
+    text_color: "D6EaFF",
+    icon_color: "5FAaEE",
+    border_color: "8aA4C0",
+  }
 };
 
 export default themes;
