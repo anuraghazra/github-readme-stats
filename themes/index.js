@@ -395,6 +395,12 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  Lofty_blue: {
+    title_color: "00eeff",
+    text_color: "00eeff",
+    icon_color: "00eeff",
+    border_color: "000000",
+    bg_color: "000000",
 };
 
 export default themes;
