@@ -388,7 +388,7 @@ export const themes = {
     border_color: "e9d8d4",
     bg_color: "e9d8d4",
   },
-  holi_theme: {
+  "holi_theme": {
     title_color: "5FaBEE",
     text_color: "D6EaFF",
     icon_color: "5FAaEE",
@@ -400,7 +400,7 @@ export const themes = {
     text_color: "D6EaFF",
     icon_color: "5FAaEE",
     border_color: "8aA4C0",
-  },
+  }
 };
 
 export default themes;
