@@ -416,6 +416,13 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  neon: {
+    title_color: "00EAD3",
+    text_colot: "FF449F",
+    icon_color: "00EAD3",
+    border_color: "ffffff",
+    bg_color: "000000",
+  },
 };
 
 export default themes;
