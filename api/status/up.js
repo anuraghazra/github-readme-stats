@@ -2,13 +2,13 @@
  * @file Contains a simple cloud function that can be used to check if the PATs are still
  * functional.
  *
- * @description This function is currently rate limited to 1 request per 10 minutes.
+ * @description This function is currently rate limited to 1 request per 5 minutes.
  */
 
 import retryer from "../../src/common/retryer.js";
 import { logger, request } from "../../src/common/utils.js";
 
-export const RATE_LIMIT_SECONDS = 60 * 10; // 1 request per 10 minutes
+export const RATE_LIMIT_SECONDS = 60 * 5; // 1 request per 5 minutes
 
 /**
  * Simple uptime check fetcher for the PATs.
