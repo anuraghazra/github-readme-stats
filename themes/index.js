@@ -409,7 +409,7 @@ export const themes = {
     border_color: "e9d8d4",
     bg_color: "e9d8d4",
   },
-  holi_theme: {
+  holi: {
     title_color: "5FABEE",
     text_color: "D6E7FF",
     icon_color: "5FABEE",
