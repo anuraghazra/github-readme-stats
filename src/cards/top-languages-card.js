@@ -47,6 +47,7 @@ const getLongestLang = (arr) =>
  * @param {number} props.index Index of the programming language.
  * @returns {string} Programming language SVG node.
  */
+
 const createProgressTextNode = ({ width, color, name, progress, index }) => {
   const staggerDelay = (index + 3) * 150;
   const paddingRight = 95;
@@ -56,7 +57,7 @@ const createProgressTextNode = ({ width, color, name, progress, index }) => {
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms">
       <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
-      <text x="${progressTextX}" y="34" class="lang-name">${progress}%</text>
+      <text x="${progressTextX}" y="34" class="lang-name">${text || `${progress}%`}</text>
       ${createProgressNode({
         x: 0,
         y: 25,
@@ -89,7 +90,7 @@ const createCompactLangNode = ({ lang, totalSize, hideProgress, index }) => {
     <g class="stagger" style="animation-delay: ${staggerDelay}ms">
       <circle cx="5" cy="6" r="5" fill="${color}" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        ${lang.name} ${hideProgress ? "" : percentage + "%"}
+        ${lang.name} ${hideProgress ? "" : (lang.text || `${percentage}%`)}
       </text>
     </g>
   `;
@@ -126,7 +127,7 @@ const createLanguageTextNode = ({ langs, totalSize, hideProgress }) => {
 
   const percent = ((longestLang.size / totalSize) * 100).toFixed(2);
   const minGap = 150;
-  const maxGap = 20 + measureText(`${longestLang.name} ${percent}%`, 11);
+  const maxGap = 20 + measureText(`${longestLang.name} ${longestLang.text || `${percent}%`}`, 11);
   return flexLayout({
     items: layouts,
     gap: maxGap < minGap ? minGap : maxGap,
@@ -149,6 +150,7 @@ const renderNormalLayout = (langs, width, totalLanguageSize) => {
         name: lang.name,
         color: lang.color || DEFAULT_LANG_COLOR,
         progress: ((lang.size / totalLanguageSize) * 100).toFixed(2),
+        text: lang.text,
         index,
       });
     }),
@@ -278,6 +280,12 @@ const useLanguages = (topLangs, hide, langs_count) => {
  * @returns {string} Language card SVG object.
  */
 const renderTopLanguages = (topLangs, options = {}) => {
+  const locale = options.locale
+  const i18n = new I18n({
+    locale,
+    translations: langCardLocales,
+  });
+  
   const {
     hide_title = false,
     hide_border,
@@ -290,17 +298,12 @@ const renderTopLanguages = (topLangs, options = {}) => {
     theme,
     layout,
     custom_title,
-    locale,
     langs_count = DEFAULT_LANGS_COUNT,
     border_radius,
     border_color,
+    title = i18n.t("langcard.title"),
     disable_animations,
   } = options;
-
-  const i18n = new I18n({
-    locale,
-    translations: langCardLocales,
-  });
 
   const { langs, totalLanguageSize } = useLanguages(
     topLangs,
@@ -341,7 +344,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: i18n.t("langcard.title"),
+    defaultTitle: title,
     width,
     height,
     border_radius,
