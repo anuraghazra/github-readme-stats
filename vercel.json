@@ -10,5 +10,9 @@
       "source": "/",
       "destination": "https://github.com/anuraghazra/github-readme-stats"
     }
-  ]
+  ],
+   "crons": [{
+    "path": "/api/cron",
+    "schedule": "*/15 * * * *"
+  }]
 }
