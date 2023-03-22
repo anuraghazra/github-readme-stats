@@ -52,10 +52,10 @@ export const themes = {
     bg_color: "141321",
   },
   merko: {
-    title_color: "abd200",
-    icon_color: "b7d364",
-    text_color: "68b587",
-    bg_color: "0a0f0b",
+    title_color: "rgb(109, 154, 47)",
+    icon_color: "rgb(109, 154, 47)",
+    text_color: "#fff",
+    bg_color: "#27395b",
   },
   gruvbox: {
     title_color: "fabd2f",
