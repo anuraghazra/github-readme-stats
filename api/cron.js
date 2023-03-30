@@ -1,5 +1,4 @@
 import { https } from 'follow-redirects'
-import { fs } from 'fs';
 export default function handler(req, res) {
   var options = {
     'method': 'POST',
