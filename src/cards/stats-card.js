@@ -41,7 +41,8 @@ const createTextNode = ({
   bold,
   number_format,
 }) => {
-  const kValue = number_format.toLowerCase() === "long" ? value : kFormatter(value);
+  const kValue =
+    number_format.toLowerCase() === "long" ? value : kFormatter(value);
   const staggerDelay = (index + 3) * 150;
 
   const labelOffset = showIcons ? `x="25"` : "";
