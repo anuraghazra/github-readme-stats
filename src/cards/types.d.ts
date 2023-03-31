@@ -38,6 +38,8 @@ export type TopLangOptions = CommonOptions & {
   layout: "compact" | "normal";
   custom_title: string;
   langs_count: number;
+  disable_animations: boolean;
+  hide_progress: boolean;
 };
 
 type WakaTimeOptions = CommonOptions & {

@@ -43,6 +43,23 @@ const ACCEPTED_COLOR_PROPS = Object.keys(COLOR_PROPS);
 const REQUIRED_COLOR_PROPS = ACCEPTED_COLOR_PROPS.slice(0, 4);
 const INVALID_REVIEW_COMMENT = (commentUrl) =>
   `Some themes are invalid. See the [Automated Theme Preview](${commentUrl}) comment above for more information.`;
+var OCTOKIT;
+var OWNER;
+var REPO;
+var PULL_REQUEST_ID;
+
+/**
+ * Incorrect JSON format error.
+ * @extends Error
+ * @param {string} message Error message.
+ * @returns {Error} IncorrectJsonFormatError.
+ */
+class IncorrectJsonFormatError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "IncorrectJsonFormatError";
+  }
+}
 
 /**
  * Retrieve PR number from the event payload.
@@ -92,7 +109,7 @@ const isPreviewComment = (inputs, comment) => {
  * @param {number} issueNumber Issue number.
  * @param {string} repo Repository name.
  * @param {string} owner Owner of the repository.
- * @returns {Object} The Github comment object.
+ * @returns {Object} The GitHub comment object.
  */
 const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
   const parameters = {
@@ -126,15 +143,36 @@ const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
  * Create or update the preview comment.
  *
  * @param {Object} octokit Octokit instance.
- * @param {Object} props Comment properties.
+ * @param {number} issueNumber Issue number.
+ * @param {Object} repo Repository name.
+ * @param {Object} owner Owner of the repository.
+ * @param {number} commentId Comment ID.
+ * @param {string} body Comment body.
  * @return {string} The comment URL.
  */
-const upsertComment = async (octokit, props) => {
+const upsertComment = async (
+  octokit,
+  issueNumber,
+  repo,
+  owner,
+  commentId,
+  body,
+) => {
   let resp;
-  if (props.comment_id !== undefined) {
-    resp = await octokit.issues.updateComment(props);
+  if (commentId !== undefined) {
+    resp = await octokit.issues.updateComment({
+      owner,
+      repo,
+      comment_id: commentId,
+      body,
+    });
   } else {
-    resp = await octokit.issues.createComment(props);
+    resp = await octokit.issues.createComment({
+      owner,
+      repo,
+      issue_number: issueNumber,
+      body,
+    });
   }
   return resp.data.html_url;
 };
@@ -269,22 +307,38 @@ const parseJSON = (json) => {
     if (typeof parsedJson === "object") {
       return parsedJson;
     } else {
-      throw new Error("PR diff is not a valid theme JSON object.");
+      throw new IncorrectJsonFormatError(
+        "PR diff is not a valid theme JSON object.",
+      );
     }
   } catch (error) {
-    let parsedJson = json
+    // Remove trailing commas (if any).
+    let parsedJson = json.replace(/(,\s*})/g, "}");
+
+    // Remove JS comments (if any).
+    parsedJson = parsedJson.replace(/\/\/[A-z\s]*\s/g, "");
+
+    // Fix incorrect open bracket (if any).
+    const splitJson = parsedJson
       .split(/([\s\r\s]*}[\s\r\s]*,[\s\r\s]*)(?=[\w"-]+:)/)
-      .filter((x) => typeof x !== "string" || !!x.trim());
-    if (parsedJson[0].replace(/\s+/g, "") === "},") {
-      parsedJson[0] = "},";
-      if (!/\s*}\s*,?\s*$/.test(parsedJson[1])) {
-        parsedJson.push(parsedJson.shift());
+      .filter((x) => typeof x !== "string" || !!x.trim()); // Split json into array of strings and objects.
+    if (splitJson[0].replace(/\s+/g, "") === "},") {
+      splitJson[0] = "},";
+      if (!/\s*}\s*,?\s*$/.test(splitJson[1])) {
+        splitJson.push(splitJson.shift());
       } else {
-        parsedJson.shift();
+        splitJson.shift();
       }
-      return Hjson.parse(parsedJson.join(""));
-    } else {
-      throw error;
+      parsedJson = splitJson.join("");
+    }
+
+    // Try to parse the fixed json.
+    try {
+      return Hjson.parse(parsedJson);
+    } catch (error) {
+      throw new IncorrectJsonFormatError(
+        `Theme JSON file could not be parsed: ${error.message}`,
+      );
     }
   }
 };
@@ -298,12 +352,13 @@ const themeNameAlreadyExists = (name) => {
   return themes[name] !== undefined;
 };
 
+const DRY_RUN = process.env.DRY_RUN === "true" || false;
+
 /**
  * Main function.
  */
-export const run = async (prNumber) => {
+export const run = async () => {
   try {
-    const dryRun = process.env.DRY_RUN === "true" || false;
     debug("Retrieve action information from context...");
     debug(`Context: ${inspect(github.context)}`);
     let commentBody = `
@@ -311,40 +366,50 @@ export const run = async (prNumber) => {
       \r${THEME_CONTRIB_GUIDELINESS}
     `;
     const ccc = new ColorContrastChecker();
-    const octokit = github.getOctokit(getGithubToken());
-    const pullRequestId = prNumber ? prNumber : getPrNumber();
-    const commenter = getCommenter();
+    OCTOKIT = github.getOctokit(getGithubToken());
+    PULL_REQUEST_ID = getPrNumber();
     const { owner, repo } = getRepoInfo(github.context);
-    debug(`Owner: ${owner}`);
-    debug(`Repo: ${repo}`);
+    OWNER = owner;
+    REPO = repo;
+    const commenter = getCommenter();
+    PULL_REQUEST_ID = getPrNumber();
+    debug(`Owner: ${OWNER}`);
+    debug(`Repo: ${REPO}`);
     debug(`Commenter: ${commenter}`);
 
     // Retrieve the PR diff and preview-theme comment.
     debug("Retrieve PR diff...");
-    const res = await octokit.pulls.get({
-      owner,
-      repo,
-      pull_number: pullRequestId,
+    const res = await OCTOKIT.pulls.get({
+      owner: OWNER,
+      repo: REPO,
+      pull_number: PULL_REQUEST_ID,
       mediaType: {
         format: "diff",
       },
     });
     debug("Retrieve preview-theme comment...");
     const comment = await findComment(
-      octokit,
-      pullRequestId,
-      owner,
-      repo,
+      OCTOKIT,
+      PULL_REQUEST_ID,
+      OWNER,
+      REPO,
       commenter,
     );
 
     // Retrieve theme changes from the PR diff.
     debug("Retrieve themes...");
     const diff = parse(res.data);
+
+    // Retrieve all theme changes from the PR diff and convert to JSON.
+    debug("Retrieve theme changes...");
     const content = diff
       .find((file) => file.to === "themes/index.js")
-      .chunks[0].changes.filter((c) => c.type === "add")
-      .map((c) => c.content.replace("+", ""))
+      .chunks.map((chunk) =>
+        chunk.changes
+          .filter((c) => c.type === "add")
+          .map((c) => c.content.replace("+", ""))
+          .join(""),
+      )
       .join("");
     const themeObject = parseJSON(content);
     if (
@@ -513,14 +578,15 @@ export const run = async (prNumber) => {
     // Create or update theme-preview comment.
     debug("Create or update theme-preview comment...");
     let comment_url;
-    if (!dryRun) {
-      comment_url = await upsertComment(octokit, {
-        comment_id: comment?.id,
-        issue_number: pullRequestId,
-        owner,
-        repo,
-        body: commentBody,
-      });
+    if (!DRY_RUN) {
+      comment_url = await upsertComment(
+        OCTOKIT,
+        PULL_REQUEST_ID,
+        REPO,
+        OWNER,
+        comment?.id,
+        commentBody,
+      );
     } else {
       info(`DRY_RUN: Comment body: ${commentBody}`);
       comment_url = "";
@@ -535,20 +601,20 @@ export const run = async (prNumber) => {
     const reviewReason = themesValid
       ? undefined
       : INVALID_REVIEW_COMMENT(comment_url);
-    if (!dryRun) {
+    if (!DRY_RUN) {
       await addReview(
-        octokit,
-        pullRequestId,
-        owner,
-        repo,
+        OCTOKIT,
+        PULL_REQUEST_ID,
+        OWNER,
+        REPO,
         reviewState,
         reviewReason,
       );
       await addRemoveLabel(
-        octokit,
-        pullRequestId,
-        owner,
-        repo,
+        OCTOKIT,
+        PULL_REQUEST_ID,
+        OWNER,
+        REPO,
         "invalid",
         !themesValid,
       );
@@ -558,20 +624,22 @@ export const run = async (prNumber) => {
     }
   } catch (error) {
     debug("Set review state to `REQUEST_CHANGES` and add `invalid` label...");
-    if (!dryRun) {
+    if (!DRY_RUN) {
       await addReview(
-        octokit,
-        pullRequestId,
-        owner,
-        repo,
+        OCTOKIT,
+        PULL_REQUEST_ID,
+        OWNER,
+        REPO,
         "REQUEST_CHANGES",
-        error.message,
+        "**Something went wrong in the theme preview action:** `" +
+          error.message +
+          "`",
       );
       await addRemoveLabel(
-        octokit,
-        pullRequestId,
-        owner,
-        repo,
+        OCTOKIT,
+        PULL_REQUEST_ID,
+        OWNER,
+        REPO,
         "invalid",
         true,
       );
