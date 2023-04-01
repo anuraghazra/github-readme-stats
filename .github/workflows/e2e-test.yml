@@ -5,6 +5,7 @@ on:
 jobs:
   e2eTests:
     if:
+      github.repository == 'anuraghazra/github-readme-stats' &&
       github.event_name == 'deployment_status' &&
       github.event.deployment_status.state == 'success'
     name: Perform 2e2 tests

@@ -5,6 +5,7 @@ on:
 
 jobs:
   showAndLabelTopIssues:
+    if: github.repository == 'anuraghazra/github-readme-stats'
     name: Update top issues Dashboard.
     runs-on: ubuntu-latest
     steps:

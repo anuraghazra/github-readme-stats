@@ -424,6 +424,19 @@ const parseEmojis = (str) => {
   });
 };
 
+/**
+ * Get diff in minutes
+ * @param {Date} d1
+ * @param {Date} d2
+ * @returns {number}
+ */
+const dateDiff = (d1, d2) => {
+  const date1 = new Date(d1);
+  const date2 = new Date(d2);
+  const diff = date1.getTime() - date2.getTime();
+  return Math.round(diff / (1000 * 60));
+};
+
 export {
   ERROR_CARD_LENGTH,
   renderError,
@@ -447,4 +460,5 @@ export {
   lowercaseTrim,
   chunkArray,
   parseEmojis,
+  dateDiff,
 };
