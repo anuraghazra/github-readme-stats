@@ -416,6 +416,13 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  dipDye:{
+    title_color:"FFFFFF",
+    text_color:"000000",
+    icon_color:"000000",
+    border_color:"FFFFFF",
+    bg_color:"C0C4FC"
+  }
 };
 
 export default themes;
