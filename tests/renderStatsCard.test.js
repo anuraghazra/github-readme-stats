@@ -357,13 +357,4 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard(stats, {});
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
   });
-
-  it("should shorten values", () => {
-    stats["totalCommits"] = 1999;
-
-    document.body.innerHTML = renderStatsCard(stats);
-    expect(getByTestId(document.body, "commits").textContent).toBe("2k");
-    document.body.innerHTML = renderStatsCard(stats, { number_format: "long" });
-    expect(getByTestId(document.body, "commits").textContent).toBe("1999");
-  });
 });

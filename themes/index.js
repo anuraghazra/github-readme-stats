@@ -321,13 +321,6 @@ export const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
-  github_dark_dimmed: {
-    title_color: "539bf5",
-    icon_color: "539bf5",
-    text_color: "ADBAC7",
-    bg_color: "24292F",
-    border_color: "373E47",
-  },
   discord_old_blurple: {
     title_color: "7289DA",
     icon_color: "7289DA",

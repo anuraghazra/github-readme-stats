@@ -39,10 +39,8 @@ const createTextNode = ({
   showIcons,
   shiftValuePos,
   bold,
-  number_format,
 }) => {
-  const kValue =
-    number_format.toLowerCase() === "long" ? value : kFormatter(value);
+  const kValue = kFormatter(value);
   const staggerDelay = (index + 3) * 150;
 
   const labelOffset = showIcons ? `x="25"` : "";
@@ -105,7 +103,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     custom_title,
     border_radius,
     border_color,
-    number_format = "short",
     locale,
     disable_animations = false,
   } = options;
@@ -195,7 +192,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         showIcons: show_icons,
         shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
         bold: text_bold,
-        number_format,
       }),
     );
 
