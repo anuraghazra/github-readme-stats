@@ -419,7 +419,7 @@ export const themes = {
   mustard: {
     title_color: "000000",
     text_color: "000000",
-    icon_color: "FFFFFF",
+    icon_color: "454545",
     border_color: "FFFFFF",
     bg_color: "F6F1E9",
   },
