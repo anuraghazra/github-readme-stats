@@ -1,3 +1,6 @@
+/**
+ * I18n translation class.
+ */
 class I18n {
   constructor({ locale, translations }) {
     this.locale = locale;
@@ -18,4 +21,5 @@ class I18n {
   }
 }
 
-module.exports = I18n;
+export { I18n };
+export default I18n;

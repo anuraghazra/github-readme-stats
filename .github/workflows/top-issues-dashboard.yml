@@ -1,10 +1,11 @@
 name: Update top issues dashboard
 on:
   schedule:
-    - cron: "0 0 */7 * *"
+    - cron: "0 0 */3 * *"
 
 jobs:
   showAndLabelTopIssues:
+    if: github.repository == 'anuraghazra/github-readme-stats'
     name: Update top issues Dashboard.
     runs-on: ubuntu-latest
     steps:
@@ -13,6 +14,7 @@ jobs:
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         with:
+          filter: "1772"
           label: false
           dashboard: true
           dashboard_show_total_reactions: true

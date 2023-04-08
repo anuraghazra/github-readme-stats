@@ -48,4 +48,5 @@ function calculateRank({
   return { level, score: rank * 100 };
 }
 
-module.exports = calculateRank;
+export { calculateRank };
+export default calculateRank;

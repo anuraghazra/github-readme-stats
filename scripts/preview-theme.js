@@ -1,26 +1,97 @@
-const core = require("@actions/core");
-const github = require("@actions/github");
-const parse = require("parse-diff");
-const Hjson = require("hjson");
-const snakeCase = require("lodash.snakecase");
-const ColorContrastChecker = require("color-contrast-checker");
+/**
+ * @file This script is used to preview the theme on theme PRs.
+ */
+import * as dotenv from "dotenv";
+dotenv.config();
 
-require("dotenv").config();
+import { debug, setFailed } from "@actions/core";
+import github from "@actions/github";
+import ColorContrastChecker from "color-contrast-checker";
+import { info } from "console";
+import Hjson from "hjson";
+import snakeCase from "lodash.snakecase";
+import parse from "parse-diff";
+import { inspect } from "util";
+import { isValidHexColor } from "../src/common/utils.js";
+import { themes } from "../themes/index.js";
+import { getGithubToken, getRepoInfo } from "./helpers.js";
 
-const OWNER = "anuraghazra";
-const REPO = "github-readme-stats";
+const COMMENTER = "github-actions[bot]";
+
 const COMMENT_TITLE = "Automated Theme Preview";
+const THEME_PR_FAIL_TEXT = ":x: Theme PR does not adhere to our guidelines.";
+const THEME_PR_SUCCESS_TEXT =
+  ":heavy_check_mark: Theme PR does adhere to our guidelines.";
+const FAIL_TEXT = `
+  \rUnfortunately, your theme PR contains an error or does not adhere to our [theme guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution). Please fix the issues below, and we will review your\
+  \r PR again. This pull request will **automatically close in 20 days** if no changes are made. After this time, you must re-open the PR for it to be reviewed.
+`;
+const THEME_CONTRIB_GUIDELINESS = `
+  \rHi, thanks for the theme contribution. Please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).
+  \rWe are currently only accepting color combinations from any VSCode theme or themes with good colour combinations to minimize bloating the themes collection.
 
-function getPrNumber() {
-  const pullRequest = github.context.payload.pull_request;
-  if (!pullRequest) {
-    return undefined;
+  \r> Also, note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection, you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization).
+`;
+const COLOR_PROPS = {
+  title_color: 6,
+  icon_color: 6,
+  text_color: 6,
+  bg_color: 8,
+  border_color: 6,
+};
+const ACCEPTED_COLOR_PROPS = Object.keys(COLOR_PROPS);
+const REQUIRED_COLOR_PROPS = ACCEPTED_COLOR_PROPS.slice(0, 4);
+const INVALID_REVIEW_COMMENT = (commentUrl) =>
+  `Some themes are invalid. See the [Automated Theme Preview](${commentUrl}) comment above for more information.`;
+var OCTOKIT;
+var OWNER;
+var REPO;
+var PULL_REQUEST_ID;
+
+/**
+ * Incorrect JSON format error.
+ * @extends Error
+ * @param {string} message Error message.
+ * @returns {Error} IncorrectJsonFormatError.
+ */
+class IncorrectJsonFormatError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = "IncorrectJsonFormatError";
   }
-
-  return pullRequest.number;
 }
 
-function findCommentPredicate(inputs, comment) {
+/**
+ * Retrieve PR number from the event payload.
+ *
+ * @returns {number} PR number.
+ */
+const getPrNumber = () => {
+  if (process.env.MOCK_PR_NUMBER) return process.env.MOCK_PR_NUMBER; // For testing purposes.
+
+  const pullRequest = github.context.payload.pull_request;
+  if (!pullRequest) {
+    throw Error("Could not get pull request number from context");
+  }
+  return pullRequest.number;
+};
+
+/**
+ * Retrieve the commenting user.
+ * @returns {string} Commenting user.
+ */
+const getCommenter = () => {
+  return process.env.COMMENTER ? process.env.COMMENTER : COMMENTER;
+};
+
+/**
+ * Returns whether the comment is a preview comment.
+ *
+ * @param {Object} inputs Action inputs.
+ * @param {Object} comment Comment object.
+ * @returns {boolean} Whether the comment is a preview comment.
+ */
+const isPreviewComment = (inputs, comment) => {
   return (
     (inputs.commentAuthor && comment.user
       ? comment.user.login === inputs.commentAuthor
@@ -29,160 +100,555 @@ function findCommentPredicate(inputs, comment) {
       ? comment.body.includes(inputs.bodyIncludes)
       : true)
   );
-}
+};
 
-async function findComment(octokit, issueNumber) {
+/**
+ * Find the preview theme comment.
+ *
+ * @param {Object} octokit Octokit instance.
+ * @param {number} issueNumber Issue number.
+ * @param {string} repo Repository name.
+ * @param {string} owner Owner of the repository.
+ * @returns {Object} The GitHub comment object.
+ */
+const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
   const parameters = {
-    owner: OWNER,
-    repo: REPO,
+    owner,
+    repo,
     issue_number: issueNumber,
   };
   const inputs = {
-    commentAuthor: OWNER,
+    commentAuthor: commenter,
     bodyIncludes: COMMENT_TITLE,
   };
 
+  // Search each page for the comment
   for await (const { data: comments } of octokit.paginate.iterator(
     octokit.rest.issues.listComments,
     parameters,
   )) {
-    // Search each page for the comment
     const comment = comments.find((comment) =>
-      findCommentPredicate(inputs, comment),
+      isPreviewComment(inputs, comment),
     );
-    if (comment) return comment;
+    if (comment) {
+      debug(`Found theme preview comment: ${inspect(comment)}`);
+      return comment;
+    } else {
+      debug(`No theme preview comment found.`);
+    }
   }
-}
+};
 
-async function upsertComment(octokit, props) {
-  if (props.comment_id !== undefined) {
-    await octokit.issues.updateComment(props);
+/**
+ * Create or update the preview comment.
+ *
+ * @param {Object} octokit Octokit instance.
+ * @param {number} issueNumber Issue number.
+ * @param {Object} repo Repository name.
+ * @param {Object} owner Owner of the repository.
+ * @param {number} commentId Comment ID.
+ * @param {string} body Comment body.
+ * @return {string} The comment URL.
+ */
+const upsertComment = async (
+  octokit,
+  issueNumber,
+  repo,
+  owner,
+  commentId,
+  body,
+) => {
+  let resp;
+  if (commentId !== undefined) {
+    resp = await octokit.issues.updateComment({
+      owner,
+      repo,
+      comment_id: commentId,
+      body,
+    });
   } else {
-    await octokit.issues.createComment(props);
+    resp = await octokit.issues.createComment({
+      owner,
+      repo,
+      issue_number: issueNumber,
+      body,
+    });
   }
-}
+  return resp.data.html_url;
+};
 
-function getWebAimLink(color1, color2) {
+/**
+ * Adds a review to the pull request.
+ *
+ * @param {Object} octokit Octokit instance.
+ * @param {number} prNumber Pull request number.
+ * @param {string} owner Owner of the repository.
+ * @param {string} repo Repository name.
+ * @param {string} reviewState The review state. Options are (APPROVE, REQUEST_CHANGES, COMMENT, PENDING).
+ * @param {string} reason The reason for the review.
+ */
+const addReview = async (
+  octokit,
+  prNumber,
+  owner,
+  repo,
+  reviewState,
+  reason,
+) => {
+  await octokit.pulls.createReview({
+    owner,
+    repo,
+    pull_number: prNumber,
+    event: reviewState,
+    body: reason,
+  });
+};
+
+/**
+ * Add label to pull request.
+ *
+ * @param {Object} octokit Octokit instance.
+ * @param {number} prNumber Pull request number.
+ * @param {string} owner Repository owner.
+ * @param {string} repo Repository name.
+ * @param {string[]} labels Labels to add.
+ */
+const addLabel = async (octokit, prNumber, owner, repo, labels) => {
+  await octokit.issues.addLabels({
+    owner,
+    repo,
+    issue_number: prNumber,
+    labels,
+  });
+};
+
+/**
+ * Remove label from the pull request.
+ *
+ * @param {Object} octokit Octokit instance.
+ * @param {number} prNumber Pull request number.
+ * @param {string} owner Repository owner.
+ * @param {string} repo Repository name.
+ * @param {string} label Label to add or remove.
+ */
+const removeLabel = async (octokit, prNumber, owner, repo, label) => {
+  await octokit.issues.removeLabel({
+    owner,
+    repo,
+    issue_number: prNumber,
+    name: label,
+  });
+};
+
+/**
+ * Adds or removes a label from the pull request.
+ *
+ * @param {Object} octokit Octokit instance.
+ * @param {number} prNumber Pull request number.
+ * @param {string} owner Repository owner.
+ * @param {string} repo Repository name.
+ * @param {string} label Label to add or remove.
+ * @param {boolean} add Whether to add or remove the label.
+ */
+const addRemoveLabel = async (octokit, prNumber, owner, repo, label, add) => {
+  const res = await octokit.pulls.get({
+    owner,
+    repo,
+    pull_number: prNumber,
+  });
+  if (add) {
+    if (!res.data.labels.find((l) => l.name === label)) {
+      await addLabel(octokit, prNumber, owner, repo, [label]);
+    }
+  } else {
+    if (res.data.labels.find((l) => l.name === label)) {
+      await removeLabel(octokit, prNumber, owner, repo, label);
+    }
+  }
+};
+
+/**
+ * Retrieve webAim contrast color check link.
+ *
+ * @param {string} color1 First color.
+ * @param {string} color2 Second color.
+ * @returns {string} WebAim contrast color check link.
+ */
+const getWebAimLink = (color1, color2) => {
   return `https://webaim.org/resources/contrastchecker/?fcolor=${color1}&bcolor=${color2}`;
-}
+};
 
-function getGrsLink(colors) {
+/**
+ * Retrieves the theme GRS url.
+ *
+ * @param {Object} colors The theme colors.
+ * @returns {string} GRS theme url.
+ */
+const getGRSLink = (colors) => {
   const url = `https://github-readme-stats.vercel.app/api?username=anuraghazra`;
   const colorString = Object.keys(colors)
     .map((colorKey) => `${colorKey}=${colors[colorKey]}`)
     .join("&");
 
   return `${url}&${colorString}&show_icons=true`;
-}
+};
 
-const themeContribGuidelines = `
-  \rHi, thanks for the theme contribution, please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).  
-  \rWe are currently only accepting color combinations from any VSCode theme or themes which have good color combination to minimize bloating the themes collection.
-
-  \r> Also note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization) 
-`;
-
-async function run() {
+/**
+ * Retrieve javascript object from json string.
+ *
+ * @description Wraps the Hjson parse function to fix several known json syntax errors.
+ *
+ * @param {string} json The json to parse.
+ * @returns {Object} Object parsed from the json.
+ */
+const parseJSON = (json) => {
   try {
-    const ccc = new ColorContrastChecker();
-    const warnings = [];
-    const token = core.getInput("token");
-    const octokit = github.getOctokit(token || process.env.PERSONAL_TOKEN);
-    const pullRequestId = getPrNumber();
+    const parsedJson = Hjson.parse(json);
+    if (typeof parsedJson === "object") {
+      return parsedJson;
+    } else {
+      throw new IncorrectJsonFormatError(
+        "PR diff is not a valid theme JSON object.",
+      );
+    }
+  } catch (error) {
+    // Remove trailing commas (if any).
+    let parsedJson = json.replace(/(,\s*})/g, "}");
 
-    if (!pullRequestId) {
-      console.log("PR not found");
-      return;
+    // Remove JS comments (if any).
+    parsedJson = parsedJson.replace(/\/\/[A-z\s]*\s/g, "");
+
+    // Fix incorrect open bracket (if any).
+    const splitJson = parsedJson
+      .split(/([\s\r\s]*}[\s\r\s]*,[\s\r\s]*)(?=[\w"-]+:)/)
+      .filter((x) => typeof x !== "string" || !!x.trim()); // Split json into array of strings and objects.
+    if (splitJson[0].replace(/\s+/g, "") === "},") {
+      splitJson[0] = "},";
+      if (!/\s*}\s*,?\s*$/.test(splitJson[1])) {
+        splitJson.push(splitJson.shift());
+      } else {
+        splitJson.shift();
+      }
+      parsedJson = splitJson.join("");
     }
 
-    const res = await octokit.pulls.get({
+    // Try to parse the fixed json.
+    try {
+      return Hjson.parse(parsedJson);
+    } catch (error) {
+      throw new IncorrectJsonFormatError(
+        `Theme JSON file could not be parsed: ${error.message}`,
+      );
+    }
+  }
+};
+
+/**
+ * Check whether the theme name is still available.
+ * @param {string} name Theme name.
+ * @returns {boolean} Whether the theme name is available.
+ */
+const themeNameAlreadyExists = (name) => {
+  return themes[name] !== undefined;
+};
+
+const DRY_RUN = process.env.DRY_RUN === "true" || false;
+
+/**
+ * Main function.
+ */
+export const run = async () => {
+  try {
+    debug("Retrieve action information from context...");
+    debug(`Context: ${inspect(github.context)}`);
+    let commentBody = `
+      \r# ${COMMENT_TITLE}
+      \r${THEME_CONTRIB_GUIDELINESS}
+    `;
+    const ccc = new ColorContrastChecker();
+    OCTOKIT = github.getOctokit(getGithubToken());
+    PULL_REQUEST_ID = getPrNumber();
+    const { owner, repo } = getRepoInfo(github.context);
+    OWNER = owner;
+    REPO = repo;
+    const commenter = getCommenter();
+    PULL_REQUEST_ID = getPrNumber();
+    debug(`Owner: ${OWNER}`);
+    debug(`Repo: ${REPO}`);
+    debug(`Commenter: ${commenter}`);
+
+    // Retrieve the PR diff and preview-theme comment.
+    debug("Retrieve PR diff...");
+    const res = await OCTOKIT.pulls.get({
       owner: OWNER,
       repo: REPO,
-      pull_number: pullRequestId,
+      pull_number: PULL_REQUEST_ID,
       mediaType: {
         format: "diff",
       },
     });
-    const comment = await findComment(octokit, pullRequestId);
+    debug("Retrieve preview-theme comment...");
+    const comment = await findComment(
+      OCTOKIT,
+      PULL_REQUEST_ID,
+      OWNER,
+      REPO,
+      commenter,
+    );
 
+    // Retrieve theme changes from the PR diff.
+    debug("Retrieve themes...");
     const diff = parse(res.data);
+
+    // Retrieve all theme changes from the PR diff and convert to JSON.
+    debug("Retrieve theme changes...");
     const content = diff
       .find((file) => file.to === "themes/index.js")
-      .chunks[0].changes.filter((c) => c.type === "add")
-      .map((c) => c.content.replace("+", ""))
+      .chunks.map((chunk) =>
+        chunk.changes
+          .filter((c) => c.type === "add")
+          .map((c) => c.content.replace("+", ""))
+          .join(""),
+      )
       .join("");
-
-    const themeObject = Hjson.parse(content);
-    const themeName = Object.keys(themeObject)[0];
-    const colors = themeObject[themeName];
-
-    if (themeName !== snakeCase(themeName)) {
-      warnings.push("Theme name isn't in snake_case");
+    const themeObject = parseJSON(content);
+    if (
+      Object.keys(themeObject).every(
+        (key) => typeof themeObject[key] !== "object",
+      )
+    ) {
+      throw new Error("PR diff is not a valid theme JSON object.");
     }
 
-    if (!colors) {
-      await upsertComment({
-        comment_id: comment?.id,
-        owner: OWNER,
-        repo: REPO,
-        issue_number: pullRequestId,
-        body: `
-        \r**${COMMENT_TITLE}**
-        
-        \rCannot create theme preview
+    // Loop through themes and create theme preview body.
+    debug("Create theme preview body...");
+    const themeValid = Object.fromEntries(
+      Object.keys(themeObject).map((name) => [name, true]),
+    );
+    let previewBody = "";
+    for (const theme in themeObject) {
+      debug(`Create theme preview for ${theme}...`);
+      const themeName = theme;
+      const colors = themeObject[theme];
+      const warnings = [];
+      const errors = [];
 
-        ${themeContribGuidelines}
-        `,
-      });
-      return;
-    }
-
-    const titleColor = colors.title_color;
-    const iconColor = colors.icon_color;
-    const textColor = colors.text_color;
-    const bgColor = colors.bg_color;
-    const url = getGrsLink(colors);
-
-    const colorPairs = {
-      title_color: [titleColor, bgColor],
-      icon_color: [iconColor, bgColor],
-      text_color: [textColor, bgColor],
-    };
-
-    // check color contrast
-    Object.keys(colorPairs).forEach((key) => {
-      const color1 = colorPairs[key][0];
-      const color2 = colorPairs[key][1];
-      if (!ccc.isLevelAA(`#${color1}`, `#${color2}`)) {
-        const permalink = getWebAimLink(color1, color2);
-        warnings.push(
-          `\`${key}\` does not pass [AA contrast ratio](${permalink})`,
-        );
+      // Check if the theme name is valid.
+      debug("Theme preview body: Check if the theme name is valid...");
+      if (themeNameAlreadyExists(themeName)) {
+        warnings.push("Theme name already taken");
+        themeValid[theme] = false;
       }
-    });
+      if (themeName !== snakeCase(themeName)) {
+        warnings.push("Theme name isn't in snake_case");
+        themeValid[theme] = false;
+      }
 
-    await upsertComment(octokit, {
-      comment_id: comment?.id,
-      issue_number: pullRequestId,
-      owner: OWNER,
-      repo: REPO,
-      body: `
-      \r**${COMMENT_TITLE}**  
-      
-      \r${warnings.map((warning) => `- :warning: ${warning}\n`).join("")}
+      // Check if the theme colors are valid.
+      debug("Theme preview body: Check if the theme colors are valid...");
+      let invalidColors = false;
+      if (!colors) {
+        warning.push("Theme colors are missing");
+        invalidColors = true;
+      } else {
+        const missingKeys = REQUIRED_COLOR_PROPS.filter(
+          (x) => !Object.keys(colors).includes(x),
+        );
+        const extraKeys = Object.keys(colors).filter(
+          (x) => !ACCEPTED_COLOR_PROPS.includes(x),
+        );
+        if (missingKeys.length > 0 || extraKeys.length > 0) {
+          for (const missingKey of missingKeys) {
+            errors.push(`Theme color properties \`${missingKey}\` are missing`);
+          }
 
-      \ntitle_color: <code>#${titleColor}</code> | icon_color: <code>#${iconColor}</code> | text_color: <code>#${textColor}</code> | bg_color: <code>#${bgColor}</code>
-      
-      \r[Preview Link](${url})
+          for (const extraKey of extraKeys) {
+            warnings.push(
+              `Theme color properties \`${extraKey}\` is not supported`,
+            );
+          }
+          invalidColors = true;
+        } else {
+          for (const [colorKey, colorValue] of Object.entries(colors)) {
+            if (colorValue[0] === "#") {
+              errors.push(
+                `Theme color property \`${colorKey}\` should not start with '#'`,
+              );
+              invalidColors = true;
+            } else if (colorValue.length > COLOR_PROPS[colorKey]) {
+              errors.push(
+                `Theme color property \`${colorKey}\` can not be longer than \`${COLOR_PROPS[colorKey]}\` characters`,
+              );
+              invalidColors = true;
+            } else if (!isValidHexColor(colorValue)) {
+              errors.push(
+                `Theme color property \`${colorKey}\` is not a valid hex color: <code>#${colorValue}</code>`,
+              );
+              invalidColors = true;
+            }
+          }
+        }
+      }
+      if (invalidColors) {
+        themeValid[theme] = false;
+        previewBody += `
+          \r### ${
+            themeName.charAt(0).toUpperCase() + themeName.slice(1)
+          } theme preview
+          
+          \r${warnings.map((warning) => `- :warning: ${warning}.\n`).join("")}
+          \r${errors.map((error) => `- :x: ${error}.\n`).join("")}
 
-      \r[![](${url})](${url})
+          \r>:x: Cannot create theme preview.
+        `;
+        continue;
+      }
+
+      // Check color contrast.
+      debug("Theme preview body: Check color contrast...");
+      const titleColor = colors.title_color;
+      const iconColor = colors.icon_color;
+      const textColor = colors.text_color;
+      const bgColor = colors.bg_color;
+      const borderColor = colors.border_color;
+      const url = getGRSLink(colors);
+      const colorPairs = {
+        title_color: [titleColor, bgColor],
+        icon_color: [iconColor, bgColor],
+        text_color: [textColor, bgColor],
+      };
+      Object.keys(colorPairs).forEach((item) => {
+        let color1 = colorPairs[item][0];
+        let color2 = colorPairs[item][1];
+        color1 = color1.length === 4 ? color1.slice(0, 3) : color1.slice(0, 6);
+        color2 = color2.length === 4 ? color2.slice(0, 3) : color2.slice(0, 6);
+        if (!ccc.isLevelAA(`#${color1}`, `#${color2}`)) {
+          const permalink = getWebAimLink(color1, color2);
+          warnings.push(
+            `\`${item}\` does not pass [AA contrast ratio](${permalink})`,
+          );
+          themeValid[theme] = false;
+        }
+      });
+
+      // Create theme preview body.
+      debug("Theme preview body: Create theme preview body...");
+      previewBody += `
+        \r### ${
+          themeName.charAt(0).toUpperCase() + themeName.slice(1)
+        } theme preview
+        
+        \r${warnings.map((warning) => `- :warning: ${warning}.\n`).join("")}
+
+        \ntitle_color: <code>#${titleColor}</code> | icon_color: <code>#${iconColor}</code> | text_color: <code>#${textColor}</code> | bg_color: <code>#${bgColor}</code>${
+        borderColor ? ` | border_color: <code>#${borderColor}</code>` : ""
+      }
+
+        \r[Preview Link](${url})
+
+        \r[![](${url})](${url})
+      `;
+    }
+
+    // Create comment body.
+    debug("Create comment body...");
+    commentBody += `
+      \r${
+        Object.values(themeValid).every((value) => value)
+          ? THEME_PR_SUCCESS_TEXT
+          : THEME_PR_FAIL_TEXT
+      }
+      \r## Test results
+      \r${Object.entries(themeValid)
+        .map(
+          ([key, value]) => `- ${value ? ":heavy_check_mark:" : ":x:"} ${key}`,
+        )
+        .join("\r")}
+
+      \r${
+        Object.values(themeValid).every((value) => value)
+          ? "**Result:** :heavy_check_mark: All themes are valid."
+          : "**Result:** :x: Some themes are invalid.\n\n" + FAIL_TEXT
+      }
       
-      ${themeContribGuidelines}
-      `,
-    });
+      \r## Details
+      \r${previewBody}
+    `;
+
+    // Create or update theme-preview comment.
+    debug("Create or update theme-preview comment...");
+    let comment_url;
+    if (!DRY_RUN) {
+      comment_url = await upsertComment(
+        OCTOKIT,
+        PULL_REQUEST_ID,
+        REPO,
+        OWNER,
+        comment?.id,
+        commentBody,
+      );
+    } else {
+      info(`DRY_RUN: Comment body: ${commentBody}`);
+      comment_url = "";
+    }
+
+    // Change review state and add/remove `invalid` label based on theme PR validity.
+    debug(
+      "Change review state and add/remove `invalid` label based on whether all themes passed...",
+    );
+    const themesValid = Object.values(themeValid).every((value) => value);
+    const reviewState = themesValid ? "APPROVE" : "REQUEST_CHANGES";
+    const reviewReason = themesValid
+      ? undefined
+      : INVALID_REVIEW_COMMENT(comment_url);
+    if (!DRY_RUN) {
+      await addReview(
+        OCTOKIT,
+        PULL_REQUEST_ID,
+        OWNER,
+        REPO,
+        reviewState,
+        reviewReason,
+      );
+      await addRemoveLabel(
+        OCTOKIT,
+        PULL_REQUEST_ID,
+        OWNER,
+        REPO,
+        "invalid",
+        !themesValid,
+      );
+    } else {
+      info(`DRY_RUN: Review state: ${reviewState}`);
+      info(`DRY_RUN: Review reason: ${reviewReason}`);
+    }
   } catch (error) {
-    console.log(error);
+    debug("Set review state to `REQUEST_CHANGES` and add `invalid` label...");
+    if (!DRY_RUN) {
+      await addReview(
+        OCTOKIT,
+        PULL_REQUEST_ID,
+        OWNER,
+        REPO,
+        "REQUEST_CHANGES",
+        "**Something went wrong in the theme preview action:** `" +
+          error.message +
+          "`",
+      );
+      await addRemoveLabel(
+        OCTOKIT,
+        PULL_REQUEST_ID,
+        OWNER,
+        REPO,
+        "invalid",
+        true,
+      );
+    } else {
+      info(`DRY_RUN: Review state: REQUEST_CHANGES`);
+      info(`DRY_RUN: Review reason: ${error.message}`);
+    }
+    setFailed(error.message);
   }
-}
+};
 
 run();
