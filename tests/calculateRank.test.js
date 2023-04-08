@@ -30,6 +30,34 @@ describe("Test calculateRank", () => {
     ).toStrictEqual({ level: "A", score: 50 });
   });
 
+  it("more than average user gets A+ rank", () => {
+    expect(
+      calculateRank({
+        totalRepos: 50,
+        totalCommits: 1500,
+        contributions: 1500,
+        followers: 150,
+        prs: 50,
+        issues: 50,
+        stargazers: 300,
+      }),
+    ).toStrictEqual({ level: "A+", score: 11.458333333333332 });
+  });
+
+  it("expert user gets S rank", () => {
+    expect(
+      calculateRank({
+        totalRepos: 100,
+        totalCommits: 2000,
+        contributions: 2000,
+        followers: 500,
+        prs: 100,
+        issues: 100,
+        stargazers: 500,
+      }),
+    ).toStrictEqual({ level: "S", score: 2.685546875 });
+  });
+
   it("Linus Torvalds gets S+ rank", () => {
     expect(
       calculateRank({
@@ -41,6 +69,6 @@ describe("Test calculateRank", () => {
         issues: 2,
         stargazers: 109100,
       }),
-    ).toStrictEqual({ level: "S+", score: 1.8875322153011722 });
+    ).toStrictEqual({ level: "S+", score: 2.2021209178513677 });
   });
 });
