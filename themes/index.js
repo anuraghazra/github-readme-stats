@@ -423,6 +423,13 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  haus_coding: {
+    title_color: "14a36a",
+    text_color: "17b978",
+    icon_color: "086972",
+    border_color: "071a52",
+    bg_color: "a7ff83",
+  },
 };
 
 export default themes;
