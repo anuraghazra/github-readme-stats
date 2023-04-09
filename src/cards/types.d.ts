@@ -22,6 +22,7 @@ export type StatCardOptions = CommonOptions & {
   line_height: number | string;
   custom_title: string;
   disable_animations: boolean;
+  number_format: string;
 };
 
 export type RepoCardOptions = CommonOptions & {
@@ -38,6 +39,7 @@ export type TopLangOptions = CommonOptions & {
   custom_title: string;
   langs_count: number;
   disable_animations: boolean;
+  hide_progress: boolean;
 };
 
 type WakaTimeOptions = CommonOptions & {

@@ -78,16 +78,17 @@ describe("Test renderStatsCard", () => {
 
   it("should render with custom width set", () => {
     document.body.innerHTML = renderStatsCard(stats);
-    expect(document.querySelector("svg")).toHaveAttribute("width", "495");
+    expect(document.querySelector("svg")).toHaveAttribute("width", "450");
 
-    document.body.innerHTML = renderStatsCard(stats, { card_width: 400 });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "400");
+    document.body.innerHTML = renderStatsCard(stats, { card_width: 500 });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "500");
   });
 
   it("should render with custom width set and limit minimum width", () => {
     document.body.innerHTML = renderStatsCard(stats, { card_width: 1 });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "340");
+    expect(document.querySelector("svg")).toHaveAttribute("width", "420");
 
+    // Test default minimum card width without rank circle.
     document.body.innerHTML = renderStatsCard(stats, {
       card_width: 1,
       hide_rank: true,
@@ -97,6 +98,7 @@ describe("Test renderStatsCard", () => {
       "305.81250000000006",
     );
 
+    // Test minimum card width with rank and icons.
     document.body.innerHTML = renderStatsCard(stats, {
       card_width: 1,
       hide_rank: true,
@@ -104,22 +106,24 @@ describe("Test renderStatsCard", () => {
     });
     expect(document.querySelector("svg")).toHaveAttribute(
       "width",
-      "305.81250000000006",
+      "322.81250000000006",
     );
 
+    // Test minimum card width with icons but without rank.
     document.body.innerHTML = renderStatsCard(stats, {
       card_width: 1,
       hide_rank: false,
       show_icons: true,
     });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "356");
+    expect(document.querySelector("svg")).toHaveAttribute("width", "437");
 
+    // Test minimum card width without icons or rank.
     document.body.innerHTML = renderStatsCard(stats, {
       card_width: 1,
       hide_rank: false,
       show_icons: false,
     });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "340");
+    expect(document.querySelector("svg")).toHaveAttribute("width", "420");
   });
 
   it("should render default colors properly", () => {
@@ -312,7 +316,7 @@ describe("Test renderStatsCard", () => {
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("width"),
-    ).toBe("270");
+    ).toBe("287");
   });
 
   it("should render translations", () => {
@@ -352,5 +356,14 @@ describe("Test renderStatsCard", () => {
     expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
     document.body.innerHTML = renderStatsCard(stats, {});
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
+  });
+
+  it("should shorten values", () => {
+    stats["totalCommits"] = 1999;
+
+    document.body.innerHTML = renderStatsCard(stats);
+    expect(getByTestId(document.body, "commits").textContent).toBe("2k");
+    document.body.innerHTML = renderStatsCard(stats, { number_format: "long" });
+    expect(getByTestId(document.body, "commits").textContent).toBe("1999");
   });
 });

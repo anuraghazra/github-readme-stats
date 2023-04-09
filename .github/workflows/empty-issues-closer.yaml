@@ -8,6 +8,7 @@ on:
 
 jobs:
   closeEmptyIssuesAndTemplates:
+    if: github.repository == 'anuraghazra/github-readme-stats'
     name: Close empty issues
     runs-on: ubuntu-latest
     steps:

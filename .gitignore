@@ -10,3 +10,5 @@ vercel_token
 # IDE
 .vscode
 *.code-workspace
+
+.vercel
