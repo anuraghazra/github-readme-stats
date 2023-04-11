@@ -31,6 +31,7 @@ export default async (req, res) => {
     border_color,
     disable_animations,
     hide_progress,
+    include_forks,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -46,6 +47,7 @@ export default async (req, res) => {
     const topLangs = await fetchTopLanguages(
       username,
       parseArray(exclude_repo),
+      parseBoolean(include_forks) ? null : false,
     );
 
     const cacheSeconds = clampValue(
