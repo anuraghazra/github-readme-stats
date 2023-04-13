@@ -69,6 +69,12 @@ export const themes = {
     text_color: "427b58",
     bg_color: "fbf1c7",
   },
+  night_vibe: {
+    title_color: "8B00FF",
+    icon_color: "8B00FF",
+    text_color: "FF06BF",
+    bg_color: "171516",
+  },
   tokyonight: {
     title_color: "70a5fd",
     icon_color: "bf91f3",
