@@ -423,7 +423,7 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
-  jinx: {
+  "jinx": {
     title_color: "30588C",
     text_color: "A63F8A",
     icon_color: "732959",
