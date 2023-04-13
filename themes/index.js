@@ -423,6 +423,12 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  jinx: {
+    title_color: "30588C",
+    text_color: "A63F8A",
+    icon_color: "732959",
+    border_color: "401C33",
+    bg_color: "00010D",
 };
 
 export default themes;
