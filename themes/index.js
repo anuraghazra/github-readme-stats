@@ -424,9 +424,9 @@ export const themes = {
     bg_color: "030314",
   },
   jinx: {
-    title_color: "30588C",
-    text_color: "A63F8A",
-    icon_color: "732959",
+    title_color: "6F99CE",
+    text_color: "CF81B9",
+    icon_color: "D07CB4",
     border_color: "401C33",
     bg_color: "00010D",
   },
