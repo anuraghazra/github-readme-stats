@@ -429,6 +429,7 @@ export const themes = {
     icon_color: "732959",
     border_color: "401C33",
     bg_color: "00010D",
+  },
 };
 
 export default themes;
