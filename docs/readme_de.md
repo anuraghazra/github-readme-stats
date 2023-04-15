@@ -128,7 +128,7 @@ Du kannst das Erscheinungsbild deiner `Stats Card` oder `Repo Card`, mithilfe vo
 - `bg_color` - Hintergrundfarbe _(hex color)_ **oder** ein Farbverlauf in der Form von _winkel,start,ende_
 - `hide_border` - Blendet den Rand der Karte aus _(Boolean)_
 - `theme` - Name des Erscheinungsbildes/Themes [alle verfügbaren Themes](../themes/README.md)
-- `cache_seconds` - manuelles festlegen der Cachezeiten _(min: 1800, max: 86400)_
+- `cache_seconds` - manuelles festlegen der Cachezeiten _(min: 14400, max: 86400)_
 - `locale` - Stellen Sie die Sprache auf der Karte ein _(z.B. cn, de, es, etc.)_
 
 ##### Farbverlauf in bg_color
