@@ -1,7 +1,6 @@
 .vercel
 .env
 node_modules
-package-lock.json
 *.lock
 .vscode/
 .idea/
@@ -11,3 +10,5 @@ vercel_token
 # IDE
 .vscode
 *.code-workspace
+
+.vercel
