@@ -1,7 +1,7 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">동적으로 생성되는 Github 사용량 통계를 여러분의 README 에 추가해보세요!</p>
+ <p align="center">동적으로 생성되는 GitHub 사용량 통계를 여러분의 README 에 추가해보세요!</p>
 </p>
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
@@ -74,7 +74,7 @@
 
 아래 코드를 복사해서 마크다운 파일에 붙여넣으면 끝이에요, 아주 간단해요!
 
-`?username=` 속성의 값을 Github 계정의 사용자 명(닉네임)으로 바꿔주세요.
+`?username=` 속성의 값을 GitHub 계정의 사용자 명(닉네임)으로 바꿔주세요.
 
 ```md
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
@@ -237,7 +237,7 @@ GitHub 저장소 여분 핀을 이용하면, 6개 이상의 저장소 핀을 여
 
 # 언어 사용량 통계
 
-언어 사용량 통계 카드는 Github 사용자가 가장 많이 사용한 언어가 표시됩니다.
+언어 사용량 통계 카드는 GitHub 사용자가 가장 많이 사용한 언어가 표시됩니다.
 
 _참고:
 언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어의 표기일 뿐입니다.

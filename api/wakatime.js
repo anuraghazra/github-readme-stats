@@ -1,16 +1,15 @@
-require("dotenv").config();
-const {
-  renderError,
-  parseBoolean,
+import { renderWakatimeCard } from "../src/cards/wakatime-card.js";
+import {
   clampValue,
-  parseArray,
   CONSTANTS,
-} = require("../src/common/utils");
-const { isLocaleAvailable } = require("../src/translations");
-const { fetchWakatimeStats } = require("../src/fetchers/wakatime-fetcher");
-const wakatimeCard = require("../src/cards/wakatime-card");
+  parseArray,
+  parseBoolean,
+  renderError,
+} from "../src/common/utils.js";
+import { fetchWakatimeStats } from "../src/fetchers/wakatime-fetcher.js";
+import { isLocaleAvailable } from "../src/translations.js";
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const {
     username,
     title_color,
@@ -53,10 +52,15 @@ module.exports = async (req, res) => {
       cacheSeconds = CONSTANTS.FOUR_HOURS;
     }
 
-    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${
+        cacheSeconds / 2
+      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    );
 
     return res.send(
-      wakatimeCard(stats, {
+      renderWakatimeCard(stats, {
         custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
@@ -76,6 +80,7 @@ module.exports = async (req, res) => {
       }),
     );
   } catch (err) {
+    res.setHeader("Cache-Control", `no-cache, no-store, must-revalidate`); // Don't cache error responses.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };
