@@ -1,11 +1,19 @@
 // @ts-check
-const { request, logger, MissingParamError } = require("../common/utils");
-const retryer = require("../common/retryer");
-require("dotenv").config();
+import { retryer } from "../common/retryer.js";
+import {
+  CustomError,
+  logger,
+  MissingParamError,
+  request,
+  wrapTextMultiline,
+} from "../common/utils.js";
 
 /**
- * @param {import('Axios').AxiosRequestHeaders} variables
- * @param {string} token
+ * Top languages fetcher object.
+ *
+ * @param {import('Axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token GitHub token.
+ * @returns {Promise<import('../common/types').StatsFetcherResponse>} Languages fetcher response.
  */
 const fetcher = (variables, token) => {
   return request(
@@ -40,11 +48,13 @@ const fetcher = (variables, token) => {
 };
 
 /**
- * @param {string} username
- * @param {string[]} exclude_repo
- * @returns {Promise<import("./types").TopLangData>}
+ * Fetch top languages for a given username.
+ *
+ * @param {string} username GitHub username.
+ * @param {string[]} exclude_repo List of repositories to exclude.
+ * @returns {Promise<import("./types").TopLangData>} Top languages data.
  */
-async function fetchTopLanguages(username, exclude_repo = []) {
+const fetchTopLanguages = async (username, exclude_repo = []) => {
   if (!username) throw new MissingParamError(["username"]);
 
   const res = await retryer(fetcher, { login: username });
@@ -52,6 +62,27 @@ async function fetchTopLanguages(username, exclude_repo = []) {
   if (res.data.errors) {
     logger.error(res.data.errors);
     throw Error(res.data.errors[0].message || "Could not fetch user");
+  }
+
+  // Catch GraphQL errors.
+  if (res.data.errors) {
+    logger.error(res.data.errors);
+    if (res.data.errors[0].type === "NOT_FOUND") {
+      throw new CustomError(
+        res.data.errors[0].message || "Could not fetch user.",
+        CustomError.USER_NOT_FOUND,
+      );
+    }
+    if (res.data.errors[0].message) {
+      throw new CustomError(
+        wrapTextMultiline(res.data.errors[0].message, 90, 1)[0],
+        res.statusText,
+      );
+    }
+    throw new CustomError(
+      "Something went while trying to retrieve the language data using the GraphQL API.",
+      CustomError.GRAPHQL_ERROR,
+    );
   }
 
   let repoNodes = res.data.data.user.repositories.nodes;
@@ -68,14 +99,10 @@ async function fetchTopLanguages(username, exclude_repo = []) {
   // filter out repositories to be hidden
   repoNodes = repoNodes
     .sort((a, b) => b.size - a.size)
-    .filter((name) => {
-      return !repoToHide[name.name];
-    });
+    .filter((name) => !repoToHide[name.name]);
 
   repoNodes = repoNodes
-    .filter((node) => {
-      return node.languages.edges.length > 0;
-    })
+    .filter((node) => node.languages.edges.length > 0)
     // flatten the list of language nodes
     .reduce((acc, curr) => curr.languages.edges.concat(acc), [])
     .reduce((acc, prev) => {
@@ -106,6 +133,7 @@ async function fetchTopLanguages(username, exclude_repo = []) {
     }, {});
 
   return topLangs;
-}
+};
 
-module.exports = fetchTopLanguages;
+export { fetchTopLanguages };
+export default fetchTopLanguages;
