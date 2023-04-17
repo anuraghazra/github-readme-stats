@@ -118,6 +118,7 @@ const createTextNode = ({
         // @ts-ignore
         name: label,
         progressBarBackgroundColor,
+        delay: staggerDelay + 300,
       });
 
   return `
@@ -159,7 +160,7 @@ const recalculatePercentages = (languages) => {
  * @returns {string} WakaTime card SVG.
  */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  let { languages } = stats;
+  let { languages = [] } = stats;
   const {
     hide_title = false,
     hide_border = false,
@@ -174,19 +175,23 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     custom_title,
     locale,
     layout,
-    langs_count = languages ? languages.length : 0,
+    langs_count = languages.length,
     border_radius,
     border_color,
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
-  if (shouldHideLangs && languages !== undefined) {
+  if (shouldHideLangs) {
     const languagesToHide = new Set(hide.map((lang) => lowercaseTrim(lang)));
     languages = languages.filter(
       (lang) => !languagesToHide.has(lowercaseTrim(lang.name)),
     );
-    recalculatePercentages(languages);
   }
+
+  // Since the percentages are sorted in descending order, we can just
+  // slice from the beginning without sorting.
+  languages = languages.slice(0, langs_count);
+  recalculatePercentages(languages);
 
   const i18n = new I18n({
     locale,
@@ -209,10 +214,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     });
 
   const filteredLanguages = languages
-    ? languages
-        .filter((language) => language.hours || language.minutes)
-        .slice(0, langsCount)
-    : [];
+    .filter((language) => language.hours || language.minutes)
+    .slice(0, langsCount);
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
@@ -274,11 +277,12 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   } else {
     finalLayout = flexLayout({
       items: filteredLanguages.length
-        ? filteredLanguages.map((language) => {
+        ? filteredLanguages.map((language, index) => {
             return createTextNode({
               id: language.name,
               label: language.name,
               value: language.text,
+              index: index,
               percent: language.percent,
               // @ts-ignore
               progressBarColor: titleColor,
@@ -319,7 +323,29 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   card.setCSS(
     `
     ${cssStyles}
+    @keyframes slideInAnimation {
+      from {
+        width: 0;
+      }
+      to {
+        width: calc(100%-100px);
+      }
+    }
+    @keyframes growWidthAnimation {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
     .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+    #rect-mask rect{
+      animation: slideInAnimation 1s ease-in-out forwards;
+    }
+    .lang-progress{
+      animation: growWidthAnimation 0.6s ease-in-out forwards;
+    }
     `,
   );
 

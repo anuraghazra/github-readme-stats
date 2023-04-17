@@ -10,7 +10,7 @@ import { RequestError } from "@octokit/request-error";
 import { getGithubToken, getRepoInfo } from "./helpers.js";
 
 const CLOSING_COMMENT = `
-	\rThis PR has been automatically closed due to inactivity. Please feel free to reopen it if you need to continue working on it.\
+	\rThis theme PR has been automatically closed due to inactivity. Please reopen it if you want to continue working on it.\
 	\rThank you for your contributions.
 `;
 const REVIEWER = "github-actions[bot]";
@@ -127,7 +127,7 @@ const run = async () => {
   try {
     // Create octokit client.
     const dryRun = process.env.DRY_RUN === "true" || false;
-    const staleDays = process.env.STALE_DAYS || 15;
+    const staleDays = process.env.STALE_DAYS || 20;
     debug("Creating octokit client...");
     const octokit = github.getOctokit(getGithubToken());
     const { owner, repo } = getRepoInfo(github.context);
