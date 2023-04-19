@@ -1,5 +1,12 @@
 import { encodeHTML } from "./common/utils.js";
 
+/**
+ * Retrieves stat card labels in the available locales.
+ *
+ * @param {string} name The name of the locale.
+ * @param {string} apostrophe Whether to use apostrophe or not.
+ * @returns {Object} The locales object.
+ */
 const statCardLocales = ({ name, apostrophe }) => {
   const encodedName = encodeHTML(name);
   return {
@@ -30,7 +37,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       sk: `GitHub štatistiky používateľa ${encodedName}`,
       tr: `${encodedName} Hesabının GitHub Yıldızları`,
       pl: `Statystyki GitHub użytkownika ${encodedName}`,
-      uz: `${encodedName}ning Github'dagi statistikasi`,
+      uz: `${encodedName}ning GitHub'dagi statistikasi`,
       vi: `Thống Kê GitHub ${encodedName}`,
       se: `GitHubstatistik för ${encodedName}`,
     },
@@ -60,7 +67,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: "Jumlah Bintang",
       sk: "Hviezdy",
       tr: "Toplam Yıldız",
-      pl: "Liczba Gwiazdek dostanych",
+      pl: "Liczba otrzymanych gwiazdek",
       uz: "Yulduzchalar",
       vi: "Tổng Số Sao",
       se: "Antal intjänade stjärnor",
@@ -153,7 +160,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       my: "Jumlah Isu Dilaporkan",
       sk: "Všetky problémy",
       tr: "Toplam Hata",
-      pl: "Wszystkie Issues",
+      pl: "Wszystkie problemy",
       uz: "'Issue'lar",
       vi: "Tổng Số Vấn Đề",
       se: "Total antal issues",
@@ -315,7 +322,7 @@ const wakatimeCardLocales = {
     my: "Statistik Wakatime",
     sk: "Wakatime štatistika",
     tr: "Waketime İstatistikler",
-    pl: "statystyki Wakatime",
+    pl: "Statystyki Wakatime",
     vi: "Thống Kê Wakatime",
     se: "Wakatime statistik",
   },
@@ -354,9 +361,15 @@ const wakatimeCardLocales = {
 
 const availableLocales = Object.keys(repoCardLocales["repocard.archived"]);
 
-function isLocaleAvailable(locale) {
+/**
+ * Checks whether the locale is available or not.
+ *
+ * @param {string} locale The locale to check.
+ * @returns {boolean} Boolean specifying whether the locale is available or not.
+ */
+const isLocaleAvailable = (locale) => {
   return availableLocales.includes(locale.toLowerCase());
-}
+};
 
 export {
   isLocaleAvailable,

@@ -12,6 +12,24 @@ import {
 import { getStyles } from "../getStyles.js";
 import { statCardLocales } from "../translations.js";
 
+const CARD_MIN_WIDTH = 287;
+const CARD_DEFAULT_WIDTH = 287;
+const RANK_CARD_MIN_WIDTH = 420;
+const RANK_CARD_DEFAULT_WIDTH = 450;
+
+/**
+ * Create a stats card text item.
+ *
+ * @param {object[]} createTextNodeParams Object that contains the createTextNode parameters.
+ * @param {string} createTextNodeParams.label The label to display.
+ * @param {string} createTextNodeParams.value The value to display.
+ * @param {string} createTextNodeParams.id The id of the stat.
+ * @param {number} createTextNodeParams.index The index of the stat.
+ * @param {boolean} createTextNodeParams.showIcons Whether to show icons.
+ * @param {number} createTextNodeParams.shiftValuePos Number of pixels the value has to be shifted to the right.
+ * @param {boolean} createTextNodeParams.bold Whether to bold the label.
+ * @returns
+ */
 const createTextNode = ({
   icon,
   label,
@@ -21,8 +39,10 @@ const createTextNode = ({
   showIcons,
   shiftValuePos,
   bold,
+  number_format,
 }) => {
-  const kValue = kFormatter(value);
+  const kValue =
+    number_format.toLowerCase() === "long" ? value : kFormatter(value);
   const staggerDelay = (index + 3) * 150;
 
   const labelOffset = showIcons ? `x="25"` : "";
@@ -50,9 +70,11 @@ const createTextNode = ({
 };
 
 /**
- * @param {Partial<import('../fetchers/types').StatsData>} stats
- * @param {Partial<import("./types").StatCardOptions>} options
- * @returns {string}
+ * Renders the stats card.
+ *
+ * @param {Partial<import('../fetchers/types').StatsData>} stats The stats data.
+ * @param {Partial<import("./types").StatCardOptions>} options The card options.
+ * @returns {string} The stats card SVG object.
  */
 const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const {
@@ -74,6 +96,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     include_all_commits = false,
     line_height = 25,
     title_color,
+    ring_color,
     icon_color,
     text_color,
     text_bold = true,
@@ -82,6 +105,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     custom_title,
     border_radius,
     border_color,
+    number_format = "short",
     locale,
     disable_animations = false,
   } = options;
@@ -89,13 +113,14 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const lheight = parseInt(String(line_height), 10);
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, iconColor, bgColor, borderColor } =
+  const { titleColor, iconColor, textColor, bgColor, borderColor, ringColor } =
     getCardColors({
       title_color,
-      icon_color,
       text_color,
+      icon_color,
       bg_color,
       border_color,
+      ring_color,
       theme,
     });
 
@@ -137,7 +162,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     contribs: {
       icon: icons.contribs,
-      label: i18n.t("statcard.contribs"),
+      label: i18n.t("statcard.contribs") + " (last year)",
       value: contributedTo,
       id: "contribs",
     },
@@ -155,6 +180,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     "pl",
     "de",
     "nl",
+    "zh-tw",
   ];
   const isLongLocale = longLocales.includes(locale) === true;
 
@@ -167,9 +193,9 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         ...STATS[key],
         index,
         showIcons: show_icons,
-        shiftValuePos:
-          (!include_all_commits ? 50 : 35) + (isLongLocale ? 50 : 0),
+        shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
         bold: text_bold,
+        number_format,
       }),
     );
 
@@ -185,6 +211,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   const progress = 100 - rank.score;
   const cssStyles = getStyles({
     titleColor,
+    ringColor,
     textColor,
     iconColor,
     show_icons,
@@ -200,11 +227,17 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     When hide_rank=false, the minimum card_width is 340 px + the icon width (if show_icons=true).
     Numbers are picked by looking at existing dimensions on production.
   */
-  const iconWidth = show_icons ? 16 : 0;
-  const minCardWidth = hide_rank
-    ? clampValue(50 /* padding */ + calculateTextWidth() * 2, 270, Infinity)
-    : 340 + iconWidth;
-  const defaultCardWidth = hide_rank ? 270 : 495;
+  const iconWidth = show_icons ? 16 + /* padding */ 1 : 0;
+  const minCardWidth =
+    (hide_rank
+      ? clampValue(
+          50 /* padding */ + calculateTextWidth() * 2,
+          CARD_MIN_WIDTH,
+          Infinity,
+        )
+      : RANK_CARD_MIN_WIDTH) + iconWidth;
+  const defaultCardWidth =
+    (hide_rank ? CARD_DEFAULT_WIDTH : RANK_CARD_DEFAULT_WIDTH) + iconWidth;
   let width = isNaN(card_width) ? defaultCardWidth : card_width;
   if (width < minCardWidth) {
     width = minCardWidth;
@@ -233,18 +266,21 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
 
   /**
    * Calculates the right rank circle translation values such that the rank circle
-   * keeps respecting the padding.
+   * keeps respecting the following padding:
    *
-   * width > 450: The default left padding of 50 px will be used.
-   * width < 450: The left and right padding will shrink equally.
+   * width > RANK_CARD_DEFAULT_WIDTH: The default right padding of 70 px will be used.
+   * width < RANK_CARD_DEFAULT_WIDTH: The left and right padding will be enlarged
+   *   equally from a certain minimum at RANK_CARD_MIN_WIDTH.
    *
    * @returns {number} - Rank circle translation value.
    */
   const calculateRankXTranslation = () => {
-    if (width < 450) {
-      return width - 95 + (45 * (450 - 340)) / 110;
+    const minXTranslation = RANK_CARD_MIN_WIDTH + iconWidth - 70;
+    if (width > RANK_CARD_DEFAULT_WIDTH) {
+      const xMaxExpansion = minXTranslation + (450 - minCardWidth) / 2;
+      return xMaxExpansion + width - RANK_CARD_DEFAULT_WIDTH;
     } else {
-      return width - 95;
+      return minXTranslation + (width - minCardWidth) / 2;
     }
   };
 

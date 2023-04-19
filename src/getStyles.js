@@ -1,6 +1,9 @@
 // @ts-check
 /**
- * @param {number} value
+ * Calculates progress along the boundary of the circle i.e it's circumference.
+ *
+ * @param {number} value The rank value to calculate progress for.
+ * @returns {number} Progress value.
  */
 const calculateCircleProgress = (value) => {
   const radius = 40;
@@ -13,9 +16,11 @@ const calculateCircleProgress = (value) => {
 };
 
 /**
+ * Retrieves the animation to display progress along the circumference of circle
+ * from the beginning to the given value in a clockwise direction.
  *
- * @param {{progress: number}} param0
- * @returns
+ * @param {{progress: number}} progress The progress value to animate to.
+ * @returns {string} Progress animation css.
  */
 const getProgressAnimation = ({ progress }) => {
   return `
@@ -30,6 +35,11 @@ const getProgressAnimation = ({ progress }) => {
   `;
 };
 
+/**
+ * Retrieves css animations for a card.
+ *
+ * @returns {string} Animation css.
+ */
 const getAnimations = () => {
   return `
     /* Animations */
@@ -53,18 +63,21 @@ const getAnimations = () => {
 };
 
 /**
- * @param {{
- *  titleColor?: string | string[]
- *  textColor?: string | string[]
- *  iconColor?: string | string[]
- *  show_icons?: boolean;
- *  progress?: number;
- * }} args
+ * Retrieves CSS styles for a card.
+ *
+ * @param {Object[]} colors The colors to use for the card.
+ * @param {string} colors.titleColor The title color.
+ * @param {string} colors.textColor The text color.
+ * @param {string} colors.iconColor The icon color.
+ * @param {boolean} colors.show_icons Whether to show icons.
+ * @param {number} colors.progress The progress value to animate to.
+ * @returns {string} Card CSS styles.
  */
 const getStyles = ({
   titleColor,
   textColor,
   iconColor,
+  ringColor,
   show_icons,
   progress,
 }) => {
@@ -93,13 +106,13 @@ const getStyles = ({
     }
 
     .rank-circle-rim {
-      stroke: ${titleColor};
+      stroke: ${ringColor};
       fill: none;
       stroke-width: 6;
       opacity: 0.2;
     }
     .rank-circle {
-      stroke: ${titleColor};
+      stroke: ${ringColor};
       stroke-dasharray: 250;
       fill: none;
       stroke-width: 6;

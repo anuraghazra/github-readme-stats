@@ -8,10 +8,12 @@ on:
 
 jobs:
   closeEmptyIssuesAndTemplates:
+    if: github.repository == 'anuraghazra/github-readme-stats'
     name: Close empty issues
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3 # NOTE: Retrieve issue templates.
+
       - name: Run empty issues closer action
         uses: rickstaa/empty-issues-closer-action@v1
         env:

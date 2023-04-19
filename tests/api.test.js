@@ -25,7 +25,7 @@ stats.rank = calculateRank({
   issues: stats.totalIssues,
 });
 
-const data = {
+const data_stats = {
   data: {
     user: {
       name: stats.name,
@@ -41,6 +41,10 @@ const data = {
       repositories: {
         totalCount: 1,
         nodes: [{ stargazers: { totalCount: 100 } }],
+        pageInfo: {
+          hasNextPage: false,
+          cursor: "cursor",
+        },
       },
     },
   },
@@ -70,7 +74,7 @@ const faker = (query, data) => {
     setHeader: jest.fn(),
     send: jest.fn(),
   };
-  mock.onPost("https://api.github.com/graphql").reply(200, data);
+  mock.onPost("https://api.github.com/graphql").replyOnce(200, data);
 
   return { req, res };
 };
@@ -81,7 +85,7 @@ afterEach(() => {
 
 describe("Test /api/", () => {
   it("should test the request", async () => {
-    const { req, res } = faker({}, data);
+    const { req, res } = faker({}, data_stats);
 
     await api(req, res);
 
@@ -116,7 +120,7 @@ describe("Test /api/", () => {
         text_color: "fff",
         bg_color: "fff",
       },
-      data,
+      data_stats,
     );
 
     await api(req, res);
@@ -137,56 +141,90 @@ describe("Test /api/", () => {
   });
 
   it("should have proper cache", async () => {
-    const { req, res } = faker({}, data);
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
+    const { req, res } = faker({}, data_stats);
 
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${CONSTANTS.FOUR_HOURS}`],
+      [
+        "Cache-Control",
+        `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
+          CONSTANTS.FOUR_HOURS
+        }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      ],
     ]);
   });
 
   it("should set proper cache", async () => {
-    const { req, res } = faker({ cache_seconds: 15000 }, data);
+    const { req, res } = faker({ cache_seconds: 15000 }, data_stats);
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${15000}`],
+      [
+        "Cache-Control",
+        `max-age=7500, s-maxage=${15000}, stale-while-revalidate=${
+          CONSTANTS.ONE_DAY
+        }`,
+      ],
+    ]);
+  });
+
+  it("should not store cache when error", async () => {
+    const { req, res } = faker({}, error);
+    await api(req, res);
+
+    expect(res.setHeader.mock.calls).toEqual([
+      ["Content-Type", "image/svg+xml"],
+      ["Cache-Control", `no-cache, no-store, must-revalidate`],
     ]);
   });
 
   it("should set proper cache with clamped values", async () => {
     {
-      let { req, res } = faker({ cache_seconds: 200000 }, data);
+      let { req, res } = faker({ cache_seconds: 200000 }, data_stats);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.ONE_DAY}`],
+        [
+          "Cache-Control",
+          `max-age=${CONSTANTS.ONE_DAY / 2}, s-maxage=${
+            CONSTANTS.ONE_DAY
+          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+        ],
       ]);
     }
 
     // note i'm using block scoped vars
     {
-      let { req, res } = faker({ cache_seconds: 0 }, data);
+      let { req, res } = faker({ cache_seconds: 0 }, data_stats);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.FOUR_HOURS}`],
+        [
+          "Cache-Control",
+          `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
+            CONSTANTS.FOUR_HOURS
+          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+        ],
       ]);
     }
 
     {
-      let { req, res } = faker({ cache_seconds: -10000 }, data);
+      let { req, res } = faker({ cache_seconds: -10000 }, data_stats);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.FOUR_HOURS}`],
+        [
+          "Cache-Control",
+          `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
+            CONSTANTS.FOUR_HOURS
+          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+        ],
       ]);
     }
   });
@@ -197,7 +235,7 @@ describe("Test /api/", () => {
         username: "anuraghazra",
         count_private: true,
       },
-      data,
+      data_stats,
     );
 
     await api(req, res);
@@ -220,6 +258,41 @@ describe("Test /api/", () => {
         },
         {},
       ),
+    );
+  });
+
+  it("should allow changing ring_color", async () => {
+    const { req, res } = faker(
+      {
+        username: "anuraghazra",
+        hide: "issues,prs,contribs",
+        show_icons: true,
+        hide_border: true,
+        line_height: 100,
+        title_color: "fff",
+        ring_color: "0000ff",
+        icon_color: "fff",
+        text_color: "fff",
+        bg_color: "fff",
+      },
+      data_stats,
+    );
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderStatsCard(stats, {
+        hide: ["issues", "prs", "contribs"],
+        show_icons: true,
+        hide_border: true,
+        line_height: 100,
+        title_color: "fff",
+        ring_color: "0000ff",
+        icon_color: "fff",
+        text_color: "fff",
+        bg_color: "fff",
+      }),
     );
   });
 });
