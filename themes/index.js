@@ -12,6 +12,20 @@ export const themes = {
     text_color: "434d58",
     bg_color: "fffefe",
   },
+  sky_light: {
+    title_color: "25dbd2",
+    icon_color: "16f8ed",
+    text_color: "17252a",
+    bg_color: "def2f1",
+    border_color: "17252a",
+  },
+  sky_dark: {
+    title_color: "095350",
+    icon_color: "16f8ed",
+    text_color: "095350",
+    bg_color: "17252a",
+    border_color: "095350",
+  },
   transparent: {
     title_color: "006AFF",
     icon_color: "0579C3",
