@@ -309,6 +309,8 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `custom_title` - Sets a custom title for the card _(string)_. Default `Most Used Languages`.
 -   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
 -   `hide_progress` - It uses the compact layout option, hides percentages, and removes the bars. Default: `false`.
+-   `p` - Configures ranking algorithm, defaults to 1, recommended is 0.5 _(number)_
+-   `q` - Configures ranking algorithm, defaults to 0, recommended is 0.5 _(number)_
 
 > **Warning**
 > Language names should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
@@ -343,6 +345,26 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+```
+
+### Ranking configuration
+
+You can use the `&p=` and `&q=` options to change the method used to rank the languages used. The values must be positive real numbers.
+
+The algorithm used is
+
+```javascript
+ranking_index = (byte_count ^ p) * (repo_count ^ q)
+```
+
+[Details here.](https://github.com/anuraghazra/github-readme-stats/issues/1600#issuecomment-1046056305)
+
+- `&p=1&q=0` - _(default)_ Orders by byte count
+- `&p=0.5&q=0.5` - _(recommended)_ Uses both byte and repo count for ranking
+- `&p=0&q=1` - Orders by repo count
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&p=0.5&q=0.5)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
