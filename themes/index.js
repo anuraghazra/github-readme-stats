@@ -423,6 +423,15 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  rivera: {
+  title_color: "ff9900",
+  text_color: "ffff00",
+  icon_color: "ffff00",
+  border_color: "ffffff",
+  bg_color: "ffffff",
+  },
 };
+
+
 
 export default themes;
