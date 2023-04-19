@@ -1,4 +1,4 @@
-type ThemeNames = keyof typeof import("../../themes");
+type ThemeNames = keyof typeof import("../../themes/index.js");
 
 export type CommonOptions = {
   title_color: string;
@@ -16,11 +16,13 @@ export type StatCardOptions = CommonOptions & {
   show_icons: boolean;
   hide_title: boolean;
   hide_border: boolean;
+  card_width: number;
   hide_rank: boolean;
   include_all_commits: boolean;
   line_height: number | string;
   custom_title: string;
   disable_animations: boolean;
+  number_format: string;
 };
 
 export type RepoCardOptions = CommonOptions & {
@@ -36,6 +38,8 @@ export type TopLangOptions = CommonOptions & {
   layout: "compact" | "normal";
   custom_title: string;
   langs_count: number;
+  disable_animations: boolean;
+  hide_progress: boolean;
 };
 
 type WakaTimeOptions = CommonOptions & {

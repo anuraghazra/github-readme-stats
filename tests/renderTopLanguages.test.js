@@ -1,29 +1,33 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("@uppercod/css-to-object").cssToObject;
-const renderTopLanguages = require("../src/cards/top-languages-card");
+import { queryAllByTestId, queryByTestId } from "@testing-library/dom";
+import { cssToObject } from "@uppercod/css-to-object";
+import {
+  MIN_CARD_WIDTH,
+  renderTopLanguages,
+} from "../src/cards/top-languages-card.js";
+// adds special assertions like toHaveTextContent
+import "@testing-library/jest-dom";
 
-const { queryByTestId, queryAllByTestId } = require("@testing-library/dom");
-const themes = require("../themes");
+import { themes } from "../themes/index.js";
+
+const langs = {
+  HTML: {
+    color: "#0f0",
+    name: "HTML",
+    size: 200,
+  },
+  javascript: {
+    color: "#0ff",
+    name: "javascript",
+    size: 200,
+  },
+  css: {
+    color: "#ff0",
+    name: "css",
+    size: 100,
+  },
+};
 
 describe("Test renderTopLanguages", () => {
-  const langs = {
-    HTML: {
-      color: "#0f0",
-      name: "HTML",
-      size: 200,
-    },
-    javascript: {
-      color: "#0ff",
-      name: "javascript",
-      size: 200,
-    },
-    css: {
-      color: "#ff0",
-      name: "css",
-      size: 100,
-    },
-  };
-
   it("should render correctly", () => {
     document.body.innerHTML = renderTopLanguages(langs);
 
@@ -101,6 +105,21 @@ describe("Test renderTopLanguages", () => {
 
     document.body.innerHTML = renderTopLanguages(langs, { card_width: 400 });
     expect(document.querySelector("svg")).toHaveAttribute("width", "400");
+  });
+
+  it("should render with min width", () => {
+    document.body.innerHTML = renderTopLanguages(langs, { card_width: 190 });
+
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      MIN_CARD_WIDTH.toString(),
+    );
+
+    document.body.innerHTML = renderTopLanguages(langs, { card_width: 100 });
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      MIN_CARD_WIDTH.toString(),
+    );
   });
 
   it("should render default colors properly", () => {
@@ -197,7 +216,7 @@ describe("Test renderTopLanguages", () => {
     );
     expect(queryAllByTestId(document.body, "lang-progress")[0]).toHaveAttribute(
       "width",
-      "120",
+      "100",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
@@ -205,7 +224,7 @@ describe("Test renderTopLanguages", () => {
     );
     expect(queryAllByTestId(document.body, "lang-progress")[1]).toHaveAttribute(
       "width",
-      "120",
+      "100",
     );
 
     expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
@@ -213,7 +232,7 @@ describe("Test renderTopLanguages", () => {
     );
     expect(queryAllByTestId(document.body, "lang-progress")[2]).toHaveAttribute(
       "width",
-      "60",
+      "50",
     );
   });
 
@@ -232,7 +251,7 @@ describe("Test renderTopLanguages", () => {
   });
 
   it("should render langs with specified langs_count", async () => {
-    options = {
+    const options = {
       langs_count: 1,
     };
     document.body.innerHTML = renderTopLanguages(langs, { ...options });
@@ -242,7 +261,7 @@ describe("Test renderTopLanguages", () => {
   });
 
   it("should render langs with specified langs_count even when hide is set", async () => {
-    options = {
+    const options = {
       hide: ["HTML"],
       langs_count: 2,
     };
