@@ -216,10 +216,10 @@ You can use [GitHub's theme context](https://github.blog/changelog/2021-11-24-sp
 ##### Use GitHub's new media feature
 
 You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-19-specify-theme-context-for-images-in-markdown-beta/) in HTML to specify whether to display images for light or dark themes. This is done using the HTML `<picture>` element in combination with the `prefers-color-scheme` media feature.
-  
+
 ```html
 <picture>
-<source 
+<source
   srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark"
   media="(prefers-color-scheme: dark)"
 />
@@ -235,7 +235,7 @@ You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-1
 <summary>:eyes: Show example</summary>
 
 <picture>
-<source 
+<source
   srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark"
   media="(prefers-color-scheme: dark)"
 />
@@ -260,7 +260,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 -   `border_color` - Card's border color _(hex color)_. Default: `e4e2e2` (Does not apply when `hide_border` is enabled).
 -   `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_. Default: `fffefe`
 -   `hide_border` - Hides the card's border _(boolean)_. Default: `false`
--   `theme` - name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme. 
+-   `theme` - name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme.
 -   `cache_seconds` - set the cache header manually _(min: 14400, max: 86400)_. Default: `14400 seconds (4 hours)`.
 -   `locale` - set the language in the card _(e.g. cn, de, es, etc.)_. Default: `en`.
 -   `border_radius` - Corner rounding on the card. Default: `4.5`.
@@ -280,6 +280,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `hide_title` - _(boolean)_. Default: `false`.
 -   `card_width` - Set the card's width manually _(number)_. Default: `500px  (approx.)`.
 -   `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width. Default: `false`.
+-   `rank_icon` - Shows alternative rank icon. Default: `default`.
 -   `show_icons` - _(boolean)_. Default: `false`.
 -   `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_. Default: `false`.
 -   `count_private` - Count private commits _(boolean)_. Default: `false`.
@@ -458,6 +459,10 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 -   Showing icons
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
+
+-   Shows Github logo instead rank level
+
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&rank_icon=github)
 
 -   Customize Border Color
 
