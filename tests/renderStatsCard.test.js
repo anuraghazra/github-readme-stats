@@ -366,4 +366,21 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard(stats, { number_format: "long" });
     expect(getByTestId(document.body, "commits").textContent).toBe("1999");
   });
+
+  it("should render default rank icon with level A+", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      rank_icon: "default",
+    });
+    expect(queryByTestId(document.body, "level-rank-icon")).toBeDefined();
+    expect(
+      queryByTestId(document.body, "level-rank-icon").textContent.trim(),
+    ).toBe("A+");
+  });
+
+  it("should render github rank icon", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      rank_icon: "github",
+    });
+    expect(queryByTestId(document.body, "github-rank-icon")).toBeDefined();
+  });
 });
