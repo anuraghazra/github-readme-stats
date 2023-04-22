@@ -1,7 +1,7 @@
 export const themes = {
   dark_red: {
     title_color: "fff",
-    icon_color: "cc0000",
+    icon_color: "FF0505",
     text_color: "9f9f9f",
     bg_color: "151515",
   },
