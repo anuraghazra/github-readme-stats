@@ -1,4 +1,10 @@
 export const themes = {
+  nu11secur1ty: {
+    title_color: "fff",
+    icon_color: "cc0000",
+    text_color: "9f9f9f",
+    bg_color: "151515",
+  },
   default: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
