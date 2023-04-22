@@ -1,5 +1,5 @@
 export const themes = {
-  nu11secur1ty: {
+  dark_red: {
     title_color: "fff",
     icon_color: "cc0000",
     text_color: "9f9f9f",
