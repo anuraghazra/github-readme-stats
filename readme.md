@@ -280,7 +280,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `hide_title` - _(boolean)_. Default: `false`.
 -   `card_width` - Set the card's width manually _(number)_. Default: `500px  (approx.)`.
 -   `hide_rank` - _(boolean)_ hides the rank and automatically resizes the card width. Default: `false`.
--   `rank_icon` - Shows alternative rank icon. Default: `default`.
+-   `rank_icon` - Shows alternative rank icon (i.e. `github` or `default`). Default: `default`.
 -   `show_icons` - _(boolean)_. Default: `false`.
 -   `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_. Default: `false`.
 -   `count_private` - Count private commits _(boolean)_. Default: `false`.
