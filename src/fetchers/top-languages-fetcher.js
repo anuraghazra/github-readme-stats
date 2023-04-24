@@ -116,11 +116,10 @@ const fetchTopLanguages = async (username, exclude_repo = [], p = 1, q = 0) => {
       // add the size to the language size and increase repoCount.
       if (acc[prev.node.name] && prev.node.name === acc[prev.node.name].name) {
         langSize = prev.size + acc[prev.node.name].size;
-        repoCount = repoCount + 1;
-      }
-      else {
+        repoCount += 1;
+      } else {
         // reset repoCount to 1
-        // language must exist in atleast one repo to be detected
+        // language must exist in at least one repo to be detected
         repoCount = 1;
       }
       return {
@@ -134,12 +133,11 @@ const fetchTopLanguages = async (username, exclude_repo = [], p = 1, q = 0) => {
       };
     }, {});
 
-
-  Object.keys(repoNodes)
-    .forEach((name) => {
-      // comparison index calculation
-      repoNodes[name].size = Math.pow(repoNodes[name].size, p) * Math.pow(repoNodes[name].count, q);
-    })
+  Object.keys(repoNodes).forEach((name) => {
+    // comparison index calculation
+    repoNodes[name].size =
+      Math.pow(repoNodes[name].size, p) * Math.pow(repoNodes[name].count, q);
+  });
 
   const topLangs = Object.keys(repoNodes)
     .sort((a, b) => repoNodes[b].size - repoNodes[a].size)

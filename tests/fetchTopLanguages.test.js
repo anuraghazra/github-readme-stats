@@ -63,19 +63,19 @@ describe("FetchTopLanguages", () => {
   it("should fetch correct language data while using the new calculation", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
-    let repo = await fetchTopLanguages("anuraghazra", p = 0.5, q = 0.5);
+    let repo = await fetchTopLanguages("anuraghazra", [], 0.5, 0.5);
     expect(repo).toStrictEqual({
       HTML: {
         color: "#0f0",
         count: 2,
         name: "HTML",
-        size: 20,
+        size: 20.000000000000004,
       },
       javascript: {
         color: "#0ff",
         count: 2,
         name: "javascript",
-        size: 20,
+        size: 20.000000000000004,
       },
     });
   });
@@ -103,7 +103,7 @@ describe("FetchTopLanguages", () => {
   it("should fetch correct language data while using the old calculation", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
-    let repo = await fetchTopLanguages("anuraghazra", p = 1, q = 0);
+    let repo = await fetchTopLanguages("anuraghazra", [], 1, 0);
     expect(repo).toStrictEqual({
       HTML: {
         color: "#0f0",
@@ -123,7 +123,7 @@ describe("FetchTopLanguages", () => {
   it("should rank languages by the number of repositories they appear in", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
-    let repo = await fetchTopLanguages("anuraghazra", exclude_repo = [], p = 0, q = 1);
+    let repo = await fetchTopLanguages("anuraghazra", [], 0, 1);
     expect(repo).toStrictEqual({
       HTML: {
         color: "#0f0",
