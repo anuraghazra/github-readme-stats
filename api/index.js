@@ -37,6 +37,7 @@ export default async (req, res) => {
     border_radius,
     number_format,
     border_color,
+    rank_icon,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -92,6 +93,7 @@ export default async (req, res) => {
         number_format,
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
+        rank_icon,
       }),
     );
   } catch (err) {
