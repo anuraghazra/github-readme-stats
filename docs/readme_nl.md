@@ -144,7 +144,7 @@ Je kan het uiterlijk van je `Statistieken kaart` of `Repo kaart` aanpassen hoe j
 - `bg_color` - Achtergrond kleur van de kaart _(hex kleur)_ **of** een verloop van kleuren in het formaat van _graden,start,einde_
 - `hide_border` - Verbergt de rand van de kaart _(boolean)_
 - `theme` - Naam van het thema, kies uit [alle beschikbare thema\'s](../themes/README.md)
-- `cache_seconds` - Stel de cache header handmatig in _(min: 1800, max: 86400)_
+- `cache_seconds` - Stel de cache header handmatig in _(min: 14400, max: 86400)_
 - `locale` - Stel taal van de kaart in _(e.g. cn, de, es, etc.)_
 
 ##### Kleurenverloop in bg_color (achtergrond kleur):

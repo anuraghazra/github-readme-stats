@@ -151,7 +151,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `bg_color` - 카드의 배경 색상 _(hex color)_ **혹은** 다음 양식으로 그라데이션 주기 _angle,start,end_
 - `hide_border` - 카드의 테두리 표시 여부 _(boolean)_
 - `theme` - 테마의 이름, [사용 가능한 모든 테마](../themes/README.md) 에서 선택
-- `cache_seconds` - 수동으로 캐시 헤더 설정 _(min: 1800, max: 86400)_
+- `cache_seconds` - 수동으로 캐시 헤더 설정 _(min: 14400, max: 86400)_
 - `locale` - 카드에 표시할 언어 _(e.g. kr, cn, de, es, etc.)_
 
 ##### 배경에 그라데이션 주기
