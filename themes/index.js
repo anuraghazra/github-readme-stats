@@ -1,10 +1,4 @@
 export const themes = {
-  dark_red: {
-    title_color: "fff",
-    icon_color: "FF0505",
-    text_color: "9f9f9f",
-    bg_color: "151515",
-  },
   default: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
@@ -48,6 +42,12 @@ export const themes = {
   dark: {
     title_color: "fff",
     icon_color: "79ff97",
+    text_color: "9f9f9f",
+    bg_color: "151515",
+  },
+  dark_red: {
+    title_color: "fff",
+    icon_color: "FF0505",
     text_color: "9f9f9f",
     bg_color: "151515",
   },
