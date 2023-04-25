@@ -81,6 +81,12 @@ export const themes = {
     text_color: "df6d74",
     bg_color: "282c34",
   },
+  dark_red: {
+    title_color: "fff",
+    icon_color: "FF0505",
+    text_color: "9f9f9f",
+    bg_color: "151515",
+  },
   cobalt: {
     title_color: "e683d9",
     icon_color: "0480ef",
