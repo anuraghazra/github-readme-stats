@@ -423,6 +423,13 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  "lithara_black": {
+    title_color: "1F74E9",
+    text_color: "FFFFFF",
+    icon_color: "238636",
+    border_color: "000000",
+    bg_color: "010409",
+  },
 };
 
 export default themes;
