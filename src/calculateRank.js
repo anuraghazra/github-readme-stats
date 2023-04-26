@@ -29,13 +29,14 @@ const normalcdf = (mean, sigma, to) => {
 /**
  * Calculates the users rank.
  *
- * @param {number} totalRepos Total number of repos.
- * @param {number} totalCommits Total number of commits.
- * @param {number} contributions The number of contributions.
- * @param {number} followers The number of followers.
- * @param {number} prs The number of pull requests.
- * @param {number} issues The number of issues.
- * @param {number} stargazers The number of stars.
+ * @param {object} params Parameters on which the user's rank depends.
+ * @param {number} params.totalRepos Total number of repos.
+ * @param {number} params.totalCommits Total number of commits.
+ * @param {number} params.contributions The number of contributions.
+ * @param {number} params.followers The number of followers.
+ * @param {number} params.prs The number of pull requests.
+ * @param {number} params.issues The number of issues.
+ * @param {number} params.stargazers The number of stars.
  * @returns {{level: string, score: number}}} The users rank.
  */
 const calculateRank = ({
