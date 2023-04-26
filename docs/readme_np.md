@@ -49,8 +49,12 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
     ·
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">परियोजना मनपर्‍यो? तपाईं मद्दत गर्न सक्नुहुन्छ <a href="https://www.paypal.me/anuraghazra">यो परियोजना</a> बढ्न 
@@ -138,7 +142,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_
 - `hide_border` - Hides the card's border _(boolean)_
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
-- `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
+- `cache_seconds` - set the cache header manually _(min: 14400, max: 86400)_
 - `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
 
 ##### Gradient in bg_color

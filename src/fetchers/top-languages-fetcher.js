@@ -54,7 +54,12 @@ const fetcher = (variables, token) => {
  * @param {string[]} exclude_repo List of repositories to exclude.
  * @returns {Promise<import("./types").TopLangData>} Top languages data.
  */
-const fetchTopLanguages = async (username, exclude_repo = []) => {
+const fetchTopLanguages = async (
+  username,
+  exclude_repo = [],
+  size_weight = 1,
+  count_weight = 0,
+) => {
   if (!username) throw new MissingParamError(["username"]);
 
   const res = await retryer(fetcher, { login: username });
@@ -101,6 +106,8 @@ const fetchTopLanguages = async (username, exclude_repo = []) => {
     .sort((a, b) => b.size - a.size)
     .filter((name) => !repoToHide[name.name]);
 
+  let repoCount = 0;
+
   repoNodes = repoNodes
     .filter((node) => node.languages.edges.length > 0)
     // flatten the list of language nodes
@@ -111,9 +118,14 @@ const fetchTopLanguages = async (username, exclude_repo = []) => {
 
       // if we already have the language in the accumulator
       // & the current language name is same as previous name
-      // add the size to the language size.
+      // add the size to the language size and increase repoCount.
       if (acc[prev.node.name] && prev.node.name === acc[prev.node.name].name) {
         langSize = prev.size + acc[prev.node.name].size;
+        repoCount += 1;
+      } else {
+        // reset repoCount to 1
+        // language must exist in at least one repo to be detected
+        repoCount = 1;
       }
       return {
         ...acc,
@@ -121,9 +133,17 @@ const fetchTopLanguages = async (username, exclude_repo = []) => {
           name: prev.node.name,
           color: prev.node.color,
           size: langSize,
+          count: repoCount,
         },
       };
     }, {});
+
+  Object.keys(repoNodes).forEach((name) => {
+    // comparison index calculation
+    repoNodes[name].size =
+      Math.pow(repoNodes[name].size, size_weight) *
+      Math.pow(repoNodes[name].count, count_weight);
+  });
 
   const topLangs = Object.keys(repoNodes)
     .sort((a, b) => repoNodes[b].size - repoNodes[a].size)
