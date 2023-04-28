@@ -424,9 +424,9 @@ export const themes = {
     bg_color: "030314",
   },
   ocean_citrus: {
-    title_color: "1F8A70",
+    title_color: "82E3CB",
     text_color: "BFDB38",
-    icon_color: "FC7300",
+    icon_color: "FF8624",
     border_color: "BFDB38",
     bg_color: "00425A",
   },
