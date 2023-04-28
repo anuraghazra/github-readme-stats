@@ -27,7 +27,7 @@ const data_stats = {
         ],
         pageInfo: {
           hasNextPage: true,
-          cursor: "cursor",
+          endCursor: "cursor",
         },
       },
     },
@@ -44,7 +44,7 @@ const data_repo = {
         ],
         pageInfo: {
           hasNextPage: false,
-          cursor: "cursor",
+          endCursor: "cursor",
         },
       },
     },
@@ -64,7 +64,7 @@ const data_repo_zero_stars = {
         ],
         pageInfo: {
           hasNextPage: true,
-          cursor: "cursor",
+          endCursor: "cursor",
         },
       },
     },
@@ -86,11 +86,12 @@ const mock = new MockAdapter(axios);
 
 beforeEach(() => {
   process.env.FETCH_MULTI_PAGE_STARS = "false"; // Set to `false` to fetch only one page of stars.
-  mock
-    .onPost("https://api.github.com/graphql")
-    .replyOnce(200, data_stats)
-    .onPost("https://api.github.com/graphql")
-    .replyOnce(200, data_repo);
+  mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+    return [
+      200,
+      cfg.data.includes("contributionsCollection") ? data_stats : data_repo,
+    ];
+  });
 });
 
 afterEach(() => {

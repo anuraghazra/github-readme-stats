@@ -43,7 +43,7 @@ const data_stats = {
         nodes: [{ stargazers: { totalCount: 100 } }],
         pageInfo: {
           hasNextPage: false,
-          cursor: "cursor",
+          endCursor: "cursor",
         },
       },
     },
