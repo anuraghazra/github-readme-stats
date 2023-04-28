@@ -392,7 +392,7 @@ const lowercaseTrim = (name) => name.toLowerCase().trim();
 /**
  * Split array of languages in two columns.
  *
- * @template T Langauge object.
+ * @template T Language object.
  * @param {Array<T>} arr Array of languages.
  * @param {number} perChunk Number of languages per column.
  * @returns {Array<T>} Array of languages split in two columns.
