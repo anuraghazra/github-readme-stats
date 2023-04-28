@@ -423,6 +423,13 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  ocean_citrus: {
+    title_color: "1F8A70",
+    text_color: "BFDB38",
+    icon_color: "FC7300",
+    border_color: "BFDB38",
+    bg_color: "00425A",
+  },
 };
 
 export default themes;
