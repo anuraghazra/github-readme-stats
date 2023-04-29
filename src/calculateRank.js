@@ -3,32 +3,31 @@ function expsf(x, lambda = 1) {
 }
 
 function calculateRank({
-  totalRepos, // unused
-  totalCommits,
-  contributions, // unused
-  followers,
+  all_commits,
+  commits,
   prs,
   issues,
-  stargazers,
+  repos, // unused
+  stars,
+  followers,
 }) {
-  const COMMITS_MEAN = 500,
-    COMMITS_WEIGHT = 0.25;
-  const FOLLOWERS_MEAN = 50,
-    FOLLOWERS_WEIGHT = 0.25;
-  const PRS_ISSUES_MEAN = 25,
-    PRS_ISSUES_WEIGHT = 0.25;
-  const STARS_MEAN = 100,
-    STARS_WEIGHT = 0.75;
+  const COMMITS_MEAN = all_commits ? 500 : 100, COMMITS_WEIGHT = 1;
+  const PRS_MEAN = 50, PRS_WEIGHT = 2;
+  const ISSUES_MEAN = 10, ISSUES_WEIGHT = 1;
+  const STARS_MEAN = 100, STARS_WEIGHT = 3;
+  const FOLLOWERS_MEAN = 25, FOLLOWERS_WEIGHT = 1;
 
-  const TOTAL_WEIGHT =
-    COMMITS_WEIGHT + FOLLOWERS_WEIGHT + PRS_ISSUES_WEIGHT + STARS_WEIGHT;
+  const TOTAL_WEIGHT = COMMITS_WEIGHT +
+    PRS_WEIGHT + ISSUES_WEIGHT + STARS_WEIGHT + FOLLOWERS_WEIGHT;
 
   const rank =
-    (COMMITS_WEIGHT * expsf(totalCommits, 1 / COMMITS_MEAN) +
-      FOLLOWERS_WEIGHT * expsf(followers, 1 / FOLLOWERS_MEAN) +
-      PRS_ISSUES_WEIGHT * expsf(prs + issues, 1 / PRS_ISSUES_MEAN) +
-      STARS_WEIGHT * expsf(stargazers, 1 / STARS_MEAN)) /
-    TOTAL_WEIGHT;
+    (
+      COMMITS_WEIGHT * expsf(commits, 1 / COMMITS_MEAN) +
+      PRS_WEIGHT * expsf(prs, 1 / PRS_MEAN) +
+      ISSUES_WEIGHT * expsf(issues, 1 / ISSUES_MEAN) +
+      STARS_WEIGHT * expsf(stars, 1 / STARS_MEAN) +
+      FOLLOWERS_WEIGHT * expsf(followers, 1 / FOLLOWERS_MEAN)
+    ) / TOTAL_WEIGHT;
 
   const RANK_S_PLUS = 0.025;
   const RANK_S = 0.1;

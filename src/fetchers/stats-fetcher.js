@@ -192,7 +192,7 @@ const fetchStats = async (
     totalIssues: 0,
     totalStars: 0,
     contributedTo: 0,
-    rank: { level: "C", score: 0 },
+    rank: { level: "B", score: 0 },
   };
 
   let res = await statsFetcher(username);
@@ -220,6 +220,8 @@ const fetchStats = async (
 
   const user = res.data.data.user;
 
+  stats.name = user.name || user.login;
+
   // populate repoToHide map for quick lookup
   // while filtering out
   let repoToHide = {};
@@ -229,25 +231,14 @@ const fetchStats = async (
     });
   }
 
-  stats.name = user.name || user.login;
-  stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
-
-  // normal commits
-  stats.totalCommits = user.contributionsCollection.totalCommitContributions;
-
-  // if include_all_commits then just get that,
-  // since totalCommitsFetcher already sends totalCommits no need to +=
   if (include_all_commits) {
     stats.totalCommits = await totalCommitsFetcher(username);
-  }
-
-  // if count_private then add private commits to totalCommits so far.
-  if (count_private) {
-    stats.totalCommits +=
-      user.contributionsCollection.restrictedContributionsCount;
+  } else {
+    stats.totalCommits = user.contributionsCollection.totalCommitContributions;
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
+  stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
   // Retrieve stars while filtering out repositories to be hidden
@@ -259,15 +250,15 @@ const fetchStats = async (
       return prev + curr.stargazers.totalCount;
     }, 0);
 
-  // @ts-ignore // TODO: Fix this.
+  // @ts-ignore
   stats.rank = calculateRank({
-    totalCommits: stats.totalCommits,
-    totalRepos: user.repositories.totalCount,
-    followers: user.followers.totalCount,
-    contributions: stats.contributedTo,
-    stargazers: stats.totalStars,
+    all_commits: include_all_commits,
+    commits: stats.totalCommits,
     prs: stats.totalPRs,
     issues: stats.totalIssues,
+    repos: user.repositories.totalCount,
+    stars: stats.totalStars,
+    followers: user.followers.totalCount,
   });
 
   return stats;
