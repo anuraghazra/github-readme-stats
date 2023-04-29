@@ -423,6 +423,12 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  github_default : {
+    title_color: "ffffff",
+    icon_color: "f78166",
+    text_color: "e6edf3",
+    bg_color: "d1d1d1",
+  },
 };
 
 export default themes;
