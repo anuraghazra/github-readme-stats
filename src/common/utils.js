@@ -194,15 +194,15 @@ const flexLayout = ({ items, gap, direction, sizes = [] }) => {
 /**
  * Returns theme based colors with proper overrides and defaults.
  *
- * @param {Object[]} args Function arguments.
+ * @param {Object} args Function arguments.
  * @param {string} args.title_color Card title color.
  * @param {string} args.text_color Card text color.
  * @param {string} args.icon_color Card icon color.
  * @param {string} args.bg_color Card background color.
  * @param {string} args.border_color Card border color.
+ * @param {string} args.ring_color Card ring color.
  * @param {string} args.theme Card theme.
  * @param {string} args.fallbackTheme Fallback theme.
- *
  */
 const getCardColors = ({
   title_color,
