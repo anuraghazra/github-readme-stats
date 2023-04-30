@@ -423,7 +423,7 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
-  green-_White: {
+  green_White: {
     title_color: "39d353",
     text_color: "ffffff",
     icon_color: "39d353",
