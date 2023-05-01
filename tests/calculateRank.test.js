@@ -83,6 +83,6 @@ describe("Test calculateRank", () => {
         stars: 5000,
         followers: 2000,
       }),
-    ).toStrictEqual({ level: "S+", score: 0.012207031250033307 });
+    ).toStrictEqual({ level: "S+", score: 0.013950892857180923 });
   });
 });

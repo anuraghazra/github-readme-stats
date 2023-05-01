@@ -173,13 +173,11 @@ const totalCommitsFetcher = async (username) => {
  * Fetch stats for a given username.
  *
  * @param {string} username GitHub username.
- * @param {boolean} count_private Include private contributions.
  * @param {boolean} include_all_commits Include all commits.
  * @returns {Promise<import("./types").StatsData>} Stats data.
  */
 const fetchStats = async (
   username,
-  count_private = false,
   include_all_commits = false,
   exclude_repo = [],
 ) => {
