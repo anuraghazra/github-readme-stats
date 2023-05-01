@@ -143,7 +143,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `bg_color` - Kartın arkaplan rengi _(hex color / hex rengi)_ **ya da** gradient şeklinde _açı,başlangıç,bitiş_
 - `hide_border` - Kartın çerçevelerini gizler _(boolean)_
 - `theme` - Temanın rengi [tüm temalar](./themes/README.md)
-- `cache_seconds` - Manuel olarak cache'i belirleyebilirsiniz _(en az: 1800, en fazla: 86400)_
+- `cache_seconds` - Manuel olarak cache'i belirleyebilirsiniz _(en az: 14400, en fazla: 86400)_
 - `locale` - Karttaki dili seçebilirsiniz _(örneğin; tr, cn, de, es, vb.)_
 
 ##### bg_color'da Gradient
@@ -409,7 +409,7 @@ Teşekkürler! :heart:
 
 ---
 
-[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 
 Katkılara açığız! <3

@@ -213,7 +213,7 @@ const fetchStats = async (
       );
     }
     throw new CustomError(
-      "Something went while trying to retrieve the stats data using the GraphQL API.",
+      "Something went wrong while trying to retrieve the stats data using the GraphQL API.",
       CustomError.GRAPHQL_ERROR,
     );
   }
@@ -250,7 +250,6 @@ const fetchStats = async (
       return prev + curr.stargazers.totalCount;
     }, 0);
 
-  // @ts-ignore
   stats.rank = calculateRank({
     all_commits: include_all_commits,
     commits: stats.totalCommits,
