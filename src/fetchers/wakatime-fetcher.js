@@ -14,7 +14,9 @@ const fetchWakatimeStats = async ({ username, api_domain, range }) => {
     const { data } = await axios.get(
       `https://${
         api_domain ? api_domain.replace(/\/$/gi, "") : "wakatime.com"
-      }/api/v1/users/${username}/stats/${range || ""}?is_including_today=true`,
+      }/api/v1/users/${username}/stats/${
+        range || "all_time"
+      }?is_including_today=true`,
     );
 
     return data.data;
