@@ -267,12 +267,20 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       <rect x="25" y="0" width="${width - 50}" height="8" fill="white" rx="5" />
       </mask>
       ${compactProgressBar}
-      ${createLanguageTextNode({
-        x: 0,
-        y: 25,
-        langs: filteredLanguages,
-        totalSize: 100,
-      }).join("")}
+      ${
+        filteredLanguages.length
+          ? createLanguageTextNode({
+              x: 0,
+              y: 25,
+              langs: filteredLanguages,
+              totalSize: 100,
+            }).join("")
+          : noCodingActivityNode({
+              // @ts-ignore
+              color: textColor,
+              text: i18n.t("wakatimecard.nocodingactivity"),
+            })
+      }
     `;
   } else {
     finalLayout = flexLayout({
