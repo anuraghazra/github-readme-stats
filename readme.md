@@ -520,7 +520,7 @@ Choose from any of the [default themes](#themes)
 
 -   WakaTime card
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&range=all_time)](https://github.com/anuraghazra/github-readme-stats)
 
 * * *
 
