@@ -86,14 +86,15 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
 /**
  * Create WakaTime text item.
  *
- * @param {Object[]} args The function arguments.
- * @param {string} id The id of the text node item.
- * @param {string} label The label of the text node item.
- * @param {string} value The value of the text node item.
- * @param {number} index The index of the text node item.
- * @param {percent} percent Percentage of the text node item.
- * @param {boolean} hideProgress Whether to hide the progress bar.
- * @param {string} progressBarBackgroundColor The color of the progress bar background.
+ * @param {Object} args The function arguments.
+ * @param {string} args.id The id of the text node item.
+ * @param {string} args.label The label of the text node item.
+ * @param {string} args.value The value of the text node item.
+ * @param {number} args.index The index of the text node item.
+ * @param {string} args.percent Percentage of the text node item.
+ * @param {boolean} args.hideProgress Whether to hide the progress bar.
+ * @param {string} args.progressBarColor The color of the progress bar.
+ * @param {string} args.progressBarBackgroundColor The color of the progress bar background.
  */
 const createTextNode = ({
   id,
