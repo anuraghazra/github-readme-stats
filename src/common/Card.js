@@ -12,6 +12,12 @@ class Card {
    * @param {string?=} args.customTitle Card custom title.
    * @param {string?=} args.defaultTitle Card default title.
    * @param {string?=} args.titlePrefixIcon Card title prefix icon.
+   * @param {object?=} args.colors Card colors arguments.
+   * @param {string} args.colors.titleColor Card title color.
+   * @param {string} args.colors.textColor Card text color.
+   * @param {string} args.colors.iconColor Card icon color.
+   * @param {string|Array} args.colors.bgColor Card background color.
+   * @param {string} args.colors.borderColor Card border color.
    * @returns {Card} Card instance.
    */
   constructor({
