@@ -6,6 +6,14 @@ export const themes = {
     bg_color: "fffefe",
     border_color: "e4e2e2",
   },
+  charly_pink{
+    title_color: "FF69B4",
+    icon_color: "FF69B4",
+    text_color: "ffffff",
+    bg_color: "000000",
+    border_color: "FF69B4",
+  },
+  
   default_repocard: {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
