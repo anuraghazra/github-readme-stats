@@ -7,11 +7,11 @@ export const themes = {
     border_color: "e4e2e2",
   },
   charly_pink: {
-    title_color: "ff69b4",
-    icon_color: "ff69b4", 
-    text_color: "ffffff",
-    bg_color: "000000",
-    border_color: "ff69b4",
+    title_color: "fb607f",
+    icon_color: "fb607f", 
+    text_color: "dddddd",
+    bg_color: "111111",
+    border_color: "ffb607f",
   },
   default_repocard: {
     title_color: "2f80ed",
