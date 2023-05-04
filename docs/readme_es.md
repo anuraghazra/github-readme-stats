@@ -287,13 +287,13 @@ cambia el valor del parámetro `?username=` a tu username en [Wakatime](https://
 
 ### Ejemplo
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&range=last_7_days)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true&range=last_7_days)](https://github.com/anuraghazra/github-readme-stats)
 
 - Diseño compacto
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact&range=last_7_days)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -343,7 +343,7 @@ Escoja cualquiera de los [temas por defecto](#themes)
 
 - Tarjeta de Wakatime
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&range=last_7_days)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

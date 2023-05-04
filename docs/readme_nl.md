@@ -288,9 +288,9 @@ Verander de `?username=` waarde naar je [Wakatime](https://wakatime.com) gebruik
 
 ### Demo
 
-[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&range=last_7_days)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true&range=last_7_days)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -340,7 +340,7 @@ Kies uit de [standaard thema\'s](#themes)
 
 - Wakatime kaart
 
-[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&range=last_7_days)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
