@@ -11,7 +11,7 @@ export const themes = {
     icon_color: "fb607f", 
     text_color: "dddddd",
     bg_color: "111111",
-    border_color: "ffb607f",
+    border_color: "fb607f",
   },
   default_repocard: {
     title_color: "2f80ed",
