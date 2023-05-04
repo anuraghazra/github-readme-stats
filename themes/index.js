@@ -6,7 +6,7 @@ export const themes = {
     bg_color: "fffefe",
     border_color: "e4e2e2",
   },
-  charly_pink: {
+   charly_pink: {
     title_color: "fb607f",
     icon_color: "fb607f", 
     text_color: "dddddd",
