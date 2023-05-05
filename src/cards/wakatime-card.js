@@ -36,11 +36,11 @@ const noCodingActivityNode = ({ color, text }) => {
 /**
  * Create compact WakaTime layout.
  *
- * @param {Object[]} args The function arguments.
- * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
- * @param {number} totalSize The total size of the languages.
- * @param {number} x The x position of the language node.
- * @param {number} y The y position of the language node.
+ * @param {Object} args The function arguments.
+ * @param {import("../fetchers/types").WakaTimeLang} args.lang The languages array.
+ * @param {number} args.totalSize The total size of the languages.
+ * @param {number} args.x The x position of the language node.
+ * @param {number} args.y The y position of the language node.
  */
 const createCompactLangNode = ({ lang, totalSize, x, y }) => {
   const color = languageColors[lang.name] || "#858585";
@@ -58,11 +58,11 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
 /**
  * Create WakaTime language text node item.
  *
- * @param {Object[]} args The function arguments.
- * @param {import("../fetchers/types").WakaTimeLang} lang The language object.
- * @param {number} totalSize The total size of the languages.
- * @param {number} x The x position of the language node.
- * @param {number} y The y position of the language node.
+ * @param {Object} args The function arguments.
+ * @param {import("../fetchers/types").WakaTimeLang[]} args.langs The language objects.
+ * @param {number} args.totalSize The total size of the languages.
+ * @param {number} args.x The x position of the language node.
+ * @param {number} args.y The y position of the language node.
  */
 const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
   return langs.map((lang, index) => {
