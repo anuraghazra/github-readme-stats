@@ -19,7 +19,11 @@ const fetchWakatimeStats = async ({ username, api_domain, range }) => {
 
     return data.data;
   } catch (err) {
-    if (err.response.status < 200 || err.response.status > 299) {
+    if (err.response.status == 403) {
+      throw new Error(
+        'History for this time period is not publicly available. Please ensure that the query parameter matches the value in the user\'s profile or try using the "last_7_days" range parameter.',
+      );
+    } else if (err.response.status < 200 || err.response.status > 299) {
       throw new Error(
         "Wakatime user not found, make sure you have a wakatime profile",
       );
