@@ -423,6 +423,14 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  fireLOVE:{
+    title_color: "ffffff",
+    icon_color: "fe9401",
+    text_color: "ffffff",
+    bg_color: "2e2d2e",
+    border_color: "ffffff",
+  }
+    
 };
 
 export default themes;
