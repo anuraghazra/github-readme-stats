@@ -67,4 +67,19 @@ describe("Test Render Wakatime Card", () => {
       "No coding activity this week",
     );
   });
+
+  it('should show "no coding activity this week" message when using compact layout and there has not been activity', () => {
+    document.body.innerHTML = renderWakatimeCard(
+      {
+        ...wakaTimeData.data,
+        languages: undefined,
+      },
+      {
+        layout: "compact",
+      },
+    );
+    expect(document.querySelector(".stat").textContent).toBe(
+      "No coding activity this week",
+    );
+  });
 });
