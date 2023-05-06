@@ -448,7 +448,7 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 > **Note**:
