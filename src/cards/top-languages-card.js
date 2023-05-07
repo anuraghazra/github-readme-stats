@@ -98,7 +98,7 @@ const createCompactLangNode = ({ lang, totalSize, hideProgress, index }) => {
 /**
  * Creates compact layout of text only language nodes.
  *
- * @param {object[]} props Function properties.
+ * @param {object} props Function properties.
  * @param {Lang[]} props.langs Array of programming languages.
  * @param {number} props.totalSize Total size of all languages.
  * @param {boolean} props.hideProgress Whether to hide percentage.
@@ -218,6 +218,70 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
 };
 
 /**
+ * Renders donut layout to display user's most frequently used programming languages.
+ *
+ * @param {Lang[]} langs Array of programming languages.
+ * @param {number} totalLanguageSize Total size of all languages.
+ * @returns {string} Compact layout card SVG object.
+ */
+const renderDonutLayout = (langs, totalLanguageSize) => {
+  const radius = 80;
+  const circleLength = 2 * Math.PI * radius;
+
+  let circles = [];
+  let indent = 0;
+
+  for (const lang of langs) {
+    const currentTotalLanguageSizePart = (lang.size / totalLanguageSize) * 100;
+    const currentCircleLengthPart =
+      circleLength * (currentTotalLanguageSizePart / 100);
+    circles.push(`
+      <circle 
+        cx="150"
+        cy="100"
+        r="${radius}"
+        fill="transparent"
+        stroke="${lang.color}"
+        stroke-width="25"
+        stroke-dasharray="${circleLength}"
+        stroke-dashoffset="${indent}"
+      />
+    `);
+    indent += currentCircleLengthPart;
+  }
+
+  const donutSvg = `
+    <svg data-testid="lang-items-donut">
+      <circle class="donut-hole" cx="150" cy="100" r="${radius}" fill="#fff" />
+      ${circles.join("")}
+    </svg>
+  `;
+  const languagesSvg = `
+    <svg data-testid="lang-items" x="${CARD_PADDING}">
+      <g transform="translate(0, 220)">
+        ${createLanguageTextNode({
+          langs,
+          totalSize: totalLanguageSize,
+          hideProgress: false,
+        })}
+      </g>
+    </svg>
+  `;
+
+  return `${donutSvg}${languagesSvg}`;
+};
+
+/**
+ * Calculates height for the donut layout.
+ *
+ * @param {number} totalLangs Total number of languages.
+ * @returns {number} Card height.
+ */
+const calculateDonutLayoutHeight = (totalLangs) => {
+  return 300 + Math.round(totalLangs / 2) * 25;
+};
+
+/**
  * Calculates height for the compact layout.
  *
  * @param {number} totalLangs Total number of languages.
@@ -316,7 +380,10 @@ const renderTopLanguages = (topLangs, options = {}) => {
   let height = calculateNormalLayoutHeight(langs.length);
 
   let finalLayout = "";
-  if (layout === "compact" || hide_progress == true) {
+  if (layout === "donut") {
+    height = calculateDonutLayoutHeight(langs.length);
+    finalLayout = renderDonutLayout(langs, totalLanguageSize);
+  } else if (layout === "compact" || hide_progress == true) {
     height =
       calculateCompactLayoutHeight(langs.length) + (hide_progress ? -25 : 0);
 
@@ -386,6 +453,10 @@ const renderTopLanguages = (topLangs, options = {}) => {
     }
     `,
   );
+
+  if (layout === "donut") {
+    return card.render(finalLayout);
+  }
 
   return card.render(`
     <svg data-testid="lang-items" x="${CARD_PADDING}">
