@@ -11,7 +11,7 @@ const fetchWakatimeStats = async ({ username, api_domain }) => {
   if (!username) throw new MissingParamError(["username"]);
 
   // Loop through available ranges to get user data.
-  for (const range of ["all_time", "last_7_days", "last_year"]) {
+  for (const range of ["all_time", "last_year", "last_7_days"]) {
     try {
       const { data } = await axios.get(
         `https://${
