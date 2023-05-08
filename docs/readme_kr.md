@@ -298,18 +298,18 @@ _참고:
 `?username=` 속성의 값을 [Wakatime](https://wakatime.com) 계정의 사용자 명(닉네임)으로 바꿔주세요.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### 미리보기
 
-[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - 컴팩트한 레이아웃
 
-[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -359,7 +359,7 @@ _참고:
 
 - Wakatime 카드
 
-[![willianrod 님의 Wakatime 카드](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 Wakatime 카드](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
