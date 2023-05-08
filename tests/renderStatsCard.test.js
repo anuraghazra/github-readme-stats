@@ -348,7 +348,7 @@ describe("Test renderStatsCard", () => {
       document.querySelector(
         'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"参与项目数 (last year):"`);
+    ).toMatchInlineSnapshot(`"贡献于（去年）:"`);
   });
 
   it("should render without rounding", () => {
