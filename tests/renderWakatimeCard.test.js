@@ -43,7 +43,7 @@ describe("Test Render Wakatime Card", () => {
     expect(
       document.querySelector('g[transform="translate(0, 0)"]>text.stat.bold')
         .textContent,
-    ).toBe("本周没有编程活动");
+    ).toBe("Wakatime 用戶個人資料未公開");
   });
 
   it("should render without rounding", () => {

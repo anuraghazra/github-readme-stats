@@ -328,7 +328,6 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `layout` - Switch between two available layouts `default` & `compact`.  Default `default`.
 -   `langs_count` - Limit the number of languages on the card, defaults to all reported languages _(number)_.
 -   `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) _(string)_. Default `Waka API`.
--   `range` – Request a range different from your WakaTime default, e.g. `last_7_days`. See [WakaTime API docs](https://wakatime.com/developers#stats) for a list of available options. _(YYYY-MM, last_7_days, last_30_days, last_6_months, last_year, or all_time)_. Default `all_time`.
 
 * * *
 
@@ -445,14 +444,14 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 
 # Wakatime Week Stats
 
+> **Warning**
+> Please be aware that we currently only show data from Wakatime profiles that are public. You therefore have to make sure that **BOTH** `Display code time publicly` and `Display languages, editors, os, categories publicly` are enabled.
+
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ```md
 [![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 ```
-
-> **Note**:
-> Please be aware that we currently only show data from Wakatime profiles that are public.
 
 ### Demo
 

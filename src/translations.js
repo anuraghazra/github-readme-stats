@@ -326,6 +326,26 @@ const wakatimeCardLocales = {
     vi: "Thống Kê Wakatime",
     se: "Wakatime statistik",
   },
+  "wakatimecard.lastyear": {
+    en: "last year",
+    cn: "去年",
+  },
+  "wakatimecard.last7days": {
+    en: "last 7 days",
+    cn: "最近 7 天",
+  },
+  "wakatimecard.nouser": {
+    en: "Wakatime user not found, make sure you have a Wakatime profile",
+    cn: "未找到 Wakatime 用戶，請確保您擁有 Wakatime 個人資料",
+  },
+  "wakatimecard.notpublic": {
+    en: "Wakatime user profile not public",
+    cn: "Wakatime 用戶個人資料未公開",
+  },
+  "wakatimecard.nocodedetails": {
+    en: "User doesn't publicly share detailed code statistics",
+    cn: "用戶不公開分享詳細的代碼統計信息",
+  },
   "wakatimecard.nocodingactivity": {
     ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
     cn: "本周没有编程活动",
