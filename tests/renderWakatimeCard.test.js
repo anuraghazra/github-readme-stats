@@ -43,7 +43,7 @@ describe("Test Render Wakatime Card", () => {
     expect(
       document.querySelector('g[transform="translate(0, 0)"]>text.stat.bold')
         .textContent,
-    ).toBe("Wakatime 用戶個人資料未公開");
+    ).toBe("Wakatime 用户个人资料未公开");
   });
 
   it("should render without rounding", () => {
