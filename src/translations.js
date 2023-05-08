@@ -336,15 +336,15 @@ const wakatimeCardLocales = {
   },
   "wakatimecard.nouser": {
     en: "Wakatime user not found, make sure you have a Wakatime profile",
-    cn: "未找到 Wakatime 用戶，請確保您擁有 Wakatime 個人資料",
+    cn: "未找到 Wakatime 用户，请确保您拥有 Wakatime 个人资料",
   },
   "wakatimecard.notpublic": {
     en: "Wakatime user profile not public",
-    cn: "Wakatime 用戶個人資料未公開",
+    cn: "Wakatime 用户个人资料未公开",
   },
   "wakatimecard.nocodedetails": {
     en: "User doesn't publicly share detailed code statistics",
-    cn: "用戶不公開分享詳細的代碼統計信息",
+    cn: "用户不公开分享详细的代码统计信息",
   },
   "wakatimecard.nocodingactivity": {
     ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
