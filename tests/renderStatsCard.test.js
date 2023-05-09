@@ -78,16 +78,17 @@ describe("Test renderStatsCard", () => {
 
   it("should render with custom width set", () => {
     document.body.innerHTML = renderStatsCard(stats);
-    expect(document.querySelector("svg")).toHaveAttribute("width", "495");
+    expect(document.querySelector("svg")).toHaveAttribute("width", "450");
 
-    document.body.innerHTML = renderStatsCard(stats, { card_width: 400 });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "400");
+    document.body.innerHTML = renderStatsCard(stats, { card_width: 500 });
+    expect(document.querySelector("svg")).toHaveAttribute("width", "500");
   });
 
   it("should render with custom width set and limit minimum width", () => {
     document.body.innerHTML = renderStatsCard(stats, { card_width: 1 });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "340");
+    expect(document.querySelector("svg")).toHaveAttribute("width", "420");
 
+    // Test default minimum card width without rank circle.
     document.body.innerHTML = renderStatsCard(stats, {
       card_width: 1,
       hide_rank: true,
@@ -97,6 +98,7 @@ describe("Test renderStatsCard", () => {
       "305.81250000000006",
     );
 
+    // Test minimum card width with rank and icons.
     document.body.innerHTML = renderStatsCard(stats, {
       card_width: 1,
       hide_rank: true,
@@ -104,22 +106,24 @@ describe("Test renderStatsCard", () => {
     });
     expect(document.querySelector("svg")).toHaveAttribute(
       "width",
-      "305.81250000000006",
+      "322.81250000000006",
     );
 
+    // Test minimum card width with icons but without rank.
     document.body.innerHTML = renderStatsCard(stats, {
       card_width: 1,
       hide_rank: false,
       show_icons: true,
     });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "356");
+    expect(document.querySelector("svg")).toHaveAttribute("width", "437");
 
+    // Test minimum card width without icons or rank.
     document.body.innerHTML = renderStatsCard(stats, {
       card_width: 1,
       hide_rank: false,
       show_icons: false,
     });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "340");
+    expect(document.querySelector("svg")).toHaveAttribute("width", "420");
   });
 
   it("should render default colors properly", () => {
@@ -239,6 +243,39 @@ describe("Test renderStatsCard", () => {
     );
   });
 
+  it("should render custom ring_color properly", () => {
+    const customColors = {
+      title_color: "5a0",
+      ring_color: "0000ff",
+      icon_color: "1b998b",
+      text_color: "9991",
+      bg_color: "252525",
+    };
+
+    document.body.innerHTML = renderStatsCard(stats, { ...customColors });
+
+    const styleTag = document.querySelector("style");
+    const stylesObject = cssToObject(styleTag.innerHTML);
+
+    const headerClassStyles = stylesObject[":host"][".header "];
+    const statClassStyles = stylesObject[":host"][".stat "];
+    const iconClassStyles = stylesObject[":host"][".icon "];
+    const rankCircleStyles = stylesObject[":host"][".rank-circle "];
+    const rankCircleRimStyles = stylesObject[":host"][".rank-circle-rim "];
+
+    expect(headerClassStyles.fill.trim()).toBe(`#${customColors.title_color}`);
+    expect(statClassStyles.fill.trim()).toBe(`#${customColors.text_color}`);
+    expect(iconClassStyles.fill.trim()).toBe(`#${customColors.icon_color}`);
+    expect(rankCircleStyles.stroke.trim()).toBe(`#${customColors.ring_color}`);
+    expect(rankCircleRimStyles.stroke.trim()).toBe(
+      `#${customColors.ring_color}`,
+    );
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "fill",
+      "#252525",
+    );
+  });
+
   it("should render icons correctly", () => {
     document.body.innerHTML = renderStatsCard(stats, {
       show_icons: true,
@@ -279,7 +316,7 @@ describe("Test renderStatsCard", () => {
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("width"),
-    ).toBe("270");
+    ).toBe("287");
   });
 
   it("should render translations", () => {
@@ -296,7 +333,7 @@ describe("Test renderStatsCard", () => {
       document.querySelector(
         'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"累计提交数（commit） (2022):"`);
+    ).toMatchInlineSnapshot(`"累计提交数（commit） (2023):"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
@@ -311,7 +348,7 @@ describe("Test renderStatsCard", () => {
       document.querySelector(
         'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"参与项目数:"`);
+    ).toMatchInlineSnapshot(`"参与项目数 (last year):"`);
   });
 
   it("should render without rounding", () => {
@@ -319,5 +356,31 @@ describe("Test renderStatsCard", () => {
     expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
     document.body.innerHTML = renderStatsCard(stats, {});
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
+  });
+
+  it("should shorten values", () => {
+    stats["totalCommits"] = 1999;
+
+    document.body.innerHTML = renderStatsCard(stats);
+    expect(getByTestId(document.body, "commits").textContent).toBe("2k");
+    document.body.innerHTML = renderStatsCard(stats, { number_format: "long" });
+    expect(getByTestId(document.body, "commits").textContent).toBe("1999");
+  });
+
+  it("should render default rank icon with level A+", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      rank_icon: "default",
+    });
+    expect(queryByTestId(document.body, "level-rank-icon")).toBeDefined();
+    expect(
+      queryByTestId(document.body, "level-rank-icon").textContent.trim(),
+    ).toBe("A+");
+  });
+
+  it("should render github rank icon", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      rank_icon: "github",
+    });
+    expect(queryByTestId(document.body, "github-rank-icon")).toBeDefined();
   });
 });

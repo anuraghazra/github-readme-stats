@@ -1,5 +1,4 @@
 // @ts-check
-import * as dotenv from "dotenv";
 import { retryer } from "../common/retryer.js";
 import {
   CustomError,
@@ -9,13 +8,11 @@ import {
   wrapTextMultiline,
 } from "../common/utils.js";
 
-dotenv.config();
-
 /**
  * Top languages fetcher object.
  *
- * @param {import('Axios').AxiosRequestHeaders} variables Fetcher variables.
- * @param {string} token Github token.
+ * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token GitHub token.
  * @returns {Promise<import('../common/types').StatsFetcherResponse>} Languages fetcher response.
  */
 const fetcher = (variables, token) => {
@@ -53,11 +50,16 @@ const fetcher = (variables, token) => {
 /**
  * Fetch top languages for a given username.
  *
- * @param {string} username Github username.
+ * @param {string} username GitHub username.
  * @param {string[]} exclude_repo List of repositories to exclude.
  * @returns {Promise<import("./types").TopLangData>} Top languages data.
  */
-async function fetchTopLanguages(username, exclude_repo = []) {
+const fetchTopLanguages = async (
+  username,
+  exclude_repo = [],
+  size_weight = 1,
+  count_weight = 0,
+) => {
   if (!username) throw new MissingParamError(["username"]);
 
   const res = await retryer(fetcher, { login: username });
@@ -104,6 +106,8 @@ async function fetchTopLanguages(username, exclude_repo = []) {
     .sort((a, b) => b.size - a.size)
     .filter((name) => !repoToHide[name.name]);
 
+  let repoCount = 0;
+
   repoNodes = repoNodes
     .filter((node) => node.languages.edges.length > 0)
     // flatten the list of language nodes
@@ -114,9 +118,14 @@ async function fetchTopLanguages(username, exclude_repo = []) {
 
       // if we already have the language in the accumulator
       // & the current language name is same as previous name
-      // add the size to the language size.
+      // add the size to the language size and increase repoCount.
       if (acc[prev.node.name] && prev.node.name === acc[prev.node.name].name) {
         langSize = prev.size + acc[prev.node.name].size;
+        repoCount += 1;
+      } else {
+        // reset repoCount to 1
+        // language must exist in at least one repo to be detected
+        repoCount = 1;
       }
       return {
         ...acc,
@@ -124,9 +133,17 @@ async function fetchTopLanguages(username, exclude_repo = []) {
           name: prev.node.name,
           color: prev.node.color,
           size: langSize,
+          count: repoCount,
         },
       };
     }, {});
+
+  Object.keys(repoNodes).forEach((name) => {
+    // comparison index calculation
+    repoNodes[name].size =
+      Math.pow(repoNodes[name].size, size_weight) *
+      Math.pow(repoNodes[name].count, count_weight);
+  });
 
   const topLangs = Object.keys(repoNodes)
     .sort((a, b) => repoNodes[b].size - repoNodes[a].size)
@@ -136,7 +153,7 @@ async function fetchTopLanguages(username, exclude_repo = []) {
     }, {});
 
   return topLangs;
-}
+};
 
 export { fetchTopLanguages };
 export default fetchTopLanguages;

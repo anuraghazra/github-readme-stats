@@ -9,7 +9,7 @@
  * @param {number} to The value to calculate the probability for.
  * @returns {number} Probability.
  */
-function normalcdf(mean, sigma, to) {
+const normalcdf = (mean, sigma, to) => {
   var z = (to - mean) / Math.sqrt(2 * sigma * sigma);
   var t = 1 / (1 + 0.3275911 * Math.abs(z));
   var a1 = 0.254829592;
@@ -24,21 +24,22 @@ function normalcdf(mean, sigma, to) {
     sign = -1;
   }
   return (1 / 2) * (1 + sign * erf);
-}
+};
 
 /**
  * Calculates the users rank.
  *
- * @param {number} totalRepos Total number of repos.
- * @param {number} totalCommits Total number of commits.
- * @param {number} contributions The number of contributions.
- * @param {number} followers The number of followers.
- * @param {number} prs The number of pull requests.
- * @param {number} issues The number of issues.
- * @param {number} stargazers The number of stars.
+ * @param {object} params Parameters on which the user's rank depends.
+ * @param {number} params.totalRepos Total number of repos.
+ * @param {number} params.totalCommits Total number of commits.
+ * @param {number} params.contributions The number of contributions.
+ * @param {number} params.followers The number of followers.
+ * @param {number} params.prs The number of pull requests.
+ * @param {number} params.issues The number of issues.
+ * @param {number} params.stargazers The number of stars.
  * @returns {{level: string, score: number}}} The users rank.
  */
-function calculateRank({
+const calculateRank = ({
   totalRepos,
   totalCommits,
   contributions,
@@ -46,7 +47,7 @@ function calculateRank({
   prs,
   issues,
   stargazers,
-}) {
+}) => {
   const COMMITS_OFFSET = 1.65;
   const CONTRIBS_OFFSET = 1.65;
   const ISSUES_OFFSET = 1;
@@ -70,7 +71,11 @@ function calculateRank({
   const RANK_B_VALUE = 100;
 
   const TOTAL_VALUES =
-    RANK_S_VALUE + RANK_A2_VALUE + RANK_A3_VALUE + RANK_B_VALUE;
+    RANK_S_VALUE +
+    RANK_DOUBLE_A_VALUE +
+    RANK_A2_VALUE +
+    RANK_A3_VALUE +
+    RANK_B_VALUE;
 
   // prettier-ignore
   const score = (
@@ -94,7 +99,7 @@ function calculateRank({
   })();
 
   return { level, score: normalizedScore };
-}
+};
 
 export { calculateRank };
 export default calculateRank;
