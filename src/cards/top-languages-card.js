@@ -416,19 +416,14 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
     parseFloat(((lang.size / totalLanguageSize) * 100).toFixed(2)),
   );
 
-  const langPaths = createDonutPaths(
-    centerX,
-    centerY,
-    radius,
-    langsPercents,
-  );
+  const langPaths = createDonutPaths(centerX, centerY, radius, langsPercents);
 
   const donutPaths =
     langs.length === 1
       ? `<circle cx="${centerX}" cy="${centerY}" r="${radius}" stroke="${colors[0]}" fill="none" stroke-width="${strokeWidth}" data-testid="lang-donut" size="100"/>`
       : langPaths
           .map((section, index) => {
-            const staggerDelay = (index + 3) * 150;
+            const staggerDelay = (index + 3) * 100;
             const delay = staggerDelay + 300;
 
             const output = `
