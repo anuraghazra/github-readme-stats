@@ -11,7 +11,7 @@ import {
 /**
  * Top languages fetcher object.
  *
- * @param {import('Axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
  * @param {string} token GitHub token.
  * @returns {Promise<import('../common/types').StatsFetcherResponse>} Languages fetcher response.
  */
