@@ -98,7 +98,7 @@ const createCompactLangNode = ({ lang, totalSize, hideProgress, index }) => {
 /**
  * Creates compact layout of text only language nodes.
  *
- * @param {object[]} props Function properties.
+ * @param {object} props Function properties.
  * @param {Lang[]} props.langs Array of programming languages.
  * @param {number} props.totalSize Total size of all languages.
  * @param {boolean} props.hideProgress Whether to hide percentage.

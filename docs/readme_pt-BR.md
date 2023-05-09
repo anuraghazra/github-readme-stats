@@ -141,7 +141,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 - `bg_color` - Cor de fundo do cartão _(hex color)_
 - `hide_border` - Esconde a borda do cartão _(boleano)_
 - `theme` - Nome do tema, escolha em [todos os temas disponíveis](../themes/README.md)
-- `cache_seconds` - Defina o cabeçalho do cache manualmente _(min: 1800, max: 86400)_
+- `cache_seconds` - Defina o cabeçalho do cache manualmente _(min: 14400, max: 86400)_
 - `locale` - defina o idioma no cartão _(por exemplo. cn, de, es, etc.)_
 
 > Nota sobre o cache: Cartões de repositório tem um cache padrão de 30 minutos (1800 segundos), se o número a contagem de forks e contagem de estrelas é menor que 1 mil o padrão é 2 horas (7200 segundos). Note também que o cache é limitado a um mínimo de 30 minutos e um máximo de 24 horas.
@@ -242,14 +242,14 @@ Utilize a opção `&layout=compact` para mudar o layout do cartão.
 Altere o valor de `?username=` para o seu username do Wakatime.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demonstração
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
