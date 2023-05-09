@@ -446,8 +446,8 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
-  it("should render with layout pie", () => {
-    document.body.innerHTML = renderTopLanguages(langs, { layout: "pie" });
+  it("should render with layout donut", () => {
+    document.body.innerHTML = renderTopLanguages(langs, { layout: "donut" });
 
     expect(queryByTestId(document.body, "header")).toHaveTextContent(
       "Most Used Languages",
@@ -506,7 +506,7 @@ describe("Test renderTopLanguages", () => {
     // Should render full doughnut (circle) if one language is 100%.
     document.body.innerHTML = renderTopLanguages(
       { HTML: langs.HTML },
-      { layout: "pie" },
+      { layout: "donut" },
     );
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
       "HTML 100.00%",

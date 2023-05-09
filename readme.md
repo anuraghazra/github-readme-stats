@@ -425,10 +425,10 @@ You can use the `&layout=compact` option to change the card design.
 
 ### Pie Chart Language Card Layout
 
-You can use the `&layout=pie` option to change the card design.
+You can use the `&layout=donut` option to change the card design.
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=pie)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=donut)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Hide Progress Bars
@@ -449,7 +449,7 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 
 -   Pie Chart layout
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=pie)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=donut)](https://github.com/anuraghazra/github-readme-stats)
 
 -   Hidden progress bars
 

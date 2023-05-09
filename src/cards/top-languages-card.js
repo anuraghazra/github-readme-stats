@@ -105,7 +105,7 @@ const calculateNormalLayoutHeight = (totalLangs) => {
 };
 
 /**
- * Calculates height for the pie layout.
+ * Calculates height for the donut layout.
  *
  * @param {number} totalLangs Total number of languages.
  * @returns {number} Card height.
@@ -515,7 +515,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
       totalLanguageSize,
       hide_progress,
     );
-  } else if (layout?.toLowerCase() === "pie") {
+  } else if (layout?.toLowerCase() === "donut") {
     height = calculatePieLayoutHeight(langs.length);
     width = width + 50; // padding
     finalLayout = renderDoughnutLayout(langs, width, totalLanguageSize);
