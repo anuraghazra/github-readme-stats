@@ -8,8 +8,8 @@ import {
   cartesianToPolar,
   calculateCompactLayoutHeight,
   calculateNormalLayoutHeight,
-  calculatePieLayoutHeight,
-  doughnutCenterTranslation,
+  calculateDonutLayoutHeight,
+  donutCenterTranslation,
   trimTopLanguages,
   renderTopLanguages,
   MIN_CARD_WIDTH,
@@ -39,10 +39,10 @@ const langs = {
 };
 
 /**
- * Retrieve the language percentage from the doughnut chart SVG.
+ * Retrieve the language percentage from the donut chart SVG.
  * @param {string} d The SVG path element.
- * @param {number} centerX The center X coordinate of the doughnut chart.
- * @param {number} centerY The center Y coordinate of the doughnut chart.
+ * @param {number} centerX The center X coordinate of the donut chart.
+ * @param {number} centerY The center Y coordinate of the donut chart.
  * @returns {number} The percentage of the language.
  */
 const langPercentFromSvg = (d, centerX, centerY) => {
@@ -179,32 +179,32 @@ describe("Test renderTopLanguages helper functions", () => {
     expect(calculateNormalLayoutHeight(10)).toBe(485);
   });
 
-  it("calculatePieLayoutHeight", () => {
-    expect(calculatePieLayoutHeight(0)).toBe(215);
-    expect(calculatePieLayoutHeight(1)).toBe(215);
-    expect(calculatePieLayoutHeight(2)).toBe(215);
-    expect(calculatePieLayoutHeight(3)).toBe(215);
-    expect(calculatePieLayoutHeight(4)).toBe(215);
-    expect(calculatePieLayoutHeight(5)).toBe(215);
-    expect(calculatePieLayoutHeight(6)).toBe(247);
-    expect(calculatePieLayoutHeight(7)).toBe(279);
-    expect(calculatePieLayoutHeight(8)).toBe(311);
-    expect(calculatePieLayoutHeight(9)).toBe(343);
-    expect(calculatePieLayoutHeight(10)).toBe(375);
+  it("calculateDonutLayoutHeight", () => {
+    expect(calculateDonutLayoutHeight(0)).toBe(215);
+    expect(calculateDonutLayoutHeight(1)).toBe(215);
+    expect(calculateDonutLayoutHeight(2)).toBe(215);
+    expect(calculateDonutLayoutHeight(3)).toBe(215);
+    expect(calculateDonutLayoutHeight(4)).toBe(215);
+    expect(calculateDonutLayoutHeight(5)).toBe(215);
+    expect(calculateDonutLayoutHeight(6)).toBe(247);
+    expect(calculateDonutLayoutHeight(7)).toBe(279);
+    expect(calculateDonutLayoutHeight(8)).toBe(311);
+    expect(calculateDonutLayoutHeight(9)).toBe(343);
+    expect(calculateDonutLayoutHeight(10)).toBe(375);
   });
 
-  it("doughnutCenterTranslation", () => {
-    expect(doughnutCenterTranslation(0)).toBe(-45);
-    expect(doughnutCenterTranslation(1)).toBe(-45);
-    expect(doughnutCenterTranslation(2)).toBe(-45);
-    expect(doughnutCenterTranslation(3)).toBe(-45);
-    expect(doughnutCenterTranslation(4)).toBe(-45);
-    expect(doughnutCenterTranslation(5)).toBe(-45);
-    expect(doughnutCenterTranslation(6)).toBe(-29);
-    expect(doughnutCenterTranslation(7)).toBe(-13);
-    expect(doughnutCenterTranslation(8)).toBe(3);
-    expect(doughnutCenterTranslation(9)).toBe(19);
-    expect(doughnutCenterTranslation(10)).toBe(35);
+  it("donutCenterTranslation", () => {
+    expect(donutCenterTranslation(0)).toBe(-45);
+    expect(donutCenterTranslation(1)).toBe(-45);
+    expect(donutCenterTranslation(2)).toBe(-45);
+    expect(donutCenterTranslation(3)).toBe(-45);
+    expect(donutCenterTranslation(4)).toBe(-45);
+    expect(donutCenterTranslation(5)).toBe(-45);
+    expect(donutCenterTranslation(6)).toBe(-29);
+    expect(donutCenterTranslation(7)).toBe(-13);
+    expect(donutCenterTranslation(8)).toBe(3);
+    expect(donutCenterTranslation(9)).toBe(19);
+    expect(donutCenterTranslation(10)).toBe(35);
   });
 
   it("trimTopLanguages", () => {
@@ -456,18 +456,18 @@ describe("Test renderTopLanguages", () => {
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
       "HTML 40.00%",
     );
-    expect(queryAllByTestId(document.body, "lang-doughnut")[0]).toHaveAttribute(
+    expect(queryAllByTestId(document.body, "lang-donut")[0]).toHaveAttribute(
       "size",
       "40",
     );
-    const d = queryAllByTestId(document.body, "lang-doughnut")[0]
+    const d = queryAllByTestId(document.body, "lang-donut")[0]
       .getAttribute("d")
       .split(" ")
       .filter((x) => !isNaN(x))
       .map((x) => parseFloat(x));
     const center = { x: d[7], y: d[7] };
     const HTMLLangPercent = langPercentFromSvg(
-      queryAllByTestId(document.body, "lang-doughnut")[0].getAttribute("d"),
+      queryAllByTestId(document.body, "lang-donut")[0].getAttribute("d"),
       center.x,
       center.y,
     );
@@ -476,12 +476,12 @@ describe("Test renderTopLanguages", () => {
     expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
       "javascript 40.00%",
     );
-    expect(queryAllByTestId(document.body, "lang-doughnut")[1]).toHaveAttribute(
+    expect(queryAllByTestId(document.body, "lang-donut")[1]).toHaveAttribute(
       "size",
       "40",
     );
     const javascriptLangPercent = langPercentFromSvg(
-      queryAllByTestId(document.body, "lang-doughnut")[1].getAttribute("d"),
+      queryAllByTestId(document.body, "lang-donut")[1].getAttribute("d"),
       center.x,
       center.y,
     );
@@ -490,12 +490,12 @@ describe("Test renderTopLanguages", () => {
     expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
       "css 20.00%",
     );
-    expect(queryAllByTestId(document.body, "lang-doughnut")[2]).toHaveAttribute(
+    expect(queryAllByTestId(document.body, "lang-donut")[2]).toHaveAttribute(
       "size",
       "20",
     );
     const cssLangPercent = langPercentFromSvg(
-      queryAllByTestId(document.body, "lang-doughnut")[2].getAttribute("d"),
+      queryAllByTestId(document.body, "lang-donut")[2].getAttribute("d"),
       center.x,
       center.y,
     );
@@ -503,7 +503,7 @@ describe("Test renderTopLanguages", () => {
 
     expect(HTMLLangPercent + javascriptLangPercent + cssLangPercent).toBe(100);
 
-    // Should render full doughnut (circle) if one language is 100%.
+    // Should render full donut (circle) if one language is 100%.
     document.body.innerHTML = renderTopLanguages(
       { HTML: langs.HTML },
       { layout: "donut" },
@@ -511,12 +511,12 @@ describe("Test renderTopLanguages", () => {
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
       "HTML 100.00%",
     );
-    expect(queryAllByTestId(document.body, "lang-doughnut")[0]).toHaveAttribute(
+    expect(queryAllByTestId(document.body, "lang-donut")[0]).toHaveAttribute(
       "size",
       "100",
     );
-    expect(queryAllByTestId(document.body, "lang-doughnut")).toHaveLength(1);
-    expect(queryAllByTestId(document.body, "lang-doughnut")[0].tagName).toBe(
+    expect(queryAllByTestId(document.body, "lang-donut")).toHaveLength(1);
+    expect(queryAllByTestId(document.body, "lang-donut")[0].tagName).toBe(
       "circle",
     );
   });

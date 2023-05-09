@@ -110,16 +110,16 @@ const calculateNormalLayoutHeight = (totalLangs) => {
  * @param {number} totalLangs Total number of languages.
  * @returns {number} Card height.
  */
-const calculatePieLayoutHeight = (totalLangs) => {
+const calculateDonutLayoutHeight = (totalLangs) => {
   return 215 + Math.max(totalLangs - 5, 0) * 32;
 };
 
 /**
- * Calculates the center translation needed to keep the doughnut chart centred.
+ * Calculates the center translation needed to keep the donut chart centred.
  * @param {number} totalLangs Total number of languages.
- * @returns {number} Doughnut center translation.
+ * @returns {number} Donut center translation.
  */
-const doughnutCenterTranslation = (totalLangs) => {
+const donutCenterTranslation = (totalLangs) => {
   return -45 + Math.max(totalLangs - 5, 0) * 16;
 };
 
@@ -255,14 +255,14 @@ const createLanguageTextNode = ({ langs, totalSize, hideProgress }) => {
 };
 
 /**
- * Create doughnut languages text items for all programming languages.
+ * Create donut languages text items for all programming languages.
  *
  * @param {object[]} props Function properties.
  * @param {Lang[]} props.langs Array of programming languages.
  * @param {number} props.totalSize Total size of all languages.
- * @returns {string} Doughnut layout programming language SVG node.
+ * @returns {string} Donut layout programming language SVG node.
  */
-const createDoughnutLanguagesNode = ({ langs, totalSize }) => {
+const createDonutLanguagesNode = ({ langs, totalSize }) => {
   return flexLayout({
     items: langs.map((lang, index) => {
       return createCompactLangNode({
@@ -361,15 +361,15 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
 };
 
 /**
- * Creates the SVG paths for the language doughnut chart.
+ * Creates the SVG paths for the language donut chart.
  *
- * @param {number} cx Doughnut center x-position.
- * @param {number} cy Doughnut center y-position.
- * @param {number} radius Doughnut arc Radius.
- * @param {number[]} percentages Array with doughnut section percentages.
+ * @param {number} cx Donut center x-position.
+ * @param {number} cy Donut center y-position.
+ * @param {number} radius Donut arc Radius.
+ * @param {number[]} percentages Array with donut section percentages.
  * @returns {{d: string, percent: number}[]}  Array of svg path elements
  */
-const createDoughnutPaths = (cx, cy, radius, percentages) => {
+const createDonutPaths = (cx, cy, radius, percentages) => {
   const paths = [];
   let startAngle = 0;
   let endAngle = 0;
@@ -383,8 +383,8 @@ const createDoughnutPaths = (cx, cy, radius, percentages) => {
     );
 
     endAngle = 3.6 * percent + startAngle;
-    const startPoint = polarToCartesian(cx, cy, radius, endAngle - 90); // rotate doughnut 90 degrees counter-clockwise.
-    const endPoint = polarToCartesian(cx, cy, radius, startAngle - 90); // rotate doughnut 90 degrees counter-clockwise.
+    const startPoint = polarToCartesian(cx, cy, radius, endAngle - 90); // rotate donut 90 degrees counter-clockwise.
+    const endPoint = polarToCartesian(cx, cy, radius, startAngle - 90); // rotate donut 90 degrees counter-clockwise.
     const largeArc = endAngle - startAngle <= 180 ? 0 : 1;
 
     tmpPath.percent = percent;
@@ -398,14 +398,14 @@ const createDoughnutPaths = (cx, cy, radius, percentages) => {
 };
 
 /**
- * Renders the doughnut language card layout.
+ * Renders the donut language card layout.
  *
  * @param {Lang[]} langs Array of programming languages.
  * @param {number} width Card width.
  * @param {number} totalLanguageSize Total size of all languages.
  * @returns {string} Donut layout card SVG object.
  */
-const renderDoughnutLayout = (langs, width, totalLanguageSize) => {
+const renderDonutLayout = (langs, width, totalLanguageSize) => {
   const centerX = width / 3;
   const centerY = width / 3;
   const radius = centerX - 60;
@@ -416,16 +416,16 @@ const renderDoughnutLayout = (langs, width, totalLanguageSize) => {
     parseFloat(((lang.size / totalLanguageSize) * 100).toFixed(2)),
   );
 
-  const langPaths = createDoughnutPaths(
+  const langPaths = createDonutPaths(
     centerX,
     centerY,
     radius,
     langsPercents,
   );
 
-  const doughnutPaths =
+  const donutPaths =
     langs.length === 1
-      ? `<circle cx="${centerX}" cy="${centerY}" r="${radius}" stroke="${colors[0]}" fill="none" stroke-width="${strokeWidth}" data-testid="lang-doughnut" size="100"/>`
+      ? `<circle cx="${centerX}" cy="${centerY}" r="${radius}" stroke="${colors[0]}" fill="none" stroke-width="${strokeWidth}" data-testid="lang-donut" size="100"/>`
       : langPaths
           .map((section, index) => {
             const staggerDelay = (index + 3) * 150;
@@ -434,7 +434,7 @@ const renderDoughnutLayout = (langs, width, totalLanguageSize) => {
             const output = `
        <g class="stagger" style="animation-delay: ${delay}ms">
         <path
-          data-testid="lang-doughnut"
+          data-testid="lang-donut"
           size="${section.percent}"
           d="${section.d}"
           stroke="${colors[index]}"
@@ -448,15 +448,15 @@ const renderDoughnutLayout = (langs, width, totalLanguageSize) => {
           })
           .join("");
 
-  const donut = `<svg width="${width}" height="${width}">${doughnutPaths}</svg>`;
+  const donut = `<svg width="${width}" height="${width}">${donutPaths}</svg>`;
 
   return `
     <g transform="translate(0, 0)">
       <g transform="translate(0, 0)">
-        ${createDoughnutLanguagesNode({ langs, totalSize: totalLanguageSize })}
+        ${createDonutLanguagesNode({ langs, totalSize: totalLanguageSize })}
       </g>
 
-      <g transform="translate(125, ${doughnutCenterTranslation(langs.length)})">
+      <g transform="translate(125, ${donutCenterTranslation(langs.length)})">
         ${donut}
       </g>
     </g>
@@ -520,9 +520,9 @@ const renderTopLanguages = (topLangs, options = {}) => {
       hide_progress,
     );
   } else if (layout?.toLowerCase() === "donut") {
-    height = calculatePieLayoutHeight(langs.length);
+    height = calculateDonutLayoutHeight(langs.length);
     width = width + 50; // padding
-    finalLayout = renderDoughnutLayout(langs, width, totalLanguageSize);
+    finalLayout = renderDonutLayout(langs, width, totalLanguageSize);
   } else {
     finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
   }
@@ -599,8 +599,8 @@ export {
   cartesianToPolar,
   calculateCompactLayoutHeight,
   calculateNormalLayoutHeight,
-  calculatePieLayoutHeight,
-  doughnutCenterTranslation,
+  calculateDonutLayoutHeight,
+  donutCenterTranslation,
   trimTopLanguages,
   renderTopLanguages,
   MIN_CARD_WIDTH,
