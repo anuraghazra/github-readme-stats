@@ -264,10 +264,11 @@ const createLanguageTextNode = ({ langs, totalSize, hideProgress }) => {
  */
 const createDoughnutLanguagesNode = ({ langs, totalSize }) => {
   return flexLayout({
-    items: langs.map((lang) => {
+    items: langs.map((lang, index) => {
       return createCompactLangNode({
         lang,
-        totalSize: totalSize,
+        totalSize,
+        index,
       });
     }),
     gap: 32,
@@ -426,14 +427,17 @@ const renderDoughnutLayout = (langs, width, totalLanguageSize) => {
     langs.length === 1
       ? `<circle cx="${centerX}" cy="${centerY}" r="${radius}" stroke="${colors[0]}" fill="none" stroke-width="${strokeWidth}" data-testid="lang-doughnut" size="100"/>`
       : langPaths
-          .map((section, i) => {
+          .map((section, index) => {
+            const staggerDelay = (index + 3) * 150;
+            const delay = staggerDelay + 300;
+
             const output = `
-       <g>
+       <g class="stagger" style="animation-delay: ${delay}ms">
         <path
           data-testid="lang-doughnut"
           size="${section.percent}"
           d="${section.d}"
-          stroke="${colors[i]}"
+          stroke="${colors[index]}"
           fill="none"
           stroke-width="${strokeWidth}">
         </path>
