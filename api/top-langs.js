@@ -31,6 +31,7 @@ export default async (req, res) => {
     locale,
     border_radius,
     border_color,
+    merge_others,
     disable_animations,
     hide_progress,
   } = req.query;
@@ -81,6 +82,7 @@ export default async (req, res) => {
         border_radius,
         border_color,
         locale: locale ? locale.toLowerCase() : null,
+        merge_others: parseBoolean(merge_others),
         disable_animations: parseBoolean(disable_animations),
         hide_progress: parseBoolean(hide_progress),
       }),

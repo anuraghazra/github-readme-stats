@@ -308,6 +308,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `langs_count` - Show more languages on the card, between 1-10 _(number)_. Default `5`.
 -   `exclude_repo` - Exclude specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
 -   `custom_title` - Sets a custom title for the card _(string)_. Default `Most Used Languages`.
+-   `merge_others` - Shows an "Other" percentage when limiting the amount of languages _(boolean)_. Default: `false`.
 -   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
 -   `hide_progress` - It uses the compact layout option, hides percentages, and removes the bars. Default: `false`.
 -   `size_weight` - Configures language stats algorithm _(number)_ (see [Language stats algorithm](#Language-stats-algorithm)), defaults to 1.
