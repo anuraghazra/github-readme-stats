@@ -218,42 +218,56 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
 };
 
 /**
- * Renders donut layout to display user's most frequently used programming languages.
+ * Renders pie layout to display user's most frequently used programming languages.
  *
  * @param {Lang[]} langs Array of programming languages.
  * @param {number} totalLanguageSize Total size of all languages.
  * @returns {string} Compact layout card SVG object.
  */
-const renderDonutLayout = (langs, totalLanguageSize) => {
-  const radius = 80;
-  const circleLength = 2 * Math.PI * radius;
+const renderPieLayout = (langs, totalLanguageSize) => {
+  // Pie chart radius and center coordinates
+  const radius = 90;
+  const centerX = 150;
+  const centerY = 100;
 
-  let circles = [];
-  let indent = 0;
+  // Start angle for the pie chart parts
+  let startAngle = 0;
 
+  // SVG paths
+  const paths = [];
+
+  // Generate each pie chart part
   for (const lang of langs) {
-    const currentTotalLanguageSizePart = (lang.size / totalLanguageSize) * 100;
-    const currentCircleLengthPart =
-      circleLength * (currentTotalLanguageSizePart / 100);
-    circles.push(`
-      <circle 
-        cx="150"
-        cy="100"
-        r="${radius}"
-        fill="transparent"
-        stroke="${lang.color}"
-        stroke-width="25"
-        stroke-dasharray="${circleLength}"
-        stroke-dashoffset="${indent}"
+    // Calculate the angle for the current part
+    const angle = (lang.size / totalLanguageSize) * 360;
+
+    // Calculate the end angle
+    const endAngle = startAngle + angle;
+
+    // Calculate the coordinates of the start and end points of the arc
+    const startX = centerX + radius * Math.cos((startAngle * Math.PI) / 180);
+    const startY = centerY + radius * Math.sin((startAngle * Math.PI) / 180);
+    const endX = centerX + radius * Math.cos((endAngle * Math.PI) / 180);
+    const endY = centerY + radius * Math.sin((endAngle * Math.PI) / 180);
+
+    // Determine the large arc flag based on the angle
+    const largeArcFlag = angle > 180 ? 1 : 0;
+
+    // SVG arc markup
+    paths.push(`
+      <path
+        d="M${centerX},${centerY} L${startX},${startY} A${radius},${radius} 0 ${largeArcFlag},1 ${endX},${endY} Z"
+        fill="${lang.color}"
       />
     `);
-    indent += currentCircleLengthPart;
+
+    // Update the start angle for the next part
+    startAngle = endAngle;
   }
 
   const donutSvg = `
-    <svg data-testid="lang-items-donut">
-      <circle class="donut-hole" cx="150" cy="100" r="${radius}" fill="#fff" />
-      ${circles.join("")}
+    <svg data-testid="pie">
+      ${paths.join("")}
     </svg>
   `;
   const languagesSvg = `
@@ -272,12 +286,12 @@ const renderDonutLayout = (langs, totalLanguageSize) => {
 };
 
 /**
- * Calculates height for the donut layout.
+ * Calculates height for the pie layout.
  *
  * @param {number} totalLangs Total number of languages.
  * @returns {number} Card height.
  */
-const calculateDonutLayoutHeight = (totalLangs) => {
+const calculatePieLayoutHeight = (totalLangs) => {
   return 300 + Math.round(totalLangs / 2) * 25;
 };
 
@@ -380,9 +394,9 @@ const renderTopLanguages = (topLangs, options = {}) => {
   let height = calculateNormalLayoutHeight(langs.length);
 
   let finalLayout = "";
-  if (layout === "donut") {
-    height = calculateDonutLayoutHeight(langs.length);
-    finalLayout = renderDonutLayout(langs, totalLanguageSize);
+  if (layout === "pie") {
+    height = calculatePieLayoutHeight(langs.length);
+    finalLayout = renderPieLayout(langs, totalLanguageSize);
   } else if (layout === "compact" || hide_progress == true) {
     height =
       calculateCompactLayoutHeight(langs.length) + (hide_progress ? -25 : 0);
@@ -454,7 +468,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     `,
   );
 
-  if (layout === "donut") {
+  if (layout === "pie") {
     return card.render(finalLayout);
   }
 
