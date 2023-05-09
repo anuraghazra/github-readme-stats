@@ -265,7 +265,7 @@ const renderPieLayout = (langs, totalLanguageSize) => {
     startAngle = endAngle;
   }
 
-  const donutSvg = `
+  const pieSvg = `
     <svg data-testid="pie">
       ${paths.join("")}
     </svg>
@@ -282,7 +282,7 @@ const renderPieLayout = (langs, totalLanguageSize) => {
     </svg>
   `;
 
-  return `${donutSvg}${languagesSvg}`;
+  return `${pieSvg}${languagesSvg}`;
 };
 
 /**
