@@ -1,35 +1,30 @@
 import axios from "axios";
-import { MissingParamError } from "../common/utils.js";
+import { CustomError, MissingParamError } from "../common/utils.js";
+import { I18n } from "../common/I18n.js";
 
 /**
  * WakaTime data fetcher.
  *
- * @param {{username: string, api_domain: string}} props Fetcher props.
+ * @param {{username: string, api_domain: string }} props Fetcher props.
  * @returns {Promise<WakaTimeData>} WakaTime data response.
  */
 const fetchWakatimeStats = async ({ username, api_domain }) => {
   if (!username) throw new MissingParamError(["username"]);
 
-  // Retrieve user range.
-  const { data: userdata } = await axios.get(
-    `https://${
-      api_domain ? api_domain.replace(/\/$/gi, "") : "wakatime.com"
-    }/api/v1/users/${username}/stats`,
-  );
-  const range = userdata.data.range;
-
-  // Loop through available ranges to get user data.
   try {
     const { data } = await axios.get(
       `https://${
         api_domain ? api_domain.replace(/\/$/gi, "") : "wakatime.com"
-      }/api/v1/users/${username}/stats/${range}?is_including_today=true`,
+      }/api/v1/users/${username}/stats?is_including_today=true`,
     );
 
     return data.data;
   } catch (err) {
     if (err.response.status < 200 || err.response.status > 299) {
-      throw new Error(i18n.t("wakatimecard.nouser"));
+      throw new CustomError(
+        `Could not resolve to a User with the login of '${username}'`,
+        "WAKATIME_USER_NOT_FOUND",
+      );
     }
     throw err;
   }

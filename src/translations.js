@@ -334,10 +334,6 @@ const wakatimeCardLocales = {
     en: "last 7 days",
     cn: "最近 7 天",
   },
-  "wakatimecard.nouser": {
-    en: "Wakatime user not found, make sure you have a Wakatime profile",
-    cn: "未找到 Wakatime 用户，请确保您拥有 Wakatime 个人资料",
-  },
   "wakatimecard.notpublic": {
     en: "Wakatime user profile not public",
     cn: "Wakatime 用户个人资料未公开",
