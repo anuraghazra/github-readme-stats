@@ -387,7 +387,7 @@ const renderPieLayout = (langs, totalLanguageSize) => {
   let startAngle = 0;
 
   // Start delay coefficient for the pie chart parts
-  let startDelayCoefficient = 3;
+  let startDelayCoefficient = 1;
 
   // SVG paths
   const paths = [];
@@ -427,7 +427,7 @@ const renderPieLayout = (langs, totalLanguageSize) => {
     // Update the start angle for the next part
     startAngle = endAngle;
     // Update the start delay coefficient for the next part
-    startDelayCoefficient += 3;
+    startDelayCoefficient += 1;
   }
 
   return `
