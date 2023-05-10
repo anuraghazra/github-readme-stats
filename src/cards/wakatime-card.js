@@ -140,7 +140,7 @@ const createTextNode = ({
  * hiding languages.
  *
  * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
- * @return {import("../fetchers/types").WakaTimeLang[]} The recalculated languages array.
+ * @return {void} The recalculated languages array.
  */
 const recalculatePercentages = (languages) => {
   const totalSum = languages.reduce(
