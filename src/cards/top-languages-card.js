@@ -386,6 +386,9 @@ const renderPieLayout = (langs, totalLanguageSize) => {
   // Start angle for the pie chart parts
   let startAngle = 0;
 
+  // Start delay coefficient for the pie chart parts
+  let startDelayCoefficient = 3;
+
   // SVG paths
   const paths = [];
 
@@ -406,18 +409,25 @@ const renderPieLayout = (langs, totalLanguageSize) => {
     // Determine the large arc flag based on the angle
     const largeArcFlag = angle > 180 ? 1 : 0;
 
+    // Calculate delay
+    const delay = startDelayCoefficient * 100;
+
     // SVG arc markup
     paths.push(`
-      <path
-        data-testid="lang-pie"
-        size="${percentage}"
-        d="M ${centerX} ${centerY} L ${startPoint.x} ${startPoint.y} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endPoint.x} ${endPoint.y} Z"
-        fill="${lang.color}"
-      />
+      <g class="stagger" style="animation-delay: ${delay}ms">
+        <path
+          data-testid="lang-pie"
+          size="${percentage}"
+          d="M ${centerX} ${centerY} L ${startPoint.x} ${startPoint.y} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endPoint.x} ${endPoint.y} Z"
+          fill="${lang.color}"
+        />
+      </g>
     `);
 
     // Update the start angle for the next part
     startAngle = endAngle;
+    // Update the start delay coefficient for the next part
+    startDelayCoefficient += 3;
   }
 
   return `
