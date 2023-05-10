@@ -40,12 +40,13 @@ const langs = {
 
 /**
  * Retrieve the language percentage from the donut chart SVG.
+ *
  * @param {string} d The SVG path element.
  * @param {number} centerX The center X coordinate of the donut chart.
  * @param {number} centerY The center Y coordinate of the donut chart.
  * @returns {number} The percentage of the language.
  */
-const langPercentFromSvg = (d, centerX, centerY) => {
+const langPercentFromDonutLayoutSvg = (d, centerX, centerY) => {
   const dTmp = d
     .split(" ")
     .filter((x) => !isNaN(x))
@@ -56,6 +57,34 @@ const langPercentFromSvg = (d, centerX, centerY) => {
     cartesianToPolar(centerX, centerY, dTmp[7], dTmp[8]).angleInDegrees + 90;
   if (startAngle > endAngle) startAngle -= 360;
   return (endAngle - startAngle) / 3.6;
+};
+
+/**
+ * Retrieve the language percentage from the pie chart SVG.
+ *
+ * @param {string} d The SVG path element.
+ * @param {number} centerX The center X coordinate of the pie chart.
+ * @param {number} centerY The center Y coordinate of the pie chart.
+ * @returns {number} The percentage of the language.
+ */
+const langPercentFromPieLayoutSvg = (d, centerX, centerY) => {
+  const dTmp = d
+    .split(" ")
+    .filter((x) => !isNaN(x))
+    .map((x) => parseFloat(x));
+  const startAngle = cartesianToPolar(
+    centerX,
+    centerY,
+    dTmp[2],
+    dTmp[3],
+  ).angleInDegrees;
+  let endAngle = cartesianToPolar(
+    centerX,
+    centerY,
+    dTmp[9],
+    dTmp[10],
+  ).angleInDegrees;
+  return ((endAngle - startAngle) / 360) * 100;
 };
 
 describe("Test renderTopLanguages helper functions", () => {
@@ -466,7 +495,7 @@ describe("Test renderTopLanguages", () => {
       .filter((x) => !isNaN(x))
       .map((x) => parseFloat(x));
     const center = { x: d[7], y: d[7] };
-    const HTMLLangPercent = langPercentFromSvg(
+    const HTMLLangPercent = langPercentFromDonutLayoutSvg(
       queryAllByTestId(document.body, "lang-donut")[0].getAttribute("d"),
       center.x,
       center.y,
@@ -480,7 +509,7 @@ describe("Test renderTopLanguages", () => {
       "size",
       "40",
     );
-    const javascriptLangPercent = langPercentFromSvg(
+    const javascriptLangPercent = langPercentFromDonutLayoutSvg(
       queryAllByTestId(document.body, "lang-donut")[1].getAttribute("d"),
       center.x,
       center.y,
@@ -494,7 +523,7 @@ describe("Test renderTopLanguages", () => {
       "size",
       "20",
     );
-    const cssLangPercent = langPercentFromSvg(
+    const cssLangPercent = langPercentFromDonutLayoutSvg(
       queryAllByTestId(document.body, "lang-donut")[2].getAttribute("d"),
       center.x,
       center.y,
@@ -519,6 +548,64 @@ describe("Test renderTopLanguages", () => {
     expect(queryAllByTestId(document.body, "lang-donut")[0].tagName).toBe(
       "circle",
     );
+  });
+  it("should render with layout pie", () => {
+    document.body.innerHTML = renderTopLanguages(langs, { layout: "pie" });
+
+    expect(queryByTestId(document.body, "header")).toHaveTextContent(
+      "Most Used Languages",
+    );
+
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
+      "HTML 40.00%",
+    );
+    expect(queryAllByTestId(document.body, "lang-pie")[0]).toHaveAttribute(
+      "size",
+      "40",
+    );
+
+    const d = queryAllByTestId(document.body, "lang-pie")[0]
+      .getAttribute("d")
+      .split(" ")
+      .filter((x) => !isNaN(x))
+      .map((x) => parseFloat(x));
+    const center = { x: d[0], y: d[1] };
+    const HTMLLangPercent = langPercentFromPieLayoutSvg(
+      queryAllByTestId(document.body, "lang-pie")[0].getAttribute("d"),
+      center.x,
+      center.y,
+    );
+    expect(HTMLLangPercent).toBeCloseTo(40);
+
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
+      "javascript 40.00%",
+    );
+    expect(queryAllByTestId(document.body, "lang-pie")[1]).toHaveAttribute(
+      "size",
+      "40",
+    );
+    const javascriptLangPercent = langPercentFromPieLayoutSvg(
+      queryAllByTestId(document.body, "lang-pie")[1].getAttribute("d"),
+      center.x,
+      center.y,
+    );
+    expect(javascriptLangPercent).toBeCloseTo(40);
+
+    expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
+      "css 20.00%",
+    );
+    expect(queryAllByTestId(document.body, "lang-pie")[2]).toHaveAttribute(
+      "size",
+      "20",
+    );
+    const cssLangPercent = langPercentFromPieLayoutSvg(
+      queryAllByTestId(document.body, "lang-pie")[2].getAttribute("d"),
+      center.x,
+      center.y,
+    );
+    expect(cssLangPercent).toBeCloseTo(20);
+
+    expect(HTMLLangPercent + javascriptLangPercent + cssLangPercent).toBe(100);
   });
 
   it("should render a translated title", () => {

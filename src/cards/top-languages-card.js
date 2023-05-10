@@ -391,17 +391,17 @@ const renderPieLayout = (langs, totalLanguageSize) => {
 
   // Generate each pie chart part
   for (const lang of langs) {
+    const langSizePart = lang.size / totalLanguageSize;
+    const percentage = langSizePart * 100;
     // Calculate the angle for the current part
-    const angle = (lang.size / totalLanguageSize) * 360;
+    const angle = langSizePart * 360;
 
     // Calculate the end angle
     const endAngle = startAngle + angle;
 
     // Calculate the coordinates of the start and end points of the arc
-    const startX = centerX + radius * Math.cos((startAngle * Math.PI) / 180);
-    const startY = centerY + radius * Math.sin((startAngle * Math.PI) / 180);
-    const endX = centerX + radius * Math.cos((endAngle * Math.PI) / 180);
-    const endY = centerY + radius * Math.sin((endAngle * Math.PI) / 180);
+    const startPoint = polarToCartesian(centerX, centerY, radius, startAngle);
+    const endPoint = polarToCartesian(centerX, centerY, radius, endAngle);
 
     // Determine the large arc flag based on the angle
     const largeArcFlag = angle > 180 ? 1 : 0;
@@ -409,7 +409,9 @@ const renderPieLayout = (langs, totalLanguageSize) => {
     // SVG arc markup
     paths.push(`
       <path
-        d="M${centerX},${centerY} L${startX},${startY} A${radius},${radius} 0 ${largeArcFlag},1 ${endX},${endY} Z"
+        data-testid="lang-pie"
+        size="${percentage}"
+        d="M ${centerX} ${centerY} L ${startPoint.x} ${startPoint.y} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endPoint.x} ${endPoint.y} Z"
         fill="${lang.color}"
       />
     `);
@@ -418,24 +420,20 @@ const renderPieLayout = (langs, totalLanguageSize) => {
     startAngle = endAngle;
   }
 
-  const pieSvg = `
-    <svg data-testid="pie">
-      ${paths.join("")}
-    </svg>
+  return `
+    <g transform="translate(0, 0)">
+      <svg data-testid="pie">
+        ${paths.join("")}
+      </svg>
+    </g>
+    <g transform="translate(0, 220)">
+      ${createLanguageTextNode({
+        langs,
+        totalSize: totalLanguageSize,
+        hideProgress: false,
+      })}
+    </g>
   `;
-  const languagesSvg = `
-    <svg data-testid="lang-items" x="${CARD_PADDING}">
-      <g transform="translate(0, 220)">
-        ${createLanguageTextNode({
-          langs,
-          totalSize: totalLanguageSize,
-          hideProgress: false,
-        })}
-      </g>
-    </svg>
-  `;
-
-  return `${pieSvg}${languagesSvg}`;
 };
 
 /**
@@ -659,10 +657,6 @@ const renderTopLanguages = (topLangs, options = {}) => {
     }
     `,
   );
-
-  if (layout === "pie") {
-    return card.render(finalLayout);
-  }
 
   return card.render(`
     <svg data-testid="lang-items" x="${CARD_PADDING}">
