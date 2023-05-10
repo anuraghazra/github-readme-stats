@@ -439,7 +439,7 @@ const renderPieLayout = (langs, totalLanguageSize) => {
 };
 
 /**
- * Calculates height for the compact layout.
+ * Creates the SVG paths for the language donut chart.
  *
  * @param {number} cx Donut center x-position.
  * @param {number} cy Donut center y-position.
