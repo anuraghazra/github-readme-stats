@@ -9,6 +9,7 @@ import {
   calculateCompactLayoutHeight,
   calculateNormalLayoutHeight,
   calculateDonutLayoutHeight,
+  calculatePieLayoutHeight,
   donutCenterTranslation,
   trimTopLanguages,
   renderTopLanguages,
@@ -220,6 +221,20 @@ describe("Test renderTopLanguages helper functions", () => {
     expect(calculateDonutLayoutHeight(8)).toBe(311);
     expect(calculateDonutLayoutHeight(9)).toBe(343);
     expect(calculateDonutLayoutHeight(10)).toBe(375);
+  });
+
+  it("calculatePieLayoutHeight", () => {
+    expect(calculatePieLayoutHeight(0)).toBe(300);
+    expect(calculatePieLayoutHeight(1)).toBe(325);
+    expect(calculatePieLayoutHeight(2)).toBe(325);
+    expect(calculatePieLayoutHeight(3)).toBe(350);
+    expect(calculatePieLayoutHeight(4)).toBe(350);
+    expect(calculatePieLayoutHeight(5)).toBe(375);
+    expect(calculatePieLayoutHeight(6)).toBe(375);
+    expect(calculatePieLayoutHeight(7)).toBe(400);
+    expect(calculatePieLayoutHeight(8)).toBe(400);
+    expect(calculatePieLayoutHeight(9)).toBe(425);
+    expect(calculatePieLayoutHeight(10)).toBe(425);
   });
 
   it("donutCenterTranslation", () => {

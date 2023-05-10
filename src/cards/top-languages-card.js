@@ -421,18 +421,22 @@ const renderPieLayout = (langs, totalLanguageSize) => {
   }
 
   return `
-    <g transform="translate(0, 0)">
-      <svg data-testid="pie">
-        ${paths.join("")}
-      </svg>
-    </g>
-    <g transform="translate(0, 220)">
-      ${createLanguageTextNode({
-        langs,
-        totalSize: totalLanguageSize,
-        hideProgress: false,
-      })}
-    </g>
+    <svg data-testid="lang-items">
+      <g transform="translate(0, 0)">
+        <svg data-testid="pie">
+          ${paths.join("")}
+        </svg>
+      </g>
+      <g transform="translate(0, 220)">
+        <svg data-testid="lang-names" x="${CARD_PADDING}">
+          ${createLanguageTextNode({
+            langs,
+            totalSize: totalLanguageSize,
+            hideProgress: false,
+          })}
+        </svg>
+      </g>
+    </svg>
   `;
 };
 
@@ -658,6 +662,10 @@ const renderTopLanguages = (topLangs, options = {}) => {
     `,
   );
 
+  if (layout === "pie") {
+    return card.render(finalLayout);
+  }
+
   return card.render(`
     <svg data-testid="lang-items" x="${CARD_PADDING}">
       ${finalLayout}
@@ -674,6 +682,7 @@ export {
   calculateCompactLayoutHeight,
   calculateNormalLayoutHeight,
   calculateDonutLayoutHeight,
+  calculatePieLayoutHeight,
   donutCenterTranslation,
   trimTopLanguages,
   renderTopLanguages,
