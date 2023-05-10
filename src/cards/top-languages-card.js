@@ -268,6 +268,7 @@ const createDonutLanguagesNode = ({ langs, totalSize }) => {
       return createCompactLangNode({
         lang,
         totalSize,
+        hideProgress: false,
         index,
       });
     }),
