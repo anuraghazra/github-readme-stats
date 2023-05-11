@@ -267,7 +267,7 @@ const createLanguageTextNode = ({ langs, totalSize, hideProgress }) => {
 /**
  * Create donut languages text items for all programming languages.
  *
- * @param {object[]} props Function properties.
+ * @param {object} props Function properties.
  * @param {Lang[]} props.langs Array of programming languages.
  * @param {number} props.totalSize Total size of all languages.
  * @returns {string} Donut layout programming language SVG node.
