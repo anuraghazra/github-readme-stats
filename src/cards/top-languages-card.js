@@ -115,6 +115,16 @@ const calculateDonutLayoutHeight = (totalLangs) => {
 };
 
 /**
+ * Calculates height for the pie layout.
+ *
+ * @param {number} totalLangs Total number of languages.
+ * @returns {number} Card height.
+ */
+const calculatePieLayoutHeight = (totalLangs) => {
+  return 300 + Math.round(totalLangs / 2) * 25;
+};
+
+/**
  * Calculates the center translation needed to keep the donut chart centred.
  * @param {number} totalLangs Total number of languages.
  * @returns {number} Donut center translation.
@@ -362,6 +372,101 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
 };
 
 /**
+ * Renders pie layout to display user's most frequently used programming languages.
+ *
+ * @param {Lang[]} langs Array of programming languages.
+ * @param {number} totalLanguageSize Total size of all languages.
+ * @returns {string} Compact layout card SVG object.
+ */
+const renderPieLayout = (langs, totalLanguageSize) => {
+  // Pie chart radius and center coordinates
+  const radius = 90;
+  const centerX = 150;
+  const centerY = 100;
+
+  // Start angle for the pie chart parts
+  let startAngle = 0;
+
+  // Start delay coefficient for the pie chart parts
+  let startDelayCoefficient = 1;
+
+  // SVG paths
+  const paths = [];
+
+  // Generate each pie chart part
+  for (const lang of langs) {
+    if (langs.length === 1) {
+      paths.push(`
+        <circle
+          cx="${centerX}"
+          cy="${centerY}"
+          r="${radius}"
+          stroke="none"
+          fill="${lang.color}"
+          data-testid="lang-pie"
+          size="100"
+        />
+      `);
+      break;
+    }
+
+    const langSizePart = lang.size / totalLanguageSize;
+    const percentage = langSizePart * 100;
+    // Calculate the angle for the current part
+    const angle = langSizePart * 360;
+
+    // Calculate the end angle
+    const endAngle = startAngle + angle;
+
+    // Calculate the coordinates of the start and end points of the arc
+    const startPoint = polarToCartesian(centerX, centerY, radius, startAngle);
+    const endPoint = polarToCartesian(centerX, centerY, radius, endAngle);
+
+    // Determine the large arc flag based on the angle
+    const largeArcFlag = angle > 180 ? 1 : 0;
+
+    // Calculate delay
+    const delay = startDelayCoefficient * 100;
+
+    // SVG arc markup
+    paths.push(`
+      <g class="stagger" style="animation-delay: ${delay}ms">
+        <path
+          data-testid="lang-pie"
+          size="${percentage}"
+          d="M ${centerX} ${centerY} L ${startPoint.x} ${startPoint.y} A ${radius} ${radius} 0 ${largeArcFlag} 1 ${endPoint.x} ${endPoint.y} Z"
+          fill="${lang.color}"
+        />
+      </g>
+    `);
+
+    // Update the start angle for the next part
+    startAngle = endAngle;
+    // Update the start delay coefficient for the next part
+    startDelayCoefficient += 1;
+  }
+
+  return `
+    <svg data-testid="lang-items">
+      <g transform="translate(0, 0)">
+        <svg data-testid="pie">
+          ${paths.join("")}
+        </svg>
+      </g>
+      <g transform="translate(0, 220)">
+        <svg data-testid="lang-names" x="${CARD_PADDING}">
+          ${createLanguageTextNode({
+            langs,
+            totalSize: totalLanguageSize,
+            hideProgress: false,
+          })}
+        </svg>
+      </g>
+    </svg>
+  `;
+};
+
+/**
  * Creates the SVG paths for the language donut chart.
  *
  * @param {number} cx Donut center x-position.
@@ -505,7 +610,10 @@ const renderTopLanguages = (topLangs, options = {}) => {
   let height = calculateNormalLayoutHeight(langs.length);
 
   let finalLayout = "";
-  if (layout === "compact" || hide_progress == true) {
+  if (layout === "pie") {
+    height = calculatePieLayoutHeight(langs.length);
+    finalLayout = renderPieLayout(langs, totalLanguageSize);
+  } else if (layout === "compact" || hide_progress == true) {
     height =
       calculateCompactLayoutHeight(langs.length) + (hide_progress ? -25 : 0);
 
@@ -580,6 +688,10 @@ const renderTopLanguages = (topLangs, options = {}) => {
     `,
   );
 
+  if (layout === "pie") {
+    return card.render(finalLayout);
+  }
+
   return card.render(`
     <svg data-testid="lang-items" x="${CARD_PADDING}">
       ${finalLayout}
@@ -596,6 +708,7 @@ export {
   calculateCompactLayoutHeight,
   calculateNormalLayoutHeight,
   calculateDonutLayoutHeight,
+  calculatePieLayoutHeight,
   donutCenterTranslation,
   trimTopLanguages,
   renderTopLanguages,
