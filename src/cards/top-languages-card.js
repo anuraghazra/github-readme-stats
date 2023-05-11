@@ -394,6 +394,21 @@ const renderPieLayout = (langs, totalLanguageSize) => {
 
   // Generate each pie chart part
   for (const lang of langs) {
+    if (langs.length === 1) {
+      paths.push(`
+        <circle
+          cx="${centerX}"
+          cy="${centerY}"
+          r="${radius}"
+          stroke="none"
+          fill="${lang.color}"
+          data-testid="lang-pie"
+          size="100"
+        />
+      `);
+      break;
+    }
+
     const langSizePart = lang.size / totalLanguageSize;
     const percentage = langSizePart * 100;
     // Calculate the angle for the current part

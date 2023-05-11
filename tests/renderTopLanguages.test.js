@@ -621,6 +621,23 @@ describe("Test renderTopLanguages", () => {
     expect(cssLangPercent).toBeCloseTo(20);
 
     expect(HTMLLangPercent + javascriptLangPercent + cssLangPercent).toBe(100);
+
+    // Should render full pie (circle) if one language is 100%.
+    document.body.innerHTML = renderTopLanguages(
+      { HTML: langs.HTML },
+      { layout: "pie" },
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
+      "HTML 100.00%",
+    );
+    expect(queryAllByTestId(document.body, "lang-pie")[0]).toHaveAttribute(
+      "size",
+      "100",
+    );
+    expect(queryAllByTestId(document.body, "lang-pie")).toHaveLength(1);
+    expect(queryAllByTestId(document.body, "lang-pie")[0].tagName).toBe(
+      "circle",
+    );
   });
 
   it("should render a translated title", () => {
