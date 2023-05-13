@@ -423,6 +423,12 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  artemis: {
+    title_color: "FFF122",
+    text_color: "FFF122",
+    icon_color: "FFF122",
+    bg_color: "113C5C",
+  },
 };
 
 export default themes;
