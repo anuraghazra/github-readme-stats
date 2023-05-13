@@ -40,6 +40,19 @@ const langs = {
 };
 
 /**
+ * Retrieve number array from SVG path definition string.
+ *
+ * @param {string} d SVG path definition string.
+ * @return {number[]} Resulting numbers array.
+ */
+const getNumbersFromSvgPathDefinitionAttribute = (d) => {
+  return d
+    .split(" ")
+    .filter((x) => !isNaN(x))
+    .map((x) => parseFloat(x));
+};
+
+/**
  * Retrieve the language percentage from the donut chart SVG.
  *
  * @param {string} d The SVG path element.
@@ -48,10 +61,7 @@ const langs = {
  * @returns {number} The percentage of the language.
  */
 const langPercentFromDonutLayoutSvg = (d, centerX, centerY) => {
-  const dTmp = d
-    .split(" ")
-    .filter((x) => !isNaN(x))
-    .map((x) => parseFloat(x));
+  const dTmp = getNumbersFromSvgPathDefinitionAttribute(d);
   const endAngle =
     cartesianToPolar(centerX, centerY, dTmp[0], dTmp[1]).angleInDegrees + 90;
   let startAngle =
@@ -69,10 +79,7 @@ const langPercentFromDonutLayoutSvg = (d, centerX, centerY) => {
  * @returns {number} The percentage of the language.
  */
 const langPercentFromPieLayoutSvg = (d, centerX, centerY) => {
-  const dTmp = d
-    .split(" ")
-    .filter((x) => !isNaN(x))
-    .map((x) => parseFloat(x));
+  const dTmp = getNumbersFromSvgPathDefinitionAttribute(d);
   const startAngle = cartesianToPolar(
     centerX,
     centerY,
@@ -504,11 +511,9 @@ describe("Test renderTopLanguages", () => {
       "size",
       "40",
     );
-    const d = queryAllByTestId(document.body, "lang-donut")[0]
-      .getAttribute("d")
-      .split(" ")
-      .filter((x) => !isNaN(x))
-      .map((x) => parseFloat(x));
+    const d = getNumbersFromSvgPathDefinitionAttribute(
+      queryAllByTestId(document.body, "lang-donut")[0].getAttribute("d"),
+    );
     const center = { x: d[7], y: d[7] };
     const HTMLLangPercent = langPercentFromDonutLayoutSvg(
       queryAllByTestId(document.body, "lang-donut")[0].getAttribute("d"),
@@ -579,11 +584,9 @@ describe("Test renderTopLanguages", () => {
       "40",
     );
 
-    const d = queryAllByTestId(document.body, "lang-pie")[0]
-      .getAttribute("d")
-      .split(" ")
-      .filter((x) => !isNaN(x))
-      .map((x) => parseFloat(x));
+    const d = getNumbersFromSvgPathDefinitionAttribute(
+      queryAllByTestId(document.body, "lang-pie")[0].getAttribute("d"),
+    );
     const center = { x: d[0], y: d[1] };
     const HTMLLangPercent = langPercentFromPieLayoutSvg(
       queryAllByTestId(document.body, "lang-pie")[0].getAttribute("d"),
