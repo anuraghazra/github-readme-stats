@@ -423,6 +423,13 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  aubergine: {
+    title_color: "eeff4a",
+    text_color: "fff",
+    icon_color: "24ecff",
+    border_color: "606060",
+    bg_color: "3,aa076b,61045f",
+  },
 };
 
 export default themes;
