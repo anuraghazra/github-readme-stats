@@ -423,6 +423,13 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  humoris: {
+    title_color: "8b6630",
+    text_color: "e8e6e4",
+    icon_color: "595c5b",
+    border_color: "191419",
+    bg_color: "dfaf77",
+  },
 };
 
 export default themes;
