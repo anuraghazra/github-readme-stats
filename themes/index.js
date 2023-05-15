@@ -423,6 +423,14 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  dark_git: {
+    title_color: "adbac7",
+    icon_color: "4c71f2",
+    text_color: "434d58",
+    bg_color: "transparent",
+    border_color: "444c56",
+    ring_color="444c56"
+  },
 };
 
 export default themes;
