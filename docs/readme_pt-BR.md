@@ -164,7 +164,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 
 - `hide` - Oculta linguagens específicas _(Valores separados por vírgulas)_
 - `hide_title` - Oculta o título _(boolean)_
-- `layout` - Alterna entre os dois layouts disponíveis `default` & `compact`
+- `layout` - Alterna entre os quatro layouts disponíveis `normal` & `compact` & `donut` & `pie`
 - `card_width` - Define a largura do cartão manualmente _(number)_
 
 > :warning: **Importante:**
