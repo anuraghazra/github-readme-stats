@@ -389,17 +389,23 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
  * @returns {string} Compact layout card SVG object.
  */
 const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
+  // Donut vertical chart radius and circle length
   const radius = 80;
-  const circleLength = 2 * Math.PI * radius;
+  const totalCircleLength = 2 * Math.PI * radius;
 
+  // SVG circles
   let circles = [];
+
+  // Start indent for donut vertical chart parts
   let indent = 0;
+
+  // Start delay coefficient for donut vertical chart parts
   let startDelayCoefficient = 1;
 
+  // Generate each donut vertical chart part
   for (const lang of langs) {
-    const currentTotalLanguageSizePart = (lang.size / totalLanguageSize) * 100;
-    const currentCircleLengthPart =
-      circleLength * (currentTotalLanguageSizePart / 100);
+    const percentage = (lang.size / totalLanguageSize) * 100;
+    const circleLength = totalCircleLength * (percentage / 100);
     const delay = startDelayCoefficient * 100;
 
     circles.push(`
@@ -411,14 +417,16 @@ const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
           fill="transparent"
           stroke="${lang.color}"
           stroke-width="25"
-          stroke-dasharray="${circleLength}"
+          stroke-dasharray="${totalCircleLength}"
           stroke-dashoffset="${indent}"
+          size="${percentage}"
+          data-testid="lang-donut"
         />
       </g>
     `);
 
     // Update the indent for the next part
-    indent += currentCircleLengthPart;
+    indent += circleLength;
     // Update the start delay coefficient for the next part
     startDelayCoefficient += 1;
   }
@@ -426,8 +434,7 @@ const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
   return `
     <svg data-testid="lang-items">
       <g transform="translate(0, 0)">
-        <svg data-testid="lang-items-donut">
-          <circle class="donut-hole" cx="150" cy="100" r="${radius}" fill="#fff" />
+        <svg data-testid="donut">
           ${circles.join("")}
         </svg>
       </g>

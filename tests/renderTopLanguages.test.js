@@ -584,6 +584,81 @@ describe("Test renderTopLanguages", () => {
       "circle",
     );
   });
+
+  it("should render with layout donut vertical", () => {
+    document.body.innerHTML = renderTopLanguages(langs, { layout: "donut-vertical" });
+
+    expect(queryByTestId(document.body, "header")).toHaveTextContent(
+      "Most Used Languages",
+    );
+
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
+      "HTML 40.00%",
+    );
+    expect(queryAllByTestId(document.body, "lang-donut")[0]).toHaveAttribute(
+      "size",
+      "40",
+    );
+
+    // const d = getNumbersFromSvgPathDefinitionAttribute(
+    //   queryAllByTestId(document.body, "lang-pie")[0].getAttribute("d"),
+    // );
+    // const center = { x: d[0], y: d[1] };
+    // const HTMLLangPercent = langPercentFromPieLayoutSvg(
+    //   queryAllByTestId(document.body, "lang-pie")[0].getAttribute("d"),
+    //   center.x,
+    //   center.y,
+    // );
+    // expect(HTMLLangPercent).toBeCloseTo(40);
+
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
+      "javascript 40.00%",
+    );
+    expect(queryAllByTestId(document.body, "lang-donut")[1]).toHaveAttribute(
+      "size",
+      "40",
+    );
+    // const javascriptLangPercent = langPercentFromPieLayoutSvg(
+    //   queryAllByTestId(document.body, "lang-pie")[1].getAttribute("d"),
+    //   center.x,
+    //   center.y,
+    // );
+    // expect(javascriptLangPercent).toBeCloseTo(40);
+
+    expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
+      "css 20.00%",
+    );
+    expect(queryAllByTestId(document.body, "lang-donut")[2]).toHaveAttribute(
+      "size",
+      "20",
+    );
+    // const cssLangPercent = langPercentFromPieLayoutSvg(
+    //   queryAllByTestId(document.body, "lang-pie")[2].getAttribute("d"),
+    //   center.x,
+    //   center.y,
+    // );
+    // expect(cssLangPercent).toBeCloseTo(20);
+
+    // expect(HTMLLangPercent + javascriptLangPercent + cssLangPercent).toBe(100);
+
+    // Should render full pie (circle) if one language is 100%.
+    document.body.innerHTML = renderTopLanguages(
+      { HTML: langs.HTML },
+      { layout: "pie" },
+    );
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
+      "HTML 100.00%",
+    );
+    // expect(queryAllByTestId(document.body, "lang-pie")[0]).toHaveAttribute(
+    //   "size",
+    //   "100",
+    // );
+    // expect(queryAllByTestId(document.body, "lang-pie")).toHaveLength(1);
+    // expect(queryAllByTestId(document.body, "lang-pie")[0].tagName).toBe(
+    //   "circle",
+    // );
+  });
+
   it("should render with layout pie", () => {
     document.body.innerHTML = renderTopLanguages(langs, { layout: "pie" });
 
