@@ -171,7 +171,7 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 -   `hide` - Masquer les langages spécifiés sur la carte _(Comma seperated values)_
 -   `hide_title` - Masquer le titre _(boolean)_
--   `layout` - Alterner entre 2 mise en page `default` & `compact`
+-   `layout` - Alterner entre 4 mise en page `normal` & `compact` & `donut` & `pie`
 -   `card_width` - Fixer la largeur de la carte manuellement _(number)_
 
 > :warning: **Important:**

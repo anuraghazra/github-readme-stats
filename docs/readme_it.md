@@ -171,7 +171,7 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 
 - `hide` - Nasconde un linguaggio specifico _(valori separati da virgola)_
 - `hide_title` - Nasconde il titolo _(booleano)_
-- `layout` - Specifica il tipo di layout, `default` (esteso) o `compact` (compatto)
+- `layout` - Specificare il tipo di layout, `normal` (esteso), `compact` (compatto), `donut` (ciambella) e `pie` (torta)
 - `card_width` - Specifica il valore della larghezza _(numero)_
 
 > :warning: **Importante:**
