@@ -423,6 +423,13 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  aqua_yellow: {
+    title_color: "F9F54B",
+    text_color: "27E1C1",
+    icon_color: "F9F54B",
+    border_color: "F9F54B",
+    bg_color: "002B5B",
+  },
 };
 
 export default themes;
