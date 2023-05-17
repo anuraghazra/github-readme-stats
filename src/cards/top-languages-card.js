@@ -401,6 +401,7 @@ const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
     const currentCircleLengthPart =
       circleLength * (currentTotalLanguageSizePart / 100);
     const delay = startDelayCoefficient * 100;
+
     circles.push(`
       <g class="stagger" style="animation-delay: ${delay}ms">
         <circle 
@@ -415,7 +416,10 @@ const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
         />
       </g>
     `);
+
+    // Update the indent for the next part
     indent += currentCircleLengthPart;
+    // Update the start delay coefficient for the next part
     startDelayCoefficient += 1;
   }
 
@@ -780,6 +784,7 @@ export {
   calculateCompactLayoutHeight,
   calculateNormalLayoutHeight,
   calculateDonutLayoutHeight,
+  calculateDonutVerticalLayoutHeight,
   calculatePieLayoutHeight,
   donutCenterTranslation,
   trimTopLanguages,
