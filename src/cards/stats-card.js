@@ -1,7 +1,7 @@
 // @ts-check
 import { Card } from "../common/Card.js";
 import { I18n } from "../common/I18n.js";
-import { icons } from "../common/icons.js";
+import { icons, rankIcon } from "../common/icons.js";
 import {
   clampValue,
   flexLayout,
@@ -20,14 +20,16 @@ const RANK_CARD_DEFAULT_WIDTH = 450;
 /**
  * Create a stats card text item.
  *
- * @param {object[]} createTextNodeParams Object that contains the createTextNode parameters.
+ * @param {object} createTextNodeParams Object that contains the createTextNode parameters.
+ * @param {string} createTextNodeParams.icon The icon to display.
  * @param {string} createTextNodeParams.label The label to display.
- * @param {string} createTextNodeParams.value The value to display.
+ * @param {number} createTextNodeParams.value The value to display.
  * @param {string} createTextNodeParams.id The id of the stat.
  * @param {number} createTextNodeParams.index The index of the stat.
  * @param {boolean} createTextNodeParams.showIcons Whether to show icons.
  * @param {number} createTextNodeParams.shiftValuePos Number of pixels the value has to be shifted to the right.
  * @param {boolean} createTextNodeParams.bold Whether to bold the label.
+ * @param {string} createTextNodeParams.number_format The format of numbers on card.
  * @returns
  */
 const createTextNode = ({
@@ -108,6 +110,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     number_format = "short",
     locale,
     disable_animations = false,
+    rank_icon = "default",
   } = options;
 
   const lheight = parseInt(String(line_height), 10);
@@ -182,7 +185,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     "nl",
     "zh-tw",
   ];
-  const isLongLocale = longLocales.includes(locale) === true;
+  const isLongLocale = longLocales.includes(locale);
 
   // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
@@ -294,15 +297,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
-          <text
-            x="-5"
-            y="3"
-            alignment-baseline="central"
-            dominant-baseline="central"
-            text-anchor="middle"
-          >
-            ${rank.level}
-          </text>
+          ${rankIcon(rank_icon, rank?.level)}
         </g>
       </g>`;
 

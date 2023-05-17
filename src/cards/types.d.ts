@@ -1,4 +1,5 @@
 type ThemeNames = keyof typeof import("../../themes/index.js");
+type RankIcon = "default" | "github";
 
 export type CommonOptions = {
   title_color: string;
@@ -23,6 +24,9 @@ export type StatCardOptions = CommonOptions & {
   custom_title: string;
   disable_animations: boolean;
   number_format: string;
+  ring_color: string;
+  text_bold: boolean;
+  rank_icon: RankIcon;
 };
 
 export type RepoCardOptions = CommonOptions & {
@@ -35,7 +39,7 @@ export type TopLangOptions = CommonOptions & {
   hide_border: boolean;
   card_width: number;
   hide: string[];
-  layout: "compact" | "normal";
+  layout: "compact" | "normal" | "donut" | "pie";
   custom_title: string;
   langs_count: number;
   disable_animations: boolean;

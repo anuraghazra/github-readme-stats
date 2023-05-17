@@ -36,11 +36,11 @@ const noCodingActivityNode = ({ color, text }) => {
 /**
  * Create compact WakaTime layout.
  *
- * @param {Object[]} args The function arguments.
- * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
- * @param {number} totalSize The total size of the languages.
- * @param {number} x The x position of the language node.
- * @param {number} y The y position of the language node.
+ * @param {Object} args The function arguments.
+ * @param {import("../fetchers/types").WakaTimeLang} args.lang The languages array.
+ * @param {number} args.totalSize The total size of the languages.
+ * @param {number} args.x The x position of the language node.
+ * @param {number} args.y The y position of the language node.
  */
 const createCompactLangNode = ({ lang, totalSize, x, y }) => {
   const color = languageColors[lang.name] || "#858585";
@@ -58,11 +58,11 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
 /**
  * Create WakaTime language text node item.
  *
- * @param {Object[]} args The function arguments.
- * @param {import("../fetchers/types").WakaTimeLang} lang The language object.
- * @param {number} totalSize The total size of the languages.
- * @param {number} x The x position of the language node.
- * @param {number} y The y position of the language node.
+ * @param {Object} args The function arguments.
+ * @param {import("../fetchers/types").WakaTimeLang[]} args.langs The language objects.
+ * @param {number} args.totalSize The total size of the languages.
+ * @param {number} args.x The x position of the language node.
+ * @param {number} args.y The y position of the language node.
  */
 const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
   return langs.map((lang, index) => {
@@ -86,14 +86,15 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
 /**
  * Create WakaTime text item.
  *
- * @param {Object[]} args The function arguments.
- * @param {string} id The id of the text node item.
- * @param {string} label The label of the text node item.
- * @param {string} value The value of the text node item.
- * @param {number} index The index of the text node item.
- * @param {percent} percent Percentage of the text node item.
- * @param {boolean} hideProgress Whether to hide the progress bar.
- * @param {string} progressBarBackgroundColor The color of the progress bar background.
+ * @param {Object} args The function arguments.
+ * @param {string} args.id The id of the text node item.
+ * @param {string} args.label The label of the text node item.
+ * @param {string} args.value The value of the text node item.
+ * @param {number} args.index The index of the text node item.
+ * @param {string} args.percent Percentage of the text node item.
+ * @param {boolean} args.hideProgress Whether to hide the progress bar.
+ * @param {string} args.progressBarColor The color of the progress bar.
+ * @param {string} args.progressBarBackgroundColor The color of the progress bar background.
  */
 const createTextNode = ({
   id,
@@ -139,7 +140,7 @@ const createTextNode = ({
  * hiding languages.
  *
  * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
- * @return {import("../fetchers/types").WakaTimeLang[]} The recalculated languages array.
+ * @return {void} The recalculated languages array.
  */
 const recalculatePercentages = (languages) => {
   const totalSum = languages.reduce(
@@ -267,12 +268,20 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       <rect x="25" y="0" width="${width - 50}" height="8" fill="white" rx="5" />
       </mask>
       ${compactProgressBar}
-      ${createLanguageTextNode({
-        x: 0,
-        y: 25,
-        langs: filteredLanguages,
-        totalSize: 100,
-      }).join("")}
+      ${
+        filteredLanguages.length
+          ? createLanguageTextNode({
+              x: 0,
+              y: 25,
+              langs: filteredLanguages,
+              totalSize: 100,
+            }).join("")
+          : noCodingActivityNode({
+              // @ts-ignore
+              color: textColor,
+              text: i18n.t("wakatimecard.nocodingactivity"),
+            })
+      }
     `;
   } else {
     finalLayout = flexLayout({
