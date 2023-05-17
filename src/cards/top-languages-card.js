@@ -115,6 +115,16 @@ const calculateDonutLayoutHeight = (totalLangs) => {
 };
 
 /**
+ * Calculates height for the donut vertical layout.
+ *
+ * @param {number} totalLangs Total number of languages.
+ * @returns {number} Card height.
+ */
+const calculateDonutVerticalLayoutHeight = (totalLangs) => {
+  return 300 + Math.round(totalLangs / 2) * 25;
+};
+
+/**
  * Calculates height for the pie layout.
  *
  * @param {number} totalLangs Total number of languages.
@@ -384,55 +394,50 @@ const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
 
   let circles = [];
   let indent = 0;
+  let startDelayCoefficient = 1;
 
   for (const lang of langs) {
     const currentTotalLanguageSizePart = (lang.size / totalLanguageSize) * 100;
     const currentCircleLengthPart =
       circleLength * (currentTotalLanguageSizePart / 100);
+    const delay = startDelayCoefficient * 100;
     circles.push(`
-      <circle 
-        cx="150"
-        cy="100"
-        r="${radius}"
-        fill="transparent"
-        stroke="${lang.color}"
-        stroke-width="25"
-        stroke-dasharray="${circleLength}"
-        stroke-dashoffset="${indent}"
-      />
+      <g class="stagger" style="animation-delay: ${delay}ms">
+        <circle 
+          cx="150"
+          cy="100"
+          r="${radius}"
+          fill="transparent"
+          stroke="${lang.color}"
+          stroke-width="25"
+          stroke-dasharray="${circleLength}"
+          stroke-dashoffset="${indent}"
+        />
+      </g>
     `);
     indent += currentCircleLengthPart;
+    startDelayCoefficient += 1;
   }
 
-  const donutSvg = `
-    <svg data-testid="lang-items-donut">
-      <circle class="donut-hole" cx="150" cy="100" r="${radius}" fill="#fff" />
-      ${circles.join("")}
-    </svg>
-  `;
-  const languagesSvg = `
-    <svg data-testid="lang-items" x="${CARD_PADDING}">
+  return `
+    <svg data-testid="lang-items">
+      <g transform="translate(0, 0)">
+        <svg data-testid="lang-items-donut">
+          <circle class="donut-hole" cx="150" cy="100" r="${radius}" fill="#fff" />
+          ${circles.join("")}
+        </svg>
+      </g>
       <g transform="translate(0, 220)">
-        ${createLanguageTextNode({
-          langs,
-          totalSize: totalLanguageSize,
-          hideProgress: false,
-        })}
+        <svg data-testid="lang-names" x="${CARD_PADDING}">
+          ${createLanguageTextNode({
+            langs,
+            totalSize: totalLanguageSize,
+            hideProgress: false,
+          })}
+        </svg>
       </g>
     </svg>
   `;
-
-  return `${donutSvg}${languagesSvg}`;
-};
-
-/**
- * Calculates height for the donut vertical layout.
- *
- * @param {number} totalLangs Total number of languages.
- * @returns {number} Card height.
- */
-const calculateDonutVerticalLayoutHeight = (totalLangs) => {
-  return 300 + Math.round(totalLangs / 2) * 25;
 };
 
 /**
