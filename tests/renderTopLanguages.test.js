@@ -6,6 +6,7 @@ import {
   radiansToDegrees,
   polarToCartesian,
   cartesianToPolar,
+  getCircleLength,
   calculateCompactLayoutHeight,
   calculateNormalLayoutHeight,
   calculateDonutLayoutHeight,
@@ -69,6 +70,20 @@ const langPercentFromDonutLayoutSvg = (d, centerX, centerY) => {
     cartesianToPolar(centerX, centerY, dTmp[7], dTmp[8]).angleInDegrees + 90;
   if (startAngle > endAngle) startAngle -= 360;
   return (endAngle - startAngle) / 3.6;
+};
+
+/**
+ * Calculate language percentage for donut vertical chart SVG.
+ *
+ * @param {number} partLength Length of current chart part..
+ * @param {number} totalCircleLength Total length of circle.
+ * @return {number} Chart part percentage.
+ */
+const langPercentFromDonutVerticalLayoutSvg = (
+  partLength,
+  totalCircleLength,
+) => {
+  return (partLength / totalCircleLength) * 100;
 };
 
 /**
@@ -271,6 +286,18 @@ describe("Test renderTopLanguages helper functions", () => {
     expect(donutCenterTranslation(8)).toBe(3);
     expect(donutCenterTranslation(9)).toBe(19);
     expect(donutCenterTranslation(10)).toBe(35);
+  });
+
+  it("getCircleLength", () => {
+    expect(getCircleLength(20)).toBeCloseTo(125.663);
+    expect(getCircleLength(30)).toBeCloseTo(188.495);
+    expect(getCircleLength(40)).toBeCloseTo(251.327);
+    expect(getCircleLength(50)).toBeCloseTo(314.159);
+    expect(getCircleLength(60)).toBeCloseTo(376.991);
+    expect(getCircleLength(70)).toBeCloseTo(439.822);
+    expect(getCircleLength(80)).toBeCloseTo(502.654);
+    expect(getCircleLength(90)).toBeCloseTo(565.486);
+    expect(getCircleLength(100)).toBeCloseTo(628.318);
   });
 
   it("trimTopLanguages", () => {
@@ -586,7 +613,9 @@ describe("Test renderTopLanguages", () => {
   });
 
   it("should render with layout donut vertical", () => {
-    document.body.innerHTML = renderTopLanguages(langs, { layout: "donut-vertical" });
+    document.body.innerHTML = renderTopLanguages(langs, {
+      layout: "donut-vertical",
+    });
 
     expect(queryByTestId(document.body, "header")).toHaveTextContent(
       "Most Used Languages",
@@ -600,16 +629,21 @@ describe("Test renderTopLanguages", () => {
       "40",
     );
 
-    // const d = getNumbersFromSvgPathDefinitionAttribute(
-    //   queryAllByTestId(document.body, "lang-pie")[0].getAttribute("d"),
-    // );
-    // const center = { x: d[0], y: d[1] };
-    // const HTMLLangPercent = langPercentFromPieLayoutSvg(
-    //   queryAllByTestId(document.body, "lang-pie")[0].getAttribute("d"),
-    //   center.x,
-    //   center.y,
-    // );
-    // expect(HTMLLangPercent).toBeCloseTo(40);
+    const totalCircleLength = queryAllByTestId(
+      document.body,
+      "lang-donut",
+    )[0].getAttribute("stroke-dasharray");
+
+    const HTMLLangPercent = langPercentFromDonutVerticalLayoutSvg(
+      queryAllByTestId(document.body, "lang-donut")[1].getAttribute(
+        "stroke-dashoffset",
+      ) -
+        queryAllByTestId(document.body, "lang-donut")[0].getAttribute(
+          "stroke-dashoffset",
+        ),
+      totalCircleLength,
+    );
+    expect(HTMLLangPercent).toBeCloseTo(40);
 
     expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
       "javascript 40.00%",
@@ -618,12 +652,16 @@ describe("Test renderTopLanguages", () => {
       "size",
       "40",
     );
-    // const javascriptLangPercent = langPercentFromPieLayoutSvg(
-    //   queryAllByTestId(document.body, "lang-pie")[1].getAttribute("d"),
-    //   center.x,
-    //   center.y,
-    // );
-    // expect(javascriptLangPercent).toBeCloseTo(40);
+    const javascriptLangPercent = langPercentFromDonutVerticalLayoutSvg(
+      queryAllByTestId(document.body, "lang-donut")[2].getAttribute(
+        "stroke-dashoffset",
+      ) -
+        queryAllByTestId(document.body, "lang-donut")[1].getAttribute(
+          "stroke-dashoffset",
+        ),
+      totalCircleLength,
+    );
+    expect(javascriptLangPercent).toBeCloseTo(40);
 
     expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
       "css 20.00%",
@@ -632,31 +670,43 @@ describe("Test renderTopLanguages", () => {
       "size",
       "20",
     );
-    // const cssLangPercent = langPercentFromPieLayoutSvg(
-    //   queryAllByTestId(document.body, "lang-pie")[2].getAttribute("d"),
-    //   center.x,
-    //   center.y,
-    // );
-    // expect(cssLangPercent).toBeCloseTo(20);
+    const cssLangPercent = langPercentFromDonutVerticalLayoutSvg(
+      totalCircleLength -
+        queryAllByTestId(document.body, "lang-donut")[2].getAttribute(
+          "stroke-dashoffset",
+        ),
+      totalCircleLength,
+    );
+    expect(cssLangPercent).toBeCloseTo(20);
 
-    // expect(HTMLLangPercent + javascriptLangPercent + cssLangPercent).toBe(100);
+    expect(HTMLLangPercent + javascriptLangPercent + cssLangPercent).toBe(100);
+  });
 
-    // Should render full pie (circle) if one language is 100%.
+  it("should render with layout donut vertical full donut circle of one language is 100%", () => {
     document.body.innerHTML = renderTopLanguages(
       { HTML: langs.HTML },
-      { layout: "pie" },
+      { layout: "donut-vertical" },
     );
     expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
       "HTML 100.00%",
     );
-    // expect(queryAllByTestId(document.body, "lang-pie")[0]).toHaveAttribute(
-    //   "size",
-    //   "100",
-    // );
-    // expect(queryAllByTestId(document.body, "lang-pie")).toHaveLength(1);
-    // expect(queryAllByTestId(document.body, "lang-pie")[0].tagName).toBe(
-    //   "circle",
-    // );
+    expect(queryAllByTestId(document.body, "lang-donut")[0]).toHaveAttribute(
+      "size",
+      "100",
+    );
+    const totalCircleLength = queryAllByTestId(
+      document.body,
+      "lang-donut",
+    )[0].getAttribute("stroke-dasharray");
+
+    const HTMLLangPercent = langPercentFromDonutVerticalLayoutSvg(
+      totalCircleLength -
+        queryAllByTestId(document.body, "lang-donut")[0].getAttribute(
+          "stroke-dashoffset",
+        ),
+      totalCircleLength,
+    );
+    expect(HTMLLangPercent).toBeCloseTo(100);
   });
 
   it("should render with layout pie", () => {

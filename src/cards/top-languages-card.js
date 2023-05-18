@@ -85,6 +85,16 @@ const cartesianToPolar = (centerX, centerY, x, y) => {
 };
 
 /**
+ * Calculates length of circle.
+ *
+ * @param {number} radius Radius of the circle.
+ * @returns {number} The length of the circle.
+ */
+const getCircleLength = (radius) => {
+  return 2 * Math.PI * radius;
+};
+
+/**
  * Calculates height for the compact layout.
  *
  * @param {number} totalLangs Total number of languages.
@@ -389,9 +399,9 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
  * @returns {string} Compact layout card SVG object.
  */
 const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
-  // Donut vertical chart radius and circle length
+  // Donut vertical chart radius and total length
   const radius = 80;
-  const totalCircleLength = 2 * Math.PI * radius;
+  const totalCircleLength = getCircleLength(radius);
 
   // SVG circles
   let circles = [];
@@ -788,6 +798,7 @@ export {
   radiansToDegrees,
   polarToCartesian,
   cartesianToPolar,
+  getCircleLength,
   calculateCompactLayoutHeight,
   calculateNormalLayoutHeight,
   calculateDonutLayoutHeight,
