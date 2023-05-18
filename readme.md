@@ -270,6 +270,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `rank_icon` - Shows alternative rank icon (i.e. `github` or `default`). Default: `default`.
 -   `show_icons` - _(boolean)_. Default: `false`.
 -   `include_all_commits` - Count total commits instead of just the current year commits _(boolean)_. Default: `false`.
+-   `count_private` - Count private contributions _(boolean)_. Default: `false`.
 -   `line_height` - Sets the line height between text _(number)_. Default: `25`.
 -   `exclude_repo` - Exclude stars from specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
 -   `custom_title` - Sets a custom title for the card. Default:  `<username> GitHub Stats`.
