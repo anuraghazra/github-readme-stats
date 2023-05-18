@@ -176,7 +176,7 @@ bg_color içerisinde birden fazla rengi gradient olarak göstermek için virgül
 
 - `hide` - Belirli bir dili listede gizler _(Virgül ile ayırılmış değerlerle)_
 - `hide_title` - _(boolean)_
-- `layout` - Uygun olan iki tasarım / layout arasında değişiklik yapar `default` & `compact`
+- `layout` - Dört uygun tasarım / düzen arasında geçiş `normal` & `compact` & `donut` & `pie`
 - `card_width` - Kartın genişliğini manuel olarak belirler _(number)_
 - `langs_count` - 1-10 arasında istediğiniz kadar dil gösterebilirsiniz. Varsayılan: 5 _(number)_
 - `exclude_repo` - Belirli repoları listeden çıkartır _(Virgül ile ayırılmış değerlerle)_

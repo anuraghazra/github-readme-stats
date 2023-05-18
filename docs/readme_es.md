@@ -175,7 +175,7 @@ Puedes pasar mútliples valores separados por coma en la opción `bg_color` para
 
 - `hide` - Oculta de la tarjeta los lenguajes especificados  _(valores separados por comas)_
 - `hide_title` - _(booleano)_
-- `layout` - Cambia entre los dos diseños disponibles `default` & `compact`
+- `layout` - Cambiar entre los cuatro diseños disponibles `normal` & `compact` & `donut` & `pie`
 - `card_width` - Establece el ancho de la tarjeta manualmente _(número)_
 - `langs_count` - Muestra más lenguajes en la tarjeta, entre 1-10, por defecto 5 _(número)_
 - `exclude_repo` - Excluye los repositorios especificados  _(valores separados por comas)_
