@@ -236,7 +236,7 @@ const fetchStats = async (
   if (include_all_commits) {
     stats.totalCommits = await totalCommitsFetcher(username);
   }
-  
+
   // if count_private then add private contributions to totalCommits.
   if (count_private) {
     stats.totalCommits +=
