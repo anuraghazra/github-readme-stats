@@ -161,37 +161,14 @@ describe("Test fetchStats", () => {
     );
   });
 
-  it("should fetch and add private contributions", async () => {
-    let stats = await fetchStats("anuraghazra", true);
-    const rank = calculateRank({
-      totalCommits: 150,
-      totalRepos: 5,
-      followers: 100,
-      contributions: 61,
-      stargazers: 300,
-      prs: 300,
-      issues: 200,
-    });
-
-    expect(stats).toStrictEqual({
-      contributedTo: 61,
-      name: "Anurag Hazra",
-      totalCommits: 150,
-      totalIssues: 200,
-      totalPRs: 300,
-      totalStars: 300,
-      rank,
-    });
-  });
-
   it("should fetch total commits", async () => {
     mock
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", true, true);
+    let stats = await fetchStats("anuraghazra", true, []);
     const rank = calculateRank({
-      totalCommits: 1050,
+      totalCommits: 1000,
       totalRepos: 5,
       followers: 100,
       contributions: 61,
@@ -203,7 +180,7 @@ describe("Test fetchStats", () => {
     expect(stats).toStrictEqual({
       contributedTo: 61,
       name: "Anurag Hazra",
-      totalCommits: 1050,
+      totalCommits: 1000,
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 300,
@@ -216,9 +193,9 @@ describe("Test fetchStats", () => {
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", true, true, ["test-repo-1"]);
+    let stats = await fetchStats("anuraghazra", true, ["test-repo-1"]);
     const rank = calculateRank({
-      totalCommits: 1050,
+      totalCommits: 1000,
       totalRepos: 5,
       followers: 100,
       contributions: 61,
@@ -230,7 +207,7 @@ describe("Test fetchStats", () => {
     expect(stats).toStrictEqual({
       contributedTo: 61,
       name: "Anurag Hazra",
-      totalCommits: 1050,
+      totalCommits: 1000,
       totalIssues: 200,
       totalPRs: 300,
       totalStars: 200,
