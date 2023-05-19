@@ -179,7 +179,7 @@ const totalCommitsFetcher = async (username) => {
  */
 const fetchStats = async (
   username,
-  count_private = false, // unused
+  count_private = false,
   include_all_commits = false,
   exclude_repo = [],
 ) => {
@@ -221,6 +221,7 @@ const fetchStats = async (
   const user = res.data.data.user;
 
   stats.name = user.name || user.login;
+  stats.totalCommits = user.contributionsCollection.totalCommitContributions;
 
   // populate repoToHide map for quick lookup
   // while filtering out
@@ -231,10 +232,15 @@ const fetchStats = async (
     });
   }
 
+  // Use include_all_commits fetch all commit using the REST API.
   if (include_all_commits) {
     stats.totalCommits = await totalCommitsFetcher(username);
-  } else {
-    stats.totalCommits = user.contributionsCollection.totalCommitContributions;
+  }
+  
+  // if count_private then add private contributions to totalCommits.
+  if (count_private) {
+    stats.totalCommits +=
+      user.contributionsCollection.restrictedContributionsCount;
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
