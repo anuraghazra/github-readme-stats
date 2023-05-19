@@ -165,7 +165,7 @@ describe("Test fetchStats", () => {
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", true, true);
+    let stats = await fetchStats("anuraghazra", false, true);
     const rank = calculateRank({
       all_commits: true,
       commits: 1000,
@@ -192,7 +192,7 @@ describe("Test fetchStats", () => {
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", true, true, ["test-repo-1"]);
+    let stats = await fetchStats("anuraghazra", false, true, ["test-repo-1"]);
     const rank = calculateRank({
       all_commits: true,
       commits: 1000,
