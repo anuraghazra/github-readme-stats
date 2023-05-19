@@ -20,11 +20,11 @@ describe("Test calculateRank", () => {
     expect(
       calculateRank({
         all_commits: false,
-        commits: 100,
+        commits: 250,
         prs: 50,
-        issues: 10,
+        issues: 25,
         repos: 0,
-        stars: 100,
+        stars: 250,
         followers: 25,
       }),
     ).toStrictEqual({ level: "A", score: 50 });
@@ -34,11 +34,11 @@ describe("Test calculateRank", () => {
     expect(
       calculateRank({
         all_commits: true,
-        commits: 500,
+        commits: 1000,
         prs: 50,
-        issues: 10,
+        issues: 25,
         repos: 0,
-        stars: 100,
+        stars: 250,
         followers: 25,
       }),
     ).toStrictEqual({ level: "A", score: 50 });
@@ -48,11 +48,11 @@ describe("Test calculateRank", () => {
     expect(
       calculateRank({
         all_commits: false,
-        commits: 200,
+        commits: 500,
         prs: 100,
-        issues: 20,
+        issues: 50,
         repos: 0,
-        stars: 200,
+        stars: 500,
         followers: 50,
       }),
     ).toStrictEqual({ level: "A+", score: 25 });
@@ -62,11 +62,11 @@ describe("Test calculateRank", () => {
     expect(
       calculateRank({
         all_commits: false,
-        commits: 400,
+        commits: 1000,
         prs: 200,
-        issues: 40,
+        issues: 100,
         repos: 0,
-        stars: 400,
+        stars: 1000,
         followers: 100,
       }),
     ).toStrictEqual({ level: "S", score: 6.25 });
@@ -83,6 +83,6 @@ describe("Test calculateRank", () => {
         stars: 5000,
         followers: 2000,
       }),
-    ).toStrictEqual({ level: "S+", score: 0.013950892857180923 });
+    ).toStrictEqual({ level: "S+", score: 1.1363983154296875 });
   });
 });
