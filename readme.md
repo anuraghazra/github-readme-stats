@@ -303,7 +303,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 
 -   `hide` - Hide the languages specified from the card _(Comma-separated values)_. Default: `[] (blank array)`.
 -   `hide_title` - _(boolean)_. Default: `false`.
--   `layout` - Switch between four available layouts `normal` & `compact` & `donut` & `pie`. Default: `normal`.
+-   `layout` - Switch between four available layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Default: `normal`.
 -   `card_width` - Set the card's width manually _(number)_. Default `300`.
 -   `langs_count` - Show more languages on the card, between 1-10 _(number)_. Default `5`.
 -   `exclude_repo` - Exclude specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
@@ -431,6 +431,14 @@ You can use the `&layout=donut` option to change the card design.
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=donut)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
+### Donut Vertical Chart Language Card Layout
+
+You can use the `&layout=donut-vertical` option to change the card design.
+
+```md
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=donut-vertical)](https://github.com/anuraghazra/github-readme-stats)
+```
+
 ### Pie Chart Language Card Layout
 
 You can use the `&layout=pie` option to change the card design.
@@ -458,6 +466,10 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 -   Donut Chart layout
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=donut)](https://github.com/anuraghazra/github-readme-stats)
+
+-   Donut Vertical Chart layout
+
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=donut-vertical)](https://github.com/anuraghazra/github-readme-stats)
 
 -   Pie Chart layout
 
