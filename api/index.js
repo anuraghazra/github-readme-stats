@@ -19,7 +19,6 @@ export default async (req, res) => {
     card_width,
     hide_rank,
     show_icons,
-    count_private,
     include_all_commits,
     line_height,
     title_color,
@@ -52,7 +51,6 @@ export default async (req, res) => {
   try {
     const stats = await fetchStats(
       username,
-      parseBoolean(count_private),
       parseBoolean(include_all_commits),
       parseArray(exclude_repo),
     );
