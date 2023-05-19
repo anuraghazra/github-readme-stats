@@ -164,7 +164,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 
 - `hide` - Oculta linguagens específicas _(Valores separados por vírgulas)_
 - `hide_title` - Oculta o título _(boolean)_
-- `layout` - Alterna entre os dois layouts disponíveis `default` & `compact`
+- `layout` - Alterna entre os quatro layouts disponíveis `normal` & `compact` & `donut` & `pie`
 - `card_width` - Define a largura do cartão manualmente _(number)_
 
 > :warning: **Importante:**
@@ -242,14 +242,14 @@ Utilize a opção `&layout=compact` para mudar o layout do cartão.
 Altere o valor de `?username=` para o seu username do Wakatime.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demonstração
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

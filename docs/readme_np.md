@@ -174,7 +174,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 - `hide` - Hide the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
-- `layout` - Switch between two available layouts `default` & `compact`
+- `layout` - Switch between four available layouts `normal` & `compact` & `donut` & `pie`. Default: `normal`.
 - `card_width` - Set the card's width manually _(number)_
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
 - `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
@@ -279,14 +279,14 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ###  डेमो
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -336,7 +336,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 - वक समय कार्ड 
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

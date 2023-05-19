@@ -176,7 +176,7 @@ bg_color içerisinde birden fazla rengi gradient olarak göstermek için virgül
 
 - `hide` - Belirli bir dili listede gizler _(Virgül ile ayırılmış değerlerle)_
 - `hide_title` - _(boolean)_
-- `layout` - Uygun olan iki tasarım / layout arasında değişiklik yapar `default` & `compact`
+- `layout` - Dört uygun tasarım / düzen arasında geçiş `normal` & `compact` & `donut` & `pie`
 - `card_width` - Kartın genişliğini manuel olarak belirler _(number)_
 - `langs_count` - 1-10 arasında istediğiniz kadar dil gösterebilirsiniz. Varsayılan: 5 _(number)_
 - `exclude_repo` - Belirli repoları listeden çıkartır _(Virgül ile ayırılmış değerlerle)_
@@ -282,18 +282,18 @@ Endpoint: `api/top-langs?username=mustafacagri`
 `?username=` değerini [Wakatime](https://wakatime.com)'daki kullanıcı adınızla değiştirin.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - Kompakt Düzen
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -343,7 +343,7 @@ Endpoint: `api/top-langs?username=mustafacagri`
 
 - Wakatime kart
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

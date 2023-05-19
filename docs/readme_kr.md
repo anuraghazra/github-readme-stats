@@ -189,7 +189,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - `hide` - 카드에서 특정 언어 제외 _(Comma-separated values)_
 - `hide_title` - 타이틀 제외 _(boolean)_
-- `layout` - 사용 가능한 두 가지 값, `default` & `compact` 중 표시 형태 선택
+- `layout` - 4가지 값 사용 가능, `normal` & `compact` & `donut` & `pie` 중 표시 형태 선택
 - `card_width` - 카드 너비 직접 설정 _(number)_
 - `langs_count` - 카드에 표시할 언어의 수 (1-10 사이, 기본 값 : 5) _(number)_
 - `exclude_repo` - 통계에 제외할 저장소 지정 _(Comma-separated values)_
@@ -298,18 +298,18 @@ _참고:
 `?username=` 속성의 값을 [Wakatime](https://wakatime.com) 계정의 사용자 명(닉네임)으로 바꿔주세요.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### 미리보기
 
-[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - 컴팩트한 레이아웃
 
-[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -359,7 +359,7 @@ _참고:
 
 - Wakatime 카드
 
-[![willianrod 님의 Wakatime 카드](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 Wakatime 카드](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
