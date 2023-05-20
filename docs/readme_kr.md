@@ -189,7 +189,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - `hide` - 카드에서 특정 언어 제외 _(Comma-separated values)_
 - `hide_title` - 타이틀 제외 _(boolean)_
-- `layout` - 4가지 값 사용 가능, `normal` & `compact` & `donut` & `pie` 중 표시 형태 선택
+- `layout` - 5가지 값 사용 가능, `normal` & `compact` & `donut` & `donut-vertical` & `pie` 중 표시 형태 선택
 - `card_width` - 카드 너비 직접 설정 _(number)_
 - `langs_count` - 카드에 표시할 언어의 수 (1-10 사이, 기본 값 : 5) _(number)_
 - `exclude_repo` - 통계에 제외할 저장소 지정 _(Comma-separated values)_
