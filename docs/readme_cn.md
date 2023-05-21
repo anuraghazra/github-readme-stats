@@ -1,7 +1,7 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
- <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">在你的 README 中获取动态生成的 GitHub 统计信息！</p>
+ <h2 align="center">GitHub Readme 统计数据</h2>
+ <p align="center">在你的README中获取GitHub动态生成统计信息！</p>
 </p>
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
@@ -27,11 +27,11 @@
   </p>
 
   <p align="center">
-    <a href="#demo">查看 Demo</a>
+    <a href="#demo">查看Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">报告 Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">报告Bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">请求增加功能</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">请求添加新功能</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
@@ -57,32 +57,56 @@
     <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
-<p align="center">喜欢这个项目？请考虑<a href="https://www.paypal.me/anuraghazra">捐赠</a>来帮助它完善！
+<p align="center">喜欢这个项目吗？请考虑通过<a href="https://www.paypal.me/anuraghazra">捐赠</a>来提升它吧！
+
+<a href="https://indiafightscorona.giveindia.org">
+  <img src="https://cfstatic.give.do/logo.png" alt="Give india logo" width="200" />
+</a>
+
+你还在考虑通过捐赠来支持这个项目吗？请不要这样！！
+
+相对的，帮助印度抗击COVID-19的第二波浪潮吧。
+印度有上千人因缺乏氧气和新冠相关基础设施而死亡
+
+访问<https://indiafightscorona.giveindia.org>来为我们抗击新冠和克服危机危机。少量的捐款也可以带来很大的帮助。 :heart:
+
+</p>
 
 # 特性
 
-- [GitHub 统计卡片](#GitHub-统计卡片)
-- [GitHub 更多置顶](#GitHub-更多置顶)
-- [热门语言卡片](#热门语言卡片)
-- [主题](#主题)
-- [自定义](#自定义)
-- [自己部署](#自己部署)
+-   [GitHub统计卡](#gitHub统计卡)
+-   [GitHub额外引脚](#gitHub额外引脚)
+-   [热门语言卡片](#热门语言卡片)
+-   [Wakatime每周统计数据](#wakatime每周统计数据)
+-   [主题](#主题)
+    -   [响应式卡片主题](#responsive-card-theme)
+-   [自定义](#自定义)
+    -   [常见选项](#常见选项)
+    -   [统计卡特有选项](#统计卡特有选项)
+    -   [Repo卡特有选项](#repo卡特有选项)
+    -   [语言卡特有选项](#语言卡特有选项)
+    -   [Wakatime卡特有选项](#wakatime卡特有选项)
+-   [自行部署](#自行部署)
+    -   [在Vercel上部署](#在Vercel上部署)
+    -   [在其它平台上部署](#在其它平台上部署)
+    -   [保持分支每日更新](#保持分支每日更新)
 
 # GitHub 统计卡片
 
-将这行代码复制到你的 markdown 文件中，就是如此简单！
+将这行代码复制到你的markdown文件中，就这么简单！
 
-更改 `?username=` 的值为你的 GitHub 用户名。
+把`?username=`的参数更改为你的 GitHub 用户名。
 
 ```md
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
+> **注意事项**
+> 可用的排名有S+ (前1%)，S (前25%)，A++ (前45%)，A+ (前60%)，和 B+ (任何人)。这些值是使用[累积分布函数](https://en.wikipedia.org/wiki/Cumulative_distribution_function)通过commits（提交）、contributions（贡献）、issues(反馈)、stars（收藏）、pull Requests（PR）、followers（粉丝）和拥有的repositories（仓库）来计算的。可以通过研究[src/calculateRank.js](./src/calculateRank.js)来实现。
 
-_注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.js](../src/calculateRank.js)_
 
 ### 隐藏指定统计
 
-想要隐藏指定统计信息，你可以调用参数 `?hide=`，其值用 `,` 分隔。
+可以通过改变`?hide=`参数来隐藏带通过逗号分隔的参数的特定统计数据。
 
 > 选项：`&hide=stars,commits,prs,issues,contribs`
 
@@ -92,9 +116,10 @@ _注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.
 
 ### 将私人项目贡献添加到总提交计数中
 
-你可以使用参数 `?count_private=true` 把私人贡献计数添加到总提交计数中。
+可以使用`?count_private=true`把私人仓库的贡献添加到总贡献数中。
 
-_注：如果你是自己部署本项目，私人贡献将会默认被计数，如果不是自己部署，你需要分享你的私人贡献计数。_
+> **注意事项**
+> 如果这个项目是您一个人部署的，那默认会将私人贡献计入在内。如果您使用的是公有Vercel实例,你应该选择[分享你的私人贡献](https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/showing-your-private-contributions-and-achievements-on-your-profile).
 
 > 选项: `&count_private=true`
 
@@ -104,7 +129,7 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 
 ### 显示图标
 
-如果想要显示图标，你可以调用 `show_icons=true` 参数，像这样：
+如果要显示图标，你可以调用 `show_icons=true` 参数，像这样：
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -112,48 +137,147 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 
 ### 主题
 
-你可以通过现有的主题进行卡片个性化，省去[手动自定义](#自定义)的麻烦。
+通过现有的主题，你不需要[手动定义](#自定义)就能自定义卡片的外观。
 
-通过调用 `?theme=THEME_NAME` 参数，像这样：
+可以通过调用 `?theme=THEME_NAME` 参数实现，像这样：
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
 #### 所有现有主题
+ 
+GitHub readme统计有几个现有主题（例：`dark`，`radical`，`merko`，`gruvbox`，`tokyonight`，`onedark`，`cobalt`，`synthwave`，`highcontrast`，`dracula`）。
 
-dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontrast, dracula
+<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme统计卡主题" width="600px"/>
 
-<img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
+你可以预览[所有可用主题](../themes/README.md)或者检查[主题的配置文件](../themes/index.js)，如果你喜欢的话，**也可以贡献新的主题** (￣▽￣)~*
 
-你可以预览[所有可用主题](../themes/README.md)或者签出[主题配置文件](../themes/index.js), 而且如果你喜欢, **你也可以贡献新的主题** :D
+#### 响应式卡片主题
+
+[![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
+[![Anurag's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
+
+Since GitHub will re-upload the cards and serve them from their [CDN](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-anonymized-urls), we can not infer the browser/GitHub theme on the server side. There are, however, four methods you can use to create dynamics themes on the client side.
+
+ 
+##### 使用透明频道
+
+我们包含一个有透明背景的`transparent（透明）`主题。经过优化，此主题在GitHub默认的深色和浅色主题上看起来都不错。您可以使用`&theme=transparent`参数启用该主题，就像这样：
+
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=transparent)
+```
+
+<details>
+<summary>:eyes: 一些例子</summary>
+
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=transparent)
+
+</details>
+
+##### 把透明alpha通道添加给bg_color
+
+你可以用`bg_color`参数使[可用主题](./themes/README.md)透明。这是通过`bg_color`的透明alpha通道的颜色设置实现的(i.e. `bg_color=00000000`):
+
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&bg_color=00000000)
+```
+
+<details>
+<summary>:eyes: Show example</summary>
+
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&bg_color=00000000)
+
+</details>
+
+##### 用GitHub的主题背景标签
+
+你可以用[GitHub的主题背景](https://github.blog/changelog/2021-11-24-specify-theme-context-for-images-in-markdown/)标签来根据用户的GitHub主题来自动切换主题。这是通过在图片末尾的URL中追加`#gh-dark-mode-only`或`#gh-light-mode-only`来实现的。此标签将定义markdown中的指定图像仅向使用浅色或深色GitHub主题的访客显示。
+
+```md
+[![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
+[![Anurag's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
+```
+
+<details>
+<summary>:eyes: 一些例子</summary>
+
+[![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
+[![Anurag's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
+
+</details>
+
+##### 使用GitHub新的媒体特性
+
+你可以在HTML中用[GitHub新的媒体特性](https://github.blog/changelog/2022-05-19-specify-theme-context-for-images-in-markdown-beta/)来指定显示light（亮）主题或dark（暗）主题。这是使用HTML的`<picture>和`prefers-color-scheme`元素组合完成的媒体特性。
+
+```html
+<picture>
+<source
+  srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark"
+  media="(prefers-color-scheme: dark)"
+/>
+<source
+  srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true"
+  media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+/>
+<img src="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true" />
+</picture>
+```
+
+<details>
+<summary>:eyes: 一些例子</summary>
+
+<picture>
+<source
+  srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark"
+  media="(prefers-color-scheme: dark)"
+/>
+<source
+  srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true"
+  media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+/>
+<img src="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true" />
+</picture>
+
+</details>
 
 ### 自定义
 
 你可以通过使用 URL 参数的方式，为你的 `Stats Card` 或 `Repo Card` 自定义样式。
 
-常用选项：
+#### 常用选项
 
-- `title_color` - 卡片标题颜色 _（十六进制色码）_
-- `text_color` - 内容文本颜色 _（十六进制色码）_
-- `icon_color` - 图标颜色（如果可用）_（十六进制色码）_
-- `bg_color` - 卡片背景颜色 _（十六进制色码）_ **或者** 以 _angle,start,end_ 的形式渐变
-- `hide_border` - 隐藏卡的边框 _(布尔值)_
-- `theme` - 主题名称，从[所有可用主题](../themes/README.md)中选择
-- `cache_seconds` - 手动设置缓存头 _（最小值: 14400，最大值: 86400）_
-- `locale` - 在卡片中设置语言 _(例如 cn, de, es, 等等)_
+-   `title_color` - 卡片标题颜色 _（十六进制色码）_。 默认值：‘2f80ed’
+-   `text_color` - 内容文本颜色 _（十六进制色码）_。 默认值：‘434d58’。
+-   `icon_color` - 图标颜色（如果可用）_（十六进制色码）_。  默认值：‘4c71f2’。
+-   `bg_color` - 卡片背景颜色 _（十六进制色码）_ **或者** 以 _angle,start,end_ 的形式渐变。 默认值：‘fffefe’。
+-   `hide_border` - 隐藏卡的边框 _(布尔值)_。 默认值：‘false’。
+-   `theme` - 主题名称，从[所有可用主题](../themes/README.md)中选择。 默认值：‘default（默认）’主题。
+-   `cache_seconds` - 手动设置缓存头 _（最小值: 14400，最大值: 86400）_。 默认值：‘14400秒（4小时）’。
+-   `locale` - 设置卡片语言 _(例：cn，de，es等等)_。 默认：‘en（英语）’
+-   `border_radius` - 卡片圆角 默认值：‘4.5’。
+
+> **警告**
+> 我们用缓存减少服务器的负荷（见<https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>）。我们的卡片有默认四小时的缓存（14400秒）。并且，缓存的时间限制在最小4小时到最多24小时之间。
 
 ##### bg_color 渐变
 
 你可以在 bg_color 选项中提供多个逗号分隔的值来呈现渐变，渐变的格式是 :-
 
-```
-&bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
-```
+    &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 
-> 缓存的注意事项: 如果 fork 数和 star 数 少于 1k , Repo 卡片默认缓存是 4 小时 （14400 秒） ，否则是 2 小时（7200）。另请注意缓存被限制为最短 2 小时，最长 24 小时。
 
-#### 统计卡片专属选项:
+
+
+<!-- Translate temporarily stops there --><!-- Translate temporarily stops there --><!-- Translate temporarily stops there -->
+<!-- 翻译暂时到此为止 --><!-- 翻译暂时到此为止 --><!-- 翻译暂时到此为止 --><!-- 翻译暂时到此为止 --><!-- 翻译暂时到此为止 --><!-- 翻译暂时到此为止 -->
+
+
+
+
+#### 统计卡专属选项:
 
 - `hide` - 隐藏特定统计信息 _(以逗号分隔)_
 - `hide_title` - _(boolean)_
