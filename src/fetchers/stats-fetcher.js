@@ -1,5 +1,4 @@
 // @ts-check
-import axios from "axios";
 import * as dotenv from "dotenv";
 import githubUsernameRegex from "github-username-regex";
 import { calculateRank } from "../calculateRank.js";
@@ -47,6 +46,7 @@ const GRAPHQL_STATS_QUERY = `
       contributionsCollection {
         totalCommitContributions
         restrictedContributionsCount
+        contributionYears
       }
       repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
         totalCount
@@ -80,6 +80,27 @@ const fetcher = (variables, token) => {
   return request(
     {
       query,
+      variables,
+    },
+    {
+      Authorization: `bearer ${token}`,
+    },
+  );
+};
+
+const fetchYearCommits = (variables, token) => {
+  return request(
+    {
+      query: `
+      query userInfo($login: String!, $from_time: DateTime!) {
+        user(login: $login) {
+          contributionsCollection(from: $from_time) {
+            totalCommitContributions
+            restrictedContributionsCount
+          }
+        }
+      }
+      `,
       variables,
     },
     {
@@ -131,42 +152,43 @@ const statsFetcher = async (username) => {
  * Fetch all the commits for all the repositories of a given username.
  *
  * @param {*} username GitHub username.
- * @returns {Promise<number>} Total commits.
+ * @param {number[]} contributionYears Array of years for which to fetch commits.
+ * @returns {Promise<{totalPublicCommits: number, totalPrivateCommits: number}>} Total commits.
  *
- * @description Done like this because the GitHub API does not provide a way to fetch all the commits. See
- * #92#issuecomment-661026467 and #211 for more information.
+ * @description Done like this because the GitHub API does not provide a way to fetch all the commits at once. See
+ * #92#issuecomment-661026467, #211 and #564 for more information.
  */
-const totalCommitsFetcher = async (username) => {
-  if (!githubUsernameRegex.test(username)) {
-    logger.log("Invalid username");
-    return 0;
-  }
+const totalCommitsFetcher = async (username, contributionYears) => {
+  if (!githubUsernameRegex.test(username))
+    throw new CustomError("Invalid username");
 
-  // https://developer.github.com/v3/search/#search-commits
-  const fetchTotalCommits = (variables, token) => {
-    return axios({
-      method: "get",
-      url: `https://api.github.com/search/commits?q=author:${variables.login}`,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/vnd.github.cloak-preview",
-        Authorization: `token ${token}`,
-      },
-    });
+  let totalPublicCommits = 0;
+  let totalPrivateCommits = 0;
+
+  await Promise.all(
+    contributionYears.map(async (year) => {
+      const variables = {
+        login: username,
+        from_time: `${year}-01-01T00:00:00.000Z`,
+      };
+      const res = await retryer(fetchYearCommits, variables);
+      if (res.data.errors) {
+        logger.error(res.data.errors);
+        throw new CustomError(
+          "Something went while trying to retrieve the stats data using the GraphQL API.",
+          CustomError.GRAPHQL_ERROR,
+        );
+      }
+      totalPublicCommits +=
+        res.data.data.user.contributionsCollection.totalCommitContributions;
+      totalPrivateCommits +=
+        res.data.data.user.contributionsCollection.restrictedContributionsCount;
+    }),
+  );
+  return {
+    totalPublicCommits,
+    totalPrivateCommits,
   };
-
-  try {
-    let res = await retryer(fetchTotalCommits, { login: username });
-    let total_count = res.data.total_count;
-    if (!!total_count && !isNaN(total_count)) {
-      return res.data.total_count;
-    }
-  } catch (err) {
-    logger.log(err);
-  }
-  // just return 0 if there is something wrong so that
-  // we don't break the whole app
-  return 0;
 };
 
 /**
@@ -175,6 +197,7 @@ const totalCommitsFetcher = async (username) => {
  * @param {string} username GitHub username.
  * @param {boolean} count_private Include private contributions.
  * @param {boolean} include_all_commits Include all commits.
+ * @param {string[]} exclude_repo Repositories to exclude.
  * @returns {Promise<import("./types").StatsData>} Stats data.
  */
 const fetchStats = async (
@@ -235,16 +258,24 @@ const fetchStats = async (
   // normal commits
   stats.totalCommits = user.contributionsCollection.totalCommitContributions;
 
+  let privateCommits =
+    user.contributionsCollection.restrictedContributionsCount;
+
   // if include_all_commits then just get that,
   // since totalCommitsFetcher already sends totalCommits no need to +=
   if (include_all_commits) {
-    stats.totalCommits = await totalCommitsFetcher(username);
+    const { totalPublicCommits, totalPrivateCommits } =
+      await totalCommitsFetcher(
+        username,
+        user.contributionsCollection.contributionYears,
+      );
+    stats.totalCommits = totalPublicCommits;
+    privateCommits = totalPrivateCommits;
   }
 
   // if count_private then add private commits to totalCommits so far.
   if (count_private) {
-    stats.totalCommits +=
-      user.contributionsCollection.restrictedContributionsCount;
+    stats.totalCommits += privateCommits;
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
