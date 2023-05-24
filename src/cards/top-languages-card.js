@@ -700,13 +700,16 @@ const renderTopLanguages = (topLangs, options = {}) => {
   let height = calculateNormalLayoutHeight(langs.length);
 
   let finalLayout = "";
-  if (layout === "pie") {
+  const layoutParsed = Array.isArray(layout)
+    ? layout[0]?.toLocaleLowerCase()
+    : layout?.toLocaleLowerCase();
+  if (layoutParsed === "pie") {
     height = calculatePieLayoutHeight(langs.length);
     finalLayout = renderPieLayout(langs, totalLanguageSize);
-  } else if (layout === "donut-vertical") {
+  } else if (layoutParsed === "donut-vertical") {
     height = calculateDonutVerticalLayoutHeight(langs.length);
     finalLayout = renderDonutVerticalLayout(langs, totalLanguageSize);
-  } else if (layout === "compact" || hide_progress == true) {
+  } else if (layoutParsed === "compact" || hide_progress == true) {
     height =
       calculateCompactLayoutHeight(langs.length) + (hide_progress ? -25 : 0);
 
@@ -716,7 +719,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
       totalLanguageSize,
       hide_progress,
     );
-  } else if (layout?.toLowerCase() === "donut") {
+  } else if (layoutParsed === "donut") {
     height = calculateDonutLayoutHeight(langs.length);
     width = width + 50; // padding
     finalLayout = renderDonutLayout(langs, width, totalLanguageSize);
@@ -781,7 +784,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     `,
   );
 
-  if (layout === "pie" || layout === "donut-vertical") {
+  if (layoutParsed === "pie" || layoutParsed === "donut-vertical") {
     return card.render(finalLayout);
   }
 
