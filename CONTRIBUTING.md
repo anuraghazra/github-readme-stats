@@ -2,11 +2,11 @@
 
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
--   Reporting an issue
--   Discussing the current state of the code
--   Submitting a fix
--   Proposing new features
--   Becoming a maintainer
+-   Reporting [an issue](https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&template=bug_report.yml).
+-   [Discussing](https://github.com/anuraghazra/github-readme-stats/discussions) the current state of the code.
+-   Submitting [a fix](https://github.com/anuraghazra/github-readme-stats/compare).
+-   Proposing [new features](https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&template=feature_request.yml).
+-   Becoming a maintainer.
 
 ## All Changes Happen Through Pull Requests
 
@@ -33,11 +33,15 @@ _(make sure you already have a [Vercel](https://vercel.com/) account)_
 1.  Install [Vercel CLI](https://vercel.com/download).
 2.  Fork the repository and clone the code to your local machine.
 3.  Run `npm install` in the repository root.
-4.  Run the command "vercel" in the root and follow the steps there.
+4.  Run the command `vercel` in the root and follow the steps there.
 5.  Open `vercel.json` and set the maxDuration to 10.
 6.  Create a `.env` file in the root of the directory.
-7.  In the .env file add a new variable named "PAT_1" with your [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
-8.  Run the command "vercel dev" to start a development server at <https://localhost:3000>.
+7.  In the .env file add a new variable named `PAT_1` with your [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
+8.  Run the command `vercel dev` to start a development server at <https://localhost:3000>.
+9.  The cards will then be available from this local endpoint (i.e. `https://localhost:3000/api?username=anuraghazra`).
+
+> **Note**
+> You can also debug any tests using the [VSCode Jest extension](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest). For more information see https://github.com/jest-community/vscode-jest/issues/912.
 
 ## Themes Contribution
 
