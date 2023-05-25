@@ -161,7 +161,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 
 - `hide` - Verbirgt die angegebenen Sprachen von der Karte _(Komma separierte Werte)_
 - `hide_title` - _(Boolean)_
-- `layout` - Wechseln Sie zwischen den vier verfügbaren Layouts `normal` & `compact` & `donut` & `pie`
+- `layout` - Wechseln Sie zwischen den fünf verfügbaren Layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`
 - `card_width` - Lege die Breite der Karte manuell fest _(Zahl)_
 
 > :warning: **Wichtig:**

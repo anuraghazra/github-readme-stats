@@ -174,7 +174,7 @@ bg_color オプションで複数のカンマ区切りの値を指定してグ�
 
 - `hide` - 特定の言語を隠す _(カンマ区切りで指定)_
 - `hide_title` - _(boolean)_
-- `layout` - `normal` & `compact` & `donut` & `pie` のいずれかのレイアウトに切り替える
+- `layout` - `normal` & `compact` & `donut` & `donut-vertical` & `pie` のいずれかのレイアウトに切り替える
 - `card_width` - カードの横幅 _(number)_
 - `langs_count` - 表示される言語の数　_(1 ~ 10, 初期値 5)_
 - `exclude_repo` - 指定されたリポジトリを除外する _(カンマ区切りで指定)_
