@@ -90,18 +90,6 @@ Pour masquer des statistiques spécifiques, vous pouvez passer un paramètre de 
 ![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
 ```
 
-### Ajouter le compte des contributions privées au compte des commits totaux
-
-Vous pouvez ajouter le compte de toutes vos contributions privées au compte total des engagements en utilisant le paramètre de requête `?count_private=true`.
-
-_Note: Si vous déployez vous-même ce projet, les contributions privées seront comptées par défaut ; sinon, vous devez choisir de partager les comptes de vos contributions privées._
-
-> Options: `&count_private=true`
-
-```md
-![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
-```
-
 ### Afficher les icônes
 
 Pour activer les icônes, vous pouvez passer `show_icons=true` dans le paramètre de requête, comme ceci :
@@ -160,7 +148,7 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 -   `hide_rank` - Masquer le rang _(boolean)_
 -   `show_icons` - Afficher les icônes _(boolean)_
 -   `include_all_commits` - Compter le total de commits au lieu de ne compter que les commits de l'année en cours _(boolean)_
--   `count_private` - Compter les commits privés _(boolean)_
+-   `count_private` - Compter les contributions privées _(boolean)_
 -   `line_height` - Fixer la hauteur de la ligne entre les textes _(number)_
 
 #### Repo Card Exclusive Options:
