@@ -108,7 +108,7 @@ Change the `?username=` value to your GitHub username.
 ```
 
 > **Note**
-> Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone). The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories. The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js).
+> Available ranks are S+ (top 2.5%), S (top 10%), A+ (top 25%), A (top 50%), B+ (top 75%) and B (everyone). The values are calculated from the user's commits, pull requests, issues, stars and followers using a  [Exponential_distribution](https://en.wikipedia.org/wiki/Exponential_distribution). The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js).
 
 ### Hiding individual stats
 
