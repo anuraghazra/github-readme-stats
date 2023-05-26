@@ -54,6 +54,8 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">Du magst das Projekt? Wie wäre es mit einer kleinen <a href="https://www.paypal.me/anuraghazra">Spende</a> um es weiterhin am Leben zu erhalten?
@@ -128,7 +130,7 @@ Du kannst das Erscheinungsbild deiner `Stats Card` oder `Repo Card`, mithilfe vo
 - `bg_color` - Hintergrundfarbe _(hex color)_ **oder** ein Farbverlauf in der Form von _winkel,start,ende_
 - `hide_border` - Blendet den Rand der Karte aus _(Boolean)_
 - `theme` - Name des Erscheinungsbildes/Themes [alle verfügbaren Themes](../themes/README.md)
-- `cache_seconds` - manuelles festlegen der Cachezeiten _(min: 1800, max: 86400)_
+- `cache_seconds` - manuelles festlegen der Cachezeiten _(min: 14400, max: 86400)_
 - `locale` - Stellen Sie die Sprache auf der Karte ein _(z.B. cn, de, es, etc.)_
 
 ##### Farbverlauf in bg_color
@@ -159,7 +161,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 
 - `hide` - Verbirgt die angegebenen Sprachen von der Karte _(Komma separierte Werte)_
 - `hide_title` - _(Boolean)_
-- `layout` - Wechsel zwischen den zwei verfügbaren Layouts `default` & `compact`
+- `layout` - Wechseln Sie zwischen den fünf verfügbaren Layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`
 - `card_width` - Lege die Breite der Karte manuell fest _(Zahl)_
 
 > :warning: **Wichtig:**
@@ -251,18 +253,18 @@ Du kannst die `&layout=compact` Option nutzen, um das Kartendesign zu ändern.
 Ändere `?username=` in den eigenen [Wakatime](https://wakatime.com)-Benutzernamen.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Beispiel
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - Kompaktes Layout
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

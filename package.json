@@ -39,7 +39,7 @@
     "@testing-library/dom": "^8.17.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@uppercod/css-to-object": "^1.1.1",
-    "axios-mock-adapter": "^1.18.1",
+    "axios-mock-adapter": "^1.21.2",
     "color-contrast-checker": "^2.1.0",
     "hjson": "^3.2.2",
     "husky": "^8.0.0",

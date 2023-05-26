@@ -1,104 +1,72 @@
-/**
- * Calculates the probability of x taking on x or a value less than x in a normal distribution
- * with mean and standard deviation.
- *
- * @see https://stackoverflow.com/a/5263759/10629172
- *
- * @param {string} mean The mean of the normal distribution.
- * @param {number} sigma The standard deviation of the normal distribution.
- * @param {number} to The value to calculate the probability for.
- * @returns {number} Probability.
- */
-const normalcdf = (mean, sigma, to) => {
-  var z = (to - mean) / Math.sqrt(2 * sigma * sigma);
-  var t = 1 / (1 + 0.3275911 * Math.abs(z));
-  var a1 = 0.254829592;
-  var a2 = -0.284496736;
-  var a3 = 1.421413741;
-  var a4 = -1.453152027;
-  var a5 = 1.061405429;
-  var erf =
-    1 - ((((a5 * t + a4) * t + a3) * t + a2) * t + a1) * t * Math.exp(-z * z);
-  var sign = 1;
-  if (z < 0) {
-    sign = -1;
-  }
-  return (1 / 2) * (1 + sign * erf);
-};
+function expsf(x, lambda = 1) {
+  return 2 ** (-lambda * x);
+}
 
 /**
  * Calculates the users rank.
  *
- * @param {number} totalRepos Total number of repos.
- * @param {number} totalCommits Total number of commits.
- * @param {number} contributions The number of contributions.
- * @param {number} followers The number of followers.
- * @param {number} prs The number of pull requests.
- * @param {number} issues The number of issues.
- * @param {number} stargazers The number of stars.
+ * @param {object} params Parameters on which the user's rank depends.
+ * @param {boolean} params.all_commits Whether `include_all_commits` was used.
+ * @param {number} params.commits Number of commits.
+ * @param {number} params.prs The number of pull requests.
+ * @param {number} params.issues The number of issues.
+ * @param {number} params.repos Total number of repos.
+ * @param {number} params.stars The number of stars.
+ * @param {number} params.followers The number of followers.
  * @returns {{level: string, score: number}}} The users rank.
  */
-const calculateRank = ({
-  totalRepos,
-  totalCommits,
-  contributions,
-  followers,
+function calculateRank({
+  all_commits,
+  commits,
   prs,
   issues,
-  stargazers,
-}) => {
-  const COMMITS_OFFSET = 1.65;
-  const CONTRIBS_OFFSET = 1.65;
-  const ISSUES_OFFSET = 1;
-  const STARS_OFFSET = 0.75;
-  const PRS_OFFSET = 0.5;
-  const FOLLOWERS_OFFSET = 0.45;
-  const REPO_OFFSET = 1;
+  repos, // unused
+  stars,
+  followers,
+}) {
+  const COMMITS_MEAN = all_commits ? 1000 : 250,
+    COMMITS_WEIGHT = 2;
+  const PRS_MEAN = 50,
+    PRS_WEIGHT = 3;
+  const ISSUES_MEAN = 25,
+    ISSUES_WEIGHT = 1;
+  const STARS_MEAN = 250,
+    STARS_WEIGHT = 4;
+  const FOLLOWERS_MEAN = 25,
+    FOLLOWERS_WEIGHT = 1;
 
-  const ALL_OFFSETS =
-    CONTRIBS_OFFSET +
-    ISSUES_OFFSET +
-    STARS_OFFSET +
-    PRS_OFFSET +
-    FOLLOWERS_OFFSET +
-    REPO_OFFSET;
+  const TOTAL_WEIGHT =
+    COMMITS_WEIGHT +
+    PRS_WEIGHT +
+    ISSUES_WEIGHT +
+    STARS_WEIGHT +
+    FOLLOWERS_WEIGHT;
 
-  const RANK_S_VALUE = 1;
-  const RANK_DOUBLE_A_VALUE = 25;
-  const RANK_A2_VALUE = 45;
-  const RANK_A3_VALUE = 60;
-  const RANK_B_VALUE = 100;
+  const rank =
+    (COMMITS_WEIGHT * expsf(commits, 1 / COMMITS_MEAN) +
+      PRS_WEIGHT * expsf(prs, 1 / PRS_MEAN) +
+      ISSUES_WEIGHT * expsf(issues, 1 / ISSUES_MEAN) +
+      STARS_WEIGHT * expsf(stars, 1 / STARS_MEAN) +
+      FOLLOWERS_WEIGHT * expsf(followers, 1 / FOLLOWERS_MEAN)) /
+    TOTAL_WEIGHT;
 
-  const TOTAL_VALUES =
-    RANK_S_VALUE +
-    RANK_DOUBLE_A_VALUE +
-    RANK_A2_VALUE +
-    RANK_A3_VALUE +
-    RANK_B_VALUE;
-
-  // prettier-ignore
-  const score = (
-    totalCommits * COMMITS_OFFSET +
-    contributions * CONTRIBS_OFFSET +
-    issues * ISSUES_OFFSET +
-    stargazers * STARS_OFFSET +
-    prs * PRS_OFFSET +
-    followers * FOLLOWERS_OFFSET +
-    totalRepos * REPO_OFFSET
-  ) / 100;
-
-  const normalizedScore = normalcdf(score, TOTAL_VALUES, ALL_OFFSETS) * 100;
+  const RANK_S_PLUS = 0.025;
+  const RANK_S = 0.1;
+  const RANK_A_PLUS = 0.25;
+  const RANK_A = 0.5;
+  const RANK_B_PLUS = 0.75;
 
   const level = (() => {
-    if (normalizedScore < RANK_S_VALUE) return "S+";
-    if (normalizedScore < RANK_DOUBLE_A_VALUE) return "S";
-    if (normalizedScore < RANK_A2_VALUE) return "A++";
-    if (normalizedScore < RANK_A3_VALUE) return "A+";
-    return "B+";
+    if (rank <= RANK_S_PLUS) return "S+";
+    if (rank <= RANK_S) return "S";
+    if (rank <= RANK_A_PLUS) return "A+";
+    if (rank <= RANK_A) return "A";
+    if (rank <= RANK_B_PLUS) return "B+";
+    return "B";
   })();
 
-  return { level, score: normalizedScore };
-};
+  return { level, score: rank * 100 };
+}
 
 export { calculateRank };
 export default calculateRank;

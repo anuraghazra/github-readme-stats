@@ -55,13 +55,28 @@ describe("Test Render Wakatime Card", () => {
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
   });
 
-  it('should show "no coding activitiy this week" message when there hasn not been activity', () => {
+  it('should show "no coding activity this week" message when there has not been activity', () => {
     document.body.innerHTML = renderWakatimeCard(
       {
         ...wakaTimeData.data,
         languages: undefined,
       },
       {},
+    );
+    expect(document.querySelector(".stat").textContent).toBe(
+      "No coding activity this week",
+    );
+  });
+
+  it('should show "no coding activity this week" message when using compact layout and there has not been activity', () => {
+    document.body.innerHTML = renderWakatimeCard(
+      {
+        ...wakaTimeData.data,
+        languages: undefined,
+      },
+      {
+        layout: "compact",
+      },
     );
     expect(document.querySelector(".stat").textContent).toBe(
       "No coding activity this week",
