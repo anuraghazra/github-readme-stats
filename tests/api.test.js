@@ -12,17 +12,18 @@ const stats = {
   totalCommits: 200,
   totalIssues: 300,
   totalPRs: 400,
-  contributedTo: 500,
+  contributedTo: 50,
   rank: null,
 };
+
 stats.rank = calculateRank({
-  totalCommits: stats.totalCommits,
-  totalRepos: 1,
-  followers: 0,
-  contributions: stats.contributedTo,
-  stargazers: stats.totalStars,
+  all_commits: false,
+  commits: stats.totalCommits,
   prs: stats.totalPRs,
   issues: stats.totalIssues,
+  repos: 1,
+  stars: stats.totalStars,
+  followers: 0,
 });
 
 const data_stats = {
@@ -227,38 +228,6 @@ describe("Test /api/", () => {
         ],
       ]);
     }
-  });
-
-  it("should add private contributions", async () => {
-    const { req, res } = faker(
-      {
-        username: "anuraghazra",
-        count_private: true,
-      },
-      data_stats,
-    );
-
-    await api(req, res);
-
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
-      renderStatsCard(
-        {
-          ...stats,
-          totalCommits: stats.totalCommits + 100,
-          rank: calculateRank({
-            totalCommits: stats.totalCommits + 100,
-            totalRepos: 1,
-            followers: 0,
-            contributions: stats.contributedTo,
-            stargazers: stats.totalStars,
-            prs: stats.totalPRs,
-            issues: stats.totalIssues,
-          }),
-        },
-        {},
-      ),
-    );
   });
 
   it("should allow changing ring_color", async () => {
