@@ -658,11 +658,13 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
 /**
  * Creates the no coding activity SVG node.
  *
- * @param {{color: string, text: string}} The function prop
+ * @param {{color: string, text: string, layout: import("./types").TopLangOptions["layout"]}} The function prop
  */
-const noLanguagesDataNode = ({ color, text }) => {
+const noLanguagesDataNode = ({ color, text, layout }) => {
   return `
-    <text x="25" y="11" class="stat bold" fill="${color}">${text}</text>
+    <text x="${
+      layout === "pie" || layout === "donut-vertical" ? CARD_PADDING : 0
+    }" y="11" class="stat bold" fill="${color}">${text}</text>
   `;
 };
 
@@ -726,6 +728,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     finalLayout = noLanguagesDataNode({
       color: colors.textColor,
       text: i18n.t("langcard.nodata"),
+      layout,
     });
   } else if (layout === "pie") {
     height = calculatePieLayoutHeight(langs.length);
