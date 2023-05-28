@@ -17,6 +17,7 @@ const MIN_CARD_WIDTH = 280;
 const DEFAULT_LANGS_COUNT = 5;
 const DEFAULT_LANG_COLOR = "#858585";
 const CARD_PADDING = 25;
+const COMPACT_LAYOUT_BASE_HEIGHT = 90;
 
 /**
  * @typedef {import("../fetchers/types").Lang} Lang
@@ -101,7 +102,7 @@ const getCircleLength = (radius) => {
  * @returns {number} Card height.
  */
 const calculateCompactLayoutHeight = (totalLangs) => {
-  return 90 + Math.round(totalLangs / 2) * 25;
+  return COMPACT_LAYOUT_BASE_HEIGHT + Math.round(totalLangs / 2) * 25;
 };
 
 /**
@@ -655,6 +656,17 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
 };
 
 /**
+ * Creates the no coding activity SVG node.
+ *
+ * @param {{color: string, text: string}} The function prop
+ */
+const noLanguagesDataNode = ({ color, text }) => {
+  return `
+    <text x="25" y="11" class="stat bold" fill="${color}">${text}</text>
+  `;
+};
+
+/**
  * Renders card that display user's most frequently used programming languages.
  *
  * @param {import('../fetchers/types').TopLangData} topLangs User's most frequently used programming languages.
@@ -700,7 +712,13 @@ const renderTopLanguages = (topLangs, options = {}) => {
   let height = calculateNormalLayoutHeight(langs.length);
 
   let finalLayout = "";
-  if (layout === "pie") {
+  if (langs.length === 0) {
+    height = COMPACT_LAYOUT_BASE_HEIGHT;
+    finalLayout = noLanguagesDataNode({
+      color: text_color,
+      text: i18n.t("langcard.nodata"),
+    });
+  } else if (layout === "pie") {
     height = calculatePieLayoutHeight(langs.length);
     finalLayout = renderPieLayout(langs, totalLanguageSize);
   } else if (layout === "donut-vertical") {
