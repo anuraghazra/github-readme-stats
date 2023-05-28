@@ -17,7 +17,6 @@ const MIN_CARD_WIDTH = 280;
 const DEFAULT_LANGS_COUNT = 5;
 const DEFAULT_LANG_COLOR = "#858585";
 const CARD_PADDING = 25;
-const COMPACT_LAYOUT_BASE_HEIGHT = 90;
 
 /**
  * @typedef {import("../fetchers/types").Lang} Lang
@@ -102,7 +101,7 @@ const getCircleLength = (radius) => {
  * @returns {number} Card height.
  */
 const calculateCompactLayoutHeight = (totalLangs) => {
-  return COMPACT_LAYOUT_BASE_HEIGHT + Math.round(totalLangs / 2) * 25;
+  return 90 + Math.round(totalLangs / 2) * 25;
 };
 
 /**
@@ -722,10 +721,15 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   let finalLayout = "";
   if (langs.length === 0) {
-    height = COMPACT_LAYOUT_BASE_HEIGHT;
+    height = 110;
+    const noDataText = i18n.t("langcard.nodata");
+    const noDataModifiedText = `<tspan>${noDataText.slice(
+      0,
+      45,
+    )}</tspan><tspan x="25" dy="15">${noDataText.slice(45)}</tspan>`;
     finalLayout = noLanguagesDataNode({
       color: colors.textColor,
-      text: i18n.t("langcard.nodata"),
+      text: noDataModifiedText,
     });
   } else if (layout === "pie") {
     height = calculatePieLayoutHeight(langs.length);
