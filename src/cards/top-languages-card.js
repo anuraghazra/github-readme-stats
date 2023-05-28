@@ -711,11 +711,20 @@ const renderTopLanguages = (topLangs, options = {}) => {
     : card_width;
   let height = calculateNormalLayoutHeight(langs.length);
 
+  // returns theme based colors with proper overrides and defaults
+  const colors = getCardColors({
+    title_color,
+    text_color,
+    bg_color,
+    border_color,
+    theme,
+  });
+
   let finalLayout = "";
   if (langs.length === 0) {
     height = COMPACT_LAYOUT_BASE_HEIGHT;
     finalLayout = noLanguagesDataNode({
-      color: text_color,
+      color: colors.textColor,
       text: i18n.t("langcard.nodata"),
     });
   } else if (layout === "pie") {
@@ -741,15 +750,6 @@ const renderTopLanguages = (topLangs, options = {}) => {
   } else {
     finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
   }
-
-  // returns theme based colors with proper overrides and defaults
-  const colors = getCardColors({
-    title_color,
-    text_color,
-    bg_color,
-    border_color,
-    theme,
-  });
 
   const card = new Card({
     customTitle: custom_title,
