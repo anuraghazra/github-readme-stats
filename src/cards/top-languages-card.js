@@ -722,14 +722,14 @@ const renderTopLanguages = (topLangs, options = {}) => {
   let finalLayout = "";
   if (langs.length === 0) {
     height = 110;
-    const noDataText = i18n.t("langcard.nodata");
-    const noDataModifiedText = `<tspan>${noDataText.slice(
-      0,
-      45,
-    )}</tspan><tspan x="25" dy="15">${noDataText.slice(45)}</tspan>`;
+    const noLanguagesDataText = `<tspan>${i18n.t(
+      "langcard.nodata",
+    )}</tspan><tspan x="25" dy="15">${i18n.t(
+      "langcard.nopublicrepos",
+    )}</tspan>`;
     finalLayout = noLanguagesDataNode({
       color: colors.textColor,
-      text: noDataModifiedText,
+      text: noLanguagesDataText,
     });
   } else if (layout === "pie") {
     height = calculatePieLayoutHeight(langs.length);
