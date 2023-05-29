@@ -53,6 +53,8 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">Se ti piace questo progetto, considera la possibilità di <a href="https://www.paypal.me/anuraghazra">donare</a> per aiutare a renderlo migliore!
@@ -138,7 +140,7 @@ Puoi personalizzare l'aspetto delle tue `Stats Card` o delle `Repo Card` in qual
 - `bg_color` - Colore dello sfondo _(in esadecimale)_ **oppure** un gradiente nella forma _angolo,inizio,fine_
 - `hide_border` - Nasconde il bordo della carta _(booleano)_
 - `theme` - Nome del tema, dai un'occhiata a [tutti i temi disponibili](../themes/README.md)
-- `cache_seconds` - Specifica manualmente il valore di cache, in secondi _(min: 1800, max: 86400)_
+- `cache_seconds` - Specifica manualmente il valore di cache, in secondi _(min: 14400, max: 86400)_
 - `locale` - Impostare la lingua nella scheda _(per esempio. cn, de, es, eccetera.)_
 
 ##### Gradiente nello sfondo
@@ -169,7 +171,7 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 
 - `hide` - Nasconde un linguaggio specifico _(valori separati da virgola)_
 - `hide_title` - Nasconde il titolo _(booleano)_
-- `layout` - Specifica il tipo di layout, `default` (esteso) o `compact` (compatto)
+- `layout` - Specificare il tipo di layout, `normal` (esteso), `compact` (compatto), `donut` (ciambella), `donut-vertical` (ciambella verticale) e `pie` (torta)
 - `card_width` - Specifica il valore della larghezza _(numero)_
 
 > :warning: **Importante:**
@@ -288,7 +290,7 @@ Scegli uno dei [temi di default](#themes)
 
 Per allineare le card una accanto all'altra, puoi adottare questo approccio:
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>

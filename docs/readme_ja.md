@@ -53,6 +53,8 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">このプロジェクトを気に入っていただけましたか？<br>もしよろしければ、プロジェクトのさらなる改善のために<a href="https://www.paypal.me/anuraghazra">寄付</a>を検討して頂けると嬉しいです！</p>
@@ -139,7 +141,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `bg_color` - 背景の色 _(16 進数カラーコード)_ **または** _angle,start,end_ の形式でグラデーションを指定することも可
 - `hide_border` - カードの境界線を非表示にします _(ブール値)_
 - `theme` - [使用可能なテーマ一覧](../themes/README.md) から選んだテーマ名
-- `cache_seconds` - キャッシュ時間の秒数 _(最小値: 1800, 最大値: 86400)_
+- `cache_seconds` - キャッシュ時間の秒数 _(最小値: 14400, 最大値: 86400)_
 - `locale` - カードに言語を設定する _(例えば cn, de, es, 等)_
 
 ##### bg_color の グラデーション指定
@@ -172,7 +174,7 @@ bg_color オプションで複数のカンマ区切りの値を指定してグ�
 
 - `hide` - 特定の言語を隠す _(カンマ区切りで指定)_
 - `hide_title` - _(boolean)_
-- `layout` - `default` か `compact` のいずれかのレイアウトに切り替える
+- `layout` - `normal` & `compact` & `donut` & `donut-vertical` & `pie` のいずれかのレイアウトに切り替える
 - `card_width` - カードの横幅 _(number)_
 - `langs_count` - 表示される言語の数　_(1 ~ 10, 初期値 5)_
 - `exclude_repo` - 指定されたリポジトリを除外する _(カンマ区切りで指定)_
@@ -296,7 +298,7 @@ _NOTE: Top languages は、ユーザのスキルレベルを示すものでは�
 
 通常、画像を並べてレイアウトすることはできません。画像を並べるには、以下のような方法があります。
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
