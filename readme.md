@@ -108,7 +108,7 @@ Change the `?username=` value to your GitHub username.
 ```
 
 > **Note**
-> Available ranks are S+ (top 2.5%), S (top 10%), A+ (top 25%), A (top 50%), B+ (top 75%) and B (everyone). The rank is a weighted sum of ranks for each statistic (number of commits, pull requests, issues, stars and followers) based on the cumulative distribution function of an [exponential distribution](https://wikipedia.org/wiki/exponential_distribution). The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js). The circle around the rank shows the rank completion percentage compared to the maximum rank.
+> Available ranks are S+ (top 2.5%), S (top 10%), A+ (top 25%), A (top 50%), B+ (top 75%) and B (everyone). This ranking scheme is based on the [Japanese Academic Grading system](https://en.wikipedia.org/wiki/Academic_grading_in_Japan). It is calculated as a weighted sum of ranks for each statistic (number of commits, pull requests, issues, stars and followers) based on the cumulative distribution function of an [exponential distribution](https://wikipedia.org/wiki/exponential_distribution). The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js). The circle around the rank shows the rank completion percentage compared to the maximum rank.
 
 ### Hiding individual stats
 
