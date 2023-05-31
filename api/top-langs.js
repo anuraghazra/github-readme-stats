@@ -36,6 +36,37 @@ export default async (req, res) => {
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
+  const queriesName = [
+    "username",
+    "hide",
+    "hide_title",
+    "hide_border",
+    "card_width",
+    "title_color",
+    "text_color",
+    "bg_color",
+    "theme",
+    "cache_seconds",
+    "layout",
+    "langs_count",
+    "exclude_repo",
+    "size_weight",
+    "count_weight",
+    "custom_title",
+    "locale",
+    "border_radius",
+    "border_color",
+    "disable_animations",
+    "hide_progress",
+  ];
+
+  for (let [_, value] of Object.entries(req.query)) {
+    queriesName.map((name) => {
+      if (value.toString().includes(name))
+        return res.send(renderError("Something went wrong", "Invalid query"));
+    });
+  }
+
   if (blacklist.includes(username)) {
     return res.send(renderError("Something went wrong"));
   }
