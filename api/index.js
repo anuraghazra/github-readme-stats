@@ -37,6 +37,7 @@ export default async (req, res) => {
     border_radius,
     number_format,
     border_color,
+    role,
     rank_icon,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
@@ -55,6 +56,7 @@ export default async (req, res) => {
       parseBoolean(count_private),
       parseBoolean(include_all_commits),
       parseArray(exclude_repo),
+      parseArray(role),
     );
 
     const cacheSeconds = clampValue(

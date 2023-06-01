@@ -6,6 +6,7 @@ import {
   MissingParamError,
   request,
   wrapTextMultiline,
+  parseOwnerAffiliations,
 } from "../common/utils.js";
 
 /**
@@ -19,10 +20,10 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!, $ownerAffiliations: [RepositoryAffiliation]) {
         user(login: $login) {
-          # fetch only owner repos & not forks
-          repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
+          # do not fetch forks
+          repositories(ownerAffiliations: $ownerAffiliations, isFork: false, first: 100) {
             nodes {
               name
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
@@ -51,7 +52,8 @@ const fetcher = (variables, token) => {
  * Fetch top languages for a given username.
  *
  * @param {string} username GitHub username.
- * @param {string[]} exclude_repo List of repositories to exclude.
+ * @param {string[]} exclude_repo List of repositories to exclude. Default: [].
+ * @param {string[]} ownerAffiliations The owner affiliations to filter by. Default: OWNER.
  * @returns {Promise<import("./types").TopLangData>} Top languages data.
  */
 const fetchTopLanguages = async (
@@ -59,10 +61,12 @@ const fetchTopLanguages = async (
   exclude_repo = [],
   size_weight = 1,
   count_weight = 0,
+  ownerAffiliations = [],
 ) => {
   if (!username) throw new MissingParamError(["username"]);
+  ownerAffiliations = parseOwnerAffiliations(ownerAffiliations);
 
-  const res = await retryer(fetcher, { login: username });
+  const res = await retryer(fetcher, { login: username, ownerAffiliations });
 
   if (res.data.errors) {
     logger.error(res.data.errors);
