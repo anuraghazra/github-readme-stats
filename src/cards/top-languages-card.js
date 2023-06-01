@@ -17,6 +17,7 @@ const MIN_CARD_WIDTH = 280;
 const DEFAULT_LANGS_COUNT = 5;
 const DEFAULT_LANG_COLOR = "#858585";
 const CARD_PADDING = 25;
+const COMPACT_LAYOUT_BASE_HEIGHT = 90;
 
 /**
  * @typedef {import("../fetchers/types").Lang} Lang
@@ -101,7 +102,7 @@ const getCircleLength = (radius) => {
  * @returns {number} Card height.
  */
 const calculateCompactLayoutHeight = (totalLangs) => {
-  return 90 + Math.round(totalLangs / 2) * 25;
+  return COMPACT_LAYOUT_BASE_HEIGHT + Math.round(totalLangs / 2) * 25;
 };
 
 /**
@@ -655,6 +656,19 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
 };
 
 /**
+ * Creates the no coding activity SVG node.
+ *
+ * @param {{color: string, text: string, layout: import("./types").TopLangOptions["layout"]}} The function prop
+ */
+const noLanguagesDataNode = ({ color, text, layout }) => {
+  return `
+    <text x="${
+      layout === "pie" || layout === "donut-vertical" ? CARD_PADDING : 0
+    }" y="11" class="stat bold" fill="${color}">${text}</text>
+  `;
+};
+
+/**
  * Renders card that display user's most frequently used programming languages.
  *
  * @param {import('../fetchers/types').TopLangData} topLangs User's most frequently used programming languages.
@@ -699,8 +713,24 @@ const renderTopLanguages = (topLangs, options = {}) => {
     : card_width;
   let height = calculateNormalLayoutHeight(langs.length);
 
+  // returns theme based colors with proper overrides and defaults
+  const colors = getCardColors({
+    title_color,
+    text_color,
+    bg_color,
+    border_color,
+    theme,
+  });
+
   let finalLayout = "";
-  if (layout === "pie") {
+  if (langs.length === 0) {
+    height = COMPACT_LAYOUT_BASE_HEIGHT;
+    finalLayout = noLanguagesDataNode({
+      color: colors.textColor,
+      text: i18n.t("langcard.nodata"),
+      layout,
+    });
+  } else if (layout === "pie") {
     height = calculatePieLayoutHeight(langs.length);
     finalLayout = renderPieLayout(langs, totalLanguageSize);
   } else if (layout === "donut-vertical") {
@@ -723,15 +753,6 @@ const renderTopLanguages = (topLangs, options = {}) => {
   } else {
     finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
   }
-
-  // returns theme based colors with proper overrides and defaults
-  const colors = getCardColors({
-    title_color,
-    text_color,
-    bg_color,
-    border_color,
-    theme,
-  });
 
   const card = new Card({
     customTitle: custom_title,
@@ -764,6 +785,14 @@ const renderTopLanguages = (topLangs, options = {}) => {
         width: 100%;
       }
     }
+    .stat {
+      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${colors.textColor};
+    }
+    @supports(-moz-appearance: auto) {
+      /* Selector detects Firefox */
+      .stat { font-size:12px; }
+    }
+    .bold { font-weight: 700 }
     .lang-name {
       font: 400 11px "Segoe UI", Ubuntu, Sans-Serif;
       fill: ${colors.textColor};
