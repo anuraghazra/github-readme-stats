@@ -279,7 +279,11 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
           : noCodingActivityNode({
               // @ts-ignore
               color: textColor,
-              text: i18n.t("wakatimecard.nocodingactivity"),
+              text: !stats.is_coding_activity_visible
+                ? i18n.t("wakatimecard.notpublic")
+                : stats.is_other_usage_visible
+                ? i18n.t("wakatimecard.nocodingactivity")
+                : i18n.t("wakatimecard.nocodedetails"),
             })
       }
     `;
@@ -304,7 +308,11 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
             noCodingActivityNode({
               // @ts-ignore
               color: textColor,
-              text: i18n.t("wakatimecard.nocodingactivity"),
+              text: !stats.is_coding_activity_visible
+                ? i18n.t("wakatimecard.notpublic")
+                : stats.is_other_usage_visible
+                ? i18n.t("wakatimecard.nocodingactivity")
+                : i18n.t("wakatimecard.nocodedetails"),
             }),
           ],
       gap: lheight,
@@ -312,9 +320,20 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     }).join("");
   }
 
+  // Get title range text
+  let titleText = i18n.t("wakatimecard.title");
+  switch (stats.range) {
+    case "last_7_days":
+      titleText += ` (${i18n.t("wakatimecard.last7days")})`;
+      break;
+    case "last_year":
+      titleText += ` (${i18n.t("wakatimecard.lastyear")})`;
+      break;
+  }
+
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: i18n.t("wakatimecard.title"),
+    defaultTitle: titleText,
     width: 495,
     height,
     border_radius,

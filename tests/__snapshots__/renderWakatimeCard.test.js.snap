@@ -123,7 +123,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
         y="0"
         class="header"
         data-testid="header"
-      >Wakatime Stats</text>
+      >Wakatime Stats (last 7 days)</text>
     </g>
       </g>
     
@@ -303,7 +303,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
         y="0"
         class="header"
         data-testid="header"
-      >Wakatime Stats</text>
+      >Wakatime Stats (last 7 days)</text>
     </g>
       </g>
     

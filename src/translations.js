@@ -356,6 +356,22 @@ const wakatimeCardLocales = {
     vi: "Thống Kê Wakatime",
     se: "Wakatime statistik",
   },
+  "wakatimecard.lastyear": {
+    en: "last year",
+    cn: "去年",
+  },
+  "wakatimecard.last7days": {
+    en: "last 7 days",
+    cn: "最近 7 天",
+  },
+  "wakatimecard.notpublic": {
+    en: "Wakatime user profile not public",
+    cn: "Wakatime 用户个人资料未公开",
+  },
+  "wakatimecard.nocodedetails": {
+    en: "User doesn't publicly share detailed code statistics",
+    cn: "用户不公开分享详细的代码统计信息",
+  },
   "wakatimecard.nocodingactivity": {
     ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
     cn: "本周没有编程活动",

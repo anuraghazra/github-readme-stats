@@ -54,7 +54,7 @@ const WAKATIME_DATA = {
   is_up_to_date: false,
   is_up_to_date_pending_future: false,
   percent_calculated: 0,
-  range: "last_7_days",
+  range: "all_time",
   status: "pending_update",
   timeout: 15,
   username: USER,
