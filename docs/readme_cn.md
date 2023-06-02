@@ -59,6 +59,25 @@
 </p>
 <p align="center">喜欢这个项目？请考虑<a href="https://www.paypal.me/anuraghazra">捐赠</a>来帮助它完善！
 
+ 
+
+<p>
+<a href="https://indiafightscorona.giveindia.org">
+<img src="https://d2wvdrxmr8p0wf.cloudfront.net/static/giveindia.svg" alt="Give india logo" width="200" />
+</a>
+
+你是否考虑通过捐款给我来支持这个项目？慢着！
+
+请考虑通过捐款帮助印度抗击第二轮致命的新冠疫情，
+
+ 在印度，成千上万的人因缺少氧气和必要的医疗基础设施而死。
+
+请访问[https://indiafightscorona.giveindia.org](https://indiafightscorona.giveindia.org)并为抗击新冠肺炎和客服这场危机捐款。   
+ 
+你的一点善意会帮到很多人。 :heart:
+</p>
+
+
 # 特性
 
 - [GitHub 统计卡片](#GitHub-统计卡片)
