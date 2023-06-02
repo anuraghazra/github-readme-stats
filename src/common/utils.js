@@ -305,6 +305,7 @@ const SECONDARY_ERROR_MESSAGES = {
     "Please add an env variable called PAT_1 with your github token in vercel",
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
   GRAPHQL_ERROR: "Please try again later",
+  WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
 };
 
 /**
@@ -324,6 +325,7 @@ class CustomError extends Error {
   static MAX_RETRY = "MAX_RETRY";
   static USER_NOT_FOUND = "USER_NOT_FOUND";
   static GRAPHQL_ERROR = "GRAPHQL_ERROR";
+  static WAKATIME_ERROR = "WAKATIME_ERROR";
 }
 
 /**
