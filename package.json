@@ -45,11 +45,12 @@
     "husky": "^8.0.0",
     "jest": "^29.0.3",
     "jest-environment-jsdom": "^29.0.3",
+    "jest-svg-snapshot": "^0.1.0",
     "js-yaml": "^4.1.0",
     "lint-staged": "^13.0.3",
     "lodash.snakecase": "^4.1.1",
     "parse-diff": "^0.7.0",
-    "prettier": "^2.1.2"
+    "prettier": "^2.8.3"
   },
   "dependencies": {
     "axios": "^0.24.0",

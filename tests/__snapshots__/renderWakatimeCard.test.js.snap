@@ -34,10 +34,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
       /* Selector detects Firefox */
       .stat { font-size:12px; }
     }
-    .stagger {
-      opacity: 0;
-      animation: fadeInAnimation 0.3s ease-in-out forwards;
-    }
+    
     .rank-text {
       font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58;
       animation: scaleInAnimation 0.3s ease-in-out forwards;
@@ -214,10 +211,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
       /* Selector detects Firefox */
       .stat { font-size:12px; }
     }
-    .stagger {
-      opacity: 0;
-      animation: fadeInAnimation 0.3s ease-in-out forwards;
-    }
+    
     .rank-text {
       font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58;
       animation: scaleInAnimation 0.3s ease-in-out forwards;

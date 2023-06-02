@@ -43,6 +43,11 @@ const getProgressAnimation = ({ progress }) => {
 const getAnimations = () => {
   return `
     /* Animations */
+    .stagger {
+      opacity: 0;
+      animation: fadeInAnimation 0.3s ease-in-out forwards;
+    }
+    
     @keyframes scaleInAnimation {
       from {
         transform: translate(-5px, 5px) scale(0);
@@ -90,10 +95,7 @@ const getStyles = ({
       /* Selector detects Firefox */
       .stat { font-size:12px; }
     }
-    .stagger {
-      opacity: 0;
-      animation: fadeInAnimation 0.3s ease-in-out forwards;
-    }
+    
     .rank-text {
       font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor};
       animation: scaleInAnimation 0.3s ease-in-out forwards;
