@@ -817,4 +817,11 @@ describe("Test renderTopLanguages", () => {
       options.langs_count,
     );
   });
+
+  it('should show "No languages data." message instead of empty card when nothing to show', () => {
+    document.body.innerHTML = renderTopLanguages({});
+    expect(document.querySelector(".stat").textContent).toBe(
+      "No languages data.",
+    );
+  });
 });
