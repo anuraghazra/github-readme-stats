@@ -797,7 +797,7 @@ describe("Test renderTopLanguages", () => {
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
   });
 
-  it("should render langs with specified langs_count", async () => {
+  it("should render langs with specified langs_count", () => {
     const options = {
       langs_count: 1,
     };
@@ -807,7 +807,7 @@ describe("Test renderTopLanguages", () => {
     );
   });
 
-  it("should render langs with specified langs_count even when hide is set", async () => {
+  it("should render langs with specified langs_count even when hide is set", () => {
     const options = {
       hide: ["HTML"],
       langs_count: 2,
