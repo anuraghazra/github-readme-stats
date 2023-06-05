@@ -746,7 +746,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
       totalLanguageSize,
       hide_progress,
     );
-  } else if (layout?.toLowerCase() === "donut") {
+  } else if (layout === "donut") {
     height = calculateDonutLayoutHeight(langs.length);
     width = width + 50; // padding
     finalLayout = renderDonutLayout(langs, width, totalLanguageSize);
