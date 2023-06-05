@@ -423,6 +423,13 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  beetle: {
+    title_color: "35CE8D",
+    text_color: "6BA292",
+    icon_color: "232C33",
+    border_color: "BCD8B7",
+    bg_color: "232C33",
+  },
 };
 
 export default themes;
