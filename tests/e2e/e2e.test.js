@@ -20,10 +20,7 @@ const STATS_DATA = {
   totalIssues: 1,
   totalStars: 1,
   contributedTo: 1,
-  rank: {
-    level: "A+",
-    score: 50.88831151384285,
-  },
+  rank: { level: "B", score: 98.50610674501908 },
 };
 
 const LANGS_DATA = {
@@ -54,7 +51,7 @@ const WAKATIME_DATA = {
   is_up_to_date: false,
   is_up_to_date_pending_future: false,
   percent_calculated: 0,
-  range: "last_7_days",
+  range: "all_time",
   status: "pending_update",
   timeout: 15,
   username: USER,
