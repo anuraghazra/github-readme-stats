@@ -52,6 +52,7 @@ const fetcher = (variables, token) => {
  *
  * @param {string} username GitHub username.
  * @param {string[]} exclude_repo List of repositories to exclude.
+ * @param {string} base64_custom_repo '[{repo_name:"test",repo_lang:"YAML",color:"#6d8ead",size: 0}]'
  * @returns {Promise<import("./types").TopLangData>} Top languages data.
  */
 const fetchTopLanguages = async (
@@ -59,6 +60,7 @@ const fetchTopLanguages = async (
   exclude_repo = [],
   size_weight = 1,
   count_weight = 0,
+  base64_custom_repo = "W10=",
 ) => {
   if (!username) throw new MissingParamError(["username"]);
 
@@ -92,6 +94,24 @@ const fetchTopLanguages = async (
 
   let repoNodes = res.data.data.user.repositories.nodes;
   let repoToHide = {};
+
+  let custom_repo_json = [];
+  custom_repo_json = JSON.parse(
+    Buffer.from(base64_custom_repo, "base64").toString(),
+  );
+
+  custom_repo_json.forEach((repo) => {
+    repoNodes
+      .filter((node) => node.name == repo.repo_name)
+      .filter((node) => {
+        node.languages.edges = [
+          {
+            size: repo.size,
+            node: { color: repo.color, name: repo.repo_lang },
+          },
+        ];
+      });
+  });
 
   // populate repoToHide map for quick lookup
   // while filtering out
