@@ -426,7 +426,7 @@ export const themes = {
   beetle: {
     title_color: "FFFFFF",
     text_color: "FFFFFF",
-    icon_color: "232C33",
+    icon_color: "FFFFFF",
     border_color: "BCD8B7",
     bg_color: "3B543B",
   },
