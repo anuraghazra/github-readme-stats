@@ -1,3 +1,10 @@
+これはWalnuts1018向けに、任意の言語を統計情報に追加できるようにしたバージョンです
+
+```bash
+echo -n '[{ "repo_name":"infra","repo_lang":"Kubernetes Manifests","color":"#175ce8","size":1062719}]'|base64
+# add &base64_custom_repo=
+```
+
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
