@@ -14,10 +14,15 @@ import { langCardLocales } from "../translations.js";
 
 const DEFAULT_CARD_WIDTH = 300;
 const MIN_CARD_WIDTH = 280;
-const DEFAULT_LANGS_COUNT = 5;
 const DEFAULT_LANG_COLOR = "#858585";
 const CARD_PADDING = 25;
 const COMPACT_LAYOUT_BASE_HEIGHT = 90;
+
+const NORMAL_LAYOUT_DEFAULT_LANGS_COUNT = 5;
+const COMPACT_LAYOUT_DEFAULT_LANGS_COUNT = 6;
+const DONUT_LAYOUT_DEFAULT_LANGS_COUNT = 5;
+const PIE_LAYOUT_DEFAULT_LANGS_COUNT = 6;
+const DONUT_VERTICAL_LAYOUT_DEFAULT_LANGS_COUNT = 6;
 
 /**
  * @typedef {import("../fetchers/types").Lang} Lang
@@ -669,6 +674,26 @@ const noLanguagesDataNode = ({ color, text, layout }) => {
 };
 
 /**
+ * Get default languages count for provided card layout.
+ *
+ * @param {import("./types").TopLangOptions["layout"] | undefined} layout Input layout string
+ * @return {number} Default languages count for input layout
+ */
+const getDefaultLanguagesCountByLayout = (layout) => {
+  if (layout === "compact") {
+    return COMPACT_LAYOUT_DEFAULT_LANGS_COUNT;
+  } else if (layout === "donut") {
+    return DONUT_LAYOUT_DEFAULT_LANGS_COUNT;
+  } else if (layout === "donut-vertical") {
+    return DONUT_VERTICAL_LAYOUT_DEFAULT_LANGS_COUNT;
+  } else if (layout === "pie") {
+    return PIE_LAYOUT_DEFAULT_LANGS_COUNT;
+  } else {
+    return NORMAL_LAYOUT_DEFAULT_LANGS_COUNT;
+  }
+};
+
+/**
  * Renders card that display user's most frequently used programming languages.
  *
  * @param {import('../fetchers/types').TopLangData} topLangs User's most frequently used programming languages.
@@ -689,7 +714,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     layout,
     custom_title,
     locale,
-    langs_count = DEFAULT_LANGS_COUNT,
+    langs_count = getDefaultLanguagesCountByLayout(layout),
     border_radius,
     border_color,
     disable_animations,
@@ -837,4 +862,5 @@ export {
   trimTopLanguages,
   renderTopLanguages,
   MIN_CARD_WIDTH,
+  getDefaultLanguagesCountByLayout,
 };
