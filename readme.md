@@ -69,12 +69,15 @@
   <img src="https://cfstatic.give.do/logo.png" alt="Give india logo" width="200" />
 </a>
 
-Are you considering supporting the project by donating? Please DO NOT!!
+Are you considering supporting the project by donating to me? Please DO NOT!!
 
-Instead, Help India fight the second deadly wave of COVID-19.
-Thousands of people are dying in India because of a lack of Oxygen & also COVID-related infrastructure.
 
-Visit <https://indiafightscorona.giveindia.org> and make a small donation to help us fight COVID and overcome this crisis. A small donation goes a long way. :heart:
+<img src="https://cfstatic.give.do/910ede2a-7892-43fe-8c8a-dea45e96d950.webp" alt="Picture of Coromandel Express train tragedy" width="35%">
+
+India just suffered one of the most devastating train accident and your help will be immensely valuable for the people who were effected by this tragedy. 
+
+Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of-the-coromandel-express-train-tragedy-in-odisha-donate-now) and make a small donation to help the people in need. A small donation goes a long way. :heart:
+
 
 </p>
 
