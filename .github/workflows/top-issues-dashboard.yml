@@ -15,10 +15,15 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         with:
           filter: "1772"
-          label: false
+          label: true
           dashboard: true
           dashboard_show_total_reactions: true
           top_issues: true
           top_bugs: true
           top_features: true
           top_pull_requests: true
+          custom_pull_requests_label: themes
+          top_custom_pull_requests_label: ":star: top themes"
+          top_custom_pull_requests_label_description:
+            The description used for the top custom pull requests.
+          top_custom_pull_requests_label_colour: #A23599
