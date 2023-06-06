@@ -107,7 +107,7 @@ Change the `?username=` value to your GitHub username.
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-> **Note**
+> **Warning**
 > By default stats card shows contributions only from public repositories. To show your private contributions you should [deploy you own instance](#deploy-on-your-own) using your own GitHub API token which allowed to see your private data.
 
 > **Note**
