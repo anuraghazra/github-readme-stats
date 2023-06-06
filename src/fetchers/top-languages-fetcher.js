@@ -128,6 +128,7 @@ const fetchTopLanguages = async (
 
   let repoCount = 0;
 
+  console.debug(JSON.stringify(repoNodes, null, "\t"));
   repoNodes = repoNodes
     .filter((node) => node.languages.edges.length > 0)
     // flatten the list of language nodes
