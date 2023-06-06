@@ -108,6 +108,9 @@ Change the `?username=` value to your GitHub username.
 ```
 
 > **Note**
+> By default stats card shows contributions only from public repositories. To show your private contributions you should [deploy you own instance](#deploy-on-your-own) using your own GitHub API token which allowed to see your private data.
+
+> **Note**
 > Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone). The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories. The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js).
 
 ### Hiding individual stats
