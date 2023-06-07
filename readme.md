@@ -111,14 +111,10 @@ Change the `?username=` value to your GitHub username.
 ```
 
 > **Warning**
-> By default, the stats card shows contributions only from public repositories. To show your private contributions, you should [deploy your own instance](#deploy-on-your-own) using your own GitHub API token, allowing you to see your private data.
+> By default, the stats card only shows statistics like stars, commits and pull requests from public repositories. To show private statistics on the stats card, you should [deploy your own instance](#deploy-on-your-own) using your own GitHub API token.
 
 > **Note**
 > Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone). The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories. The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js).
-
-### Include statistics from private repositories
-
-We do not have permission to see your private repositories. Therefore, we cannot include statistics like stars, commits and pull requests for these private repositories on the public Vercel instance. If you also want to show these private statistics on the stats card, you must [deploy your own Vercel instance](#deploy-on-your-own).
 
 ### Hiding individual stats
 
@@ -355,6 +351,9 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 The top languages card shows a GitHub user's most frequently used top language.
 
+> **Warning**
+> By default, the language card shows language results only from public repositories. To include languages used in private repositories, you should [deploy your own instance](#deploy-on-your-own) using your own GitHub API token.
+
 > **Note**
 > Top Languages does not indicate the user's skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats.
 
@@ -367,10 +366,6 @@ Endpoint: `api/top-langs?username=anuraghazra`
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
-
-### Include language results from private repositories
-
-We do not have permission to see your private repositories. Therefore, we cannot include language results from private repositories on the public Vercel instance. If you also want to show these private language results on the language card, you must deploy your own Vercel instance.
 
 ### Language stats algorithm
 
