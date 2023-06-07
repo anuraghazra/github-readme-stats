@@ -171,7 +171,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - `hide` - 从卡片中隐藏指定语言 _(Comma seperated values)_
 - `hide_title` - _(boolean)_
-- `layout` - 提供四種佈局 `normal` & `compact` & `donut` & `pie` 间切换
+- `layout` - 提供五種佈局 `normal` & `compact` & `donut` & `donut-vertical` & `pie` 间切换
 - `card_width` - 手动设置卡片的宽度 _(number)_
 
 > :warning: **重要:**

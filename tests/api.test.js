@@ -12,17 +12,18 @@ const stats = {
   totalCommits: 200,
   totalIssues: 300,
   totalPRs: 400,
-  contributedTo: 500,
+  contributedTo: 50,
   rank: null,
 };
+
 stats.rank = calculateRank({
-  totalCommits: stats.totalCommits,
-  totalRepos: 1,
-  followers: 0,
-  contributions: stats.contributedTo,
-  stargazers: stats.totalStars,
+  all_commits: false,
+  commits: stats.totalCommits,
   prs: stats.totalPRs,
   issues: stats.totalIssues,
+  repos: 1,
+  stars: stats.totalStars,
+  followers: 0,
 });
 
 const data_stats = {
