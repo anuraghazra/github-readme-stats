@@ -331,12 +331,25 @@ describe("Test renderTopLanguages helper functions", () => {
   });
 
   it("getDefaultLanguagesCountByLayout", () => {
-    expect(getDefaultLanguagesCountByLayout("normal")).toStrictEqual(5);
-    expect(getDefaultLanguagesCountByLayout(undefined)).toStrictEqual(5);
-    expect(getDefaultLanguagesCountByLayout("compact")).toStrictEqual(6);
-    expect(getDefaultLanguagesCountByLayout("donut")).toStrictEqual(5);
-    expect(getDefaultLanguagesCountByLayout("donut-vertical")).toStrictEqual(6);
-    expect(getDefaultLanguagesCountByLayout("pie")).toStrictEqual(6);
+    expect(
+      getDefaultLanguagesCountByLayout({ layout: "normal" }),
+    ).toStrictEqual(5);
+    expect(getDefaultLanguagesCountByLayout({})).toStrictEqual(5);
+    expect(
+      getDefaultLanguagesCountByLayout({ layout: "compact" }),
+    ).toStrictEqual(6);
+    expect(
+      getDefaultLanguagesCountByLayout({ hide_progress: true }),
+    ).toStrictEqual(6);
+    expect(getDefaultLanguagesCountByLayout({ layout: "donut" })).toStrictEqual(
+      5,
+    );
+    expect(
+      getDefaultLanguagesCountByLayout({ layout: "donut-vertical" }),
+    ).toStrictEqual(6);
+    expect(getDefaultLanguagesCountByLayout({ layout: "pie" })).toStrictEqual(
+      6,
+    );
   });
 });
 
