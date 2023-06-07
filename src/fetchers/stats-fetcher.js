@@ -180,7 +180,6 @@ const totalCommitsFetcher = async (username) => {
  * Fetch stats for a given username.
  *
  * @param {string} username GitHub username.
- * @param {boolean} count_private Include private contributions.
  * @param {boolean} include_all_commits Include all commits.
  * @param {string[]} exclude_repo Repositories to exclude.  Default: [].
  * @param {string[]} ownerAffiliations Owner affiliations. Default: OWNER.
@@ -188,7 +187,6 @@ const totalCommitsFetcher = async (username) => {
  */
 const fetchStats = async (
   username,
-  count_private = false,
   include_all_commits = false,
   exclude_repo = [],
   ownerAffiliations = [],
@@ -238,12 +236,6 @@ const fetchStats = async (
     stats.totalCommits = await totalCommitsFetcher(username);
   } else {
     stats.totalCommits = user.contributionsCollection.totalCommitContributions;
-  }
-
-  // if count_private, add private contributions to totalCommits.
-  if (count_private) {
-    stats.totalCommits +=
-      user.contributionsCollection.restrictedContributionsCount;
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
