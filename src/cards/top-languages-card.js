@@ -661,12 +661,13 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
 };
 
 /**
- * Creates the no coding activity SVG node.
+ * Creates the no languages data SVG node.
  *
- * @param {object} props Object with function properties
- * @param {string} props.color No data text color
- * @param {string} props.text No data translated text
- * @param {import("./types").TopLangOptions["layout"] | undefined} props.layout Card layout
+ * @param {object} props Object with function properties.
+ * @param {string} props.color No languages data text color.
+ * @param {string} props.text No languages data translated text.
+ * @param {import("./types").TopLangOptions["layout"] | undefined} props.layout Card layout.
+ * @return {string} No languages data SVG node string.
  */
 const noLanguagesDataNode = ({ color, text, layout }) => {
   return `
