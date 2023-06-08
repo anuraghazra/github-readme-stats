@@ -1,4 +1,3 @@
-import * as dotenv from "dotenv";
 import { renderStatsCard } from "../src/cards/stats-card.js";
 import { blacklist } from "../src/common/blacklist.js";
 import {
@@ -11,8 +10,6 @@ import {
 import { fetchStats } from "../src/fetchers/stats-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
-dotenv.config();
-
 export default async (req, res) => {
   const {
     username,
@@ -22,10 +19,10 @@ export default async (req, res) => {
     card_width,
     hide_rank,
     show_icons,
-    count_private,
     include_all_commits,
     line_height,
     title_color,
+    ring_color,
     icon_color,
     text_color,
     text_bold,
@@ -37,7 +34,9 @@ export default async (req, res) => {
     locale,
     disable_animations,
     border_radius,
+    number_format,
     border_color,
+    rank_icon,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -52,7 +51,6 @@ export default async (req, res) => {
   try {
     const stats = await fetchStats(
       username,
-      parseBoolean(count_private),
       parseBoolean(include_all_commits),
       parseArray(exclude_repo),
     );
@@ -66,7 +64,12 @@ export default async (req, res) => {
       ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
       : cacheSeconds;
 
-    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${
+        cacheSeconds / 2
+      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    );
 
     return res.send(
       renderStatsCard(stats, {
@@ -79,6 +82,7 @@ export default async (req, res) => {
         include_all_commits: parseBoolean(include_all_commits),
         line_height,
         title_color,
+        ring_color,
         icon_color,
         text_color,
         text_bold: parseBoolean(text_bold),
@@ -87,8 +91,10 @@ export default async (req, res) => {
         custom_title,
         border_radius,
         border_color,
+        number_format,
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
+        rank_icon,
       }),
     );
   } catch (err) {

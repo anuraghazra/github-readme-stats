@@ -1,4 +1,3 @@
-import * as dotenv from "dotenv";
 import { renderWakatimeCard } from "../src/cards/wakatime-card.js";
 import {
   clampValue,
@@ -9,8 +8,6 @@ import {
 } from "../src/common/utils.js";
 import { fetchWakatimeStats } from "../src/fetchers/wakatime-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
-
-dotenv.config();
 
 export default async (req, res) => {
   const {
@@ -31,7 +28,6 @@ export default async (req, res) => {
     langs_count,
     hide,
     api_domain,
-    range,
     border_radius,
     border_color,
   } = req.query;
@@ -43,7 +39,7 @@ export default async (req, res) => {
   }
 
   try {
-    const stats = await fetchWakatimeStats({ username, api_domain, range });
+    const stats = await fetchWakatimeStats({ username, api_domain });
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
@@ -58,7 +54,12 @@ export default async (req, res) => {
       cacheSeconds = CONSTANTS.FOUR_HOURS;
     }
 
-    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${
+        cacheSeconds / 2
+      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    );
 
     return res.send(
       renderWakatimeCard(stats, {

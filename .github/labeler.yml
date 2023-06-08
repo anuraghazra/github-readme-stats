@@ -1,3 +1,4 @@
 themes: themes/index.js
 doc-translation: docs/*
 card-i18n: src/translations.js
+documentation: readme.md

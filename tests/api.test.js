@@ -12,20 +12,21 @@ const stats = {
   totalCommits: 200,
   totalIssues: 300,
   totalPRs: 400,
-  contributedTo: 500,
+  contributedTo: 50,
   rank: null,
 };
+
 stats.rank = calculateRank({
-  totalCommits: stats.totalCommits,
-  totalRepos: 1,
-  followers: 0,
-  contributions: stats.contributedTo,
-  stargazers: stats.totalStars,
+  all_commits: false,
+  commits: stats.totalCommits,
   prs: stats.totalPRs,
   issues: stats.totalIssues,
+  repos: 1,
+  stars: stats.totalStars,
+  followers: 0,
 });
 
-const data = {
+const data_stats = {
   data: {
     user: {
       name: stats.name,
@@ -40,19 +41,10 @@ const data = {
       followers: { totalCount: 0 },
       repositories: {
         totalCount: 1,
-      },
-    },
-  },
-};
-
-const repositoriesData = {
-  data: {
-    user: {
-      repositories: {
         nodes: [{ stargazers: { totalCount: 100 } }],
         pageInfo: {
           hasNextPage: false,
-          cursor: "cursor",
+          endCursor: "cursor",
         },
       },
     },
@@ -83,11 +75,7 @@ const faker = (query, data) => {
     setHeader: jest.fn(),
     send: jest.fn(),
   };
-  mock
-    .onPost("https://api.github.com/graphql")
-    .replyOnce(200, data)
-    .onPost("https://api.github.com/graphql")
-    .replyOnce(200, repositoriesData);
+  mock.onPost("https://api.github.com/graphql").replyOnce(200, data);
 
   return { req, res };
 };
@@ -98,7 +86,7 @@ afterEach(() => {
 
 describe("Test /api/", () => {
   it("should test the request", async () => {
-    const { req, res } = faker({}, data);
+    const { req, res } = faker({}, data_stats);
 
     await api(req, res);
 
@@ -133,7 +121,7 @@ describe("Test /api/", () => {
         text_color: "fff",
         bg_color: "fff",
       },
-      data,
+      data_stats,
     );
 
     await api(req, res);
@@ -154,23 +142,33 @@ describe("Test /api/", () => {
   });
 
   it("should have proper cache", async () => {
-    const { req, res } = faker({}, data);
+    const { req, res } = faker({}, data_stats);
 
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${CONSTANTS.FOUR_HOURS}`],
+      [
+        "Cache-Control",
+        `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
+          CONSTANTS.FOUR_HOURS
+        }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      ],
     ]);
   });
 
   it("should set proper cache", async () => {
-    const { req, res } = faker({ cache_seconds: 15000 }, data);
+    const { req, res } = faker({ cache_seconds: 15000 }, data_stats);
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${15000}`],
+      [
+        "Cache-Control",
+        `max-age=7500, s-maxage=${15000}, stale-while-revalidate=${
+          CONSTANTS.ONE_DAY
+        }`,
+      ],
     ]);
   });
 
@@ -186,66 +184,84 @@ describe("Test /api/", () => {
 
   it("should set proper cache with clamped values", async () => {
     {
-      let { req, res } = faker({ cache_seconds: 200000 }, data);
+      let { req, res } = faker({ cache_seconds: 200000 }, data_stats);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.ONE_DAY}`],
+        [
+          "Cache-Control",
+          `max-age=${CONSTANTS.ONE_DAY / 2}, s-maxage=${
+            CONSTANTS.ONE_DAY
+          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+        ],
       ]);
     }
 
     // note i'm using block scoped vars
     {
-      let { req, res } = faker({ cache_seconds: 0 }, data);
+      let { req, res } = faker({ cache_seconds: 0 }, data_stats);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.FOUR_HOURS}`],
+        [
+          "Cache-Control",
+          `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
+            CONSTANTS.FOUR_HOURS
+          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+        ],
       ]);
     }
 
     {
-      let { req, res } = faker({ cache_seconds: -10000 }, data);
+      let { req, res } = faker({ cache_seconds: -10000 }, data_stats);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.FOUR_HOURS}`],
+        [
+          "Cache-Control",
+          `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
+            CONSTANTS.FOUR_HOURS
+          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+        ],
       ]);
     }
   });
 
-  it("should add private contributions", async () => {
+  it("should allow changing ring_color", async () => {
     const { req, res } = faker(
       {
         username: "anuraghazra",
-        count_private: true,
+        hide: "issues,prs,contribs",
+        show_icons: true,
+        hide_border: true,
+        line_height: 100,
+        title_color: "fff",
+        ring_color: "0000ff",
+        icon_color: "fff",
+        text_color: "fff",
+        bg_color: "fff",
       },
-      data,
+      data_stats,
     );
 
     await api(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderStatsCard(
-        {
-          ...stats,
-          totalCommits: stats.totalCommits + 100,
-          rank: calculateRank({
-            totalCommits: stats.totalCommits + 100,
-            totalRepos: 1,
-            followers: 0,
-            contributions: stats.contributedTo,
-            stargazers: stats.totalStars,
-            prs: stats.totalPRs,
-            issues: stats.totalIssues,
-          }),
-        },
-        {},
-      ),
+      renderStatsCard(stats, {
+        hide: ["issues", "prs", "contribs"],
+        show_icons: true,
+        hide_border: true,
+        line_height: 100,
+        title_color: "fff",
+        ring_color: "0000ff",
+        icon_color: "fff",
+        text_color: "fff",
+        bg_color: "fff",
+      }),
     );
   });
 });
