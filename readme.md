@@ -357,6 +357,9 @@ The top languages card shows a GitHub user's most frequently used top language.
 > **Note**
 > Top Languages does not indicate the user's skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats.
 
+> **Warning**
+> This card shows languages usage only inside your own non-forked repositories, not depending from who is the author of the commits. It does not include your contributions into another users/organizations repositories. If you have a technical solution how to improve this behavior share it with us by opening issue or discussion.
+
 ### Usage
 
 Copy-paste this code into your readme and change the links.
