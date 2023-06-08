@@ -16,6 +16,7 @@ import {
   trimTopLanguages,
   renderTopLanguages,
   MIN_CARD_WIDTH,
+  getDefaultLanguagesCountByLayout,
 } from "../src/cards/top-languages-card.js";
 
 // adds special assertions like toHaveTextContent
@@ -327,6 +328,28 @@ describe("Test renderTopLanguages helper functions", () => {
       langs: [langs.HTML, langs.css],
       totalLanguageSize: 300,
     });
+  });
+
+  it("getDefaultLanguagesCountByLayout", () => {
+    expect(
+      getDefaultLanguagesCountByLayout({ layout: "normal" }),
+    ).toStrictEqual(5);
+    expect(getDefaultLanguagesCountByLayout({})).toStrictEqual(5);
+    expect(
+      getDefaultLanguagesCountByLayout({ layout: "compact" }),
+    ).toStrictEqual(6);
+    expect(
+      getDefaultLanguagesCountByLayout({ hide_progress: true }),
+    ).toStrictEqual(6);
+    expect(getDefaultLanguagesCountByLayout({ layout: "donut" })).toStrictEqual(
+      5,
+    );
+    expect(
+      getDefaultLanguagesCountByLayout({ layout: "donut-vertical" }),
+    ).toStrictEqual(6);
+    expect(getDefaultLanguagesCountByLayout({ layout: "pie" })).toStrictEqual(
+      6,
+    );
   });
 });
 
