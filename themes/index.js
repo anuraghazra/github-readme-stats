@@ -423,7 +423,7 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
-  react: {
+  react_light: {
     title_color: "FFFFFF",
     icon_color: "61DAFB",
     text_color: "FFFFFF",
