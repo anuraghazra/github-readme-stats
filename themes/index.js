@@ -423,6 +423,12 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  react: {
+    title_color: "FFFFFF",
+    icon_color: "61DAFB",
+    text_color: "FFFFFF",
+    bg_color: "282C34"
+  },
 };
 
 export default themes;
