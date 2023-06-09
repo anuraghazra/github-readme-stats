@@ -110,7 +110,7 @@ const parseArray = (str) => {
  * @param {number} number The number to clamp.
  * @param {number} min The minimum value.
  * @param {number} max The maximum value.
- * returns {number} The clamped number.
+ * @returns {number} The clamped number.
  */
 const clampValue = (number, min, max) => {
   // @ts-ignore
