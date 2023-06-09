@@ -46,6 +46,9 @@ export default async (req, res) => {
       CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
+    cacheSeconds = process.env.CACHE_SECONDS
+      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+      : cacheSeconds;
 
     if (!cache_seconds) {
       cacheSeconds = CONSTANTS.FOUR_HOURS;

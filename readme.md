@@ -81,24 +81,44 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 
 </p>
 
-# Features
 
--   [GitHub Stats Card](#github-stats-card)
--   [GitHub Extra Pins](#github-extra-pins)
--   [Top Languages Card](#top-languages-card)
--   [Wakatime Week Stats](#wakatime-week-stats)
--   [Themes](#themes)
-    -   [Responsive Card Theme](#responsive-card-theme)
--   [Customization](#customization)
-    -   [Common Options](#common-options)
-    -   [Stats Card Exclusive Options](#stats-card-exclusive-options)
-    -   [Repo Card Exclusive Options](#repo-card-exclusive-options)
-    -   [Language Card Exclusive Options](#language-card-exclusive-options)
-    -   [Wakatime Card Exclusive Option](#wakatime-card-exclusive-options)
--   [Deploy Yourself](#deploy-on-your-own)
-    -   [On Vercel](#on-vercel)
-    -   [On other platforms](#on-other-platforms)
-    -   [Keep your fork up to date](#keep-your-fork-up-to-date)
+# Features <!-- omit in toc -->
+
+- [GitHub Stats Card](#github-stats-card)
+    - [Hiding individual stats](#hiding-individual-stats)
+    - [Showing icons](#showing-icons)
+    - [Themes](#themes)
+    - [Customization](#customization)
+- [GitHub Extra Pins](#github-extra-pins)
+    - [Usage](#usage)
+    - [Demo](#demo)
+- [Top Languages Card](#top-languages-card)
+    - [Usage](#usage-1)
+    - [Language stats algorithm](#language-stats-algorithm)
+    - [Exclude individual repositories](#exclude-individual-repositories)
+    - [Hide individual languages](#hide-individual-languages)
+    - [Show more languages](#show-more-languages)
+    - [Compact Language Card Layout](#compact-language-card-layout)
+    - [Donut Chart Language Card Layout](#donut-chart-language-card-layout)
+    - [Donut Vertical Chart Language Card Layout](#donut-vertical-chart-language-card-layout)
+    - [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
+    - [Hide Progress Bars](#hide-progress-bars)
+    - [Demo](#demo-1)
+- [Wakatime Week Stats](#wakatime-week-stats)
+    - [Demo](#demo-2)
+    - [All Demos](#all-demos)
+    - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
+  - [Deploy on your own](#deploy-on-your-own)
+    - [On Vercel](#on-vercel)
+    - [On other platforms](#on-other-platforms)
+    - [Disable rate limit protections](#disable-rate-limit-protections)
+    - [Keep your fork up to date](#keep-your-fork-up-to-date)
+  - [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
+
+# Important Notice <!-- omit in toc -->
+
+> **Warning**
+> Since the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see #1471). We use caching to prevent this from happening (see https://github.com/anuraghazra/github-readme-stats#common-options). You can turn off these rate limit protections by deploying [your own Vercel instance](#disable-rate-limit-protections).
 
 # GitHub Stats Card
 
@@ -622,6 +642,14 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
     <https://github.com/anuraghazra/github-readme-stats/blob/ba7c2f8b55eac8452e479c8bd38b044d204d0424/package.json#L11>
 5.  You're done 🎉
     </details>
+
+### Disable rate limit protections
+
+Github Readme Stats contains several Vercel environment variables that can be used to remove the rate limit protections:
+
+- `CACHE_SECONDS`: This environment variable takes precedence over our cache minimum and maximum values and can circumvent these values for self Hosted Vercel instances.
+
+See [the Vercel documentation](https://vercel.com/docs/concepts/projects/environment-variables) on adding these environment variables to your Vercel instance.
 
 ### Keep your fork up to date
 
