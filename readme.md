@@ -106,14 +106,14 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Demo](#demo-1)
 - [Wakatime Week Stats](#wakatime-week-stats)
     - [Demo](#demo-2)
-    - [All Demos](#all-demos)
-    - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
-  - [Deploy on your own](#deploy-on-your-own)
-    - [On Vercel](#on-vercel)
-    - [On other platforms](#on-other-platforms)
-    - [Disable rate limit protections](#disable-rate-limit-protections)
-    - [Keep your fork up to date](#keep-your-fork-up-to-date)
-  - [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
+- [All Demos](#all-demos)
+- [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
+- [Deploy on your own](#deploy-on-your-own)
+  - [On Vercel](#on-vercel)
+  - [On other platforms](#on-other-platforms)
+  - [Disable rate limit protections](#disable-rate-limit-protections)
+  - [Keep your fork up to date](#keep-your-fork-up-to-date)
+- [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
 
 # Important Notice <!-- omit in toc -->
 
