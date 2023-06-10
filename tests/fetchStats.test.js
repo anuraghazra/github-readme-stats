@@ -12,7 +12,6 @@ const data_stats = {
       repositoriesContributedTo: { totalCount: 61 },
       contributionsCollection: {
         totalCommitContributions: 100,
-        restrictedContributionsCount: 50,
       },
       pullRequests: { totalCount: 300 },
       openIssues: { totalCount: 100 },
