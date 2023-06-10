@@ -49,7 +49,8 @@ GitHub Readme Stats supports custom theming, and you can also contribute new the
 
 All you need to do is edit the [themes/index.js](./themes/index.js) file and add your theme at the end of the file.
 
-> NOTE: If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
+> **Note**
+> If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
 
 ## Any contributions you make will be under the MIT Software License
 
