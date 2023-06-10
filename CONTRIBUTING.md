@@ -41,7 +41,7 @@ _(make sure you already have a [Vercel](https://vercel.com/) account)_
 9.  The cards will then be available from this local endpoint (i.e. `https://localhost:3000/api?username=anuraghazra`).
 
 > **Note**
-> You can also debug any tests using the [VSCode Jest extension](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest). For more information see https://github.com/jest-community/vscode-jest/issues/912.
+> You can debug the package code in [Vscode](https://code.visualstudio.com/) by using the [Node.js: Attach to process](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_setting-up-an-attach-configuration) debug option. You can also debug any tests using the [VSCode Jest extension](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest). For more information, see https://github.com/jest-community/vscode-jest/issues/912.
 
 ## Themes Contribution
 
