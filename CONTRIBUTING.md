@@ -52,6 +52,9 @@ All you need to do is edit the [themes/index.js](./themes/index.js) file and add
 > **Note**
 > If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
 
+> **Note**
+> Keep in mind that we already have a wide collection of different themes, in order not to inflate their number, we began to add only themes that were supported by the community. It means that your pull request with theme addition will not be merged until we get enough positive feedback from the community in the form of comments, thumb up and heart emojis. Remember that you are also able to support themes of other contributors that you liked to speed up their merge.
+
 ## Any contributions you make will be under the MIT Software License
 
 In short, when you submit changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
