@@ -88,7 +88,19 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Hiding individual stats](#hiding-individual-stats)
     - [Showing icons](#showing-icons)
     - [Themes](#themes)
+      - [All inbuilt themes](#all-inbuilt-themes)
+      - [Responsive Card Theme](#responsive-card-theme)
+        - [Use the transparent theme](#use-the-transparent-theme)
+        - [Add transparent alpha channel to a themes bg\_color](#add-transparent-alpha-channel-to-a-themes-bg_color)
+        - [Use GitHub's theme context tag](#use-githubs-theme-context-tag)
+        - [Use GitHub's new media feature](#use-githubs-new-media-feature)
     - [Customization](#customization)
+      - [Common Options](#common-options)
+        - [Gradient in bg\_color](#gradient-in-bg_color)
+      - [Stats Card Exclusive Options](#stats-card-exclusive-options)
+      - [Repo Card Exclusive Options](#repo-card-exclusive-options)
+      - [Language Card Exclusive Options](#language-card-exclusive-options)
+      - [Wakatime Card Exclusive Options](#wakatime-card-exclusive-options)
 - [GitHub Extra Pins](#github-extra-pins)
     - [Usage](#usage)
     - [Demo](#demo)
@@ -107,9 +119,10 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 - [Wakatime Week Stats](#wakatime-week-stats)
     - [Demo](#demo-2)
 - [All Demos](#all-demos)
-- [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
+  - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
 - [Deploy on your own](#deploy-on-your-own)
   - [On Vercel](#on-vercel)
+    - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
   - [On other platforms](#on-other-platforms)
   - [Disable rate limit protections](#disable-rate-limit-protections)
   - [Keep your fork up to date](#keep-your-fork-up-to-date)
@@ -519,7 +532,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 * * *
 
-### All Demos
+# All Demos
 
 -   Default
 
@@ -577,7 +590,7 @@ Choose from any of the [default themes](#themes)
 
 * * *
 
-### Quick Tip (Align The Repo Cards)
+## Quick Tip (Align The Repo Cards)
 
 By default, GitHub does not lay out the cards side by side. To do that, you can use this approach:
 
@@ -590,11 +603,11 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 </a>
 ```
 
-## Deploy on your own
+# Deploy on your own
 
-### On Vercel
+## On Vercel
 
-#### :film_projector: [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+### :film_projector: [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
 Since the GitHub API only allows 5k requests per hour, my `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter. If you host it on your own Vercel server, then you do not have to worry about anything. Click on the deploy button to get started!
 
@@ -628,7 +641,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 
 </details>
 
-### On other platforms
+## On other platforms
 
 > **Warning**
 > This way of using GRS is not officially supported and was added to cater to some particular use cases where Vercel could not be used (e.g. #2341). The support for this method, therefore, is limited.
@@ -645,7 +658,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 5.  You're done 🎉
     </details>
 
-### Disable rate limit protections
+## Disable rate limit protections
 
 Github Readme Stats contains several Vercel environment variables that can be used to remove the rate limit protections:
 
@@ -653,11 +666,11 @@ Github Readme Stats contains several Vercel environment variables that can be us
 
 See [the Vercel documentation](https://vercel.com/docs/concepts/projects/environment-variables) on adding these environment variables to your Vercel instance.
 
-### Keep your fork up to date
+## Keep your fork up to date
 
 You can keep your fork, and thus your private Vercel instance up to date with the upstream using GitHub's [Sync Fork button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). You can also use the [pull](https://github.com/wei/pull) package created by [@wei](https://github.com/wei) to automate this process.
 
-## :sparkling_heart: Support the project
+# :sparkling_heart: Support the project
 
 I open-source almost everything I can and try to reply to everyone needing help using these projects. Obviously,
 this takes time. You can use this service for free.
