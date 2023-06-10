@@ -46,7 +46,6 @@ const GRAPHQL_STATS_QUERY = `
       login
       contributionsCollection {
         totalCommitContributions
-        restrictedContributionsCount
       }
       repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
         totalCount
@@ -173,13 +172,11 @@ const totalCommitsFetcher = async (username) => {
  * Fetch stats for a given username.
  *
  * @param {string} username GitHub username.
- * @param {boolean} count_private Include private contributions.
  * @param {boolean} include_all_commits Include all commits.
  * @returns {Promise<import("./types").StatsData>} Stats data.
  */
 const fetchStats = async (
   username,
-  count_private = false,
   include_all_commits = false,
   exclude_repo = [],
 ) => {
@@ -227,12 +224,6 @@ const fetchStats = async (
     stats.totalCommits = await totalCommitsFetcher(username);
   } else {
     stats.totalCommits = user.contributionsCollection.totalCommitContributions;
-  }
-
-  // if count_private, add private contributions to totalCommits.
-  if (count_private) {
-    stats.totalCommits +=
-      user.contributionsCollection.restrictedContributionsCount;
   }
 
   stats.totalPRs = user.pullRequests.totalCount;

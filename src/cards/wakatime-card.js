@@ -25,7 +25,10 @@ const languageColors = require("../common/languageColors.json"); // now works
 /**
  * Creates the no coding activity SVG node.
  *
- * @param {{color: string, text: string}} The function prop
+ * @param {object} props The function properties.
+ * @param {string} props.color No coding activity text color.
+ * @param {string} props.text No coding activity translated text.
+ * @return {string} No coding activity SVG node string.
  */
 const noCodingActivityNode = ({ color, text }) => {
   return `

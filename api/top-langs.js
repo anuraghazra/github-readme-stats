@@ -64,11 +64,14 @@ export default async (req, res) => {
       base64_custom_repo,
     );
 
-    const cacheSeconds = clampValue(
+    let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
       CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
+    cacheSeconds = process.env.CACHE_SECONDS
+      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+      : cacheSeconds;
 
     res.setHeader(
       "Cache-Control",
