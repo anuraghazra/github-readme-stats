@@ -106,7 +106,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
     - [Hide Progress Bars](#hide-progress-bars)
     - [Demo](#demo-1)
-- [Wakatime Week Stats](#wakatime-week-stats)
+- [Wakatime Stats Card](#wakatime-stats-card)
     - [Demo](#demo-2)
 - [All Demos](#all-demos)
   - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
@@ -499,7 +499,7 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)
 
-# Wakatime Week Stats
+# Wakatime Stats Card
 
 > **Warning**
 > Please be aware that we currently only show data from Wakatime profiles that are public. You therefore have to make sure that **BOTH** `Display code time publicly` and `Display languages, editors, os, categories publicly` are enabled.
