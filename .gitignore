@@ -8,7 +8,8 @@ coverage
 vercel_token
 
 # IDE
-.vscode
+.vscode/*
+!.vscode/extensions.json
 *.code-workspace
 
 .vercel
