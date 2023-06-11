@@ -30,7 +30,7 @@ const THEME_CONTRIB_GUIDELINES = `
   \rHi, thanks for the theme contribution. Please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).
 
   \r> **Warning**
-  \r> Keep in mind that we already have a wide collection of different themes, in order not to inflate their number, we began to add only themes that were supported by the community. It means that your pull request with theme addition will not be merged until we get enough positive feedback from the community in the form of comments, thumb up and heart emojis. Remember that you are also able to support themes of other contributors that you liked to speed up their merge.
+  \r> Keep in mind that we already have a vast collection of different themes. To keep their number manageable, we began to add only themes supported by the community. Your pull request with theme addition will be merged once we get enough positive feedback from the community in the form of thumbs up (see [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935#top-themes-prs). Remember that you can also support themes of other contributors that you liked to speed up their merge.
 
   \r> **Note**
   \r> Also, note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection, you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization).
