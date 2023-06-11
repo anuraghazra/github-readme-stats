@@ -56,11 +56,11 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
-    .
+    ·
     <a href="/docs/readme_nl.md">Nederlands</a>
-    .
+    ·
     <a href="/docs/readme_np.md">नेपाली</a>
-    .
+    ·
     <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
