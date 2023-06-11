@@ -37,7 +37,7 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/discussions/1770">FAQ</a>
-    .
+    ·
     <a href="https://github.com/anuraghazra/github-readme-stats/discussions">Ask Question</a>
   </p>
   <p align="center">
@@ -90,7 +90,19 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Hiding individual stats](#hiding-individual-stats)
     - [Showing icons](#showing-icons)
     - [Themes](#themes)
+      - [All inbuilt themes](#all-inbuilt-themes)
+      - [Responsive Card Theme](#responsive-card-theme)
+        - [Use the transparent theme](#use-the-transparent-theme)
+        - [Add transparent alpha channel to a themes bg\_color](#add-transparent-alpha-channel-to-a-themes-bg_color)
+        - [Use GitHub's theme context tag](#use-githubs-theme-context-tag)
+        - [Use GitHub's new media feature](#use-githubs-new-media-feature)
     - [Customization](#customization)
+      - [Common Options](#common-options)
+        - [Gradient in bg\_color](#gradient-in-bg_color)
+      - [Stats Card Exclusive Options](#stats-card-exclusive-options)
+      - [Repo Card Exclusive Options](#repo-card-exclusive-options)
+      - [Language Card Exclusive Options](#language-card-exclusive-options)
+      - [Wakatime Card Exclusive Options](#wakatime-card-exclusive-options)
 - [GitHub Extra Pins](#github-extra-pins)
     - [Usage](#usage)
     - [Demo](#demo)
@@ -112,6 +124,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
   - [Deploy on your own](#deploy-on-your-own)
     - [On Vercel](#on-vercel)
+      - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
     - [On other platforms](#on-other-platforms)
     - [Disable rate limit protections](#disable-rate-limit-protections)
     - [Keep your fork up to date](#keep-your-fork-up-to-date)
