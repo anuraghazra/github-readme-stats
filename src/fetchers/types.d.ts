@@ -22,7 +22,7 @@ export type StatsData = {
   totalIssues: number;
   totalStars: number;
   contributedTo: number;
-  rank: { level: string; score: number };
+  rank: { level: string; percentile: number };
 };
 
 export type Lang = {
