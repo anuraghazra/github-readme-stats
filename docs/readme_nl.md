@@ -59,15 +59,30 @@
 </p>
 <p align="center">Bevalt het project? <a href="https://www.paypal.me/anuraghazra">Doneer</a> om het te verbeteren!
 
-# Functionaliteiten
+# Functionaliteiten <!-- omit in toc -->
 
 - [GitHub Statistieken Kaart](#github-statistieken-kaart)
+    - [Verberg individueele statistieken](#verberg-individueele-statistieken)
+    - [Voeg privé contributies toe aan totale commits.](#voeg-privé-contributies-toe-aan-totale-commits)
+    - [Laat icoontjes zien](#laat-icoontjes-zien)
+    - [Thema's](#themas)
+    - [Opmaak](#opmaak)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Top Programmeertalen Kaart](#top-Programmeertalen-kaart)
+    - [Gebruik](#gebruik)
+    - [Demo](#demo)
+- [Top Programmeertalen Kaart](#top-programmeertalen-kaart)
+    - [Gebruik](#gebruik-1)
+    - [Verberg individueele repositories](#verberg-individueele-repositories)
+    - [Verberg individueele talen](#verberg-individueele-talen)
+    - [Laat meer programmeertalen zien](#laat-meer-programmeertalen-zien)
+    - [Compacte Talen Kaart opmaak](#compacte-talen-kaart-opmaak)
+    - [Demo](#demo-1)
 - [Wekelijkse Wakatime Statistieken](#wekelijkse-wakatime-statistieken)
-- [Thema\'s](#themas)
-- [Opmaak](#opmaak)
-- [Zelf deployen](#deploy-je-eigen-vercel-instatie)
+    - [Demo](#demo-2)
+    - [Alle demos](#alle-demos)
+    - [Kleine tip (Verstel de repo kaart z'n positie)](#kleine-tip-verstel-de-repo-kaart-zn-positie)
+  - [Deploy je eigen Vercel instatie](#deploy-je-eigen-vercel-instatie)
+  - [:sparkling\_heart: Ondersteun het project](#sparkling_heart-ondersteun-het-project)
 
 # GitHub Statistieken Kaart
 
