@@ -59,15 +59,30 @@
 </p>
 <p align="center">Projeyi sevdiniz mi? Daha da gelişmesi için lütfen <a href="https://www.paypal.me/anuraghazra">bağış</a> yapın!
 
-# Features
+# Features <!-- omit in toc -->
 
-- [GitHub İstatistikler Kartı](#github-istatistikler-kartı)
+- [GitHub İstatistikler Kartı](#github-i̇statistikler-kartı)
+    - [Bazı İstatitistikleri Gizleme](#bazı-i̇statitistikleri-gizleme)
+    - [Özel Katkı Sayısını Toplam Commit Sayısına Ekleme](#özel-katkı-sayısını-toplam-commit-sayısına-ekleme)
+    - [İkonları Göstermek](#i̇konları-göstermek)
+    - [Temalar](#temalar)
+    - [Özelleştirmeler](#özelleştirmeler)
 - [GitHub Ekstra Pinler](#github-ekstra-pinler)
+    - [Kullanım](#kullanım)
+    - [Demo](#demo)
 - [En Çok Kullanılan Diller](#en-çok-kullanılan-diller)
-- [Wakatime Haftalık İstatistikler](#wakatime-haftalık-istatistikler)
-- [Temalar](#temalar)
-- [Özelleştirmeler](#özelleştirmeler)
-- [Yayınlayın](#yayınlayın)
+    - [Kullanım](#kullanım-1)
+    - [Belirli Repoları Çıkartın](#belirli-repoları-çıkartın)
+    - [Belirli Dilleri Çıkartın](#belirli-dilleri-çıkartın)
+    - [Daha Fazla Dil Gösterin](#daha-fazla-dil-gösterin)
+    - [Kompakt Dil Kartı Düzeni](#kompakt-dil-kartı-düzeni)
+    - [Demo](#demo-1)
+- [Wakatime Haftalık İstatistikler](#wakatime-haftalık-i̇statistikler)
+    - [Demo](#demo-2)
+    - [Tüm Demolar](#tüm-demolar)
+    - [Hızlı İpucu (Repo Kartları Hizlayın)](#hızlı-i̇pucu-repo-kartları-hizlayın)
+  - [Kendi Vercel Örneğinizde Yayınlayın](#kendi-vercel-örneğinizde-yayınlayın)
+  - [:sparkling\_heart: Projeyi Destekleyin](#sparkling_heart-projeyi-destekleyin)
 
 # GitHub İstatistikler Kartı
 
