@@ -20,7 +20,10 @@ const STATS_DATA = {
   totalIssues: 1,
   totalStars: 1,
   contributedTo: 1,
-  rank: { level: "B", score: 98.50610674501908 },
+  rank: {
+    level: "C",
+    percentile: 97.89377603631637,
+  },
 };
 
 const LANGS_DATA = {
