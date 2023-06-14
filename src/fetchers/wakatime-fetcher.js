@@ -1,24 +1,34 @@
-const axios = require("axios");
+import axios from "axios";
+import { CustomError, MissingParamError } from "../common/utils.js";
+import { I18n } from "../common/I18n.js";
 
-const fetchWakatimeStats = async ({ username, api_domain, range }) => {
+/**
+ * WakaTime data fetcher.
+ *
+ * @param {{username: string, api_domain: string }} props Fetcher props.
+ * @returns {Promise<WakaTimeData>} WakaTime data response.
+ */
+const fetchWakatimeStats = async ({ username, api_domain }) => {
+  if (!username) throw new MissingParamError(["username"]);
+
   try {
     const { data } = await axios.get(
       `https://${
         api_domain ? api_domain.replace(/\/$/gi, "") : "wakatime.com"
-      }/api/v1/users/${username}/stats/${range || ''}?is_including_today=true`,
+      }/api/v1/users/${username}/stats?is_including_today=true`,
     );
 
     return data.data;
   } catch (err) {
     if (err.response.status < 200 || err.response.status > 299) {
-      throw new Error(
-        "Wakatime user not found, make sure you have a wakatime profile",
+      throw new CustomError(
+        `Could not resolve to a User with the login of '${username}'`,
+        "WAKATIME_USER_NOT_FOUND",
       );
     }
     throw err;
   }
 };
 
-module.exports = {
-  fetchWakatimeStats,
-};
+export { fetchWakatimeStats };
+export default fetchWakatimeStats;
