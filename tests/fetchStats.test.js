@@ -12,7 +12,6 @@ const data_stats = {
       repositoriesContributedTo: { totalCount: 61 },
       contributionsCollection: {
         totalCommitContributions: 100,
-        restrictedContributionsCount: 50,
       },
       pullRequests: { totalCount: 300 },
       openIssues: { totalCount: 100 },
@@ -166,7 +165,7 @@ describe("Test fetchStats", () => {
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", false, true);
+    let stats = await fetchStats("anuraghazra", true);
     const rank = calculateRank({
       all_commits: true,
       commits: 1000,
@@ -193,7 +192,7 @@ describe("Test fetchStats", () => {
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", false, true, ["test-repo-1"]);
+    let stats = await fetchStats("anuraghazra", true, ["test-repo-1"]);
     const rank = calculateRank({
       all_commits: true,
       commits: 1000,

@@ -60,15 +60,27 @@
 </p>
 <p align="center">Du magst das Projekt? Wie wäre es mit einer kleinen <a href="https://www.paypal.me/anuraghazra">Spende</a> um es weiterhin am Leben zu erhalten?
 
-# Funktionen
+# Funktionen <!-- omit in toc -->
 
 - [GitHub Statistiken-Karte](#github-statistiken-karte)
-- [GitHub Extra Pins](#github-extra-pins)
+    - [Verbergen individueller Statistiken](#verbergen-individueller-statistiken)
+    - [Symbole anzeigen](#symbole-anzeigen)
+    - [Erscheinungsbild/Themes](#erscheinungsbildthemes)
+    - [Anpassungen/Personalisierung](#anpassungenpersonalisierung)
+- [GitHub Extra-Pins](#github-extra-pins)
+    - [Benutzung](#benutzung)
+    - [Beispiele](#beispiele)
 - [Top Programmiersprachen-Karte](#top-programmiersprachen-karte)
+    - [Benutzung](#benutzung-1)
+    - [Verbirg einzelne Sprachen](#verbirg-einzelne-sprachen)
+    - [Kompaktes Sprachen-Karte Layout](#kompaktes-sprachen-karte-layout)
+    - [Beispiel](#beispiel)
 - [Wakatime Wochen-Statistik](#wakatime-wochen-statistik)
-- [Erscheinungsbild/Themes](#erscheinungsbildthemes)
-- [Anpassungen/Personalisierung](#anpassungenpersonalisierung)
-- [Selber betreiben](#betreibe-es-auf-deiner-eigenen-vercel-instanz)
+    - [Beispiel](#beispiel-1)
+    - [Alle Beispiele](#alle-beispiele)
+    - [Kleiner Tipp (Ausrichten der Repo-Karte)](#kleiner-tipp-ausrichten-der-repo-karte)
+  - [Betreibe es auf deiner eigenen Vercel-Instanz](#betreibe-es-auf-deiner-eigenen-vercel-instanz)
+  - [:sparkling\_heart: Unterstütze das Projekt](#sparkling_heart-unterstütze-das-projekt)
 
 # GitHub Statistiken-Karte
 

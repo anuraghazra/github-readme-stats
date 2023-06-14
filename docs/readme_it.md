@@ -59,14 +59,27 @@
 </p>
 <p align="center">Se ti piace questo progetto, considera la possibilità di <a href="https://www.paypal.me/anuraghazra">donare</a> per aiutare a renderlo migliore!
 
-# Caratteristiche
+# Caratteristiche <!-- omit in toc -->
 
-- [Statistiche GitHub (GitHub Stats Card)](#github-stats-card)
-- [GitHub Extra Pin](#github-extra-pins)
-- [Linguaggi più usati (Top Languages Card)](#top-languages-card)
-- [Temi](#temi)
-- [Personalizzazione](#personalizzazione)
-- [Effettua il Deploy](#deploy-su-vercel)
+- [GitHub Stats Card](#github-stats-card)
+    - [Nascondere statistiche individuali](#nascondere-statistiche-individuali)
+    - [Includere i contributi privati nel computo totale](#includere-i-contributi-privati-nel-computo-totale)
+    - [Mostrare le icone](#mostrare-le-icone)
+    - [Temi](#temi)
+    - [Personalizzazione](#personalizzazione)
+- [GitHub Extra Pins](#github-extra-pins)
+    - [Utilizzo](#utilizzo)
+    - [Demo](#demo)
+- [Top Languages Card](#top-languages-card)
+    - [Utilizzo](#utilizzo-1)
+    - [Nascondi linguaggi specifici](#nascondi-linguaggi-specifici)
+    - [Layout compatto](#layout-compatto)
+    - [Demo](#demo-1)
+    - [Galleria di esempi](#galleria-di-esempi)
+    - [Consiglio veloce (Allineare le Card)](#consiglio-veloce-allineare-le-card)
+  - [Deploy su Vercel](#deploy-su-vercel)
+  - [:sparkling\_heart: Supporta il progetto](#sparkling_heart-supporta-il-progetto)
+
 
 # GitHub Stats Card
 

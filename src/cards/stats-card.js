@@ -165,7 +165,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     },
     contribs: {
       icon: icons.contribs,
-      label: i18n.t("statcard.contribs") + " (last year)",
+      label: i18n.t("statcard.contribs"),
       value: contributedTo,
       id: "contribs",
     },
@@ -209,9 +209,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_rank ? 0 : 150,
   );
 
-  // the better user's score the the rank will be closer to zero so
-  // subtracting 100 to get the progress in 100%
-  const progress = 100 - rank.score;
+  // the lower the user's percentile the better
+  const progress = 100 - rank.percentile;
   const cssStyles = getStyles({
     titleColor,
     ringColor,

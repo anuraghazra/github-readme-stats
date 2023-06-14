@@ -60,15 +60,30 @@
 </p>
 <p align="center">¿Te gusta este proyecto? ¡Por favor, considera <a href="https://www.paypal.me/anuraghazra">donar</a> para ayudar a mejorarlo!
 
-# Características
+# Características <!-- omit in toc -->
 
 - [Tarjeta de estadísticas de GitHub](#tarjeta-de-estadísticas-de-github)
-- [Pins adicionales de GitHub](#pines-adicionales-de-github)
+    - [Ocultar estadísticas individualmente](#ocultar-estadísticas-individualmente)
+    - [Agregar contribuciones privadas al total de commits contados](#agregar-contribuciones-privadas-al-total-de-commits-contados)
+    - [Mostrar íconos](#mostrar-íconos)
+    - [Temas](#temas)
+    - [Personalización](#personalización)
+- [Pines adicionales de GitHub](#pines-adicionales-de-github)
+    - [Utilización](#utilización)
+    - [Ejemplo](#ejemplo)
 - [Tarjeta de Lenguajes Principales](#tarjeta-de-lenguajes-principales)
-- [Wakatime Week Stats](#estadísticas-de-la-semana-de-wakatime)
-- [Temas](#temas)
-- [Personalización](#personalización)
-- [Despliega por tu cuenta](#despliega-tu-propia-instancia-de-vercel)
+    - [Utilización](#utilización-1)
+    - [Excluir repositorios individualmente](#excluir-repositorios-individualmente)
+    - [Ocultar lenguajes individualmente](#ocultar-lenguajes-individualmente)
+    - [Mostrar más lenguajes](#mostrar-más-lenguajes)
+    - [Diseño Compacto de Tarjeta de Lenguaje](#diseño-compacto-de-tarjeta-de-lenguaje)
+    - [Ejemplo](#ejemplo-1)
+- [Estadísticas de la semana de Wakatime](#estadísticas-de-la-semana-de-wakatime)
+    - [Ejemplo](#ejemplo-2)
+    - [Todos los ejemplos](#todos-los-ejemplos)
+    - [Consejo rápido (para alinear las tarjetas de repositorio)](#consejo-rápido-para-alinear-las-tarjetas-de-repositorio)
+  - [Despliega tu propia instancia de Vercel](#despliega-tu-propia-instancia-de-vercel)
+  - [:sparkling\_heart: Apoya al proyecto](#sparkling_heart-apoya-al-proyecto)
 
 # Tarjeta de estadísticas de GitHub
 
