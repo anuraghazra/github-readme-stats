@@ -16,6 +16,7 @@ const stats = {
   totalCommits: 200,
   totalIssues: 300,
   totalPRs: 400,
+  totalReviews: 50,
   contributedTo: 500,
   rank: { level: "A+", score: 40 },
 };
@@ -71,11 +72,12 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "issues")).toBeNull();
     expect(queryByTestId(document.body, "prs")).toBeNull();
     expect(queryByTestId(document.body, "contribs")).toBeNull();
+    expect(queryByTestId(document.body, "reviews")).toBeNull();
   });
 
-  it("should show individual stats", () => {
+  it("should show total reviews", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      show: ["reviews"],
+      show_total_reviews: true,
     });
 
     expect(

@@ -36,8 +36,8 @@ export default async (req, res) => {
     border_radius,
     number_format,
     border_color,
-    show,
     rank_icon,
+    show_total_reviews,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -95,8 +95,8 @@ export default async (req, res) => {
         number_format,
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
-        show: parseArray(show),
         rank_icon,
+        show_total_reviews: parseBoolean(show_total_reviews),
       }),
     );
   } catch (err) {
