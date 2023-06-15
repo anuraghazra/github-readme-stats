@@ -46,7 +46,8 @@ const GRAPHQL_STATS_QUERY = `
       name
       login
       contributionsCollection {
-        totalCommitContributions
+        totalCommitContributions,
+        totalPullRequestReviewContributions
       }
       repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
         totalCount
@@ -195,6 +196,7 @@ const fetchStats = async (
   const stats = {
     name: "",
     totalPRs: 0,
+    totalReviews: 0,
     totalCommits: 0,
     totalIssues: 0,
     totalStars: 0,
@@ -238,6 +240,8 @@ const fetchStats = async (
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
+  stats.totalReviews =
+    user.contributionsCollection.totalPullRequestReviewContributions;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 

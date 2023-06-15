@@ -18,6 +18,7 @@ export type RepositoryData = {
 export type StatsData = {
   name: string;
   totalPRs: number;
+  totalReviews: number;
   totalCommits: number;
   totalIssues: number;
   totalStars: number;
