@@ -306,6 +306,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
 -   `ring_color` - Color of the rank circle _(hex color)_. Defaults to the theme ring color if it exists and otherwise the title color.
 -   `number_format` - Switch between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). Default: `short`.
+-   `show_total_reviews` - Show total PR reviews _(boolean)_. Default: `false`.
 
 > **Note**
 > When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.

@@ -12,6 +12,7 @@ const data_stats = {
       repositoriesContributedTo: { totalCount: 61 },
       contributionsCollection: {
         totalCommitContributions: 100,
+        totalPullRequestReviewContributions: 50,
       },
       pullRequests: { totalCount: 300 },
       openIssues: { totalCount: 100 },
@@ -116,6 +117,7 @@ describe("Test fetchStats", () => {
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,
+      totalReviews: 50,
       totalStars: 300,
       rank,
     });
@@ -146,6 +148,7 @@ describe("Test fetchStats", () => {
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,
+      totalReviews: 50,
       totalStars: 300,
       rank,
     });
@@ -182,6 +185,7 @@ describe("Test fetchStats", () => {
       totalCommits: 1000,
       totalIssues: 200,
       totalPRs: 300,
+      totalReviews: 50,
       totalStars: 300,
       rank,
     });
@@ -209,6 +213,7 @@ describe("Test fetchStats", () => {
       totalCommits: 1000,
       totalIssues: 200,
       totalPRs: 300,
+      totalReviews: 50,
       totalStars: 200,
       rank,
     });
@@ -234,6 +239,7 @@ describe("Test fetchStats", () => {
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,
+      totalReviews: 50,
       totalStars: 400,
       rank,
     });
@@ -259,6 +265,7 @@ describe("Test fetchStats", () => {
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,
+      totalReviews: 50,
       totalStars: 300,
       rank,
     });
@@ -284,6 +291,7 @@ describe("Test fetchStats", () => {
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,
+      totalReviews: 50,
       totalStars: 300,
       rank,
     });
