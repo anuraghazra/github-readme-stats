@@ -16,6 +16,7 @@ const stats = {
   totalCommits: 200,
   totalIssues: 300,
   totalPRs: 400,
+  totalReviews: 50,
   contributedTo: 500,
   rank: { level: "A+", score: 40 },
 };
@@ -38,6 +39,9 @@ describe("Test renderStatsCard", () => {
     expect(getByTestId(document.body, "contribs").textContent).toBe("500");
     expect(queryByTestId(document.body, "card-bg")).toBeInTheDocument();
     expect(queryByTestId(document.body, "rank-circle")).toBeInTheDocument();
+
+    // Default hidden stats
+    expect(queryByTestId(document.body, "reviews")).not.toBeInTheDocument();
   });
 
   it("should have proper name apostrophe", () => {
@@ -68,6 +72,24 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "issues")).toBeNull();
     expect(queryByTestId(document.body, "prs")).toBeNull();
     expect(queryByTestId(document.body, "contribs")).toBeNull();
+    expect(queryByTestId(document.body, "reviews")).toBeNull();
+  });
+
+  it("should show total reviews", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      show_total_reviews: true,
+    });
+
+    expect(
+      document.body.getElementsByTagName("svg")[0].getAttribute("height"),
+    ).toBe("220");
+
+    expect(queryByTestId(document.body, "stars")).toBeDefined();
+    expect(queryByTestId(document.body, "commits")).toBeDefined();
+    expect(queryByTestId(document.body, "issues")).toBeDefined();
+    expect(queryByTestId(document.body, "prs")).toBeDefined();
+    expect(queryByTestId(document.body, "contribs")).toBeDefined();
+    expect(queryByTestId(document.body, "reviews")).toBeDefined();
   });
 
   it("should hide_rank", () => {
