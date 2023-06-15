@@ -15,6 +15,7 @@ jobs:
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         with:
+          top_list_size: 10
           filter: "1772"
           label: true
           dashboard: true
