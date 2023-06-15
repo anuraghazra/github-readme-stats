@@ -160,16 +160,6 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     value: totalPRs,
     id: "prs",
   };
-
-  if (show_total_reviews) {
-    STATS.reviews = {
-      icon: icons.reviews,
-      label: i18n.t("statcard.reviews"),
-      value: totalReviews,
-      id: "reviews",
-    };
-  }
-
   STATS.issues = {
     icon: icons.issues,
     label: i18n.t("statcard.issues"),
@@ -182,6 +172,16 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     value: contributedTo,
     id: "contribs",
   };
+
+  // Extra stats items.
+  if (show_total_reviews) {
+    STATS.reviews = {
+      icon: icons.reviews,
+      label: i18n.t("statcard.reviews"),
+      value: totalReviews,
+      id: "reviews",
+    };
+  }
 
   const longLocales = [
     "cn",
