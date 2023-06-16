@@ -33,7 +33,6 @@ const data_stats = {
       repositoriesContributedTo: { totalCount: stats.contributedTo },
       contributionsCollection: {
         totalCommitContributions: stats.totalCommits,
-        restrictedContributionsCount: 100,
       },
       pullRequests: { totalCount: stats.totalPRs },
       openIssues: { totalCount: stats.totalIssues },

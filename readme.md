@@ -36,6 +36,8 @@
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
     ·
+    <a href="https://github.com/anuraghazra/github-readme-stats/discussions/1770">FAQ</a>
+    ·
     <a href="https://github.com/anuraghazra/github-readme-stats/discussions">Ask Question</a>
   </p>
   <p align="center">
@@ -54,11 +56,11 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
-    .
+    ·
     <a href="/docs/readme_nl.md">Nederlands</a>
-    .
+    ·
     <a href="/docs/readme_np.md">नेपाली</a>
-    .
+    ·
     <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
@@ -104,16 +106,17 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
     - [Hide Progress Bars](#hide-progress-bars)
     - [Demo](#demo-1)
-- [Wakatime Week Stats](#wakatime-week-stats)
+- [Wakatime Stats Card](#wakatime-stats-card)
     - [Demo](#demo-2)
-    - [All Demos](#all-demos)
-    - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
-  - [Deploy on your own](#deploy-on-your-own)
-    - [On Vercel](#on-vercel)
-    - [On other platforms](#on-other-platforms)
-    - [Disable rate limit protections](#disable-rate-limit-protections)
-    - [Keep your fork up to date](#keep-your-fork-up-to-date)
-  - [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
+- [All Demos](#all-demos)
+  - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
+- [Deploy on your own](#deploy-on-your-own)
+  - [On Vercel](#on-vercel)
+    - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
+  - [On other platforms](#on-other-platforms)
+  - [Disable rate limit protections](#disable-rate-limit-protections)
+  - [Keep your fork up to date](#keep-your-fork-up-to-date)
+- [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
 
 # Important Notice <!-- omit in toc -->
 
@@ -134,7 +137,7 @@ Change the `?username=` value to your GitHub username.
 > By default, the stats card only shows statistics like stars, commits and pull requests from public repositories. To show private statistics on the stats card, you should [deploy your own instance](#deploy-on-your-own) using your own GitHub API token.
 
 > **Note**
-> Available ranks are S+ (top 1%), S (top 25%), A++ (top 45%), A+ (top 60%), and B+ (everyone). The values are calculated by using the [cumulative distribution function](https://en.wikipedia.org/wiki/Cumulative_distribution_function) using commits, contributions, issues, stars, pull requests, followers, and owned repositories. The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js).
+> Available ranks are S (top 1%), A+ (12.5%), A (25%), A- (37.5%), B+ (50%), B (62.5%), B- (75%), C+ (87.5%) and C (everyone). This ranking scheme is based on the [Japanese academic grading](https://wikipedia.org/wiki/Academic_grading_in_Japan) system. The global percentile is calculated as a weighted sum of percentiles for each statistic (number of commits, pull requests, issues, stars and followers), based on the cumulative distribution function of the [exponential](https://wikipedia.org/wiki/exponential_distribution) and the [log-normal](https://wikipedia.org/wiki/Log-normal_distribution) distributions. The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js). The circle around the rank shows 100 minus the global percentile.
 
 ### Hiding individual stats
 
@@ -303,6 +306,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
 -   `ring_color` - Color of the rank circle _(hex color)_. Defaults to the theme ring color if it exists and otherwise the title color.
 -   `number_format` - Switch between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). Default: `short`.
+-   `show_total_reviews` - Show total PR reviews _(boolean)_. Default: `false`.
 
 > **Note**
 > When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.
@@ -496,7 +500,7 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)
 
-# Wakatime Week Stats
+# Wakatime Stats Card
 
 > **Warning**
 > Please be aware that we currently only show data from Wakatime profiles that are public. You therefore have to make sure that **BOTH** `Display code time publicly` and `Display languages, editors, os, categories publicly` are enabled.
@@ -519,7 +523,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 * * *
 
-### All Demos
+# All Demos
 
 -   Default
 
@@ -577,7 +581,7 @@ Choose from any of the [default themes](#themes)
 
 * * *
 
-### Quick Tip (Align The Repo Cards)
+## Quick Tip (Align The Repo Cards)
 
 By default, GitHub does not lay out the cards side by side. To do that, you can use this approach:
 
@@ -590,11 +594,11 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 </a>
 ```
 
-## Deploy on your own
+# Deploy on your own
 
-### On Vercel
+## On Vercel
 
-#### :film_projector: [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+### :film_projector: [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
 Since the GitHub API only allows 5k requests per hour, my `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter. If you host it on your own Vercel server, then you do not have to worry about anything. Click on the deploy button to get started!
 
@@ -621,14 +625,14 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
     ![](https://files.catbox.moe/3n76fh.png)
 8.  Click the `Continue with GitHub` button, search for the required Git Repository and import it by clicking the `Import` button. Alternatively, you can import a Third-Party Git Repository using the `Import Third-Party Git Repository ->` link at the bottom of the page.
     ![](https://files.catbox.moe/mg5p04.png)
-9. Create a personal access token (PAT) [here](https://github.com/settings/tokens/new) and enable the `repo` permissions (this allows access to see private repo stats).
+9.  Create a personal access token (PAT) [here](https://github.com/settings/tokens/new) and enable the `repo` and `user` permissions (this allows access to see private repo and user stats).
 10. Add the PAT as an environment variable named `PAT_1` (as shown).
     ![](https://files.catbox.moe/0yclio.png)
 11. Click deploy, and you're good to go. See your domains to use the API!
 
 </details>
 
-### On other platforms
+## On other platforms
 
 > **Warning**
 > This way of using GRS is not officially supported and was added to cater to some particular use cases where Vercel could not be used (e.g. #2341). The support for this method, therefore, is limited.
@@ -645,7 +649,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 5.  You're done 🎉
     </details>
 
-### Disable rate limit protections
+## Disable rate limit protections
 
 Github Readme Stats contains several Vercel environment variables that can be used to remove the rate limit protections:
 
@@ -653,11 +657,11 @@ Github Readme Stats contains several Vercel environment variables that can be us
 
 See [the Vercel documentation](https://vercel.com/docs/concepts/projects/environment-variables) on adding these environment variables to your Vercel instance.
 
-### Keep your fork up to date
+## Keep your fork up to date
 
 You can keep your fork, and thus your private Vercel instance up to date with the upstream using GitHub's [Sync Fork button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). You can also use the [pull](https://github.com/wei/pull) package created by [@wei](https://github.com/wei) to automate this process.
 
-## :sparkling_heart: Support the project
+# :sparkling_heart: Support the project
 
 I open-source almost everything I can and try to reply to everyone needing help using these projects. Obviously,
 this takes time. You can use this service for free.

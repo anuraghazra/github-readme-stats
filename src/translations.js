@@ -6,6 +6,8 @@ import { encodeHTML } from "./common/utils.js";
  * @param {string} name The name of the locale.
  * @param {string} apostrophe Whether to use apostrophe or not.
  * @returns {Object} The locales object.
+ *
+ * @see https://www.andiamo.co.uk/resources/iso-language-codes/ for language codes.
  */
 const statCardLocales = ({ name, apostrophe }) => {
   const encodedName = encodeHTML(name);
@@ -195,6 +197,32 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Hissa qoʻshgan (o'tgan yili)",
       vi: "Đã Đóng Góp (năm ngoái)",
       se: "Bidragit till (förra året)",
+    },
+    "statcard.reviews": {
+      ar: "إجمالي مراجعات العلاقات العامة",
+      cn: "公关评论总数",
+      cs: "Celkové PR recenze",
+      de: "Gesamtzahl der PR-Bewertungen",
+      en: "Total PR reviews",
+      bn: "মোট জনসংযোগ পর্যালোচনা",
+      es: "Revisiones de relaciones públicas totales",
+      fr: "Total des revues de relations publiques",
+      hu: "Összes PR értékelés",
+      it: "Totale recensioni di pubbliche relazioni",
+      ja: "PRレビューの合計",
+      kr: "총 PR 리뷰",
+      nl: "Totale PR-recensies",
+      "pt-pt": "Total de avaliações de relações públicas",
+      "pt-br": "Total de avaliações de relações públicas",
+      np: "कुल PR समीक्षाहरू",
+      el: "Συνολικές κριτικές δημοσίων σχέσεων",
+      ru: "Всего PR отзывов",
+      "uk-ua": "Тотальний PR оглядів",
+      id: "Ulasan PR total",
+      my: "စုစုပေါင်း PR သုံးသပ်ချက်",
+      sk: "Celkové hodnotenia PR",
+      tr: "Toplam halkla ilişkiler incelemesi",
+      pl: "Razem recenzje PR",
     },
   };
 };
@@ -418,10 +446,10 @@ const isLocaleAvailable = (locale) => {
 };
 
 export {
-  isLocaleAvailable,
   availableLocales,
-  statCardLocales,
-  repoCardLocales,
+  isLocaleAvailable,
   langCardLocales,
+  repoCardLocales,
+  statCardLocales,
   wakatimeCardLocales,
 };
