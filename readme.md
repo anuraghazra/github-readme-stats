@@ -635,7 +635,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 ## On other platforms
 
 > **Warning**
-> This way of using GRS is not officially supported and was added to cater to some particular use cases where Vercel could not be used (e.g. #2341). The support for this method, therefore, is limited.
+> This way of using GRS is not officially supported and was added to cater to some particular use cases where Vercel could not be used (e.g. [#2341](https://github.com/anuraghazra/github-readme-stats/discussions/2341)). The support for this method, therefore, is limited.
 
 <details>
 <summary><b>:hammer_and_wrench: Step-by-step guide for deploying on other platforms</b></summary>
