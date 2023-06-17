@@ -321,7 +321,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `hide_title` - _(boolean)_. Default: `false`.
 -   `layout` - Switch between five available layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Default: `normal`.
 -   `card_width` - Set the card's width manually _(number)_. Default `300`.
--   `langs_count` - Show more languages on the card, between 1-10 _(number)_. Default: `5` for `normal` and `donut`, `6` for other layouts.
+-   `langs_count` - Show more languages on the card, between 1-20 _(number)_. Default: `5` for `normal` and `donut`, `6` for other layouts.
 -   `exclude_repo` - Exclude specified repositories _(Comma-separated values)_. Default: `[] (blank array)`.
 -   `custom_title` - Sets a custom title for the card _(string)_. Default `Most Used Languages`.
 -   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
