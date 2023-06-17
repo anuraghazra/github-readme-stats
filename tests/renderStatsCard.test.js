@@ -77,7 +77,7 @@ describe("Test renderStatsCard", () => {
 
   it("should show total reviews", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      show_total_reviews: true,
+      show: ["reviews"],
     });
 
     expect(
