@@ -88,6 +88,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 
 - [GitHub Stats Card](#github-stats-card)
     - [Hiding individual stats](#hiding-individual-stats)
+    - [Showing additional individual stats](#showing-additional-individual-stats)
     - [Showing icons](#showing-icons)
     - [Themes](#themes)
     - [Customization](#customization)
@@ -147,6 +148,16 @@ You can pass a query parameter `&hide=` to hide any specific stats with comma-se
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
+```
+
+### Showing additional individual stats
+
+You can pass a query parameter `&show=` to show any specific stats with comma-separated values.
+
+> Options: `&show=reviews`
+
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show=reviews)
 ```
 
 ### Showing icons
@@ -306,7 +317,7 @@ You can provide multiple comma-separated values in the bg_color option to render
 -   `disable_animations` - Disables all animations in the card _(boolean)_. Default: `false`.
 -   `ring_color` - Color of the rank circle _(hex color)_. Defaults to the theme ring color if it exists and otherwise the title color.
 -   `number_format` - Switch between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). Default: `short`.
--   `show_total_reviews` - Show total PR reviews _(boolean)_. Default: `false`.
+-   `show` - Show total PR reviews _(boolean)_. Default: `false`.
 
 > **Note**
 > When hide_rank=`true`, the minimum card width is 270 px + the title length and padding.

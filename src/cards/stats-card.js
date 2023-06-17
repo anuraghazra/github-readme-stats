@@ -112,7 +112,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     locale,
     disable_animations = false,
     rank_icon = "default",
-    show_total_reviews = false,
+    show = [],
   } = options;
 
   const lheight = parseInt(String(line_height), 10);
@@ -161,7 +161,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     id: "prs",
   };
 
-  if (show_total_reviews) {
+  if (show.includes("reviews")) {
     STATS.reviews = {
       icon: icons.reviews,
       label: i18n.t("statcard.reviews"),
