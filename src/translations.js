@@ -228,6 +228,12 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số PR Đã Xem Xét",
       se: "Totalt antal granskade PR",
     },
+    "statcard.discussions-started": {
+      en: "Total Discussions Started",
+    },
+    "statcard.discussions-answered": {
+      en: "Total Discussions Answered",
+    },
   };
 };
 
