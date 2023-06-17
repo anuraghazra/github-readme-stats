@@ -78,7 +78,7 @@ const createTextNode = ({
  * @param {Partial<import("./types").StatCardOptions>} options The card options.
  * @returns {string} The stats card SVG object.
  */
-const renderStatsCard = (stats = {}, options = { hide: [] }) => {
+const renderStatsCard = (stats = {}, options = {}) => {
   const {
     name,
     totalStars,
