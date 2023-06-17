@@ -119,7 +119,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 # Important Notice <!-- omit in toc -->
 
 > **Warning**
-> Since the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see #1471). We use caching to prevent this from happening (see https://github.com/anuraghazra/github-readme-stats#common-options). You can turn off these rate limit protections by deploying [your own Vercel instance](#disable-rate-limit-protections).
+> Since the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)). We use caching to prevent this from happening (see https://github.com/anuraghazra/github-readme-stats#common-options). You can turn off these rate limit protections by deploying [your own Vercel instance](#disable-rate-limit-protections).
 
 # GitHub Stats Card
 
@@ -329,7 +329,7 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 *   `hide_title` - *(boolean)*. Default: `false`.
 *   `layout` - Switch between five available layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Default: `normal`.
 *   `card_width` - Set the card's width manually *(number)*. Default `300`.
-*   `langs_count` - Show more languages on the card, between 1-10 *(number)*. Default: `5` for `normal` and `donut`, `6` for other layouts.
+*   `langs_count` - Show more languages on the card, between 1-20 *(number)*. Default: `5` for `normal` and `donut`, `6` for other layouts.
 *   `exclude_repo` - Exclude specified repositories *(Comma-separated values)*. Default: `[] (blank array)`.
 *   `custom_title` - Sets a custom title for the card *(string)*. Default `Most Used Languages`.
 *   `disable_animations` - Disables all animations in the card *(boolean)*. Default: `false`.
