@@ -86,6 +86,8 @@ const renderStatsCard = (stats = {}, options = {}) => {
     totalIssues,
     totalPRs,
     totalReviews,
+    totalDiscussionsStarted,
+    totalDiscussionsAnswered,
     contributedTo,
     rank,
   } = stats;
@@ -176,6 +178,24 @@ const renderStatsCard = (stats = {}, options = {}) => {
     value: totalIssues,
     id: "issues",
   };
+
+  if (show.includes("discussions_started")) {
+    STATS.discussions_started = {
+      icon: icons.discussions_started,
+      label: i18n.t("statcard.discussions-started"),
+      value: totalDiscussionsStarted,
+      id: "discussions_started",
+    };
+  }
+  if (show.includes("discussions_answered")) {
+    STATS.discussions_answered = {
+      icon: icons.discussions_answered,
+      label: i18n.t("statcard.discussions-answered"),
+      value: totalDiscussionsAnswered,
+      id: "discussions_answered",
+    };
+  }
+
   STATS.contribs = {
     icon: icons.contribs,
     label: i18n.t("statcard.contribs"),

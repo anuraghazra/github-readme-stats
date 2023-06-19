@@ -17,6 +17,8 @@ const stats = {
   totalIssues: 300,
   totalPRs: 400,
   totalReviews: 50,
+  totalDiscussionsStarted: 10,
+  totalDiscussionsAnswered: 50,
   contributedTo: 500,
   rank: { level: "A+", score: 40 },
 };
@@ -42,6 +44,12 @@ describe("Test renderStatsCard", () => {
 
     // Default hidden stats
     expect(queryByTestId(document.body, "reviews")).not.toBeInTheDocument();
+    expect(
+      queryByTestId(document.body, "discussions_started"),
+    ).not.toBeInTheDocument();
+    expect(
+      queryByTestId(document.body, "discussions_answered"),
+    ).not.toBeInTheDocument();
   });
 
   it("should have proper name apostrophe", () => {
@@ -73,16 +81,18 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "prs")).toBeNull();
     expect(queryByTestId(document.body, "contribs")).toBeNull();
     expect(queryByTestId(document.body, "reviews")).toBeNull();
+    expect(queryByTestId(document.body, "discussions_started")).toBeNull();
+    expect(queryByTestId(document.body, "discussions_answered")).toBeNull();
   });
 
-  it("should show total reviews", () => {
+  it("should show additional stats", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      show: ["reviews"],
+      show: ["reviews", "discussions_started", "discussions_answered"],
     });
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height"),
-    ).toBe("220");
+    ).toBe("270");
 
     expect(queryByTestId(document.body, "stars")).toBeDefined();
     expect(queryByTestId(document.body, "commits")).toBeDefined();
@@ -90,6 +100,8 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "prs")).toBeDefined();
     expect(queryByTestId(document.body, "contribs")).toBeDefined();
     expect(queryByTestId(document.body, "reviews")).toBeDefined();
+    expect(queryByTestId(document.body, "discussions_started")).toBeDefined();
+    expect(queryByTestId(document.body, "discussions_answered")).toBeDefined();
   });
 
   it("should hide_rank", () => {
