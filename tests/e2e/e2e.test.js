@@ -23,7 +23,7 @@ const STATS_DATA = {
   contributedTo: 1,
   rank: {
     level: "C",
-    percentile: 97.89377603631637,
+    percentile: 97.51123629609674,
   },
 };
 
