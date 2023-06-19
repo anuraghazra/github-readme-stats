@@ -328,7 +328,7 @@ const renderStatsCard = (stats = {}, options = {}) => {
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
-          ${rankIcon(rank_icon, rank?.level, progress)}
+          ${rankIcon(rank_icon, rank?.level, rank?.percentile)}
         </g>
       </g>`;
 

@@ -45,6 +45,12 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
     .rank-progress-text {
       font-size: 16px;
     }
+    .rank-percentile-header {
+      font-size: 16px;
+    }
+    .rank-percentile-text {
+      font-size: 16px;
+    }
     
     .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
@@ -226,6 +232,12 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
     .rank-progress-text {
+      font-size: 16px;
+    }
+    .rank-percentile-header {
+      font-size: 16px;
+    }
+    .rank-percentile-text {
       font-size: 16px;
     }
     

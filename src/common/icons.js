@@ -16,10 +16,10 @@ const icons = {
  *
  * @param {string} rankIcon - The rank icon type.
  * @param {number} rankLevel - The rank level.
- * @param {number} progress - The rank progress.
+ * @param {number} percentile - The rank percentile.
  * @returns {string} - The SVG code of the rank icon
  */
-const rankIcon = (rankIcon, rankLevel, progress) => {
+const rankIcon = (rankIcon, rankLevel, percentile) => {
   switch (rankIcon) {
     case "github":
       return `
@@ -29,8 +29,17 @@ const rankIcon = (rankIcon, rankLevel, progress) => {
       `;
     case "progress":
       return `
-      <text x="-5" y="3" alignment-baseline="central" dominant-baseline="central" text-anchor="middle" data-testid="progress-rank-icon" class="rank-progress-text">
-          ${progress.toFixed(1)}%
+        <text x="-5" y="3" alignment-baseline="central" dominant-baseline="central" text-anchor="middle" data-testid="progress-rank-icon" class="rank-progress-text">
+            ${(100 - percentile).toFixed(1)}%
+        </text>
+        `;
+    case "percentile":
+      return `
+      <text x="-5" y="-12" alignment-baseline="central" dominant-baseline="central" text-anchor="middle" data-testid="percentile-top-header" class="rank-percentile-header">
+          Top
+      </text>
+      <text x="-5" y="12" alignment-baseline="central" dominant-baseline="central" text-anchor="middle" data-testid="percentile-rank-value" class="rank-percentile-text">
+          ${percentile.toFixed(1)}%
       </text>
       `;
     case "default":
