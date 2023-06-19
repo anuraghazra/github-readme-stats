@@ -541,16 +541,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&hide=contribs,issues)
 
-<<<<<<< HEAD
-
-*   Showing addition stats
-    \=======
-
-<!---->
-
 *   Showing additional stats
-
-> > > > > > > master
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show=reviews,discussions_started,discussions_answered)
 
