@@ -16,6 +16,7 @@ const USER = "catelinemnemosyne";
 const STATS_DATA = {
   name: "Cateline Mnemosyne",
   totalPRs: 2,
+  totalReviews: 1,
   totalCommits: 8,
   totalIssues: 1,
   totalStars: 1,
