@@ -42,6 +42,9 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
       font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58;
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
+    .rank-progress-text {
+      font-size: 16px;
+    }
     
     .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
@@ -221,6 +224,9 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
     .rank-text {
       font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58;
       animation: scaleInAnimation 0.3s ease-in-out forwards;
+    }
+    .rank-progress-text {
+      font-size: 16px;
     }
     
     .not_bold { font-weight: 400 }
