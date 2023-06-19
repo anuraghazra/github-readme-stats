@@ -1,5 +1,6 @@
 {
     "recommendations": [
-        "yzhang.markdown-all-in-one"
+        "yzhang.markdown-all-in-one",
+        "esbenp.prettier-vscode"
     ]
 }
