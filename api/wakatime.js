@@ -1,15 +1,15 @@
-require("dotenv").config();
-const {
-  renderError,
-  parseBoolean,
+import { renderWakatimeCard } from "../src/cards/wakatime-card.js";
+import {
   clampValue,
   CONSTANTS,
-  isLocaleAvailable,
-} = require("../src/common/utils");
-const { fetchWakatimeStats } = require("../src/fetchers/wakatime-fetcher");
-const wakatimeCard = require("../src/cards/wakatime-card");
+  parseArray,
+  parseBoolean,
+  renderError,
+} from "../src/common/utils.js";
+import { fetchWakatimeStats } from "../src/fetchers/wakatime-fetcher.js";
+import { isLocaleAvailable } from "../src/translations.js";
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const {
     username,
     title_color,
@@ -26,8 +26,8 @@ module.exports = async (req, res) => {
     locale,
     layout,
     langs_count,
+    hide,
     api_domain,
-    range,
     border_radius,
     border_color,
   } = req.query;
@@ -39,25 +39,34 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const stats = await fetchWakatimeStats({ username, api_domain, range });
+    const stats = await fetchWakatimeStats({ username, api_domain });
 
     let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
-      CONSTANTS.TWO_HOURS,
+      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
+      CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
+    cacheSeconds = process.env.CACHE_SECONDS
+      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+      : cacheSeconds;
 
     if (!cache_seconds) {
       cacheSeconds = CONSTANTS.FOUR_HOURS;
     }
 
-    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${
+        cacheSeconds / 2
+      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    );
 
     return res.send(
-      wakatimeCard(stats, {
+      renderWakatimeCard(stats, {
         custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
+        hide: parseArray(hide),
         line_height,
         title_color,
         icon_color,
@@ -73,6 +82,7 @@ module.exports = async (req, res) => {
       }),
     );
   } catch (err) {
+    res.setHeader("Cache-Control", `no-cache, no-store, must-revalidate`); // Don't cache error responses.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };

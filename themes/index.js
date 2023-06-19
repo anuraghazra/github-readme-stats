@@ -1,16 +1,43 @@
-const themes = {
+export const themes = {
   default: {
     title_color: "2f80ed",
     icon_color: "4c71f2",
-    text_color: "333",
+    text_color: "434d58",
     bg_color: "fffefe",
     border_color: "e4e2e2",
   },
   default_repocard: {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
-    text_color: "333",
+    text_color: "434d58",
     bg_color: "fffefe",
+  },
+  transparent: {
+    title_color: "006AFF",
+    icon_color: "0579C3",
+    text_color: "417E87",
+    bg_color: "ffffff00",
+  },
+  shadow_red: {
+    title_color: "9A0000",
+    text_color: "444",
+    icon_color: "4F0000",
+    border_color: "4F0000",
+    bg_color: "ffffff00",
+  },
+  shadow_green: {
+    title_color: "007A00",
+    text_color: "444",
+    icon_color: "003D00",
+    border_color: "003D00",
+    bg_color: "ffffff00",
+  },
+  shadow_blue: {
+    title_color: "00779A",
+    text_color: "444",
+    icon_color: "004450",
+    border_color: "004490",
+    bg_color: "ffffff00",
   },
   dark: {
     title_color: "fff",
@@ -35,6 +62,12 @@ const themes = {
     icon_color: "fe8019",
     text_color: "8ec07c",
     bg_color: "282828",
+  },
+  gruvbox_light: {
+    title_color: "b57614",
+    icon_color: "af3a03",
+    text_color: "427b58",
+    bg_color: "fbf1c7",
   },
   tokyonight: {
     title_color: "70a5fd",
@@ -288,11 +321,114 @@ const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  github_dark_dimmed: {
+    title_color: "539bf5",
+    icon_color: "539bf5",
+    text_color: "ADBAC7",
+    bg_color: "24292F",
+    border_color: "373E47",
+  },
   discord_old_blurple: {
     title_color: "7289DA",
     icon_color: "7289DA",
     text_color: "FFFFFF",
     bg_color: "2C2F33",
+  },
+  aura_dark: {
+    title_color: "ff7372",
+    icon_color: "6cffd0",
+    text_color: "dbdbdb",
+    bg_color: "252334",
+  },
+  panda: {
+    title_color: "19f9d899",
+    icon_color: "19f9d899",
+    text_color: "FF75B5",
+    bg_color: "31353a",
+  },
+  noctis_minimus: {
+    title_color: "d3b692",
+    icon_color: "72b7c0",
+    text_color: "c5cdd3",
+    bg_color: "1b2932",
+  },
+  cobalt2: {
+    title_color: "ffc600",
+    icon_color: "ffffff",
+    text_color: "0088ff",
+    bg_color: "193549",
+  },
+  swift: {
+    title_color: "000000",
+    icon_color: "f05237",
+    text_color: "000000",
+    bg_color: "f7f7f7",
+  },
+  aura: {
+    title_color: "a277ff",
+    icon_color: "ffca85",
+    text_color: "61ffca",
+    bg_color: "15141b",
+  },
+  apprentice: {
+    title_color: "ffffff",
+    icon_color: "ffffaf",
+    text_color: "bcbcbc",
+    bg_color: "262626",
+  },
+  moltack: {
+    title_color: "86092C",
+    icon_color: "86092C",
+    text_color: "574038",
+    bg_color: "F5E1C0",
+  },
+  codeSTACKr: {
+    title_color: "ff652f",
+    icon_color: "FFE400",
+    text_color: "ffffff",
+    bg_color: "09131B",
+    border_color: "0c1a25",
+  },
+  rose_pine: {
+    title_color: "9ccfd8",
+    icon_color: "ebbcba",
+    text_color: "e0def4",
+    bg_color: "191724",
+  },
+  date_night: {
+    title_color: "DA7885",
+    text_color: "E1B2A2",
+    icon_color: "BB8470",
+    border_color: "170F0C",
+    bg_color: "170F0C",
+  },
+  one_dark_pro: {
+    title_color: "61AFEF",
+    text_color: "E5C06E",
+    icon_color: "C678DD",
+    border_color: "3B4048",
+    bg_color: "23272E",
+  },
+  rose: {
+    title_color: "8d192b",
+    text_color: "862931",
+    icon_color: "B71F36",
+    border_color: "e9d8d4",
+    bg_color: "e9d8d4",
+  },
+  holi: {
+    title_color: "5FABEE",
+    text_color: "D6E7FF",
+    icon_color: "5FABEE",
+    border_color: "85A4C0",
+    bg_color: "030314",
+  },
+  neon: {
+    title_color: "00EAD3",
+    text_color: "FF449F",
+    icon_color: "00EAD3",
+    border_color: "ffffff",
+    bg_color: "000000",
   },
   send_tech: {
     title_color: "FC784A",
@@ -302,4 +438,4 @@ const themes = {
   },
 };
 
-module.exports = themes;
+export default themes;

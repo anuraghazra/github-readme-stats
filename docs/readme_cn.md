@@ -53,18 +53,32 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">喜欢这个项目？请考虑<a href="https://www.paypal.me/anuraghazra">捐赠</a>来帮助它完善！
 
-# 特性
+# 特性 <!-- omit in toc -->
 
-- [GitHub 统计卡片](#GitHub-统计卡片)
-- [GitHub 更多置顶](#GitHub-更多置顶)
+- [GitHub 统计卡片](#github-统计卡片)
+    - [隐藏指定统计](#隐藏指定统计)
+    - [将私人项目贡献添加到总提交计数中](#将私人项目贡献添加到总提交计数中)
+    - [显示图标](#显示图标)
+    - [主题](#主题)
+    - [自定义](#自定义)
+- [GitHub 更多置顶](#github-更多置顶)
+    - [使用细则](#使用细则)
+    - [Demo](#demo)
 - [热门语言卡片](#热门语言卡片)
-- [主题](#主题)
-- [自定义](#自定义)
-- [自己部署](#自己部署)
+    - [使用细则](#使用细则-1)
+    - [隐藏指定语言](#隐藏指定语言)
+    - [紧凑的语言卡片布局](#紧凑的语言卡片布局)
+    - [Demo](#demo-1)
+    - [全部 Demos](#全部-demos)
+    - [快速提示 (对齐 Repo 卡片)](#快速提示-对齐-repo-卡片)
+  - [自己部署](#自己部署)
+  - [:sparkling\_heart: 支持这个项目](#sparkling_heart-支持这个项目)
 
 # GitHub 统计卡片
 
@@ -138,7 +152,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `bg_color` - 卡片背景颜色 _（十六进制色码）_ **或者** 以 _angle,start,end_ 的形式渐变
 - `hide_border` - 隐藏卡的边框 _(布尔值)_
 - `theme` - 主题名称，从[所有可用主题](../themes/README.md)中选择
-- `cache_seconds` - 手动设置缓存头 _（最小值: 1800，最大值: 86400）_
+- `cache_seconds` - 手动设置缓存头 _（最小值: 14400，最大值: 86400）_
 - `locale` - 在卡片中设置语言 _(例如 cn, de, es, 等等)_
 
 ##### bg_color 渐变
@@ -169,7 +183,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - `hide` - 从卡片中隐藏指定语言 _(Comma seperated values)_
 - `hide_title` - _(boolean)_
-- `layout` - 在两个可用布局 `default` & `compact` 间切换
+- `layout` - 提供五種佈局 `normal` & `compact` & `donut` & `donut-vertical` & `pie` 间切换
 - `card_width` - 手动设置卡片的宽度 _(number)_
 
 > :warning: **重要:**
@@ -290,7 +304,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 你通常无法将图片靠边显示。为此，您可以使用以下方法：
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>

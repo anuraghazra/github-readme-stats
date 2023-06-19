@@ -1,0 +1,30 @@
+name: Update top issues dashboard
+on:
+  schedule:
+    - cron: "0 0 */3 * *"
+  workflow_dispatch:
+
+jobs:
+  showAndLabelTopIssues:
+    if: github.repository == 'anuraghazra/github-readme-stats'
+    name: Update top issues Dashboard.
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run top issues action
+        uses: rickstaa/top-issues-action@v1
+        env:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          top_list_size: 10
+          filter: "1772"
+          label: true
+          dashboard: true
+          dashboard_show_total_reactions: true
+          top_issues: true
+          top_bugs: true
+          top_features: true
+          top_pull_requests: true
+          custom_pull_requests_label: themes
+          top_custom_pull_requests_label: ":star: top themes"
+          top_custom_pull_requests_label_description: Top themes
+          top_custom_pull_requests_label_colour: "#A23599"

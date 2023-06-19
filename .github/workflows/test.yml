@@ -1,5 +1,4 @@
 name: Test
-
 on:
   push:
     branches:
@@ -10,31 +9,29 @@ on:
 
 jobs:
   build:
+    name: Perform tests
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: "12.x"
-
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key:
-            ${{ runner.os }}-npm-cache-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-npm-cache-
+          node-version: ${{ matrix.node-version }}
+          cache: npm
 
       - name: Install & Test
         run: |
-          npm install
+          npm ci
           npm run test
 
+      - name: Run Prettier
+        run: |
+          npm run format:check
+
       - name: Code Coverage
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3

@@ -1,7 +1,7 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const fetchRepo = require("../src/fetchers/repo-fetcher");
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import { fetchRepo } from "../src/fetchers/repo-fetcher.js";
 
 const data_repo = {
   repository: {
@@ -19,14 +19,15 @@ const data_repo = {
 
 const data_user = {
   data: {
-    user: { repository: data_repo },
+    user: { repository: data_repo.repository },
     organization: null,
   },
 };
+
 const data_org = {
   data: {
     user: null,
-    organization: { repository: data_repo },
+    organization: { repository: data_repo.repository },
   },
 };
 
@@ -41,14 +42,21 @@ describe("Test fetchRepo", () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_user);
 
     let repo = await fetchRepo("anuraghazra", "convoychat");
-    expect(repo).toStrictEqual(data_repo);
+
+    expect(repo).toStrictEqual({
+      ...data_repo.repository,
+      starCount: data_repo.repository.stargazers.totalCount,
+    });
   });
 
   it("should fetch correct org repo", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_org);
 
     let repo = await fetchRepo("anuraghazra", "convoychat");
-    expect(repo).toStrictEqual(data_repo);
+    expect(repo).toStrictEqual({
+      ...data_repo.repository,
+      starCount: data_repo.repository.stargazers.totalCount,
+    });
   });
 
   it("should throw error if user is found but repo is null", async () => {

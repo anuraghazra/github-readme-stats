@@ -60,15 +60,30 @@
 </p>
 <p align="center">¿Te gusta este proyecto? ¡Por favor, considera <a href="https://www.paypal.me/anuraghazra">donar</a> para ayudar a mejorarlo!
 
-# Características
+# Características <!-- omit in toc -->
 
 - [Tarjeta de estadísticas de GitHub](#tarjeta-de-estadísticas-de-github)
-- [Pins adicionales de GitHub](#pines-adicionales-de-github)
-- [Top Languages Card](#tarjeta-de-lenguajes-principales)
-- [Wakatime Week Stats](#estadísticas-de-la-semana-de-wakatime)
-- [Temas](#temas)
-- [Personalización](#personalización)
-- [Despliega por tu cuenta](#despliega-tu-propia-instancia-de-vercel)
+    - [Ocultar estadísticas individualmente](#ocultar-estadísticas-individualmente)
+    - [Agregar contribuciones privadas al total de commits contados](#agregar-contribuciones-privadas-al-total-de-commits-contados)
+    - [Mostrar íconos](#mostrar-íconos)
+    - [Temas](#temas)
+    - [Personalización](#personalización)
+- [Pines adicionales de GitHub](#pines-adicionales-de-github)
+    - [Utilización](#utilización)
+    - [Ejemplo](#ejemplo)
+- [Tarjeta de Lenguajes Principales](#tarjeta-de-lenguajes-principales)
+    - [Utilización](#utilización-1)
+    - [Excluir repositorios individualmente](#excluir-repositorios-individualmente)
+    - [Ocultar lenguajes individualmente](#ocultar-lenguajes-individualmente)
+    - [Mostrar más lenguajes](#mostrar-más-lenguajes)
+    - [Diseño Compacto de Tarjeta de Lenguaje](#diseño-compacto-de-tarjeta-de-lenguaje)
+    - [Ejemplo](#ejemplo-1)
+- [Estadísticas de la semana de Wakatime](#estadísticas-de-la-semana-de-wakatime)
+    - [Ejemplo](#ejemplo-2)
+    - [Todos los ejemplos](#todos-los-ejemplos)
+    - [Consejo rápido (para alinear las tarjetas de repositorio)](#consejo-rápido-para-alinear-las-tarjetas-de-repositorio)
+  - [Despliega tu propia instancia de Vercel](#despliega-tu-propia-instancia-de-vercel)
+  - [:sparkling\_heart: Apoya al proyecto](#sparkling_heart-apoya-al-proyecto)
 
 # Tarjeta de estadísticas de GitHub
 
@@ -142,7 +157,7 @@ Puedes personalizar el aspecto de tu `Tarjeta de Estadísticas` o `Tarjeta de Re
 - `bg_color` - Color de fondo _(hex color)_
 - `hide_border` - Oculta el borde de la tarjeta _(booleano)_
 - `theme` - Nombre del tema, elige uno de [todos los temas disponible ](../themes/README.md)
-- `cache_seconds` - Cache _(min: 1800, max: 86400)_
+- `cache_seconds` - Cache _(min: 14400, max: 86400)_
 - `locale` - configurar el idioma en la tarjeta _(p.ej. cn, de, es, etc.)_
 
 ##### Gradiente en `bg_color`
@@ -157,7 +172,7 @@ Puedes pasar mútliples valores separados por coma en la opción `bg_color` para
 
 #### Opciones exclusivas de la Tarjeta de Estadísticas:
 
-- `hide` - Oculta de las estadísticas los elementos especificados _ (valores separados por comas) _
+- `hide` - Oculta de las estadísticas [los elementos especificados](#ocultar-estadísticas-individualmente) _(valores separados por comas)_
 - `hide_title` - _(booleano)_
 - `hide_rank` - _(booleano)_
 - `show_icons` - _(booleano)_
@@ -175,7 +190,7 @@ Puedes pasar mútliples valores separados por coma en la opción `bg_color` para
 
 - `hide` - Oculta de la tarjeta los lenguajes especificados  _(valores separados por comas)_
 - `hide_title` - _(booleano)_
-- `layout` - Cambia entre los dos diseños disponibles `default` & `compact`
+- `layout` - Cambiar entre los cinco diseños disponibles `normal` & `compact` & `donut` & `donut-vertical` & `pie`
 - `card_width` - Establece el ancho de la tarjeta manualmente _(número)_
 - `langs_count` - Muestra más lenguajes en la tarjeta, entre 1-10, por defecto 5 _(número)_
 - `exclude_repo` - Excluye los repositorios especificados  _(valores separados por comas)_
@@ -282,18 +297,18 @@ Puedes usar la opción `& layout = compact` para cambiar el diseño de la tarjet
 cambia el valor del parámetro `?username=` a tu username en [Wakatime](https://wakatime.com).
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Ejemplo
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - Diseño compacto
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -343,7 +358,7 @@ Escoja cualquiera de los [temas por defecto](#themes)
 
 - Tarjeta de Wakatime
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -351,7 +366,7 @@ Escoja cualquiera de los [temas por defecto](#themes)
 
 Por lo general, no podrás acomodar las imágenes una al lado de la otra. Para hacerlo, puede usar este enfoque:
 
-```md
+```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
