@@ -87,7 +87,7 @@ describe("Test renderStatsCard", () => {
 
   it("should show additional stats", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      show: ["reviews", "discussions"],
+      show: ["reviews", "discussions_started", "discussions_answered"],
     });
 
     expect(

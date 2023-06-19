@@ -151,7 +151,7 @@ You can pass a query parameter `&hide=` to hide any specific stats with comma-se
 
 You can pass a query parameter `&show=` to show any specific additional stats with comma-separated values.
 
-> Options: `&show=reviews,discussions`
+> Options: `&show=reviews,discussions_started,discussions_answered`
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show=reviews)
@@ -314,7 +314,7 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 *   `disable_animations` - Disables all animations in the card *(boolean)*. Default: `false`.
 *   `ring_color` - Color of the rank circle *(hex color)*. Defaults to the theme ring color if it exists and otherwise the title color.
 *   `number_format` - Switch between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). Default: `short`.
-*   `show` - Show [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`) *(Comma-separated values)*. Default: `[] (blank array)`.
+*   `show` - Show [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started` or `discussions_answered`) *(Comma-separated values)*. Default: `[] (blank array)`.
 
 > **Note**
 > When hide\_rank=`true`, the minimum card width is 270 px + the title length and padding.
@@ -543,7 +543,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 *   Showing additional stats
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show=reviews,discussions)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show=reviews,discussions_started,discussions_answered)
 
 *   Showing icons
 

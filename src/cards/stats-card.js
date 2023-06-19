@@ -179,13 +179,15 @@ const renderStatsCard = (stats = {}, options = {}) => {
     id: "issues",
   };
 
-  if (show.includes("discussions")) {
+  if (show.includes("discussions_started")) {
     STATS.discussions_started = {
       icon: icons.discussions_started,
       label: i18n.t("statcard.discussions-started"),
       value: totalDiscussionsStarted,
       id: "discussions_started",
     };
+  }
+  if (show.includes("discussions_answered")) {
     STATS.discussions_answered = {
       icon: icons.discussions_answered,
       label: i18n.t("statcard.discussions-answered"),
