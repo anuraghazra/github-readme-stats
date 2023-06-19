@@ -375,7 +375,7 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=github-readme-stats)
 
-Use [show\_owner](#customization) variable to include the repo's owner username
+Use [show\_owner](#repo-card-exclusive-options) query option to include the repo's owner username
 
 ![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=github-readme-stats\&show_owner=true)
 
