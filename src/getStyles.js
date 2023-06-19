@@ -102,7 +102,7 @@ const getStyles = ({
       font-size: 16px;
     }
     .rank-percentile-header {
-      font-size: 16px;
+      font-size: 14px;
     }
     .rank-percentile-text {
       font-size: 16px;
