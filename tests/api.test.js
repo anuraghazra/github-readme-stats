@@ -23,6 +23,7 @@ stats.rank = calculateRank({
   all_commits: false,
   commits: stats.totalCommits,
   prs: stats.totalPRs,
+  reviews: stats.totalReviews,
   issues: stats.totalIssues,
   repos: 1,
   stars: stats.totalStars,
