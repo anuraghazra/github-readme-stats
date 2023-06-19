@@ -18,6 +18,8 @@ const data_stats = {
       openIssues: { totalCount: 100 },
       closedIssues: { totalCount: 100 },
       followers: { totalCount: 100 },
+      repositoryDiscussions: { totalCount: 10 },
+      repositoryDiscussionComments: { totalCount: 40 },
       repositories: {
         totalCount: 5,
         nodes: [
@@ -119,6 +121,8 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalReviews: 50,
       totalStars: 300,
+      totalDiscussionsStarted: 10,
+      totalDiscussionsAnswered: 40,
       rank,
     });
   });
@@ -150,6 +154,8 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalReviews: 50,
       totalStars: 300,
+      totalDiscussionsStarted: 10,
+      totalDiscussionsAnswered: 40,
       rank,
     });
   });
@@ -187,6 +193,8 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalReviews: 50,
       totalStars: 300,
+      totalDiscussionsStarted: 10,
+      totalDiscussionsAnswered: 40,
       rank,
     });
   });
@@ -215,6 +223,8 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalReviews: 50,
       totalStars: 200,
+      totalDiscussionsStarted: 10,
+      totalDiscussionsAnswered: 40,
       rank,
     });
   });
@@ -241,6 +251,8 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalReviews: 50,
       totalStars: 400,
+      totalDiscussionsStarted: 10,
+      totalDiscussionsAnswered: 40,
       rank,
     });
   });
@@ -267,6 +279,8 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalReviews: 50,
       totalStars: 300,
+      totalDiscussionsStarted: 10,
+      totalDiscussionsAnswered: 40,
       rank,
     });
   });
@@ -293,6 +307,8 @@ describe("Test fetchStats", () => {
       totalPRs: 300,
       totalReviews: 50,
       totalStars: 300,
+      totalDiscussionsStarted: 10,
+      totalDiscussionsAnswered: 40,
       rank,
     });
   });
