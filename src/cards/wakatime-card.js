@@ -204,7 +204,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const lheight = parseInt(String(line_height), 10);
 
-  const langsCount = clampValue(parseInt(String(langs_count)), 1, langs_count);
+  const langsCount = clampValue(langs_count, 1, langs_count);
 
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor, borderColor } =

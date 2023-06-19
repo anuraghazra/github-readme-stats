@@ -164,14 +164,14 @@ const donutCenterTranslation = (totalLangs) => {
  * Trim top languages to lang_count while also hiding certain languages.
  *
  * @param {Record<string, Lang>} topLangs Top languages.
- * @param {string} langs_count Number of languages to show.
+ * @param {number} langs_count Number of languages to show.
  * @param {string[]=} hide Languages to hide.
  * @returns {{ langs: Lang[], totalLanguageSize: number }} Trimmed top languages and total size.
  */
 const trimTopLanguages = (topLangs, langs_count, hide) => {
   let langs = Object.values(topLangs);
   let langsToHide = {};
-  let langsCount = clampValue(parseInt(langs_count), 1, MAXIMUM_LANGS_COUNT);
+  let langsCount = clampValue(langs_count, 1, MAXIMUM_LANGS_COUNT);
 
   // populate langsToHide map for quick lookup
   // while filtering out
@@ -734,7 +734,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   const { langs, totalLanguageSize } = trimTopLanguages(
     topLangs,
-    String(langs_count),
+    langs_count,
     hide,
   );
 
