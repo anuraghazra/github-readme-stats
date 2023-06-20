@@ -429,6 +429,6 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "rank-percentile-text")).toBeDefined();
     expect(
       queryByTestId(document.body, "percentile-rank-value").textContent.trim(),
-    ).toBe((100 - stats.rank.percentile).toFixed(1) + "%");
+    ).toBe(stats.rank.percentile.toFixed(1) + "%");
   });
 });

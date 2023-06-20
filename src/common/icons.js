@@ -33,7 +33,7 @@ const rankIcon = (rankIcon, rankLevel, percentile) => {
           Top
         </text>
         <text x="-5" y="12" alignment-baseline="central" dominant-baseline="central" text-anchor="middle" data-testid="percentile-rank-value" class="rank-percentile-text">
-          ${(100 - percentile).toFixed(1)}%
+          ${percentile.toFixed(1)}%
         </text>
       `;
     case "default":
