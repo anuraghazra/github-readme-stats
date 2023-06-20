@@ -83,38 +83,38 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 
 # Features <!-- omit in toc -->
 
-*   [GitHub Stats Card](#github-stats-card)
-    *   [Hiding individual stats](#hiding-individual-stats)
-    *   [Showing additional individual stats](#showing-additional-individual-stats)
-    *   [Showing icons](#showing-icons)
-    *   [Themes](#themes)
-    *   [Customization](#customization)
-*   [GitHub Extra Pins](#github-extra-pins)
-    *   [Usage](#usage)
-    *   [Demo](#demo)
-*   [Top Languages Card](#top-languages-card)
-    *   [Usage](#usage-1)
-    *   [Language stats algorithm](#language-stats-algorithm)
-    *   [Exclude individual repositories](#exclude-individual-repositories)
-    *   [Hide individual languages](#hide-individual-languages)
-    *   [Show more languages](#show-more-languages)
-    *   [Compact Language Card Layout](#compact-language-card-layout)
-    *   [Donut Chart Language Card Layout](#donut-chart-language-card-layout)
-    *   [Donut Vertical Chart Language Card Layout](#donut-vertical-chart-language-card-layout)
-    *   [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
-    *   [Hide Progress Bars](#hide-progress-bars)
-    *   [Demo](#demo-1)
-*   [Wakatime Stats Card](#wakatime-stats-card)
-    *   [Demo](#demo-2)
-*   [All Demos](#all-demos)
-    *   [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
-*   [Deploy on your own](#deploy-on-your-own)
-    *   [On Vercel](#on-vercel)
-        *   [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
-    *   [On other platforms](#on-other-platforms)
-    *   [Disable rate limit protections](#disable-rate-limit-protections)
-    *   [Keep your fork up to date](#keep-your-fork-up-to-date)
-*   [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
+- [GitHub Stats Card](#github-stats-card)
+    - [Hiding individual stats](#hiding-individual-stats)
+    - [Showing additional individual stats](#showing-additional-individual-stats)
+    - [Showing icons](#showing-icons)
+    - [Themes](#themes)
+    - [Customization](#customization)
+- [GitHub Extra Pins](#github-extra-pins)
+    - [Usage](#usage)
+    - [Demo](#demo)
+- [Top Languages Card](#top-languages-card)
+    - [Usage](#usage-1)
+    - [Language stats algorithm](#language-stats-algorithm)
+    - [Exclude individual repositories](#exclude-individual-repositories)
+    - [Hide individual languages](#hide-individual-languages)
+    - [Show more languages](#show-more-languages)
+    - [Compact Language Card Layout](#compact-language-card-layout)
+    - [Donut Chart Language Card Layout](#donut-chart-language-card-layout)
+    - [Donut Vertical Chart Language Card Layout](#donut-vertical-chart-language-card-layout)
+    - [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
+    - [Hide Progress Bars](#hide-progress-bars)
+    - [Demo](#demo-1)
+- [Wakatime Stats Card](#wakatime-stats-card)
+    - [Demo](#demo-2)
+- [All Demos](#all-demos)
+  - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
+- [Deploy on your own](#deploy-on-your-own)
+  - [On Vercel](#on-vercel)
+    - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
+  - [On other platforms](#on-other-platforms)
+  - [Disable rate limit protections](#disable-rate-limit-protections)
+  - [Keep your fork up to date](#keep-your-fork-up-to-date)
+- [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
 
 # Important Notice <!-- omit in toc -->
 
@@ -516,18 +516,18 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ```md
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)
+![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)
 
-![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok\&hide_progress=true)
+![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&hide_progress=true)
 
 *   Compact layout
 
-![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok\&layout=compact)
+![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&layout=compact)
 
 ***
 
@@ -593,7 +593,7 @@ Choose from any of the [default themes](#themes)
 
 *   WakaTime card
 
-![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)
+![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)
 
 ***
 
