@@ -83,38 +83,38 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 
 # Features <!-- omit in toc -->
 
-*   [GitHub Stats Card](#github-stats-card)
-    *   [Hiding individual stats](#hiding-individual-stats)
-    *   [Showing additional individual stats](#showing-additional-individual-stats)
-    *   [Showing icons](#showing-icons)
-    *   [Themes](#themes)
-    *   [Customization](#customization)
-*   [GitHub Extra Pins](#github-extra-pins)
-    *   [Usage](#usage)
-    *   [Demo](#demo)
-*   [Top Languages Card](#top-languages-card)
-    *   [Usage](#usage-1)
-    *   [Language stats algorithm](#language-stats-algorithm)
-    *   [Exclude individual repositories](#exclude-individual-repositories)
-    *   [Hide individual languages](#hide-individual-languages)
-    *   [Show more languages](#show-more-languages)
-    *   [Compact Language Card Layout](#compact-language-card-layout)
-    *   [Donut Chart Language Card Layout](#donut-chart-language-card-layout)
-    *   [Donut Vertical Chart Language Card Layout](#donut-vertical-chart-language-card-layout)
-    *   [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
-    *   [Hide Progress Bars](#hide-progress-bars)
-    *   [Demo](#demo-1)
-*   [Wakatime Stats Card](#wakatime-stats-card)
-    *   [Demo](#demo-2)
-*   [All Demos](#all-demos)
-    *   [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
-*   [Deploy on your own](#deploy-on-your-own)
-    *   [On Vercel](#on-vercel)
-        *   [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
-    *   [On other platforms](#on-other-platforms)
-    *   [Disable rate limit protections](#disable-rate-limit-protections)
-    *   [Keep your fork up to date](#keep-your-fork-up-to-date)
-*   [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
+- [GitHub Stats Card](#github-stats-card)
+    - [Hiding individual stats](#hiding-individual-stats)
+    - [Showing additional individual stats](#showing-additional-individual-stats)
+    - [Showing icons](#showing-icons)
+    - [Themes](#themes)
+    - [Customization](#customization)
+- [GitHub Extra Pins](#github-extra-pins)
+    - [Usage](#usage)
+    - [Demo](#demo)
+- [Top Languages Card](#top-languages-card)
+    - [Usage](#usage-1)
+    - [Language stats algorithm](#language-stats-algorithm)
+    - [Exclude individual repositories](#exclude-individual-repositories)
+    - [Hide individual languages](#hide-individual-languages)
+    - [Show more languages](#show-more-languages)
+    - [Compact Language Card Layout](#compact-language-card-layout)
+    - [Donut Chart Language Card Layout](#donut-chart-language-card-layout)
+    - [Donut Vertical Chart Language Card Layout](#donut-vertical-chart-language-card-layout)
+    - [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
+    - [Hide Progress Bars](#hide-progress-bars)
+    - [Demo](#demo-1)
+- [Wakatime Stats Card](#wakatime-stats-card)
+    - [Demo](#demo-2)
+- [All Demos](#all-demos)
+  - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
+- [Deploy on your own](#deploy-on-your-own)
+  - [On Vercel](#on-vercel)
+    - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
+  - [On other platforms](#on-other-platforms)
+  - [Disable rate limit protections](#disable-rate-limit-protections)
+  - [Keep your fork up to date](#keep-your-fork-up-to-date)
+- [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
 
 # Important Notice <!-- omit in toc -->
 
@@ -304,7 +304,7 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 *   `hide_title` - *(boolean)*. Default: `false`.
 *   `card_width` - Set the card's width manually *(number)*. Default: `500px  (approx.)`.
 *   `hide_rank` - *(boolean)* hides the rank and automatically resizes the card width. Default: `false`.
-*   `rank_icon` - Shows alternative rank icon (i.e. `github`, `percentile` or `progress`, `default`). Default: `default`.
+*   `rank_icon` - Shows alternative rank icon (i.e. `github`, `percentile`, or `default`). Default: `default`.
 *   `show_icons` - *(boolean)*. Default: `false`.
 *   `include_all_commits` - Count total commits instead of just the current year commits *(boolean)*. Default: `false`.
 *   `line_height` - Sets the line height between text *(number)*. Default: `25`.
