@@ -1,16 +1,24 @@
-const { getAnimations } = require("../getStyles");
-const { flexLayout, encodeHTML } = require("../common/utils");
+import { getAnimations } from "../getStyles.js";
+import { encodeHTML, flexLayout } from "./utils.js";
 
 class Card {
   /**
-   * @param {object} args
-   * @param {number?=} args.width
-   * @param {number?=} args.height
-   * @param {number?=} args.border_radius
-   * @param {string?=} args.customTitle
-   * @param {string?=} args.defaultTitle
-   * @param {string?=} args.titlePrefixIcon
-   * @param {ReturnType<import('../common/utils').getCardColors>?=} args.colors
+   * Creates a new card instance.
+   *
+   * @param {object} args Card arguments.
+   * @param {number?=} args.width Card width.
+   * @param {number?=} args.height Card height.
+   * @param {number?=} args.border_radius Card border radius.
+   * @param {string?=} args.customTitle Card custom title.
+   * @param {string?=} args.defaultTitle Card default title.
+   * @param {string?=} args.titlePrefixIcon Card title prefix icon.
+   * @param {object?=} args.colors Card colors arguments.
+   * @param {string} args.colors.titleColor Card title color.
+   * @param {string} args.colors.textColor Card text color.
+   * @param {string} args.colors.iconColor Card icon color.
+   * @param {string|Array} args.colors.bgColor Card background color.
+   * @param {string} args.colors.borderColor Card border color.
+   * @returns {Card} Card instance.
    */
   constructor({
     width = 100,
@@ -216,4 +224,5 @@ class Card {
   }
 }
 
-module.exports = Card;
+export { Card };
+export default Card;

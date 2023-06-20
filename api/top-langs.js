@@ -1,17 +1,16 @@
-require("dotenv").config();
-const {
-  renderError,
+import { renderTopLanguages } from "../src/cards/top-languages-card.js";
+import { blacklist } from "../src/common/blacklist.js";
+import {
   clampValue,
-  parseBoolean,
-  parseArray,
   CONSTANTS,
-} = require("../src/common/utils");
-const fetchTopLanguages = require("../src/fetchers/top-languages-fetcher");
-const renderTopLanguages = require("../src/cards/top-languages-card");
-const blacklist = require("../src/common/blacklist");
-const { isLocaleAvailable } = require("../src/translations");
+  parseArray,
+  parseBoolean,
+  renderError,
+} from "../src/common/utils.js";
+import { fetchTopLanguages } from "../src/fetchers/top-languages-fetcher.js";
+import { isLocaleAvailable } from "../src/translations.js";
 
-module.exports = async (req, res) => {
+export default async (req, res) => {
   const {
     username,
     hide,
@@ -26,10 +25,14 @@ module.exports = async (req, res) => {
     layout,
     langs_count,
     exclude_repo,
+    size_weight,
+    count_weight,
     custom_title,
     locale,
     border_radius,
     border_color,
+    disable_animations,
+    hide_progress,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -41,19 +44,39 @@ module.exports = async (req, res) => {
     return res.send(renderError("Something went wrong", "Locale not found"));
   }
 
+  if (
+    layout !== undefined &&
+    (typeof layout !== "string" ||
+      !["compact", "normal", "donut", "donut-vertical", "pie"].includes(layout))
+  ) {
+    return res.send(
+      renderError("Something went wrong", "Incorrect layout input"),
+    );
+  }
+
   try {
     const topLangs = await fetchTopLanguages(
       username,
       parseArray(exclude_repo),
+      size_weight,
+      count_weight,
     );
 
-    const cacheSeconds = clampValue(
+    let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
       CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
+    cacheSeconds = process.env.CACHE_SECONDS
+      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+      : cacheSeconds;
 
-    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${
+        cacheSeconds / 2
+      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    );
 
     return res.send(
       renderTopLanguages(topLangs, {
@@ -71,9 +94,12 @@ module.exports = async (req, res) => {
         border_radius,
         border_color,
         locale: locale ? locale.toLowerCase() : null,
+        disable_animations: parseBoolean(disable_animations),
+        hide_progress: parseBoolean(hide_progress),
       }),
     );
   } catch (err) {
+    res.setHeader("Cache-Control", `no-cache, no-store, must-revalidate`); // Don't cache error responses.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };

@@ -53,19 +53,36 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">Bevalt het project? <a href="https://www.paypal.me/anuraghazra">Doneer</a> om het te verbeteren!
 
-# Functionaliteiten
+# Functionaliteiten <!-- omit in toc -->
 
 - [GitHub Statistieken Kaart](#github-statistieken-kaart)
+    - [Verberg individueele statistieken](#verberg-individueele-statistieken)
+    - [Voeg privé contributies toe aan totale commits.](#voeg-privé-contributies-toe-aan-totale-commits)
+    - [Laat icoontjes zien](#laat-icoontjes-zien)
+    - [Thema's](#themas)
+    - [Opmaak](#opmaak)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Top Programmeertalen Kaart](#top-Programmeertalen-kaart)
+    - [Gebruik](#gebruik)
+    - [Demo](#demo)
+- [Top Programmeertalen Kaart](#top-programmeertalen-kaart)
+    - [Gebruik](#gebruik-1)
+    - [Verberg individueele repositories](#verberg-individueele-repositories)
+    - [Verberg individueele talen](#verberg-individueele-talen)
+    - [Laat meer programmeertalen zien](#laat-meer-programmeertalen-zien)
+    - [Compacte Talen Kaart opmaak](#compacte-talen-kaart-opmaak)
+    - [Demo](#demo-1)
 - [Wekelijkse Wakatime Statistieken](#wekelijkse-wakatime-statistieken)
-- [Thema\'s](#themas)
-- [Opmaak](#opmaak)
-- [Zelf deployen](#deploy-je-eigen-vercel-instatie)
+    - [Demo](#demo-2)
+    - [Alle demos](#alle-demos)
+    - [Kleine tip (Verstel de repo kaart z'n positie)](#kleine-tip-verstel-de-repo-kaart-zn-positie)
+  - [Deploy je eigen Vercel instatie](#deploy-je-eigen-vercel-instatie)
+  - [:sparkling\_heart: Ondersteun het project](#sparkling_heart-ondersteun-het-project)
 
 # GitHub Statistieken Kaart
 
@@ -142,7 +159,7 @@ Je kan het uiterlijk van je `Statistieken kaart` of `Repo kaart` aanpassen hoe j
 - `bg_color` - Achtergrond kleur van de kaart _(hex kleur)_ **of** een verloop van kleuren in het formaat van _graden,start,einde_
 - `hide_border` - Verbergt de rand van de kaart _(boolean)_
 - `theme` - Naam van het thema, kies uit [alle beschikbare thema\'s](../themes/README.md)
-- `cache_seconds` - Stel de cache header handmatig in _(min: 1800, max: 86400)_
+- `cache_seconds` - Stel de cache header handmatig in _(min: 14400, max: 86400)_
 - `locale` - Stel taal van de kaart in _(e.g. cn, de, es, etc.)_
 
 ##### Kleurenverloop in bg_color (achtergrond kleur):
@@ -174,7 +191,7 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 
 - `hide` - Verbergt specifieke talen van de kaart _(komma gescheiden waardes)_
 - `hide_title` - _(boolean)_
-- `layout` - Keuze voor de twee beschikbare layouts `default` & `compact`
+- `layout` - Kies uit de vijf beschikbare lay-outs `normal` & `compact` & `donut` & `donut-vertical` & `pie`
 - `card_width` - Stelt de breedte van de kaart handmatig in. _(nummer)_
 - `langs_count` - Laat meer talen op de kaart zien, waarde tussen 1-10, staat standaard op to 5 _(nummer)_
 - `exclude_repo` - Verbergt specifieke repositories _(komma gescheiden waardes)_
@@ -281,14 +298,14 @@ Je kan de `&layout=compact` optie gebruiken om het kaart ontwerp aan te passen.
 Verander de `?username=` waarde naar je [Wakatime](https://wakatime.com) gebruikersnaam.
 
 ```md
-[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -338,7 +355,7 @@ Kies uit de [standaard thema\'s](#themes)
 
 - Wakatime kaart
 
-[![willianrod's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

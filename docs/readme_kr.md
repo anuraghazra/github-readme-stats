@@ -1,7 +1,7 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">동적으로 생성되는 Github 사용량 통계를 여러분의 README 에 추가해보세요!</p>
+ <p align="center">동적으로 생성되는 GitHub 사용량 통계를 여러분의 README 에 추가해보세요!</p>
 </p>
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
@@ -53,26 +53,43 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">기능들이 마음에 드시나요? 괜찮으시다면, 서비스 개선을 위해 <a href="https://www.paypal.me/anuraghazra">기부</a>를 고려해주세요!
 
-# 기능들
+# 기능들 <!-- omit in toc -->
 
 - [GitHub 통계](#github-통계)
+    - [개별 통계 숨기기](#개별-통계-숨기기)
+    - [총 커밋 수에 비공개 기여도 (private contribs) 수 추가하기](#총-커밋-수에-비공개-기여도-private-contribs-수-추가하기)
+    - [아이콘 표시하기](#아이콘-표시하기)
+    - [테마 설정하기](#테마-설정하기)
+    - [커스터마이징](#커스터마이징)
 - [GitHub 저장소 핀](#github-저장소-핀)
+    - [사용법](#사용법)
+    - [미리보기](#미리보기)
 - [언어 사용량 통계](#언어-사용량-통계)
+    - [사용법](#사용법-1)
+    - [통계에서 제외할 저장소 지정하기](#통계에서-제외할-저장소-지정하기)
+    - [통계에서 특정 언어 제외하기](#통계에서-특정-언어-제외하기)
+    - [표시할 언어 수 지정하기](#표시할-언어-수-지정하기)
+    - [컴택트한 카드 레이아웃 설정하기](#컴택트한-카드-레이아웃-설정하기)
+    - [미리보기](#미리보기-1)
 - [Wakatime 주간 통계](#wakatime-주간-통계)
-- [테마](#테마)
-- [커스터마이징](#커스터마이징)
-- [직접 배포하기](#나만의-Vercel-인스턴스에-직접-배포하기)
+    - [미리보기](#미리보기-2)
+    - [전체 미리보기](#전체-미리보기)
+    - [꿀팁 (저장소 핀 정렬하기)](#꿀팁-저장소-핀-정렬하기)
+  - [나만의 Vercel 인스턴스에 직접 배포하기](#나만의-vercel-인스턴스에-직접-배포하기)
+  - [:sparkling\_heart: 프로젝트 지원하기!](#sparkling_heart-프로젝트-지원하기)
 
 
 # GitHub 통계
 
 아래 코드를 복사해서 마크다운 파일에 붙여넣으면 끝이에요, 아주 간단해요!
 
-`?username=` 속성의 값을 Github 계정의 사용자 명(닉네임)으로 바꿔주세요.
+`?username=` 속성의 값을 GitHub 계정의 사용자 명(닉네임)으로 바꿔주세요.
 
 ```md
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
@@ -149,7 +166,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `bg_color` - 카드의 배경 색상 _(hex color)_ **혹은** 다음 양식으로 그라데이션 주기 _angle,start,end_
 - `hide_border` - 카드의 테두리 표시 여부 _(boolean)_
 - `theme` - 테마의 이름, [사용 가능한 모든 테마](../themes/README.md) 에서 선택
-- `cache_seconds` - 수동으로 캐시 헤더 설정 _(min: 1800, max: 86400)_
+- `cache_seconds` - 수동으로 캐시 헤더 설정 _(min: 14400, max: 86400)_
 - `locale` - 카드에 표시할 언어 _(e.g. kr, cn, de, es, etc.)_
 
 ##### 배경에 그라데이션 주기
@@ -187,7 +204,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - `hide` - 카드에서 특정 언어 제외 _(Comma-separated values)_
 - `hide_title` - 타이틀 제외 _(boolean)_
-- `layout` - 사용 가능한 두 가지 값, `default` & `compact` 중 표시 형태 선택
+- `layout` - 5가지 값 사용 가능, `normal` & `compact` & `donut` & `donut-vertical` & `pie` 중 표시 형태 선택
 - `card_width` - 카드 너비 직접 설정 _(number)_
 - `langs_count` - 카드에 표시할 언어의 수 (1-10 사이, 기본 값 : 5) _(number)_
 - `exclude_repo` - 통계에 제외할 저장소 지정 _(Comma-separated values)_
@@ -235,7 +252,7 @@ GitHub 저장소 여분 핀을 이용하면, 6개 이상의 저장소 핀을 여
 
 # 언어 사용량 통계
 
-언어 사용량 통계 카드는 Github 사용자가 가장 많이 사용한 언어가 표시됩니다.
+언어 사용량 통계 카드는 GitHub 사용자가 가장 많이 사용한 언어가 표시됩니다.
 
 _참고:
 언어 사용량 통계는 GitHub 에서 가장 많이 사용된 언어의 표기일 뿐입니다.
@@ -296,18 +313,18 @@ _참고:
 `?username=` 속성의 값을 [Wakatime](https://wakatime.com) 계정의 사용자 명(닉네임)으로 바꿔주세요.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### 미리보기
 
-[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - 컴팩트한 레이아웃
 
-[![willianrod 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -357,7 +374,7 @@ _참고:
 
 - Wakatime 카드
 
-[![willianrod 님의 Wakatime 카드](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 Wakatime 카드](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

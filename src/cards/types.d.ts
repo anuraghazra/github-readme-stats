@@ -1,4 +1,5 @@
-type ThemeNames = keyof typeof import("../../themes");
+type ThemeNames = keyof typeof import("../../themes/index.js");
+type RankIcon = "default" | "github" | "percentile";
 
 export type CommonOptions = {
   title_color: string;
@@ -16,11 +17,17 @@ export type StatCardOptions = CommonOptions & {
   show_icons: boolean;
   hide_title: boolean;
   hide_border: boolean;
+  card_width: number;
   hide_rank: boolean;
   include_all_commits: boolean;
   line_height: number | string;
   custom_title: string;
   disable_animations: boolean;
+  number_format: string;
+  ring_color: string;
+  text_bold: boolean;
+  rank_icon: RankIcon;
+  show: string[];
 };
 
 export type RepoCardOptions = CommonOptions & {
@@ -33,9 +40,11 @@ export type TopLangOptions = CommonOptions & {
   hide_border: boolean;
   card_width: number;
   hide: string[];
-  layout: "compact" | "normal";
+  layout: "compact" | "normal" | "donut" | "donut-vertical" | "pie";
   custom_title: string;
   langs_count: number;
+  disable_animations: boolean;
+  hide_progress: boolean;
 };
 
 type WakaTimeOptions = CommonOptions & {

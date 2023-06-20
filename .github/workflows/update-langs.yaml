@@ -1,0 +1,44 @@
+name: Update supported languages
+on:
+  schedule:
+    - cron: "0 0 */30 * *"
+
+jobs:
+  updateLanguages:
+    if: github.repository == 'anuraghazra/github-readme-stats'
+    name: Update supported languages
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          CI: true
+
+      - name: Run update-languages-json.js script
+        run: npm run generate-langs-json
+
+      - name: Create Pull Request if upstream language file is changed
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: "refactor: update languages JSON"
+          branch: "update_langs/patch"
+          delete-branch: true
+          title: Update languages JSON
+          body:
+            "The
+            [update-langs](https://github.com/anuraghazra/github-readme-stats/actions/workflows/update-langs.yaml)
+            action found new/updated languages in the [upstream languages JSON
+            file](https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml)."
+          labels: "ci, lang-card"
