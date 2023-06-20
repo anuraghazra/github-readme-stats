@@ -304,7 +304,7 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 *   `hide_title` - *(boolean)*. Default: `false`.
 *   `card_width` - Set the card's width manually *(number)*. Default: `500px  (approx.)`.
 *   `hide_rank` - *(boolean)* hides the rank and automatically resizes the card width. Default: `false`.
-*   `rank_icon` - Shows alternative rank icon (i.e. `github`, `progress` or `default`). Default: `default`.
+*   `rank_icon` - Shows alternative rank icon (i.e. `github`, `percentile` or `default`). Default: `default`.
 *   `show_icons` - *(boolean)*. Default: `false`.
 *   `include_all_commits` - Count total commits instead of just the current year commits *(boolean)*. Default: `false`.
 *   `line_height` - Sets the line height between text *(number)*. Default: `25`.
@@ -556,6 +556,10 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 *   Shows rank progress instead of rank level
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&rank_icon=progress)
+
+*   Shows user rank percentile instead of rank level
+
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&rank_icon=percentile)
 
 *   Customize Border Color
 
