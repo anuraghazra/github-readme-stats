@@ -418,13 +418,17 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "github-rank-icon")).toBeDefined();
   });
 
-  it("should show the progress", () => {
+  it("should show the rank percentile", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      rank_icon: "progress",
+      rank_icon: "percentile",
     });
-    expect(queryByTestId(document.body, "rank-progress-text")).toBeDefined();
+    expect(queryByTestId(document.body, "percentile-top-header")).toBeDefined();
     expect(
-      queryByTestId(document.body, "progress-rank-icon").textContent.trim(),
-    ).toBe((100 - stats.rank.percentile).toFixed(1) + "%");
+      queryByTestId(document.body, "percentile-top-header").textContent.trim(),
+    ).toBe("Top");
+    expect(queryByTestId(document.body, "rank-percentile-text")).toBeDefined();
+    expect(
+      queryByTestId(document.body, "percentile-rank-value").textContent.trim(),
+    ).toBe(stats.rank.percentile.toFixed(1) + "%");
   });
 });
