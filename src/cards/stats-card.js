@@ -3,6 +3,7 @@ import { Card } from "../common/Card.js";
 import { I18n } from "../common/I18n.js";
 import { icons, rankIcon } from "../common/icons.js";
 import {
+  CustomError,
   clampValue,
   flexLayout,
   getCardColors,
@@ -235,6 +236,13 @@ const renderStatsCard = (stats = {}, options = {}) => {
         number_format,
       }),
     );
+
+  if (statItems.length === 0 && hide_rank) {
+    throw new CustomError(
+      "Could not render stats card.",
+      "Either stats or rank are required.",
+    );
+  }
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
