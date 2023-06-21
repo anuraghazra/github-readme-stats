@@ -92,6 +92,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 - [GitHub Extra Pins](#github-extra-pins)
     - [Usage](#usage)
     - [Demo](#demo)
+    - [Quick Tip (Align The Cards)](#quick-tip-align-the-cards)
 - [Top Languages Card](#top-languages-card)
     - [Usage](#usage-1)
     - [Language stats algorithm](#language-stats-algorithm)
@@ -107,7 +108,6 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 - [Wakatime Stats Card](#wakatime-stats-card)
     - [Demo](#demo-2)
 - [All Demos](#all-demos)
-  - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
 - [Deploy on your own](#deploy-on-your-own)
   - [On Vercel](#on-vercel)
     - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
@@ -379,6 +379,31 @@ Use [show\_owner](#repo-card-exclusive-options) query option to include the repo
 
 ![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=github-readme-stats\&show_owner=true)
 
+### Quick Tip (Align The Cards)
+
+By default, GitHub does not lay out the cards side by side. To do that, you can use this approach:
+
+```html
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+</a>
+<a href="https://github.com/anuraghazra/convoychat">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+</a>
+```
+
+<details>
+<summary>:eyes: Show example</summary>
+
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+</a>
+<a href="https://github.com/anuraghazra/convoychat">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+</a>
+
+</details>
+
 # Top Languages Card
 
 The top languages card shows a GitHub user's most frequently used top language.
@@ -600,19 +625,6 @@ Choose from any of the [default themes](#themes)
 ![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)
 
 ***
-
-## Quick Tip (Align The Repo Cards)
-
-By default, GitHub does not lay out the cards side by side. To do that, you can use this approach:
-
-```html
-<a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
-</a>
-<a href="https://github.com/anuraghazra/convoychat">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
-</a>
-```
 
 # Deploy on your own
 
