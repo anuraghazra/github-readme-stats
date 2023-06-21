@@ -1,0 +1,830 @@
+openapi: 3.0.0
+info:
+  title: github-stats API
+  version: 1.0.0
+paths:
+  /:
+    get:
+      description: statistics card
+      summary: github-stats-api
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: <function_id>
+        tag: $latest
+        service_account_id: <service_account_id>
+      parameters:
+        - description: value to your GitHub username
+          explode: true
+          in: query
+          name: username
+          required: true
+          schema:
+            type: string
+          style: form
+        - description:
+            to hide any specific stats with comma-separated values
+            (&hide=stars,commits,prs,issues,contribs)
+          explode: true
+          in: query
+          name: hide
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: (boolean). Default = false.
+          explode: true
+          in: query
+          name: hide_title
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description: Hides the card's border (boolean). Default = false
+          explode: true
+          in: query
+          name: hide_border
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description:
+            Set the card's width manually (number). Default = 500px  (approx.).
+          explode: true
+          in: query
+          name: card_width
+          required: false
+          schema:
+            type: number
+          style: form
+        - description:
+            (boolean) hides the rank and automatically resizes the card width.
+            Default = false.
+          explode: true
+          in: query
+          name: hide_rank
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description: (boolean). Default = false.
+          explode: true
+          in: query
+          name: show_icons
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description:
+            Count total commits instead of just the current year commits
+            (boolean). Default = false.
+          explode: true
+          in: query
+          name: include_all_commits
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description: Sets the line height between text (number). Default = 25.
+          explode: true
+          in: query
+          name: line_height
+          required: false
+          schema:
+            type: number
+          style: form
+        - description: Card's title color (hex color). Default = '#2f80ed'.
+          explode: true
+          in: query
+          name: title_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Color of the rank circle (hex color). Defaults to the theme ring
+            color if it exists and otherwise the title color.
+          explode: true
+          in: query
+          name: ring_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Icons color if available (hex color). Default = '#4c71f2'.
+          explode: true
+          in: query
+          name: icon_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Body text color (hex color). Default = '#434d58'.
+          explode: true
+          in: query
+          name: text_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Use bold text (boolean). Default = true.
+          explode: true
+          in: query
+          name: text_bold
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description:
+            Card's background color (hex color) or a gradient in the form of
+            angle,start,end. Default = '#fffefe'.
+          explode: true
+          in: query
+          name: bg_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            name of the theme, choose from [all available
+            themes](https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md).
+            Default = default theme.
+          explode: true
+          in: query
+          name: theme
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            set the cache header manually (min = 14400, max = 86400). Default =
+            14400 seconds (4 hours).
+          explode: true
+          in: query
+          name: cache_seconds
+          required: false
+          schema:
+            type: number
+          style: form
+        - description:
+            Exclude stars from specified repositories (Comma-separated values).
+            Default = [] (blank array).
+          explode: true
+          in: query
+          name: exclude_repo
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Sets a custom title for the card. Default = <username> GitHub Stats.
+          explode: true
+          in: query
+          name: custom_title
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            set the language in the card (e.g. cn, de, es, etc.). Default = en.
+          explode: true
+          in: query
+          name: locale
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Disables all animations in the card (boolean). Default = false.
+          explode: true
+          in: query
+          name: disable_animations
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description: Corner rounding on the card. Default = 4.5.
+          explode: true
+          in: query
+          name: border_radius
+          required: false
+          schema:
+            type: number
+          style: form
+        - description:
+            Switch between two available formats for displaying the card values
+            short (i.e. 6.6k) and long (i.e. 6626). Default = short.
+          explode: true
+          in: query
+          name: number_format
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Card's border color (hex color). Default = '#e4e2e2' (Does not apply
+            when hide_border is enabled).
+          explode: true
+          in: query
+          name: border_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Shows alternative rank icon (i.e. github or default). Default =
+            default.
+          explode: true
+          in: query
+          name: rank_icon
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: (boolean). Default = false.
+          explode: true
+          in: query
+          name: show_total_reviews
+          required: false
+          schema:
+            type: boolean
+          style: form
+      responses:
+        "200":
+          $ref: "#/components/responses/SuccessObject"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+        "502":
+          $ref: "#/components/responses/BadGateway"
+  /pin:
+    get:
+      description: GitHub Extra Pins
+      summary: github-stats-api
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: <function_id>
+        tag: $latest
+        service_account_id: <service_account_id>
+      parameters:
+        - description: value to your GitHub username
+          explode: true
+          in: query
+          name: username
+          required: true
+          schema:
+            type: string
+          style: form
+        - description: value to your GitHub repo
+          explode: true
+          in: query
+          name: repo
+          required: true
+          schema:
+            type: string
+          style: form
+        - description: Show the repo's owner name (boolean). Default = false.
+          explode: true
+          in: query
+          name: show_owner
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description: Hides the card's border (boolean). Default = false
+          explode: true
+          in: query
+          name: hide_border
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description: Card's title color (hex color). Default = '#2f80ed'.
+          explode: true
+          in: query
+          name: title_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Icons color if available (hex color). Default = '#4c71f2'.
+          explode: true
+          in: query
+          name: icon_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Body text color (hex color). Default = '#434d58'.
+          explode: true
+          in: query
+          name: text_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Card's background color (hex color) or a gradient in the form of
+            angle,start,end. Default = '#fffefe'.
+          explode: true
+          in: query
+          name: bg_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            name of the theme, choose from [all available
+            themes](https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md).
+            Default = default theme.
+          explode: true
+          in: query
+          name: theme
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            set the cache header manually (min = 14400, max = 86400). Default =
+            14400 seconds (4 hours).
+          explode: true
+          in: query
+          name: cache_seconds
+          required: false
+          schema:
+            type: number
+          style: form
+        - description:
+            set the language in the card (e.g. cn, de, es, etc.). Default = en.
+          explode: true
+          in: query
+          name: locale
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Corner rounding on the card. Default = 4.5.
+          explode: true
+          in: query
+          name: border_radius
+          required: false
+          schema:
+            type: number
+          style: form
+        - description:
+            Card's border color (hex color). Default = '#e4e2e2' (Does not apply
+            when hide_border is enabled).
+          explode: true
+          in: query
+          name: border_color
+          required: false
+          schema:
+            type: string
+          style: form
+      responses:
+        "200":
+          $ref: "#/components/responses/SuccessObject"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+        "502":
+          $ref: "#/components/responses/BadGateway"
+  /top-langs:
+    get:
+      description:
+        The top languages card shows a GitHub user's most frequently used top
+        language.
+      summary: github-stats-api
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: <function_id>
+        tag: $latest
+        service_account_id: <service_account_id>
+      parameters:
+        - description: value to your GitHub username
+          explode: true
+          in: query
+          name: username
+          required: true
+          schema:
+            type: string
+          style: form
+        - description:
+            Hide the languages specified from the card (Comma-separated values).
+            Default = [] (blank array).
+          explode: true
+          in: query
+          name: hide
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: (boolean). Default = false.
+          explode: true
+          in: query
+          name: hide_title
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description: Hides the card's border (boolean). Default = false
+          explode: true
+          in: query
+          name: hide_border
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description:
+            Set the card's width manually (number). Default = 300px  (approx.).
+          explode: true
+          in: query
+          name: card_width
+          required: false
+          schema:
+            type: number
+          style: form
+        - description: Card's title color (hex color). Default = '#2f80ed'.
+          explode: true
+          in: query
+          name: title_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Body text color (hex color). Default = '#434d58'.
+          explode: true
+          in: query
+          name: text_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Card's background color (hex color) or a gradient in the form of
+            angle,start,end. Default = '#fffefe'.
+          explode: true
+          in: query
+          name: bg_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            name of the theme, choose from [all available
+            themes](https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md).
+            Default = default theme.
+          explode: true
+          in: query
+          name: theme
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            set the cache header manually (min = 14400, max = 86400). Default =
+            14400 seconds (4 hours).
+          explode: true
+          in: query
+          name: cache_seconds
+          required: false
+          schema:
+            type: number
+          style: form
+        - description:
+            Sets a custom title for the card (string). Default Most Used
+            Languages.
+          explode: true
+          in: query
+          name: custom_title
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            set the language in the card (e.g. cn, de, es, etc.). Default = en.
+          explode: true
+          in: query
+          name: locale
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Disables all animations in the card (boolean). Default = false.
+          explode: true
+          in: query
+          name: disable_animations
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description: Corner rounding on the card. Default = 4.5.
+          explode: true
+          in: query
+          name: border_radius
+          required: false
+          schema:
+            type: number
+          style: form
+        - description:
+            Card's border color (hex color). Default = '#e4e2e2' (Does not apply
+            when hide_border is enabled).
+          explode: true
+          in: query
+          name: border_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Switch between five available layouts normal & compact & donut &
+            donut-vertical & pie. Default = normal.
+          explode: true
+          in: query
+          name: layout
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Show more languages on the card, between 1-20 (number). Default = 5
+            for normal and donut, 6 for other layouts.
+          explode: true
+          in: query
+          name: langs_count
+          required: false
+          schema:
+            type: number
+          style: form
+        - description:
+            Exclude specified repositories (Comma-separated values). Default =
+            [] (blank array).
+          explode: true
+          in: query
+          name: exclude_repo
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Configures language stats
+            [algorithm](https://github.com/anuraghazra/github-readme-stats#Language-stats-algorithm)
+            (number) (see Language stats algorithm), defaults to 1.
+          explode: true
+          in: query
+          name: size_weight
+          required: false
+          schema:
+            type: number
+          style: form
+        - description:
+            Configures language stats
+            [algorithm](https://github.com/anuraghazra/github-readme-stats#Language-stats-algorithm)
+            (number) (see Language stats algorithm), defaults to 0.
+          explode: true
+          in: query
+          name: count_weight
+          required: false
+          schema:
+            type: number
+          style: form
+        - description:
+            It uses the compact layout option, hides percentages, and removes
+            the bars. Default = false.
+          explode: true
+          in: query
+          name: hide_progress
+          required: false
+          schema:
+            type: boolean
+          style: form
+      responses:
+        "200":
+          $ref: "#/components/responses/SuccessObject"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+        "502":
+          $ref: "#/components/responses/BadGateway"
+  /wakatime:
+    get:
+      description: Wakatime Stats Card
+      summary: github-stats-api
+      x-yc-apigateway-integration:
+        type: cloud_functions
+        function_id: <function_id>
+        tag: $latest
+        service_account_id: <service_account_id>
+      parameters:
+        - description:
+            value to your [Wakatime](https://wakatime.com/dashboard) username.
+          explode: true
+          in: query
+          name: username
+          required: true
+          schema:
+            type: string
+          style: form
+        - description:
+            Hide the languages specified from the card (Comma-separated values).
+            Default = [] (blank array).
+          explode: true
+          in: query
+          name: hide
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: (boolean). Default = false.
+          explode: true
+          in: query
+          name: hide_title
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description: Hides the card's border (boolean). Default = false
+          explode: true
+          in: query
+          name: hide_border
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description:
+            Hides the progress bar and percentage (boolean). Default false.
+          explode: true
+          in: query
+          name: hide_progress
+          required: false
+          schema:
+            type: boolean
+          style: form
+        - description: Sets the line height between text (number). Default 25.
+          explode: true
+          in: query
+          name: line_height
+          required: false
+          schema:
+            type: number
+          style: form
+        - description: Card's title color (hex color). Default = '#2f80ed'.
+          explode: true
+          in: query
+          name: title_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Icons color if available (hex color). Default = '#4c71f2'.
+          explode: true
+          in: query
+          name: icon_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Body text color (hex color). Default = '#434d58'.
+          explode: true
+          in: query
+          name: text_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Card's background color (hex color) or a gradient in the form of
+            angle,start,end. Default = '#fffefe'.
+          explode: true
+          in: query
+          name: bg_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            name of the theme, choose from [all available
+            themes](https://github.com/anuraghazra/github-readme-stats/blob/master/themes/README.md).
+            Default = default theme.
+          explode: true
+          in: query
+          name: theme
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            set the cache header manually (min = 14400, max = 86400). Default =
+            14400 seconds (4 hours).
+          explode: true
+          in: query
+          name: cache_seconds
+          required: false
+          schema:
+            type: number
+          style: form
+        - description:
+            Sets a custom title for the card (string). Default Wakatime Stats.
+          explode: true
+          in: query
+          name: custom_title
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            set the language in the card (e.g. cn, de, es, etc.). Default = en.
+          explode: true
+          in: query
+          name: locale
+          required: false
+          schema:
+            type: string
+          style: form
+        - description: Corner rounding on the card. Default = 4.5.
+          explode: true
+          in: query
+          name: border_radius
+          required: false
+          schema:
+            type: number
+          style: form
+        - description:
+            Card's border color (hex color). Default = '#e4e2e2' (Does not apply
+            when hide_border is enabled).
+          explode: true
+          in: query
+          name: border_color
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Switch between two available layouts default & compact. Default
+            default.
+          explode: true
+          in: query
+          name: layout
+          required: false
+          schema:
+            type: string
+          style: form
+        - description:
+            Limit the number of languages on the card, defaults to all reported
+            languages (number).
+          explode: true
+          in: query
+          name: langs_count
+          required: false
+          schema:
+            type: number
+          style: form
+        - description:
+            Set a custom API domain for the card, e.g. to use services like
+            [Hakatime](https://github.com/mujx/hakatime) or
+            [Wakapi](https://github.com/muety/wakapi) (string). Default Waka
+            API.
+          explode: true
+          in: query
+          name: api_domain
+          required: false
+          schema:
+            type: string
+          style: form
+      responses:
+        "200":
+          $ref: "#/components/responses/SuccessObject"
+        "500":
+          $ref: "#/components/responses/InternalServerError"
+        "502":
+          $ref: "#/components/responses/BadGateway"
+components:
+  responses:
+    #200
+    SuccessObject:
+      content:
+        application/json:
+          schema:
+            type: object
+      description: OK
+    #403
+    Forbidden:
+      content:
+        application/json:
+          schema:
+            type: object
+      description: Forbidden
+    #500
+    InternalServerError:
+      content:
+        application/json:
+          schema:
+            type: object
+      description: Internal Server Error
+    #502
+    BadGateway:
+      content:
+        application/json:
+          schema:
+            type: object
+      description: Bad Gateway
