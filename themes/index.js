@@ -430,6 +430,12 @@ export const themes = {
     border_color: "ffffff",
     bg_color: "000000",
   },
+  pastel_pink: {
+    title_color: "EC7E9B",
+    text_color: "A6A6A6",
+    icon_color: "FFD9DD",
+    border_color: "e4e2e2",
+    bg_color: "fffefe"  
 };
 
 export default themes;
