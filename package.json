@@ -52,7 +52,7 @@
     "prettier": "^2.1.2"
   },
   "dependencies": {
-    "axios": "^0.24.0",
+    "axios": "^1.4.0",
     "dotenv": "^8.2.0",
     "emoji-name-map": "^1.2.8",
     "github-username-regex": "^1.0.0",
