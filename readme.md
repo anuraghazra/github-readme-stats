@@ -607,10 +607,10 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=anuraghazra&card_width=400" />
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=anuraghazra" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8&card_width=400" />
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8" />
 </a>
 ```
 
@@ -627,10 +627,10 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 <summary>:eyes: Show example</summary>
 
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=anuraghazra&card_width=400" />
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=anuraghazra" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8&card_width=400" />
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8" />
 </a>
 
 <a href="https://github.com/anuraghazra/github-readme-stats">
