@@ -277,7 +277,7 @@ const renderStatsCard = (stats = {}, options = {}) => {
     When hide_rank=false, the minimum card_width is 340 px + the icon width (if show_icons=true).
     Numbers are picked by looking at existing dimensions on production.
   */
-  const iconWidth = show_icons ? 16 + /* padding */ 1 : 0;
+  const iconWidth = show_icons && statItems.length ? 16 + /* padding */ 1 : 0;
   const minCardWidth =
     (hide_rank
       ? clampValue(
@@ -342,7 +342,7 @@ const renderStatsCard = (stats = {}, options = {}) => {
         return minXTranslation + (width - minCardWidth) / 2;
       }
     } else {
-      return width / 2 + 20;
+      return width / 2 + 20 - 10;
     }
   };
 
