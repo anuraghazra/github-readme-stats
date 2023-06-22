@@ -107,7 +107,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 - [Wakatime Stats Card](#wakatime-stats-card)
     - [Demo](#demo-2)
 - [All Demos](#all-demos)
-  - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
+  - [Quick Tip (Align The Cards)](#quick-tip-align-the-cards)
 - [Deploy on your own](#deploy-on-your-own)
   - [On Vercel](#on-vercel)
     - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
@@ -601,9 +601,18 @@ Choose from any of the [default themes](#themes)
 
 ***
 
-## Quick Tip (Align The Repo Cards)
+## Quick Tip (Align The Cards)
 
 By default, GitHub does not lay out the cards side by side. To do that, you can use this approach:
+
+```html
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=anuraghazra" />
+</a>
+<a href="https://github.com/anuraghazra/convoychat">
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8&card_width=320" />
+</a>
+```
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -613,6 +622,27 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
+
+<details>
+<summary>:eyes: Show example</summary>
+
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=anuraghazra" />
+</a>
+<a href="https://github.com/anuraghazra/convoychat">
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8&card_width=320" />
+</a>
+
+***
+
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+</a>
+<a href="https://github.com/anuraghazra/convoychat">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+</a>
+
+</details>
 
 # Deploy on your own
 
