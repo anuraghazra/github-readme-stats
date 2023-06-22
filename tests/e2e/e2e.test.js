@@ -16,14 +16,14 @@ const USER = "catelinemnemosyne";
 const STATS_DATA = {
   name: "Cateline Mnemosyne",
   totalPRs: 2,
-  totalReviews: 1,
+  totalReviews: 0,
   totalCommits: 8,
   totalIssues: 1,
   totalStars: 1,
   contributedTo: 1,
   rank: {
     level: "C",
-    percentile: 97.51123629609674,
+    percentile: 98.06929469995667,
   },
 };
 
