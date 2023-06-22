@@ -20,7 +20,7 @@ const stats = {
   totalDiscussionsStarted: 10,
   totalDiscussionsAnswered: 50,
   contributedTo: 500,
-  rank: { level: "A+", score: 40 },
+  rank: { level: "A+", percentile: 40 },
 };
 
 describe("Test renderStatsCard", () => {
@@ -416,5 +416,19 @@ describe("Test renderStatsCard", () => {
       rank_icon: "github",
     });
     expect(queryByTestId(document.body, "github-rank-icon")).toBeDefined();
+  });
+
+  it("should show the rank percentile", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      rank_icon: "percentile",
+    });
+    expect(queryByTestId(document.body, "percentile-top-header")).toBeDefined();
+    expect(
+      queryByTestId(document.body, "percentile-top-header").textContent.trim(),
+    ).toBe("Top");
+    expect(queryByTestId(document.body, "rank-percentile-text")).toBeDefined();
+    expect(
+      queryByTestId(document.body, "percentile-rank-value").textContent.trim(),
+    ).toBe(stats.rank.percentile.toFixed(1) + "%");
   });
 });
