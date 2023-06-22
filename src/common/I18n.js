@@ -9,15 +9,17 @@ class I18n {
   }
 
   t(str) {
+    const locale = this.locale || this.fallbackLocale;
+
     if (!this.translations[str]) {
       throw new Error(`${str} Translation string not found`);
     }
 
-    if (!this.translations[str][this.locale || this.fallbackLocale]) {
-      throw new Error(`${str} Translation locale not found`);
+    if (!this.translations[str][locale]) {
+      throw new Error(`'${str}' translation not found for locale '${locale}'`);
     }
 
-    return this.translations[str][this.locale || this.fallbackLocale];
+    return this.translations[str][locale];
   }
 }
 

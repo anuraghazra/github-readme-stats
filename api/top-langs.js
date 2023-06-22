@@ -44,6 +44,16 @@ export default async (req, res) => {
     return res.send(renderError("Something went wrong", "Locale not found"));
   }
 
+  if (
+    layout !== undefined &&
+    (typeof layout !== "string" ||
+      !["compact", "normal", "donut", "donut-vertical", "pie"].includes(layout))
+  ) {
+    return res.send(
+      renderError("Something went wrong", "Incorrect layout input"),
+    );
+  }
+
   try {
     const topLangs = await fetchTopLanguages(
       username,
@@ -52,11 +62,14 @@ export default async (req, res) => {
       count_weight,
     );
 
-    const cacheSeconds = clampValue(
+    let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
       CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
+    cacheSeconds = process.env.CACHE_SECONDS
+      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+      : cacheSeconds;
 
     res.setHeader(
       "Cache-Control",

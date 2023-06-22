@@ -1,4 +1,32 @@
 themes: themes/index.js
 doc-translation: docs/*
-card-i18n: src/translations.js
-documentation: readme.md
+card-i18n:
+  - src/translations.js
+  - src/common/I18n.js
+documentation:
+  - readme.md
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+dependencies:
+  - package.json
+  - package-lock.json
+lang-card:
+  - api/top-langs.js
+  - src/cards/top-languages-card.js
+  - src/fetchers/top-languages-fetcher.js
+repo-card:
+  - api/pin.js
+  - src/cards/repo-card.js
+  - src/fetchers/repo-fetcher.js
+stats-card:
+  - api/index.js
+  - src/cards/stats-card.js
+  - src/fetchers/stats-fetcher.js
+wakatime-card:
+  - api/wakatime.js
+  - src/cards/wakatime-card.js
+  - src/fetchers/wakatime-fetcher.js
+ranks: src/calculateRank.js
+ci:
+  - .github/workflows/*
+  - scripts/*

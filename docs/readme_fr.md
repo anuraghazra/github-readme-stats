@@ -59,14 +59,25 @@
 </p>
 <p align="center">Vous aimez ce projet? Pensez <a href="https://www.paypal.me/anuraghazra">à faire un don</a> pour l'améliorer!
 
-# Features
+# Features <!-- omit in toc -->
 
-- [Carte des stats GitHub](#carte-des-stats-github)
+- [Carte des Stats GitHub](#carte-des-stats-github)
+    - [Cacher les statistiques individuelles](#cacher-les-statistiques-individuelles)
+    - [Afficher les icônes](#afficher-les-icônes)
+    - [Thèmes](#thèmes)
+    - [Personnalisation](#personnalisation)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Carte des meilleurs langages](#carte-des-langages-les--utilisés)
-- [Themes](#thèmes)
-- [Personnalisation](#personnalisation)
-- [Deployer toi-même](#déployer-sur-votre-propre-instance-vercel)
+    - [Usage](#usage)
+    - [Démo](#démo)
+- [Carte des langages les + utilisés](#carte-des-langages-les--utilisés)
+    - [Usage](#usage-1)
+    - [Cacher certaines langages](#cacher-certaines-langages)
+    - [Carte compacte des langages](#carte-compacte-des-langages)
+    - [Démo](#démo-1)
+    - [Toutes les démos](#toutes-les-démos)
+    - [Conseil rapide (aligner les cartes des dépôts)](#conseil-rapide-aligner-les-cartes-des-dépôts)
+  - [Déployer sur votre propre instance Vercel](#déployer-sur-votre-propre-instance-vercel)
+  - [:sparkling\_heart: Supporter le project](#sparkling_heart-supporter-le-project)
 
 # Carte des Stats GitHub
 
@@ -88,18 +99,6 @@ Pour masquer des statistiques spécifiques, vous pouvez passer un paramètre de 
 
 ```md
 ![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
-```
-
-### Ajouter le compte des contributions privées au compte des commits totaux
-
-Vous pouvez ajouter le compte de toutes vos contributions privées au compte total des engagements en utilisant le paramètre de requête `?count_private=true`.
-
-_Note: Si vous déployez vous-même ce projet, les contributions privées seront comptées par défaut ; sinon, vous devez choisir de partager les comptes de vos contributions privées._
-
-> Options: `&count_private=true`
-
-```md
-![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
 ### Afficher les icônes
@@ -160,7 +159,7 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 -   `hide_rank` - Masquer le rang _(boolean)_
 -   `show_icons` - Afficher les icônes _(boolean)_
 -   `include_all_commits` - Compter le total de commits au lieu de ne compter que les commits de l'année en cours _(boolean)_
--   `count_private` - Compter les commits privés _(boolean)_
+-   `count_private` - Compter les contributions privées _(boolean)_
 -   `line_height` - Fixer la hauteur de la ligne entre les textes _(number)_
 
 #### Repo Card Exclusive Options:

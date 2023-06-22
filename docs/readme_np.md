@@ -59,15 +59,30 @@
 </p>
 <p align="center">परियोजना मनपर्‍यो? तपाईं मद्दत गर्न सक्नुहुन्छ <a href="https://www.paypal.me/anuraghazra">यो परियोजना</a> बढ्न 
 
-# विशेषताहरु
+# विशेषताहरु <!-- omit in toc -->
 
 - [गितहब स्टेट कार्ड](#गितहब-स्टेट-कार्ड)
+    - [लुकाउनु होस् व्यक्तिगत स्टेट](#लुकाउनु-होस्-व्यक्तिगत-स्टेट)
+    - [जोड्नु होस् निजी टोटल  योगदान](#जोड्नु-होस्-निजी-टोटल--योगदान)
+    - [देखाउनु होस् इकोन](#देखाउनु-होस्-इकोन)
+    - [विषयवस्तुहरू](#विषयवस्तुहरू)
+    - [अनुकूलन](#अनुकूलन)
 - [गितहब अतिरिक्त पिन्स](#गितहब-अतिरिक्त-पिन्स)
+    - [प्रयोग](#प्रयोग)
+    - [डेमो](#डेमो)
 - [टोप भाषा कार्ड](#टोप-भाषा-कार्ड)
-- [वाका समय वीक स्तट्स ](#वाका-समय-वीक-स्तट्स )
-- [विषयवस्तुहरू](#विषयवस्तुहरू)
-- [अनुकूलन](#अनुकूलन)
-- [आफैलाई तैनाथ गर्नुहोस्](#देप्लोय-आफ्नै-वेर्चेल-इन्स्तंस )
+    - [प्रयोग](#प्रयोग-1)
+    - [Exclude individual repositories](#exclude-individual-repositories)
+    - [कुनै भाषा चुपौनॆ तरिका](#कुनै-भाषा-चुपौनॆ-तरिका)
+    - [धेरॆ भाषाहरु हेर्नको लागि](#धेरॆ-भाषाहरु-हेर्नको-लागि)
+    - [कम्प्याक्ट भाषा कार्ड ळयोउत](#कम्प्याक्ट-भाषा-कार्ड-ळयोउत)
+    - [डेमो](#डेमो-1)
+- [वाका समय वीक स्तट्स](#वाका-समय-वीक-स्तट्स)
+    - [डेमो](#डेमो-2)
+    - [सबै डेमोहरु](#सबै-डेमोहरु)
+    - [टिप्  (रेपो कार्डलाए अलिग्न गर्ने )](#टिप्--रेपो-कार्डलाए-अलिग्न-गर्ने-)
+  - [देप्लोय  आफ्नै  वेर्चेल  इन्स्तंस](#देप्लोय--आफ्नै--वेर्चेल--इन्स्तंस)
+  - [:sparkling\_heart: सहपोर्ट द प्रोजेक्ट](#sparkling_heart-सहपोर्ट-द-प्रोजेक्ट)
 
 # गितहब स्टेट कार्ड 
 
@@ -279,14 +294,14 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ```md
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ###  डेमो
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -336,7 +351,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 - वक समय कार्ड 
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

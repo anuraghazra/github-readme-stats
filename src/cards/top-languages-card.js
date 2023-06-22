@@ -14,9 +14,16 @@ import { langCardLocales } from "../translations.js";
 
 const DEFAULT_CARD_WIDTH = 300;
 const MIN_CARD_WIDTH = 280;
-const DEFAULT_LANGS_COUNT = 5;
 const DEFAULT_LANG_COLOR = "#858585";
 const CARD_PADDING = 25;
+const COMPACT_LAYOUT_BASE_HEIGHT = 90;
+const MAXIMUM_LANGS_COUNT = 20;
+
+const NORMAL_LAYOUT_DEFAULT_LANGS_COUNT = 5;
+const COMPACT_LAYOUT_DEFAULT_LANGS_COUNT = 6;
+const DONUT_LAYOUT_DEFAULT_LANGS_COUNT = 5;
+const PIE_LAYOUT_DEFAULT_LANGS_COUNT = 6;
+const DONUT_VERTICAL_LAYOUT_DEFAULT_LANGS_COUNT = 6;
 
 /**
  * @typedef {import("../fetchers/types").Lang} Lang
@@ -101,7 +108,7 @@ const getCircleLength = (radius) => {
  * @returns {number} Card height.
  */
 const calculateCompactLayoutHeight = (totalLangs) => {
-  return 90 + Math.round(totalLangs / 2) * 25;
+  return COMPACT_LAYOUT_BASE_HEIGHT + Math.round(totalLangs / 2) * 25;
 };
 
 /**
@@ -157,14 +164,14 @@ const donutCenterTranslation = (totalLangs) => {
  * Trim top languages to lang_count while also hiding certain languages.
  *
  * @param {Record<string, Lang>} topLangs Top languages.
- * @param {string[]} hide Languages to hide.
- * @param {string} langs_count Number of languages to show.
- * @returns {{topLangs: Record<string, Lang>, totalSize: number}} Trimmed top languages and total size.
+ * @param {number} langs_count Number of languages to show.
+ * @param {string[]=} hide Languages to hide.
+ * @returns {{ langs: Lang[], totalLanguageSize: number }} Trimmed top languages and total size.
  */
-const trimTopLanguages = (topLangs, hide, langs_count) => {
+const trimTopLanguages = (topLangs, langs_count, hide) => {
   let langs = Object.values(topLangs);
   let langsToHide = {};
-  let langsCount = clampValue(parseInt(langs_count), 1, 10);
+  let langsCount = clampValue(langs_count, 1, MAXIMUM_LANGS_COUNT);
 
   // populate langsToHide map for quick lookup
   // while filtering out
@@ -655,6 +662,45 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
 };
 
 /**
+ * Creates the no languages data SVG node.
+ *
+ * @param {object} props Object with function properties.
+ * @param {string} props.color No languages data text color.
+ * @param {string} props.text No languages data translated text.
+ * @param {import("./types").TopLangOptions["layout"] | undefined} props.layout Card layout.
+ * @return {string} No languages data SVG node string.
+ */
+const noLanguagesDataNode = ({ color, text, layout }) => {
+  return `
+    <text x="${
+      layout === "pie" || layout === "donut-vertical" ? CARD_PADDING : 0
+    }" y="11" class="stat bold" fill="${color}">${text}</text>
+  `;
+};
+
+/**
+ * Get default languages count for provided card layout.
+ *
+ * @param {object} props Function properties.
+ * @param {import("./types").TopLangOptions["layout"]=} props.layout Input layout string.
+ * @param {boolean=} props.hide_progress Input hide_progress parameter value.
+ * @return {number} Default languages count for input layout.
+ */
+const getDefaultLanguagesCountByLayout = ({ layout, hide_progress }) => {
+  if (layout === "compact" || hide_progress === true) {
+    return COMPACT_LAYOUT_DEFAULT_LANGS_COUNT;
+  } else if (layout === "donut") {
+    return DONUT_LAYOUT_DEFAULT_LANGS_COUNT;
+  } else if (layout === "donut-vertical") {
+    return DONUT_VERTICAL_LAYOUT_DEFAULT_LANGS_COUNT;
+  } else if (layout === "pie") {
+    return PIE_LAYOUT_DEFAULT_LANGS_COUNT;
+  } else {
+    return NORMAL_LAYOUT_DEFAULT_LANGS_COUNT;
+  }
+};
+
+/**
  * Renders card that display user's most frequently used programming languages.
  *
  * @param {import('../fetchers/types').TopLangData} topLangs User's most frequently used programming languages.
@@ -675,7 +721,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     layout,
     custom_title,
     locale,
-    langs_count = DEFAULT_LANGS_COUNT,
+    langs_count = getDefaultLanguagesCountByLayout({ layout, hide_progress }),
     border_radius,
     border_color,
     disable_animations,
@@ -688,8 +734,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   const { langs, totalLanguageSize } = trimTopLanguages(
     topLangs,
+    langs_count,
     hide,
-    String(langs_count),
   );
 
   let width = isNaN(card_width)
@@ -699,8 +745,24 @@ const renderTopLanguages = (topLangs, options = {}) => {
     : card_width;
   let height = calculateNormalLayoutHeight(langs.length);
 
+  // returns theme based colors with proper overrides and defaults
+  const colors = getCardColors({
+    title_color,
+    text_color,
+    bg_color,
+    border_color,
+    theme,
+  });
+
   let finalLayout = "";
-  if (layout === "pie") {
+  if (langs.length === 0) {
+    height = COMPACT_LAYOUT_BASE_HEIGHT;
+    finalLayout = noLanguagesDataNode({
+      color: colors.textColor,
+      text: i18n.t("langcard.nodata"),
+      layout,
+    });
+  } else if (layout === "pie") {
     height = calculatePieLayoutHeight(langs.length);
     finalLayout = renderPieLayout(langs, totalLanguageSize);
   } else if (layout === "donut-vertical") {
@@ -716,22 +778,13 @@ const renderTopLanguages = (topLangs, options = {}) => {
       totalLanguageSize,
       hide_progress,
     );
-  } else if (layout?.toLowerCase() === "donut") {
+  } else if (layout === "donut") {
     height = calculateDonutLayoutHeight(langs.length);
     width = width + 50; // padding
     finalLayout = renderDonutLayout(langs, width, totalLanguageSize);
   } else {
     finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
   }
-
-  // returns theme based colors with proper overrides and defaults
-  const colors = getCardColors({
-    title_color,
-    text_color,
-    bg_color,
-    border_color,
-    theme,
-  });
 
   const card = new Card({
     customTitle: custom_title,
@@ -764,6 +817,14 @@ const renderTopLanguages = (topLangs, options = {}) => {
         width: 100%;
       }
     }
+    .stat {
+      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${colors.textColor};
+    }
+    @supports(-moz-appearance: auto) {
+      /* Selector detects Firefox */
+      .stat { font-size:12px; }
+    }
+    .bold { font-weight: 700 }
     .lang-name {
       font: 400 11px "Segoe UI", Ubuntu, Sans-Serif;
       fill: ${colors.textColor};
@@ -808,4 +869,5 @@ export {
   trimTopLanguages,
   renderTopLanguages,
   MIN_CARD_WIDTH,
+  getDefaultLanguagesCountByLayout,
 };

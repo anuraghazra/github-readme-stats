@@ -78,13 +78,16 @@ const createTextNode = ({
  * @param {Partial<import("./types").StatCardOptions>} options The card options.
  * @returns {string} The stats card SVG object.
  */
-const renderStatsCard = (stats = {}, options = { hide: [] }) => {
+const renderStatsCard = (stats = {}, options = {}) => {
   const {
     name,
     totalStars,
     totalCommits,
     totalIssues,
     totalPRs,
+    totalReviews,
+    totalDiscussionsStarted,
+    totalDiscussionsAnswered,
     contributedTo,
     rank,
   } = stats;
@@ -111,6 +114,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     locale,
     disable_animations = false,
     rank_icon = "default",
+    show = [],
   } = options;
 
   const lheight = parseInt(String(line_height), 10);
@@ -136,39 +140,67 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
   });
 
   // Meta data for creating text nodes with createTextNode function
-  const STATS = {
-    stars: {
-      icon: icons.star,
-      label: i18n.t("statcard.totalstars"),
-      value: totalStars,
-      id: "stars",
-    },
-    commits: {
-      icon: icons.commits,
-      label: `${i18n.t("statcard.commits")}${
-        include_all_commits ? "" : ` (${new Date().getFullYear()})`
-      }`,
-      value: totalCommits,
-      id: "commits",
-    },
-    prs: {
-      icon: icons.prs,
-      label: i18n.t("statcard.prs"),
-      value: totalPRs,
-      id: "prs",
-    },
-    issues: {
-      icon: icons.issues,
-      label: i18n.t("statcard.issues"),
-      value: totalIssues,
-      id: "issues",
-    },
-    contribs: {
-      icon: icons.contribs,
-      label: i18n.t("statcard.contribs") + " (last year)",
-      value: contributedTo,
-      id: "contribs",
-    },
+  const STATS = {};
+
+  STATS.stars = {
+    icon: icons.star,
+    label: i18n.t("statcard.totalstars"),
+    value: totalStars,
+    id: "stars",
+  };
+  STATS.commits = {
+    icon: icons.commits,
+    label: `${i18n.t("statcard.commits")}${
+      include_all_commits ? "" : ` (${new Date().getFullYear()})`
+    }`,
+    value: totalCommits,
+    id: "commits",
+  };
+  STATS.prs = {
+    icon: icons.prs,
+    label: i18n.t("statcard.prs"),
+    value: totalPRs,
+    id: "prs",
+  };
+
+  if (show.includes("reviews")) {
+    STATS.reviews = {
+      icon: icons.reviews,
+      label: i18n.t("statcard.reviews"),
+      value: totalReviews,
+      id: "reviews",
+    };
+  }
+
+  STATS.issues = {
+    icon: icons.issues,
+    label: i18n.t("statcard.issues"),
+    value: totalIssues,
+    id: "issues",
+  };
+
+  if (show.includes("discussions_started")) {
+    STATS.discussions_started = {
+      icon: icons.discussions_started,
+      label: i18n.t("statcard.discussions-started"),
+      value: totalDiscussionsStarted,
+      id: "discussions_started",
+    };
+  }
+  if (show.includes("discussions_answered")) {
+    STATS.discussions_answered = {
+      icon: icons.discussions_answered,
+      label: i18n.t("statcard.discussions-answered"),
+      value: totalDiscussionsAnswered,
+      id: "discussions_answered",
+    };
+  }
+
+  STATS.contribs = {
+    icon: icons.contribs,
+    label: i18n.t("statcard.contribs"),
+    value: contributedTo,
+    id: "contribs",
   };
 
   const longLocales = [
@@ -209,9 +241,8 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
     hide_rank ? 0 : 150,
   );
 
-  // the better user's score the the rank will be closer to zero so
-  // subtracting 100 to get the progress in 100%
-  const progress = 100 - rank.score;
+  // the lower the user's percentile the better
+  const progress = 100 - rank.percentile;
   const cssStyles = getStyles({
     titleColor,
     ringColor,
@@ -297,7 +328,7 @@ const renderStatsCard = (stats = {}, options = { hide: [] }) => {
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
-          ${rankIcon(rank_icon, rank?.level)}
+          ${rankIcon(rank_icon, rank?.level, rank?.percentile)}
         </g>
       </g>`;
 

@@ -41,7 +41,7 @@ _(make sure you already have a [Vercel](https://vercel.com/) account)_
 9.  The cards will then be available from this local endpoint (i.e. `https://localhost:3000/api?username=anuraghazra`).
 
 > **Note**
-> You can also debug any tests using the [VSCode Jest extension](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest). For more information see https://github.com/jest-community/vscode-jest/issues/912.
+> You can debug the package code in [Vscode](https://code.visualstudio.com/) by using the [Node.js: Attach to process](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_setting-up-an-attach-configuration) debug option. You can also debug any tests using the [VSCode Jest extension](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest). For more information, see https://github.com/jest-community/vscode-jest/issues/912.
 
 ## Themes Contribution
 
@@ -49,9 +49,11 @@ GitHub Readme Stats supports custom theming, and you can also contribute new the
 
 All you need to do is edit the [themes/index.js](./themes/index.js) file and add your theme at the end of the file.
 
-While creating the Pull request to add a new theme **don't forget to add a screenshot of how your theme looks**, you can also test how it looks using custom URL parameters like `title_color`, `icon_color`, `bg_color`, `text_color`, `border_color`
+> **Note**
+> If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
 
-> NOTE: If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
+> **Note**
+> Keep in mind that we already have a vast collection of different themes. To keep their number manageable, we began to add only themes supported by the community. Your pull request with theme addition will be merged once we get enough positive feedback from the community in the form of thumbs up (see [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935#top-themes-prs)). Remember that you can also support themes of other contributors that you liked to speed up their merge.
 
 ## Any contributions you make will be under the MIT Software License
 

@@ -98,6 +98,12 @@ const getStyles = ({
       font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor};
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
+    .rank-percentile-header {
+      font-size: 14px;
+    }
+    .rank-percentile-text {
+      font-size: 16px;
+    }
     
     .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
@@ -127,4 +133,4 @@ const getStyles = ({
   `;
 };
 
-export { getStyles, getAnimations };
+export { getAnimations, getStyles };

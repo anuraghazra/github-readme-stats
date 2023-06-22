@@ -45,8 +45,8 @@ const GRAPHQL_STATS_QUERY = `
       name
       login
       contributionsCollection {
-        totalCommitContributions
-        restrictedContributionsCount
+        totalCommitContributions,
+        totalPullRequestReviewContributions
       }
       repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
         totalCount
@@ -61,6 +61,12 @@ const GRAPHQL_STATS_QUERY = `
         totalCount
       }
       followers {
+        totalCount
+      }
+      repositoryDiscussions {
+        totalCount
+      }
+      repositoryDiscussionComments(onlyAnswers: true) {
         totalCount
       }
       ${GRAPHQL_REPOS_FIELD}
@@ -173,13 +179,11 @@ const totalCommitsFetcher = async (username) => {
  * Fetch stats for a given username.
  *
  * @param {string} username GitHub username.
- * @param {boolean} count_private Include private contributions.
  * @param {boolean} include_all_commits Include all commits.
  * @returns {Promise<import("./types").StatsData>} Stats data.
  */
 const fetchStats = async (
   username,
-  count_private = false,
   include_all_commits = false,
   exclude_repo = [],
 ) => {
@@ -188,11 +192,14 @@ const fetchStats = async (
   const stats = {
     name: "",
     totalPRs: 0,
+    totalReviews: 0,
     totalCommits: 0,
     totalIssues: 0,
     totalStars: 0,
+    totalDiscussionsStarted: 0,
+    totalDiscussionsAnswered: 0,
     contributedTo: 0,
-    rank: { level: "C", score: 0 },
+    rank: { level: "C", percentile: 100 },
   };
 
   let res = await statsFetcher(username);
@@ -220,53 +227,42 @@ const fetchStats = async (
 
   const user = res.data.data.user;
 
-  // populate repoToHide map for quick lookup
-  // while filtering out
-  let repoToHide = {};
-  if (exclude_repo) {
-    exclude_repo.forEach((repoName) => {
-      repoToHide[repoName] = true;
-    });
-  }
-
   stats.name = user.name || user.login;
-  stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
 
-  // normal commits
-  stats.totalCommits = user.contributionsCollection.totalCommitContributions;
-
-  // if include_all_commits then just get that,
-  // since totalCommitsFetcher already sends totalCommits no need to +=
+  // if include_all_commits, fetch all commits using the REST API.
   if (include_all_commits) {
     stats.totalCommits = await totalCommitsFetcher(username);
-  }
-
-  // if count_private then add private commits to totalCommits so far.
-  if (count_private) {
-    stats.totalCommits +=
-      user.contributionsCollection.restrictedContributionsCount;
+  } else {
+    stats.totalCommits = user.contributionsCollection.totalCommitContributions;
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
+  stats.totalReviews =
+    user.contributionsCollection.totalPullRequestReviewContributions;
+  stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
+  stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;
+  stats.totalDiscussionsAnswered = user.repositoryDiscussionComments.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
-  // Retrieve stars while filtering out repositories to be hidden
+  // Retrieve stars while filtering out repositories to be hidden.
+  let repoToHide = new Set(exclude_repo);
+
   stats.totalStars = user.repositories.nodes
     .filter((data) => {
-      return !repoToHide[data.name];
+      return !repoToHide.has(data.name);
     })
     .reduce((prev, curr) => {
       return prev + curr.stargazers.totalCount;
     }, 0);
 
   stats.rank = calculateRank({
-    totalCommits: stats.totalCommits,
-    totalRepos: user.repositories.totalCount,
-    followers: user.followers.totalCount,
-    contributions: stats.contributedTo,
-    stargazers: stats.totalStars,
+    all_commits: include_all_commits,
+    commits: stats.totalCommits,
     prs: stats.totalPRs,
     issues: stats.totalIssues,
+    repos: user.repositories.totalCount,
+    stars: stats.totalStars,
+    followers: user.followers.totalCount,
   });
 
   return stats;
