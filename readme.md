@@ -599,6 +599,8 @@ Choose from any of the [default themes](#themes)
 
 ![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)
 
+***
+
 ## Quick Tip (Align The Cards)
 
 By default, GitHub does not lay out the cards side by side. To do that, you can use this approach:
@@ -639,8 +641,6 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 </a>
 
 </details>
-
-***
 
 # Deploy on your own
 
