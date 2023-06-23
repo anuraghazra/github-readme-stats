@@ -110,7 +110,7 @@ const parseArray = (str) => {
  * @param {number} number The number to clamp.
  * @param {number} min The minimum value.
  * @param {number} max The maximum value.
- * returns {number} The clamped number.
+ * @returns {number} The clamped number.
  */
 const clampValue = (number, min, max) => {
   // @ts-ignore
@@ -194,15 +194,15 @@ const flexLayout = ({ items, gap, direction, sizes = [] }) => {
 /**
  * Returns theme based colors with proper overrides and defaults.
  *
- * @param {Object[]} args Function arguments.
+ * @param {Object} args Function arguments.
  * @param {string} args.title_color Card title color.
  * @param {string} args.text_color Card text color.
  * @param {string} args.icon_color Card icon color.
  * @param {string} args.bg_color Card background color.
  * @param {string} args.border_color Card border color.
+ * @param {string} args.ring_color Card ring color.
  * @param {string} args.theme Card theme.
  * @param {string} args.fallbackTheme Fallback theme.
- *
  */
 const getCardColors = ({
   title_color,
@@ -308,6 +308,7 @@ const SECONDARY_ERROR_MESSAGES = {
     "Please add an env variable called PAT_1 with your github token in vercel",
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
   GRAPHQL_ERROR: "Please try again later",
+  WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
 };
 
 /**
@@ -327,6 +328,7 @@ class CustomError extends Error {
   static MAX_RETRY = "MAX_RETRY";
   static USER_NOT_FOUND = "USER_NOT_FOUND";
   static GRAPHQL_ERROR = "GRAPHQL_ERROR";
+  static WAKATIME_ERROR = "WAKATIME_ERROR";
 }
 
 /**
@@ -395,7 +397,7 @@ const lowercaseTrim = (name) => name.toLowerCase().trim();
 /**
  * Split array of languages in two columns.
  *
- * @template T Langauge object.
+ * @template T Language object.
  * @param {Array<T>} arr Array of languages.
  * @param {number} perChunk Number of languages per column.
  * @returns {Array<T>} Array of languages split in two columns.
@@ -427,6 +429,19 @@ const parseEmojis = (str) => {
   });
 };
 
+/**
+ * Get diff in minutes
+ * @param {Date} d1
+ * @param {Date} d2
+ * @returns {number}
+ */
+const dateDiff = (d1, d2) => {
+  const date1 = new Date(d1);
+  const date2 = new Date(d2);
+  const diff = date1.getTime() - date2.getTime();
+  return Math.round(diff / (1000 * 60));
+};
+
 export {
   ERROR_CARD_LENGTH,
   renderError,
@@ -450,4 +465,5 @@ export {
   lowercaseTrim,
   chunkArray,
   parseEmojis,
+  dateDiff,
 };

@@ -15,14 +15,14 @@ const REPO = "curly-fiesta";
 const USER = "catelinemnemosyne";
 const STATS_DATA = {
   name: "Cateline Mnemosyne",
-  totalPRs: 1,
-  totalCommits: 7,
+  totalPRs: 2,
+  totalCommits: 8,
   totalIssues: 1,
   totalStars: 1,
   contributedTo: 1,
   rank: {
-    level: "A+",
-    score: 50.893750297869225,
+    level: "C",
+    percentile: 97.89377603631637,
   },
 };
 
@@ -54,7 +54,7 @@ const WAKATIME_DATA = {
   is_up_to_date: false,
   is_up_to_date_pending_future: false,
   percent_calculated: 0,
-  range: "last_7_days",
+  range: "all_time",
   status: "pending_update",
   timeout: 15,
   username: USER,
