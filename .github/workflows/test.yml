@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     steps:
       - uses: actions/checkout@v3
@@ -34,4 +34,4 @@ jobs:
           npm run format:check
 
       - name: Code Coverage
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v3
