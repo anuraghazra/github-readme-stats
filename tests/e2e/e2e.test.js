@@ -11,27 +11,22 @@ import { renderStatsCard } from "../../src/cards/stats-card.js";
 import { renderTopLanguages } from "../../src/cards/top-languages-card.js";
 import { renderWakatimeCard } from "../../src/cards/wakatime-card.js";
 
-const REPO = "dummy-cra";
-const USER = "grsdummy";
+const REPO = "curly-fiesta";
+const USER = "catelinemnemosyne";
 const STATS_DATA = {
-  name: "grsdummy",
+  name: "Cateline Mnemosyne",
   totalPRs: 2,
-  totalCommits: 2,
+  totalCommits: 8,
   totalIssues: 1,
   totalStars: 1,
-  contributedTo: 2,
+  contributedTo: 1,
   rank: {
-    level: "A+",
-    score: 50.900829325065935,
+    level: "C",
+    percentile: 97.89377603631637,
   },
 };
 
 const LANGS_DATA = {
-  TypeScript: {
-    color: "#3178c6",
-    name: "TypeScript",
-    size: 2049,
-  },
   HTML: {
     color: "#e34c26",
     name: "HTML",
@@ -42,44 +37,44 @@ const LANGS_DATA = {
     name: "CSS",
     size: 930,
   },
-  Python: {
-    color: "#3572A5",
-    name: "Python",
-    size: 671,
+  JavaScript: {
+    color: "#f1e05a",
+    name: "JavaScript",
+    size: 1912,
   },
 };
 
 const WAKATIME_DATA = {
   human_readable_range: "last week",
   is_already_updating: false,
-  is_coding_activity_visible: false,
+  is_coding_activity_visible: true,
   is_including_today: false,
-  is_other_usage_visible: false,
+  is_other_usage_visible: true,
   is_stuck: false,
   is_up_to_date: false,
   is_up_to_date_pending_future: false,
   percent_calculated: 0,
-  range: "last_7_days",
+  range: "all_time",
   status: "pending_update",
   timeout: 15,
-  username: "grsdummy",
+  username: USER,
   writes_only: false,
 };
 
 const REPOSITORY_DATA = {
-  name: "dummy-cra",
-  nameWithOwner: "grsdummy/dummy-cra",
+  name: REPO,
+  nameWithOwner: `${USER}/cra-test`,
   isPrivate: false,
   isArchived: false,
   isTemplate: false,
   stargazers: {
     totalCount: 1,
   },
-  description: "Dummy create react app.",
+  description: "Simple cra test repo.",
   primaryLanguage: {
-    color: "#3178c6",
-    id: "MDg6TGFuZ3VhZ2UyODc=",
-    name: "TypeScript",
+    color: "#f1e05a",
+    id: "MDg6TGFuZ3VhZ2UxNDA=",
+    name: "JavaScript",
   },
   forkCount: 0,
   starCount: 1,
@@ -113,7 +108,7 @@ describe("Fetch Cards", () => {
 
     // Check if stats card from deployment matches the stats card from local.
     expect(serverStatsSvg.data).toEqual(localStatsCardSVG);
-  }, 7000);
+  }, 15000);
 
   test("retrieve language card", async () => {
     expect(VERCEL_PREVIEW_URL).toBeDefined();
@@ -138,7 +133,7 @@ describe("Fetch Cards", () => {
 
     // Check if language card from deployment matches the local language card.
     expect(severLanguageSVG.data).toEqual(localLanguageCardSVG);
-  });
+  }, 15000);
 
   test("retrieve WakaTime card", async () => {
     expect(VERCEL_PREVIEW_URL).toBeDefined();
@@ -158,7 +153,7 @@ describe("Fetch Cards", () => {
 
     // Check if WakaTime card from deployment matches the local WakaTime card.
     expect(serverWakaTimeSvg.data).toEqual(localWakaCardSVG);
-  });
+  }, 15000);
 
   test("retrieve repo card", async () => {
     expect(VERCEL_PREVIEW_URL).toBeDefined();
@@ -180,5 +175,5 @@ describe("Fetch Cards", () => {
 
     // Check if Repo card from deployment matches the local Repo card.
     expect(serverRepoSvg.data).toEqual(localRepoCardSVG);
-  });
+  }, 15000);
 });

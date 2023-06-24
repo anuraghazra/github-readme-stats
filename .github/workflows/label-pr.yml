@@ -4,6 +4,7 @@ on:
 
 jobs:
   triage:
+    if: github.repository == 'anuraghazra/github-readme-stats'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/labeler@v4

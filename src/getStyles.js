@@ -65,10 +65,11 @@ const getAnimations = () => {
 /**
  * Retrieves CSS styles for a card.
  *
- * @param {Object[]} colors The colors to use for the card.
+ * @param {Object} colors The colors to use for the card.
  * @param {string} colors.titleColor The title color.
  * @param {string} colors.textColor The text color.
  * @param {string} colors.iconColor The icon color.
+ * @param {string} colors.ringColor The ring color.
  * @param {boolean} colors.show_icons Whether to show icons.
  * @param {number} colors.progress The progress value to animate to.
  * @returns {string} Card CSS styles.
@@ -96,6 +97,12 @@ const getStyles = ({
     .rank-text {
       font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor};
       animation: scaleInAnimation 0.3s ease-in-out forwards;
+    }
+    .rank-percentile-header {
+      font-size: 14px;
+    }
+    .rank-percentile-text {
+      font-size: 16px;
     }
     
     .not_bold { font-weight: 400 }
@@ -126,4 +133,4 @@ const getStyles = ({
   `;
 };
 
-export { getStyles, getAnimations };
+export { getAnimations, getStyles };

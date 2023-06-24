@@ -49,21 +49,40 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
     ·
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">परियोजना मनपर्‍यो? तपाईं मद्दत गर्न सक्नुहुन्छ <a href="https://www.paypal.me/anuraghazra">यो परियोजना</a> बढ्न 
 
-# विशेषताहरु
+# विशेषताहरु <!-- omit in toc -->
 
 - [गितहब स्टेट कार्ड](#गितहब-स्टेट-कार्ड)
+    - [लुकाउनु होस् व्यक्तिगत स्टेट](#लुकाउनु-होस्-व्यक्तिगत-स्टेट)
+    - [जोड्नु होस् निजी टोटल  योगदान](#जोड्नु-होस्-निजी-टोटल--योगदान)
+    - [देखाउनु होस् इकोन](#देखाउनु-होस्-इकोन)
+    - [विषयवस्तुहरू](#विषयवस्तुहरू)
+    - [अनुकूलन](#अनुकूलन)
 - [गितहब अतिरिक्त पिन्स](#गितहब-अतिरिक्त-पिन्स)
+    - [प्रयोग](#प्रयोग)
+    - [डेमो](#डेमो)
 - [टोप भाषा कार्ड](#टोप-भाषा-कार्ड)
-- [वाका समय वीक स्तट्स ](#वाका-समय-वीक-स्तट्स )
-- [विषयवस्तुहरू](#विषयवस्तुहरू)
-- [अनुकूलन](#अनुकूलन)
-- [आफैलाई तैनाथ गर्नुहोस्](#देप्लोय-आफ्नै-वेर्चेल-इन्स्तंस )
+    - [प्रयोग](#प्रयोग-1)
+    - [Exclude individual repositories](#exclude-individual-repositories)
+    - [कुनै भाषा चुपौनॆ तरिका](#कुनै-भाषा-चुपौनॆ-तरिका)
+    - [धेरॆ भाषाहरु हेर्नको लागि](#धेरॆ-भाषाहरु-हेर्नको-लागि)
+    - [कम्प्याक्ट भाषा कार्ड ळयोउत](#कम्प्याक्ट-भाषा-कार्ड-ळयोउत)
+    - [डेमो](#डेमो-1)
+- [वाका समय वीक स्तट्स](#वाका-समय-वीक-स्तट्स)
+    - [डेमो](#डेमो-2)
+    - [सबै डेमोहरु](#सबै-डेमोहरु)
+    - [टिप्  (रेपो कार्डलाए अलिग्न गर्ने )](#टिप्--रेपो-कार्डलाए-अलिग्न-गर्ने-)
+  - [देप्लोय  आफ्नै  वेर्चेल  इन्स्तंस](#देप्लोय--आफ्नै--वेर्चेल--इन्स्तंस)
+  - [:sparkling\_heart: सहपोर्ट द प्रोजेक्ट](#sparkling_heart-सहपोर्ट-द-प्रोजेक्ट)
 
 # गितहब स्टेट कार्ड 
 
@@ -138,7 +157,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_
 - `hide_border` - Hides the card's border _(boolean)_
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
-- `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
+- `cache_seconds` - set the cache header manually _(min: 14400, max: 86400)_
 - `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
 
 ##### Gradient in bg_color
@@ -170,7 +189,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 - `hide` - Hide the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
-- `layout` - Switch between two available layouts `default` & `compact`
+- `layout` - Switch between five available layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Default: `normal`.
 - `card_width` - Set the card's width manually _(number)_
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
 - `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
@@ -275,14 +294,14 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ###  डेमो
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -332,7 +351,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 - वक समय कार्ड 
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

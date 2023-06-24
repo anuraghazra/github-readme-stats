@@ -28,7 +28,6 @@ export default async (req, res) => {
     langs_count,
     hide,
     api_domain,
-    range,
     border_radius,
     border_color,
   } = req.query;
@@ -40,13 +39,16 @@ export default async (req, res) => {
   }
 
   try {
-    const stats = await fetchWakatimeStats({ username, api_domain, range });
+    const stats = await fetchWakatimeStats({ username, api_domain });
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
       CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
+    cacheSeconds = process.env.CACHE_SECONDS
+      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+      : cacheSeconds;
 
     if (!cache_seconds) {
       cacheSeconds = CONSTANTS.FOUR_HOURS;

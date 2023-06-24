@@ -42,6 +42,12 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
       font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58;
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
+    .rank-percentile-header {
+      font-size: 14px;
+    }
+    .rank-percentile-text {
+      font-size: 16px;
+    }
     
     .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
@@ -69,7 +75,29 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
     }
     
   
+    @keyframes slideInAnimation {
+      from {
+        width: 0;
+      }
+      to {
+        width: calc(100%-100px);
+      }
+    }
+    @keyframes growWidthAnimation {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
     .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58 }
+    #rect-mask rect{
+      animation: slideInAnimation 1s ease-in-out forwards;
+    }
+    .lang-progress{
+      animation: growWidthAnimation 0.6s ease-in-out forwards;
+    }
     
 
           
@@ -101,7 +129,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
         y="0"
         class="header"
         data-testid="header"
-      >Wakatime Stats</text>
+      >Wakatime Stats (last 7 days)</text>
     </g>
       </g>
     
@@ -200,6 +228,12 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
       font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58;
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
+    .rank-percentile-header {
+      font-size: 14px;
+    }
+    .rank-percentile-text {
+      font-size: 16px;
+    }
     
     .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
@@ -227,7 +261,29 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
     }
     
   
+    @keyframes slideInAnimation {
+      from {
+        width: 0;
+      }
+      to {
+        width: calc(100%-100px);
+      }
+    }
+    @keyframes growWidthAnimation {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
     .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58 }
+    #rect-mask rect{
+      animation: slideInAnimation 1s ease-in-out forwards;
+    }
+    .lang-progress{
+      animation: growWidthAnimation 0.6s ease-in-out forwards;
+    }
     
 
           
@@ -259,7 +315,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
         y="0"
         class="header"
         data-testid="header"
-      >Wakatime Stats</text>
+      >Wakatime Stats (last 7 days)</text>
     </g>
       </g>
     
