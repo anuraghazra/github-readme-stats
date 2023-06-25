@@ -1,11 +1,14 @@
+// @ts-check
+
 import { encodeHTML } from "./common/utils.js";
 
 /**
  * Retrieves stat card labels in the available locales.
  *
- * @param {string} name The name of the locale.
- * @param {string} apostrophe Whether to use apostrophe or not.
- * @returns {Object} The locales object.
+ * @param {object} props Function arguments.
+ * @param {string} props.name The name of the locale.
+ * @param {string} props.apostrophe Whether to use apostrophe or not.
+ * @returns {object} The locales object.
  *
  * @see https://www.andiamo.co.uk/resources/iso-language-codes/ for language codes.
  */
