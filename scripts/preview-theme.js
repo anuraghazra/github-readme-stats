@@ -451,7 +451,7 @@ export const run = async () => {
       debug("Theme preview body: Check if the theme colors are valid...");
       let invalidColors = false;
       if (!colors) {
-        warning.push("Theme colors are missing");
+        warnings.push("Theme colors are missing");
         invalidColors = true;
       } else {
         const missingKeys = REQUIRED_COLOR_PROPS.filter(
