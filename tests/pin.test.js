@@ -5,6 +5,7 @@ import MockAdapter from "axios-mock-adapter";
 import pin from "../api/pin.js";
 import { renderRepoCard } from "../src/cards/repo-card.js";
 import { renderError } from "../src/common/utils.js";
+import { expect, it, describe, afterEach } from "@jest/globals";
 
 const data_repo = {
   repository: {

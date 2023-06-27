@@ -18,6 +18,7 @@ import {
   MIN_CARD_WIDTH,
   getDefaultLanguagesCountByLayout,
 } from "../src/cards/top-languages-card.js";
+import { expect, it, describe } from "@jest/globals";
 
 // adds special assertions like toHaveTextContent
 import "@testing-library/jest-dom";

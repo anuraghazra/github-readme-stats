@@ -29,7 +29,8 @@
     "generate-langs-json": "node scripts/generate-langs-json",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lints": "npx eslint \"./src/**.js\" \"./scripts/**.js\" \"./tests/**.js\" \"./api/**.js\" \"./themes/**.js\""
   },
   "author": "Anurag Hazra",
   "license": "MIT",
@@ -41,6 +42,8 @@
     "@uppercod/css-to-object": "^1.1.1",
     "axios-mock-adapter": "^1.21.2",
     "color-contrast-checker": "^2.1.0",
+    "eslint": "^8.43.0",
+    "eslint-config-prettier": "^8.8.0",
     "hjson": "^3.2.2",
     "husky": "^8.0.0",
     "jest": "^29.5.0",

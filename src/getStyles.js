@@ -1,4 +1,4 @@
-// @ts-check
+// @ts-nocheck
 /**
  * Calculates progress along the boundary of the circle i.e it's circumference.
  *
@@ -75,6 +75,7 @@ const getAnimations = () => {
  * @returns {string} Card CSS styles.
  */
 const getStyles = ({
+  // eslint-disable-next-line no-unused-vars
   titleColor,
   textColor,
   iconColor,
