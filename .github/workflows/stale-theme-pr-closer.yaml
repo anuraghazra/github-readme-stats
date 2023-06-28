@@ -3,6 +3,21 @@ on:
   schedule:
     - cron: "0 0 */7 * *"
 
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  deployments: read
+  id-token: read
+  issues: read
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
+
 jobs:
   closeOldThemePrs:
     if: github.repository == 'anuraghazra/github-readme-stats'
