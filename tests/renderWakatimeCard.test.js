@@ -7,7 +7,7 @@ import { expect, it, describe } from "@jest/globals";
 
 describe("Test Render Wakatime Card", () => {
   it("should render correctly", () => {
-    // renderWakatimeCard(wakaTimeData.data);
+    // const card = renderWakatimeCard(wakaTimeData.data);
     expect(getCardColors).toMatchSnapshot();
   });
 
