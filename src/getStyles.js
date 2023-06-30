@@ -1,4 +1,5 @@
-// @ts-nocheck
+// @ts-check
+
 /**
  * Calculates progress along the boundary of the circle i.e it's circumference.
  *
