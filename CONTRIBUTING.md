@@ -47,8 +47,6 @@ _(make sure you already have a [Vercel](https://vercel.com/) account)_
 
 GitHub Readme Stats supports custom theming, and you can also contribute new themes!
 
-All you need to do is edit the [themes/index.js](./themes/index.js) file and add your theme at the end of the file.
-
 > **Note**
 > If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
 
@@ -57,6 +55,8 @@ All you need to do is edit the [themes/index.js](./themes/index.js) file and add
 
 > **Note**
 > Before submitting pull request, please make sure that your theme pass WCAG 2.0 level AA constrast ration test. You can use [this tool](https://webaim.org/resources/contrastchecker/) to check it.
+
+To contribute your theme you need to edit the [themes/index.js](./themes/index.js) file and add it at the end of the file.
 
 ## Any contributions you make will be under the MIT Software License
 
