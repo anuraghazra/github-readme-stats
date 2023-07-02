@@ -7,6 +7,20 @@ on:
     paths:
       - "themes/index.js"
 
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  deployments: read
+  issues: read
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
+
 jobs:
   previewTheme:
     name: Install & Preview

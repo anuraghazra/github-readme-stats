@@ -7,6 +7,8 @@ on:
     branches:
       - master
 
+permissions: read-all
+
 jobs:
   build:
     name: Perform tests
