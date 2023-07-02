@@ -11,7 +11,7 @@ permissions:
   checks: read
   contents: write
   deployments: read
-  id-token: read
+  id-token: none
   issues: read
   discussions: read
   packages: read
