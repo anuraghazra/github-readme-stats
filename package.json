@@ -30,7 +30,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky install",
-    "lints": "npx eslint \"./src/**.js\" \"./scripts/**.js\" \"./tests/**.js\" \"./api/**.js\" \"./themes/**.js\""
+    "lints": "npx eslint --max-warnings 0 \"./src/**.js\" \"./scripts/**.js\" \"./tests/**.js\" \"./api/**.js\" \"./themes/**.js\""
   },
   "author": "Anurag Hazra",
   "license": "MIT",
