@@ -8,6 +8,7 @@ import {
   renderError,
   wrapTextMultiline,
 } from "../src/common/utils.js";
+import { expect, it, describe } from "@jest/globals";
 
 describe("Test utils.js", () => {
   it("should test kFormatter", () => {
