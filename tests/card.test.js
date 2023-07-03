@@ -4,6 +4,7 @@ import { cssToObject } from "@uppercod/css-to-object";
 import { Card } from "../src/common/Card.js";
 import { icons } from "../src/common/icons.js";
 import { getCardColors } from "../src/common/utils.js";
+import { expect, it, describe } from "@jest/globals";
 
 describe("Card", () => {
   it("should hide border", () => {
