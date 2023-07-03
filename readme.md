@@ -86,38 +86,38 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 
 # Features <!-- omit in toc -->
 
-- [GitHub Stats Card](#github-stats-card)
-    - [Hiding individual stats](#hiding-individual-stats)
-    - [Showing additional individual stats](#showing-additional-individual-stats)
-    - [Showing icons](#showing-icons)
-    - [Themes](#themes)
-    - [Customization](#customization)
-- [GitHub Extra Pins](#github-extra-pins)
-    - [Usage](#usage)
-    - [Demo](#demo)
-- [Top Languages Card](#top-languages-card)
-    - [Usage](#usage-1)
-    - [Language stats algorithm](#language-stats-algorithm)
-    - [Exclude individual repositories](#exclude-individual-repositories)
-    - [Hide individual languages](#hide-individual-languages)
-    - [Show more languages](#show-more-languages)
-    - [Compact Language Card Layout](#compact-language-card-layout)
-    - [Donut Chart Language Card Layout](#donut-chart-language-card-layout)
-    - [Donut Vertical Chart Language Card Layout](#donut-vertical-chart-language-card-layout)
-    - [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
-    - [Hide Progress Bars](#hide-progress-bars)
-    - [Demo](#demo-1)
-- [Wakatime Stats Card](#wakatime-stats-card)
-    - [Demo](#demo-2)
-- [All Demos](#all-demos)
-  - [Quick Tip (Align The Cards)](#quick-tip-align-the-cards)
-- [Deploy on your own](#deploy-on-your-own)
-  - [On Vercel](#on-vercel)
-    - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
-  - [On other platforms](#on-other-platforms)
-  - [Disable rate limit protections](#disable-rate-limit-protections)
-  - [Keep your fork up to date](#keep-your-fork-up-to-date)
-- [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
+*   [GitHub Stats Card](#github-stats-card)
+    *   [Hiding individual stats](#hiding-individual-stats)
+    *   [Showing additional individual stats](#showing-additional-individual-stats)
+    *   [Showing icons](#showing-icons)
+    *   [Themes](#themes)
+    *   [Customization](#customization)
+*   [GitHub Extra Pins](#github-extra-pins)
+    *   [Usage](#usage)
+    *   [Demo](#demo)
+*   [Top Languages Card](#top-languages-card)
+    *   [Usage](#usage-1)
+    *   [Language stats algorithm](#language-stats-algorithm)
+    *   [Exclude individual repositories](#exclude-individual-repositories)
+    *   [Hide individual languages](#hide-individual-languages)
+    *   [Show more languages](#show-more-languages)
+    *   [Compact Language Card Layout](#compact-language-card-layout)
+    *   [Donut Chart Language Card Layout](#donut-chart-language-card-layout)
+    *   [Donut Vertical Chart Language Card Layout](#donut-vertical-chart-language-card-layout)
+    *   [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
+    *   [Hide Progress Bars](#hide-progress-bars)
+    *   [Demo](#demo-1)
+*   [Wakatime Stats Card](#wakatime-stats-card)
+    *   [Demo](#demo-2)
+*   [All Demos](#all-demos)
+    *   [Quick Tip (Align The Cards)](#quick-tip-align-the-cards)
+*   [Deploy on your own](#deploy-on-your-own)
+    *   [On Vercel](#on-vercel)
+        *   [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
+    *   [On other platforms](#on-other-platforms)
+    *   [Disable rate limit protections](#disable-rate-limit-protections)
+    *   [Keep your fork up to date](#keep-your-fork-up-to-date)
+*   [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
 
 # Important Notice <!-- omit in toc -->
 
@@ -615,10 +615,10 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 
@@ -635,10 +635,10 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 ***
 
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 
 </details>
