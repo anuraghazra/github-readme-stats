@@ -5,6 +5,7 @@ import MockAdapter from "axios-mock-adapter";
 import topLangs from "../api/top-langs.js";
 import { renderTopLanguages } from "../src/cards/top-languages-card.js";
 import { renderError } from "../src/common/utils.js";
+import { expect, it, describe, afterEach } from "@jest/globals";
 
 const data_langs = {
   data: {
