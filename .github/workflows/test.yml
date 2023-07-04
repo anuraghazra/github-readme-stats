@@ -33,7 +33,7 @@ jobs:
 
       - name: Run ESLint
         run: |
-          npm run lints
+          npm run lint
 
       - name: Run Prettier
         run: |
