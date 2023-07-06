@@ -432,8 +432,8 @@ export const themes = {
   },
   humoris: {
     title_color: "191419",
-    text_color: "595c5b",
-    icon_color: "824c37",
+    text_color: "393c3c",
+    icon_color: "683c2c",
     border_color: "e8e6e4",
     bg_color: "dfaf77",
   },
@@ -510,9 +510,9 @@ export const themes = {
     bg_color: "081825",
   },
   lava_light: {
-    title_color: "ee403e",
-    text_color: "e0d078",
-    icon_color: "ee403e",
+    title_color: "d81613",
+    text_color: "786a1c",
+    icon_color: "d81613",
     border_color: "933547",
     bg_color: "fffff0",
   },
@@ -521,7 +521,7 @@ export const themes = {
     text_color: "fed078",
     icon_color: "ee403e",
     border_color: "933547",
-    bg_color: "2c373d",
+    bg_color: "090b0c",
   },
 };
 
