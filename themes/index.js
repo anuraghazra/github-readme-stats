@@ -439,15 +439,15 @@ export const themes = {
   },
   bluerizch: {
     title_color: "2365bb",
-    text_color: "8f8f8f",
+    text_color: "636363",
     icon_color: "000000",
     border_color: "3282c3",
-    bg_color: "dbe1ef",
+    bg_color: "f7f7f7",
   },
   shadow_orange: {
-    title_color: "ad6e03",
+    title_color: "a06603",
     text_color: "444",
-    icon_color: "fd7e14",
+    icon_color: "bb5502",
     border_color: "914c00",
     bg_color: "ffffff00",
   },
@@ -501,7 +501,7 @@ export const themes = {
     title_color: "449fe4",
     text_color: "53d2dc",
     icon_color: "ff5b42",
-    bg_color: "444",
+    bg_color: "350335",
   },
   sandbar: {
     title_color: "f2f2f0",
