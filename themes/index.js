@@ -530,7 +530,7 @@ export const themes = {
     border_color: "9ed4da",
     bg_color: "fff",
   },
-  "langit-malam": {
+  langitmalam: {
     title_color: "f55119",
     text_color: "86923a",
     icon_color: "8d7aeb",
