@@ -478,8 +478,8 @@ export const themes = {
   },
   haha_light: {
     title_color: "241625",
-    text_color: "c2af96",
-    icon_color: "e5c51d",
+    text_color: "856c4c",
+    icon_color: "7f6d10",
     border_color: "e4dcc1",
     bg_color: "f7f7f1",
   },
@@ -498,9 +498,9 @@ export const themes = {
     bg_color: "10100f",
   },
   caribbean: {
-    title_color: "3196e2",
+    title_color: "449fe4",
     text_color: "53d2dc",
-    icon_color: "ff826c",
+    icon_color: "ff5b42",
     bg_color: "444",
   },
   sandbar: {
