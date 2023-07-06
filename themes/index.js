@@ -523,6 +523,20 @@ export const themes = {
     border_color: "933547",
     bg_color: "090b0c",
   },
+  tacao: {
+    title_color: "55776e",
+    text_color: "af3833",
+    icon_color: "3a8254",
+    border_color: "9ed4da",
+    bg_color: "fff",
+  },
+  "langit-malam": {
+    title_color: "f55119",
+    text_color: "86923a",
+    icon_color: "8d7aeb",
+    border_color: "04305a",
+    bg_color: "02243f",
+  },
 };
 
 export default themes;
