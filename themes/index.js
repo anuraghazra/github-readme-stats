@@ -454,7 +454,7 @@ export const themes = {
   shadow_purple: {
     title_color: "6f42c1",
     text_color: "444",
-    icon_color: "6577ab",
+    icon_color: "5b6fa4",
     border_color: "570182",
     bg_color: "ffffff00",
   },
@@ -466,7 +466,7 @@ export const themes = {
   },
   whatsapp_light: {
     title_color: "008069",
-    text_color: "8596a0",
+    text_color: "657681",
     icon_color: "0d483c",
     bg_color: "ffffff",
   },
@@ -485,7 +485,7 @@ export const themes = {
   },
   unguplusdark: {
     title_color: "9668f5",
-    text_color: "7844e3",
+    text_color: "9c75ea",
     icon_color: "c169ff",
     border_color: "131a22",
     bg_color: "2b0047",
