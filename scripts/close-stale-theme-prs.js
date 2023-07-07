@@ -25,10 +25,12 @@ const getReviewer = () => {
 
 /**
  * Fetch open PRs from a given repository.
- * @param user The user name of the repository owner.
- * @param repo The name of the repository.
- * @param reviewer The reviewer to filter by.
- * @returns The open PRs.
+ *
+ * @param {module:@actions/github.Octokit} octokit The octokit client.
+ * @param {string} user The user name of the repository owner.
+ * @param {string} repo The name of the repository.
+ * @param {string} reviewer The reviewer to filter by.
+ * @returns {Promise<Object[]>} The open PRs.
  */
 export const fetchOpenPRs = async (octokit, user, repo, reviewer) => {
   const openPRs = [];
