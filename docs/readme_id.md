@@ -109,7 +109,7 @@ Silakan kunjungi [tautan ini](https://give.do/fundraisers/stand-beside-the-victi
 - [Pin Ekstra GitHub](#pin-ekstra-github)
     - [Penggunaan](#penggunaan)
     - [Demo](#demo)
-- [Kartu Bahasa Teratas](#kartu-bahasa-tertatas)
+- [Kartu Bahasa Teratas](#kartu-bahasa-teratas)
     - [Penggunaan](#penggunaan-1)
     - [Algoritma statistik bahasa](#algoritma-statistik-bahasa)
     - [Kecualikan repositori individu](#kecualikan-repositori-individu)
@@ -583,7 +583,7 @@ Ubah nilai `?username=` menjadi nama pengguna [Wakatime](https://wakatime.com) A
 
 *   Tema
 
-Choose from any of the [default themes](#themes)
+Pilih salah satu dari [tema default](#tema)
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show_icons=true\&theme=radical)
 
