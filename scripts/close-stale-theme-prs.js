@@ -90,8 +90,10 @@ export const fetchOpenPRs = async (octokit, user, repo, reviewer) => {
 
 /**
  * Retrieve pull requests that have a given label.
- * @param pull The pull requests to check.
- * @param label The label to check for.
+ *
+ * @param {Object[]} pulls The pull requests to check.
+ * @param {string} label The label to check for.
+ * @returns {Object[]} The pull requests that have the given label.
  */
 export const pullsWithLabel = (pulls, label) => {
   return pulls.filter((pr) => {
@@ -101,9 +103,10 @@ export const pullsWithLabel = (pulls, label) => {
 
 /**
  * Check if PR is stale. Meaning that it hasn't been updated in a given time.
+ *
  * @param {Object} pullRequest request object.
- * @param {number} days number of days.
- * @returns Boolean indicating if PR is stale.
+ * @param {number} staleDays number of days.
+ * @returns {boolean} indicating if PR is stale.
  */
 const isStale = (pullRequest, staleDays) => {
   const lastCommitDate = new Date(
@@ -124,6 +127,8 @@ const isStale = (pullRequest, staleDays) => {
 
 /**
  * Main function.
+ *
+ * @returns {Promise<void>} A promise.
  */
 const run = async () => {
   try {
