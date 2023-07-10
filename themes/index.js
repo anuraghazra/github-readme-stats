@@ -544,6 +544,29 @@ export const themes = {
     border_color: "67594f",
     bg_color: "31312d",
   },
+  hitamanis: {
+    title_color: "9668f5",
+    text_color: "fff",
+    icon_color: "e83e8c",
+    ring_color: "e04d5c",
+    border_color: "302b18",
+    bg_color: "081825",
+  },
+  control_c: {
+    title_color: "6f42c1",
+    text_color: "31343d",
+    icon_color: "db1a74",
+    ring_color: "dc3545",
+    border_color: "e5e9f2",
+    bg_color: "fff",
+  },
+  greendark: {
+    title_color: "28a17d",
+    text_color: "fff",
+    icon_color: "28a745",
+    border_color: "33435e",
+    bg_color: "0f1618",
+  },
 };
 
 export default themes;
