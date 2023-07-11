@@ -9,7 +9,8 @@
         "prettier"
     ],
     "parserOptions": {
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaVersion": 2022
     },
     "rules": {
         // Possible Errors (overrides from recommended set)
