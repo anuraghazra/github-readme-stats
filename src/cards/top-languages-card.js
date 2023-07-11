@@ -392,7 +392,7 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
       ${createLanguageTextNode({
         langs,
         totalSize: totalLanguageSize,
-        hideProgress: hideProgress,
+        hideProgress,
       })}
     </g>
   `;
