@@ -33,7 +33,7 @@ const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
  * @param {number} createTextNodeParams.shiftValuePos Number of pixels the value has to be shifted to the right.
  * @param {boolean} createTextNodeParams.bold Whether to bold the label.
  * @param {string} createTextNodeParams.number_format The format of numbers on card.
- * @returns
+ * @returns {string} The stats card text item SVG object.
  */
 const createTextNode = ({
   icon,
