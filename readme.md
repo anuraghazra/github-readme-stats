@@ -493,6 +493,7 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 
 *   Compact layout
 
+
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&layout=compact)
 
 *   Donut Chart layout
