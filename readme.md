@@ -11,13 +11,16 @@
       <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
     </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
+    </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
     </a>
     <br />
     <br />
@@ -75,7 +78,7 @@ Are you considering supporting the project by donating to me? Please DO NOT!!
 
 <img src="https://cfstatic.give.do/910ede2a-7892-43fe-8c8a-dea45e96d950.webp" alt="Picture of Coromandel Express train tragedy" width="35%">
 
-India just suffered one of the most devastating train accident and your help will be immensely valuable for the people who were effected by this tragedy.
+India just suffered one of the most devastating train accident and your help will be immensely valuable for the people who were affected by this tragedy.
 
 Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of-the-coromandel-express-train-tragedy-in-odisha-donate-now) and make a small donation to help the people in need. A small donation goes a long way. :heart:
 
@@ -107,7 +110,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 - [Wakatime Stats Card](#wakatime-stats-card)
     - [Demo](#demo-2)
 - [All Demos](#all-demos)
-  - [Quick Tip (Align The Repo Cards)](#quick-tip-align-the-repo-cards)
+  - [Quick Tip (Align The Cards)](#quick-tip-align-the-cards)
 - [Deploy on your own](#deploy-on-your-own)
   - [On Vercel](#on-vercel)
     - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
@@ -177,11 +180,11 @@ Use `&theme=THEME_NAME` parameter like so :
 
 #### All inbuilt themes
 
-GitHub readme stats comes with several built-in themes (e.g. `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `onedark`, `cobalt`, `synthwave`, `highcontrast`, `dracula`).
+GitHub Readme Stats comes with several built-in themes (e.g. `dark`, `radical`, `merko`, `gruvbox`, `tokyonight`, `onedark`, `cobalt`, `synthwave`, `highcontrast`, `dracula`).
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stats Themes" width="600px"/>
 
-You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js) & **you can also contribute new themes** if you like :D
+You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js). You can also contribute new themes if you like, contributing guidelines can be found [here](./CONTRIBUTING.md#themes-contribution).
 
 #### Responsive Card Theme
 
@@ -284,9 +287,9 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 *   `border_color` - Card's border color *(hex color)*. Default: `e4e2e2` (Does not apply when `hide_border` is enabled).
 *   `bg_color` - Card's background color *(hex color)* **or** a gradient in the form of *angle,start,end*. Default: `fffefe`
 *   `hide_border` - Hides the card's border *(boolean)*. Default: `false`
-*   `theme` - name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme.
-*   `cache_seconds` - set the cache header manually *(min: 14400, max: 86400)*. Default: `14400 seconds (4 hours)`.
-*   `locale` - set the language in the card *(e.g. cn, de, es, etc.)*. Default: `en`.
+*   `theme` - Name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme.
+*   `cache_seconds` - Sets the cache header manually *(min: 14400, max: 86400)*. Default: `14400 seconds (4 hours)`.
+*   `locale` - Sets the language in the card *(e.g. cn, de, es, etc.)*. Default: `en`.
 *   `border_radius` - Corner rounding on the card. Default: `4.5`.
 
 > **Warning**
@@ -302,38 +305,38 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 
 *   `hide` - Hides the [specified items](#hiding-individual-stats) from stats *(Comma-separated values)*. Default: `[] (blank array)`.
 *   `hide_title` - *(boolean)*. Default: `false`.
-*   `card_width` - Set the card's width manually *(number)*. Default: `500px  (approx.)`.
+*   `card_width` - Sets the card's width manually *(number)*. Default: `500px  (approx.)`.
 *   `hide_rank` - *(boolean)* hides the rank and automatically resizes the card width. Default: `false`.
 *   `rank_icon` - Shows alternative rank icon (i.e. `github`, `percentile` or `default`). Default: `default`.
 *   `show_icons` - *(boolean)*. Default: `false`.
-*   `include_all_commits` - Count total commits instead of just the current year commits *(boolean)*. Default: `false`.
+*   `include_all_commits` - Counts total commits instead of just the current year commits *(boolean)*. Default: `false`.
 *   `line_height` - Sets the line height between text *(number)*. Default: `25`.
-*   `exclude_repo` - Exclude stars from specified repositories *(Comma-separated values)*. Default: `[] (blank array)`.
+*   `exclude_repo` - Excludes stars from specified repositories *(Comma-separated values)*. Default: `[] (blank array)`.
 *   `custom_title` - Sets a custom title for the card. Default:  `<username> GitHub Stats`.
-*   `text_bold` - Use bold text *(boolean)*. Default: `true`.
+*   `text_bold` - Uses bold text *(boolean)*. Default: `true`.
 *   `disable_animations` - Disables all animations in the card *(boolean)*. Default: `false`.
 *   `ring_color` - Color of the rank circle *(hex color)*. Defaults to the theme ring color if it exists and otherwise the title color.
-*   `number_format` - Switch between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). Default: `short`.
-*   `show` - Show [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started` or `discussions_answered`) *(Comma-separated values)*. Default: `[] (blank array)`.
+*   `number_format` - Switches between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). Default: `short`.
+*   `show` - Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started` or `discussions_answered`) *(Comma-separated values)*. Default: `[] (blank array)`.
 
 > **Note**
 > When hide\_rank=`true`, the minimum card width is 270 px + the title length and padding.
 
 #### Repo Card Exclusive Options
 
-*   `show_owner` - Show the repo's owner name *(boolean)*. Default: `false`.
+*   `show_owner` - Shows the repo's owner name *(boolean)*. Default: `false`.
 
 #### Language Card Exclusive Options
 
-*   `hide` - Hide the languages specified from the card *(Comma-separated values)*. Default: `[] (blank array)`.
+*   `hide` - Hides the languages specified from the card *(Comma-separated values)*. Default: `[] (blank array)`.
 *   `hide_title` - *(boolean)*. Default: `false`.
-*   `layout` - Switch between five available layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Default: `normal`.
-*   `card_width` - Set the card's width manually *(number)*. Default `300`.
-*   `langs_count` - Show more languages on the card, between 1-20 *(number)*. Default: `5` for `normal` and `donut`, `6` for other layouts.
-*   `exclude_repo` - Exclude specified repositories *(Comma-separated values)*. Default: `[] (blank array)`.
+*   `layout` - Switches between five available layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Default: `normal`.
+*   `card_width` - Sets the card's width manually *(number)*. Default `300`.
+*   `langs_count` - Shows more languages on the card, between 1-20 *(number)*. Default: `5` for `normal` and `donut`, `6` for other layouts.
+*   `exclude_repo` - Excludes specified repositories *(Comma-separated values)*. Default: `[] (blank array)`.
 *   `custom_title` - Sets a custom title for the card *(string)*. Default `Most Used Languages`.
 *   `disable_animations` - Disables all animations in the card *(boolean)*. Default: `false`.
-*   `hide_progress` - It uses the compact layout option, hides percentages, and removes the bars. Default: `false`.
+*   `hide_progress` - Uses the compact layout option, hides percentages, and removes the bars. Default: `false`.
 *   `size_weight` - Configures language stats algorithm *(number)* (see [Language stats algorithm](#Language-stats-algorithm)), defaults to 1.
 *   `count_weight` - Configures language stats algorithm *(number)* (see [Language stats algorithm](#Language-stats-algorithm)), defaults to 0.
 
@@ -344,20 +347,20 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 
 #### Wakatime Card Exclusive Options
 
-*   `hide` - Hide the languages specified from the card *(Comma-separated values)*. Default: `[] (blank array)`.
+*   `hide` - Hides the languages specified from the card *(Comma-separated values)*. Default: `[] (blank array)`.
 *   `hide_title` - *(boolean)*. Default `false`.
 *   `line_height` - Sets the line height between text *(number)*. Default `25`.
 *   `hide_progress` - Hides the progress bar and percentage *(boolean)*. Default `false`.
 *   `custom_title` - Sets a custom title for the card *(string)*. Default `Wakatime Stats`.
-*   `layout` - Switch between two available layouts `default` & `compact`.  Default `default`.
-*   `langs_count` - Limit the number of languages on the card, defaults to all reported languages *(number)*.
-*   `api_domain` - Set a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) *(string)*. Default `Waka API`.
+*   `layout` - Switches between two available layouts `default` & `compact`.  Default `default`.
+*   `langs_count` - Limits the number of languages on the card, defaults to all reported languages *(number)*.
+*   `api_domain` - Sets a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) *(string)*. Default `Waka API`.
 
 ***
 
 # GitHub Extra Pins
 
-GitHub extra pins allow you to pin more than six repositories in your profile using a GitHub readme profile.
+GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
 
 Yay! You are no longer limited to 6 pinned repositories.
 
@@ -381,7 +384,7 @@ Use [show\_owner](#repo-card-exclusive-options) query option to include the repo
 
 # Top Languages Card
 
-The top languages card shows a GitHub user's most frequently used top language.
+The top languages card shows a GitHub user's most frequently used languages.
 
 > **Warning**
 > By default, the language card shows language results only from public repositories. To include languages used in private repositories, you should [deploy your own instance](#deploy-on-your-own) using your own GitHub API token.
@@ -553,10 +556,6 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&rank_icon=github)
 
-*   Shows rank progress instead of rank level
-
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&rank_icon=progress)
-
 *   Shows user rank percentile instead of rank level
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&rank_icon=percentile)
@@ -601,9 +600,18 @@ Choose from any of the [default themes](#themes)
 
 ***
 
-## Quick Tip (Align The Repo Cards)
+## Quick Tip (Align The Cards)
 
 By default, GitHub does not lay out the cards side by side. To do that, you can use this approach:
+
+```html
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=anuraghazra" />
+</a>
+<a href="https://github.com/anuraghazra/convoychat">
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8&card_width=320" />
+</a>
+```
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -613,6 +621,27 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
   <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
+
+<details>
+<summary>:eyes: Show example</summary>
+
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=anuraghazra" />
+</a>
+<a href="https://github.com/anuraghazra/convoychat">
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8&card_width=320" />
+</a>
+
+***
+
+<a href="https://github.com/anuraghazra/github-readme-stats">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+</a>
+<a href="https://github.com/anuraghazra/convoychat">
+  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+</a>
+
+</details>
 
 # Deploy on your own
 

@@ -7,6 +7,8 @@ on:
     branches:
       - master
 
+permissions: read-all
+
 jobs:
   build:
     name: Perform tests
@@ -28,6 +30,10 @@ jobs:
         run: |
           npm ci
           npm run test
+
+      - name: Run ESLint
+        run: |
+          npm run lint
 
       - name: Run Prettier
         run: |

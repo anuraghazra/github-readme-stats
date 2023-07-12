@@ -6,6 +6,20 @@ on:
     paths:
       - "themes/index.js"
 
+permissions:
+  actions: read
+  checks: read
+  contents: write
+  deployments: read
+  issues: read
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: read
+  repository-projects: read
+  security-events: read
+  statuses: read
+
 jobs:
   generateThemeDoc:
     runs-on: ubuntu-latest

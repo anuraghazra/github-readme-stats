@@ -3,10 +3,11 @@ import "@testing-library/jest-dom";
 import { renderWakatimeCard } from "../src/cards/wakatime-card.js";
 import { getCardColors } from "../src/common/utils.js";
 import { wakaTimeData } from "./fetchWakatime.test.js";
+import { expect, it, describe } from "@jest/globals";
 
 describe("Test Render Wakatime Card", () => {
   it("should render correctly", () => {
-    const card = renderWakatimeCard(wakaTimeData.data);
+    // const card = renderWakatimeCard(wakaTimeData.data);
     expect(getCardColors).toMatchSnapshot();
   });
 

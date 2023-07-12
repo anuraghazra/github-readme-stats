@@ -1,11 +1,14 @@
+// @ts-check
+
 import { encodeHTML } from "./common/utils.js";
 
 /**
  * Retrieves stat card labels in the available locales.
  *
- * @param {string} name The name of the locale.
- * @param {string} apostrophe Whether to use apostrophe or not.
- * @returns {Object} The locales object.
+ * @param {object} props Function arguments.
+ * @param {string} props.name The name of the locale.
+ * @param {string} props.apostrophe Whether to use apostrophe or not.
+ * @returns {object} The locales object.
  *
  * @see https://www.andiamo.co.uk/resources/iso-language-codes/ for language codes.
  */
@@ -25,6 +28,37 @@ const statCardLocales = ({ name, apostrophe }) => {
       hu: `${encodedName} GitHub statisztika`,
       it: `Statistiche GitHub di ${encodedName}`,
       ja: `${encodedName}の GitHub 統計`,
+      kr: `${encodedName}의 GitHub 통계`,
+      nl: `${encodedName}'${apostrophe} GitHub-statistieken`,
+      "pt-pt": `Estatísticas do GitHub de ${encodedName}`,
+      "pt-br": `Estatísticas do GitHub de ${encodedName}`,
+      np: `${encodedName}'${apostrophe} गिटहब तथ्याङ्क`,
+      el: `Στατιστικά GitHub του ${encodedName}`,
+      ru: `Статистика GitHub пользователя ${encodedName}`,
+      "uk-ua": `Статистика GitHub користувача ${encodedName}`,
+      id: `Statistik GitHub ${encodedName}`,
+      ml: `${encodedName}'${apostrophe} ഗിറ്റ്ഹബ് സ്ഥിതിവിവരക്കണക്കുകൾ`,
+      my: `Statistik GitHub ${encodedName}`,
+      sk: `GitHub štatistiky používateľa ${encodedName}`,
+      tr: `${encodedName} Hesabının GitHub Yıldızları`,
+      pl: `Statystyki GitHub użytkownika ${encodedName}`,
+      uz: `${encodedName}ning GitHub'dagi statistikasi`,
+      vi: `Thống Kê GitHub ${encodedName}`,
+      se: `GitHubstatistik för ${encodedName}`,
+    },
+    "statcard.ranktitle": {
+      ar: `${encodedName} إحصائيات غيت هاب`,
+      cn: `${encodedName} 的 GitHub 统计数据`,
+      "zh-tw": `${encodedName} 的 GitHub 統計數據`,
+      cs: `GitHub statistiky uživatele ${encodedName}`,
+      de: `${encodedName + apostrophe} GitHub-Statistiken`,
+      en: `${encodedName}'${apostrophe} GitHub Rank`,
+      bn: `${encodedName} এর GitHub পরিসংখ্যান`,
+      es: `Estadísticas de GitHub de ${encodedName}`,
+      fr: `Statistiques GitHub de ${encodedName}`,
+      hu: `${encodedName} GitHub statisztika`,
+      it: `Statistiche GitHub di ${encodedName}`,
+      ja: `${encodedName} の GitHub ランク`,
       kr: `${encodedName}의 GitHub 통계`,
       nl: `${encodedName}'${apostrophe} GitHub-statistieken`,
       "pt-pt": `Estatísticas do GitHub de ${encodedName}`,
