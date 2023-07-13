@@ -15,6 +15,12 @@ const data_repo = {
       name: "TypeScript",
     },
     forkCount: 100,
+    openIssues: {
+      totalCount: 45,
+    },
+    openPullRequests: {
+      totalCount: 10,
+    },
   },
 };
 
@@ -47,6 +53,8 @@ describe("Test fetchRepo", () => {
     expect(repo).toStrictEqual({
       ...data_repo.repository,
       starCount: data_repo.repository.stargazers.totalCount,
+      issuesCount: data_repo.repository.openIssues.totalCount,
+      pullRequestsCount: data_repo.repository.openPullRequests.totalCount,
     });
   });
 
@@ -57,6 +65,8 @@ describe("Test fetchRepo", () => {
     expect(repo).toStrictEqual({
       ...data_repo.repository,
       starCount: data_repo.repository.stargazers.totalCount,
+      issuesCount: data_repo.repository.openIssues.totalCount,
+      pullRequestsCount: data_repo.repository.openPullRequests.totalCount,
     });
   });
 

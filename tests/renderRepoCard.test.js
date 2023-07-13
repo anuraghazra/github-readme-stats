@@ -18,6 +18,8 @@ const data_repo = {
     },
     starCount: 38000,
     forkCount: 100,
+    issuesCount: 4500,
+    pullRequestsCount: 10,
   },
 };
 
@@ -49,6 +51,24 @@ describe("Test renderRepoCard", () => {
     });
     expect(document.getElementsByClassName("header")[0]).toHaveTextContent(
       "anuraghazra/convoychat",
+    );
+  });
+
+  it("should display issues count", () => {
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      show_issues: true,
+    });
+    expect(queryByTestId(document.body, "issuescount")).toHaveTextContent(
+      "4.5k",
+    );
+  });
+
+  it("should display pull requests count", () => {
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      show_pull_requests: true,
+    });
+    expect(queryByTestId(document.body, "pullrequestscount")).toHaveTextContent(
+      "10",
     );
   });
 
