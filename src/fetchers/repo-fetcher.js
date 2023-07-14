@@ -28,7 +28,13 @@ const fetcher = (variables, token) => {
           id
           name
         }
-        forkCount
+        forkCount,
+        openIssues: issues(states: OPEN) {
+          totalCount
+        },
+        openPullRequests: pullRequests(states:OPEN) {
+          totalCount
+        }
       }
       query getRepo($login: String!, $repo: String!) {
         user(login: $login) {
@@ -85,6 +91,8 @@ const fetchRepo = async (username, reponame) => {
     return {
       ...data.user.repository,
       starCount: data.user.repository.stargazers.totalCount,
+      issuesCount: data.user.repository.openIssues.totalCount,
+      pullRequestsCount: data.user.repository.openPullRequests.totalCount,
     };
   }
 
@@ -95,6 +103,8 @@ const fetchRepo = async (username, reponame) => {
     return {
       ...data.organization.repository,
       starCount: data.organization.repository.stargazers.totalCount,
+      issuesCount: data.organization.repository.openIssues.totalCount,
+      pullRequestsCount: data.organization.repository.openPullRequests.totalCount,
     };
   }
 };

@@ -21,6 +21,12 @@ const data_repo = {
       name: "TypeScript",
     },
     forkCount: 100,
+    openIssues: {
+      totalCount: 45,
+    },
+    openPullRequests: {
+      totalCOunt: 10,
+    },
     isTemplate: false,
   },
 };
@@ -59,6 +65,8 @@ describe("Test /api/pin", () => {
       renderRepoCard({
         ...data_repo.repository,
         starCount: data_repo.repository.stargazers.totalCount,
+        issuesCount: data_repo.repository.openIssues.totalCount,
+        pullRequestsCount: data_repo.repository.openPullRequests.totalCount,
       }),
     );
   });
@@ -89,6 +97,8 @@ describe("Test /api/pin", () => {
         {
           ...data_repo.repository,
           starCount: data_repo.repository.stargazers.totalCount,
+          issuesCount: data_repo.repository.openIssues.totalCount,
+          pullRequestsCount: data_repo.repository.openPullRequests.totalCount,
         },
         { ...req.query },
       ),
