@@ -28,7 +28,7 @@ const languageColors = require("../common/languageColors.json"); // now works
  * @param {object} props The function properties.
  * @param {string} props.color No coding activity text color.
  * @param {string} props.text No coding activity translated text.
- * @return {string} No coding activity SVG node string.
+ * @returns {string} No coding activity SVG node string.
  */
 const noCodingActivityNode = ({ color, text }) => {
   return `
@@ -138,7 +138,7 @@ const createTextNode = ({
  * hiding languages.
  *
  * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
- * @return {void} The recalculated languages array.
+ * @returns {void} The recalculated languages array.
  */
 const recalculatePercentages = (languages) => {
   const totalSum = languages.reduce(

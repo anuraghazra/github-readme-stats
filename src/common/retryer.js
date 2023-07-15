@@ -9,11 +9,10 @@ const RETRIES = PATs ? PATs : 7;
 /**
  * Try to execute the fetcher function until it succeeds or the max number of retries is reached.
  *
- * @param {object[]} retryerParams Object that contains the createTextNode parameters.
- * @param {object[]} retryerParams.fetcher The fetcher function.
- * @param {object[]} retryerParams.variables Object with arguments to pass to the fetcher function.
- * @param {number} retryerParams.retries How many times to retry.
- * @returns Promise<retryer>
+ * @param {object[]} fetcher The fetcher function.
+ * @param {object[]} variables Object with arguments to pass to the fetcher function.
+ * @param {number} retries How many times to retry.
+ * @returns {Promise<T>} The response from the fetcher function.
  */
 const retryer = async (fetcher, variables, retries = 0) => {
   if (retries > RETRIES) {
