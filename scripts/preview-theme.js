@@ -110,8 +110,9 @@ const isPreviewComment = (inputs, comment) => {
  *
  * @param {Object} octokit Octokit instance.
  * @param {number} issueNumber Issue number.
- * @param {string} repo Repository name.
  * @param {string} owner Owner of the repository.
+ * @param {string} repo Repository name.
+ * @param {string} commenter Comment author.
  * @returns {Object} The GitHub comment object.
  */
 const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
@@ -151,7 +152,7 @@ const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
  * @param {Object} owner Owner of the repository.
  * @param {number} commentId Comment ID.
  * @param {string} body Comment body.
- * @return {string} The comment URL.
+ * @returns {string} The comment URL.
  */
 const upsertComment = async (
   octokit,
@@ -189,6 +190,7 @@ const upsertComment = async (
  * @param {string} repo Repository name.
  * @param {string} reviewState The review state. Options are (APPROVE, REQUEST_CHANGES, COMMENT, PENDING).
  * @param {string} reason The reason for the review.
+ * @returns {Promise<void>} Promise.
  */
 const addReview = async (
   octokit,
@@ -215,6 +217,7 @@ const addReview = async (
  * @param {string} owner Repository owner.
  * @param {string} repo Repository name.
  * @param {string[]} labels Labels to add.
+ * @returns {Promise<void>} Promise.
  */
 const addLabel = async (octokit, prNumber, owner, repo, labels) => {
   await octokit.issues.addLabels({
@@ -233,6 +236,7 @@ const addLabel = async (octokit, prNumber, owner, repo, labels) => {
  * @param {string} owner Repository owner.
  * @param {string} repo Repository name.
  * @param {string} label Label to add or remove.
+ * @returns {Promise<void>} Promise.
  */
 const removeLabel = async (octokit, prNumber, owner, repo, label) => {
   await octokit.issues.removeLabel({
@@ -252,6 +256,7 @@ const removeLabel = async (octokit, prNumber, owner, repo, label) => {
  * @param {string} repo Repository name.
  * @param {string} label Label to add or remove.
  * @param {boolean} add Whether to add or remove the label.
+ * @returns {Promise<void>} Promise.
  */
 const addRemoveLabel = async (octokit, prNumber, owner, repo, label, add) => {
   const res = await octokit.pulls.get({
@@ -359,6 +364,8 @@ const DRY_RUN = process.env.DRY_RUN === "true" || false;
 
 /**
  * Main function.
+ *
+ * @returns {Promise<void>} Promise.
  */
 export const run = async () => {
   try {
