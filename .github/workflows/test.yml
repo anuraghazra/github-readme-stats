@@ -31,6 +31,10 @@ jobs:
           npm ci
           npm run test
 
+      - name: Run ESLint
+        run: |
+          npm run lint
+
       - name: Run Prettier
         run: |
           npm run format:check

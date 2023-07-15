@@ -25,6 +25,7 @@ function calculateRank({
   commits,
   prs,
   issues,
+  // eslint-disable-next-line no-unused-vars
   repos, // unused
   stars,
   followers,
