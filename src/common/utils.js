@@ -173,8 +173,8 @@ const request = (data, headers) => {
  * @param {object} props Function properties.
  * @param {string[]} props.items Array of items to layout.
  * @param {number} props.gap Gap between items.
- * @param {number[]?=} props.sizes Array of sizes for each item.
- * @param {"column" | "row"?=} props.direction Direction to layout items.
+ * @param {number[]=} props.sizes Array of sizes for each item.
+ * @param {"column" | "row"=} props.direction Direction to layout items.
  * @returns {string[]} Array of items with proper layout.
  */
 const flexLayout = ({ items, gap, direction, sizes = [] }) => {
