@@ -298,7 +298,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               id: language.name,
               label: language.name,
               value: language.text,
-              index: index,
+              index,
               percent: language.percent,
               // @ts-ignore
               progressBarColor: titleColor,
