@@ -41,11 +41,10 @@ const noCodingActivityNode = ({ color, text }) => {
  *
  * @param {Object} args The function arguments.
  * @param {import("../fetchers/types").WakaTimeLang} args.lang The languages array.
- * @param {number} args.totalSize The total size of the languages.
  * @param {number} args.x The x position of the language node.
  * @param {number} args.y The y position of the language node.
  */
-const createCompactLangNode = ({ lang, totalSize, x, y }) => {
+const createCompactLangNode = ({ lang, x, y }) => {
   const color = languageColors[lang.name] || "#858585";
 
   return `
@@ -63,25 +62,21 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
  *
  * @param {Object} args The function arguments.
  * @param {import("../fetchers/types").WakaTimeLang[]} args.langs The language objects.
- * @param {number} args.totalSize The total size of the languages.
- * @param {number} args.x The x position of the language node.
  * @param {number} args.y The y position of the language node.
  */
-const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
+const createLanguageTextNode = ({ langs, y }) => {
   return langs.map((lang, index) => {
     if (index % 2 === 0) {
       return createCompactLangNode({
         lang,
         x: 25,
         y: 12.5 * index + y,
-        totalSize,
       });
     }
     return createCompactLangNode({
       lang,
       x: 230,
       y: 12.5 + 12.5 * index,
-      totalSize,
     });
   });
 };
@@ -274,10 +269,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       ${
         filteredLanguages.length
           ? createLanguageTextNode({
-              x: 0,
               y: 25,
               langs: filteredLanguages,
-              totalSize: 100,
             }).join("")
           : noCodingActivityNode({
               // @ts-ignore
@@ -298,7 +291,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               id: language.name,
               label: language.name,
               value: language.text,
-              index: index,
+              index,
               percent: language.percent,
               // @ts-ignore
               progressBarColor: titleColor,
