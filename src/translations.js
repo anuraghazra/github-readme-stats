@@ -238,7 +238,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "zh-tw": "审查的 PR 总数",
       cs: "Celkový počet PR",
       de: "Insgesamt überprüfte PRs",
-      en: "Total PRs reviewed",
+      en: "Total PRs Reviewed",
       bn: "সর্বমোট পুনরালোচনা করা PR",
       es: "PR totales revisados",
       fr: "Nombre total de PR examinés",
