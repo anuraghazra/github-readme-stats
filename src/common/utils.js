@@ -132,7 +132,7 @@ const isValidGradient = (colors) => {
  * Retrieves a gradient if color has more than one valid hex codes else a single color.
  *
  * @param {string} color The color to parse.
- * @param {string} fallbackColor The fallback color.
+ * @param {string | string[]} fallbackColor The fallback color.
  * @returns {string | string[]} The gradient or color.
  */
 const fallbackColor = (color, fallbackColor) => {
