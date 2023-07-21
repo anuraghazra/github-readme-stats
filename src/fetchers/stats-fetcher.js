@@ -259,6 +259,7 @@ const fetchStats = async (
     all_commits: include_all_commits,
     commits: stats.totalCommits,
     prs: stats.totalPRs,
+    reviews: stats.totalReviews,
     issues: stats.totalIssues,
     repos: user.repositories.totalCount,
     stars: stats.totalStars,
