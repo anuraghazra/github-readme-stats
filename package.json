@@ -60,7 +60,7 @@
     "emoji-name-map": "^1.2.8",
     "github-username-regex": "^1.0.0",
     "upgrade": "^1.1.0",
-    "word-wrap": "^1.2.4"
+    "word-wrap": "^1.2.5"
   },
   "lint-staged": {
     "*.{js,css,md}": "prettier --write"
