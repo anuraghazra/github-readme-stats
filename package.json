@@ -35,7 +35,7 @@
   "author": "Anurag Hazra",
   "license": "MIT",
   "devDependencies": {
-    "@actions/core": "^1.9.1",
+    "@actions/core": "^1.10.0",
     "@actions/github": "^5.1.1",
     "@testing-library/dom": "^8.17.1",
     "@testing-library/jest-dom": "^5.16.5",
