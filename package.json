@@ -38,7 +38,7 @@
     "@actions/core": "^1.10.0",
     "@actions/github": "^5.1.1",
     "@testing-library/dom": "^8.17.1",
-    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/jest-dom": "^5.17.0",
     "@uppercod/css-to-object": "^1.1.1",
     "axios-mock-adapter": "^1.21.2",
     "color-contrast-checker": "^2.1.0",
