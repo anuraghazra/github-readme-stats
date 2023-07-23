@@ -412,9 +412,11 @@ const chunkArray = (arr, perChunk) => {
     const chunkIndex = Math.floor(index / perChunk);
 
     if (!resultArray[chunkIndex]) {
+      // @ts-ignore
       resultArray[chunkIndex] = []; // start a new chunk
     }
 
+    // @ts-ignore
     resultArray[chunkIndex].push(item);
 
     return resultArray;
