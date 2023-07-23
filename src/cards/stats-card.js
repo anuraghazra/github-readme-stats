@@ -351,8 +351,8 @@ const renderStatsCard = (stats, options = {}) => {
     ? ""
     : `<g data-testid="rank-circle"
           transform="translate(${calculateRankXTranslation()}, ${
-        height / 2 - 50
-      })">
+            height / 2 - 50
+          })">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
