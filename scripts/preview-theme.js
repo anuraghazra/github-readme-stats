@@ -551,8 +551,8 @@ export const run = async () => {
         \r${warnings.map((warning) => `- :warning: ${warning}.\n`).join("")}
 
         \ntitle_color: <code>#${titleColor}</code> | icon_color: <code>#${iconColor}</code> | text_color: <code>#${textColor}</code> | bg_color: <code>#${bgColor}</code>${
-        borderColor ? ` | border_color: <code>#${borderColor}</code>` : ""
-      }
+          borderColor ? ` | border_color: <code>#${borderColor}</code>` : ""
+        }
 
         \r[Preview Link](${url})
 
