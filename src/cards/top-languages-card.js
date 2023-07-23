@@ -738,11 +738,13 @@ const renderTopLanguages = (topLangs, options = {}) => {
     hide,
   );
 
-  let width = isNaN(card_width)
-    ? DEFAULT_CARD_WIDTH
-    : card_width < MIN_CARD_WIDTH
-    ? MIN_CARD_WIDTH
-    : card_width;
+  let width = card_width
+    ? isNaN(card_width)
+      ? DEFAULT_CARD_WIDTH
+      : card_width < MIN_CARD_WIDTH
+      ? MIN_CARD_WIDTH
+      : card_width
+    : DEFAULT_CARD_WIDTH;
   let height = calculateNormalLayoutHeight(langs.length);
 
   // returns theme based colors with proper overrides and defaults
