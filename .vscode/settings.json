@@ -1,5 +1,8 @@
 {
     "markdown.extension.toc.levels": "1..3",
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode" 
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
