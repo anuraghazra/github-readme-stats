@@ -132,7 +132,7 @@ const isValidGradient = (colors) => {
  * Retrieves a gradient if color has more than one valid hex codes else a single color.
  *
  * @param {string} color The color to parse.
- * @param {string} fallbackColor The fallback color.
+ * @param {string | string[]} fallbackColor The fallback color.
  * @returns {string | string[]} The gradient or color.
  */
 const fallbackColor = (color, fallbackColor) => {
@@ -173,8 +173,8 @@ const request = (data, headers) => {
  * @param {object} props Function properties.
  * @param {string[]} props.items Array of items to layout.
  * @param {number} props.gap Gap between items.
- * @param {number[]?=} props.sizes Array of sizes for each item.
- * @param {"column" | "row"?=} props.direction Direction to layout items.
+ * @param {"column" | "row"=} props.direction Direction to layout items.
+ * @param {number[]=} props.sizes Array of sizes for each item.
  * @returns {string[]} Array of items with proper layout.
  */
 const flexLayout = ({ items, gap, direction, sizes = [] }) => {
@@ -195,14 +195,22 @@ const flexLayout = ({ items, gap, direction, sizes = [] }) => {
  * Returns theme based colors with proper overrides and defaults.
  *
  * @param {Object} args Function arguments.
- * @param {string} args.title_color Card title color.
- * @param {string} args.text_color Card text color.
- * @param {string} args.icon_color Card icon color.
- * @param {string} args.bg_color Card background color.
- * @param {string} args.border_color Card border color.
- * @param {string} args.ring_color Card ring color.
- * @param {string} args.theme Card theme.
- * @param {string} args.fallbackTheme Fallback theme.
+ * @param {string=} args.title_color Card title color.
+ * @param {string=} args.text_color Card text color.
+ * @param {string=} args.icon_color Card icon color.
+ * @param {string=} args.bg_color Card background color.
+ * @param {string=} args.border_color Card border color.
+ * @param {string=} args.ring_color Card ring color.
+ * @param {string=} args.theme Card theme.
+ * @param {string=} args.fallbackTheme Fallback theme.
+ * @returns {{
+ *  titleColor: string | string[];
+ *  iconColor: string | string[];
+ *  textColor: string | string[];
+ *  bgColor: string | string[];
+ *  borderColor: string | string[];
+ *  ringColor: string | string[];
+ * }} Card colors.
  */
 const getCardColors = ({
   title_color,
@@ -404,9 +412,11 @@ const chunkArray = (arr, perChunk) => {
     const chunkIndex = Math.floor(index / perChunk);
 
     if (!resultArray[chunkIndex]) {
+      // @ts-ignore
       resultArray[chunkIndex] = []; // start a new chunk
     }
 
+    // @ts-ignore
     resultArray[chunkIndex].push(item);
 
     return resultArray;

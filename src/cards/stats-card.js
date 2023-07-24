@@ -77,11 +77,11 @@ const createTextNode = ({
 /**
  * Renders the stats card.
  *
- * @param {Partial<import('../fetchers/types').StatsData>} stats The stats data.
+ * @param {import('../fetchers/types').StatsData} stats The stats data.
  * @param {Partial<import("./types").StatCardOptions>} options The card options.
  * @returns {string} The stats card SVG object.
  */
-const renderStatsCard = (stats = {}, options = {}) => {
+const renderStatsCard = (stats, options = {}) => {
   const {
     name,
     totalStars,
@@ -351,8 +351,8 @@ const renderStatsCard = (stats = {}, options = {}) => {
     ? ""
     : `<g data-testid="rank-circle"
           transform="translate(${calculateRankXTranslation()}, ${
-        height / 2 - 50
-      })">
+            height / 2 - 50
+          })">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">

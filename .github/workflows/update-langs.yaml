@@ -27,10 +27,10 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@e33196f7422957bea03ed53f6fbb155025ffc7b8 # v3.7.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
@@ -44,7 +44,7 @@ jobs:
         run: npm run generate-langs-json
 
       - name: Create Pull Request if upstream language file is changed
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38 # v5.0.2
         with:
           commit-message: "refactor: update languages JSON"
           branch: "update_langs/patch"
