@@ -29,7 +29,7 @@ jobs:
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3 # NOTE: Retrieve issue templates.
 
       - name: Run empty issues closer action
-        uses: rickstaa/empty-issues-closer-action@eff8a153222a8a68c1f956af60ec6bf72fe53f98 # v1.0.99
+        uses: rickstaa/empty-issues-closer-action@773bc3171b488f30f89cb17bb86d8fd85bcecf0c # v1.1.0
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         with:
