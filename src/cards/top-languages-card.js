@@ -46,7 +46,7 @@ const getLongestLang = (arr) =>
  * Convert degrees to radians.
  *
  * @param {number} angleInDegrees Angle in degrees.
- * @returns Angle in radians.
+ * @returns {number} Angle in radians.
  */
 const degreesToRadians = (angleInDegrees) => angleInDegrees * (Math.PI / 180.0);
 
@@ -54,7 +54,7 @@ const degreesToRadians = (angleInDegrees) => angleInDegrees * (Math.PI / 180.0);
  * Convert radians to degrees.
  *
  * @param {number} angleInRadians Angle in radians.
- * @returns Angle in degrees.
+ * @returns {number} Angle in degrees.
  */
 const radiansToDegrees = (angleInRadians) => angleInRadians / (Math.PI / 180.0);
 
