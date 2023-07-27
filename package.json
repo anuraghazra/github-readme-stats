@@ -30,6 +30,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky install",
+    "deploy-to-aircode": "node scripts/deploy-to-aircode",
     "lint": "npx eslint --max-warnings 0 \"./src/**/*.js\" \"./scripts/**/*.js\" \"./tests/**/*.js\" \"./api/**/*.js\" \"./themes/**/*.js\""
   },
   "author": "Anurag Hazra",
@@ -42,6 +43,7 @@
     "@uppercod/css-to-object": "^1.1.1",
     "axios-mock-adapter": "^1.21.5",
     "color-contrast-checker": "^2.1.0",
+    "esbuild": "^0.18.17",
     "eslint": "^8.45.0",
     "eslint-config-prettier": "^8.8.0",
     "hjson": "^3.2.2",
