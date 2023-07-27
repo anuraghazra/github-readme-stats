@@ -62,7 +62,7 @@ const createCompactLangNode = ({ lang, x, y }) => {
  * Create WakaTime language text node item.
  *
  * @param {Object} args The function arguments.
- * @param {import("../fetchers/types").WakaTimeLang[]} args.langs The languages array.
+ * @param {import("../fetchers/types").WakaTimeLang[]} args.langs The language objects.
  * @param {number} args.y The y position of the language node.
  * @returns {string[]} The language text node items.
  */
