@@ -34,12 +34,15 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `blueberry` ![blueberry][blueberry] | `slateorange` ![slateorange][slateorange] | `kacho_ga` ![kacho_ga][kacho_ga] |
 | `outrun` ![outrun][outrun] | `ocean_dark` ![ocean_dark][ocean_dark] | `city_lights` ![city_lights][city_lights] |
 | `github_dark` ![github_dark][github_dark] | `github_dark_dimmed` ![github_dark_dimmed][github_dark_dimmed] | `discord_old_blurple` ![discord_old_blurple][discord_old_blurple] |
+| `panda` ![panda][panda] | `noctis_minimus` ![noctis_minimus][noctis_minimus] | `cobalt2` ![cobalt2][cobalt2] |
+| `swift` ![swift][swift] | `aura` ![aura][aura] | `apprentice` ![apprentice][apprentice] |
+| `moltack` ![moltack][moltack] | `codeSTACKr` ![codeSTACKr][codeSTACKr] | `rose_pine` ![rose_pine][rose_pine] |
 | `aura_dark` ![aura_dark][aura_dark] | `panda` ![panda][panda] | `noctis_minimus` ![noctis_minimus][noctis_minimus] |
 | `cobalt2` ![cobalt2][cobalt2] | `swift` ![swift][swift] | `aura` ![aura][aura] |
 | `apprentice` ![apprentice][apprentice] | `moltack` ![moltack][moltack] | `codeSTACKr` ![codeSTACKr][codeSTACKr] |
 | `rose_pine` ![rose_pine][rose_pine] | `date_night` ![date_night][date_night] | `one_dark_pro` ![one_dark_pro][one_dark_pro] |
 | `rose` ![rose][rose] | `holi` ![holi][holi] | `neon` ![neon][neon] |
-| [Add your theme][add-theme] | | |
+| `beetle` ![beetle][beetle] | [Add your theme][add-theme] | |
 
 ## Repo Card
 
@@ -65,12 +68,15 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `blueberry` ![blueberry][blueberry_repo] | `slateorange` ![slateorange][slateorange_repo] | `kacho_ga` ![kacho_ga][kacho_ga_repo] |
 | `outrun` ![outrun][outrun_repo] | `ocean_dark` ![ocean_dark][ocean_dark_repo] | `city_lights` ![city_lights][city_lights_repo] |
 | `github_dark` ![github_dark][github_dark_repo] | `github_dark_dimmed` ![github_dark_dimmed][github_dark_dimmed_repo] | `discord_old_blurple` ![discord_old_blurple][discord_old_blurple_repo] |
+| `panda` ![panda][panda_repo] | `noctis_minimus` ![noctis_minimus][noctis_minimus_repo] | `cobalt2` ![cobalt2][cobalt2_repo] |
+| `swift` ![swift][swift_repo] | `aura` ![aura][aura_repo] | `apprentice` ![apprentice][apprentice_repo] |
+| `moltack` ![moltack][moltack_repo] | `codeSTACKr` ![codeSTACKr][codeSTACKr_repo] | `rose_pine` ![rose_pine][rose_pine_repo] |
 | `aura_dark` ![aura_dark][aura_dark_repo] | `panda` ![panda][panda_repo] | `noctis_minimus` ![noctis_minimus][noctis_minimus_repo] |
 | `cobalt2` ![cobalt2][cobalt2_repo] | `swift` ![swift][swift_repo] | `aura` ![aura][aura_repo] |
 | `apprentice` ![apprentice][apprentice_repo] | `moltack` ![moltack][moltack_repo] | `codeSTACKr` ![codeSTACKr][codeSTACKr_repo] |
 | `rose_pine` ![rose_pine][rose_pine_repo] | `date_night` ![date_night][date_night_repo] | `one_dark_pro` ![one_dark_pro][one_dark_pro_repo] |
 | `rose` ![rose][rose_repo] | `holi` ![holi][holi_repo] | `neon` ![neon][neon_repo] |
-| [Add your theme][add-theme] | | |
+| `beetle` ![beetle][beetle] | [Add your theme][add-theme] | |
 
 
 [default]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
@@ -138,12 +144,13 @@ Use `?theme=THEME_NAME` parameter like so :-
 [moltack]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=moltack
 [codeSTACKr]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=codeSTACKr
 [rose_pine]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=rose_pine
+[aura_dark]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=aura_dark
+[beetle]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=beetle
 [date_night]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=date_night
 [one_dark_pro]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=one_dark_pro
 [rose]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=rose
 [holi]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=holi
 [neon]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=neon
-
 
 [default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
 [default_repocard_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default_repocard
@@ -210,11 +217,14 @@ Use `?theme=THEME_NAME` parameter like so :-
 [moltack_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=moltack
 [codeSTACKr_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=codeSTACKr
 [rose_pine_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=rose_pine
+[aura_dark_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=aura_dark
+[beetle_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=beetle
 [date_night_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=date_night
 [one_dark_pro_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=one_dark_pro
 [rose_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=rose
 [holi_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=holi
 [neon_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=neon
+
 
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
