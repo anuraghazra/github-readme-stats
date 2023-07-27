@@ -62,7 +62,7 @@ const ICON_SIZE = 16;
  * @returns {string} Icon with label SVG object.
  */
 const iconWithLabel = (icon, label, testid) => {
-  if (label <= 0) return "";
+  if (typeof label === "number" && label <= 0) return "";
   const iconSvg = `
     <svg
       class="icon"
