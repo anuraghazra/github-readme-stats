@@ -43,6 +43,7 @@ const noCodingActivityNode = ({ color, text }) => {
  * @param {import("../fetchers/types").WakaTimeLang} args.lang The languages array.
  * @param {number} args.x The x position of the language node.
  * @param {number} args.y The y position of the language node.
+ * @returns {string} The compact layout language SVG node.
  */
 const createCompactLangNode = ({ lang, x, y }) => {
   const color = languageColors[lang.name] || "#858585";
@@ -63,6 +64,7 @@ const createCompactLangNode = ({ lang, x, y }) => {
  * @param {Object} args The function arguments.
  * @param {import("../fetchers/types").WakaTimeLang[]} args.langs The language objects.
  * @param {number} args.y The y position of the language node.
+ * @returns {string[]} The language text node items.
  */
 const createLanguageTextNode = ({ langs, y }) => {
   return langs.map((lang, index) => {
