@@ -54,6 +54,9 @@ const GRAPHQL_STATS_QUERY = `
       pullRequests(first: 1) {
         totalCount
       }
+      mergedPullRequests: pullRequests(states: MERGED) {
+        totalCount
+      }
       openIssues: issues(states: OPEN) {
         totalCount
       }
@@ -192,6 +195,8 @@ const fetchStats = async (
   const stats = {
     name: "",
     totalPRs: 0,
+    totalPRsMerged: 0,
+    mergedPRsPercentage: 0,
     totalReviews: 0,
     totalCommits: 0,
     totalIssues: 0,
@@ -237,6 +242,9 @@ const fetchStats = async (
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
+  stats.totalPRsMerged = user.mergedPullRequests.totalCount;
+  stats.mergedPRsPercentage =
+    (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) * 100;
   stats.totalReviews =
     user.contributionsCollection.totalPullRequestReviewContributions;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;

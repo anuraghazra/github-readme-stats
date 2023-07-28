@@ -18,6 +18,8 @@ const stats = {
   totalCommits: 200,
   totalIssues: 300,
   totalPRs: 400,
+  totalPRsMerged: 320,
+  mergedPRsPercentage: 80,
   totalReviews: 50,
   totalDiscussionsStarted: 10,
   totalDiscussionsAnswered: 50,
@@ -52,6 +54,10 @@ describe("Test renderStatsCard", () => {
     expect(
       queryByTestId(document.body, "discussions_answered"),
     ).not.toBeInTheDocument();
+    expect(queryByTestId(document.body, "prs_merged")).not.toBeInTheDocument();
+    expect(
+      queryByTestId(document.body, "merged_prs_percentage"),
+    ).not.toBeInTheDocument();
   });
 
   it("should have proper name apostrophe", () => {
@@ -85,16 +91,24 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "reviews")).toBeNull();
     expect(queryByTestId(document.body, "discussions_started")).toBeNull();
     expect(queryByTestId(document.body, "discussions_answered")).toBeNull();
+    expect(queryByTestId(document.body, "prs_merged")).toBeNull();
+    expect(queryByTestId(document.body, "merged_prs_percentage")).toBeNull();
   });
 
   it("should show additional stats", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      show: ["reviews", "discussions_started", "discussions_answered"],
+      show: [
+        "reviews",
+        "discussions_started",
+        "discussions_answered",
+        "prs_merged",
+        "merged_prs_percentage",
+      ],
     });
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height"),
-    ).toBe("270");
+    ).toBe("320");
 
     expect(queryByTestId(document.body, "stars")).toBeDefined();
     expect(queryByTestId(document.body, "commits")).toBeDefined();
@@ -104,6 +118,8 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "reviews")).toBeDefined();
     expect(queryByTestId(document.body, "discussions_started")).toBeDefined();
     expect(queryByTestId(document.body, "discussions_answered")).toBeDefined();
+    expect(queryByTestId(document.body, "prs_merged")).toBeDefined();
+    expect(queryByTestId(document.body, "merged_prs_percentage")).toBeDefined();
   });
 
   it("should hide_rank", () => {
