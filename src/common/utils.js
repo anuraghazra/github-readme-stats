@@ -396,7 +396,12 @@ const measureText = (str, fontSize = 10) => {
   );
 };
 
-/** @param {string} name */
+/**
+ * Lowercase and trim string.
+ *
+ * @param {string} name String to lowercase and trim.
+ * @returns {string} Lowercased and trimmed string.
+ */
 const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 /**
