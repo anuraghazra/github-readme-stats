@@ -341,8 +341,10 @@ class CustomError extends Error {
  */
 class MissingParamError extends Error {
   /**
-   * @param {string[]} missedParams
-   * @param {string?=} secondaryMessage
+   * Missing query parameter error constructor.
+   *
+   * @param {string[]} missedParams An array of missing parameters names.
+   * @param {string=} secondaryMessage Optional secondary message to display.
    */
   constructor(missedParams, secondaryMessage) {
     const msg = `Missing params ${missedParams
