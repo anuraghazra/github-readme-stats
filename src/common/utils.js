@@ -192,6 +192,18 @@ const flexLayout = ({ items, gap, direction, sizes = [] }) => {
 };
 
 /**
+ * Object containing card colors.
+ * @typedef {{
+ *  titleColor: string | string[];
+ *  iconColor: string | string[];
+ *  textColor: string | string[];
+ *  bgColor: string | string[];
+ *  borderColor: string | string[];
+ *  ringColor: string | string[];
+ * }} CardColors
+ */
+
+/**
  * Returns theme based colors with proper overrides and defaults.
  *
  * @param {Object} args Function arguments.
@@ -203,14 +215,7 @@ const flexLayout = ({ items, gap, direction, sizes = [] }) => {
  * @param {string=} args.ring_color Card ring color.
  * @param {string=} args.theme Card theme.
  * @param {string=} args.fallbackTheme Fallback theme.
- * @returns {{
- *  titleColor: string | string[];
- *  iconColor: string | string[];
- *  textColor: string | string[];
- *  bgColor: string | string[];
- *  borderColor: string | string[];
- *  ringColor: string | string[];
- * }} Card colors.
+ * @returns {CardColors} Card colors.
  */
 const getCardColors = ({
   title_color,
