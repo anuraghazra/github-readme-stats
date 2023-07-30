@@ -49,7 +49,7 @@ jobs:
           CI: true
 
       - name: Run Script
-        uses: skx/github-action-tester@master
+        uses: skx/github-action-tester@e29768ff4ff67be9d1fdbccd8836ab83233bebb1 # v0.10.0
         with:
           script: ./scripts/push-theme-readme.sh
         env:
