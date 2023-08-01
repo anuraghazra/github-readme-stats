@@ -46,7 +46,7 @@ const getLongestLang = (arr) =>
  * Convert degrees to radians.
  *
  * @param {number} angleInDegrees Angle in degrees.
- * @returns Angle in radians.
+ * @returns {number} Angle in radians.
  */
 const degreesToRadians = (angleInDegrees) => angleInDegrees * (Math.PI / 180.0);
 
@@ -54,7 +54,7 @@ const degreesToRadians = (angleInDegrees) => angleInDegrees * (Math.PI / 180.0);
  * Convert radians to degrees.
  *
  * @param {number} angleInRadians Angle in radians.
- * @returns Angle in degrees.
+ * @returns {number} Angle in degrees.
  */
 const radiansToDegrees = (angleInRadians) => angleInRadians / (Math.PI / 180.0);
 
@@ -234,7 +234,7 @@ const createProgressTextNode = ({ width, color, name, progress, index }) => {
  * @param {object} props Function properties.
  * @param {Lang} props.lang Programming language object.
  * @param {number} props.totalSize Total size of all languages.
- * @param {boolean} props.hideProgress Whether to hide percentage.
+ * @param {boolean=} props.hideProgress Whether to hide percentage.
  * @param {number} props.index Index of the programming language.
  * @returns {string} Compact layout programming language SVG node.
  */
@@ -259,7 +259,7 @@ const createCompactLangNode = ({ lang, totalSize, hideProgress, index }) => {
  * @param {object} props Function properties.
  * @param {Lang[]} props.langs Array of programming languages.
  * @param {number} props.totalSize Total size of all languages.
- * @param {boolean} props.hideProgress Whether to hide percentage.
+ * @param {boolean=} props.hideProgress Whether to hide percentage.
  * @returns {string} Programming languages SVG node.
  */
 const createLanguageTextNode = ({ langs, totalSize, hideProgress }) => {
@@ -344,7 +344,7 @@ const renderNormalLayout = (langs, width, totalLanguageSize) => {
  * @param {Lang[]} langs Array of programming languages.
  * @param {number} width Card width.
  * @param {number} totalLanguageSize Total size of all languages.
- * @param {boolean} hideProgress Whether to hide progress bar.
+ * @param {boolean=} hideProgress Whether to hide progress bar.
  * @returns {string} Compact layout card SVG object.
  */
 const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {

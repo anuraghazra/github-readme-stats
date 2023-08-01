@@ -192,6 +192,18 @@ const flexLayout = ({ items, gap, direction, sizes = [] }) => {
 };
 
 /**
+ * Object containing card colors.
+ * @typedef {{
+ *  titleColor: string | string[];
+ *  iconColor: string | string[];
+ *  textColor: string | string[];
+ *  bgColor: string | string[];
+ *  borderColor: string | string[];
+ *  ringColor: string | string[];
+ * }} CardColors
+ */
+
+/**
  * Returns theme based colors with proper overrides and defaults.
  *
  * @param {Object} args Function arguments.
@@ -203,14 +215,7 @@ const flexLayout = ({ items, gap, direction, sizes = [] }) => {
  * @param {string=} args.ring_color Card ring color.
  * @param {string=} args.theme Card theme.
  * @param {string=} args.fallbackTheme Fallback theme.
- * @returns {{
- *  titleColor: string | string[];
- *  iconColor: string | string[];
- *  textColor: string | string[];
- *  bgColor: string | string[];
- *  borderColor: string | string[];
- *  ringColor: string | string[];
- * }} Card colors.
+ * @returns {CardColors} Card colors.
  */
 const getCardColors = ({
   title_color,
@@ -341,8 +346,10 @@ class CustomError extends Error {
  */
 class MissingParamError extends Error {
   /**
-   * @param {string[]} missedParams
-   * @param {string?=} secondaryMessage
+   * Missing query parameter error constructor.
+   *
+   * @param {string[]} missedParams An array of missing parameters names.
+   * @param {string=} secondaryMessage Optional secondary message to display.
    */
   constructor(missedParams, secondaryMessage) {
     const msg = `Missing params ${missedParams
@@ -396,7 +403,12 @@ const measureText = (str, fontSize = 10) => {
   );
 };
 
-/** @param {string} name */
+/**
+ * Lowercase and trim string.
+ *
+ * @param {string} name String to lowercase and trim.
+ * @returns {string} Lowercased and trimmed string.
+ */
 const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 /**
@@ -437,10 +449,11 @@ const parseEmojis = (str) => {
 };
 
 /**
- * Get diff in minutes
- * @param {Date} d1
- * @param {Date} d2
- * @returns {number}
+ * Get diff in minutes between two dates.
+ *
+ * @param {Date} d1 First date.
+ * @param {Date} d2 Second date.
+ * @returns {number} Number of minutes between the two dates.
  */
 const dateDiff = (d1, d2) => {
   const date1 = new Date(d1);
