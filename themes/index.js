@@ -430,6 +430,13 @@ export const themes = {
     border_color: "ffffff",
     bg_color: "000000",
   },
+  blueberry_duo: {
+    title_color: "FFA3BA",
+    text_color: "BEE9F4",
+    icon_color: "FFA3BA",
+    border_color: "ffffff",
+    bg_color: "ffffff",
+  },
 };
 
 export default themes;
