@@ -442,7 +442,7 @@ export const themes = {
     text_color: "edae49",
     icon_color: "ebcfb2",
     border_color: "e1bc29",
-    bg_color: "373f51",
+    bg_color: "2b2d40",
   },
 };
 
