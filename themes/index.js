@@ -431,11 +431,11 @@ export const themes = {
     bg_color: "000000",
   },
   ocean_breeze: {
-    "title_color": "2f80ed",
-    "icon_color": "2f80ed",
-    "text_color": "333",
+    "title_color": "0d6efd",
+    "icon_color": "0d6efd",
+    "text_color": "333333",
     "bg_color": "f0f6fc",
-    "border_color": "e1e4e8",
+    "border_color": "d1d5da",
   }
 };
 
