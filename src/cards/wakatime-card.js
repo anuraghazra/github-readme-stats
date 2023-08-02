@@ -95,6 +95,7 @@ const createLanguageTextNode = ({ langs, y }) => {
  * @param {boolean} args.hideProgress Whether to hide the progress bar.
  * @param {string} args.progressBarColor The color of the progress bar.
  * @param {string} args.progressBarBackgroundColor The color of the progress bar background.
+ * @returns {string} The text SVG node.
  */
 const createTextNode = ({
   id,
