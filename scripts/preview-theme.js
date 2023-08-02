@@ -389,7 +389,7 @@ export const run = async () => {
 
     // Retrieve the PR diff and preview-theme comment.
     debug("Retrieve PR diff...");
-    const res = await OCTOKIT.pulls.get({
+    const res = await OCTOKIT.rest.pulls.get({
       owner: OWNER,
       repo: REPO,
       pull_number: PULL_REQUEST_ID,
