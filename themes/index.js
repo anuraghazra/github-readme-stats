@@ -430,6 +430,13 @@ export const themes = {
     border_color: "ffffff",
     bg_color: "000000",
   },
+  ocean_breeze: {
+    "title_color": "2f80ed",
+    "icon_color": "2f80ed",
+    "text_color": "333",
+    "bg_color": "f0f6fc",
+    "border_color": "e1e4e8",
+  }
 };
 
 export default themes;
