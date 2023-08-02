@@ -430,19 +430,19 @@ export const themes = {
     border_color: "ffffff",
     bg_color: "000000",
   },
-  blueberry_duo: {
-    title_color: "FFA3BA",
-    text_color: "BEE9F4",
-    icon_color: "FFA3BA",
-    border_color: "ffffff",
-    bg_color: "ffffff",
-  },
   blue_navy: {
     title_color: "82AAFF",
     text_color: "82AAFF",
     icon_color: "82AAFF",
     border_color: "ffffff",
     bg_color: "000000",
+  },
+  calm_pink: {
+    title_color: "e07a5f",
+    text_color: "edae49",
+    icon_color: "ebcfb2",
+    border_color: "e1bc29",
+    bg_color: "373f51",
   },
 };
 
