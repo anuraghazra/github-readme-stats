@@ -159,10 +159,15 @@ const recalculatePercentages = (languages) => {
 };
 
 /**
+ * @typedef {import('../fetchers/types').WakaTimeData} WakaTimeData
+ * @typedef {import('./types').WakaTimeOptions} WakaTimeOptions
+ */
+
+/**
  * Renders WakaTime card.
  *
- * @param {Partial<import('../fetchers/types').WakaTimeData>} stats WakaTime stats.
- * @param {Partial<import('./types').WakaTimeOptions>} options Card options.
+ * @param {Partial<WakaTimeData>} stats WakaTime stats.
+ * @param {Partial<WakaTimeOptions>} options Card options.
  * @returns {string} WakaTime card SVG.
  */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
