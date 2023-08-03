@@ -39,7 +39,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `apprentice` ![apprentice][apprentice] | `moltack` ![moltack][moltack] | `codeSTACKr` ![codeSTACKr][codeSTACKr] |
 | `rose_pine` ![rose_pine][rose_pine] | `date_night` ![date_night][date_night] | `one_dark_pro` ![one_dark_pro][one_dark_pro] |
 | `rose` ![rose][rose] | `holi` ![holi][holi] | `neon` ![neon][neon] |
-| [Add your theme][add-theme] | | |
+| `blue_navy` ![blue_navy][blue_navy] | `calm_pink` ![calm_pink][calm_pink] | [Add your theme][add-theme] |
 
 ## Repo Card
 
@@ -70,7 +70,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `apprentice` ![apprentice][apprentice_repo] | `moltack` ![moltack][moltack_repo] | `codeSTACKr` ![codeSTACKr][codeSTACKr_repo] |
 | `rose_pine` ![rose_pine][rose_pine_repo] | `date_night` ![date_night][date_night_repo] | `one_dark_pro` ![one_dark_pro][one_dark_pro_repo] |
 | `rose` ![rose][rose_repo] | `holi` ![holi][holi_repo] | `neon` ![neon][neon_repo] |
-| [Add your theme][add-theme] | | |
+| `blue_navy` ![blue_navy][blue_navy_repo] | `calm_pink` ![calm_pink][calm_pink_repo] | [Add your theme][add-theme] |
 
 
 [default]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
@@ -143,6 +143,8 @@ Use `?theme=THEME_NAME` parameter like so :-
 [rose]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=rose
 [holi]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=holi
 [neon]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=neon
+[blue_navy]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=blue_navy
+[calm_pink]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=calm_pink
 
 
 [default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
@@ -215,6 +217,8 @@ Use `?theme=THEME_NAME` parameter like so :-
 [rose_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=rose
 [holi_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=holi
 [neon_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=neon
+[blue_navy_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=blue_navy
+[calm_pink_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=calm_pink
 
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
