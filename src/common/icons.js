@@ -17,7 +17,7 @@ const icons = {
  * Get rank icon
  *
  * @param {string} rankIcon - The rank icon type.
- * @param {number} rankLevel - The rank level.
+ * @param {string} rankLevel - The rank level.
  * @param {number} percentile - The rank percentile.
  * @returns {string} - The SVG code of the rank icon
  */

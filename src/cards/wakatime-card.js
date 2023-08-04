@@ -37,10 +37,14 @@ const noCodingActivityNode = ({ color, text }) => {
 };
 
 /**
+ * @typedef {import('../fetchers/types').WakaTimeLang} WakaTimeLang
+ */
+
+/**
  * Create compact WakaTime layout.
  *
  * @param {Object} args The function arguments.
- * @param {import("../fetchers/types").WakaTimeLang} args.lang The languages array.
+ * @param {WakaTimeLang} args.lang The languages array.
  * @param {number} args.x The x position of the language node.
  * @param {number} args.y The y position of the language node.
  * @returns {string} The compact layout language SVG node.
@@ -62,7 +66,7 @@ const createCompactLangNode = ({ lang, x, y }) => {
  * Create WakaTime language text node item.
  *
  * @param {Object} args The function arguments.
- * @param {import("../fetchers/types").WakaTimeLang[]} args.langs The language objects.
+ * @param {WakaTimeLang[]} args.langs The language objects.
  * @param {number} args.y The y position of the language node.
  * @returns {string[]} The language text node items.
  */
@@ -95,6 +99,7 @@ const createLanguageTextNode = ({ langs, y }) => {
  * @param {boolean} args.hideProgress Whether to hide the progress bar.
  * @param {string} args.progressBarColor The color of the progress bar.
  * @param {string} args.progressBarBackgroundColor The color of the progress bar background.
+ * @returns {string} The text SVG node.
  */
 const createTextNode = ({
   id,
@@ -139,7 +144,7 @@ const createTextNode = ({
  * Recalculating percentages so that, compact layout's progress bar does not break when
  * hiding languages.
  *
- * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
+ * @param {WakaTimeLang[]} languages The languages array.
  * @returns {void} The recalculated languages array.
  */
 const recalculatePercentages = (languages) => {
@@ -154,10 +159,15 @@ const recalculatePercentages = (languages) => {
 };
 
 /**
+ * @typedef {import('../fetchers/types').WakaTimeData} WakaTimeData
+ * @typedef {import('./types').WakaTimeOptions} WakaTimeOptions
+ */
+
+/**
  * Renders WakaTime card.
  *
- * @param {Partial<import('../fetchers/types').WakaTimeData>} stats WakaTime stats.
- * @param {Partial<import('./types').WakaTimeOptions>} options Card options.
+ * @param {Partial<WakaTimeData>} stats WakaTime stats.
+ * @param {Partial<WakaTimeOptions>} options Card options.
  * @returns {string} WakaTime card SVG.
  */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {

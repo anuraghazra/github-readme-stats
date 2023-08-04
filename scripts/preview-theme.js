@@ -164,14 +164,14 @@ const upsertComment = async (
 ) => {
   let resp;
   if (commentId !== undefined) {
-    resp = await octokit.issues.updateComment({
+    resp = await octokit.rest.issues.updateComment({
       owner,
       repo,
       comment_id: commentId,
       body,
     });
   } else {
-    resp = await octokit.issues.createComment({
+    resp = await octokit.rest.issues.createComment({
       owner,
       repo,
       issue_number: issueNumber,
@@ -200,7 +200,7 @@ const addReview = async (
   reviewState,
   reason,
 ) => {
-  await octokit.pulls.createReview({
+  await octokit.rest.pulls.createReview({
     owner,
     repo,
     pull_number: prNumber,
@@ -220,7 +220,7 @@ const addReview = async (
  * @returns {Promise<void>} Promise.
  */
 const addLabel = async (octokit, prNumber, owner, repo, labels) => {
-  await octokit.issues.addLabels({
+  await octokit.rest.issues.addLabels({
     owner,
     repo,
     issue_number: prNumber,
@@ -239,7 +239,7 @@ const addLabel = async (octokit, prNumber, owner, repo, labels) => {
  * @returns {Promise<void>} Promise.
  */
 const removeLabel = async (octokit, prNumber, owner, repo, label) => {
-  await octokit.issues.removeLabel({
+  await octokit.rest.issues.removeLabel({
     owner,
     repo,
     issue_number: prNumber,
@@ -259,7 +259,7 @@ const removeLabel = async (octokit, prNumber, owner, repo, label) => {
  * @returns {Promise<void>} Promise.
  */
 const addRemoveLabel = async (octokit, prNumber, owner, repo, label, add) => {
-  const res = await octokit.pulls.get({
+  const res = await octokit.rest.pulls.get({
     owner,
     repo,
     pull_number: prNumber,
@@ -389,7 +389,7 @@ export const run = async () => {
 
     // Retrieve the PR diff and preview-theme comment.
     debug("Retrieve PR diff...");
-    const res = await OCTOKIT.pulls.get({
+    const res = await OCTOKIT.rest.pulls.get({
       owner: OWNER,
       repo: REPO,
       pull_number: PULL_REQUEST_ID,
