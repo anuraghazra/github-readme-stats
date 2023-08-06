@@ -9,10 +9,16 @@ import { logger, request, dateDiff } from "../../src/common/utils.js";
 export const RATE_LIMIT_SECONDS = 60 * 5; // 1 request per 5 minutes
 
 /**
+ * @typedef {import('axios').AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
+ * @typedef {import('axios').AxiosResponse} AxiosResponse Axios response.
+ */
+
+/**
  * Simple uptime check fetcher for the PATs.
  *
- * @param {import('axios').AxiosRequestHeaders} variables
- * @param {string} token
+ * @param {AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token GitHub token.
+ * @returns {Promise<AxiosResponse>} The response.
  */
 const uptimeFetcher = (variables, token) => {
   return request(
@@ -37,7 +43,16 @@ const getAllPATs = () => {
 };
 
 /**
+ * @typedef {(variables: AxiosRequestHeaders, token: string) => Promise<AxiosResponse>} Fetcher The fetcher function.
+ * @typedef {{validPATs: string[], expiredPATs: string[], exhaustedPATs: string[], suspendedPATs: string[], errorPATs: string[], details: any}} PATInfo The PAT info.
+ */
+
+/**
  * Check whether any of the PATs is expired.
+ *
+ * @param {Fetcher} fetcher The fetcher function.
+ * @param {AxiosRequestHeaders} variables Fetcher variables.
+ * @returns {Promise<PATInfo>} The response.
  */
 const getPATInfo = async (fetcher, variables) => {
   const details = {};
@@ -117,6 +132,10 @@ const getPATInfo = async (fetcher, variables) => {
 
 /**
  * Cloud function that returns information about the used PATs.
+ *
+ * @param {any} _ The request.
+ * @param {any} res The response.
+ * @returns {Promise<void>} The response.
  */
 export default async (_, res) => {
   res.setHeader("Content-Type", "application/json");
