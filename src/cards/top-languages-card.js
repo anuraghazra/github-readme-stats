@@ -808,7 +808,9 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   if (disable_animations) card.disableAnimations();
 
-  card.setHideBorder(hide_border);
+  if (hide_border) {
+    card.setHideBorder(hide_border);
+  }
   card.setHideTitle(hide_title);
   card.setCSS(
     `
