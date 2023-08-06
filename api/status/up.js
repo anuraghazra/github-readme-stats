@@ -11,10 +11,16 @@ import { logger, request } from "../../src/common/utils.js";
 export const RATE_LIMIT_SECONDS = 60 * 5; // 1 request per 5 minutes
 
 /**
+ * @typedef {import('axios').AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
+ * @typedef {import('axios').AxiosResponse} AxiosResponse Axios response.
+ */
+
+/**
  * Simple uptime check fetcher for the PATs.
  *
- * @param {import('axios').AxiosRequestHeaders} variables
- * @param {string} token
+ * @param {AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token GitHub token.
+ * @returns {Promise<AxiosResponse>} The response.
  */
 const uptimeFetcher = (variables, token) => {
   return request(
@@ -35,10 +41,20 @@ const uptimeFetcher = (variables, token) => {
 };
 
 /**
+ * @typedef {{
+ *  schemaVersion: number;
+ *  label: string;
+ *  message: "up" | "down";
+ *  color: "brightgreen" | "red";
+ *  isError: boolean
+ * }} ShieldsResponse Shields.io response object.
+ */
+
+/**
  * Creates Json response that can be used for shields.io dynamic card generation.
  *
- * @param {*} up Whether the PATs are up or not.
- * @returns Dynamic shields.io JSON response object.
+ * @param {boolean} up Whether the PATs are up or not.
+ * @returns {ShieldsResponse}  Dynamic shields.io JSON response object.
  *
  * @see https://shields.io/endpoint.
  */
@@ -59,6 +75,10 @@ const shieldsUptimeBadge = (up) => {
 
 /**
  * Cloud function that returns whether the PATs are still functional.
+ *
+ * @param {any} req The request.
+ * @param {any} res The response.
+ * @returns {Promise<void>} Nothing.
  */
 export default async (req, res) => {
   let { type } = req.query;
