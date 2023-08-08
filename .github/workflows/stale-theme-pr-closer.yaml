@@ -44,7 +44,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: npm
 
-      - uses: bahmutov/npm-install@c5482d70ec8706408996e31ac94075030694993f # v1.8.32
+      - uses: bahmutov/npm-install@fe55be81abde2193c4843a2129b4aec3bb21cc8f # v1.8.33
         with:
           useLockFile: false
 
