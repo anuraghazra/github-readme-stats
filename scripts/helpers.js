@@ -10,7 +10,7 @@ const REPO = "github-readme-stats";
 /**
  * Retrieve information about the repository that ran the action.
  *
- * @param {Object} context Action context.
+ * @param {Object} ctx Action context.
  * @returns {Object} Repository information.
  */
 export const getRepoInfo = (ctx) => {

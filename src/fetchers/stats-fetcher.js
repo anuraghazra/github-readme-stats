@@ -45,7 +45,8 @@ const GRAPHQL_STATS_QUERY = `
       name
       login
       contributionsCollection {
-        totalCommitContributions
+        totalCommitContributions,
+        totalPullRequestReviewContributions
       }
       repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
         totalCount
@@ -60,6 +61,12 @@ const GRAPHQL_STATS_QUERY = `
         totalCount
       }
       followers {
+        totalCount
+      }
+      repositoryDiscussions {
+        totalCount
+      }
+      repositoryDiscussionComments(onlyAnswers: true) {
         totalCount
       }
       ${GRAPHQL_REPOS_FIELD}
@@ -185,9 +192,12 @@ const fetchStats = async (
   const stats = {
     name: "",
     totalPRs: 0,
+    totalReviews: 0,
     totalCommits: 0,
     totalIssues: 0,
     totalStars: 0,
+    totalDiscussionsStarted: 0,
+    totalDiscussionsAnswered: 0,
     contributedTo: 0,
     rank: { level: "C", percentile: 100 },
   };
@@ -227,7 +237,11 @@ const fetchStats = async (
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
+  stats.totalReviews =
+    user.contributionsCollection.totalPullRequestReviewContributions;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
+  stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;
+  stats.totalDiscussionsAnswered = user.repositoryDiscussionComments.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
   // Retrieve stars while filtering out repositories to be hidden.
@@ -245,6 +259,7 @@ const fetchStats = async (
     all_commits: include_all_commits,
     commits: stats.totalCommits,
     prs: stats.totalPRs,
+    reviews: stats.totalReviews,
     issues: stats.totalIssues,
     repos: user.repositories.totalCount,
     stars: stats.totalStars,

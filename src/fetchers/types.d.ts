@@ -18,9 +18,12 @@ export type RepositoryData = {
 export type StatsData = {
   name: string;
   totalPRs: number;
+  totalReviews: number;
   totalCommits: number;
   totalIssues: number;
   totalStars: number;
+  totalDiscussionsStarted: number;
+  totalDiscussionsAnswered: number;
   contributedTo: number;
   rank: { level: string; percentile: number };
 };

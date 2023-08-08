@@ -1,7 +1,13 @@
 themes: themes/index.js
 doc-translation: docs/*
-card-i18n: src/translations.js
-documentation: readme.md
+card-i18n:
+  - src/translations.js
+  - src/common/I18n.js
+documentation:
+  - readme.md
+  - CONTRIBUTING.md
+  - CODE_OF_CONDUCT.md
+  - SECURITY.md
 dependencies:
   - package.json
   - package-lock.json

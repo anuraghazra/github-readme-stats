@@ -217,6 +217,7 @@
     "Haxe": "#df7900",
     "HiveQL": "#dce200",
     "HolyC": "#ffefaf",
+    "Hosts File": "#308888",
     "Hy": "#7790B2",
     "IDL": "#a3522f",
     "IGOR Pro": "#0000cc",
@@ -517,6 +518,8 @@
     "Volt": "#1F1F1F",
     "Vue": "#41b883",
     "Vyper": "#2980b9",
+    "WDL": "#42f1f4",
+    "WGSL": "#1a5e9a",
     "Web Ontology Language": "#5b70bd",
     "WebAssembly": "#04133b",
     "WebAssembly Interface Type": "#6250e7",
@@ -561,7 +564,6 @@
     "q": "#0040cd",
     "reStructuredText": "#141414",
     "sed": "#64b970",
-    "wdl": "#42f1f4",
     "wisp": "#7582D1",
     "xBase": "#403a40"
 }
