@@ -76,11 +76,15 @@ const GRAPHQL_STATS_QUERY = `
 `;
 
 /**
+ * @typedef {import('axios').AxiosResponse} AxiosResponse Axios response.
+ */
+
+/**
  * Stats fetcher object.
  *
- * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {object} variables Fetcher variables.
  * @param {string} token GitHub token.
- * @returns {Promise<import('../common/types').Fetcher>} Stats fetcher response.
+ * @returns {Promise<AxiosResponse>} Axios response.
  */
 const fetcher = (variables, token) => {
   const query = !variables.after ? GRAPHQL_STATS_QUERY : GRAPHQL_REPOS_QUERY;
@@ -181,6 +185,10 @@ const totalCommitsFetcher = async (username) => {
   // we don't break the whole app
   return 0;
 };
+
+/**
+ * @typedef {import("./types").StatsData} StatsData Stats data.
+ */
 
 /**
  * Fetch stats for a given username.

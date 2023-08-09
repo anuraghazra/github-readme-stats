@@ -7,10 +7,15 @@ const PATs = Object.keys(process.env).filter((key) =>
 const RETRIES = PATs ? PATs : 7;
 
 /**
+ * @typedef {import("axios").AxiosResponse} AxiosResponse Axios response.
+ * @typedef {(variables: object, token: string) => Promise<AxiosResponse>} FetcherFunction Fetcher function.
+ */
+
+/**
  * Try to execute the fetcher function until it succeeds or the max number of retries is reached.
  *
- * @param {object[]} fetcher The fetcher function.
- * @param {object[]} variables Object with arguments to pass to the fetcher function.
+ * @param {FetcherFunction} fetcher The fetcher function.
+ * @param {object} variables Object with arguments to pass to the fetcher function.
  * @param {number} retries How many times to retry.
  * @returns {Promise<T>} The response from the fetcher function.
  */
