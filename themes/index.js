@@ -444,47 +444,12 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
-  everforest_dark_hard: {
-    title_color: "a7c080",
-    text_color: "d3c6aa",
-    icon_color: "e67e80",
-    border_color: "859289",
-    bg_color: "272e33"
-  },
   everforest_dark_medium: {
     title_color: "a7c080",
     text_color: "d3c6aa",
     icon_color: "e67e80",
     border_color: "859289",
     bg_color: "2d353b"
-  },
-  everforest_dark_low: {
-    title_color: "a7c080",
-    text_color: "d3c6aa",
-    icon_color: "e67e80",
-    border_color: "859289",
-    bg_color: "333c43"
-  },
-  everforest_light_hard: {
-    title_color: "93b259",
-    text_color: "5c6a72",
-    icon_color: "f85552",
-    border_color: "939f91",
-    bg_color: "fffbef"
-  },
-  everforest_light_medium: {
-    title_color: "93b259",
-    text_color: "5c6a72",
-    icon_color: "f85552",
-    border_color: "939f91",
-    bg_color: "fdf6e3"
-  },
-  everforest_light_low: {
-    title_color: "93b259",
-    text_color: "5c6a72",
-    icon_color: "f85552",
-    border_color: "939f91",
-    bg_color: "f3ead3"
   },
 };
 
