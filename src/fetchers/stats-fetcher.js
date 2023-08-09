@@ -75,11 +75,15 @@ const GRAPHQL_STATS_QUERY = `
 `;
 
 /**
+ * @typedef {import('axios').AxiosResponse} AxiosResponse Axios response.
+ */
+
+/**
  * Stats fetcher object.
  *
- * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {object} variables Fetcher variables.
  * @param {string} token GitHub token.
- * @returns {Promise<import('../common/types').Fetcher>} Stats fetcher response.
+ * @returns {Promise<AxiosResponse>} Axios response.
  */
 const fetcher = (variables, token) => {
   const query = !variables.after ? GRAPHQL_STATS_QUERY : GRAPHQL_REPOS_QUERY;
@@ -98,7 +102,7 @@ const fetcher = (variables, token) => {
  * Fetch stats information for a given username.
  *
  * @param {string} username Github username.
- * @returns {Promise<import('../common/types').StatsFetcher>} GraphQL Stats object.
+ * @returns {Promise<AxiosResponse>} Axios response.
  *
  * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
  */
@@ -176,11 +180,16 @@ const totalCommitsFetcher = async (username) => {
 };
 
 /**
+ * @typedef {import("./types").StatsData} StatsData Stats data.
+ */
+
+/**
  * Fetch stats for a given username.
  *
  * @param {string} username GitHub username.
  * @param {boolean} include_all_commits Include all commits.
- * @returns {Promise<import("./types").StatsData>} Stats data.
+ * @param {string[]} exclude_repo Repositories to exclude.
+ * @returns {Promise<StatsData>} Stats data.
  */
 const fetchStats = async (
   username,
