@@ -219,6 +219,7 @@ const renderStatsCard = (stats, options = {}) => {
     "ru",
     "uk-ua",
     "id",
+    "ml",
     "my",
     "pl",
     "de",
