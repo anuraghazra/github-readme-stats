@@ -116,6 +116,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 - [Deploy on your own](#deploy-on-your-own)
   - [On Vercel](#on-vercel)
     - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
+  - [On AirCode](#on-aircode)
   - [On other platforms](#on-other-platforms)
   - [Disable rate limit protections](#disable-rate-limit-protections)
   - [Keep your fork up to date](#keep-your-fork-up-to-date)
@@ -682,6 +683,20 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 11. Click deploy, and you're good to go. See your domains to use the API!
 
 </details>
+
+## On AirCode
+
+1. Click the following button👇 
+
+[![Copy to AirCode](https://vercel.com/button)](https://aircode.io/dashboard?share_shareId=e24nsnab46&share_name=github-readme-stats-deploy&share_runtime=node/v16)
+
+2. Set your github access token
+
+![Set GitHub Access Token](https://pkxfpp.hk.aircodecdn.com/1690426103730.1690426130400_ol4jg3cvtv.jpg)
+
+3. Click the Deploy Button
+
+![Deploy from AirCode](https://pkxfpp.hk.aircodecdn.com/-2.1690426424707_roeg6b6bwiq.jpg)
 
 ## On other platforms
 
