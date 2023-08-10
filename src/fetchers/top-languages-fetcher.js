@@ -9,11 +9,16 @@ import {
 } from "../common/utils.js";
 
 /**
+ * @typedef {import("axios").AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
+ * @typedef {import("axios").AxiosResponse} AxiosResponse Axios response.
+ */
+
+/**
  * Top languages fetcher object.
  *
- * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {AxiosRequestHeaders} variables Fetcher variables.
  * @param {string} token GitHub token.
- * @returns {Promise<import('../common/types').StatsFetcherResponse>} Languages fetcher response.
+ * @returns {Promise<AxiosResponse>} Languages fetcher response.
  */
 const fetcher = (variables, token) => {
   return request(
@@ -48,11 +53,17 @@ const fetcher = (variables, token) => {
 };
 
 /**
+ * @typedef {import("./types").TopLangData} TopLangData Top languages data.
+ */
+
+/**
  * Fetch top languages for a given username.
  *
  * @param {string} username GitHub username.
  * @param {string[]} exclude_repo List of repositories to exclude.
- * @returns {Promise<import("./types").TopLangData>} Top languages data.
+ * @param {number} size_weight Weightage to be given to size.
+ * @param {number} count_weight Weightage to be given to count.
+ * @returns {Promise<TopLangData>} Top languages data.
  */
 const fetchTopLanguages = async (
   username,
