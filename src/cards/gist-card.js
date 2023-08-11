@@ -136,6 +136,7 @@ const renderGistCard = (gistData, options) => {
 
   const card = new Card({
     defaultTitle: name.length > 35 ? `${name.slice(0, 35)}...` : name,
+    titlePrefixIcon: icons.gist,
     width: CARD_DEFAULT_WIDTH,
     height,
     border_radius,
