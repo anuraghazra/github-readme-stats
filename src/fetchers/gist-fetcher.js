@@ -29,6 +29,9 @@ const fetchGist = async (username, id) => {
 
   return {
     name: response.files[Object.keys(response.files)[0]].filename,
+    nameWithOwner: `${username}/${
+      response.files[Object.keys(response.files)[0]].filename
+    }`,
     description: response.description,
     language: response.files[Object.keys(response.files)[0]].language,
     starsCount,

@@ -1,5 +1,6 @@
 export type GistData = {
   name: string;
+  nameWithOwner: string;
   description: string;
   language: string | null;
   starsCount: number;

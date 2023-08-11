@@ -25,6 +25,7 @@ const languageColors = require("../common/languageColors.json"); // now works
 
 const ICON_SIZE = 16;
 const CARD_DEFAULT_WIDTH = 400;
+const HEADER_MAX_LENGTH = 35;
 
 /**
  * Creates a node to display the primary programming language of the gist.
@@ -77,11 +78,12 @@ const iconWithLabel = (icon, label, testid) => {
  * Render gist card.
  *
  * @param {GistData} gistData Gist data.
- * @param {GistCardOptions} options Gist card options.
+ * @param {Partial<GistCardOptions>} options Gist card options.
  * @returns {string} Gist card.
  */
-const renderGistCard = (gistData, options) => {
-  const { name, description, language, starsCount, forksCount } = gistData;
+const renderGistCard = (gistData, options = {}) => {
+  const { name, nameWithOwner, description, language, starsCount, forksCount } =
+    gistData;
   const {
     title_color,
     icon_color,
@@ -90,6 +92,7 @@ const renderGistCard = (gistData, options) => {
     theme,
     border_radius,
     border_color,
+    show_owner = false,
   } = options;
 
   // returns theme based colors with proper overrides and defaults
@@ -136,8 +139,13 @@ const renderGistCard = (gistData, options) => {
     gap: 25,
   }).join("");
 
+  const header = show_owner ? nameWithOwner : name;
+
   const card = new Card({
-    defaultTitle: name.length > 35 ? `${name.slice(0, 35)}...` : name,
+    defaultTitle:
+      header.length > HEADER_MAX_LENGTH
+        ? `${header.slice(0, HEADER_MAX_LENGTH)}...`
+        : header,
     titlePrefixIcon: icons.gist,
     width: CARD_DEFAULT_WIDTH,
     height,
@@ -155,8 +163,6 @@ const renderGistCard = (gistData, options) => {
     .description { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
     .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
     .icon { fill: ${iconColor} }
-    .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
-    .badge rect { opacity: 0.2 }
   `);
 
   return card.render(`
@@ -170,5 +176,5 @@ const renderGistCard = (gistData, options) => {
   `);
 };
 
-export { renderGistCard };
+export { renderGistCard, HEADER_MAX_LENGTH };
 export default renderGistCard;

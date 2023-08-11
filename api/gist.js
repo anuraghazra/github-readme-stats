@@ -1,5 +1,10 @@
 import { blacklist } from "../src/common/blacklist.js";
-import { clampValue, CONSTANTS, renderError } from "../src/common/utils.js";
+import {
+  clampValue,
+  CONSTANTS,
+  renderError,
+  parseBoolean,
+} from "../src/common/utils.js";
 import { isLocaleAvailable } from "../src/translations.js";
 import { renderGistCard } from "../src/cards/gist-card.js";
 import { fetchGist } from "../src/fetchers/gist-fetcher.js";
@@ -17,6 +22,7 @@ export default async (req, res) => {
     locale,
     border_radius,
     border_color,
+    show_owner,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -71,6 +77,7 @@ export default async (req, res) => {
         border_radius,
         border_color,
         locale: locale ? locale.toLowerCase() : null,
+        show_owner: parseBoolean(show_owner),
       }),
     );
   } catch (err) {

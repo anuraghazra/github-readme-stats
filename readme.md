@@ -333,6 +333,8 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 
 #### Gist Card Exclusive Options
 
+*   `show_owner` - Shows the gist's owner name *(boolean)*. Default: `false`.
+
 #### Language Card Exclusive Options
 
 *   `hide` - Hides the languages specified from the card *(Comma-separated values)*. Default: `[] (blank array)`.

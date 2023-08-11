@@ -59,6 +59,5 @@ type WakaTimeOptions = CommonOptions & {
 };
 
 export type GistCardOptions = CommonOptions & {
-  username: string;
-  id: string;
+  show_owner: boolean;
 };
