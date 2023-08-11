@@ -103,14 +103,16 @@ const renderGistCard = (gistData, options) => {
       theme,
     });
 
+  const lineWidth = 59;
+  const linesLimit = 10;
   const desc = parseEmojis(description || "No description provided");
-  const multiLineDescription = wrapTextMultiline(desc);
+  const multiLineDescription = wrapTextMultiline(desc, lineWidth, linesLimit);
   const descriptionLines = multiLineDescription.length;
   const descriptionSvg = multiLineDescription
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
 
-  const lineHeight = 10;
+  const lineHeight = descriptionLines > 3 ? 12 : 10;
   const height =
     (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
 
