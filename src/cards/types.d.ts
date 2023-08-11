@@ -57,3 +57,8 @@ type WakaTimeOptions = CommonOptions & {
   layout: "compact" | "normal";
   langs_count: number;
 };
+
+export type GistCardOptions = CommonOptions & {
+  username: string;
+  id: string;
+};
