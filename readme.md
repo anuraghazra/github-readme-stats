@@ -331,6 +331,8 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 
 *   `show_owner` - Shows the repo's owner name *(boolean)*. Default: `false`.
 
+#### Gist Card Exclusive Options
+
 #### Language Card Exclusive Options
 
 *   `hide` - Hides the languages specified from the card *(Comma-separated values)*. Default: `[] (blank array)`.
