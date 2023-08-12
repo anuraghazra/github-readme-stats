@@ -20,14 +20,14 @@
 
         // All JSDoc comments must be valid
         
-        // "valid-jsdoc": [ "error", {
-        //     "requireReturn": false,
-        //     "requireReturnDescription": false,
-        //     "requireParamDescription": true,
-        //     "prefer": {
-        //         "return": "returns"
-        //     }
-        // }],
+        "valid-jsdoc": [ "error", {
+            "requireReturn": true,
+            "requireReturnDescription": true,
+            "requireParamDescription": true,
+            "prefer": {
+                "return": "returns"
+            }
+        }],
 
         // Best Practices
 
@@ -38,7 +38,7 @@
         //     "setWithoutGet": true
         // }],
         // "block-scoped-var": "warn",
-        // "consistent-return": "error",
+        "consistent-return": "error",
         // "curly": "error",
         // "default-case": "warn",
 

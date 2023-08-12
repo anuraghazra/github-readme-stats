@@ -80,10 +80,15 @@ const iconWithLabel = (icon, label, testid) => {
 };
 
 /**
+ * @typedef {import("../fetchers/types").RepositoryData} RepositoryData Repository data.
+ * @typedef {import("./types").RepoCardOptions} RepoCardOptions Repo card options.
+ */
+
+/**
  * Renders repository card details.
  *
- * @param {import('../fetchers/types').RepositoryData} repo Repository data.
- * @param {Partial<import("./types").RepoCardOptions>} options Card options.
+ * @param {RepositoryData} repo Repository data.
+ * @param {Partial<RepoCardOptions>} options Card options.
  * @returns {string} Repository card SVG object.
  */
 const renderRepoCard = (repo, options = {}) => {

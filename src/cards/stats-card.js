@@ -77,10 +77,15 @@ const createTextNode = ({
 };
 
 /**
+ * @typedef {import('../fetchers/types').StatsData} StatsData
+ * @typedef {import('./types').StatCardOptions} StatCardOptions
+ */
+
+/**
  * Renders the stats card.
  *
- * @param {import('../fetchers/types').StatsData} stats The stats data.
- * @param {Partial<import("./types").StatCardOptions>} options The card options.
+ * @param {StatsData} stats The stats data.
+ * @param {Partial<StatCardOptions>} options The card options.
  * @returns {string} The stats card SVG object.
  */
 const renderStatsCard = (stats, options = {}) => {
@@ -237,6 +242,7 @@ const renderStatsCard = (stats, options = {}) => {
     "ru",
     "uk-ua",
     "id",
+    "ml",
     "my",
     "pl",
     "de",
