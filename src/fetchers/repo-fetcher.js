@@ -109,6 +109,8 @@ const fetchRepo = async (username, reponame) => {
       starCount: data.organization.repository.stargazers.totalCount,
     };
   }
+
+  throw new Error("Unexpected behavior");
 };
 
 export { fetchRepo };

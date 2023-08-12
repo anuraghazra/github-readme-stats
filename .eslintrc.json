@@ -38,7 +38,7 @@
         //     "setWithoutGet": true
         // }],
         // "block-scoped-var": "warn",
-        // "consistent-return": "error",
+        "consistent-return": "error",
         // "curly": "error",
         // "default-case": "warn",
 
