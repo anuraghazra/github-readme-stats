@@ -113,7 +113,7 @@ const isPreviewComment = (inputs, comment) => {
  * @param {string} owner Owner of the repository.
  * @param {string} repo Repository name.
  * @param {string} commenter Comment author.
- * @returns {Object} The GitHub comment object.
+ * @returns {Object | undefined} The GitHub comment object.
  */
 const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
   const parameters = {
@@ -141,6 +141,8 @@ const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
       debug(`No theme preview comment found.`);
     }
   }
+
+  return undefined;
 };
 
 /**
