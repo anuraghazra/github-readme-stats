@@ -355,7 +355,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số PR Đã Hợp Nhất",
       se: "Totalt antal sammanfogade PR",
     },
-    "statcard.merged-prs-percentage": {
+    "statcard.prs-merged-percentage": {
       ar: "نسبة الطلبات المدمجة",
       cn: "合并的 PR 百分比",
       "zh-tw": "合併的 PR 百分比",

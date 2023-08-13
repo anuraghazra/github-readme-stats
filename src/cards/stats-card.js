@@ -187,7 +187,7 @@ const renderStatsCard = (stats, options = {}) => {
   if (show.includes("prs_merged_percentage")) {
     STATS.prs_merged_percentage = {
       icon: icons.prs_merged_percentage,
-      label: i18n.t("statcard.merged-prs-percentage"),
+      label: i18n.t("statcard.prs-merged-percentage"),
       value: mergedPRsPercentage.toFixed(2),
       id: "prs_merged_percentage",
       unitSymbol: "%",
