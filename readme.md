@@ -156,10 +156,10 @@ You can pass a query parameter `&hide=` to hide any specific stats with comma-se
 
 You can pass a query parameter `&show=` to show any specific additional stats with comma-separated values.
 
-> Options: `&show=reviews,discussions_started,discussions_answered`
+> Options: `&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage`
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show=reviews)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage)
 ```
 
 ### Showing icons
@@ -548,7 +548,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 *   Showing additional stats
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show=reviews,discussions_started,discussions_answered)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage)
 
 *   Showing icons
 
