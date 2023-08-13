@@ -1,7 +1,50 @@
 // @ts-check
 
-import axios from "axios";
-import { parseHTML } from "linkedom";
+import { request } from "../common/utils.js";
+import { retryer } from "../common/retryer.js";
+
+/**
+ * @typedef {import('axios').AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
+ * @typedef {import('axios').AxiosResponse} AxiosResponse Axios response.
+ */
+
+const QUERY = `
+query gistInfo($gistName: String!) {
+    viewer {
+        gist(name: $gistName) {
+            description
+            owner {
+                login
+            }
+            stargazerCount
+            forks {
+                totalCount
+            }
+            files {
+                name
+                language {
+                    name
+                }
+                size
+            }
+        }
+    }
+}
+`;
+
+/**
+ * Gist data fetcher.
+ *
+ * @param {AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token GitHub token.
+ * @returns {Promise<AxiosResponse>} The response.
+ */
+const fetcher = async (variables, token) => {
+  return await request(
+    { query: QUERY, variables },
+    { Authorization: `token ${token}` },
+  );
+};
 
 /**
  * @typedef {import('./types').GistData} GistData Gist data.
@@ -10,74 +53,53 @@ import { parseHTML } from "linkedom";
 /**
  * Fetch GitHub gist information by given username and ID.
  *
- * @param {string} username Github username.
  * @param {string} id Github gist ID.
  * @returns {Promise<GistData>} Gist data.
  */
-const fetchGist = async (username, id) => {
-  const response = (
-    await axios({
-      method: "get",
-      url: `https://api.github.com/gists/${id}`,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/vnd.github.cloak-preview",
-      },
-    })
-  ).data;
-  const { starsCount, forksCount } = await fetchGistStargazers(username, id);
-
+const fetchGist = async (id) => {
+  const res = await retryer(fetcher, { gistName: id });
+  if (res.data.errors) throw new Error(res.data.errors[0].message);
+  const data = res.data.data.viewer.gist;
   return {
-    name: response.files[Object.keys(response.files)[0]].filename,
-    nameWithOwner: `${username}/${
-      response.files[Object.keys(response.files)[0]].filename
+    name: data.files[Object.keys(data.files)[0]].name,
+    nameWithOwner: `${data.owner.login}/${
+      data.files[Object.keys(data.files)[0]].name
     }`,
-    description: response.description,
-    language: response.files[Object.keys(response.files)[0]].language,
-    starsCount,
-    forksCount,
+    description: data.description,
+    language: calculatePrimaryLanguage(data.files),
+    starsCount: data.stargazerCount,
+    forksCount: data.forks.totalCount,
   };
 };
 
 /**
- * Fetch GitHub gist stargazers and forks count by given username and ID.
- *
- * @param {string} username Github username.
- * @param {string} id Github gist ID.
- * @returns {Promise<{starsCount: number, forksCount: number}>} Gist stargazers and forks count.
+ * @typedef {{ name: string; language: { name: string; }, size: number }} GistFile Gist file.
  */
-const fetchGistStargazers = async (username, id) => {
-  let starsCount = 0;
-  let forksCount = 0;
 
-  try {
-    await axios({
-      method: "get",
-      url: `https://gist.github.com/${username}/${id}/stargazers`,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/vnd.github.cloak-preview",
-      },
-    }).then((dom) => {
-      const { document } = parseHTML(dom.data);
-      let nav = document.querySelector('[aria-label="Gist"]');
-      if (!nav) throw new Error("No nav found");
-      let starsBox = nav.querySelector('[data-hotkey="g s"] span.Counter');
-      let forksBox = nav.querySelector('[data-hotkey="g f"] span.Counter');
-      // @ts-ignore
-      starsCount = starsBox ? starsBox.title : 0;
-      // @ts-ignore
-      forksCount = forksBox ? forksBox.title : 0;
-    });
-  } catch (error) {
-    starsCount = 0;
-    forksCount = 0;
+/**
+ * This function calculates the primary language of a gist by files size.
+ *
+ * @param {GistFile[]} files Files.
+ * @returns {string} Primary language.
+ */
+const calculatePrimaryLanguage = (files) => {
+  const languages = {};
+  for (const file of files) {
+    if (file.language) {
+      if (languages[file.language.name]) {
+        languages[file.language.name] += file.size;
+      } else {
+        languages[file.language.name] = file.size;
+      }
+    }
   }
-
-  return {
-    starsCount,
-    forksCount,
-  };
+  let primaryLanguage = Object.keys(languages)[0];
+  for (const language in languages) {
+    if (languages[language] > languages[primaryLanguage]) {
+      primaryLanguage = language;
+    }
+  }
+  return primaryLanguage;
 };
 
 export { fetchGist };

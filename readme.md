@@ -399,15 +399,15 @@ GitHub gist pins allow you to pin gists in your GitHub profile using a GitHub re
 
 Copy-paste this code into your readme and change the links.
 
-Endpoint: `api/gist?username=Yizack&id=bbfce31e0217a3689c8d961a356cb10d`
+Endpoint: `api/gist?id=bbfce31e0217a3689c8d961a356cb10d`
 
 ```md
-[![Gist Card](https://github-readme-stats.vercel.app/api/gist?username=Yizack&id=bbfce31e0217a3689c8d961a356cb10d)](https://gist.github.com/Yizack/bbfce31e0217a3689c8d961a356cb10d/)
+[![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)](https://gist.github.com/Yizack/bbfce31e0217a3689c8d961a356cb10d/)
 ```
 
 ### Demo
 
-![Gist Card](https://github-readme-stats.vercel.app/api/gist?username=Yizack\&id=bbfce31e0217a3689c8d961a356cb10d)
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
 
 # Top Languages Card
 
@@ -619,11 +619,11 @@ Choose from any of the [default themes](#themes)
 
 *   Gist card
 
-![Gist Card](https://github-readme-stats.vercel.app/api/gist?username=Yizack&id=bbfce31e0217a3689c8d961a356cb10d)
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
 
 *   Customizing gist card
 
-![Gist Card](https://github-readme-stats.vercel.app/api/gist?username=Yizack&id=bbfce31e0217a3689c8d961a356cb10d&theme=calm)
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d&theme=calm)
 
 *   Top languages
 

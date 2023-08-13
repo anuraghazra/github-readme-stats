@@ -1,4 +1,3 @@
-import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
   CONSTANTS,
@@ -11,7 +10,6 @@ import { fetchGist } from "../src/fetchers/gist-fetcher.js";
 
 export default async (req, res) => {
   const {
-    username,
     id,
     title_color,
     icon_color,
@@ -27,16 +25,12 @@ export default async (req, res) => {
 
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (blacklist.includes(username)) {
-    return res.send(renderError("Something went wrong"));
-  }
-
   if (locale && !isLocaleAvailable(locale)) {
     return res.send(renderError("Something went wrong", "Language not found"));
   }
 
   try {
-    const gistData = await fetchGist(username, id);
+    const gistData = await fetchGist(id);
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
