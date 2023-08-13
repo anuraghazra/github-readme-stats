@@ -409,6 +409,10 @@ Endpoint: `api/gist?id=bbfce31e0217a3689c8d961a356cb10d`
 
 ![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
 
+Use [show\_owner](#gist-card-exclusive-options) query option to include the gist's owner username
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d\&show_owner=true)
+
 # Top Languages Card
 
 The top languages card shows a GitHub user's most frequently used languages.
