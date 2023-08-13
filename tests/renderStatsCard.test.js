@@ -56,7 +56,7 @@ describe("Test renderStatsCard", () => {
     ).not.toBeInTheDocument();
     expect(queryByTestId(document.body, "prs_merged")).not.toBeInTheDocument();
     expect(
-      queryByTestId(document.body, "merged_prs_percentage"),
+      queryByTestId(document.body, "prs_merged_percentage"),
     ).not.toBeInTheDocument();
   });
 
@@ -92,7 +92,7 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "discussions_started")).toBeNull();
     expect(queryByTestId(document.body, "discussions_answered")).toBeNull();
     expect(queryByTestId(document.body, "prs_merged")).toBeNull();
-    expect(queryByTestId(document.body, "merged_prs_percentage")).toBeNull();
+    expect(queryByTestId(document.body, "prs_merged_percentage")).toBeNull();
   });
 
   it("should show additional stats", () => {
@@ -102,7 +102,7 @@ describe("Test renderStatsCard", () => {
         "discussions_started",
         "discussions_answered",
         "prs_merged",
-        "merged_prs_percentage",
+        "prs_merged_percentage",
       ],
     });
 
@@ -119,7 +119,7 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "discussions_started")).toBeDefined();
     expect(queryByTestId(document.body, "discussions_answered")).toBeDefined();
     expect(queryByTestId(document.body, "prs_merged")).toBeDefined();
-    expect(queryByTestId(document.body, "merged_prs_percentage")).toBeDefined();
+    expect(queryByTestId(document.body, "prs_merged_percentage")).toBeDefined();
   });
 
   it("should hide_rank", () => {

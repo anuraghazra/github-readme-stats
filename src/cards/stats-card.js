@@ -184,12 +184,12 @@ const renderStatsCard = (stats, options = {}) => {
     };
   }
 
-  if (show.includes("merged_prs_percentage")) {
-    STATS.merged_prs_percentage = {
-      icon: icons.merged_prs_percentage,
+  if (show.includes("prs_merged_percentage")) {
+    STATS.prs_merged_percentage = {
+      icon: icons.prs_merged_percentage,
       label: i18n.t("statcard.merged-prs-percentage"),
       value: mergedPRsPercentage.toFixed(2),
-      id: "merged_prs_percentage",
+      id: "prs_merged_percentage",
       unitSymbol: "%",
     };
   }
