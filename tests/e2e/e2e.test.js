@@ -218,5 +218,5 @@ describe("Fetch Cards", () => {
 
     // Check if Gist card from deployment matches the local Gist card.
     expect(serverGistSvg.data).toEqual(localGistCardSVG);
-  });
+  }, 15000);
 });
