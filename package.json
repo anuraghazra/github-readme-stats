@@ -42,7 +42,7 @@
     "@uppercod/css-to-object": "^1.1.1",
     "axios-mock-adapter": "^1.21.5",
     "color-contrast-checker": "^2.1.0",
-    "eslint": "^8.46.0",
+    "eslint": "^8.47.0",
     "eslint-config-prettier": "^9.0.0",
     "hjson": "^3.2.2",
     "husky": "^8.0.3",
