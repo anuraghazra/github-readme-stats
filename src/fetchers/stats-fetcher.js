@@ -150,7 +150,7 @@ const statsFetcher = async (username, ownerAffiliations) => {
 /**
  * Fetch all the commits for all the repositories of a given username.
  *
- * @param {*} username GitHub username.
+ * @param {string} username GitHub username.
  * @returns {Promise<number>} Total commits.
  *
  * @description Done like this because the GitHub API does not provide a way to fetch all the commits. See
