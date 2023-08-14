@@ -97,8 +97,11 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 - [GitHub Extra Pins](#github-extra-pins)
     - [Usage](#usage)
     - [Demo](#demo)
-- [Top Languages Card](#top-languages-card)
+- [GitHub Gist Pins](#github-gist-pins)
     - [Usage](#usage-1)
+    - [Demo](#demo-1)
+- [Top Languages Card](#top-languages-card)
+    - [Usage](#usage-2)
     - [Language stats algorithm](#language-stats-algorithm)
     - [Exclude individual repositories](#exclude-individual-repositories)
     - [Hide individual languages](#hide-individual-languages)
@@ -108,9 +111,9 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Donut Vertical Chart Language Card Layout](#donut-vertical-chart-language-card-layout)
     - [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
     - [Hide Progress Bars](#hide-progress-bars)
-    - [Demo](#demo-1)
-- [Wakatime Stats Card](#wakatime-stats-card)
     - [Demo](#demo-2)
+- [Wakatime Stats Card](#wakatime-stats-card)
+    - [Demo](#demo-3)
 - [All Demos](#all-demos)
   - [Quick Tip (Align The Cards)](#quick-tip-align-the-cards)
 - [Deploy on your own](#deploy-on-your-own)
@@ -328,6 +331,10 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 
 *   `show_owner` - Shows the repo's owner name *(boolean)*. Default: `false`.
 
+#### Gist Card Exclusive Options
+
+*   `show_owner` - Shows the gist's owner name *(boolean)*. Default: `false`.
+
 #### Language Card Exclusive Options
 
 *   `hide` - Hides the languages specified from the card *(Comma-separated values)*. Default: `[] (blank array)`.
@@ -383,6 +390,28 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 Use [show\_owner](#repo-card-exclusive-options) query option to include the repo's owner username
 
 ![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=github-readme-stats\&show_owner=true)
+
+# GitHub Gist Pins
+
+GitHub gist pins allow you to pin gists in your GitHub profile using a GitHub readme profile.
+
+### Usage
+
+Copy-paste this code into your readme and change the links.
+
+Endpoint: `api/gist?id=bbfce31e0217a3689c8d961a356cb10d`
+
+```md
+[![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)](https://gist.github.com/Yizack/bbfce31e0217a3689c8d961a356cb10d/)
+```
+
+### Demo
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
+
+Use [show\_owner](#gist-card-exclusive-options) query option to include the gist's owner username
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d\&show_owner=true)
 
 # Top Languages Card
 
@@ -591,6 +620,14 @@ Choose from any of the [default themes](#themes)
 *   Customizing repo card
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra\&repo=github-readme-stats\&title_color=fff\&icon_color=f9f9f9\&text_color=9f9f9f\&bg_color=151515)
+
+*   Gist card
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
+
+*   Customizing gist card
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d&theme=calm)
 
 *   Top languages
 
