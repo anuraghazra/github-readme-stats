@@ -308,7 +308,7 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 
 #### Stats Card Exclusive Options
 
-*   `hide` - Hides the [specified items](#hiding-individual-stats) from stats *(Comma-separated values)*. Default: `[] (blank array)`.123
+*   `hide` - Hides the [specified items](#hiding-individual-stats) from stats *(Comma-separated values)*. Default: `[] (blank array)`.
 *   `hide_title` - *(boolean)*. Default: `false`.
 *   `card_width` - Sets the card's width manually *(number)*. Default: `500px  (approx.)`.
 *   `hide_rank` - *(boolean)* hides the rank and automatically resizes the card width. Default: `false`.
