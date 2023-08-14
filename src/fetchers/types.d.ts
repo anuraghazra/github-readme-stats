@@ -1,3 +1,12 @@
+export type GistData = {
+  name: string;
+  nameWithOwner: string;
+  description: string;
+  language: string | null;
+  starsCount: number;
+  forksCount: number;
+};
+
 export type RepositoryData = {
   name: string;
   nameWithOwner: string;
