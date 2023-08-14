@@ -444,6 +444,12 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+  dark_merko: {
+    title_color: "ffffff",
+    icon_color: "41b883",
+    text_color: "fffefe",
+    bg_color: "1f4958",
+  },
 };
 
 export default themes;
