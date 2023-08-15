@@ -93,6 +93,7 @@ const renderGistCard = (gistData, options = {}) => {
     border_radius,
     border_color,
     show_owner = false,
+    hide_border = false,
   } = options;
 
   // returns theme based colors with proper overrides and defaults
@@ -164,6 +165,7 @@ const renderGistCard = (gistData, options = {}) => {
     .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
     .icon { fill: ${iconColor} }
   `);
+  card.setHideBorder(hide_border);
 
   return card.render(`
     <text class="description" x="25" y="-5">
