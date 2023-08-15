@@ -21,6 +21,7 @@ export default async (req, res) => {
     border_radius,
     border_color,
     show_owner,
+    hide_border,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -72,6 +73,7 @@ export default async (req, res) => {
         border_color,
         locale: locale ? locale.toLowerCase() : null,
         show_owner: parseBoolean(show_owner),
+        hide_border: parseBoolean(hide_border),
       }),
     );
   } catch (err) {
