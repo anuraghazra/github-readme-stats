@@ -27,6 +27,10 @@ wakatime-card:
   - api/wakatime.js
   - src/cards/wakatime-card.js
   - src/fetchers/wakatime-fetcher.js
+gist-card:
+  - api/gist.js
+  - src/cards/gist-card.js
+  - src/fetchers/gist-fetcher.js
 ranks: src/calculateRank.js
 ci:
   - .github/workflows/*
