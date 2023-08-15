@@ -719,7 +719,7 @@ const getDefaultLanguagesCountByLayout = ({ layout, hide_progress }) => {
 const renderTopLanguages = (topLangs, options = {}) => {
   const {
     hide_title = false,
-    hide_border,
+    hide_border = false,
     card_width,
     title_color,
     text_color,
@@ -808,9 +808,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   if (disable_animations) card.disableAnimations();
 
-  if (hide_border) {
-    card.setHideBorder(hide_border);
-  }
+  card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
   card.setCSS(
     `
