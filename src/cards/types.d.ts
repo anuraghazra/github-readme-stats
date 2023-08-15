@@ -59,5 +59,6 @@ type WakaTimeOptions = CommonOptions & {
 };
 
 export type GistCardOptions = CommonOptions & {
+  hide_border: boolean;
   show_owner: boolean;
 };
