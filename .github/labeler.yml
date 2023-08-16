@@ -15,22 +15,32 @@ lang-card:
   - api/top-langs.js
   - src/cards/top-languages-card.js
   - src/fetchers/top-languages-fetcher.js
+  - tests/fetchTopLanguages.test.js
+  - tests/renderTopLanguages.test.js
 repo-card:
   - api/pin.js
   - src/cards/repo-card.js
   - src/fetchers/repo-fetcher.js
+  - tests/fetchRepo.test.js
+  - tests/renderRepoCard.test.js
 stats-card:
   - api/index.js
   - src/cards/stats-card.js
   - src/fetchers/stats-fetcher.js
+  - tests/fetchStats.test.js
+  - tests/renderStatsCard.test.js
 wakatime-card:
   - api/wakatime.js
   - src/cards/wakatime-card.js
   - src/fetchers/wakatime-fetcher.js
+  - tests/fetchWakatime.test.js
+  - tests/renderWakatimeCard.test.js
 gist-card:
   - api/gist.js
   - src/cards/gist-card.js
   - src/fetchers/gist-fetcher.js
+  - tests/fetchGist.test.js
+  - tests/renderGistCard.test.js
 ranks: src/calculateRank.js
 ci:
   - .github/workflows/*
