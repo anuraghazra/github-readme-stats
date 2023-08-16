@@ -1,3 +1,12 @@
+export type GistData = {
+  name: string;
+  nameWithOwner: string;
+  description: string;
+  language: string | null;
+  starsCount: number;
+  forksCount: number;
+};
+
 export type RepositoryData = {
   name: string;
   nameWithOwner: string;
@@ -18,6 +27,8 @@ export type RepositoryData = {
 export type StatsData = {
   name: string;
   totalPRs: number;
+  totalPRsMerged: number;
+  mergedPRsPercentage: number;
   totalReviews: number;
   totalCommits: number;
   totalIssues: number;
