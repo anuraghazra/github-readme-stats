@@ -1,6 +1,8 @@
 import { renderGistCard } from "../src/cards/gist-card";
 import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
+import { cssToObject } from "@uppercod/css-to-object";
+import { themes } from "../themes/index.js";
 import "@testing-library/jest-dom";
 
 /**
@@ -74,6 +76,116 @@ describe("test renderGistCard", () => {
     });
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
       "Small text should not trim",
+    );
+  });
+
+  it("should render emojis in description", () => {
+    document.body.innerHTML = renderGistCard({
+      ...data,
+      description: "This is a test gist description with :heart: emoji.",
+    });
+    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
+      "This is a test gist description with ❤️ emoji.",
+    );
+  });
+
+  it("should render custom colors properly", () => {
+    const customColors = {
+      title_color: "5a0",
+      icon_color: "1b998b",
+      text_color: "9991",
+      bg_color: "252525",
+    };
+
+    document.body.innerHTML = renderGistCard(data, {
+      ...customColors,
+    });
+
+    const styleTag = document.querySelector("style");
+    const stylesObject = cssToObject(styleTag.innerHTML);
+
+    const headerClassStyles = stylesObject[":host"][".header "];
+    const descClassStyles = stylesObject[":host"][".description "];
+    const iconClassStyles = stylesObject[":host"][".icon "];
+
+    expect(headerClassStyles.fill.trim()).toBe(`#${customColors.title_color}`);
+    expect(descClassStyles.fill.trim()).toBe(`#${customColors.text_color}`);
+    expect(iconClassStyles.fill.trim()).toBe(`#${customColors.icon_color}`);
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "fill",
+      "#252525",
+    );
+  });
+
+  it("should render with all the themes", () => {
+    Object.keys(themes).forEach((name) => {
+      document.body.innerHTML = renderGistCard(data, {
+        theme: name,
+      });
+
+      const styleTag = document.querySelector("style");
+      const stylesObject = cssToObject(styleTag.innerHTML);
+
+      const headerClassStyles = stylesObject[":host"][".header "];
+      const descClassStyles = stylesObject[":host"][".description "];
+      const iconClassStyles = stylesObject[":host"][".icon "];
+
+      expect(headerClassStyles.fill.trim()).toBe(
+        `#${themes[name].title_color}`,
+      );
+      expect(descClassStyles.fill.trim()).toBe(`#${themes[name].text_color}`);
+      expect(iconClassStyles.fill.trim()).toBe(`#${themes[name].icon_color}`);
+      expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+        "fill",
+        `#${themes[name].bg_color}`,
+      );
+    });
+  });
+
+  it("should render custom colors with themes", () => {
+    document.body.innerHTML = renderGistCard(data, {
+      title_color: "5a0",
+      theme: "radical",
+    });
+
+    const styleTag = document.querySelector("style");
+    const stylesObject = cssToObject(styleTag.innerHTML);
+
+    const headerClassStyles = stylesObject[":host"][".header "];
+    const descClassStyles = stylesObject[":host"][".description "];
+    const iconClassStyles = stylesObject[":host"][".icon "];
+
+    expect(headerClassStyles.fill.trim()).toBe("#5a0");
+    expect(descClassStyles.fill.trim()).toBe(`#${themes.radical.text_color}`);
+    expect(iconClassStyles.fill.trim()).toBe(`#${themes.radical.icon_color}`);
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "fill",
+      `#${themes.radical.bg_color}`,
+    );
+  });
+
+  it("should render custom colors with themes and fallback to default colors if invalid", () => {
+    document.body.innerHTML = renderGistCard(data, {
+      title_color: "invalid color",
+      text_color: "invalid color",
+      theme: "radical",
+    });
+
+    const styleTag = document.querySelector("style");
+    const stylesObject = cssToObject(styleTag.innerHTML);
+
+    const headerClassStyles = stylesObject[":host"][".header "];
+    const descClassStyles = stylesObject[":host"][".description "];
+    const iconClassStyles = stylesObject[":host"][".icon "];
+
+    expect(headerClassStyles.fill.trim()).toBe(
+      `#${themes.default.title_color}`,
+    );
+    expect(descClassStyles.fill.trim()).toBe(`#${themes.default.text_color}`);
+    expect(iconClassStyles.fill.trim()).toBe(`#${themes.radical.icon_color}`);
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "fill",
+      `#${themes.radical.bg_color}`,
     );
   });
 });
