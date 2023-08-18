@@ -16,7 +16,7 @@ lang-card:
   - src/cards/top-languages-card.js
   - src/fetchers/top-languages-fetcher.js
   - tests/fetchTopLanguages.test.js
-  - tests/renderTopLanguages.test.js
+  - tests/renderTopLanguagesCard.test.js
 repo-card:
   - api/pin.js
   - src/cards/repo-card.js
