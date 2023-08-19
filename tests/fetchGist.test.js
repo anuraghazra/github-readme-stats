@@ -31,6 +31,14 @@ const gist_data = {
   },
 };
 
+const gist_not_found_data = {
+  data: {
+    viewer: {
+      gist: null,
+    },
+  },
+};
+
 const gist_errors_data = {
   errors: [
     {
@@ -60,6 +68,16 @@ describe("Test fetchGist", () => {
       starsCount: 33,
       forksCount: 11,
     });
+  });
+
+  it("should throw correct error if gist not found", async () => {
+    mock
+      .onPost("https://api.github.com/graphql")
+      .reply(200, gist_not_found_data);
+
+    await expect(fetchGist("bbfce31e0217a3689c8d961a356cb10d")).rejects.toThrow(
+      "Gist not found",
+    );
   });
 
   it("should throw error if reaponse contains them", async () => {

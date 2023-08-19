@@ -59,6 +59,7 @@ const fetcher = async (variables, token) => {
 const fetchGist = async (id) => {
   const res = await retryer(fetcher, { gistName: id });
   if (res.data.errors) throw new Error(res.data.errors[0].message);
+  if (!res.data.data.viewer.gist) throw new Error("Gist not found");
   const data = res.data.data.viewer.gist;
   return {
     name: data.files[Object.keys(data.files)[0]].name,
