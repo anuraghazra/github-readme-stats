@@ -70,6 +70,7 @@ describe("Test /api/gist", () => {
   it("should get the query options", async () => {
     const req = {
       query: {
+        id: "bbfce31e0217a3689c8d961a356cb10d",
         title_color: "fff",
         icon_color: "fff",
         text_color: "fff",
