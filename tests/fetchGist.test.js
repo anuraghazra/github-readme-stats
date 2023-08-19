@@ -69,4 +69,10 @@ describe("Test fetchGist", () => {
       "Some test GraphQL error",
     );
   });
+
+  it("should throw error if id is not provided", async () => {
+    await expect(fetchGist()).rejects.toThrow(
+      'Missing params "id" make sure you pass the parameters in URL',
+    );
+  });
 });
