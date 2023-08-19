@@ -1,6 +1,5 @@
 import axios from "axios";
 import { CustomError, MissingParamError } from "../common/utils.js";
-import { I18n } from "../common/I18n.js";
 
 /**
  * WakaTime data fetcher.

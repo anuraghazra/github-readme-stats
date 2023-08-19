@@ -17,10 +17,10 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@bea5baf987ba7aa777a8a0b4ace377a21c45c381 # v3.8.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm

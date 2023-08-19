@@ -29,10 +29,10 @@ const FAIL_TEXT = `
 const THEME_CONTRIB_GUIDELINES = `
   \rHi, thanks for the theme contribution. Please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).
 
-  \r> **Warning**
+  \r> [!WARNING]\
   \r> Keep in mind that we already have a vast collection of different themes. To keep their number manageable, we began to add only themes supported by the community. Your pull request with theme addition will be merged once we get enough positive feedback from the community in the form of thumbs up (see [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935#top-themes-prs)). Remember that you can also support themes of other contributors that you liked to speed up their merge.
 
-  \r> **Note**
+  \r> [!NOTE]\
   \r> Also, note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection, you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization).
 `;
 const COLOR_PROPS = {
@@ -113,7 +113,7 @@ const isPreviewComment = (inputs, comment) => {
  * @param {string} owner Owner of the repository.
  * @param {string} repo Repository name.
  * @param {string} commenter Comment author.
- * @returns {Object} The GitHub comment object.
+ * @returns {Object | undefined} The GitHub comment object.
  */
 const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
   const parameters = {
@@ -141,6 +141,8 @@ const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
       debug(`No theme preview comment found.`);
     }
   }
+
+  return undefined;
 };
 
 /**
@@ -164,14 +166,14 @@ const upsertComment = async (
 ) => {
   let resp;
   if (commentId !== undefined) {
-    resp = await octokit.issues.updateComment({
+    resp = await octokit.rest.issues.updateComment({
       owner,
       repo,
       comment_id: commentId,
       body,
     });
   } else {
-    resp = await octokit.issues.createComment({
+    resp = await octokit.rest.issues.createComment({
       owner,
       repo,
       issue_number: issueNumber,
@@ -200,7 +202,7 @@ const addReview = async (
   reviewState,
   reason,
 ) => {
-  await octokit.pulls.createReview({
+  await octokit.rest.pulls.createReview({
     owner,
     repo,
     pull_number: prNumber,
@@ -220,7 +222,7 @@ const addReview = async (
  * @returns {Promise<void>} Promise.
  */
 const addLabel = async (octokit, prNumber, owner, repo, labels) => {
-  await octokit.issues.addLabels({
+  await octokit.rest.issues.addLabels({
     owner,
     repo,
     issue_number: prNumber,
@@ -239,7 +241,7 @@ const addLabel = async (octokit, prNumber, owner, repo, labels) => {
  * @returns {Promise<void>} Promise.
  */
 const removeLabel = async (octokit, prNumber, owner, repo, label) => {
-  await octokit.issues.removeLabel({
+  await octokit.rest.issues.removeLabel({
     owner,
     repo,
     issue_number: prNumber,
@@ -259,7 +261,7 @@ const removeLabel = async (octokit, prNumber, owner, repo, label) => {
  * @returns {Promise<void>} Promise.
  */
 const addRemoveLabel = async (octokit, prNumber, owner, repo, label, add) => {
-  const res = await octokit.pulls.get({
+  const res = await octokit.rest.pulls.get({
     owner,
     repo,
     pull_number: prNumber,
@@ -389,7 +391,7 @@ export const run = async () => {
 
     // Retrieve the PR diff and preview-theme comment.
     debug("Retrieve PR diff...");
-    const res = await OCTOKIT.pulls.get({
+    const res = await OCTOKIT.rest.pulls.get({
       owner: OWNER,
       repo: REPO,
       pull_number: PULL_REQUEST_ID,
@@ -551,8 +553,8 @@ export const run = async () => {
         \r${warnings.map((warning) => `- :warning: ${warning}.\n`).join("")}
 
         \ntitle_color: <code>#${titleColor}</code> | icon_color: <code>#${iconColor}</code> | text_color: <code>#${textColor}</code> | bg_color: <code>#${bgColor}</code>${
-        borderColor ? ` | border_color: <code>#${borderColor}</code>` : ""
-      }
+          borderColor ? ` | border_color: <code>#${borderColor}</code>` : ""
+        }
 
         \r[Preview Link](${url})
 

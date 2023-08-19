@@ -1,6 +1,15 @@
 name: Update supported languages
 on:
   schedule:
+    #        ┌───────────── minute (0 - 59)
+    #        │ ┌───────────── hour (0 - 23)
+    #        │ │  ┌───────────── day of the month (1 - 31)
+    #        │ │  │   ┌───────────── month (1 - 12 or JAN-DEC)
+    #        │ │  │   │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+    #        │ │  │   │ │
+    #        │ │  │   │ │
+    #        │ │  │   │ │
+    #        * *  *   * *
     - cron: "0 0 */30 * *"
 
 permissions:
@@ -27,10 +36,10 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@bea5baf987ba7aa777a8a0b4ace377a21c45c381 # v3.8.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
@@ -44,7 +53,7 @@ jobs:
         run: npm run generate-langs-json
 
       - name: Create Pull Request if upstream language file is changed
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38 # v5.0.2
         with:
           commit-message: "refactor: update languages JSON"
           branch: "update_langs/patch"

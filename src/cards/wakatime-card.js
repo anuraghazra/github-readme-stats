@@ -37,15 +37,19 @@ const noCodingActivityNode = ({ color, text }) => {
 };
 
 /**
+ * @typedef {import('../fetchers/types').WakaTimeLang} WakaTimeLang
+ */
+
+/**
  * Create compact WakaTime layout.
  *
  * @param {Object} args The function arguments.
- * @param {import("../fetchers/types").WakaTimeLang} args.lang The languages array.
- * @param {number} args.totalSize The total size of the languages.
+ * @param {WakaTimeLang} args.lang The languages array.
  * @param {number} args.x The x position of the language node.
  * @param {number} args.y The y position of the language node.
+ * @returns {string} The compact layout language SVG node.
  */
-const createCompactLangNode = ({ lang, totalSize, x, y }) => {
+const createCompactLangNode = ({ lang, x, y }) => {
   const color = languageColors[lang.name] || "#858585";
 
   return `
@@ -62,26 +66,23 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
  * Create WakaTime language text node item.
  *
  * @param {Object} args The function arguments.
- * @param {import("../fetchers/types").WakaTimeLang[]} args.langs The language objects.
- * @param {number} args.totalSize The total size of the languages.
- * @param {number} args.x The x position of the language node.
+ * @param {WakaTimeLang[]} args.langs The language objects.
  * @param {number} args.y The y position of the language node.
+ * @returns {string[]} The language text node items.
  */
-const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
+const createLanguageTextNode = ({ langs, y }) => {
   return langs.map((lang, index) => {
     if (index % 2 === 0) {
       return createCompactLangNode({
         lang,
         x: 25,
         y: 12.5 * index + y,
-        totalSize,
       });
     }
     return createCompactLangNode({
       lang,
       x: 230,
       y: 12.5 + 12.5 * index,
-      totalSize,
     });
   });
 };
@@ -98,6 +99,7 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
  * @param {boolean} args.hideProgress Whether to hide the progress bar.
  * @param {string} args.progressBarColor The color of the progress bar.
  * @param {string} args.progressBarBackgroundColor The color of the progress bar background.
+ * @returns {string} The text SVG node.
  */
 const createTextNode = ({
   id,
@@ -142,7 +144,7 @@ const createTextNode = ({
  * Recalculating percentages so that, compact layout's progress bar does not break when
  * hiding languages.
  *
- * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
+ * @param {WakaTimeLang[]} languages The languages array.
  * @returns {void} The recalculated languages array.
  */
 const recalculatePercentages = (languages) => {
@@ -157,10 +159,15 @@ const recalculatePercentages = (languages) => {
 };
 
 /**
+ * @typedef {import('../fetchers/types').WakaTimeData} WakaTimeData
+ * @typedef {import('./types').WakaTimeOptions} WakaTimeOptions
+ */
+
+/**
  * Renders WakaTime card.
  *
- * @param {Partial<import('../fetchers/types').WakaTimeData>} stats WakaTime stats.
- * @param {Partial<import('./types').WakaTimeOptions>} options Card options.
+ * @param {Partial<WakaTimeData>} stats WakaTime stats.
+ * @param {Partial<WakaTimeOptions>} options Card options.
  * @returns {string} WakaTime card SVG.
  */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
@@ -274,10 +281,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       ${
         filteredLanguages.length
           ? createLanguageTextNode({
-              x: 0,
               y: 25,
               langs: filteredLanguages,
-              totalSize: 100,
             }).join("")
           : noCodingActivityNode({
               // @ts-ignore
@@ -298,7 +303,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               id: language.name,
               label: language.name,
               value: language.text,
-              index: index,
+              index,
               percent: language.percent,
               // @ts-ignore
               progressBarColor: titleColor,

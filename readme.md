@@ -68,6 +68,8 @@
   </p>
 </p>
 
+<p align="center">Please note that documentation translations may be outdated, try to use english documentation if possible.</p>
+
 <p align="center">Love the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!</p>
 
 <a href="https://indiafightscorona.giveindia.org">
@@ -95,8 +97,11 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 - [GitHub Extra Pins](#github-extra-pins)
     - [Usage](#usage)
     - [Demo](#demo)
-- [Top Languages Card](#top-languages-card)
+- [GitHub Gist Pins](#github-gist-pins)
     - [Usage](#usage-1)
+    - [Demo](#demo-1)
+- [Top Languages Card](#top-languages-card)
+    - [Usage](#usage-2)
     - [Language stats algorithm](#language-stats-algorithm)
     - [Exclude individual repositories](#exclude-individual-repositories)
     - [Hide individual languages](#hide-individual-languages)
@@ -106,9 +111,9 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Donut Vertical Chart Language Card Layout](#donut-vertical-chart-language-card-layout)
     - [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
     - [Hide Progress Bars](#hide-progress-bars)
-    - [Demo](#demo-1)
-- [Wakatime Stats Card](#wakatime-stats-card)
     - [Demo](#demo-2)
+- [Wakatime Stats Card](#wakatime-stats-card)
+    - [Demo](#demo-3)
 - [All Demos](#all-demos)
   - [Quick Tip (Align The Cards)](#quick-tip-align-the-cards)
 - [Deploy on your own](#deploy-on-your-own)
@@ -121,7 +126,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 
 # Important Notice <!-- omit in toc -->
 
-> **Warning**
+> [!IMPORTANT]\
 > Since the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)). We use caching to prevent this from happening (see https://github.com/anuraghazra/github-readme-stats#common-options). You can turn off these rate limit protections by deploying [your own Vercel instance](#disable-rate-limit-protections).
 
 # GitHub Stats Card
@@ -134,11 +139,11 @@ Change the `?username=` value to your GitHub username.
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-> **Warning**
+> [!WARNING]\
 > By default, the stats card only shows statistics like stars, commits and pull requests from public repositories. To show private statistics on the stats card, you should [deploy your own instance](#deploy-on-your-own) using your own GitHub API token.
 
-> **Note**
-> Available ranks are S (top 1%), A+ (12.5%), A (25%), A- (37.5%), B+ (50%), B (62.5%), B- (75%), C+ (87.5%) and C (everyone). This ranking scheme is based on the [Japanese academic grading](https://wikipedia.org/wiki/Academic_grading_in_Japan) system. The global percentile is calculated as a weighted sum of percentiles for each statistic (number of commits, pull requests, issues, stars and followers), based on the cumulative distribution function of the [exponential](https://wikipedia.org/wiki/exponential_distribution) and the [log-normal](https://wikipedia.org/wiki/Log-normal_distribution) distributions. The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js). The circle around the rank shows 100 minus the global percentile.
+> [!NOTE]\
+> Available ranks are S (top 1%), A+ (12.5%), A (25%), A- (37.5%), B+ (50%), B (62.5%), B- (75%), C+ (87.5%) and C (everyone). This ranking scheme is based on the [Japanese academic grading](https://wikipedia.org/wiki/Academic_grading_in_Japan) system. The global percentile is calculated as a weighted sum of percentiles for each statistic (number of commits, pull requests, reviews, issues, stars and followers), based on the cumulative distribution function of the [exponential](https://wikipedia.org/wiki/exponential_distribution) and the [log-normal](https://wikipedia.org/wiki/Log-normal_distribution) distributions. The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js). The circle around the rank shows 100 minus the global percentile.
 
 ### Hiding individual stats
 
@@ -154,10 +159,10 @@ You can pass a query parameter `&hide=` to hide any specific stats with comma-se
 
 You can pass a query parameter `&show=` to show any specific additional stats with comma-separated values.
 
-> Options: `&show=reviews,discussions_started,discussions_answered`
+> Options: `&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage`
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show=reviews)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage)
 ```
 
 ### Showing icons
@@ -292,7 +297,7 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 *   `locale` - Sets the language in the card *(e.g. cn, de, es, etc.)*. Default: `en`.
 *   `border_radius` - Corner rounding on the card. Default: `4.5`.
 
-> **Warning**
+> [!WARNING]\
 > We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours.
 
 ##### Gradient in bg\_color
@@ -317,14 +322,18 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 *   `disable_animations` - Disables all animations in the card *(boolean)*. Default: `false`.
 *   `ring_color` - Color of the rank circle *(hex color)*. Defaults to the theme ring color if it exists and otherwise the title color.
 *   `number_format` - Switches between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). Default: `short`.
-*   `show` - Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started` or `discussions_answered`) *(Comma-separated values)*. Default: `[] (blank array)`.
+*   `show` - Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started`, `discussions_answered`, `prs_merged` or `prs_merged_percentage`) *(Comma-separated values)*. Default: `[] (blank array)`.
 
-> **Note**
+> [!NOTE]\
 > When hide\_rank=`true`, the minimum card width is 270 px + the title length and padding.
 
 #### Repo Card Exclusive Options
 
 *   `show_owner` - Shows the repo's owner name *(boolean)*. Default: `false`.
+
+#### Gist Card Exclusive Options
+
+*   `show_owner` - Shows the gist's owner name *(boolean)*. Default: `false`.
 
 #### Language Card Exclusive Options
 
@@ -340,7 +349,7 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 *   `size_weight` - Configures language stats algorithm *(number)* (see [Language stats algorithm](#Language-stats-algorithm)), defaults to 1.
 *   `count_weight` - Configures language stats algorithm *(number)* (see [Language stats algorithm](#Language-stats-algorithm)), defaults to 0.
 
-> **Warning**
+> [!WARNING]\
 > Language names should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
 > (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
 > [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
@@ -382,17 +391,39 @@ Use [show\_owner](#repo-card-exclusive-options) query option to include the repo
 
 ![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=github-readme-stats\&show_owner=true)
 
+# GitHub Gist Pins
+
+GitHub gist pins allow you to pin gists in your GitHub profile using a GitHub readme profile.
+
+### Usage
+
+Copy-paste this code into your readme and change the links.
+
+Endpoint: `api/gist?id=bbfce31e0217a3689c8d961a356cb10d`
+
+```md
+[![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)](https://gist.github.com/Yizack/bbfce31e0217a3689c8d961a356cb10d/)
+```
+
+### Demo
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
+
+Use [show\_owner](#gist-card-exclusive-options) query option to include the gist's owner username
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d\&show_owner=true)
+
 # Top Languages Card
 
 The top languages card shows a GitHub user's most frequently used languages.
 
-> **Warning**
+> [!WARNING]\
 > By default, the language card shows language results only from public repositories. To include languages used in private repositories, you should [deploy your own instance](#deploy-on-your-own) using your own GitHub API token.
 
-> **Note**
+> [!NOTE]\
 > Top Languages does not indicate the user's skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats.
 
-> **Warning**
+> [!WARNING]\
 > This card shows languages usage only inside your own non-forked repositories, not depending from who is the author of the commits. It does not include your contributions into another users/organizations repositories. Currently there are no way to get this data from GitHub API. If you want this behavior to be improved you can support [this feature request](https://github.com/orgs/community/discussions/18230) created by [@rickstaa](https://github.com/rickstaa) inside GitHub Community.
 
 ### Usage
@@ -513,7 +544,7 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 
 # Wakatime Stats Card
 
-> **Warning**
+> [!WARNING]\
 > Please be aware that we currently only show data from Wakatime profiles that are public. You therefore have to make sure that **BOTH** `Display code time publicly` and `Display languages, editors, os, categories publicly` are enabled.
 
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
@@ -546,7 +577,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 *   Showing additional stats
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show=reviews,discussions_started,discussions_answered)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage)
 
 *   Showing icons
 
@@ -589,6 +620,14 @@ Choose from any of the [default themes](#themes)
 *   Customizing repo card
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra\&repo=github-readme-stats\&title_color=fff\&icon_color=f9f9f9\&text_color=9f9f9f\&bg_color=151515)
+
+*   Gist card
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
+
+*   Customizing gist card
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d&theme=calm)
 
 *   Top languages
 
@@ -651,10 +690,10 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 Since the GitHub API only allows 5k requests per hour, my `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter. If you host it on your own Vercel server, then you do not have to worry about anything. Click on the deploy button to get started!
 
-> **Note**
+> [!NOTE]\
 > Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58), we should be able to handle more than 5k requests and have fewer issues with downtime :grin:.
 
-> **Note**
+> [!NOTE]\
 > If you are on the [Pro (i.e. paid)](https://vercel.com/pricing) Vercel plan, the [maxDuration](https://vercel.com/docs/concepts/projects/project-configuration#value-definition) value found in the [Vercel.json](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json) can be increased when your Vercel instance frequently times out during the card request. You are advised to keep this value lower than `30` seconds to prevent high memory usage.
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
@@ -683,7 +722,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 
 ## On other platforms
 
-> **Warning**
+> [!WARNING]\
 > This way of using GRS is not officially supported and was added to cater to some particular use cases where Vercel could not be used (e.g. [#2341](https://github.com/anuraghazra/github-readme-stats/discussions/2341)). The support for this method, therefore, is limited.
 
 <details>
