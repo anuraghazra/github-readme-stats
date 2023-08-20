@@ -282,7 +282,7 @@ You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-1
 
 ### Customization
 
-You can customize the appearance of your `Stats Card` or `Repo Card` however you wish with URL parameters.
+You can customize the appearance of all your cards however you wish with URL parameters.
 
 #### Common Options
 
