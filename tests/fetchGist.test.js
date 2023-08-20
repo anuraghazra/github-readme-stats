@@ -39,6 +39,13 @@ const gist_data = {
             },
             size: 85858,
           },
+          {
+            name: "territories_spanish.txt",
+            language: {
+              name: "Text",
+            },
+            size: 87858,
+          },
         ],
       },
     },
@@ -70,7 +77,7 @@ describe("Test fetchGist", () => {
       nameWithOwner: "Yizack/countries.json",
       description:
         "List of countries and territories in English and Spanish: name, continent, capital, dial code, country codes, TLD, and area in sq km. Lista de países y territorios en Inglés y Español: nombre, continente, capital, código de teléfono, códigos de país, dominio y área en km cuadrados. Updated 2023",
-      language: "JSON",
+      language: "Text",
       starsCount: 33,
       forksCount: 11,
     });
