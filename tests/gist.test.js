@@ -4,6 +4,7 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { expect, it, describe, afterEach } from "@jest/globals";
 import { renderGistCard } from "../src/cards/gist-card.js";
+import { renderError } from "../src/common/utils.js";
 import gist from "../api/gist.js";
 
 const gist_data = {
@@ -98,6 +99,26 @@ describe("Test /api/gist", () => {
           forksCount: gist_data.data.viewer.gist.forks.totalCount,
         },
         { ...req.query },
+      ),
+    );
+  });
+
+  it("should render error if id is not provided", async () => {
+    const req = {
+      query: {},
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+
+    await gist(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError(
+        'Missing params "id" make sure you pass the parameters in URL',
+        "/api/gist?id=GIST_ID",
       ),
     );
   });
