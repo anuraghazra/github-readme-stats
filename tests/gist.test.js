@@ -150,4 +150,24 @@ describe("Test /api/gist", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(renderError("Gist not found"));
   });
+
+  it("should render error if wrong locale is provided", async () => {
+    const req = {
+      query: {
+        id: "bbfce31e0217a3689c8d961a356cb10d",
+        locale: "asdf",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+
+    await gist(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError("Something went wrong", "Language not found"),
+    );
+  });
 });
