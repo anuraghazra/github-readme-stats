@@ -177,10 +177,17 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 
 #### Exklusive Optionen der Sprachen-Karte:
 
-- `hide` - Verbirgt die angegebenen Sprachen von der Karte _(Komma separierte Werte)_
-- `hide_title` - _(Boolean)_
-- `layout` - Wechseln Sie zwischen den fünf verfügbaren Layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`
-- `card_width` - Lege die Breite der Karte manuell fest _(Zahl)_
+- `hide` - Verbirgt die angegebenen Sprachen von der Karte _(Komma separierte Werte)_. Standard: `[] (leeres Array)`.
+- `hide_title` - _(Boolean)_. Standard: `false`.
+- `layout` - Wechseln Sie zwischen den fünf verfügbaren Layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Standard: `normal`.
+- `card_width` - Lege die Breite der Karte manuell fest _(number)_. Standard: `300`.
+- `langs_count` - Zeigt mehr Sprachen auf der Karte an, zwischen 1-20 _(number)_. Standard: `5` für `normal` und `donut`, `6` für andere Layouts.
+- `exclude_repo` - Schließt angegebene Repositorys aus _(Kommagetrennte Werte)_. Standard: `[] (leeres Array)`.
+- `custom_title` - Setzt einen benutzerdefinierten Titel für die Karte _(String)_. Standard: `Most Used Languages`.
+- `disable_animations` - Deaktiviert alle Animationen auf der Karte _(Boolean)_. Standard: `false`.
+- `hide_progress` - Verwendet die kompakte Layoutoption, blendet Prozentsätze aus und entfernt die Balken. Standard: `false`.
+- `size_weight` - Konfiguriert den Algorithmus für Sprachstatistiken _(number)_ (siehe [Sprachstatistikalgorithmus](#Language-stats-algorithm)), Standard: 1.
+- `count_weight` - Konfiguriert den Algorithmus für Sprachstatistiken _(number)_ (siehe [Sprachstatistikalgorithmus](#Language-stats-algorithm)), Standard: 0.
 
 > :warning: **Wichtig:**
 > Sprachennamen sollten uri-escaped sein, wie hier angegeben: [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)

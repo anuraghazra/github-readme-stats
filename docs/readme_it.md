@@ -188,10 +188,17 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 
 #### Opzioni valide solo per le card dei linguaggi:
 
-- `hide` - Nasconde un linguaggio specifico _(valori separati da virgola)_
-- `hide_title` - Nasconde il titolo _(booleano)_
-- `layout` - Specificare il tipo di layout, `normal` (esteso), `compact` (compatto), `donut` (ciambella), `donut-vertical` (ciambella verticale) e `pie` (torta)
-- `card_width` - Specifica il valore della larghezza _(numero)_
+- `hide` - Nasconde un linguaggio specifico _(valori separati da virgola)_. Predefinito: `[] (array vuoto)`.
+- `hide_title` - Nasconde il titolo _(booleano)_. Predefinito: `false`.
+- `layout` - Specificare il tipo di layout, `normal` (esteso), `compact` (compatto), `donut` (ciambella), `donut-vertical` (ciambella verticale) e `pie` (torta). Predefinito: `normal`.
+- `card_width` - Specifica il valore della larghezza _(numero)_. Predefinito `300`.
+- `langs_count` - Mostra più lingue sulla carta, tra 1-20 _(numero)_. Predefinito: `5` per `normale` e `ciambella`, `6` per le altre disposizioni.
+- `exclude_repo` - Esclude i repository specificati _(valori separati da virgola)_. Predefinito: `[] (array vuoto)`.
+- `custom_title` - Imposta un titolo personalizzato per la carta _(stringa)_. Predefinito `Most Used Languages`.
+- `disable_animations` - Disabilita tutte le animazioni nella carta _(booleano)_. Predefinito: `false`.
+- `hide_progress` - Utilizza l'opzione di layout compatto, nasconde le percentuali e rimuove le barre. Predefinito: `false`.
+- `size_weight` - Configura l'algoritmo delle statistiche di linguaggio _(numero)_ (vedi [Algoritmo delle statistiche di linguaggio](#Language-stats-algorithm)), predefinito 1.
+- `count_weight` - Configura l'algoritmo delle statistiche di linguaggio _(numero)_ (vedi [Algoritmo delle statistiche di linguaggio](#Language-stats-algorithm)), predefinito 0.
 
 > :warning: **Importante:**
 > Per i nomi dei linguaggi, assicurati di effettuare l'encoding giusto nell'uri, come specificato in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)

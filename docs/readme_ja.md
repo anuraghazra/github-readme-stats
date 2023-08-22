@@ -190,13 +190,17 @@ bg_color オプションで複数のカンマ区切りの値を指定してグ�
 
 #### Language Card だけに存在するオプション
 
-- `hide` - 特定の言語を隠す _(カンマ区切りで指定)_
-- `hide_title` - _(boolean)_
-- `layout` - `normal` & `compact` & `donut` & `donut-vertical` & `pie` のいずれかのレイアウトに切り替える
-- `card_width` - カードの横幅 _(number)_
-- `langs_count` - 表示される言語の数　_(1 ~ 10, 初期値 5)_
-- `exclude_repo` - 指定されたリポジトリを除外する _(カンマ区切りで指定)_
-- `custom_title` - タイトル文字列を変更する
+- `hide` - 特定の言語を隠す _(カンマ区切りで指定)_。デフォルト：`[]（空の配列）`。
+- `hide_title` - _(boolean)_。デフォルト：`false`。
+- `layout` - `normal` & `compact` & `donut` & `donut-vertical` & `pie` のいずれかのレイアウトに切り替える。デフォルト：`normal`。
+- `card_width` - カードの横幅 _(number)_。デフォルト `300`。
+- `langs_count` - 表示される言語の数　_(1 ~ 20, 初期値 5)_。デフォルト：`通常`と`ドーナツ`では`5`、他のレイアウトでは`6`。
+- `exclude_repo` - 指定されたリポジトリを除外する _(カンマ区切りで指定)_。デフォルト：`[]（空の配列）`。
+- `custom_title` - タイトル文字列を変更する。デフォルト: `Most Used Languages`。
+- `disable_animations` - カード内のすべてのアニメーションを無効にします *(boolean)*。デフォルト：`false`。
+- `hide_progress` - コンパクトなレイアウトオプションを使用し、パーセンテージを非表示にし、バーを削除します。デフォルト：`false`。
+- `size_weight` - 言語統計アルゴリズムを設定します *(number)*（詳細は[言語統計アルゴリズム](#Language-stats-algorithm)を参照）、デフォルトは1です。
+- `count_weight` - 言語統計アルゴリズムを設定します *(number)*（詳細は[言語統計アルゴリズム](#Language-stats-algorithm)を参照）、デフォルトは0です。
 
 > :warning: **重要:**
 > [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) で指定されているように、プログラミング言語の名前は URL エンコードされている必要があります。

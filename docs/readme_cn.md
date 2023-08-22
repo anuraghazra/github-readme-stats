@@ -187,10 +187,17 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 #### 语言卡片专属选项:
 
-- `hide` - 从卡片中隐藏指定语言 _(Comma seperated values)_
-- `hide_title` - _(boolean)_
-- `layout` - 提供五種佈局 `normal` & `compact` & `donut` & `donut-vertical` & `pie` 间切换
-- `card_width` - 手动设置卡片的宽度 _(number)_
+- `hide` - 从卡片中隐藏指定语言 _(逗号分隔的值)_。默认：`[] (空数组)`。
+- `hide_title` - _(boolean)_。默认：`false`。
+- `layout` - 提供五種佈局 `normal` & `compact` & `donut` & `donut-vertical` & `pie` 间切换。默认：`normal`。
+- `card_width` - 手动设置卡片的宽度 _(number)_。默认 `300`。
+- `langs_count` - 在卡片上显示更多的语言，范围在 1-20 之间 _(number)_。默认：`normal` 和 `donut` 为 `5`，其他布局为 `6`。
+- `exclude_repo` - 排除指定的仓库 _(逗号分隔的值)_。默认：`[] (空数组)`。
+- `custom_title` - 为卡片设置自定义标题 _(string)_。默认为 `Most Used Languages`。
+- `disable_animations` - 在卡片中禁用所有动画 _(boolean)_。默认：`false`。
+- `hide_progress` - 使用紧凑的布局选项，隐藏百分比并删除条形图。默认：`false`。
+- `size_weight` - 配置语言统计算法 _(number)_（请参阅[语言统计算法](#Language-stats-algorithm)），默认为 1。
+- `count_weight` - 配置语言统计算法 _(number)_（请参阅[语言统计算法](#Language-stats-algorithm)），默认为 0。
 
 > :warning: **重要:**
 > 如 [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) 所指定，语言名称应使用 uri 转义。

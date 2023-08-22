@@ -195,13 +195,19 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 
 #### Exclusieve opties voor Programmeertaal Kaart:
 
-- `hide` - Verbergt specifieke talen van de kaart _(komma gescheiden waardes)_
-- `hide_title` - _(boolean)_
-- `layout` - Kies uit de vijf beschikbare lay-outs `normal` & `compact` & `donut` & `donut-vertical` & `pie`
-- `card_width` - Stelt de breedte van de kaart handmatig in. _(nummer)_
-- `langs_count` - Laat meer talen op de kaart zien, waarde tussen 1-10, staat standaard op to 5 _(nummer)_
-- `exclude_repo` - Verbergt specifieke repositories _(komma gescheiden waardes)_
-- `custom_title` - Stelt een eigen titel voor de kaart in
+- `hide` - Verbergt specifieke talen van de kaart _(komma gescheiden waardes)_. Standaard: `[] (lege array)`.
+- `hide_title` - _(boolean)_. Standaard: `false`.
+- `layout` - Kies uit de vijf beschikbare lay-outs `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Standaard: `normal`.
+- `card_width` - Stelt de breedte van de kaart handmatig in. _(nummer)_. Standaard `300`.
+- `langs_count` - Laat meer talen op de kaart zien, waarde tussen 1-20. Standaard: `5` voor `normal` en `donut`, `6` voor andere indelingen.
+- `exclude_repo` - Verbergt specifieke repositories _(komma gescheiden waardes)_. Standaard: `[] (lege array)`.
+- `custom_title` - Stelt een eigen titel voor de kaart in. Standaard `Most Used Languages`.
+- `disable_animations` - Schakelt alle animaties uit op de kaart *(boolean)*. Standaard: `false`.
+- `hide_progress` - Gebruikt de compacte indelingsoptie, verbergt percentages en verwijdert de balken. Standaard: `false`.
+- `size_weight` - Configureert het taalstatistieken-algoritme *(number)* (zie [Taalstatistieken-algoritme](#Language-stats-algorithm)), standaardwaarde is 1.
+- `count_weight` - Configureert het taalstatistieken-algoritme *(number)* (zie [Taalstatistieken-algoritme](#Language-stats-algorithm)), standaardwaarde is 0.
+
+Dit is een .md-document op GitHub, ik heb de tekst voor je naar het Nederlands vertaald, met uitzondering van links en variabelen.
 
 > :Waarschuwing: **Belangrijk:**
 > Namen van programmeertalen moeten worden geuri-escaped, zoals gespecificeerd in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
@@ -277,7 +283,7 @@ Je kan de `?hide=taal1,taal2` parameter gebruiken om individuele programmeer tal
 
 ### Laat meer programmeertalen zien
 
-Je kan de `&langs_count=` optie gebruiken om de hoeveelheid talen op je kaart groter en kleiner te maken. Geldige waardes zijn tussen de 1 en 10 (inclusief), en de standaard waarde is 5.
+Je kan de `&langs_count=` optie gebruiken om de hoeveelheid talen op je kaart groter en kleiner te maken. Geldige waardes zijn tussen de 1 en 20 (inclusief), en de standaard waarde is 5.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)

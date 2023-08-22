@@ -195,13 +195,17 @@ bg_color içerisinde birden fazla rengi gradient olarak göstermek için virgül
 
 #### Dil Kartları Exclusive Özellikler:
 
-- `hide` - Belirli bir dili listede gizler _(Virgül ile ayırılmış değerlerle)_
-- `hide_title` - _(boolean)_
-- `layout` - Beş uygun tasarım / düzen arasında geçiş yapın `normal` & `compact` & `donut` & `donut-vertical` & `pie`
-- `card_width` - Kartın genişliğini manuel olarak belirler _(number)_
-- `langs_count` - 1-10 arasında istediğiniz kadar dil gösterebilirsiniz. Varsayılan: 5 _(number)_
-- `exclude_repo` - Belirli repoları listeden çıkartır _(Virgül ile ayırılmış değerlerle)_
-- `custom_title` - Kart için istediğiniz bir başlığı belirler
+- `hide` - Belirli bir dili listede gizler _(Virgül ile ayırılmış değerlerle)_. Varsayılan: `[] (boş dizi)`.
+- `hide_title` - _(boolean)_. Varsayılan: `false`.
+- `layout` - Beş uygun tasarım / düzen arasında geçiş yapın `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Varsayılan: `normal`.
+- `card_width` - Kartın genişliğini manuel olarak belirler _(number)_. Varsayılan `300`.
+- `langs_count` - 1-20 arasında istediğiniz kadar dil gösterebilirsiniz. Varsayılan: `normal` ve `tatlı` için `5`, diğer düzenler için `6`.
+- `exclude_repo` - Belirli repoları listeden çıkartır _(Virgül ile ayırılmış değerlerle)_. Varsayılan: `[] (boş dizi)`.
+- `custom_title` - Kart için istediğiniz bir başlığı belirler. Varsayılan `Most Used Languages`.
+- `animasyonları_devre_dışı_bırak` - Karttaki tüm animasyonları devre dışı bırakır *(boolean)*. Varsayılan: `false`.
+- `ilerlemeyi_gizle` - Kompakt düzen seçeneğini kullanır, yüzdeleri gizler ve çubukları kaldırır. Varsayılan: `false`.
+- `boyut_ağırlığı` - Dil istatistikleri algoritmasını yapılandırır *(number)* (bakınız [Dil istatistikleri algoritması](#Language-stats-algorithm)), varsayılan olarak 1.
+- `sayım_ağırlığı` - Dil istatistikleri algoritmasını yapılandırır *(number)* (bakınız [Dil istatistikleri algoritması](#Language-stats-algorithm)), varsayılan olarak 0.
 
 > :warning: **Önemli:**
 > Dİl isimleri [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)'te belirtildiği üzere uri-escaped olarak belirtilmelidir.
@@ -276,7 +280,7 @@ Endpoint: `api/top-langs?username=mustafacagri`
 
 ### Daha Fazla Dil Gösterin
 
-`&langs_count=` parametresini kullanarak kartınızda gösterilen dil sayısını azaltabilir ya da artırabilirsiniz. Varsayılan değeri 5, kullanılabilir sayı aralığı ise 1-10'dur.
+`&langs_count=` parametresini kullanarak kartınızda gösterilen dil sayısını azaltabilir ya da artırabilirsiniz. Varsayılan değeri 5, kullanılabilir sayı aralığı ise 1-20'dur.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mustafacagri&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)

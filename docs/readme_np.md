@@ -193,13 +193,17 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 #### भाषा कार्ड अनन्य विकल्पहरू :
 
-- `hide` - Hide the languages specified from the card _(Comma-separated values)_
-- `hide_title` - _(boolean)_
-- `layout` - Switch between five available layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Default: `normal`.
-- `card_width` - Set the card's width manually _(number)_
-- `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
-- `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
-- `custom_title` - Sets a custom title for the card
+- `hide` - कार्डबाट दिइएका भाषाहरूलाई लुकाउँछ _(कमा-विभाजित मूल्यहरू)_। Default: `[] (खाली सरणी)`।
+- `hide_title` - _(boolean)_। Default: `false`।
+- `layout` - पाँच उपलब्ध लेआउटहरूमध्ये परिवर्तन गर्दछ `normal` & `compact` & `donut` & `donut-vertical` & `pie`। Default: `normal`।
+- `card_width` - कार्डको चौडाइलाई म्यानुअल रूपमा सेट गर्दछ _(number)_। Default `300`।
+- `langs_count` - कार्डमा अधिक भाषाहरू देखाउँछ, 1-20 को बीच _(number)_। Default: `सामान्य` र `डोनट` को लागि `5`, अन्य लेआउटहरूको लागि `6`।
+- `exclude_repo` - निर्दिष्ट रिपोजिटोरीहरूलाई बाहिर राख्दछ _(कमा-विभाजित मूल्यहरू)_। Default: `[] (खाली सरणी)`।
+- `custom_title` - कार्डको लागि विशेष शीर्षक सेट गर्दछ _(number)_। Default `Most Used Languages`।
+- `disable_animations` - कार्डमा सबै एनिमेसनलाई अक्षम गर्दछ _(boolean)_। Default: `false`।
+- `hide_progress` - संक्षिप्त लेआउट विकल्प प्रयोग गर्दछ, प्रतिशतहरूलाई लुकाउँछ, र बारहरूलाई हटाउँछ। Default: `false`।
+- `size_weight` - भाषा आँकडा एल्गोरिदमको कृयात्मक गर्दछ _(number)_ (देख्नुहोस् [भाषा आँकडा एल्गोरिदम](#Language-stats-algorithm)), Default: `1`।
+- `count_weight` - भाषा आँकडा एल्गोरिदमको कृयात्मक गर्दछ _(number)_ (देख्नुहोस् [भाषा आँकडा एल्गोरिदम](#Language-stats-algorithm)), Default: `0`।
 
 > :warning: **Important:**
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
@@ -273,7 +277,7 @@ You can use `?hide=language1,language2` parameter to hide individual languages.
 
 ### धेरॆ भाषाहरु हेर्नको लागि 
 
-You can use the `&langs_count=` option to increase or decrease the number of languages shown on the card. Valid values are integers between 1 and 10 (inclusive), and the default is 5.
+You can use the `&langs_count=` option to increase or decrease the number of languages shown on the card. Valid values are integers between 1 and 20 (inclusive), and the default is 5.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)

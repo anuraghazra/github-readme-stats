@@ -181,10 +181,19 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 
 #### Opções exclusivas do cartão de linguagens:
 
-- `hide` - Oculta linguagens específicas _(Valores separados por vírgulas)_
-- `hide_title` - Oculta o título _(boolean)_
-- `layout` - Alternar entre os cinco layouts disponíveis `normal` & `compact` & `donut` & `donut-vertical` & `pie`
-- `card_width` - Define a largura do cartão manualmente _(number)_
+- `hide` - Oculta linguagens específicas _(Valores separados por vírgulas)_. Padrão: `[] (array vazio)`.
+- `hide_title` - Oculta o título _(boolean)_. Padrão: `false`.
+- `layout` - Alternar entre os cinco layouts disponíveis `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Padrão: `normal`.
+- `card_width` - Define a largura do cartão manualmente _(number)_. Padrão `300`.
+- `langs_count` - Mostra mais idiomas no cartão, entre 1-20 *(number)*. Padrão: `5` para `normal` e `donut`, `6` para outros layouts.
+- `exclude_repo` - Exclui repositórios especificados *(valores separados por vírgulas)*. Padrão: `[] (array vazio)`.
+- `custom_title` - Define um título personalizado para o cartão *(string)*. Padrão `Most Used Languages`.
+- `disable_animations` - Desativa todas as animações no cartão *(boolean)*. Padrão: `false`.
+- `hide_progress` - Usa a opção de layout compacto, esconde as porcentagens e remove as barras. Padrão: `false`.
+- `size_weight` - Configura o algoritmo de estatísticas de idioma *(number)* (veja [Algoritmo de estatísticas de idioma](#Language-stats-algorithm)), padrão: 1.
+- `count_weight` - Configura o algoritmo de estatísticas de idioma *(number)* (veja [Algoritmo de estatísticas de idioma](#Language-stats-algorithm)), padrão: 0.
+
+É um documento .md do GitHub, por favor traduza o texto, excluindo links e nomes de variáveis, para o português.
 
 > :warning: **Importante:**
 > Nomes de linguagens devem ser uma sequência escapada de URI, como específicado em [Codificação por cento](https://pt.wikipedia.org/wiki/Codificação_por_cento)

@@ -208,13 +208,17 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 #### 언어 사용량 통계 카드의 표시 제한 옵션:
 
-- `hide` - 카드에서 특정 언어 제외 _(Comma-separated values)_
-- `hide_title` - 타이틀 제외 _(boolean)_
-- `layout` - 5가지 값 사용 가능, `normal` & `compact` & `donut` & `donut-vertical` & `pie` 중 표시 형태 선택
-- `card_width` - 카드 너비 직접 설정 _(number)_
-- `langs_count` - 카드에 표시할 언어의 수 (1-10 사이, 기본 값 : 5) _(number)_
-- `exclude_repo` - 통계에 제외할 저장소 지정 _(Comma-separated values)_
-- `custom_title` - 카드의 타이틀 값 설정
+- `hide` - 카드에서 특정 언어 제외 _(쉼표로 구분된 값)_. 기본값: `[] (빈 배열)`.
+- `hide_title` - 타이틀 제외 _(boolean)_. 기본값: `false`.
+- `layout` - 5가지 값 사용 가능, `normal` & `compact` & `donut` & `donut-vertical` & `pie` 중 표시 형태 선택. 기본값: `normal`.
+- `card_width` - 카드 너비 직접 설정 _(number)_. 기본값 `300`.
+- `langs_count` - 카드에 표시할 언어의 수 (1-20 사이). 기본값: `normal` 및 `donut`의 경우 `5`, 기타 레이아웃의 경우 `6`.
+- `exclude_repo` - 통계에 제외할 저장소 지정 _(쉼표로 구분된 값)_. 기본값: `[] (빈 배열)`.
+- `custom_title` - 카드의 타이틀 값 설정 _(string)_.. 기본값 `Most Used Languages`.
+- `disable_animations` - 카드의 모든 애니메이션을 비활성화 _(boolean)_. 기본값: `false`.
+- `hide_progress` - 간소화된 레이아웃 옵션을 사용하여 백분율과 막대를 제거. 기본값: `false`.
+- `size_weight` - 언어 통계 알고리즘 구성 _(number)_ (자세한 내용은 [언어 통계 알고리즘](#Language-stats-algorithm) 참조), 기본값: 1.
+- `count_weight` - 언어 통계 알고리즘 구성 _(number)_ (자세한 내용은 [언어 통계 알고리즘](#Language-stats-algorithm) 참조), 기본값: 0.
 
 ##### 경고! **매우 중요**
 >
@@ -292,7 +296,7 @@ _참고:
 
 ### 표시할 언어 수 지정하기
 
-`&langs_count=` 속성을 통해 카드에 표시할 언어의 수를 지정할 수 있어요. (1-10 사이, 기본 값 : 5)
+`&langs_count=` 속성을 통해 카드에 표시할 언어의 수를 지정할 수 있어요. (1-20 사이, 기본 값 : 5)
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)

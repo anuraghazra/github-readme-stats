@@ -194,13 +194,17 @@ Puedes pasar mútliples valores separados por coma en la opción `bg_color` para
 
 #### Opciones exclusivas de la Tarjeta de Lenguajes:
 
-- `hide` - Oculta de la tarjeta los lenguajes especificados  _(valores separados por comas)_
-- `hide_title` - _(booleano)_
-- `layout` - Cambiar entre los cinco diseños disponibles `normal` & `compact` & `donut` & `donut-vertical` & `pie`
-- `card_width` - Establece el ancho de la tarjeta manualmente _(número)_
-- `langs_count` - Muestra más lenguajes en la tarjeta, entre 1-10, por defecto 5 _(número)_
-- `exclude_repo` - Excluye los repositorios especificados  _(valores separados por comas)_
-- `custom_title` - Establece un título personalizado
+- `hide` - Oculta de la tarjeta los lenguajes especificados  _(valores separados por comas)_. Por defecto: `[] (matriz vacía)`.
+- `hide_title` - _(booleano)_. Por defecto: `false`.
+- `layout` - Cambiar entre los cinco diseños disponibles `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Por defecto: `normal`.
+- `card_width` - Establece el ancho de la tarjeta manualmente _(número)_. Por defecto: `300`.
+- `langs_count` - Muestra más lenguajes en la tarjeta, entre 1-20 _(número)_. Por defecto: `5` para `normal` y `donut`, `6` para otros diseños.
+- `exclude_repo` - Excluye repositorios especificados _(valores separados por comas)_. Por defecto: `[] (matriz vacía)`.
+- `custom_title` - Establece un título personalizado para la tarjeta _(cadena)_. Por defecto: `Most Used Languages`.
+- `disable_animations` - Desactiva todas las animaciones en la tarjeta _(booleano)_. Por defecto: `false`.
+- `hide_progress` - Utiliza la opción de diseño compacto, oculta los porcentajes y elimina las barras. Por defecto: `false`.
+- `size_weight` - Configura el algoritmo de estadísticas de lenguaje _(número)_ (ver [Algoritmo de estadísticas de lenguaje](#Language-stats-algorithm)), por defecto 1.
+- `count_weight` - Configura el algoritmo de estadísticas de lenguaje _(número)_ (ver [Algoritmo de estadísticas de lenguaje](#Language-stats-algorithm)), por defecto 0.
 
 > :warning: **Importante:**
 > Los nombres de los lenguajes deben estar codificados para URLs, como se especifica en [Código porciento](https://es.wikipedia.org/wiki/C%C3%B3digo_porciento)
@@ -276,7 +280,7 @@ Puedes usar el parámetro `?hide=language1,language2` para ocultar lenguajes ind
 
 ### Mostrar más lenguajes
 
-Puedes usar el paramétro `&langs_count=` para incrementar o decrementar el número de lenguajes mostrados en la tarjeta. Los valores admitidos son los números enteros entre 1 y 10 (inclusive), y el valor por defecto es 5.
+Puedes usar el paramétro `&langs_count=` para incrementar o decrementar el número de lenguajes mostrados en la tarjeta. Los valores admitidos son los números enteros entre 1 y 20 (inclusive), y el valor por defecto es 5.
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)

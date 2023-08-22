@@ -174,10 +174,17 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 #### Language Card Exclusive Options:
 
--   `hide` - Masquer les langages spécifiés sur la carte _(Comma seperated values)_
--   `hide_title` - Masquer le titre _(boolean)_
--   `layout` - Alterner entre 5 mise en page `normal` & `compact` & `donut` & `donut-vertical` & `pie`
--   `card_width` - Fixer la largeur de la carte manuellement _(number)_
+-   `hide` - Masque les langages spécifiés de la carte _(valeurs séparées par des virgules)_. Par défaut: `[] (tableau vide)`.
+-   `hide_title` - _(booléen)_. Par défaut: `false`.
+-   `layout` - Alterne entre cinq mises en page disponibles `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Par défaut: `normal`.
+-   `card_width` - Définit manuellement la largeur de la carte _(nombre)_. Par défaut `300`.
+-   `langs_count` - Affiche plus de langages sur la carte, entre 1-20 _(nombre)_. Par défaut: `5` pour `normal` et `donut`, `6` pour les autres mises en page.
+-   `exclude_repo` - Exclut les dépôts spécifiés _(valeurs séparées par des virgules)_. Par défaut: `[] (tableau vide)`.
+-   `custom_title` - Définit un titre personnalisé pour la carte _(chaîne)_. Par défaut `Most Used Languages`.
+-   `disable_animations` - Désactive toutes les animations dans la carte _(booléen)_. Par défaut: `false`.
+-   `hide_progress` - Utilise l'option de mise en page compacte, masque les pourcentages et supprime les barres. Par défaut: `false`.
+-   `size_weight` - Configure l'algorithme de statistiques de langage _(nombre)_ (voir [Algorithme de statistiques de langage](#Language-stats-algorithm)), par défaut 1.
+-   `count_weight` - Configure l'algorithme de statistiques de langage _(nombre)_ (voir [Algorithme de statistiques de langage](#Language-stats-algorithm)), par défaut 0.
 
 > :warning: **Important:**
 > Les noms des langages doivent être en format uri, comme spécifié dans [Percent Encoding](https://fr.wikipedia.org/wiki/Percent-encoding)
