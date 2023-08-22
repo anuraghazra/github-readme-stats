@@ -141,11 +141,31 @@ describe("FetchTopLanguages", () => {
     });
   });
 
-  it("should throw error", async () => {
+  it("should throw specific error when user not found", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, error);
 
     await expect(fetchTopLanguages("anuraghazra")).rejects.toThrow(
       "Could not resolve to a User with the login of 'noname'.",
+    );
+  });
+
+  it("should throw other errors with their message", async () => {
+    mock.onPost("https://api.github.com/graphql").reply(200, {
+      errors: [{ message: "Some test GraphQL error" }],
+    });
+
+    await expect(fetchTopLanguages("anuraghazra")).rejects.toThrow(
+      "Some test GraphQL error",
+    );
+  });
+
+  it("should throw error with specific message when error does not contain message property", async () => {
+    mock.onPost("https://api.github.com/graphql").reply(200, {
+      errors: [{ type: "TEST" }],
+    });
+
+    await expect(fetchTopLanguages("anuraghazra")).rejects.toThrow(
+      "Something went while trying to retrieve the language data using the GraphQL API.",
     );
   });
 });
