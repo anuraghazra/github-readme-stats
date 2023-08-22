@@ -4,6 +4,7 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { expect, it, describe, afterEach } from "@jest/globals";
 import { renderGistCard } from "../src/cards/gist-card.js";
+import { renderError } from "../src/common/utils.js";
 import gist from "../api/gist.js";
 
 const gist_data = {
@@ -29,6 +30,14 @@ const gist_data = {
           },
         ],
       },
+    },
+  },
+};
+
+const gist_not_found_data = {
+  data: {
+    viewer: {
+      gist: null,
     },
   },
 };
@@ -100,5 +109,45 @@ describe("Test /api/gist", () => {
         { ...req.query },
       ),
     );
+  });
+
+  it("should render error if id is not provided", async () => {
+    const req = {
+      query: {},
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+
+    await gist(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError(
+        'Missing params "id" make sure you pass the parameters in URL',
+        "/api/gist?id=GIST_ID",
+      ),
+    );
+  });
+
+  it("should render error if gist is not found", async () => {
+    const req = {
+      query: {
+        id: "bbfce31e0217a3689c8d961a356cb10d",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock
+      .onPost("https://api.github.com/graphql")
+      .reply(200, gist_not_found_data);
+
+    await gist(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(renderError("Gist not found"));
   });
 });
