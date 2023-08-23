@@ -461,8 +461,8 @@ export const themes = {
   glow_worm: {
     title_color: "91f2ff",
     text_color: "ffffff",
-    icon_color: "2de1da",
-    bg_color: "29565b",
+    icon_color: "ffebbc",
+    bg_color: "121212",
   },
   whatsapp_light: {
     title_color: "008069",
