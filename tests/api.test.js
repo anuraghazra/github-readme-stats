@@ -276,4 +276,13 @@ describe("Test /api/", () => {
       }),
     );
   });
+
+  it("should render error card if username in blacklist", async () => {
+    const { req, res } = faker({ username: "renovate-bot" }, data_stats);
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(renderError("Something went wrong"));
+  });
 });
