@@ -16,7 +16,7 @@
         // Possible Errors (overrides from recommended set)
 
         // "no-extra-parens": "error",
-        // "no-unexpected-multiline": "error",
+        "no-unexpected-multiline": "error",
 
         // All JSDoc comments must be valid
         
