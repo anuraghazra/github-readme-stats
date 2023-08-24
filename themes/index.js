@@ -451,7 +451,7 @@ export const themes = {
     bg_color: "ededeb",
   },
   darkes_cadillac: {
-    title_color: "b81a78",
+    title_color: "e12d99",
     text_color: "ffffff",
     icon_color: "e0b4bc",
     bg_color: "090b0c",
