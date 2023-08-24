@@ -444,6 +444,30 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+  qamariyah: {
+    title_color: "416284",
+    text_color: "382a1f",
+    icon_color: "294f50",
+    bg_color: "ededeb",
+  },
+  darkes_cadillac: {
+    title_color: "b81a78",
+    text_color: "ffffff",
+    icon_color: "e0b4bc",
+    bg_color: "090b0c",
+  },
+  darkes_mercury: {
+    title_color: "747c7c",
+    text_color: "ffffff",
+    icon_color: "839aa7",
+    bg_color: "090b0c",
+  },
+  darkes_sun: {
+    title_color: "fca311",
+    text_color: "ffffff",
+    icon_color: "f55119",
+    bg_color: "090b0c",
+  },
 };
 
 export default themes;
