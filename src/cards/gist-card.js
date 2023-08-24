@@ -52,7 +52,9 @@ const createLanguageNode = (langName, langColor) => {
  * @returns {string} Icon with label SVG object.
  */
 const iconWithLabel = (icon, label, testid) => {
-  if (typeof label === "number" && label <= 0) return "";
+  if (typeof label === "number" && label <= 0) {
+    return "";
+  }
   const iconSvg = `
       <svg
         class="icon"
