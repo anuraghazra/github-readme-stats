@@ -138,4 +138,23 @@ describe("Test /api/pin", () => {
       renderError("Organization Repository Not found"),
     );
   });
+
+  it("should render error card if username in blacklist", async () => {
+    const req = {
+      query: {
+        username: "renovate-bot",
+        repo: "convoychat",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
+
+    await pin(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(renderError("Something went wrong"));
+  });
 });
