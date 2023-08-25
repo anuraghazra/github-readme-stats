@@ -276,4 +276,24 @@ describe("Test /api/", () => {
       }),
     );
   });
+
+  it("should render error card if username in blacklist", async () => {
+    const { req, res } = faker({ username: "renovate-bot" }, data_stats);
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(renderError("Something went wrong"));
+  });
+
+  it("should render error card when wrong locale is provided", async () => {
+    const { req, res } = faker({ locale: "asdf" }, data_stats);
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError("Something went wrong", "Language not found"),
+    );
+  });
 });
