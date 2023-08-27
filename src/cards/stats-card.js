@@ -102,6 +102,7 @@ const renderStatsCard = (stats, options = {}) => {
     totalDiscussionsAnswered,
     contributedTo,
     rank,
+    test,
   } = stats;
   const {
     hide = [],
@@ -232,6 +233,13 @@ const renderStatsCard = (stats, options = {}) => {
     label: i18n.t("statcard.contribs"),
     value: contributedTo,
     id: "contribs",
+  };
+
+  STATS.test = {
+    icon: icons.test,
+    label: i18n.t("statcard.test"),
+    value: test,
+    id: "test",
   };
 
   const longLocales = [
