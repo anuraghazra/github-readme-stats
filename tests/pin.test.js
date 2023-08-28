@@ -179,4 +179,24 @@ describe("Test /api/pin", () => {
       renderError("Something went wrong", "Language not found"),
     );
   });
+
+  it("should render error card if missing required parameters", async () => {
+    const req = {
+      query: {},
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+
+    await pin(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError(
+        'Missing params "username", "repo" make sure you pass the parameters in URL',
+        "/api/pin?username=USERNAME&amp;repo=REPO_NAME",
+      ),
+    );
+  });
 });
