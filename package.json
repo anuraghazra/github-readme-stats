@@ -55,7 +55,7 @@
     "prettier": "^3.0.2"
   },
   "dependencies": {
-    "axios": "^1.4.0",
+    "axios": "^1.5.0",
     "dotenv": "^16.3.1",
     "emoji-name-map": "^1.2.8",
     "github-username-regex": "^1.0.0",
