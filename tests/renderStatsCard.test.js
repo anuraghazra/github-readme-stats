@@ -449,4 +449,14 @@ describe("Test renderStatsCard", () => {
       queryByTestId(document.body, "percentile-rank-value").textContent.trim(),
     ).toBe(stats.rank.percentile.toFixed(1) + "%");
   });
+
+  it("should show the progress", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      rank_icon: "progress",
+    });
+    expect(queryByTestId(document.body, "rank-progress-text")).toBeDefined();
+    expect(
+      queryByTestId(document.body, "progress-rank-icon").textContent.trim(),
+    ).toBe((100 - stats.rank.percentile).toFixed(1) + "%");
+  });
 });
