@@ -58,6 +58,11 @@ var PULL_REQUEST_ID;
  * @returns {Error} IncorrectJsonFormatError.
  */
 class IncorrectJsonFormatError extends Error {
+  /**
+   * Constructor.
+   *
+   * @param {string} message Error message.
+   */
   constructor(message) {
     super(message);
     this.name = "IncorrectJsonFormatError";
