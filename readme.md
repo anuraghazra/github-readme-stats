@@ -35,7 +35,7 @@
   <p align="center">
     <a href="#all-demos">View Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Report Bug</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
     ·
