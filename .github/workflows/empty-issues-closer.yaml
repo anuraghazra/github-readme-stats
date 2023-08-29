@@ -26,7 +26,8 @@ jobs:
     name: Close empty issues
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.5.3 # NOTE: Retrieve issue templates.
+      # NOTE: Retrieve issue templates.
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3.6.0
 
       - name: Run empty issues closer action
         uses: rickstaa/empty-issues-closer-action@7b2290364eb15bc228f7e7e1bb1b930fd850a71b # v1.1.14
