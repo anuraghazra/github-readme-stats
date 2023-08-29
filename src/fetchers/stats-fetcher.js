@@ -214,7 +214,6 @@ const fetchStats = async (
     totalDiscussionsAnswered: 0,
     contributedTo: 0,
     rank: { level: "C", percentile: 100 },
-    test: "",
   };
 
   let res = await statsFetcher(username);
@@ -261,7 +260,6 @@ const fetchStats = async (
   stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;
   stats.totalDiscussionsAnswered = user.repositoryDiscussionComments.totalCount;
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
-  stats.test = user.name; // Test: "not changing"
 
   // Retrieve stars while filtering out repositories to be hidden.
   let repoToHide = new Set(exclude_repo);
