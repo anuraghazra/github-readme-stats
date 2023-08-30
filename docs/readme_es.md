@@ -38,7 +38,7 @@
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Reportar un bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicitar una mejora</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Solicitar una mejora</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>

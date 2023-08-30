@@ -38,7 +38,7 @@
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Fehler melden</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Funktion wünschen</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Funktion wünschen</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
