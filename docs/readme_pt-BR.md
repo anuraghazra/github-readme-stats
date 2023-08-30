@@ -35,7 +35,7 @@
   <p align="center">
     <a href="#demonstração">Ver demonstração</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Reportar erros</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Reportar erros</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicitar recursos</a>
   </p>
