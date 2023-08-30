@@ -35,9 +35,9 @@
   <p align="center">
     <a href="#démo">Voir la démo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Soumettre un bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Soumettre un bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Demander une nouveauté</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Demander une nouveauté</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>

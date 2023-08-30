@@ -35,9 +35,9 @@
   <p align="center">
     <a href="#demo">查看 Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">报告 Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">报告 Bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">请求增加功能</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">请求增加功能</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
