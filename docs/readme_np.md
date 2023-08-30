@@ -37,7 +37,7 @@
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">रिपोर्ट बग</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">अनुरोध सुविधा</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">अनुरोध सुविधा</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français </a>

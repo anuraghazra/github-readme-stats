@@ -37,7 +37,7 @@
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">버그 제보하기</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">기능 추가 요청하기</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">기능 추가 요청하기</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français </a>
