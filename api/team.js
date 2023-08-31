@@ -39,12 +39,13 @@ export default async (req, res) => {
     border_color,
     rank_icon,
     show,
+    team_name,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
   const username_list = usernames.split(",");
 
-  for (const username in username_list) {
+  for (const username of username_list) {
     if (blacklist.includes(username)) {
       return res.send(renderError("Something went wrong"));
     }
@@ -65,11 +66,11 @@ export default async (req, res) => {
     totalDiscussionsStarted: 0,
     totalDiscussionsAnswered: 0,
     contributedTo: 0,
-    rank: { level: "C", percentile: 100 },
+    rank: { level: "C", percentile: 0 },
   };
 
   try {
-    for (let username in username_list) {
+    for (let username of username_list) {
       const stats = await fetchStats(
         username,
         parseBoolean(include_all_commits),
@@ -87,7 +88,8 @@ export default async (req, res) => {
       team_stats.contributedTo += stats.contributedTo;
       team_stats.rank.percentile += stats.rank.percentile;
     }
-    team_stats.name = `${username_list}'s team `;
+    team_stats.name = `${team_name ? team_name : username_list[0]} team `;
+
     team_stats.rank.level = rank_to_level(
       team_stats.rank.percentile / 100 / username_list.length,
     );
