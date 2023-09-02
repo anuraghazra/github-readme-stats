@@ -549,6 +549,8 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 
 Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
+
+
 ```md
 [![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
@@ -557,9 +559,22 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)
 
+-To Shows less languages on the card, between 1-20 (Default: 18):
+```md
+[![wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&langs_count=5)](https://github.com/anuraghazra/github-readme-stats)
+```
+[![wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&langs_count=5)](https://github.com/anuraghazra/github-readme-stats)
+
+-To hide progress:
+```md
+![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&hide_progress=true)
+```
 ![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&hide_progress=true)
 
-*   Compact layout
+- To change layout to Compact Layout:
+```md
+![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&layout=compact)
+```
 
 ![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&layout=compact)
 
