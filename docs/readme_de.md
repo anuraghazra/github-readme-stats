@@ -8,14 +8,20 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
+    </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
     </a>
     <br />
     <br />
@@ -30,9 +36,9 @@
   <p align="center">
     <a href="#demo">Beispiele ansehen</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Fehler melden</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Fehler melden</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Funktion wünschen</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Funktion wünschen</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
@@ -54,19 +60,33 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">Du magst das Projekt? Wie wäre es mit einer kleinen <a href="https://www.paypal.me/anuraghazra">Spende</a> um es weiterhin am Leben zu erhalten?
 
-# Funktionen
+# Funktionen <!-- omit in toc -->
 
 - [GitHub Statistiken-Karte](#github-statistiken-karte)
-- [GitHub Extra Pins](#github-extra-pins)
+    - [Verbergen individueller Statistiken](#verbergen-individueller-statistiken)
+    - [Symbole anzeigen](#symbole-anzeigen)
+    - [Erscheinungsbild/Themes](#erscheinungsbildthemes)
+    - [Anpassungen/Personalisierung](#anpassungenpersonalisierung)
+- [GitHub Extra-Pins](#github-extra-pins)
+    - [Benutzung](#benutzung)
+    - [Beispiele](#beispiele)
 - [Top Programmiersprachen-Karte](#top-programmiersprachen-karte)
+    - [Benutzung](#benutzung-1)
+    - [Verbirg einzelne Sprachen](#verbirg-einzelne-sprachen)
+    - [Kompaktes Sprachen-Karte Layout](#kompaktes-sprachen-karte-layout)
+    - [Beispiel](#beispiel)
 - [Wakatime Wochen-Statistik](#wakatime-wochen-statistik)
-- [Erscheinungsbild/Themes](#erscheinungsbildthemes)
-- [Anpassungen/Personalisierung](#anpassungenpersonalisierung)
-- [Selber betreiben](#betreibe-es-auf-deiner-eigenen-vercel-instanz)
+    - [Beispiel](#beispiel-1)
+    - [Alle Beispiele](#alle-beispiele)
+    - [Kleiner Tipp (Ausrichten der Repo-Karte)](#kleiner-tipp-ausrichten-der-repo-karte)
+  - [Betreibe es auf deiner eigenen Vercel-Instanz](#betreibe-es-auf-deiner-eigenen-vercel-instanz)
+  - [:sparkling\_heart: Unterstütze das Projekt](#sparkling_heart-unterstütze-das-projekt)
 
 # GitHub Statistiken-Karte
 
@@ -128,7 +148,7 @@ Du kannst das Erscheinungsbild deiner `Stats Card` oder `Repo Card`, mithilfe vo
 - `bg_color` - Hintergrundfarbe _(hex color)_ **oder** ein Farbverlauf in der Form von _winkel,start,ende_
 - `hide_border` - Blendet den Rand der Karte aus _(Boolean)_
 - `theme` - Name des Erscheinungsbildes/Themes [alle verfügbaren Themes](../themes/README.md)
-- `cache_seconds` - manuelles festlegen der Cachezeiten _(min: 1800, max: 86400)_
+- `cache_seconds` - manuelles festlegen der Cachezeiten _(min: 14400, max: 86400)_
 - `locale` - Stellen Sie die Sprache auf der Karte ein _(z.B. cn, de, es, etc.)_
 
 ##### Farbverlauf in bg_color
@@ -159,7 +179,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 
 - `hide` - Verbirgt die angegebenen Sprachen von der Karte _(Komma separierte Werte)_
 - `hide_title` - _(Boolean)_
-- `layout` - Wechsel zwischen den zwei verfügbaren Layouts `default` & `compact`
+- `layout` - Wechseln Sie zwischen den fünf verfügbaren Layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`
 - `card_width` - Lege die Breite der Karte manuell fest _(Zahl)_
 
 > :warning: **Wichtig:**
@@ -251,18 +271,18 @@ Du kannst die `&layout=compact` Option nutzen, um das Kartendesign zu ändern.
 Ändere `?username=` in den eigenen [Wakatime](https://wakatime.com)-Benutzernamen.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Beispiel
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - Kompaktes Layout
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

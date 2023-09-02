@@ -42,6 +42,12 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
       font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58;
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
+    .rank-percentile-header {
+      font-size: 14px;
+    }
+    .rank-percentile-text {
+      font-size: 16px;
+    }
     
     .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
@@ -123,7 +129,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
         y="0"
         class="header"
         data-testid="header"
-      >Wakatime Stats</text>
+      >Wakatime Stats (last 7 days)</text>
     </g>
       </g>
     
@@ -222,6 +228,12 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
       font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58;
       animation: scaleInAnimation 0.3s ease-in-out forwards;
     }
+    .rank-percentile-header {
+      font-size: 14px;
+    }
+    .rank-percentile-text {
+      font-size: 16px;
+    }
     
     .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
@@ -303,7 +315,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
         y="0"
         class="header"
         data-testid="header"
-      >Wakatime Stats</text>
+      >Wakatime Stats (last 7 days)</text>
     </g>
       </g>
     

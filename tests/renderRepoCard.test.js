@@ -2,6 +2,7 @@ import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import { cssToObject } from "@uppercod/css-to-object";
 import { renderRepoCard } from "../src/cards/repo-card.js";
+import { expect, it, describe } from "@jest/globals";
 
 import { themes } from "../themes/index.js";
 

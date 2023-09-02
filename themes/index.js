@@ -429,6 +429,27 @@ export const themes = {
     border_color: "85A4C0",
     bg_color: "030314",
   },
+  neon: {
+    title_color: "00EAD3",
+    text_color: "FF449F",
+    icon_color: "00EAD3",
+    border_color: "ffffff",
+    bg_color: "000000",
+  },
+  blue_navy: {
+    title_color: "82AAFF",
+    text_color: "82AAFF",
+    icon_color: "82AAFF",
+    border_color: "ffffff",
+    bg_color: "000000",
+  },
+  calm_pink: {
+    title_color: "e07a5f",
+    text_color: "edae49",
+    icon_color: "ebcfb2",
+    border_color: "e1bc29",
+    bg_color: "2b2d40",
+  },
 };
 
 export default themes;
