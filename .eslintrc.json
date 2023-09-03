@@ -158,7 +158,7 @@
         // "no-dupe-class-members": "error",
         // "no-this-before-super": "error",
         // "no-var": "warn",
-        "object-shorthand": [ "warn" ]
+        "object-shorthand": [ "warn" ],
         // "prefer-arrow-callback": "warn",
         // "prefer-spread": "warn",
         // "prefer-template": "warn",
@@ -211,13 +211,13 @@
         // "padded-blocks": [ "warn", "never" ],
         // "quote-props": [ "warn", "consistent-as-needed" ],
         // "quotes": [ "warn", "single" ],
-        // "require-jsdoc": [ "warn", {
-        //     "require": {
-        //         "FunctionDeclaration": true,
-        //         "MethodDefinition": true,
-        //         "ClassDeclaration": false
-        //     }
-        // }],
+        "require-jsdoc": [ "warn", {
+            "require": {
+                "FunctionDeclaration": true,
+                "MethodDefinition": true,
+                "ClassDeclaration": false
+            }
+        }]
         // "semi-spacing": [ "warn", { "before": false, "after": true }],
         // "semi": [ "error", "always" ],
         // "sort-vars": "off",
