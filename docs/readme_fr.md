@@ -33,7 +33,7 @@
   </p>
 
   <p align="center">
-    <a href="#démo">Voir la démo</a>
+    <a href="#toutes-les-démos">Voir la démo</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Soumettre un bug</a>
     ·
