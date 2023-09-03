@@ -33,7 +33,7 @@
   </p>
 
   <p align="center">
-    <a href="#demo">查看 Demo</a>
+    <a href="#全部-demos">查看 Demo</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">报告 Bug</a>
     ·
