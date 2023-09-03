@@ -16,7 +16,7 @@
         // Possible Errors (overrides from recommended set)
 
         // "no-extra-parens": "error",
-        // "no-unexpected-multiline": "error",
+        "no-unexpected-multiline": "error",
 
         // All JSDoc comments must be valid
         
@@ -33,11 +33,11 @@
 
         // Allowed a getter without setter, but all setters require getters
 
-        // "accessor-pairs": [ "error", {
-        //     "getWithoutSet": false,
-        //     "setWithoutGet": true
-        // }],
-        // "block-scoped-var": "warn",
+        "accessor-pairs": [ "error", {
+            "getWithoutSet": false,
+            "setWithoutGet": true
+        }],
+        "block-scoped-var": "warn",
         "consistent-return": "error",
         // "curly": "error",
         // "default-case": "warn",

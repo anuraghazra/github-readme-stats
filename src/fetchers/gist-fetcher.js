@@ -1,6 +1,6 @@
 // @ts-check
 
-import { request } from "../common/utils.js";
+import { request, MissingParamError } from "../common/utils.js";
 import { retryer } from "../common/retryer.js";
 
 /**
@@ -57,8 +57,10 @@ const fetcher = async (variables, token) => {
  * @returns {Promise<GistData>} Gist data.
  */
 const fetchGist = async (id) => {
+  if (!id) throw new MissingParamError(["id"], "/api/gist?id=GIST_ID");
   const res = await retryer(fetcher, { gistName: id });
   if (res.data.errors) throw new Error(res.data.errors[0].message);
+  if (!res.data.data.viewer.gist) throw new Error("Gist not found");
   const data = res.data.data.viewer.gist;
   return {
     name: data.files[Object.keys(data.files)[0]].name,

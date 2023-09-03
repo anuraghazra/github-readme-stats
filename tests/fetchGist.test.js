@@ -25,8 +25,37 @@ const gist_data = {
             },
             size: 85858,
           },
+          {
+            name: "territories.txt",
+            language: {
+              name: "Text",
+            },
+            size: 87858,
+          },
+          {
+            name: "countries_spanish.json",
+            language: {
+              name: "JSON",
+            },
+            size: 85858,
+          },
+          {
+            name: "territories_spanish.txt",
+            language: {
+              name: "Text",
+            },
+            size: 87858,
+          },
         ],
       },
+    },
+  },
+};
+
+const gist_not_found_data = {
+  data: {
+    viewer: {
+      gist: null,
     },
   },
 };
@@ -56,10 +85,20 @@ describe("Test fetchGist", () => {
       nameWithOwner: "Yizack/countries.json",
       description:
         "List of countries and territories in English and Spanish: name, continent, capital, dial code, country codes, TLD, and area in sq km. Lista de países y territorios en Inglés y Español: nombre, continente, capital, código de teléfono, códigos de país, dominio y área en km cuadrados. Updated 2023",
-      language: "JSON",
+      language: "Text",
       starsCount: 33,
       forksCount: 11,
     });
+  });
+
+  it("should throw correct error if gist not found", async () => {
+    mock
+      .onPost("https://api.github.com/graphql")
+      .reply(200, gist_not_found_data);
+
+    await expect(fetchGist("bbfce31e0217a3689c8d961a356cb10d")).rejects.toThrow(
+      "Gist not found",
+    );
   });
 
   it("should throw error if reaponse contains them", async () => {
@@ -67,6 +106,12 @@ describe("Test fetchGist", () => {
 
     await expect(fetchGist("bbfce31e0217a3689c8d961a356cb10d")).rejects.toThrow(
       "Some test GraphQL error",
+    );
+  });
+
+  it("should throw error if id is not provided", async () => {
+    await expect(fetchGist()).rejects.toThrow(
+      'Missing params "id" make sure you pass the parameters in URL',
     );
   });
 });
