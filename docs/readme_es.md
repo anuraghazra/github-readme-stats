@@ -34,7 +34,7 @@
   </p>
 
   <p align="center">
-    <a href="#ejemplo">Ver un ejemplo</a>
+    <a href="#todos-los-ejemplos">Ver un ejemplo</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Reportar un bug</a>
     ·
