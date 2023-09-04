@@ -41,6 +41,16 @@ describe("Card", () => {
     );
   });
 
+  it("should set custom title", () => {
+    const card = new Card({});
+    card.setTitle("custom title");
+
+    document.body.innerHTML = card.render(``);
+    expect(queryByTestId(document.body, "card-title")).toHaveTextContent(
+      "custom title",
+    );
+  });
+
   it("should hide title", () => {
     const card = new Card({});
     card.setHideTitle(true);
