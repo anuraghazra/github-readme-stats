@@ -50,10 +50,15 @@ export default async (req, res) => {
   }
 
   try {
+    const showStats = parseArray(show);
     const stats = await fetchStats(
       username,
       parseBoolean(include_all_commits),
       parseArray(exclude_repo),
+      showStats.includes("prs_merged") ||
+        showStats.includes("prs_merged_percentage"),
+      showStats.includes("discussions_started"),
+      showStats.includes("discussions_answered"),
     );
 
     let cacheSeconds = clampValue(
@@ -96,7 +101,7 @@ export default async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
         rank_icon,
-        show: parseArray(show),
+        show: showStats,
       }),
     );
   } catch (err) {
