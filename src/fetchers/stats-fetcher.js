@@ -40,7 +40,7 @@ const GRAPHQL_REPOS_QUERY = `
 `;
 
 const GRAPHQL_STATS_QUERY = `
-  query userInfo($login: String!, $after: String) {
+  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!) {
     user(login: $login) {
       name
       login
@@ -278,14 +278,21 @@ const fetchStats = async (
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
-  stats.totalPRsMerged = user.mergedPullRequests.totalCount;
-  stats.mergedPRsPercentage =
-    (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) * 100;
+  if (include_merged_pull_requests) {
+    stats.totalPRsMerged = user.mergedPullRequests.totalCount;
+    stats.mergedPRsPercentage =
+      (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) * 100;
+  }
   stats.totalReviews =
     user.contributionsCollection.totalPullRequestReviewContributions;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
-  stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;
-  stats.totalDiscussionsAnswered = user.repositoryDiscussionComments.totalCount;
+  if (include_discussions) {
+    stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;
+  }
+  if (include_discussions_answers) {
+    stats.totalDiscussionsAnswered =
+      user.repositoryDiscussionComments.totalCount;
+  }
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
   // Retrieve stars while filtering out repositories to be hidden.
