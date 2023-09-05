@@ -51,10 +51,10 @@ GitHub Readme Stats supports custom theming, and you can also contribute new the
 > If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
 
 > [!NOTE]\
-> Keep in mind that we already have a vast collection of different themes. To keep their number manageable, we began to add only themes supported by the community. Your pull request with theme addition will be merged once we get enough positive feedback from the community in the form of thumbs up (see [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935#top-themes-prs)). Remember that you can also support themes of other contributors that you liked to speed up their merge.
+> Keep in mind that we already have a vast collection of different themes. To keep their number manageable, we began to add only themes supported by the community. Your pull request with theme addition will be merged once we get enough positive feedback from the community in the form of thumbs up :+1: emojis (see [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935#top-themes-prs)). We expect to see at least 10-15 thumbs up before making a decision to merge your pull request into the master branch. Remember that you can also support themes of other contributors that you liked to speed up their merge.
 
 > [!NOTE]\
-> Before submitting pull request, please make sure that your theme pass WCAG 2.0 level AA constrast ration test. You can use [this tool](https://webaim.org/resources/contrastchecker/) to check it.
+> Before submitting pull request, please make sure that your theme pass WCAG 2.0 level AA contrast ration test. You can use [this tool](https://webaim.org/resources/contrastchecker/) to check it.
 
 To contribute your theme you need to edit the [themes/index.js](./themes/index.js) file and add it at the end of the file.
 
