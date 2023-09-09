@@ -35,6 +35,49 @@ const renderError = (message, secondaryMessage = "") => {
 };
 
 /**
+ * Creates a node to display the primary programming language of the repository/gist.
+ *
+ * @param {string} langName Language name.
+ * @param {string} langColor Language color.
+ * @returns {string} Language display SVG object.
+ */
+const createLanguageNode = (langName, langColor) => {
+  return `
+    <g data-testid="primary-lang">
+      <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
+      <text data-testid="lang-name" class="gray" x="15">${langName}</text>
+    </g>
+    `;
+};
+
+/**
+ * Creates an icon with label to display repository/gist stats like forks, stars, etc.
+ *
+ * @param {string} icon The icon to display.
+ * @param {number|string} label The label to display.
+ * @param {string} testid The testid to assign to the label.
+ * @param {number} iconSize The size of the icon.
+ * @returns {string} Icon with label SVG object.
+ */
+const iconWithLabel = (icon, label, testid, iconSize) => {
+  if (typeof label === "number" && label <= 0) return "";
+  const iconSvg = `
+      <svg
+        class="icon"
+        y="-12"
+        viewBox="0 0 16 16"
+        version="1.1"
+        width="${iconSize}"
+        height="${iconSize}"
+      >
+        ${icon}
+      </svg>
+    `;
+  const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
+  return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
+};
+
+/**
  * Encode string as HTML.
  *
  * @see https://stackoverflow.com/a/48073476/10629172
@@ -469,6 +512,8 @@ const dateDiff = (d1, d2) => {
 export {
   ERROR_CARD_LENGTH,
   renderError,
+  createLanguageNode,
+  iconWithLabel,
   encodeHTML,
   kFormatter,
   isValidHexColor,
