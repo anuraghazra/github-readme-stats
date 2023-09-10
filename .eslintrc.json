@@ -9,35 +9,36 @@
         "prettier"
     ],
     "parserOptions": {
-        "sourceType": "module"
+        "sourceType": "module",
+        "ecmaVersion": 2022
     },
     "rules": {
         // Possible Errors (overrides from recommended set)
 
         // "no-extra-parens": "error",
-        // "no-unexpected-multiline": "error",
+        "no-unexpected-multiline": "error",
 
         // All JSDoc comments must be valid
         
-        // "valid-jsdoc": [ "error", {
-        //     "requireReturn": false,
-        //     "requireReturnDescription": false,
-        //     "requireParamDescription": true,
-        //     "prefer": {
-        //         "return": "returns"
-        //     }
-        // }],
+        "valid-jsdoc": [ "error", {
+            "requireReturn": true,
+            "requireReturnDescription": true,
+            "requireParamDescription": true,
+            "prefer": {
+                "return": "returns"
+            }
+        }],
 
         // Best Practices
 
         // Allowed a getter without setter, but all setters require getters
 
-        // "accessor-pairs": [ "error", {
-        //     "getWithoutSet": false,
-        //     "setWithoutGet": true
-        // }],
-        // "block-scoped-var": "warn",
-        // "consistent-return": "error",
+        "accessor-pairs": [ "error", {
+            "getWithoutSet": false,
+            "setWithoutGet": true
+        }],
+        "block-scoped-var": "warn",
+        "consistent-return": "error",
         // "curly": "error",
         // "default-case": "warn",
 
@@ -157,7 +158,7 @@
         // "no-dupe-class-members": "error",
         // "no-this-before-super": "error",
         // "no-var": "warn",
-        "object-shorthand": [ "warn" ]
+        "object-shorthand": [ "warn" ],
         // "prefer-arrow-callback": "warn",
         // "prefer-spread": "warn",
         // "prefer-template": "warn",
@@ -210,13 +211,13 @@
         // "padded-blocks": [ "warn", "never" ],
         // "quote-props": [ "warn", "consistent-as-needed" ],
         // "quotes": [ "warn", "single" ],
-        // "require-jsdoc": [ "warn", {
-        //     "require": {
-        //         "FunctionDeclaration": true,
-        //         "MethodDefinition": true,
-        //         "ClassDeclaration": false
-        //     }
-        // }],
+        "require-jsdoc": [ "warn", {
+            "require": {
+                "FunctionDeclaration": true,
+                "MethodDefinition": true,
+                "ClassDeclaration": false
+            }
+        }]
         // "semi-spacing": [ "warn", { "before": false, "after": true }],
         // "semi": [ "error", "always" ],
         // "sort-vars": "off",

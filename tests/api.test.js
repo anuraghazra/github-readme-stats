@@ -13,6 +13,8 @@ const stats = {
   totalCommits: 200,
   totalIssues: 300,
   totalPRs: 400,
+  totalPRsMerged: 320,
+  mergedPRsPercentage: 80,
   totalReviews: 50,
   totalDiscussionsStarted: 10,
   totalDiscussionsAnswered: 40,
@@ -24,6 +26,7 @@ stats.rank = calculateRank({
   all_commits: false,
   commits: stats.totalCommits,
   prs: stats.totalPRs,
+  reviews: stats.totalReviews,
   issues: stats.totalIssues,
   repos: 1,
   stars: stats.totalStars,
@@ -40,6 +43,7 @@ const data_stats = {
         totalPullRequestReviewContributions: stats.totalReviews,
       },
       pullRequests: { totalCount: stats.totalPRs },
+      mergedPullRequests: { totalCount: stats.totalPRsMerged },
       openIssues: { totalCount: stats.totalIssues },
       closedIssues: { totalCount: 0 },
       followers: { totalCount: 0 },
@@ -270,6 +274,26 @@ describe("Test /api/", () => {
         text_color: "fff",
         bg_color: "fff",
       }),
+    );
+  });
+
+  it("should render error card if username in blacklist", async () => {
+    const { req, res } = faker({ username: "renovate-bot" }, data_stats);
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(renderError("Something went wrong"));
+  });
+
+  it("should render error card when wrong locale is provided", async () => {
+    const { req, res } = faker({ locale: "asdf" }, data_stats);
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError("Something went wrong", "Language not found"),
     );
   });
 });

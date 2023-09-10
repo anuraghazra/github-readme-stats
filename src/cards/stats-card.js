@@ -28,18 +28,20 @@ const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
  * @param {string} createTextNodeParams.label The label to display.
  * @param {number} createTextNodeParams.value The value to display.
  * @param {string} createTextNodeParams.id The id of the stat.
+ * @param {string=} createTextNodeParams.unitSymbol The unit symbol of the stat.
  * @param {number} createTextNodeParams.index The index of the stat.
  * @param {boolean} createTextNodeParams.showIcons Whether to show icons.
  * @param {number} createTextNodeParams.shiftValuePos Number of pixels the value has to be shifted to the right.
  * @param {boolean} createTextNodeParams.bold Whether to bold the label.
  * @param {string} createTextNodeParams.number_format The format of numbers on card.
- * @returns
+ * @returns {string} The stats card text item SVG object.
  */
 const createTextNode = ({
   icon,
   label,
   value,
   id,
+  unitSymbol,
   index,
   showIcons,
   shiftValuePos,
@@ -69,25 +71,32 @@ const createTextNode = ({
         x="${(showIcons ? 140 : 120) + shiftValuePos}"
         y="12.5"
         data-testid="${id}"
-      >${kValue}</text>
+      >${kValue}${unitSymbol ? ` ${unitSymbol}` : ""}</text>
     </g>
   `;
 };
 
 /**
+ * @typedef {import('../fetchers/types').StatsData} StatsData
+ * @typedef {import('./types').StatCardOptions} StatCardOptions
+ */
+
+/**
  * Renders the stats card.
  *
- * @param {Partial<import('../fetchers/types').StatsData>} stats The stats data.
- * @param {Partial<import("./types").StatCardOptions>} options The card options.
+ * @param {StatsData} stats The stats data.
+ * @param {Partial<StatCardOptions>} options The card options.
  * @returns {string} The stats card SVG object.
  */
-const renderStatsCard = (stats = {}, options = {}) => {
+const renderStatsCard = (stats, options = {}) => {
   const {
     name,
     totalStars,
     totalCommits,
     totalIssues,
     totalPRs,
+    totalPRsMerged,
+    mergedPRsPercentage,
     totalReviews,
     totalDiscussionsStarted,
     totalDiscussionsAnswered,
@@ -166,6 +175,25 @@ const renderStatsCard = (stats = {}, options = {}) => {
     id: "prs",
   };
 
+  if (show.includes("prs_merged")) {
+    STATS.prs_merged = {
+      icon: icons.prs_merged,
+      label: i18n.t("statcard.prs-merged"),
+      value: totalPRsMerged,
+      id: "prs_merged",
+    };
+  }
+
+  if (show.includes("prs_merged_percentage")) {
+    STATS.prs_merged_percentage = {
+      icon: icons.prs_merged_percentage,
+      label: i18n.t("statcard.prs-merged-percentage"),
+      value: mergedPRsPercentage.toFixed(2),
+      id: "prs_merged_percentage",
+      unitSymbol: "%",
+    };
+  }
+
   if (show.includes("reviews")) {
     STATS.reviews = {
       icon: icons.reviews,
@@ -214,13 +242,15 @@ const renderStatsCard = (stats = {}, options = {}) => {
     "ru",
     "uk-ua",
     "id",
+    "ml",
     "my",
     "pl",
     "de",
     "nl",
     "zh-tw",
+    "uz",
   ];
-  const isLongLocale = longLocales.includes(locale);
+  const isLongLocale = locale ? longLocales.includes(locale) : false;
 
   // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
@@ -228,7 +258,11 @@ const renderStatsCard = (stats = {}, options = {}) => {
     .map((key, index) =>
       // create the text nodes, and pass index so that we can calculate the line spacing
       createTextNode({
-        ...STATS[key],
+        icon: STATS[key].icon,
+        label: STATS[key].label,
+        value: STATS[key].value,
+        id: STATS[key].id,
+        unitSymbol: STATS[key].unitSymbol,
         index,
         showIcons: show_icons,
         shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
@@ -294,7 +328,11 @@ const renderStatsCard = (stats = {}, options = {}) => {
       : statItems.length
       ? RANK_CARD_DEFAULT_WIDTH
       : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
-  let width = isNaN(card_width) ? defaultCardWidth : card_width;
+  let width = card_width
+    ? isNaN(card_width)
+      ? defaultCardWidth
+      : card_width
+    : defaultCardWidth;
   if (width < minCardWidth) {
     width = minCardWidth;
   }
@@ -351,8 +389,8 @@ const renderStatsCard = (stats = {}, options = {}) => {
     ? ""
     : `<g data-testid="rank-circle"
           transform="translate(${calculateRankXTranslation()}, ${
-        height / 2 - 50
-      })">
+            height / 2 - 50
+          })">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">

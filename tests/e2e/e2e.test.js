@@ -9,20 +9,24 @@ import { renderRepoCard } from "../../src/cards/repo-card.js";
 import { renderStatsCard } from "../../src/cards/stats-card.js";
 import { renderTopLanguages } from "../../src/cards/top-languages-card.js";
 import { renderWakatimeCard } from "../../src/cards/wakatime-card.js";
+import { renderGistCard } from "../../src/cards/gist-card.js";
 import { expect, describe, beforeAll, test } from "@jest/globals";
 
 const REPO = "curly-fiesta";
 const USER = "catelinemnemosyne";
+const GIST_ID = "372cef55fd897b31909fdeb3a7262758";
+
 const STATS_DATA = {
   name: "Cateline Mnemosyne",
   totalPRs: 2,
+  totalReviews: 0,
   totalCommits: 8,
   totalIssues: 1,
   totalStars: 1,
   contributedTo: 1,
   rank: {
     level: "C",
-    percentile: 97.89377603631637,
+    percentile: 98.06929469995667,
   },
 };
 
@@ -78,6 +82,23 @@ const REPOSITORY_DATA = {
   },
   forkCount: 0,
   starCount: 1,
+};
+
+/**
+ * @typedef {import("../../src/fetchers/types").GistData} GistData Gist data type.
+ */
+
+/**
+ * @type {GistData}
+ */
+const GIST_DATA = {
+  name: "link.txt",
+  nameWithOwner: "qwerty541/link.txt",
+  description:
+    "Trying to access this path on Windown 10 ver. 1803+ will breaks NTFS",
+  language: "Text",
+  starsCount: 1,
+  forksCount: 0,
 };
 
 const CACHE_BURST_STRING = `v=${new Date().getTime()}`;
@@ -175,5 +196,27 @@ describe("Fetch Cards", () => {
 
     // Check if Repo card from deployment matches the local Repo card.
     expect(serverRepoSvg.data).toEqual(localRepoCardSVG);
+  }, 15000);
+
+  test("retrieve gist card", async () => {
+    expect(VERCEL_PREVIEW_URL).toBeDefined();
+
+    // Check if the Vercel preview instance Gist function is up and running.
+    await expect(
+      axios.get(
+        `${VERCEL_PREVIEW_URL}/api/gist?id=${GIST_ID}&${CACHE_BURST_STRING}`,
+      ),
+    ).resolves.not.toThrow();
+
+    // Get local gist card.
+    const localGistCardSVG = renderGistCard(GIST_DATA);
+
+    // Get the Vercel preview gist card response.
+    const serverGistSvg = await axios.get(
+      `${VERCEL_PREVIEW_URL}/api/gist?id=${GIST_ID}&${CACHE_BURST_STRING}`,
+    );
+
+    // Check if Gist card from deployment matches the local Gist card.
+    expect(serverGistSvg.data).toEqual(localGistCardSVG);
   }, 15000);
 });

@@ -1,6 +1,15 @@
 name: Update top issues dashboard
 on:
   schedule:
+    #        ┌───────────── minute (0 - 59)
+    #        │ ┌───────────── hour (0 - 23)
+    #        │ │  ┌───────────── day of the month (1 - 31)
+    #        │ │  │  ┌───────────── month (1 - 12 or JAN-DEC)
+    #        │ │  │  │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+    #        │ │  │  │ │
+    #        │ │  │  │ │
+    #        │ │  │  │ │
+    #        * *  *  * *
     - cron: "0 0 */3 * *"
   workflow_dispatch:
 
@@ -25,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run top issues action
-        uses: rickstaa/top-issues-action@v1
+        uses: rickstaa/top-issues-action@0444fe7a3c3ed5fbf4c3ff3dec3585ebe24e1338 # v1.3.44
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         with:
