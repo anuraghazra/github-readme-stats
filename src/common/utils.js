@@ -198,12 +198,12 @@ const flexLayout = ({ items, gap, direction, sizes = [] }) => {
 /**
  * Object containing card colors.
  * @typedef {{
- *  titleColor: string | string[];
- *  iconColor: string | string[];
- *  textColor: string | string[];
+ *  titleColor: string;
+ *  iconColor: string;
+ *  textColor: string;
  *  bgColor: string | string[];
- *  borderColor: string | string[];
- *  ringColor: string | string[];
+ *  borderColor: string;
+ *  ringColor: string;
  * }} CardColors
  */
 
@@ -266,6 +266,18 @@ const getCardColors = ({
     border_color || defaultBorderColor,
     "#" + defaultBorderColor,
   );
+
+  if (
+    typeof titleColor !== "string" ||
+    typeof textColor !== "string" ||
+    typeof ringColor !== "string" ||
+    typeof iconColor !== "string" ||
+    typeof borderColor !== "string"
+  ) {
+    throw new Error(
+      "Unexpected behavior, all colors except background should be string.",
+    );
+  }
 
   return { titleColor, iconColor, textColor, bgColor, borderColor, ringColor };
 };
