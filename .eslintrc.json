@@ -94,10 +94,10 @@
 
         // Produce warnings when something is commented as TODO or FIXME
 
-        // "no-warning-comments": [ "warn", {
-        //     "terms": [ "TODO", "FIXME" ],
-        //     "location": "start"
-        // }],
+        "no-warning-comments": [ "warn", {
+            "terms": [ "TODO", "FIXME" ],
+            "location": "start"
+        }],
         // "no-with": "warn",
         // "radix": "warn",
         // "vars-on-top": "error",
