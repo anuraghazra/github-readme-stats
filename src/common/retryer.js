@@ -1,10 +1,12 @@
 import { CustomError, logger } from "./utils.js";
 
 // Script variables.
+
+// Count the number of GitHub API tokens available.
 const PATs = Object.keys(process.env).filter((key) =>
   /PAT_\d*$/.exec(key),
 ).length;
-const RETRIES = PATs ? PATs : 7;
+const RETRIES = process.env.NODE_ENV === "test" ? 7 : PATs;
 
 /**
  * @typedef {import("axios").AxiosResponse} AxiosResponse Axios response.
@@ -20,6 +22,9 @@ const RETRIES = PATs ? PATs : 7;
  * @returns {Promise<T>} The response from the fetcher function.
  */
 const retryer = async (fetcher, variables, retries = 0) => {
+  if (!RETRIES) {
+    throw new CustomError("No GitHub API tokens found", CustomError.NO_TOKENS);
+  }
   if (retries > RETRIES) {
     throw new CustomError("Maximum retries exceeded", CustomError.MAX_RETRY);
   }
