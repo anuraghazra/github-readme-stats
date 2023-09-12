@@ -123,7 +123,9 @@ const statsFetcher = async (username, ownerAffiliations) => {
       ownerAffiliations: ownerAffiliations,
     };
     let res = await retryer(fetcher, variables);
-    if (res.data.errors) return res;
+    if (res.data.errors) {
+      return res;
+    }
 
     // Store stats data.
     const repoNodes = res.data.data.user.repositories.nodes;
@@ -208,7 +210,9 @@ const fetchStats = async (
   exclude_repo = [],
   ownerAffiliations = [],
 ) => {
-  if (!username) throw new MissingParamError(["username"]);
+  if (!username) {
+    throw new MissingParamError(["username"]);
+  }
 
   const stats = {
     name: "",

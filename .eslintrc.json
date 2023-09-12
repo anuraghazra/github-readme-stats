@@ -39,7 +39,7 @@
         }],
         "block-scoped-var": "warn",
         "consistent-return": "error",
-        // "curly": "error",
+        "curly": "error",
         // "default-case": "warn",
 
         // the dot goes with the property when doing multiline
