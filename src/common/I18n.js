@@ -1,3 +1,5 @@
+const FALLBACK_LOCALE = "en";
+
 /**
  * I18n translation class.
  */
@@ -10,9 +12,8 @@ class I18n {
    * @param {Object} options.translations Translations.
    */
   constructor({ locale, translations }) {
-    this.locale = locale;
+    this.locale = locale || FALLBACK_LOCALE;
     this.translations = translations;
-    this.fallbackLocale = "en";
   }
 
   /**
@@ -22,17 +23,17 @@ class I18n {
    * @returns {string} Translated string.
    */
   t(str) {
-    const locale = this.locale || this.fallbackLocale;
-
     if (!this.translations[str]) {
       throw new Error(`${str} Translation string not found`);
     }
 
-    if (!this.translations[str][locale]) {
-      throw new Error(`'${str}' translation not found for locale '${locale}'`);
+    if (!this.translations[str][this.locale]) {
+      throw new Error(
+        `'${str}' translation not found for locale '${this.locale}'`,
+      );
     }
 
-    return this.translations[str][locale];
+    return this.translations[str][this.locale];
   }
 }
 
