@@ -8,6 +8,8 @@ import {
   kFormatter,
   measureText,
   flexLayout,
+  iconWithLabel,
+  createLanguageNode,
 } from "../common/utils.js";
 import Card from "../common/Card.js";
 import { icons } from "../common/icons.js";
@@ -26,50 +28,6 @@ const languageColors = require("../common/languageColors.json"); // now works
 const ICON_SIZE = 16;
 const CARD_DEFAULT_WIDTH = 400;
 const HEADER_MAX_LENGTH = 35;
-
-/**
- * Creates a node to display the primary programming language of the gist.
- *
- * @param {string} langName Language name.
- * @param {string} langColor Language color.
- * @returns {string} Language display SVG object.
- */
-const createLanguageNode = (langName, langColor) => {
-  return `
-    <g data-testid="primary-lang">
-      <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
-      <text data-testid="lang-name" class="gray" x="15">${langName}</text>
-    </g>
-    `;
-};
-
-/**
- * Creates an icon with label to display gist stats like forks, stars, etc.
- *
- * @param {string} icon The icon to display.
- * @param {number|string} label The label to display.
- * @param {string} testid The testid to assign to the label.
- * @returns {string} Icon with label SVG object.
- */
-const iconWithLabel = (icon, label, testid) => {
-  if (typeof label === "number" && label <= 0) {
-    return "";
-  }
-  const iconSvg = `
-      <svg
-        class="icon"
-        y="-12"
-        viewBox="0 0 16 16"
-        version="1.1"
-        width="${ICON_SIZE}"
-        height="${ICON_SIZE}"
-      >
-        ${icon}
-      </svg>
-    `;
-  const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
-  return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
-};
 
 /**
  * @typedef {import('./types').GistCardOptions} GistCardOptions Gist card options.
@@ -124,8 +82,18 @@ const renderGistCard = (gistData, options = {}) => {
 
   const totalStars = kFormatter(starsCount);
   const totalForks = kFormatter(forksCount);
-  const svgStars = iconWithLabel(icons.star, totalStars, "starsCount");
-  const svgForks = iconWithLabel(icons.fork, totalForks, "forksCount");
+  const svgStars = iconWithLabel(
+    icons.star,
+    totalStars,
+    "starsCount",
+    ICON_SIZE,
+  );
+  const svgForks = iconWithLabel(
+    icons.fork,
+    totalForks,
+    "forksCount",
+    ICON_SIZE,
+  );
 
   const languageName = language || "Unspecified";
   const languageColor = languageColors[languageName] || "#858585";

@@ -10,8 +10,12 @@ import {
   measureText,
   parseEmojis,
   wrapTextMultiline,
+  iconWithLabel,
+  createLanguageNode,
 } from "../common/utils.js";
 import { repoCardLocales } from "../translations.js";
+
+const ICON_SIZE = 16;
 
 /**
  * Retrieves the repository description and wraps it to fit the card width.
@@ -34,52 +38,6 @@ const getBadgeSVG = (label, textColor) => `
     </text>
   </g>
 `;
-
-/**
- * Creates a node to display the primary programming language of the repository.
- *
- * @param {string} langName Language name.
- * @param {string} langColor Language color.
- * @returns {string} Language display SVG object.
- */
-const createLanguageNode = (langName, langColor) => {
-  return `
-  <g data-testid="primary-lang">
-    <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
-    <text data-testid="lang-name" class="gray" x="15">${langName}</text>
-  </g>
-  `;
-};
-
-const ICON_SIZE = 16;
-
-/**
- * Creates an icon with label to display repository stats like forks, stars, etc.
- *
- * @param {string} icon The icon to display.
- * @param {number|string} label The label to display.
- * @param {string} testid The testid to assign to the label.
- * @returns {string} Icon with label SVG object.
- */
-const iconWithLabel = (icon, label, testid) => {
-  if (typeof label === "number" && label <= 0) {
-    return "";
-  }
-  const iconSvg = `
-    <svg
-      class="icon"
-      y="-12"
-      viewBox="0 0 16 16"
-      version="1.1"
-      width="${ICON_SIZE}"
-      height="${ICON_SIZE}"
-    >
-      ${icon}
-    </svg>
-  `;
-  const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
-  return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
-};
 
 /**
  * @typedef {import("../fetchers/types").RepositoryData} RepositoryData Repository data.
@@ -153,8 +111,18 @@ const renderRepoCard = (repo, options = {}) => {
 
   const totalStars = kFormatter(starCount);
   const totalForks = kFormatter(forkCount);
-  const svgStars = iconWithLabel(icons.star, totalStars, "stargazers");
-  const svgForks = iconWithLabel(icons.fork, totalForks, "forkcount");
+  const svgStars = iconWithLabel(
+    icons.star,
+    totalStars,
+    "stargazers",
+    ICON_SIZE,
+  );
+  const svgForks = iconWithLabel(
+    icons.fork,
+    totalForks,
+    "forkcount",
+    ICON_SIZE,
+  );
 
   const starAndForkCount = flexLayout({
     items: [svgLanguage, svgStars, svgForks],
