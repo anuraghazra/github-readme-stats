@@ -201,7 +201,7 @@ const trimTopLanguages = (topLangs, langs_count, hide) => {
  * @param {number} props.width The card width
  * @param {string} props.color Color of the programming language.
  * @param {string} props.name Name of the programming language.
- * @param {string} props.progress Usage of the programming language in percentage.
+ * @param {number} props.progress Usage of the programming language in percentage.
  * @param {number} props.index Index of the programming language.
  * @returns {string} Programming language SVG node.
  */
@@ -329,7 +329,9 @@ const renderNormalLayout = (langs, width, totalLanguageSize) => {
         width,
         name: lang.name,
         color: lang.color || DEFAULT_LANG_COLOR,
-        progress: ((lang.size / totalLanguageSize) * 100).toFixed(2),
+        progress: parseFloat(
+          ((lang.size / totalLanguageSize) * 100).toFixed(2),
+        ),
         index,
       });
     }),
