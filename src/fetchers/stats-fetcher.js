@@ -116,7 +116,9 @@ const statsFetcher = async (username) => {
   while (hasNextPage) {
     const variables = { login: username, first: 100, after: endCursor };
     let res = await retryer(fetcher, variables);
-    if (res.data.errors) return res;
+    if (res.data.errors) {
+      return res;
+    }
 
     // Store stats data.
     const repoNodes = res.data.data.user.repositories.nodes;
@@ -199,7 +201,9 @@ const fetchStats = async (
   include_all_commits = false,
   exclude_repo = [],
 ) => {
-  if (!username) throw new MissingParamError(["username"]);
+  if (!username) {
+    throw new MissingParamError(["username"]);
+  }
 
   const stats = {
     name: "",

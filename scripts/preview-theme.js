@@ -75,7 +75,9 @@ class IncorrectJsonFormatError extends Error {
  * @returns {number} PR number.
  */
 const getPrNumber = () => {
-  if (process.env.MOCK_PR_NUMBER) return process.env.MOCK_PR_NUMBER; // For testing purposes.
+  if (process.env.MOCK_PR_NUMBER) {
+    return process.env.MOCK_PR_NUMBER; // For testing purposes.
+  }
 
   const pullRequest = github.context.payload.pull_request;
   if (!pullRequest) {

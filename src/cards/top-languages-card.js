@@ -87,7 +87,9 @@ const polarToCartesian = (centerX, centerY, radius, angleInDegrees) => {
 const cartesianToPolar = (centerX, centerY, x, y) => {
   const radius = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
   let angleInDegrees = radiansToDegrees(Math.atan2(y - centerY, x - centerX));
-  if (angleInDegrees < 0) angleInDegrees += 360;
+  if (angleInDegrees < 0) {
+    angleInDegrees += 360;
+  }
   return { radius, angleInDegrees };
 };
 
@@ -808,7 +810,9 @@ const renderTopLanguages = (topLangs, options = {}) => {
     colors,
   });
 
-  if (disable_animations) card.disableAnimations();
+  if (disable_animations) {
+    card.disableAnimations();
+  }
 
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);

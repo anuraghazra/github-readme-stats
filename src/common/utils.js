@@ -60,7 +60,9 @@ const createLanguageNode = (langName, langColor) => {
  * @returns {string} Icon with label SVG object.
  */
 const iconWithLabel = (icon, label, testid, iconSize) => {
-  if (typeof label === "number" && label <= 0) return "";
+  if (typeof label === "number" && label <= 0) {
+    return "";
+  }
   const iconSvg = `
       <svg
         class="icon"
@@ -124,7 +126,9 @@ const isValidHexColor = (hexColor) => {
  * @returns {boolean | undefined } The parsed value.
  */
 const parseBoolean = (value) => {
-  if (typeof value === "boolean") return value;
+  if (typeof value === "boolean") {
+    return value;
+  }
 
   if (typeof value === "string") {
     if (value.toLowerCase() === "true") {
@@ -143,7 +147,9 @@ const parseBoolean = (value) => {
  * @returns {string[]} The array of strings.
  */
 const parseArray = (str) => {
-  if (!str) return [];
+  if (!str) {
+    return [];
+  }
   return str.split(",");
 };
 
@@ -157,7 +163,9 @@ const parseArray = (str) => {
  */
 const clampValue = (number, min, max) => {
   // @ts-ignore
-  if (Number.isNaN(parseInt(number))) return min;
+  if (Number.isNaN(parseInt(number))) {
+    return min;
+  }
   return Math.max(min, Math.min(number, max));
 };
 
@@ -501,7 +509,9 @@ const chunkArray = (arr, perChunk) => {
  * @returns {string} String with emoji parsed.
  */
 const parseEmojis = (str) => {
-  if (!str) throw new Error("[parseEmoji]: str argument not provided");
+  if (!str) {
+    throw new Error("[parseEmoji]: str argument not provided");
+  }
   return str.replace(/:\w+:/gm, (emoji) => {
     return toEmoji.get(emoji) || "";
   });
