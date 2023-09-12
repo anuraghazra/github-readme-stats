@@ -383,8 +383,9 @@ const CONSTANTS = {
 const OWNER_AFFILIATIONS = ["OWNER", "COLLABORATOR", "ORGANIZATION_MEMBER"];
 
 const SECONDARY_ERROR_MESSAGES = {
-  MAX_RETRY:
-    "Please add an env variable called PAT_1 with your github token in vercel",
+  MAX_RETRY: "Downtime due to GitHub API rate limiting",
+  NO_TOKENS:
+    "Please add an env variable called PAT_1 with your GitHub API token in vercel",
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
   GRAPHQL_ERROR: "Please try again later",
   INVALID_AFFILIATION: `Invalid owner affiliations. Valid values are: ${OWNER_AFFILIATIONS.join(
@@ -407,6 +408,7 @@ class CustomError extends Error {
   }
 
   static MAX_RETRY = "MAX_RETRY";
+  static NO_TOKENS = "NO_TOKENS";
   static USER_NOT_FOUND = "USER_NOT_FOUND";
   static GRAPHQL_ERROR = "GRAPHQL_ERROR";
   static INVALID_AFFILIATION = "INVALID_AFFILIATION";
