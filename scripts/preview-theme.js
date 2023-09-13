@@ -28,8 +28,11 @@ const FAIL_TEXT = `
 `;
 const THEME_CONTRIB_GUIDELINES = `
   \rHi, thanks for the theme contribution. Please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).
-  \rWe are currently only accepting color combinations from any VSCode theme or themes with good color combinations to minimize bloating the themes collection.
 
+  \r> [!WARNING]\
+  \r> Keep in mind that we already have a vast collection of different themes. To keep their number manageable, we began to add only themes supported by the community. Your pull request with theme addition will be merged once we get enough positive feedback from the community in the form of thumbs up :+1: emojis (see [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935#top-themes-prs)). We expect to see at least 10-15 thumbs up before making a decision to merge your pull request into the master branch. Remember that you can also support themes of other contributors that you liked to speed up their merge.
+
+  \r> [!NOTE]\
   \r> Also, note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection, you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization).
 `;
 const COLOR_PROPS = {
@@ -55,6 +58,11 @@ var PULL_REQUEST_ID;
  * @returns {Error} IncorrectJsonFormatError.
  */
 class IncorrectJsonFormatError extends Error {
+  /**
+   * Constructor.
+   *
+   * @param {string} message Error message.
+   */
   constructor(message) {
     super(message);
     this.name = "IncorrectJsonFormatError";
@@ -67,7 +75,9 @@ class IncorrectJsonFormatError extends Error {
  * @returns {number} PR number.
  */
 const getPrNumber = () => {
-  if (process.env.MOCK_PR_NUMBER) return process.env.MOCK_PR_NUMBER; // For testing purposes.
+  if (process.env.MOCK_PR_NUMBER) {
+    return process.env.MOCK_PR_NUMBER; // For testing purposes.
+  }
 
   const pullRequest = github.context.payload.pull_request;
   if (!pullRequest) {
@@ -107,9 +117,10 @@ const isPreviewComment = (inputs, comment) => {
  *
  * @param {Object} octokit Octokit instance.
  * @param {number} issueNumber Issue number.
- * @param {string} repo Repository name.
  * @param {string} owner Owner of the repository.
- * @returns {Object} The GitHub comment object.
+ * @param {string} repo Repository name.
+ * @param {string} commenter Comment author.
+ * @returns {Object | undefined} The GitHub comment object.
  */
 const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
   const parameters = {
@@ -137,6 +148,8 @@ const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
       debug(`No theme preview comment found.`);
     }
   }
+
+  return undefined;
 };
 
 /**
@@ -148,7 +161,7 @@ const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
  * @param {Object} owner Owner of the repository.
  * @param {number} commentId Comment ID.
  * @param {string} body Comment body.
- * @return {string} The comment URL.
+ * @returns {string} The comment URL.
  */
 const upsertComment = async (
   octokit,
@@ -160,14 +173,14 @@ const upsertComment = async (
 ) => {
   let resp;
   if (commentId !== undefined) {
-    resp = await octokit.issues.updateComment({
+    resp = await octokit.rest.issues.updateComment({
       owner,
       repo,
       comment_id: commentId,
       body,
     });
   } else {
-    resp = await octokit.issues.createComment({
+    resp = await octokit.rest.issues.createComment({
       owner,
       repo,
       issue_number: issueNumber,
@@ -186,6 +199,7 @@ const upsertComment = async (
  * @param {string} repo Repository name.
  * @param {string} reviewState The review state. Options are (APPROVE, REQUEST_CHANGES, COMMENT, PENDING).
  * @param {string} reason The reason for the review.
+ * @returns {Promise<void>} Promise.
  */
 const addReview = async (
   octokit,
@@ -195,7 +209,7 @@ const addReview = async (
   reviewState,
   reason,
 ) => {
-  await octokit.pulls.createReview({
+  await octokit.rest.pulls.createReview({
     owner,
     repo,
     pull_number: prNumber,
@@ -212,9 +226,10 @@ const addReview = async (
  * @param {string} owner Repository owner.
  * @param {string} repo Repository name.
  * @param {string[]} labels Labels to add.
+ * @returns {Promise<void>} Promise.
  */
 const addLabel = async (octokit, prNumber, owner, repo, labels) => {
-  await octokit.issues.addLabels({
+  await octokit.rest.issues.addLabels({
     owner,
     repo,
     issue_number: prNumber,
@@ -230,9 +245,10 @@ const addLabel = async (octokit, prNumber, owner, repo, labels) => {
  * @param {string} owner Repository owner.
  * @param {string} repo Repository name.
  * @param {string} label Label to add or remove.
+ * @returns {Promise<void>} Promise.
  */
 const removeLabel = async (octokit, prNumber, owner, repo, label) => {
-  await octokit.issues.removeLabel({
+  await octokit.rest.issues.removeLabel({
     owner,
     repo,
     issue_number: prNumber,
@@ -249,9 +265,10 @@ const removeLabel = async (octokit, prNumber, owner, repo, label) => {
  * @param {string} repo Repository name.
  * @param {string} label Label to add or remove.
  * @param {boolean} add Whether to add or remove the label.
+ * @returns {Promise<void>} Promise.
  */
 const addRemoveLabel = async (octokit, prNumber, owner, repo, label, add) => {
-  const res = await octokit.pulls.get({
+  const res = await octokit.rest.pulls.get({
     owner,
     repo,
     pull_number: prNumber,
@@ -356,6 +373,8 @@ const DRY_RUN = process.env.DRY_RUN === "true" || false;
 
 /**
  * Main function.
+ *
+ * @returns {Promise<void>} Promise.
  */
 export const run = async () => {
   try {
@@ -379,7 +398,7 @@ export const run = async () => {
 
     // Retrieve the PR diff and preview-theme comment.
     debug("Retrieve PR diff...");
-    const res = await OCTOKIT.pulls.get({
+    const res = await OCTOKIT.rest.pulls.get({
       owner: OWNER,
       repo: REPO,
       pull_number: PULL_REQUEST_ID,
@@ -448,7 +467,7 @@ export const run = async () => {
       debug("Theme preview body: Check if the theme colors are valid...");
       let invalidColors = false;
       if (!colors) {
-        warning.push("Theme colors are missing");
+        warnings.push("Theme colors are missing");
         invalidColors = true;
       } else {
         const missingKeys = REQUIRED_COLOR_PROPS.filter(
@@ -541,8 +560,8 @@ export const run = async () => {
         \r${warnings.map((warning) => `- :warning: ${warning}.\n`).join("")}
 
         \ntitle_color: <code>#${titleColor}</code> | icon_color: <code>#${iconColor}</code> | text_color: <code>#${textColor}</code> | bg_color: <code>#${bgColor}</code>${
-        borderColor ? ` | border_color: <code>#${borderColor}</code>` : ""
-      }
+          borderColor ? ` | border_color: <code>#${borderColor}</code>` : ""
+        }
 
         \r[Preview Link](${url})
 

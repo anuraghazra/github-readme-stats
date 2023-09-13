@@ -6,19 +6,33 @@ on:
     paths:
       - "themes/index.js"
 
+permissions:
+  actions: read
+  checks: read
+  contents: write
+  deployments: read
+  issues: read
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: read
+  repository-projects: read
+  security-events: read
+  statuses: read
+
 jobs:
   generateThemeDoc:
     runs-on: ubuntu-latest
     name: Generate theme doc
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
@@ -35,7 +49,7 @@ jobs:
           CI: true
 
       - name: Run Script
-        uses: skx/github-action-tester@master
+        uses: skx/github-action-tester@e29768ff4ff67be9d1fdbccd8836ab83233bebb1 # v0.10.0
         with:
           script: ./scripts/push-theme-readme.sh
         env:

@@ -35,6 +35,51 @@ const renderError = (message, secondaryMessage = "") => {
 };
 
 /**
+ * Creates a node to display the primary programming language of the repository/gist.
+ *
+ * @param {string} langName Language name.
+ * @param {string} langColor Language color.
+ * @returns {string} Language display SVG object.
+ */
+const createLanguageNode = (langName, langColor) => {
+  return `
+    <g data-testid="primary-lang">
+      <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
+      <text data-testid="lang-name" class="gray" x="15">${langName}</text>
+    </g>
+    `;
+};
+
+/**
+ * Creates an icon with label to display repository/gist stats like forks, stars, etc.
+ *
+ * @param {string} icon The icon to display.
+ * @param {number|string} label The label to display.
+ * @param {string} testid The testid to assign to the label.
+ * @param {number} iconSize The size of the icon.
+ * @returns {string} Icon with label SVG object.
+ */
+const iconWithLabel = (icon, label, testid, iconSize) => {
+  if (typeof label === "number" && label <= 0) {
+    return "";
+  }
+  const iconSvg = `
+      <svg
+        class="icon"
+        y="-12"
+        viewBox="0 0 16 16"
+        version="1.1"
+        width="${iconSize}"
+        height="${iconSize}"
+      >
+        ${icon}
+      </svg>
+    `;
+  const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
+  return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
+};
+
+/**
  * Encode string as HTML.
  *
  * @see https://stackoverflow.com/a/48073476/10629172
@@ -81,7 +126,9 @@ const isValidHexColor = (hexColor) => {
  * @returns {boolean | undefined } The parsed value.
  */
 const parseBoolean = (value) => {
-  if (typeof value === "boolean") return value;
+  if (typeof value === "boolean") {
+    return value;
+  }
 
   if (typeof value === "string") {
     if (value.toLowerCase() === "true") {
@@ -100,7 +147,9 @@ const parseBoolean = (value) => {
  * @returns {string[]} The array of strings.
  */
 const parseArray = (str) => {
-  if (!str) return [];
+  if (!str) {
+    return [];
+  }
   return str.split(",");
 };
 
@@ -114,7 +163,9 @@ const parseArray = (str) => {
  */
 const clampValue = (number, min, max) => {
   // @ts-ignore
-  if (Number.isNaN(parseInt(number))) return min;
+  if (Number.isNaN(parseInt(number))) {
+    return min;
+  }
   return Math.max(min, Math.min(number, max));
 };
 
@@ -132,7 +183,7 @@ const isValidGradient = (colors) => {
  * Retrieves a gradient if color has more than one valid hex codes else a single color.
  *
  * @param {string} color The color to parse.
- * @param {string} fallbackColor The fallback color.
+ * @param {string | string[]} fallbackColor The fallback color.
  * @returns {string | string[]} The gradient or color.
  */
 const fallbackColor = (color, fallbackColor) => {
@@ -150,14 +201,18 @@ const fallbackColor = (color, fallbackColor) => {
 };
 
 /**
+ * @typedef {import('axios').AxiosRequestConfig['data']} AxiosRequestConfigData Axios request data.
+ * @typedef {import('axios').AxiosRequestConfig['headers']} AxiosRequestConfigHeaders Axios request headers.
+ */
+
+/**
  * Send GraphQL request to GitHub API.
  *
- * @param {import('axios').AxiosRequestConfig['data']} data Request data.
- * @param {import('axios').AxiosRequestConfig['headers']} headers Request headers.
+ * @param {AxiosRequestConfigData} data Request data.
+ * @param {AxiosRequestConfigHeaders} headers Request headers.
  * @returns {Promise<any>} Request response.
  */
 const request = (data, headers) => {
-  // @ts-ignore
   return axios({
     url: "https://api.github.com/graphql",
     method: "post",
@@ -173,8 +228,8 @@ const request = (data, headers) => {
  * @param {object} props Function properties.
  * @param {string[]} props.items Array of items to layout.
  * @param {number} props.gap Gap between items.
- * @param {number[]?=} props.sizes Array of sizes for each item.
- * @param {"column" | "row"?=} props.direction Direction to layout items.
+ * @param {"column" | "row"=} props.direction Direction to layout items.
+ * @param {number[]=} props.sizes Array of sizes for each item.
  * @returns {string[]} Array of items with proper layout.
  */
 const flexLayout = ({ items, gap, direction, sizes = [] }) => {
@@ -192,17 +247,30 @@ const flexLayout = ({ items, gap, direction, sizes = [] }) => {
 };
 
 /**
+ * Object containing card colors.
+ * @typedef {{
+ *  titleColor: string;
+ *  iconColor: string;
+ *  textColor: string;
+ *  bgColor: string | string[];
+ *  borderColor: string;
+ *  ringColor: string;
+ * }} CardColors
+ */
+
+/**
  * Returns theme based colors with proper overrides and defaults.
  *
  * @param {Object} args Function arguments.
- * @param {string} args.title_color Card title color.
- * @param {string} args.text_color Card text color.
- * @param {string} args.icon_color Card icon color.
- * @param {string} args.bg_color Card background color.
- * @param {string} args.border_color Card border color.
- * @param {string} args.ring_color Card ring color.
- * @param {string} args.theme Card theme.
- * @param {string} args.fallbackTheme Fallback theme.
+ * @param {string=} args.title_color Card title color.
+ * @param {string=} args.text_color Card text color.
+ * @param {string=} args.icon_color Card icon color.
+ * @param {string=} args.bg_color Card background color.
+ * @param {string=} args.border_color Card border color.
+ * @param {string=} args.ring_color Card ring color.
+ * @param {string=} args.theme Card theme.
+ * @param {string=} args.fallbackTheme Fallback theme.
+ * @returns {CardColors} Card colors.
  */
 const getCardColors = ({
   title_color,
@@ -249,6 +317,18 @@ const getCardColors = ({
     border_color || defaultBorderColor,
     "#" + defaultBorderColor,
   );
+
+  if (
+    typeof titleColor !== "string" ||
+    typeof textColor !== "string" ||
+    typeof ringColor !== "string" ||
+    typeof iconColor !== "string" ||
+    typeof borderColor !== "string"
+  ) {
+    throw new Error(
+      "Unexpected behavior, all colors except background should be string.",
+    );
+  }
 
   return { titleColor, iconColor, textColor, bgColor, borderColor, ringColor };
 };
@@ -301,8 +381,9 @@ const CONSTANTS = {
 };
 
 const SECONDARY_ERROR_MESSAGES = {
-  MAX_RETRY:
-    "Please add an env variable called PAT_1 with your github token in vercel",
+  MAX_RETRY: "Downtime due to GitHub API rate limiting",
+  NO_TOKENS:
+    "Please add an env variable called PAT_1 with your GitHub API token in vercel",
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
   GRAPHQL_ERROR: "Please try again later",
   WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
@@ -323,6 +404,7 @@ class CustomError extends Error {
   }
 
   static MAX_RETRY = "MAX_RETRY";
+  static NO_TOKENS = "NO_TOKENS";
   static USER_NOT_FOUND = "USER_NOT_FOUND";
   static GRAPHQL_ERROR = "GRAPHQL_ERROR";
   static WAKATIME_ERROR = "WAKATIME_ERROR";
@@ -333,8 +415,10 @@ class CustomError extends Error {
  */
 class MissingParamError extends Error {
   /**
-   * @param {string[]} missedParams
-   * @param {string?=} secondaryMessage
+   * Missing query parameter error constructor.
+   *
+   * @param {string[]} missedParams An array of missing parameters names.
+   * @param {string=} secondaryMessage Optional secondary message to display.
    */
   constructor(missedParams, secondaryMessage) {
     const msg = `Missing params ${missedParams
@@ -388,7 +472,12 @@ const measureText = (str, fontSize = 10) => {
   );
 };
 
-/** @param {string} name */
+/**
+ * Lowercase and trim string.
+ *
+ * @param {string} name String to lowercase and trim.
+ * @returns {string} Lowercased and trimmed string.
+ */
 const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 /**
@@ -404,9 +493,11 @@ const chunkArray = (arr, perChunk) => {
     const chunkIndex = Math.floor(index / perChunk);
 
     if (!resultArray[chunkIndex]) {
+      // @ts-ignore
       resultArray[chunkIndex] = []; // start a new chunk
     }
 
+    // @ts-ignore
     resultArray[chunkIndex].push(item);
 
     return resultArray;
@@ -420,17 +511,20 @@ const chunkArray = (arr, perChunk) => {
  * @returns {string} String with emoji parsed.
  */
 const parseEmojis = (str) => {
-  if (!str) throw new Error("[parseEmoji]: str argument not provided");
+  if (!str) {
+    throw new Error("[parseEmoji]: str argument not provided");
+  }
   return str.replace(/:\w+:/gm, (emoji) => {
     return toEmoji.get(emoji) || "";
   });
 };
 
 /**
- * Get diff in minutes
- * @param {Date} d1
- * @param {Date} d2
- * @returns {number}
+ * Get diff in minutes between two dates.
+ *
+ * @param {Date} d1 First date.
+ * @param {Date} d2 Second date.
+ * @returns {number} Number of minutes between the two dates.
  */
 const dateDiff = (d1, d2) => {
   const date1 = new Date(d1);
@@ -442,6 +536,8 @@ const dateDiff = (d1, d2) => {
 export {
   ERROR_CARD_LENGTH,
   renderError,
+  createLanguageNode,
+  iconWithLabel,
   encodeHTML,
   kFormatter,
   isValidHexColor,

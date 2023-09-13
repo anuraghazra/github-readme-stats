@@ -7,14 +7,20 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
+    </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
     </a>
     <br />
     <br />
@@ -29,9 +35,9 @@
   <p align="center">
     <a href="#미리보기">미리보기 확인</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">버그 제보하기</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">버그 제보하기</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">기능 추가 요청하기</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">기능 추가 요청하기</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français </a>
@@ -59,15 +65,30 @@
 </p>
 <p align="center">기능들이 마음에 드시나요? 괜찮으시다면, 서비스 개선을 위해 <a href="https://www.paypal.me/anuraghazra">기부</a>를 고려해주세요!
 
-# 기능들
+# 기능들 <!-- omit in toc -->
 
 - [GitHub 통계](#github-통계)
+    - [개별 통계 숨기기](#개별-통계-숨기기)
+    - [총 커밋 수에 비공개 기여도 (private contribs) 수 추가하기](#총-커밋-수에-비공개-기여도-private-contribs-수-추가하기)
+    - [아이콘 표시하기](#아이콘-표시하기)
+    - [테마 설정하기](#테마-설정하기)
+    - [커스터마이징](#커스터마이징)
 - [GitHub 저장소 핀](#github-저장소-핀)
+    - [사용법](#사용법)
+    - [미리보기](#미리보기)
 - [언어 사용량 통계](#언어-사용량-통계)
+    - [사용법](#사용법-1)
+    - [통계에서 제외할 저장소 지정하기](#통계에서-제외할-저장소-지정하기)
+    - [통계에서 특정 언어 제외하기](#통계에서-특정-언어-제외하기)
+    - [표시할 언어 수 지정하기](#표시할-언어-수-지정하기)
+    - [컴택트한 카드 레이아웃 설정하기](#컴택트한-카드-레이아웃-설정하기)
+    - [미리보기](#미리보기-1)
 - [Wakatime 주간 통계](#wakatime-주간-통계)
-- [테마](#테마)
-- [커스터마이징](#커스터마이징)
-- [직접 배포하기](#나만의-Vercel-인스턴스에-직접-배포하기)
+    - [미리보기](#미리보기-2)
+    - [전체 미리보기](#전체-미리보기)
+    - [꿀팁 (저장소 핀 정렬하기)](#꿀팁-저장소-핀-정렬하기)
+  - [나만의 Vercel 인스턴스에 직접 배포하기](#나만의-vercel-인스턴스에-직접-배포하기)
+  - [:sparkling\_heart: 프로젝트 지원하기!](#sparkling_heart-프로젝트-지원하기)
 
 
 # GitHub 통계
@@ -298,18 +319,18 @@ _참고:
 `?username=` 속성의 값을 [Wakatime](https://wakatime.com) 계정의 사용자 명(닉네임)으로 바꿔주세요.
 
 ```md
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### 미리보기
 
-[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - 컴팩트한 레이아웃
 
-[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 wakatime 통계](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -359,7 +380,7 @@ _참고:
 
 - Wakatime 카드
 
-[![Harlok 님의 Wakatime 카드](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 Wakatime 카드](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

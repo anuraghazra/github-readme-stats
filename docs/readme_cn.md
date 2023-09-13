@@ -7,14 +7,20 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
+    </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
     </a>
     <br />
     <br />
@@ -27,11 +33,11 @@
   </p>
 
   <p align="center">
-    <a href="#demo">查看 Demo</a>
+    <a href="#全部-demos">查看 Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">报告 Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">报告 Bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">请求增加功能</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">请求增加功能</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
@@ -59,14 +65,26 @@
 </p>
 <p align="center">喜欢这个项目？请考虑<a href="https://www.paypal.me/anuraghazra">捐赠</a>来帮助它完善！
 
-# 特性
+# 特性 <!-- omit in toc -->
 
-- [GitHub 统计卡片](#GitHub-统计卡片)
-- [GitHub 更多置顶](#GitHub-更多置顶)
+- [GitHub 统计卡片](#github-统计卡片)
+    - [隐藏指定统计](#隐藏指定统计)
+    - [将私人项目贡献添加到总提交计数中](#将私人项目贡献添加到总提交计数中)
+    - [显示图标](#显示图标)
+    - [主题](#主题)
+    - [自定义](#自定义)
+- [GitHub 更多置顶](#github-更多置顶)
+    - [使用细则](#使用细则)
+    - [Demo](#demo)
 - [热门语言卡片](#热门语言卡片)
-- [主题](#主题)
-- [自定义](#自定义)
-- [自己部署](#自己部署)
+    - [使用细则](#使用细则-1)
+    - [隐藏指定语言](#隐藏指定语言)
+    - [紧凑的语言卡片布局](#紧凑的语言卡片布局)
+    - [Demo](#demo-1)
+    - [全部 Demos](#全部-demos)
+    - [快速提示 (对齐 Repo 卡片)](#快速提示-对齐-repo-卡片)
+  - [自己部署](#自己部署)
+  - [:sparkling\_heart: 支持这个项目](#sparkling_heart-支持这个项目)
 
 # GitHub 统计卡片
 

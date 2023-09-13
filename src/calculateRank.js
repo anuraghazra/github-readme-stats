@@ -1,5 +1,22 @@
-function expsf(x, lambda = 1) {
-  return 2 ** (-lambda * x);
+/**
+ * Calculates the exponential cdf.
+ *
+ * @param {number} x The value.
+ * @returns {number} The exponential cdf.
+ */
+function exponential_cdf(x) {
+  return 1 - 2 ** -x;
+}
+
+/**
+ * Calculates the log normal cdf.
+ *
+ * @param {number} x The value.
+ * @returns {number} The log normal cdf.
+ */
+function log_normal_cdf(x) {
+  // approximation
+  return x / (1 + x);
 }
 
 /**
@@ -10,62 +27,60 @@ function expsf(x, lambda = 1) {
  * @param {number} params.commits Number of commits.
  * @param {number} params.prs The number of pull requests.
  * @param {number} params.issues The number of issues.
+ * @param {number} params.reviews The number of reviews.
  * @param {number} params.repos Total number of repos.
  * @param {number} params.stars The number of stars.
  * @param {number} params.followers The number of followers.
- * @returns {{level: string, score: number}}} The users rank.
+ * @returns {{level: string, percentile: number}}} The users rank.
  */
 function calculateRank({
   all_commits,
   commits,
   prs,
   issues,
+  reviews,
+  // eslint-disable-next-line no-unused-vars
   repos, // unused
   stars,
   followers,
 }) {
-  const COMMITS_MEAN = all_commits ? 1000 : 250,
+  const COMMITS_MEDIAN = all_commits ? 1000 : 250,
     COMMITS_WEIGHT = 2;
-  const PRS_MEAN = 50,
+  const PRS_MEDIAN = 50,
     PRS_WEIGHT = 3;
-  const ISSUES_MEAN = 25,
+  const ISSUES_MEDIAN = 25,
     ISSUES_WEIGHT = 1;
-  const STARS_MEAN = 250,
+  const REVIEWS_MEDIAN = 2,
+    REVIEWS_WEIGHT = 1;
+  const STARS_MEDIAN = 50,
     STARS_WEIGHT = 4;
-  const FOLLOWERS_MEAN = 25,
+  const FOLLOWERS_MEDIAN = 10,
     FOLLOWERS_WEIGHT = 1;
 
   const TOTAL_WEIGHT =
     COMMITS_WEIGHT +
     PRS_WEIGHT +
     ISSUES_WEIGHT +
+    REVIEWS_WEIGHT +
     STARS_WEIGHT +
     FOLLOWERS_WEIGHT;
 
+  const THRESHOLDS = [1, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
+  const LEVELS = ["S", "A+", "A", "A-", "B+", "B", "B-", "C+", "C"];
+
   const rank =
-    (COMMITS_WEIGHT * expsf(commits, 1 / COMMITS_MEAN) +
-      PRS_WEIGHT * expsf(prs, 1 / PRS_MEAN) +
-      ISSUES_WEIGHT * expsf(issues, 1 / ISSUES_MEAN) +
-      STARS_WEIGHT * expsf(stars, 1 / STARS_MEAN) +
-      FOLLOWERS_WEIGHT * expsf(followers, 1 / FOLLOWERS_MEAN)) /
-    TOTAL_WEIGHT;
+    1 -
+    (COMMITS_WEIGHT * exponential_cdf(commits / COMMITS_MEDIAN) +
+      PRS_WEIGHT * exponential_cdf(prs / PRS_MEDIAN) +
+      ISSUES_WEIGHT * exponential_cdf(issues / ISSUES_MEDIAN) +
+      REVIEWS_WEIGHT * exponential_cdf(reviews / REVIEWS_MEDIAN) +
+      STARS_WEIGHT * log_normal_cdf(stars / STARS_MEDIAN) +
+      FOLLOWERS_WEIGHT * log_normal_cdf(followers / FOLLOWERS_MEDIAN)) /
+      TOTAL_WEIGHT;
 
-  const RANK_S_PLUS = 0.025;
-  const RANK_S = 0.1;
-  const RANK_A_PLUS = 0.25;
-  const RANK_A = 0.5;
-  const RANK_B_PLUS = 0.75;
+  const level = LEVELS[THRESHOLDS.findIndex((t) => rank * 100 <= t)];
 
-  const level = (() => {
-    if (rank <= RANK_S_PLUS) return "S+";
-    if (rank <= RANK_S) return "S";
-    if (rank <= RANK_A_PLUS) return "A+";
-    if (rank <= RANK_A) return "A";
-    if (rank <= RANK_B_PLUS) return "B+";
-    return "B";
-  })();
-
-  return { level, score: rank * 100 };
+  return { level, percentile: rank * 100 };
 }
 
 export { calculateRank };

@@ -7,14 +7,20 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
+    </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
     </a>
     <br />
     <br />
@@ -29,9 +35,9 @@
   <p align="center">
     <a href="#demo">View Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Report Bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Request Feature</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
@@ -59,14 +65,26 @@
 </p>
 <p align="center">このプロジェクトを気に入っていただけましたか？<br>もしよろしければ、プロジェクトのさらなる改善のために<a href="https://www.paypal.me/anuraghazra">寄付</a>を検討して頂けると嬉しいです！</p>
 
-# 主な機能
+# 主な機能 <!-- omit in toc -->
 
 - [GitHub Stats Card](#github-stats-card)
+    - [特定の統計情報を隠す](#特定の統計情報を隠す)
+    - [プライベートリポジトリへのコミットをカウントする](#プライベートリポジトリへのコミットをカウントする)
+    - [アイコンを表示する](#アイコンを表示する)
+    - [テーマの変更](#テーマの変更)
+    - [テーマを自分でカスタマイズする](#テーマを自分でカスタマイズする)
 - [GitHub Extra Pins](#github-extra-pins)
+    - [使い方](#使い方)
+    - [デモ](#デモ)
 - [Top Languages Card](#top-languages-card)
-- [Themes](#テーマの変更)
-- [Customization](#テーマを自分でカスタマイズする)
-- [Deploy Yourself](#自分の-Vercel-インスタンスにデプロイする)
+    - [使い方](#使い方-1)
+    - [特定の言語を隠す](#特定の言語を隠す)
+    - [レイアウトをコンパクトにする](#レイアウトをコンパクトにする)
+    - [デモ](#デモ-1)
+    - [全てのデモ](#全てのデモ)
+    - [クイックヒント (カードを並べる)](#クイックヒント-カードを並べる)
+  - [自分の Vercel インスタンスにデプロイする](#自分の-vercel-インスタンスにデプロイする)
+  - [:sparkling\_heart: このプロジェクトを支援する](#sparkling_heart-このプロジェクトを支援する)
 
 # GitHub Stats Card
 

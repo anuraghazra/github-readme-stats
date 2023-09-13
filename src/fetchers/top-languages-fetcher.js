@@ -9,11 +9,16 @@ import {
 } from "../common/utils.js";
 
 /**
+ * @typedef {import("axios").AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
+ * @typedef {import("axios").AxiosResponse} AxiosResponse Axios response.
+ */
+
+/**
  * Top languages fetcher object.
  *
- * @param {import('axios').AxiosRequestHeaders} variables Fetcher variables.
+ * @param {AxiosRequestHeaders} variables Fetcher variables.
  * @param {string} token GitHub token.
- * @returns {Promise<import('../common/types').StatsFetcherResponse>} Languages fetcher response.
+ * @returns {Promise<AxiosResponse>} Languages fetcher response.
  */
 const fetcher = (variables, token) => {
   return request(
@@ -48,12 +53,17 @@ const fetcher = (variables, token) => {
 };
 
 /**
+ * @typedef {import("./types").TopLangData} TopLangData Top languages data.
+ */
+
+/**
  * Fetch top languages for a given username.
  *
  * @param {string} username GitHub username.
  * @param {string[]} exclude_repo List of repositories to exclude.
- * @param {string} base64_custom_repo '[{repo_name:"test",repo_lang:"YAML",color:"#6d8ead",size: 0}]'
- * @returns {Promise<import("./types").TopLangData>} Top languages data.
+ * @param {number} size_weight Weightage to be given to size.
+ * @param {number} count_weight Weightage to be given to count.
+ * @returns {Promise<TopLangData>} Top languages data.
  */
 const fetchTopLanguages = async (
   username,
@@ -62,16 +72,12 @@ const fetchTopLanguages = async (
   count_weight = 0,
   base64_custom_repo = "W10=",
 ) => {
-  if (!username) throw new MissingParamError(["username"]);
+  if (!username) {
+    throw new MissingParamError(["username"]);
+  }
 
   const res = await retryer(fetcher, { login: username });
 
-  if (res.data.errors) {
-    logger.error(res.data.errors);
-    throw Error(res.data.errors[0].message || "Could not fetch user");
-  }
-
-  // Catch GraphQL errors.
   if (res.data.errors) {
     logger.error(res.data.errors);
     if (res.data.errors[0].type === "NOT_FOUND") {

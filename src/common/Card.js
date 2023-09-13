@@ -54,12 +54,18 @@ class Card {
     this.a11yDesc = "";
   }
 
+  /**
+   * @returns {void}
+   */
   disableAnimations() {
     this.animations = false;
   }
 
   /**
-   * @param {{title: string, desc: string}} prop
+   * @param {Object} props The props object.
+   * @param {string} props.title Accessibility title.
+   * @param {string} props.desc Accessibility description.
+   * @returns {void}
    */
   setAccessibilityLabel({ title, desc }) {
     this.a11yTitle = title;
@@ -67,21 +73,24 @@ class Card {
   }
 
   /**
-   * @param {string} value
+   * @param {string} value The CSS to add to the card.
+   * @returns {void}
    */
   setCSS(value) {
     this.css = value;
   }
 
   /**
-   * @param {boolean} value
+   * @param {boolean} value Whether to hide the border or not.
+   * @returns {void}
    */
   setHideBorder(value) {
     this.hideBorder = value;
   }
 
   /**
-   * @param {boolean} value
+   * @param {boolean} value Whether to hide the title or not.
+   * @returns {void}
    */
   setHideTitle(value) {
     this.hideTitle = value;
@@ -91,12 +100,16 @@ class Card {
   }
 
   /**
-   * @param {string} text
+   * @param {string} text The title to set.
+   * @returns {void}
    */
   setTitle(text) {
     this.title = text;
   }
 
+  /**
+   * @returns {string} The rendered card title.
+   */
   renderTitle() {
     const titleText = `
       <text
@@ -133,8 +146,13 @@ class Card {
     `;
   }
 
+  /**
+   * @returns {string} The rendered card gradient.
+   */
   renderGradient() {
-    if (typeof this.colors.bgColor !== "object") return "";
+    if (typeof this.colors.bgColor !== "object") {
+      return "";
+    }
 
     const gradients = this.colors.bgColor.slice(1);
     return typeof this.colors.bgColor === "object"
@@ -156,7 +174,8 @@ class Card {
   }
 
   /**
-   * @param {string} body
+   * @param {string} body The inner body of the card.
+   * @returns {string} The rendered card.
    */
   render(body) {
     return `

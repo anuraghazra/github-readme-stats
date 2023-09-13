@@ -7,14 +7,20 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Testes aprovados" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
+    </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
     </a>
     <br />
     <br />
@@ -29,9 +35,9 @@
   <p align="center">
     <a href="#demonstração">Ver demonstração</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Reportar erros</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Reportar erros</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicitar recursos</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Solicitar recursos</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
@@ -59,15 +65,28 @@
 </p>
 <p align="center">Gostou do projeto? Por favor considere <a href="https://www.paypal.me/anuraghazra">fazer uma doação</a> para ajudar a melhorá-lo!
 
-# Características
+# Características <!-- omit in toc -->
 
 - [Cartão de estatísticas do GitHub](#cartão-de-estatísticas-do-github)
+    - [Ocultando estatísticas específicas](#ocultando-estatísticas-específicas)
+    - [Adicionando contagem de contribuições privadas à contagem total de commits](#adicionando-contagem-de-contribuições-privadas-à-contagem-total-de-commits)
+    - [Exibindo ícones](#exibindo-ícones)
+    - [Temas](#temas)
+    - [Personalização](#personalização)
 - [Pins extras do GitHub](#pins-extras-do-github)
+    - [Utilização](#utilização)
+    - [Demonstração](#demonstração)
 - [Cartão de principais linguagens de programação](#cartão-de-principais-linguagens-de-programação)
+    - [Utilização](#utilização-1)
+    - [Ocultar linguagens individualmente](#ocultar-linguagens-individualmente)
+    - [Layout de cartão de linguagens compacto](#layout-de-cartão-de-linguagens-compacto)
+    - [Demonstração](#demonstração-1)
 - [Estatística semanal Wakatime](#estatística-semanal-wakatime)
-- [Temas](#temas)
-- [Personalização](#personalização)
-- [Faça suas próprias implantações](#implante-em-sua-própria-instância-do-vercel)
+    - [Demonstração](#demonstração-2)
+    - [Todas as demonstrações](#todas-as-demonstrações)
+    - [Dica (Alinhandos os cartões de repositório)](#dica-alinhandos-os-cartões-de-repositório)
+  - [Implante em sua própria instância do Vercel](#implante-em-sua-própria-instância-do-vercel)
+  - [:sparkling\_heart: Apoie o projeto](#sparkling_heart-apoie-o-projeto)
 
 # Cartão de estatísticas do GitHub
 
@@ -242,14 +261,14 @@ Utilize a opção `&layout=compact` para mudar o layout do cartão.
 Altere o valor de `?username=` para o seu username do Wakatime.
 
 ```md
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demonstração
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

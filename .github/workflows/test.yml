@@ -2,10 +2,12 @@ name: Test
 on:
   push:
     branches:
-      - "*"
+      - master
   pull_request:
     branches:
       - master
+
+permissions: read-all
 
 jobs:
   build:
@@ -13,13 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@5e21ff4d9bc1a8cf6de233a3057d20ec6b3fb69d # v3.8.1
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
@@ -29,9 +31,13 @@ jobs:
           npm ci
           npm run test
 
+      - name: Run ESLint
+        run: |
+          npm run lint
+
       - name: Run Prettier
         run: |
           npm run format:check
 
       - name: Code Coverage
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@eaaf4bedf32dbdc6b720b63067d99c4d77d6047d # v3.1.4
