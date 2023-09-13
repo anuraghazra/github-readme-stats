@@ -39,6 +39,13 @@ export const themes = {
     border_color: "004490",
     bg_color: "ffffff00",
   },
+  shadow_purple: {
+    title_color: "6F42C1",
+    text_color: "444",
+    icon_color: "4E0275",
+    border_color: "4E0275",
+    bg_color: "ffffff00",
+  },
   dark: {
     title_color: "fff",
     icon_color: "79ff97",
