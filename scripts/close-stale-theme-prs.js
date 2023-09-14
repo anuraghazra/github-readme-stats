@@ -156,13 +156,13 @@ const run = async () => {
     for (const prNumber of staleThemePRsNumbers) {
       debug(`Closing #${prNumber} because it is stale...`);
       if (!dryRun) {
-        await octokit.issues.createComment({
+        await octokit.rest.issues.createComment({
           owner,
           repo,
           issue_number: prNumber,
           body: CLOSING_COMMENT,
         });
-        await octokit.pulls.update({
+        await octokit.rest.pulls.update({
           owner,
           repo,
           pull_number: prNumber,
