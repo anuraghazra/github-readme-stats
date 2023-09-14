@@ -35,6 +35,51 @@ const renderError = (message, secondaryMessage = "") => {
 };
 
 /**
+ * Creates a node to display the primary programming language of the repository/gist.
+ *
+ * @param {string} langName Language name.
+ * @param {string} langColor Language color.
+ * @returns {string} Language display SVG object.
+ */
+const createLanguageNode = (langName, langColor) => {
+  return `
+    <g data-testid="primary-lang">
+      <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
+      <text data-testid="lang-name" class="gray" x="15">${langName}</text>
+    </g>
+    `;
+};
+
+/**
+ * Creates an icon with label to display repository/gist stats like forks, stars, etc.
+ *
+ * @param {string} icon The icon to display.
+ * @param {number|string} label The label to display.
+ * @param {string} testid The testid to assign to the label.
+ * @param {number} iconSize The size of the icon.
+ * @returns {string} Icon with label SVG object.
+ */
+const iconWithLabel = (icon, label, testid, iconSize) => {
+  if (typeof label === "number" && label <= 0) {
+    return "";
+  }
+  const iconSvg = `
+      <svg
+        class="icon"
+        y="-12"
+        viewBox="0 0 16 16"
+        version="1.1"
+        width="${iconSize}"
+        height="${iconSize}"
+      >
+        ${icon}
+      </svg>
+    `;
+  const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
+  return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
+};
+
+/**
  * Encode string as HTML.
  *
  * @see https://stackoverflow.com/a/48073476/10629172
@@ -81,7 +126,9 @@ const isValidHexColor = (hexColor) => {
  * @returns {boolean | undefined } The parsed value.
  */
 const parseBoolean = (value) => {
-  if (typeof value === "boolean") return value;
+  if (typeof value === "boolean") {
+    return value;
+  }
 
   if (typeof value === "string") {
     if (value.toLowerCase() === "true") {
@@ -100,7 +147,9 @@ const parseBoolean = (value) => {
  * @returns {string[]} The array of strings.
  */
 const parseArray = (str) => {
-  if (!str) return [];
+  if (!str) {
+    return [];
+  }
   return str.split(",");
 };
 
@@ -114,7 +163,9 @@ const parseArray = (str) => {
  */
 const clampValue = (number, min, max) => {
   // @ts-ignore
-  if (Number.isNaN(parseInt(number))) return min;
+  if (Number.isNaN(parseInt(number))) {
+    return min;
+  }
   return Math.max(min, Math.min(number, max));
 };
 
@@ -198,12 +249,12 @@ const flexLayout = ({ items, gap, direction, sizes = [] }) => {
 /**
  * Object containing card colors.
  * @typedef {{
- *  titleColor: string | string[];
- *  iconColor: string | string[];
- *  textColor: string | string[];
+ *  titleColor: string;
+ *  iconColor: string;
+ *  textColor: string;
  *  bgColor: string | string[];
- *  borderColor: string | string[];
- *  ringColor: string | string[];
+ *  borderColor: string;
+ *  ringColor: string;
  * }} CardColors
  */
 
@@ -267,6 +318,18 @@ const getCardColors = ({
     "#" + defaultBorderColor,
   );
 
+  if (
+    typeof titleColor !== "string" ||
+    typeof textColor !== "string" ||
+    typeof ringColor !== "string" ||
+    typeof iconColor !== "string" ||
+    typeof borderColor !== "string"
+  ) {
+    throw new Error(
+      "Unexpected behavior, all colors except background should be string.",
+    );
+  }
+
   return { titleColor, iconColor, textColor, bgColor, borderColor, ringColor };
 };
 
@@ -318,8 +381,9 @@ const CONSTANTS = {
 };
 
 const SECONDARY_ERROR_MESSAGES = {
-  MAX_RETRY:
-    "Please add an env variable called PAT_1 with your github token in vercel",
+  MAX_RETRY: "Downtime due to GitHub API rate limiting",
+  NO_TOKENS:
+    "Please add an env variable called PAT_1 with your GitHub API token in vercel",
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
   GRAPHQL_ERROR: "Please try again later",
   WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
@@ -340,6 +404,7 @@ class CustomError extends Error {
   }
 
   static MAX_RETRY = "MAX_RETRY";
+  static NO_TOKENS = "NO_TOKENS";
   static USER_NOT_FOUND = "USER_NOT_FOUND";
   static GRAPHQL_ERROR = "GRAPHQL_ERROR";
   static WAKATIME_ERROR = "WAKATIME_ERROR";
@@ -446,7 +511,9 @@ const chunkArray = (arr, perChunk) => {
  * @returns {string} String with emoji parsed.
  */
 const parseEmojis = (str) => {
-  if (!str) throw new Error("[parseEmoji]: str argument not provided");
+  if (!str) {
+    throw new Error("[parseEmoji]: str argument not provided");
+  }
   return str.replace(/:\w+:/gm, (emoji) => {
     return toEmoji.get(emoji) || "";
   });
@@ -469,6 +536,8 @@ const dateDiff = (d1, d2) => {
 export {
   ERROR_CARD_LENGTH,
   renderError,
+  createLanguageNode,
+  iconWithLabel,
   encodeHTML,
   kFormatter,
   isValidHexColor,
