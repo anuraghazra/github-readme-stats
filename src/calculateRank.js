@@ -1,3 +1,5 @@
+import { rank_to_level } from "../src/constant.js";
+
 /**
  * Calculates the exponential cdf.
  *
@@ -65,9 +67,6 @@ function calculateRank({
     STARS_WEIGHT +
     FOLLOWERS_WEIGHT;
 
-  const THRESHOLDS = [1, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
-  const LEVELS = ["S", "A+", "A", "A-", "B+", "B", "B-", "C+", "C"];
-
   const rank =
     1 -
     (COMMITS_WEIGHT * exponential_cdf(commits / COMMITS_MEDIAN) +
@@ -78,7 +77,7 @@ function calculateRank({
       FOLLOWERS_WEIGHT * log_normal_cdf(followers / FOLLOWERS_MEDIAN)) /
       TOTAL_WEIGHT;
 
-  const level = LEVELS[THRESHOLDS.findIndex((t) => rank * 100 <= t)];
+  const level = rank_to_level(rank);
 
   return { level, percentile: rank * 100 };
 }
