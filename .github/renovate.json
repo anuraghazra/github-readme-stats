@@ -1,0 +1,13 @@
+{
+   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+   "extends": [
+     "config:recommended",
+     ":disableDependencyDashboard"
+   ],
+   "flux": {
+     "fileMatch": ["k8s/.+\\.yaml$"]
+   },
+   "github-actions": {
+      "enabled": false
+   }
+}
