@@ -17,7 +17,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | | | |
 | :--: | :--: | :--: |
 | `default` ![default][default] | `transparent` ![transparent][transparent] | `shadow_red` ![shadow_red][shadow_red] |
-| `shadow_green` ![shadow_green][shadow_green] | `shadow_blue` ![shadow_blue][shadow_blue] | `dark` ![dark][dark] |
+| `shadow_green` ![shadow_green][shadow_green] | `shadow_blue` ![shadow_blue][shadow_blue] | `shadow_purple` ![shadow_purple][shadow_purple] |
 | `radical` ![radical][radical] | `merko` ![merko][merko] | `gruvbox` ![gruvbox][gruvbox] |
 | `gruvbox_light` ![gruvbox_light][gruvbox_light] | `tokyonight` ![tokyonight][tokyonight] | `onedark` ![onedark][onedark] |
 | `cobalt` ![cobalt][cobalt] | `synthwave` ![synthwave][synthwave] | `highcontrast` ![highcontrast][highcontrast] |
@@ -39,7 +39,8 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `apprentice` ![apprentice][apprentice] | `moltack` ![moltack][moltack] | `codeSTACKr` ![codeSTACKr][codeSTACKr] |
 | `rose_pine` ![rose_pine][rose_pine] | `date_night` ![date_night][date_night] | `one_dark_pro` ![one_dark_pro][one_dark_pro] |
 | `rose` ![rose][rose] | `holi` ![holi][holi] | `neon` ![neon][neon] |
-| `blue_navy` ![blue_navy][blue_navy] | `calm_pink` ![calm_pink][calm_pink] | [Add your theme][add-theme] |
+| `blue_navy` ![blue_navy][blue_navy] | `calm_pink` ![calm_pink][calm_pink] | `dark` ![dark][dark] |
+| [Add your theme][add-theme] |
 
 ## Repo Card
 
@@ -48,7 +49,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 | | | |
 | :--: | :--: | :--: |
 | `default_repocard` ![default_repocard][default_repocard_repo] | `transparent` ![transparent][transparent_repo] | `shadow_red` ![shadow_red][shadow_red_repo] |
-| `shadow_green` ![shadow_green][shadow_green_repo] | `shadow_blue` ![shadow_blue][shadow_blue_repo] | `dark` ![dark][dark_repo] |
+| `shadow_green` ![shadow_green][shadow_green_repo] | `shadow_blue` ![shadow_blue][shadow_blue_repo] | `shadow_purple` ![shadow_purple][shadow_purple] |
 | `radical` ![radical][radical_repo] | `merko` ![merko][merko_repo] | `gruvbox` ![gruvbox][gruvbox_repo] |
 | `gruvbox_light` ![gruvbox_light][gruvbox_light_repo] | `tokyonight` ![tokyonight][tokyonight_repo] | `onedark` ![onedark][onedark_repo] |
 | `cobalt` ![cobalt][cobalt_repo] | `synthwave` ![synthwave][synthwave_repo] | `highcontrast` ![highcontrast][highcontrast_repo] |
@@ -70,7 +71,8 @@ Use `?theme=THEME_NAME` parameter like so :-
 | `apprentice` ![apprentice][apprentice_repo] | `moltack` ![moltack][moltack_repo] | `codeSTACKr` ![codeSTACKr][codeSTACKr_repo] |
 | `rose_pine` ![rose_pine][rose_pine_repo] | `date_night` ![date_night][date_night_repo] | `one_dark_pro` ![one_dark_pro][one_dark_pro_repo] |
 | `rose` ![rose][rose_repo] | `holi` ![holi][holi_repo] | `neon` ![neon][neon_repo] |
-| `blue_navy` ![blue_navy][blue_navy_repo] | `calm_pink` ![calm_pink][calm_pink_repo] | [Add your theme][add-theme] |
+| `blue_navy` ![blue_navy][blue_navy_repo] | `calm_pink` ![calm_pink][calm_pink_repo] | `dark` ![dark][dark_repo] |
+| [Add your theme][add-theme] |
 
 
 [default]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
@@ -79,6 +81,7 @@ Use `?theme=THEME_NAME` parameter like so :-
 [shadow_red]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=shadow_red
 [shadow_green]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=shadow_green
 [shadow_blue]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=shadow_blue
+[shadow_purple]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=shadow_purple
 [dark]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=dark
 [radical]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=radical
 [merko]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=merko
