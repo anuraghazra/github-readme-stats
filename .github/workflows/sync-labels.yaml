@@ -1,0 +1,17 @@
+name: Sync labels
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '0 7 * * 1'
+  workflow_dispatch:
+
+jobs:
+  sync:
+    name: Run EndBug/label-sync
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: EndBug/label-sync@v2
+        with:
+          config-file: 'https://raw.githubusercontent.com/devantler/.github/main/.github/labels.yaml'
+          delete-other-labels: true
