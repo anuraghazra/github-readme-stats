@@ -60,9 +60,12 @@ const generateLinks = (fn) => {
 };
 
 const createTableItem = ({ link, label, isRepoCard }) => {
-  if (!link || !label) return "";
+  if (!link || !label) {
+    return "";
+  }
   return `\`${label}\` ![${link}][${link}${isRepoCard ? "_repo" : ""}]`;
 };
+
 const generateTable = ({ isRepoCard }) => {
   const rows = [];
   const themesFiltered = Object.keys(themes).filter(
