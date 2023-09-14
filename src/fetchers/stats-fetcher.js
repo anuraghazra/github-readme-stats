@@ -132,7 +132,9 @@ const statsFetcher = async ({
       includeDiscussionsAnswers,
     };
     let res = await retryer(fetcher, variables);
-    if (res.data.errors) return res;
+    if (res.data.errors) {
+      return res;
+    }
 
     // Store stats data.
     const repoNodes = res.data.data.user.repositories.nodes;
@@ -221,7 +223,9 @@ const fetchStats = async (
   include_discussions = false,
   include_discussions_answers = false,
 ) => {
-  if (!username) throw new MissingParamError(["username"]);
+  if (!username) {
+    throw new MissingParamError(["username"]);
+  }
 
   const stats = {
     name: "",

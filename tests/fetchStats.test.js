@@ -237,6 +237,37 @@ describe("Test fetchStats", () => {
     });
   });
 
+  it("should return 0 commits when all_commits true and API returns error", async () => {
+    mock
+      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .reply(200, { error: "Some test error message" });
+
+    let stats = await fetchStats("anuraghazra", true);
+    expect(stats).toStrictEqual({
+      contributedTo: 61,
+      name: "Anurag Hazra",
+      totalCommits: 0,
+      totalIssues: 200,
+      totalPRs: 300,
+      totalPRsMerged: 240,
+      mergedPRsPercentage: 80,
+      totalReviews: 50,
+      totalStars: 300,
+      totalDiscussionsStarted: 10,
+      totalDiscussionsAnswered: 40,
+      rank: calculateRank({
+        all_commits: true,
+        commits: 0,
+        prs: 300,
+        reviews: 50,
+        issues: 200,
+        repos: 5,
+        stars: 300,
+        followers: 100,
+      }),
+    });
+  });
+
   it("should exclude stars of the `test-repo-1` repository", async () => {
     mock
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
