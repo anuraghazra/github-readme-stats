@@ -8,7 +8,7 @@ class I18n {
    * Constructor.
    *
    * @param {Object} options Options.
-   * @param {string} options.locale Locale.
+   * @param {string=} options.locale Locale.
    * @param {Object} options.translations Translations.
    */
   constructor({ locale, translations }) {
