@@ -426,6 +426,9 @@ The top languages card shows a GitHub user's most frequently used languages.
 > [!WARNING]\
 > This card shows languages usage only inside your own non-forked repositories, not depending from who is the author of the commits. It does not include your contributions into another users/organizations repositories. Currently there are no way to get this data from GitHub API. If you want this behavior to be improved you can support [this feature request](https://github.com/orgs/community/discussions/18230) created by [@rickstaa](https://github.com/rickstaa) inside GitHub Community.
 
+> [!WARNING]\
+> Currently this card shows data only about first 100 repositories. This is because GitHub API limitations which cause downtimes of public instance (see [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)). In future this behavior will be improved by releasing GitHub action or providing environment variable for user's own instances.
+
 ### Usage
 
 Copy-paste this code into your readme and change the links.
