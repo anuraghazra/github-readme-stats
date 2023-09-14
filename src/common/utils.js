@@ -383,7 +383,8 @@ const CONSTANTS = {
 const OWNER_AFFILIATIONS = ["OWNER", "COLLABORATOR", "ORGANIZATION_MEMBER"];
 
 const SECONDARY_ERROR_MESSAGES = {
-  MAX_RETRY: "Downtime due to GitHub API rate limiting",
+  MAX_RETRY:
+    "You can deploy own instance or wait until public will be no longer limited",
   NO_TOKENS:
     "Please add an env variable called PAT_1 with your GitHub API token in vercel",
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
