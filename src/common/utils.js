@@ -8,6 +8,22 @@ import { themes } from "../../themes/index.js";
 const ERROR_CARD_LENGTH = 576.5;
 
 /**
+ * Encode string as HTML.
+ *
+ * @see https://stackoverflow.com/a/48073476/10629172
+ *
+ * @param {string} str String to encode.
+ * @returns {string} Encoded string.
+ */
+const encodeHTML = (str) => {
+  return str
+    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
+      return "&#" + i.charCodeAt(0) + ";";
+    })
+    .replace(/\u0008/gim, "");
+};
+
+/**
  * Renders error message on the card.
  *
  * @param {string} message Main error message.
@@ -32,6 +48,31 @@ const renderError = (message, secondaryMessage = "") => {
     </text>
     </svg>
   `;
+};
+
+/**
+ * Auto layout utility, allows us to layout things vertically or horizontally with
+ * proper gaping.
+ *
+ * @param {object} props Function properties.
+ * @param {string[]} props.items Array of items to layout.
+ * @param {number} props.gap Gap between items.
+ * @param {"column" | "row"=} props.direction Direction to layout items.
+ * @param {number[]=} props.sizes Array of sizes for each item.
+ * @returns {string[]} Array of items with proper layout.
+ */
+const flexLayout = ({ items, gap, direction, sizes = [] }) => {
+  let lastSize = 0;
+  // filter() for filtering out empty strings
+  return items.filter(Boolean).map((item, i) => {
+    const size = sizes[i] || 0;
+    let transform = `translate(${lastSize}, 0)`;
+    if (direction === "column") {
+      transform = `translate(0, ${lastSize})`;
+    }
+    lastSize += size + gap;
+    return `<g transform="${transform}">${item}</g>`;
+  });
 };
 
 /**
@@ -77,22 +118,6 @@ const iconWithLabel = (icon, label, testid, iconSize) => {
     `;
   const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
   return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
-};
-
-/**
- * Encode string as HTML.
- *
- * @see https://stackoverflow.com/a/48073476/10629172
- *
- * @param {string} str String to encode.
- * @returns {string} Encoded string.
- */
-const encodeHTML = (str) => {
-  return str
-    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
-      return "&#" + i.charCodeAt(0) + ";";
-    })
-    .replace(/\u0008/gim, "");
 };
 
 /**
@@ -218,31 +243,6 @@ const request = (data, headers) => {
     method: "post",
     headers,
     data,
-  });
-};
-
-/**
- * Auto layout utility, allows us to layout things vertically or horizontally with
- * proper gaping.
- *
- * @param {object} props Function properties.
- * @param {string[]} props.items Array of items to layout.
- * @param {number} props.gap Gap between items.
- * @param {"column" | "row"=} props.direction Direction to layout items.
- * @param {number[]=} props.sizes Array of sizes for each item.
- * @returns {string[]} Array of items with proper layout.
- */
-const flexLayout = ({ items, gap, direction, sizes = [] }) => {
-  let lastSize = 0;
-  // filter() for filtering out empty strings
-  return items.filter(Boolean).map((item, i) => {
-    const size = sizes[i] || 0;
-    let transform = `translate(${lastSize}, 0)`;
-    if (direction === "column") {
-      transform = `translate(0, ${lastSize})`;
-    }
-    lastSize += size + gap;
-    return `<g transform="${transform}">${item}</g>`;
   });
 };
 
