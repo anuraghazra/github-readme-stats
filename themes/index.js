@@ -12,13 +12,20 @@ export const themes = {
     text_color: "434d58",
     bg_color: "fffefe",
   },
-  transparent: {
+  transparent_green: {
     title_color: "006AFF",
     icon_color: "0579C3",
     text_color: "417E87",
     bg_color: "ffffff00",
   },
   shadow_red: {
+    title_color: "013C01",
+    text_color: "444",
+    icon_color: "013C01",
+    border_color: "013C01",
+    bg_color: "ffffff00",
+  },
+    shadow_red: {
     title_color: "9A0000",
     text_color: "444",
     icon_color: "4F0000",
