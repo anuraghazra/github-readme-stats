@@ -373,11 +373,21 @@ const noop = () => {};
 const logger =
   process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
 
+// Cache settings.
+const CARD_CACHE_SECONDS = 14400;
+const ERROR_CACHE_SECONDS = 600;
+
 const CONSTANTS = {
+  ONE_MINUTE: 60,
+  FIVE_MINUTES: 300,
+  TEN_MINUTES: 600,
+  FIFTEEN_MINUTES: 900,
   THIRTY_MINUTES: 1800,
   TWO_HOURS: 7200,
   FOUR_HOURS: 14400,
   ONE_DAY: 86400,
+  CARD_CACHE_SECONDS,
+  ERROR_CACHE_SECONDS,
 };
 
 const SECONDARY_ERROR_MESSAGES = {
