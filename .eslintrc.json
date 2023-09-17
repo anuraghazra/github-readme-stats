@@ -128,7 +128,7 @@
 
         // Disallow hoisting - let & const don't allow hoisting anyhow
 
-        // "no-use-before-define": "error",
+        "no-use-before-define": "error",
 
         // Node.js and CommonJS
 
