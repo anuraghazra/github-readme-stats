@@ -153,8 +153,8 @@ const statsFetcher = async (username) => {
  */
 const totalCommitsFetcher = async (username) => {
   if (!githubUsernameRegex.test(username)) {
-    logger.log("Invalid username");
-    return 0;
+    logger.log("Invalid username provided.");
+    throw new Error("Invalid username provided.");
   }
 
   // https://developer.github.com/v3/search/#search-commits
@@ -170,18 +170,19 @@ const totalCommitsFetcher = async (username) => {
     });
   };
 
+  let res;
   try {
-    let res = await retryer(fetchTotalCommits, { login: username });
-    let total_count = res.data.total_count;
-    if (!!total_count && !isNaN(total_count)) {
-      return res.data.total_count;
-    }
+    res = await retryer(fetchTotalCommits, { login: username });
   } catch (err) {
     logger.log(err);
+    throw new Error(err);
   }
-  // just return 0 if there is something wrong so that
-  // we don't break the whole app
-  return 0;
+
+  const totalCount = res.data.total_count;
+  if (!totalCount || isNaN(totalCount)) {
+    throw new Error("Could not fetch total commits.");
+  }
+  return totalCount;
 };
 
 /**
