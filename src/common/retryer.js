@@ -72,5 +72,5 @@ const retryer = async (fetcher, variables, retries = 0) => {
   }
 };
 
-export { retryer };
+export { retryer, RETRIES };
 export default retryer;
