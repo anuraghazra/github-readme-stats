@@ -82,7 +82,7 @@ export default async (req, res) => {
       `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
         CONSTANTS.ERROR_CACHE_SECONDS
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
-    ); // Cache the error response less frequently.
+    ); // Use lower cache period for errors.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };
