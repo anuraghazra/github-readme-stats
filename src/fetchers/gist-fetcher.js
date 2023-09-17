@@ -47,6 +47,36 @@ const fetcher = async (variables, token) => {
 };
 
 /**
+ * @typedef {{ name: string; language: { name: string; }, size: number }} GistFile Gist file.
+ */
+
+/**
+ * This function calculates the primary language of a gist by files size.
+ *
+ * @param {GistFile[]} files Files.
+ * @returns {string} Primary language.
+ */
+const calculatePrimaryLanguage = (files) => {
+  const languages = {};
+  for (const file of files) {
+    if (file.language) {
+      if (languages[file.language.name]) {
+        languages[file.language.name] += file.size;
+      } else {
+        languages[file.language.name] = file.size;
+      }
+    }
+  }
+  let primaryLanguage = Object.keys(languages)[0];
+  for (const language in languages) {
+    if (languages[language] > languages[primaryLanguage]) {
+      primaryLanguage = language;
+    }
+  }
+  return primaryLanguage;
+};
+
+/**
  * @typedef {import('./types').GistData} GistData Gist data.
  */
 
@@ -78,36 +108,6 @@ const fetchGist = async (id) => {
     starsCount: data.stargazerCount,
     forksCount: data.forks.totalCount,
   };
-};
-
-/**
- * @typedef {{ name: string; language: { name: string; }, size: number }} GistFile Gist file.
- */
-
-/**
- * This function calculates the primary language of a gist by files size.
- *
- * @param {GistFile[]} files Files.
- * @returns {string} Primary language.
- */
-const calculatePrimaryLanguage = (files) => {
-  const languages = {};
-  for (const file of files) {
-    if (file.language) {
-      if (languages[file.language.name]) {
-        languages[file.language.name] += file.size;
-      } else {
-        languages[file.language.name] = file.size;
-      }
-    }
-  }
-  let primaryLanguage = Object.keys(languages)[0];
-  for (const language in languages) {
-    if (languages[language] > languages[primaryLanguage]) {
-      primaryLanguage = language;
-    }
-  }
-  return primaryLanguage;
 };
 
 export { fetchGist };
