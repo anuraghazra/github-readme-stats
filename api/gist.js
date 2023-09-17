@@ -34,8 +34,8 @@ export default async (req, res) => {
     const gistData = await fetchGist(id);
 
     let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.EIGHT_HOURS, 10),
-      CONSTANTS.EIGHT_HOURS,
+      parseInt(cache_seconds || CONSTANTS.SIX_HOURS, 10),
+      CONSTANTS.SIX_HOURS,
       CONSTANTS.ONE_DAY,
     );
     cacheSeconds = process.env.CACHE_SECONDS
@@ -52,7 +52,7 @@ export default async (req, res) => {
     const isBothOver1K = stars > 1000 && forks > 1000;
     const isBothUnder1 = stars < 1 && forks < 1;
     if (!cache_seconds && (isBothOver1K || isBothUnder1)) {
-      cacheSeconds = CONSTANTS.EIGHT_HOURS;
+      cacheSeconds = CONSTANTS.SIX_HOURS;
     }
 
     res.setHeader(

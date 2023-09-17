@@ -162,8 +162,8 @@ describe("Test /api/", () => {
       ["Content-Type", "image/svg+xml"],
       [
         "Cache-Control",
-        `max-age=${CONSTANTS.EIGHT_HOURS / 2}, s-maxage=${
-          CONSTANTS.EIGHT_HOURS
+        `max-age=${CONSTANTS.SIX_HOURS / 2}, s-maxage=${
+          CONSTANTS.SIX_HOURS
         }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
       ],
     ]);
@@ -222,8 +222,8 @@ describe("Test /api/", () => {
         ["Content-Type", "image/svg+xml"],
         [
           "Cache-Control",
-          `max-age=${CONSTANTS.EIGHT_HOURS / 2}, s-maxage=${
-            CONSTANTS.EIGHT_HOURS
+          `max-age=${CONSTANTS.SIX_HOURS / 2}, s-maxage=${
+            CONSTANTS.SIX_HOURS
           }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
         ],
       ]);
@@ -237,8 +237,8 @@ describe("Test /api/", () => {
         ["Content-Type", "image/svg+xml"],
         [
           "Cache-Control",
-          `max-age=${CONSTANTS.EIGHT_HOURS / 2}, s-maxage=${
-            CONSTANTS.EIGHT_HOURS
+          `max-age=${CONSTANTS.SIX_HOURS / 2}, s-maxage=${
+            CONSTANTS.SIX_HOURS
           }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
         ],
       ]);
