@@ -42,8 +42,8 @@ export default async (req, res) => {
     const stats = await fetchWakatimeStats({ username, api_domain });
 
     let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
-      CONSTANTS.FOUR_HOURS,
+      parseInt(cache_seconds || CONSTANTS.EIGHT_HOURS, 10),
+      CONSTANTS.EIGHT_HOURS,
       CONSTANTS.ONE_DAY,
     );
     cacheSeconds = process.env.CACHE_SECONDS
@@ -51,7 +51,7 @@ export default async (req, res) => {
       : cacheSeconds;
 
     if (!cache_seconds) {
-      cacheSeconds = CONSTANTS.FOUR_HOURS;
+      cacheSeconds = CONSTANTS.EIGHT_HOURS;
     }
 
     res.setHeader(

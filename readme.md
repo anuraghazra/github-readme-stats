@@ -293,12 +293,12 @@ You can customize the appearance of all your cards however you wish with URL par
 *   `bg_color` - Card's background color *(hex color)* **or** a gradient in the form of *angle,start,end*. Default: `fffefe`
 *   `hide_border` - Hides the card's border *(boolean)*. Default: `false`
 *   `theme` - Name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme.
-*   `cache_seconds` - Sets the cache header manually *(min: 14400, max: 86400)*. Default: `14400 seconds (4 hours)`.
+*   `cache_seconds` - Sets the cache header manually *(min: 28800, max: 86400)*. Default: `28800 seconds (8 hours)`.
 *   `locale` - Sets the language in the card *(e.g. cn, de, es, etc.)*. Default: `en`.
 *   `border_radius` - Corner rounding on the card. Default: `4.5`.
 
 > [!WARNING]\
-> We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours.
+> We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have a default cache of 8 hours (28800 seconds). Also, note that the cache is clamped to a minimum of 8 hours and a maximum of 24 hours. If you want the data on your statistics card to be updated more often you can [deploy your own instance](#deploy-on-your-own) and set [environment variable](#disable-rate-limit-protections) `CACHE_SECONDS` to a value of your choosing.
 
 ##### Gradient in bg\_color
 
