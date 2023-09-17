@@ -1,23 +1,53 @@
 name: Update top issues dashboard
 on:
   schedule:
+    #        ┌───────────── minute (0 - 59)
+    #        │ ┌───────────── hour (0 - 23)
+    #        │ │  ┌───────────── day of the month (1 - 31)
+    #        │ │  │  ┌───────────── month (1 - 12 or JAN-DEC)
+    #        │ │  │  │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+    #        │ │  │  │ │
+    #        │ │  │  │ │
+    #        │ │  │  │ │
+    #        * *  *  * *
     - cron: "0 0 */3 * *"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  deployments: read
+  issues: write
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
 
 jobs:
   showAndLabelTopIssues:
+    if: github.repository == 'anuraghazra/github-readme-stats'
     name: Update top issues Dashboard.
     runs-on: ubuntu-latest
     steps:
       - name: Run top issues action
-        uses: rickstaa/top-issues-action@v1
+        uses: rickstaa/top-issues-action@20822b6d133fa88780e87f154bef34a6911005ec # v1.3.46
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         with:
+          top_list_size: 10
           filter: "1772"
-          label: false
+          label: true
           dashboard: true
           dashboard_show_total_reactions: true
           top_issues: true
           top_bugs: true
           top_features: true
           top_pull_requests: true
+          custom_pull_requests_label: themes
+          top_custom_pull_requests_label: ":star: top themes"
+          top_custom_pull_requests_label_description: Top themes
+          top_custom_pull_requests_label_colour: "#A23599"

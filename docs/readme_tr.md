@@ -7,14 +7,20 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
+    </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
     </a>
     <br />
     <br />
@@ -29,9 +35,9 @@
   <p align="center">
     <a href="#demo">Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Hata İlet</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Hata İlet</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Özellik Talep Et</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Özellik Talep Et</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français </a>
@@ -59,15 +65,30 @@
 </p>
 <p align="center">Projeyi sevdiniz mi? Daha da gelişmesi için lütfen <a href="https://www.paypal.me/anuraghazra">bağış</a> yapın!
 
-# Features
+# Features <!-- omit in toc -->
 
-- [GitHub İstatistikler Kartı](#github-istatistikler-kartı)
+- [GitHub İstatistikler Kartı](#github-i̇statistikler-kartı)
+    - [Bazı İstatitistikleri Gizleme](#bazı-i̇statitistikleri-gizleme)
+    - [Özel Katkı Sayısını Toplam Commit Sayısına Ekleme](#özel-katkı-sayısını-toplam-commit-sayısına-ekleme)
+    - [İkonları Göstermek](#i̇konları-göstermek)
+    - [Temalar](#temalar)
+    - [Özelleştirmeler](#özelleştirmeler)
 - [GitHub Ekstra Pinler](#github-ekstra-pinler)
+    - [Kullanım](#kullanım)
+    - [Demo](#demo)
 - [En Çok Kullanılan Diller](#en-çok-kullanılan-diller)
-- [Wakatime Haftalık İstatistikler](#wakatime-haftalık-istatistikler)
-- [Temalar](#temalar)
-- [Özelleştirmeler](#özelleştirmeler)
-- [Yayınlayın](#yayınlayın)
+    - [Kullanım](#kullanım-1)
+    - [Belirli Repoları Çıkartın](#belirli-repoları-çıkartın)
+    - [Belirli Dilleri Çıkartın](#belirli-dilleri-çıkartın)
+    - [Daha Fazla Dil Gösterin](#daha-fazla-dil-gösterin)
+    - [Kompakt Dil Kartı Düzeni](#kompakt-dil-kartı-düzeni)
+    - [Demo](#demo-1)
+- [Wakatime Haftalık İstatistikler](#wakatime-haftalık-i̇statistikler)
+    - [Demo](#demo-2)
+    - [Tüm Demolar](#tüm-demolar)
+    - [Hızlı İpucu (Repo Kartları Hizlayın)](#hızlı-i̇pucu-repo-kartları-hizlayın)
+  - [Kendi Vercel Örneğinizde Yayınlayın](#kendi-vercel-örneğinizde-yayınlayın)
+  - [:sparkling\_heart: Projeyi Destekleyin](#sparkling_heart-projeyi-destekleyin)
 
 # GitHub İstatistikler Kartı
 
@@ -143,7 +164,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `bg_color` - Kartın arkaplan rengi _(hex color / hex rengi)_ **ya da** gradient şeklinde _açı,başlangıç,bitiş_
 - `hide_border` - Kartın çerçevelerini gizler _(boolean)_
 - `theme` - Temanın rengi [tüm temalar](./themes/README.md)
-- `cache_seconds` - Manuel olarak cache'i belirleyebilirsiniz _(en az: 1800, en fazla: 86400)_
+- `cache_seconds` - Manuel olarak cache'i belirleyebilirsiniz _(en az: 14400, en fazla: 86400)_
 - `locale` - Karttaki dili seçebilirsiniz _(örneğin; tr, cn, de, es, vb.)_
 
 ##### bg_color'da Gradient
@@ -176,7 +197,7 @@ bg_color içerisinde birden fazla rengi gradient olarak göstermek için virgül
 
 - `hide` - Belirli bir dili listede gizler _(Virgül ile ayırılmış değerlerle)_
 - `hide_title` - _(boolean)_
-- `layout` - Uygun olan iki tasarım / layout arasında değişiklik yapar `default` & `compact`
+- `layout` - Beş uygun tasarım / düzen arasında geçiş yapın `normal` & `compact` & `donut` & `donut-vertical` & `pie`
 - `card_width` - Kartın genişliğini manuel olarak belirler _(number)_
 - `langs_count` - 1-10 arasında istediğiniz kadar dil gösterebilirsiniz. Varsayılan: 5 _(number)_
 - `exclude_repo` - Belirli repoları listeden çıkartır _(Virgül ile ayırılmış değerlerle)_
@@ -282,18 +303,18 @@ Endpoint: `api/top-langs?username=mustafacagri`
 `?username=` değerini [Wakatime](https://wakatime.com)'daki kullanıcı adınızla değiştirin.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - Kompakt Düzen
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -343,7 +364,7 @@ Endpoint: `api/top-langs?username=mustafacagri`
 
 - Wakatime kart
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -409,7 +430,7 @@ Teşekkürler! :heart:
 
 ---
 
-[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
+[![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
 
 
 Katkılara açığız! <3

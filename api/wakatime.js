@@ -28,7 +28,6 @@ export default async (req, res) => {
     langs_count,
     hide,
     api_domain,
-    range,
     border_radius,
     border_color,
   } = req.query;
@@ -40,13 +39,16 @@ export default async (req, res) => {
   }
 
   try {
-    const stats = await fetchWakatimeStats({ username, api_domain, range });
+    const stats = await fetchWakatimeStats({ username, api_domain });
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
       CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
+    cacheSeconds = process.env.CACHE_SECONDS
+      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+      : cacheSeconds;
 
     res.setHeader(
       "Cache-Control",
@@ -81,7 +83,7 @@ export default async (req, res) => {
       `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
         CONSTANTS.ERROR_CACHE_SECONDS
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
-    ); // Cache the error response less frequently.
+    ); // Use lower cache period for errors.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };

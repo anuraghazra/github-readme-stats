@@ -1,0 +1,20 @@
+name: Deployment Prep
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  config:
+    if: github.repository == 'anuraghazra/github-readme-stats'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
+      - name: Deployment Prep
+        run: python ./.github/workflows/deploy-prep.py
+      - uses: stefanzweifel/git-auto-commit-action@3ea6ae190baf489ba007f7c92608f33ce20ef04a # v4.16.0
+        with:
+          branch: vercel
+          create_branch: true
+          push_options: "--force"

@@ -44,6 +44,9 @@ export default async (req, res) => {
       CONSTANTS.FOUR_HOURS,
       CONSTANTS.ONE_DAY,
     );
+    cacheSeconds = process.env.CACHE_SECONDS
+      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+      : cacheSeconds;
 
     /*
       if star count & fork count is over 1k then we are kFormating the text
