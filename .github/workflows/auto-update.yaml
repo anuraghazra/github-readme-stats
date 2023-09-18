@@ -1,0 +1,12 @@
+name: autoupdate
+on:
+  push:
+    branches: [master]
+jobs:
+  autoupdate:
+    name: autoupdate
+    runs-on: latest
+    steps:
+      - uses: docker://chinthakagodawita/autoupdate-action:v1.7.0
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
