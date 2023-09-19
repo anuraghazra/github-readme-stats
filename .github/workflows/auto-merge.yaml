@@ -20,6 +20,7 @@ on:
 jobs:
   auto-merge:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.draft == false
     steps:
       - id: auto-merge
         uses: "pascalgn/automerge-action@v0.15.6"
