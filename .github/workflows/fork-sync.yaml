@@ -2,7 +2,7 @@ name: Sync Fork
 
 on:
   schedule:
-    - cron: '*/30 * * * *' # every 30 minutes
+    - cron: "*/30 * * * *" # every 30 minutes
   workflow_dispatch: # on button click
 
 jobs:
@@ -14,3 +14,4 @@ jobs:
           owner: devantler
           base: main
           head: main
+          ignore_fail: true
