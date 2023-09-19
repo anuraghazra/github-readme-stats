@@ -1,5 +1,4 @@
 name: Sync labels
-
 on:
   schedule:
     - cron: "0 7 * * 1"
