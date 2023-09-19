@@ -1,0 +1,10 @@
+name: "Convert new TODOs to GitHub Issues"
+on: ["push"]
+jobs:
+  build:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "alstr/todo-to-issue-action@v4"
+        env:
+          AUTO_ASSIGN: true
