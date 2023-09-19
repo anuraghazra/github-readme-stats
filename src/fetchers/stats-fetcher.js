@@ -180,7 +180,10 @@ const totalCommitsFetcher = async (username) => {
 
   const totalCount = res.data.total_count;
   if (!totalCount || isNaN(totalCount)) {
-    throw new Error("Could not fetch total commits.");
+    throw new CustomError(
+      "Could not fetch total commits.",
+      CustomError.GRAPHQL_ERROR,
+    );
   }
   return totalCount;
 };
