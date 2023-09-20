@@ -99,7 +99,7 @@
             "location": "start"
         }],
         // "no-with": "warn",
-        // "radix": "warn",
+        "radix": "warn",
         // "vars-on-top": "error",
 
         // Enforces the style of wrapped functions
