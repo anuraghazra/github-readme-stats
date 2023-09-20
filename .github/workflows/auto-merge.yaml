@@ -30,5 +30,3 @@ jobs:
           MERGE_METHOD: "squash"
           UPDATE_LABELS: ""
           UPDATE_METHOD: "rebase"
-          MERGE_RETRIES: 60
-          UPDATE_RETRIES: 60
