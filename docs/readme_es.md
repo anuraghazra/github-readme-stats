@@ -8,14 +8,20 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
+    </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
     </a>
     <br />
     <br />
@@ -28,11 +34,11 @@
   </p>
 
   <p align="center">
-    <a href="#ejemplo">Ver un ejemplo</a>
+    <a href="#todos-los-ejemplos">Ver un ejemplo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Reportar un bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Reportar un bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicitar una mejora</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Solicitar una mejora</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
@@ -60,15 +66,30 @@
 </p>
 <p align="center">¿Te gusta este proyecto? ¡Por favor, considera <a href="https://www.paypal.me/anuraghazra">donar</a> para ayudar a mejorarlo!
 
-# Características
+# Características <!-- omit in toc -->
 
 - [Tarjeta de estadísticas de GitHub](#tarjeta-de-estadísticas-de-github)
-- [Pins adicionales de GitHub](#pines-adicionales-de-github)
+    - [Ocultar estadísticas individualmente](#ocultar-estadísticas-individualmente)
+    - [Agregar contribuciones privadas al total de commits contados](#agregar-contribuciones-privadas-al-total-de-commits-contados)
+    - [Mostrar íconos](#mostrar-íconos)
+    - [Temas](#temas)
+    - [Personalización](#personalización)
+- [Pines adicionales de GitHub](#pines-adicionales-de-github)
+    - [Utilización](#utilización)
+    - [Ejemplo](#ejemplo)
 - [Tarjeta de Lenguajes Principales](#tarjeta-de-lenguajes-principales)
-- [Wakatime Week Stats](#estadísticas-de-la-semana-de-wakatime)
-- [Temas](#temas)
-- [Personalización](#personalización)
-- [Despliega por tu cuenta](#despliega-tu-propia-instancia-de-vercel)
+    - [Utilización](#utilización-1)
+    - [Excluir repositorios individualmente](#excluir-repositorios-individualmente)
+    - [Ocultar lenguajes individualmente](#ocultar-lenguajes-individualmente)
+    - [Mostrar más lenguajes](#mostrar-más-lenguajes)
+    - [Diseño Compacto de Tarjeta de Lenguaje](#diseño-compacto-de-tarjeta-de-lenguaje)
+    - [Ejemplo](#ejemplo-1)
+- [Estadísticas de la semana de Wakatime](#estadísticas-de-la-semana-de-wakatime)
+    - [Ejemplo](#ejemplo-2)
+    - [Todos los ejemplos](#todos-los-ejemplos)
+    - [Consejo rápido (para alinear las tarjetas de repositorio)](#consejo-rápido-para-alinear-las-tarjetas-de-repositorio)
+  - [Despliega tu propia instancia de Vercel](#despliega-tu-propia-instancia-de-vercel)
+  - [:sparkling\_heart: Apoya al proyecto](#sparkling_heart-apoya-al-proyecto)
 
 # Tarjeta de estadísticas de GitHub
 
@@ -142,7 +163,7 @@ Puedes personalizar el aspecto de tu `Tarjeta de Estadísticas` o `Tarjeta de Re
 - `bg_color` - Color de fondo _(hex color)_
 - `hide_border` - Oculta el borde de la tarjeta _(booleano)_
 - `theme` - Nombre del tema, elige uno de [todos los temas disponible ](../themes/README.md)
-- `cache_seconds` - Cache _(min: 1800, max: 86400)_
+- `cache_seconds` - Cache _(min: 14400, max: 86400)_
 - `locale` - configurar el idioma en la tarjeta _(p.ej. cn, de, es, etc.)_
 
 ##### Gradiente en `bg_color`
@@ -175,7 +196,7 @@ Puedes pasar mútliples valores separados por coma en la opción `bg_color` para
 
 - `hide` - Oculta de la tarjeta los lenguajes especificados  _(valores separados por comas)_
 - `hide_title` - _(booleano)_
-- `layout` - Cambia entre los dos diseños disponibles `default` & `compact`
+- `layout` - Cambiar entre los cinco diseños disponibles `normal` & `compact` & `donut` & `donut-vertical` & `pie`
 - `card_width` - Establece el ancho de la tarjeta manualmente _(número)_
 - `langs_count` - Muestra más lenguajes en la tarjeta, entre 1-10, por defecto 5 _(número)_
 - `exclude_repo` - Excluye los repositorios especificados  _(valores separados por comas)_
@@ -282,18 +303,18 @@ Puedes usar la opción `& layout = compact` para cambiar el diseño de la tarjet
 cambia el valor del parámetro `?username=` a tu username en [Wakatime](https://wakatime.com).
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Ejemplo
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - Diseño compacto
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -343,7 +364,7 @@ Escoja cualquiera de los [temas por defecto](#themes)
 
 - Tarjeta de Wakatime
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
