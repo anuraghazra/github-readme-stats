@@ -49,3 +49,4 @@ ranks: src/calculateRank.js
 ci:
   - .github/workflows/*
   - scripts/*
+infrastructure: .eslintrc.js
