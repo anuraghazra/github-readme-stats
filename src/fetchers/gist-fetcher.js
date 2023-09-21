@@ -47,34 +47,6 @@ const fetcher = async (variables, token) => {
 };
 
 /**
- * @typedef {import('./types').GistData} GistData Gist data.
- */
-
-/**
- * Fetch GitHub gist information by given username and ID.
- *
- * @param {string} id Github gist ID.
- * @returns {Promise<GistData>} Gist data.
- */
-const fetchGist = async (id) => {
-  if (!id) throw new MissingParamError(["id"], "/api/gist?id=GIST_ID");
-  const res = await retryer(fetcher, { gistName: id });
-  if (res.data.errors) throw new Error(res.data.errors[0].message);
-  if (!res.data.data.viewer.gist) throw new Error("Gist not found");
-  const data = res.data.data.viewer.gist;
-  return {
-    name: data.files[Object.keys(data.files)[0]].name,
-    nameWithOwner: `${data.owner.login}/${
-      data.files[Object.keys(data.files)[0]].name
-    }`,
-    description: data.description,
-    language: calculatePrimaryLanguage(data.files),
-    starsCount: data.stargazerCount,
-    forksCount: data.forks.totalCount,
-  };
-};
-
-/**
  * @typedef {{ name: string; language: { name: string; }, size: number }} GistFile Gist file.
  */
 
@@ -102,6 +74,40 @@ const calculatePrimaryLanguage = (files) => {
     }
   }
   return primaryLanguage;
+};
+
+/**
+ * @typedef {import('./types').GistData} GistData Gist data.
+ */
+
+/**
+ * Fetch GitHub gist information by given username and ID.
+ *
+ * @param {string} id Github gist ID.
+ * @returns {Promise<GistData>} Gist data.
+ */
+const fetchGist = async (id) => {
+  if (!id) {
+    throw new MissingParamError(["id"], "/api/gist?id=GIST_ID");
+  }
+  const res = await retryer(fetcher, { gistName: id });
+  if (res.data.errors) {
+    throw new Error(res.data.errors[0].message);
+  }
+  if (!res.data.data.viewer.gist) {
+    throw new Error("Gist not found");
+  }
+  const data = res.data.data.viewer.gist;
+  return {
+    name: data.files[Object.keys(data.files)[0]].name,
+    nameWithOwner: `${data.owner.login}/${
+      data.files[Object.keys(data.files)[0]].name
+    }`,
+    description: data.description,
+    language: calculatePrimaryLanguage(data.files),
+    starsCount: data.stargazerCount,
+    forksCount: data.forks.totalCount,
+  };
 };
 
 export { fetchGist };
