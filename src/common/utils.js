@@ -4,6 +4,41 @@ import toEmoji from "emoji-name-map";
 import wrap from "word-wrap";
 import { themes } from "../../themes/index.js";
 
+const TRY_AGAING_LATER = "Please try again later";
+
+const SECONDARY_ERROR_MESSAGES = {
+  MAX_RETRY:
+    "You can deploy own instance or wait until public will be no longer limited",
+  NO_TOKENS:
+    "Please add an env variable called PAT_1 with your GitHub API token in vercel",
+  USER_NOT_FOUND: "Make sure the provided username is not an organization",
+  GRAPHQL_ERROR: TRY_AGAING_LATER,
+  GITHUB_REST_API_ERROR: TRY_AGAING_LATER,
+  WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
+};
+
+/**
+ * Custom error class to handle custom GRS errors.
+ */
+class CustomError extends Error {
+  /**
+   * @param {string} message Error message.
+   * @param {string} type Error type.
+   */
+  constructor(message, type) {
+    super(message);
+    this.type = type;
+    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || type;
+  }
+
+  static MAX_RETRY = "MAX_RETRY";
+  static NO_TOKENS = "NO_TOKENS";
+  static USER_NOT_FOUND = "USER_NOT_FOUND";
+  static GRAPHQL_ERROR = "GRAPHQL_ERROR";
+  static GITHUB_REST_API_ERROR = "GITHUB_REST_API_ERROR";
+  static WAKATIME_ERROR = "WAKATIME_ERROR";
+}
+
 // Script parameters.
 const ERROR_CARD_LENGTH = 576.5;
 
@@ -23,6 +58,11 @@ const encodeHTML = (str) => {
     .replace(/\u0008/gim, "");
 };
 
+const UPSTREAM_API_ERRORS = [
+  TRY_AGAING_LATER,
+  SECONDARY_ERROR_MESSAGES.MAX_RETRY,
+];
+
 /**
  * Renders error message on the card.
  *
@@ -41,7 +81,11 @@ const renderError = (message, secondaryMessage = "") => {
     <rect x="0.5" y="0.5" width="${
       ERROR_CARD_LENGTH - 1
     }" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
-    <text x="25" y="45" class="text">Something went wrong! file an issue at https://tiny.one/readme-stats</text>
+    <text x="25" y="45" class="text">Something went wrong!${
+      UPSTREAM_API_ERRORS.includes(secondaryMessage)
+        ? ""
+        : " file an issue at https://tiny.one/readme-stats"
+    }</text>
     <text data-testid="message" x="25" y="55" class="text small">
       <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
       <tspan x="25" dy="18" class="gray">${secondaryMessage}</tspan>
@@ -398,41 +442,6 @@ const CONSTANTS = {
   CARD_CACHE_SECONDS: SIX_HOURS,
   ERROR_CACHE_SECONDS: TEN_MINUTES,
 };
-
-const TRY_AGAING_LATER = "Please try again later";
-
-const SECONDARY_ERROR_MESSAGES = {
-  MAX_RETRY:
-    "You can deploy own instance or wait until public will be no longer limited",
-  NO_TOKENS:
-    "Please add an env variable called PAT_1 with your GitHub API token in vercel",
-  USER_NOT_FOUND: "Make sure the provided username is not an organization",
-  GRAPHQL_ERROR: TRY_AGAING_LATER,
-  GITHUB_REST_API_ERROR: TRY_AGAING_LATER,
-  WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
-};
-
-/**
- * Custom error class to handle custom GRS errors.
- */
-class CustomError extends Error {
-  /**
-   * @param {string} message Error message.
-   * @param {string} type Error type.
-   */
-  constructor(message, type) {
-    super(message);
-    this.type = type;
-    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || type;
-  }
-
-  static MAX_RETRY = "MAX_RETRY";
-  static NO_TOKENS = "NO_TOKENS";
-  static USER_NOT_FOUND = "USER_NOT_FOUND";
-  static GRAPHQL_ERROR = "GRAPHQL_ERROR";
-  static GITHUB_REST_API_ERROR = "GITHUB_REST_API_ERROR";
-  static WAKATIME_ERROR = "WAKATIME_ERROR";
-}
 
 /**
  * Missing query parameter class.
