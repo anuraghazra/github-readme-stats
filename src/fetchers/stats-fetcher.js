@@ -182,7 +182,7 @@ const totalCommitsFetcher = async (username) => {
   if (!totalCount || isNaN(totalCount)) {
     throw new CustomError(
       "Could not fetch total commits.",
-      CustomError.GRAPHQL_ERROR,
+      CustomError.GITHUB_REST_API_ERROR,
     );
   }
   return totalCount;
