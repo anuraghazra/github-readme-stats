@@ -594,6 +594,10 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&rank_icon=percentile)
 
+*   Shows battery logo instead rank level
+
+![Anurag's GitHub stats](https://fk-stats.vercel.app/api?username=anuraghazra\&rank_icon=battery)
+
 *   Customize Border Color
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&border_color=2e4058)
