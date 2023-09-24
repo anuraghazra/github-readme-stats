@@ -444,6 +444,20 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+  neon_palenight: {
+    title_color: "F9DD3C",
+    text_color: "5CADC0",
+    icon_color: "E41D44",
+    border_color: "A8A8A8",
+    bg_color: "020200",
+  },
+  neon_blurange: {
+    title_color: "25FB88",
+    text_color: "C7CCFF",
+    icon_color: "FB750B",
+    border_color: "C7CCFF",
+    bg_color: "030D6B",
+  },
 };
 
 export default themes;
