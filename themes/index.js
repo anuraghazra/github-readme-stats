@@ -444,6 +444,27 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+  shadow_orange: {
+    title_color: "B85502",
+    text_color: "444",
+    icon_color: "834400",
+    border_color: "834400",
+    bg_color: "ffffff00",
+  },
+  shadow_purple: {
+    title_color: "6f42c1",
+    text_color: "444",
+    icon_color: "570182",
+    border_color: "570182",
+    bg_color: "ffffff00",
+  },
+  shadow_brown: {
+    title_color: "5D6642",
+    text_color: "444",
+    icon_color: "4E5336",
+    border_color: "4E5336",
+    bg_color: "ffffff00",
+  },
 };
 
 export default themes;
