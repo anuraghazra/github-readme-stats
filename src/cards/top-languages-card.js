@@ -374,6 +374,8 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
           width="${progress}"
           height="8"
           fill="${lang.color || "#858585"}"
+          stroke="white" 
+          stroke-width="2"
         />
       `;
       progressOffset += percentage;
