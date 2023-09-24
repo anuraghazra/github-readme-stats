@@ -128,7 +128,7 @@
 
         // Disallow hoisting - let & const don't allow hoisting anyhow
 
-        // "no-use-before-define": "error",
+        "no-use-before-define": "error",
 
         // Node.js and CommonJS
 
@@ -156,7 +156,7 @@
         // "no-class-assign": "error",
         // "no-const-assign": "error",
         // "no-dupe-class-members": "error",
-        // "no-this-before-super": "error",
+        "no-this-before-super": "error",
         // "no-var": "warn",
         "object-shorthand": [ "warn" ],
         // "prefer-arrow-callback": "warn",
@@ -203,7 +203,7 @@
         // "no-ternary": "off",
         // "no-trailing-spaces": "warn",
         // "no-underscore-dangle": "warn",
-        // "no-unneeded-ternary": "warn",
+        "no-unneeded-ternary": "warn",
         // "object-curly-spacing": [ "warn", "always" ],
         // "one-var": "off",
         // "operator-assignment": [ "warn", "never" ],

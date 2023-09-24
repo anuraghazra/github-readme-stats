@@ -8,6 +8,22 @@ import { themes } from "../../themes/index.js";
 const ERROR_CARD_LENGTH = 576.5;
 
 /**
+ * Encode string as HTML.
+ *
+ * @see https://stackoverflow.com/a/48073476/10629172
+ *
+ * @param {string} str String to encode.
+ * @returns {string} Encoded string.
+ */
+const encodeHTML = (str) => {
+  return str
+    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
+      return "&#" + i.charCodeAt(0) + ";";
+    })
+    .replace(/\u0008/gim, "");
+};
+
+/**
  * Renders error message on the card.
  *
  * @param {string} message Main error message.
@@ -32,6 +48,31 @@ const renderError = (message, secondaryMessage = "") => {
     </text>
     </svg>
   `;
+};
+
+/**
+ * Auto layout utility, allows us to layout things vertically or horizontally with
+ * proper gaping.
+ *
+ * @param {object} props Function properties.
+ * @param {string[]} props.items Array of items to layout.
+ * @param {number} props.gap Gap between items.
+ * @param {"column" | "row"=} props.direction Direction to layout items.
+ * @param {number[]=} props.sizes Array of sizes for each item.
+ * @returns {string[]} Array of items with proper layout.
+ */
+const flexLayout = ({ items, gap, direction, sizes = [] }) => {
+  let lastSize = 0;
+  // filter() for filtering out empty strings
+  return items.filter(Boolean).map((item, i) => {
+    const size = sizes[i] || 0;
+    let transform = `translate(${lastSize}, 0)`;
+    if (direction === "column") {
+      transform = `translate(0, ${lastSize})`;
+    }
+    lastSize += size + gap;
+    return `<g transform="${transform}">${item}</g>`;
+  });
 };
 
 /**
@@ -77,22 +118,6 @@ const iconWithLabel = (icon, label, testid, iconSize) => {
     `;
   const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
   return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
-};
-
-/**
- * Encode string as HTML.
- *
- * @see https://stackoverflow.com/a/48073476/10629172
- *
- * @param {string} str String to encode.
- * @returns {string} Encoded string.
- */
-const encodeHTML = (str) => {
-  return str
-    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
-      return "&#" + i.charCodeAt(0) + ";";
-    })
-    .replace(/\u0008/gim, "");
 };
 
 /**
@@ -218,31 +243,6 @@ const request = (data, headers) => {
     method: "post",
     headers,
     data,
-  });
-};
-
-/**
- * Auto layout utility, allows us to layout things vertically or horizontally with
- * proper gaping.
- *
- * @param {object} props Function properties.
- * @param {string[]} props.items Array of items to layout.
- * @param {number} props.gap Gap between items.
- * @param {"column" | "row"=} props.direction Direction to layout items.
- * @param {number[]=} props.sizes Array of sizes for each item.
- * @returns {string[]} Array of items with proper layout.
- */
-const flexLayout = ({ items, gap, direction, sizes = [] }) => {
-  let lastSize = 0;
-  // filter() for filtering out empty strings
-  return items.filter(Boolean).map((item, i) => {
-    const size = sizes[i] || 0;
-    let transform = `translate(${lastSize}, 0)`;
-    if (direction === "column") {
-      transform = `translate(0, ${lastSize})`;
-    }
-    lastSize += size + gap;
-    return `<g transform="${transform}">${item}</g>`;
   });
 };
 
@@ -373,19 +373,42 @@ const noop = () => {};
 const logger =
   process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
 
+const ONE_MINUTE = 60;
+const FIVE_MINUTES = 300;
+const TEN_MINUTES = 600;
+const FIFTEEN_MINUTES = 900;
+const THIRTY_MINUTES = 1800;
+const TWO_HOURS = 7200;
+const FOUR_HOURS = 14400;
+const SIX_HOURS = 21600;
+const EIGHT_HOURS = 28800;
+const ONE_DAY = 86400;
+
 const CONSTANTS = {
-  THIRTY_MINUTES: 1800,
-  TWO_HOURS: 7200,
-  FOUR_HOURS: 14400,
-  ONE_DAY: 86400,
+  ONE_MINUTE,
+  FIVE_MINUTES,
+  TEN_MINUTES,
+  FIFTEEN_MINUTES,
+  THIRTY_MINUTES,
+  TWO_HOURS,
+  FOUR_HOURS,
+  SIX_HOURS,
+  EIGHT_HOURS,
+  ONE_DAY,
+  CARD_CACHE_SECONDS: SIX_HOURS,
+  ERROR_CACHE_SECONDS: TEN_MINUTES,
 };
 
+const TRY_AGAING_LATER = "Please try again later";
+
 const SECONDARY_ERROR_MESSAGES = {
-  MAX_RETRY: "Downtime due to GitHub API rate limiting",
+  MAX_RETRY:
+    "You can deploy own instance or wait until public will be no longer limited",
   NO_TOKENS:
     "Please add an env variable called PAT_1 with your GitHub API token in vercel",
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
-  GRAPHQL_ERROR: "Please try again later",
+  GRAPHQL_ERROR: TRY_AGAING_LATER,
+  GITHUB_REST_API_ERROR: TRY_AGAING_LATER,
   WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
 };
 
@@ -407,6 +430,7 @@ class CustomError extends Error {
   static NO_TOKENS = "NO_TOKENS";
   static USER_NOT_FOUND = "USER_NOT_FOUND";
   static GRAPHQL_ERROR = "GRAPHQL_ERROR";
+  static GITHUB_REST_API_ERROR = "GITHUB_REST_API_ERROR";
   static WAKATIME_ERROR = "WAKATIME_ERROR";
 }
 
