@@ -13,9 +13,6 @@ kill_timeout = "5s"
 
 [build]
 
-[env]
-  PAT_1 = "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"
-
 [[services]]
   protocol = "tcp"
   internal_port = 3000
