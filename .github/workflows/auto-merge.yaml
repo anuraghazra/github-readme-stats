@@ -31,4 +31,3 @@ jobs:
           MERGE_RETRIES: 60
           UPDATE_LABELS: ""
           UPDATE_METHOD: "rebase"
-
