@@ -4,7 +4,7 @@ on:
     types: [opened, labeled, unlabeled, synchronize]
 jobs:
   require-labels:
-    if: github.actor != 'dependabot[bot]' && github.actor != 'renovate[bot]' && github.actor != 'web-flow' && github.actor != 'github-actions[bot]'
+    if: github.triggering_actor != 'dependabot[bot]' && github.triggering_actor != 'renovate[bot]' && github.triggering_actor != 'web-flow' && github.triggering_actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     permissions:
       issues: write
