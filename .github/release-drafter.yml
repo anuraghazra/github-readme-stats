@@ -32,6 +32,6 @@ prerelease: true
 prerelease-identifier: "prerelease"
 tag-prefix: "v"
 template: |
-  ## Changes
-
   $CHANGES
+
+  ## 📋 Other Changes
