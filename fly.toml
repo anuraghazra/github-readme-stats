@@ -15,7 +15,7 @@ kill_timeout = "5s"
 
 [[services]]
   protocol = "tcp"
-  internal_port = 3000
+  internal_port = 9000
   processes = ["app"]
 
   [[services.ports]]

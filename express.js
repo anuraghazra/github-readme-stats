@@ -8,7 +8,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 const app = express();
-app.listen(process.env.port || 9000);
+app.listen(9000);
 
 app.get("/", statsCard);
 app.get("/pin", repoCard);
