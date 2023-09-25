@@ -11,6 +11,10 @@ categories:
     label: "refactor"
   - title: "🔬 Research"
     label: "research"
+  - title: "⬆️ Dependencies"
+    collapse-after: 3
+    labels:
+      - "dependencies"
 change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 version-resolver:
@@ -22,8 +26,11 @@ version-resolver:
       - "minor"
   patch:
     labels:
-      - "patch"
+      - "patch" 
   default: patch
+prerelease: true
+prerelease-identifier: "prerelease"
+tag-prefix: "v"
 template: |
   ## Changes
 
