@@ -444,6 +444,12 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+  catppuccin_macchiato {
+    title_color: "8aadf4",
+    text_color: "cad3f5",
+    icon_color: "8aadf4",
+    bg_color: "24273a",
+  }
 };
 
 export default themes;
