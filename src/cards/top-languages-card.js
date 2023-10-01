@@ -223,7 +223,7 @@ const createProgressTextNode = ({ width, color, name, progress, index }) => {
         color,
         width: progressWidth,
         progress,
-        progressBarBackgroundColor: "#ddd",
+        progressBarBackgroundColor: "#222222",
         delay: staggerDelay + 300,
       })}
     </g>
