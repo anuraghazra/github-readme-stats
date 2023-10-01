@@ -8,6 +8,22 @@ import { themes } from "../../themes/index.js";
 const ERROR_CARD_LENGTH = 576.5;
 
 /**
+ * Encode string as HTML.
+ *
+ * @see https://stackoverflow.com/a/48073476/10629172
+ *
+ * @param {string} str String to encode.
+ * @returns {string} Encoded string.
+ */
+const encodeHTML = (str) => {
+  return str
+    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
+      return "&#" + i.charCodeAt(0) + ";";
+    })
+    .replace(/\u0008/gim, "");
+};
+
+/**
  * Renders error message on the card.
  *
  * @param {string} message Main error message.
@@ -35,19 +51,73 @@ const renderError = (message, secondaryMessage = "") => {
 };
 
 /**
- * Encode string as HTML.
+ * Auto layout utility, allows us to layout things vertically or horizontally with
+ * proper gaping.
  *
- * @see https://stackoverflow.com/a/48073476/10629172
- *
- * @param {string} str String to encode.
- * @returns {string} Encoded string.
+ * @param {object} props Function properties.
+ * @param {string[]} props.items Array of items to layout.
+ * @param {number} props.gap Gap between items.
+ * @param {"column" | "row"=} props.direction Direction to layout items.
+ * @param {number[]=} props.sizes Array of sizes for each item.
+ * @returns {string[]} Array of items with proper layout.
  */
-const encodeHTML = (str) => {
-  return str
-    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
-      return "&#" + i.charCodeAt(0) + ";";
-    })
-    .replace(/\u0008/gim, "");
+const flexLayout = ({ items, gap, direction, sizes = [] }) => {
+  let lastSize = 0;
+  // filter() for filtering out empty strings
+  return items.filter(Boolean).map((item, i) => {
+    const size = sizes[i] || 0;
+    let transform = `translate(${lastSize}, 0)`;
+    if (direction === "column") {
+      transform = `translate(0, ${lastSize})`;
+    }
+    lastSize += size + gap;
+    return `<g transform="${transform}">${item}</g>`;
+  });
+};
+
+/**
+ * Creates a node to display the primary programming language of the repository/gist.
+ *
+ * @param {string} langName Language name.
+ * @param {string} langColor Language color.
+ * @returns {string} Language display SVG object.
+ */
+const createLanguageNode = (langName, langColor) => {
+  return `
+    <g data-testid="primary-lang">
+      <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
+      <text data-testid="lang-name" class="gray" x="15">${langName}</text>
+    </g>
+    `;
+};
+
+/**
+ * Creates an icon with label to display repository/gist stats like forks, stars, etc.
+ *
+ * @param {string} icon The icon to display.
+ * @param {number|string} label The label to display.
+ * @param {string} testid The testid to assign to the label.
+ * @param {number} iconSize The size of the icon.
+ * @returns {string} Icon with label SVG object.
+ */
+const iconWithLabel = (icon, label, testid, iconSize) => {
+  if (typeof label === "number" && label <= 0) {
+    return "";
+  }
+  const iconSvg = `
+      <svg
+        class="icon"
+        y="-12"
+        viewBox="0 0 16 16"
+        version="1.1"
+        width="${iconSize}"
+        height="${iconSize}"
+      >
+        ${icon}
+      </svg>
+    `;
+  const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
+  return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
 };
 
 /**
@@ -81,7 +151,9 @@ const isValidHexColor = (hexColor) => {
  * @returns {boolean | undefined } The parsed value.
  */
 const parseBoolean = (value) => {
-  if (typeof value === "boolean") return value;
+  if (typeof value === "boolean") {
+    return value;
+  }
 
   if (typeof value === "string") {
     if (value.toLowerCase() === "true") {
@@ -100,7 +172,9 @@ const parseBoolean = (value) => {
  * @returns {string[]} The array of strings.
  */
 const parseArray = (str) => {
-  if (!str) return [];
+  if (!str) {
+    return [];
+  }
   return str.split(",");
 };
 
@@ -114,7 +188,9 @@ const parseArray = (str) => {
  */
 const clampValue = (number, min, max) => {
   // @ts-ignore
-  if (Number.isNaN(parseInt(number))) return min;
+  if (Number.isNaN(parseInt(number))) {
+    return min;
+  }
   return Math.max(min, Math.min(number, max));
 };
 
@@ -171,39 +247,14 @@ const request = (data, headers) => {
 };
 
 /**
- * Auto layout utility, allows us to layout things vertically or horizontally with
- * proper gaping.
- *
- * @param {object} props Function properties.
- * @param {string[]} props.items Array of items to layout.
- * @param {number} props.gap Gap between items.
- * @param {"column" | "row"=} props.direction Direction to layout items.
- * @param {number[]=} props.sizes Array of sizes for each item.
- * @returns {string[]} Array of items with proper layout.
- */
-const flexLayout = ({ items, gap, direction, sizes = [] }) => {
-  let lastSize = 0;
-  // filter() for filtering out empty strings
-  return items.filter(Boolean).map((item, i) => {
-    const size = sizes[i] || 0;
-    let transform = `translate(${lastSize}, 0)`;
-    if (direction === "column") {
-      transform = `translate(0, ${lastSize})`;
-    }
-    lastSize += size + gap;
-    return `<g transform="${transform}">${item}</g>`;
-  });
-};
-
-/**
  * Object containing card colors.
  * @typedef {{
- *  titleColor: string | string[];
- *  iconColor: string | string[];
- *  textColor: string | string[];
+ *  titleColor: string;
+ *  iconColor: string;
+ *  textColor: string;
  *  bgColor: string | string[];
- *  borderColor: string | string[];
- *  ringColor: string | string[];
+ *  borderColor: string;
+ *  ringColor: string;
  * }} CardColors
  */
 
@@ -267,6 +318,18 @@ const getCardColors = ({
     "#" + defaultBorderColor,
   );
 
+  if (
+    typeof titleColor !== "string" ||
+    typeof textColor !== "string" ||
+    typeof ringColor !== "string" ||
+    typeof iconColor !== "string" ||
+    typeof borderColor !== "string"
+  ) {
+    throw new Error(
+      "Unexpected behavior, all colors except background should be string.",
+    );
+  }
+
   return { titleColor, iconColor, textColor, bgColor, borderColor, ringColor };
 };
 
@@ -310,18 +373,42 @@ const noop = () => {};
 const logger =
   process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
 
+const ONE_MINUTE = 60;
+const FIVE_MINUTES = 300;
+const TEN_MINUTES = 600;
+const FIFTEEN_MINUTES = 900;
+const THIRTY_MINUTES = 1800;
+const TWO_HOURS = 7200;
+const FOUR_HOURS = 14400;
+const SIX_HOURS = 21600;
+const EIGHT_HOURS = 28800;
+const ONE_DAY = 86400;
+
 const CONSTANTS = {
-  THIRTY_MINUTES: 1800,
-  TWO_HOURS: 7200,
-  FOUR_HOURS: 14400,
-  ONE_DAY: 86400,
+  ONE_MINUTE,
+  FIVE_MINUTES,
+  TEN_MINUTES,
+  FIFTEEN_MINUTES,
+  THIRTY_MINUTES,
+  TWO_HOURS,
+  FOUR_HOURS,
+  SIX_HOURS,
+  EIGHT_HOURS,
+  ONE_DAY,
+  CARD_CACHE_SECONDS: SIX_HOURS,
+  ERROR_CACHE_SECONDS: TEN_MINUTES,
 };
+
+const TRY_AGAING_LATER = "Please try again later";
 
 const SECONDARY_ERROR_MESSAGES = {
   MAX_RETRY:
-    "Please add an env variable called PAT_1 with your github token in vercel",
+    "You can deploy own instance or wait until public will be no longer limited",
+  NO_TOKENS:
+    "Please add an env variable called PAT_1 with your GitHub API token in vercel",
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
-  GRAPHQL_ERROR: "Please try again later",
+  GRAPHQL_ERROR: TRY_AGAING_LATER,
+  GITHUB_REST_API_ERROR: TRY_AGAING_LATER,
   WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
 };
 
@@ -340,8 +427,10 @@ class CustomError extends Error {
   }
 
   static MAX_RETRY = "MAX_RETRY";
+  static NO_TOKENS = "NO_TOKENS";
   static USER_NOT_FOUND = "USER_NOT_FOUND";
   static GRAPHQL_ERROR = "GRAPHQL_ERROR";
+  static GITHUB_REST_API_ERROR = "GITHUB_REST_API_ERROR";
   static WAKATIME_ERROR = "WAKATIME_ERROR";
 }
 
@@ -446,7 +535,9 @@ const chunkArray = (arr, perChunk) => {
  * @returns {string} String with emoji parsed.
  */
 const parseEmojis = (str) => {
-  if (!str) throw new Error("[parseEmoji]: str argument not provided");
+  if (!str) {
+    throw new Error("[parseEmoji]: str argument not provided");
+  }
   return str.replace(/:\w+:/gm, (emoji) => {
     return toEmoji.get(emoji) || "";
   });
@@ -469,6 +560,8 @@ const dateDiff = (d1, d2) => {
 export {
   ERROR_CARD_LENGTH,
   renderError,
+  createLanguageNode,
+  iconWithLabel,
   encodeHTML,
   kFormatter,
   isValidHexColor,

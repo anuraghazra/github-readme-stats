@@ -95,8 +95,8 @@ const createLanguageTextNode = ({ langs, y }) => {
  * @param {string} args.label The label of the text node item.
  * @param {string} args.value The value of the text node item.
  * @param {number} args.index The index of the text node item.
- * @param {string} args.percent Percentage of the text node item.
- * @param {boolean} args.hideProgress Whether to hide the progress bar.
+ * @param {number} args.percent Percentage of the text node item.
+ * @param {boolean=} args.hideProgress Whether to hide the progress bar.
  * @param {string} args.progressBarColor The color of the progress bar.
  * @param {string} args.progressBarBackgroundColor The color of the progress bar background.
  * @returns {string} The text SVG node.
