@@ -247,7 +247,7 @@ const createCompactLangNode = ({ lang, totalSize, hideProgress, index }) => {
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms">
-      <circle cx="5" cy="6" r="5" fill="${color}" />
+      <circle cx="5" cy="6" r="5" fill="${color}" stroke="white" stroke-width="2"/>
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
         ${lang.name} ${hideProgress ? "" : percentage + "%"}
       </text>
@@ -436,7 +436,7 @@ const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
           cy="100"
           r="${radius}"
           fill="transparent"
-          stroke="${lang.color}"
+          stroke="white"
           stroke-width="25"
           stroke-dasharray="${totalCircleLength}"
           stroke-dashoffset="${indent}"
@@ -502,7 +502,7 @@ const renderPieLayout = (langs, totalLanguageSize) => {
           cx="${centerX}"
           cy="${centerY}"
           r="${radius}"
-          stroke="none"
+          stroke="white"
           fill="${lang.color}"
           data-testid="lang-pie"
           size="100"
@@ -639,7 +639,7 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
           data-testid="lang-donut"
           size="${section.percent}"
           d="${section.d}"
-          stroke="${colors[index]}"
+          stroke="white"
           fill="none"
           stroke-width="${strokeWidth}">
         </path>
