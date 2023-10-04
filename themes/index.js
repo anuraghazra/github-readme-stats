@@ -447,7 +447,7 @@ export const themes = {
   laederon: {
     title_color: "4a5d23",
     text_color: "08457e",
-    icon_color: "8c8127",
+    icon_color: "817027",
     border_color: "e8f6f2",
     bg_color: "f8f6f2",
   },
