@@ -304,7 +304,7 @@ You can customize the appearance of all your cards however you wish with URL par
 
 You can provide multiple comma-separated values in the bg\_color option to render a gradient with the following format:
 
-    &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
+    &bg_color= DEG,COLOR1,COLOR2,COLOR3...COLOR10
 
 #### Stats Card Exclusive Options
 
