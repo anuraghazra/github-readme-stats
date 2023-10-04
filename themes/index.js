@@ -444,6 +444,32 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+  jurig: {
+    title_color: "241625",
+    text_color: "856c4c",
+    icon_color: "7f6d10",
+    border_color: "e4dcc1",
+    bg_color: "f7f7f1",
+  },
+  relaksasi: {
+    title_color: "bb9863",
+    text_color: "e2e2e7",
+    icon_color: "a3a1a0",
+    border_color: "67594f",
+    bg_color: "31312d",
+  },
+  caribbean: {
+    title_color: "449fe4",
+    text_color: "53d2dc",
+    icon_color: "ff5b42",
+    bg_color: "350335",
+  },
+  sandbar: {
+    title_color: "f2f2f0",
+    text_color: "ffdb7a",
+    icon_color: "018dc4",
+    bg_color: "081825",
+  },
 };
 
 export default themes;
