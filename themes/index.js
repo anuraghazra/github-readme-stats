@@ -444,6 +444,13 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+  violet_dark: {
+    title_color: "D50679",
+    text_color: "D50679",
+    icon_color: "D50679",
+    border_color: "D50679",
+    bg_color: "D50679",
+  },
 };
 
 export default themes;
