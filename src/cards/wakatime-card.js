@@ -189,6 +189,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     langs_count = languages.length,
     border_radius,
     border_color,
+    display_format,
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
@@ -302,7 +303,10 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
             return createTextNode({
               id: language.name,
               label: language.name,
-              value: language.text,
+              value:
+                display_format == "percent"
+                  ? language.percent.toString()
+                  : language.text,
               index,
               percent: language.percent,
               // @ts-ignore

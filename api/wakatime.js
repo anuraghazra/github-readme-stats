@@ -30,6 +30,7 @@ export default async (req, res) => {
     api_domain,
     border_radius,
     border_color,
+    display_format,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -75,6 +76,7 @@ export default async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         layout,
         langs_count,
+        display_format: display_format ? display_format : "",
       }),
     );
   } catch (err) {
