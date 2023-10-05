@@ -444,11 +444,16 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
-  algeria_flag: {
+  algeria_flag_light: {
     title_color: "3A8339",
     icon_color: "D51010",
     text_color: "3D3C3E",
     bg_color: "ffffff",
+  },
+  algeria_flag_dark: {
+    title_color: "3A8339",
+    icon_color: "D51010",
+    text_color: "ffffff",
   },
 };
 
