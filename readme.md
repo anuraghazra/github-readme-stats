@@ -364,6 +364,7 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 *   `layout` - Switches between two available layouts `default` & `compact`.  Default `default`.
 *   `langs_count` - Limits the number of languages on the card, defaults to all reported languages *(number)*.
 *   `api_domain` - Sets a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) *(string)*. Default `Waka API`.
+* `display_format` - Option to display wakatime stats in percentage or time. Default `time`.
 
 ***
 
