@@ -33,6 +33,7 @@ export default async (req, res) => {
     border_color,
     disable_animations,
     hide_progress,
+    prog_bg_color,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -88,6 +89,7 @@ export default async (req, res) => {
         title_color,
         text_color,
         bg_color,
+        prog_bg_color,
         theme,
         layout,
         langs_count,
