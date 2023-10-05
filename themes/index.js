@@ -445,11 +445,11 @@ export const themes = {
     bg_color: "2b2d40",
   },
   piknik: {
-    title_color: "ff3647",
-    text_color: "36ffee",
-    icon_color: "ff3647",
-    border_color: "36ffee",
-    bg_color: "181f27",
+    title_color="ff3647",
+    text_color="00BAF2",
+    icon_color="ff3647",
+    border_color="00BAF2",
+    bg_color="2b2b2b",
   },
 };
 
