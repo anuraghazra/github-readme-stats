@@ -448,7 +448,7 @@ export const themes = {
     title_color: "3A8339",
     icon_color: "3D3C3E",
     text_color: "D51010",
-    bg_color: "ffffff",
+    bg_color: "90,ffffff,3A8339",
   },
 };
 
