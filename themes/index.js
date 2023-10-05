@@ -445,9 +445,9 @@ export const themes = {
     bg_color: "2b2d40",
   },
   algeria_flag: {
-    title_color: "D51010",
-    icon_color: "3D3C3E",
-    text_color: "3A8339",
+    title_color: "3A8339",
+    icon_color: "D51010",
+    text_color: "3D3C3E",
     bg_color: "ffffff",
   },
 };
