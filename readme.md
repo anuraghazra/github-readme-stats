@@ -310,6 +310,9 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 
 Here is a list of all available locales:
 
+<table>
+<tr><td>
+
 | Code | Locale |
 | --- | --- |
 | `cn` | Chinese |
@@ -322,6 +325,11 @@ Here is a list of all available locales:
 | `es` | Spanish |
 | `fr` | French |
 | `hu` | Hungarian |
+
+</td><td>
+
+| Code | Locale |
+| --- | --- |
 | `it` | Italian |
 | `ja` | Japanese |
 | `kr` | Korean |
@@ -332,6 +340,11 @@ Here is a list of all available locales:
 | `el` | Greek |
 | `ru` | Russian |
 | `uk-ua` | Ukrainian |
+
+</td><td>
+
+| Code | Locale |
+| --- | --- |
 | `id` | Indonesian |
 | `ml` | Malayalam |
 | `my` | Burmese |
@@ -341,6 +354,9 @@ Here is a list of all available locales:
 | `uz` | Uzbek |
 | `vi` | Vietnamese |
 | `se` | Swedish |
+
+</td></tr>
+</table>
 
 If we don't support your language, please consider contributing!
 
