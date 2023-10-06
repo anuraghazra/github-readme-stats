@@ -444,6 +444,13 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+  neon_tomato: {
+    title_color: "ff3647",
+    text_color: "36ffee",
+    icon_color: "ff3647",
+    border_color: "36ffee",
+    bg_color: "181f27",
+  },
 };
 
 export default themes;
