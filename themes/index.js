@@ -444,6 +444,20 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+  leet_code_dark: {
+    title_color: "ffa116",
+    text_color: "f0f0f0",
+    icon_color: "ffa116",
+    border_color: "404040",
+    bg_color: "101010",
+  },
+  leet_code_light: {
+    title_color: "ffa116",
+    text_color: "000",
+    icon_color: "ffa116",
+    border_color: "e5e5e5",
+    bg_color: "fff",
+  },
 };
 
 export default themes;
