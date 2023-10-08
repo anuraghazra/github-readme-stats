@@ -451,13 +451,6 @@ export const themes = {
     border_color: "404040",
     bg_color: "101010",
   },
-  leetcode_light: {
-    title_color: "ffa116",
-    text_color: "000",
-    icon_color: "ffa116",
-    border_color: "e5e5e5",
-    bg_color: "fff",
-  },
 };
 
 export default themes;
