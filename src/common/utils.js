@@ -53,13 +53,23 @@ const encodeHTML = (str) => {
 /**
  * Retrieves num with suffix k(thousands) precise to 1 decimal if greater than 999.
  *
- * @param {number} num The number to format.
- * @returns {string|number} The formatted number.
+ *  num The number to format.
+ *  The formatted number.
  */
 const kFormatter = (num) => {
-  return Math.abs(num) > 999
+  /* return Math.abs(num) > 999
     ? Math.sign(num) * parseFloat((Math.abs(num) / 1000).toFixed(1)) + "k"
-    : Math.sign(num) * Math.abs(num);
+    : Math.sign(num) * Math.abs(num); */
+
+  if (typeof num == "number") {
+    return Math.abs(num) > 999
+      ? Math.sign(num) * parseFloat((Math.abs(num) / 1000).toFixed(1)) + "k"
+      : Math.sign(num) * Math.abs(num);
+  }
+
+  if (typeof num == "string") {
+    return num;
+  }
 };
 
 /**
