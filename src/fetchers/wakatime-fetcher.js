@@ -8,7 +8,9 @@ import { CustomError, MissingParamError } from "../common/utils.js";
  * @returns {Promise<WakaTimeData>} WakaTime data response.
  */
 const fetchWakatimeStats = async ({ username, api_domain }) => {
-  if (!username) throw new MissingParamError(["username"]);
+  if (!username) {
+    throw new MissingParamError(["username"]);
+  }
 
   try {
     const { data } = await axios.get(

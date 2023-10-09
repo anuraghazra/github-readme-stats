@@ -70,7 +70,9 @@ const langPercentFromDonutLayoutSvg = (d, centerX, centerY) => {
     cartesianToPolar(centerX, centerY, dTmp[0], dTmp[1]).angleInDegrees + 90;
   let startAngle =
     cartesianToPolar(centerX, centerY, dTmp[7], dTmp[8]).angleInDegrees + 90;
-  if (startAngle > endAngle) startAngle -= 360;
+  if (startAngle > endAngle) {
+    startAngle -= 360;
+  }
   return (endAngle - startAngle) / 3.6;
 };
 
