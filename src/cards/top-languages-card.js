@@ -204,10 +204,18 @@ const trimTopLanguages = (topLangs, langs_count, hide) => {
  * @param {string} props.color Color of the programming language.
  * @param {string} props.name Name of the programming language.
  * @param {number} props.progress Usage of the programming language in percentage.
+ * @param {string} props.prog_bg_color Background color of the progress bar.
  * @param {number} props.index Index of the programming language.
  * @returns {string} Programming language SVG node.
  */
-const createProgressTextNode = ({ width, color, name, progress, index }) => {
+const createProgressTextNode = ({
+  width,
+  color,
+  name,
+  progress,
+  index,
+  prog_bg_color,
+}) => {
   const staggerDelay = (index + 3) * 150;
   const paddingRight = 95;
   const progressTextX = width - paddingRight + 10;
@@ -223,7 +231,9 @@ const createProgressTextNode = ({ width, color, name, progress, index }) => {
         color,
         width: progressWidth,
         progress,
-        progressBarBackgroundColor: "#ddd",
+        progressBarBackgroundColor: prog_bg_color
+          ? `#${prog_bg_color}`
+          : "#ddd",
         delay: staggerDelay + 300,
       })}
     </g>
@@ -322,9 +332,10 @@ const createDonutLanguagesNode = ({ langs, totalSize }) => {
  * @param {Lang[]} langs Array of programming languages.
  * @param {number} width Card width.
  * @param {number} totalLanguageSize Total size of all languages.
+ * @param {string} prog_bg_color Background color of the progress bar.
  * @returns {string} Normal layout card SVG object.
  */
-const renderNormalLayout = (langs, width, totalLanguageSize) => {
+const renderNormalLayout = (langs, width, totalLanguageSize, prog_bg_color) => {
   return flexLayout({
     items: langs.map((lang, index) => {
       return createProgressTextNode({
@@ -335,6 +346,7 @@ const renderNormalLayout = (langs, width, totalLanguageSize) => {
           ((lang.size / totalLanguageSize) * 100).toFixed(2),
         ),
         index,
+        prog_bg_color,
       });
     }),
     gap: 40,
@@ -738,6 +750,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     border_radius,
     border_color,
     disable_animations,
+    prog_bg_color,
   } = options;
 
   const i18n = new I18n({
@@ -798,7 +811,12 @@ const renderTopLanguages = (topLangs, options = {}) => {
     width = width + 50; // padding
     finalLayout = renderDonutLayout(langs, width, totalLanguageSize);
   } else {
-    finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
+    finalLayout = renderNormalLayout(
+      langs,
+      width,
+      totalLanguageSize,
+      prog_bg_color ?? "",
+    );
   }
 
   const card = new Card({
