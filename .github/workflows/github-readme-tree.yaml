@@ -1,4 +1,9 @@
-on: [push]
+name: GitHub Readme Tree
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
 
 jobs:
   tree:
