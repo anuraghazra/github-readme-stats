@@ -15,5 +15,5 @@ jobs:
         uses: RavelloH/readme-tree@v1.1.0
         with:
           showdirectoryname: 'yes'
-      - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
