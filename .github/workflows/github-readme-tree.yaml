@@ -14,6 +14,6 @@ jobs:
       - name: Create README Tree
         uses: RavelloH/readme-tree@v1.1.0
         with:
-          showdirectoryname: true
+          showdirectoryname: 'yes'
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
