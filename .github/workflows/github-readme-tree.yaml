@@ -17,3 +17,9 @@ jobs:
           showdirectoryname: 'yes'
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
+        with:
+          branch: update-readme-tree
+          commit-message: Update README Tree
+          title: Update README Tree
+          body: This PR includes new updates to the README Tree.
+          labels: documentation
