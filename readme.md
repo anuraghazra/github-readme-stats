@@ -25,7 +25,7 @@
     <br />
     <br />
   </p>
-
+  
   <p align="center">
     <a href="#all-demos">View Demo</a>
     ·
@@ -65,6 +65,8 @@
 <p align="center">Please note that documentation translations may be outdated, try to use english documentation if possible.</p>
 
 <p align="center">Love the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!</p>
+
+<p align="center"><a href="https://vercel.com?utm\_source=github\_readme\_stats\_team\&utm\_campaign=oss"><img align="center" src="./powered-by-vercel.svg"/></a></p>
 
 <a href="https://indiafightscorona.giveindia.org">
   <img src="https://cfstatic.give.do/logo.png" alt="Give india logo" width="200" />
@@ -814,8 +816,6 @@ However, if you are using this project and are happy with it or just want to enc
 Thanks! :heart:
 
 ***
-
-[![https://vercel.com?utm\_source=github\_readme\_stats\_team\&utm\_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team\&utm_campaign=oss)
 
 Contributions are welcome! <3
 
