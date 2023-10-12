@@ -194,7 +194,7 @@
         // "no-inline-comments": "off",
         // "no-lonely-if": "warn",
         // "no-mixed-spaces-and-tabs": "warn",
-        // "no-multiple-empty-lines": "warn",
+        "no-multiple-empty-lines": "warn",
         // "no-negated-condition": "off",
         // "no-nested-ternary": "warn",
         // "no-new-object": "warn",
