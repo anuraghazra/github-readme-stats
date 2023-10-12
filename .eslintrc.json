@@ -98,7 +98,7 @@
             "terms": [ "TODO", "FIXME" ],
             "location": "start"
         }],
-        // "no-with": "warn",
+        "no-with": "warn",
         // "radix": "warn",
         // "vars-on-top": "error",
 
