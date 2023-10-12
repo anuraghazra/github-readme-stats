@@ -90,7 +90,7 @@
 
 # Cartão de estatísticas do GitHub
 
-Copie e cole isso no seu conteúdo de remarcação e é isso. Simples!
+Copie e cole isso no seu conteúdo MarkDown e é isso. Simples!
 
 Mude o valor de `?username=` para o seu nome de usuário no GitHub.
 
@@ -132,7 +132,7 @@ Para habilitar ícones, basta utilizar o parâmetro `show_icons=true` na sua req
 
 ### Temas
 
-Com temas predefinidos, pode personalizar a aparência dos cartões sem precisar fazer nenhuma [configuração manual](#personalização).
+Com temas predefinidos, você pode personalizar a aparência dos cartões sem precisar fazer nenhuma [configuração manual](#personalização).
 
 Utilize o parâmetro `?theme=THEME_NAME`, da seguinte forma:
 
@@ -146,7 +146,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stat Themes" width="600px"/>
 
-Visualize [todos o temas disponíveis](../themes/README.md) ou o [arquivo de configuração de tema](../themes/index.js), além de **também poder contribuir com novos temas**, se desejar :D
+Visualize [todos o temas disponíveis](../themes/README.md) ou o [arquivo de configuração de tema](../themes/index.js), além disso, **você também pode contribuir com novos temas** se desejar :D
 
 ### Personalização
 
@@ -187,7 +187,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 - `card_width` - Define a largura do cartão manualmente _(number)_
 
 > :warning: **Importante:**
-> Nomes de linguagens devem ser uma sequência escapada de URI, como específicado em [Codificação por cento](https://pt.wikipedia.org/wiki/Codificação_por_cento)
+> Nomes de linguagens devem seguir as regras de formatação de URL, como específicado em [Codificação por cento](https://pt.wikipedia.org/wiki/Codificação_por_cento)
 > (Ou seja: `c++` deve se tornar `c%2B%2B`, `jupyter notebook` deve se tornar `jupyter%20notebook`, etc.)
 
 ---
@@ -325,11 +325,11 @@ Por padrão, você não poderá organizar as imagens lado a lado. Para fazer iss
 </a>
 ```
 
-## Implante em sua própria instância do Vercel
+## Implemente em sua própria instância do Vercel
 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-Como a API do GitHub permite apenas 5 mil solicitações por hora, é possível que minha `https://github-readme-stats.vercel.app/api` atinja a cota limite. Se hospedar em seu próprio servidor Vercel, não precisará se preocupar com nada. Clique no botão de implantação para começar!
+Como a API do GitHub permite apenas 5 mil solicitações por hora, é possível que minha `https://github-readme-stats.vercel.app/api` atinja a cota limite. Se hospedar em seu próprio servidor Vercel, não precisará se preocupar com nada. Clique no botão de implementação para começar!
 
 Nota: Desde [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) há possibilidade de lidar com mais de 5 mil chamadas por hora, sem interrupções :D
 
