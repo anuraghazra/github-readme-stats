@@ -24,12 +24,6 @@
     </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
@@ -294,7 +288,7 @@ You can customize the appearance of all your cards however you wish with URL par
 *   `hide_border` - Hides the card's border *(boolean)*. Default: `false`
 *   `theme` - Name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme.
 *   `cache_seconds` - Sets the cache header manually *(min: 21600, max: 86400)*. Default: `21600 seconds (6 hours)`.
-*   `locale` - Sets the language in the card *(e.g. cn, de, es, etc.)*. Default: `en`.
+*   `locale` - Sets the language in the card, you can check full list of available locales [here](#available-locales). Default: `en`.
 *   `border_radius` - Corner rounding on the card. Default: `4.5`.
 
 > [!WARNING]\
@@ -305,6 +299,60 @@ You can customize the appearance of all your cards however you wish with URL par
 You can provide multiple comma-separated values in the bg\_color option to render a gradient with the following format:
 
     &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
+
+##### Available locales
+
+Here is a list of all available locales:
+
+<table>
+<tr><td>
+
+| Code | Locale |
+| --- | --- |
+| `cn` | Chinese |
+| `zh-tw` | Chinese (Taiwan) |
+| `ar` | Arabic |
+| `cs` | Czech |
+| `de` | German |
+| `en` | English |
+| `bn` | Bengali |
+| `es` | Spanish |
+| `fr` | French |
+| `hu` | Hungarian |
+
+</td><td>
+
+| Code | Locale |
+| --- | --- |
+| `it` | Italian |
+| `ja` | Japanese |
+| `kr` | Korean |
+| `nl` | Dutch |
+| `pt-pt` | Portuguese (Portugal) |
+| `pt-br` | Portuguese (Brazil) |
+| `np` | Nepali |
+| `el` | Greek |
+| `ru` | Russian |
+| `uk-ua` | Ukrainian |
+
+</td><td>
+
+| Code | Locale |
+| --- | --- |
+| `id` | Indonesian |
+| `ml` | Malayalam |
+| `my` | Burmese |
+| `sk` | Slovak |
+| `tr` | Turkish |
+| `pl` | Polish |
+| `uz` | Uzbek |
+| `vi` | Vietnamese |
+| `se` | Swedish |
+
+</td></tr>
+</table>
+
+If we don't support your language, please consider contributing!
 
 #### Stats Card Exclusive Options
 
