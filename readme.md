@@ -818,6 +818,8 @@ Thanks! :heart:
 
 ***
 
+[![https://vercel.com?utm\_source=github\_readme\_stats\_team\&utm\_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team\&utm_campaign=oss)
+
 Contributions are welcome! <3
 
 Made with :heart: and JavaScript.
