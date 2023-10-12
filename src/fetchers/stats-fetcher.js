@@ -54,6 +54,9 @@ const GRAPHQL_STATS_QUERY = `
       pullRequests(first: 1) {
         totalCount
       }
+      mergedPullRequests: pullRequests(states: MERGED) {
+        totalCount
+      }
       openIssues: issues(states: OPEN) {
         totalCount
       }
@@ -113,7 +116,9 @@ const statsFetcher = async (username) => {
   while (hasNextPage) {
     const variables = { login: username, first: 100, after: endCursor };
     let res = await retryer(fetcher, variables);
-    if (res.data.errors) return res;
+    if (res.data.errors) {
+      return res;
+    }
 
     // Store stats data.
     const repoNodes = res.data.data.user.repositories.nodes;
@@ -140,7 +145,7 @@ const statsFetcher = async (username) => {
 /**
  * Fetch all the commits for all the repositories of a given username.
  *
- * @param {*} username GitHub username.
+ * @param {string} username GitHub username.
  * @returns {Promise<number>} Total commits.
  *
  * @description Done like this because the GitHub API does not provide a way to fetch all the commits. See
@@ -148,8 +153,8 @@ const statsFetcher = async (username) => {
  */
 const totalCommitsFetcher = async (username) => {
   if (!githubUsernameRegex.test(username)) {
-    logger.log("Invalid username");
-    return 0;
+    logger.log("Invalid username provided.");
+    throw new Error("Invalid username provided.");
   }
 
   // https://developer.github.com/v3/search/#search-commits
@@ -165,18 +170,22 @@ const totalCommitsFetcher = async (username) => {
     });
   };
 
+  let res;
   try {
-    let res = await retryer(fetchTotalCommits, { login: username });
-    let total_count = res.data.total_count;
-    if (!!total_count && !isNaN(total_count)) {
-      return res.data.total_count;
-    }
+    res = await retryer(fetchTotalCommits, { login: username });
   } catch (err) {
     logger.log(err);
+    throw new Error(err);
   }
-  // just return 0 if there is something wrong so that
-  // we don't break the whole app
-  return 0;
+
+  const totalCount = res.data.total_count;
+  if (!totalCount || isNaN(totalCount)) {
+    throw new CustomError(
+      "Could not fetch total commits.",
+      CustomError.GITHUB_REST_API_ERROR,
+    );
+  }
+  return totalCount;
 };
 
 /**
@@ -196,11 +205,15 @@ const fetchStats = async (
   include_all_commits = false,
   exclude_repo = [],
 ) => {
-  if (!username) throw new MissingParamError(["username"]);
+  if (!username) {
+    throw new MissingParamError(["username"]);
+  }
 
   const stats = {
     name: "",
     totalPRs: 0,
+    totalPRsMerged: 0,
+    mergedPRsPercentage: 0,
     totalReviews: 0,
     totalCommits: 0,
     totalIssues: 0,
@@ -246,6 +259,9 @@ const fetchStats = async (
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
+  stats.totalPRsMerged = user.mergedPullRequests.totalCount;
+  stats.mergedPRsPercentage =
+    (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) * 100;
   stats.totalReviews =
     user.contributionsCollection.totalPullRequestReviewContributions;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;

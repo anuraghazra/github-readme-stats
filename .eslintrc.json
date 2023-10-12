@@ -16,30 +16,30 @@
         // Possible Errors (overrides from recommended set)
 
         // "no-extra-parens": "error",
-        // "no-unexpected-multiline": "error",
+        "no-unexpected-multiline": "error",
 
         // All JSDoc comments must be valid
         
-        // "valid-jsdoc": [ "error", {
-        //     "requireReturn": false,
-        //     "requireReturnDescription": false,
-        //     "requireParamDescription": true,
-        //     "prefer": {
-        //         "return": "returns"
-        //     }
-        // }],
+        "valid-jsdoc": [ "error", {
+            "requireReturn": true,
+            "requireReturnDescription": true,
+            "requireParamDescription": true,
+            "prefer": {
+                "return": "returns"
+            }
+        }],
 
         // Best Practices
 
         // Allowed a getter without setter, but all setters require getters
 
-        // "accessor-pairs": [ "error", {
-        //     "getWithoutSet": false,
-        //     "setWithoutGet": true
-        // }],
-        // "block-scoped-var": "warn",
-        // "consistent-return": "error",
-        // "curly": "error",
+        "accessor-pairs": [ "error", {
+            "getWithoutSet": false,
+            "setWithoutGet": true
+        }],
+        "block-scoped-var": "warn",
+        "consistent-return": "error",
+        "curly": "error",
         // "default-case": "warn",
 
         // the dot goes with the property when doing multiline
@@ -94,11 +94,11 @@
 
         // Produce warnings when something is commented as TODO or FIXME
 
-        // "no-warning-comments": [ "warn", {
-        //     "terms": [ "TODO", "FIXME" ],
-        //     "location": "start"
-        // }],
-        // "no-with": "warn",
+        "no-warning-comments": [ "warn", {
+            "terms": [ "TODO", "FIXME" ],
+            "location": "start"
+        }],
+        "no-with": "warn",
         // "radix": "warn",
         // "vars-on-top": "error",
 
@@ -128,7 +128,7 @@
 
         // Disallow hoisting - let & const don't allow hoisting anyhow
 
-        // "no-use-before-define": "error",
+        "no-use-before-define": "error",
 
         // Node.js and CommonJS
 
@@ -156,9 +156,9 @@
         // "no-class-assign": "error",
         // "no-const-assign": "error",
         // "no-dupe-class-members": "error",
-        // "no-this-before-super": "error",
+        "no-this-before-super": "error",
         // "no-var": "warn",
-        "object-shorthand": [ "warn" ]
+        "object-shorthand": [ "warn" ],
         // "prefer-arrow-callback": "warn",
         // "prefer-spread": "warn",
         // "prefer-template": "warn",
@@ -194,7 +194,7 @@
         // "no-inline-comments": "off",
         // "no-lonely-if": "warn",
         // "no-mixed-spaces-and-tabs": "warn",
-        // "no-multiple-empty-lines": "warn",
+        "no-multiple-empty-lines": "warn",
         // "no-negated-condition": "off",
         // "no-nested-ternary": "warn",
         // "no-new-object": "warn",
@@ -203,7 +203,7 @@
         // "no-ternary": "off",
         // "no-trailing-spaces": "warn",
         // "no-underscore-dangle": "warn",
-        // "no-unneeded-ternary": "warn",
+        "no-unneeded-ternary": "warn",
         // "object-curly-spacing": [ "warn", "always" ],
         // "one-var": "off",
         // "operator-assignment": [ "warn", "never" ],
@@ -211,13 +211,13 @@
         // "padded-blocks": [ "warn", "never" ],
         // "quote-props": [ "warn", "consistent-as-needed" ],
         // "quotes": [ "warn", "single" ],
-        // "require-jsdoc": [ "warn", {
-        //     "require": {
-        //         "FunctionDeclaration": true,
-        //         "MethodDefinition": true,
-        //         "ClassDeclaration": false
-        //     }
-        // }],
+        "require-jsdoc": [ "warn", {
+            "require": {
+                "FunctionDeclaration": true,
+                "MethodDefinition": true,
+                "ClassDeclaration": false
+            }
+        }]
         // "semi-spacing": [ "warn", { "before": false, "after": true }],
         // "semi": [ "error", "always" ],
         // "sort-vars": "off",

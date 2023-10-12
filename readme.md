@@ -24,24 +24,18 @@
     </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
     <a href="#all-demos">View Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Report Bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Request Feature</a>
     ·
     <a href="https://github.com/anuraghazra/github-readme-stats/discussions/1770">FAQ</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/discussions">Ask Question</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/discussions/new?category=q-a">Ask Question</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français </a>
@@ -97,8 +91,11 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 - [GitHub Extra Pins](#github-extra-pins)
     - [Usage](#usage)
     - [Demo](#demo)
-- [Top Languages Card](#top-languages-card)
+- [GitHub Gist Pins](#github-gist-pins)
     - [Usage](#usage-1)
+    - [Demo](#demo-1)
+- [Top Languages Card](#top-languages-card)
+    - [Usage](#usage-2)
     - [Language stats algorithm](#language-stats-algorithm)
     - [Exclude individual repositories](#exclude-individual-repositories)
     - [Hide individual languages](#hide-individual-languages)
@@ -108,9 +105,9 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Donut Vertical Chart Language Card Layout](#donut-vertical-chart-language-card-layout)
     - [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
     - [Hide Progress Bars](#hide-progress-bars)
-    - [Demo](#demo-1)
-- [Wakatime Stats Card](#wakatime-stats-card)
     - [Demo](#demo-2)
+- [Wakatime Stats Card](#wakatime-stats-card)
+    - [Demo](#demo-3)
 - [All Demos](#all-demos)
   - [Quick Tip (Align The Cards)](#quick-tip-align-the-cards)
 - [Deploy on your own](#deploy-on-your-own)
@@ -156,10 +153,10 @@ You can pass a query parameter `&hide=` to hide any specific stats with comma-se
 
 You can pass a query parameter `&show=` to show any specific additional stats with comma-separated values.
 
-> Options: `&show=reviews,discussions_started,discussions_answered`
+> Options: `&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage`
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show=reviews)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage)
 ```
 
 ### Showing icons
@@ -279,7 +276,7 @@ You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-1
 
 ### Customization
 
-You can customize the appearance of your `Stats Card` or `Repo Card` however you wish with URL parameters.
+You can customize the appearance of all your cards however you wish with URL parameters.
 
 #### Common Options
 
@@ -290,18 +287,72 @@ You can customize the appearance of your `Stats Card` or `Repo Card` however you
 *   `bg_color` - Card's background color *(hex color)* **or** a gradient in the form of *angle,start,end*. Default: `fffefe`
 *   `hide_border` - Hides the card's border *(boolean)*. Default: `false`
 *   `theme` - Name of the theme, choose from [all available themes](themes/README.md). Default: `default` theme.
-*   `cache_seconds` - Sets the cache header manually *(min: 14400, max: 86400)*. Default: `14400 seconds (4 hours)`.
-*   `locale` - Sets the language in the card *(e.g. cn, de, es, etc.)*. Default: `en`.
+*   `cache_seconds` - Sets the cache header manually *(min: 21600, max: 86400)*. Default: `21600 seconds (6 hours)`.
+*   `locale` - Sets the language in the card, you can check full list of available locales [here](#available-locales). Default: `en`.
 *   `border_radius` - Corner rounding on the card. Default: `4.5`.
 
 > [!WARNING]\
-> We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have a default cache of 4 hours (14400 seconds). Also, note that the cache is clamped to a minimum of 4 hours and a maximum of 24 hours.
+> We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have a default cache of 6 hours (21600 seconds). Also, note that the cache is clamped to a minimum of 6 hours and a maximum of 24 hours. If you want the data on your statistics card to be updated more often you can [deploy your own instance](#deploy-on-your-own) and set [environment variable](#disable-rate-limit-protections) `CACHE_SECONDS` to a value of your choosing.
 
 ##### Gradient in bg\_color
 
 You can provide multiple comma-separated values in the bg\_color option to render a gradient with the following format:
 
     &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
+
+##### Available locales
+
+Here is a list of all available locales:
+
+<table>
+<tr><td>
+
+| Code | Locale |
+| --- | --- |
+| `cn` | Chinese |
+| `zh-tw` | Chinese (Taiwan) |
+| `ar` | Arabic |
+| `cs` | Czech |
+| `de` | German |
+| `en` | English |
+| `bn` | Bengali |
+| `es` | Spanish |
+| `fr` | French |
+| `hu` | Hungarian |
+
+</td><td>
+
+| Code | Locale |
+| --- | --- |
+| `it` | Italian |
+| `ja` | Japanese |
+| `kr` | Korean |
+| `nl` | Dutch |
+| `pt-pt` | Portuguese (Portugal) |
+| `pt-br` | Portuguese (Brazil) |
+| `np` | Nepali |
+| `el` | Greek |
+| `ru` | Russian |
+| `uk-ua` | Ukrainian |
+
+</td><td>
+
+| Code | Locale |
+| --- | --- |
+| `id` | Indonesian |
+| `ml` | Malayalam |
+| `my` | Burmese |
+| `sk` | Slovak |
+| `tr` | Turkish |
+| `pl` | Polish |
+| `uz` | Uzbek |
+| `vi` | Vietnamese |
+| `se` | Swedish |
+
+</td></tr>
+</table>
+
+If we don't support your language, please consider contributing!
 
 #### Stats Card Exclusive Options
 
@@ -319,7 +370,7 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 *   `disable_animations` - Disables all animations in the card *(boolean)*. Default: `false`.
 *   `ring_color` - Color of the rank circle *(hex color)*. Defaults to the theme ring color if it exists and otherwise the title color.
 *   `number_format` - Switches between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). Default: `short`.
-*   `show` - Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started` or `discussions_answered`) *(Comma-separated values)*. Default: `[] (blank array)`.
+*   `show` - Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started`, `discussions_answered`, `prs_merged` or `prs_merged_percentage`) *(Comma-separated values)*. Default: `[] (blank array)`.
 
 > [!NOTE]\
 > When hide\_rank=`true`, the minimum card width is 270 px + the title length and padding.
@@ -327,6 +378,10 @@ You can provide multiple comma-separated values in the bg\_color option to rende
 #### Repo Card Exclusive Options
 
 *   `show_owner` - Shows the repo's owner name *(boolean)*. Default: `false`.
+
+#### Gist Card Exclusive Options
+
+*   `show_owner` - Shows the gist's owner name *(boolean)*. Default: `false`.
 
 #### Language Card Exclusive Options
 
@@ -384,6 +439,28 @@ Use [show\_owner](#repo-card-exclusive-options) query option to include the repo
 
 ![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=github-readme-stats\&show_owner=true)
 
+# GitHub Gist Pins
+
+GitHub gist pins allow you to pin gists in your GitHub profile using a GitHub readme profile.
+
+### Usage
+
+Copy-paste this code into your readme and change the links.
+
+Endpoint: `api/gist?id=bbfce31e0217a3689c8d961a356cb10d`
+
+```md
+[![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)](https://gist.github.com/Yizack/bbfce31e0217a3689c8d961a356cb10d/)
+```
+
+### Demo
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
+
+Use [show\_owner](#gist-card-exclusive-options) query option to include the gist's owner username
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d\&show_owner=true)
+
 # Top Languages Card
 
 The top languages card shows a GitHub user's most frequently used languages.
@@ -396,6 +473,9 @@ The top languages card shows a GitHub user's most frequently used languages.
 
 > [!WARNING]\
 > This card shows languages usage only inside your own non-forked repositories, not depending from who is the author of the commits. It does not include your contributions into another users/organizations repositories. Currently there are no way to get this data from GitHub API. If you want this behavior to be improved you can support [this feature request](https://github.com/orgs/community/discussions/18230) created by [@rickstaa](https://github.com/rickstaa) inside GitHub Community.
+
+> [!WARNING]\
+> Currently this card shows data only about first 100 repositories. This is because GitHub API limitations which cause downtimes of public instance (see [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)). In future this behavior will be improved by releasing GitHub action or providing environment variable for user's own instances.
 
 ### Usage
 
@@ -443,7 +523,7 @@ You can use `&hide=language1,language2` parameter to hide individual languages.
 
 ### Show more languages
 
-You can use the `&langs_count=` option to increase or decrease the number of languages shown on the card. Valid values are integers between 1 and 10 (inclusive), and the default is 5.
+You can use the `&langs_count=` option to increase or decrease the number of languages shown on the card. Valid values are integers between 1 and 20 (inclusive). By default it was set to `5` for `normal` & `donut` and `6` for other layouts.
 
 ```md
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)
@@ -548,7 +628,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 *   Showing additional stats
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show=reviews,discussions_started,discussions_answered)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show_icons=true\&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage)
 
 *   Showing icons
 
@@ -591,6 +671,14 @@ Choose from any of the [default themes](#themes)
 *   Customizing repo card
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra\&repo=github-readme-stats\&title_color=fff\&icon_color=f9f9f9\&text_color=9f9f9f\&bg_color=151515)
+
+*   Gist card
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
+
+*   Customizing gist card
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d&theme=calm)
 
 *   Top languages
 

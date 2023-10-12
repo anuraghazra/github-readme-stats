@@ -30,7 +30,7 @@ const THEME_CONTRIB_GUIDELINES = `
   \rHi, thanks for the theme contribution. Please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).
 
   \r> [!WARNING]\
-  \r> Keep in mind that we already have a vast collection of different themes. To keep their number manageable, we began to add only themes supported by the community. Your pull request with theme addition will be merged once we get enough positive feedback from the community in the form of thumbs up (see [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935#top-themes-prs)). Remember that you can also support themes of other contributors that you liked to speed up their merge.
+  \r> Keep in mind that we already have a vast collection of different themes. To keep their number manageable, we began to add only themes supported by the community. Your pull request with theme addition will be merged once we get enough positive feedback from the community in the form of thumbs up :+1: emojis (see [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935#top-themes-prs)). We expect to see at least 10-15 thumbs up before making a decision to merge your pull request into the master branch. Remember that you can also support themes of other contributors that you liked to speed up their merge.
 
   \r> [!NOTE]\
   \r> Also, note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection, you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization).
@@ -58,6 +58,11 @@ var PULL_REQUEST_ID;
  * @returns {Error} IncorrectJsonFormatError.
  */
 class IncorrectJsonFormatError extends Error {
+  /**
+   * Constructor.
+   *
+   * @param {string} message Error message.
+   */
   constructor(message) {
     super(message);
     this.name = "IncorrectJsonFormatError";
@@ -70,7 +75,9 @@ class IncorrectJsonFormatError extends Error {
  * @returns {number} PR number.
  */
 const getPrNumber = () => {
-  if (process.env.MOCK_PR_NUMBER) return process.env.MOCK_PR_NUMBER; // For testing purposes.
+  if (process.env.MOCK_PR_NUMBER) {
+    return process.env.MOCK_PR_NUMBER; // For testing purposes.
+  }
 
   const pullRequest = github.context.payload.pull_request;
   if (!pullRequest) {
@@ -113,7 +120,7 @@ const isPreviewComment = (inputs, comment) => {
  * @param {string} owner Owner of the repository.
  * @param {string} repo Repository name.
  * @param {string} commenter Comment author.
- * @returns {Object} The GitHub comment object.
+ * @returns {Object | undefined} The GitHub comment object.
  */
 const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
   const parameters = {
@@ -141,6 +148,8 @@ const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
       debug(`No theme preview comment found.`);
     }
   }
+
+  return undefined;
 };
 
 /**

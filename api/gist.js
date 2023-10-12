@@ -1,46 +1,40 @@
-import { renderRepoCard } from "../src/cards/repo-card.js";
-import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
   CONSTANTS,
-  parseBoolean,
   renderError,
+  parseBoolean,
 } from "../src/common/utils.js";
-import { fetchRepo } from "../src/fetchers/repo-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
+import { renderGistCard } from "../src/cards/gist-card.js";
+import { fetchGist } from "../src/fetchers/gist-fetcher.js";
 
 export default async (req, res) => {
   const {
-    username,
-    repo,
-    hide_border,
+    id,
     title_color,
     icon_color,
     text_color,
     bg_color,
     theme,
-    show_owner,
     cache_seconds,
     locale,
     border_radius,
     border_color,
+    show_owner,
+    hide_border,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
-
-  if (blacklist.includes(username)) {
-    return res.send(renderError("Something went wrong"));
-  }
 
   if (locale && !isLocaleAvailable(locale)) {
     return res.send(renderError("Something went wrong", "Language not found"));
   }
 
   try {
-    const repoData = await fetchRepo(username, repo);
+    const gistData = await fetchGist(id);
 
     let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
+      parseInt(cache_seconds || CONSTANTS.SIX_HOURS, 10),
       CONSTANTS.SIX_HOURS,
       CONSTANTS.ONE_DAY,
     );
@@ -53,8 +47,8 @@ export default async (req, res) => {
       and if both are zero we are not showing the stats
       so we can just make the cache longer, since there is no need to frequent updates
     */
-    const stars = repoData.starCount;
-    const forks = repoData.forkCount;
+    const stars = gistData.starsCount;
+    const forks = gistData.forksCount;
     const isBothOver1K = stars > 1000 && forks > 1000;
     const isBothUnder1 = stars < 1 && forks < 1;
     if (!cache_seconds && (isBothOver1K || isBothUnder1)) {
@@ -69,8 +63,7 @@ export default async (req, res) => {
     );
 
     return res.send(
-      renderRepoCard(repoData, {
-        hide_border: parseBoolean(hide_border),
+      renderGistCard(gistData, {
         title_color,
         icon_color,
         text_color,
@@ -78,8 +71,9 @@ export default async (req, res) => {
         theme,
         border_radius,
         border_color,
-        show_owner: parseBoolean(show_owner),
         locale: locale ? locale.toLowerCase() : null,
+        show_owner: parseBoolean(show_owner),
+        hide_border: parseBoolean(hide_border),
       }),
     );
   } catch (err) {

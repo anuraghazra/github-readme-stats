@@ -26,10 +26,11 @@ jobs:
     name: Close empty issues
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3 # NOTE: Retrieve issue templates.
+      # NOTE: Retrieve issue templates.
+      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
       - name: Run empty issues closer action
-        uses: rickstaa/empty-issues-closer-action@d4cd3e287b0cf093d66197fc2867f32f40f18182 # v1.1.5
+        uses: rickstaa/empty-issues-closer-action@e9e79c66b85961ebc9dc11493b65b6e4bb355ed0 # v1.1.28
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         with:

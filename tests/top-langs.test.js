@@ -4,7 +4,7 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import topLangs from "../api/top-langs.js";
 import { renderTopLanguages } from "../src/cards/top-languages-card.js";
-import { renderError } from "../src/common/utils.js";
+import { renderError, CONSTANTS } from "../src/common/utils.js";
 import { expect, it, describe, afterEach } from "@jest/globals";
 
 const data_langs = {
@@ -139,7 +139,12 @@ describe("Test /api/top-langs", () => {
     await topLangs(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(renderError(error.errors[0].message));
+    expect(res.send).toBeCalledWith(
+      renderError(
+        error.errors[0].message,
+        "Make sure the provided username is not an organization",
+      ),
+    );
   });
 
   it("should render error card on incorrect layout input", async () => {
@@ -160,6 +165,68 @@ describe("Test /api/top-langs", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
       renderError("Something went wrong", "Incorrect layout input"),
+    );
+  });
+
+  it("should render error card if username in blacklist", async () => {
+    const req = {
+      query: {
+        username: "renovate-bot",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
+
+    await topLangs(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(renderError("Something went wrong"));
+  });
+
+  it("should render error card if wrong locale provided", async () => {
+    const req = {
+      query: {
+        username: "anuraghazra",
+        locale: "asdf",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
+
+    await topLangs(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError("Something went wrong", "Locale not found"),
+    );
+  });
+
+  it("should have proper cache", async () => {
+    const req = {
+      query: {
+        username: "anuraghazra",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
+
+    await topLangs(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.setHeader).toBeCalledWith(
+      "Cache-Control",
+      `max-age=${CONSTANTS.SIX_HOURS / 2}, s-maxage=${
+        CONSTANTS.SIX_HOURS
+      }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     );
   });
 });
