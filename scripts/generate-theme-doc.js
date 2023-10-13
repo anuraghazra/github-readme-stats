@@ -17,7 +17,7 @@ const THEME_TEMPLATE = `## Available Themes
 
 With inbuilt themes, you can customize the look of the card without doing any manual customization.
 
-Use \`?theme=THEME_NAME\` parameter like so: 
+Use \`?theme=THEME_NAME\` parameter like so:
 
 \`\`\`md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=dark&show_icons=true)
@@ -29,7 +29,7 @@ Use \`?theme=THEME_NAME\` parameter like so:
 
 | | | |
 | :--: | :--: | :--: |
-<!-- STATS_CARD_TABLE -->
+${TABLE_FLAG_MAP.stats}
 
 ## Repo Card
 
@@ -37,10 +37,11 @@ Use \`?theme=THEME_NAME\` parameter like so:
 
 | | | |
 | :--: | :--: | :--: |
-<!-- REPO_CARD_TABLE -->
+${TABLE_FLAG_MAP.repo}
 
-<!-- STATS_CARD_LINKS -->
-<!-- REPO_CARD_LINKS -->
+${LINKS_FLAG_MAP.stats}
+
+${LINKS_FLAG_MAP.repo}
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
 
@@ -48,8 +49,11 @@ Want to add a new theme? Consider reading the [contribution guidelines](../CONTR
 `;
 
 const createMdLink = (theme, type) => {
-  const baseLink = type === "repo" ? "github-readme-stats/api/pin/" : "github-readme-stats/";
-  return `\n[${theme}]: https://github-readme-stats.vercel.app/${baseLink}?username=anuraghazra&cache_seconds=86400&theme=${theme}`;
+  const baseLink =
+    type === "repo"
+      ? "api/pin/?username=anuraghazra&repo=github-readme-stats"
+      : "api?username=anuraghazra";
+  return `\n[${theme}]: https://github-readme-stats.vercel.app/${baseLink}&cache_seconds=86400&theme=${theme}`;
 };
 
 const generateLinks = (type) => {
@@ -68,7 +72,7 @@ const createTableItem = ({ link, label }) => {
 const generateTable = ({ isRepoCard }) => {
   const rows = [];
   const themesFiltered = Object.keys(themes).filter(
-    (name) => name !== (!isRepoCard ? "default_repocard" : "default")
+    (name) => name !== (!isRepoCard ? "default_repocard" : "default"),
   );
 
   for (let i = 0; i < themesFiltered.length; i += 3) {
@@ -78,8 +82,15 @@ const generateTable = ({ isRepoCard }) => {
     const tableItem2 = createTableItem({ link: two, label: two });
     const tableItem3 = createTableItem({ link: three, label: three });
 
-    if (!three) {
-      rows.push(`| [Add your theme][add-theme] | | |`);
+    if (i + 3 >= themesFiltered.length) {
+      // If last row add your theme placeholder.
+      if (!three) {
+        rows.push(
+          ` ${tableItem1} | ${tableItem2} | [Add your theme][add-theme] |`,
+        );
+      } else {
+        rows.push(`| [Add your theme][add-theme] | | |`);
+      }
     } else {
       rows.push(`| ${tableItem1} | ${tableItem2} | ${tableItem3} |`);
     }
@@ -111,4 +122,3 @@ const buildReadme = () => {
 fs.writeFileSync(TARGET_FILE, buildReadme());
 
 console.log("README.md updated successfully!");
-
