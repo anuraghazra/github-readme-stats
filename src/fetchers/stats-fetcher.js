@@ -41,7 +41,11 @@ const GRAPHQL_REPOS_QUERY = `
 `;
 
 const GRAPHQL_STATS_QUERY = `
+<<<<<<< HEAD
   query userInfo($login: String!, $after: String, $ownerAffiliations: [RepositoryAffiliation]) {
+=======
+  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!) {
+>>>>>>> 1c07f41 (feature: fetch only requested data from GitHub GraphQL API to reduce load (#3208))
     user(login: $login) {
       name
       login
@@ -55,7 +59,7 @@ const GRAPHQL_STATS_QUERY = `
       pullRequests(first: 1) {
         totalCount
       }
-      mergedPullRequests: pullRequests(states: MERGED) {
+      mergedPullRequests: pullRequests(states: MERGED) @include(if: $includeMergedPullRequests) {
         totalCount
       }
       openIssues: issues(states: OPEN) {
@@ -67,10 +71,10 @@ const GRAPHQL_STATS_QUERY = `
       followers {
         totalCount
       }
-      repositoryDiscussions {
+      repositoryDiscussions @include(if: $includeDiscussions) {
         totalCount
       }
-      repositoryDiscussionComments(onlyAnswers: true) {
+      repositoryDiscussionComments(onlyAnswers: true) @include(if: $includeDiscussionsAnswers) {
         totalCount
       }
       ${GRAPHQL_REPOS_FIELD}
@@ -105,6 +109,7 @@ const fetcher = (variables, token) => {
 /**
  * Fetch stats information for a given username.
  *
+<<<<<<< HEAD
  * @param {string} username Github username.
  * @param {string[]} ownerAffiliations The owner affiliations to filter by. Default: OWNER.
  * @returns {Promise<import('../common/types').StatsFetcher>} GraphQL Stats object.
@@ -112,6 +117,23 @@ const fetcher = (variables, token) => {
  * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
  */
 const statsFetcher = async (username, ownerAffiliations) => {
+=======
+ * @param {object} variables Fetcher variables.
+ * @param {string} variables.username Github username.
+ * @param {boolean} variables.includeMergedPullRequests Include merged pull requests.
+ * @param {boolean} variables.includeDiscussions Include discussions.
+ * @param {boolean} variables.includeDiscussionsAnswers Include discussions answers.
+ * @returns {Promise<AxiosResponse>} Axios response.
+ *
+ * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
+ */
+const statsFetcher = async ({
+  username,
+  includeMergedPullRequests,
+  includeDiscussions,
+  includeDiscussionsAnswers,
+}) => {
+>>>>>>> 1c07f41 (feature: fetch only requested data from GitHub GraphQL API to reduce load (#3208))
   let stats;
   let hasNextPage = true;
   let endCursor = null;
@@ -120,7 +142,13 @@ const statsFetcher = async (username, ownerAffiliations) => {
       login: username,
       first: 100,
       after: endCursor,
+<<<<<<< HEAD
       ownerAffiliations: ownerAffiliations,
+=======
+      includeMergedPullRequests,
+      includeDiscussions,
+      includeDiscussionsAnswers,
+>>>>>>> 1c07f41 (feature: fetch only requested data from GitHub GraphQL API to reduce load (#3208))
     };
     let res = await retryer(fetcher, variables);
     if (res.data.errors) {
@@ -204,15 +232,29 @@ const totalCommitsFetcher = async (username) => {
  *
  * @param {string} username GitHub username.
  * @param {boolean} include_all_commits Include all commits.
+<<<<<<< HEAD
  * @param {string[]} exclude_repo Repositories to exclude.  Default: [].
  * @param {string[]} ownerAffiliations Owner affiliations. Default: OWNER.
  * @returns {Promise<import("./types").StatsData>} Stats data.
+=======
+ * @param {string[]} exclude_repo Repositories to exclude.
+ * @param {boolean} include_merged_pull_requests Include merged pull requests.
+ * @param {boolean} include_discussions Include discussions.
+ * @param {boolean} include_discussions_answers Include discussions answers.
+ * @returns {Promise<StatsData>} Stats data.
+>>>>>>> 1c07f41 (feature: fetch only requested data from GitHub GraphQL API to reduce load (#3208))
  */
 const fetchStats = async (
   username,
   include_all_commits = false,
   exclude_repo = [],
+<<<<<<< HEAD
   ownerAffiliations = [],
+=======
+  include_merged_pull_requests = false,
+  include_discussions = false,
+  include_discussions_answers = false,
+>>>>>>> 1c07f41 (feature: fetch only requested data from GitHub GraphQL API to reduce load (#3208))
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -234,7 +276,16 @@ const fetchStats = async (
   };
   ownerAffiliations = parseOwnerAffiliations(ownerAffiliations);
 
+<<<<<<< HEAD
   let res = await statsFetcher(username, ownerAffiliations);
+=======
+  let res = await statsFetcher({
+    username,
+    includeMergedPullRequests: include_merged_pull_requests,
+    includeDiscussions: include_discussions,
+    includeDiscussionsAnswers: include_discussions_answers,
+  });
+>>>>>>> 1c07f41 (feature: fetch only requested data from GitHub GraphQL API to reduce load (#3208))
 
   // Catch GraphQL errors.
   if (res.data.errors) {
@@ -269,14 +320,21 @@ const fetchStats = async (
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
-  stats.totalPRsMerged = user.mergedPullRequests.totalCount;
-  stats.mergedPRsPercentage =
-    (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) * 100;
+  if (include_merged_pull_requests) {
+    stats.totalPRsMerged = user.mergedPullRequests.totalCount;
+    stats.mergedPRsPercentage =
+      (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) * 100;
+  }
   stats.totalReviews =
     user.contributionsCollection.totalPullRequestReviewContributions;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
-  stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;
-  stats.totalDiscussionsAnswered = user.repositoryDiscussionComments.totalCount;
+  if (include_discussions) {
+    stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;
+  }
+  if (include_discussions_answers) {
+    stats.totalDiscussionsAnswered =
+      user.repositoryDiscussionComments.totalCount;
+  }
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
   // Retrieve stars while filtering out repositories to be hidden.

@@ -51,6 +51,7 @@ export default async (req, res) => {
   }
 
   try {
+    const showStats = parseArray(show);
     const stats = await fetchStats(
       username,
       parseBoolean(include_all_commits),
@@ -98,7 +99,7 @@ export default async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
         rank_icon,
-        show: parseArray(show),
+        show: showStats,
       }),
     );
   } catch (err) {
