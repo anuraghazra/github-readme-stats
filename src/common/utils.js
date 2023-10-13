@@ -4,8 +4,64 @@ import toEmoji from "emoji-name-map";
 import wrap from "word-wrap";
 import { themes } from "../../themes/index.js";
 
+const TRY_AGAIN_LATER = "Please try again later";
+
+const SECONDARY_ERROR_MESSAGES = {
+  MAX_RETRY:
+    "You can deploy own instance or wait until public will be no longer limited",
+  NO_TOKENS:
+    "Please add an env variable called PAT_1 with your GitHub API token in vercel",
+  USER_NOT_FOUND: "Make sure the provided username is not an organization",
+  GRAPHQL_ERROR: TRY_AGAIN_LATER,
+  GITHUB_REST_API_ERROR: TRY_AGAIN_LATER,
+  WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
+};
+
+/**
+ * Custom error class to handle custom GRS errors.
+ */
+class CustomError extends Error {
+  /**
+   * @param {string} message Error message.
+   * @param {string} type Error type.
+   */
+  constructor(message, type) {
+    super(message);
+    this.type = type;
+    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || type;
+  }
+
+  static MAX_RETRY = "MAX_RETRY";
+  static NO_TOKENS = "NO_TOKENS";
+  static USER_NOT_FOUND = "USER_NOT_FOUND";
+  static GRAPHQL_ERROR = "GRAPHQL_ERROR";
+  static GITHUB_REST_API_ERROR = "GITHUB_REST_API_ERROR";
+  static WAKATIME_ERROR = "WAKATIME_ERROR";
+}
+
 // Script parameters.
 const ERROR_CARD_LENGTH = 576.5;
+
+/**
+ * Encode string as HTML.
+ *
+ * @see https://stackoverflow.com/a/48073476/10629172
+ *
+ * @param {string} str String to encode.
+ * @returns {string} Encoded string.
+ */
+const encodeHTML = (str) => {
+  return str
+    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
+      return "&#" + i.charCodeAt(0) + ";";
+    })
+    .replace(/\u0008/gim, "");
+};
+
+const UPSTREAM_API_ERRORS = [
+  TRY_AGAIN_LATER,
+  SECONDARY_ERROR_MESSAGES.MAX_RETRY,
+];
 
 /**
  * Renders error message on the card.
@@ -25,13 +81,42 @@ const renderError = (message, secondaryMessage = "") => {
     <rect x="0.5" y="0.5" width="${
       ERROR_CARD_LENGTH - 1
     }" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
-    <text x="25" y="45" class="text">Something went wrong! file an issue at https://tiny.one/readme-stats</text>
+    <text x="25" y="45" class="text">Something went wrong!${
+      UPSTREAM_API_ERRORS.includes(secondaryMessage)
+        ? ""
+        : " file an issue at https://tiny.one/readme-stats"
+    }</text>
     <text data-testid="message" x="25" y="55" class="text small">
       <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
       <tspan x="25" dy="18" class="gray">${secondaryMessage}</tspan>
     </text>
     </svg>
   `;
+};
+
+/**
+ * Auto layout utility, allows us to layout things vertically or horizontally with
+ * proper gaping.
+ *
+ * @param {object} props Function properties.
+ * @param {string[]} props.items Array of items to layout.
+ * @param {number} props.gap Gap between items.
+ * @param {"column" | "row"=} props.direction Direction to layout items.
+ * @param {number[]=} props.sizes Array of sizes for each item.
+ * @returns {string[]} Array of items with proper layout.
+ */
+const flexLayout = ({ items, gap, direction, sizes = [] }) => {
+  let lastSize = 0;
+  // filter() for filtering out empty strings
+  return items.filter(Boolean).map((item, i) => {
+    const size = sizes[i] || 0;
+    let transform = `translate(${lastSize}, 0)`;
+    if (direction === "column") {
+      transform = `translate(0, ${lastSize})`;
+    }
+    lastSize += size + gap;
+    return `<g transform="${transform}">${item}</g>`;
+  });
 };
 
 /**
@@ -77,22 +162,6 @@ const iconWithLabel = (icon, label, testid, iconSize) => {
     `;
   const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
   return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
-};
-
-/**
- * Encode string as HTML.
- *
- * @see https://stackoverflow.com/a/48073476/10629172
- *
- * @param {string} str String to encode.
- * @returns {string} Encoded string.
- */
-const encodeHTML = (str) => {
-  return str
-    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
-      return "&#" + i.charCodeAt(0) + ";";
-    })
-    .replace(/\u0008/gim, "");
 };
 
 /**
@@ -218,31 +287,6 @@ const request = (data, headers) => {
     method: "post",
     headers,
     data,
-  });
-};
-
-/**
- * Auto layout utility, allows us to layout things vertically or horizontally with
- * proper gaping.
- *
- * @param {object} props Function properties.
- * @param {string[]} props.items Array of items to layout.
- * @param {number} props.gap Gap between items.
- * @param {"column" | "row"=} props.direction Direction to layout items.
- * @param {number[]=} props.sizes Array of sizes for each item.
- * @returns {string[]} Array of items with proper layout.
- */
-const flexLayout = ({ items, gap, direction, sizes = [] }) => {
-  let lastSize = 0;
-  // filter() for filtering out empty strings
-  return items.filter(Boolean).map((item, i) => {
-    const size = sizes[i] || 0;
-    let transform = `translate(${lastSize}, 0)`;
-    if (direction === "column") {
-      transform = `translate(0, ${lastSize})`;
-    }
-    lastSize += size + gap;
-    return `<g transform="${transform}">${item}</g>`;
   });
 };
 
@@ -373,42 +417,31 @@ const noop = () => {};
 const logger =
   process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
 
+const ONE_MINUTE = 60;
+const FIVE_MINUTES = 300;
+const TEN_MINUTES = 600;
+const FIFTEEN_MINUTES = 900;
+const THIRTY_MINUTES = 1800;
+const TWO_HOURS = 7200;
+const FOUR_HOURS = 14400;
+const SIX_HOURS = 21600;
+const EIGHT_HOURS = 28800;
+const ONE_DAY = 86400;
+
 const CONSTANTS = {
-  THIRTY_MINUTES: 1800,
-  TWO_HOURS: 7200,
-  FOUR_HOURS: 14400,
-  ONE_DAY: 86400,
+  ONE_MINUTE,
+  FIVE_MINUTES,
+  TEN_MINUTES,
+  FIFTEEN_MINUTES,
+  THIRTY_MINUTES,
+  TWO_HOURS,
+  FOUR_HOURS,
+  SIX_HOURS,
+  EIGHT_HOURS,
+  ONE_DAY,
+  CARD_CACHE_SECONDS: SIX_HOURS,
+  ERROR_CACHE_SECONDS: TEN_MINUTES,
 };
-
-const SECONDARY_ERROR_MESSAGES = {
-  MAX_RETRY: "Downtime due to GitHub API rate limiting",
-  NO_TOKENS:
-    "Please add an env variable called PAT_1 with your GitHub API token in vercel",
-  USER_NOT_FOUND: "Make sure the provided username is not an organization",
-  GRAPHQL_ERROR: "Please try again later",
-  WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
-};
-
-/**
- * Custom error class to handle custom GRS errors.
- */
-class CustomError extends Error {
-  /**
-   * @param {string} message Error message.
-   * @param {string} type Error type.
-   */
-  constructor(message, type) {
-    super(message);
-    this.type = type;
-    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || type;
-  }
-
-  static MAX_RETRY = "MAX_RETRY";
-  static NO_TOKENS = "NO_TOKENS";
-  static USER_NOT_FOUND = "USER_NOT_FOUND";
-  static GRAPHQL_ERROR = "GRAPHQL_ERROR";
-  static WAKATIME_ERROR = "WAKATIME_ERROR";
-}
 
 /**
  * Missing query parameter class.

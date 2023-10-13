@@ -189,7 +189,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - `hide` - 从卡片中隐藏指定语言 _(Comma seperated values)_
 - `hide_title` - _(boolean)_
-- `layout` - 提供五種佈局 `normal` & `compact` & `donut` & `donut-vertical` & `pie` 间切换
+- `layout` - 提供五种布局 `normal` & `compact` & `donut` & `donut-vertical` & `pie` 间切换
 - `card_width` - 手动设置卡片的宽度 _(number)_
 
 > :warning: **重要:**
@@ -321,7 +321,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ## 自己部署
 
-#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+#### [查看分步视频教程 作者：@codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
 因为 GitHub 的 API 每个小时只允许 5 千次请求，我的 `https://github-readme-stats.vercel.app/api` 很有可能会触发限制。如果你将其托管在自己的 Vercel 服务器上，那么你就不必为此担心。点击 deploy 按钮来开始你的部署！
 
