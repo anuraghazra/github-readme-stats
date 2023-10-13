@@ -24,12 +24,6 @@
     </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
@@ -143,7 +137,7 @@ Change the `?username=` value to your GitHub username.
 > By default, the stats card only shows statistics like stars, commits and pull requests from public repositories. To show private statistics on the stats card, you should [deploy your own instance](#deploy-on-your-own) using your own GitHub API token.
 
 > [!NOTE]\
-> Available ranks are S (top 1%), A+ (12.5%), A (25%), A- (37.5%), B+ (50%), B (62.5%), B- (75%), C+ (87.5%) and C (everyone). This ranking scheme is based on the [Japanese academic grading](https://wikipedia.org/wiki/Academic_grading_in_Japan) system. The global percentile is calculated as a weighted sum of percentiles for each statistic (number of commits, pull requests, reviews, issues, stars and followers), based on the cumulative distribution function of the [exponential](https://wikipedia.org/wiki/exponential_distribution) and the [log-normal](https://wikipedia.org/wiki/Log-normal_distribution) distributions. The implementation can be investigated at [src/calculateRank.js](./src/calculateRank.js). The circle around the rank shows 100 minus the global percentile.
+> Available ranks are S (top 1%), A+ (12.5%), A (25%), A- (37.5%), B+ (50%), B (62.5%), B- (75%), C+ (87.5%) and C (everyone). This ranking scheme is based on the [Japanese academic grading](https://wikipedia.org/wiki/Academic_grading_in_Japan) system. The global percentile is calculated as a weighted sum of percentiles for each statistic (number of commits, pull requests, reviews, issues, stars and followers), based on the cumulative distribution function of the [exponential](https://wikipedia.org/wiki/exponential_distribution) and the [log-normal](https://wikipedia.org/wiki/Log-normal_distribution) distributions. The implementation can be investigated at [src/calculateRank.js](src/calculateRank.js). The circle around the rank shows 100 minus the global percentile.
 
 ### Hiding individual stats
 
@@ -189,7 +183,7 @@ GitHub Readme Stats comes with several built-in themes (e.g. `dark`, `radical`, 
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stats Themes" width="600px"/>
 
-You can look at a preview for [all available themes](./themes/README.md) or checkout the [theme config file](./themes/index.js). You can also contribute new themes if you like, contributing guidelines can be found [here](./CONTRIBUTING.md#themes-contribution).
+You can look at a preview for [all available themes](themes/README.md) or checkout the [theme config file](themes/index.js). You can also contribute new themes if you like, contributing guidelines can be found [here](CONTRIBUTING.md#themes-contribution).
 
 #### Responsive Card Theme
 
@@ -215,7 +209,7 @@ We have included a `transparent` theme that has a transparent background. This t
 
 ##### Add transparent alpha channel to a themes bg\_color
 
-You can use the `bg_color` parameter to make any of [the available themes](./themes/README.md) transparent. This is done by setting the `bg_color` to a color with a transparent alpha channel (i.e. `bg_color=00000000`):
+You can use the `bg_color` parameter to make any of [the available themes](themes/README.md) transparent. This is done by setting the `bg_color` to a color with a transparent alpha channel (i.e. `bg_color=00000000`):
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&bg_color=00000000)
@@ -292,9 +286,9 @@ You can customize the appearance of all your cards however you wish with URL par
 *   `border_color` - Card's border color *(hex color)*. Default: `e4e2e2` (Does not apply when `hide_border` is enabled).
 *   `bg_color` - Card's background color *(hex color)* **or** a gradient in the form of *angle,start,end*. Default: `fffefe`
 *   `hide_border` - Hides the card's border *(boolean)*. Default: `false`
-*   `theme` - Name of the theme, choose from [all available themes](./themes/README.md). Default: `default` theme.
+*   `theme` - Name of the theme, choose from [all available themes](themes/README.md). Default: `default` theme.
 *   `cache_seconds` - Sets the cache header manually *(min: 21600, max: 86400)*. Default: `21600 seconds (6 hours)`.
-*   `locale` - Sets the language in the card *(e.g. cn, de, es, etc.)*. Default: `en`.
+*   `locale` - Sets the language in the card, you can check full list of available locales [here](#available-locales). Default: `en`.
 *   `border_radius` - Corner rounding on the card. Default: `4.5`.
 
 > [!WARNING]\
@@ -305,6 +299,60 @@ You can customize the appearance of all your cards however you wish with URL par
 You can provide multiple comma-separated values in the bg\_color option to render a gradient with the following format:
 
     &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
+
+##### Available locales
+
+Here is a list of all available locales:
+
+<table>
+<tr><td>
+
+| Code | Locale |
+| --- | --- |
+| `cn` | Chinese |
+| `zh-tw` | Chinese (Taiwan) |
+| `ar` | Arabic |
+| `cs` | Czech |
+| `de` | German |
+| `en` | English |
+| `bn` | Bengali |
+| `es` | Spanish |
+| `fr` | French |
+| `hu` | Hungarian |
+
+</td><td>
+
+| Code | Locale |
+| --- | --- |
+| `it` | Italian |
+| `ja` | Japanese |
+| `kr` | Korean |
+| `nl` | Dutch |
+| `pt-pt` | Portuguese (Portugal) |
+| `pt-br` | Portuguese (Brazil) |
+| `np` | Nepali |
+| `el` | Greek |
+| `ru` | Russian |
+| `uk-ua` | Ukrainian |
+
+</td><td>
+
+| Code | Locale |
+| --- | --- |
+| `id` | Indonesian |
+| `ml` | Malayalam |
+| `my` | Burmese |
+| `sk` | Slovak |
+| `tr` | Turkish |
+| `pl` | Polish |
+| `uz` | Uzbek |
+| `vi` | Vietnamese |
+| `se` | Swedish |
+
+</td></tr>
+</table>
+
+If we don't support your language, please consider contributing!
 
 #### Stats Card Exclusive Options
 
@@ -697,7 +745,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 > Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58), we should be able to handle more than 5k requests and have fewer issues with downtime :grin:.
 
 > [!NOTE]\
-> If you are on the [Pro (i.e. paid)](https://vercel.com/pricing) Vercel plan, the [maxDuration](https://vercel.com/docs/concepts/projects/project-configuration#value-definition) value found in the [Vercel.json](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json) can be increased when your Vercel instance frequently times out during the card request. You are advised to keep this value lower than `30` seconds to prevent high memory usage.
+> If you are on the [Pro (i.e. paid)](https://vercel.com/pricing) Vercel plan, the [maxDuration](https://vercel.com/docs/concepts/projects/project-configuration#value-definition) value found in the [Vercel.json](vercel.json) can be increased when your Vercel instance frequently times out during the card request. You are advised to keep this value lower than `30` seconds to prevent high memory usage.
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
@@ -767,7 +815,7 @@ Thanks! :heart:
 
 ***
 
-[![https://vercel.com?utm\_source=github\_readme\_stats\_team\&utm\_campaign=oss](./powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team\&utm_campaign=oss)
+[![https://vercel.com?utm\_source=github\_readme\_stats\_team\&utm\_campaign=oss](powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team\&utm_campaign=oss)
 
 Contributions are welcome! <3
 

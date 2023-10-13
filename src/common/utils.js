@@ -4,7 +4,7 @@ import toEmoji from "emoji-name-map";
 import wrap from "word-wrap";
 import { themes } from "../../themes/index.js";
 
-const TRY_AGAING_LATER = "Please try again later";
+const TRY_AGAIN_LATER = "Please try again later";
 
 const SECONDARY_ERROR_MESSAGES = {
   MAX_RETRY:
@@ -12,8 +12,8 @@ const SECONDARY_ERROR_MESSAGES = {
   NO_TOKENS:
     "Please add an env variable called PAT_1 with your GitHub API token in vercel",
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
-  GRAPHQL_ERROR: TRY_AGAING_LATER,
-  GITHUB_REST_API_ERROR: TRY_AGAING_LATER,
+  GRAPHQL_ERROR: TRY_AGAIN_LATER,
+  GITHUB_REST_API_ERROR: TRY_AGAIN_LATER,
   WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
 };
 
@@ -59,7 +59,7 @@ const encodeHTML = (str) => {
 };
 
 const UPSTREAM_API_ERRORS = [
-  TRY_AGAING_LATER,
+  TRY_AGAIN_LATER,
   SECONDARY_ERROR_MESSAGES.MAX_RETRY,
 ];
 
