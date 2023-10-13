@@ -115,7 +115,7 @@ const getStyles = ({
     .bold { font-weight: 700 }
     .icon {
       fill: ${iconColor};
-      display: ${!!show_icons ? "block" : "none"};
+      display: ${show_icons ? "block" : "none"};
     }
 
     .rank-circle-rim {
