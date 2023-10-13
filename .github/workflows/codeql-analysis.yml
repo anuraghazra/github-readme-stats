@@ -2,9 +2,11 @@ name: "Static code analysis workflow (CodeQL)"
 
 on:
   push:
-    branches: [main]
+    branches:
+      - master
   pull_request:
-    branches: [main]
+    branches:
+      - master
 
 permissions:
   actions: read
