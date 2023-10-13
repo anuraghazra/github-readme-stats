@@ -113,7 +113,3 @@ People _love_ thorough bug reports. I'm not even kidding.
 -   A quick idea summary
 -   What & why do you want to add the specific feature
 -   Additional context like images, links to resources to implement the feature, etc.
-
-## License
-
-By contributing, you agree that your contributions will be licensed under its [MIT License](./LICENSE).

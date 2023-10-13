@@ -98,8 +98,8 @@
             "terms": [ "TODO", "FIXME" ],
             "location": "start"
         }],
-        // "no-with": "warn",
-        // "radix": "warn",
+        "no-with": "warn",
+        "radix": "warn",
         // "vars-on-top": "error",
 
         // Enforces the style of wrapped functions
@@ -193,8 +193,8 @@
         // "no-continue": "off",
         // "no-inline-comments": "off",
         // "no-lonely-if": "warn",
-        // "no-mixed-spaces-and-tabs": "warn",
-        // "no-multiple-empty-lines": "warn",
+        "no-mixed-spaces-and-tabs": "warn",
+        "no-multiple-empty-lines": "warn",
         "no-negated-condition": "off",
         // "no-nested-ternary": "warn",
         // "no-new-object": "warn",
