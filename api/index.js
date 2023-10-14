@@ -50,15 +50,20 @@ export default async (req, res) => {
   }
 
   try {
+    const showStats = parseArray(show);
     const stats = await fetchStats(
       username,
       parseBoolean(include_all_commits),
       parseArray(exclude_repo),
+      showStats.includes("prs_merged") ||
+        showStats.includes("prs_merged_percentage"),
+      showStats.includes("discussions_started"),
+      showStats.includes("discussions_answered"),
     );
 
     let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
-      CONSTANTS.FOUR_HOURS,
+      parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
+      CONSTANTS.SIX_HOURS,
       CONSTANTS.ONE_DAY,
     );
     cacheSeconds = process.env.CACHE_SECONDS
@@ -96,11 +101,16 @@ export default async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
         rank_icon,
-        show: parseArray(show),
+        show: showStats,
       }),
     );
   } catch (err) {
-    res.setHeader("Cache-Control", `no-cache, no-store, must-revalidate`); // Don't cache error responses.
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
+        CONSTANTS.ERROR_CACHE_SECONDS
+      }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    ); // Use lower cache period for errors.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };

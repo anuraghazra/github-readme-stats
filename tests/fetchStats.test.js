@@ -122,12 +122,12 @@ describe("Test fetchStats", () => {
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,
-      totalPRsMerged: 240,
-      mergedPRsPercentage: 80,
+      totalPRsMerged: 0,
+      mergedPRsPercentage: 0,
       totalReviews: 50,
       totalStars: 300,
-      totalDiscussionsStarted: 10,
-      totalDiscussionsAnswered: 40,
+      totalDiscussionsStarted: 0,
+      totalDiscussionsAnswered: 0,
       rank,
     });
   });
@@ -158,12 +158,12 @@ describe("Test fetchStats", () => {
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,
-      totalPRsMerged: 240,
-      mergedPRsPercentage: 80,
+      totalPRsMerged: 0,
+      mergedPRsPercentage: 0,
       totalReviews: 50,
       totalStars: 300,
-      totalDiscussionsStarted: 10,
-      totalDiscussionsAnswered: 40,
+      totalDiscussionsStarted: 0,
+      totalDiscussionsAnswered: 0,
       rank,
     });
   });
@@ -200,72 +200,30 @@ describe("Test fetchStats", () => {
       totalCommits: 1000,
       totalIssues: 200,
       totalPRs: 300,
-      totalPRsMerged: 240,
-      mergedPRsPercentage: 80,
+      totalPRsMerged: 0,
+      mergedPRsPercentage: 0,
       totalReviews: 50,
       totalStars: 300,
-      totalDiscussionsStarted: 10,
-      totalDiscussionsAnswered: 40,
+      totalDiscussionsStarted: 0,
+      totalDiscussionsAnswered: 0,
       rank,
     });
   });
 
-  it("should return 0 commits when all_commits true and invalid username", async () => {
-    let stats = await fetchStats("asdf///---", true);
-    expect(stats).toStrictEqual({
-      contributedTo: 61,
-      name: "Anurag Hazra",
-      totalCommits: 0,
-      totalIssues: 200,
-      totalPRs: 300,
-      totalPRsMerged: 240,
-      mergedPRsPercentage: 80,
-      totalReviews: 50,
-      totalStars: 300,
-      totalDiscussionsStarted: 10,
-      totalDiscussionsAnswered: 40,
-      rank: calculateRank({
-        all_commits: true,
-        commits: 0,
-        prs: 300,
-        reviews: 50,
-        issues: 200,
-        repos: 5,
-        stars: 300,
-        followers: 100,
-      }),
-    });
+  it("should throw specific error when include_all_commits true and invalid username", async () => {
+    expect(fetchStats("asdf///---", true)).rejects.toThrow(
+      new Error("Invalid username provided."),
+    );
   });
 
-  it("should return 0 commits when all_commits true and API returns error", async () => {
+  it("should throw specific error when include_all_commits true and API returns error", async () => {
     mock
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { error: "Some test error message" });
 
-    let stats = await fetchStats("anuraghazra", true);
-    expect(stats).toStrictEqual({
-      contributedTo: 61,
-      name: "Anurag Hazra",
-      totalCommits: 0,
-      totalIssues: 200,
-      totalPRs: 300,
-      totalPRsMerged: 240,
-      mergedPRsPercentage: 80,
-      totalReviews: 50,
-      totalStars: 300,
-      totalDiscussionsStarted: 10,
-      totalDiscussionsAnswered: 40,
-      rank: calculateRank({
-        all_commits: true,
-        commits: 0,
-        prs: 300,
-        reviews: 50,
-        issues: 200,
-        repos: 5,
-        stars: 300,
-        followers: 100,
-      }),
-    });
+    expect(fetchStats("anuraghazra", true)).rejects.toThrow(
+      new Error("Could not fetch total commits."),
+    );
   });
 
   it("should exclude stars of the `test-repo-1` repository", async () => {
@@ -291,12 +249,12 @@ describe("Test fetchStats", () => {
       totalCommits: 1000,
       totalIssues: 200,
       totalPRs: 300,
-      totalPRsMerged: 240,
-      mergedPRsPercentage: 80,
+      totalPRsMerged: 0,
+      mergedPRsPercentage: 0,
       totalReviews: 50,
       totalStars: 200,
-      totalDiscussionsStarted: 10,
-      totalDiscussionsAnswered: 40,
+      totalDiscussionsStarted: 0,
+      totalDiscussionsAnswered: 0,
       rank,
     });
   });
@@ -322,12 +280,12 @@ describe("Test fetchStats", () => {
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,
-      totalPRsMerged: 240,
-      mergedPRsPercentage: 80,
+      totalPRsMerged: 0,
+      mergedPRsPercentage: 0,
       totalReviews: 50,
       totalStars: 400,
-      totalDiscussionsStarted: 10,
-      totalDiscussionsAnswered: 40,
+      totalDiscussionsStarted: 0,
+      totalDiscussionsAnswered: 0,
       rank,
     });
   });
@@ -353,12 +311,12 @@ describe("Test fetchStats", () => {
       totalCommits: 100,
       totalIssues: 200,
       totalPRs: 300,
-      totalPRsMerged: 240,
-      mergedPRsPercentage: 80,
+      totalPRsMerged: 0,
+      mergedPRsPercentage: 0,
       totalReviews: 50,
       totalStars: 300,
-      totalDiscussionsStarted: 10,
-      totalDiscussionsAnswered: 40,
+      totalDiscussionsStarted: 0,
+      totalDiscussionsAnswered: 0,
       rank,
     });
   });
@@ -367,6 +325,64 @@ describe("Test fetchStats", () => {
     process.env.FETCH_MULTI_PAGE_STARS = undefined;
 
     let stats = await fetchStats("anuraghazra");
+    const rank = calculateRank({
+      all_commits: false,
+      commits: 100,
+      prs: 300,
+      reviews: 50,
+      issues: 200,
+      repos: 5,
+      stars: 300,
+      followers: 100,
+    });
+
+    expect(stats).toStrictEqual({
+      contributedTo: 61,
+      name: "Anurag Hazra",
+      totalCommits: 100,
+      totalIssues: 200,
+      totalPRs: 300,
+      totalPRsMerged: 0,
+      mergedPRsPercentage: 0,
+      totalReviews: 50,
+      totalStars: 300,
+      totalDiscussionsStarted: 0,
+      totalDiscussionsAnswered: 0,
+      rank,
+    });
+  });
+
+  it("should not fetch additional stats data when it not requested", async () => {
+    let stats = await fetchStats("anuraghazra");
+    const rank = calculateRank({
+      all_commits: false,
+      commits: 100,
+      prs: 300,
+      reviews: 50,
+      issues: 200,
+      repos: 5,
+      stars: 300,
+      followers: 100,
+    });
+
+    expect(stats).toStrictEqual({
+      contributedTo: 61,
+      name: "Anurag Hazra",
+      totalCommits: 100,
+      totalIssues: 200,
+      totalPRs: 300,
+      totalPRsMerged: 0,
+      mergedPRsPercentage: 0,
+      totalReviews: 50,
+      totalStars: 300,
+      totalDiscussionsStarted: 0,
+      totalDiscussionsAnswered: 0,
+      rank,
+    });
+  });
+
+  it("should fetch additional stats when it requested", async () => {
+    let stats = await fetchStats("anuraghazra", false, [], true, true, true);
     const rank = calculateRank({
       all_commits: false,
       commits: 100,

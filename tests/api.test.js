@@ -162,35 +162,43 @@ describe("Test /api/", () => {
       ["Content-Type", "image/svg+xml"],
       [
         "Cache-Control",
-        `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
-          CONSTANTS.FOUR_HOURS
+        `max-age=${CONSTANTS.SIX_HOURS / 2}, s-maxage=${
+          CONSTANTS.SIX_HOURS
         }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
       ],
     ]);
   });
 
   it("should set proper cache", async () => {
-    const { req, res } = faker({ cache_seconds: 15000 }, data_stats);
+    const cache_seconds = 35000;
+    const { req, res } = faker({ cache_seconds }, data_stats);
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
       [
         "Cache-Control",
-        `max-age=7500, s-maxage=${15000}, stale-while-revalidate=${
+        `max-age=${
+          cache_seconds / 2
+        }, s-maxage=${cache_seconds}, stale-while-revalidate=${
           CONSTANTS.ONE_DAY
         }`,
       ],
     ]);
   });
 
-  it("should not store cache when error", async () => {
+  it("should set shorter cache when error", async () => {
     const { req, res } = faker({}, error);
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `no-cache, no-store, must-revalidate`],
+      [
+        "Cache-Control",
+        `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
+          CONSTANTS.ERROR_CACHE_SECONDS
+        }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      ],
     ]);
   });
 
@@ -219,8 +227,8 @@ describe("Test /api/", () => {
         ["Content-Type", "image/svg+xml"],
         [
           "Cache-Control",
-          `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
-            CONSTANTS.FOUR_HOURS
+          `max-age=${CONSTANTS.SIX_HOURS / 2}, s-maxage=${
+            CONSTANTS.SIX_HOURS
           }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
         ],
       ]);
@@ -234,8 +242,8 @@ describe("Test /api/", () => {
         ["Content-Type", "image/svg+xml"],
         [
           "Cache-Control",
-          `max-age=${CONSTANTS.FOUR_HOURS / 2}, s-maxage=${
-            CONSTANTS.FOUR_HOURS
+          `max-age=${CONSTANTS.SIX_HOURS / 2}, s-maxage=${
+            CONSTANTS.SIX_HOURS
           }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
         ],
       ]);
@@ -294,6 +302,28 @@ describe("Test /api/", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
       renderError("Something went wrong", "Language not found"),
+    );
+  });
+
+  it("should render error card when include_all_commits true and upstream API fails", async () => {
+    mock
+      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .reply(200, { error: "Some test error message" });
+
+    const { req, res } = faker(
+      { username: "anuraghazra", include_all_commits: true },
+      data_stats,
+    );
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError("Could not fetch total commits.", "Please try again later"),
+    );
+    // Received SVG output should not contain string "https://tiny.one/readme-stats"
+    expect(res.send.mock.calls[0][0]).not.toContain(
+      "https://tiny.one/readme-stats",
     );
   });
 });
