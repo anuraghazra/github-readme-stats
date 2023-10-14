@@ -49,9 +49,11 @@ const getBadgeSVG = (label, textColor) => `
  *
  * @param {RepositoryData} repo Repository data.
  * @param {Partial<RepoCardOptions>} options Card options.
+ * @param {number} card_width The width of the card.
+ * @param {number} card_height The height of the card.
  * @returns {string} Repository card SVG object.
  */
-const renderRepoCard = (repo, options = {}) => {
+const renderRepoCard = (repo, options = {}, card_width, card_height) => {
   const {
     name,
     nameWithOwner,
@@ -87,8 +89,7 @@ const renderRepoCard = (repo, options = {}) => {
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
 
-  const height =
-    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+  const height = card_height || (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
 
   const i18n = new I18n({
     locale,
@@ -115,13 +116,13 @@ const renderRepoCard = (repo, options = {}) => {
     icons.star,
     totalStars,
     "stargazers",
-    ICON_SIZE,
+    ICON_SIZE
   );
   const svgForks = iconWithLabel(
     icons.fork,
     totalForks,
     "forkcount",
-    ICON_SIZE,
+    ICON_SIZE
   );
 
   const starAndForkCount = flexLayout({
@@ -134,10 +135,13 @@ const renderRepoCard = (repo, options = {}) => {
     gap: 25,
   }).join("");
 
+  // Calculate the card width and height based on the provided arguments or defaults
+  const width = card_width || 400;
+
   const card = new Card({
     defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
     titlePrefixIcon: icons.contribs,
-    width: 400,
+    width,
     height,
     border_radius,
     colors,
