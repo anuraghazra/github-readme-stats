@@ -287,11 +287,11 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
           : noCodingActivityNode({
               // @ts-ignore
               color: textColor,
-              text: !stats.is_coding_activity_visible
-                ? i18n.t("wakatimecard.notpublic")
-                : stats.is_other_usage_visible
-                ? i18n.t("wakatimecard.nocodingactivity")
-                : i18n.t("wakatimecard.nocodedetails"),
+              text: stats.is_coding_activity_visible
+                ? stats.is_other_usage_visible
+                  ? i18n.t("wakatimecard.nocodingactivity")
+                  : i18n.t("wakatimecard.nocodedetails")
+                : i18n.t("wakatimecard.notpublic"),
             })
       }
     `;
@@ -316,11 +316,11 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
             noCodingActivityNode({
               // @ts-ignore
               color: textColor,
-              text: !stats.is_coding_activity_visible
-                ? i18n.t("wakatimecard.notpublic")
-                : stats.is_other_usage_visible
-                ? i18n.t("wakatimecard.nocodingactivity")
-                : i18n.t("wakatimecard.nocodedetails"),
+              text: stats.is_coding_activity_visible
+                ? stats.is_other_usage_visible
+                  ? i18n.t("wakatimecard.nocodingactivity")
+                  : i18n.t("wakatimecard.nocodedetails")
+                : i18n.t("wakatimecard.notpublic"),
             }),
           ],
       gap: lheight,
