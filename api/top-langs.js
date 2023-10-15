@@ -16,7 +16,8 @@ export default async (req, res) => {
     hide,
     hide_title,
     hide_border,
-    card_width,
+    card_width, // Add card_width and card_height here
+    card_height, // Add card_height here
     title_color,
     text_color,
     bg_color,
@@ -84,6 +85,7 @@ export default async (req, res) => {
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
         card_width: parseInt(card_width, 10),
+        card_height: parseInt(card_height, 10),
         hide: parseArray(hide),
         title_color,
         text_color,
@@ -104,7 +106,7 @@ export default async (req, res) => {
       `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
         CONSTANTS.ERROR_CACHE_SECONDS
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
-    ); // Use lower cache period for errors.
+    ); // Use a lower cache period for errors.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };
