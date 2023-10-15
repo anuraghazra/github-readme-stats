@@ -39,9 +39,9 @@ class Card {
     // returns theme based colors with proper overrides and defaults
     this.colors = colors;
     this.title =
-      customTitle !== undefined
-        ? encodeHTML(customTitle)
-        : encodeHTML(defaultTitle);
+      customTitle === undefined
+        ? encodeHTML(defaultTitle)
+        : encodeHTML(customTitle);
 
     this.css = "";
 

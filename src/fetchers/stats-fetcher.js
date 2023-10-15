@@ -89,7 +89,7 @@ const GRAPHQL_STATS_QUERY = `
  * @returns {Promise<AxiosResponse>} Axios response.
  */
 const fetcher = (variables, token) => {
-  const query = !variables.after ? GRAPHQL_STATS_QUERY : GRAPHQL_REPOS_QUERY;
+  const query = variables.after ? GRAPHQL_REPOS_QUERY : GRAPHQL_STATS_QUERY;
   return request(
     {
       query,
@@ -138,10 +138,10 @@ const statsFetcher = async ({
 
     // Store stats data.
     const repoNodes = res.data.data.user.repositories.nodes;
-    if (!stats) {
-      stats = res;
-    } else {
+    if (stats) {
       stats.data.data.user.repositories.nodes.push(...repoNodes);
+    } else {
+      stats = res;
     }
 
     // Disable multi page fetching on public Vercel instance due to rate limits.
