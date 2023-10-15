@@ -53,7 +53,7 @@ const getBadgeSVG = (label, textColor) => `
  * @param {number} card_height The height of the card.
  * @returns {string} Repository card SVG object.
  */
-const renderRepoCard = (repo, options = {},card_width,card_height) => {
+const renderRepoCard = (repo, options = {card_width,card_height}) => {
   const {
     name,
     nameWithOwner,
@@ -75,6 +75,8 @@ const renderRepoCard = (repo, options = {},card_width,card_height) => {
     border_radius,
     border_color,
     locale,
+    card_width,
+    card_height,
   } = options;
 
   const lineHeight = 10;
