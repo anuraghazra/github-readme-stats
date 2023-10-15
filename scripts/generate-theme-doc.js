@@ -14,7 +14,7 @@ const THEME_TEMPLATE = `## Available Themes
 
 With inbuilt themes, you can customize the look of the card without doing any manual customization.
 
-Use \`?theme=THEME_NAME\` parameter like so :-
+Use \`?theme=THEME_NAME\` parameter like so:
 
 \`\`\`md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=dark&show_icons=true)
@@ -22,7 +22,7 @@ Use \`?theme=THEME_NAME\` parameter like so :-
 
 ## Stats
 
-> These themes work both for the Stats Card and Repo Card.
+> These themes works with all five our cards: Stats Card, Repo Card, Gist Card, Top languages Card and Wakatime Card.
 
 | | | |
 | :--: | :--: | :--: |
@@ -30,7 +30,7 @@ ${STAT_CARD_TABLE_FLAG}
 
 ## Repo Card
 
-> These themes work both for the Stats Card and Repo Card.
+> These themes works with all five our cards: Stats Card, Repo Card, Gist Card, Top languages Card and Wakatime Card.
 
 | | | |
 | :--: | :--: | :--: |

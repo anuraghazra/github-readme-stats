@@ -58,6 +58,12 @@ GitHub Readme Stats supports custom theming, and you can also contribute new the
 
 To contribute your theme you need to edit the [themes/index.js](./themes/index.js) file and add it at the end of the file.
 
+## Translations Contribution
+
+GitHub Readme Stats supports multiple languages, if we are missing your language, you can contribute it! You can check the currently supported languages [here](./readme.md#available-locales).
+
+To contribute your language you need to edit the [src/translations.js](./src/translations.js) file and add new property to each object where the key is the language code in [ISO 639-1 standard](https://www.andiamo.co.uk/resources/iso-language-codes/) and the value is the translated string.
+
 ## Any contributions you make will be under the MIT Software License
 
 In short, when you submit changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.

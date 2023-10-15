@@ -1,4 +1,3 @@
-import { getAnimations } from "../getStyles.js";
 import { encodeHTML, flexLayout } from "./utils.js";
 
 class Card {
@@ -174,6 +173,33 @@ class Card {
   }
 
   /**
+   * Retrieves css animations for a card.
+   *
+   * @returns {string} Animation css.
+   */
+  getAnimations = () => {
+    return `
+      /* Animations */
+      @keyframes scaleInAnimation {
+        from {
+          transform: translate(-5px, 5px) scale(0);
+        }
+        to {
+          transform: translate(-5px, 5px) scale(1);
+        }
+      }
+      @keyframes fadeInAnimation {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    `;
+  };
+
+  /**
    * @param {string} body The inner body of the card.
    * @returns {string} The rendered card.
    */
@@ -202,7 +228,7 @@ class Card {
           }
           ${this.css}
 
-          ${process.env.NODE_ENV === "test" ? "" : getAnimations()}
+          ${process.env.NODE_ENV === "test" ? "" : this.getAnimations()}
           ${
             this.animations === false
               ? `* { animation-duration: 0s !important; animation-delay: 0s !important; }`
