@@ -221,6 +221,7 @@ const renderStatsCard = (stats, options = {}) => {
     hide_border = false,
     card_width,
     hide_rank = false,
+    hide_progress = false,
     include_all_commits = false,
     line_height = 25,
     title_color,
@@ -507,7 +508,11 @@ const renderStatsCard = (stats, options = {}) => {
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />
         <g class="rank-text">
-          ${rankIcon(rank_icon, rank?.level, rank?.percentile)}
+          ${rankIcon(
+            rank_icon,
+            rank?.level,
+            hide_progress ? 100 : rank?.percentile,
+          )}
         </g>
       </g>`;
 
