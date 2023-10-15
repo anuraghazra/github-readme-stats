@@ -16,8 +16,7 @@ export default async (req, res) => {
     hide,
     hide_title,
     hide_border,
-    card_width, // Add card_width and card_height here
-    card_height, // Add card_height here
+    card_width,
     title_color,
     text_color,
     bg_color,
