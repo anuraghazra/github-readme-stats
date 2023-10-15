@@ -415,7 +415,7 @@ const wrapTextMultiline = (text, width = 59, maxLines = 3) => {
 const noop = () => {};
 // return console instance based on the environment
 const logger =
-  process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
+  process.env.NODE_ENV === "test" ? { log: noop, error: noop } : console;
 
 const ONE_MINUTE = 60;
 const FIVE_MINUTES = 300;

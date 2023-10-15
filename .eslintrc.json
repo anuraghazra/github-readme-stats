@@ -195,7 +195,7 @@
         // "no-lonely-if": "warn",
         "no-mixed-spaces-and-tabs": "warn",
         "no-multiple-empty-lines": "warn",
-        // "no-negated-condition": "off",
+        "no-negated-condition": "warn",
         // "no-nested-ternary": "warn",
         // "no-new-object": "warn",
         // "no-plusplus": "off",
