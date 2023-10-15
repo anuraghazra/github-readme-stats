@@ -2,12 +2,17 @@ name: Require Pull Request Labels
 on:
   pull_request:
     types: [opened, labeled, unlabeled, synchronize]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   require-labels:
     if: |
       github.actor != 'github-actions[bot]' &&
       github.actor != 'dependabot[bot]' &&
-      github.actor != 'renovate[bot]' && 
+      github.actor != 'renovate[bot]' &&
       github.actor != 'web-flow' &&
       github.event.pull_request.title != 'Update global workflows'
     runs-on: ubuntu-latest

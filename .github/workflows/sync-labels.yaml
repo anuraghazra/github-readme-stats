@@ -4,6 +4,10 @@ on:
     - cron: "0 7 * * 1"
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   sync:
     name: Run EndBug/label-sync

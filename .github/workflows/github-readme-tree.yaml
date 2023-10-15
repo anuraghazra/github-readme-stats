@@ -5,6 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   tree:
     runs-on: ubuntu-latest
@@ -14,7 +18,7 @@ jobs:
       - name: Create README Tree
         uses: RavelloH/readme-tree@v1.1.0
         with:
-          showdirectoryname: 'yes'
+          showdirectoryname: "yes"
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
         with:
