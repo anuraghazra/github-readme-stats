@@ -734,6 +734,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     layout,
     custom_title,
     locale,
+    card_width = DEFAULT_CARD_WIDTH,
+    card_height = calculateNormalLayoutHeight(topLangs.length),
     langs_count = getDefaultLanguagesCountByLayout({ layout, hide_progress }),
     border_radius,
     border_color,
@@ -804,8 +806,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
   const card = new Card({
     customTitle: custom_title,
     defaultTitle: i18n.t("langcard.title"),
-    width,
-    height,
+    width: card_width,
+    height: card_height,
     border_radius,
     colors,
   });
