@@ -15,6 +15,8 @@ import {
 } from "../common/utils.js";
 import { repoCardLocales } from "../translations.js";
 
+const DEFAULT_CARD_WIDTH = 300;
+const MIN_CARD_WIDTH = 400;
 const ICON_SIZE = 16;
 
 /**
@@ -49,8 +51,6 @@ const getBadgeSVG = (label, textColor) => `
  *
  * @param {RepositoryData} repo Repository data.
  * @param {Partial<RepoCardOptions>} options Card options.
- * @param {number} card_width The width of the card.
- * @param {number} card_height The height of the card.
  * @returns {string} Repository card SVG object.
  */
 const renderRepoCard = (repo, options = {}) => {
@@ -76,7 +76,6 @@ const renderRepoCard = (repo, options = {}) => {
     border_color,
     locale,
     card_width,
-    card_height,
   } = options;
 
   const lineHeight = 10;
@@ -91,12 +90,20 @@ const renderRepoCard = (repo, options = {}) => {
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
 
-  const height = card_height || (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
-
   const i18n = new I18n({
     locale,
     translations: repoCardLocales,
   });
+
+  let width = card_width
+    ? isNaN(card_width)
+      ? DEFAULT_CARD_WIDTH
+      : card_width < MIN_CARD_WIDTH
+      ? MIN_CARD_WIDTH
+      : card_width
+    : DEFAULT_CARD_WIDTH;
+  const height =
+    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
 
   // returns theme based colors with proper overrides and defaults
   const colors = getCardColors({
@@ -118,13 +125,13 @@ const renderRepoCard = (repo, options = {}) => {
     icons.star,
     totalStars,
     "stargazers",
-    ICON_SIZE
+    ICON_SIZE,
   );
   const svgForks = iconWithLabel(
     icons.fork,
     totalForks,
     "forkcount",
-    ICON_SIZE
+    ICON_SIZE,
   );
 
   const starAndForkCount = flexLayout({
@@ -136,40 +143,6 @@ const renderRepoCard = (repo, options = {}) => {
     ],
     gap: 25,
   }).join("");
-
-  // Calculate the card width and height based on the provided arguments or defaults;
-  
-  const width = card_width || 400;
-  const CARD_MIN_WIDTH = 287;
-  const CARD_DEFAULT_WIDTH = 287;
-  const RANK_CARD_MIN_WIDTH = 420;
-  const RANK_CARD_DEFAULT_WIDTH = 450;
-  const RANK_ONLY_CARD_MIN_WIDTH = 290;
-  const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
-    const minCardWidth =
-    (hide_rank
-      ? clampValue(
-          50 /* padding */ + calculateTextWidth() * 2,
-          CARD_MIN_WIDTH,
-          Infinity,
-        )
-      : statItems.length
-      ? RANK_CARD_MIN_WIDTH
-      : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
-  const defaultCardWidth =
-    (hide_rank
-      ? CARD_DEFAULT_WIDTH
-      : statItems.length
-      ? RANK_CARD_DEFAULT_WIDTH
-      : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
-  let width = card_width
-    ? isNaN(card_width)
-      ? defaultCardWidth
-      : card_width
-    : defaultCardWidth;
-  if (width < minCardWidth) {
-    width = minCardWidth;
-  }
 
   const card = new Card({
     defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
@@ -212,5 +185,5 @@ const renderRepoCard = (repo, options = {}) => {
   `);
 };
 
-export { renderRepoCard };
+export { renderRepoCard, DEFAULT_CARD_WIDTH, MIN_CARD_WIDTH };
 export default renderRepoCard;

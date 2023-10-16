@@ -541,5 +541,5 @@ const renderStatsCard = (stats, options = {}) => {
   `);
 };
 
-export { renderStatsCard };
+export { renderStatsCard, RANK_CARD_DEFAULT_WIDTH, RANK_CARD_MIN_WIDTH };
 export default renderStatsCard;

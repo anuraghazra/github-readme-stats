@@ -24,7 +24,7 @@ export default async (req, res) => {
     locale,
     border_radius,
     border_color,
-    card_width, // Add the card-width option
+    card_width,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -81,7 +81,7 @@ export default async (req, res) => {
         border_color,
         show_owner: parseBoolean(show_owner),
         locale: locale ? locale.toLowerCase() : null,
-        card_width: parseInt(card_width) || undefined, // Use the specified card width
+        card_width: parseInt(card_width, 10),
       }),
     );
   } catch (err) {
