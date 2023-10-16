@@ -87,7 +87,6 @@ export default async (req, res) => {
         card_width: parseInt(card_width, 10),
         hide_rank: parseBoolean(hide_rank),
         hide_progress: parseBoolean(hide_progress),
-        hide_progress_100: parseBoolean(hide_progress),
         include_all_commits: parseBoolean(include_all_commits),
         line_height,
         title_color,

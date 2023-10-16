@@ -225,7 +225,6 @@ const renderStatsCard = (stats, options = {}) => {
     card_width,
     hide_rank = false,
     hide_progress = false,
-    hide_progress_100 = false,
     include_all_commits = false,
     line_height = 25,
     title_color,
@@ -409,7 +408,7 @@ const renderStatsCard = (stats, options = {}) => {
     textColor,
     iconColor,
     show_icons,
-    progress: hide_progress_100 ? 100 : progress,
+    progress,
   });
 
   const calculateTextWidth = () => {
