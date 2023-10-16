@@ -183,9 +183,6 @@ const getStyles = ({
       transform: rotate(-90deg);
       animation: rankAnimation 1s forwards ease-in-out;
     }
-    .hide {
-      display: none;
-    }
     ${process.env.NODE_ENV === "test" ? "" : getProgressAnimation({ progress })}
   `;
 };
@@ -509,9 +506,10 @@ const renderStatsCard = (stats, options = {}) => {
             height / 2 - 50
           })">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
-        <circle class="rank-circle ${
-          hide_progress && "hide"
-        }" cx="-10" cy="8" r="40" />
+        ${
+          !hide_progress &&
+          '<circle class="rank-circle" data-testid="rank-progress-circle" cx="-10" cy="8" r="40" />'
+        }
         <g class="rank-text">
           ${rankIcon(rank_icon, rank?.level, rank?.percentile)}
         </g>

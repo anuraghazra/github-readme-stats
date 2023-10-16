@@ -129,6 +129,14 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "rank-circle")).not.toBeInTheDocument();
   });
 
+  it("should hide progress circle", () => {
+    document.body.innerHTML = renderStatsCard(stats, { hide_progress: true });
+
+    expect(
+      queryByTestId(document.body, "rank-progress-circle"),
+    ).not.toBeInTheDocument();
+  });
+
   it("should render with custom width set", () => {
     document.body.innerHTML = renderStatsCard(stats);
     expect(document.querySelector("svg")).toHaveAttribute("width", "450");
