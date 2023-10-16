@@ -12,7 +12,7 @@ import {
 } from "../common/utils.js";
 import { langCardLocales } from "../translations.js";
 
-
+const DEFAULT_CARD_WIDTH = 300;
 const MIN_CARD_WIDTH = 280;
 const DEFAULT_LANG_COLOR = "#858585";
 const CARD_PADDING = 25;
@@ -218,14 +218,14 @@ const createProgressTextNode = ({ width, color, name, progress, index }) => {
       <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
       <text x="${progressTextX}" y="34" class="lang-name">${progress}%</text>
       ${createProgressNode({
-        x: 0,
-        y: 25,
-        color,
-        width: progressWidth,
-        progress,
-        progressBarBackgroundColor: "#ddd",
-        delay: staggerDelay + 300,
-      })}
+    x: 0,
+    y: 25,
+    color,
+    width: progressWidth,
+    progress,
+    progressBarBackgroundColor: "#ddd",
+    delay: staggerDelay + 300,
+  })}
     </g>
   `;
 };
@@ -382,22 +382,21 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
     .join("");
 
   return `
-  ${
-    !hideProgress
-      ? `
-  <mask id="rect-mask">
-      <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5"/>
-    </mask>
-    ${compactProgressBar}
-  `
-      : ""
-  }
+  ${hideProgress
+      ? ""
+      : `
+      <mask id="rect-mask">
+          <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5"/>
+        </mask>
+        ${compactProgressBar}
+      `
+    }
     <g transform="translate(0, ${hideProgress ? "0" : "25"})">
       ${createLanguageTextNode({
-        langs,
-        totalSize: totalLanguageSize,
-        hideProgress,
-      })}
+      langs,
+      totalSize: totalLanguageSize,
+      hideProgress,
+    })}
     </g>
   `;
 };
@@ -431,7 +430,7 @@ const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
 
     circles.push(`
       <g class="stagger" style="animation-delay: ${delay}ms">
-        <circle 
+        <circle
           cx="150"
           cy="100"
           r="${radius}"
@@ -462,10 +461,10 @@ const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
       <g transform="translate(0, 220)">
         <svg data-testid="lang-names" x="${CARD_PADDING}">
           ${createLanguageTextNode({
-            langs,
-            totalSize: totalLanguageSize,
-            hideProgress: false,
-          })}
+    langs,
+    totalSize: totalLanguageSize,
+    hideProgress: false,
+  })}
         </svg>
       </g>
     </svg>
@@ -557,10 +556,10 @@ const renderPieLayout = (langs, totalLanguageSize) => {
       <g transform="translate(0, 220)">
         <svg data-testid="lang-names" x="${CARD_PADDING}">
           ${createLanguageTextNode({
-            langs,
-            totalSize: totalLanguageSize,
-            hideProgress: false,
-          })}
+    langs,
+    totalSize: totalLanguageSize,
+    hideProgress: false,
+  })}
         </svg>
       </g>
     </svg>
@@ -629,11 +628,11 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
     langs.length === 1
       ? `<circle cx="${centerX}" cy="${centerY}" r="${radius}" stroke="${colors[0]}" fill="none" stroke-width="${strokeWidth}" data-testid="lang-donut" size="100"/>`
       : langPaths
-          .map((section, index) => {
-            const staggerDelay = (index + 3) * 100;
-            const delay = staggerDelay + 300;
+        .map((section, index) => {
+          const staggerDelay = (index + 3) * 100;
+          const delay = staggerDelay + 300;
 
-            const output = `
+          const output = `
        <g class="stagger" style="animation-delay: ${delay}ms">
         <path
           data-testid="lang-donut"
@@ -646,9 +645,9 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
       </g>
       `;
 
-            return output;
-          })
-          .join("");
+          return output;
+        })
+        .join("");
 
   const donut = `<svg width="${width}" height="${width}">${donutPaths}</svg>`;
 
@@ -681,8 +680,7 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
  */
 const noLanguagesDataNode = ({ color, text, layout }) => {
   return `
-    <text x="${
-      layout === "pie" || layout === "donut-vertical" ? CARD_PADDING : 0
+    <text x="${layout === "pie" || layout === "donut-vertical" ? CARD_PADDING : 0
     }" y="11" class="stat bold" fill="${color}">${text}</text>
   `;
 };
@@ -734,8 +732,6 @@ const renderTopLanguages = (topLangs, options = {}) => {
     layout,
     custom_title,
     locale,
-    card_width = DEFAULT_CARD_WIDTH,
-    card_height = calculateNormalLayoutHeight(topLangs.length),
     langs_count = getDefaultLanguagesCountByLayout({ layout, hide_progress }),
     border_radius,
     border_color,
@@ -757,8 +753,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     ? isNaN(card_width)
       ? DEFAULT_CARD_WIDTH
       : card_width < MIN_CARD_WIDTH
-      ? MIN_CARD_WIDTH
-      : card_width
+        ? MIN_CARD_WIDTH
+        : card_width
     : DEFAULT_CARD_WIDTH;
   let height = calculateNormalLayoutHeight(langs.length);
 
@@ -806,8 +802,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
   const card = new Card({
     customTitle: custom_title,
     defaultTitle: i18n.t("langcard.title"),
-    width: card_width,
-    height: card_height,
+    width,
+    height,
     border_radius,
     colors,
   });
