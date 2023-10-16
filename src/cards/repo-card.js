@@ -137,8 +137,39 @@ const renderRepoCard = (repo, options = {}) => {
     gap: 25,
   }).join("");
 
-  // Calculate the card width and height based on the provided arguments or defaults
+  // Calculate the card width and height based on the provided arguments or defaults;
+  
   const width = card_width || 400;
+  const CARD_MIN_WIDTH = 287;
+  const CARD_DEFAULT_WIDTH = 287;
+  const RANK_CARD_MIN_WIDTH = 420;
+  const RANK_CARD_DEFAULT_WIDTH = 450;
+  const RANK_ONLY_CARD_MIN_WIDTH = 290;
+  const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
+    const minCardWidth =
+    (hide_rank
+      ? clampValue(
+          50 /* padding */ + calculateTextWidth() * 2,
+          CARD_MIN_WIDTH,
+          Infinity,
+        )
+      : statItems.length
+      ? RANK_CARD_MIN_WIDTH
+      : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
+  const defaultCardWidth =
+    (hide_rank
+      ? CARD_DEFAULT_WIDTH
+      : statItems.length
+      ? RANK_CARD_DEFAULT_WIDTH
+      : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
+  let width = card_width
+    ? isNaN(card_width)
+      ? defaultCardWidth
+      : card_width
+    : defaultCardWidth;
+  if (width < minCardWidth) {
+    width = minCardWidth;
+  }
 
   const card = new Card({
     defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
