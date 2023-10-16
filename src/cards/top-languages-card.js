@@ -218,14 +218,14 @@ const createProgressTextNode = ({ width, color, name, progress, index }) => {
       <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
       <text x="${progressTextX}" y="34" class="lang-name">${progress}%</text>
       ${createProgressNode({
-    x: 0,
-    y: 25,
-    color,
-    width: progressWidth,
-    progress,
-    progressBarBackgroundColor: "#ddd",
-    delay: staggerDelay + 300,
-  })}
+        x: 0,
+        y: 25,
+        color,
+        width: progressWidth,
+        progress,
+        progressBarBackgroundColor: "#ddd",
+        delay: staggerDelay + 300,
+      })}
     </g>
   `;
 };
@@ -382,7 +382,8 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
     .join("");
 
   return `
-  ${hideProgress
+  ${
+    hideProgress
       ? ""
       : `
       <mask id="rect-mask">
@@ -390,13 +391,13 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
         </mask>
         ${compactProgressBar}
       `
-    }
+  }
     <g transform="translate(0, ${hideProgress ? "0" : "25"})">
       ${createLanguageTextNode({
-      langs,
-      totalSize: totalLanguageSize,
-      hideProgress,
-    })}
+        langs,
+        totalSize: totalLanguageSize,
+        hideProgress,
+      })}
     </g>
   `;
 };
@@ -430,7 +431,7 @@ const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
 
     circles.push(`
       <g class="stagger" style="animation-delay: ${delay}ms">
-        <circle
+        <circle 
           cx="150"
           cy="100"
           r="${radius}"
@@ -461,10 +462,10 @@ const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
       <g transform="translate(0, 220)">
         <svg data-testid="lang-names" x="${CARD_PADDING}">
           ${createLanguageTextNode({
-    langs,
-    totalSize: totalLanguageSize,
-    hideProgress: false,
-  })}
+            langs,
+            totalSize: totalLanguageSize,
+            hideProgress: false,
+          })}
         </svg>
       </g>
     </svg>
@@ -556,10 +557,10 @@ const renderPieLayout = (langs, totalLanguageSize) => {
       <g transform="translate(0, 220)">
         <svg data-testid="lang-names" x="${CARD_PADDING}">
           ${createLanguageTextNode({
-    langs,
-    totalSize: totalLanguageSize,
-    hideProgress: false,
-  })}
+            langs,
+            totalSize: totalLanguageSize,
+            hideProgress: false,
+          })}
         </svg>
       </g>
     </svg>
@@ -628,11 +629,11 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
     langs.length === 1
       ? `<circle cx="${centerX}" cy="${centerY}" r="${radius}" stroke="${colors[0]}" fill="none" stroke-width="${strokeWidth}" data-testid="lang-donut" size="100"/>`
       : langPaths
-        .map((section, index) => {
-          const staggerDelay = (index + 3) * 100;
-          const delay = staggerDelay + 300;
+          .map((section, index) => {
+            const staggerDelay = (index + 3) * 100;
+            const delay = staggerDelay + 300;
 
-          const output = `
+            const output = `
        <g class="stagger" style="animation-delay: ${delay}ms">
         <path
           data-testid="lang-donut"
@@ -645,9 +646,9 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
       </g>
       `;
 
-          return output;
-        })
-        .join("");
+            return output;
+          })
+          .join("");
 
   const donut = `<svg width="${width}" height="${width}">${donutPaths}</svg>`;
 
@@ -680,7 +681,8 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
  */
 const noLanguagesDataNode = ({ color, text, layout }) => {
   return `
-    <text x="${layout === "pie" || layout === "donut-vertical" ? CARD_PADDING : 0
+    <text x="${
+      layout === "pie" || layout === "donut-vertical" ? CARD_PADDING : 0
     }" y="11" class="stat bold" fill="${color}">${text}</text>
   `;
 };
@@ -753,8 +755,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     ? isNaN(card_width)
       ? DEFAULT_CARD_WIDTH
       : card_width < MIN_CARD_WIDTH
-        ? MIN_CARD_WIDTH
-        : card_width
+      ? MIN_CARD_WIDTH
+      : card_width
     : DEFAULT_CARD_WIDTH;
   let height = calculateNormalLayoutHeight(langs.length);
 
