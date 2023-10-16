@@ -368,6 +368,7 @@ If we don't support your language, please consider contributing!
 *   `hide_title` - *(boolean)*. Default: `false`.
 *   `card_width` - Sets the card's width manually *(number)*. Default: `500px  (approx.)`.
 *   `hide_rank` - *(boolean)* hides the rank and automatically resizes the card width. Default: `false`.
+*   `hide_progress` - *(boolean)* hides the progress circle and leaves the outline. Default: `false`.
 *   `rank_icon` - Shows alternative rank icon (i.e. `github`, `percentile` or `default`). Default: `default`.
 *   `show_icons` - *(boolean)*. Default: `false`.
 *   `include_all_commits` - Counts total commits instead of just the current year commits *(boolean)*. Default: `false`.
