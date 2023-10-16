@@ -183,6 +183,9 @@ const getStyles = ({
       transform: rotate(-90deg);
       animation: rankAnimation 1s forwards ease-in-out;
     }
+    .hide {
+      display: none;
+    }
     ${process.env.NODE_ENV === "test" ? "" : getProgressAnimation({ progress })}
   `;
 };
@@ -222,6 +225,7 @@ const renderStatsCard = (stats, options = {}) => {
     card_width,
     hide_rank = false,
     hide_progress = false,
+    hide_progress_100 = false,
     include_all_commits = false,
     line_height = 25,
     title_color,
@@ -405,7 +409,7 @@ const renderStatsCard = (stats, options = {}) => {
     textColor,
     iconColor,
     show_icons,
-    progress: hide_progress ? 100 : progress,
+    progress: hide_progress_100 ? 100 : progress,
   });
 
   const calculateTextWidth = () => {
@@ -506,7 +510,9 @@ const renderStatsCard = (stats, options = {}) => {
             height / 2 - 50
           })">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
-        <circle class="rank-circle" cx="-10" cy="8" r="40" />
+        <circle class="rank-circle ${
+          hide_progress && "hide"
+        }" cx="-10" cy="8" r="40" />
         <g class="rank-text">
           ${rankIcon(rank_icon, rank?.level, rank?.percentile)}
         </g>
