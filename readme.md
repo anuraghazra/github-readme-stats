@@ -366,8 +366,8 @@ If we don't support your language, please consider contributing!
 
 *   `hide` - Hides the [specified items](#hiding-individual-stats) from stats *(Comma-separated values)*. Default: `[] (blank array)`.
 *   `hide_title` - *(boolean)*. Default: `false`.
-*   `card_width` - Sets the card's width manually *(number)*. Default: `287px  (approx.)`.
-*   `card_min_width` - Sets the minimum card's width *(number)*. Default: `287px  (approx.)`.
+*   `card_width` - Sets the card's width manually *(number)*. Default: `287px`.
+*   `card_min_width` - Sets the minimum card's width *(number)*. Default: `287px`.
 *   `hide_rank` - *(boolean)* hides the rank and automatically resizes the card width. Default: `false`.
 *   `rank_icon` - Shows alternative rank icon (i.e. `github`, `percentile` or `default`). Default: `default`.
 *   `show_icons` - *(boolean)*. Default: `false`.
@@ -397,8 +397,8 @@ If we don't support your language, please consider contributing!
 *   `hide` - Hides the languages specified from the card *(Comma-separated values)*. Default: `[] (blank array)`.
 *   `hide_title` - *(boolean)*. Default: `false`.
 *   `layout` - Switches between five available layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Default: `normal`.
-*   `card_width` - Sets the card's width manually *(number)*. Default `300`.
-*   `card_min_width` - Sets the card's minimum width *(number)*.Default `280`.
+*   `card_width` - Sets the card's width manually *(number)*. Default `300px`.
+*   `card_min_width` - Sets the card's minimum width *(number)*.Default `280px`.
 *   `langs_count` - Shows more languages on the card, between 1-20 *(number)*. Default: `5` for `normal` and `donut`, `6` for other layouts.
 *   `exclude_repo` - Excludes specified repositories *(Comma-separated values)*. Default: `[] (blank array)`.
 *   `custom_title` - Sets a custom title for the card *(string)*. Default `Most Used Languages`.
