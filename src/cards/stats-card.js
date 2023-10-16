@@ -13,7 +13,6 @@ import {
 import { getStyles } from "../getStyles.js";
 import { statCardLocales } from "../translations.js";
 
-const width = card_width || 400;
 const CARD_MIN_WIDTH = 287;
 const CARD_DEFAULT_WIDTH = 287;
 const RANK_CARD_MIN_WIDTH = 420;
