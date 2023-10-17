@@ -387,6 +387,24 @@ If we don't support your language, please consider contributing!
 #### Repo Card Exclusive Options
 
 *   `show_owner` - Shows the repo's owner name *(boolean)*. Default: `false`.
+*   `icon_size` - Sets the icon size manually *(number)*. Default: `16px`.
+*   `getBadgeSVG` -  Retrieves the repository description and wraps it to fit the card width.
+*   `renderRepoCard`  * Renders repository card details (i.e. `name`,`nameWithOwner`,`description`,`primaryLanguage`,`isArchived`,`isTemplate`,`starCount`). Default: `default`.
+*   `lineheight` - Sets line height manually *(number)*.Default:16.
+*   `header` - Shows header with `showOwner` and `namewithOwner` .
+*   `langName` - Stores the name of the primary programming language used in the repository.
+*   `langColor` -  Stores the color associated with the primary programming language used in the repository.
+*   `desc` - Stores the description of the GitHub repository. Emojis are parsed within this description.
+*   `multiLineDescription` - Stores the description text broken into multiple lines to fit within the card's layout.
+*   `descriptionLines` -  Represents the number of lines in the description.
+*   `descriptionSvg.Number` -  Contains SVG text for rendering the repository description on the card.
+*   `height` -  Represents the height of the GitHub repository card. It is calculated based on the number of lines in the description.
+*   `i18n` -  Provides internationalization support and translations for the card.
+*   `colors` - Contains theme-based colors used for rendering the card, including title color, icon color, text color, background color, and border color.
+*   `svgLanguage` -  Contains SVG representation of the primary programming language label.
+*   `totalStars` - Stores the total number of stars (GitHub repository stargazers) in a human-readable format.
+*   `totalForks` -  Stores the total number of forks (GitHub repository forks) in a human-readable format.
+*   `starAndForkCount` -  Contains SVG representation of stars and forks count along with the primary language label.
 
 #### Gist Card Exclusive Options
 
