@@ -71,6 +71,7 @@ const renderRepoCard = (repo, options = {}) => {
     show_owner = false,
     theme = "default_repocard",
     border_radius,
+    card_height,
     border_color,
     locale,
   } = options;
@@ -87,8 +88,9 @@ const renderRepoCard = (repo, options = {}) => {
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
 
-  const height =
-    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+  const height = card_height
+    ? card_height
+    : (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
 
   const i18n = new I18n({
     locale,

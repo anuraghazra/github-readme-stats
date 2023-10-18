@@ -38,6 +38,7 @@ export default async (req, res) => {
     border_color,
     rank_icon,
     show,
+    card_height,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -102,6 +103,7 @@ export default async (req, res) => {
         disable_animations: parseBoolean(disable_animations),
         rank_icon,
         show: showStats,
+        card_height,
       }),
     );
   } catch (err) {

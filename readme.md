@@ -298,6 +298,7 @@ You can customize the appearance of all your cards however you wish with URL par
 *   `cache_seconds` - Sets the cache header manually *(min: 21600, max: 86400)*. Default: `21600 seconds (6 hours)`.
 *   `locale` - Sets the language in the card, you can check full list of available locales [here](#available-locales). Default: `en`.
 *   `border_radius` - Corner rounding on the card. Default: `4.5`.
+*   `card_height` - Card's height. (dynamically)
 
 > [!WARNING]\
 > We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have a default cache of 6 hours (21600 seconds). Also, note that the cache is clamped to a minimum of 6 hours and a maximum of 24 hours. If you want the data on your statistics card to be updated more often you can [deploy your own instance](#deploy-on-your-own) and set [environment variable](#disable-rate-limit-protections) `CACHE_SECONDS` to a value of your choosing.

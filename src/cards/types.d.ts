@@ -11,6 +11,7 @@ export type CommonOptions = {
   border_color: string;
   locale: string;
   hide_border: boolean;
+  card_height: number;
 };
 
 export type StatCardOptions = CommonOptions & {

@@ -52,6 +52,7 @@ const renderGistCard = (gistData, options = {}) => {
     theme,
     border_radius,
     border_color,
+    card_height,
     show_owner = false,
     hide_border = false,
   } = options;
@@ -77,8 +78,9 @@ const renderGistCard = (gistData, options = {}) => {
     .join("");
 
   const lineHeight = descriptionLines > 3 ? 12 : 10;
-  const height =
-    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+  const height = card_height
+    ? card_height
+    : (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
 
   const totalStars = kFormatter(starsCount);
   const totalForks = kFormatter(forksCount);

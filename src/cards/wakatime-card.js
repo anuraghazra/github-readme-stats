@@ -218,6 +218,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     langs_count = languages.length,
     border_radius,
     border_color,
+    card_height,
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
@@ -259,7 +260,9 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  let height = Math.max(45 + (filteredLanguages.length + 1) * lheight, 150);
+  let height = card_height
+    ? card_height
+    : Math.max(45 + (filteredLanguages.length + 1) * lheight, 150);
 
   const cssStyles = getStyles({
     titleColor,

@@ -738,6 +738,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     border_radius,
     border_color,
     disable_animations,
+    card_height,
   } = options;
 
   const i18n = new I18n({
@@ -805,7 +806,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     customTitle: custom_title,
     defaultTitle: i18n.t("langcard.title"),
     width,
-    height,
+    height: card_height ? card_height : height,
     border_radius,
     colors,
   });
