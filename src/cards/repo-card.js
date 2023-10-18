@@ -2,6 +2,7 @@
 import { Card } from "../common/Card.js";
 import { I18n } from "../common/I18n.js";
 import { icons } from "../common/icons.js";
+
 import {
   encodeHTML,
   flexLayout,
@@ -18,6 +19,7 @@ import { repoCardLocales } from "../translations.js";
 const DEFAULT_CARD_WIDTH = 300;
 const MIN_CARD_WIDTH = 400;
 const ICON_SIZE = 16;
+const card_height = undefined ;
 
 /**
  * Retrieves the repository description and wraps it to fit the card width.
@@ -76,6 +78,7 @@ const renderRepoCard = (repo, options = {}) => {
     border_color,
     locale,
     card_width,
+    card_height,
   } = options;
 
   const lineHeight = 10;
@@ -104,6 +107,9 @@ const renderRepoCard = (repo, options = {}) => {
     : DEFAULT_CARD_WIDTH;
   const height =
     (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+  const height = card_height ?? (
+  (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight
+);
 
   // returns theme based colors with proper overrides and defaults
   const colors = getCardColors({
