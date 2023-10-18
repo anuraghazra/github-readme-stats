@@ -33,9 +33,9 @@ export default async (req, res) => {
     border_color,
     disable_animations,
     hide_progress,
+    progress_bar_bg_color,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
-
   if (blacklist.includes(username)) {
     return res.send(renderError("Something went wrong"));
   }
@@ -96,6 +96,7 @@ export default async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
         hide_progress: parseBoolean(hide_progress),
+        progress_bar_bg_color,
       }),
     );
   } catch (err) {
@@ -104,7 +105,7 @@ export default async (req, res) => {
       `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
         CONSTANTS.ERROR_CACHE_SECONDS
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
-    ); // Use a lower cache period for errors.
+    ); // Use lower cache period for errors.
     return res.send(renderError(err.message, err.secondaryMessage));
   }
 };
