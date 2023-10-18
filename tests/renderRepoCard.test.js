@@ -319,6 +319,22 @@ describe("Test renderRepoCard", () => {
     expect(queryByTestId(document.body, "badge")).toHaveTextContent("模板");
   });
 
+  it("should render custom height correctly", () => {
+    document.body.innerHTML = renderRepoCard(
+      {
+        ...data_repo.repository,
+        isTemplate: true,
+      },
+      {
+        card_height: 75,
+      },
+    );
+
+    expect(
+      document.body.getElementsByTagName("svg")[0].getAttribute("height"),
+    ).toBe("75");
+  });
+
   it("should render without rounding", () => {
     document.body.innerHTML = renderRepoCard(data_repo.repository, {
       border_radius: "0",

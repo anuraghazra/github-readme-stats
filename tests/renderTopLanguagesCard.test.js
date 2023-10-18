@@ -848,4 +848,17 @@ describe("Test renderTopLanguages", () => {
       "No languages data.",
     );
   });
+
+  it("should render custom height correctly", () => {
+    document.body.innerHTML = renderTopLanguages(
+      {},
+      {
+        card_height: 56,
+      },
+    );
+
+    expect(
+      document.body.getElementsByTagName("svg")[0].getAttribute("height"),
+    ).toBe("56");
+  });
 });

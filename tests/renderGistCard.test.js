@@ -217,6 +217,21 @@ describe("test renderGistCard", () => {
     expect(queryByTestId(document.body, "forksCount")).toBeNull();
   });
 
+  it("should render custom height correctly", () => {
+    document.body.innerHTML = renderGistCard(
+      {
+        ...data,
+      },
+      {
+        card_height: 50,
+      },
+    );
+
+    expect(
+      document.body.getElementsByTagName("svg")[0].getAttribute("height"),
+    ).toBe("50");
+  });
+
   it("should render without rounding", () => {
     document.body.innerHTML = renderGistCard(data, {
       border_radius: "0",

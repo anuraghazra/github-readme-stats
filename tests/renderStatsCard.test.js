@@ -372,6 +372,16 @@ describe("Test renderStatsCard", () => {
     ).toBe("287");
   });
 
+  it("should render custom height correctly", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      card_height: 50,
+    });
+
+    expect(
+      document.body.getElementsByTagName("svg")[0].getAttribute("height"),
+    ).toBe("50");
+  });
+
   it("should render translations", () => {
     document.body.innerHTML = renderStatsCard(stats, { locale: "cn" });
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
