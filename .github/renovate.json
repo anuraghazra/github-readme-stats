@@ -3,7 +3,7 @@
   "extends": ["config:recommended", ":disableDependencyDashboard"],
   "flux": {
     "fileMatch": [
-      "^k8s/.+\\.yaml$"
+      "^k8s/.+\\.ya?ml$"
     ]
   },
   "github-actions": {
