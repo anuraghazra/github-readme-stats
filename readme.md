@@ -356,6 +356,7 @@ Here is a list of all available locales:
 | `uz` | Uzbek |
 | `vi` | Vietnamese |
 | `se` | Swedish |
+| `hi` | Hindi |
 
 </td></tr>
 </table>

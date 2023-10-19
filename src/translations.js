@@ -45,6 +45,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: `${encodedName}ning GitHub'dagi statistikasi`,
       vi: `Thống Kê GitHub ${encodedName}`,
       se: `GitHubstatistik för ${encodedName}`,
+      hi: `${encodedName} का GitHub आँकड़े`,
     },
     "statcard.ranktitle": {
       ar: `${encodedName} إحصائيات غيت هاب`,
@@ -76,6 +77,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: `${encodedName}ning GitHub'dagi statistikasi`,
       vi: `Thống Kê GitHub ${encodedName}`,
       se: `GitHubstatistik för ${encodedName}`,
+      hi: `${encodedName} का GitHub आँकड़े`,
     },
     "statcard.totalstars": {
       ar: "مجموع النجوم",
@@ -107,6 +109,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Yulduzchalar",
       vi: "Tổng Số Sao",
       se: "Antal intjänade stjärnor",
+      hi: "कुल सितारे",
     },
     "statcard.commits": {
       ar: "مجموع الحفظ",
@@ -138,6 +141,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "'Commit'lar",
       vi: "Tổng Số Cam Kết",
       se: "Totalt antal commits",
+      hi: "कुल कमिट",
     },
     "statcard.prs": {
       ar: "مجموع طلبات السحب",
@@ -169,6 +173,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "'Pull Request'lar",
       vi: "Tổng Số PR",
       se: "Totalt antal PR",
+      hi: "कुल पीआर",
     },
     "statcard.issues": {
       ar: "مجموع التحسينات",
@@ -200,6 +205,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "'Issue'lar",
       vi: "Tổng Số Vấn Đề",
       se: "Total antal issues",
+      hi: "कुल मुद्दे",
     },
     "statcard.contribs": {
       ar: "ساهم في (العام الماضي)",
@@ -231,6 +237,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Hissa qoʻshgan (o'tgan yili)",
       vi: "Đã Đóng Góp (năm ngoái)",
       se: "Bidragit till (förra året)",
+      hi: "(पिछले साल) योगदान",
     },
     "statcard.reviews": {
       ar: "تمت مراجعة إجمالي العلاقات العامة",
@@ -262,6 +269,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Koʻrib chiqilgan PR-lar soni",
       vi: "Tổng Số PR Đã Xem Xét",
       se: "Totalt antal granskade PR",
+      hi: "कुल पीआर समीक्षित",
     },
     "statcard.discussions-started": {
       ar: "مجموع بدء المناقشات",
@@ -293,6 +301,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Boshlangan muzokaralar soni",
       vi: "Tổng Số Thảo Luận Bắt Đầu",
       se: "Totalt antal diskussioner startade",
+      hi: "कुल चर्चा शुरू",
     },
     "statcard.discussions-answered": {
       ar: "مجموع الردود على المناقشات",
@@ -324,6 +333,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Javob berilgan muzokaralar soni",
       vi: "Tổng Số Thảo Luận Đã Trả Lời",
       se: "Totalt antal diskussioner besvarade",
+      hi: "कुल चर्चा उत्तर",
     },
     "statcard.prs-merged": {
       ar: "مجموع الطلبات المدمجة",
@@ -354,6 +364,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Birlangan PR-lar soni",
       vi: "Tổng Số PR Đã Hợp Nhất",
       se: "Totalt antal sammanfogade PR",
+      hi: "कुल पीआर एकत्र",
     },
     "statcard.prs-merged-percentage": {
       ar: "نسبة الطلبات المدمجة",
@@ -384,6 +395,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Birlangan PR-lar foizi",
       vi: "Tỷ Lệ PR Đã Hợp Nhất",
       se: "Procent av sammanfogade PR",
+      hi: "पीआर एकत्र शतांश",
     },
   };
 };
@@ -419,6 +431,7 @@ const repoCardLocales = {
     uz: "Shablon",
     vi: "Mẫu",
     se: "Mall",
+    hi: "टेम्पलेट",
   },
   "repocard.archived": {
     ar: "محفوظ",
@@ -450,6 +463,7 @@ const repoCardLocales = {
     uz: "Arxivlangan",
     vi: "Đã Lưu Trữ",
     se: "Arkiverade",
+    hi: "संग्रहीत",
   },
 };
 
@@ -484,6 +498,7 @@ const langCardLocales = {
     uz: "Eng koʻp ishlatiladigan tillar",
     vi: "Ngôn Ngữ Thường Sử Dụng",
     se: "Mest använda språken",
+    hi: "सबसे अधिक उपयोग की गई भाषाएं",
   },
   "langcard.nodata": {
     ar: "لا توجد بيانات لغات.",
@@ -515,6 +530,7 @@ const langCardLocales = {
     uz: "Til haqida ma'lumot yo'q.",
     vi: "Không có dữ liệu ngôn ngữ.",
     se: "Inga språkdata.",
+    hi: "कोई भाषा डेटा नहीं है।",
   },
 };
 
@@ -549,6 +565,7 @@ const wakatimeCardLocales = {
     uz: "Wakatime statistikasi",
     vi: "Thống Kê Wakatime",
     se: "Wakatime statistik",
+    hi: "Wakatime आँकड़े",
   },
   "wakatimecard.lastyear": {
     ar: "العام الماضي",
@@ -580,6 +597,7 @@ const wakatimeCardLocales = {
     uz: "O'tgan yil",
     vi: "Năm ngoái",
     se: "Förra året",
+    hi: "पिछले साल",
   },
   "wakatimecard.last7days": {
     ar: "آخر 7 أيام",
@@ -611,6 +629,7 @@ const wakatimeCardLocales = {
     uz: "O'tgan 7 kun",
     vi: "7 ngày qua",
     se: "Senaste 7 dagarna",
+    hi: "पिछले 7 दिन",
   },
   "wakatimecard.notpublic": {
     ar: "ملف المستخدم غير عام",
@@ -642,6 +661,7 @@ const wakatimeCardLocales = {
     uz: "Wakatime foydalanuvchi profili ochiq emas",
     vi: "Hồ sơ người dùng Wakatime không công khai",
     se: "Wakatime användarprofil inte offentlig",
+    hi: "Wakatime उपयोगकर्ता प्रोफ़ाइल सार्वजनिक नहीं है",
   },
   "wakatimecard.nocodedetails": {
     ar: "المستخدم لا يشارك معلومات تفصيلية عن البرمجة",
@@ -675,6 +695,7 @@ const wakatimeCardLocales = {
     uz: "Foydalanuvchi umumiy ko`d statistikasini ochiq ravishda almashmaydi",
     vi: "Người dùng không chia sẻ thống kê mã chi tiết công khai",
     se: "Användaren delar inte offentligt detaljerad kodstatistik",
+    hi: "उपयोगकर्ता विस्तृत कोड आंकड़े सार्वजनिक रूप से साझा नहीं करता",
   },
   "wakatimecard.nocodingactivity": {
     ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
@@ -706,6 +727,7 @@ const wakatimeCardLocales = {
     uz: "Bu hafta faol bo'lmadi",
     vi: "Không Có Hoạt Động Trong Tuần Này",
     se: "Ingen aktivitet denna vecka",
+    hi: "इस सप्ताह कोडिंग गतिविधि नहीं है",
   },
 };
 
