@@ -6,6 +6,11 @@
       "^k8s/.+\\.ya?ml$"
     ]
   },
+  "kubernetes": {
+    "fileMatch": [
+      "^k8s/.+\\.ya?ml$"
+    ]
+  },
   "github-actions": {
     "enabled": false
   }
