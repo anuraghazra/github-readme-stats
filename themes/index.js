@@ -444,6 +444,14 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+  choc-strawb: {
+    title_color: "d496a7",
+    text_color: "916953",
+    icon_color: "e16871",
+    border_color: "c1d7ae",
+    bg_color: "c1d7ae",
+  },
+  
 };
 
 export default themes;
