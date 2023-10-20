@@ -444,6 +444,13 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+  strawberry: {
+    title_color: "BD1360",
+    text_color: "714C41",
+    icon_color: "BD1360",
+    border_color: "D3E2CA",
+    bg_color: "D3E2CA",
+  },
 };
 
 export default themes;
