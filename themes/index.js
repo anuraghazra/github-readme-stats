@@ -444,6 +444,12 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+ dark_orange:{
+   title_color:"c0c0c0",
+   text_color:"ffffff",
+   icon_color:"dfa464",
+   border_color:"c0c0c0",
+   bg_color:"2b2b2b",
 };
 
 export default themes;
