@@ -32,6 +32,9 @@ const THEME_CONTRIB_GUIDELINES = `
   \r> [!WARNING]\
   \r> Keep in mind that we already have a vast collection of different themes. To keep their number manageable, we began to add only themes supported by the community. Your pull request with theme addition will be merged once we get enough positive feedback from the community in the form of thumbs up :+1: emojis (see [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935#top-themes-prs)). We expect to see at least 10-15 thumbs up before making a decision to merge your pull request into the master branch. Remember that you can also support themes of other contributors that you liked to speed up their merge.
 
+  \r> [!WARNING]\
+  \r> Please do not submit a pull request with a batch of themes, since it will be hard to judge how the community will react to each of them. We will only merge one theme per pull request. If you have several themes, please submit a separate pull request for each of them. Situations when you have several versions of the same theme (e.g. light and dark) are an exception to this rule.
+
   \r> [!NOTE]\
   \r> Also, note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection, you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization).
 `;
