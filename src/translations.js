@@ -443,6 +443,7 @@ const repoCardLocales = {
     "uk-ua": "Архивирован",
     id: "Arsip",
     ml: "ശേഖരിച്ചത്",
+    mr : "संग्रहित",
     my: "Arkib",
     sk: "Archivované",
     tr: "Arşiv",
