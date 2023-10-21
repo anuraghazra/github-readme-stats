@@ -76,7 +76,7 @@ export default async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         layout,
         langs_count,
-        display_format: display_format ? display_format : "",
+        display_format,
       }),
     );
   } catch (err) {

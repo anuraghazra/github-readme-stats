@@ -412,7 +412,7 @@ If we don't support your language, please consider contributing!
 *   `layout` - Switches between two available layouts `default` & `compact`.  Default `default`.
 *   `langs_count` - Limits the number of languages on the card, defaults to all reported languages *(number)*.
 *   `api_domain` - Sets a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) *(string)*. Default `Waka API`.
-* `display_format` - Sets the WakaTime stats display format. Choose `time` to display time-based stats or `percent` to show percentages. The default is set to `time`.
+* `display_format` - Sets the WakaTime stats display format. Choose `time` to display time-based stats or `percent` to show percentages. Default: `time`.
 
 ***
 
