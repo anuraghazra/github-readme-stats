@@ -35,6 +35,10 @@ jobs:
         run: |
           npm run lint
 
+      - name: Run bench tests
+        run: |
+          npm run bench
+
       - name: Run Prettier
         run: |
           npm run format:check

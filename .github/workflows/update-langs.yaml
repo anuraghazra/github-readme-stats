@@ -15,7 +15,7 @@ on:
 permissions:
   actions: read
   checks: read
-  contents: read
+  contents: write
   deployments: read
   issues: read
   discussions: read
