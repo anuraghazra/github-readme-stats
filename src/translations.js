@@ -544,7 +544,7 @@ const wakatimeCardLocales = {
     ml: "വേക്ക് ടൈം സ്ഥിതിവിവരക്കണക്കുകൾ",
     my: "Statistik WakaTime",
     sk: "WakaTime štatistika",
-    tr: "Waketime İstatistikler",
+    tr: "WakaTime İstatistikler",
     pl: "Statystyki WakaTime",
     uz: "WakaTime statistikasi",
     vi: "Thống Kê WakaTime",
