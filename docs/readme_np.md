@@ -291,7 +291,7 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 
 # वाका समय वीक स्तट्स 
 
-Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
+Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 
 ```md
 [![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
