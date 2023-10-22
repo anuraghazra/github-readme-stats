@@ -111,6 +111,9 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Demo](#demo-2)
 - [Wakatime Stats Card](#wakatime-stats-card)
     - [Demo](#demo-3)
+- [GitHub Streaks Card](#github-streaks-card)
+    - [Usage](#usage-3)
+    - [Hide individual elements from the streaks card](#hide-individual-elements-from-the-streaks-card)
 - [All Demos](#all-demos)
   - [Quick Tip (Align The Cards)](#quick-tip-align-the-cards)
 - [Deploy on your own](#deploy-on-your-own)
@@ -623,6 +626,24 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 ![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&layout=compact)
 
 ***
+
+# GitHub Streaks Card
+
+GitHub Streaks Card allows you to show your streak of your contributions on GitHub(like total contributions, weekly and longest streak on daily and weekly basis).
+
+### Usage
+
+Copy-paste this code into your readme and change the links.
+
+Endpoint: `api/streak/?username=YOUR_USERNAME`
+
+```md
+![Streaks Card](https://github-readme-stats.vercel.app/api/streak/?username=YOUR_USERNAME)
+```
+
+### Hide individual elements from the streaks card
+
+To hide individual elements form the card, use - `&hide=params`, where `params` = `totalContributions`, `weeklyLongest`, `weeklyCurrent`, `dailyLongest`, `dailyCurrent`
 
 # All Demos
 
