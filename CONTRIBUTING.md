@@ -42,7 +42,7 @@ _(make sure you already have a [Vercel](https://vercel.com/) account)_
 
 ## Themes Contribution
 
-We're currently paused addition of new themes. All pull requests related to new themes will be closed.
+We're currently paused addition of new themes to decrease maintenance efforts. All pull requests related to new themes will be closed.
 
 > [!NOTE]\
 > If you are considering contributing your theme just because you are using it personally, then instead of adding it to our theme collection, you can use card [customization options](./readme.md#customization).
