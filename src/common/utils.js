@@ -245,7 +245,7 @@ const clampValue = (number, min, max) => {
  * @returns {boolean} True if the given string is a valid gradient.
  */
 const isValidGradient = (colors) => {
-  return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
+  return colors.slice(1).every((color) => isValidHexColor(color));
 };
 
 /**
