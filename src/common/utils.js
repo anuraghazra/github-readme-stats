@@ -378,7 +378,7 @@ const renderError = (message, secondaryMessage = "", options = {}) => {
     <svg wwidth="${ERROR_CARD_LENGTH}"  height="120" viewBox="0 0 ${ERROR_CARD_LENGTH} 120" fill="${bgColor}" xmlns="http://www.w3.org/2000/svg">
     <style>
     .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
-    .small { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor}}
+    .small { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
     .gray { fill: #858585 }
     </style>
     <rect x="0.5" y="0.5" width="${
