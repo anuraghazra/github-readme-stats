@@ -191,7 +191,7 @@ GitHub Readme Stats comes with several built-in themes (e.g. `dark`, `radical`, 
 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stats Themes" width="600px"/>
 
-You can look at a preview for [all available themes](themes/README.md) or checkout the [theme config file](themes/index.js). You can also contribute new themes if you like, contributing guidelines can be found [here](CONTRIBUTING.md#themes-contribution).
+You can look at a preview for [all available themes](themes/README.md) or checkout the [theme config file](themes/index.js). Please note that we paused addition of new themes to decrease maintenance efforts, all pull requests related to new themes will be closed.
 
 #### Responsive Card Theme
 
