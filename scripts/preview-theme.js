@@ -12,7 +12,7 @@ import Hjson from "hjson";
 import snakeCase from "lodash.snakecase";
 import parse from "parse-diff";
 import { inspect } from "util";
-import { isValidHexColor } from "../src/common/utils.js";
+import { isValidHexColor, isValidGradient } from "../src/common/utils.js";
 import { themes } from "../themes/index.js";
 import { getGithubToken, getRepoInfo } from "./helpers.js";
 
@@ -42,7 +42,7 @@ const COLOR_PROPS = {
   title_color: 6,
   icon_color: 6,
   text_color: 6,
-  bg_color: 8,
+  bg_color: 23,
   border_color: 6,
 };
 const ACCEPTED_COLOR_PROPS = Object.keys(COLOR_PROPS);
@@ -499,7 +499,13 @@ export const run = async () => {
                 `Theme color property \`${colorKey}\` can not be longer than \`${COLOR_PROPS[colorKey]}\` characters`,
               );
               invalidColors = true;
-            } else if (!isValidHexColor(colorValue)) {
+            } else if (
+              !isValidHexColor(colorValue) ||
+              !(
+                colorKey === "bg_color" &&
+                isValidGradient(colorValue.split(","))
+              )
+            ) {
               errors.push(
                 `Theme color property \`${colorKey}\` is not a valid hex color: <code>#${colorValue}</code>`,
               );
