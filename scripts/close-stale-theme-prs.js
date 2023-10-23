@@ -155,7 +155,9 @@ const run = async () => {
     // Loop through all stale invalid theme pull requests and close them.
     for (const prNumber of staleThemePRsNumbers) {
       debug(`Closing #${prNumber} because it is stale...`);
-      if (!dryRun) {
+      if (dryRun) {
+        debug("Dry run enabled, skipping...");
+      } else {
         await octokit.rest.issues.createComment({
           owner,
           repo,
@@ -168,8 +170,6 @@ const run = async () => {
           pull_number: prNumber,
           state: "closed",
         });
-      } else {
-        debug("Dry run enabled, skipping...");
       }
     }
   } catch (error) {
