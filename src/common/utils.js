@@ -553,6 +553,16 @@ const parseEmojis = (str) => {
 };
 
 /**
+ * Get the appropriate height
+ *
+ * @param {number | undefined} height height wanted
+ * @param {number} minHeight minimum height.
+ * @returns {number} appropriate height.
+ */
+const getAppropriateHeight = (height, minHeight) =>
+  height && height > minHeight ? height : minHeight;
+
+/**
  * Get diff in minutes between two dates.
  *
  * @param {Date} d1 First date.
@@ -592,4 +602,5 @@ export {
   chunkArray,
   parseEmojis,
   dateDiff,
+  getAppropriateHeight,
 };

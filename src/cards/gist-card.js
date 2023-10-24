@@ -10,6 +10,7 @@ import {
   flexLayout,
   iconWithLabel,
   createLanguageNode,
+  getAppropriateHeight,
 } from "../common/utils.js";
 import Card from "../common/Card.js";
 import { icons } from "../common/icons.js";
@@ -78,9 +79,9 @@ const renderGistCard = (gistData, options = {}) => {
     .join("");
 
   const lineHeight = descriptionLines > 3 ? 12 : 10;
-  const height = card_height
-    ? card_height
-    : (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+  const minHeight =
+    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+  const height = getAppropriateHeight(card_height, minHeight);
 
   const totalStars = kFormatter(starsCount);
   const totalForks = kFormatter(forksCount);

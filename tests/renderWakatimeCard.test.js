@@ -75,12 +75,12 @@ describe("Test Render Wakatime Card", () => {
         ...wakaTimeData.data,
         languages: undefined,
       },
-      { card_height: 42 },
+      { card_height: 432 },
     );
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height"),
-    ).toBe("42");
+    ).toBe("432");
   });
 
   it('should show "no coding activity this week" message when using compact layout and there has not been activity', () => {

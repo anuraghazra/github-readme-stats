@@ -6,6 +6,7 @@ import {
   CustomError,
   clampValue,
   flexLayout,
+  getAppropriateHeight,
   getCardColors,
   kFormatter,
   measureText,
@@ -392,12 +393,11 @@ const renderStatsCard = (stats, options = {}) => {
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  let height = card_height
-    ? card_height
-    : Math.max(
-        45 + (statItems.length + 1) * lheight,
-        hide_rank ? 0 : statItems.length ? 150 : 180,
-      );
+  const minHeight = Math.max(
+    45 + (statItems.length + 1) * lheight,
+    hide_rank ? 0 : statItems.length ? 150 : 180,
+  );
+  const height = getAppropriateHeight(card_height, minHeight);
 
   // the lower the user's percentile the better
   const progress = 100 - rank.percentile;

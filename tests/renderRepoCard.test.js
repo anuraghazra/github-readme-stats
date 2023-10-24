@@ -326,13 +326,13 @@ describe("Test renderRepoCard", () => {
         isTemplate: true,
       },
       {
-        card_height: 75,
+        card_height: 340,
       },
     );
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height"),
-    ).toBe("75");
+    ).toBe("340");
   });
 
   it("should render without rounding", () => {

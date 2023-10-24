@@ -374,12 +374,12 @@ describe("Test renderStatsCard", () => {
 
   it("should render custom height correctly", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      card_height: 50,
+      card_height: 823,
     });
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height"),
-    ).toBe("50");
+    ).toBe("823");
   });
 
   it("should render translations", () => {

@@ -5,6 +5,7 @@ import { I18n } from "../common/I18n.js";
 import {
   clampValue,
   flexLayout,
+  getAppropriateHeight,
   getCardColors,
   lowercaseTrim,
 } from "../common/utils.js";
@@ -260,9 +261,11 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  let height = card_height
-    ? card_height
-    : Math.max(45 + (filteredLanguages.length + 1) * lheight, 150);
+  const minHeight = Math.max(
+    45 + (filteredLanguages.length + 1) * lheight,
+    150,
+  );
+  let height = getAppropriateHeight(card_height, minHeight);
 
   const cssStyles = getStyles({
     titleColor,

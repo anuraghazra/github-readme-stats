@@ -12,6 +12,7 @@ import {
   wrapTextMultiline,
   iconWithLabel,
   createLanguageNode,
+  getAppropriateHeight,
 } from "../common/utils.js";
 import { repoCardLocales } from "../translations.js";
 
@@ -88,9 +89,9 @@ const renderRepoCard = (repo, options = {}) => {
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
 
-  const height = card_height
-    ? card_height
-    : (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+  const minHeight =
+    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+  const height = getAppropriateHeight(card_height, minHeight);
 
   const i18n = new I18n({
     locale,

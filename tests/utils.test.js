@@ -7,6 +7,7 @@ import {
   parseBoolean,
   renderError,
   wrapTextMultiline,
+  getAppropriateHeight,
 } from "../src/common/utils.js";
 import { expect, it, describe } from "@jest/globals";
 
@@ -132,6 +133,23 @@ describe("Test utils.js", () => {
       ringColor: "#f00",
       bgColor: "#fff",
       borderColor: "#fff",
+    });
+  });
+
+  describe("getAppropriateHeight", () => {
+    it("should return the minimum height if the height is superior", () => {
+      let height = getAppropriateHeight(210, 289);
+      expect(height).toBe(289);
+    });
+
+    it("should return the minimum height if the height is undefined", () => {
+      let height = getAppropriateHeight(undefined, 289);
+      expect(height).toBe(289);
+    });
+
+    it("should return the custom height", () => {
+      let height = getAppropriateHeight(213, 100);
+      expect(height).toBe(213);
     });
   });
 });

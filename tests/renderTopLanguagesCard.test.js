@@ -853,12 +853,12 @@ describe("Test renderTopLanguages", () => {
     document.body.innerHTML = renderTopLanguages(
       {},
       {
-        card_height: 56,
+        card_height: 324,
       },
     );
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height"),
-    ).toBe("56");
+    ).toBe("324");
   });
 });

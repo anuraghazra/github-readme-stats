@@ -6,6 +6,7 @@ import {
   chunkArray,
   clampValue,
   flexLayout,
+  getAppropriateHeight,
   getCardColors,
   lowercaseTrim,
   measureText,
@@ -806,7 +807,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     customTitle: custom_title,
     defaultTitle: i18n.t("langcard.title"),
     width,
-    height: card_height ? card_height : height,
+    height: getAppropriateHeight(card_height, height),
     border_radius,
     colors,
   });

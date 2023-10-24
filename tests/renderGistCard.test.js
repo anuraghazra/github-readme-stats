@@ -223,13 +223,13 @@ describe("test renderGistCard", () => {
         ...data,
       },
       {
-        card_height: 50,
+        card_height: 280,
       },
     );
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height"),
-    ).toBe("50");
+    ).toBe("280");
   });
 
   it("should render without rounding", () => {
