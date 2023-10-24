@@ -47,7 +47,3 @@ jobs:
           top_bugs: true
           top_features: true
           top_pull_requests: true
-          custom_pull_requests_label: themes
-          top_custom_pull_requests_label: ":star: top themes"
-          top_custom_pull_requests_label_description: Top themes
-          top_custom_pull_requests_label_colour: "#A23599"
