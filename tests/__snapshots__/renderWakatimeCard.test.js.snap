@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test Render Wakatime Card should render correctly 1`] = `[Function]`;
+exports[`Test Render WakaTime Card should render correctly 1`] = `[Function]`;
 
-exports[`Test Render Wakatime Card should render correctly with compact layout 1`] = `
+exports[`Test Render WakaTime Card should render correctly with compact layout 1`] = `
 "
       <svg
         width="495"
@@ -95,7 +95,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
         y="0"
         class="header"
         data-testid="header"
-      >Wakatime Stats (last 7 days)</text>
+      >WakaTime Stats (last 7 days)</text>
     </g>
       </g>
     
@@ -154,7 +154,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
     "
 `;
 
-exports[`Test Render Wakatime Card should render correctly with compact layout when langs_count is set 1`] = `
+exports[`Test Render WakaTime Card should render correctly with compact layout when langs_count is set 1`] = `
 "
       <svg
         width="495"
@@ -247,7 +247,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
         y="0"
         class="header"
         data-testid="header"
-      >Wakatime Stats (last 7 days)</text>
+      >WakaTime Stats (last 7 days)</text>
     </g>
       </g>
     
