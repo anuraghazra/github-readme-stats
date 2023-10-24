@@ -40,7 +40,7 @@ const GRAPHQL_REPOS_QUERY = `
 `;
 
 const GRAPHQL_STATS_QUERY = `
-  query userInfo($login: String!, $after: String) {
+  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!) {
     user(login: $login) {
       name
       login
@@ -54,7 +54,7 @@ const GRAPHQL_STATS_QUERY = `
       pullRequests(first: 1) {
         totalCount
       }
-      mergedPullRequests: pullRequests(states: MERGED) {
+      mergedPullRequests: pullRequests(states: MERGED) @include(if: $includeMergedPullRequests) {
         totalCount
       }
       openIssues: issues(states: OPEN) {
@@ -66,10 +66,10 @@ const GRAPHQL_STATS_QUERY = `
       followers {
         totalCount
       }
-      repositoryDiscussions {
+      repositoryDiscussions @include(if: $includeDiscussions) {
         totalCount
       }
-      repositoryDiscussionComments(onlyAnswers: true) {
+      repositoryDiscussionComments(onlyAnswers: true) @include(if: $includeDiscussionsAnswers) {
         totalCount
       }
       ${GRAPHQL_REPOS_FIELD}
@@ -89,7 +89,7 @@ const GRAPHQL_STATS_QUERY = `
  * @returns {Promise<AxiosResponse>} Axios response.
  */
 const fetcher = (variables, token) => {
-  const query = !variables.after ? GRAPHQL_STATS_QUERY : GRAPHQL_REPOS_QUERY;
+  const query = variables.after ? GRAPHQL_REPOS_QUERY : GRAPHQL_STATS_QUERY;
   return request(
     {
       query,
@@ -104,17 +104,33 @@ const fetcher = (variables, token) => {
 /**
  * Fetch stats information for a given username.
  *
- * @param {string} username Github username.
+ * @param {object} variables Fetcher variables.
+ * @param {string} variables.username Github username.
+ * @param {boolean} variables.includeMergedPullRequests Include merged pull requests.
+ * @param {boolean} variables.includeDiscussions Include discussions.
+ * @param {boolean} variables.includeDiscussionsAnswers Include discussions answers.
  * @returns {Promise<AxiosResponse>} Axios response.
  *
  * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
  */
-const statsFetcher = async (username) => {
+const statsFetcher = async ({
+  username,
+  includeMergedPullRequests,
+  includeDiscussions,
+  includeDiscussionsAnswers,
+}) => {
   let stats;
   let hasNextPage = true;
   let endCursor = null;
   while (hasNextPage) {
-    const variables = { login: username, first: 100, after: endCursor };
+    const variables = {
+      login: username,
+      first: 100,
+      after: endCursor,
+      includeMergedPullRequests,
+      includeDiscussions,
+      includeDiscussionsAnswers,
+    };
     let res = await retryer(fetcher, variables);
     if (res.data.errors) {
       return res;
@@ -122,10 +138,10 @@ const statsFetcher = async (username) => {
 
     // Store stats data.
     const repoNodes = res.data.data.user.repositories.nodes;
-    if (!stats) {
-      stats = res;
-    } else {
+    if (stats) {
       stats.data.data.user.repositories.nodes.push(...repoNodes);
+    } else {
+      stats = res;
     }
 
     // Disable multi page fetching on public Vercel instance due to rate limits.
@@ -198,12 +214,18 @@ const totalCommitsFetcher = async (username) => {
  * @param {string} username GitHub username.
  * @param {boolean} include_all_commits Include all commits.
  * @param {string[]} exclude_repo Repositories to exclude.
+ * @param {boolean} include_merged_pull_requests Include merged pull requests.
+ * @param {boolean} include_discussions Include discussions.
+ * @param {boolean} include_discussions_answers Include discussions answers.
  * @returns {Promise<StatsData>} Stats data.
  */
 const fetchStats = async (
   username,
   include_all_commits = false,
   exclude_repo = [],
+  include_merged_pull_requests = false,
+  include_discussions = false,
+  include_discussions_answers = false,
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -224,7 +246,12 @@ const fetchStats = async (
     rank: { level: "C", percentile: 100 },
   };
 
-  let res = await statsFetcher(username);
+  let res = await statsFetcher({
+    username,
+    includeMergedPullRequests: include_merged_pull_requests,
+    includeDiscussions: include_discussions,
+    includeDiscussionsAnswers: include_discussions_answers,
+  });
 
   // Catch GraphQL errors.
   if (res.data.errors) {
@@ -259,14 +286,21 @@ const fetchStats = async (
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
-  stats.totalPRsMerged = user.mergedPullRequests.totalCount;
-  stats.mergedPRsPercentage =
-    (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) * 100;
+  if (include_merged_pull_requests) {
+    stats.totalPRsMerged = user.mergedPullRequests.totalCount;
+    stats.mergedPRsPercentage =
+      (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) * 100;
+  }
   stats.totalReviews =
     user.contributionsCollection.totalPullRequestReviewContributions;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
-  stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;
-  stats.totalDiscussionsAnswered = user.repositoryDiscussionComments.totalCount;
+  if (include_discussions) {
+    stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;
+  }
+  if (include_discussions_answers) {
+    stats.totalDiscussionsAnswered =
+      user.repositoryDiscussionComments.totalCount;
+  }
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
   // Retrieve stars while filtering out repositories to be hidden.
