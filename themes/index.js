@@ -450,12 +450,6 @@ export const themes = {
     text_color: "000000",
     bg_color: "ffffff",
   },
-  algeria_flag_dark: {
-    title_color: "4FB14E",
-    icon_color: "EE1111",
-    text_color: "ffffff",
-    bg_color: "000000",
-  },
 };
 
 export default themes;
