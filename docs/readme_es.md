@@ -25,12 +25,6 @@
     </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Apoyado%20por-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Apoyado%20por-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
@@ -84,7 +78,7 @@
     - [Mostrar más lenguajes](#mostrar-más-lenguajes)
     - [Diseño Compacto de Tarjeta de Lenguaje](#diseño-compacto-de-tarjeta-de-lenguaje)
     - [Ejemplo](#ejemplo-1)
-- [Estadísticas de la semana de Wakatime](#estadísticas-de-la-semana-de-wakatime)
+- [Estadísticas de la semana de WakaTime](#estadísticas-de-la-semana-de-wakatime)
     - [Ejemplo](#ejemplo-2)
     - [Todos los ejemplos](#todos-los-ejemplos)
     - [Consejo rápido (para alinear las tarjetas de repositorio)](#consejo-rápido-para-alinear-las-tarjetas-de-repositorio)
@@ -206,7 +200,7 @@ Puedes pasar mútliples valores separados por coma en la opción `bg_color` para
 > Los nombres de los lenguajes deben estar codificados para URLs, como se especifica en [Código porciento](https://es.wikipedia.org/wiki/C%C3%B3digo_porciento)
 > (es decir: `c++` debería convertirse en `c%2B%2B`,`jupyter notebook` debería convertirse en `jupyter%20notebook`, etc.)
 
-#### Opciones exclusivas de la Tarjeta de Wakatime:
+#### Opciones exclusivas de la Tarjeta de WakaTime:
 
 - `hide_title` - _(booleano)_
 - `line_height` - Establece el alto de línea entre texto _(número)_
@@ -298,23 +292,23 @@ Puedes usar la opción `& layout = compact` para cambiar el diseño de la tarjet
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Estadísticas de la semana de Wakatime
+# Estadísticas de la semana de WakaTime
 
-cambia el valor del parámetro `?username=` a tu username en [Wakatime](https://wakatime.com).
+cambia el valor del parámetro `?username=` a tu username en [WakaTime](https://wakatime.com).
 
 ```md
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Ejemplo
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - Diseño compacto
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -362,9 +356,9 @@ Escoja cualquiera de los [temas por defecto](#themes)
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- Tarjeta de Wakatime
+- Tarjeta de WakaTime
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

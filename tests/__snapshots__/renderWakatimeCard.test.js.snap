@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test Render Wakatime Card should render correctly 1`] = `[Function]`;
+exports[`Test Render WakaTime Card should render correctly 1`] = `[Function]`;
 
-exports[`Test Render Wakatime Card should render correctly with compact layout 1`] = `
+exports[`Test Render WakaTime Card should render correctly with compact layout 1`] = `
 "
       <svg
         width="495"
@@ -25,8 +25,8 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
             /* Selector detects Firefox */
             .header { font-size: 15.5px; }
           }
-          
-    
+
+
     .stat {
       font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #434d58;
     }
@@ -38,43 +38,9 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
       opacity: 0;
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
-    .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58;
-      animation: scaleInAnimation 0.3s ease-in-out forwards;
-    }
-    .rank-percentile-header {
-      font-size: 14px;
-    }
-    .rank-percentile-text {
-      font-size: 16px;
-    }
-    
     .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
-    .icon {
-      fill: #4c71f2;
-      display: none;
-    }
 
-    .rank-circle-rim {
-      stroke: undefined;
-      fill: none;
-      stroke-width: 6;
-      opacity: 0.2;
-    }
-    .rank-circle {
-      stroke: undefined;
-      stroke-dasharray: 250;
-      fill: none;
-      stroke-width: 6;
-      stroke-linecap: round;
-      opacity: 0.8;
-      transform-origin: -10px 8px;
-      transform: rotate(-90deg);
-      animation: rankAnimation 1s forwards ease-in-out;
-    }
-    
-  
     @keyframes slideInAnimation {
       from {
         width: 0;
@@ -98,13 +64,13 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
     .lang-progress{
       animation: growWidthAnimation 0.6s ease-in-out forwards;
     }
-    
 
-          
-          
+
+
+
         </style>
 
-        
+
 
         <rect
           data-testid="card-bg"
@@ -118,7 +84,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
           stroke-opacity="1"
         />
 
-        
+
       <g
         data-testid="card-title"
         transform="translate(25, 35)"
@@ -129,22 +95,22 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
         y="0"
         class="header"
         data-testid="header"
-      >Wakatime Stats (last 7 days)</text>
+      >WakaTime Stats (last 7 days)</text>
     </g>
       </g>
-    
+
 
         <g
           data-testid="main-card-body"
           transform="translate(0, 55)"
         >
-          
+
     <svg x="0" y="0" width="100%">
-      
+
       <mask id="rect-mask">
       <rect x="25" y="0" width="440" height="8" fill="white" rx="5" />
       </mask>
-      
+
           <rect
             mask="url(#rect-mask)"
             data-testid="lang-progress"
@@ -154,7 +120,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
             height="8"
             fill="#858585"
           />
-        
+
           <rect
             mask="url(#rect-mask)"
             data-testid="lang-progress"
@@ -164,31 +130,31 @@ exports[`Test Render Wakatime Card should render correctly with compact layout 1
             height="8"
             fill="#3178c6"
           />
-        
-      
+
+
     <g transform="translate(25, 25)">
       <circle cx="5" cy="6" r="5" fill="#858585" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
         Other - 19 mins
       </text>
     </g>
-  
+
     <g transform="translate(230, 25)">
       <circle cx="5" cy="6" r="5" fill="#3178c6" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
         TypeScript - 1 min
       </text>
     </g>
-  
-    
+
+
     </svg>
-  
+
         </g>
       </svg>
     "
 `;
 
-exports[`Test Render Wakatime Card should render correctly with compact layout when langs_count is set 1`] = `
+exports[`Test Render WakaTime Card should render correctly with compact layout when langs_count is set 1`] = `
 "
       <svg
         width="495"
@@ -211,8 +177,8 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
             /* Selector detects Firefox */
             .header { font-size: 15.5px; }
           }
-          
-    
+
+
     .stat {
       font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #434d58;
     }
@@ -224,43 +190,9 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
       opacity: 0;
       animation: fadeInAnimation 0.3s ease-in-out forwards;
     }
-    .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #434d58;
-      animation: scaleInAnimation 0.3s ease-in-out forwards;
-    }
-    .rank-percentile-header {
-      font-size: 14px;
-    }
-    .rank-percentile-text {
-      font-size: 16px;
-    }
-    
     .not_bold { font-weight: 400 }
     .bold { font-weight: 700 }
-    .icon {
-      fill: #4c71f2;
-      display: none;
-    }
 
-    .rank-circle-rim {
-      stroke: undefined;
-      fill: none;
-      stroke-width: 6;
-      opacity: 0.2;
-    }
-    .rank-circle {
-      stroke: undefined;
-      stroke-dasharray: 250;
-      fill: none;
-      stroke-width: 6;
-      stroke-linecap: round;
-      opacity: 0.8;
-      transform-origin: -10px 8px;
-      transform: rotate(-90deg);
-      animation: rankAnimation 1s forwards ease-in-out;
-    }
-    
-  
     @keyframes slideInAnimation {
       from {
         width: 0;
@@ -284,13 +216,13 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
     .lang-progress{
       animation: growWidthAnimation 0.6s ease-in-out forwards;
     }
-    
 
-          
-          
+
+
+
         </style>
 
-        
+
 
         <rect
           data-testid="card-bg"
@@ -304,7 +236,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
           stroke-opacity="1"
         />
 
-        
+
       <g
         data-testid="card-title"
         transform="translate(25, 35)"
@@ -315,22 +247,22 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
         y="0"
         class="header"
         data-testid="header"
-      >Wakatime Stats (last 7 days)</text>
+      >WakaTime Stats (last 7 days)</text>
     </g>
       </g>
-    
+
 
         <g
           data-testid="main-card-body"
           transform="translate(0, 55)"
         >
-          
+
     <svg x="0" y="0" width="100%">
-      
+
       <mask id="rect-mask">
       <rect x="25" y="0" width="440" height="8" fill="white" rx="5" />
       </mask>
-      
+
           <rect
             mask="url(#rect-mask)"
             data-testid="lang-progress"
@@ -340,7 +272,7 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
             height="8"
             fill="#858585"
           />
-        
+
           <rect
             mask="url(#rect-mask)"
             data-testid="lang-progress"
@@ -350,25 +282,25 @@ exports[`Test Render Wakatime Card should render correctly with compact layout w
             height="8"
             fill="#3178c6"
           />
-        
-      
+
+
     <g transform="translate(25, 25)">
       <circle cx="5" cy="6" r="5" fill="#858585" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
         Other - 19 mins
       </text>
     </g>
-  
+
     <g transform="translate(230, 25)">
       <circle cx="5" cy="6" r="5" fill="#3178c6" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
         TypeScript - 1 min
       </text>
     </g>
-  
-    
+
+
     </svg>
-  
+
         </g>
       </svg>
     "

@@ -321,5 +321,9 @@ describe("Test /api/", () => {
     expect(res.send).toBeCalledWith(
       renderError("Could not fetch total commits.", "Please try again later"),
     );
+    // Received SVG output should not contain string "https://tiny.one/readme-stats"
+    expect(res.send.mock.calls[0][0]).not.toContain(
+      "https://tiny.one/readme-stats",
+    );
   });
 });
