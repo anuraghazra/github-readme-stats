@@ -40,7 +40,7 @@ jobs:
         with:
           top_list_size: 10
           filter: "1772"
-          label: false
+          label: true
           dashboard: true
           dashboard_show_total_reactions: true
           top_issues: true
