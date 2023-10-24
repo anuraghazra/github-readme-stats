@@ -102,7 +102,7 @@ const wakaTimeData = {
   },
 };
 
-describe("Wakatime fetcher", () => {
+describe("WakaTime fetcher", () => {
   it("should fetch correct wakatime data", async () => {
     const username = "anuraghazra";
     mock

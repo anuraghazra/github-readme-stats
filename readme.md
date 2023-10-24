@@ -109,7 +109,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
     - [Hide Progress Bars](#hide-progress-bars)
     - [Demo](#demo-2)
-- [Wakatime Stats Card](#wakatime-stats-card)
+- [WakaTime Stats Card](#wakatime-stats-card)
     - [Demo](#demo-3)
 - [All Demos](#all-demos)
   - [Quick Tip (Align The Cards)](#quick-tip-align-the-cards)
@@ -410,13 +410,13 @@ If we don't support your language, please consider contributing! You can find mo
 > (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.) You can use
 > [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
 
-#### Wakatime Card Exclusive Options
+#### WakaTime Card Exclusive Options
 
 *   `hide` - Hides the languages specified from the card *(Comma-separated values)*. Default: `[] (blank array)`.
 *   `hide_title` - *(boolean)*. Default `false`.
 *   `line_height` - Sets the line height between text *(number)*. Default `25`.
 *   `hide_progress` - Hides the progress bar and percentage *(boolean)*. Default `false`.
-*   `custom_title` - Sets a custom title for the card *(string)*. Default `Wakatime Stats`.
+*   `custom_title` - Sets a custom title for the card *(string)*. Default `WakaTime Stats`.
 *   `layout` - Switches between two available layouts `default` & `compact`.  Default `default`.
 *   `langs_count` - Limits the number of languages on the card, defaults to all reported languages *(number)*.
 *   `api_domain` - Sets a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) *(string)*. Default `Waka API`.
@@ -601,26 +601,26 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&hide_progress=true)
 
-# Wakatime Stats Card
+# WakaTime Stats Card
 
 > [!WARNING]\
-> Please be aware that we currently only show data from Wakatime profiles that are public. You therefore have to make sure that **BOTH** `Display code time publicly` and `Display languages, editors, os, categories publicly` are enabled.
+> Please be aware that we currently only show data from WakaTime profiles that are public. You therefore have to make sure that **BOTH** `Display code time publicly` and `Display languages, editors, os, categories publicly` are enabled.
 
-Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
+Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 
 ```md
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)
+![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)
 
-![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&hide_progress=true)
+![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&hide_progress=true)
 
 *   Compact layout
 
-![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&layout=compact)
+![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&layout=compact)
 
 ***
 
@@ -694,7 +694,7 @@ Choose from any of the [default themes](#themes)
 
 *   WakaTime card
 
-![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)
+![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)
 
 ***
 
