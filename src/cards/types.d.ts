@@ -6,6 +6,7 @@ export type CommonOptions = {
   icon_color: string;
   text_color: string;
   bg_color: string;
+  progress_bar_bg_color:string;
   theme: ThemeNames;
   border_radius: number;
   border_color: string;
@@ -32,6 +33,7 @@ export type StatCardOptions = CommonOptions & {
 
 export type RepoCardOptions = CommonOptions & {
   show_owner: boolean;
+  card_width: number;
 };
 
 export type TopLangOptions = CommonOptions & {

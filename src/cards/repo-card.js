@@ -2,6 +2,7 @@
 import { Card } from "../common/Card.js";
 import { I18n } from "../common/I18n.js";
 import { icons } from "../common/icons.js";
+
 import {
   encodeHTML,
   flexLayout,
@@ -15,7 +16,10 @@ import {
 } from "../common/utils.js";
 import { repoCardLocales } from "../translations.js";
 
+const DEFAULT_CARD_WIDTH = 300;
+const MIN_CARD_WIDTH = 400;
 const ICON_SIZE = 16;
+const card_height = undefined ;
 
 /**
  * Retrieves the repository description and wraps it to fit the card width.
@@ -73,6 +77,8 @@ const renderRepoCard = (repo, options = {}) => {
     border_radius,
     border_color,
     locale,
+    card_width,
+    card_height,
   } = options;
 
   const lineHeight = 10;
@@ -87,13 +93,23 @@ const renderRepoCard = (repo, options = {}) => {
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
 
-  const height =
-    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
-
   const i18n = new I18n({
     locale,
     translations: repoCardLocales,
   });
+
+  let width = card_width
+    ? isNaN(card_width)
+      ? DEFAULT_CARD_WIDTH
+      : card_width < MIN_CARD_WIDTH
+      ? MIN_CARD_WIDTH
+      : card_width
+    : DEFAULT_CARD_WIDTH;
+  const height =
+    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+  const height = card_height ?? (
+  (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight
+);
 
   // returns theme based colors with proper overrides and defaults
   const colors = getCardColors({
@@ -137,7 +153,7 @@ const renderRepoCard = (repo, options = {}) => {
   const card = new Card({
     defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
     titlePrefixIcon: icons.contribs,
-    width: 400,
+    width,
     height,
     border_radius,
     colors,
@@ -175,5 +191,5 @@ const renderRepoCard = (repo, options = {}) => {
   `);
 };
 
-export { renderRepoCard };
+export { renderRepoCard, DEFAULT_CARD_WIDTH, MIN_CARD_WIDTH };
 export default renderRepoCard;

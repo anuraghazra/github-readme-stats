@@ -203,11 +203,19 @@ const trimTopLanguages = (topLangs, langs_count, hide) => {
  * @param {number} props.width The card width
  * @param {string} props.color Color of the programming language.
  * @param {string} props.name Name of the programming language.
+ * @param {string} props.progBgColor Color of the background of progress bar
  * @param {number} props.progress Usage of the programming language in percentage.
  * @param {number} props.index Index of the programming language.
  * @returns {string} Programming language SVG node.
  */
-const createProgressTextNode = ({ width, color, name, progress, index }) => {
+const createProgressTextNode = ({
+  width,
+  color,
+  name,
+  progress,
+  index,
+  progBgColor,
+}) => {
   const staggerDelay = (index + 3) * 150;
   const paddingRight = 95;
   const progressTextX = width - paddingRight + 10;
@@ -223,7 +231,9 @@ const createProgressTextNode = ({ width, color, name, progress, index }) => {
         color,
         width: progressWidth,
         progress,
-        progressBarBackgroundColor: "#ddd",
+        progressBarBackgroundColor: progBgColor
+          ? `#${progBgColor}`
+          : "#ddd",
         delay: staggerDelay + 300,
       })}
     </g>
@@ -322,9 +332,10 @@ const createDonutLanguagesNode = ({ langs, totalSize }) => {
  * @param {Lang[]} langs Array of programming languages.
  * @param {number} width Card width.
  * @param {number} totalLanguageSize Total size of all languages.
+ * @param {string} progBgColor  Sets progress bar background color.
  * @returns {string} Normal layout card SVG object.
  */
-const renderNormalLayout = (langs, width, totalLanguageSize) => {
+const renderNormalLayout = (langs, width, totalLanguageSize, progBgColor) => {
   return flexLayout({
     items: langs.map((lang, index) => {
       return createProgressTextNode({
@@ -335,6 +346,7 @@ const renderNormalLayout = (langs, width, totalLanguageSize) => {
           ((lang.size / totalLanguageSize) * 100).toFixed(2),
         ),
         index,
+        progBgColor,
       });
     }),
     gap: 40,
@@ -383,14 +395,14 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
 
   return `
   ${
-    hideProgress
-      ? ""
-      : `
-      <mask id="rect-mask">
-          <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5"/>
-        </mask>
-        ${compactProgressBar}
-      `
+    !hideProgress
+      ? `
+  <mask id="rect-mask">
+      <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5"/>
+    </mask>
+    ${compactProgressBar}
+  `
+      : ""
   }
     <g transform="translate(0, ${hideProgress ? "0" : "25"})">
       ${createLanguageTextNode({
@@ -738,8 +750,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     border_radius,
     border_color,
     disable_animations,
+    progBgColor,
   } = options;
-
   const i18n = new I18n({
     locale,
     translations: langCardLocales,
@@ -798,7 +810,12 @@ const renderTopLanguages = (topLangs, options = {}) => {
     width = width + 50; // padding
     finalLayout = renderDonutLayout(langs, width, totalLanguageSize);
   } else {
-    finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
+    finalLayout = renderNormalLayout(
+      langs,
+      width,
+      totalLanguageSize,
+      progBgColor,
+    );
   }
 
   const card = new Card({
