@@ -431,7 +431,7 @@ const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
 
     circles.push(`
       <g class="stagger" style="animation-delay: ${delay}ms">
-        <circle 
+        <circle
           cx="150"
           cy="100"
           r="${radius}"
@@ -885,6 +885,7 @@ export {
   donutCenterTranslation,
   trimTopLanguages,
   renderTopLanguages,
+  DEFAULT_CARD_WIDTH,
   MIN_CARD_WIDTH,
   getDefaultLanguagesCountByLayout,
 };

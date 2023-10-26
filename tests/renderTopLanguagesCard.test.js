@@ -15,6 +15,7 @@ import {
   donutCenterTranslation,
   trimTopLanguages,
   renderTopLanguages,
+  DEFAULT_CARD_WIDTH,
   MIN_CARD_WIDTH,
   getDefaultLanguagesCountByLayout,
 } from "../src/cards/top-languages-card.js";
@@ -428,7 +429,10 @@ describe("Test renderTopLanguages", () => {
   it("should render with custom width set", () => {
     document.body.innerHTML = renderTopLanguages(langs, {});
 
-    expect(document.querySelector("svg")).toHaveAttribute("width", "300");
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      DEFAULT_CARD_WIDTH.toString(),
+    );
 
     document.body.innerHTML = renderTopLanguages(langs, { card_width: 400 });
     expect(document.querySelector("svg")).toHaveAttribute("width", "400");

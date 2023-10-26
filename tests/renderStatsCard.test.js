@@ -4,7 +4,11 @@ import {
   queryByTestId,
 } from "@testing-library/dom";
 import { cssToObject } from "@uppercod/css-to-object";
-import { renderStatsCard } from "../src/cards/stats-card.js";
+import {
+  renderStatsCard,
+  RANK_CARD_DEFAULT_WIDTH,
+  RANK_CARD_MIN_WIDTH,
+} from "../src/cards/stats-card.js";
 import { expect, it, describe } from "@jest/globals";
 import { CustomError } from "../src/common/utils.js";
 
@@ -131,7 +135,10 @@ describe("Test renderStatsCard", () => {
 
   it("should render with custom width set", () => {
     document.body.innerHTML = renderStatsCard(stats);
-    expect(document.querySelector("svg")).toHaveAttribute("width", "450");
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      RANK_CARD_DEFAULT_WIDTH.toString(),
+    );
 
     document.body.innerHTML = renderStatsCard(stats, { card_width: 500 });
     expect(document.querySelector("svg")).toHaveAttribute("width", "500");
@@ -139,7 +146,10 @@ describe("Test renderStatsCard", () => {
 
   it("should render with custom width set and limit minimum width", () => {
     document.body.innerHTML = renderStatsCard(stats, { card_width: 1 });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "420");
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      RANK_CARD_MIN_WIDTH.toString(),
+    );
 
     // Test default minimum card width without rank circle.
     document.body.innerHTML = renderStatsCard(stats, {

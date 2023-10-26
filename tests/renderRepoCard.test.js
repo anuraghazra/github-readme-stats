@@ -1,7 +1,11 @@
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import { cssToObject } from "@uppercod/css-to-object";
-import { renderRepoCard } from "../src/cards/repo-card.js";
+import {
+  renderRepoCard,
+  DEFAULT_CARD_WIDTH,
+  MIN_CARD_WIDTH,
+} from "../src/cards/repo-card.js";
 import { expect, it, describe } from "@jest/globals";
 
 import { themes } from "../themes/index.js";
@@ -337,6 +341,58 @@ describe("Test renderRepoCard", () => {
     });
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
       "No description provided",
+    );
+  });
+
+  it("should render with custom width set", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      description: undefined,
+      isArchived: true,
+    });
+
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      DEFAULT_CARD_WIDTH.toString(),
+    );
+
+    document.body.innerHTML = renderRepoCard(
+      {
+        ...data_repo.repository,
+        description: undefined,
+        isArchived: true,
+      },
+      { card_width: 400 },
+    );
+    expect(document.querySelector("svg")).toHaveAttribute("width", "400");
+  });
+
+  it("should render with min width", () => {
+    document.body.innerHTML = renderRepoCard(
+      {
+        ...data_repo.repository,
+        description: undefined,
+        isArchived: true,
+      },
+      { card_width: 190 },
+    );
+
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      MIN_CARD_WIDTH.toString(),
+    );
+
+    document.body.innerHTML = renderRepoCard(
+      {
+        ...data_repo.repository,
+        description: undefined,
+        isArchived: true,
+      },
+      { card_width: 100 },
+    );
+    expect(document.querySelector("svg")).toHaveAttribute(
+      "width",
+      MIN_CARD_WIDTH.toString(),
     );
   });
 });
