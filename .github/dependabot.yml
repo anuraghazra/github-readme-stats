@@ -6,6 +6,9 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
+    commit-message:
+      prefix: "build(deps)"
+      prefix-development: "build(deps-dev)"
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: github-actions
@@ -13,3 +16,6 @@ updates:
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
+    commit-message:
+      prefix: "build(deps)"
+      prefix-development: "build(deps-dev)"
