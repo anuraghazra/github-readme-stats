@@ -40,7 +40,7 @@ export default async (req, res) => {
     return res.send(renderError("Something went wrong"));
   }
 
-  if (locale && !isLocaleAvailable(locale)) {
+  if (!isLocaleAvailable(locale)) {
     return res.send(renderError("Something went wrong", "Locale not found"));
   }
 

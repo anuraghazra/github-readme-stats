@@ -26,7 +26,7 @@ export default async (req, res) => {
 
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (locale && !isLocaleAvailable(locale)) {
+  if (!isLocaleAvailable(locale)) {
     return res.send(renderError("Something went wrong", "Language not found"));
   }
 
