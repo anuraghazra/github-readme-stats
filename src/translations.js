@@ -718,7 +718,7 @@ const availableLocales = Object.keys(repoCardLocales["repocard.archived"]);
  * @returns {boolean} Boolean specifying whether the locale is available or not.
  */
 const isLocaleAvailable = (locale) => {
-  return availableLocales.includes(locale.toLowerCase());
+  return !!locale && availableLocales.includes(locale.toLowerCase());
 };
 
 export {
