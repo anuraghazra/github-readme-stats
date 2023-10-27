@@ -2,6 +2,8 @@ name: Test Deployment
 on:
   deployment_status:
 
+permissions: read-all
+
 jobs:
   e2eTests:
     if:
@@ -15,10 +17,10 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4.0.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm

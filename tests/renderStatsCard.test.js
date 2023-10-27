@@ -5,6 +5,9 @@ import {
 } from "@testing-library/dom";
 import { cssToObject } from "@uppercod/css-to-object";
 import { renderStatsCard } from "../src/cards/stats-card.js";
+import { expect, it, describe } from "@jest/globals";
+import { CustomError } from "../src/common/utils.js";
+
 // adds special assertions like toHaveTextContent
 import "@testing-library/jest-dom";
 
@@ -16,9 +19,13 @@ const stats = {
   totalCommits: 200,
   totalIssues: 300,
   totalPRs: 400,
+  totalPRsMerged: 320,
+  mergedPRsPercentage: 80,
   totalReviews: 50,
+  totalDiscussionsStarted: 10,
+  totalDiscussionsAnswered: 50,
   contributedTo: 500,
-  rank: { level: "A+", score: 40 },
+  rank: { level: "A+", percentile: 40 },
 };
 
 describe("Test renderStatsCard", () => {
@@ -42,6 +49,16 @@ describe("Test renderStatsCard", () => {
 
     // Default hidden stats
     expect(queryByTestId(document.body, "reviews")).not.toBeInTheDocument();
+    expect(
+      queryByTestId(document.body, "discussions_started"),
+    ).not.toBeInTheDocument();
+    expect(
+      queryByTestId(document.body, "discussions_answered"),
+    ).not.toBeInTheDocument();
+    expect(queryByTestId(document.body, "prs_merged")).not.toBeInTheDocument();
+    expect(
+      queryByTestId(document.body, "prs_merged_percentage"),
+    ).not.toBeInTheDocument();
   });
 
   it("should have proper name apostrophe", () => {
@@ -73,16 +90,26 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "prs")).toBeNull();
     expect(queryByTestId(document.body, "contribs")).toBeNull();
     expect(queryByTestId(document.body, "reviews")).toBeNull();
+    expect(queryByTestId(document.body, "discussions_started")).toBeNull();
+    expect(queryByTestId(document.body, "discussions_answered")).toBeNull();
+    expect(queryByTestId(document.body, "prs_merged")).toBeNull();
+    expect(queryByTestId(document.body, "prs_merged_percentage")).toBeNull();
   });
 
-  it("should show total reviews", () => {
+  it("should show additional stats", () => {
     document.body.innerHTML = renderStatsCard(stats, {
-      show_total_reviews: true,
+      show: [
+        "reviews",
+        "discussions_started",
+        "discussions_answered",
+        "prs_merged",
+        "prs_merged_percentage",
+      ],
     });
 
     expect(
       document.body.getElementsByTagName("svg")[0].getAttribute("height"),
-    ).toBe("220");
+    ).toBe("320");
 
     expect(queryByTestId(document.body, "stars")).toBeDefined();
     expect(queryByTestId(document.body, "commits")).toBeDefined();
@@ -90,6 +117,10 @@ describe("Test renderStatsCard", () => {
     expect(queryByTestId(document.body, "prs")).toBeDefined();
     expect(queryByTestId(document.body, "contribs")).toBeDefined();
     expect(queryByTestId(document.body, "reviews")).toBeDefined();
+    expect(queryByTestId(document.body, "discussions_started")).toBeDefined();
+    expect(queryByTestId(document.body, "discussions_answered")).toBeDefined();
+    expect(queryByTestId(document.body, "prs_merged")).toBeDefined();
+    expect(queryByTestId(document.body, "prs_merged_percentage")).toBeDefined();
   });
 
   it("should hide_rank", () => {
@@ -233,9 +264,10 @@ describe("Test renderStatsCard", () => {
       );
       expect(statClassStyles.fill.trim()).toBe(`#${themes[name].text_color}`);
       expect(iconClassStyles.fill.trim()).toBe(`#${themes[name].icon_color}`);
-      expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-        "fill",
-        `#${themes[name].bg_color}`,
+      const backgroundElement = queryByTestId(document.body, "card-bg");
+      const backgroundElementFill = backgroundElement.getAttribute("fill");
+      expect([`#${themes[name].bg_color}`, "url(#gradient)"]).toContain(
+        backgroundElementFill,
       );
     });
   });
@@ -404,5 +436,33 @@ describe("Test renderStatsCard", () => {
       rank_icon: "github",
     });
     expect(queryByTestId(document.body, "github-rank-icon")).toBeDefined();
+  });
+
+  it("should show the rank percentile", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      rank_icon: "percentile",
+    });
+    expect(queryByTestId(document.body, "percentile-top-header")).toBeDefined();
+    expect(
+      queryByTestId(document.body, "percentile-top-header").textContent.trim(),
+    ).toBe("Top");
+    expect(queryByTestId(document.body, "rank-percentile-text")).toBeDefined();
+    expect(
+      queryByTestId(document.body, "percentile-rank-value").textContent.trim(),
+    ).toBe(stats.rank.percentile.toFixed(1) + "%");
+  });
+
+  it("should throw error if all stats and rank icon are hidden", () => {
+    expect(() =>
+      renderStatsCard(stats, {
+        hide: ["stars", "commits", "prs", "issues", "contribs"],
+        hide_rank: true,
+      }),
+    ).toThrow(
+      new CustomError(
+        "Could not render stats card.",
+        "Either stats or rank are required.",
+      ),
+    );
   });
 });

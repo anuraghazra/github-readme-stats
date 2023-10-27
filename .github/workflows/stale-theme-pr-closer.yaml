@@ -1,7 +1,30 @@
 name: Close stale theme pull requests that have the 'invalid' label.
 on:
   schedule:
+    #        ┌───────────── minute (0 - 59)
+    #        │ ┌───────────── hour (0 - 23)
+    #        │ │  ┌───────────── day of the month (1 - 31)
+    #        │ │  │  ┌───────────── month (1 - 12 or JAN-DEC)
+    #        │ │  │  │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+    #        │ │  │  │ │
+    #        │ │  │  │ │
+    #        │ │  │  │ │
+    #        * *  *  * *
     - cron: "0 0 */7 * *"
+
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  deployments: read
+  issues: read
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
 
 jobs:
   closeOldThemePrs:
@@ -13,15 +36,15 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4.0.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
 
-      - uses: bahmutov/npm-install@v1
+      - uses: bahmutov/npm-install@2509f13e8485d88340a789a3f7ca11aaac47c9fc # v1.8.36
         with:
           useLockFile: false
 
