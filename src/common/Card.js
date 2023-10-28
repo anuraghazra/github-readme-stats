@@ -11,6 +11,8 @@ class Card {
    * @param {string?=} args.customTitle Card custom title.
    * @param {string?=} args.defaultTitle Card default title.
    * @param {string?=} args.titlePrefixIcon Card title prefix icon.
+   * @param {string?=} args.imageUrl Card preview image.
+   * @param {number?=} args.imageHeight Card preview image.
    * @param {object?=} args.colors Card colors arguments.
    * @param {string} args.colors.titleColor Card title color.
    * @param {string} args.colors.textColor Card text color.
@@ -27,6 +29,8 @@ class Card {
     customTitle,
     defaultTitle = "",
     titlePrefixIcon,
+    imageUrl = "",
+    imageHeight = 200,
   }) {
     this.width = width;
     this.height = height;
@@ -36,6 +40,8 @@ class Card {
 
     this.border_radius = border_radius;
 
+    this.imageHeight = imageHeight;
+    this.imageUrl = imageUrl;
     // returns theme based colors with proper overrides and defaults
     this.colors = colors;
     this.title =
@@ -51,6 +57,10 @@ class Card {
     this.animations = true;
     this.a11yTitle = "";
     this.a11yDesc = "";
+    if (this.imageUrl) {
+      this.height += this.imageHeight;
+      this.paddingY += this.imageHeight;
+    }
   }
 
   /**
@@ -199,6 +209,18 @@ class Card {
     `;
   };
 
+  renderImage = () => {
+    if (!this.imageUrl) {
+      return "";
+    }
+    return `
+    <g transform="translate(0, 0)">
+    <image x="0" y="0" height="${this.imageHeight}"
+      href="${this.imageUrl}">
+    </image>
+  </g>`;
+  };
+
   /**
    * @param {string} body The inner body of the card.
    * @returns {string} The rendered card.
@@ -264,6 +286,7 @@ class Card {
         >
           ${body}
         </g>
+          ${this.renderImage()}
       </svg>
     `;
   }

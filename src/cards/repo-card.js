@@ -61,6 +61,7 @@ const renderRepoCard = (repo, options = {}) => {
     isTemplate,
     starCount,
     forkCount,
+    openGraphImageUrl,
   } = repo;
   const {
     hide_border = false,
@@ -141,6 +142,7 @@ const renderRepoCard = (repo, options = {}) => {
     height,
     border_radius,
     colors,
+    imageUrl: openGraphImageUrl,
   });
 
   card.disableAnimations();
