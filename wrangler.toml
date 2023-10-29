@@ -1,0 +1,4 @@
+name = "github-readme-stats"
+main = "cloudflare/main.js"
+compatibility_date = "2023-10-25"
+compatibility_flags = [ "nodejs_compat" ]

@@ -5,6 +5,7 @@
  * @description This function is currently rate limited to 1 request per 5 minutes.
  */
 
+import process from "node:process";
 import { logger, request, dateDiff } from "../../src/common/utils.js";
 export const RATE_LIMIT_SECONDS = 60 * 5; // 1 request per 5 minutes
 

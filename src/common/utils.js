@@ -3,6 +3,7 @@ import axios from "axios";
 import toEmoji from "emoji-name-map";
 import wrap from "word-wrap";
 import { themes } from "../../themes/index.js";
+import process from "node:process";
 
 const TRY_AGAIN_LATER = "Please try again later";
 

@@ -1,6 +1,7 @@
 // @ts-check
 import axios from "axios";
-import * as dotenv from "dotenv";
+// import * as dotenv from "dotenv";
+import process from "node:process";
 import githubUsernameRegex from "github-username-regex";
 import { calculateRank } from "../calculateRank.js";
 import { retryer } from "../common/retryer.js";
@@ -12,7 +13,7 @@ import {
   wrapTextMultiline,
 } from "../common/utils.js";
 
-dotenv.config();
+// dotenv.config();
 
 // GraphQL queries.
 const GRAPHQL_REPOS_FIELD = `

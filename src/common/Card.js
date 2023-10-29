@@ -1,4 +1,5 @@
 import { encodeHTML, flexLayout } from "./utils.js";
+import process from "node:process";
 
 class Card {
   /**

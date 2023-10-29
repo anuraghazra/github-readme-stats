@@ -11,6 +11,7 @@ import {
   measureText,
 } from "../common/utils.js";
 import { statCardLocales } from "../translations.js";
+import process from "node:process";
 
 const CARD_MIN_WIDTH = 287;
 const CARD_DEFAULT_WIDTH = 287;

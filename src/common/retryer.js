@@ -1,4 +1,5 @@
 import { CustomError, logger } from "./utils.js";
+import process from "node:process";
 
 // Script variables.
 

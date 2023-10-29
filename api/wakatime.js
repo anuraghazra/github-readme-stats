@@ -8,6 +8,7 @@ import {
 } from "../src/common/utils.js";
 import { fetchWakatimeStats } from "../src/fetchers/wakatime-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
+import process from "node:process";
 
 export default async (req, res) => {
   const {
