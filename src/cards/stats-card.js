@@ -1,4 +1,5 @@
 // @ts-check
+import process from "node:process";
 import { Card } from "../common/Card.js";
 import { I18n } from "../common/I18n.js";
 import { icons, rankIcon } from "../common/icons.js";
@@ -11,7 +12,6 @@ import {
   measureText,
 } from "../common/utils.js";
 import { statCardLocales } from "../translations.js";
-import process from "node:process";
 
 const CARD_MIN_WIDTH = 287;
 const CARD_DEFAULT_WIDTH = 287;

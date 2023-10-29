@@ -1,3 +1,4 @@
+import process from "node:process";
 import { RequestAdapter, ResponseAdapter } from "./adapter.js";
 import gist from "../api/gist.js";
 import index from "../api/index.js";
@@ -7,10 +8,19 @@ import wakatime from "../api/wakatime.js";
 import statusPatInfo from "../api/status/pat-info.js";
 import statusUp from "../api/status/up.js";
 
+const copyEnv = (env) => {
+  Object.keys(env).forEach((key) => {
+    if (/PAT_\d*$/.exec(key) || key === "FETCH_MULTI_PAGE_STARS") {
+      process.env[key] = env[key];
+    }
+  });
+};
+
 export default {
-  async fetch(request, env, ctx) {
+  async fetch(request, env) {
     const req = new RequestAdapter(request);
     const res = new ResponseAdapter();
+    copyEnv(env);
 
     const { pathname } = new URL(request.url);
     if (pathname === "/") {
