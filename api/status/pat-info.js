@@ -19,7 +19,7 @@ export const RATE_LIMIT_SECONDS = 60 * 5; // 1 request per 5 minutes
  *
  * @param {AxiosRequestHeaders} variables Fetcher variables.
  * @param {string} token GitHub token.
- * @param {boolean=} useFetch Use fetch instead of axios.
+ * @param {boolean} useFetch Use fetch instead of axios.
  * @returns {Promise<AxiosResponse>} The response.
  */
 const uptimeFetcher = (variables, token, useFetch) => {
@@ -55,7 +55,7 @@ const getAllPATs = (env) => {
  *
  * @param {Fetcher} fetcher The fetcher function.
  * @param {AxiosRequestHeaders} variables Fetcher variables.
- * @param {any} env The environment variables.
+ * @param {object} env The environment variables.
  * @returns {Promise<PATInfo>} The response.
  */
 const getPATInfo = async (fetcher, variables, env) => {
@@ -139,7 +139,7 @@ const getPATInfo = async (fetcher, variables, env) => {
  *
  * @param {any} _ The request.
  * @param {any} res The response.
- * @param {any} env The environment variables.
+ * @param {object} env The environment variables.
  * @returns {Promise<void>} The response.
  */
 export const handler = async (_, res, env) => {
