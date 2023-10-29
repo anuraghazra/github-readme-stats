@@ -14,6 +14,7 @@ const copyEnv = (env) => {
       process.env[key] = env[key];
     }
   });
+  process.env.IN_CLOUDFLARE = "true";
 };
 
 export default {

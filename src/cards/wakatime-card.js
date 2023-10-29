@@ -17,9 +17,14 @@ import { wakatimeCardLocales } from "../translations.js";
  * since vercel is using v16.14.0 which does not yet support json imports without the
  * --experimental-json-modules flag.
  */
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-const languageColors = require("../common/languageColors.json"); // now works
+let languageColors = {};
+try {
+  import("module").then((mod) => {
+    const { createRequire } = mod.Module;
+    const require = createRequire(import.meta.url);
+    languageColors = require("../common/languageColors.json"); // works
+  });
+} catch (err) {}
 
 /**
  * Creates the no coding activity SVG node.
