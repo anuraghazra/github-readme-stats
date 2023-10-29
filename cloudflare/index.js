@@ -9,7 +9,7 @@ import { handler as statusUpHandler } from "../api/status/up.js";
 
 export default {
   async fetch(request, env) {
-    env.IS_CLOUDFLARE = "true";
+    env.IS_CLOUDFLARE = "true"; // used to detect if running on Cloudflare
 
     const req = new RequestAdapter(request);
     const res = new ResponseAdapter();
