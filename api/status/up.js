@@ -20,9 +20,10 @@ export const RATE_LIMIT_SECONDS = 60 * 5; // 1 request per 5 minutes
  *
  * @param {AxiosRequestHeaders} variables Fetcher variables.
  * @param {string} token GitHub token.
+ * @param {boolean=} useFetch Use fetch instead of axios.
  * @returns {Promise<AxiosResponse>} The response.
  */
-const uptimeFetcher = (variables, token) => {
+const uptimeFetcher = (variables, token, useFetch) => {
   return request(
     {
       query: `
@@ -37,6 +38,7 @@ const uptimeFetcher = (variables, token) => {
     {
       Authorization: `bearer ${token}`,
     },
+    useFetch,
   );
 };
 
@@ -78,9 +80,10 @@ const shieldsUptimeBadge = (up) => {
  *
  * @param {any} req The request.
  * @param {any} res The response.
+ * @param {any} env The environment variables.
  * @returns {Promise<void>} Nothing.
  */
-export default async (req, res) => {
+export const handler = async (req, res, env) => {
   let { type } = req.query;
   type = type ? type.toLowerCase() : "boolean";
 
@@ -89,7 +92,7 @@ export default async (req, res) => {
   try {
     let PATsValid = true;
     try {
-      await retryer(uptimeFetcher, {});
+      await retryer(uptimeFetcher, {}, env);
     } catch (err) {
       PATsValid = false;
     }
@@ -121,3 +124,5 @@ export default async (req, res) => {
     res.send("Something went wrong: " + err.message);
   }
 };
+
+export default async (req, res) => handler(req, res, process.env);

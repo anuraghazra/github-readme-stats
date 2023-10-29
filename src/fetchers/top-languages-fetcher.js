@@ -18,9 +18,10 @@ import {
  *
  * @param {AxiosRequestHeaders} variables Fetcher variables.
  * @param {string} token GitHub token.
+ * @param {boolean=} useFetch Use fetch instead of axios.
  * @returns {Promise<AxiosResponse>} Languages fetcher response.
  */
-const fetcher = (variables, token) => {
+const fetcher = (variables, token, useFetch) => {
   return request(
     {
       query: `
@@ -49,6 +50,7 @@ const fetcher = (variables, token) => {
     {
       Authorization: `token ${token}`,
     },
+    useFetch,
   );
 };
 
@@ -59,6 +61,7 @@ const fetcher = (variables, token) => {
 /**
  * Fetch top languages for a given username.
  *
+ * @param {object} env Environment variables.
  * @param {string} username GitHub username.
  * @param {string[]} exclude_repo List of repositories to exclude.
  * @param {number} size_weight Weightage to be given to size.
@@ -66,6 +69,7 @@ const fetcher = (variables, token) => {
  * @returns {Promise<TopLangData>} Top languages data.
  */
 const fetchTopLanguages = async (
+  env,
   username,
   exclude_repo = [],
   size_weight = 1,
@@ -75,7 +79,7 @@ const fetchTopLanguages = async (
     throw new MissingParamError(["username"]);
   }
 
-  const res = await retryer(fetcher, { login: username });
+  const res = await retryer(fetcher, { login: username }, env);
 
   if (res.data.errors) {
     logger.error(res.data.errors);

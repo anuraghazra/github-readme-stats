@@ -10,7 +10,7 @@ import {
 import { fetchStats } from "../src/fetchers/stats-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
-export default async (req, res) => {
+export const handler = async (req, res, env) => {
   const {
     username,
     hide,
@@ -68,6 +68,7 @@ export default async (req, res) => {
   try {
     const showStats = parseArray(show);
     const stats = await fetchStats(
+      env,
       username,
       parseBoolean(include_all_commits),
       parseArray(exclude_repo),
@@ -82,8 +83,8 @@ export default async (req, res) => {
       CONSTANTS.SIX_HOURS,
       CONSTANTS.ONE_DAY,
     );
-    cacheSeconds = process.env.CACHE_SECONDS
-      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+    cacheSeconds = env.CACHE_SECONDS
+      ? parseInt(env.CACHE_SECONDS, 10) || cacheSeconds
       : cacheSeconds;
 
     res.setHeader(
@@ -138,3 +139,5 @@ export default async (req, res) => {
     );
   }
 };
+
+export default async (req, res) => handler(req, res, process.env);

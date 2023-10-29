@@ -19,9 +19,10 @@ export const RATE_LIMIT_SECONDS = 60 * 5; // 1 request per 5 minutes
  *
  * @param {AxiosRequestHeaders} variables Fetcher variables.
  * @param {string} token GitHub token.
+ * @param {boolean=} useFetch Use fetch instead of axios.
  * @returns {Promise<AxiosResponse>} The response.
  */
-const uptimeFetcher = (variables, token) => {
+const uptimeFetcher = (variables, token, useFetch) => {
   return request(
     {
       query: `
@@ -36,11 +37,12 @@ const uptimeFetcher = (variables, token) => {
     {
       Authorization: `bearer ${token}`,
     },
+    useFetch,
   );
 };
 
-const getAllPATs = () => {
-  return Object.keys(process.env).filter((key) => /PAT_\d*$/.exec(key));
+const getAllPATs = (env) => {
+  return Object.keys(env).filter((key) => /PAT_\d*$/.exec(key));
 };
 
 /**
@@ -53,15 +55,16 @@ const getAllPATs = () => {
  *
  * @param {Fetcher} fetcher The fetcher function.
  * @param {AxiosRequestHeaders} variables Fetcher variables.
+ * @param {any} env The environment variables.
  * @returns {Promise<PATInfo>} The response.
  */
-const getPATInfo = async (fetcher, variables) => {
+const getPATInfo = async (fetcher, variables, env) => {
   const details = {};
-  const PATs = getAllPATs();
+  const PATs = getAllPATs(env);
 
   for (const pat of PATs) {
     try {
-      const response = await fetcher(variables, process.env[pat]);
+      const response = await fetcher(variables, env[pat]);
       const errors = response.data.errors;
       const hasErrors = Boolean(errors);
       const errorType = errors?.[0]?.type;
@@ -136,13 +139,14 @@ const getPATInfo = async (fetcher, variables) => {
  *
  * @param {any} _ The request.
  * @param {any} res The response.
+ * @param {any} env The environment variables.
  * @returns {Promise<void>} The response.
  */
-export default async (_, res) => {
+export const handler = async (_, res, env) => {
   res.setHeader("Content-Type", "application/json");
   try {
     // Add header to prevent abuse.
-    const PATsInfo = await getPATInfo(uptimeFetcher, {});
+    const PATsInfo = await getPATInfo(uptimeFetcher, {}, env);
     if (PATsInfo) {
       res.setHeader(
         "Cache-Control",
@@ -157,3 +161,5 @@ export default async (_, res) => {
     res.send("Something went wrong: " + err.message);
   }
 };
+
+export default async (req, res) => handler(req, res, process.env);

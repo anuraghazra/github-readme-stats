@@ -10,7 +10,7 @@ import {
 import { fetchTopLanguages } from "../src/fetchers/top-languages-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
-export default async (req, res) => {
+export const handler = async (req, res, env) => {
   const {
     username,
     hide,
@@ -64,6 +64,7 @@ export default async (req, res) => {
 
   try {
     const topLangs = await fetchTopLanguages(
+      env,
       username,
       parseArray(exclude_repo),
       size_weight,
@@ -124,3 +125,5 @@ export default async (req, res) => {
     );
   }
 };
+
+export default async (req, res) => handler(req, res, process.env);

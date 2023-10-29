@@ -1,13 +1,11 @@
-import process from "node:process";
 import { CustomError, logger } from "./utils.js";
 
-// Script variables.
-
-// Count the number of GitHub API tokens available.
-const PATs = Object.keys(process.env).filter((key) =>
-  /PAT_\d*$/.exec(key),
-).length;
-const RETRIES = process.env.NODE_ENV === "test" ? 7 : PATs;
+const getMaxRetries = (env) => {
+  // Count the number of GitHub API tokens available.
+  const PATs = Object.keys(env).filter((key) => /PAT_\d*$/.exec(key)).length;
+  const RETRIES = env.NODE_ENV === "test" ? 7 : PATs;
+  return RETRIES;
+};
 
 /**
  * @typedef {import("axios").AxiosResponse} AxiosResponse Axios response.
@@ -19,10 +17,14 @@ const RETRIES = process.env.NODE_ENV === "test" ? 7 : PATs;
  *
  * @param {FetcherFunction} fetcher The fetcher function.
  * @param {object} variables Object with arguments to pass to the fetcher function.
+ * @param {object} env Environment variables.
  * @param {number} retries How many times to retry.
  * @returns {Promise<T>} The response from the fetcher function.
  */
-const retryer = async (fetcher, variables, retries = 0) => {
+const retryer = async (fetcher, variables, env, retries = 0) => {
+  const useFetch = "IS_CLOUDFLARE" in env; // Cloudflare Workers don't support axios.
+  const RETRIES = getMaxRetries(env);
+
   if (!RETRIES) {
     throw new CustomError("No GitHub API tokens found", CustomError.NO_TOKENS);
   }
@@ -36,12 +38,13 @@ const retryer = async (fetcher, variables, retries = 0) => {
     // try to fetch with the first token since RETRIES is 0 index i'm adding +1
     let response = await fetcher(
       variables,
-      process.env[`PAT_${retries + 1}`],
+      env[`PAT_${retries + 1}`],
+      useFetch,
       retries,
     );
 
-    // prettier-ignore
-    const isRateExceeded = response.data.errors && response.data.errors[0].type === "RATE_LIMITED";
+    const isRateExceeded =
+      response.data.errors && response.data.errors[0].type === "RATE_LIMITED";
 
     // if rate limit is hit increase the RETRIES and recursively call the retryer
     // with username, and current RETRIES
@@ -49,7 +52,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
       logger.log(`PAT_${retries + 1} Failed`);
       retries++;
       // directly return from the function
-      return retryer(fetcher, variables, retries);
+      return retryer(fetcher, variables, env, retries);
     }
 
     // finally return the response
@@ -66,12 +69,12 @@ const retryer = async (fetcher, variables, retries = 0) => {
       logger.log(`PAT_${retries + 1} Failed`);
       retries++;
       // directly return from the function
-      return retryer(fetcher, variables, retries);
+      return retryer(fetcher, variables, env, retries);
     } else {
       return err.response;
     }
   }
 };
 
-export { retryer, RETRIES };
+export { retryer, getMaxRetries };
 export default retryer;

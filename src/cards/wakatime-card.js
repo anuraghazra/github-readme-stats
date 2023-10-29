@@ -24,7 +24,9 @@ try {
     const require = createRequire(import.meta.url);
     languageColors = require("../common/languageColors.json"); // works
   });
-} catch (err) {}
+} catch (err) {
+  languageColors = await import("../common/languageColors.json");
+}
 
 /**
  * Creates the no coding activity SVG node.

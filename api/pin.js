@@ -9,7 +9,7 @@ import {
 import { fetchRepo } from "../src/fetchers/repo-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
-export default async (req, res) => {
+export const handler = async (req, res, env) => {
   const {
     username,
     repo,
@@ -53,7 +53,7 @@ export default async (req, res) => {
   }
 
   try {
-    const repoData = await fetchRepo(username, repo);
+    const repoData = await fetchRepo(env, username, repo);
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
@@ -116,3 +116,5 @@ export default async (req, res) => {
     );
   }
 };
+
+export default async (req, res) => handler(req, res, process.env);

@@ -8,7 +8,7 @@ import { isLocaleAvailable } from "../src/translations.js";
 import { renderGistCard } from "../src/cards/gist-card.js";
 import { fetchGist } from "../src/fetchers/gist-fetcher.js";
 
-export default async (req, res) => {
+export const handler = async (req, res, env) => {
   const {
     id,
     title_color,
@@ -39,7 +39,7 @@ export default async (req, res) => {
   }
 
   try {
-    const gistData = await fetchGist(id);
+    const gistData = await fetchGist(env, id);
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.SIX_HOURS, 10),
@@ -102,3 +102,5 @@ export default async (req, res) => {
     );
   }
 };
+
+export default async (req, res) => handler(req, res, process.env);

@@ -1,6 +1,6 @@
 import { jest } from "@jest/globals";
 import "@testing-library/jest-dom";
-import { retryer, RETRIES } from "../src/common/retryer.js";
+import { retryer, getMaxRetries } from "../src/common/retryer.js";
 import { logger } from "../src/common/utils.js";
 import { expect, it, describe } from "@jest/globals";
 
@@ -15,7 +15,7 @@ const fetcherFail = jest.fn(() => {
   );
 });
 
-const fetcherFailOnSecondTry = jest.fn((_vars, _token, retries) => {
+const fetcherFailOnSecondTry = jest.fn((_vars, _token, _useFetch, retries) => {
   return new Promise((res) => {
     // faking rate limit
     if (retries < 1) {
@@ -27,14 +27,14 @@ const fetcherFailOnSecondTry = jest.fn((_vars, _token, retries) => {
 
 describe("Test Retryer", () => {
   it("retryer should return value and have zero retries on first try", async () => {
-    let res = await retryer(fetcher, {});
+    let res = await retryer(fetcher, {}, process.env);
 
     expect(fetcher).toBeCalledTimes(1);
     expect(res).toStrictEqual({ data: "ok" });
   });
 
   it("retryer should return value and have 2 retries", async () => {
-    let res = await retryer(fetcherFailOnSecondTry, {});
+    let res = await retryer(fetcherFailOnSecondTry, {}, process.env);
 
     expect(fetcherFailOnSecondTry).toBeCalledTimes(2);
     expect(res).toStrictEqual({ data: "ok" });
@@ -42,9 +42,9 @@ describe("Test Retryer", () => {
 
   it("retryer should throw specific error if maximum retries reached", async () => {
     try {
-      await retryer(fetcherFail, {});
+      await retryer(fetcherFail, {}, process.env);
     } catch (err) {
-      expect(fetcherFail).toBeCalledTimes(RETRIES + 1);
+      expect(fetcherFail).toBeCalledTimes(getMaxRetries(process.env) + 1);
       expect(err.message).toBe("Downtime due to GitHub API rate limiting");
     }
   });

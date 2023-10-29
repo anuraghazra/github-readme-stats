@@ -1,7 +1,6 @@
 // @ts-check
 import axios from "axios";
 import * as dotenv from "dotenv";
-import process from "node:process";
 import githubUsernameRegex from "github-username-regex";
 import { calculateRank } from "../calculateRank.js";
 import { retryer } from "../common/retryer.js";
@@ -87,11 +86,12 @@ const GRAPHQL_STATS_QUERY = `
  *
  * @param {object} variables Fetcher variables.
  * @param {string} token GitHub token.
+ * @param {boolean=} useFetch Use fetch instead of axios.
  * @returns {Promise<AxiosResponse>} Axios response.
  */
-const fetcher = (variables, token) => {
+const fetcher = (variables, token, useFetch) => {
   const query = variables.after ? GRAPHQL_REPOS_QUERY : GRAPHQL_STATS_QUERY;
-  return request(
+  const resp = request(
     {
       query,
       variables,
@@ -99,7 +99,9 @@ const fetcher = (variables, token) => {
     {
       Authorization: `bearer ${token}`,
     },
+    useFetch,
   );
+  return resp;
 };
 
 /**
@@ -110,6 +112,7 @@ const fetcher = (variables, token) => {
  * @param {boolean} variables.includeMergedPullRequests Include merged pull requests.
  * @param {boolean} variables.includeDiscussions Include discussions.
  * @param {boolean} variables.includeDiscussionsAnswers Include discussions answers.
+ * @param {object} variables.env Environment variables.
  * @returns {Promise<AxiosResponse>} Axios response.
  *
  * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
@@ -119,6 +122,7 @@ const statsFetcher = async ({
   includeMergedPullRequests,
   includeDiscussions,
   includeDiscussionsAnswers,
+  env,
 }) => {
   let stats;
   let hasNextPage = true;
@@ -132,7 +136,7 @@ const statsFetcher = async ({
       includeDiscussions,
       includeDiscussionsAnswers,
     };
-    let res = await retryer(fetcher, variables);
+    let res = await retryer(fetcher, variables, env);
     if (res.data.errors) {
       return res;
     }
@@ -150,7 +154,7 @@ const statsFetcher = async ({
       (node) => node.stargazers.totalCount !== 0,
     );
     hasNextPage =
-      process.env.FETCH_MULTI_PAGE_STARS === "true" &&
+      env.FETCH_MULTI_PAGE_STARS === "true" &&
       repoNodes.length === repoNodesWithStars.length &&
       res.data.data.user.repositories.pageInfo.hasNextPage;
     endCursor = res.data.data.user.repositories.pageInfo.endCursor;
@@ -163,12 +167,13 @@ const statsFetcher = async ({
  * Fetch all the commits for all the repositories of a given username.
  *
  * @param {string} username GitHub username.
+ * @param {object} env Environment variables.
  * @returns {Promise<number>} Total commits.
  *
  * @description Done like this because the GitHub API does not provide a way to fetch all the commits. See
  * #92#issuecomment-661026467 and #211 for more information.
  */
-const totalCommitsFetcher = async (username) => {
+const totalCommitsFetcher = async (username, env) => {
   if (!githubUsernameRegex.test(username)) {
     logger.log("Invalid username provided.");
     throw new Error("Invalid username provided.");
@@ -189,7 +194,7 @@ const totalCommitsFetcher = async (username) => {
 
   let res;
   try {
-    res = await retryer(fetchTotalCommits, { login: username });
+    res = await retryer(fetchTotalCommits, { login: username }, env);
   } catch (err) {
     logger.log(err);
     throw new Error(err);
@@ -212,6 +217,7 @@ const totalCommitsFetcher = async (username) => {
 /**
  * Fetch stats for a given username.
  *
+ * @param {object} env Environment variables.
  * @param {string} username GitHub username.
  * @param {boolean} include_all_commits Include all commits.
  * @param {string[]} exclude_repo Repositories to exclude.
@@ -221,6 +227,7 @@ const totalCommitsFetcher = async (username) => {
  * @returns {Promise<StatsData>} Stats data.
  */
 const fetchStats = async (
+  env,
   username,
   include_all_commits = false,
   exclude_repo = [],
@@ -252,6 +259,7 @@ const fetchStats = async (
     includeMergedPullRequests: include_merged_pull_requests,
     includeDiscussions: include_discussions,
     includeDiscussionsAnswers: include_discussions_answers,
+    env,
   });
 
   // Catch GraphQL errors.
@@ -281,7 +289,7 @@ const fetchStats = async (
 
   // if include_all_commits, fetch all commits using the REST API.
   if (include_all_commits) {
-    stats.totalCommits = await totalCommitsFetcher(username);
+    stats.totalCommits = await totalCommitsFetcher(username, env);
   } else {
     stats.totalCommits = user.contributionsCollection.totalCommitContributions;
   }

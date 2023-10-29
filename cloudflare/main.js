@@ -1,43 +1,34 @@
-import process from "node:process";
 import { RequestAdapter, ResponseAdapter } from "./adapter.js";
-import gist from "../api/gist.js";
-import index from "../api/index.js";
-import pin from "../api/pin.js";
-import topLangs from "../api/top-langs.js";
-import wakatime from "../api/wakatime.js";
-import statusPatInfo from "../api/status/pat-info.js";
-import statusUp from "../api/status/up.js";
-
-const copyEnv = (env) => {
-  Object.keys(env).forEach((key) => {
-    if (/PAT_\d*$/.exec(key) || key === "FETCH_MULTI_PAGE_STARS") {
-      process.env[key] = env[key];
-    }
-  });
-  process.env.IN_CLOUDFLARE = "true";
-};
+import { handler as gistHandler } from "../api/gist.js";
+import { handler as indexHandler } from "../api/index.js";
+import { handler as pinHandler } from "../api/pin.js";
+import { handler as topLangsHandler } from "../api/top-langs.js";
+import wakatimeHandler from "../api/wakatime.js";
+import { handler as statusPatInfoHandler } from "../api/status/pat-info.js";
+import { handler as statusUpHandler } from "../api/status/up.js";
 
 export default {
   async fetch(request, env) {
+    env.IS_CLOUDFLARE = "true";
+
     const req = new RequestAdapter(request);
     const res = new ResponseAdapter();
-    copyEnv(env);
 
     const { pathname } = new URL(request.url);
-    if (pathname === "/") {
-      await index(req, res);
-    } else if (pathname === "/gist") {
-      await gist(req, res);
-    } else if (pathname === "/pin") {
-      await pin(req, res);
-    } else if (pathname === "/top-langs") {
-      await topLangs(req, res);
-    } else if (pathname === "/wakatime") {
-      await wakatime(req, res);
-    } else if (pathname === "/status/pat-info") {
-      await statusPatInfo(req, res);
-    } else if (pathname === "/status/up") {
-      await statusUp(req, res);
+    if (pathname === "/api") {
+      await indexHandler(req, res, env);
+    } else if (pathname === "/api/gist") {
+      await gistHandler(req, res, env);
+    } else if (pathname === "/api/pin") {
+      await pinHandler(req, res, env);
+    } else if (pathname === "/api/top-langs") {
+      await topLangsHandler(req, res, env);
+    } else if (pathname === "/api/wakatime") {
+      await wakatimeHandler(req, res);
+    } else if (pathname === "/api/status/pat-info") {
+      await statusPatInfoHandler(req, res, env);
+    } else if (pathname === "/api/status/up") {
+      await statusUpHandler(req, res, env);
     } else {
       return new Response("not found", { status: 404 });
     }

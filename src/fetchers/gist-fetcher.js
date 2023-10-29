@@ -37,12 +37,14 @@ query gistInfo($gistName: String!) {
  *
  * @param {AxiosRequestHeaders} variables Fetcher variables.
  * @param {string} token GitHub token.
+ * @param {boolean=} useFetch Use fetch instead of axios.
  * @returns {Promise<AxiosResponse>} The response.
  */
-const fetcher = async (variables, token) => {
+const fetcher = async (variables, token, useFetch) => {
   return await request(
     { query: QUERY, variables },
     { Authorization: `token ${token}` },
+    useFetch,
   );
 };
 
@@ -83,14 +85,15 @@ const calculatePrimaryLanguage = (files) => {
 /**
  * Fetch GitHub gist information by given username and ID.
  *
+ * @param {object} env Environment variables.
  * @param {string} id Github gist ID.
  * @returns {Promise<GistData>} Gist data.
  */
-const fetchGist = async (id) => {
+const fetchGist = async (env, id) => {
   if (!id) {
     throw new MissingParamError(["id"], "/api/gist?id=GIST_ID");
   }
-  const res = await retryer(fetcher, { gistName: id });
+  const res = await retryer(fetcher, { gistName: id }, env);
   if (res.data.errors) {
     throw new Error(res.data.errors[0].message);
   }

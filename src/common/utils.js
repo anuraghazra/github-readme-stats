@@ -227,11 +227,28 @@ const fallbackColor = (color, fallbackColor) => {
  * Send GraphQL request to GitHub API.
  *
  * @param {AxiosRequestConfigData} data Request data.
- * @param {AxiosRequestConfigHeaders} headers Request headers.
+ * @param {Record<string, string>} headers Request headers.
+ * @param {boolean=} useFetch Use fetch instead of axios.
  * @returns {Promise<any>} Request response.
  */
-const request = (data, headers) => {
-  return axios({
+const request = async (data, headers, useFetch = false) => {
+  // GitHub now requires User-Agent header
+  // https://docs.github.com/en/rest/overview/resources-in-the-rest-api?apiVersion=2022-11-28#user-agent-required
+  headers["User-Agent"] = "github-readme-stats";
+
+  if (useFetch) {
+    const resp = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers,
+      body: JSON.stringify(data),
+    });
+    return {
+      ...resp,
+      data: await resp.json(),
+    };
+  }
+
+  return await axios({
     url: "https://api.github.com/graphql",
     method: "post",
     headers,

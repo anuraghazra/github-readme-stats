@@ -12,9 +12,10 @@ import { MissingParamError, request } from "../common/utils.js";
  *
  * @param {AxiosRequestHeaders} variables Fetcher variables.
  * @param {string} token GitHub token.
+ * @param {boolean=} useFetch Use fetch instead of axios.
  * @returns {Promise<AxiosResponse>} The response.
  */
-const fetcher = (variables, token) => {
+const fetcher = (variables, token, useFetch) => {
   return request(
     {
       query: `
@@ -53,6 +54,7 @@ const fetcher = (variables, token) => {
     {
       Authorization: `token ${token}`,
     },
+    useFetch,
   );
 };
 
@@ -65,11 +67,12 @@ const urlExample = "/api/pin?username=USERNAME&amp;repo=REPO_NAME";
 /**
  * Fetch repository data.
  *
+ * @param {object} env Environment variables.
  * @param {string} username GitHub username.
  * @param {string} reponame GitHub repository name.
  * @returns {Promise<RepositoryData>} Repository data.
  */
-const fetchRepo = async (username, reponame) => {
+const fetchRepo = async (env, username, reponame) => {
   if (!username && !reponame) {
     throw new MissingParamError(["username", "repo"], urlExample);
   }
@@ -80,7 +83,7 @@ const fetchRepo = async (username, reponame) => {
     throw new MissingParamError(["repo"], urlExample);
   }
 
-  let res = await retryer(fetcher, { login: username, repo: reponame });
+  let res = await retryer(fetcher, { login: username, repo: reponame }, env);
 
   const data = res.data.data;
 
