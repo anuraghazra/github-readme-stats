@@ -120,6 +120,21 @@ describe("Test /api/", () => {
     );
   });
 
+  it("should render error card in same theme as requested card", async () => {
+    const { req, res } = faker({ theme: "merko" }, error);
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError(
+        error.errors[0].message,
+        "Make sure the provided username is not an organization",
+        { theme: "merko" },
+      ),
+    );
+  });
+
   it("should get the query options", async () => {
     const { req, res } = faker(
       {
