@@ -30,7 +30,7 @@ export default async (req, res) => {
 
   if (blacklist.includes(username)) {
     return res.send(
-      renderError("Something went wrong", "", {
+      renderError("Something went wrong", "This username is blacklisted", {
         title_color,
         text_color,
         bg_color,
