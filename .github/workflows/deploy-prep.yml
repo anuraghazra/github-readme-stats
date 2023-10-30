@@ -3,17 +3,18 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - master
+      - cloudflare
 
 jobs:
   config:
-    if: github.repository == 'anuraghazra/github-readme-stats'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - uses: actions/checkout@v4
+
       - name: Deployment Prep
         run: python ./.github/workflows/deploy-prep.py
-      - uses: stefanzweifel/git-auto-commit-action@8756aa072ef5b4a080af5dc8fef36c5d586e521d # v5.0.0
+
+      - uses: stefanzweifel/git-auto-commit-action@v5
         with:
           branch: vercel
           create_branch: true

@@ -2,11 +2,7 @@ name: "Static code analysis workflow (CodeQL)"
 
 on:
   push:
-    branches:
-      - master
   pull_request:
-    branches:
-      - master
 
 permissions:
   actions: read
@@ -24,18 +20,16 @@ permissions:
 
 jobs:
   CodeQL-Build:
-    # CodeQL runs on ubuntu-latest, windows-latest, and macos-latest
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        uses: actions/checkout@v4
 
-      # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@46a6823b81f2d7c67ddf123851eea88365bc8a67 # v2.13.5
+        uses: github/codeql-action/init@v2
         with:
           languages: javascript
 
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@46a6823b81f2d7c67ddf123851eea88365bc8a67 # v2.13.5
+        uses: github/codeql-action/analyze@v2
