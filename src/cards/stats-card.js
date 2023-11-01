@@ -76,7 +76,7 @@ const createTextNode = ({
 };
 
 /**
- * Calculates progress along the boundary of the circle i.e it's circumference.
+ * Calculates progress along the boundary of the circle, i.e. its circumference.
  *
  * @param {number} value The rank value to calculate progress for.
  * @returns {number} Progress value.
