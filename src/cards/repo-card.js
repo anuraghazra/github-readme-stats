@@ -74,6 +74,7 @@ const renderRepoCard = (repo, options = {}) => {
     border_radius,
     border_color,
     locale,
+    show_image = false,
   } = options;
 
   const lineHeight = 10;
@@ -142,7 +143,7 @@ const renderRepoCard = (repo, options = {}) => {
     height,
     border_radius,
     colors,
-    imageUrl: openGraphImageUrl,
+    imageUrl: show_image ? openGraphImageUrl : "",
   });
 
   card.disableAnimations();

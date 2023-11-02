@@ -209,6 +209,9 @@ class Card {
     `;
   };
 
+  /**
+   * @returns {string} Renders social preview image
+   */
   renderImage = () => {
     if (!this.imageUrl) {
       return "";
