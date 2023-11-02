@@ -42,6 +42,7 @@ class Card {
 
     this.imageHeight = imageHeight;
     this.imageUrl = imageUrl;
+
     // returns theme based colors with proper overrides and defaults
     this.colors = colors;
     this.title =
