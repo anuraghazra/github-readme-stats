@@ -218,8 +218,8 @@ class Card {
       return "";
     }
     return `
-    <g transform="translate(0, 0)">
-    <image x="0" y="0" height="${this.imageHeight}"
+    <g data-testid="card-image" transform="translate(0, 0)">
+    <image x="0" y="0" width="${this.width}" height="${this.imageHeight}"
       href="${this.imageUrl}">
     </image>
   </g>`;
