@@ -28,6 +28,7 @@ const languageColors = require("../common/languageColors.json"); // now works
 const ICON_SIZE = 16;
 const CARD_DEFAULT_WIDTH = 400;
 const HEADER_MAX_LENGTH = 35;
+const MIN_CARD_WIDTH = 280;
 
 /**
  * @typedef {import('./types').GistCardOptions} GistCardOptions Gist card options.
@@ -119,7 +120,7 @@ const renderGistCard = (gistData, options = {}) => {
         ? `${header.slice(0, HEADER_MAX_LENGTH)}...`
         : header,
     titlePrefixIcon: icons.gist,
-    width: card_width ? card_width : CARD_DEFAULT_WIDTH,
+    width: card_width ? (card_width < MIN_CARD_WIDTH ? MIN_CARD_WIDTH : card_width) : CARD_DEFAULT_WIDTH,
     height,
     border_radius,
     colors: {
