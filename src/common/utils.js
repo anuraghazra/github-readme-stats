@@ -569,6 +569,27 @@ const dateDiff = (d1, d2) => {
   return Math.round(diff / (1000 * 60));
 };
 
+const getBase64URIFromImage = async (imageURL) => {
+  try {
+    const response = await axios.get(imageURL, {
+      responseType: "arraybuffer",
+    });
+
+    if (response.status === 200) {
+      const base64Image = Buffer.from(response.data, "binary").toString(
+        "base64",
+      );
+      const mimeType = response.headers["content-type"];
+      return `data:${mimeType};base64,${base64Image}`;
+    } else {
+      throw new Error("Failed to fetch the image.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    return null;
+  }
+};
+
 export {
   ERROR_CARD_LENGTH,
   renderError,
@@ -595,4 +616,5 @@ export {
   chunkArray,
   parseEmojis,
   dateDiff,
+  getBase64URIFromImage,
 };

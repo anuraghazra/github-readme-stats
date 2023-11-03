@@ -3,6 +3,7 @@ import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
   CONSTANTS,
+  getBase64URIFromImage,
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
@@ -67,6 +68,10 @@ export default async (req, res) => {
       `max-age=${
         cacheSeconds / 2
       }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    );
+
+    repoData.openGraphImageUrl = await getBase64URIFromImage(
+      repoData.openGraphImageUrl,
     );
 
     return res.send(
