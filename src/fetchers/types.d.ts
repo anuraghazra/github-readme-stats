@@ -22,7 +22,7 @@ export type RepositoryData = {
   };
   forkCount: number;
   starCount: number;
-  openGraphImageUrl: string;
+  stringifiedRepoImage: string;
 };
 
 export type StatsData = {

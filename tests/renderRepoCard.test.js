@@ -18,8 +18,7 @@ const data_repo = {
     },
     starCount: 38000,
     forkCount: 100,
-    openGraphImageUrl:
-      "https://repository-images.githubusercontent.com/266996769/1e4f2180-b194-11ea-9806-2395601f119b",
+    stringifiedRepoImage: "data:image/png;base64,base64/image/string",
   },
 };
 
@@ -350,7 +349,7 @@ describe("Test renderRepoCard", () => {
     expect(queryByTestId(document.body, "card-image")).toBeInTheDocument();
     expect(
       queryByTestId(document.body, "card-image").children[0],
-    ).toHaveAttribute("href", data_repo.repository.openGraphImageUrl);
+    ).toHaveAttribute("href", data_repo.repository.stringifiedRepoImage);
   });
 
   it("should not render repo's social preview image by default", () => {

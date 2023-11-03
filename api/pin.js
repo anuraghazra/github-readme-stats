@@ -70,7 +70,7 @@ export default async (req, res) => {
       }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     );
 
-    repoData.openGraphImageUrl = await getBase64URIFromImage(
+    repoData.stringifiedRepoImage = await getBase64URIFromImage(
       repoData.openGraphImageUrl,
     );
 
