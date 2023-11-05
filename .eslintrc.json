@@ -150,7 +150,7 @@
         // "arrow-body-style": [ "error", "always" ],
         // "arrow-parens": [ "error", "always" ],
         // "arrow-spacing": [ "error", { "before": true, "after": true }],
-        // "constructor-super": "error",
+        "constructor-super": "error",
         // "generator-star-spacing": [ "error", "before" ],
         // "no-arrow-condition": "error",
         "no-class-assign": "error",
