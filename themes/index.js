@@ -456,6 +456,12 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+  ambient_gradient: {
+    title_color: "ffffff",
+    text_color: "ffffff",
+    icon_color: "ffffff",
+    bg_color: "35,4158d0,c850c0,ffcc70",
+  },
 };
 
 export default themes;
