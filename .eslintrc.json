@@ -217,14 +217,13 @@
                 "MethodDefinition": true,
                 "ClassDeclaration": false
             }
-        }]
+        }],
         // "semi-spacing": [ "warn", { "before": false, "after": true }],
         // "semi": [ "error", "always" ],
         // "sort-vars": "off",
-        // "space-after-keywords": [ "warn", "always" ],
+        "keyword-spacing": ["error", { "before": true, "after": true }]
         // "space-before-blocks": [ "warn", "always" ],
         // "space-before-function-paren": [ "warn", "never" ],
-        // "space-before-keywords": [ "warn", "always" ],
         // "space-in-parens": [ "warn", "never" ],
         // "space-infix-ops": [ "warn", { "int32Hint": true } ],
         // "space-return-throw-case": "error",
