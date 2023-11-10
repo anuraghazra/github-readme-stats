@@ -1,14 +1,10 @@
+import { jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { fetchWakatimeStats } from "../src/fetchers/wakatime-fetcher.js";
+import wakatime from "../api/wakatime.js";
+import { renderWakatimeCard } from "../src/cards/wakatime-card.js";
 import { expect, it, describe, afterEach } from "@jest/globals";
-
-const mock = new MockAdapter(axios);
-
-afterEach(() => {
-  mock.reset();
-});
 
 const wakaTimeData = {
   data: {
@@ -102,34 +98,26 @@ const wakaTimeData = {
   },
 };
 
-describe("WakaTime fetcher", () => {
-  it("should fetch correct WakaTime data", async () => {
+const mock = new MockAdapter(axios);
+
+afterEach(() => {
+  mock.reset();
+});
+
+describe("Test /api/wakatime", () => {
+  it("should test the request", async () => {
     const username = "anuraghazra";
+    const req = { query: { username } };
+    const res = { setHeader: jest.fn(), send: jest.fn() };
     mock
       .onGet(
         `https://wakatime.com/api/v1/users/${username}/stats?is_including_today=true`,
       )
       .reply(200, wakaTimeData);
 
-    const repo = await fetchWakatimeStats({ username });
-    expect(repo).toStrictEqual(wakaTimeData.data);
-  });
+    await wakatime(req, res);
 
-  it("should throw error if username param missing", async () => {
-    mock.onGet(/\/https:\/\/wakatime\.com\/api/).reply(404, wakaTimeData);
-
-    await expect(fetchWakatimeStats("noone")).rejects.toThrow(
-      'Missing params "username" make sure you pass the parameters in URL',
-    );
-  });
-
-  it("should throw error if username is not found", async () => {
-    mock.onGet(/\/https:\/\/wakatime\.com\/api/).reply(404, wakaTimeData);
-
-    await expect(fetchWakatimeStats({ username: "noone" })).rejects.toThrow(
-      "Could not resolve to a User with the login of 'noone'",
-    );
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(renderWakatimeCard(wakaTimeData.data, {}));
   });
 });
-
-export { wakaTimeData };

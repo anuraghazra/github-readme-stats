@@ -12,7 +12,7 @@ import Hjson from "hjson";
 import snakeCase from "lodash.snakecase";
 import parse from "parse-diff";
 import { inspect } from "util";
-import { isValidHexColor } from "../src/common/utils.js";
+import { isValidHexColor, isValidGradient } from "../src/common/utils.js";
 import { themes } from "../themes/index.js";
 import { getGithubToken, getRepoInfo } from "./helpers.js";
 
@@ -42,7 +42,7 @@ const COLOR_PROPS = {
   title_color: 6,
   icon_color: 6,
   text_color: 6,
-  bg_color: 8,
+  bg_color: 23,
   border_color: 6,
 };
 const ACCEPTED_COLOR_PROPS = Object.keys(COLOR_PROPS);
@@ -499,9 +499,13 @@ export const run = async () => {
                 `Theme color property \`${colorKey}\` can not be longer than \`${COLOR_PROPS[colorKey]}\` characters`,
               );
               invalidColors = true;
-            } else if (!isValidHexColor(colorValue)) {
+            } else if (
+              !(colorKey === "bg_color" && colorValue.split(",").length > 1
+                ? isValidGradient(colorValue.split(","))
+                : isValidHexColor(colorValue))
+            ) {
               errors.push(
-                `Theme color property \`${colorKey}\` is not a valid hex color: <code>#${colorValue}</code>`,
+                `Theme color property \`${colorKey}\` is not a valid hex color: <code>${colorValue}</code>`,
               );
               invalidColors = true;
             }
@@ -542,6 +546,10 @@ export const run = async () => {
       Object.keys(colorPairs).forEach((item) => {
         let color1 = colorPairs[item][0];
         let color2 = colorPairs[item][1];
+        const isGradientColor = color2.split(",").length > 1;
+        if (isGradientColor) {
+          return;
+        }
         color1 = color1.length === 4 ? color1.slice(0, 3) : color1.slice(0, 6);
         color2 = color2.length === 4 ? color2.slice(0, 3) : color2.slice(0, 6);
         if (!ccc.isLevelAA(`#${color1}`, `#${color2}`)) {
