@@ -390,6 +390,7 @@ If we don't support your language, please consider contributing! You can find mo
 #### Gist Card Exclusive Options
 
 *   `show_owner` - Shows the gist's owner name *(boolean)*. Default: `false`.
+*   `card_width` - Sets the width of the card manually *(number)*. Default: `400`.
 
 #### Language Card Exclusive Options
 
