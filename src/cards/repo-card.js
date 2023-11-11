@@ -83,26 +83,23 @@ const renderRepoCard = (repo, options = {}) => {
   const header = show_owner ? nameWithOwner : name;
   const langName = (primaryLanguage && primaryLanguage.name) || "Unspecified";
   const langColor = (primaryLanguage && primaryLanguage.color) || "#333";
+  const descriptionLinesCount = description_lines_count
+    ? clampValue(description_lines_count, 1, DESCRIPTION_MAX_LINES)
+    : DESCRIPTION_MAX_LINES;
 
   const desc = parseEmojis(description || "No description provided");
   const multiLineDescription = wrapTextMultiline(
     desc,
     DESCRIPTION_LINE_WIDTH,
-    DESCRIPTION_MAX_LINES,
+    descriptionLinesCount,
   );
-  const descriptionLines = description_lines_count
-    ? clampValue(
-        description_lines_count,
-        multiLineDescription.length,
-        DESCRIPTION_MAX_LINES,
-      )
-    : multiLineDescription.length;
   const descriptionSvg = multiLineDescription
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
 
   const height =
-    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+    (multiLineDescription.length > 1 ? 120 : 110) +
+    multiLineDescription.length * lineHeight;
 
   const i18n = new I18n({
     locale,
