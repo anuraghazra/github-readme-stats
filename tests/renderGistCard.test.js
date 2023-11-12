@@ -237,42 +237,6 @@ describe("test renderGistCard", () => {
     );
   });
 
-  it("should render with custom width set", () => {
-    document.body.innerHTML = renderGistCard(data);
-    expect(document.querySelector("svg")).toHaveAttribute("width", "400");
-
-    document.body.innerHTML = renderGistCard(data, { card_width: 400 });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "400");
-  });
-
-  it("should render with custom width set and limit minimum width", () => {
-    document.body.innerHTML = renderGistCard(data, { card_width: 1 });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "280");
-
-    document.body.innerHTML = renderGistCard(data, {
-      card_width: 1,
-    });
-    expect(document.querySelector("svg")).toHaveAttribute(
-      "width",
-      "305.81250000000006",
-    );
-
-    document.body.innerHTML = renderGistCard(data, {
-      card_width: 1,
-    });
-    expect(document.querySelector("svg")).toHaveAttribute(
-      "width",
-      "305.81250000000006",
-    );
-
-    document.body.innerHTML = renderGistCard(data, {
-      card_width: 1,
-    });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "356");
-
-    document.body.innerHTML = renderGistCard(data, {
-      card_width: 1,
-    });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "340");
+  it("should render with custom width set", () => { document.body.innerHTML = renderGistCard(data); expect(document.querySelector("svg")).toHaveAttribute("width", "400"); document.body.innerHTML = renderGistCard(data, { card_width: 400 }); expect(document.querySelector("svg")).toHaveAttribute("width", "400"); }); it("should limit minimum width when the custom width is too small", () => { document.body.innerHTML = renderGistCard(data, { card_width: 1 }); expect(document.querySelector("svg")).toHaveAttribute("width", "280"); });
   });
 });
