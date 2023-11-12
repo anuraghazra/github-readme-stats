@@ -83,7 +83,7 @@ export default async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         show_owner: parseBoolean(show_owner),
         hide_border: parseBoolean(hide_border),
-        card_width: parseInt(card_width),
+        card_width: parseInt(card_width, 10),
       }),
     );
   } catch (err) {
