@@ -462,6 +462,12 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+    azharul_islam__gradient: {
+    title_color: "ffffff",
+    text_color: "ffffff",
+    icon_color: "ffffff",
+    bg_color: "35,4158d0,020202,5c5c5c",
+  },
 };
 
 export default themes;
