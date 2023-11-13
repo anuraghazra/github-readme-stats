@@ -48,7 +48,7 @@
         // "dot-notation": "warn",
         // "eqeqeq": [ "error", "smart" ],
         // "guard-for-in": "warn",
-        // "no-alert": "error",
+        "no-alert": "error",
         "no-caller": "error",
         // "no-case-declarations": "warn",
         // "no-div-regex": "warn",
