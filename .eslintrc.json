@@ -49,7 +49,7 @@
         // "eqeqeq": [ "error", "smart" ],
         // "guard-for-in": "warn",
         // "no-alert": "error",
-        // "no-caller": "error",
+        "no-caller": "error",
         // "no-case-declarations": "warn",
         // "no-div-regex": "warn",
         // "no-else-return": "warn",
