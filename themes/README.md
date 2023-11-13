@@ -12,7 +12,7 @@ Use `?theme=THEME_NAME` parameter like so:
 
 ## Stats
 
-> These themes works with all five our cards: Stats Card, Repo Card, Gist Card, Top languages Card and Wakatime Card.
+> These themes works with all five our cards: Stats Card, Repo Card, Gist Card, Top languages Card and WakaTime Card.
 
 | | | |
 | :--: | :--: | :--: |
@@ -40,11 +40,11 @@ Use `?theme=THEME_NAME` parameter like so:
 | `rose_pine` ![rose_pine][rose_pine] | `catppuccin_latte` ![catppuccin_latte][catppuccin_latte] | `catppuccin_mocha` ![catppuccin_mocha][catppuccin_mocha] |
 | `date_night` ![date_night][date_night] | `one_dark_pro` ![one_dark_pro][one_dark_pro] | `rose` ![rose][rose] |
 | `holi` ![holi][holi] | `neon` ![neon][neon] | `blue_navy` ![blue_navy][blue_navy] |
-| `calm_pink` ![calm_pink][calm_pink] |  | [Add your theme][add-theme] |
+| `calm_pink` ![calm_pink][calm_pink] | `ambient_gradient` ![ambient_gradient][ambient_gradient] | [Add your theme][add-theme] |
 
 ## Repo Card
 
-> These themes works with all five our cards: Stats Card, Repo Card, Gist Card, Top languages Card and Wakatime Card.
+> These themes works with all five our cards: Stats Card, Repo Card, Gist Card, Top languages Card and WakaTime Card.
 
 | | | |
 | :--: | :--: | :--: |
@@ -72,7 +72,7 @@ Use `?theme=THEME_NAME` parameter like so:
 | `rose_pine` ![rose_pine][rose_pine_repo] | `catppuccin_latte` ![catppuccin_latte][catppuccin_latte_repo] | `catppuccin_mocha` ![catppuccin_mocha][catppuccin_mocha_repo] |
 | `date_night` ![date_night][date_night_repo] | `one_dark_pro` ![one_dark_pro][one_dark_pro_repo] | `rose` ![rose][rose_repo] |
 | `holi` ![holi][holi_repo] | `neon` ![neon][neon_repo] | `blue_navy` ![blue_navy][blue_navy_repo] |
-| `calm_pink` ![calm_pink][calm_pink_repo] |  | [Add your theme][add-theme] |
+| `calm_pink` ![calm_pink][calm_pink_repo] | `ambient_gradient` ![ambient_gradient][ambient_gradient_repo] | [Add your theme][add-theme] |
 
 
 [default]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
@@ -149,6 +149,7 @@ Use `?theme=THEME_NAME` parameter like so:
 [neon]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=neon
 [blue_navy]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=blue_navy
 [calm_pink]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=calm_pink
+[ambient_gradient]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=ambient_gradient
 
 
 [default_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
@@ -225,6 +226,7 @@ Use `?theme=THEME_NAME` parameter like so:
 [neon_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=neon
 [blue_navy_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=blue_navy
 [calm_pink_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=calm_pink
+[ambient_gradient_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=ambient_gradient
 
 
 [add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
