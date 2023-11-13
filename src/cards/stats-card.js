@@ -412,8 +412,8 @@ const renderStatsCard = (stats, options = {}) => {
       custom_title
         ? custom_title
         : statItems.length
-        ? i18n.t("statcard.title")
-        : i18n.t("statcard.ranktitle"),
+          ? i18n.t("statcard.title")
+          : i18n.t("statcard.ranktitle"),
     );
   };
 
@@ -431,14 +431,14 @@ const renderStatsCard = (stats, options = {}) => {
           Infinity,
         )
       : statItems.length
-      ? RANK_CARD_MIN_WIDTH
-      : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
+        ? RANK_CARD_MIN_WIDTH
+        : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
   const defaultCardWidth =
     (hide_rank
       ? CARD_DEFAULT_WIDTH
       : statItems.length
-      ? RANK_CARD_DEFAULT_WIDTH
-      : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
+        ? RANK_CARD_DEFAULT_WIDTH
+        : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
   let width = card_width
     ? isNaN(card_width)
       ? defaultCardWidth
