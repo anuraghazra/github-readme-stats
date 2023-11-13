@@ -30,7 +30,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "npx eslint --max-warnings 0 \"./src/**/*.js\" \"./scripts/**/*.js\" \"./tests/**/*.js\" \"./api/**/*.js\" \"./themes/**/*.js\"",
-    "bench": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.bench.config.js"
+    "bench": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.bench.config.js",
+    "deploy": "npx wrangler deploy"
   },
   "author": "Anurag Hazra",
   "license": "MIT",
