@@ -4,6 +4,7 @@ import toEmoji from "emoji-name-map";
 import wrap from "word-wrap";
 import { themes } from "../../themes/index.js";
 import process from "node:process";
+import { type } from "node:os";
 
 const TRY_AGAIN_LATER = "Please try again later";
 
@@ -343,6 +344,16 @@ const getCardColors = ({
   return { titleColor, iconColor, textColor, bgColor, borderColor, ringColor };
 };
 
+/**
+ * Check if message is safe to display.
+ *
+ * @param {string} message message to be displayed
+ * @returns {boolean} true if message is safe
+ */
+const isSafeText = (message) => {
+  return typeof message !== "string" || message.includes("<");
+};
+
 // Script parameters.
 const ERROR_CARD_LENGTH = 576.5;
 
@@ -394,6 +405,13 @@ const renderError = (message, secondaryMessage = "", options = {}) => {
     ring_color: "",
     theme,
   });
+
+  if (!isSafeText(message)) {
+    throw new Error("Invalid message");
+  }
+  if (!isSafeText(secondaryMessage)) {
+    throw new Error("Invalid secondary message");
+  }
 
   return `
     <svg width="${ERROR_CARD_LENGTH}"  height="120" viewBox="0 0 ${ERROR_CARD_LENGTH} 120" fill="${bgColor}" xmlns="http://www.w3.org/2000/svg">
