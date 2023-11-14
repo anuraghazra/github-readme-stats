@@ -24,7 +24,7 @@ export default {
     } else if (pathname === "/api/top-langs") {
       await topLangsHandler(req, res, env);
     } else if (pathname === "/api/wakatime") {
-      await wakatimeHandler(req, res);
+      await wakatimeHandler(req, res, env);
     } else if (pathname === "/api/status/pat-info") {
       await statusPatInfoHandler(req, res, env);
     } else if (pathname === "/api/status/up") {

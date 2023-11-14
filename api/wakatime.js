@@ -10,7 +10,7 @@ import { fetchWakatimeStats } from "../src/fetchers/wakatime-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
 import process from "node:process";
 
-export default async (req, res) => {
+export const handler = async (req, res, env) => {
   const {
     username,
     title_color,
@@ -48,15 +48,19 @@ export default async (req, res) => {
   }
 
   try {
-    const stats = await fetchWakatimeStats({ username, api_domain });
+    const stats = await fetchWakatimeStats({
+      username,
+      api_domain,
+      allowed_domains: env.ALLOWED_WAKATIME_DOMAINS,
+    });
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
       CONSTANTS.SIX_HOURS,
       CONSTANTS.ONE_DAY,
     );
-    cacheSeconds = process.env.CACHE_SECONDS
-      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+    cacheSeconds = env.CACHE_SECONDS
+      ? parseInt(env.CACHE_SECONDS, 10) || cacheSeconds
       : cacheSeconds;
 
     res.setHeader(
@@ -104,3 +108,5 @@ export default async (req, res) => {
     );
   }
 };
+
+export default async (req, res) => handler(req, res, process.env);
