@@ -160,9 +160,9 @@ const renderRepoCard = (repo, options = {}) => {
         ? // @ts-ignore
           getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
         : isArchived
-        ? // @ts-ignore
-          getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
-        : ""
+          ? // @ts-ignore
+            getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
+          : ""
     }
 
     <text class="description" x="25" y="-5">
