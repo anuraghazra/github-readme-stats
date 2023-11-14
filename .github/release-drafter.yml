@@ -9,25 +9,54 @@ categories:
     label: "enhancement"
   - title: "🔨 Refactorings"
     label: "refactor"
+  - title: "🧹 Chore"
+    label: "chore"
   - title: "🔬 Research"
     label: "research"
   - title: "⬆️ Dependencies"
     collapse-after: 3
     labels:
       - "dependencies"
+autolabeler:
+  - label: 'bug'
+    branch:
+      - '/fix\/.+/'
+      - '/bug\/.*/'
+    title:
+      - '/fix\/.+/'
+      - '/bug\/.*/'
+  - label: 'documentation'
+    branch:
+      - '/documentation\/.+/'
+      - '/docs\/.+/'
+      - '/doc\/.*/'
+    title:
+      - '/documentation\/.+/'
+      - '/docs\/.+/'
+      - '/doc\/.*/'
+    files:
+      - '*.md'
+  - label: 'enhancement'
+    branch:
+      - '/feature\/.+/'
+      - '/enhancement\/.*'
+    title:
+      - '/feature\/.+/'
+      - '/enhancement\/.*'
+  - label: 'refactor'
+    branch:
+      - '/refactor\/.+/'
+      - '/refactoring\/.*'
+    title:
+      - '/refactor\/.+/'
+      - '/refactoring\/.*'
+  - label: 'chore'
+    branch: 
+      - '/chore\/.*/'
+    title:
+      - '/chore\/.+/'
 change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
-version-resolver:
-  major:
-    labels:
-      - "major"
-  minor:
-    labels:
-      - "minor"
-  patch:
-    labels:
-      - "patch"
-  default: patch
 prerelease: true
 prerelease-identifier: "prerelease"
 tag-prefix: "v"
