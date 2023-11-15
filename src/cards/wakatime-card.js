@@ -304,7 +304,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               id: language.name,
               label: language.name,
               value:
-                display_format == "percent"
+                display_format === "percent"
                   ? `${language.percent.toFixed(2).toString()} %`
                   : language.text,
               index,
