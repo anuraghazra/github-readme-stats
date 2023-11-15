@@ -189,7 +189,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     langs_count = languages.length,
     border_radius,
     border_color,
-    display_format,
+    display_format = "time",
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
