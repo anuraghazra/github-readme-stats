@@ -15,7 +15,12 @@ import {
 } from "../common/utils.js";
 import { repoCardLocales } from "../translations.js";
 
-const ICON_SIZE = 16;
+const ICON_SIZE = 20;
+const badge_text_color = "#FFFFFF";
+const badge_background_color = "E44D26";
+const primary_text_color = "4A90E2";
+const badge_text_fill_opacity=0.8;
+
 
 /**
  * Retrieves the repository description and wraps it to fit the card width.
@@ -26,13 +31,14 @@ const ICON_SIZE = 16;
  */
 const getBadgeSVG = (label, textColor) => `
   <g data-testid="badge" class="badge" transform="translate(320, -18)">
-    <rect stroke="${textColor}" stroke-width="1" width="70" height="20" x="-12" y="-14" ry="10" rx="10"></rect>
+    <rect stroke="${textColor}" stroke-width="1" width="80" height="30" x="-12" y="-14" ry="15" rx="15" fill="#E44D26"></rect>
     <text
       x="23" y="-5"
       alignment-baseline="central"
       dominant-baseline="central"
       text-anchor="middle"
-      fill="${textColor}"
+      fill="${badge_text_color}"
+      fill-opacity = "${badge_text_fill_opacity}"
     >
       ${label}
     </text>
@@ -75,7 +81,7 @@ const renderRepoCard = (repo, options = {}) => {
     locale,
   } = options;
 
-  const lineHeight = 10;
+  const lineHeight = 18;
   const header = show_owner ? nameWithOwner : name;
   const langName = (primaryLanguage && primaryLanguage.name) || "Unspecified";
   const langColor = (primaryLanguage && primaryLanguage.color) || "#333";
@@ -88,7 +94,7 @@ const renderRepoCard = (repo, options = {}) => {
     .join("");
 
   const height =
-    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+    (descriptionLines > 1 ? 140 : 120) + descriptionLines * lineHeight;
 
   const i18n = new I18n({
     locale,
@@ -99,7 +105,7 @@ const renderRepoCard = (repo, options = {}) => {
   const colors = getCardColors({
     title_color,
     icon_color,
-    text_color,
+    text_color: primary_text_color,
     bg_color,
     border_color,
     theme,
@@ -128,10 +134,10 @@ const renderRepoCard = (repo, options = {}) => {
     items: [svgLanguage, svgStars, svgForks],
     sizes: [
       measureText(langName, 12),
-      ICON_SIZE + measureText(`${totalStars}`, 12),
-      ICON_SIZE + measureText(`${totalForks}`, 12),
+      ICON_SIZE + measureText(`${totalStars}`, 14),
+      ICON_SIZE + measureText(`${totalForks}`, 14),
     ],
-    gap: 25,
+    gap: 20,
   }).join("");
 
   const card = new Card({
@@ -147,11 +153,11 @@ const renderRepoCard = (repo, options = {}) => {
   card.setHideBorder(hide_border);
   card.setHideTitle(false);
   card.setCSS(`
-    .description { font: 400 13px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.textColor} }
-    .gray { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.textColor} }
+    .description { font: 600 4px 'Roboto', Montserrat, Sans-Serif; fill: ${colors.textColor} }
+    .gray { font: 500 13px 'Roboto', Montserrat, Sans-Serif; fill: ${colors.textColor} }
     .icon { fill: ${colors.iconColor} }
-    .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
-    .badge rect { opacity: 0.2 }
+    .badge { font: 600 16px 'Roboto', Montserrat, Sans-Serif; }
+    .badge rect { opacity: 0.8 }
   `);
 
   return card.render(`
