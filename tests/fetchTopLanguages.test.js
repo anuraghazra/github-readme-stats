@@ -44,6 +44,11 @@ const data_langs = {
             },
           },
         ],
+        pageInfo: {
+          startCursor: "Y3Vyc29yOnYyOpHOKejkVw==",
+          hasNextPage: false,
+          endCursor: "Y3Vyc29yOnYyOpHOKqrSXg==",
+        },
       },
     },
   },
