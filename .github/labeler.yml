@@ -38,6 +38,7 @@ wakatime-card:
   - src/fetchers/wakatime-fetcher.js
   - tests/fetchWakatime.test.js
   - tests/renderWakatimeCard.test.js
+  - tests/wakatime.test.js
 gist-card:
   - api/gist.js
   - src/cards/gist-card.js
