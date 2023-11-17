@@ -6,6 +6,7 @@ export type CommonOptions = {
   icon_color: string;
   text_color: string;
   bg_color: string;
+  prog_bg_color: string;
   theme: ThemeNames;
   border_radius: number;
   border_color: string;
