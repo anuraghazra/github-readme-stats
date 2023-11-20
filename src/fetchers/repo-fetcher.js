@@ -34,6 +34,7 @@ const fetcher = (variables, token) => {
           name
         }
         forkCount
+        openGraphImageUrl
       }
       query getRepo($login: String!, $repo: String!) {
         user(login: $login) {

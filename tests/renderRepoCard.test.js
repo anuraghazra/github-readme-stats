@@ -18,6 +18,7 @@ const data_repo = {
     },
     starCount: 38000,
     forkCount: 100,
+    stringifiedRepoImage: "data:image/png;base64,base64/image/string",
   },
 };
 
@@ -338,5 +339,22 @@ describe("Test renderRepoCard", () => {
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
       "No description provided",
     );
+  });
+
+  it("should render repo's social preview image, when show_image is true", () => {
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      show_image: true,
+    });
+
+    expect(queryByTestId(document.body, "card-image")).toBeInTheDocument();
+    expect(
+      queryByTestId(document.body, "card-image").children[0],
+    ).toHaveAttribute("href", data_repo.repository.stringifiedRepoImage);
+  });
+
+  it("should not render repo's social preview image by default", () => {
+    document.body.innerHTML = renderRepoCard(data_repo.repository);
+
+    expect(queryByTestId(document.body, "card-image")).not.toBeInTheDocument();
   });
 });

@@ -3,6 +3,7 @@ import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
   CONSTANTS,
+  getBase64URIFromImage,
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
@@ -24,6 +25,7 @@ export default async (req, res) => {
     locale,
     border_radius,
     border_color,
+    show_image,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -84,6 +86,10 @@ export default async (req, res) => {
       }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     );
 
+    repoData.stringifiedRepoImage = await getBase64URIFromImage(
+      repoData.openGraphImageUrl,
+    );
+
     return res.send(
       renderRepoCard(repoData, {
         hide_border: parseBoolean(hide_border),
@@ -96,6 +102,7 @@ export default async (req, res) => {
         border_color,
         show_owner: parseBoolean(show_owner),
         locale: locale ? locale.toLowerCase() : null,
+        show_image: parseBoolean(show_image),
       }),
     );
   } catch (err) {

@@ -386,6 +386,7 @@ If we don't support your language, please consider contributing! You can find mo
 #### Repo Card Exclusive Options
 
 *   `show_owner` - Shows the repo's owner name *(boolean)*. Default: `false`.
+*   `show_image` - Shows the repo's social preview image *(boolean)*. Default: `false`.
 
 #### Gist Card Exclusive Options
 
@@ -446,6 +447,11 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 Use [show\_owner](#repo-card-exclusive-options) query option to include the repo's owner username
 
 ![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=github-readme-stats\&show_owner=true)
+
+
+Use [show\_image](#repo-card-exclusive-options) query option to include the repo's social preview image header
+
+![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=github-readme-stats\&show_image=true)
 
 # GitHub Gist Pins
 

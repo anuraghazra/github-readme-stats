@@ -150,6 +150,7 @@ exports[`Test Render WakaTime Card should render correctly with compact layout 1
     </svg>
   
         </g>
+          
       </svg>
     "
 `;
@@ -302,6 +303,7 @@ exports[`Test Render WakaTime Card should render correctly with compact layout w
     </svg>
   
         </g>
+          
       </svg>
     "
 `;

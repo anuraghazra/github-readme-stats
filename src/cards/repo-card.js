@@ -61,6 +61,7 @@ const renderRepoCard = (repo, options = {}) => {
     isTemplate,
     starCount,
     forkCount,
+    stringifiedRepoImage,
   } = repo;
   const {
     hide_border = false,
@@ -73,6 +74,7 @@ const renderRepoCard = (repo, options = {}) => {
     border_radius,
     border_color,
     locale,
+    show_image = false,
   } = options;
 
   const lineHeight = 10;
@@ -141,6 +143,7 @@ const renderRepoCard = (repo, options = {}) => {
     height,
     border_radius,
     colors,
+    stringifiedRepoImage: show_image ? stringifiedRepoImage : "",
   });
 
   card.disableAnimations();

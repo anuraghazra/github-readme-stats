@@ -11,6 +11,8 @@ class Card {
    * @param {string?=} args.customTitle Card custom title.
    * @param {string?=} args.defaultTitle Card default title.
    * @param {string?=} args.titlePrefixIcon Card title prefix icon.
+   * @param {string?=} args.stringifiedRepoImage Card preview image.
+   * @param {number?=} args.imageHeight Card preview image.
    * @param {object?=} args.colors Card colors arguments.
    * @param {string} args.colors.titleColor Card title color.
    * @param {string} args.colors.textColor Card text color.
@@ -27,6 +29,8 @@ class Card {
     customTitle,
     defaultTitle = "",
     titlePrefixIcon,
+    stringifiedRepoImage = "",
+    imageHeight = 200,
   }) {
     this.width = width;
     this.height = height;
@@ -35,6 +39,9 @@ class Card {
     this.hideTitle = false;
 
     this.border_radius = border_radius;
+
+    this.imageHeight = imageHeight;
+    this.stringifiedRepoImage = stringifiedRepoImage;
 
     // returns theme based colors with proper overrides and defaults
     this.colors = colors;
@@ -51,6 +58,10 @@ class Card {
     this.animations = true;
     this.a11yTitle = "";
     this.a11yDesc = "";
+    if (this.stringifiedRepoImage) {
+      this.height += this.imageHeight;
+      this.paddingY += this.imageHeight;
+    }
   }
 
   /**
@@ -200,6 +211,21 @@ class Card {
   };
 
   /**
+   * @returns {string} Renders social preview image
+   */
+  renderImage = () => {
+    if (!this.stringifiedRepoImage) {
+      return "";
+    }
+    return `
+    <g data-testid="card-image" transform="translate(0, 0)">
+    <image x="0" y="0" width="${this.width}" height="${this.imageHeight}"
+      href="${this.stringifiedRepoImage}">
+    </image>
+  </g>`;
+  };
+
+  /**
    * @param {string} body The inner body of the card.
    * @returns {string} The rendered card.
    */
@@ -264,6 +290,7 @@ class Card {
         >
           ${body}
         </g>
+          ${this.renderImage()}
       </svg>
     `;
   }
