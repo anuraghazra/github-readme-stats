@@ -89,7 +89,7 @@ describe("Card", () => {
       "200",
     );
     expect(document.getElementsByTagName("svg")[0]).toHaveAttribute(
-      "height",
+      "width",
       "200",
     );
   });
