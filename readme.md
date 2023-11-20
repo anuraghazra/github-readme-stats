@@ -386,6 +386,7 @@ If we don't support your language, please consider contributing! You can find mo
 #### Repo Card Exclusive Options
 
 *   `show_owner` - Shows the repo's owner name *(boolean)*. Default: `false`.
+*   `description_lines_count` - Manually set the number of lines for the description *(number)*. Specified value will be clamped between 1 and 3. If this parameter is not specified, the number of lines will be automatically adjusted according to the actual length of the description. Default: `undefined`.
 
 #### Gist Card Exclusive Options
 
