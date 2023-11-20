@@ -304,7 +304,8 @@ You can customize the appearance of all your cards however you wish with URL par
 - `border_radius` - Corner rounding on the card. Default: `4.5`.
 =======
 
-* `title_color` - Card's title color *(hex color)*. Default: `2f80ed`.
+- `title_color` - Card's title color *(hex color)*. Default: `2f80ed`.
+
 - `text_color` - Body text color *(hex color)*. Default: `434d58`.
 - `icon_color` - Icons color if available *(hex color)*. Default: `4c71f2`.
 - `border_color` - Card's border color *(hex color)*. Default: `e4e2e2` (does not apply when `hide_border` is enabled).
@@ -404,6 +405,7 @@ If we don't support your language, please consider contributing! You can find mo
 #### Repo Card Exclusive Options
 
 - `show_owner` - Shows the repo's owner name *(boolean)*. Default: `false`.
+- `description_lines_count` - Manually set the number of lines for the description *(number)*. Specified value will be clamped between 1 and 3. If this parameter is not specified, the number of lines will be automatically adjusted according to the actual length of the description. Default: `undefined`.
 
 #### Gist Card Exclusive Options
 
@@ -834,7 +836,7 @@ Github Readme Stats contains several Vercel environment variables that can be us
 - `CACHE_SECONDS`: This environment variable takes precedence over our cache minimum and maximum values and can circumvent these values for self Hosted Vercel instances.
 =======
 
-* `CACHE_SECONDS`: This environment variable takes precedence over our cache minimum and maximum values and can circumvent these values for self-hosted Vercel instances.
+- `CACHE_SECONDS`: This environment variable takes precedence over our cache minimum and maximum values and can circumvent these values for self-hosted Vercel instances.
 
 >>>>>>> d4f1a5d (docs: grammar/Clarity Fixes. (#3463))
 
@@ -858,7 +860,8 @@ However, if you are using this project and are happy with it or just want to enc
 - [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - You can make one-time donations via PayPal. I'll probably buy a ~~coffee~~ tea. :tea:
 =======
 
-* Giving proper credit when you use github-readme-stats on your readme, linking back to it. :D
+- Giving proper credit when you use github-readme-stats on your readme, linking back to it. :D
+
 - Starring and sharing the project. :rocket:
 - [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - You can make a one-time donations via PayPal. I'll probably buy a ~~coffee~~ tea. :tea:
 
