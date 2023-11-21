@@ -17,7 +17,26 @@ export default {
     const { pathname } = new URL(request.url);
     if (pathname === "/") {
       return new Response(
-        '<a href="https://github.com/harryzcy/github-readme-stats"><h1>GitHub Readme Stats</h1></a>',
+        `<!DOCTYPE html>
+          <head>
+            <title>GitHub Readme Stats</title>
+            <meta name="description" content="⚡ Dynamically generated stats for your github readmes" />
+          </head>
+          <body>
+            <h1>GitHub Readme Stats</h1>
+            <p>⚡ Dynamically generated stats for your github readmes</p>
+            <p>
+              <span style="visibility: hidden;">⚡ </span>
+              <span>Hosted on Cloudflare from permanent fork: </span>
+              <a href="https://github.com/harryzcy/github-readme-stats">harryzcy/github-readme-stats</a>
+            </p>
+          </body>
+        </html>`,
+        {
+          headers: {
+            "content-type": "text/html;charset=UTF-8",
+          },
+        },
       );
     }
 
