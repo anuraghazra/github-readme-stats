@@ -62,21 +62,21 @@
 # 特性 <!-- omit in toc -->
 
 - [GitHub 统计卡片](#github-统计卡片)
-    - [隐藏指定统计](#隐藏指定统计)
-    - [将私人项目贡献添加到总提交计数中](#将私人项目贡献添加到总提交计数中)
-    - [显示图标](#显示图标)
-    - [主题](#主题)
-    - [自定义](#自定义)
+  - [隐藏指定统计](#隐藏指定统计)
+  - [将私人项目贡献添加到总提交计数中](#将私人项目贡献添加到总提交计数中)
+  - [显示图标](#显示图标)
+  - [主题](#主题)
+  - [自定义](#自定义)
 - [GitHub 更多置顶](#github-更多置顶)
-    - [使用细则](#使用细则)
-    - [Demo](#demo)
+  - [使用细则](#使用细则)
+  - [Demo](#demo)
 - [热门语言卡片](#热门语言卡片)
-    - [使用细则](#使用细则-1)
-    - [隐藏指定语言](#隐藏指定语言)
-    - [紧凑的语言卡片布局](#紧凑的语言卡片布局)
-    - [Demo](#demo-1)
-    - [全部 Demos](#全部-demos)
-    - [快速提示 (对齐 Repo 卡片)](#快速提示-对齐-repo-卡片)
+  - [使用细则](#使用细则-1)
+  - [隐藏指定语言](#隐藏指定语言)
+  - [紧凑的语言卡片布局](#紧凑的语言卡片布局)
+  - [Demo](#demo-1)
+  - [全部 Demos](#全部-demos)
+  - [快速提示 (对齐 Repo 卡片)](#快速提示-对齐-repo-卡片)
   - [自己部署](#自己部署)
   - [:sparkling\_heart: 支持这个项目](#sparkling_heart-支持这个项目)
 
@@ -87,7 +87,7 @@
 更改 `?username=` 的值为你的 GitHub 用户名。
 
 ```md
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 _注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.js](../src/calculateRank.js)_
@@ -99,7 +99,7 @@ _注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.
 > 选项：`&hide=stars,commits,prs,issues,contribs`
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&hide=contribs,prs)
 ```
 
 ### 将私人项目贡献添加到总提交计数中
@@ -111,7 +111,7 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 > 选项: `&count_private=true`
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&count_private=true)
 ```
 
 ### 显示图标
@@ -119,7 +119,7 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 如果想要显示图标，你可以调用 `show_icons=true` 参数，像这样：
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true)
 ```
 
 ### 主题
@@ -129,7 +129,7 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 通过调用 `?theme=THEME_NAME` 参数，像这样：
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
 #### 所有现有主题
@@ -165,7 +165,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 > 缓存的注意事项: 如果 fork 数和 star 数 少于 1k , Repo 卡片默认缓存是 4 小时 （14400 秒） ，否则是 2 小时（7200）。另请注意缓存被限制为最短 2 小时，最长 24 小时。
 
-#### 统计卡片专属选项:
+#### 统计卡片专属选项
 
 - `hide` - 隐藏特定统计信息 _(以逗号分隔)_
 - `hide_title` - _(boolean)_
@@ -175,11 +175,11 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `count_private` - 统计私人提交 _(boolean)_
 - `line_height` - 设置文本之间的行高 _(number)_
 
-#### Repo 卡片专属选项:
+#### Repo 卡片专属选项
 
 - `show_owner` - 显示 Repo 的所有者名字 _(boolean)_
 
-#### 语言卡片专属选项:
+#### 语言卡片专属选项
 
 - `hide` - 从卡片中隐藏指定语言 _(Comma seperated values)_
 - `hide_title` - _(boolean)_
@@ -205,16 +205,16 @@ GitHub 更多置顶 允许你在使用 GitHub readme profile 时，在个人资�
 端点: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
 使用 [show_owner](#自定义) 变量将 Repo 所有者的用户名包含在内。
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
 # 热门语言卡片
 
@@ -229,7 +229,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 端点: `api/top-langs?username=anuraghazra`
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### 隐藏指定语言
@@ -237,7 +237,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 可以使用 `?hide=language1,language2` 参数来隐藏指定的语言。
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### 紧凑的语言卡片布局
@@ -245,16 +245,16 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 你可以使用 `&layout=compact` 参数来改变卡片的样式。
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 - 紧凑布局
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -262,41 +262,41 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 - 默认
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra)
 
 - 隐藏指定统计
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&hide=contribs,issues)
 
 - 显示图标
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&hide=issues&show_icons=true)
 
 - 包含全部提交
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&include_all_commits=true)
 
 - 主题
 
 从[默认主题](#主题)中进行选择
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&theme=radical)
 
 - 渐变
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
 - 自定义统计卡片
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
 - 自定义 repo 卡片
 
-![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+![Customized Card](https://github-readme-stats.zcy.dev/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
 - 热门语言
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -306,10 +306,10 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 
@@ -317,7 +317,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 #### [查看分步视频教程 作者：@codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-因为 GitHub 的 API 每个小时只允许 5 千次请求，我的 `https://github-readme-stats.vercel.app/api` 很有可能会触发限制。如果你将其托管在自己的 Vercel 服务器上，那么你就不必为此担心。点击 deploy 按钮来开始你的部署！
+因为 GitHub 的 API 每个小时只允许 5 千次请求，我的 `https://github-readme-stats.zcy.dev/api` 很有可能会触发限制。如果你将其托管在自己的 Vercel 服务器上，那么你就不必为此担心。点击 deploy 按钮来开始你的部署！
 
 注意: 从 [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 开始，我们应该能够处理超过 5 千次的请求，并且不会出现宕机问题 :D
 

@@ -62,24 +62,23 @@
 # Caratteristiche <!-- omit in toc -->
 
 - [GitHub Stats Card](#github-stats-card)
-    - [Nascondere statistiche individuali](#nascondere-statistiche-individuali)
-    - [Includere i contributi privati nel computo totale](#includere-i-contributi-privati-nel-computo-totale)
-    - [Mostrare le icone](#mostrare-le-icone)
-    - [Temi](#temi)
-    - [Personalizzazione](#personalizzazione)
+  - [Nascondere statistiche individuali](#nascondere-statistiche-individuali)
+  - [Includere i contributi privati nel computo totale](#includere-i-contributi-privati-nel-computo-totale)
+  - [Mostrare le icone](#mostrare-le-icone)
+  - [Temi](#temi)
+  - [Personalizzazione](#personalizzazione)
 - [GitHub Extra Pins](#github-extra-pins)
-    - [Utilizzo](#utilizzo)
-    - [Demo](#demo)
+  - [Utilizzo](#utilizzo)
+  - [Demo](#demo)
 - [Top Languages Card](#top-languages-card)
-    - [Utilizzo](#utilizzo-1)
-    - [Nascondi linguaggi specifici](#nascondi-linguaggi-specifici)
-    - [Layout compatto](#layout-compatto)
-    - [Demo](#demo-1)
-    - [Galleria di esempi](#galleria-di-esempi)
-    - [Consiglio veloce (Allineare le Card)](#consiglio-veloce-allineare-le-card)
+  - [Utilizzo](#utilizzo-1)
+  - [Nascondi linguaggi specifici](#nascondi-linguaggi-specifici)
+  - [Layout compatto](#layout-compatto)
+  - [Demo](#demo-1)
+  - [Galleria di esempi](#galleria-di-esempi)
+  - [Consiglio veloce (Allineare le Card)](#consiglio-veloce-allineare-le-card)
   - [Deploy su Vercel](#deploy-su-vercel)
   - [:sparkling\_heart: Supporta il progetto](#sparkling_heart-supporta-il-progetto)
-
 
 # GitHub Stats Card
 
@@ -88,7 +87,7 @@ Per creare una Card con le statistiche GitHub, copia e incolla nel tuo file mark
 Ricorda di cambiare il valore `?username=` con il tuo nome utente GitHub.
 
 ```md
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 _Nota: I punteggi sono calcolati sulla base delle tue statistiche, dai un'occhiata a [src/calculateRank.js](../src/calculateRank.js) per ulteriori informazioni_
@@ -100,7 +99,7 @@ Per nascondere qualche dato, puoi aggiungere i parametri `?hide=`, separando i v
 > Opzioni: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&hide=contribs,prs)
 ```
 
 ### Includere i contributi privati nel computo totale
@@ -112,7 +111,7 @@ _Nota: se hai deciso di fare il deploy del progetto, i contributi privati verran
 > Opzioni: `&count_private=true`
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&count_private=true)
 ```
 
 ### Mostrare le icone
@@ -120,7 +119,7 @@ _Nota: se hai deciso di fare il deploy del progetto, i contributi privati verran
 Per abilitare le icone, puoi specificare `show_icons=true`, ad esempio:
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true)
 ```
 
 ### Temi
@@ -130,7 +129,7 @@ Esistono alcuni temi predefiniti coi quali è possibile personalizzare l'aspetto
 Usa il parametro `?theme=NOME_TEMA` in questo modo:-
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
 #### Galleria dei temi:-
@@ -145,7 +144,7 @@ Puoi avere un'anteprima di [tutti i temi supportati](../themes/README.md) o cont
 
 Puoi personalizzare l'aspetto delle tue `Stats Card` o delle `Repo Card` in qualsiasi modo, semplicemente modificando i parametri dell'URL.
 
-#### Opzioni comuni:
+#### Opzioni comuni
 
 - `title_color` - Colore del titolo _(in esadecimale)_
 - `text_color` - Colore del testo _(in esadecimale)_
@@ -166,7 +165,7 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 
 > Nota sulla cache: le card hanno un valore di cache di 4 ore (14400 seconds) di default se il numero di fork & il numero di stelle è inferiore a 1000; altrimenti è pari a 2 ore (7200).
 
-#### Opzioni valide solo per le card delle statistiche:
+#### Opzioni valide solo per le card delle statistiche
 
 - `hide` - Nasconde gli oggetti selezionati _(valori separati da virgola)_
 - `hide_title` - Nasconde il titolo _(booleano)_
@@ -176,11 +175,11 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 - `count_private` - Include i contributi privati _(booleano)_
 - `line_height` - Specifica il valore dell'altezza di riga _(numero)_
 
-#### Opzioni valide solo per le Repo Card:
+#### Opzioni valide solo per le Repo Card
 
 - `show_owner` - Mostra il nome utente del proprietario _(booleano)_
 
-#### Opzioni valide solo per le card dei linguaggi:
+#### Opzioni valide solo per le card dei linguaggi
 
 - `hide` - Nasconde un linguaggio specifico _(valori separati da virgola)_
 - `hide_title` - Nasconde il titolo _(booleano)_
@@ -204,16 +203,16 @@ Copia e incolla il seguente codice, premurandoti di cambiare il link.
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
 Usa la variabile [show_owner](#personalizzazione) per includere il nome utente del proprietario
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
 # Top Languages Card
 
@@ -228,7 +227,7 @@ Copia e incolla nel tuo file README, cambiando i link.
 Endpoint: `api/top-langs?username=anuraghazra`
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Nascondi linguaggi specifici
@@ -236,7 +235,7 @@ Endpoint: `api/top-langs?username=anuraghazra`
 Puoi utilizzare il parametro `?hide=linguaggio1,linguaggio2` per nascondere alcuni linguaggi.
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Layout compatto
@@ -244,16 +243,16 @@ Puoi utilizzare il parametro `?hide=linguaggio1,linguaggio2` per nascondere alcu
 Puoi utilizzare l'opzione `&layout=compact` per cambiare l'aspetto della card.
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 - Layout Compatto
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -261,41 +260,41 @@ Puoi utilizzare l'opzione `&layout=compact` per cambiare l'aspetto della card.
 
 - Default
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra)
 
 - Nascondere dati specifici
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&hide=contribs,issues)
 
 - Mostrare le icone
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&hide=issues&show_icons=true)
 
 - Includere tutti i commit
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&include_all_commits=true)
 
 - Temi
 
 Scegli uno dei [temi di default](#themes)
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&theme=radical)
 
 - Gradiente
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
 - Personalizzare le Stats Card
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
 - Personalizzare le Repo Card
 
-![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+![Customized Card](https://github-readme-stats.zcy.dev/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
 - Linguaggi più usati
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -305,10 +304,10 @@ Per allineare le card una accanto all'altra, puoi adottare questo approccio:
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 
@@ -316,7 +315,7 @@ Per allineare le card una accanto all'altra, puoi adottare questo approccio:
 
 #### [Guarda questo Video Tutorial, realizzato da @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-Since the GitHub API only allows 5k requests per hour, it is possible that my `https://github-readme-stats.vercel.app/api` could hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
+Since the GitHub API only allows 5k requests per hour, it is possible that my `https://github-readme-stats.zcy.dev/api` could hit the rate limiter. If you host it on your own Vercel server, then you don't have to worry about anything. Click on the deploy button to get started!
 
 NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we should be able to handle more than 5k requests and have no issues with downtime :D
 

@@ -63,22 +63,22 @@
 # Funktionen <!-- omit in toc -->
 
 - [GitHub Statistiken-Karte](#github-statistiken-karte)
-    - [Verbergen individueller Statistiken](#verbergen-individueller-statistiken)
-    - [Symbole anzeigen](#symbole-anzeigen)
-    - [Erscheinungsbild/Themes](#erscheinungsbildthemes)
-    - [Anpassungen/Personalisierung](#anpassungenpersonalisierung)
+  - [Verbergen individueller Statistiken](#verbergen-individueller-statistiken)
+  - [Symbole anzeigen](#symbole-anzeigen)
+  - [Erscheinungsbild/Themes](#erscheinungsbildthemes)
+  - [Anpassungen/Personalisierung](#anpassungenpersonalisierung)
 - [GitHub Extra-Pins](#github-extra-pins)
-    - [Benutzung](#benutzung)
-    - [Beispiele](#beispiele)
+  - [Benutzung](#benutzung)
+  - [Beispiele](#beispiele)
 - [Top Programmiersprachen-Karte](#top-programmiersprachen-karte)
-    - [Benutzung](#benutzung-1)
-    - [Verbirg einzelne Sprachen](#verbirg-einzelne-sprachen)
-    - [Kompaktes Sprachen-Karte Layout](#kompaktes-sprachen-karte-layout)
-    - [Beispiel](#beispiel)
+  - [Benutzung](#benutzung-1)
+  - [Verbirg einzelne Sprachen](#verbirg-einzelne-sprachen)
+  - [Kompaktes Sprachen-Karte Layout](#kompaktes-sprachen-karte-layout)
+  - [Beispiel](#beispiel)
 - [WakaTime Wochen-Statistik](#wakatime-wochen-statistik)
-    - [Beispiel](#beispiel-1)
-    - [Alle Beispiele](#alle-beispiele)
-    - [Kleiner Tipp (Ausrichten der Repo-Karte)](#kleiner-tipp-ausrichten-der-repo-karte)
+  - [Beispiel](#beispiel-1)
+  - [Alle Beispiele](#alle-beispiele)
+  - [Kleiner Tipp (Ausrichten der Repo-Karte)](#kleiner-tipp-ausrichten-der-repo-karte)
   - [Betreibe es auf deiner eigenen Vercel-Instanz](#betreibe-es-auf-deiner-eigenen-vercel-instanz)
   - [:sparkling\_heart: Unterstütze das Projekt](#sparkling_heart-unterstütze-das-projekt)
 
@@ -88,7 +88,7 @@ Kopiere folgendes in deine Readme um die Statistiken zu benutzen.
 Passe den Wert des URL-Parameters `?username=` so an, dass dort dein GitHub-Nutzername steht.
 
 ```md
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 _Hinweis: Die Berechnung des Ranges basiert auf den jeweiligen Benutzerstatistiken, siehe [src/calculateRank.js](../src/calculateRank.js)_
@@ -100,7 +100,7 @@ Um eine spezifische Statistik auszublenden, kann dem Query-Parameter `?hide=` ei
 > Optionen: `&hide=stars,commits,prs,issues,contribs`
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","prs"])
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&hide=["contribs","prs"])
 ```
 
 ### Symbole anzeigen
@@ -108,7 +108,7 @@ Um eine spezifische Statistik auszublenden, kann dem Query-Parameter `?hide=` ei
 Um Symbole anzuzeigen kann der URL-Parameter `show_icons=true` wie folgt verwendet werden:
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true)
 ```
 
 ### Erscheinungsbild/Themes
@@ -118,7 +118,7 @@ Mithilfe der eingebauten Themes kann das Aussehen der Karten verändern werden, 
 Benutze den `?theme=THEME_NAME`-Parameter wie folgt :-
 
 ```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&theme=radical)
 ```
 
 #### Alle eingebauten Themes :-
@@ -134,7 +134,7 @@ Außerdem **kannst du neue Themes erstellen**, Beiträge an diesem Projekt sind 
 
 Du kannst das Erscheinungsbild deiner `Stats Card` oder `Repo Card`, mithilfe von URL-Parametern, nach deinen Vorlieben anpassen.
 
-#### Verbreitete Optionen:
+#### Verbreitete Optionen
 
 - `title_color` - Titelfarbe _(hex color)_
 - `text_color` - Textkörperfarbe _(hex color)_
@@ -155,7 +155,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 
 > Hinweis bzgl. des Caches: Wenn die Anzahl der Forks und Stars geringer als 1 Tsd. ist, haben die Repo-Cards eine Standard-Cachezeit von 30 Minuten (1800 Sekunden), ansonsten beträgt diese 2 Stunden (7200 Sekunden). Außerdem ist der Cache auf ein Minimum von 30 Minuten und ein Maximum von 24 Stunden begrenzt.
 
-#### Exklusive Optionen der Statistiken-Karte:
+#### Exklusive Optionen der Statistiken-Karte
 
 - `hide` - Verbirgt die [angegeben Elemente](#verbergen-individueller-statistiken) _(mit Komma abgegrenzte Werte)_
 - `hide_title` - _(Boolean)_
@@ -165,11 +165,11 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 - `count_private` - Zähle private Beiträge _(Boolean)_
 - `line_height` - Legt die Zeilenhöhe zwischen Text fest _(Zahl)_
 
-#### Exklusive Optionen der Repo-Karte:
+#### Exklusive Optionen der Repo-Karte
 
 - `show_owner` - Zeigt den Besitzer des Repos _(Boolean)_
 
-#### Exklusive Optionen der Sprachen-Karte:
+#### Exklusive Optionen der Sprachen-Karte
 
 - `hide` - Verbirgt die angegebenen Sprachen von der Karte _(Komma separierte Werte)_
 - `hide_title` - _(Boolean)_
@@ -180,7 +180,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 > Sprachennamen sollten uri-escaped sein, wie hier angegeben: [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
 > (z.B.: `c++` sollte zu `c%2B%2B` werden, `jupyter notebook` sollte zu `jupyter%20notebook` werden, usw.)
 
-#### Exklusive Optionen der WakaTime-Karte:
+#### Exklusive Optionen der WakaTime-Karte
 
 - `hide_title` - _(Boolean)_
 - `line_height` - Legt die Zeilenhöhe des Texts fest _(Zahl)_
@@ -208,16 +208,16 @@ Den Wert des URL-Parameters `?repo=` musst du so anpassen, dass dort der Namen d
 Endpunkt: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Beispiele
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 
 Benutze die [show_owner](#anpassungenpersonalisierung) Variable, um den Nutzernamen des Repository-Eigentümers anzuzeigen.
 
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
 # Top Programmiersprachen-Karte
 
@@ -233,7 +233,7 @@ Passe den Wert des URL-Parameters `?username=` so an, dass dort dein GitHub-Nutz
 Endpunkt: `api/top-langs?username=anuraghazra`
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Verbirg einzelne Sprachen
@@ -241,7 +241,7 @@ Endpunkt: `api/top-langs?username=anuraghazra`
 Du kannst den `?hide=language1,language2` URL-Parameter benutzen, um einzelne Sprachen auszublenden.
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Kompaktes Sprachen-Karte Layout
@@ -249,34 +249,34 @@ Du kannst den `?hide=language1,language2` URL-Parameter benutzen, um einzelne Sp
 Du kannst die `&layout=compact` Option nutzen, um das Kartendesign zu ändern.
 
 ```md
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Beispiel
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 - Kompaktes Layout
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 # WakaTime Wochen-Statistik
 
 Ändere `?username=` in den eigenen [WakaTime](https://wakatime.com)-Benutzernamen.
 
 ```md
-[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.zcy.dev/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Beispiel
 
-[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.zcy.dev/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.zcy.dev/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - Kompaktes Layout
 
-[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.zcy.dev/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -284,41 +284,41 @@ Du kannst die `&layout=compact` Option nutzen, um das Kartendesign zu ändern.
 
 - Default
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra)
 
 - Ausblenden bestimmter Statistiken
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["contribs","issues"])
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&hide=["contribs","issues"])
 
 - Symbole anzeigen
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=["issues"]&show_icons=true)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&hide=["issues"]&show_icons=true)
 
 - Alle Beiträge anzeigen
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&include_all_commits=true)
 
 - Erscheinungsbild/Themes
 
 Wähle Eines von den [Standard-Themes](#themes)
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&theme=radical)
 
 - Farbverlauf
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
 - Statistiken-Karte anpassen
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
 - Repo-Karte(Extra-Pin) anpassen
 
-![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
+![Customized Card](https://github-readme-stats.zcy.dev/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
 - Top Programmiersprachen
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -328,10 +328,10 @@ Wähle Eines von den [Standard-Themes](#themes)
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 
@@ -339,7 +339,7 @@ Wähle Eines von den [Standard-Themes](#themes)
 
 #### [Schritt für Schritt YouTube Tutorial by @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-Da die GitHub API nur 5 Tsd. Aufrufe pro Stunde zulässt, kann es passieren, dass meine `https://github-readme-stats.vercel.app/api` dieses Limit erreicht.
+Da die GitHub API nur 5 Tsd. Aufrufe pro Stunde zulässt, kann es passieren, dass meine `https://github-readme-stats.zcy.dev/api` dieses Limit erreicht.
 Wenn du es auf deinem eigenen Vercel-Server hostest, brauchst du dich darum nicht zu kümmern. Klicke auf den Deploy-Knopf um loszulegen!
 
 Hinweis: Seit [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) sollte es möglich sein, mehr als 5 Tsd Aufrufe pro Stunde ohne Downtimes zu verkraften :D
@@ -364,6 +364,7 @@ Hinweis: Seit [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 
 1. Wähle root und füge eine Umgebungsvariable namens PAT_1 (siehe Abbildung) die als Wert deinen persönlichen Access Token (PAT) hat hinzu, den du einfach [hier](https://github.com/settings/tokens/new) erzeugen kannst (lasse alles wie es ist, vergebe einen beliebigen Namen)
    ![](https://files.catbox.moe/0ez4g7.png)
 1. Klicke auf `Deploy`, und das wars. Besuche deine Domains um die API zu benutzen!
+
 </details>
 
 ## :sparkling_heart: Unterstütze das Projekt
@@ -381,7 +382,6 @@ Vielen Dank! :heart:
 ---
 
 [![https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team&utm_campaign=oss)
-
 
 Mitarbeit an dem Projekt ist immer Willkommen! <3
 
