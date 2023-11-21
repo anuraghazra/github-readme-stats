@@ -34,7 +34,8 @@ export default {
         </html>`,
         {
           headers: {
-            "content-type": "text/html;charset=UTF-8",
+            "Content-Type": "text/html;charset=UTF-8",
+            "Cache-Control": "max-age=600", // 10 min
           },
         },
       );
@@ -57,6 +58,7 @@ export default {
     } else {
       return new Response("not found", { status: 404 });
     }
+    res.headers.set("Cache-Control", "max-age=600"); // 10 min
 
     return res.toResponse();
   },
