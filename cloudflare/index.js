@@ -58,7 +58,11 @@ export default {
     } else {
       return new Response("not found", { status: 404 });
     }
-    res.headers.set("Cache-Control", "max-age=600"); // 10 min
+    if (pathname === "/api/status/up") {
+      res.setHeader("Cache-Control", "max-age=0"); // no cache
+    } else {
+      res.setHeader("Cache-Control", "max-age=600"); // 10 min
+    }
 
     return res.toResponse();
   },
