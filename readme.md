@@ -495,7 +495,7 @@ Copy-paste this code into your readme and change the links.
 Endpoint: `api/top-langs?username=anuraghazra`
 
 ```md
-[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Language stats algorithm
@@ -513,7 +513,7 @@ By default, only the byte count is used for determining the languages percentage
 - `&size_weight=0&count_weight=1` - Orders by repo count
 
 ```md
-![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&size_weight=0.5&count_weight=0.5)
+![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra&size_weight=0.5&count_weight=0.5)
 ```
 
 ### Exclude individual repositories
@@ -521,7 +521,7 @@ By default, only the byte count is used for determining the languages percentage
 You can use the `&exclude_repo=repo1,repo2` parameter to exclude individual repositories.
 
 ```md
-![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)
+![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)
 ```
 
 ### Hide individual languages
@@ -529,7 +529,7 @@ You can use the `&exclude_repo=repo1,repo2` parameter to exclude individual repo
 You can use `&hide=language1,language2` parameter to hide individual languages.
 
 ```md
-![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&hide=javascript,html)
+![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra&hide=javascript,html)
 ```
 
 ### Show more languages
@@ -537,7 +537,7 @@ You can use `&hide=language1,language2` parameter to hide individual languages.
 You can use the `&langs_count=` option to increase or decrease the number of languages shown on the card. Valid values are integers between 1 and 20 (inclusive). By default it was set to `5` for `normal` & `donut` and `6` for other layouts.
 
 ```md
-![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&langs_count=8)
+![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra&langs_count=8)
 ```
 
 ### Compact Language Card Layout
@@ -545,7 +545,7 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 You can use the `&layout=compact` option to change the card design.
 
 ```md
-![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&layout=compact)
+![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra&layout=compact)
 ```
 
 ### Donut Chart Language Card Layout
@@ -553,7 +553,7 @@ You can use the `&layout=compact` option to change the card design.
 You can use the `&layout=donut` option to change the card design.
 
 ```md
-[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&layout=donut)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra&layout=donut)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Donut Vertical Chart Language Card Layout
@@ -561,7 +561,7 @@ You can use the `&layout=donut` option to change the card design.
 You can use the `&layout=donut-vertical` option to change the card design.
 
 ```md
-[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&layout=donut-vertical)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra&layout=donut-vertical)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Pie Chart Language Card Layout
@@ -569,7 +569,7 @@ You can use the `&layout=donut-vertical` option to change the card design.
 You can use the `&layout=pie` option to change the card design.
 
 ```md
-[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&layout=pie)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra&layout=pie)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Hide Progress Bars
@@ -577,32 +577,32 @@ You can use the `&layout=pie` option to change the card design.
 You can use the `&hide_progress=true` option to hide the percentages and the progress bars (layout will be automatically set to `compact`).
 
 ```md
-![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra&hide_progress=true)
+![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra&hide_progress=true)
 ```
 
 ### Demo
 
-![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra)
+![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra)
 
 - Compact layout
 
-![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra\&layout=compact)
+![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra\&layout=compact)
 
 - Donut Chart layout
 
-[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra\&layout=donut)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra\&layout=donut)](https://github.com/anuraghazra/github-readme-stats)
 
 - Donut Vertical Chart layout
 
-[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra\&layout=donut-vertical)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra\&layout=donut-vertical)](https://github.com/anuraghazra/github-readme-stats)
 
 - Pie Chart layout
 
-[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra\&layout=pie)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra\&layout=pie)](https://github.com/anuraghazra/github-readme-stats)
 
 - Hidden progress bars
 
-![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra\&hide_progress=true)
+![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra\&hide_progress=true)
 
 # WakaTime Stats Card
 
@@ -693,7 +693,7 @@ Choose from any of the [default themes](#themes)
 
 - Top languages
 
-![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs/?username=anuraghazra)
+![Top Langs](https://github-readme-stats.zcy.dev/api/top-langs?username=anuraghazra)
 
 - WakaTime card
 
