@@ -439,16 +439,16 @@ Copy-paste this code into your readme and change the links.
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 ```md
-[![Readme Card](https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
+[![Readme Card](https://github-readme-stats.zcy.dev/api/pin?username=anuraghazra&repo=github-readme-stats)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-![Readme Card](https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra\&repo=github-readme-stats)
+![Readme Card](https://github-readme-stats.zcy.dev/api/pin?username=anuraghazra\&repo=github-readme-stats)
 
 Use [show\_owner](#repo-card-exclusive-options) query option to include the repo's owner username
 
-![Readme Card](https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra\&repo=github-readme-stats\&show_owner=true)
+![Readme Card](https://github-readme-stats.zcy.dev/api/pin?username=anuraghazra\&repo=github-readme-stats\&show_owner=true)
 
 # GitHub Gist Pins
 
@@ -673,11 +673,11 @@ Choose from any of the [default themes](#themes)
 
 - Customizing stats card
 
-![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api/?username=anuraghazra\&show_icons=true\&title_color=fff\&icon_color=79ff97\&text_color=9f9f9f\&bg_color=151515)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra\&show_icons=true\&title_color=fff\&icon_color=79ff97\&text_color=9f9f9f\&bg_color=151515)
 
 - Setting card locale
 
-![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api/?username=anuraghazra\&locale=es)
+![Anurag's GitHub stats](https://github-readme-stats.zcy.dev/api?username=anuraghazra\&locale=es)
 
 - Customizing repo card
 
@@ -716,10 +716,10 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin?username=anuraghazra&repo=convoychat" />
 </a>
 ```
 
@@ -736,10 +736,10 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 ***
 
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://github-readme-stats.zcy.dev/api/pin?username=anuraghazra&repo=convoychat" />
 </a>
 
 </details>
