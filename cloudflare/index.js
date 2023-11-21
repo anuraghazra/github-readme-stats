@@ -15,6 +15,12 @@ export default {
     const res = new ResponseAdapter();
 
     const { pathname } = new URL(request.url);
+    if (pathname === "/") {
+      return new Response(
+        '<a href="https://github.com/harryzcy/github-readme-stats"><h1>GitHub Readme Stats</h1></a>',
+      );
+    }
+
     if (pathname === "/api") {
       await indexHandler(req, res, env);
     } else if (pathname === "/api/gist") {
