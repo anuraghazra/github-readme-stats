@@ -31,6 +31,7 @@ export const handler = async (req, res, env) => {
     api_domain,
     border_radius,
     border_color,
+    display_format,
     disable_animations,
   } = req.query;
 
@@ -89,6 +90,7 @@ export const handler = async (req, res, env) => {
         locale: locale ? locale.toLowerCase() : null,
         layout,
         langs_count,
+        display_format,
         disable_animations: parseBoolean(disable_animations),
       }),
     );
