@@ -24,12 +24,6 @@
     </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
@@ -83,7 +77,7 @@
     - [Daha Fazla Dil Gösterin](#daha-fazla-dil-gösterin)
     - [Kompakt Dil Kartı Düzeni](#kompakt-dil-kartı-düzeni)
     - [Demo](#demo-1)
-- [Wakatime Haftalık İstatistikler](#wakatime-haftalık-i̇statistikler)
+- [WakaTime Haftalık İstatistikler](#wakatime-haftalık-i̇statistikler)
     - [Demo](#demo-2)
     - [Tüm Demolar](#tüm-demolar)
     - [Hızlı İpucu (Repo Kartları Hizlayın)](#hızlı-i̇pucu-repo-kartları-hizlayın)
@@ -208,7 +202,7 @@ bg_color içerisinde birden fazla rengi gradient olarak göstermek için virgül
 > (ör: `c++` yerine `c%2B%2B`, `jupyter notebook` yerine `jupyter%20notebook`, vb.)
 > [urlencoder.org](https://www.urlencoder.org/) adresini kullanarak otomatik olarak değerleri bu şekle çevirebilirsiniz.
 
-#### Wakatime Kart Exclusive Özellikler:
+#### WakaTime Kart Exclusive Özellikler:
 
 - `hide_title` - _(boolean)_
 - `line_height` - Satır aralığı yüksekliği _(number)_
@@ -298,23 +292,23 @@ Endpoint: `api/top-langs?username=mustafacagri`
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=mustafacagri&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Wakatime Haftalık İstatistikler
+# WakaTime Haftalık İstatistikler
 
-`?username=` değerini [Wakatime](https://wakatime.com)'daki kullanıcı adınızla değiştirin.
+`?username=` değerini [WakaTime](https://wakatime.com)'daki kullanıcı adınızla değiştirin.
 
 ```md
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - Kompakt Düzen
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -362,9 +356,9 @@ Endpoint: `api/top-langs?username=mustafacagri`
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- Wakatime kart
+- WakaTime kart
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

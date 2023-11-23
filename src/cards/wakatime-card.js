@@ -8,7 +8,6 @@ import {
   getCardColors,
   lowercaseTrim,
 } from "../common/utils.js";
-import { getStyles } from "../getStyles.js";
 import { wakatimeCardLocales } from "../translations.js";
 
 /** Import language colors.
@@ -159,6 +158,36 @@ const recalculatePercentages = (languages) => {
 };
 
 /**
+ * Retrieves CSS styles for a card.
+ *
+ * @param {Object} colors The colors to use for the card.
+ * @param {string} colors.titleColor The title color.
+ * @param {string} colors.textColor The text color.
+ * @returns {string} Card CSS styles.
+ */
+const getStyles = ({
+  // eslint-disable-next-line no-unused-vars
+  titleColor,
+  textColor,
+}) => {
+  return `
+    .stat {
+      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
+    }
+    @supports(-moz-appearance: auto) {
+      /* Selector detects Firefox */
+      .stat { font-size:12px; }
+    }
+    .stagger {
+      opacity: 0;
+      animation: fadeInAnimation 0.3s ease-in-out forwards;
+    }
+    .not_bold { font-weight: 400 }
+    .bold { font-weight: 700 }
+  `;
+};
+
+/**
  * @typedef {import('../fetchers/types').WakaTimeData} WakaTimeData
  * @typedef {import('./types').WakaTimeOptions} WakaTimeOptions
  */
@@ -190,6 +219,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     border_radius,
     border_color,
     display_format = "time",
+    disable_animations,
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
@@ -236,7 +266,6 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const cssStyles = getStyles({
     titleColor,
     textColor,
-    iconColor,
   });
 
   let finalLayout = "";
@@ -288,11 +317,11 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
           : noCodingActivityNode({
               // @ts-ignore
               color: textColor,
-              text: !stats.is_coding_activity_visible
-                ? i18n.t("wakatimecard.notpublic")
-                : stats.is_other_usage_visible
-                ? i18n.t("wakatimecard.nocodingactivity")
-                : i18n.t("wakatimecard.nocodedetails"),
+              text: stats.is_coding_activity_visible
+                ? stats.is_other_usage_visible
+                  ? i18n.t("wakatimecard.nocodingactivity")
+                  : i18n.t("wakatimecard.nocodedetails")
+                : i18n.t("wakatimecard.notpublic"),
             })
       }
     `;
@@ -320,11 +349,11 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
             noCodingActivityNode({
               // @ts-ignore
               color: textColor,
-              text: !stats.is_coding_activity_visible
-                ? i18n.t("wakatimecard.notpublic")
-                : stats.is_other_usage_visible
-                ? i18n.t("wakatimecard.nocodingactivity")
-                : i18n.t("wakatimecard.nocodedetails"),
+              text: stats.is_coding_activity_visible
+                ? stats.is_other_usage_visible
+                  ? i18n.t("wakatimecard.nocodingactivity")
+                  : i18n.t("wakatimecard.nocodedetails")
+                : i18n.t("wakatimecard.notpublic"),
             }),
           ],
       gap: lheight,
@@ -357,6 +386,10 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       borderColor,
     },
   });
+
+  if (disable_animations) {
+    card.disableAnimations();
+  }
 
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);

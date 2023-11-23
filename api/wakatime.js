@@ -31,12 +31,21 @@ export default async (req, res) => {
     border_radius,
     border_color,
     display_format,
+    disable_animations,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
 
   if (locale && !isLocaleAvailable(locale)) {
-    return res.send(renderError("Something went wrong", "Language not found"));
+    return res.send(
+      renderError("Something went wrong", "Language not found", {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
   }
 
   try {
@@ -77,6 +86,7 @@ export default async (req, res) => {
         layout,
         langs_count,
         display_format,
+        disable_animations: parseBoolean(disable_animations),
       }),
     );
   } catch (err) {
@@ -86,6 +96,14 @@ export default async (req, res) => {
         CONSTANTS.ERROR_CACHE_SECONDS
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     ); // Use lower cache period for errors.
-    return res.send(renderError(err.message, err.secondaryMessage));
+    return res.send(
+      renderError(err.message, err.secondaryMessage, {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
   }
 };
