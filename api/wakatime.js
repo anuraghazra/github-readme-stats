@@ -31,6 +31,7 @@ export const handler = async (req, res, env) => {
     api_domain,
     border_radius,
     border_color,
+    disable_animations,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -88,6 +89,7 @@ export const handler = async (req, res, env) => {
         locale: locale ? locale.toLowerCase() : null,
         layout,
         langs_count,
+        disable_animations: parseBoolean(disable_animations),
       }),
     );
   } catch (err) {

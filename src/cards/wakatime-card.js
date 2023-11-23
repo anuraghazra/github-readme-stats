@@ -225,6 +225,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     langs_count = languages.length,
     border_radius,
     border_color,
+    disable_animations,
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
@@ -388,6 +389,10 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       borderColor,
     },
   });
+
+  if (disable_animations) {
+    card.disableAnimations();
+  }
 
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
