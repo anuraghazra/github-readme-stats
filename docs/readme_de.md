@@ -75,7 +75,7 @@
     - [Verbirg einzelne Sprachen](#verbirg-einzelne-sprachen)
     - [Kompaktes Sprachen-Karte Layout](#kompaktes-sprachen-karte-layout)
     - [Beispiel](#beispiel)
-- [Wakatime Wochen-Statistik](#wakatime-wochen-statistik)
+- [WakaTime Wochen-Statistik](#wakatime-wochen-statistik)
     - [Beispiel](#beispiel-1)
     - [Alle Beispiele](#alle-beispiele)
     - [Kleiner Tipp (Ausrichten der Repo-Karte)](#kleiner-tipp-ausrichten-der-repo-karte)
@@ -189,7 +189,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 - `layout` - Wechselt zwischen zwei verschiedenen Layouts: `default` & `compact`
 - `langs_count` - Begrenzt die Anzahl der angezeigten Sprachen auf der Karte
 - `api_domain` - Legt eine benutzerdefinierte API Domain fest, z.B. für [Hakatime](https://github.com/mujx/hakatime) oder [Wakapi](https://github.com/muety/wakapi)
-- `range` – Fragt eine andere Zeitspanne an, als jene, welche standardmäßig in Wakatime hinterlegt ist. Zum Beispiel `last_7_days`. Siehe [WakaTime API Dokumentation](https://wakatime.com/developers#stats).
+- `range` – Fragt eine andere Zeitspanne an, als jene, welche standardmäßig in WakaTime hinterlegt ist. Zum Beispiel `last_7_days`. Siehe [WakaTime API Dokumentation](https://wakatime.com/developers#stats).
 
 ---
 
@@ -260,23 +260,23 @@ Du kannst die `&layout=compact` Option nutzen, um das Kartendesign zu ändern.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Wakatime Wochen-Statistik
+# WakaTime Wochen-Statistik
 
-Ändere `?username=` in den eigenen [Wakatime](https://wakatime.com)-Benutzernamen.
+Ändere `?username=` in den eigenen [WakaTime](https://wakatime.com)-Benutzernamen.
 
 ```md
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Beispiel
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - Kompaktes Layout
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
