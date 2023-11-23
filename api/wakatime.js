@@ -30,6 +30,7 @@ export default async (req, res) => {
     api_domain,
     border_radius,
     border_color,
+    display_format,
     disable_animations,
   } = req.query;
 
@@ -84,6 +85,7 @@ export default async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         layout,
         langs_count,
+        display_format,
         disable_animations: parseBoolean(disable_animations),
       }),
     );
