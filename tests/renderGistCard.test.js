@@ -236,4 +236,7 @@ describe("test renderGistCard", () => {
       "No description provided",
     );
   });
+
+  it("should render with custom width set", () => { document.body.innerHTML = renderGistCard(data); expect(document.querySelector("svg")).toHaveAttribute("width", "400"); document.body.innerHTML = renderGistCard(data, { card_width: 400 }); expect(document.querySelector("svg")).toHaveAttribute("width", "400"); }); it("should limit minimum width when the custom width is too small", () => { document.body.innerHTML = renderGistCard(data, { card_width: 1 }); expect(document.querySelector("svg")).toHaveAttribute("width", "280"); });
+  });
 });
