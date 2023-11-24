@@ -218,6 +218,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     langs_count = languages.length,
     border_radius,
     border_color,
+    display_format = "time",
+    disable_animations,
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
@@ -330,7 +332,10 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
             return createTextNode({
               id: language.name,
               label: language.name,
-              value: language.text,
+              value:
+                display_format === "percent"
+                  ? `${language.percent.toFixed(2).toString()} %`
+                  : language.text,
               index,
               percent: language.percent,
               // @ts-ignore
@@ -381,6 +386,10 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       borderColor,
     },
   });
+
+  if (disable_animations) {
+    card.disableAnimations();
+  }
 
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);

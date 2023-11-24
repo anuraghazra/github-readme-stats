@@ -54,6 +54,8 @@ type WakaTimeOptions = CommonOptions & {
   custom_title: string;
   layout: "compact" | "normal";
   langs_count: number;
+  display_format: "time" | "percent";
+  disable_animations: boolean;
 };
 
 export type GistCardOptions = CommonOptions & {
