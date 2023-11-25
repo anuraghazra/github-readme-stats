@@ -288,16 +288,18 @@ You can customize the appearance of all your cards however you wish with URL par
 
 #### Common Options
 
-*   `title_color` - Card's title color *(hex color)*. Default: `2f80ed`.
-*   `text_color` - Body text color *(hex color)*. Default: `434d58`.
-*   `icon_color` - Icons color if available *(hex color)*. Default: `4c71f2`.
-*   `border_color` - Card's border color *(hex color)*. Default: `e4e2e2` (does not apply when `hide_border` is enabled).
-*   `bg_color` - Card's background color *(hex color)* **or** a gradient in the form of *angle,start,end*. Default: `fffefe`
-*   `hide_border` - Hides the card's border *(boolean)*. Default: `false`
-*   `theme` - Name of the theme; choose from [all available themes](themes/README.md). Default: `default` theme.
-*   `cache_seconds` - Sets the cache header manually *(min: 21600, max: 86400)*. Default: `21600 seconds (6 hours)`.
-*   `locale` - Sets the language in the card, you can check full list of available locales [here](#available-locales). Default: `en`.
-*   `border_radius` - Corner rounding on the card. Default: `4.5`.
+| Name | Description | Type | Default value |
+| --- | --- | --- | --- |
+| `title_color` | Card's title color. | string (hex color) | `2f80ed` |
+| `text_color` | Body text color. | string (hex color) | `434d58` |
+| `icon_color` | Icons color if available. | string (hex color) | `4c71f2` |
+| `border_color` | Card's border color. Does not apply when `hide_border` is enabled. | string (hex color) | `e4e2e2` |
+| `bg_color` | Card's background color. | string (hex color or a gradient in the form of *angle,start,end*) | `fffefe` |
+| `hide_border` | Hides the card's border. | boolean | `false` |
+| `theme` | Name of the theme, choose from [all available themes](themes/README.md). | enum | `default` |
+| `cache_seconds` | Sets the cache header manually (min: 21600, max: 86400). | integer | `1800` |
+| `locale` | Sets the language in the card, you can check full list of available locales [here](#available-locales). | enum | `en` |
+| `border_radius` | Corner rounding on the card. | number | `4.5` |
 
 > [!WARNING]\
 > We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have a default cache of 6 hours (21600 seconds). Also, note that the cache is clamped to a minimum of 6 hours and a maximum of 24 hours. If you want the data on your statistics card to be updated more often you can [deploy your own instance](#deploy-on-your-own) and set [environment variable](#disable-rate-limit-protections) `CACHE_SECONDS` to a value of your choosing.
@@ -364,47 +366,55 @@ If we don't support your language, please consider contributing! You can find mo
 
 #### Stats Card Exclusive Options
 
-*   `hide` - Hides the [specified items](#hiding-individual-stats) from stats *(comma-separated values)*. Default: `[] (blank array)`.
-*   `hide_title` - *(boolean)*. Default: `false`.
-*   `card_width` - Sets the card's width manually *(number)*. Default: `500px  (approx.)`.
-*   `hide_rank` - *(boolean)* hides the rank and automatically resizes the card width. Default: `false`.
-*   `rank_icon` - Shows alternative rank icon (i.e. `github`, `percentile` or `default`). Default: `default`.
-*   `show_icons` - *(boolean)*. Default: `false`.
-*   `include_all_commits` - Counts total commits instead of just the current year commits *(boolean)*. Default: `false`.
-*   `line_height` - Sets the line height between text *(number)*. Default: `25`.
-*   `exclude_repo` - Excludes stars from specified repositories *(Comma-separated values)*. Default: `[] (blank array)`.
-*   `custom_title` - Sets a custom title for the card. Default:  `<username> GitHub Stats`.
-*   `text_bold` - Uses bold text *(boolean)*. Default: `true`.
-*   `disable_animations` - Disables all animations in the card *(boolean)*. Default: `false`.
-*   `ring_color` - Color of the rank circle *(hex color)*. Defaults to the theme ring color if it exists and otherwise the title color.
-*   `number_format` - Switches between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). Default: `short`.
-*   `show` - Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started`, `discussions_answered`, `prs_merged` or `prs_merged_percentage`) *(Comma-separated values)*. Default: `[] (blank array)`.
+| Name | Description | Type | Default value |
+| --- | --- | --- | --- |
+| `hide` | Hides the [specified items](#hiding-individual-stats) from stats. | string (comma-separated values) | `null` |
+| `hide_title` | Hides the title of your stats card. | boolean | `false` |
+| `card_width` | Sets the card's width manually. | number | `500px  (approx.)` |
+| `hide_rank` | Hides the rank and automatically resizes the card width. | boolean | `false` |
+| `rank_icon` | Shows alternative rank icon (i.e. `github`, `percentile` or `default`). | enum | `default` |
+| `show_icons` | Shows icons near all stats. | boolean | `false` |
+| `include_all_commits` | Count total commits instead of just the current year commits. | boolean | `false` |
+| `line_height` | Sets the line height between text. | integer | `25` |
+| `exclude_repo` | Excludes specified repositories. | string (comma-separated values) | `null` |
+| `custom_title` | Sets a custom title for the card. | string | `<username> GitHub Stats` |
+| `text_bold` | Uses bold text. | boolean | `true` |
+| `disable_animations` | Disables all animations in the card. | boolean | `false` |
+| `ring_color` | Color of the rank circle. | string (hex color) | `2f80ed` |
+| `number_format` | Switches between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). | enum | `short` |
+| `show` | Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started`, `discussions_answered`, `prs_merged` or `prs_merged_percentage`). | string (comma-separated values) | `null` |
 
 > [!NOTE]\
 > When hide\_rank=`true`, the minimum card width is 270 px + the title length and padding.
 
 #### Repo Card Exclusive Options
 
-*   `show_owner` - Shows the repo's owner name *(boolean)*. Default: `false`.
-*   `description_lines_count` - Manually set the number of lines for the description *(number)*. Specified value will be clamped between 1 and 3. If this parameter is not specified, the number of lines will be automatically adjusted according to the actual length of the description. Default: `undefined`.
+| Name | Description | Type | Default value |
+| --- | --- | --- | --- |
+| `show_owner` | Shows the repo's owner name. | boolean | `false` |
+| `description_lines_count` | Manually set the number of lines for the description. Specified value will be clamped between 1 and 3. If this parameter is not specified, the number of lines will be automatically adjusted according to the actual length of the description. | number | `null` |
 
 #### Gist Card Exclusive Options
 
-*   `show_owner` - Shows the gist's owner name *(boolean)*. Default: `false`.
+| Name | Description | Type | Default value |
+| --- | --- | --- | --- |
+| `show_owner` | Shows the gist's owner name. | boolean | `false` |
 
 #### Language Card Exclusive Options
 
-*   `hide` - Hides the languages specified from the card *(Comma-separated values)*. Default: `[] (blank array)`.
-*   `hide_title` - *(boolean)*. Default: `false`.
-*   `layout` - Switches between five available layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Default: `normal`.
-*   `card_width` - Sets the card's width manually *(number)*. Default `300`.
-*   `langs_count` - Shows more languages on the card, between 1-20 *(number)*. Default: `5` for `normal` and `donut`, `6` for other layouts.
-*   `exclude_repo` - Excludes specified repositories *(Comma-separated values)*. Default: `[] (blank array)`.
-*   `custom_title` - Sets a custom title for the card *(string)*. Default `Most Used Languages`.
-*   `disable_animations` - Disables all animations in the card *(boolean)*. Default: `false`.
-*   `hide_progress` - Uses the compact layout option, hides percentages, and removes the bars. Default: `false`.
-*   `size_weight` - Configures language stats algorithm *(number)* (see [Language stats algorithm](#Language-stats-algorithm)), defaults to 1.
-*   `count_weight` - Configures language stats algorithm *(number)* (see [Language stats algorithm](#Language-stats-algorithm)), defaults to 0.
+| Name | Description | Type | Default value |
+| --- | --- | --- | --- |
+| `hide` | Hides the [specified languages](#hide-individual-languages) from card. | string (comma-separated values) | `null` |
+| `hide_title` | Hides the title of your card. | boolean | `false` |
+| `layout` | Switches between five available layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`. | enum | `normal` |
+| `card_width` | Sets the card's width manually. | number | `300` |
+| `langs_count` | Shows more languages on the card, between 1-20. | integer | `5` for `normal` and `donut`, `6` for other layouts |
+| `exclude_repo` | Excludes specified repositories. | string (comma-separated values) | `null` |
+| `custom_title` | Sets a custom title for the card. | string | `Most Used Languages` |
+| `disable_animations` | Disables all animations in the card. | boolean | `false` |
+| `hide_progress` | Uses the compact layout option, hides percentages, and removes the bars. | boolean | `false` |
+| `size_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `1` |
+| `count_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `0` |
 
 > [!WARNING]\
 > Language names should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
@@ -413,16 +423,18 @@ If we don't support your language, please consider contributing! You can find mo
 
 #### WakaTime Card Exclusive Options
 
-*   `hide` - Hides the languages specified from the card *(Comma-separated values)*. Default: `[] (blank array)`.
-*   `hide_title` - *(boolean)*. Default `false`.
-*   `line_height` - Sets the line height between text *(number)*. Default `25`.
-*   `hide_progress` - Hides the progress bar and percentage *(boolean)*. Default `false`.
-*   `custom_title` - Sets a custom title for the card *(string)*. Default `WakaTime Stats`.
-*   `layout` - Switches between two available layouts `default` & `compact`.  Default `default`.
-*   `langs_count` - Limits the number of languages on the card, defaults to all reported languages *(number)*.
-*   `api_domain` - Sets a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) *(string)*. Default `Waka API`.
-*   `display_format` - Sets the WakaTime stats display format. Choose `time` to display time-based stats or `percent` to show percentages. Default: `time`.
-*   `disable_animations` - Disables all animations in the card *(boolean)*. Default: `false`.
+| Name | Description | Type | Default value |
+| --- | --- | --- | --- |
+| `hide` | Hides the languages specified from the card. | string (comma-separated values) | `null` |
+| `hide_title` | Hides the title of your card. | boolean | `false` |
+| `line_height` | Sets the line height between text. | integer | `25` |
+| `hide_progress` | Hides the progress bar and percentage. | boolean | `false` |
+| `custom_title` | Sets a custom title for the card. | string | `WakaTime Stats` |
+| `layout` | Switches between two available layouts `default` & `compact`. | enum | `default` |
+| `langs_count` | Limits the number of languages on the card, defaults to all reported languages. | integer | `null` |
+| `api_domain` | Sets a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) | string | `Waka API` |
+| `display_format` | Sets the WakaTime stats display format. Choose `time` to display time-based stats or `percent` to show percentages. | enum | `time` |
+| `disable_animations` | Disables all animations in the card. | boolean | `false` |
 
 ***
 
