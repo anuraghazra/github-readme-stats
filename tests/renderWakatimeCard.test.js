@@ -83,4 +83,11 @@ describe("Test Render WakaTime Card", () => {
       "No coding activity this week",
     );
   });
+
+  it("should render correctly with percent display format", () => {
+    const card = renderWakatimeCard(wakaTimeData.data, {
+      display_format: "percent",
+    });
+    expect(card).toMatchSnapshot();
+  });
 });
