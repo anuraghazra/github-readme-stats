@@ -77,7 +77,7 @@
     - [Laat meer programmeertalen zien](#laat-meer-programmeertalen-zien)
     - [Compacte Talen Kaart opmaak](#compacte-talen-kaart-opmaak)
     - [Demo](#demo-1)
-- [Wekelijkse Wakatime Statistieken](#wekelijkse-wakatime-statistieken)
+- [Wekelijkse WakaTime Statistieken](#wekelijkse-wakatime-statistieken)
     - [Demo](#demo-2)
     - [Alle demos](#alle-demos)
     - [Kleine tip (Verstel de repo kaart z'n positie)](#kleine-tip-verstel-de-repo-kaart-zn-positie)
@@ -202,7 +202,7 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 > (Oftewel: `c++` moet `c%2B%2B` worden, `jupyter notebook` moet `jupyter%20notebook` worden, enzovoort...)
 > Zie [urlencoder.org](https://www.urlencoder.org/) om dit automatisch te doen.
 
-#### Exclusieve opties voor Wakatime Kaart:
+#### Exclusieve opties voor WakaTime Kaart:
 
 - `hide_title` - _(boolean)_
 - `line_height` - Verandert de lijn hoogte tussen tekst _(nummer)_
@@ -293,19 +293,19 @@ Je kan de `&layout=compact` optie gebruiken om het kaart ontwerp aan te passen.
 
 [![Top programmeertalen](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Wekelijkse Wakatime Statistieken
+# Wekelijkse WakaTime Statistieken
 
-Verander de `?username=` waarde naar je [Wakatime](https://wakatime.com) gebruikersnaam.
+Verander de `?username=` waarde naar je [WakaTime](https://wakatime.com) gebruikersnaam.
 
 ```md
-[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -353,9 +353,9 @@ Kies uit de [standaard thema\'s](#themes)
 
 [![Top Programmeertalen](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- Wakatime kaart
+- WakaTime kaart
 
-[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

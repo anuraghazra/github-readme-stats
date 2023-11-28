@@ -755,8 +755,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     ? isNaN(card_width)
       ? DEFAULT_CARD_WIDTH
       : card_width < MIN_CARD_WIDTH
-      ? MIN_CARD_WIDTH
-      : card_width
+        ? MIN_CARD_WIDTH
+        : card_width
     : DEFAULT_CARD_WIDTH;
   let height = calculateNormalLayoutHeight(langs.length);
 

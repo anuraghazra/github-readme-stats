@@ -75,7 +75,7 @@
     - [Ocultar linguagens individualmente](#ocultar-linguagens-individualmente)
     - [Layout de cartão de linguagens compacto](#layout-de-cartão-de-linguagens-compacto)
     - [Demonstração](#demonstração-1)
-- [Estatística semanal Wakatime](#estatística-semanal-wakatime)
+- [Estatística semanal WakaTime](#estatística-semanal-wakatime)
     - [Demonstração](#demonstração-2)
     - [Todas as demonstrações](#todas-as-demonstrações)
     - [Dica (Alinhandos os cartões de repositório)](#dica-alinhandos-os-cartões-de-repositório)
@@ -250,19 +250,19 @@ Utilize a opção `&layout=compact` para mudar o layout do cartão.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Estatística semanal Wakatime
+# Estatística semanal WakaTime
 
-Altere o valor de `?username=` para o seu username do Wakatime.
+Altere o valor de `?username=` para o seu username do WakaTime.
 
 ```md
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demonstração
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
