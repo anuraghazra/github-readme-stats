@@ -339,4 +339,34 @@ describe("Test renderRepoCard", () => {
       "No description provided",
     );
   });
+
+  it("should have correct height with specified `description_lines_count` parameter", () => {
+    // Testing short description
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      description_lines_count: 1,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute("height", "120");
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      description_lines_count: 3,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute("height", "150");
+
+    // Testing long description
+    const longDescription =
+      "A tool that will make a lot of iPhone/iPad developers' life easier. It shares your app over-the-air in a WiFi network. Bonjour is used and no configuration is needed.";
+    document.body.innerHTML = renderRepoCard(
+      { ...data_repo.repository, description: longDescription },
+      {
+        description_lines_count: 3,
+      },
+    );
+    expect(document.querySelector("svg")).toHaveAttribute("height", "150");
+    document.body.innerHTML = renderRepoCard(
+      { ...data_repo.repository, description: longDescription },
+      {
+        description_lines_count: 1,
+      },
+    );
+    expect(document.querySelector("svg")).toHaveAttribute("height", "120");
+  });
 });
