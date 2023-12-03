@@ -320,7 +320,7 @@ describe("Test /api/", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
       renderError(
-        "Invalid query string param: locale",
+        "Invalid query string param `locale` value: asdf",
         `Expected: ${availableLocales.join(", ")}`,
       ),
     );
