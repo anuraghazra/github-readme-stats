@@ -4,51 +4,40 @@ import toEmoji from "emoji-name-map";
 import wrap from "word-wrap";
 import { themes } from "../../themes/index.js";
 
-// Script parameters.
-const ERROR_CARD_LENGTH = 576.5;
+const TRY_AGAIN_LATER = "Please try again later";
 
-/**
- * Encode string as HTML.
- *
- * @see https://stackoverflow.com/a/48073476/10629172
- *
- * @param {string} str String to encode.
- * @returns {string} Encoded string.
- */
-const encodeHTML = (str) => {
-  return str
-    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
-      return "&#" + i.charCodeAt(0) + ";";
-    })
-    .replace(/\u0008/gim, "");
+const SECONDARY_ERROR_MESSAGES = {
+  MAX_RETRY:
+    "You can deploy own instance or wait until public will be no longer limited",
+  NO_TOKENS:
+    "Please add an env variable called PAT_1 with your GitHub API token in vercel",
+  USER_NOT_FOUND: "Make sure the provided username is not an organization",
+  GRAPHQL_ERROR: TRY_AGAIN_LATER,
+  GITHUB_REST_API_ERROR: TRY_AGAIN_LATER,
+  WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
 };
 
 /**
- * Renders error message on the card.
- *
- * @param {string} message Main error message.
- * @param {string} secondaryMessage The secondary error message.
- * @returns {string} The SVG markup.
+ * Custom error class to handle custom GRS errors.
  */
-const renderError = (message, secondaryMessage = "") => {
-  return `
-    <svg width="${ERROR_CARD_LENGTH}" height="120" viewBox="0 0 ${ERROR_CARD_LENGTH} 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <style>
-    .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2F80ED }
-    .small { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #252525 }
-    .gray { fill: #858585 }
-    </style>
-    <rect x="0.5" y="0.5" width="${
-      ERROR_CARD_LENGTH - 1
-    }" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
-    <text x="25" y="45" class="text">Something went wrong! file an issue at https://tiny.one/readme-stats</text>
-    <text data-testid="message" x="25" y="55" class="text small">
-      <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
-      <tspan x="25" dy="18" class="gray">${secondaryMessage}</tspan>
-    </text>
-    </svg>
-  `;
-};
+class CustomError extends Error {
+  /**
+   * @param {string} message Error message.
+   * @param {string} type Error type.
+   */
+  constructor(message, type) {
+    super(message);
+    this.type = type;
+    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || type;
+  }
+
+  static MAX_RETRY = "MAX_RETRY";
+  static NO_TOKENS = "NO_TOKENS";
+  static USER_NOT_FOUND = "USER_NOT_FOUND";
+  static GRAPHQL_ERROR = "GRAPHQL_ERROR";
+  static GITHUB_REST_API_ERROR = "GITHUB_REST_API_ERROR";
+  static WAKATIME_ERROR = "WAKATIME_ERROR";
+}
 
 /**
  * Auto layout utility, allows us to layout things vertically or horizontally with
@@ -188,7 +177,7 @@ const parseArray = (str) => {
  */
 const clampValue = (number, min, max) => {
   // @ts-ignore
-  if (Number.isNaN(parseInt(number))) {
+  if (Number.isNaN(parseInt(number, 10))) {
     return min;
   }
   return Math.max(min, Math.min(number, max));
@@ -201,7 +190,10 @@ const clampValue = (number, min, max) => {
  * @returns {boolean} True if the given string is a valid gradient.
  */
 const isValidGradient = (colors) => {
-  return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
+  return (
+    colors.length > 2 &&
+    colors.slice(1).every((color) => isValidHexColor(color))
+  );
 };
 
 /**
@@ -333,6 +325,81 @@ const getCardColors = ({
   return { titleColor, iconColor, textColor, bgColor, borderColor, ringColor };
 };
 
+// Script parameters.
+const ERROR_CARD_LENGTH = 576.5;
+
+/**
+ * Encode string as HTML.
+ *
+ * @see https://stackoverflow.com/a/48073476/10629172
+ *
+ * @param {string} str String to encode.
+ * @returns {string} Encoded string.
+ */
+const encodeHTML = (str) => {
+  return str
+    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
+      return "&#" + i.charCodeAt(0) + ";";
+    })
+    .replace(/\u0008/gim, "");
+};
+
+const UPSTREAM_API_ERRORS = [
+  TRY_AGAIN_LATER,
+  SECONDARY_ERROR_MESSAGES.MAX_RETRY,
+];
+
+/**
+ * Renders error message on the card.
+ *
+ * @param {string} message Main error message.
+ * @param {string} secondaryMessage The secondary error message.
+ * @param {object} options Function options.
+ * @returns {string} The SVG markup.
+ */
+const renderError = (message, secondaryMessage = "", options = {}) => {
+  const {
+    title_color,
+    text_color,
+    bg_color,
+    border_color,
+    theme = "default",
+  } = options;
+
+  // returns theme based colors with proper overrides and defaults
+  const { titleColor, textColor, bgColor, borderColor } = getCardColors({
+    title_color,
+    text_color,
+    icon_color: "",
+    bg_color,
+    border_color,
+    ring_color: "",
+    theme,
+  });
+
+  return `
+    <svg width="${ERROR_CARD_LENGTH}"  height="120" viewBox="0 0 ${ERROR_CARD_LENGTH} 120" fill="${bgColor}" xmlns="http://www.w3.org/2000/svg">
+    <style>
+    .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
+    .small { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+    .gray { fill: #858585 }
+    </style>
+    <rect x="0.5" y="0.5" width="${
+      ERROR_CARD_LENGTH - 1
+    }" height="99%" rx="4.5" fill="${bgColor}" stroke="${borderColor}"/>
+    <text x="25" y="45" class="text">Something went wrong!${
+      UPSTREAM_API_ERRORS.includes(secondaryMessage)
+        ? ""
+        : " file an issue at https://tiny.one/readme-stats"
+    }</text>
+    <text data-testid="message" x="25" y="55" class="text small">
+      <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
+      <tspan x="25" dy="18" class="gray">${secondaryMessage}</tspan>
+    </text>
+    </svg>
+  `;
+};
+
 /**
  * Split text over multiple lines based on the card width.
  *
@@ -371,7 +438,7 @@ const wrapTextMultiline = (text, width = 59, maxLines = 3) => {
 const noop = () => {};
 // return console instance based on the environment
 const logger =
-  process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
+  process.env.NODE_ENV === "test" ? { log: noop, error: noop } : console;
 
 const ONE_MINUTE = 60;
 const FIVE_MINUTES = 300;
@@ -398,41 +465,6 @@ const CONSTANTS = {
   CARD_CACHE_SECONDS: SIX_HOURS,
   ERROR_CACHE_SECONDS: TEN_MINUTES,
 };
-
-const TRY_AGAING_LATER = "Please try again later";
-
-const SECONDARY_ERROR_MESSAGES = {
-  MAX_RETRY:
-    "You can deploy own instance or wait until public will be no longer limited",
-  NO_TOKENS:
-    "Please add an env variable called PAT_1 with your GitHub API token in vercel",
-  USER_NOT_FOUND: "Make sure the provided username is not an organization",
-  GRAPHQL_ERROR: TRY_AGAING_LATER,
-  GITHUB_REST_API_ERROR: TRY_AGAING_LATER,
-  WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
-};
-
-/**
- * Custom error class to handle custom GRS errors.
- */
-class CustomError extends Error {
-  /**
-   * @param {string} message Error message.
-   * @param {string} type Error type.
-   */
-  constructor(message, type) {
-    super(message);
-    this.type = type;
-    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || type;
-  }
-
-  static MAX_RETRY = "MAX_RETRY";
-  static NO_TOKENS = "NO_TOKENS";
-  static USER_NOT_FOUND = "USER_NOT_FOUND";
-  static GRAPHQL_ERROR = "GRAPHQL_ERROR";
-  static GITHUB_REST_API_ERROR = "GITHUB_REST_API_ERROR";
-  static WAKATIME_ERROR = "WAKATIME_ERROR";
-}
 
 /**
  * Missing query parameter class.
