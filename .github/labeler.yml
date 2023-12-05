@@ -1,5 +1,8 @@
-themes: themes/index.js
-doc-translation: docs/*
+themes:
+  - themes/index.js
+doc-translation:
+  - changed-files:
+      - any-glob-to-any-file: docs/*
 card-i18n:
   - src/translations.js
   - src/common/I18n.js
@@ -46,8 +49,10 @@ gist-card:
   - tests/fetchGist.test.js
   - tests/renderGistCard.test.js
   - tests/gist.test.js
-ranks: src/calculateRank.js
+ranks:
+  - src/calculateRank.js
 ci:
   - .github/workflows/*
   - scripts/*
-infrastructure: .eslintrc.json
+infrastructure:
+  - .eslintrc.json
