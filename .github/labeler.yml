@@ -1,78 +1,66 @@
-"themes":
-  - any: ["themes/index.js"]
+"themes": ["themes/index.js"]
 
-"doc-translation":
-  - any: ["docs/*"]
+"doc-translation": ["docs/*"]
 
-"card-i18n":
-  - any: ["src/translations.js", "src/common/I18n.js"]
+"card-i18n": ["src/translations.js", "src/common/I18n.js"]
 
 "documentation":
-  - any: ["readme.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SECURITY.md"]
+  ["readme.md", "CONTRIBUTING.md", "CODE_OF_CONDUCT.md", "SECURITY.md"]
 
-"dependencies":
-  - any: ["package.json", "package-lock.json"]
+"dependencies": ["package.json", "package-lock.json"]
 
 "lang-card":
-  - any:
-      [
-        "api/top-langs.js",
-        "src/cards/top-languages-card.js",
-        "src/fetchers/top-languages-fetcher.js",
-        "tests/fetchTopLanguages.test.js",
-        "tests/renderTopLanguagesCard.test.js",
-        "tests/top-langs.test.js",
-      ]
+  [
+    "api/top-langs.js",
+    "src/cards/top-languages-card.js",
+    "src/fetchers/top-languages-fetcher.js",
+    "tests/fetchTopLanguages.test.js",
+    "tests/renderTopLanguagesCard.test.js",
+    "tests/top-langs.test.js",
+  ]
 
 "repo-card":
-  - any:
-      [
-        "api/pin.js",
-        "src/cards/repo-card.js",
-        "src/fetchers/repo-fetcher.js",
-        "tests/fetchRepo.test.js",
-        "tests/renderRepoCard.test.js",
-        "tests/pin.test.js",
-      ]
+  [
+    "api/pin.js",
+    "src/cards/repo-card.js",
+    "src/fetchers/repo-fetcher.js",
+    "tests/fetchRepo.test.js",
+    "tests/renderRepoCard.test.js",
+    "tests/pin.test.js",
+  ]
 
 "stats-card":
-  - any:
-      [
-        "api/index.js",
-        "src/cards/stats-card.js",
-        "src/fetchers/stats-fetcher.js",
-        "tests/fetchStats.test.js",
-        "tests/renderStatsCard.test.js",
-        "tests/api.test.js",
-      ]
+  [
+    "api/index.js",
+    "src/cards/stats-card.js",
+    "src/fetchers/stats-fetcher.js",
+    "tests/fetchStats.test.js",
+    "tests/renderStatsCard.test.js",
+    "tests/api.test.js",
+  ]
 
 "wakatime-card":
-  - any:
-      [
-        "api/wakatime.js",
-        "src/cards/wakatime-card.js",
-        "src/fetchers/wakatime-fetcher.js",
-        "tests/fetchWakatime.test.js",
-        "tests/renderWakatimeCard.test.js",
-        "tests/wakatime.test.js",
-      ]
+  [
+    "api/wakatime.js",
+    "src/cards/wakatime-card.js",
+    "src/fetchers/wakatime-fetcher.js",
+    "tests/fetchWakatime.test.js",
+    "tests/renderWakatimeCard.test.js",
+    "tests/wakatime.test.js",
+  ]
 
 "gist-card":
-  - any:
-      [
-        "api/gist.js",
-        "src/cards/gist-card.js",
-        "src/fetchers/gist-fetcher.js",
-        "tests/fetchGist.test.js",
-        "tests/renderGistCard.test.js",
-        "tests/gist.test.js",
-      ]
+  [
+    "api/gist.js",
+    "src/cards/gist-card.js",
+    "src/fetchers/gist-fetcher.js",
+    "tests/fetchGist.test.js",
+    "tests/renderGistCard.test.js",
+    "tests/gist.test.js",
+  ]
 
-"ranks":
-  - any: ["src/calculateRank.js"]
+"ranks": ["src/calculateRank.js"]
 
-"ci":
-  - any: [".github/workflows/*", "scripts/*"]
+"ci": [".github/workflows/*", "scripts/*"]
 
-"infrastructure":
-  - any: [".eslintrc.json"]
+"infrastructure": [".eslintrc.json"]
