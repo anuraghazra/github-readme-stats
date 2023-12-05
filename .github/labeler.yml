@@ -1,6 +1,6 @@
 themes:
   - any:
-      - themes/index.js
+      - "themes/index.js"
 
 doc-translation:
   - any:
