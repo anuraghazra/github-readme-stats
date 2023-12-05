@@ -1,95 +1,82 @@
 themes:
   - any:
-      - changed-files:
-          - themes/index.js
+      - themes/index.js
 
 doc-translation:
   - any:
-      - changed-files:
-          - docs/*
+      - docs/*
 
 card-i18n:
   - any:
-      - changed-files:
-          - src/translations.js
-          - src/common/I18n.js
+      - src/translations.js
+      - src/common/I18n.js
 
 documentation:
   - any:
-      - changed-files:
-          - readme.md
-          - CONTRIBUTING.md
-          - CODE_OF_CONDUCT.md
-          - SECURITY.md
+      - readme.md
+      - CONTRIBUTING.md
+      - CODE_OF_CONDUCT.md
+      - SECURITY.md
 
 dependencies:
   - any:
-      - changed-files:
-          - package.json
-          - package-lock.json
+      - package.json
+      - package-lock.json
 
 lang-card:
   - any:
-      - changed-files:
-          - api/top-langs.js
-          - src/cards/top-languages-card.js
-          - src/fetchers/top-languages-fetcher.js
-          - tests/fetchTopLanguages.test.js
-          - tests/renderTopLanguagesCard.test.js
-          - tests/top-langs.test.js
+      - api/top-langs.js
+      - src/cards/top-languages-card.js
+      - src/fetchers/top-languages-fetcher.js
+      - tests/fetchTopLanguages.test.js
+      - tests/renderTopLanguagesCard.test.js
+      - tests/top-langs.test.js
 
 repo-card:
   - any:
-      - changed-files:
-          - api/pin.js
-          - src/cards/repo-card.js
-          - src/fetchers/repo-fetcher.js
-          - tests/fetchRepo.test.js
-          - tests/renderRepoCard.test.js
-          - tests/pin.test.js
+      - api/pin.js
+      - src/cards/repo-card.js
+      - src/fetchers/repo-fetcher.js
+      - tests/fetchRepo.test.js
+      - tests/renderRepoCard.test.js
+      - tests/pin.test.js
 
 stats-card:
   - any:
-      - changed-files:
-          - api/index.js
-          - src/cards/stats-card.js
-          - src/fetchers/stats-fetcher.js
-          - tests/fetchStats.test.js
-          - tests/renderStatsCard.test.js
-          - tests/api.test.js
+      - api/index.js
+      - src/cards/stats-card.js
+      - src/fetchers/stats-fetcher.js
+      - tests/fetchStats.test.js
+      - tests/renderStatsCard.test.js
+      - tests/api.test.js
 
 wakatime-card:
   - any:
-      - changed-files:
-          - api/wakatime.js
-          - src/cards/wakatime-card.js
-          - src/fetchers/wakatime-fetcher.js
-          - tests/fetchWakatime.test.js
-          - tests/renderWakatimeCard.test.js
-          - tests/wakatime.test.js
+      - api/wakatime.js
+      - src/cards/wakatime-card.js
+      - src/fetchers/wakatime-fetcher.js
+      - tests/fetchWakatime.test.js
+      - tests/renderWakatimeCard.test.js
+      - tests/wakatime.test.js
 
 gist-card:
   - any:
-      - changed-files:
-          - api/gist.js
-          - src/cards/gist-card.js
-          - src/fetchers/gist-fetcher.js
-          - tests/fetchGist.test.js
-          - tests/renderGistCard.test.js
-          - tests/gist.test.js
+      - api/gist.js
+      - src/cards/gist-card.js
+      - src/fetchers/gist-fetcher.js
+      - tests/fetchGist.test.js
+      - tests/renderGistCard.test.js
+      - tests/gist.test.js
 
 ranks:
   - any:
-      - changed-files:
-          - src/calculateRank.js
+      - src/calculateRank.js
 
 ci:
   - any:
-      - changed-files:
-          - .github/workflows/*
-          - scripts/*
+      - .github/workflows/*
+      - scripts/*
 
 infrastructure:
   - any:
-      - changed-files:
-          - .eslintrc.json
+      - .eslintrc.json
