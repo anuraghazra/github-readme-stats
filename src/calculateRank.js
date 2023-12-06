@@ -1,9 +1,32 @@
+function searchSorted(arr, x) {
+  if (x < arr[0]) {
+    return 0;
+  }
+
+  // arr[l] <= x < arr[r]
+  let l = 0;
+  let r = arr.length;
+  let m;
+
+  while (r - l > 1) {
+    m = Math.floor((l + r) / 2);
+
+    if (x < arr[m]) {
+      r = m;
+    } else {
+      l = m;
+    }
+  }
+
+  return r;
+}
+
 function score(x, quantiles) {
-  const i = quantiles.findIndex((q) => x < q);
+  const i = searchSorted(quantiles, x);
 
   if (i == 0) {
     return 0.0;
-  } else if (i == -1) {
+  } else if (i == quantiles.length) {
     return 1.0;
   }
 
