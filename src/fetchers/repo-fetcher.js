@@ -73,8 +73,12 @@ const fetchRepo = async (username, reponame) => {
   if (!username && !reponame) {
     throw new MissingParamError(["username", "repo"], urlExample);
   }
-  if (!username) throw new MissingParamError(["username"], urlExample);
-  if (!reponame) throw new MissingParamError(["repo"], urlExample);
+  if (!username) {
+    throw new MissingParamError(["username"], urlExample);
+  }
+  if (!reponame) {
+    throw new MissingParamError(["repo"], urlExample);
+  }
 
   let res = await retryer(fetcher, { login: username, repo: reponame });
 
@@ -109,6 +113,8 @@ const fetchRepo = async (username, reponame) => {
       starCount: data.organization.repository.stargazers.totalCount,
     };
   }
+
+  throw new Error("Unexpected behavior");
 };
 
 export { fetchRepo };

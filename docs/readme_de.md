@@ -25,20 +25,14 @@
     </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
-    <a href="#demo">Beispiele ansehen</a>
+    <a href="#alle-beispiele">Beispiele ansehen</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Fehler melden</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Fehler melden</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Funktion wünschen</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Funktion wünschen</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
@@ -81,7 +75,7 @@
     - [Verbirg einzelne Sprachen](#verbirg-einzelne-sprachen)
     - [Kompaktes Sprachen-Karte Layout](#kompaktes-sprachen-karte-layout)
     - [Beispiel](#beispiel)
-- [Wakatime Wochen-Statistik](#wakatime-wochen-statistik)
+- [WakaTime Wochen-Statistik](#wakatime-wochen-statistik)
     - [Beispiel](#beispiel-1)
     - [Alle Beispiele](#alle-beispiele)
     - [Kleiner Tipp (Ausrichten der Repo-Karte)](#kleiner-tipp-ausrichten-der-repo-karte)
@@ -195,7 +189,7 @@ Du kannst mehrere, mit Kommas separierte, Werte in der bg_color Option angeben, 
 - `layout` - Wechselt zwischen zwei verschiedenen Layouts: `default` & `compact`
 - `langs_count` - Begrenzt die Anzahl der angezeigten Sprachen auf der Karte
 - `api_domain` - Legt eine benutzerdefinierte API Domain fest, z.B. für [Hakatime](https://github.com/mujx/hakatime) oder [Wakapi](https://github.com/muety/wakapi)
-- `range` – Fragt eine andere Zeitspanne an, als jene, welche standardmäßig in Wakatime hinterlegt ist. Zum Beispiel `last_7_days`. Siehe [WakaTime API Dokumentation](https://wakatime.com/developers#stats).
+- `range` – Fragt eine andere Zeitspanne an, als jene, welche standardmäßig in WakaTime hinterlegt ist. Zum Beispiel `last_7_days`. Siehe [WakaTime API Dokumentation](https://wakatime.com/developers#stats).
 
 ---
 
@@ -266,23 +260,23 @@ Du kannst die `&layout=compact` Option nutzen, um das Kartendesign zu ändern.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Wakatime Wochen-Statistik
+# WakaTime Wochen-Statistik
 
-Ändere `?username=` in den eigenen [Wakatime](https://wakatime.com)-Benutzernamen.
+Ändere `?username=` in den eigenen [WakaTime](https://wakatime.com)-Benutzernamen.
 
 ```md
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Beispiel
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 - Kompaktes Layout
 
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

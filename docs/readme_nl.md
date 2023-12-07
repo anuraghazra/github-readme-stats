@@ -24,20 +24,14 @@
     </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
     <a href="#demo">Bekijk Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Rapporteer een Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Rapporteer een Bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Vraag een nieuwe toepassing aan</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Vraag een nieuwe toepassing aan</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français </a>
@@ -83,7 +77,7 @@
     - [Laat meer programmeertalen zien](#laat-meer-programmeertalen-zien)
     - [Compacte Talen Kaart opmaak](#compacte-talen-kaart-opmaak)
     - [Demo](#demo-1)
-- [Wekelijkse Wakatime Statistieken](#wekelijkse-wakatime-statistieken)
+- [Wekelijkse WakaTime Statistieken](#wekelijkse-wakatime-statistieken)
     - [Demo](#demo-2)
     - [Alle demos](#alle-demos)
     - [Kleine tip (Verstel de repo kaart z'n positie)](#kleine-tip-verstel-de-repo-kaart-zn-positie)
@@ -208,7 +202,7 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 > (Oftewel: `c++` moet `c%2B%2B` worden, `jupyter notebook` moet `jupyter%20notebook` worden, enzovoort...)
 > Zie [urlencoder.org](https://www.urlencoder.org/) om dit automatisch te doen.
 
-#### Exclusieve opties voor Wakatime Kaart:
+#### Exclusieve opties voor WakaTime Kaart:
 
 - `hide_title` - _(boolean)_
 - `line_height` - Verandert de lijn hoogte tussen tekst _(nummer)_
@@ -299,19 +293,19 @@ Je kan de `&layout=compact` optie gebruiken om het kaart ontwerp aan te passen.
 
 [![Top programmeertalen](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Wekelijkse Wakatime Statistieken
+# Wekelijkse WakaTime Statistieken
 
-Verander de `?username=` waarde naar je [Wakatime](https://wakatime.com) gebruikersnaam.
+Verander de `?username=` waarde naar je [WakaTime](https://wakatime.com) gebruikersnaam.
 
 ```md
-[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -359,9 +353,9 @@ Kies uit de [standaard thema\'s](#themes)
 
 [![Top Programmeertalen](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- Wakatime kaart
+- WakaTime kaart
 
-[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

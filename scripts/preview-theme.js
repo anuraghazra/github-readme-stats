@@ -12,7 +12,7 @@ import Hjson from "hjson";
 import snakeCase from "lodash.snakecase";
 import parse from "parse-diff";
 import { inspect } from "util";
-import { isValidHexColor } from "../src/common/utils.js";
+import { isValidHexColor, isValidGradient } from "../src/common/utils.js";
 import { themes } from "../themes/index.js";
 import { getGithubToken, getRepoInfo } from "./helpers.js";
 
@@ -30,7 +30,10 @@ const THEME_CONTRIB_GUIDELINES = `
   \rHi, thanks for the theme contribution. Please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).
 
   \r> [!WARNING]\
-  \r> Keep in mind that we already have a vast collection of different themes. To keep their number manageable, we began to add only themes supported by the community. Your pull request with theme addition will be merged once we get enough positive feedback from the community in the form of thumbs up (see [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935#top-themes-prs)). Remember that you can also support themes of other contributors that you liked to speed up their merge.
+  \r> Keep in mind that we already have a vast collection of different themes. To keep their number manageable, we began to add only themes supported by the community. Your pull request with theme addition will be merged once we get enough positive feedback from the community in the form of thumbs up :+1: emojis (see [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935#top-themes-prs)). We expect to see at least 10-15 thumbs up before making a decision to merge your pull request into the master branch. Remember that you can also support themes of other contributors that you liked to speed up their merge.
+
+  \r> [!WARNING]\
+  \r> Please do not submit a pull request with a batch of themes, since it will be hard to judge how the community will react to each of them. We will only merge one theme per pull request. If you have several themes, please submit a separate pull request for each of them. Situations when you have several versions of the same theme (e.g. light and dark) are an exception to this rule.
 
   \r> [!NOTE]\
   \r> Also, note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection, you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization).
@@ -39,7 +42,7 @@ const COLOR_PROPS = {
   title_color: 6,
   icon_color: 6,
   text_color: 6,
-  bg_color: 8,
+  bg_color: 23,
   border_color: 6,
 };
 const ACCEPTED_COLOR_PROPS = Object.keys(COLOR_PROPS);
@@ -58,6 +61,11 @@ var PULL_REQUEST_ID;
  * @returns {Error} IncorrectJsonFormatError.
  */
 class IncorrectJsonFormatError extends Error {
+  /**
+   * Constructor.
+   *
+   * @param {string} message Error message.
+   */
   constructor(message) {
     super(message);
     this.name = "IncorrectJsonFormatError";
@@ -70,7 +78,9 @@ class IncorrectJsonFormatError extends Error {
  * @returns {number} PR number.
  */
 const getPrNumber = () => {
-  if (process.env.MOCK_PR_NUMBER) return process.env.MOCK_PR_NUMBER; // For testing purposes.
+  if (process.env.MOCK_PR_NUMBER) {
+    return process.env.MOCK_PR_NUMBER; // For testing purposes.
+  }
 
   const pullRequest = github.context.payload.pull_request;
   if (!pullRequest) {
@@ -113,7 +123,7 @@ const isPreviewComment = (inputs, comment) => {
  * @param {string} owner Owner of the repository.
  * @param {string} repo Repository name.
  * @param {string} commenter Comment author.
- * @returns {Object} The GitHub comment object.
+ * @returns {Object | undefined} The GitHub comment object.
  */
 const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
   const parameters = {
@@ -141,6 +151,8 @@ const findComment = async (octokit, issueNumber, owner, repo, commenter) => {
       debug(`No theme preview comment found.`);
     }
   }
+
+  return undefined;
 };
 
 /**
@@ -163,18 +175,18 @@ const upsertComment = async (
   body,
 ) => {
   let resp;
-  if (commentId !== undefined) {
-    resp = await octokit.rest.issues.updateComment({
-      owner,
-      repo,
-      comment_id: commentId,
-      body,
-    });
-  } else {
+  if (commentId === undefined) {
     resp = await octokit.rest.issues.createComment({
       owner,
       repo,
       issue_number: issueNumber,
+      body,
+    });
+  } else {
+    resp = await octokit.rest.issues.updateComment({
+      owner,
+      repo,
+      comment_id: commentId,
       body,
     });
   }
@@ -332,10 +344,10 @@ const parseJSON = (json) => {
       .filter((x) => typeof x !== "string" || !!x.trim()); // Split json into array of strings and objects.
     if (splitJson[0].replace(/\s+/g, "") === "},") {
       splitJson[0] = "},";
-      if (!/\s*}\s*,?\s*$/.test(splitJson[1])) {
-        splitJson.push(splitJson.shift());
-      } else {
+      if (/\s*}\s*,?\s*$/.test(splitJson[1])) {
         splitJson.shift();
+      } else {
+        splitJson.push(splitJson.shift());
       }
       parsedJson = splitJson.join("");
     }
@@ -457,10 +469,7 @@ export const run = async () => {
       // Check if the theme colors are valid.
       debug("Theme preview body: Check if the theme colors are valid...");
       let invalidColors = false;
-      if (!colors) {
-        warnings.push("Theme colors are missing");
-        invalidColors = true;
-      } else {
+      if (colors) {
         const missingKeys = REQUIRED_COLOR_PROPS.filter(
           (x) => !Object.keys(colors).includes(x),
         );
@@ -490,14 +499,21 @@ export const run = async () => {
                 `Theme color property \`${colorKey}\` can not be longer than \`${COLOR_PROPS[colorKey]}\` characters`,
               );
               invalidColors = true;
-            } else if (!isValidHexColor(colorValue)) {
+            } else if (
+              !(colorKey === "bg_color" && colorValue.split(",").length > 1
+                ? isValidGradient(colorValue.split(","))
+                : isValidHexColor(colorValue))
+            ) {
               errors.push(
-                `Theme color property \`${colorKey}\` is not a valid hex color: <code>#${colorValue}</code>`,
+                `Theme color property \`${colorKey}\` is not a valid hex color: <code>${colorValue}</code>`,
               );
               invalidColors = true;
             }
           }
         }
+      } else {
+        warnings.push("Theme colors are missing");
+        invalidColors = true;
       }
       if (invalidColors) {
         themeValid[theme] = false;
@@ -530,6 +546,10 @@ export const run = async () => {
       Object.keys(colorPairs).forEach((item) => {
         let color1 = colorPairs[item][0];
         let color2 = colorPairs[item][1];
+        const isGradientColor = color2.split(",").length > 1;
+        if (isGradientColor) {
+          return;
+        }
         color1 = color1.length === 4 ? color1.slice(0, 3) : color1.slice(0, 6);
         color2 = color2.length === 4 ? color2.slice(0, 3) : color2.slice(0, 6);
         if (!ccc.isLevelAA(`#${color1}`, `#${color2}`)) {
@@ -588,7 +608,10 @@ export const run = async () => {
     // Create or update theme-preview comment.
     debug("Create or update theme-preview comment...");
     let comment_url;
-    if (!DRY_RUN) {
+    if (DRY_RUN) {
+      info(`DRY_RUN: Comment body: ${commentBody}`);
+      comment_url = "";
+    } else {
       comment_url = await upsertComment(
         OCTOKIT,
         PULL_REQUEST_ID,
@@ -597,9 +620,6 @@ export const run = async () => {
         comment?.id,
         commentBody,
       );
-    } else {
-      info(`DRY_RUN: Comment body: ${commentBody}`);
-      comment_url = "";
     }
 
     // Change review state and add/remove `invalid` label based on theme PR validity.
@@ -611,7 +631,10 @@ export const run = async () => {
     const reviewReason = themesValid
       ? undefined
       : INVALID_REVIEW_COMMENT(comment_url);
-    if (!DRY_RUN) {
+    if (DRY_RUN) {
+      info(`DRY_RUN: Review state: ${reviewState}`);
+      info(`DRY_RUN: Review reason: ${reviewReason}`);
+    } else {
       await addReview(
         OCTOKIT,
         PULL_REQUEST_ID,
@@ -628,13 +651,13 @@ export const run = async () => {
         "invalid",
         !themesValid,
       );
-    } else {
-      info(`DRY_RUN: Review state: ${reviewState}`);
-      info(`DRY_RUN: Review reason: ${reviewReason}`);
     }
   } catch (error) {
     debug("Set review state to `REQUEST_CHANGES` and add `invalid` label...");
-    if (!DRY_RUN) {
+    if (DRY_RUN) {
+      info(`DRY_RUN: Review state: REQUEST_CHANGES`);
+      info(`DRY_RUN: Review reason: ${error.message}`);
+    } else {
       await addReview(
         OCTOKIT,
         PULL_REQUEST_ID,
@@ -653,9 +676,6 @@ export const run = async () => {
         "invalid",
         true,
       );
-    } else {
-      info(`DRY_RUN: Review state: REQUEST_CHANGES`);
-      info(`DRY_RUN: Review reason: ${error.message}`);
     }
     setFailed(error.message);
   }

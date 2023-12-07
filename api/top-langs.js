@@ -37,7 +37,15 @@ export default async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   if (blacklist.includes(username)) {
-    return res.send(renderError("Something went wrong"));
+    return res.send(
+      renderError("Something went wrong", "This username is blacklisted", {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
   }
 
   if (locale && !isLocaleAvailable(locale)) {
@@ -63,8 +71,8 @@ export default async (req, res) => {
     );
 
     let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
-      CONSTANTS.FOUR_HOURS,
+      parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
+      CONSTANTS.SIX_HOURS,
       CONSTANTS.ONE_DAY,
     );
     cacheSeconds = process.env.CACHE_SECONDS
@@ -99,7 +107,20 @@ export default async (req, res) => {
       }),
     );
   } catch (err) {
-    res.setHeader("Cache-Control", `no-cache, no-store, must-revalidate`); // Don't cache error responses.
-    return res.send(renderError(err.message, err.secondaryMessage));
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
+        CONSTANTS.ERROR_CACHE_SECONDS
+      }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    ); // Use lower cache period for errors.
+    return res.send(
+      renderError(err.message, err.secondaryMessage, {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
   }
 };

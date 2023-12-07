@@ -10,7 +10,6 @@ import {
   kFormatter,
   measureText,
 } from "../common/utils.js";
-import { getStyles } from "../getStyles.js";
 import { statCardLocales } from "../translations.js";
 
 const CARD_MIN_WIDTH = 287;
@@ -28,6 +27,7 @@ const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
  * @param {string} createTextNodeParams.label The label to display.
  * @param {number} createTextNodeParams.value The value to display.
  * @param {string} createTextNodeParams.id The id of the stat.
+ * @param {string=} createTextNodeParams.unitSymbol The unit symbol of the stat.
  * @param {number} createTextNodeParams.index The index of the stat.
  * @param {boolean} createTextNodeParams.showIcons Whether to show icons.
  * @param {number} createTextNodeParams.shiftValuePos Number of pixels the value has to be shifted to the right.
@@ -40,6 +40,7 @@ const createTextNode = ({
   label,
   value,
   id,
+  unitSymbol,
   index,
   showIcons,
   shiftValuePos,
@@ -69,8 +70,120 @@ const createTextNode = ({
         x="${(showIcons ? 140 : 120) + shiftValuePos}"
         y="12.5"
         data-testid="${id}"
-      >${kValue}</text>
+      >${kValue}${unitSymbol ? ` ${unitSymbol}` : ""}</text>
     </g>
+  `;
+};
+
+/**
+ * Calculates progress along the boundary of the circle, i.e. its circumference.
+ *
+ * @param {number} value The rank value to calculate progress for.
+ * @returns {number} Progress value.
+ */
+const calculateCircleProgress = (value) => {
+  const radius = 40;
+  const c = Math.PI * (radius * 2);
+
+  if (value < 0) {
+    value = 0;
+  }
+  if (value > 100) {
+    value = 100;
+  }
+
+  return ((100 - value) / 100) * c;
+};
+
+/**
+ * Retrieves the animation to display progress along the circumference of circle
+ * from the beginning to the given value in a clockwise direction.
+ *
+ * @param {{progress: number}} progress The progress value to animate to.
+ * @returns {string} Progress animation css.
+ */
+const getProgressAnimation = ({ progress }) => {
+  return `
+    @keyframes rankAnimation {
+      from {
+        stroke-dashoffset: ${calculateCircleProgress(0)};
+      }
+      to {
+        stroke-dashoffset: ${calculateCircleProgress(progress)};
+      }
+    }
+  `;
+};
+
+/**
+ * Retrieves CSS styles for a card.
+ *
+ * @param {Object} colors The colors to use for the card.
+ * @param {string} colors.titleColor The title color.
+ * @param {string} colors.textColor The text color.
+ * @param {string} colors.iconColor The icon color.
+ * @param {string} colors.ringColor The ring color.
+ * @param {boolean} colors.show_icons Whether to show icons.
+ * @param {number} colors.progress The progress value to animate to.
+ * @returns {string} Card CSS styles.
+ */
+const getStyles = ({
+  // eslint-disable-next-line no-unused-vars
+  titleColor,
+  textColor,
+  iconColor,
+  ringColor,
+  show_icons,
+  progress,
+}) => {
+  return `
+    .stat {
+      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
+    }
+    @supports(-moz-appearance: auto) {
+      /* Selector detects Firefox */
+      .stat { font-size:12px; }
+    }
+    .stagger {
+      opacity: 0;
+      animation: fadeInAnimation 0.3s ease-in-out forwards;
+    }
+    .rank-text {
+      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor};
+      animation: scaleInAnimation 0.3s ease-in-out forwards;
+    }
+    .rank-percentile-header {
+      font-size: 14px;
+    }
+    .rank-percentile-text {
+      font-size: 16px;
+    }
+    
+    .not_bold { font-weight: 400 }
+    .bold { font-weight: 700 }
+    .icon {
+      fill: ${iconColor};
+      display: ${show_icons ? "block" : "none"};
+    }
+
+    .rank-circle-rim {
+      stroke: ${ringColor};
+      fill: none;
+      stroke-width: 6;
+      opacity: 0.2;
+    }
+    .rank-circle {
+      stroke: ${ringColor};
+      stroke-dasharray: 250;
+      fill: none;
+      stroke-width: 6;
+      stroke-linecap: round;
+      opacity: 0.8;
+      transform-origin: -10px 8px;
+      transform: rotate(-90deg);
+      animation: rankAnimation 1s forwards ease-in-out;
+    }
+    ${process.env.NODE_ENV === "test" ? "" : getProgressAnimation({ progress })}
   `;
 };
 
@@ -93,6 +206,8 @@ const renderStatsCard = (stats, options = {}) => {
     totalCommits,
     totalIssues,
     totalPRs,
+    totalPRsMerged,
+    mergedPRsPercentage,
     totalReviews,
     totalDiscussionsStarted,
     totalDiscussionsAnswered,
@@ -171,6 +286,25 @@ const renderStatsCard = (stats, options = {}) => {
     id: "prs",
   };
 
+  if (show.includes("prs_merged")) {
+    STATS.prs_merged = {
+      icon: icons.prs_merged,
+      label: i18n.t("statcard.prs-merged"),
+      value: totalPRsMerged,
+      id: "prs_merged",
+    };
+  }
+
+  if (show.includes("prs_merged_percentage")) {
+    STATS.prs_merged_percentage = {
+      icon: icons.prs_merged_percentage,
+      label: i18n.t("statcard.prs-merged-percentage"),
+      value: mergedPRsPercentage.toFixed(2),
+      id: "prs_merged_percentage",
+      unitSymbol: "%",
+    };
+  }
+
   if (show.includes("reviews")) {
     STATS.reviews = {
       icon: icons.reviews,
@@ -219,6 +353,7 @@ const renderStatsCard = (stats, options = {}) => {
     "ru",
     "uk-ua",
     "id",
+    "ml",
     "my",
     "pl",
     "de",
@@ -234,7 +369,11 @@ const renderStatsCard = (stats, options = {}) => {
     .map((key, index) =>
       // create the text nodes, and pass index so that we can calculate the line spacing
       createTextNode({
-        ...STATS[key],
+        icon: STATS[key].icon,
+        label: STATS[key].label,
+        value: STATS[key].value,
+        id: STATS[key].id,
+        unitSymbol: STATS[key].unitSymbol,
         index,
         showIcons: show_icons,
         shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
@@ -273,8 +412,8 @@ const renderStatsCard = (stats, options = {}) => {
       custom_title
         ? custom_title
         : statItems.length
-        ? i18n.t("statcard.title")
-        : i18n.t("statcard.ranktitle"),
+          ? i18n.t("statcard.title")
+          : i18n.t("statcard.ranktitle"),
     );
   };
 
@@ -292,14 +431,14 @@ const renderStatsCard = (stats, options = {}) => {
           Infinity,
         )
       : statItems.length
-      ? RANK_CARD_MIN_WIDTH
-      : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
+        ? RANK_CARD_MIN_WIDTH
+        : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
   const defaultCardWidth =
     (hide_rank
       ? CARD_DEFAULT_WIDTH
       : statItems.length
-      ? RANK_CARD_DEFAULT_WIDTH
-      : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
+        ? RANK_CARD_DEFAULT_WIDTH
+        : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
   let width = card_width
     ? isNaN(card_width)
       ? defaultCardWidth
@@ -330,7 +469,9 @@ const renderStatsCard = (stats, options = {}) => {
   card.setHideTitle(hide_title);
   card.setCSS(cssStyles);
 
-  if (disable_animations) card.disableAnimations();
+  if (disable_animations) {
+    card.disableAnimations();
+  }
 
   /**
    * Calculates the right rank circle translation values such that the rank circle

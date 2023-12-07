@@ -42,23 +42,44 @@ export default async (req, res) => {
   res.setHeader("Content-Type", "image/svg+xml");
 
   if (blacklist.includes(username)) {
-    return res.send(renderError("Something went wrong"));
+    return res.send(
+      renderError("Something went wrong", "This username is blacklisted", {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
   }
 
   if (locale && !isLocaleAvailable(locale)) {
-    return res.send(renderError("Something went wrong", "Language not found"));
+    return res.send(
+      renderError("Something went wrong", "Language not found", {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
   }
 
   try {
+    const showStats = parseArray(show);
     const stats = await fetchStats(
       username,
       parseBoolean(include_all_commits),
       parseArray(exclude_repo),
+      showStats.includes("prs_merged") ||
+        showStats.includes("prs_merged_percentage"),
+      showStats.includes("discussions_started"),
+      showStats.includes("discussions_answered"),
     );
 
     let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
-      CONSTANTS.FOUR_HOURS,
+      parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
+      CONSTANTS.SIX_HOURS,
       CONSTANTS.ONE_DAY,
     );
     cacheSeconds = process.env.CACHE_SECONDS
@@ -96,11 +117,24 @@ export default async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
         rank_icon,
-        show: parseArray(show),
+        show: showStats,
       }),
     );
   } catch (err) {
-    res.setHeader("Cache-Control", `no-cache, no-store, must-revalidate`); // Don't cache error responses.
-    return res.send(renderError(err.message, err.secondaryMessage));
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
+        CONSTANTS.ERROR_CACHE_SECONDS
+      }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    ); // Use lower cache period for errors.
+    return res.send(
+      renderError(err.message, err.secondaryMessage, {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
   }
 };
