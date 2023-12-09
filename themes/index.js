@@ -462,6 +462,30 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  ocean_gradient: {
+    title_color: "484455",
+    text_color: "484455",
+    icon_color: "643843",
+    bg_color: "175,0766AD,29ADB2,C5E898,F3F3F3",
+  },
+  deepsea_gradient: {
+    title_color: "FAF8F1",
+    text_color: "FAF8F1",
+    icon_color: "FAF8F1",
+    bg_color: "35,57C5B6,159895,1A5F7A,002B5B",
+  },
+  midnight_sunset: {
+    title_color: "FFF9D7",
+    text_color: "FFF9D7",
+    icon_color: "FFF9D7",
+    bg_color: "35,711DB0,C21292,EF4040,FFA732",
+  },
+  cold_sunset: {
+    title_color: "FFF9D7",
+    text_color: "FFF9D7",
+    icon_color: "FFFFFF",
+    bg_color: "175,513252,7A4069,CA4E79,FFC18E",
+  }
 };
 
 export default themes;
