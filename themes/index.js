@@ -320,6 +320,12 @@ export const themes = {
     icon_color: "1F6FEB",
     text_color: "C3D1D9",
     bg_color: "0D1117",
+  }, 
+  github_dark_green: {
+    title_color: "39D353",
+    icon_color: "39d353",
+    text_color: "ffffff",
+    bg_color: "0D1117",
   },
   github_dark_dimmed: {
     title_color: "539bf5",
