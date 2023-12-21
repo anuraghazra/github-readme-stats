@@ -232,6 +232,12 @@ export const themes = {
     bg_color: "1f2430",
   },
   "midnight-purple": {
+    title_color: "ff0000",
+    icon_color: "ff4b4b",
+    text_color: "ff00bc",
+    bg_color: "000000",
+  },
+    "midnight-red": {
     title_color: "9745f5",
     icon_color: "9f4bff",
     text_color: "ffffff",
