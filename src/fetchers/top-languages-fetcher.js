@@ -27,10 +27,10 @@ const fetcher = (variables, token) => {
       query userInfo($login: String!) {
         user(login: $login) {
           # fetch only owner repos & not forks
-          repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
+          repositories(ownerAffiliations: OWNER, isFork: true, first: 100) {
             nodes {
               name
-              languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
+              languages(first: 20, orderBy: {field: SIZE, direction: DESC}) {
                 edges {
                   size
                   node {
@@ -114,7 +114,7 @@ const fetchTopLanguages = async (
     .filter((name) => !repoToHide[name.name]);
 
   let repoCount = 0;
-
+  const repoTotalCount = Object.keys(repoNodes).length;
   repoNodes = repoNodes
     .filter((node) => node.languages.edges.length > 0)
     // flatten the list of language nodes
@@ -144,7 +144,7 @@ const fetchTopLanguages = async (
         },
       };
     }, {});
-
+  console.log("Repo Total Count:", repoTotalCount, "After filter:", Object.keys(repoNodes).length, repoCount);
   Object.keys(repoNodes).forEach((name) => {
     // comparison index calculation
     repoNodes[name].size =
@@ -158,7 +158,7 @@ const fetchTopLanguages = async (
       result[key] = repoNodes[key];
       return result;
     }, {});
-
+  console.log("TopLanguage:", Object.keys(topLangs).length, topLangs);
   return topLangs;
 };
 

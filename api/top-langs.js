@@ -35,7 +35,7 @@ export default async (req, res) => {
     hide_progress,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
-
+  console.log("访问Top-Langs 成功");
   if (blacklist.includes(username)) {
     return res.send(
       renderError("Something went wrong", "This username is blacklisted", {
@@ -113,6 +113,7 @@ export default async (req, res) => {
         CONSTANTS.ERROR_CACHE_SECONDS
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     ); // Use lower cache period for errors.
+    console.log("Something went wrong:", err);
     return res.send(
       renderError(err.message, err.secondaryMessage, {
         title_color,
