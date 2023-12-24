@@ -28,7 +28,6 @@
       <img src="./powered-by-vercel.svg"/>
     </a>
   </p>
-
   <p align="center">
     <a href="#all-demos">View Demo</a>
     ·
