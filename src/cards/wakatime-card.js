@@ -40,6 +40,20 @@ const noCodingActivityNode = ({ color, text }) => {
  */
 
 /**
+ * Format language value.
+ *
+ * @param {Object} args The function arguments.
+ * @param {WakaTimeLang} args.lang The language object.
+ * @param {"time" | "percent"} args.display_format The display format of the language node.
+ * @returns {string} The formatted language value.
+ */
+const formatLanguageValue = ({ display_format, lang }) => {
+  return display_format === "percent"
+    ? `${lang.percent.toFixed(2).toString()} %`
+    : lang.text;
+};
+
+/**
  * Create compact WakaTime layout.
  *
  * @param {Object} args The function arguments.
@@ -51,10 +65,7 @@ const noCodingActivityNode = ({ color, text }) => {
  */
 const createCompactLangNode = ({ lang, x, y, display_format }) => {
   const color = languageColors[lang.name] || "#858585";
-  const value =
-    display_format === "percent"
-      ? `${lang.percent.toFixed(2).toString()} %`
-      : lang.text;
+  const value = formatLanguageValue({ display_format, lang });
 
   return `
     <g transform="translate(${x}, ${y})">
@@ -341,10 +352,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
             return createTextNode({
               id: language.name,
               label: language.name,
-              value:
-                display_format === "percent"
-                  ? `${language.percent.toFixed(2).toString()} %`
-                  : language.text,
+              value: formatLanguageValue({ display_format, lang: language }),
               index,
               percent: language.percent,
               // @ts-ignore
