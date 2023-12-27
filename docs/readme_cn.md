@@ -123,7 +123,7 @@
 # 重要消息 <!-- omit in toc -->
 
 > [!IMPORTANT]\
-> 由于GitHub API规定[每个用户帐户每小时仅允许5k次请求](https://docs.github.com/en/graphql/overview/resource-limitations)，公共 Vercel 实例托管在`https://github-readme-stats.vercel.app/api`可能会被限速参见[#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)。我们使用缓存来防止这种情况发生(请参阅https://github.com/anuraghazra/github-readme-stats#common-option)。你可以通过部署[你自己的Vercel实例](#disable-rate-limit-protections)来关闭这些速率限制保护。
+> 由于GitHub API规定[每个用户帐户每小时仅允许5k次请求](https://docs.github.com/en/graphql/overview/resource-limitations)，公共 Vercel 实例托管在`https://github-readme-stats.vercel.app/api`可能会被限速参见[#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)。我们[使用缓存](https://github.com/anuraghazra/github-readme-stats#common-option)来防止这种情况发生。你可以通过部署[你自己的Vercel实例](#disable-rate-limit-protections)来关闭这些速率限制保护。
 
 <img alt="Uptime Badge" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgithub-readme-stats-git-monitoring-github-readme-stats-team.vercel.app%2Fapi%2Fstatus%2Fup%3Ftype%3Dshields">
 
@@ -140,10 +140,10 @@
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-> [!警告]\
+> [!IMPORTANT]\
 > 默认情况下，统计信息卡仅显示来自公共仓库的星级、提交和拉取请求等统计信息。要在统计卡上显示私人统计信息，你应该使用你自己的 GitHub API 令牌[部署你自己的实例](#deploy-on-your-own)。
 
-> [!消息]\
+> [!NOTE]\
 > 可用排名为 S（前 1%）、A+（12.5%）、A（25%）、A-（37.5%）、B+（50%）、B（62.5%）、B-（75%）、C+（87.5%）和 C（所有人）。该排名方案基于[日本学术评分](https://wikipedia.org/wiki/Academic_grading_in_Japan)根据[指数](https://wikipedia.org/wiki/exponential_distribution)和[对数正态分布](https://wikipedia.org/wiki/Log-normal_distribution)的累积分布函数 计算为每个统计数据的百分位数的加权和（提交、拉取请求、评论、问题、星级和关注者的数量。可以在 [src/calculateRank.js](https://github.com/anuraghazra/github-readme-stats/blob/master/src/calculateRank.js)上调查该实现。排名周围的圆圈显示 100 减去全球百分位数。
 
 ### 隐藏个人统计数据
@@ -299,7 +299,7 @@ GitHub Readme Stats 附带几个内置主题 (e.g. `dark`, `radical`, `merko`, `
 | `locale` | 设置卡中的语言，你可以在[此处](#available-locales)查看可用区域设置的完整列表。 | enum | `en` |
 | `border_radius` | 卡上的角倒圆。 | number | `4.5` |
 
-> [!警告]\
+> [!IMPORTANT]\
 > 我们使用缓存来减少服务器上的负载（请参阅<https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>）。我们的卡的默认缓存为 6 小时（21600 秒）。另请注意，缓存的时间限制为最短 6 小时，最长 24 小时。如果你希望统计卡上的数据更频繁地更新，你可以[部署自己的实例](#deploy-on-your-own)并设置[环境变量](#disable-rate-limit-protections) `CACHE_SECONDS` 为你选择的值。
 
 ##### 背景颜色渐变
@@ -382,7 +382,7 @@ GitHub Readme Stats 附带几个内置主题 (e.g. `dark`, `radical`, `merko`, `
 | `number_format` | 在两种可用格式之间切换以显示卡值“短”（即“6.6k”）和“长”（即“6626”）。 | enum | `short` |
 | `show` | 在统计卡上显示[其他项目](#显示额外的个人统计数据)（即“评论”、“讨论开始”、“讨论回答”、“prs_merged”或“prs_merged_percentage”）。 | string (comma-separated values) | `null` |
 
-> [!消息]\
+> [!NOTE]\
 > 当hide\_rank=`true`时，最小卡片宽度为 270 px + 标题长度和内边距。
 
 #### 仓库卡专属可选参数
@@ -414,7 +414,7 @@ GitHub Readme Stats 附带几个内置主题 (e.g. `dark`, `radical`, `merko`, `
 | `size_weight` | 配置语言统计算法（请参阅[语言统计算法](#语言统计算法)）。 | integer | `1` |
 | `count_weight` | 配置语言统计算法（请参阅[语言统计算法](#语言统计算法)）。 | integer | `0` |
 
-> [!警告]\
+> [!IMPORTANT]\
 > 语言名称应该是 URI 转义的，如 [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) 中指定的
 > （即：“c++”应变为“c%2B%2B”，“jupyter Notebook”应变为“jupyter%20notebook”等）你可以使用
 > [urlencoder.org](https://www.urlencoder.org/) 帮助你自动执行此操作。
@@ -488,16 +488,16 @@ Endpoint: `api/gist?id=bbfce31e0217a3689c8d961a356cb10d`
 
 热门语言卡显示 GitHub 用户最常使用的语言。
 
-> [!警告]\
+> [!IMPORTANT]\
 > 默认情况下，语言卡仅显示来自公共仓库的语言结果。要包含私有仓库中使用的语言，你应该使用你自己的 GitHub API 令牌[部署你自己的实例](#deploy-on-your-own)。
 
-> [!消息]\
+> [!NOTE]\
 > 热门语言并不表明用户的技能水平或类似信息；这是一个 GitHub 指标，用于确定哪些语言在 GitHub 上拥有最多的代码。这是 github-readme-stats 的新功能。
 
-> [!警告]\
+> [!IMPORTANT]\
 > 此卡仅显示你自己的非分叉仓库中的语言使用情况，而不取决于提交的作者是谁。它不包括你对其他用户/组织仓库的贡献。目前无法从 GitHub API 获取此数据。如果你希望改善此行为，你可以支持 [@rickstaa](https://github.com/rickstaa) 创建的[此功能请求](https://github.com/orgs/community/discussions/18230)GitHub社区内。
 
-> [!警告]\
+> [!IMPORTANT]\
 > 目前此卡仅显示前 100 个仓库的数据。这是因为 GitHub API 限制导致公共实例停机（请参阅 [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)）。将来，这种行为将通过发布 GitHub 操作或为用户自己的实例提供环境变量来改进。
 
 ### 用法
@@ -622,7 +622,7 @@ By default, only the byte count is used for determining the languages percentage
 
 # WakaTime 统计卡
 
-> [!警告]\
+> [!IMPORTANT]\
 > 请注意，我们目前仅显示公开的 WakaTime 个人资料中的数据。因此，你必须确保`Display code time publicly`和`Display languages, editors, os, categories publicly`**都**已启用。
 
 将 `?username=` 值更改为你的 [WakaTime](https://wakatime.com) 用户名​​。
@@ -770,10 +770,10 @@ By default, only the byte count is used for determining the languages percentage
 
 由于 GitHub API 每小时仅允许 5k 请求，因此我的`https://github-readme-stats.vercel.app/api`可能会达到速率限制器。如果你将其托管在自己的 Vercel 服务器上，则无需担心任何事情。单击部署按钮即可开始！
 
-> [!消息]\
+> [!NOTE]\
 > 自 [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以来，我们应该能够处理超过 5k 个请求，并且停机问题更少(咧嘴笑)。
 
-> [!消息]\
+> [!NOTE]\
 > 如果你使用 [Pro（即付费）](https://vercel.com/pricing) Vercel 计划，当你的Vercel实例在请求期间频繁超时，可以增加[vercel.json](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json)中的[maxDuration](https://vercel.com/docs/concepts/projects/project-configuration#value 的值。建议你将此值保持在`30`秒以下，以防止内存使用率过高。
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
@@ -802,7 +802,7 @@ By default, only the byte count is used for determining the languages percentage
 
 ## 在其他平台上
 
-> [!警告]\
+> [!IMPORTANT]\
 > 这种使用 GRS 的方式并未得到官方支持，添加这种方式是为了满足某些无法使用 Vercel 的特定用例（例如 [#2341](https://github.com/anuraghazra/github-readme-stats/discussions/2341)））。因此，对该方法的支持是有限的。
 
 <details>
