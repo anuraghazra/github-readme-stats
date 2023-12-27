@@ -827,7 +827,7 @@ Github Readme Stats 包含多个 Vercel 环境变量，可用于删除速率限�
 
 ## 让你的 fork 保持最新状态
 
-你可以使用 GitHub 的 [Sync Fork 按钮](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/) 保持你的分叉，从而使你的私有 Vercel 实例与上游保持同步使用分叉/同步分叉）。
+你可以使用 GitHub 的 [Sync Fork ](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/) 保持你的分叉，从而使你的私有 Vercel 实例与上游保持同步使用分叉/同步分叉）。
 
 你还可以使用 [@wei](https://github.com/wei) 创建的 [pull](https://github.com/wei/pull) 包来自动化此过程。
 
@@ -845,7 +845,7 @@ Github Readme Stats 包含多个 Vercel 环境变量，可用于删除速率限�
 
 ***
 
-[![https://vercel.com?utm\_source=github\_readme\_stats\_team\&utm\_campaign=oss](powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team\&utm_campaign=oss)
+[![https://vercel.com?utm\_source=github\_readme\_stats\_team\&utm\_campaign=oss](../powered-by-vercel.svg)](https://vercel.com?utm_source=github_readme_stats_team\&utm_campaign=oss)
 
 欢迎贡献！ <3
 
