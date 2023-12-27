@@ -1,7 +1,7 @@
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">在你的自述文件中获取动态生成的 GitHub 统计信息！</p>
+ <p align="center">在你的 README.md 中获取动态生成的 GitHub 统计信息！</p>
 </p>
   <p align="center">
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
@@ -73,11 +73,11 @@
   <img src="https://cfstatic.give.do/logo.png" alt="Give india logo" width="200" />
 </a>
 
-您是否考虑通过向我捐款来支持该项目？请不要！！！
+你是否考虑通过向我捐款来支持该项目？请不要！！！
 
 <img src="https://cfstatic.give.do/910ede2a-7892-43fe-8c8a-dea45e96d950.webp" alt="Picture of Coromandel Express train tragedy" width="35%">
 
-印度最近遭受了最具破坏性的火车事故之一，您的帮助对于受这场悲剧影响的人们来说将非常宝贵。
+印度最近遭受了最具破坏性的火车事故之一，你的帮助对于受这场悲剧影响的人们来说将非常宝贵。
 
 请点击[查看](https://give.do/fundraisers/stand-beside-the-victims-of-the-coromandel-express-train-tragedy-in-odisha-donate-now)并捐出一小笔捐款来帮助有需要的人。一笔小额捐款可以发挥很大作用，比心了。
 </p>
@@ -123,16 +123,16 @@
 # 重要消息 <!-- omit in toc -->
 
 > [!重要]\
-> 由于GitHub API规定[每个用户帐户每小时仅允许5k次请求](https://docs.github.com/en/graphql/overview/resource-limitations)，公共 Vercel 实例托管在`https://github-readme-stats.vercel.app/api`可能会被限速（参见[#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471))。我们使用缓存来防止这种情况发生（请参阅https://github.com/anuraghazra/github-readme-stats#common-options）。您可以通过部署[你自己的Vercel实例](#disable-rate-limit-protections)来关闭这些速率限制保护。
+> 由于GitHub API规定[每个用户帐户每小时仅允许5k次请求](https://docs.github.com/en/graphql/overview/resource-limitations)，公共 Vercel 实例托管在`https://github-readme-stats.vercel.app/api`可能会被限速（参见[#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471))。我们使用缓存来防止这种情况发生（请参阅https://github.com/anuraghazra/github-readme-stats#common-options）。你可以通过部署[你自己的Vercel实例](#disable-rate-limit-protections)来关闭这些速率限制保护。
 
 <img alt="Uptime Badge" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgithub-readme-stats-git-monitoring-github-readme-stats-team.vercel.app%2Fapi%2Fstatus%2Fup%3Ftype%3Dshields">
 
 > [!重要]\
-> 我们是一个小团队，为了确定优先顺序，我们依靠赞成票: "+1"的形式。我们使用“热门问题”仪表板来跟踪社区需求（请参阅 [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935)）。请毫不犹豫地对您感兴趣的问题和拉取请求进行投票。我们将首先处理投票最多的问题。
+> 我们是一个小团队，为了确定优先顺序，我们依靠赞成票: "+1"的形式。我们使用“热门问题”仪表板来跟踪社区需求（请参阅 [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935)）。请毫不犹豫地对你感兴趣的问题和拉取请求进行投票。我们将首先处理投票最多的问题。
 
 # GitHub统计卡
 
-将其复制并粘贴到您的 Markdown 中，就是这样简单！
+将其复制并粘贴到你的 Markdown 中，就是这样简单！
 
 将`?username=`的值修改为你GitHub用户名.
 
@@ -141,7 +141,7 @@
 ```
 
 > [!警告]\
-> 默认情况下，统计信息卡仅显示来自公共存储库的星级、提交和拉取请求等统计信息。要在统计卡上显示私人统计信息，你应该使用你自己的 GitHub API 令牌[部署你自己的实例](#deploy-on-your-own)。
+> 默认情况下，统计信息卡仅显示来自公共仓库的星级、提交和拉取请求等统计信息。要在统计卡上显示私人统计信息，你应该使用你自己的 GitHub API 令牌[部署你自己的实例](#deploy-on-your-own)。
 
 > [!消息]\
 > 可用排名为 S（前 1%）、A+（12.5%）、A（25%）、A-（37.5%）、B+（50%）、B（62.5%）、B-（75%）、C+（87.5%）和 C（所有人）。该排名方案基于[日本学术评分](https://wikipedia.org/wiki/Academic_grading_in_Japan)根据[指数](https://wikipedia.org/wiki/exponential_distribution)和[对数正态分布](https://wikipedia.org/wiki/Log-normal_distribution)的累积分布函数 计算为每个统计数据的百分位数的加权和（提交、拉取请求、评论、问题、星级和关注者的数量。可以在 [src/calculateRank.js](https://github.com/anuraghazra/github-readme-stats/blob/master/src/calculateRank.js)上调查该实现。排名周围的圆圈显示 100 减去全球百分位数。
@@ -167,7 +167,7 @@
 
 ### 显示图标
 
-要启用图标，您可以在查询参数中传递“&show_icons=true”，如下所示：
+要启用图标，你可以在查询参数中传递“&show_icons=true”，如下所示：
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -175,7 +175,7 @@
 
 ### 主题
 
-使用内置主题，您可以自定义卡片的外观，而无需进行任何[手动自定义](#customization)。
+使用内置主题，你可以自定义卡片的外观，而无需进行任何[手动自定义](#customization)。
 
 使用 `&theme=THEME_NAME` 参数，如下所示：
 
@@ -199,7 +199,7 @@ GitHub Readme Stats 附带几个内置主题 (e.g. `dark`, `radical`, `merko`, `
 
 ##### 使用透明主题
 
-我们添加了一个具有透明背景的“透明”主题。该主题经过优化，在 GitHub 的深色和浅色默认主题上看起来不错。您可以使用“&theme=transparent”参数启用此主题，如下所示：
+我们添加了一个具有透明背景的“透明”主题。该主题经过优化，在 GitHub 的深色和浅色默认主题上看起来不错。你可以使用“&theme=transparent”参数启用此主题，如下所示：
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=transparent)
@@ -215,7 +215,7 @@ GitHub Readme Stats 附带几个内置主题 (e.g. `dark`, `radical`, `merko`, `
  
 ##### 将透明度添加到主题背景颜色中
 
-您可以使用“bg_color”参数使任何[可用主题](themes/README.md)透明。这是通过将“bg_color”设置为具有透明 Alpha 通道的颜色（即“bg_color=00000000”）来完成的：
+你可以使用“bg_color”参数使任何[可用主题](themes/README.md)透明。这是通过将“bg_color”设置为具有透明 Alpha 通道的颜色（即“bg_color=00000000”）来完成的：
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&bg_color=00000000)
@@ -230,7 +230,7 @@ GitHub Readme Stats 附带几个内置主题 (e.g. `dark`, `radical`, `merko`, `
 
 ##### 使用 GitHub 的主题内容标签
 
-您可以使用[GitHub的主题内容](https://github.blog/changelog/2021-11-24-specify-theme-context-for-images-in-markdown/)标签来根据用户GitHub主题自动切换主题。是通过将“#gh-dark-mode-only”或“#gh-light-mode-only”附加到图像 URL 的末尾来完成的。此标签将定义 markdown 中指定的图像是否仅向使用浅色或深色 GitHub 主题的查看者显示：
+你可以使用[GitHub的主题内容](https://github.blog/changelog/2021-11-24-specify-theme-context-for-images-in-markdown/)标签来根据用户GitHub主题自动切换主题。是通过将“#gh-dark-mode-only”或“#gh-light-mode-only”附加到图像 URL 的末尾来完成的。此标签将定义 markdown 中指定的图像是否仅向使用浅色或深色 GitHub 主题的查看者显示：
 
 ```md
 [![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
@@ -282,7 +282,7 @@ GitHub Readme Stats 附带几个内置主题 (e.g. `dark`, `radical`, `merko`, `
 
 ### 自定义
 
-您可以使用 URL 参数自定义所有卡片的外观。
+你可以使用 URL 参数自定义所有卡片的外观。
 
 #### 部分可选参数
 
@@ -296,15 +296,15 @@ GitHub Readme Stats 附带几个内置主题 (e.g. `dark`, `radical`, `merko`, `
 | `hide_border` | 隐藏卡片的边框。 | boolean | `false` |
 | `theme` | 主题名称，从[所有内置主题](#所有内置主题)中选择。 | enum | `default` |
 | `cache_seconds` | 手动设置缓存标头（最小值：21600，最大值：86400）。 | integer | `1800` |
-| `locale` | 设置卡中的语言，您可以在[此处](#available-locales)查看可用区域设置的完整列表。 | enum | `en` |
+| `locale` | 设置卡中的语言，你可以在[此处](#available-locales)查看可用区域设置的完整列表。 | enum | `en` |
 | `border_radius` | 卡上的角倒圆。 | number | `4.5` |
 
 > [!警告]\
-> 我们使用缓存来减少服务器上的负载（请参阅<https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>）。我们的卡的默认缓存为 6 小时（21600 秒）。另请注意，缓存的时间限制为最短 6 小时，最长 24 小时。如果您希望统计卡上的数据更频繁地更新，您可以[部署自己的实例](#deploy-on-your-own)并设置[环境变量](#disable-rate-limit-protections) `CACHE_SECONDS` 为您选择的值。
+> 我们使用缓存来减少服务器上的负载（请参阅<https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>）。我们的卡的默认缓存为 6 小时（21600 秒）。另请注意，缓存的时间限制为最短 6 小时，最长 24 小时。如果你希望统计卡上的数据更频繁地更新，你可以[部署自己的实例](#deploy-on-your-own)并设置[环境变量](#disable-rate-limit-protections) `CACHE_SECONDS` 为你选择的值。
 
 ##### 背景颜色渐变
 
-您可以在背景颜色可选参数中提供多个以逗号分隔的值，以使用以下格式渲染渐变：
+你可以在背景颜色可选参数中提供多个以逗号分隔的值，以使用以下格式渲染渐变：
 
     &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
 
@@ -360,7 +360,7 @@ GitHub Readme Stats 附带几个内置主题 (e.g. `dark`, `radical`, `merko`, `
 </td></tr>
 </table>
 
-如果我们不支持您的语言，请考虑做出贡献！您可以在我们的[贡献指南](CONTRIBUTING.md#translations-contribution) 中找到有关如何操作的更多信息。
+如果我们不支持你的语言，请考虑做出贡献！你可以在我们的[贡献指南](CONTRIBUTING.md#translations-contribution) 中找到有关如何操作的更多信息。
 
 #### 统计卡专属选项
 
@@ -416,8 +416,8 @@ GitHub Readme Stats 附带几个内置主题 (e.g. `dark`, `radical`, `merko`, `
 
 > [!警告]\
 > 语言名称应该是 URI 转义的，如 [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) 中指定的
-> （即：“c++”应变为“c%2B%2B”，“jupyter Notebook”应变为“jupyter%20notebook”等）您可以使用
-> [urlencoder.org](https://www.urlencoder.org/) 帮助您自动执行此操作。
+> （即：“c++”应变为“c%2B%2B”，“jupyter Notebook”应变为“jupyter%20notebook”等）你可以使用
+> [urlencoder.org](https://www.urlencoder.org/) 帮助你自动执行此操作。
 
 #### WakaTime卡专属可选参数
 
@@ -438,13 +438,13 @@ GitHub Readme Stats 附带几个内置主题 (e.g. `dark`, `radical`, `merko`, `
 
 # GitHub额外Pin图
 
-GitHub额外pin允许您使用 GitHub 自述文件在您的个人资料中固定 6 个以上仓库。
+GitHub额外pin允许你使用 GitHub 自述文件在你的个人资料中固定 6 个以上仓库。
 
-好耶！您不再局限于显示6个固定仓库库。
+好耶！你不再局限于显示6个固定仓库库。
 
 ### 额外Pin图用法
 
-将此代码复制粘贴到您的自述文件中并更改链接。
+将此代码复制粘贴到你的自述文件中并更改链接。
 
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
@@ -463,11 +463,11 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
 # GitHub gist的Pin图
 
-GitHub gist 的 Pin 图允许您使用 GitHub 自述配置文件将要点固定在一个 GitHub 的 README.md 文件中。
+GitHub gist 的 Pin 图允许你使用 GitHub 自述配置文件将要点固定在一个 GitHub 的 README.md 文件中。
 
 ### gist的Pin图用法
 
-将此代码复制粘贴到您的README.md文件中并更改链接。
+将此代码复制粘贴到你的README.md文件中并更改链接。
 
 Endpoint: `api/gist?id=bbfce31e0217a3689c8d961a356cb10d`
 
@@ -489,20 +489,20 @@ Endpoint: `api/gist?id=bbfce31e0217a3689c8d961a356cb10d`
 热门语言卡显示 GitHub 用户最常使用的语言。
 
 > [!警告]\
-> 默认情况下，语言卡仅显示来自公共存储库的语言结果。要包含私有存储库中使用的语言，您应该使用您自己的 GitHub API 令牌[部署您自己的实例](#deploy-on-your-own)。
+> 默认情况下，语言卡仅显示来自公共仓库的语言结果。要包含私有仓库中使用的语言，你应该使用你自己的 GitHub API 令牌[部署你自己的实例](#deploy-on-your-own)。
 
 > [!消息]\
 > 热门语言并不表明用户的技能水平或类似信息；这是一个 GitHub 指标，用于确定哪些语言在 GitHub 上拥有最多的代码。这是 github-readme-stats 的新功能。
 
 > [!警告]\
-> 此卡仅显示您自己的非分叉存储库中的语言使用情况，而不取决于提交的作者是谁。它不包括您对其他用户/组织存储库的贡献。目前无法从 GitHub API 获取此数据。如果您希望改善此行为，您可以支持 [@rickstaa](https://github.com/rickstaa) 创建的[此功能请求](https://github.com/orgs/community/discussions/18230)GitHub社区内。
+> 此卡仅显示你自己的非分叉仓库中的语言使用情况，而不取决于提交的作者是谁。它不包括你对其他用户/组织仓库的贡献。目前无法从 GitHub API 获取此数据。如果你希望改善此行为，你可以支持 [@rickstaa](https://github.com/rickstaa) 创建的[此功能请求](https://github.com/orgs/community/discussions/18230)GitHub社区内。
 
 > [!警告]\
-> 目前此卡仅显示前 100 个存储库的数据。这是因为 GitHub API 限制导致公共实例停机（请参阅 [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)）。将来，这种行为将通过发布 GitHub 操作或为用户自己的实例提供环境变量来改进。
+> 目前此卡仅显示前 100 个仓库的数据。这是因为 GitHub API 限制导致公共实例停机（请参阅 [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)）。将来，这种行为将通过发布 GitHub 操作或为用户自己的实例提供环境变量来改进。
 
 ### 用法
 
-将此代码复制粘贴到您的README.md文件中并更改链接。
+将此代码复制粘贴到你的README.md文件中并更改链接。
 
 Endpoint: `api/top-langs?username=anuraghazra`
 
@@ -521,11 +521,11 @@ ranking_index = (byte_count ^ size_weight) * (repo_count ^ count_weight)
 
 By default, only the byte count is used for determining the languages percentages shown on the language card (i.e. `size_weight=1` and `count_weight=0`). You can, however, use the `&size_weight=` and `&count_weight=` options to weight the language usage calculation. The values must be positive real numbers. [More details about the algorithm can be found here](https://github.com/anuraghazra/github-readme-stats/issues/1600#issuecomment-1046056305).
 
-默认情况下，仅使用字节计数来确定语言卡上显示的语言百分比（即`size_weight=1` and `count_weight=0`）。但是，您可以使用`size_weight=1` and `count_weight=0`选项来加权语言使用计算。这些值必须是正实数。[有关算法的更多详细信息可以在这里找到](https://github.com/anuraghazra/github-readme-stats/issues/1600#issuecomment-1046056305)。
+默认情况下，仅使用字节计数来确定语言卡上显示的语言百分比（即`size_weight=1` and `count_weight=0`）。但是，你可以使用`size_weight=1` and `count_weight=0`选项来加权语言使用计算。这些值必须是正实数。[有关算法的更多详细信息可以在这里找到](https://github.com/anuraghazra/github-readme-stats/issues/1600#issuecomment-1046056305)。
 
 *   `&size_weight=1&count_weight=0` - *(默认)* 按字节数排序
-*   `&size_weight=0.5&count_weight=0.5` - *(推荐)* 按字节数和存储库计数进行排名
-*   `&size_weight=0&count_weight=1` - 按存储库计数进行排名
+*   `&size_weight=0.5&count_weight=0.5` - *(推荐)* 按字节数和仓库计数进行排名
+*   `&size_weight=0&count_weight=1` - 按仓库计数进行排名
 
 ```md
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&size_weight=0.5&count_weight=0.5)
@@ -533,7 +533,7 @@ By default, only the byte count is used for determining the languages percentage
 
 ### 排除指定仓库
 
-您可以使用`&exclude_repo=repo1,repo2`参数来排除单个存储库。
+你可以使用`&exclude_repo=repo1,repo2`参数来排除单个仓库。
 
 ```md
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)
@@ -541,7 +541,7 @@ By default, only the byte count is used for determining the languages percentage
 
 ### 隐藏指定语言
 
-您可以使用`&hide=language1,language2`参数来隐藏个别语言。
+你可以使用`&hide=language1,language2`参数来隐藏个别语言。
 
 ```md
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)
@@ -549,7 +549,7 @@ By default, only the byte count is used for determining the languages percentage
 
 ### 显示更多语言
 
-您可以使用`&langs_count=`选项来增加或减少卡片上显示的语言数量。有效值为 1 到 20（含）之间的整数。默认情况下，`normal`和`donut`的布局设置为`5`，其他布局的设置为`6`。
+你可以使用`&langs_count=`选项来增加或减少卡片上显示的语言数量。有效值为 1 到 20（含）之间的整数。默认情况下，`normal`和`donut`的布局设置为`5`，其他布局的设置为`6`。
 
 ```md
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)
@@ -558,7 +558,7 @@ By default, only the byte count is used for determining the languages percentage
 
 ### 紧凑的语言卡布局
 
-您可以使用`&layout=compact`选项来更改卡片布局样式。
+你可以使用`&layout=compact`选项来更改卡片布局样式。
 
 ```md
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)
@@ -566,7 +566,7 @@ By default, only the byte count is used for determining the languages percentage
 
 ### 圆环图语言卡布局
 
-您可以使用`&layout=donut`选项来更改卡片布局样式。
+你可以使用`&layout=donut`选项来更改卡片布局样式。
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=donut)](https://github.com/anuraghazra/github-readme-stats)
@@ -574,7 +574,7 @@ By default, only the byte count is used for determining the languages percentage
 
 ### 甜甜圈垂直图表语言卡布局
 
-您可以使用`&layout=donut-vertical`选项来更改卡片布局样式。
+你可以使用`&layout=donut-vertical`选项来更改卡片布局样式。
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=donut-vertical)](https://github.com/anuraghazra/github-readme-stats)
@@ -582,7 +582,7 @@ By default, only the byte count is used for determining the languages percentage
 
 ### 饼图语言卡布局
 
-您可以使用`&layout=pie`选项来更改卡片布局样式。
+你可以使用`&layout=pie`选项来更改卡片布局样式。
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=pie)](https://github.com/anuraghazra/github-readme-stats)
@@ -590,7 +590,7 @@ By default, only the byte count is used for determining the languages percentage
 
 ### 隐藏进度条
 
-您可以使用`&hide_progress=true`选项隐藏百分比和进度条（布局将自动设置为`compact`）。
+你可以使用`&hide_progress=true`选项隐藏百分比和进度条（布局将自动设置为`compact`）。
 
 ```md
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)
@@ -623,9 +623,9 @@ By default, only the byte count is used for determining the languages percentage
 # WakaTime 统计卡
 
 > [!警告]\
-> 请注意，我们目前仅显示公开的 WakaTime 个人资料中的数据。因此，您必须确保`Display code time publicly`和`Display languages, editors, os, categories publicly`**都**已启用。
+> 请注意，我们目前仅显示公开的 WakaTime 个人资料中的数据。因此，你必须确保`Display code time publicly`和`Display languages, editors, os, categories publicly`**都**已启用。
 
-将 `?username=` 值更改为您的 [WakaTime](https://wakatime.com) 用户名​​。
+将 `?username=` 值更改为你的 [WakaTime](https://wakatime.com) 用户名​​。
 
 ```md
 [![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
@@ -719,7 +719,7 @@ By default, only the byte count is used for determining the languages percentage
 
 ## 快速提示(对齐卡片)
 
-默认情况下，GitHub 不会并排放置卡片。为此，您可以使用以下方法：
+默认情况下，GitHub 不会并排放置卡片。为此，你可以使用以下方法：
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -768,32 +768,32 @@ By default, only the byte count is used for determining the languages percentage
 
 ### 视频: [请查看@codeSTACKr制作的视频](https://youtu.be/n6d4KHSKqGk?t=107)
 
-由于 GitHub API 每小时仅允许 5k 请求，因此我的`https://github-readme-stats.vercel.app/api`可能会达到速率限制器。如果您将其托管在自己的 Vercel 服务器上，则无需担心任何事情。单击部署按钮即可开始！
+由于 GitHub API 每小时仅允许 5k 请求，因此我的`https://github-readme-stats.vercel.app/api`可能会达到速率限制器。如果你将其托管在自己的 Vercel 服务器上，则无需担心任何事情。单击部署按钮即可开始！
 
 > [!消息]\
 > 自 [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) 以来，我们应该能够处理超过 5k 个请求，并且停机问题更少(咧嘴笑)。
 
 > [!消息]\
-> 如果您使用 [Pro（即付费）](https://vercel.com/pricing) Vercel 计划，当您的Vercel实例在请求期间频繁超时，可以增加[vercel.json](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json)中的[maxDuration](https://vercel.com/docs/concepts/projects/project-configuration#value 的值。建议您将此值保持在`30`秒以下，以防止内存使用率过高。
+> 如果你使用 [Pro（即付费）](https://vercel.com/pricing) Vercel 计划，当你的Vercel实例在请求期间频繁超时，可以增加[vercel.json](https://github.com/anuraghazra/github-readme-stats/blob/master/vercel.json)中的[maxDuration](https://vercel.com/docs/concepts/projects/project-configuration#value 的值。建议你将此值保持在`30`秒以下，以防止内存使用率过高。
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
 <details>
- <summary><b>自己动手：设置您自己的 Vercel 实例的分步指南</b></summary>
+ <summary><b>自己动手：设置你自己的 Vercel 实例的分步指南</b></summary>
 
 1.  访问 [vercel.com](https://vercel.com/)。
 2.  点击 `Log in`。
     ![](https://files.catbox.moe/pcxk33.png)
 3.  通过GitHub登录 `Continue with GitHub`。
     ![](https://files.catbox.moe/b9oxey.png)
-4.  登录 GitHub 并根据提示允许访问所有存储库。
+4.  登录 GitHub 并根据提示允许访问所有仓库。
 5.  Fork 这个仓库。
 6.  返回你的 [Vercel dashboard](https://vercel.com/dashboard)。
 7.  为了导入这个项目, 点击 `Add New...` 按钮 和 选择 `Project` 选项。
     ![](https://files.catbox.moe/3n76fh.png)
-8.  点击 `Continue with GitHub` 按钮, 找到Git仓库请求然后通过点击`Import` 按钮导入它。或者，您可以使用页面底部的`Import    Third-Party Git Repository ->`链接导入第三方 Git 存储库。
+8.  点击 `Continue with GitHub` 按钮, 找到Git仓库请求然后通过点击`Import` 按钮导入它。或者，你可以使用页面底部的`Import    Third-Party Git Repository ->`链接导入第三方 Git 仓库。
     ![](https://files.catbox.moe/mg5p04.png)
-9.  创建个人访问 token (PAT) [here](https://github.com/settings/tokens/new) and 启用 `repo` and `user` 权限(这允许访问查看私人存储库和用户统计信息)。
+9.  创建个人访问 token (PAT) [here](https://github.com/settings/tokens/new) and 启用 `repo` and `user` 权限(这允许访问查看私人仓库和用户统计信息)。
 10. 将 PAT 添加为名为`PAT_1`的环境变量  (如图所示).
     ![](https://files.catbox.moe/0yclio.png)
 11. 单击部署，一切顺利。请查看以使用 API！!
@@ -808,11 +808,11 @@ By default, only the byte count is used for determining the languages percentage
 <details>
 <summary><b>自己动手：在其他平台上部署的分步指南</b></summary>
 
-1.  根据您的需要Fork或克隆此存储库
+1.  根据你的需要Fork或克隆此仓库
 2.  添加 `express` 到`package.json`依赖项部分
     <https://github.com/anuraghazra/github-readme-stats/blob/ba7c2f8b55eac8452e479c8bd38b044d204d0424/package.json#L54-L61>
 3.  如果需要，运行`npm i`（初始设置）
-4.  运行`node express.js`来启动服务器，或者如果您要在托管服务上部署，则将入口点设置为`package.json`中的`express.js`
+4.  运行`node express.js`来启动服务器，或者如果你要在托管服务上部署，则将入口点设置为`package.json`中的`express.js`
     <https://github.com/anuraghazra/github-readme-stats/blob/ba7c2f8b55eac8452e479c8bd38b044d204d0424/package.json#L11>
 5.  你完成了 🎉
     </details>
@@ -823,23 +823,23 @@ Github Readme Stats 包含多个 Vercel 环境变量，可用于删除速率限�
 
 *   `CACHE_SECONDS`: 此环境变量优先于我们的缓存最小值和最大值，并且可以规避自托管 Vercel 实例的这些值。
 
-查看 [the Vercel documentation](https://vercel.com/docs/concepts/projects/environment-variables) 将这些环境变量添加到您的 Vercel 实例。
+查看 [the Vercel documentation](https://vercel.com/docs/concepts/projects/environment-variables) 将这些环境变量添加到你的 Vercel 实例。
 
 ## 让你的 fork 保持最新状态
 
-您可以使用 GitHub 的 [Sync Fork 按钮](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/) 保持您的分叉，从而使您的私有 Vercel 实例与上游保持同步使用分叉/同步分叉）。
+你可以使用 GitHub 的 [Sync Fork 按钮](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/) 保持你的分叉，从而使你的私有 Vercel 实例与上游保持同步使用分叉/同步分叉）。
 
-您还可以使用 [@wei](https://github.com/wei) 创建的 [pull](https://github.com/wei/pull) 包来自动化此过程。
+你还可以使用 [@wei](https://github.com/wei) 创建的 [pull](https://github.com/wei/pull) 包来自动化此过程。
 
 # 闪亮的心 支持该项目
 
-我几乎开源了所有能开源的东西，并尝试回复每个使用这些项目需要帮助的人。明显地，这需要时间。您可以免费使用此服务。
+我几乎开源了所有能开源的东西，并尝试回复每个使用这些项目需要帮助的人。明显地，这需要时间。你可以免费使用此服务。
 
-但是，如果您正在使用这个项目并且对此感到满意或者只是想鼓励我继续创建东西，您可以通过以下几种方法来做到这一点：
+但是，如果你正在使用这个项目并且对此感到满意或者只是想鼓励我继续创建东西，你可以通过以下几种方法来做到这一点：
 
-*   当您在自述文件中使用 github-readme-stats 时给予适当的认可，并链接回它。
+*   当你在自述文件中使用 github-readme-stats 时给予适当的认可，并链接回它。
 *   主演并分享该项目。
-*   [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - 您可以通过 PayPal 进行一次性捐款。我可能会买一杯 ~~咖啡~~ 茶。
+*   [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - 你可以通过 PayPal 进行一次性捐款。我可能会买一杯 ~~咖啡~~ 茶。
 
 感谢比心了
 
