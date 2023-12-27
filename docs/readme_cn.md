@@ -111,14 +111,14 @@
 - [WakaTime 统计卡](#WakaTime-统计卡)
     - [演示](#演示)
 - [全部样式](#全部样式)
-  - [快速提示(对齐卡片)](#快速提示-(对齐卡片))
+  - [快速提示(对齐卡片)](#快速提示(对齐卡片))
 - [自行部署](#自行部署)
   - [在Vercel上](#在Vercel上)
     - [视频: 查看 @codeSTACKr 制作的视频](#film_projector-查看-@codeSTACKr-制作的视频)
   - [在其他平台上](#在其他平台上)
   - [禁用速率限制保护](#禁用速率限制保护)
   - [让你的 fork 保持最新状态](#让你的-fork-保持最新状态)
-- [闪亮的心：支持该项目](#闪亮的心-支持该项目)
+- [闪亮的心 支持该项目](#闪亮的心-支持该项目)
 
 # 重要消息 <!-- omit in toc -->
 
@@ -165,7 +165,7 @@
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage)
 ```
 
-### 展示图标
+### 显示图标
 
 要启用图标，您可以在查询参数中传递“&show_icons=true”，如下所示：
 
@@ -717,7 +717,7 @@ By default, only the byte count is used for determining the languages percentage
 
 ***
 
-## 快速提示（对齐卡片）
+## 快速提示(对齐卡片)
 
 默认情况下，GitHub 不会并排放置卡片。为此，您可以使用以下方法：
 
@@ -831,7 +831,7 @@ Github Readme Stats 包含多个 Vercel 环境变量，可用于删除速率限�
 
 您还可以使用 [@wei](https://github.com/wei) 创建的 [pull](https://github.com/wei/pull) 包来自动化此过程。
 
-# 闪亮的心：支持该项目
+# 闪亮的心 支持该项目
 
 我几乎开源了所有能开源的东西，并尝试回复每个使用这些项目需要帮助的人。明显地，这需要时间。您可以免费使用此服务。
 
