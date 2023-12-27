@@ -59,7 +59,7 @@
 </p>
 <p align="center">Vous aimez ce projet? Pensez <a href="https://www.paypal.me/anuraghazra">à faire un don</a> pour l'améliorer!
 
-# Features <!-- omit in toc -->
+# Fonctionnalités <!-- omit in toc -->
 
 - [Carte des Stats GitHub](#carte-des-stats-github)
     - [Cacher les statistiques individuelles](#cacher-les-statistiques-individuelles)
@@ -71,7 +71,7 @@
     - [Démo](#démo)
 - [Carte des langages les + utilisés](#carte-des-langages-les--utilisés)
     - [Usage](#usage-1)
-    - [Cacher certaines langages](#cacher-certaines-langages)
+    - [Cacher certains langages](#cacher-certaines-langages)
     - [Carte compacte des langages](#carte-compacte-des-langages)
     - [Démo](#démo-1)
     - [Toutes les démos](#toutes-les-démos)
@@ -136,13 +136,13 @@ Vous pouvez personnaliser l'apparence de votre `Carte des stats` ou `Carte de d�
 - `title_color` - Couleur du titre de la carte _(hex color)_
 - `text_color` - Couleur du texte _(hex color)_
 - `icon_color` - Couleur des icônes si disponibles _(hex color)_
-- `bg_color` - Couleur du fond de la carte _(hex color)_ **ou** un gradiant de la forme _angle,start,end_
+- `bg_color` - Couleur du fond de la carte _(hex color)_ **ou** un dégradé de la forme _angle,start,end_
 - `hide_border` - Cache la bordure de la carte _(booléen)_
 - `theme` - Nom du thème, parmis [tous les thèmes disponibles](../themes/README.md)
 - `cache_seconds` - Paramétrer le cache manuellement _(min: 14400, max: 86400)_
 - `locale` - définir la langue de la carte _(par exemple. cn, de, es, etc.)_
 
-##### Gradient in bg_color
+##### Dégradé dans bg_color
 
 Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_color pour rendre un degradé, le format du degradé est :-
 
@@ -152,26 +152,26 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 > Note relative: Les cartes dépôt ont un cache par défaut de 30 minutes (1800 secondes) si le nombre de bifurcations et d'étoiles est inférieur à 1K, alors il est de 2 heures (7200). Notez également que la mémoire cache est limitée à 30 minutes au minimum et à 24 heures au maximum.
 
-#### Stats Card Exclusive Options:
+#### Options exclusives aux cartes de stats:
 
 -   `hide` - Masquer [les éléments spécifiés](#cacher-les-statistiques-individuelles) dans les statistiques _(Comma seperated values)_
--   `hide_title` - Masquer le titre _(boolean)_
--   `hide_rank` - Masquer le rang _(boolean)_
--   `show_icons` - Afficher les icônes _(boolean)_
--   `include_all_commits` - Compter le total de commits au lieu de ne compter que les commits de l'année en cours _(boolean)_
--   `count_private` - Compter les contributions privées _(boolean)_
--   `line_height` - Fixer la hauteur de la ligne entre les textes _(number)_
+-   `hide_title` - Masquer le titre _(booléen)_
+-   `hide_rank` - Masquer le rang _(booléen)_
+-   `show_icons` - Afficher les icônes _(booléen)_
+-   `include_all_commits` - Compter le total de commits au lieu de ne compter que les commits de l'année en cours _(booléen)_
+-   `count_private` - Compter les contributions privées _(booléen)_
+-   `line_height` - Fixer la hauteur de la ligne entre les textes _(nombre)_
 
-#### Repo Card Exclusive Options:
+#### Options exclusives aux cartes de dépôts:
 
--   `show_owner` - Affiche le nom du propriétaire du dépôt _(boolean)_
+-   `show_owner` - Affiche le nom du propriétaire du dépôt _(booléen)_
 
-#### Language Card Exclusive Options:
+#### Options exclusives aux cartes de langages:
 
--   `hide` - Masquer les langages spécifiés sur la carte _(Comma seperated values)_
--   `hide_title` - Masquer le titre _(boolean)_
+-   `hide` - Masquer les langages spécifiés sur la carte _(Valeurs séparées par des virgules)_
+-   `hide_title` - Masquer le titre _(booléen)_
 -   `layout` - Alterner entre 5 mise en page `normal` & `compact` & `donut` & `donut-vertical` & `pie`
--   `card_width` - Fixer la largeur de la carte manuellement _(number)_
+-   `card_width` - Fixer la largeur de la carte manuellement _(nombre)_
 
 > :warning: **Important:**
 > Les noms des langages doivent être en format uri, comme spécifié dans [Percent Encoding](https://fr.wikipedia.org/wiki/Percent-encoding)
@@ -179,7 +179,7 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 ---
 
-# GitHub Extra Pins
+# Épingles supplémentaires GitHub
 
 Les épingles supplémentaires GitHub vous permettent d'épingler plus de 6 dépôts dans votre profil en utilisant un profil GitHub readme.
 
@@ -219,7 +219,7 @@ Extrémité: `api/top-langs?username=anuraghazra`
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### Cacher certaines langages
+### Cacher certains langages
 
 Vous pouvez utiliser le paramètre `?hide=language1,language2` pour masquer les langages individuels.
 
