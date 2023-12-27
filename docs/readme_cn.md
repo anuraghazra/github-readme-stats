@@ -122,12 +122,12 @@
 
 # 重要消息 <!-- omit in toc -->
 
-> [!重要]\
-> 由于GitHub API规定[每个用户帐户每小时仅允许5k次请求](https://docs.github.com/en/graphql/overview/resource-limitations)，公共 Vercel 实例托管在`https://github-readme-stats.vercel.app/api`可能会被限速（参见[#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471))。我们使用缓存来防止这种情况发生（请参阅https://github.com/anuraghazra/github-readme-stats#common-options）。你可以通过部署[你自己的Vercel实例](#disable-rate-limit-protections)来关闭这些速率限制保护。
+> [!IMPORTANT]\
+> 由于GitHub API规定[每个用户帐户每小时仅允许5k次请求](https://docs.github.com/en/graphql/overview/resource-limitations)，公共 Vercel 实例托管在`https://github-readme-stats.vercel.app/api`可能会被限速参见[#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)。我们使用缓存来防止这种情况发生(请参阅https://github.com/anuraghazra/github-readme-stats#common-option)。你可以通过部署[你自己的Vercel实例](#disable-rate-limit-protections)来关闭这些速率限制保护。
 
 <img alt="Uptime Badge" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgithub-readme-stats-git-monitoring-github-readme-stats-team.vercel.app%2Fapi%2Fstatus%2Fup%3Ftype%3Dshields">
 
-> [!重要]\
+> [!IMPORTANT]\
 > 我们是一个小团队，为了确定优先顺序，我们依靠赞成票: "+1"的形式。我们使用“热门问题”仪表板来跟踪社区需求（请参阅 [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935)）。请毫不犹豫地对你感兴趣的问题和拉取请求进行投票。我们将首先处理投票最多的问题。
 
 # GitHub统计卡
