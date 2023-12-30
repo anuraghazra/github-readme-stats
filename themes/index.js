@@ -462,6 +462,13 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  jade: {
+    title_color: "41b883",
+    text_color: "ffffff",
+    icon_color: "41b883",
+    border_color: "30fe00",
+    bg_color: "000",
+  },
 };
 
 export default themes;
