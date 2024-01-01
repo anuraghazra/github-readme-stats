@@ -14,9 +14,16 @@ import { langCardLocales } from "../translations.js";
 
 const DEFAULT_CARD_WIDTH = 300;
 const MIN_CARD_WIDTH = 280;
-const DEFAULT_LANGS_COUNT = 5;
 const DEFAULT_LANG_COLOR = "#858585";
 const CARD_PADDING = 25;
+const COMPACT_LAYOUT_BASE_HEIGHT = 90;
+const MAXIMUM_LANGS_COUNT = 20;
+
+const NORMAL_LAYOUT_DEFAULT_LANGS_COUNT = 5;
+const COMPACT_LAYOUT_DEFAULT_LANGS_COUNT = 6;
+const DONUT_LAYOUT_DEFAULT_LANGS_COUNT = 5;
+const PIE_LAYOUT_DEFAULT_LANGS_COUNT = 6;
+const DONUT_VERTICAL_LAYOUT_DEFAULT_LANGS_COUNT = 6;
 
 /**
  * @typedef {import("../fetchers/types").Lang} Lang
@@ -26,20 +33,20 @@ const CARD_PADDING = 25;
  * Retrieves the programming language whose name is the longest.
  *
  * @param {Lang[]} arr Array of programming languages.
- * @returns {Object} Longest programming language object.
+ * @returns {{ name: string, size: number, color: string }} Longest programming language object.
  */
 const getLongestLang = (arr) =>
   arr.reduce(
     (savedLang, lang) =>
       lang.name.length > savedLang.name.length ? lang : savedLang,
-    { name: "", size: null, color: "" },
+    { name: "", size: 0, color: "" },
   );
 
 /**
  * Convert degrees to radians.
  *
  * @param {number} angleInDegrees Angle in degrees.
- * @returns Angle in radians.
+ * @returns {number} Angle in radians.
  */
 const degreesToRadians = (angleInDegrees) => angleInDegrees * (Math.PI / 180.0);
 
@@ -47,7 +54,7 @@ const degreesToRadians = (angleInDegrees) => angleInDegrees * (Math.PI / 180.0);
  * Convert radians to degrees.
  *
  * @param {number} angleInRadians Angle in radians.
- * @returns Angle in degrees.
+ * @returns {number} Angle in degrees.
  */
 const radiansToDegrees = (angleInRadians) => angleInRadians / (Math.PI / 180.0);
 
@@ -80,8 +87,20 @@ const polarToCartesian = (centerX, centerY, radius, angleInDegrees) => {
 const cartesianToPolar = (centerX, centerY, x, y) => {
   const radius = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
   let angleInDegrees = radiansToDegrees(Math.atan2(y - centerY, x - centerX));
-  if (angleInDegrees < 0) angleInDegrees += 360;
+  if (angleInDegrees < 0) {
+    angleInDegrees += 360;
+  }
   return { radius, angleInDegrees };
+};
+
+/**
+ * Calculates length of circle.
+ *
+ * @param {number} radius Radius of the circle.
+ * @returns {number} The length of the circle.
+ */
+const getCircleLength = (radius) => {
+  return 2 * Math.PI * radius;
 };
 
 /**
@@ -91,7 +110,7 @@ const cartesianToPolar = (centerX, centerY, x, y) => {
  * @returns {number} Card height.
  */
 const calculateCompactLayoutHeight = (totalLangs) => {
-  return 90 + Math.round(totalLangs / 2) * 25;
+  return COMPACT_LAYOUT_BASE_HEIGHT + Math.round(totalLangs / 2) * 25;
 };
 
 /**
@@ -112,6 +131,16 @@ const calculateNormalLayoutHeight = (totalLangs) => {
  */
 const calculateDonutLayoutHeight = (totalLangs) => {
   return 215 + Math.max(totalLangs - 5, 0) * 32;
+};
+
+/**
+ * Calculates height for the donut vertical layout.
+ *
+ * @param {number} totalLangs Total number of languages.
+ * @returns {number} Card height.
+ */
+const calculateDonutVerticalLayoutHeight = (totalLangs) => {
+  return 300 + Math.round(totalLangs / 2) * 25;
 };
 
 /**
@@ -137,14 +166,14 @@ const donutCenterTranslation = (totalLangs) => {
  * Trim top languages to lang_count while also hiding certain languages.
  *
  * @param {Record<string, Lang>} topLangs Top languages.
- * @param {string[]} hide Languages to hide.
- * @param {string} langs_count Number of languages to show.
- * @returns {{topLangs: Record<string, Lang>, totalSize: number}} Trimmed top languages and total size.
+ * @param {number} langs_count Number of languages to show.
+ * @param {string[]=} hide Languages to hide.
+ * @returns {{ langs: Lang[], totalLanguageSize: number }} Trimmed top languages and total size.
  */
-const trimTopLanguages = (topLangs, hide, langs_count) => {
+const trimTopLanguages = (topLangs, langs_count, hide) => {
   let langs = Object.values(topLangs);
   let langsToHide = {};
-  let langsCount = clampValue(parseInt(langs_count), 1, 10);
+  let langsCount = clampValue(langs_count, 1, MAXIMUM_LANGS_COUNT);
 
   // populate langsToHide map for quick lookup
   // while filtering out
@@ -174,7 +203,7 @@ const trimTopLanguages = (topLangs, hide, langs_count) => {
  * @param {number} props.width The card width
  * @param {string} props.color Color of the programming language.
  * @param {string} props.name Name of the programming language.
- * @param {string} props.progress Usage of the programming language in percentage.
+ * @param {number} props.progress Usage of the programming language in percentage.
  * @param {number} props.index Index of the programming language.
  * @returns {string} Programming language SVG node.
  */
@@ -207,7 +236,7 @@ const createProgressTextNode = ({ width, color, name, progress, index }) => {
  * @param {object} props Function properties.
  * @param {Lang} props.lang Programming language object.
  * @param {number} props.totalSize Total size of all languages.
- * @param {boolean} props.hideProgress Whether to hide percentage.
+ * @param {boolean=} props.hideProgress Whether to hide percentage.
  * @param {number} props.index Index of the programming language.
  * @returns {string} Compact layout programming language SVG node.
  */
@@ -232,7 +261,7 @@ const createCompactLangNode = ({ lang, totalSize, hideProgress, index }) => {
  * @param {object} props Function properties.
  * @param {Lang[]} props.langs Array of programming languages.
  * @param {number} props.totalSize Total size of all languages.
- * @param {boolean} props.hideProgress Whether to hide percentage.
+ * @param {boolean=} props.hideProgress Whether to hide percentage.
  * @returns {string} Programming languages SVG node.
  */
 const createLanguageTextNode = ({ langs, totalSize, hideProgress }) => {
@@ -302,7 +331,9 @@ const renderNormalLayout = (langs, width, totalLanguageSize) => {
         width,
         name: lang.name,
         color: lang.color || DEFAULT_LANG_COLOR,
-        progress: ((lang.size / totalLanguageSize) * 100).toFixed(2),
+        progress: parseFloat(
+          ((lang.size / totalLanguageSize) * 100).toFixed(2),
+        ),
         index,
       });
     }),
@@ -317,7 +348,7 @@ const renderNormalLayout = (langs, width, totalLanguageSize) => {
  * @param {Lang[]} langs Array of programming languages.
  * @param {number} width Card width.
  * @param {number} totalLanguageSize Total size of all languages.
- * @param {boolean} hideProgress Whether to hide progress bar.
+ * @param {boolean=} hideProgress Whether to hide progress bar.
  * @returns {string} Compact layout card SVG object.
  */
 const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
@@ -352,22 +383,92 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
 
   return `
   ${
-    !hideProgress
-      ? `
-  <mask id="rect-mask">
-      <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5"/>
-    </mask>
-    ${compactProgressBar}
-  `
-      : ""
+    hideProgress
+      ? ""
+      : `
+      <mask id="rect-mask">
+          <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5"/>
+        </mask>
+        ${compactProgressBar}
+      `
   }
     <g transform="translate(0, ${hideProgress ? "0" : "25"})">
       ${createLanguageTextNode({
         langs,
         totalSize: totalLanguageSize,
-        hideProgress: hideProgress,
+        hideProgress,
       })}
     </g>
+  `;
+};
+
+/**
+ * Renders donut vertical layout to display user's most frequently used programming languages.
+ *
+ * @param {Lang[]} langs Array of programming languages.
+ * @param {number} totalLanguageSize Total size of all languages.
+ * @returns {string} Compact layout card SVG object.
+ */
+const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
+  // Donut vertical chart radius and total length
+  const radius = 80;
+  const totalCircleLength = getCircleLength(radius);
+
+  // SVG circles
+  let circles = [];
+
+  // Start indent for donut vertical chart parts
+  let indent = 0;
+
+  // Start delay coefficient for donut vertical chart parts
+  let startDelayCoefficient = 1;
+
+  // Generate each donut vertical chart part
+  for (const lang of langs) {
+    const percentage = (lang.size / totalLanguageSize) * 100;
+    const circleLength = totalCircleLength * (percentage / 100);
+    const delay = startDelayCoefficient * 100;
+
+    circles.push(`
+      <g class="stagger" style="animation-delay: ${delay}ms">
+        <circle 
+          cx="150"
+          cy="100"
+          r="${radius}"
+          fill="transparent"
+          stroke="${lang.color}"
+          stroke-width="25"
+          stroke-dasharray="${totalCircleLength}"
+          stroke-dashoffset="${indent}"
+          size="${percentage}"
+          data-testid="lang-donut"
+        />
+      </g>
+    `);
+
+    // Update the indent for the next part
+    indent += circleLength;
+    // Update the start delay coefficient for the next part
+    startDelayCoefficient += 1;
+  }
+
+  return `
+    <svg data-testid="lang-items">
+      <g transform="translate(0, 0)">
+        <svg data-testid="donut">
+          ${circles.join("")}
+        </svg>
+      </g>
+      <g transform="translate(0, 220)">
+        <svg data-testid="lang-names" x="${CARD_PADDING}">
+          ${createLanguageTextNode({
+            langs,
+            totalSize: totalLanguageSize,
+            hideProgress: false,
+          })}
+        </svg>
+      </g>
+    </svg>
   `;
 };
 
@@ -565,16 +666,64 @@ const renderDonutLayout = (langs, width, totalLanguageSize) => {
 };
 
 /**
+ * @typedef {import("./types").TopLangOptions} TopLangOptions
+ * @typedef {TopLangOptions["layout"]} Layout
+ */
+
+/**
+ * Creates the no languages data SVG node.
+ *
+ * @param {object} props Object with function properties.
+ * @param {string} props.color No languages data text color.
+ * @param {string} props.text No languages data translated text.
+ * @param {Layout | undefined} props.layout Card layout.
+ * @returns {string} No languages data SVG node string.
+ */
+const noLanguagesDataNode = ({ color, text, layout }) => {
+  return `
+    <text x="${
+      layout === "pie" || layout === "donut-vertical" ? CARD_PADDING : 0
+    }" y="11" class="stat bold" fill="${color}">${text}</text>
+  `;
+};
+
+/**
+ * Get default languages count for provided card layout.
+ *
+ * @param {object} props Function properties.
+ * @param {Layout=} props.layout Input layout string.
+ * @param {boolean=} props.hide_progress Input hide_progress parameter value.
+ * @returns {number} Default languages count for input layout.
+ */
+const getDefaultLanguagesCountByLayout = ({ layout, hide_progress }) => {
+  if (layout === "compact" || hide_progress === true) {
+    return COMPACT_LAYOUT_DEFAULT_LANGS_COUNT;
+  } else if (layout === "donut") {
+    return DONUT_LAYOUT_DEFAULT_LANGS_COUNT;
+  } else if (layout === "donut-vertical") {
+    return DONUT_VERTICAL_LAYOUT_DEFAULT_LANGS_COUNT;
+  } else if (layout === "pie") {
+    return PIE_LAYOUT_DEFAULT_LANGS_COUNT;
+  } else {
+    return NORMAL_LAYOUT_DEFAULT_LANGS_COUNT;
+  }
+};
+
+/**
+ * @typedef {import('../fetchers/types').TopLangData} TopLangData
+ */
+
+/**
  * Renders card that display user's most frequently used programming languages.
  *
- * @param {import('../fetchers/types').TopLangData} topLangs User's most frequently used programming languages.
- * @param {Partial<import("./types").TopLangOptions>} options Card options.
+ * @param {TopLangData} topLangs User's most frequently used programming languages.
+ * @param {Partial<TopLangOptions>} options Card options.
  * @returns {string} Language card SVG object.
  */
 const renderTopLanguages = (topLangs, options = {}) => {
   const {
     hide_title = false,
-    hide_border,
+    hide_border = false,
     card_width,
     title_color,
     text_color,
@@ -585,7 +734,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     layout,
     custom_title,
     locale,
-    langs_count = DEFAULT_LANGS_COUNT,
+    langs_count = getDefaultLanguagesCountByLayout({ layout, hide_progress }),
     border_radius,
     border_color,
     disable_animations,
@@ -598,38 +747,18 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   const { langs, totalLanguageSize } = trimTopLanguages(
     topLangs,
+    langs_count,
     hide,
-    String(langs_count),
   );
 
-  let width = isNaN(card_width)
-    ? DEFAULT_CARD_WIDTH
-    : card_width < MIN_CARD_WIDTH
-    ? MIN_CARD_WIDTH
-    : card_width;
+  let width = card_width
+    ? isNaN(card_width)
+      ? DEFAULT_CARD_WIDTH
+      : card_width < MIN_CARD_WIDTH
+        ? MIN_CARD_WIDTH
+        : card_width
+    : DEFAULT_CARD_WIDTH;
   let height = calculateNormalLayoutHeight(langs.length);
-
-  let finalLayout = "";
-  if (layout === "pie") {
-    height = calculatePieLayoutHeight(langs.length);
-    finalLayout = renderPieLayout(langs, totalLanguageSize);
-  } else if (layout === "compact" || hide_progress == true) {
-    height =
-      calculateCompactLayoutHeight(langs.length) + (hide_progress ? -25 : 0);
-
-    finalLayout = renderCompactLayout(
-      langs,
-      width,
-      totalLanguageSize,
-      hide_progress,
-    );
-  } else if (layout?.toLowerCase() === "donut") {
-    height = calculateDonutLayoutHeight(langs.length);
-    width = width + 50; // padding
-    finalLayout = renderDonutLayout(langs, width, totalLanguageSize);
-  } else {
-    finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
-  }
 
   // returns theme based colors with proper overrides and defaults
   const colors = getCardColors({
@@ -640,6 +769,38 @@ const renderTopLanguages = (topLangs, options = {}) => {
     theme,
   });
 
+  let finalLayout = "";
+  if (langs.length === 0) {
+    height = COMPACT_LAYOUT_BASE_HEIGHT;
+    finalLayout = noLanguagesDataNode({
+      color: colors.textColor,
+      text: i18n.t("langcard.nodata"),
+      layout,
+    });
+  } else if (layout === "pie") {
+    height = calculatePieLayoutHeight(langs.length);
+    finalLayout = renderPieLayout(langs, totalLanguageSize);
+  } else if (layout === "donut-vertical") {
+    height = calculateDonutVerticalLayoutHeight(langs.length);
+    finalLayout = renderDonutVerticalLayout(langs, totalLanguageSize);
+  } else if (layout === "compact" || hide_progress == true) {
+    height =
+      calculateCompactLayoutHeight(langs.length) + (hide_progress ? -25 : 0);
+
+    finalLayout = renderCompactLayout(
+      langs,
+      width,
+      totalLanguageSize,
+      hide_progress,
+    );
+  } else if (layout === "donut") {
+    height = calculateDonutLayoutHeight(langs.length);
+    width = width + 50; // padding
+    finalLayout = renderDonutLayout(langs, width, totalLanguageSize);
+  } else {
+    finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
+  }
+
   const card = new Card({
     customTitle: custom_title,
     defaultTitle: i18n.t("langcard.title"),
@@ -649,7 +810,9 @@ const renderTopLanguages = (topLangs, options = {}) => {
     colors,
   });
 
-  if (disable_animations) card.disableAnimations();
+  if (disable_animations) {
+    card.disableAnimations();
+  }
 
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
@@ -671,6 +834,14 @@ const renderTopLanguages = (topLangs, options = {}) => {
         width: 100%;
       }
     }
+    .stat {
+      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${colors.textColor};
+    }
+    @supports(-moz-appearance: auto) {
+      /* Selector detects Firefox */
+      .stat { font-size:12px; }
+    }
+    .bold { font-weight: 700 }
     .lang-name {
       font: 400 11px "Segoe UI", Ubuntu, Sans-Serif;
       fill: ${colors.textColor};
@@ -688,7 +859,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     `,
   );
 
-  if (layout === "pie") {
+  if (layout === "pie" || layout === "donut-vertical") {
     return card.render(finalLayout);
   }
 
@@ -705,12 +876,15 @@ export {
   radiansToDegrees,
   polarToCartesian,
   cartesianToPolar,
+  getCircleLength,
   calculateCompactLayoutHeight,
   calculateNormalLayoutHeight,
   calculateDonutLayoutHeight,
+  calculateDonutVerticalLayoutHeight,
   calculatePieLayoutHeight,
   donutCenterTranslation,
   trimTopLanguages,
   renderTopLanguages,
   MIN_CARD_WIDTH,
+  getDefaultLanguagesCountByLayout,
 };

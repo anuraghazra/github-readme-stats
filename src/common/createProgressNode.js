@@ -1,3 +1,5 @@
+// @ts-check
+
 import { clampValue } from "./utils.js";
 
 /**
@@ -8,7 +10,7 @@ import { clampValue } from "./utils.js";
  * @param {number} createProgressNodeParams.y Y-axis position.
  * @param {number} createProgressNodeParams.width Width of progress bar.
  * @param {string} createProgressNodeParams.color Progress color.
- * @param {string} createProgressNodeParams.progress Progress value.
+ * @param {number} createProgressNodeParams.progress Progress value.
  * @param {string} createProgressNodeParams.progressBarBackgroundColor Progress bar bg color.
  * @param {number} createProgressNodeParams.delay Delay before animation starts.
  * @returns {string} Progress node.

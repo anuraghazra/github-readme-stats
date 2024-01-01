@@ -7,8 +7,11 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
@@ -16,22 +19,19 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
+    </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supportato%20da-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supportato%20da-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
     <a href="#demo">Anteprima</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Segnala un errore</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Segnala un errore</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Richiedi una nuova funzionalità</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Richiedi una nuova funzionalità</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français </a>
@@ -59,14 +59,27 @@
 </p>
 <p align="center">Se ti piace questo progetto, considera la possibilità di <a href="https://www.paypal.me/anuraghazra">donare</a> per aiutare a renderlo migliore!
 
-# Caratteristiche
+# Caratteristiche <!-- omit in toc -->
 
-- [Statistiche GitHub (GitHub Stats Card)](#github-stats-card)
-- [GitHub Extra Pin](#github-extra-pins)
-- [Linguaggi più usati (Top Languages Card)](#top-languages-card)
-- [Temi](#temi)
-- [Personalizzazione](#personalizzazione)
-- [Effettua il Deploy](#deploy-su-vercel)
+- [GitHub Stats Card](#github-stats-card)
+    - [Nascondere statistiche individuali](#nascondere-statistiche-individuali)
+    - [Includere i contributi privati nel computo totale](#includere-i-contributi-privati-nel-computo-totale)
+    - [Mostrare le icone](#mostrare-le-icone)
+    - [Temi](#temi)
+    - [Personalizzazione](#personalizzazione)
+- [GitHub Extra Pins](#github-extra-pins)
+    - [Utilizzo](#utilizzo)
+    - [Demo](#demo)
+- [Top Languages Card](#top-languages-card)
+    - [Utilizzo](#utilizzo-1)
+    - [Nascondi linguaggi specifici](#nascondi-linguaggi-specifici)
+    - [Layout compatto](#layout-compatto)
+    - [Demo](#demo-1)
+    - [Galleria di esempi](#galleria-di-esempi)
+    - [Consiglio veloce (Allineare le Card)](#consiglio-veloce-allineare-le-card)
+  - [Deploy su Vercel](#deploy-su-vercel)
+  - [:sparkling\_heart: Supporta il progetto](#sparkling_heart-supporta-il-progetto)
+
 
 # GitHub Stats Card
 
@@ -171,7 +184,7 @@ Puoi fornire valori separati da virgola nel parametro bg_color per creare un gra
 
 - `hide` - Nasconde un linguaggio specifico _(valori separati da virgola)_
 - `hide_title` - Nasconde il titolo _(booleano)_
-- `layout` - Specifica il tipo di layout, `default` (esteso) o `compact` (compatto)
+- `layout` - Specificare il tipo di layout, `normal` (esteso), `compact` (compatto), `donut` (ciambella), `donut-vertical` (ciambella verticale) e `pie` (torta)
 - `card_width` - Specifica il valore della larghezza _(numero)_
 
 > :warning: **Importante:**

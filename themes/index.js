@@ -395,6 +395,18 @@ export const themes = {
     text_color: "e0def4",
     bg_color: "191724",
   },
+  catppuccin_latte: {
+    title_color: "137980",
+    icon_color: "8839ef",
+    text_color: "4c4f69",
+    bg_color: "eff1f5",
+  },
+  catppuccin_mocha: {
+    title_color: "94e2d5",
+    icon_color: "cba6f7",
+    text_color: "cdd6f4",
+    bg_color: "1e1e2e",
+  },
   date_night: {
     title_color: "DA7885",
     text_color: "E1B2A2",
@@ -422,6 +434,33 @@ export const themes = {
     icon_color: "5FABEE",
     border_color: "85A4C0",
     bg_color: "030314",
+  },
+  neon: {
+    title_color: "00EAD3",
+    text_color: "FF449F",
+    icon_color: "00EAD3",
+    border_color: "ffffff",
+    bg_color: "000000",
+  },
+  blue_navy: {
+    title_color: "82AAFF",
+    text_color: "82AAFF",
+    icon_color: "82AAFF",
+    border_color: "ffffff",
+    bg_color: "000000",
+  },
+  calm_pink: {
+    title_color: "e07a5f",
+    text_color: "edae49",
+    icon_color: "ebcfb2",
+    border_color: "e1bc29",
+    bg_color: "2b2d40",
+  },
+  ambient_gradient: {
+    title_color: "ffffff",
+    text_color: "ffffff",
+    icon_color: "ffffff",
+    bg_color: "35,4158d0,c850c0,ffcc70",
   },
 };
 

@@ -7,8 +7,11 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
@@ -16,22 +19,19 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
+    </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
     <a href="#demo">Bekijk Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Rapporteer een Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Rapporteer een Bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Vraag een nieuwe toepassing aan</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Vraag een nieuwe toepassing aan</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français </a>
@@ -59,15 +59,30 @@
 </p>
 <p align="center">Bevalt het project? <a href="https://www.paypal.me/anuraghazra">Doneer</a> om het te verbeteren!
 
-# Functionaliteiten
+# Functionaliteiten <!-- omit in toc -->
 
 - [GitHub Statistieken Kaart](#github-statistieken-kaart)
+    - [Verberg individueele statistieken](#verberg-individueele-statistieken)
+    - [Voeg privé contributies toe aan totale commits.](#voeg-privé-contributies-toe-aan-totale-commits)
+    - [Laat icoontjes zien](#laat-icoontjes-zien)
+    - [Thema's](#themas)
+    - [Opmaak](#opmaak)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Top Programmeertalen Kaart](#top-Programmeertalen-kaart)
-- [Wekelijkse Wakatime Statistieken](#wekelijkse-wakatime-statistieken)
-- [Thema\'s](#themas)
-- [Opmaak](#opmaak)
-- [Zelf deployen](#deploy-je-eigen-vercel-instatie)
+    - [Gebruik](#gebruik)
+    - [Demo](#demo)
+- [Top Programmeertalen Kaart](#top-programmeertalen-kaart)
+    - [Gebruik](#gebruik-1)
+    - [Verberg individueele repositories](#verberg-individueele-repositories)
+    - [Verberg individueele talen](#verberg-individueele-talen)
+    - [Laat meer programmeertalen zien](#laat-meer-programmeertalen-zien)
+    - [Compacte Talen Kaart opmaak](#compacte-talen-kaart-opmaak)
+    - [Demo](#demo-1)
+- [Wekelijkse WakaTime Statistieken](#wekelijkse-wakatime-statistieken)
+    - [Demo](#demo-2)
+    - [Alle demos](#alle-demos)
+    - [Kleine tip (Verstel de repo kaart z'n positie)](#kleine-tip-verstel-de-repo-kaart-zn-positie)
+  - [Deploy je eigen Vercel instatie](#deploy-je-eigen-vercel-instatie)
+  - [:sparkling\_heart: Ondersteun het project](#sparkling_heart-ondersteun-het-project)
 
 # GitHub Statistieken Kaart
 
@@ -176,7 +191,7 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 
 - `hide` - Verbergt specifieke talen van de kaart _(komma gescheiden waardes)_
 - `hide_title` - _(boolean)_
-- `layout` - Keuze voor de twee beschikbare layouts `default` & `compact`
+- `layout` - Kies uit de vijf beschikbare lay-outs `normal` & `compact` & `donut` & `donut-vertical` & `pie`
 - `card_width` - Stelt de breedte van de kaart handmatig in. _(nummer)_
 - `langs_count` - Laat meer talen op de kaart zien, waarde tussen 1-10, staat standaard op to 5 _(nummer)_
 - `exclude_repo` - Verbergt specifieke repositories _(komma gescheiden waardes)_
@@ -187,7 +202,7 @@ Je kan meerdere komma verdeelde waarden in de bg_color optie geven om een kleure
 > (Oftewel: `c++` moet `c%2B%2B` worden, `jupyter notebook` moet `jupyter%20notebook` worden, enzovoort...)
 > Zie [urlencoder.org](https://www.urlencoder.org/) om dit automatisch te doen.
 
-#### Exclusieve opties voor Wakatime Kaart:
+#### Exclusieve opties voor WakaTime Kaart:
 
 - `hide_title` - _(boolean)_
 - `line_height` - Verandert de lijn hoogte tussen tekst _(nummer)_
@@ -278,19 +293,19 @@ Je kan de `&layout=compact` optie gebruiken om het kaart ontwerp aan te passen.
 
 [![Top programmeertalen](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Wekelijkse Wakatime Statistieken
+# Wekelijkse WakaTime Statistieken
 
-Verander de `?username=` waarde naar je [Wakatime](https://wakatime.com) gebruikersnaam.
+Verander de `?username=` waarde naar je [WakaTime](https://wakatime.com) gebruikersnaam.
 
 ```md
-[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
 
-[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -338,9 +353,9 @@ Kies uit de [standaard thema\'s](#themes)
 
 [![Top Programmeertalen](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- Wakatime kaart
+- WakaTime kaart
 
-[![Harlok's Wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=Harlok)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
