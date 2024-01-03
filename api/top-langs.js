@@ -33,6 +33,8 @@ export default async (req, res) => {
     border_color,
     disable_animations,
     hide_progress,
+    language,
+    isFork
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
   console.log("访问Top-Langs 成功");
@@ -65,9 +67,11 @@ export default async (req, res) => {
   try {
     const topLangs = await fetchTopLanguages(
       username,
+      language,
       parseArray(exclude_repo),
       size_weight,
       count_weight,
+      parseBoolean(isFork)
     );
 
     let cacheSeconds = clampValue(
