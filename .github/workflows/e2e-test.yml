@@ -2,22 +2,25 @@ name: Test Deployment
 on:
   deployment_status:
 
+permissions: read-all
+
 jobs:
   e2eTests:
     if:
+      github.repository == 'anuraghazra/github-readme-stats' &&
       github.event_name == 'deployment_status' &&
       github.event.deployment_status.state == 'success'
     name: Perform 2e2 tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4.0.1
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm

@@ -7,8 +7,11 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
@@ -16,22 +19,19 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
+    </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
-    <a href="#demo">查看 Demo</a>
+    <a href="#全部-demos">查看 Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">报告 Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">报告 Bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">请求增加功能</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">请求增加功能</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
@@ -53,18 +53,32 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">喜欢这个项目？请考虑<a href="https://www.paypal.me/anuraghazra">捐赠</a>来帮助它完善！
 
-# 特性
+# 特性 <!-- omit in toc -->
 
-- [GitHub 统计卡片](#GitHub-统计卡片)
-- [GitHub 更多置顶](#GitHub-更多置顶)
+- [GitHub 统计卡片](#github-统计卡片)
+    - [隐藏指定统计](#隐藏指定统计)
+    - [将私人项目贡献添加到总提交计数中](#将私人项目贡献添加到总提交计数中)
+    - [显示图标](#显示图标)
+    - [主题](#主题)
+    - [自定义](#自定义)
+- [GitHub 更多置顶](#github-更多置顶)
+    - [使用细则](#使用细则)
+    - [Demo](#demo)
 - [热门语言卡片](#热门语言卡片)
-- [主题](#主题)
-- [自定义](#自定义)
-- [自己部署](#自己部署)
+    - [使用细则](#使用细则-1)
+    - [隐藏指定语言](#隐藏指定语言)
+    - [紧凑的语言卡片布局](#紧凑的语言卡片布局)
+    - [Demo](#demo-1)
+    - [全部 Demos](#全部-demos)
+    - [快速提示 (对齐 Repo 卡片)](#快速提示-对齐-repo-卡片)
+  - [自己部署](#自己部署)
+  - [:sparkling\_heart: 支持这个项目](#sparkling_heart-支持这个项目)
 
 # GitHub 统计卡片
 
@@ -138,7 +152,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `bg_color` - 卡片背景颜色 _（十六进制色码）_ **或者** 以 _angle,start,end_ 的形式渐变
 - `hide_border` - 隐藏卡的边框 _(布尔值)_
 - `theme` - 主题名称，从[所有可用主题](../themes/README.md)中选择
-- `cache_seconds` - 手动设置缓存头 _（最小值: 1800，最大值: 86400）_
+- `cache_seconds` - 手动设置缓存头 _（最小值: 14400，最大值: 86400）_
 - `locale` - 在卡片中设置语言 _(例如 cn, de, es, 等等)_
 
 ##### bg_color 渐变
@@ -169,7 +183,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 
 - `hide` - 从卡片中隐藏指定语言 _(Comma seperated values)_
 - `hide_title` - _(boolean)_
-- `layout` - 在两个可用布局 `default` & `compact` 间切换
+- `layout` - 提供五种布局 `normal` & `compact` & `donut` & `donut-vertical` & `pie` 间切换
 - `card_width` - 手动设置卡片的宽度 _(number)_
 
 > :warning: **重要:**
@@ -301,7 +315,7 @@ _注意：热门语言并不表示我的技能水平或类似的水平，它是�
 
 ## 自己部署
 
-#### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
+#### [查看分步视频教程 作者：@codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
 因为 GitHub 的 API 每个小时只允许 5 千次请求，我的 `https://github-readme-stats.vercel.app/api` 很有可能会触发限制。如果你将其托管在自己的 Vercel 服务器上，那么你就不必为此担心。点击 deploy 按钮来开始你的部署！
 
