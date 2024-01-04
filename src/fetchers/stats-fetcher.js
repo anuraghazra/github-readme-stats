@@ -40,11 +40,11 @@ const GRAPHQL_REPOS_QUERY = `
 `;
 
 const GRAPHQL_STATS_QUERY = `
-  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!, $starttime: DateTime) {
+  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!, $startTime: DateTime) {
     user(login: $login) {
       name
       login
-      contributionsCollection (from:$starttime) {
+      contributionsCollection (from: $startTime) {
         totalCommitContributions,
         totalPullRequestReviewContributions
       }
@@ -110,7 +110,7 @@ const fetcher = (variables, token) => {
  * @param {boolean} variables.includeMergedPullRequests Include merged pull requests.
  * @param {boolean} variables.includeDiscussions Include discussions.
  * @param {boolean} variables.includeDiscussionsAnswers Include discussions answers.
- * @param {string|undefined} variables.starttime Time to start the count of total commits.
+ * @param {string|undefined} variables.startTime Time to start the count of total commits.
  * @returns {Promise<AxiosResponse>} Axios response.
  *
  * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
@@ -120,7 +120,7 @@ const statsFetcher = async ({
   includeMergedPullRequests,
   includeDiscussions,
   includeDiscussionsAnswers,
-  starttime,
+  startTime,
 }) => {
   let stats;
   let hasNextPage = true;
@@ -133,10 +133,9 @@ const statsFetcher = async ({
       includeMergedPullRequests,
       includeDiscussions,
       includeDiscussionsAnswers,
-      starttime,
+      startTime,
     };
     let res = await retryer(fetcher, variables);
-
 
     if (res.data.errors) {
       return res;
@@ -200,6 +199,8 @@ const totalCommitsFetcher = async (username) => {
     throw new Error(err);
   }
 
+  console.log(res);
+
   const totalCount = res.data.total_count;
   if (!totalCount || isNaN(totalCount)) {
     throw new CustomError(
@@ -230,10 +231,10 @@ const fetchStats = async (
   username,
   include_all_commits = false,
   exclude_repo = [],
-  year,
   include_merged_pull_requests = false,
   include_discussions = false,
   include_discussions_answers = false,
+  year = undefined,
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -256,10 +257,10 @@ const fetchStats = async (
 
   let res = await statsFetcher({
     username,
-    starttime: year ? `${year}-01-01T00:00:00Z` : undefined,
     includeMergedPullRequests: include_merged_pull_requests,
     includeDiscussions: include_discussions,
     includeDiscussionsAnswers: include_discussions_answers,
+    startTime: year ? `${year}-01-01T00:00:00Z` : undefined,
   });
 
   // Catch GraphQL errors.

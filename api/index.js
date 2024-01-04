@@ -72,11 +72,11 @@ export default async (req, res) => {
       username,
       parseBoolean(include_all_commits),
       parseArray(exclude_repo),
-      parseInt(year),
       showStats.includes("prs_merged") ||
         showStats.includes("prs_merged_percentage"),
       showStats.includes("discussions_started"),
       showStats.includes("discussions_answered"),
+      parseInt(year, 10),
     );
 
     let cacheSeconds = clampValue(
@@ -104,7 +104,7 @@ export default async (req, res) => {
         card_width: parseInt(card_width, 10),
         hide_rank: parseBoolean(hide_rank),
         include_all_commits: parseBoolean(include_all_commits),
-        year: parseInt(year),
+        year: parseInt(year, 10),
         line_height,
         title_color,
         ring_color,

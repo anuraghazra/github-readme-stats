@@ -24,14 +24,22 @@ const data_stats = {
       repositoryDiscussionComments: { totalCount: 40 },
       repositories: {
         totalCount: 5,
+        nodes: [
+          { name: "test-repo-1", stargazers: { totalCount: 100 } },
+          { name: "test-repo-2", stargazers: { totalCount: 100 } },
+          { name: "test-repo-3", stargazers: { totalCount: 100 } },
+        ],
+        pageInfo: {
+          hasNextPage: true,
+          endCursor: "cursor",
+        },
       },
     },
   },
 };
 
-const data_for_year_test = JSON.parse(JSON.stringify(data_stats));
-data_for_year_test.data.user.contributionsCollection.totalCommitContributions = 2003;
-data_for_year_test.data.user.contributionsCollection.restrictedContributionsCount = 3;
+const data_year2003 = JSON.parse(JSON.stringify(data_stats));
+data_year2003.data.user.contributionsCollection.totalCommitContributions = 428;
 
 const data_repo = {
   data: {
@@ -93,10 +101,18 @@ const mock = new MockAdapter(axios);
 beforeEach(() => {
   process.env.FETCH_MULTI_PAGE_STARS = "false"; // Set to `false` to fetch only one page of stars.
   mock.onPost("https://api.github.com/graphql").reply((cfg) => {
-    console.log(cfg)
+    let req = JSON.parse(cfg.data);
+
+    if (
+      req.variables &&
+      req.variables.startTime &&
+      req.variables.startTime.startsWith("2003")
+    ) {
+      return [200, data_year2003];
+    }
     return [
       200,
-      cfg.data.includes("contributionsCollection") ? data_stats : data_repo,
+      req.query.includes("contributionsCollection") ? data_stats : data_repo,
     ];
   });
 });
@@ -414,26 +430,39 @@ describe("Test fetchStats", () => {
   });
 
   it("should get commits of provided year", async () => {
-    let stats = await fetchStats("anuraghazra", true, false, [], 2003);
+    let stats = await fetchStats(
+      "anuraghazra",
+      false,
+      [],
+      false,
+      false,
+      false,
+      2003,
+    );
+
     const rank = calculateRank({
-      totalCommits: 2006,
-      totalRepos: 5,
-      followers: 100,
-      contributions: 61,
-      // stargazers: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
-      stargazers: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      all_commits: false,
+      commits: 428,
       prs: 300,
+      reviews: 50,
       issues: 200,
+      repos: 5,
+      stars: 300,
+      followers: 100,
     });
 
     expect(stats).toStrictEqual({
       contributedTo: 61,
       name: "Anurag Hazra",
-      totalCommits: 2006,
+      totalCommits: 428,
       totalIssues: 200,
       totalPRs: 300,
-      // totalStars: 400, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
-      totalStars: 300, // NOTE: Temporarily disable fetching of multiple pages. Done because of #2130.
+      totalPRsMerged: 0,
+      mergedPRsPercentage: 0,
+      totalReviews: 50,
+      totalStars: 300,
+      totalDiscussionsStarted: 0,
+      totalDiscussionsAnswered: 0,
       rank,
     });
   });
