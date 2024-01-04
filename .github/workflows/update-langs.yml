@@ -1,0 +1,67 @@
+name: Update supported languages
+on:
+  schedule:
+    #        ┌───────────── minute (0 - 59)
+    #        │ ┌───────────── hour (0 - 23)
+    #        │ │  ┌───────────── day of the month (1 - 31)
+    #        │ │  │   ┌───────────── month (1 - 12 or JAN-DEC)
+    #        │ │  │   │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+    #        │ │  │   │ │
+    #        │ │  │   │ │
+    #        │ │  │   │ │
+    #        * *  *   * *
+    - cron: "0 0 */30 * *"
+
+permissions:
+  actions: read
+  checks: read
+  contents: write
+  deployments: read
+  issues: read
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
+
+jobs:
+  updateLanguages:
+    if: github.repository == 'anuraghazra/github-readme-stats'
+    name: Update supported languages
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+
+      - name: Setup Node
+        uses: actions/setup-node@b39b52d1213e96004bfcb1c61a8a6fa8ab84f3e8 # v4.0.1
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          CI: true
+
+      - name: Run update-languages-json.js script
+        run: npm run generate-langs-json
+
+      - name: Create Pull Request if upstream language file is changed
+        uses: peter-evans/create-pull-request@153407881ec5c347639a548ade7d8ad1d6740e38 # v5.0.2
+        with:
+          commit-message: "refactor: update languages JSON"
+          branch: "update_langs/patch"
+          delete-branch: true
+          title: Update languages JSON
+          body:
+            "The
+            [update-langs](https://github.com/anuraghazra/github-readme-stats/actions/workflows/update-langs.yaml)
+            action found new/updated languages in the [upstream languages JSON
+            file](https://raw.githubusercontent.com/github/linguist/master/lib/linguist/languages.yml)."
+          labels: "ci, lang-card"
