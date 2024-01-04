@@ -4,14 +4,13 @@
 
 import { getInput } from "@actions/core";
 
-// Script variables.
 const OWNER = "anuraghazra";
 const REPO = "github-readme-stats";
 
 /**
  * Retrieve information about the repository that ran the action.
  *
- * @param {Object} context Action context.
+ * @param {Object} ctx Action context.
  * @returns {Object} Repository information.
  */
 export const getRepoInfo = (ctx) => {
@@ -31,7 +30,7 @@ export const getRepoInfo = (ctx) => {
 /**
  * Retrieve github token and throw error if it is not found.
  *
- * @returns {string} Github token.
+ * @returns {string} GitHub token.
  */
 export const getGithubToken = () => {
   const token = getInput("github_token") || process.env.GITHUB_TOKEN;

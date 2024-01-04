@@ -1,0 +1,48 @@
+name: OSSF Scorecard analysis workflow
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+permissions: read-all
+
+jobs:
+  analysis:
+    name: Scorecard analysis
+    runs-on: ubuntu-latest
+    permissions:
+      # Needed if using Code scanning alerts
+      security-events: write
+      # Needed for GitHub OIDC token if publish_results is true
+      id-token: write
+
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+        with:
+          persist-credentials: false
+
+      - name: "Run analysis"
+        uses: ossf/scorecard-action@0864cf19026789058feabb7e87baa5f140aac736 # v2.3.1
+        with:
+          results_file: results.sarif
+          results_format: sarif
+          publish_results: true
+
+      # Upload the results as artifacts (optional). Commenting out will disable uploads of run results in SARIF
+      # format to the repository Actions tab.
+      - name: "Upload artifact"
+        uses: actions/upload-artifact@c7d193f32edcb7bfad88892161225aeda64e9392 # v4.0.0
+        with:
+          name: SARIF file
+          path: results.sarif
+          retention-days: 5
+
+      # required for Code scanning alerts
+      - name: "Upload SARIF results to code scanning"
+        uses: github/codeql-action/upload-sarif@fdcae64e1484d349b3366718cdfef3d404390e85 # v2.22.1
+        with:
+          sarif_file: results.sarif
