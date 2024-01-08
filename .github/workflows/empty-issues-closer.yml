@@ -30,7 +30,7 @@ jobs:
       - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
 
       - name: Run empty issues closer action
-        uses: rickstaa/empty-issues-closer-action@d2c9a91e632aadd8acabdb33babc55c69c4ca978 # v1.1.62
+        uses: rickstaa/empty-issues-closer-action@159d16caa5725ed56e1b7e3f44b358070215602d # v1.1.65
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         with:
