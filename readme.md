@@ -339,7 +339,7 @@ Here is a list of all available locales:
 | `kr` | Korean |
 | `nl` | Dutch |
 | `pt-pt` | Portuguese (Portugal) |
-| `pt-br` | Portuguese (Brazil) |
+| `pt-Br` | Portuguese (Brazil) |
 | `np` | Nepali |
 | `el` | Greek |
 | `ru` | Russian |
