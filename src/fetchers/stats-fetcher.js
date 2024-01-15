@@ -88,7 +88,6 @@ const GRAPHQL_STATS_QUERY = `
  * @param {string} token GitHub token.
  * @returns {Promise<AxiosResponse>} Axios response.
  */
-
 const fetcher = (variables, token) => {
   const query = variables.after ? GRAPHQL_REPOS_QUERY : GRAPHQL_STATS_QUERY;
   return request(
@@ -198,8 +197,6 @@ const totalCommitsFetcher = async (username) => {
     logger.log(err);
     throw new Error(err);
   }
-
-  console.log(res);
 
   const totalCount = res.data.total_count;
   if (!totalCount || isNaN(totalCount)) {
