@@ -41,6 +41,15 @@ export default {
       );
     }
 
+    if (pathname === "/robots.txt") {
+      return new Response("User-agent: *\nDisallow: /", {
+        headers: {
+          "Content-Type": "text/plain;charset=UTF-8",
+          "Cache-Control": "max-age=600", // 10 min
+        },
+      });
+    }
+
     if (pathname === "/api") {
       await indexHandler(req, res, env);
     } else if (pathname === "/api/gist") {
