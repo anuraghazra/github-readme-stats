@@ -1,0 +1,11 @@
+- name: bug
+  color: "B60205"
+  description: "Something isn't working"
+
+- name: enhancement
+  color: "#006B75"
+  description: "New feature or request"
+
+- name: chore
+  color: "FBCA04"
+  description: "General task, like writing docs, researching or refactoring."
