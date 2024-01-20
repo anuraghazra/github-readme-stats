@@ -500,14 +500,12 @@ export const run = async () => {
               );
               invalidColors = true;
             } else if (
-              !isValidHexColor(colorValue) ||
-              !(
-                colorKey === "bg_color" &&
-                isValidGradient(colorValue.split(","))
-              )
+              !(colorKey === "bg_color" && colorValue.split(",").length > 1
+                ? isValidGradient(colorValue.split(","))
+                : isValidHexColor(colorValue))
             ) {
               errors.push(
-                `Theme color property \`${colorKey}\` is not a valid hex color: <code>#${colorValue}</code>`,
+                `Theme color property \`${colorKey}\` is not a valid hex color: <code>${colorValue}</code>`,
               );
               invalidColors = true;
             }
@@ -548,6 +546,10 @@ export const run = async () => {
       Object.keys(colorPairs).forEach((item) => {
         let color1 = colorPairs[item][0];
         let color2 = colorPairs[item][1];
+        const isGradientColor = color2.split(",").length > 1;
+        if (isGradientColor) {
+          return;
+        }
         color1 = color1.length === 4 ? color1.slice(0, 3) : color1.slice(0, 6);
         color2 = color2.length === 4 ? color2.slice(0, 3) : color2.slice(0, 6);
         if (!ccc.isLevelAA(`#${color1}`, `#${color2}`)) {
