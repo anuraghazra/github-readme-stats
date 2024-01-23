@@ -44,8 +44,10 @@ const GRAPHQL_STATS_QUERY = `
     user(login: $login) {
       name
       login
-      contributionsCollection (from: $startTime) {
+      commits: contributionsCollection (from: $startTime) {
         totalCommitContributions,
+      }
+      reviews: contributionsCollection {
         totalPullRequestReviewContributions
       }
       repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
@@ -288,7 +290,7 @@ const fetchStats = async (
   if (include_all_commits) {
     stats.totalCommits = await totalCommitsFetcher(username);
   } else {
-    stats.totalCommits = user.contributionsCollection.totalCommitContributions;
+    stats.totalCommits = user.commits.totalCommitContributions;
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
@@ -297,8 +299,7 @@ const fetchStats = async (
     stats.mergedPRsPercentage =
       (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) * 100;
   }
-  stats.totalReviews =
-    user.contributionsCollection.totalPullRequestReviewContributions;
+  stats.totalReviews = user.reviews.totalPullRequestReviewContributions;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
   if (include_discussions) {
     stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;

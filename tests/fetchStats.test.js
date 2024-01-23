@@ -11,8 +11,10 @@ const data_stats = {
     user: {
       name: "Anurag Hazra",
       repositoriesContributedTo: { totalCount: 61 },
-      contributionsCollection: {
+      commits: {
         totalCommitContributions: 100,
+      },
+      reviews: {
         totalPullRequestReviewContributions: 50,
       },
       pullRequests: { totalCount: 300 },
@@ -39,7 +41,7 @@ const data_stats = {
 };
 
 const data_year2003 = JSON.parse(JSON.stringify(data_stats));
-data_year2003.data.user.contributionsCollection.totalCommitContributions = 428;
+data_year2003.data.user.commits.totalCommitContributions = 428;
 
 const data_repo = {
   data: {
@@ -112,7 +114,7 @@ beforeEach(() => {
     }
     return [
       200,
-      req.query.includes("contributionsCollection") ? data_stats : data_repo,
+      req.query.includes("totalCommitContributions") ? data_stats : data_repo,
     ];
   });
 });
