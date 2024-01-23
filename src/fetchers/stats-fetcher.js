@@ -222,7 +222,7 @@ const totalCommitsFetcher = async (username) => {
  * @param {boolean} include_merged_pull_requests Include merged pull requests.
  * @param {boolean} include_discussions Include discussions.
  * @param {boolean} include_discussions_answers Include discussions answers.
- * @param {number|undefined} year Year to count total commits
+ * @param {number|undefined} commits_year Year to count total commits
  * @returns {Promise<StatsData>} Stats data.
  */
 const fetchStats = async (
@@ -232,7 +232,7 @@ const fetchStats = async (
   include_merged_pull_requests = false,
   include_discussions = false,
   include_discussions_answers = false,
-  year = undefined,
+  commits_year,
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -258,7 +258,7 @@ const fetchStats = async (
     includeMergedPullRequests: include_merged_pull_requests,
     includeDiscussions: include_discussions,
     includeDiscussionsAnswers: include_discussions_answers,
-    startTime: year ? `${year}-01-01T00:00:00Z` : undefined,
+    startTime: commits_year ? `${commits_year}-01-01T00:00:00Z` : undefined,
   });
 
   // Catch GraphQL errors.

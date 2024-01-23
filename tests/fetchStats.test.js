@@ -93,13 +93,6 @@ const error = {
 
 const mock = new MockAdapter(axios);
 
-/**
- * Mocks the GraphQL API based on certain conditions.
- *
- * @param {*} config Axios config object.
- * @returns Axios response object.
- */
-
 beforeEach(() => {
   process.env.FETCH_MULTI_PAGE_STARS = "false"; // Set to `false` to fetch only one page of stars.
   mock.onPost("https://api.github.com/graphql").reply((cfg) => {
