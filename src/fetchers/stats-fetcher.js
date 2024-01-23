@@ -135,7 +135,6 @@ const statsFetcher = async ({
       startTime,
     };
     let res = await retryer(fetcher, variables);
-
     if (res.data.errors) {
       return res;
     }
