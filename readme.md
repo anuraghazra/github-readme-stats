@@ -169,7 +169,7 @@ You can pass a query parameter `&show=` to show any specific additional stats wi
 
 ### Specifying Year
 
-You can specify a year and fetch only the commits that were made in that year by passing `&year=YYYY` to the parameter.
+You can specify a year and fetch only the commits that were made in that year by passing `&commits_year=YYYY` to the parameter.
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&year=2020)
