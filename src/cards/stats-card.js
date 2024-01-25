@@ -188,6 +188,20 @@ const getStyles = ({
 };
 
 /**
+ * Return the label for commits according to the selected options
+ *
+ * @param {boolean} include_all_commits Option to include all years
+ * @param {number|undefined} commits_year Option to include only selected year
+ * @returns {string} The label corresponding to the options.
+ */
+const getTotalCommitsYearLabel = (include_all_commits, commits_year) =>
+  include_all_commits
+    ? ""
+    : commits_year
+      ? ` (${commits_year})`
+      : ` (last year)`;
+
+/**
  * @typedef {import('../fetchers/types').StatsData} StatsData
  * @typedef {import('./types').StatCardOptions} StatCardOptions
  */
@@ -274,13 +288,10 @@ const renderStatsCard = (stats, options = {}) => {
   };
   STATS.commits = {
     icon: icons.commits,
-    label: `${i18n.t("statcard.commits")}${
-      include_all_commits
-        ? ""
-        : commits_year
-          ? ` (${commits_year})`
-          : ` (last year)`
-    }`,
+    label: `${i18n.t("statcard.commits")}${getTotalCommitsYearLabel(
+      include_all_commits,
+      commits_year,
+    )}`,
     value: totalCommits,
     id: "commits",
   };
@@ -521,13 +532,10 @@ const renderStatsCard = (stats, options = {}) => {
     .filter((key) => !hide.includes(key))
     .map((key) => {
       if (key === "commits") {
-        return `${i18n.t("statcard.commits")} ${
-          include_all_commits
-            ? ""
-            : commits_year
-              ? ` (${commits_year})`
-              : ` (last year)`
-        } : ${totalStars}`;
+        return `${i18n.t("statcard.commits")} ${getTotalCommitsYearLabel(
+          include_all_commits,
+          commits_year,
+        )} : ${totalStars}`;
       }
       return `${STATS[key].label}: ${STATS[key].value}`;
     })
