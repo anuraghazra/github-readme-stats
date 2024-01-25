@@ -73,6 +73,7 @@ export default {
       res.setHeader("Cache-Control", "max-age=600"); // 10 min
     }
 
+    res.setHeader("X-Robots-Tag", "noindex, nofollow");
     return res.toResponse();
   },
 };
