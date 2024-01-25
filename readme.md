@@ -167,7 +167,7 @@ You can pass a query parameter `&show=` to show any specific additional stats wi
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage)
 ```
 
-### Specifying Year
+### Showing commits count for specified year
 
 You can specify a year and fetch only the commits that were made in that year by passing `&commits_year=YYYY` to the parameter.
 
