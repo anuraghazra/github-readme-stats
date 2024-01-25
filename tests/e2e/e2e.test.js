@@ -20,13 +20,13 @@ const STATS_DATA = {
   name: "Cateline Mnemosyne",
   totalPRs: 2,
   totalReviews: 0,
-  totalCommits: 1,
+  totalCommits: 15,
   totalIssues: 1,
   totalStars: 1,
   contributedTo: 1,
   rank: {
     level: "C",
-    percentile: 98.38875766503551,
+    percentile: 98.2625144160878,
   },
 };
 
