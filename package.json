@@ -54,7 +54,7 @@
     "lodash.snakecase": "^4.1.1",
     "parse-diff": "^0.11.1",
     "prettier": "^3.2.4",
-    "wrangler": "^3.24.0"
+    "wrangler": "^3.25.0"
   },
   "dependencies": {
     "axios": "^1.6.7",
