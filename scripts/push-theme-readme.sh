@@ -10,6 +10,6 @@ git config --global --add safe.directory ${GITHUB_WORKSPACE}
 git branch -d $BRANCH_NAME || true
 git checkout -b $BRANCH_NAME
 git add --all
-git commit --no-verify --message "docs(theme): Auto update theme readme"
+git commit --no-verify --message "docs(theme): auto update theme readme"
 git remote add origin-$BRANCH_NAME https://${PERSONAL_TOKEN}@github.com/${GH_REPO}.git
 git push --force --quiet --set-upstream origin-$BRANCH_NAME $BRANCH_NAME
