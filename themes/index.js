@@ -463,11 +463,11 @@ export const themes = {
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
   light_mint: {
-    title_color: "00bda3",
-    text_color: "b0a3e1",
-    icon_color: "00c3ae",
-    border_color: "b9edc3",
-    bg_color: "dafbe1",
+    title_color: "00A39A",
+    text_color: "9C7FD7",
+    icon_color: "00A39A",
+    border_color: "B9EDC3",
+    bg_color: "F6FEF8",
   },
 };
 
