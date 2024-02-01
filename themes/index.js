@@ -25,6 +25,13 @@ export const themes = {
     border_color: "4F0000",
     bg_color: "ffffff00",
   },
+  shadow_purple: {
+  title_color: "9925be",
+  text_color: "444",
+  icon_color: "48025f",
+  border_color: "48025f",
+  bg_color: "ffffff00",
+},
   shadow_green: {
     title_color: "007A00",
     text_color: "444",
