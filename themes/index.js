@@ -450,7 +450,7 @@ export const themes = {
     bg_color: "000000",
   },
   calm_pink: {
-    title_color: "e07a5f",
+    title_color: "red",
     text_color: "edae49",
     icon_color: "ebcfb2",
     border_color: "e1bc29",
