@@ -6,6 +6,9 @@ updates:
     schedule:
       interval: daily
     open-pull-requests-limit: 10
+    commit-message:
+      prefix: "build(deps)"
+      prefix-development: "build(deps-dev)"
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: github-actions
@@ -16,5 +19,3 @@ updates:
     commit-message:
       prefix: "ci(deps)"
       prefix-development: "ci(deps-dev)"
-    reviewers:
-      - "qwerty541"
