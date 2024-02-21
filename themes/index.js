@@ -462,6 +462,12 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  ironv_red: {
+    title_color: "aa2a2a",
+    text_color: "aa2a2a",
+    icon_color: "aa2a2a",
+    bg_color: "0D1117",
+  },
 };
 
 export default themes;
