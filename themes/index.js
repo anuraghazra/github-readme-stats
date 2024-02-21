@@ -463,9 +463,9 @@ export const themes = {
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
   ironv_red: {
-    title_color: "aa2a2a",
-    text_color: "aa2a2a",
-    icon_color: "aa2a2a",
+    title_color: "912627",
+    text_color: "912627",
+    icon_color: "912627",
     bg_color: "0D1117",
   },
 };
