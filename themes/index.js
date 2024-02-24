@@ -462,6 +462,12 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  aws: {
+    title_color: "e47911",
+    text_color: "111111",
+    icon_color: "007eb9",
+    bg_color: "232f3e",
+  },
 };
 
 export default themes;
