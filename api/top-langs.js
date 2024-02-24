@@ -31,6 +31,7 @@ export default async (req, res) => {
     locale,
     border_radius,
     border_color,
+    role,
     disable_animations,
     hide_progress,
   } = req.query;
@@ -66,6 +67,7 @@ export default async (req, res) => {
     const topLangs = await fetchTopLanguages(
       username,
       parseArray(exclude_repo),
+      parseArray(role),
       size_weight,
       count_weight,
     );
