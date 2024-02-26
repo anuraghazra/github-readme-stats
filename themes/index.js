@@ -465,7 +465,7 @@ export const themes = {
   aws_dark: {
     title_color: "e47911",
     text_color: "f5f5f5",
-    icon_color: "007eb9",
+    icon_color: "e47911",
     bg_color: "232f3e",
   },
 };
