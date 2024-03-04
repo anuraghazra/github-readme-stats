@@ -40,11 +40,11 @@ const GRAPHQL_REPOS_QUERY = `
 `;
 
 const GRAPHQL_STATS_QUERY = `
-  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!) {
+  query userInfo($login: String!, $from: DateTime, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!) {
     user(login: $login) {
       name
       login
-      contributionsCollection {
+      contributionsCollection(from: $from) {
         totalCommitContributions,
         totalPullRequestReviewContributions
       }
@@ -122,10 +122,13 @@ const statsFetcher = async ({
   let stats;
   let hasNextPage = true;
   let endCursor = null;
+  const currentYear = new Date().getFullYear();
+  const from = `${currentYear}-01-01T00:00:00Z`;
   while (hasNextPage) {
     const variables = {
       login: username,
       first: 100,
+      from,
       after: endCursor,
       includeMergedPullRequests,
       includeDiscussions,
