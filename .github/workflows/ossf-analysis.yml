@@ -11,6 +11,7 @@ permissions: read-all
 
 jobs:
   analysis:
+    if: github.repository == 'anuraghazra/github-readme-stats'
     name: Scorecard analysis
     runs-on: ubuntu-latest
     permissions:
