@@ -6,6 +6,7 @@ export const themes = {
     bg_color: "fffefe",
     border_color: "e4e2e2",
   },
+
   default_repocard: {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
@@ -39,11 +40,11 @@ export const themes = {
     border_color: "004490",
     bg_color: "ffffff00",
   },
-  dark: {
-    title_color: "fff",
-    icon_color: "79ff97",
-    text_color: "9f9f9f",
-    bg_color: "151515",
+  black: {
+    title_color: "ffffff",
+    icon_color: "ffffff",
+    text_color: "ffffff",
+    bg_color: "000000",
   },
   radical: {
     title_color: "fe428e",
