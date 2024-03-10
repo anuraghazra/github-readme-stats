@@ -462,6 +462,12 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+    "a yellow great": {
+    title_color: "ffd95b",
+    icon_color: "ffd95b",
+    text_color: "ffd95b",
+    bg_color: "000000",
+  },
 };
 
 export default themes;
