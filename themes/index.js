@@ -463,5 +463,12 @@ export const themes = {
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
 };
+ elegant:{
+   title_color: "6a737d",
+   text_color: "586069",
+   icon_color: "6a737d",
+   bg_color: "ffffff",
+ },
+};
 
 export default themes;
