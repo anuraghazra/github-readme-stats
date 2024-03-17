@@ -30,7 +30,7 @@ Interested in diving deeper into understanding how github-readme-stats works?
 To run & test github-readme-stats, you need to follow a few simple steps:-
 _(make sure you already have a [Vercel](https://vercel.com/) account)_
 
-1.  Install [Vercel CLI](https://vercel.com/download).
+1.  Install [Vercel CLI](https://vercel.com/docs/cli).
 2.  Fork the repository and clone the code to your local machine.
 3.  Run `npm install` in the repository root.
 4.  Run the command `vercel` in the root and follow the steps there.
