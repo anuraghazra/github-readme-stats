@@ -551,6 +551,14 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 ```md
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)
 ```
+### Aggregation by a language
+
+You can use the `&language=` option to aggregate all your repos by a language, and you can easily check the distribution of the language in many code repositories.
+
+```md
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&language=Java)
+```
+![](assets/aggregation_by_a_language.svg)
 
 ### Compact Language Card Layout
 
