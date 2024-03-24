@@ -1,11 +1,12 @@
 name: Theme preview
 on:
-  pull_request_target:
-    types: [opened, edited, reopened, synchronize]
-    branches:
-      - master
-    paths:
-      - "themes/index.js"
+  # pull_request_target:
+  #   types: [opened, edited, reopened, synchronize]
+  #   branches:
+  #     - master
+  #   paths:
+  #     - "themes/index.js"
+  workflow_dispatch:
 
 permissions:
   actions: read
