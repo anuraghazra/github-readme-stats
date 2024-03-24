@@ -63,31 +63,31 @@
 # Características <!-- omit in toc -->
 
 - [Tarjeta de estadísticas de GitHub](#tarjeta-de-estadísticas-de-github)
-    - [Ocultar estadísticas individualmente](#ocultar-estadísticas-individualmente)
-    - [Agregar contribuciones privadas al total de commits contados](#agregar-contribuciones-privadas-al-total-de-commits-contados)
-    - [Mostrar íconos](#mostrar-íconos)
-    - [Temas](#temas)
-    - [Personalización](#personalización)
+  - [Ocultar estadísticas individualmente](#ocultar-estadísticas-individualmente)
+  - [Agregar contribuciones privadas al total de commits contados](#agregar-contribuciones-privadas-al-total-de-commits-contados)
+  - [Mostrar íconos](#mostrar-íconos)
+  - [Temas](#temas)
+  - [Personalización](#personalización)
 - [Pines adicionales de GitHub](#pines-adicionales-de-github)
-    - [Utilización](#utilización)
-    - [Ejemplo](#ejemplo)
+  - [Utilización](#utilización)
+  - [Ejemplo](#ejemplo)
 - [Tarjeta de Lenguajes Principales](#tarjeta-de-lenguajes-principales)
-    - [Utilización](#utilización-1)
-    - [Excluir repositorios individualmente](#excluir-repositorios-individualmente)
-    - [Ocultar lenguajes individualmente](#ocultar-lenguajes-individualmente)
-    - [Mostrar más lenguajes](#mostrar-más-lenguajes)
-    - [Diseño Compacto de Tarjeta de Lenguaje](#diseño-compacto-de-tarjeta-de-lenguaje)
-    - [Ejemplo](#ejemplo-1)
+  - [Utilización](#utilización-1)
+  - [Excluir repositorios individualmente](#excluir-repositorios-individualmente)
+  - [Ocultar lenguajes individualmente](#ocultar-lenguajes-individualmente)
+  - [Mostrar más lenguajes](#mostrar-más-lenguajes)
+  - [Diseño Compacto de Tarjeta de Lenguaje](#diseño-compacto-de-tarjeta-de-lenguaje)
+  - [Ejemplo](#ejemplo-1)
 - [Estadísticas de la semana de WakaTime](#estadísticas-de-la-semana-de-wakatime)
-    - [Ejemplo](#ejemplo-2)
-    - [Todos los ejemplos](#todos-los-ejemplos)
-    - [Consejo rápido (para alinear las tarjetas de repositorio)](#consejo-rápido-para-alinear-las-tarjetas-de-repositorio)
+  - [Ejemplo](#ejemplo-2)
+  - [Todos los ejemplos](#todos-los-ejemplos)
+  - [Consejo rápido (para alinear las tarjetas de repositorio)](#consejo-rápido-para-alinear-las-tarjetas-de-repositorio)
   - [Despliega tu propia instancia de Vercel](#despliega-tu-propia-instancia-de-vercel)
   - [:sparkling\_heart: Apoya al proyecto](#sparkling_heart-apoya-al-proyecto)
 
 # Tarjeta de estadísticas de GitHub
 
-Copia y pega esto en el contenido de tu README.md y listo. ¡Simple!
+Copia y pega esto en el contenido de tu README.md y listo. ¡Así de simple!
 
 Cambia el valor de `?username=` al nombre de tu usuario de GitHub.
 
@@ -156,13 +156,13 @@ Puedes personalizar el aspecto de tu `Tarjeta de Estadísticas` o `Tarjeta de Re
 - `icon_color` - Color de icono si esta disponible _(hex color)_
 - `bg_color` - Color de fondo _(hex color)_
 - `hide_border` - Oculta el borde de la tarjeta _(booleano)_
-- `theme` - Nombre del tema, elige uno de [todos los temas disponible ](../themes/README.md)
+- `theme` - Nombre del tema, elige uno de [todos los temas disponible](../themes/README.md)
 - `cache_seconds` - Cache _(min: 14400, max: 86400)_
 - `locale` - configurar el idioma en la tarjeta _(p.ej. cn, de, es, etc.)_
 
 ##### Gradiente en `bg_color`
 
-Puedes pasar mútliples valores separados por coma en la opción `bg_color` para dibujar un gradiente, el formato del gradiente es:
+Puedes pasar múltiples valores separados por coma en la opción `bg_color` para dibujar un gradiente, el formato del gradiente es:
 
 ```
 &bg_color=DEG,COLOR1,COLOR2,COLOR3...COLOR10
@@ -188,12 +188,12 @@ Puedes pasar mútliples valores separados por coma en la opción `bg_color` para
 
 #### Opciones exclusivas de la Tarjeta de Lenguajes:
 
-- `hide` - Oculta de la tarjeta los lenguajes especificados  _(valores separados por comas)_
+- `hide` - Oculta de la tarjeta los lenguajes especificados _(valores separados por comas)_
 - `hide_title` - _(booleano)_
 - `layout` - Cambiar entre los cinco diseños disponibles `normal` & `compact` & `donut` & `donut-vertical` & `pie`
 - `card_width` - Establece el ancho de la tarjeta manualmente _(número)_
 - `langs_count` - Muestra más lenguajes en la tarjeta, entre 1-10, por defecto 5 _(número)_
-- `exclude_repo` - Excluye los repositorios especificados  _(valores separados por comas)_
+- `exclude_repo` - Excluye los repositorios especificados _(valores separados por comas)_
 - `custom_title` - Establece un título personalizado
 
 > :warning: **Importante:**
@@ -216,11 +216,11 @@ Puedes pasar mútliples valores separados por coma en la opción `bg_color` para
 
 Los pines adicionales de GitHub le permiten fijar más de 6 repositorios en su perfil utilizando un perfil readme de GitHub.
 
-¡Yey! Ya no está limitado a 6 repositorios pinneados.
+¡Wow! Ya no está limitado a 6 repositorios pinneados.
 
 ### Utilización
 
-Copia y pegua este código en tu Readme y cambia los enlaces.
+Copia y pega este código en tu Readme y cambia los enlaces.
 
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
@@ -379,9 +379,9 @@ Por lo general, no podrás acomodar las imágenes una al lado de la otra. Para h
 
 #### [Échale un vistazo a este tutorial paso a paso de @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-Desde que la API de GitHub permite solo 5k peticiones por hora, es posible que mi `https://github-readme-stats.vercel.app/api` pueda llegar al límite. Si lo alojas en tu propio servidor de Vercel, no tendrás que preocuparte de nada. ¡Clickea en el botón "Deploy" para comenzar!
+Desde que la API de GitHub permite solo 5k peticiones por hora, es posible que mi `https://github-readme-stats.vercel.app/api` pueda llegar al límite. Si lo alojas en tu propio servidor de Vercel, no tendrás que preocuparte de nada. ¡Presione en el botón "Deploy" para comenzar!
 
-NOTA: Debido a [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) podríamos manejar más de 5k peticiones sin tener ningún problema con el downtime :D
+NOTA: Debido a [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) podríamos manejar más de 5000 peticiones sin tener ningún problema con los servidores. :D
 
 [![Deploy to Vercel](https://vercel.com/button)](https://vercel.com/import/project?template=https://github.com/anuraghazra/github-readme-stats)
 
