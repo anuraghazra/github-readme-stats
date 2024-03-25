@@ -462,6 +462,13 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  ninas_theme: {
+    title_color: "ff1493",
+    text_color: "8b008b",
+    icon_color: "white",
+    bg_color: "191970,6959cd,6a5acd",
+  },
+    
 };
 
 export default themes;
