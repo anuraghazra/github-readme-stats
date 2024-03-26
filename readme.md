@@ -108,6 +108,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Donut Vertical Chart Language Card Layout](#donut-vertical-chart-language-card-layout)
     - [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
     - [Hide Progress Bars](#hide-progress-bars)
+    - [Display Bytes Instead of Percentage](#display-bytes-instead-of-percentage)
     - [Demo](#demo-2)
 - [WakaTime Stats Card](#wakatime-stats-card)
     - [Demo](#demo-3)
@@ -592,6 +593,15 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)
 ```
 
+### Display Bytes Instead of Percentage
+
+Yout can use the `&display_bytes=true` option to display the byte size instead of the percentage.
+
+```md
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&display_bytes=true)
+```
+
+
 ### Demo
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)
@@ -615,6 +625,11 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 *   Hidden progress bars
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&hide_progress=true)
+
+
+*  Display bytes instead of percentage
+
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&display_bytes=true)
 
 # WakaTime Stats Card
 
