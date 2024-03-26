@@ -17,13 +17,20 @@ const icons = {
 /**
  * Get rank icon
  *
+ * @param {string} username - The username for the GitHub Account
  * @param {string} rankIcon - The rank icon type.
  * @param {string} rankLevel - The rank level.
  * @param {number} percentile - The rank percentile.
  * @returns {string} - The SVG code of the rank icon
  */
-const rankIcon = (rankIcon, rankLevel, percentile) => {
+const rankIcon = (username, rankIcon, rankLevel, percentile) => {
   switch (rankIcon) {
+    case "profile":
+      return `
+        <svg>
+          <image href="https://avatars.githubusercontent.com/${username}" x="0" y="0" height="66" width="66" />
+        </svg>
+      `;
     case "github":
       return `
         <svg x="-38" y="-30" height="66" width="66" aria-hidden="true" viewBox="0 0 16 16" version="1.1" data-view-component="true" data-testid="github-rank-icon">
