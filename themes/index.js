@@ -462,6 +462,12 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  smooth_wine: {
+    title_color: "a2130c",
+    text_color: "b6b6b6",
+    icon_color: "a2130c",
+    bg_color: "35,0d1117,141414",
+  }
 };
 
 export default themes;
