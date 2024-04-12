@@ -416,6 +416,7 @@ If we don't support your language, please consider contributing! You can find mo
 | `hide_progress` | Uses the compact layout option, hides percentages, and removes the bars. | boolean | `false` |
 | `size_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `1` |
 | `count_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `0` |
+| `stats_format` | Switches between two available formats for language's stats `percentages` and `bytes`. | enum | `percentages` |
 
 > [!WARNING]\
 > Language names should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
