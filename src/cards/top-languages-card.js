@@ -198,6 +198,18 @@ const trimTopLanguages = (topLangs, langs_count, hide) => {
 };
 
 /**
+ * Get display value corresponding to the format.
+ *
+ * @param {number} size Bytes size.
+ * @param {number} percentages Percentage value.
+ * @param {string} format Format of the stats.
+ * @returns {string} Display value.
+ */
+const getDisplayValue = (size, percentages, format) => {
+  return format === "bytes" ? formatBytes(size) : `${percentages.toFixed(2)}%`;
+};
+
+/**
  * Create progress bar text item for a programming language.
  *
  * @param {object} props Function properties.
@@ -224,14 +236,13 @@ const createProgressTextNode = ({
   const progressTextX = width - paddingRight + 10;
   const progressWidth = width - paddingRight;
 
-  const progress = parseFloat(((size / totalSize) * 100).toFixed(2));
-  const bytes = formatBytes(size);
-  const showValue = statsFormat === "bytes" ? bytes : `${progress}%`;
+  const progress = (size / totalSize) * 100;
+  const displayValue = getDisplayValue(size, progress, statsFormat);
 
   return `
     <g class="stagger" style="animation-delay: ${staggerDelay}ms">
       <text data-testid="lang-name" x="2" y="15" class="lang-name">${name}</text>
-      <text x="${progressTextX}" y="34" class="lang-name">${showValue}</text>
+      <text x="${progressTextX}" y="34" class="lang-name">${displayValue}</text>
       ${createProgressNode({
         x: 0,
         y: 25,
@@ -260,13 +271,11 @@ const createCompactLangNode = ({
   lang,
   totalSize,
   hideProgress,
-  statsFormat,
+  statsFormat = "percentages",
   index,
 }) => {
-  const percentage = ((lang.size / totalSize) * 100).toFixed(2) + "%";
-  const bytes = formatBytes(lang.size);
-
-  const showValue = statsFormat === "bytes" ? bytes : percentage;
+  const percentages = (lang.size / totalSize) * 100;
+  const displayValue = getDisplayValue(lang.size, percentages, statsFormat);
 
   const staggerDelay = (index + 3) * 150;
   const color = lang.color || "#858585";
@@ -275,7 +284,7 @@ const createCompactLangNode = ({
     <g class="stagger" style="animation-delay: ${staggerDelay}ms">
       <circle cx="5" cy="6" r="5" fill="${color}" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        ${lang.name} ${hideProgress ? "" : showValue}
+        ${lang.name} ${hideProgress ? "" : displayValue}
       </text>
     </g>
   `;
@@ -393,7 +402,7 @@ const renderCompactLayout = (
   width,
   totalLanguageSize,
   hideProgress,
-  statsFormat,
+  statsFormat = "percentages",
 ) => {
   const paddingRight = 50;
   const offsetWidth = width - paddingRight;
