@@ -601,7 +601,7 @@ const formatBytes = (bytes) => {
   }
 
   if (bytes === 0) {
-    return "0.0 B";
+    return "0 B";
   }
 
   const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB"];
