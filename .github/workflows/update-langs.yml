@@ -53,7 +53,7 @@ jobs:
         run: npm run generate-langs-json
 
       - name: Create Pull Request if upstream language file is changed
-        uses: peter-evans/create-pull-request@70a41aba780001da0a30141984ae2a0c95d8704e # v6.0.2
+        uses: peter-evans/create-pull-request@c55203cfde3e5c11a452d352b4393e68b85b4533 # v6.0.3
         with:
           commit-message: "refactor: update languages JSON"
           branch: "update_langs/patch"
