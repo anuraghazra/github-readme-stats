@@ -39,6 +39,13 @@ export const themes = {
     border_color: "004490",
     bg_color: "ffffff00",
   },
+  shadow_white: {
+    title_color: "f3f6f4",
+    text_color: "f3f6f4",
+    icon_color: "f3f6f4",
+    border_color: "f3f6f4",
+    bg_color: "ffffff00",
+  },
   dark: {
     title_color: "fff",
     icon_color: "79ff97",
