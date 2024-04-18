@@ -40,10 +40,10 @@ export const themes = {
     bg_color: "ffffff00",
   },
   shadow_white: {
-    title_color: "f3f6f4",
-    text_color: "f3f6f4",
-    icon_color: "f3f6f4",
-    border_color: "f3f6f4",
+    title_color: "ffffff",
+    text_color: "ffffff",
+    icon_color: "ffffff",
+    border_color: "ffffff",
     bg_color: "ffffff00",
   },
   dark: {
