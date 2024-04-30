@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # NOTE: Retrieve issue templates.
-      - uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4.1.3
+      - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
 
       - name: Run empty issues closer action
         uses: rickstaa/empty-issues-closer-action@e96914613221511279ca25f50fd4acc85e331d99 # v1.1.74
