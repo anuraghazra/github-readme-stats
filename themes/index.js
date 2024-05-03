@@ -462,6 +462,13 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  green_blueMix: {
+    title_color: "008000",
+    text_color: "008000",
+    icon_color: "0000FF",
+    border_color: "008000"
+    bg_color: "0000FF",
+  },
 };
 
 export default themes;
