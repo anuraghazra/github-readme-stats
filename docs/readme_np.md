@@ -82,7 +82,7 @@
     - [सबै डेमोहरु](#सबै-डेमोहरु)
     - [सुझाव (रेपो कार्डलाई अलाइन गर्ने)](#सुझाव-रेपो-कार्डलाई-अलाइन-गर्ने)
   - [आफ्नै Vercel इन्स्टेन्समा डिप्लोय गर्ने](#आफ्नै-Vercel-इन्स्टेन्समा-डिप्लोय-गर्ने)
-  - [:sparkling\_heart: प्रोजेक्टलाई सहयोग गर्नुहोस्](#प्रोजेक्टलाई-सहयोग-गर्नुहोस्)
+  - [:sparkling\_heart: प्रोजेक्टलाई सहयोग गर्नुहोस्](#sparkling_heart-प्रोजेक्टलाई-सहयोग-गर्नुहोस्)
 
 # गिटहब स्ट्याट कार्ड 
 
@@ -368,7 +368,7 @@ Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 </a>
 ```
 
-##  आफ्नै Vercel इन्स्टेन्समा डिप्लोय गर्ने 
+## आफ्नै Vercel इन्स्टेन्समा डिप्लोय गर्ने
 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
