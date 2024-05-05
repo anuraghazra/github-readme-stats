@@ -74,13 +74,13 @@
     - [प्रयोग](#प्रयोग-1)
     - [Exclude individual repositories](#exclude-individual-repositories)
     - [कुनै भाषा लुकाउने तरिका](#कुनै-भाषा-लुकाउने-तरिका)
-    - [धेरै भाषाहरु देखाउनको लागि](#धेरॆ-भाषाहरु-देखाउनको-लागि)
+    - [धेरै भाषाहरु देखाउनको लागि](#धेरै-भाषाहरु-देखाउनको-लागि)
     - [कम्प्याक्ट भाषा कार्ड लेआउट](#कम्प्याक्ट-भाषा-कार्ड-लेआउट)
     - [डेमो](#डेमो-1)
-- [WakaTime वीक स्ट्याट्स](#WakaTime-वीक-स्ट्याट्स)
+- [WakaTime वीकि स्ट्याट्स](#WakaTime-वीकि-स्ट्याट्स)
     - [डेमो](#डेमो-2)
     - [सबै डेमोहरु](#सबै-डेमोहरु)
-    - [सुझाव  (रेपो कार्डलाई अलाइन गर्ने )](#सुझाव--रेपो-कार्डलाई-अलाइन-गर्ने-)
+    - [सुझाव (रेपो कार्डलाई अलाइन गर्ने)](#सुझाव-रेपो-कार्डलाई-अलाइन-गर्ने)
   - [आफ्नै Vercel इन्स्टेन्समा डिप्लोय गर्ने](#आफ्नै-Vercel-इन्स्टेन्समा-डिप्लोय-गर्ने)
   - [:sparkling\_heart: प्रोजेक्टलाई सहयोग गर्नुहोस्](#प्रोजेक्टलाई-सहयोग-गर्नुहोस्)
 
@@ -265,7 +265,7 @@ You can use `?hide=language1,language2` parameter to hide individual languages.
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### धेरै भाषाहरु देखाउनको लागि 
+### धेरै भाषाहरु देखाउनको लागि
 
 You can use the `&langs_count=` option to increase or decrease the number of languages shown on the card. Valid values are integers between 1 and 10 (inclusive), and the default is 5.
 
@@ -289,7 +289,7 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# WakaTime वीक स्ट्याट्स 
+# WakaTime वीकि स्ट्याट्स
 
 Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 
@@ -355,7 +355,7 @@ Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 
 ---
 
-### सुझाव  (रेपो कार्डलाइ अलाईन गर्ने )
+### सुझाव (रेपो कार्डलाई अलाइन गर्ने)
 
 तपाइले इमेजलाई सइद बय सइद  अलीग्न गर्न सक्नु हुदैन तेसैले येसरी गर्नु होस् :
 
@@ -368,7 +368,7 @@ Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 </a>
 ```
 
-##  देप्लोय  आफ्नै  वेर्चेल  इन्स्तंस 
+##  आफ्नै Vercel इन्स्टेन्समा डिप्लोय गर्ने 
 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
@@ -401,7 +401,7 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 
 </details>
 
-## :sparkling_heart: सहपोर्ट द प्रोजेक्ट 
+## :sparkling_heart: प्रोजेक्टलाई सहयोग गर्नुहोस्
 
 म सके सम्म आफ्नो प्रोजेक्ट हरु ओपेन्सोउर्चे गर्छु र अरु ले पनि सहयोग गर्क्षु । मेले सहयोग गर्दा आफ्नो समय पनि देरै ने दिन्क्षु । तपाइहरु ले यो सेर्विचेस फ्री मा चलाउनु सक्नु हुनेक्ष ।
 
