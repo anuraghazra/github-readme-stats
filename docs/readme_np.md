@@ -70,12 +70,12 @@
 - [गिटहब अतिरिक्त पिन्स](#गिटहब-अतिरिक्त-पिन्स)
     - [प्रयोग](#प्रयोग)
     - [डेमो](#डेमो)
-- [टप भाषा कार्ड](#टप-भाषा-कार्ड)
+- [टप ल्याङ्ग्वेज कार्ड](#टप-ल्याङ्ग्वेज-कार्ड)
     - [प्रयोग](#प्रयोग-1)
     - [व्यक्तिगत रिपोजिटरी समावेश नगर्नुहोस्](#व्यक्तिगत-रिपोजिटरी-समावेश-नगर्नुहोस्)
-    - [कुनै भाषा लुकाउने तरिका](#कुनै-भाषा-लुकाउने-तरिका)
-    - [धेरै भाषाहरु देखाउनको लागि](#धेरै-भाषाहरु-देखाउनको-लागि)
-    - [कम्प्याक्ट भाषा कार्ड लेआउट](#कम्प्याक्ट-भाषा-कार्ड-लेआउट)
+    - [कुनै ल्याङ्ग्वेज लुकाउने तरिका](#कुनै-ल्याङ्ग्वेज-लुकाउने-तरिका)
+    - [धेरै ल्याङ्ग्वेजहरु देखाउनको लागि](#धेरै-ल्याङ्ग्वेजहरु-देखाउनको-लागि)
+    - [कम्प्याक्ट ल्याङ्ग्वेज कार्ड लेआउट](#कम्प्याक्ट-ल्याङ्ग्वेज-कार्ड-लेआउट)
     - [डेमो](#डेमो-1)
 - [WakaTime वीकि स्ट्याट्स](#WakaTime-वीकि-स्ट्याट्स)
     - [डेमो](#डेमो-2)
@@ -118,7 +118,7 @@ _Note: If you are deploying this project yourself, the private contributions wil
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
-### देखाउनु होस् इकोन 
+### आइकन देखाउने 
 
 To enable icons, you can pass `show_icons=true` in the query param, like so:
 
@@ -185,7 +185,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 - `show_owner` - Show the owner name of the repo _(boolean)_
 
-#### भाषा कार्ड अनन्य विकल्पहरू :
+#### ल्याङ्ग्वेज कार्ड अनन्य विकल्पहरू :
 
 - `hide` - Hide the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
@@ -199,7 +199,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 > Language names should be uri-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
 > (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, etc.)
 
-#### वकासमय  कार्ड विशेष विकल्प:
+#### WakaTime  कार्ड विशेष विकल्प:
 
 - `hide_title` - _(boolean)_
 - `line_height` - Sets the line-height between text _(number)_
@@ -212,13 +212,13 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
 
-GitHub फाल्तु पिनले तपाइँलाइ GitHub रीडमी प्रोफाइल प्रयोग गरी तपाइँको प्रोफाइलमा छ ओटा भन्दा बढि प्रोजेक्टहरु पिन गर्न अनुमति दिन्छ ।
+GitHub अतिरिक्त पिनले तपाईंलाई GitHub रिडमी प्रोफाइल प्रयोग गरी तपाईंको प्रोफाइलमा छ ओटा भन्दा बढि प्रोजेक्टहरु पिन गर्न अनुमति दिन्छ ।
 
-हो! तपाईं अब pin पिन गरीएको छ ओटा प्रोजेक्ट सीमित हुनुहुन्छ ।
+हो! तपाईं अब पिन गरिएको छ ओटा प्रोजेक्टमा सीमित हुनुहुन्छ ।
 
 ### प्रयोग
 
-कोदलाइ  कपी- पेसेत  readme मा गर्नु होला र लिंक परिवतन गर्नु होला |
+कोडलाई  कपी- पेस्ट  readme मा गर्नु होला र लिङ्क परिवतन गर्नु होला |
 
 Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 
@@ -234,14 +234,14 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&show_owner=true)](https://github.com/anuraghazra/github-readme-stats)
 
-# टप भाषा कार्ड 
+# टप ल्याङ्ग्वेज कार्ड 
 
-टप भाषाकार्डले github परयोग गर्नेहरुको प्रोग्रम्मिंग भाषाहरु देखाऊने गर्दछ |. 
+टप ल्याङ्ग्वेज कार्डले github प्रयोग गर्नेहरुको प्रोग्रामिङ् ल्याङ्ग्वेजहरु देखाउने गर्दछ |. 
 
-_NOTE: टप भाषाहरुले आफ्नो सिपलाइ संकेत गरेको होईन | योचै GitHub  Metricबाट धेरै कुन भाषा परयोग भाकोलाइ संकेत गरेको हो |
+_NOTE: टप ल्याङ्ग्वेजहरुले आफ्नो सिपलाई संकेत गरेको होईन | यो चाहिँ GitHub  Metricबाट धेरै प्रयोग भएको ल्याङ्ग्वेजलाई संकेत गरेको हो |
 ### प्रयोग 
 
-कोदलाइ  कपी- पेसेत  readme मा गर्नु होला र लिंक परिवतन गर्नु होला |
+कोडलाई readme मा कपी-पेस्ट गरेर र लिङ्क परिवतन गर्नु होला |
 
 Endpoint: `api/top-langs?username=anuraghazra`
 
@@ -257,7 +257,7 @@ You can use `?exclude_repo=repo1,repo2` parameter to exclude individual reposito
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### कुनै भाषा लुकाउने तरिका 
+### कुनै ल्याङ्ग्वेज लुकाउने तरिका 
 
 You can use `?hide=language1,language2` parameter to hide individual languages.
 
@@ -265,7 +265,7 @@ You can use `?hide=language1,language2` parameter to hide individual languages.
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide=javascript,html)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### धेरै भाषाहरु देखाउनको लागि
+### धेरै ल्याङ्ग्वेजहरु देखाउनको लागि
 
 You can use the `&langs_count=` option to increase or decrease the number of languages shown on the card. Valid values are integers between 1 and 10 (inclusive), and the default is 5.
 
@@ -273,9 +273,9 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-### कम्प्याक्ट भाषा कार्ड लेआउट 
+### कम्प्याक्ट ल्याङ्ग्वेज कार्ड लेआउट 
 
-तपाइले `&layout=compact` ओप्तिओनपनि  कार्ड देसिग्न को लागि परहयोग गर्न सक्नु हुन्क्ष 
+तपाईंले `&layout=compact` विकल्प पनि कार्ड डिजाइनको लागि प्रयोग गर्न सक्नु हुन्छ। 
 
 ```md
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
@@ -307,57 +307,57 @@ Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 
 ### सबै डेमोहरु  
 
-- देफौल्ट 
+- पूर्वनिर्धारित 
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
 
-- हिदिंग स्पेचific स्ट्याट्स 
+- विशेष स्ट्याट्स लुकाउने
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,issues)
 
-- इकोनहरु शो गर्ने 
+- आइकनहरु देखाउने
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=issues&show_icons=true)
 
-- सबै कमितहरु 
+- सबै कमिटहरु 
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_all_commits=true)
 
-- थेम्स 
+- थिमहरू 
 
-कुनै एउटा चोज गर्नुस [default themes](#themes)
+कुनै एउटा छान्नुहोस् [default themes](#themes)
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
 
-- घ्रदिएन्त 
+- ग्रेडियन्ट 
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&bg_color=30,e96443,904e95&title_color=fff&text_color=fff)
 
-- स्तत्स कार्ड लाइ कस्तोमेज गर्ने    
+- स्ट्याट्स कार्डलाई कस्टमाइज गर्ने    
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&show_icons=true&title_color=fff&icon_color=79ff97&text_color=9f9f9f&bg_color=151515)
 
-- सेत्तिंग  कार्ड  लोचले 
+- सेटिङ कार्ड लोचले 
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra&locale=es)
 
-- रेपो कार्डलाई एडित गर्नु 
+- रेपो कार्डलाई एडिट गर्नु 
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra&repo=github-readme-stats&title_color=fff&icon_color=f9f9f9&text_color=9f9f9f&bg_color=151515)
 
-- टप भाषा 
+- टप ल्याङ्ग्वेज 
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- वक समय कार्ड 
+- WakaTime कार्ड 
 
 [![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
-### सुझाव (रेपो कार्डलाई अलाइन गर्ने)
+### सुझाव (रेपो कार्डलाई अलाईन गर्ने)
 
-तपाइले इमेजलाई सइद बय सइद  अलीग्न गर्न सक्नु हुदैन तेसैले येसरी गर्नु होस् :
+तपाईंले इमेजलाई संग संगै पङ्क्तिबद्ध (align) गर्न सक्नु हुँदैन, त्यसैले यसरी गर्नुहोस् :
 
 ```html
 <a href="https://github.com/anuraghazra/github-readme-stats">
@@ -372,9 +372,9 @@ Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
-गिटहब को अपिएले पाच हजार रेक़ुएस्त प्रति घण्टा मात्र मिल्क्ष ।  मेरो 
- `https://github-readme-stats.vercel.app/api` प्रोजेक्ट मा रेत्  लिमिट हुन सक्क्ष । तर तपाइले आफ्नै वेर्चेल सेर्वेर मा होस्ट गर्नु बाको छ बने यो प्रोब्लेम हुदैन।  
- होस्ट गर्ने तरिका यस पकारका षन ।
+गिटहब को APIले पाँच हजार रिक्वेस्ट प्रति घण्टा मात्र मिल्छ ।  मेरो 
+ `https://github-readme-stats.vercel.app/api` प्रोजेक्टमा रेट लिमिट हुन सक्छ । तर तपाइँले आफ्नै Vercel सर्भरमा होस्ट गर्नु भएमा यो समस्या हुँदैन।  
+ होस्ट गर्ने तरिका यस पकारका छन् ।
 
 NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we should be able to handle more than 5k requests and have no issues with downtime :D
 
@@ -403,20 +403,20 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 
 ## :sparkling_heart: प्रोजेक्टलाई सहयोग गर्नुहोस्
 
-म सके सम्म आफ्नो प्रोजेक्ट हरु ओपेन्सोउर्चे गर्छु र अरु ले पनि सहयोग गर्क्षु । मेले सहयोग गर्दा आफ्नो समय पनि देरै ने दिन्क्षु । तपाइहरु ले यो सेर्विचेस फ्री मा चलाउनु सक्नु हुनेक्ष ।
+म सकेसम्म आफ्नो प्रोजेक्टहरु ओपनसोर्स गर्छु र अरुलाई पनि सहयोग गर्छु । मेले सहयोग गर्दा आफ्नो समय पनि धेरै ने दिन्छु । तपाईंले यो सेवा नि:शुल्क प्रयोग गर्न सक्नुहुन्छ ।
 
-येदि तपाइले यो प्रोजेक्ट चलाउनु बाकोक्ष बने र मलाई अझै प्रसंसा गर्ने हो बने तपाइले थुप्रै तरिका ले गर्नु सक्नु हुने छ :-
+यदि तपाईंले यो परियोजना प्रयोग गर्नुभएको छ र मलाई प्रशंसा गर्न चाहनुहुन्छ भने, थुप्रै तरिकाहरू छन्। :-
 
-- यो प्रोजेक्टमा तपाइले प्रहयोग गर्दा मलाई क्रेडिट दिन सक्नु हुनेक्ष ।
-- तपाइले GitHub ReadMe Stats स्तार्रेड गर्न सक्नु हुनेक्ष  :rocket:
-- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - तपाइले पेपाल बाट पनि सहयोग (डक्क्षिन) गर्न सक्नु हुनेक्ष | म  ~~कोफी ~~ चिया . :tea: किन्न सक्क्षु ।
+- यो प्रोजेक्ट तपाईंले प्रयोग गर्दा मलाई क्रेडिट दिन सक्नु हुनेछ ।
+- तपाईंले GitHub ReadMe Stats स्टार गर्न सक्नु हुनेछ  :rocket:
+- [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - तपाईंले पेपाल बाट पनि सहयोग (डक्क्षिन) गर्न सक्नु हुनेक्ष | म  ~~कोफी ~~ चिया . :tea: किन्न सक्क्षु ।
 
-धन्याबाद! :heart:
+धन्यवाद! :heart:
 
 ---
 
 ![https://vercel.com](https://res.cloudinary.com/anuraghazra/image/upload/v1597827714/powered-by-vercel_1_ug4uro.svg)
 
-योगधन को लागी स्वगत छ! <3
+योगदान स्वागत छ! <3
 
-जाभास्क्रिप्ट बाटा बनको :heart: 
+JavaScript बाट बनाइएको :heart: 
