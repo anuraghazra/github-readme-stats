@@ -368,7 +368,7 @@ Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 </a>
 ```
 
-## आफ्नै Vercel इन्स्टेन्समा डिप्लोय गर्ने 
+##  आफ्नै Vercel इन्स्टेन्समा डिप्लोय गर्ने 
 
 #### [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
