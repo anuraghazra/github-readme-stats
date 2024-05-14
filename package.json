@@ -38,8 +38,8 @@
   "devDependencies": {
     "@actions/core": "^1.10.1",
     "@actions/github": "^6.0.0",
-    "@testing-library/dom": "^9.3.4",
-    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/dom": "^10.1.0",
+    "@testing-library/jest-dom": "^6.4.5",
     "@uppercod/css-to-object": "^1.1.1",
     "axios-mock-adapter": "^1.22.0",
     "color-contrast-checker": "^2.1.0",
@@ -57,7 +57,7 @@
     "prettier": "^3.2.5"
   },
   "dependencies": {
-    "axios": "^1.6.7",
+    "axios": "^1.6.8",
     "dotenv": "^16.4.5",
     "emoji-name-map": "^1.2.8",
     "github-username-regex": "^1.0.0",
