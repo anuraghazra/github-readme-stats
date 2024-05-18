@@ -462,6 +462,12 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+    custom_gradient: {
+    title_color: "ffffff",
+    text_color: "ffffff",
+    icon_color: "ffffff",
+    bg_color: "35,87BEFF,FFFFFF,333333",
+  },
 };
 
 export default themes;
