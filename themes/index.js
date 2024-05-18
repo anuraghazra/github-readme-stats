@@ -463,9 +463,9 @@ export const themes = {
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
    custom_gradient: {
-    title_color: "ffffff",
-    text_color: "ffffff",
-    icon_color: "ffffff",
+    title_color: "35,000000,3F3F3F",
+    text_color: "35,000000,3F3F3F",
+    icon_color: "35,000000,3F3F3F",
     bg_color: "35,87BEFF,FFFFFF,83DAFF",
   },
 };
