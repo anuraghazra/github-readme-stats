@@ -1,0 +1,22 @@
+services:
+  readme_stats:
+    build: .
+    container_name: readme_stats
+    restart: unless-stopped
+    env_file:
+      - .env
+    expose:
+      - $port
+
+  caddy:
+    image: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    depends_on:
+      - readme_stats
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+
