@@ -462,6 +462,12 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  newLight_gradient: {
+    title_color: "288e28",
+    text_color: "000000",
+    icon_color: "ffffff",
+    bg_color: "bbec7a",
+  },
 };
 
 export default themes;
