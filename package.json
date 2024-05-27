@@ -51,7 +51,7 @@
     "jest-bench": "^29.7.1",
     "jest-environment-jsdom": "^29.7.0",
     "js-yaml": "^4.1.0",
-    "lint-staged": "^15.2.2",
+    "lint-staged": "^15.2.5",
     "lodash.snakecase": "^4.1.1",
     "parse-diff": "^0.11.1",
     "prettier": "^3.2.5"
