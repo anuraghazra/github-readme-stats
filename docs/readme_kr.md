@@ -70,19 +70,32 @@
 - [GitHub 저장소 핀](#github-저장소-핀)
     - [사용법](#사용법)
     - [미리보기](#미리보기)
+<!-- - [GitHub 요약 핀](#github-요약-핀) -->
+    <!-- - [사용법](#사용법-1) -->
+    <!-- - [미리보기](#미리보기-1) -->
 - [언어 사용량 통계](#언어-사용량-통계)
     - [사용법](#사용법-1)
+    <!-- - [언어 스탯 알고리즘](#언어-스탯-알고리즘) -->
     - [통계에서 제외할 저장소 지정하기](#통계에서-제외할-저장소-지정하기)
     - [통계에서 특정 언어 제외하기](#통계에서-특정-언어-제외하기)
     - [표시할 언어 수 지정하기](#표시할-언어-수-지정하기)
     - [컴택트한 카드 레이아웃 설정하기](#컴택트한-카드-레이아웃-설정하기)
+    <!-- - [도넛 차트 카드 레이이웃](#도넛-차트-카드-레이아웃) -->
+    <!-- - [세로형 도넛 차트 카드 레이이웃](#세로형-도넛-차트-카드-레이아웃) -->
+    <!-- - [파이 차트 카드 레이이웃](#파이-차트-카드-레이아웃) -->
+    <!-- - [진행도 표시줄 제외하기](#진행도-표시줄-제외하기) -->
     - [미리보기](#미리보기-1)
 - [WakaTime 주간 통계](#wakatime-주간-통계)
     - [미리보기](#미리보기-2)
-    - [전체 미리보기](#전체-미리보기)
+- [전체 미리보기](#전체-미리보기)
     - [꿀팁 (저장소 핀 정렬하기)](#꿀팁-저장소-핀-정렬하기)
-  - [나만의 Vercel 인스턴스에 직접 배포하기](#나만의-vercel-인스턴스에-직접-배포하기)
-  - [:sparkling\_heart: 프로젝트 지원하기!](#sparkling_heart-프로젝트-지원하기)
+- [나만의 Vercel 인스턴스에 직접 배포하기](#나만의-vercel-인스턴스에-직접-배포하기)
+    <!-- - [On Vercel](#on-vercel) -->
+      <!-- - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr) -->
+    <!-- - [On other platforms](#on-other-platforms) -->
+    <!-- - [Disable rate limit protections](#disable-rate-limit-protections) -->
+    <!-- - [Keep your fork up to date](#keep-your-fork-up-to-date) -->
+- [:sparkling\_heart: 프로젝트 지원하기!](#sparkling_heart-프로젝트-지원하기)
 
 
 # GitHub 통계
@@ -97,9 +110,15 @@
 
 _참고:_
 
-_랭크는 S+ (상위 1%), S (상위 25%), A++ (상위 45%), A+ (상위 60%), 그리고 B+ (전체) 로 구성되어 있습니다._
+_랭크는 S (상위 1%), A+ (상위 12.5%), A (상위 25%), A- (상위 37.5%), B+ (상위 50%), B (상위 62.5%), B- (상위 75%), C+ (상위 87.5%), C (전체) 로 구성되어 있습니다._
 
-_커밋의 수(commits), 기여도(contribution), 이슈의 수(issues), 즐겨찾기(star), 작업내용 반영 요청(Pull Request),
+<!-- _이 순위 체계는 [일본 학술 등급](https://wikipedia.org/wiki/Academic_grading_in_Japan) 시스템을 기반으로 합니다._ 
+
+_글로벌 백분위수는 [지수](https://wikipedia.org/wiki/exponential_distribution) 및 [로그-노멀](https://wikipedia.org/wiki/Log-normal_distribution) 분포의 누적 분포 함수를 기반으로 각 통계(커밋, 풀 리퀘스트, 리뷰, 이슈, 별, 팔로워 수)에 대한 백분위수의 가중치 합으로 계산됩니다._
+
+_구현은 [src/calculateRank.js](https://github.com/anuraghazra/github-readme-stats/blob/master/src/calculateRank.js)에서 확인할 수 있습니다. 순위 주변의 원은 100에서 글로벌 백분위수를 뺀 값입니다._ -->
+
+_글로벌 백분위수는 커밋의 수(commits), 기여도(contribution), 이슈의 수(issues), 즐겨찾기(star), 작업내용 반영 요청(Pull Request),
 팔로워 수, 그리고 보유 중인 저장소 등의 항목들에 대해 [누적 분포 함수](https://ko.wikipedia.org/wiki/%EB%88%84%EC%A0%81_%EB%B6%84%ED%8F%AC_%ED%95%A8%EC%88%98) 를 이용해 계산됩니다._
 
 _[src/calculateRank.js](../src/calculateRank.js) 에서 수행되는 계산 작업의 내용을 확인할 수 있습니다._
