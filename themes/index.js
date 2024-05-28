@@ -462,6 +462,31 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+    sunset: {
+    background: "#FFCC88",
+    title: "#FF6347",
+    text: "#6A5ACD",
+  },
+  ocean: {
+    background: "#2E8B57",
+    title: "#4682B4",
+    text: "#00CED1",
+  },
+  forest: {
+    background: "#228B22",
+    title: "#556B2F",
+    text: "#8FBC8F",
+  },
+  desert: {
+    background: "#EDC9AF",
+    title: "#D2691E",
+    text: "#8B4513",
+  },
+  vintage: {
+    background: "#F5DEB3",
+    title: "#A0522D",
+    text: "#8B4513",
+  },
 };
 
 export default themes;
