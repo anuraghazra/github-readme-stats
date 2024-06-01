@@ -27,10 +27,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       # NOTE: Retrieve issue templates.
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - uses: actions/checkout@a5ac7e51b41094c92402da3b24376905380afc29 # v4.1.6
 
       - name: Run empty issues closer action
-        uses: rickstaa/empty-issues-closer-action@c7b2e1cec1e662f56516d8f2842ca45379ac4430 # v1.1.52
+        uses: rickstaa/empty-issues-closer-action@e96914613221511279ca25f50fd4acc85e331d99 # v1.1.74
         env:
           github_token: ${{ secrets.GITHUB_TOKEN }}
         with:
