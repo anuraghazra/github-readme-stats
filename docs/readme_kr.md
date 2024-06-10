@@ -24,12 +24,6 @@
     </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
@@ -83,7 +77,7 @@
     - [표시할 언어 수 지정하기](#표시할-언어-수-지정하기)
     - [컴택트한 카드 레이아웃 설정하기](#컴택트한-카드-레이아웃-설정하기)
     - [미리보기](#미리보기-1)
-- [Wakatime 주간 통계](#wakatime-주간-통계)
+- [WakaTime 주간 통계](#wakatime-주간-통계)
     - [미리보기](#미리보기-2)
     - [전체 미리보기](#전체-미리보기)
     - [꿀팁 (저장소 핀 정렬하기)](#꿀팁-저장소-핀-정렬하기)
@@ -222,7 +216,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 > ( 예를 들면, `c++` 는 `c%2B%2B`, `jupyter notebook` 는 `jupyter%20notebook`, 등등. )
 > [urlencoder.org](https://www.urlencoder.org/) < 서비스를 이용하면 자동으로 생성할 수 있습니다.
 
-#### Wakatime 카드의 표시 제한 옵션:
+#### WakaTime 카드의 표시 제한 옵션:
 
 - `hide_title` - 타이틀 제외 _(boolean)_
 - `line_height` - 텍스트 간 줄 높이 설정(자간) _(number)_
@@ -314,12 +308,12 @@ _참고:
 
 [![언어 사용량 통계](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Wakatime 주간 통계
+# WakaTime 주간 통계
 
-`?username=` 속성의 값을 [Wakatime](https://wakatime.com) 계정의 사용자 명(닉네임)으로 바꿔주세요.
+`?username=` 속성의 값을 [WakaTime](https://wakatime.com) 계정의 사용자 명(닉네임)으로 바꿔주세요.
 
 ```md
-[![Harlok's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### 미리보기
@@ -378,9 +372,9 @@ _참고:
 
 [![언어 사용량 통계](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
 
-- Wakatime 카드
+- WakaTime 카드
 
-[![Harlok 님의 Wakatime 카드](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok 님의 WakaTime 카드](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 

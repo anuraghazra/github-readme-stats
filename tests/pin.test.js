@@ -155,7 +155,9 @@ describe("Test /api/pin", () => {
     await pin(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(renderError("Something went wrong"));
+    expect(res.send).toBeCalledWith(
+      renderError("Something went wrong", "This username is blacklisted"),
+    );
   });
 
   it("should render error card if wrong locale provided", async () => {

@@ -524,9 +524,10 @@ describe("Test renderTopLanguages", () => {
 
       expect(headerStyles.fill.trim()).toBe(`#${themes[name].title_color}`);
       expect(langNameStyles.fill.trim()).toBe(`#${themes[name].text_color}`);
-      expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-        "fill",
-        `#${themes[name].bg_color}`,
+      const backgroundElement = queryByTestId(document.body, "card-bg");
+      const backgroundElementFill = backgroundElement.getAttribute("fill");
+      expect([`#${themes[name].bg_color}`, "url(#gradient)"]).toContain(
+        backgroundElementFill,
       );
     });
   });

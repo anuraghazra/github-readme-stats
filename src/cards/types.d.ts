@@ -32,6 +32,7 @@ export type StatCardOptions = CommonOptions & {
 
 export type RepoCardOptions = CommonOptions & {
   show_owner: boolean;
+  description_lines_count: number;
 };
 
 export type TopLangOptions = CommonOptions & {
@@ -45,7 +46,7 @@ export type TopLangOptions = CommonOptions & {
   hide_progress: boolean;
 };
 
-type WakaTimeOptions = CommonOptions & {
+export type WakaTimeOptions = CommonOptions & {
   hide_title: boolean;
   hide: string[];
   line_height: string;
@@ -53,6 +54,8 @@ type WakaTimeOptions = CommonOptions & {
   custom_title: string;
   layout: "compact" | "normal";
   langs_count: number;
+  display_format: "time" | "percent";
+  disable_animations: boolean;
 };
 
 export type GistCardOptions = CommonOptions & {

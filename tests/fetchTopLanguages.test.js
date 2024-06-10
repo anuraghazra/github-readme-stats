@@ -165,7 +165,7 @@ describe("FetchTopLanguages", () => {
     });
 
     await expect(fetchTopLanguages("anuraghazra")).rejects.toThrow(
-      "Something went while trying to retrieve the language data using the GraphQL API.",
+      "Something went wrong while trying to retrieve the language data using the GraphQL API.",
     );
   });
 });

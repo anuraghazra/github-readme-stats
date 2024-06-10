@@ -383,14 +383,14 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
 
   return `
   ${
-    !hideProgress
-      ? `
-  <mask id="rect-mask">
-      <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5"/>
-    </mask>
-    ${compactProgressBar}
-  `
-      : ""
+    hideProgress
+      ? ""
+      : `
+      <mask id="rect-mask">
+          <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5"/>
+        </mask>
+        ${compactProgressBar}
+      `
   }
     <g transform="translate(0, ${hideProgress ? "0" : "25"})">
       ${createLanguageTextNode({
@@ -755,8 +755,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     ? isNaN(card_width)
       ? DEFAULT_CARD_WIDTH
       : card_width < MIN_CARD_WIDTH
-      ? MIN_CARD_WIDTH
-      : card_width
+        ? MIN_CARD_WIDTH
+        : card_width
     : DEFAULT_CARD_WIDTH;
   let height = calculateNormalLayoutHeight(langs.length);
 
