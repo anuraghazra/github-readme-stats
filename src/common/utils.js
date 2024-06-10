@@ -408,7 +408,7 @@ const renderError = (message, secondaryMessage = "", options = {}) => {
  * @param {number} maxLines Maximum number of lines.
  * @returns {string[]} Array of lines.
  */
-const wrapTextMultiline = (text, width = 59, maxLines = 3) => {
+const wrapTextMultiline = (text, width = 48, maxLines = 3) => {
   const fullWidthComma = "，";
   const encoded = encodeHTML(text);
   const isChinese = encoded.includes(fullWidthComma);
