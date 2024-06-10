@@ -141,7 +141,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "'Commit'lar",
       vi: "Tổng Số Cam Kết",
       se: "Totalt antal commits",
-      fil: "Kabuuang Commits",},
+      fil: "Kabuuang Commits",
+    },
     "statcard.prs": {
       ar: "مجموع طلبات السحب",
       cn: "拉取请求数（PR）",
