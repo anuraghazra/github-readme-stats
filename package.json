@@ -10,13 +10,13 @@
   ],
   "main": "src/index.js",
   "type": "module",
-  "homepage": "https://github.com/anuraghazra/github-readme-stats",
+  "homepage": "https://github.com/ghbishal/github-readme-stats",
   "bugs": {
-    "url": "https://github.com/anuraghazra/github-readme-stats/issues"
+    "url": "https://github.com/ghbishal/github-readme-stats/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/anuraghazra/github-readme-stats.git"
+    "url": "https://github.com/ghbishal/github-readme-stats.git"
   },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --coverage",
@@ -33,7 +33,6 @@
     "lint": "npx eslint --max-warnings 0 \"./src/**/*.js\" \"./scripts/**/*.js\" \"./tests/**/*.js\" \"./api/**/*.js\" \"./themes/**/*.js\"",
     "bench": "node --experimental-vm-modules node_modules/jest/bin/jest.js --config jest.bench.config.js"
   },
-  "author": "Anurag Hazra",
   "license": "MIT",
   "devDependencies": {
     "@actions/core": "^1.10.1",
@@ -68,6 +67,6 @@
     "*.{js,css,md}": "prettier --write"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">20.0.0"
   }
 }
