@@ -462,6 +462,12 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+    packers: {
+    title_color: "006A2F",
+    text_color: "FCEF01",
+    icon_color: "006A2F",
+    bg_color: "171A18",
+  },
 };
 
 export default themes;
