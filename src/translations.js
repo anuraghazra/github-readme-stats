@@ -79,7 +79,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.totalstars": {
       ar: "مجموع النجوم",
-      cn: "获标星数（star）",
+      cn: "获得星数（Star）",
       "zh-tw": "獲標星數（star）",
       cs: "Celkem hvězd",
       de: "Insgesamt erhaltene Sterne",
@@ -110,7 +110,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.commits": {
       ar: "مجموع الحفظ",
-      cn: "累计提交数（commit）",
+      cn: "累计提交数（Commit）",
       "zh-tw": "累計提交數（commit）",
       cs: "Celkem commitů",
       de: "Anzahl Commits",
@@ -172,7 +172,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.issues": {
       ar: "مجموع التحسينات",
-      cn: "指出问题数（issue）",
+      cn: "提问数（Issue）",
       "zh-tw": "指出問題數（issue）",
       cs: "Celkem problémů",
       de: "Anzahl Issues",
@@ -203,7 +203,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.contribs": {
       ar: "ساهم في (العام الماضي)",
-      cn: "贡献于（去年）",
+      cn: "贡献数（去年）",
       "zh-tw": "參與項目數 （去年）",
       cs: "Přispěl k (minulý rok)",
       de: "Beigetragen zu (letztes Jahr)",
@@ -234,8 +234,8 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.reviews": {
       ar: "تمت مراجعة إجمالي العلاقات العامة",
-      cn: "審查的 PR 總數",
-      "zh-tw": "审查的 PR 总数",
+      cn: "审查的 PR 总数",
+      "zh-tw": "審查的 PR 總數",
       cs: "Celkový počet PR",
       de: "Insgesamt überprüfte PRs",
       en: "Total PRs Reviewed",
@@ -487,7 +487,7 @@ const langCardLocales = {
   },
   "langcard.nodata": {
     ar: "لا توجد بيانات لغات.",
-    cn: "沒有語言數據。",
+    cn: "没有语言数据。",
     "zh-tw": "沒有語言數據。",
     cs: "Žádné jazykové údaje.",
     de: "Keine Sprachdaten.",
