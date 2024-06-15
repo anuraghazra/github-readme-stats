@@ -48,8 +48,8 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.ranktitle": {
       ar: `${encodedName} إحصائيات غيت هاب`,
-      cn: `${encodedName} 的 GitHub 统计数据`,
-      "zh-tw": `${encodedName} 的 GitHub 統計數據`,
+      cn: `${encodedName}  GitHub 统计数据`,
+      "zh-tw": `${encodedName}  GitHub 統計數據`,
       cs: `GitHub statistiky uživatele ${encodedName}`,
       de: `${encodedName + apostrophe} GitHub-Statistiken`,
       en: `${encodedName}'${apostrophe} GitHub Rank`,
@@ -235,7 +235,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.reviews": {
       ar: "تمت مراجعة إجمالي العلاقات العامة",
       cn: "审查 PR 数",
-      "zh-tw": "審查的 PR 總數",
+      "zh-tw": "審查 PR 總數",
       cs: "Celkový počet PR",
       de: "Insgesamt überprüfte PRs",
       en: "Total PRs Reviewed",
@@ -266,7 +266,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.discussions-started": {
       ar: "مجموع بدء المناقشات",
       cn: "发起讨论数",
-      "zh-tw": "發起的討論總數",
+      "zh-tw": "發起討論總數",
       cs: "Celkem zahájených diskusí",
       de: "Gesamt gestartete Diskussionen",
       en: "Total Discussions Started",
@@ -297,7 +297,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.discussions-answered": {
       ar: "مجموع الردود على المناقشات",
       cn: "回复讨论数",
-      "zh-tw": "回覆的討論總數",
+      "zh-tw": "回覆討論總數",
       cs: "Celkem zodpovězených diskusí",
       de: "Gesamt beantwortete Diskussionen",
       en: "Total Discussions Answered",
@@ -328,7 +328,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.prs-merged": {
       ar: "مجموع الطلبات المدمجة",
       cn: "合并 PR 数",
-      "zh-tw": "合併的 PR 總數",
+      "zh-tw": "合併 PR 總數",
       cs: "Celkem sloučených PR",
       de: "Insgesamt zusammengeführte PRs",
       en: "Total PRs Merged",
@@ -357,7 +357,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.prs-merged-percentage": {
       ar: "نسبة الطلبات المدمجة",
-      cn: "合并的 PR 占比",
+      cn: "合并 PR 占比",
       "zh-tw": "合併的 PR 百分比",
       cs: "Sloučené PRs v procentech",
       de: "Zusammengeführte PRs in Prozent",
@@ -645,7 +645,7 @@ const wakatimeCardLocales = {
   },
   "wakatimecard.nocodedetails": {
     ar: "المستخدم لا يشارك معلومات تفصيلية عن البرمجة",
-    cn: "用户不公开分享详细的代码统计信息",
+    cn: "用户不公开分享详细代码统计信息",
     "zh-tw": "使用者不公開分享詳細的程式碼統計資訊",
     cs: "Uživatel nesdílí podrobné statistiky kódu",
     de: "Benutzer teilt keine detaillierten Code-Statistiken",
