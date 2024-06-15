@@ -110,7 +110,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.commits": {
       ar: "مجموع الحفظ",
-      cn: "累计提交数",
+      cn: "提交数",
       "zh-tw": "累計提交數（commit）",
       cs: "Celkem commitů",
       de: "Anzahl Commits",
@@ -141,7 +141,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.prs": {
       ar: "مجموع طلبات السحب",
-      cn: "发起的 PR 总数",
+      cn: "发起 PR 数",
       "zh-tw": "拉取請求數（PR）",
       cs: "Celkem PRs",
       de: "PRs Insgesamt",
@@ -234,7 +234,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.reviews": {
       ar: "تمت مراجعة إجمالي العلاقات العامة",
-      cn: "审查的 PR 总数",
+      cn: "审查 PR 数",
       "zh-tw": "審查的 PR 總數",
       cs: "Celkový počet PR",
       de: "Insgesamt überprüfte PRs",
@@ -265,7 +265,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.discussions-started": {
       ar: "مجموع بدء المناقشات",
-      cn: "发起的讨论总数",
+      cn: "发起讨论数",
       "zh-tw": "發起的討論總數",
       cs: "Celkem zahájených diskusí",
       de: "Gesamt gestartete Diskussionen",
@@ -296,7 +296,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.discussions-answered": {
       ar: "مجموع الردود على المناقشات",
-      cn: "回复的讨论总数",
+      cn: "回复讨论数",
       "zh-tw": "回覆的討論總數",
       cs: "Celkem zodpovězených diskusí",
       de: "Gesamt beantwortete Diskussionen",
@@ -327,7 +327,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.prs-merged": {
       ar: "مجموع الطلبات المدمجة",
-      cn: "合并的 PR 总数",
+      cn: "合并 PR 数",
       "zh-tw": "合併的 PR 總數",
       cs: "Celkem sloučených PR",
       de: "Insgesamt zusammengeführte PRs",
