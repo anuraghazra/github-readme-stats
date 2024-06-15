@@ -79,7 +79,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.totalstars": {
       ar: "مجموع النجوم",
-      cn: "获得星数（Star）",
+      cn: "获得星数",
       "zh-tw": "獲標星數（star）",
       cs: "Celkem hvězd",
       de: "Insgesamt erhaltene Sterne",
@@ -110,7 +110,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.commits": {
       ar: "مجموع الحفظ",
-      cn: "累计提交数（Commit）",
+      cn: "累计提交数",
       "zh-tw": "累計提交數（commit）",
       cs: "Celkem commitů",
       de: "Anzahl Commits",
@@ -141,7 +141,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.prs": {
       ar: "مجموع طلبات السحب",
-      cn: "拉取请求数（PR）",
+      cn: "发起的 PR 总数",
       "zh-tw": "拉取請求數（PR）",
       cs: "Celkem PRs",
       de: "PRs Insgesamt",
@@ -172,7 +172,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.issues": {
       ar: "مجموع التحسينات",
-      cn: "提问数（Issue）",
+      cn: "提问数",
       "zh-tw": "指出問題數（issue）",
       cs: "Celkem problémů",
       de: "Anzahl Issues",
@@ -357,7 +357,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.prs-merged-percentage": {
       ar: "نسبة الطلبات المدمجة",
-      cn: "合并的 PR 百分比",
+      cn: "合并的 PR 占比",
       "zh-tw": "合併的 PR 百分比",
       cs: "Sloučené PRs v procentech",
       de: "Zusammengeführte PRs in Prozent",
