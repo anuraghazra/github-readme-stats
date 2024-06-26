@@ -456,6 +456,13 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+    shu_pink: {
+    title_color: "FF97CF",
+    text_color: "FF97CF",
+    icon_color: "ffd5eb",
+    border_color: "FF97CF",
+    bg_color: "ffffff",
+  },
   ambient_gradient: {
     title_color: "ffffff",
     text_color: "ffffff",
@@ -463,5 +470,6 @@ export const themes = {
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
 };
+
 
 export default themes;
