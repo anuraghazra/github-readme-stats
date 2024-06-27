@@ -7,6 +7,8 @@ const PATs = Object.keys(process.env).filter((key) =>
   /PAT_\d*$/.exec(key),
 ).length;
 const RETRIES = process.env.NODE_ENV === "test" ? 7 : PATs;
+console.log("process.env.NODE_ENV:", process.env.NODE_ENV);
+console.log("process.env:", process.env);
 
 /**
  * @typedef {import("axios").AxiosResponse} AxiosResponse Axios response.
@@ -31,6 +33,9 @@ const retryer = async (fetcher, variables, retries = 0) => {
       CustomError.MAX_RETRY,
     );
   }
+  console.log("RETRIES:", RETRIES);
+  console.log("retires:", retries, process.env[`PAT_${retries + 1}`]);
+  console.log("variables:", variables);
   try {
     // try to fetch with the first token since RETRIES is 0 index i'm adding +1
     let response = await fetcher(
