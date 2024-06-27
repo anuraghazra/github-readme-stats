@@ -462,6 +462,12 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  mored: {
+    title_color: "C73659",
+    text_color: "EEEEEE",
+    icon_color: "A91D3A",
+    bg_color: "151515,0c0c0c",
+  },
 };
 
 export default themes;
