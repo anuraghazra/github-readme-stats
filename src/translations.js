@@ -45,6 +45,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: `${encodedName}ning GitHub'dagi statistikasi`,
       vi: `Thống Kê GitHub ${encodedName}`,
       se: `GitHubstatistik för ${encodedName}`,
+      fil: `Mga Stats ng GitHub ni ${encodedName}`,
     },
     "statcard.ranktitle": {
       ar: `${encodedName} إحصائيات غيت هاب`,
@@ -76,6 +77,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: `${encodedName}ning GitHub'dagi statistikasi`,
       vi: `Thống Kê GitHub ${encodedName}`,
       se: `GitHubstatistik för ${encodedName}`,
+      fil: `Ranggo ng GitHub ni ${encodedName}`,
     },
     "statcard.totalstars": {
       ar: "مجموع النجوم",
@@ -107,6 +109,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Yulduzchalar",
       vi: "Tổng Số Sao",
       se: "Antal intjänade stjärnor",
+      fil: "Kabuuang Nakuhang Bituin",
     },
     "statcard.commits": {
       ar: "مجموع الحفظ",
@@ -138,7 +141,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "'Commit'lar",
       vi: "Tổng Số Cam Kết",
       se: "Totalt antal commits",
-    },
+      fil: "Kabuuang Commits",},
     "statcard.prs": {
       ar: "مجموع طلبات السحب",
       cn: "拉取请求数（PR）",
@@ -169,6 +172,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "'Pull Request'lar",
       vi: "Tổng Số PR",
       se: "Totalt antal PR",
+      fil: "Kabuuang PRs",
     },
     "statcard.issues": {
       ar: "مجموع التحسينات",
@@ -200,6 +204,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "'Issue'lar",
       vi: "Tổng Số Vấn Đề",
       se: "Total antal issues",
+      fil: "Kabuuang mga Isyu",
     },
     "statcard.contribs": {
       ar: "ساهم في (العام الماضي)",
@@ -231,6 +236,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Hissa qoʻshgan (o'tgan yili)",
       vi: "Đã Đóng Góp (năm ngoái)",
       se: "Bidragit till (förra året)",
+      fil: "Nag-ambag sa (nakaraang taon)",
     },
     "statcard.reviews": {
       ar: "تمت مراجعة إجمالي العلاقات العامة",
@@ -262,6 +268,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Koʻrib chiqilgan PR-lar soni",
       vi: "Tổng Số PR Đã Xem Xét",
       se: "Totalt antal granskade PR",
+      fil: "Kabuuang PR na Na-review",
     },
     "statcard.discussions-started": {
       ar: "مجموع بدء المناقشات",
@@ -293,6 +300,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Boshlangan muzokaralar soni",
       vi: "Tổng Số Thảo Luận Bắt Đầu",
       se: "Totalt antal diskussioner startade",
+      fil: "Kabuuang mga Diskusyon na Sinimulan",
     },
     "statcard.discussions-answered": {
       ar: "مجموع الردود على المناقشات",
@@ -324,6 +332,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Javob berilgan muzokaralar soni",
       vi: "Tổng Số Thảo Luận Đã Trả Lời",
       se: "Totalt antal diskussioner besvarade",
+      fil: "Kabuuang mga Diskusyon na Sinagot",
     },
     "statcard.prs-merged": {
       ar: "مجموع الطلبات المدمجة",
@@ -354,6 +363,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Birlangan PR-lar soni",
       vi: "Tổng Số PR Đã Hợp Nhất",
       se: "Totalt antal sammanfogade PR",
+      fil: "Kabuuang mga PR na Pinagsama",
     },
     "statcard.prs-merged-percentage": {
       ar: "نسبة الطلبات المدمجة",
@@ -384,6 +394,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Birlangan PR-lar foizi",
       vi: "Tỷ Lệ PR Đã Hợp Nhất",
       se: "Procent av sammanfogade PR",
+      fil: "Porsyento ng mga PR na Pinagsama",
     },
   };
 };
@@ -419,6 +430,7 @@ const repoCardLocales = {
     uz: "Shablon",
     vi: "Mẫu",
     se: "Mall",
+    fil: "Suleras",
   },
   "repocard.archived": {
     ar: "محفوظ",
@@ -450,6 +462,7 @@ const repoCardLocales = {
     uz: "Arxivlangan",
     vi: "Đã Lưu Trữ",
     se: "Arkiverade",
+    fil: "Naka-arkibo",
   },
 };
 
@@ -484,6 +497,7 @@ const langCardLocales = {
     uz: "Eng koʻp ishlatiladigan tillar",
     vi: "Ngôn Ngữ Thường Sử Dụng",
     se: "Mest använda språken",
+    fil: "Mga Pinakamadalas na Ginagamit na lenggwahe",
   },
   "langcard.nodata": {
     ar: "لا توجد بيانات لغات.",
@@ -515,6 +529,7 @@ const langCardLocales = {
     uz: "Til haqida ma'lumot yo'q.",
     vi: "Không có dữ liệu ngôn ngữ.",
     se: "Inga språkdata.",
+    fil: "Walang datos ng lenggwahe.",
   },
 };
 
@@ -549,6 +564,7 @@ const wakatimeCardLocales = {
     uz: "WakaTime statistikasi",
     vi: "Thống Kê WakaTime",
     se: "WakaTime statistik",
+    fil: "Mga Estadistika ng WakaTime",
   },
   "wakatimecard.lastyear": {
     ar: "العام الماضي",
@@ -580,6 +596,7 @@ const wakatimeCardLocales = {
     uz: "O'tgan yil",
     vi: "Năm ngoái",
     se: "Förra året",
+    fil: "Nakaraang Taon",
   },
   "wakatimecard.last7days": {
     ar: "آخر 7 أيام",
@@ -611,6 +628,7 @@ const wakatimeCardLocales = {
     uz: "O'tgan 7 kun",
     vi: "7 ngày qua",
     se: "Senaste 7 dagarna",
+    fil: "Huling 7 Araw",
   },
   "wakatimecard.notpublic": {
     ar: "ملف المستخدم غير عام",
@@ -642,6 +660,7 @@ const wakatimeCardLocales = {
     uz: "WakaTime foydalanuvchi profili ochiq emas",
     vi: "Hồ sơ người dùng WakaTime không công khai",
     se: "WakaTime användarprofil inte offentlig",
+    fil: "Hindi pampubliko ang profile ng gumagamit ng WakaTime",
   },
   "wakatimecard.nocodedetails": {
     ar: "المستخدم لا يشارك معلومات تفصيلية عن البرمجة",
@@ -675,6 +694,7 @@ const wakatimeCardLocales = {
     uz: "Foydalanuvchi umumiy ko`d statistikasini ochiq ravishda almashmaydi",
     vi: "Người dùng không chia sẻ thống kê mã chi tiết công khai",
     se: "Användaren delar inte offentligt detaljerad kodstatistik",
+    fil: "Hindi ibinabahagi ng gumagamit ang detalyadong estadistika ng code nang pampubliko",
   },
   "wakatimecard.nocodingactivity": {
     ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
@@ -706,6 +726,7 @@ const wakatimeCardLocales = {
     uz: "Bu hafta faol bo'lmadi",
     vi: "Không Có Hoạt Động Trong Tuần Này",
     se: "Ingen aktivitet denna vecka",
+    fil: "Walang coding activity ngayong linggo",
   },
 };
 
