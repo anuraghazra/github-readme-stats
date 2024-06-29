@@ -247,6 +247,7 @@ const request = (data, headers) => {
  *  bgColor: string | string[];
  *  borderColor: string;
  *  ringColor: string;
+ *  progressBarBorderColor: string;
  * }} CardColors
  */
 
@@ -260,6 +261,7 @@ const request = (data, headers) => {
  * @param {string=} args.bg_color Card background color.
  * @param {string=} args.border_color Card border color.
  * @param {string=} args.ring_color Card ring color.
+ * @param {string=} args.progress_bar_border_color Progress bar border color.
  * @param {string=} args.theme Card theme.
  * @param {string=} args.fallbackTheme Fallback theme.
  * @returns {CardColors} Card colors.
@@ -271,6 +273,7 @@ const getCardColors = ({
   bg_color,
   border_color,
   ring_color,
+  progress_bar_border_color,
   theme,
   fallbackTheme = "default",
 }) => {
@@ -278,6 +281,9 @@ const getCardColors = ({
   const selectedTheme = themes[theme] || defaultTheme;
   const defaultBorderColor =
     selectedTheme.border_color || defaultTheme.border_color;
+  const defaultProgressBarBorderColor =
+    selectedTheme.progress_bar_border_color ||
+    defaultTheme.progress_bar_border_color;
 
   // get the color provided by the user else the theme color
   // finally if both colors are invalid fallback to default theme
@@ -310,19 +316,33 @@ const getCardColors = ({
     "#" + defaultBorderColor,
   );
 
+  const progressBarBorderColor = fallbackColor(
+    progress_bar_border_color || defaultProgressBarBorderColor,
+    "none",
+  );
+
   if (
     typeof titleColor !== "string" ||
     typeof textColor !== "string" ||
     typeof ringColor !== "string" ||
     typeof iconColor !== "string" ||
-    typeof borderColor !== "string"
+    typeof borderColor !== "string" ||
+    typeof progressBarBorderColor !== "string"
   ) {
     throw new Error(
       "Unexpected behavior, all colors except background should be string.",
     );
   }
 
-  return { titleColor, iconColor, textColor, bgColor, borderColor, ringColor };
+  return {
+    titleColor,
+    iconColor,
+    textColor,
+    bgColor,
+    borderColor,
+    ringColor,
+    progressBarBorderColor,
+  };
 };
 
 // Script parameters.

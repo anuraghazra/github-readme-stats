@@ -13,6 +13,12 @@ export type CommonOptions = {
   hide_border: boolean;
 };
 
+export type ProgressOptions = {
+  hide_progress: boolean;
+  progress_bar_border_color: string;
+  progress_bar_border_thickness: number;
+};
+
 export type StatCardOptions = CommonOptions & {
   hide: string[];
   show_icons: boolean;
@@ -35,28 +41,29 @@ export type RepoCardOptions = CommonOptions & {
   description_lines_count: number;
 };
 
-export type TopLangOptions = CommonOptions & {
-  hide_title: boolean;
-  card_width: number;
-  hide: string[];
-  layout: "compact" | "normal" | "donut" | "donut-vertical" | "pie";
-  custom_title: string;
-  langs_count: number;
-  disable_animations: boolean;
-  hide_progress: boolean;
-};
+export type TopLangOptions = CommonOptions &
+  ProgressOptions & {
+    hide_title: boolean;
+    card_width: number;
+    hide: string[];
+    layout: "compact" | "normal" | "donut" | "donut-vertical" | "pie";
+    custom_title: string;
+    langs_count: number;
+    disable_animations: boolean;
+  };
 
-export type WakaTimeOptions = CommonOptions & {
-  hide_title: boolean;
-  hide: string[];
-  line_height: string;
-  hide_progress: boolean;
-  custom_title: string;
-  layout: "compact" | "normal";
-  langs_count: number;
-  display_format: "time" | "percent";
-  disable_animations: boolean;
-};
+export type WakaTimeOptions = CommonOptions &
+  ProgressOptions & {
+    hide_title: boolean;
+    hide: string[];
+    line_height: string;
+    hide_progress: boolean;
+    custom_title: string;
+    layout: "compact" | "normal";
+    langs_count: number;
+    display_format: "time" | "percent";
+    disable_animations: boolean;
+  };
 
 export type GistCardOptions = CommonOptions & {
   show_owner: boolean;
