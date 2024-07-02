@@ -462,6 +462,13 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  "dark-smoky":{
+    title_color: "edf5e1",
+    icon_color: "edf5e1",
+    text_color: "66fcf1",
+    bg_color: "0b0c10",
+    border_color: "c5c6c7",
+  },
 };
 
 export default themes;
