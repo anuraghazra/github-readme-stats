@@ -462,6 +462,13 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+    Lawliet_theme: {
+    title_color: "bfbfbf",
+    text_color: "DC143C",
+    icon_color: "DC143C",
+    border_color: "f2f2f2",
+    bg_color: "1a1a1a",
+  },
 };
 
 export default themes;
