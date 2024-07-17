@@ -10,13 +10,13 @@ export type CommonOptions = {
   border_radius: number;
   border_color: string;
   locale: string;
+  hide_border: boolean;
 };
 
 export type StatCardOptions = CommonOptions & {
   hide: string[];
   show_icons: boolean;
   hide_title: boolean;
-  hide_border: boolean;
   card_width: number;
   hide_rank: boolean;
   include_all_commits: boolean;
@@ -31,13 +31,12 @@ export type StatCardOptions = CommonOptions & {
 };
 
 export type RepoCardOptions = CommonOptions & {
-  hide_border: boolean;
   show_owner: boolean;
+  description_lines_count: number;
 };
 
 export type TopLangOptions = CommonOptions & {
   hide_title: boolean;
-  hide_border: boolean;
   card_width: number;
   hide: string[];
   layout: "compact" | "normal" | "donut" | "donut-vertical" | "pie";
@@ -47,13 +46,18 @@ export type TopLangOptions = CommonOptions & {
   hide_progress: boolean;
 };
 
-type WakaTimeOptions = CommonOptions & {
+export type WakaTimeOptions = CommonOptions & {
   hide_title: boolean;
-  hide_border: boolean;
   hide: string[];
   line_height: string;
   hide_progress: boolean;
   custom_title: string;
   layout: "compact" | "normal";
   langs_count: number;
+  display_format: "time" | "percent";
+  disable_animations: boolean;
+};
+
+export type GistCardOptions = CommonOptions & {
+  show_owner: boolean;
 };

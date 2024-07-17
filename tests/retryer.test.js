@@ -1,6 +1,6 @@
 import { jest } from "@jest/globals";
 import "@testing-library/jest-dom";
-import { retryer } from "../src/common/retryer.js";
+import { retryer, RETRIES } from "../src/common/retryer.js";
 import { logger } from "../src/common/utils.js";
 import { expect, it, describe } from "@jest/globals";
 
@@ -40,12 +40,12 @@ describe("Test Retryer", () => {
     expect(res).toStrictEqual({ data: "ok" });
   });
 
-  it("retryer should throw error if maximum retries reached", async () => {
+  it("retryer should throw specific error if maximum retries reached", async () => {
     try {
       await retryer(fetcherFail, {});
     } catch (err) {
-      expect(fetcherFail).toBeCalledTimes(8);
-      expect(err.message).toBe("Maximum retries exceeded");
+      expect(fetcherFail).toBeCalledTimes(RETRIES + 1);
+      expect(err.message).toBe("Downtime due to GitHub API rate limiting");
     }
   });
 });

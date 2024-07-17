@@ -2,7 +2,7 @@ name: Test
 on:
   push:
     branches:
-      - "*"
+      - master
   pull_request:
     branches:
       - master
@@ -18,10 +18,10 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332 # v4.1.7
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
@@ -35,9 +35,13 @@ jobs:
         run: |
           npm run lint
 
+      - name: Run bench tests
+        run: |
+          npm run bench
+
       - name: Run Prettier
         run: |
           npm run format:check
 
       - name: Code Coverage
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@4fe8c5f003fae66aa5ebb77cfd3e7bfbbda0b6b0 # v3.1.5

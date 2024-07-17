@@ -9,20 +9,25 @@ import { renderRepoCard } from "../../src/cards/repo-card.js";
 import { renderStatsCard } from "../../src/cards/stats-card.js";
 import { renderTopLanguages } from "../../src/cards/top-languages-card.js";
 import { renderWakatimeCard } from "../../src/cards/wakatime-card.js";
+import { renderGistCard } from "../../src/cards/gist-card.js";
 import { expect, describe, beforeAll, test } from "@jest/globals";
 
 const REPO = "curly-fiesta";
 const USER = "catelinemnemosyne";
+const STATS_CARD_USER = "e2eninja";
+const GIST_ID = "372cef55fd897b31909fdeb3a7262758";
+
 const STATS_DATA = {
-  name: "Cateline Mnemosyne",
-  totalPRs: 2,
-  totalCommits: 8,
+  name: "CodeNinja",
+  totalPRs: 1,
+  totalReviews: 0,
+  totalCommits: 3,
   totalIssues: 1,
   totalStars: 1,
-  contributedTo: 1,
+  contributedTo: 0,
   rank: {
     level: "C",
-    percentile: 97.89377603631637,
+    percentile: 98.73972605284538,
   },
 };
 
@@ -80,6 +85,23 @@ const REPOSITORY_DATA = {
   starCount: 1,
 };
 
+/**
+ * @typedef {import("../../src/fetchers/types").GistData} GistData Gist data type.
+ */
+
+/**
+ * @type {GistData}
+ */
+const GIST_DATA = {
+  name: "link.txt",
+  nameWithOwner: "qwerty541/link.txt",
+  description:
+    "Trying to access this path on Windown 10 ver. 1803+ will breaks NTFS",
+  language: "Text",
+  starsCount: 1,
+  forksCount: 0,
+};
+
 const CACHE_BURST_STRING = `v=${new Date().getTime()}`;
 
 describe("Fetch Cards", () => {
@@ -95,15 +117,17 @@ describe("Fetch Cards", () => {
 
     // Check if the Vercel preview instance stats card function is up and running.
     await expect(
-      axios.get(`${VERCEL_PREVIEW_URL}/api?username=${USER}`),
+      axios.get(`${VERCEL_PREVIEW_URL}/api?username=${STATS_CARD_USER}`),
     ).resolves.not.toThrow();
 
     // Get local stats card.
-    const localStatsCardSVG = renderStatsCard(STATS_DATA);
+    const localStatsCardSVG = renderStatsCard(STATS_DATA, {
+      include_all_commits: true,
+    });
 
     // Get the Vercel preview stats card response.
     const serverStatsSvg = await axios.get(
-      `${VERCEL_PREVIEW_URL}/api?username=${USER}&${CACHE_BURST_STRING}`,
+      `${VERCEL_PREVIEW_URL}/api?username=${STATS_CARD_USER}&include_all_commits=true&${CACHE_BURST_STRING}`,
     );
 
     // Check if stats card from deployment matches the stats card from local.
@@ -175,5 +199,27 @@ describe("Fetch Cards", () => {
 
     // Check if Repo card from deployment matches the local Repo card.
     expect(serverRepoSvg.data).toEqual(localRepoCardSVG);
+  }, 15000);
+
+  test("retrieve gist card", async () => {
+    expect(VERCEL_PREVIEW_URL).toBeDefined();
+
+    // Check if the Vercel preview instance Gist function is up and running.
+    await expect(
+      axios.get(
+        `${VERCEL_PREVIEW_URL}/api/gist?id=${GIST_ID}&${CACHE_BURST_STRING}`,
+      ),
+    ).resolves.not.toThrow();
+
+    // Get local gist card.
+    const localGistCardSVG = renderGistCard(GIST_DATA);
+
+    // Get the Vercel preview gist card response.
+    const serverGistSvg = await axios.get(
+      `${VERCEL_PREVIEW_URL}/api/gist?id=${GIST_ID}&${CACHE_BURST_STRING}`,
+    );
+
+    // Check if Gist card from deployment matches the local Gist card.
+    expect(serverGistSvg.data).toEqual(localGistCardSVG);
   }, 15000);
 });

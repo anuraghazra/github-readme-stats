@@ -5,7 +5,7 @@ import { getCardColors } from "../src/common/utils.js";
 import { wakaTimeData } from "./fetchWakatime.test.js";
 import { expect, it, describe } from "@jest/globals";
 
-describe("Test Render Wakatime Card", () => {
+describe("Test Render WakaTime Card", () => {
   it("should render correctly", () => {
     // const card = renderWakatimeCard(wakaTimeData.data);
     expect(getCardColors).toMatchSnapshot();
@@ -39,12 +39,12 @@ describe("Test Render Wakatime Card", () => {
   it("should render translations", () => {
     document.body.innerHTML = renderWakatimeCard({}, { locale: "cn" });
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Wakatime 周统计",
+      "WakaTime 周统计",
     );
     expect(
       document.querySelector('g[transform="translate(0, 0)"]>text.stat.bold')
         .textContent,
-    ).toBe("Wakatime 用户个人资料未公开");
+    ).toBe("WakaTime 用户个人资料未公开");
   });
 
   it("should render without rounding", () => {

@@ -10,8 +10,15 @@ import {
   measureText,
   parseEmojis,
   wrapTextMultiline,
+  iconWithLabel,
+  createLanguageNode,
+  clampValue,
 } from "../common/utils.js";
 import { repoCardLocales } from "../translations.js";
+
+const ICON_SIZE = 16;
+const DESCRIPTION_LINE_WIDTH = 59;
+const DESCRIPTION_MAX_LINES = 3;
 
 /**
  * Retrieves the repository description and wraps it to fit the card width.
@@ -36,54 +43,15 @@ const getBadgeSVG = (label, textColor) => `
 `;
 
 /**
- * Creates a node to display the primary programming language of the repository.
- *
- * @param {string} langName Language name.
- * @param {string} langColor Language color.
- * @returns {string} Language display SVG object.
+ * @typedef {import("../fetchers/types").RepositoryData} RepositoryData Repository data.
+ * @typedef {import("./types").RepoCardOptions} RepoCardOptions Repo card options.
  */
-const createLanguageNode = (langName, langColor) => {
-  return `
-  <g data-testid="primary-lang">
-    <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
-    <text data-testid="lang-name" class="gray" x="15">${langName}</text>
-  </g>
-  `;
-};
-
-const ICON_SIZE = 16;
-
-/**
- * Creates an icon with label to display repository stats like forks, stars, etc.
- *
- * @param {string} icon The icon to display.
- * @param {number|string} label The label to display.
- * @param {string} testid The testid to assign to the label.
- * @returns {string} Icon with label SVG object.
- */
-const iconWithLabel = (icon, label, testid) => {
-  if (label <= 0) return "";
-  const iconSvg = `
-    <svg
-      class="icon"
-      y="-12"
-      viewBox="0 0 16 16"
-      version="1.1"
-      width="${ICON_SIZE}"
-      height="${ICON_SIZE}"
-    >
-      ${icon}
-    </svg>
-  `;
-  const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
-  return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
-};
 
 /**
  * Renders repository card details.
  *
- * @param {import('../fetchers/types').RepositoryData} repo Repository data.
- * @param {Partial<import("./types").RepoCardOptions>} options Card options.
+ * @param {RepositoryData} repo Repository data.
+ * @param {Partial<RepoCardOptions>} options Card options.
  * @returns {string} Repository card SVG object.
  */
 const renderRepoCard = (repo, options = {}) => {
@@ -110,6 +78,7 @@ const renderRepoCard = (repo, options = {}) => {
     border_radius,
     border_color,
     locale,
+    description_lines_count,
     show_stars = true,
     show_forks = true,
     show_issues = false,
@@ -120,16 +89,27 @@ const renderRepoCard = (repo, options = {}) => {
   const header = show_owner ? nameWithOwner : name;
   const langName = (primaryLanguage && primaryLanguage.name) || "Unspecified";
   const langColor = (primaryLanguage && primaryLanguage.color) || "#333";
+  const descriptionMaxLines = description_lines_count
+    ? clampValue(description_lines_count, 1, DESCRIPTION_MAX_LINES)
+    : DESCRIPTION_MAX_LINES;
 
   const desc = parseEmojis(description || "No description provided");
-  const multiLineDescription = wrapTextMultiline(desc);
-  const descriptionLines = multiLineDescription.length;
+  const multiLineDescription = wrapTextMultiline(
+    desc,
+    DESCRIPTION_LINE_WIDTH,
+    descriptionMaxLines,
+  );
+  const descriptionLinesCount = description_lines_count
+    ? clampValue(description_lines_count, 1, DESCRIPTION_MAX_LINES)
+    : multiLineDescription.length;
+
   const descriptionSvg = multiLineDescription
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
 
   const height =
-    (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+    (descriptionLinesCount > 1 ? 120 : 110) +
+    descriptionLinesCount * lineHeight;
 
   const i18n = new I18n({
     locale,
@@ -155,13 +135,14 @@ const renderRepoCard = (repo, options = {}) => {
   const totalIssues = kFormatter(issuesCount);
   const totalPullRequests = kFormatter(pullRequestsCount);
 
-  const svgStars = iconWithLabel(icons.star, totalStars, "stargazers");
-  const svgForks = iconWithLabel(icons.fork, totalForks, "forkcount");
-  const svgIssues = iconWithLabel(icons.issues, totalIssues, "issuescount");
+  const svgStars = iconWithLabel(icons.star, totalStars, "stargazers", ICON_SIZE,);
+  const svgForks = iconWithLabel(icons.fork, totalForks, "forkcount", ICON_SIZE,);
+  const svgIssues = iconWithLabel(icons.issues, totalIssues, "issuescount", ICON_SIZE,);
   const svgPullRequests = iconWithLabel(
     icons.prs,
     totalPullRequests,
     "pullrequestscount",
+    ICON_SIZE,
   );
 
   const counters = flexLayout({
@@ -210,9 +191,9 @@ const renderRepoCard = (repo, options = {}) => {
         ? // @ts-ignore
           getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
         : isArchived
-        ? // @ts-ignore
-          getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
-        : ""
+          ? // @ts-ignore
+            getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
+          : ""
     }
 
     <text class="description" x="25" y="-5">
