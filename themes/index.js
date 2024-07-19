@@ -456,6 +456,13 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+    cyan_blue: {
+    title_color: "#00eeef",
+    icon_color: "#006666",
+    text_color: "#003333",
+    border_color: "ffffff",
+    bg_color: "202020",
+  },
   ambient_gradient: {
     title_color: "ffffff",
     text_color: "ffffff",
