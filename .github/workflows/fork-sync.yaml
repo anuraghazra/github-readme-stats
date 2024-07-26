@@ -1,0 +1,21 @@
+name: Sync Fork
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # every 30 minutes
+  workflow_dispatch: # on button click
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: tgymnich/fork-sync@v1.9
+        with:
+          owner: devantler
+          base: main
+          head: main
+          ignore_fail: true
