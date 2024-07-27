@@ -237,7 +237,7 @@ const renderStatsCard = (stats, options = {}) => {
     locale,
     disable_animations = false,
     rank_icon = "default",
-	custom_icon = null,
+    custom_icon = null,
     show = [],
   } = options;
 

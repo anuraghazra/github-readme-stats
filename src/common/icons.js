@@ -22,6 +22,7 @@ const icons = {
  * @param {string} rankIcon - The rank icon type.
  * @param {string} rankLevel - The rank level.
  * @param {number} percentile - The rank percentile.
+ * @param {string} custom_icon - The custom icon name.
  * @returns {string} - The SVG code of the rank icon
  */
 const rankIcon = (rankIcon, rankLevel, percentile, custom_icon) => {
@@ -41,7 +42,7 @@ const rankIcon = (rankIcon, rankLevel, percentile, custom_icon) => {
           ${percentile.toFixed(1)}%
         </text>
       `;
-	case "custom":
+    case "custom":
       return rank_icons[custom_icon];
     case "default":
     default:
