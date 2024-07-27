@@ -24,7 +24,7 @@ const icons = {
  * @param {number} percentile - The rank percentile.
  * @returns {string} - The SVG code of the rank icon
  */
-const rankIcon = (rankIcon, rankLevel, percentile) => {
+const rankIcon = (rankIcon, rankLevel, percentile, custom_icon) => {
   switch (rankIcon) {
     case "github":
       return `

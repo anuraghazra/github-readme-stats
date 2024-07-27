@@ -118,6 +118,7 @@ export default async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
         rank_icon,
+		custom_icon,
         show: showStats,
       }),
     );
