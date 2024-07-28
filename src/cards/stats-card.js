@@ -237,7 +237,7 @@ const renderStatsCard = (stats, options = {}) => {
     locale,
     disable_animations = false,
     rank_icon = "default",
-    rank_markings = false,
+    rank_progress = false,
     show = [],
   } = options;
 
@@ -499,7 +499,6 @@ const renderStatsCard = (stats, options = {}) => {
   };
 
   // Conditionally rendered elements
-  console.log(rank_markings);
   const rankCircle = hide_rank
     ? ""
     : `<g data-testid="rank-circle"

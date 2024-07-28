@@ -37,7 +37,7 @@ export default async (req, res) => {
     number_format,
     border_color,
     rank_icon,
-    rank_markings,
+    rank_progress,
     show,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
@@ -118,7 +118,7 @@ export default async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
         rank_icon,
-        rank_markings,
+        rank_progress,
         show: showStats,
       }),
     );
