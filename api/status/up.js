@@ -94,6 +94,9 @@ export const handler = async (req, res, env) => {
     try {
       await retryer(uptimeFetcher, {}, env);
     } catch (err) {
+      // Resolve eslint no-unused-vars
+      err;
+
       PATsValid = false;
     }
 
