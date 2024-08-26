@@ -41,7 +41,7 @@
     "@eslint/eslintrc": "^3.1.0",
     "@eslint/js": "^9.9.0",
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/jest-dom": "^6.4.8",
+    "@testing-library/jest-dom": "^6.5.0",
     "@uppercod/css-to-object": "^1.1.1",
     "axios-mock-adapter": "^2.0.0",
     "color-contrast-checker": "^2.1.0",
