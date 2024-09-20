@@ -364,6 +364,7 @@ const renderError = (message, secondaryMessage = "", options = {}) => {
     bg_color,
     border_color,
     theme = "default",
+    show_repo_link = true,
   } = options;
 
   // returns theme based colors with proper overrides and defaults
@@ -388,7 +389,7 @@ const renderError = (message, secondaryMessage = "", options = {}) => {
       ERROR_CARD_LENGTH - 1
     }" height="99%" rx="4.5" fill="${bgColor}" stroke="${borderColor}"/>
     <text x="25" y="45" class="text">Something went wrong!${
-      UPSTREAM_API_ERRORS.includes(secondaryMessage)
+      UPSTREAM_API_ERRORS.includes(secondaryMessage) || !show_repo_link
         ? ""
         : " file an issue at https://tiny.one/readme-stats"
     }</text>
