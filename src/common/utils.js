@@ -6,6 +6,8 @@ import { themes } from "../../themes/index.js";
 
 const TRY_AGAIN_LATER = "Please try again later";
 
+const OWNER_AFFILIATIONS = ["OWNER", "COLLABORATOR", "ORGANIZATION_MEMBER"];
+
 const SECONDARY_ERROR_MESSAGES = {
   MAX_RETRY:
     "You can deploy own instance or wait until public will be no longer limited",
@@ -15,6 +17,9 @@ const SECONDARY_ERROR_MESSAGES = {
   GRAPHQL_ERROR: TRY_AGAIN_LATER,
   GITHUB_REST_API_ERROR: TRY_AGAIN_LATER,
   WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
+  INVALID_AFFILIATION: `Invalid owner affiliations. Valid values are: ${OWNER_AFFILIATIONS.join(
+    ", ",
+  )}`,
 };
 
 /**
@@ -37,6 +42,7 @@ class CustomError extends Error {
   static GRAPHQL_ERROR = "GRAPHQL_ERROR";
   static GITHUB_REST_API_ERROR = "GITHUB_REST_API_ERROR";
   static WAKATIME_ERROR = "WAKATIME_ERROR";
+  static INVALID_AFFILIATION = "INVALID_AFFILIATION";
 }
 
 /**
@@ -576,6 +582,37 @@ const parseEmojis = (str) => {
 };
 
 /**
+ * Parse owner affiliations.
+ *
+ * @param {string[]} affiliations
+ * @returns {string[]} Parsed affiliations.
+ *
+ * @throws {CustomError} If affiliations contains invalid values.
+ */
+const parseOwnerAffiliations = (affiliations) => {
+  // Set default value for ownerAffiliations.
+  // NOTE: Done here since parseArray() will always return an empty array even nothing
+  //was specified.
+  affiliations =
+    affiliations && affiliations.length > 0
+      ? affiliations.map((affiliation) => affiliation.toUpperCase())
+      : ["OWNER"];
+
+  // Check if ownerAffiliations contains valid values.
+  if (
+    affiliations.some(
+      (affiliation) => !OWNER_AFFILIATIONS.includes(affiliation),
+    )
+  ) {
+    throw new CustomError(
+      "Invalid query parameter",
+      CustomError.INVALID_AFFILIATION,
+    );
+  }
+  return affiliations;
+};
+
+/**
  * Get diff in minutes between two dates.
  *
  * @param {Date} d1 First date.
@@ -608,11 +645,13 @@ export {
   wrapTextMultiline,
   logger,
   CONSTANTS,
+  OWNER_AFFILIATIONS,
   CustomError,
   MissingParamError,
   measureText,
   lowercaseTrim,
   chunkArray,
   parseEmojis,
+  parseOwnerAffiliations,
   dateDiff,
 };
