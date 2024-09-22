@@ -10,7 +10,7 @@ updates:
       prefix: "build(deps)"
       prefix-development: "build(deps-dev)"
     reviewers:
-      - "qwerty541"
+      - "plinkr"
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: github-actions
@@ -22,4 +22,4 @@ updates:
       prefix: "ci(deps)"
       prefix-development: "ci(deps-dev)"
     reviewers:
-      - "qwerty541"
+      - "plinkr"
