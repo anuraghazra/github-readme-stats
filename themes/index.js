@@ -462,6 +462,16 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  animeStyle: {
+    title_color: "ff79c6",    // Rosa para o título
+    text_color: "f8f8f2",     // Branco para o texto
+    bg_color: "282a36",       // Fundo cinza escuro
+    border_color: "ffb86c",   // Laranja suave para a borda
+    icon_color: "ff79c6",     // Ícones com rosa
+    ring_color: "ff79c6",     // Anéis com rosa (WakaTime)
+    progress_color: "ff79c6", // Progresso rosa
+    animation: true,          // Animação leve (opcional)
+ };
 };
 
 export default themes;
