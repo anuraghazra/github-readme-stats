@@ -137,15 +137,16 @@ const renderGistCard = (gistData, options = {}) => {
   `);
   card.setHideBorder(hide_border);
 
-  return card.render(`
-    <text class="description" x="25" y="-5">
+  return ` <a href="https://github.com/${nameWithOwner}" target="_blank" rel="noopener noreferrer">
+    ${card.render(`
+      <text class="description" x="25" y="-5">
         ${descriptionSvg}
-    </text>
-
-    <g transform="translate(30, ${height - 75})">
+      </text>
+      <g transform="translate(30, ${height - 75})">
         ${starAndForkCount}
-    </g>
-  `);
+      </g>
+    `)}
+  </a>`;
 };
 
 export { renderGistCard, HEADER_MAX_LENGTH };
