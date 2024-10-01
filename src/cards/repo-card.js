@@ -169,25 +169,29 @@ const renderRepoCard = (repo, options = {}) => {
     .badge rect { opacity: 0.2 }
   `);
 
-  return card.render(`
-    ${
-      isTemplate
-        ? // @ts-ignore
-          getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
-        : isArchived
-          ? // @ts-ignore
-            getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
-          : ""
-    }
+  return `
+   <a href="https://github.com/${nameWithOwner}" target="_blank" rel="noopener noreferrer">
+      ${card.render(`
+        ${
+          isTemplate
+            ? // @ts-ignore
+              getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
+            : isArchived
+              ? // @ts-ignore
+                getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
+              : ""
+        }
 
-    <text class="description" x="25" y="-5">
-      ${descriptionSvg}
-    </text>
+        <text class="description" x="25" y="-5">
+          ${descriptionSvg}
+        </text>
 
-    <g transform="translate(30, ${height - 75})">
-      ${starAndForkCount}
-    </g>
-  `);
+        <g transform="translate(30, ${height - 75})">
+          ${starAndForkCount}
+        </g>
+      `)}
+    </a>
+  `;
 };
 
 export { renderRepoCard };
