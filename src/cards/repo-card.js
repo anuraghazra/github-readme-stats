@@ -169,8 +169,9 @@ const renderRepoCard = (repo, options = {}) => {
     .badge rect { opacity: 0.2 }
   `);
 
+  // by wrapping card.render into <a> tag - Incorrect formatting of repo card description Fixes
   return `
-   <a href="https://github.com/${nameWithOwner}" target="_blank" rel="noopener noreferrer">
+   <a href="https://github.com/${nameWithOwner}" target="_blank" rel="noopener noreferrer">  
       ${card.render(`
         ${
           isTemplate
