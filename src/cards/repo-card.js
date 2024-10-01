@@ -77,6 +77,7 @@ const renderRepoCard = (repo, options = {}) => {
     border_color,
     locale,
     description_lines_count,
+    card_height,
   } = options;
 
   const lineHeight = 10;
@@ -101,9 +102,10 @@ const renderRepoCard = (repo, options = {}) => {
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
 
-  const height =
-    (descriptionLinesCount > 1 ? 120 : 110) +
-    descriptionLinesCount * lineHeight;
+  const height = card_height
+    ? card_height
+    : (descriptionLinesCount > 1 ? 120 : 110) +
+      descriptionLinesCount * lineHeight;
 
   const i18n = new I18n({
     locale,
