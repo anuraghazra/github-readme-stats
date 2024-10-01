@@ -238,6 +238,7 @@ const renderStatsCard = (stats, options = {}) => {
     disable_animations = false,
     rank_icon = "default",
     show = [],
+    custom_title
   } = options;
 
   const lheight = parseInt(String(line_height), 10);
@@ -408,14 +409,15 @@ const renderStatsCard = (stats, options = {}) => {
   });
 
   const calculateTextWidth = () => {
-    return measureText(
-      custom_title
-        ? custom_title
-        : statItems.length
-          ? i18n.t("statcard.title")
-          : i18n.t("statcard.ranktitle"),
-    );
+    return measureText(custom_title || (statItems.length
+      ? i18n.t("statcard.title")
+      : i18n.t("statcard.ranktitle")));
   };
+
+  const titleWidth = calculateTextWidth();
+  const minCardWidth = Math.max(CARD_MIN_WIDTH, titleWidth + 100); // Add padding
+  const defaultCardWidth = Math.max(CARD_DEFAULT_WIDTH, titleWidth + 100);
+
 
   /*
     When hide_rank=true, the minimum card width is 270 px + the title length and padding.
@@ -444,15 +446,17 @@ const renderStatsCard = (stats, options = {}) => {
       ? defaultCardWidth
       : card_width
     : defaultCardWidth;
+
+  // Ensure width respects minCardWidth
   if (width < minCardWidth) {
     width = minCardWidth;
   }
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: statItems.length
+    defaultTitle: custom_title || (statItems.length
       ? i18n.t("statcard.title")
-      : i18n.t("statcard.ranktitle"),
+      : i18n.t("statcard.ranktitle")),
     width,
     height,
     border_radius,
