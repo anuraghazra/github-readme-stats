@@ -169,7 +169,7 @@ const renderRepoCard = (repo, options = {}) => {
     .badge rect { opacity: 0.2 }
   `);
 
-  // by wrapping card.render into <a> tag - Incorrect formatting of repo card description Fixes
+  // by wrapping card.render into <a> tag - fixes Incorrect formatting of repo card description Fixes #3956
   return `
    <a href="https://github.com/${nameWithOwner}" target="_blank" rel="noopener noreferrer">  
       ${card.render(`
