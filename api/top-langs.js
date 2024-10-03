@@ -33,6 +33,7 @@ export default async (req, res) => {
     border_color,
     disable_animations,
     hide_progress,
+    stats_format,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -59,6 +60,16 @@ export default async (req, res) => {
   ) {
     return res.send(
       renderError("Something went wrong", "Incorrect layout input"),
+    );
+  }
+
+  if (
+    stats_format !== undefined &&
+    (typeof stats_format !== "string" ||
+      !["bytes", "percentages"].includes(stats_format))
+  ) {
+    return res.send(
+      renderError("Something went wrong", "Incorrect stats_format input"),
     );
   }
 
@@ -104,6 +115,7 @@ export default async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
         hide_progress: parseBoolean(hide_progress),
+        stats_format,
       }),
     );
   } catch (err) {
