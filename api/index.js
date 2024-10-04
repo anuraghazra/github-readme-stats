@@ -10,6 +10,21 @@ import {
 import { fetchStats } from "../src/fetchers/stats-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
+// Add this at the top of `api/index.js`
+const secretKey = process.env.SECRET_KEY;
+
+module.exports = (req, res) => {
+  // Check if the request includes the secret_key query parameter
+  const providedSecret = req.query.secret_key;
+  if (!providedSecret || providedSecret !== secretKey) {
+    return res.status(401).json({ error: "Unauthorized access" });
+  }
+
+  // Continue with the existing GitHub stats logic below...
+  // Existing logic for generating GitHub stats goes here
+};
+
+
 export default async (req, res) => {
   const {
     username,
