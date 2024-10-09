@@ -1,5 +1,6 @@
 import { renderTopLanguages } from "../src/cards/top-languages-card.js";
 import { blacklist } from "../src/common/blacklist.js";
+import { whitelist } from "../src/common/whitelist.js";
 import {
   clampValue,
   CONSTANTS,
@@ -44,6 +45,19 @@ export default async (req, res) => {
         bg_color,
         border_color,
         theme,
+      }),
+    );
+  }
+
+  if (whitelist && !whitelist.includes(username)) {
+    return res.send(
+      renderError("This username is not whitelisted", "", {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+        show_repo_link: false,
       }),
     );
   }
