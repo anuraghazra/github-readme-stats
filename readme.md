@@ -84,7 +84,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 </p>
 
 <p align="center"> 
-  <img src="https://github-readme-stats.vercel.app/api?username=mkiz0403&theme=vue&show_icons=true"/></a>
+  <img src="https://github-readme-stats.vercel.app/api?username=mkiz0403&theme=default&show_icons=true"/></a>
 </p>
 
 # Features <!-- omit in toc -->
