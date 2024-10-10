@@ -135,7 +135,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 
 Copy and paste this into your markdown, and that's it. Simple!
 
-Change the `?username=` value to your GitHub username.
+Change the `?username` value to your GitHub username.
 
 ```md
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
@@ -843,3 +843,7 @@ Thanks! :heart:
 Contributions are welcome! <3
 
 Made with :heart: and JavaScript.
+
+[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=mkiz0403@gmail.com)](https://github.com/anuraghazra/github-readme-stats)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=mkiz0403@gmail.com&show_icons=true&theme=default)
+
