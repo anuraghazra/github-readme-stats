@@ -83,6 +83,10 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 
 </p>
 
+<p align="center"> 
+  <img src="https://github-readme-stats.vercel.app/api?username=mkiz0403&theme=vue&show_icons=true"/></a>
+</p>
+
 # Features <!-- omit in toc -->
 
 - [GitHub Stats Card](#github-stats-card)
@@ -844,6 +848,4 @@ Contributions are welcome! <3
 
 Made with :heart: and JavaScript.
 
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=mkiz0403@gmail.com)](https://github.com/anuraghazra/github-readme-stats)
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=mkiz0403@gmail.com&show_icons=true&theme=default)
 
