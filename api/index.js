@@ -88,9 +88,7 @@ export default async (req, res) => {
 
     res.setHeader(
       "Cache-Control",
-      `max-age=${
-        cacheSeconds / 2
-      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      `max-age=${cacheSeconds}, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     );
 
     return res.send(
