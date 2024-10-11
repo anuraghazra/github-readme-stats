@@ -72,10 +72,9 @@ export default async (req, res) => {
       parseArray(role),
     );
 
-    let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
-      CONSTANTS.SIX_HOURS,
-      CONSTANTS.ONE_DAY,
+    let cacheSeconds = parseInt(
+      cache_seconds || CONSTANTS.TOP_LANGS_CACHE_SECONDS,
+      10,
     );
     cacheSeconds = process.env.CACHE_SECONDS
       ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
@@ -83,9 +82,7 @@ export default async (req, res) => {
 
     res.setHeader(
       "Cache-Control",
-      `max-age=${
-        cacheSeconds / 2
-      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      `max-age=${cacheSeconds / 2}, s-maxage=${cacheSeconds}`,
     );
 
     return res.send(
