@@ -59,7 +59,7 @@ export const handler = async (req, res, env) => {
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
       CONSTANTS.SIX_HOURS,
-      CONSTANTS.ONE_DAY,
+      CONSTANTS.TWO_DAY,
     );
     cacheSeconds = env.CACHE_SECONDS
       ? parseInt(env.CACHE_SECONDS, 10) || cacheSeconds
