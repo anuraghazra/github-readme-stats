@@ -1,7 +1,6 @@
 import { renderTopLanguages } from "../src/cards/top-languages-card.js";
 import { blacklist } from "../src/common/blacklist.js";
 import {
-  clampValue,
   CONSTANTS,
   parseArray,
   parseBoolean,
