@@ -26,6 +26,25 @@ describe("Test Render WakaTime Card", () => {
     expect(card).toMatchSnapshot();
   });
 
+  describe("when progress_bar_border_color is set", () => {
+    it("should render correctly", () => {
+      const card = renderWakatimeCard(wakaTimeData.data, {
+        progress_bar_border_color: "fff",
+      });
+
+      expect(card).toMatchSnapshot();
+    });
+
+    it("should render correctly with compact layout", () => {
+      const card = renderWakatimeCard(wakaTimeData.data, {
+        progress_bar_border_color: "fff",
+        layout: "compact",
+      });
+
+      expect(card).toMatchSnapshot();
+    });
+  });
+
   it("should hide languages when hide is passed", () => {
     document.body.innerHTML = renderWakatimeCard(wakaTimeData.data, {
       hide: ["YAML", "Other"],
