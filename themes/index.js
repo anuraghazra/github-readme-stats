@@ -456,6 +456,13 @@ export const themes = {
     border_color: "e1bc29",
     bg_color: "2b2d40",
   },
+  leetcode_dark: {
+    title_color: "ffa116",
+    text_color: "f0f0f0",
+    icon_color: "ffa116",
+    border_color: "404040",
+    bg_color: "101010",
+  },
   ambient_gradient: {
     title_color: "ffffff",
     text_color: "ffffff",
