@@ -846,4 +846,10 @@ Contributions are welcome! <3
 Made with :heart: and JavaScript.
 
 
-[![Back to top](https://img.icons8.com/material-outlined/24/000000/up.png)](#top)
+<div align="right">
+  <a href="#top">
+    <img src="https://files.catbox.moe/fdzvu3.png" alt="Back to top" width="40" height="40">
+  </a>
+  <br>
+  <b>Go Top</b>
+</div>
