@@ -105,7 +105,7 @@ const fetcher = (variables, token) => {
  * Fetch stats information for a given username.
  *
  * @param {object} variables Fetcher variables.
- * @param {string} variables.username Github username.
+ * @param {string} variables.username GitHub username.
  * @param {boolean} variables.includeMergedPullRequests Include merged pull requests.
  * @param {boolean} variables.includeDiscussions Include discussions.
  * @param {boolean} variables.includeDiscussionsAnswers Include discussions answers.
