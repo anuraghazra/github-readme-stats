@@ -7,8 +7,11 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
@@ -16,22 +19,19 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
+    </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supporté%20par-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supporté%20par-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
-    <a href="#démo">Voir la démo</a>
+    <a href="#toutes-les-démos">Voir la démo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Soumettre un bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Soumettre un bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Demander une nouveauté</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Demander une nouveauté</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
@@ -53,18 +53,31 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">Vous aimez ce projet? Pensez <a href="https://www.paypal.me/anuraghazra">à faire un don</a> pour l'améliorer!
 
-# Features
+# Features <!-- omit in toc -->
 
-- [Carte des stats GitHub](#carte-des-stats-github)
+- [Carte des Stats GitHub](#carte-des-stats-github)
+    - [Cacher les statistiques individuelles](#cacher-les-statistiques-individuelles)
+    - [Afficher les icônes](#afficher-les-icônes)
+    - [Thèmes](#thèmes)
+    - [Personnalisation](#personnalisation)
 - [GitHub Extra Pins](#github-extra-pins)
-- [Carte des meilleurs langages](#carte-des-langages-les--utilisés)
-- [Themes](#thèmes)
-- [Personnalisation](#personnalisation)
-- [Deployer toi-même](#déployer-sur-votre-propre-instance-vercel)
+    - [Usage](#usage)
+    - [Démo](#démo)
+- [Carte des langages les + utilisés](#carte-des-langages-les--utilisés)
+    - [Usage](#usage-1)
+    - [Cacher certaines langages](#cacher-certaines-langages)
+    - [Carte compacte des langages](#carte-compacte-des-langages)
+    - [Démo](#démo-1)
+    - [Toutes les démos](#toutes-les-démos)
+    - [Conseil rapide (aligner les cartes des dépôts)](#conseil-rapide-aligner-les-cartes-des-dépôts)
+  - [Déployer sur votre propre instance Vercel](#déployer-sur-votre-propre-instance-vercel)
+  - [:sparkling\_heart: Supporter le project](#sparkling_heart-supporter-le-project)
 
 # Carte des Stats GitHub
 
@@ -86,18 +99,6 @@ Pour masquer des statistiques spécifiques, vous pouvez passer un paramètre de 
 
 ```md
 ![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&hide=contribs,prs)
-```
-
-### Ajouter le compte des contributions privées au compte des commits totaux
-
-Vous pouvez ajouter le compte de toutes vos contributions privées au compte total des engagements en utilisant le paramètre de requête `?count_private=true`.
-
-_Note: Si vous déployez vous-même ce projet, les contributions privées seront comptées par défaut ; sinon, vous devez choisir de partager les comptes de vos contributions privées._
-
-> Options: `&count_private=true`
-
-```md
-![Les Stats GitHub de Anurag](https://github-readme-stats.vercel.app/api?username=anuraghazra&count_private=true)
 ```
 
 ### Afficher les icônes
@@ -138,7 +139,7 @@ Vous pouvez personnaliser l'apparence de votre `Carte des stats` ou `Carte de d�
 - `bg_color` - Couleur du fond de la carte _(hex color)_ **ou** un gradiant de la forme _angle,start,end_
 - `hide_border` - Cache la bordure de la carte _(booléen)_
 - `theme` - Nom du thème, parmis [tous les thèmes disponibles](../themes/README.md)
-- `cache_seconds` - Paramétrer le cache manuellement _(min: 1800, max: 86400)_
+- `cache_seconds` - Paramétrer le cache manuellement _(min: 14400, max: 86400)_
 - `locale` - définir la langue de la carte _(par exemple. cn, de, es, etc.)_
 
 ##### Gradient in bg_color
@@ -158,7 +159,7 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 -   `hide_rank` - Masquer le rang _(boolean)_
 -   `show_icons` - Afficher les icônes _(boolean)_
 -   `include_all_commits` - Compter le total de commits au lieu de ne compter que les commits de l'année en cours _(boolean)_
--   `count_private` - Compter les commits privés _(boolean)_
+-   `count_private` - Compter les contributions privées _(boolean)_
 -   `line_height` - Fixer la hauteur de la ligne entre les textes _(number)_
 
 #### Repo Card Exclusive Options:
@@ -169,7 +170,7 @@ Vous pouvez fournir plusieurs valeurs (suivie d'une virgule) dans l'option bg_co
 
 -   `hide` - Masquer les langages spécifiés sur la carte _(Comma seperated values)_
 -   `hide_title` - Masquer le titre _(boolean)_
--   `layout` - Alterner entre 2 mise en page `default` & `compact`
+-   `layout` - Alterner entre 5 mise en page `normal` & `compact` & `donut` & `donut-vertical` & `pie`
 -   `card_width` - Fixer la largeur de la carte manuellement _(number)_
 
 > :warning: **Important:**

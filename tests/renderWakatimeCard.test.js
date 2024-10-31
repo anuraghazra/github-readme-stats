@@ -3,10 +3,11 @@ import "@testing-library/jest-dom";
 import { renderWakatimeCard } from "../src/cards/wakatime-card.js";
 import { getCardColors } from "../src/common/utils.js";
 import { wakaTimeData } from "./fetchWakatime.test.js";
+import { expect, it, describe } from "@jest/globals";
 
-describe("Test Render Wakatime Card", () => {
+describe("Test Render WakaTime Card", () => {
   it("should render correctly", () => {
-    const card = renderWakatimeCard(wakaTimeData.data);
+    // const card = renderWakatimeCard(wakaTimeData.data);
     expect(getCardColors).toMatchSnapshot();
   });
 
@@ -38,12 +39,12 @@ describe("Test Render Wakatime Card", () => {
   it("should render translations", () => {
     document.body.innerHTML = renderWakatimeCard({}, { locale: "cn" });
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Wakatime 周统计",
+      "WakaTime 周统计",
     );
     expect(
       document.querySelector('g[transform="translate(0, 0)"]>text.stat.bold')
         .textContent,
-    ).toBe("本周没有编程活动");
+    ).toBe("WakaTime 用户个人资料未公开");
   });
 
   it("should render without rounding", () => {
@@ -55,13 +56,28 @@ describe("Test Render Wakatime Card", () => {
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
   });
 
-  it('should show "no coding activitiy this week" message when there hasn not been activity', () => {
+  it('should show "no coding activity this week" message when there has not been activity', () => {
     document.body.innerHTML = renderWakatimeCard(
       {
         ...wakaTimeData.data,
         languages: undefined,
       },
       {},
+    );
+    expect(document.querySelector(".stat").textContent).toBe(
+      "No coding activity this week",
+    );
+  });
+
+  it('should show "no coding activity this week" message when using compact layout and there has not been activity', () => {
+    document.body.innerHTML = renderWakatimeCard(
+      {
+        ...wakaTimeData.data,
+        languages: undefined,
+      },
+      {
+        layout: "compact",
+      },
     );
     expect(document.querySelector(".stat").textContent).toBe(
       "No coding activity this week",

@@ -7,8 +7,11 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Testes aprovados" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
@@ -16,22 +19,19 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
+    </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Apoiado%20por-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Apoiado%20por-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
     <a href="#demonstração">Ver demonstração</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Reportar erros</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Reportar erros</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Solicitar recursos</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Solicitar recursos</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
@@ -59,15 +59,28 @@
 </p>
 <p align="center">Gostou do projeto? Por favor considere <a href="https://www.paypal.me/anuraghazra">fazer uma doação</a> para ajudar a melhorá-lo!
 
-# Características
+# Características <!-- omit in toc -->
 
 - [Cartão de estatísticas do GitHub](#cartão-de-estatísticas-do-github)
+    - [Ocultando estatísticas específicas](#ocultando-estatísticas-específicas)
+    - [Adicionando contagem de contribuições privadas à contagem total de commits](#adicionando-contagem-de-contribuições-privadas-à-contagem-total-de-commits)
+    - [Exibindo ícones](#exibindo-ícones)
+    - [Temas](#temas)
+    - [Personalização](#personalização)
 - [Pins extras do GitHub](#pins-extras-do-github)
+    - [Utilização](#utilização)
+    - [Demonstração](#demonstração)
 - [Cartão de principais linguagens de programação](#cartão-de-principais-linguagens-de-programação)
-- [Estatística semanal Wakatime](#estatística-semanal-wakatime)
-- [Temas](#temas)
-- [Personalização](#personalização)
-- [Faça suas próprias implantações](#implante-em-sua-própria-instância-do-vercel)
+    - [Utilização](#utilização-1)
+    - [Ocultar linguagens individualmente](#ocultar-linguagens-individualmente)
+    - [Layout de cartão de linguagens compacto](#layout-de-cartão-de-linguagens-compacto)
+    - [Demonstração](#demonstração-1)
+- [Estatística semanal WakaTime](#estatística-semanal-wakatime)
+    - [Demonstração](#demonstração-2)
+    - [Todas as demonstrações](#todas-as-demonstrações)
+    - [Dica (Alinhandos os cartões de repositório)](#dica-alinhandos-os-cartões-de-repositório)
+  - [Implante em sua própria instância do Vercel](#implante-em-sua-própria-instância-do-vercel)
+  - [:sparkling\_heart: Apoie o projeto](#sparkling_heart-apoie-o-projeto)
 
 # Cartão de estatísticas do GitHub
 
@@ -141,7 +154,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 - `bg_color` - Cor de fundo do cartão _(hex color)_
 - `hide_border` - Esconde a borda do cartão _(boleano)_
 - `theme` - Nome do tema, escolha em [todos os temas disponíveis](../themes/README.md)
-- `cache_seconds` - Defina o cabeçalho do cache manualmente _(min: 1800, max: 86400)_
+- `cache_seconds` - Defina o cabeçalho do cache manualmente _(min: 14400, max: 86400)_
 - `locale` - defina o idioma no cartão _(por exemplo. cn, de, es, etc.)_
 
 > Nota sobre o cache: Cartões de repositório tem um cache padrão de 30 minutos (1800 segundos), se o número a contagem de forks e contagem de estrelas é menor que 1 mil o padrão é 2 horas (7200 segundos). Note também que o cache é limitado a um mínimo de 30 minutos e um máximo de 24 horas.
@@ -164,7 +177,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 
 - `hide` - Oculta linguagens específicas _(Valores separados por vírgulas)_
 - `hide_title` - Oculta o título _(boolean)_
-- `layout` - Alterna entre os dois layouts disponíveis `default` & `compact`
+- `layout` - Alternar entre os cinco layouts disponíveis `normal` & `compact` & `donut` & `donut-vertical` & `pie`
 - `card_width` - Define a largura do cartão manualmente _(number)_
 
 > :warning: **Importante:**
@@ -237,19 +250,19 @@ Utilize a opção `&layout=compact` para mudar o layout do cartão.
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 
-# Estatística semanal Wakatime
+# Estatística semanal WakaTime
 
-Altere o valor de `?username=` para o seu username do Wakatime.
+Altere o valor de `?username=` para o seu username do WakaTime.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demonstração
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
