@@ -518,7 +518,7 @@ const renderStatsCard = (stats, options = {}) => {
       if (key === "commits") {
         return `${i18n.t("statcard.commits")} ${
           include_all_commits ? "" : `in ${new Date().getFullYear()}`
-        } : ${totalStars}`;
+        } : ${STATS[key].value}`;
       }
       return `${STATS[key].label}: ${STATS[key].value}`;
     })
