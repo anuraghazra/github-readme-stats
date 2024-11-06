@@ -10,13 +10,14 @@ import {
   MissingParamError,
   request,
   wrapTextMultiline,
+  parseOwnerAffiliations,
 } from "../common/utils.js";
 
 dotenv.config();
 
 // GraphQL queries.
 const GRAPHQL_REPOS_FIELD = `
-  repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
+  repositories(first: 100, after: $after, ownerAffiliations: $ownerAffiliations, orderBy: {direction: DESC, field: STARGAZERS}) {
     totalCount
     nodes {
       name
@@ -32,15 +33,23 @@ const GRAPHQL_REPOS_FIELD = `
 `;
 
 const GRAPHQL_REPOS_QUERY = `
-  query userInfo($login: String!, $after: String) {
-    user(login: $login) {
+  query userInfo($login: String!, $after: String, $ownerAffiliations: [RepositoryAffiliation]) {
+    user(login: $login, ownerAffiliations: $ownerAffiliations) {
       ${GRAPHQL_REPOS_FIELD}
     }
   }
 `;
 
 const GRAPHQL_STATS_QUERY = `
+<<<<<<< HEAD
   query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!) {
+=======
+<<<<<<< HEAD
+  query userInfo($login: String!, $after: String, $ownerAffiliations: [RepositoryAffiliation]) {
+=======
+  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!) {
+>>>>>>> 1c07f41 (feature: fetch only requested data from GitHub GraphQL API to reduce load (#3208))
+>>>>>>> rickstaa-add_role_param
     user(login: $login) {
       name
       login
@@ -104,6 +113,7 @@ const fetcher = (variables, token) => {
 /**
  * Fetch stats information for a given username.
  *
+<<<<<<< HEAD
  * @param {object} variables Fetcher variables.
  * @param {string} variables.username Github username.
  * @param {boolean} variables.includeMergedPullRequests Include merged pull requests.
@@ -113,12 +123,36 @@ const fetcher = (variables, token) => {
  *
  * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
  */
+=======
+<<<<<<< HEAD
+ * @param {string} username Github username.
+ * @param {string[]} ownerAffiliations The owner affiliations to filter by. Default: OWNER.
+ * @returns {Promise<import('../common/types').StatsFetcher>} GraphQL Stats object.
+ *
+ * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
+ */
+const statsFetcher = async (username, ownerAffiliations) => {
+=======
+ * @param {object} variables Fetcher variables.
+ * @param {string} variables.username Github username.
+ * @param {boolean} variables.includeMergedPullRequests Include merged pull requests.
+ * @param {boolean} variables.includeDiscussions Include discussions.
+ * @param {boolean} variables.includeDiscussionsAnswers Include discussions answers.
+ * @returns {Promise<AxiosResponse>} Axios response.
+ *
+ * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
+ */
+>>>>>>> rickstaa-add_role_param
 const statsFetcher = async ({
   username,
   includeMergedPullRequests,
   includeDiscussions,
   includeDiscussionsAnswers,
 }) => {
+<<<<<<< HEAD
+=======
+>>>>>>> 1c07f41 (feature: fetch only requested data from GitHub GraphQL API to reduce load (#3208))
+>>>>>>> rickstaa-add_role_param
   let stats;
   let hasNextPage = true;
   let endCursor = null;
@@ -127,9 +161,19 @@ const statsFetcher = async ({
       login: username,
       first: 100,
       after: endCursor,
+<<<<<<< HEAD
       includeMergedPullRequests,
       includeDiscussions,
       includeDiscussionsAnswers,
+=======
+<<<<<<< HEAD
+      ownerAffiliations: ownerAffiliations,
+=======
+      includeMergedPullRequests,
+      includeDiscussions,
+      includeDiscussionsAnswers,
+>>>>>>> 1c07f41 (feature: fetch only requested data from GitHub GraphQL API to reduce load (#3208))
+>>>>>>> rickstaa-add_role_param
     };
     let res = await retryer(fetcher, variables);
     if (res.data.errors) {
@@ -213,19 +257,41 @@ const totalCommitsFetcher = async (username) => {
  *
  * @param {string} username GitHub username.
  * @param {boolean} include_all_commits Include all commits.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+ * @param {string[]} exclude_repo Repositories to exclude.  Default: [].
+ * @param {string[]} ownerAffiliations Owner affiliations. Default: OWNER.
+ * @returns {Promise<import("./types").StatsData>} Stats data.
+=======
+>>>>>>> rickstaa-add_role_param
  * @param {string[]} exclude_repo Repositories to exclude.
  * @param {boolean} include_merged_pull_requests Include merged pull requests.
  * @param {boolean} include_discussions Include discussions.
  * @param {boolean} include_discussions_answers Include discussions answers.
  * @returns {Promise<StatsData>} Stats data.
+<<<<<<< HEAD
+=======
+>>>>>>> 1c07f41 (feature: fetch only requested data from GitHub GraphQL API to reduce load (#3208))
+>>>>>>> rickstaa-add_role_param
  */
 const fetchStats = async (
   username,
   include_all_commits = false,
   exclude_repo = [],
+<<<<<<< HEAD
   include_merged_pull_requests = false,
   include_discussions = false,
   include_discussions_answers = false,
+=======
+<<<<<<< HEAD
+  ownerAffiliations = [],
+=======
+  include_merged_pull_requests = false,
+  include_discussions = false,
+  include_discussions_answers = false,
+>>>>>>> 1c07f41 (feature: fetch only requested data from GitHub GraphQL API to reduce load (#3208))
+>>>>>>> rickstaa-add_role_param
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -245,13 +311,24 @@ const fetchStats = async (
     contributedTo: 0,
     rank: { level: "C", percentile: 100 },
   };
+  ownerAffiliations = parseOwnerAffiliations(ownerAffiliations);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  let res = await statsFetcher(username, ownerAffiliations);
+=======
+>>>>>>> rickstaa-add_role_param
   let res = await statsFetcher({
     username,
     includeMergedPullRequests: include_merged_pull_requests,
     includeDiscussions: include_discussions,
     includeDiscussionsAnswers: include_discussions_answers,
   });
+<<<<<<< HEAD
+=======
+>>>>>>> 1c07f41 (feature: fetch only requested data from GitHub GraphQL API to reduce load (#3208))
+>>>>>>> rickstaa-add_role_param
 
   // Catch GraphQL errors.
   if (res.data.errors) {
