@@ -18,11 +18,11 @@ export const themes = {
     text_color: "417E87",
     bg_color: "ffffff00",
   },
-  shadow_red: {
-    title_color: "9A0000",
-    text_color: "444",
-    icon_color: "4F0000",
-    border_color: "4F0000",
+  shadow_ultramarine: {
+    title_color: "3F00FF",
+    text_color: "FFFFFF",
+    icon_color: "3F00FF",
+    border_color: "ffffff00",
     bg_color: "ffffff00",
   },
   shadow_green: {
