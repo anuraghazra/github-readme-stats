@@ -15,6 +15,12 @@ const data_repo = {
       name: "TypeScript",
     },
     forkCount: 100,
+    languageBreakdown: [
+      { name: "HTML", color: "#e34c26", size: 1808 },
+      { name: "TypeScript", color: "#3178c6", size: 296797 },
+      { name: "CSS", color: "#563d7c", size: 787 },
+      { name: "JavaScript", color: "#f1e05a", size: 4989 },
+    ],
   },
 };
 
@@ -47,6 +53,7 @@ describe("Test fetchRepo", () => {
     expect(repo).toStrictEqual({
       ...data_repo.repository,
       starCount: data_repo.repository.stargazers.totalCount,
+      languagesBreakdown: data_repo.languageBreakdown,
     });
   });
 
@@ -57,6 +64,7 @@ describe("Test fetchRepo", () => {
     expect(repo).toStrictEqual({
       ...data_repo.repository,
       starCount: data_repo.repository.stargazers.totalCount,
+      languagesBreakdown: data_repo.languageBreakdown,
     });
   });
 

@@ -55,6 +55,38 @@ const fetcher = (variables, token) => {
     },
   );
 };
+/**
+ * Language data fetcher.
+ *
+ * @param {AxiosRequestHeaders} variables Fetcher variables.
+ * @param {string} token GitHub token.
+ * @returns {Promise<AxiosResponse>} The response.
+ */
+const fetcherLanguage = (variables, token) => {
+  return request(
+    {
+      query: `
+      query getRepoLanguages($login: String!, $repo: String!) {
+        repository(owner: $login, name: $repo) {
+          languages(first: 10) {
+            edges {
+              node {
+                name
+                color
+              }
+              size
+            }
+          }
+        }
+      }
+    `,
+      variables,
+    },
+    {
+      Authorization: `token ${token}`,
+    },
+  );
+};
 
 const urlExample = "/api/pin?username=USERNAME&amp;repo=REPO_NAME";
 
@@ -91,6 +123,20 @@ const fetchRepo = async (username, reponame) => {
   const isUser = data.organization === null && data.user;
   const isOrg = data.user === null && data.organization;
 
+  let resLanguage = await retryer(fetcherLanguage, {
+    login: username,
+    repo: reponame,
+  });
+
+  const languages = resLanguage.data.data.repository?.languages.edges.map(
+    (edge) => ({
+      name: edge.node.name,
+      color: edge.node.color,
+      size: edge.size,
+    }),
+  );
+
+  console.log(languages);
   if (isUser) {
     if (!data.user.repository || data.user.repository.isPrivate) {
       throw new Error("User Repository Not found");
@@ -98,6 +144,7 @@ const fetchRepo = async (username, reponame) => {
     return {
       ...data.user.repository,
       starCount: data.user.repository.stargazers.totalCount,
+      languagesBreakdown: languages,
     };
   }
 
@@ -111,6 +158,7 @@ const fetchRepo = async (username, reponame) => {
     return {
       ...data.organization.repository,
       starCount: data.organization.repository.stargazers.totalCount,
+      languagesBreakdown: languages,
     };
   }
 
