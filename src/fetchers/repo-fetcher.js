@@ -128,15 +128,25 @@ const fetchRepo = async (username, reponame) => {
     repo: reponame,
   });
 
-  const languages = resLanguage.data.data.repository?.languages.edges.map(
-    (edge) => ({
-      name: edge.node.name,
-      color: edge.node.color,
-      size: edge.size,
-    }),
+  const data_languages = resLanguage.data.data;
+
+  const toplanguages = data_languages.repository.languages.edges.reduce(
+    (acc, edge) => {
+      const { name, color } = edge.node;
+      const size = edge.size;
+
+      if (acc[name]) {
+        acc[name].size += size;
+        acc[name].count += 1;
+      } else {
+        acc[name] = { name, color, size, count: 1 };
+      }
+
+      return acc;
+    },
+    {},
   );
 
-  console.log(languages);
   if (isUser) {
     if (!data.user.repository || data.user.repository.isPrivate) {
       throw new Error("User Repository Not found");
@@ -144,7 +154,7 @@ const fetchRepo = async (username, reponame) => {
     return {
       ...data.user.repository,
       starCount: data.user.repository.stargazers.totalCount,
-      languagesBreakdown: languages,
+      languagesBreakdown: toplanguages,
     };
   }
 
@@ -158,7 +168,7 @@ const fetchRepo = async (username, reponame) => {
     return {
       ...data.organization.repository,
       starCount: data.organization.repository.stargazers.totalCount,
-      languagesBreakdown: languages,
+      languagesBreakdown: toplanguages,
     };
   }
 

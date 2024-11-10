@@ -15,11 +15,16 @@ import {
   clampValue,
 } from "../common/utils.js";
 import { repoCardLocales } from "../translations.js";
+import {
+  renderCompactLayout,
+  trimTopLanguages,
+  getDefaultLanguagesCountByLayout,
+} from "./top-languages-card.js";
 
 const ICON_SIZE = 16;
 const DESCRIPTION_LINE_WIDTH = 59;
 const DESCRIPTION_MAX_LINES = 3;
-
+const CARD_PADDING = 25;
 /**
  * Retrieves the repository description and wraps it to fit the card width.
  *
@@ -64,6 +69,7 @@ const renderRepoCard = (repo, options = {}) => {
     isTemplate,
     starCount,
     forkCount,
+    languagesBreakdown,
   } = repo;
   const {
     hide_border = false,
@@ -77,7 +83,17 @@ const renderRepoCard = (repo, options = {}) => {
     border_color,
     locale,
     description_lines_count,
+    hide_progress,
+    layout = "compact",
+    langs_count = getDefaultLanguagesCountByLayout({ layout, hide_progress }),
+    hide,
   } = options;
+
+  const { langs, totalLanguageSize } = trimTopLanguages(
+    languagesBreakdown,
+    langs_count,
+    hide,
+  );
 
   const lineHeight = 10;
   const header = show_owner ? nameWithOwner : name;
@@ -149,6 +165,13 @@ const renderRepoCard = (repo, options = {}) => {
     gap: 25,
   }).join("");
 
+  const languageBar = renderCompactLayout(
+    langs,
+    400,
+    totalLanguageSize,
+    hide_progress,
+  );
+
   const card = new Card({
     defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
     titlePrefixIcon: icons.contribs,
@@ -167,26 +190,51 @@ const renderRepoCard = (repo, options = {}) => {
     .icon { fill: ${colors.iconColor} }
     .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
     .badge rect { opacity: 0.2 }
+    .lang-name { font: 400 11px "Segoe UI", Ubuntu, Sans-Serif; fill: ${colors.textColor} }
   `);
 
-  return card.render(`
-    ${
-      isTemplate
-        ? // @ts-ignore
-          getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
-        : isArchived
+  const temp = true;
+  if (temp) {
+    return card.render(`
+      ${
+        isTemplate
           ? // @ts-ignore
-            getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
-          : ""
-    }
-
-    <text class="description" x="25" y="-5">
-      ${descriptionSvg}
-    </text>
-
-    <g transform="translate(30, ${height - 75})">
-      ${starAndForkCount}
-    </g>
+            getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
+          : isArchived
+            ? // @ts-ignore
+              getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
+            : ""
+      }
+  
+      <text class="description" x="25" y="-5">
+        ${descriptionSvg}
+      </text>
+  
+      <g transform="translate(30, ${height - 75})">
+        ${starAndForkCount}
+      </g>
+  
+    `);
+  }
+  return card.render(`
+          ${
+            isTemplate
+              ? // @ts-ignore
+                getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
+              : isArchived
+                ? // @ts-ignore
+                  getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
+                : ""
+          }
+  
+      <text class="description" x="25" y="-5">
+        ${descriptionSvg}
+      </text>
+      <g transform="translate(0, ${height - 90})">
+        <svg data-testid="lang-items" x="${CARD_PADDING}">
+          ${languageBar}
+        </svg>
+      </g>
   `);
 };
 
