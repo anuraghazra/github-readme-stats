@@ -48,6 +48,18 @@ const getBadgeSVG = (label, textColor) => `
 `;
 
 /**
+ * Calculates extra height needed for the languages bar.
+ *
+ * @param {number} totalLangs Total number of languages.
+ * @param {boolean} hideProgress Flag to hide progress bar.
+ * @returns {number} Card height.
+ */
+const calculateExtraLangHeigth = (totalLangs, hideProgress) => {
+  const baseHeight = Math.ceil(totalLangs / 2) * 25;
+  return hideProgress ? baseHeight - 30 : baseHeight;
+};
+
+/**
  * @typedef {import("../fetchers/types").RepositoryData} RepositoryData Repository data.
  * @typedef {import("./types").RepoCardOptions} RepoCardOptions Repo card options.
  */
@@ -84,7 +96,7 @@ const renderRepoCard = (repo, options = {}) => {
     locale,
     description_lines_count,
     show_lang_bar = false,
-    hide_progress,
+    hide_progress = false,
     layout = "compact", // add more layouts in the future
     langs_count = getDefaultLanguagesCountByLayout({ layout, hide_progress }),
     hide,
@@ -177,7 +189,11 @@ const renderRepoCard = (repo, options = {}) => {
     defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
     titlePrefixIcon: icons.contribs,
     width: 400,
-    height,
+    height:
+      height +
+      (show_lang_bar
+        ? calculateExtraLangHeigth(langs.length, hide_progress)
+        : 0),
     border_radius,
     colors,
   });
