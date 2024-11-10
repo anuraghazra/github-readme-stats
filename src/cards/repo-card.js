@@ -83,8 +83,9 @@ const renderRepoCard = (repo, options = {}) => {
     border_color,
     locale,
     description_lines_count,
+    show_lang_bar = false,
     hide_progress,
-    layout = "compact",
+    layout = "compact", // add more layouts in the future
     langs_count = getDefaultLanguagesCountByLayout({ layout, hide_progress }),
     hide,
   } = options;
@@ -193,8 +194,7 @@ const renderRepoCard = (repo, options = {}) => {
     .lang-name { font: 400 11px "Segoe UI", Ubuntu, Sans-Serif; fill: ${colors.textColor} }
   `);
 
-  const temp = true;
-  if (temp) {
+  if (show_lang_bar) {
     return card.render(`
       ${
         isTemplate
@@ -205,28 +205,7 @@ const renderRepoCard = (repo, options = {}) => {
               getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
             : ""
       }
-  
-      <text class="description" x="25" y="-5">
-        ${descriptionSvg}
-      </text>
-  
-      <g transform="translate(30, ${height - 75})">
-        ${starAndForkCount}
-      </g>
-  
-    `);
-  }
-  return card.render(`
-          ${
-            isTemplate
-              ? // @ts-ignore
-                getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
-              : isArchived
-                ? // @ts-ignore
-                  getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
-                : ""
-          }
-  
+
       <text class="description" x="25" y="-5">
         ${descriptionSvg}
       </text>
@@ -235,6 +214,28 @@ const renderRepoCard = (repo, options = {}) => {
           ${languageBar}
         </svg>
       </g>
+    `);
+  }
+
+  return card.render(`
+    ${
+      isTemplate
+        ? // @ts-ignore
+          getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
+        : isArchived
+          ? // @ts-ignore
+            getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
+          : ""
+    }
+
+    <text class="description" x="25" y="-5">
+      ${descriptionSvg}
+    </text>
+
+    <g transform="translate(30, ${height - 75})">
+      ${starAndForkCount}
+    </g>
+
   `);
 };
 
