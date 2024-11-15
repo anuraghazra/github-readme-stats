@@ -462,10 +462,10 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
-    transparent_green: {
+  transparent_green: {
     title_color: "007A00",
     text_color: "68b587",
-    icon_color: "003D00",
+    icon_color: "68b587",
     border_color: "003D00",
     bg_color: "ffffff00",
   },
