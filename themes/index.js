@@ -464,8 +464,8 @@ export const themes = {
   },
   transparent_green: {
     title_color: "007A00",
-    text_color: "68b587",
-    icon_color: "68b587",
+    text_color: "3E8458",
+    icon_color: "3E8458",
     border_color: "003D00",
     bg_color: "ffffff00",
   },
