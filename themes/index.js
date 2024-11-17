@@ -462,6 +462,16 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  sea_​​green: {
+    title_color: "00bfbf",
+    text_color: "c9d1d9",
+    icon_color: "00bfbf",
+    border: "1px",
+    border_radius: "8px",
+    border_color: "00bfbf",
+    bg_color: "0d1117",
+  },
+  
 };
 
 export default themes;
