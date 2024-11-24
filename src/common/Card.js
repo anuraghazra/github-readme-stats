@@ -27,12 +27,14 @@ class Card {
     customTitle,
     defaultTitle = "",
     titlePrefixIcon,
+    borderAnimation = false,
   }) {
     this.width = width;
     this.height = height;
 
     this.hideBorder = false;
     this.hideTitle = false;
+    this.borderAnimation = borderAnimation;
 
     this.border_radius = border_radius;
 
@@ -199,6 +201,10 @@ class Card {
     `;
   };
 
+  setBorderAnimation(value) {
+    this.borderAnimation = value;
+  }
+
   /**
    * @param {string} body The inner body of the card.
    * @returns {string} The rendered card.
@@ -213,6 +219,7 @@ class Card {
         xmlns="http://www.w3.org/2000/svg"
         role="img"
         aria-labelledby="descId"
+        class="card-border"
       >
         <title id="titleId">${this.a11yTitle}</title>
         <desc id="descId">${this.a11yDesc}</desc>
@@ -246,6 +253,7 @@ class Card {
           height="99%"
           stroke="${this.colors.borderColor}"
           width="${this.width - 1}"
+          class="card-border"
           fill="${
             typeof this.colors.bgColor === "object"
               ? "url(#gradient)"
@@ -255,6 +263,16 @@ class Card {
         />
 
         ${this.hideTitle ? "" : this.renderTitle()}
+        <rect
+          data-testid="card-border-glow"
+          x="0.5"
+          y="0.5"
+          rx="${this.border_radius}"
+          height="99%"
+          width="${this.width - 1}"
+          fill="none"
+          class="card-border-glow"
+        />
 
         <g
           data-testid="main-card-body"

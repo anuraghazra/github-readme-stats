@@ -33,6 +33,7 @@ const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
  * @param {number} createTextNodeParams.shiftValuePos Number of pixels the value has to be shifted to the right.
  * @param {boolean} createTextNodeParams.bold Whether to bold the label.
  * @param {string} createTextNodeParams.number_format The format of numbers on card.
+ * @param {string} [createTextNodeParams.animation_style="default"] The animation style to use (default, slideIn, glow, pulse, sparkle, wave)
  * @returns {string} The stats card text item SVG object.
  */
 const createTextNode = ({
@@ -112,7 +113,463 @@ const getProgressAnimation = ({ progress }) => {
         stroke-dashoffset: ${calculateCircleProgress(progress)};
       }
     }
+    @keyframes borderAnimation {
+      0% {
+        stroke-dashoffset: 1000;
+      }
+      100% {
+        stroke-dashoffset: 0;
+      }
+    }
   `;
+};
+
+const calculateCardPerimeter = (width = 450, height = 195) => {
+  return 2 * (width + height);
+};
+
+/**
+ * Retrieves CSS styles for a card.
+ *
+ * @param {Object} colors The colors to use for the card.
+ * @param {string} colors.titleColor The title color.
+ * @param {number} colors.progress The progress value to animate to.
+ * @param {string} colors.animation_style The animation style to use (default, slideIn, glow, pulse, sparkle, wave)
+ * @returns {string} Card CSS styles.
+ */
+const getAnimationStyle = ({ titleColor, animation_style }) => {
+  const animations = {
+    default: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: ${calculateCardPerimeter()};
+        filter: drop-shadow(0 0 2px ${titleColor});
+        animation: defaultGlow 3s ease-in-out infinite;
+      }
+      @keyframes defaultGlow {
+        0%, 100% {
+          stroke-opacity: 1;
+          stroke-width: 2;
+          filter: drop-shadow(0 0 2px ${titleColor});
+        }
+        50% {
+          stroke-opacity: 0.8;
+          stroke-width: 2.5;
+          filter: drop-shadow(0 0 4px ${titleColor});
+        }
+      }
+    `,
+
+    slideIn: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: ${calculateCardPerimeter()};
+        filter: drop-shadow(0 0 2px ${titleColor});
+        animation: slideInGlow 3s ease-in-out infinite;
+      }
+      @keyframes slideInGlow {
+        0%, 100% {
+          stroke-dashoffset: ${calculateCardPerimeter()};
+          filter: drop-shadow(0 0 2px ${titleColor});
+        }
+        50% {
+          stroke-dashoffset: 0;
+          filter: drop-shadow(0 0 4px ${titleColor});
+        }
+      }
+    `,
+
+    glow: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: 1 ${calculateCardPerimeter() / 30};
+        filter: drop-shadow(0 0 2px ${titleColor});
+        animation: sparkleGlow 4s ease-in-out infinite;
+      }
+      @keyframes sparkleGlow {
+        0%, 100% {
+          stroke-dasharray: 1 ${calculateCardPerimeter() / 30};
+          stroke-width: 2;
+          filter: drop-shadow(0 0 2px ${titleColor});
+        }
+        50% {
+          stroke-dasharray: ${calculateCardPerimeter() / 20} ${calculateCardPerimeter() / 30};
+          stroke-width: 2.5;
+          filter: drop-shadow(0 0 6px ${titleColor});
+        }
+      }
+    `,
+
+    pulse: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: ${calculateCardPerimeter()};
+        filter: drop-shadow(0 0 2px ${titleColor});
+        transform-origin: center;
+        animation: pulseGlow 2s ease-in-out infinite;
+      }
+      @keyframes pulseGlow {
+        0%, 100% {
+          transform: scale(1);
+          filter: drop-shadow(0 0 2px ${titleColor});
+        }
+        50% {
+          transform: scale(1.002);
+          filter: drop-shadow(0 0 4px ${titleColor});
+        }
+      }
+    `,
+
+    wave: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: ${calculateCardPerimeter() / 20};
+        stroke-dashoffset: 0;
+        filter: drop-shadow(0 0 2px ${titleColor});
+        animation: waveGlow 3s linear infinite;
+      }
+      @keyframes waveGlow {
+        0% {
+          stroke-dashoffset: 0;
+          filter: drop-shadow(0 0 2px ${titleColor});
+        }
+        50% {
+          filter: drop-shadow(0 0 4px ${titleColor});
+        }
+        100% {
+          stroke-dashoffset: ${calculateCardPerimeter()};
+          filter: drop-shadow(0 0 2px ${titleColor});
+        }
+      }
+    `,
+
+    sparkle: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: 2 ${calculateCardPerimeter() / 40};
+        filter: drop-shadow(0 0 2px ${titleColor});
+        animation: sparkleAnimation 4s linear infinite;
+      }
+      @keyframes sparkleAnimation {
+        0% {
+          stroke-dashoffset: 0;
+          stroke-width: 2;
+          filter: drop-shadow(0 0 2px ${titleColor});
+        }
+        50% {
+          stroke-width: 2.5;
+          filter: drop-shadow(0 0 4px ${titleColor});
+        }
+        100% {
+          stroke-dashoffset: -${calculateCardPerimeter()};
+          stroke-width: 2;
+          filter: drop-shadow(0 0 2px ${titleColor});
+        }
+      }
+    `,
+
+    rainbow: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: ${calculateCardPerimeter()};
+        animation: rainbowAnimation 6s linear infinite;
+      }
+      @keyframes rainbowAnimation {
+        0%, 100% {
+          stroke: #ff0000;
+          filter: drop-shadow(0 0 2px #ff0000);
+        }
+        16.67% {
+          stroke: #ff8800;
+          filter: drop-shadow(0 0 2px #ff8800);
+        }
+        33.33% {
+          stroke: #ffff00;
+          filter: drop-shadow(0 0 2px #ffff00);
+        }
+        50% {
+          stroke: #00ff00;
+          filter: drop-shadow(0 0 2px #00ff00);
+        }
+        66.67% {
+          stroke: #0088ff;
+          filter: drop-shadow(0 0 2px #0088ff);
+        }
+        83.33% {
+          stroke: #8800ff;
+          filter: drop-shadow(0 0 2px #8800ff);
+        }
+      }
+    `,
+
+    neon: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: ${calculateCardPerimeter()};
+        filter: drop-shadow(0 0 2px ${titleColor}) 
+                drop-shadow(0 0 4px ${titleColor}) 
+                drop-shadow(0 0 6px ${titleColor});
+        animation: neonPulse 1.5s ease-in-out infinite;
+      }
+      @keyframes neonPulse {
+        0%, 100% {
+          stroke-opacity: 1;
+          filter: drop-shadow(0 0 2px ${titleColor}) 
+                  drop-shadow(0 0 4px ${titleColor}) 
+                  drop-shadow(0 0 6px ${titleColor});
+        }
+        50% {
+          stroke-opacity: 0.8;
+          filter: drop-shadow(0 0 4px ${titleColor}) 
+                  drop-shadow(0 0 8px ${titleColor}) 
+                  drop-shadow(0 0 12px ${titleColor});
+        }
+      }
+    `,
+
+    electric: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: 10 20;
+        filter: drop-shadow(0 0 3px ${titleColor});
+        animation: electricZap 0.5s linear infinite;
+      }
+      @keyframes electricZap {
+        0% {
+          stroke-dashoffset: 0;
+          filter: drop-shadow(0 0 2px ${titleColor});
+        }
+        50% {
+          stroke-dasharray: 20 10;
+          filter: drop-shadow(0 0 8px ${titleColor});
+        }
+        100% {
+          stroke-dashoffset: -30;
+          filter: drop-shadow(0 0 2px ${titleColor});
+        }
+      }
+    `,
+
+    matrix: `
+      .card-border-glow {
+        stroke: #00ff00;
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: 4 4;
+        filter: drop-shadow(0 0 2px #00ff00);
+        animation: matrixRain 2s linear infinite;
+      }
+      @keyframes matrixRain {
+        0% {
+          stroke-dashoffset: 0;
+          opacity: 0.5;
+        }
+        50% {
+          opacity: 1;
+          stroke: #88ff88;
+        }
+        100% {
+          stroke-dashoffset: -${calculateCardPerimeter()};
+          opacity: 0.5;
+        }
+      }
+    `,
+
+    disco: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: ${calculateCardPerimeter()};
+        animation: discoParty 0.5s linear infinite;
+      }
+      @keyframes discoParty {
+        0% {
+          stroke: #ff0000;
+          filter: drop-shadow(0 0 4px #ff0000);
+          transform: scale(1);
+        }
+        20% {
+          stroke: #00ff00;
+          filter: drop-shadow(0 0 4px #00ff00);
+          transform: scale(1.001);
+        }
+        40% {
+          stroke: #0000ff;
+          filter: drop-shadow(0 0 4px #0000ff);
+          transform: scale(1);
+        }
+        60% {
+          stroke: #ffff00;
+          filter: drop-shadow(0 0 4px #ffff00);
+          transform: scale(0.999);
+        }
+        80% {
+          stroke: #00ffff;
+          filter: drop-shadow(0 0 4px #00ffff);
+          transform: scale(1);
+        }
+        100% {
+          stroke: #ff00ff;
+          filter: drop-shadow(0 0 4px #ff00ff);
+          transform: scale(1.001);
+        }
+      }
+    `,
+
+    glitch: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: ${calculateCardPerimeter()};
+        animation: glitchEffect 2s steps(1) infinite;
+      }
+      @keyframes glitchEffect {
+        0% {
+          transform: translate(0);
+          stroke: ${titleColor};
+          stroke-dashoffset: 0;
+        }
+        10% {
+          transform: translate(-2px, 2px);
+          stroke: #ff0000;
+          stroke-dashoffset: 20;
+          stroke-dasharray: ${calculateCardPerimeter()} 0;
+        }
+        20% {
+          transform: translate(2px, -2px);
+          stroke: #00ff00;
+          stroke-dashoffset: -20;
+          stroke-dasharray: 0 ${calculateCardPerimeter()};
+        }
+        30% {
+          transform: translate(0);
+          stroke: ${titleColor};
+          stroke-dashoffset: 0;
+          stroke-dasharray: ${calculateCardPerimeter()};
+        }
+        90% {
+          transform: translate(0);
+          stroke: ${titleColor};
+          stroke-dashoffset: 0;
+        }
+        91% {
+          transform: translate(3px, -3px);
+          stroke: #0000ff;
+        }
+        92% {
+          transform: translate(-3px, 3px);
+          stroke: #ff0000;
+        }
+        93% {
+          transform: translate(0);
+          stroke: ${titleColor};
+        }
+      }
+    `,
+
+    plasma: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 3;
+        stroke-linecap: round;
+        filter: drop-shadow(0 0 2px ${titleColor});
+        animation: plasmaFlow 4s linear infinite;
+      }
+      @keyframes plasmaFlow {
+        0% {
+          stroke-dasharray: 0 20 ${calculateCardPerimeter()};
+          stroke-dashoffset: 0;
+          filter: drop-shadow(0 0 2px ${titleColor});
+        }
+        50% {
+          stroke-dasharray: ${calculateCardPerimeter()} 20 0;
+          stroke-dashoffset: -${calculateCardPerimeter() * 2};
+          filter: drop-shadow(0 0 8px ${titleColor});
+        }
+        100% {
+          stroke-dasharray: 0 20 ${calculateCardPerimeter()};
+          stroke-dashoffset: -${calculateCardPerimeter() * 4};
+          filter: drop-shadow(0 0 2px ${titleColor});
+        }
+      }
+    `,
+
+    cyberpunk: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: square;
+        stroke-dasharray: 30 ${calculateCardPerimeter() / 20};
+        filter: drop-shadow(0 0 2px ${titleColor});
+        animation: cyberpunkGlow 3s linear infinite;
+      }
+      @keyframes cyberpunkGlow {
+        0% {
+          stroke: #ff00ff;
+          stroke-dashoffset: 0;
+          filter: drop-shadow(0 0 4px #ff00ff);
+        }
+        25% {
+          stroke: #00ffff;
+          stroke-width: 3;
+          filter: drop-shadow(0 0 6px #00ffff);
+        }
+        50% {
+          stroke: #ffff00;
+          stroke-width: 2;
+          stroke-dashoffset: -${calculateCardPerimeter()};
+          filter: drop-shadow(0 0 4px #ffff00);
+        }
+        75% {
+          stroke: #00ff00;
+          stroke-width: 3;
+          filter: drop-shadow(0 0 6px #00ff00);
+        }
+        100% {
+          stroke: #ff00ff;
+          stroke-width: 2;
+          stroke-dashoffset: -${calculateCardPerimeter() * 2};
+          filter: drop-shadow(0 0 4px #ff00ff);
+        }
+      }
+    `,
+  };
+
+  return animations[animation_style] ?? animations.default;
 };
 
 /**
@@ -125,67 +582,138 @@ const getProgressAnimation = ({ progress }) => {
  * @param {string} colors.ringColor The ring color.
  * @param {boolean} colors.show_icons Whether to show icons.
  * @param {number} colors.progress The progress value to animate to.
+ * @param {string} colors.animation_style The animation style to use (default, slideIn, glow, pulse, sparkle, wave)
  * @returns {string} Card CSS styles.
  */
 const getStyles = ({
-  // eslint-disable-next-line no-unused-vars
   titleColor,
   textColor,
   iconColor,
   ringColor,
   show_icons,
   progress,
+  animation_style,
 }) => {
   return `
+    /* Base text styles */
     .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
+      font: 600 14px system-ui, -apple-system, 'Segoe UI', Ubuntu, sans-serif;
+      fill: ${textColor};
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
     }
+
     @supports(-moz-appearance: auto) {
-      /* Selector detects Firefox */
-      .stat { font-size:12px; }
+      .stat { font-size: 13px; }
     }
+
     .stagger {
       opacity: 0;
-      animation: fadeInAnimation 0.3s ease-in-out forwards;
-    }
-    .rank-text {
-      font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor};
-      animation: scaleInAnimation 0.3s ease-in-out forwards;
-    }
-    .rank-percentile-header {
-      font-size: 14px;
-    }
-    .rank-percentile-text {
-      font-size: 16px;
+      animation: fadeInAnimation 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
     
-    .not_bold { font-weight: 400 }
-    .bold { font-weight: 700 }
+    .rank-text {
+      font: 800 24px system-ui, -apple-system, 'Segoe UI', Ubuntu, sans-serif;
+      fill: ${textColor};
+      animation: scaleInAnimation 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .rank-percentile-header {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+    
+    .rank-percentile-text {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    
+    .not_bold { 
+      font-weight: 500;
+      opacity: 0.9;
+    }
+    
+    .bold { 
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
     .icon {
       fill: ${iconColor};
       display: ${show_icons ? "block" : "none"};
+      opacity: 0.85;
+      transition: opacity 0.3s ease;
     }
 
+    /* Static border */
+    .card-border {
+      stroke: ${titleColor}40;
+      fill: none;
+      stroke-width: 1;
+      stroke-opacity: 0.5;
+    }
+
+    /* Rank circle styles */
     .rank-circle-rim {
       stroke: ${ringColor};
       fill: none;
       stroke-width: 6;
-      opacity: 0.2;
+      opacity: 0.15;
     }
+    
     .rank-circle {
       stroke: ${ringColor};
       stroke-dasharray: 250;
       fill: none;
       stroke-width: 6;
       stroke-linecap: round;
-      opacity: 0.8;
+      opacity: 0.9;
       transform-origin: -10px 8px;
       transform: rotate(-90deg);
-      animation: rankAnimation 1s forwards ease-in-out;
+      animation: rankAnimation 3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
+
+    /* Animations */
+    ${getAnimationStyle({ titleColor, progress, animation_style })}
+
+    @keyframes fadeInAnimation {
+      0% {
+        opacity: 0;
+        transform: translateY(5px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleInAnimation {
+      0% {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes rankAnimation {
+      from {
+        stroke-dashoffset: ${calculateCircleProgress(0)};
+        opacity: 0;
+      }
+      to {
+        stroke-dashoffset: ${calculateCircleProgress(progress)};
+        opacity: 0.9;
+      }
+    }
+
     ${process.env.NODE_ENV === "test" ? "" : getProgressAnimation({ progress })}
   `;
 };
+
+// Helper function to calculate card perimeter
 
 /**
  * @typedef {import('../fetchers/types').StatsData} StatsData
@@ -238,6 +766,7 @@ const renderStatsCard = (stats, options = {}) => {
     disable_animations = false,
     rank_icon = "default",
     show = [],
+    animation_style,
   } = options;
 
   const lheight = parseInt(String(line_height), 10);
@@ -405,6 +934,7 @@ const renderStatsCard = (stats, options = {}) => {
     iconColor,
     show_icons,
     progress,
+    animation_style: animation_style ?? "default",
   });
 
   const calculateTextWidth = () => {
@@ -528,6 +1058,8 @@ const renderStatsCard = (stats, options = {}) => {
     title: `${card.title}, Rank: ${rank.level}`,
     desc: labels,
   });
+
+  card.setBorderAnimation(hide_border);
 
   return card.render(`
     ${rankCircle}
