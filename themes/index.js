@@ -462,6 +462,20 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  neon: {
+    title_color: "00EAD3",
+    text_color: "FF449F",
+    icon_color: "00EAD3",
+    bg_color: "000000",
+  },
+  jinx: {
+    title_color: "ff1493",
+    icon_color: "00ffff",
+    text_color: "e066ff",
+    bg_color: "0a0612",
+    border_color: "ff1493",
+    ring_color: "00ffff",
+  },
 };
 
 export default themes;
