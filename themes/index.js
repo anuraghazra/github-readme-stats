@@ -476,6 +476,22 @@ export const themes = {
     border_color: "ff1493",
     ring_color: "00ffff",
   },
+  zodiac: {
+    title_color: "8b00ff",
+    icon_color: "a64dff",
+    text_color: "ffffff",
+    bg_color: "0a0612",
+    border_color: "8b00ff",
+    ring_color: "8b00ff",
+  },
+  discord_glow: {
+    title_color: "5865f2",
+    icon_color: "ffffff",
+    text_color: "ffffff",
+    bg_color: "0a0612",
+    border_color: "gradient",
+    ring_color: "5865f2",
+  },
 };
 
 export default themes;

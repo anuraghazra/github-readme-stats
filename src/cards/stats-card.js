@@ -567,6 +567,134 @@ const getAnimationStyle = ({ titleColor, animation_style }) => {
         }
       }
     `,
+
+    jinx: `
+      .card-border-glow {
+        stroke: ${titleColor};
+        fill: none;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-dasharray: ${calculateCardPerimeter()};
+        filter: drop-shadow(0 0 2px ${titleColor});
+        animation: jinxBorderAnimation 3s linear infinite;
+      }
+
+      @keyframes jinxBorderAnimation {
+        0% {
+          stroke: #ff1493;
+          filter: drop-shadow(0 0 4px #ff1493);
+          stroke-dashoffset: 0;
+        }
+        25% {
+          stroke: #00ffff;
+          filter: drop-shadow(0 0 6px #00ffff);
+          stroke-dashoffset: -${calculateCardPerimeter() / 2};
+        }
+        50% {
+          stroke: #e066ff;
+          filter: drop-shadow(0 0 4px #e066ff);
+          stroke-dashoffset: -${calculateCardPerimeter()};
+        }
+        75% {
+          stroke: #00ffff;
+          filter: drop-shadow(0 0 6px #00ffff);
+          stroke-dashoffset: -${calculateCardPerimeter() * 1.5};
+        }
+        100% {
+          stroke: #ff1493;
+          filter: drop-shadow(0 0 4px #ff1493);
+          stroke-dashoffset: -${calculateCardPerimeter() * 2};
+        }
+      }
+
+      /* Add glitch effect */
+      .card {
+        position: relative;
+        animation: cardGlitch 8s infinite;
+      }
+
+      @keyframes cardGlitch {
+        0%, 90%, 100% {
+          transform: translate(0);
+          filter: none;
+        }
+        92% {
+          transform: translate(-2px, 2px);
+          filter: drop-shadow(3px 0 #ff1493) drop-shadow(-3px 0 #00ffff);
+        }
+        94% {
+          transform: translate(2px, -2px);
+          filter: drop-shadow(3px 0 #00ffff) drop-shadow(-3px 0 #e066ff);
+        }
+        96% {
+          transform: translate(-2px, -2px);
+          filter: drop-shadow(3px 0 #e066ff) drop-shadow(-3px 0 #ff1493);
+        }
+        98% {
+          transform: translate(2px, 2px);
+          filter: none;
+        }
+      }
+    `,
+
+    zodiac: `
+      .card-border-glow {
+        stroke: #8b00ff;
+        fill: none;
+        stroke-width: 3;
+        stroke-linecap: round;
+        filter: drop-shadow(0 0 4px #8b00ff);
+        animation: zodiacGlow 4s ease-in-out infinite;
+      }
+
+      /* Create zodiac symbols pattern */
+      .card-border-pattern {
+        stroke-dasharray: 30 30;  /* Creates spaces for "symbols" */
+        stroke-dashoffset: 0;
+        animation: zodiacRotate 20s linear infinite;
+      }
+
+      @keyframes zodiacGlow {
+        0%, 100% {
+          stroke: #8b00ff;
+          filter: drop-shadow(0 0 4px #8b00ff) drop-shadow(0 0 7px #8b00ff);
+          stroke-width: 3;
+        }
+        50% {
+          stroke: #a64dff;
+          filter: drop-shadow(0 0 8px #a64dff) drop-shadow(0 0 12px #8b00ff);
+          stroke-width: 4;
+        }
+      }
+
+      @keyframes zodiacRotate {
+        from {
+          stroke-dashoffset: 0;
+        }
+        to {
+          stroke-dashoffset: 1000;
+        }
+      }
+
+      /* Add outer glow effect */
+      .card {
+        filter: drop-shadow(0 0 10px rgba(139, 0, 255, 0.3));
+      }
+
+      /* Add subtle pulse to the entire card */
+      .card {
+        animation: cardPulse 4s ease-in-out infinite;
+      }
+
+      @keyframes cardPulse {
+        0%, 100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.005);
+        }
+      }
+    `,
   };
 
   return animations[animation_style] ?? animations.default;
