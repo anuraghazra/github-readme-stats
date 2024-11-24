@@ -84,7 +84,7 @@
 
 将这行代码复制到你的 markdown 文件中，就是如此简单！
 
-更改 `?username=` 的值为你的 GitHub 用户名。
+更改 `&username=` 的值为你的 GitHub 用户名。
 
 ```md
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)](https://github.com/anuraghazra/github-readme-stats)
@@ -94,7 +94,7 @@ _注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.
 
 ### 隐藏指定统计
 
-想要隐藏指定统计信息，你可以调用参数 `?hide=`，其值用 `,` 分隔。
+想要隐藏指定统计信息，你可以调用参数 `&hide=`，其值用 `,` 分隔。
 
 > 选项：`&hide=stars,commits,prs,issues,contribs`
 
@@ -104,7 +104,7 @@ _注: 等级基于用户的统计信息计算得出，详见 [src/calculateRank.
 
 ### 将私人项目贡献添加到总提交计数中
 
-你可以使用参数 `?count_private=true` 把私人贡献计数添加到总提交计数中。
+你可以使用参数 `&count_private=true` 把私人贡献计数添加到总提交计数中。
 
 _注：如果你是自己部署本项目，私人贡献将会默认被计数，如果不是自己部署，你需要分享你的私人贡献计数。_
 
@@ -116,7 +116,7 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 
 ### 显示图标
 
-如果想要显示图标，你可以调用 `show_icons=true` 参数，像这样：
+如果想要显示图标，你可以调用 `&show_icons=true` 参数，像这样：
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
@@ -126,7 +126,7 @@ _注：如果你是自己部署本项目，私人贡献将会默认被计数，�
 
 你可以通过现有的主题进行卡片个性化，省去[手动自定义](#自定义)的麻烦。
 
-通过调用 `?theme=THEME_NAME` 参数，像这样：
+通过调用 `&theme=THEME_NAME` 参数，像这样：
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=radical)
