@@ -399,9 +399,14 @@ class Card {
 
         <g
           data-testid="main-card-body"
-          transform="translate(0, ${
+          transform="translate(${this.width / 2}, ${
             this.hideTitle ? this.paddingX : this.paddingY + 20
           })"
+          style="transform: translate(${(this.paddingX / this.width) * 100}%, ${
+            this.hideTitle
+              ? (this.paddingX / this.height) * 100
+              : ((this.paddingY + 20) / this.height) * 100
+          }%);"
         >
           ${body}
         </g>
