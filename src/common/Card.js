@@ -184,12 +184,12 @@ class Card {
     const decorations = [];
     const spacing = this.width / 6;
 
-    // Same positioning logic
+    // Ensure decorations are within the viewBox
     const positions = [
-      { x: spacing, y: -decorSize / 2 },
-      { x: this.width - spacing, y: -decorSize / 2 },
-      { x: -decorSize / 2, y: this.height / 3 },
-      { x: -decorSize / 2, y: (this.height / 3) * 2 },
+      { x: spacing, y: decorSize / 2 },
+      { x: this.width - spacing, y: decorSize / 2 },
+      { x: decorSize / 2, y: this.height / 3 },
+      { x: decorSize / 2, y: (this.height / 3) * 2 },
       { x: this.width - decorSize / 2, y: this.height / 3 },
       { x: this.width - decorSize / 2, y: (this.height / 3) * 2 },
       { x: spacing, y: this.height - decorSize / 2 },
@@ -198,8 +198,8 @@ class Card {
 
     positions.forEach((pos) => {
       const shapeType = _.random(0, 3); // 0: hexagon, 1: circle, 2: square, 3: triangle
-      const opacity = _.random(0.3, 0.7);
-      const strokeWidth = _.random(0.5, 2);
+      const opacity = _.random(0.5, 0.9); // Ensure higher opacity for visibility
+      const strokeWidth = _.random(1, 2);
       const rotation = _.random(0, 360);
 
       let shape = "";
@@ -267,28 +267,11 @@ class Card {
           break;
       }
 
-      // Randomly add connecting lines
-      const hasLine = _.random(0, 1) === 1;
-      const line = hasLine
-        ? `
-        <line 
-          x1="${decorSize / 2}"
-          y1="${decorSize / 2}"
-          x2="${decorSize}"
-          y2="${decorSize / 2}"
-          stroke="${this.colors.titleColor}"
-          stroke-width="${strokeWidth / 2}"
-          opacity="${opacity}"
-        />
-      `
-        : "";
-
       decorations.push(`
         <g transform="translate(${pos.x}, ${pos.y}) rotate(${rotation}, ${decorSize / 2}, ${decorSize / 2})" 
            class="decoration" 
            style="--tx:${pos.x}px; --ty:${pos.y}px;">
           ${shape}
-          ${line}
         </g>
       `);
     });
