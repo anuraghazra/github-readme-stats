@@ -175,6 +175,51 @@ class Card {
   }
 
   /**
+   * Renders decorative elements around the card
+   * @returns {string} SVG elements for decoration
+   */
+  renderDecorations() {
+    const decorSize = 24;
+    const decorations = [];
+    const spacing = this.width / 6;
+
+    // Generate positions for decorative elements
+    const positions = [
+      { x: spacing, y: -decorSize / 2 }, // top
+      { x: this.width - spacing, y: -decorSize / 2 }, // top
+      { x: -decorSize / 2, y: this.height / 3 }, // left
+      { x: -decorSize / 2, y: (this.height / 3) * 2 }, // left
+      { x: this.width - decorSize / 2, y: this.height / 3 }, // right
+      { x: this.width - decorSize / 2, y: (this.height / 3) * 2 }, // right
+      { x: spacing, y: this.height - decorSize / 2 }, // bottom
+      { x: this.width - spacing, y: this.height - decorSize / 2 }, // bottom
+    ];
+
+    positions.forEach((pos, i) => {
+      decorations.push(`
+        <g transform="translate(${pos.x}, ${pos.y})" class="decoration" style="--tx:${pos.x}px; --ty:${pos.y}px;">
+          <circle 
+            cx="${decorSize / 2}" 
+            cy="${decorSize / 2}" 
+            r="${decorSize / 2}"
+            fill="${this.colors.borderColor}"
+            opacity="0.7"
+          />
+          <circle 
+            cx="${decorSize / 2}" 
+            cy="${decorSize / 2}" 
+            r="${decorSize / 4}"
+            fill="${this.colors.titleColor}"
+            opacity="0.9"
+          />
+        </g>
+      `);
+    });
+
+    return decorations.join("");
+  }
+
+  /**
    * Retrieves css animations for a card.
    *
    * @returns {string} Animation css.
@@ -182,22 +227,23 @@ class Card {
   getAnimations = () => {
     return `
       /* Animations */
-      @keyframes scaleInAnimation {
-        from {
-          transform: translate(-5px, 5px) scale(0);
-        }
-        to {
-          transform: translate(-5px, 5px) scale(1);
-        }
+      @keyframes floatAnimation {
+        0%, 100% { transform: translate(var(--tx), var(--ty)); }
+        50% { transform: translate(var(--tx), calc(var(--ty) - 10px)); }
       }
-      @keyframes fadeInAnimation {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
+      .decoration {
+        animation: floatAnimation 3s ease-in-out infinite;
+        --tx: 0;
+        --ty: 0;
       }
+      .decoration:nth-child(1) { animation-delay: 0s; }
+      .decoration:nth-child(2) { animation-delay: 0.4s; }
+      .decoration:nth-child(3) { animation-delay: 0.8s; }
+      .decoration:nth-child(4) { animation-delay: 1.2s; }
+      .decoration:nth-child(5) { animation-delay: 1.6s; }
+      .decoration:nth-child(6) { animation-delay: 2.0s; }
+      .decoration:nth-child(7) { animation-delay: 2.4s; }
+      .decoration:nth-child(8) { animation-delay: 2.8s; }
     `;
   };
 
@@ -210,6 +256,21 @@ class Card {
    * @returns {string} The rendered card.
    */
   render(body) {
+    const customDesign = `
+      <g transform="translate(0,0)">
+        ${this.renderDecorations()}
+        <rect
+          width="${this.width}"
+          height="${this.height}"
+          rx="${this.border_radius}"
+          fill="none"
+          stroke="${this.colors.borderColor}"
+          stroke-width="2"
+          ${this.borderAnimation ? 'class="animated-border"' : ""}
+        />
+      </g>
+    `;
+
     return `
       <svg
         width="${this.width}"
@@ -221,6 +282,7 @@ class Card {
         aria-labelledby="descId"
         class="card-border"
       >
+
         <title id="titleId">${this.a11yTitle}</title>
         <desc id="descId">${this.a11yDesc}</desc>
         <style>
@@ -282,6 +344,8 @@ class Card {
         >
           ${body}
         </g>
+
+        ${customDesign}
       </svg>
     `;
   }
