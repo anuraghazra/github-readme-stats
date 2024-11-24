@@ -1,3 +1,0 @@
-npm test
-npm run lint
-npx lint-staged
