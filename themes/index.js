@@ -117,6 +117,12 @@ export const themes = {
     text_color: "f1f1eb",
     bg_color: "272822",
   },
+  vermilion: {
+    title_color: "cc303f",
+    icon_color: "cc303f",
+    text_color: "cc303f",
+    bg_color: "36393f",
+  },
   vue: {
     title_color: "41b883",
     icon_color: "41b883",
