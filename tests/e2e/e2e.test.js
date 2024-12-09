@@ -14,19 +14,20 @@ import { expect, describe, beforeAll, test } from "@jest/globals";
 
 const REPO = "curly-fiesta";
 const USER = "catelinemnemosyne";
+const STATS_CARD_USER = "e2eninja";
 const GIST_ID = "372cef55fd897b31909fdeb3a7262758";
 
 const STATS_DATA = {
-  name: "Cateline Mnemosyne",
-  totalPRs: 2,
+  name: "CodeNinja",
+  totalPRs: 1,
   totalReviews: 0,
-  totalCommits: 8,
+  totalCommits: 3,
   totalIssues: 1,
   totalStars: 1,
-  contributedTo: 1,
+  contributedTo: 0,
   rank: {
     level: "C",
-    percentile: 98.06929469995667,
+    percentile: 98.73972605284538,
   },
 };
 
@@ -116,15 +117,17 @@ describe("Fetch Cards", () => {
 
     // Check if the Vercel preview instance stats card function is up and running.
     await expect(
-      axios.get(`${VERCEL_PREVIEW_URL}/api?username=${USER}`),
+      axios.get(`${VERCEL_PREVIEW_URL}/api?username=${STATS_CARD_USER}`),
     ).resolves.not.toThrow();
 
     // Get local stats card.
-    const localStatsCardSVG = renderStatsCard(STATS_DATA);
+    const localStatsCardSVG = renderStatsCard(STATS_DATA, {
+      include_all_commits: true,
+    });
 
     // Get the Vercel preview stats card response.
     const serverStatsSvg = await axios.get(
-      `${VERCEL_PREVIEW_URL}/api?username=${USER}&${CACHE_BURST_STRING}`,
+      `${VERCEL_PREVIEW_URL}/api?username=${STATS_CARD_USER}&include_all_commits=true&${CACHE_BURST_STRING}`,
     );
 
     // Check if stats card from deployment matches the stats card from local.
