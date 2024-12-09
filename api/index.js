@@ -1,4 +1,3 @@
-import * as dotenv from "dotenv";
 import { renderStatsCard } from "../src/cards/stats-card.js";
 import { blacklist } from "../src/common/blacklist.js";
 import {
@@ -11,8 +10,6 @@ import {
 import { fetchStats } from "../src/fetchers/stats-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
-dotenv.config();
-
 export default async (req, res) => {
   const {
     username,
@@ -22,10 +19,10 @@ export default async (req, res) => {
     card_width,
     hide_rank,
     show_icons,
-    count_private,
     include_all_commits,
     line_height,
     title_color,
+    ring_color,
     icon_color,
     text_color,
     text_bold,
@@ -37,33 +34,62 @@ export default async (req, res) => {
     locale,
     disable_animations,
     border_radius,
+    number_format,
     border_color,
+    rank_icon,
+    show,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
   if (blacklist.includes(username)) {
-    return res.send(renderError("Something went wrong"));
+    return res.send(
+      renderError("Something went wrong", "This username is blacklisted", {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
   }
 
   if (locale && !isLocaleAvailable(locale)) {
-    return res.send(renderError("Something went wrong", "Language not found"));
+    return res.send(
+      renderError("Something went wrong", "Language not found", {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
   }
 
   try {
+    const showStats = parseArray(show);
     const stats = await fetchStats(
       username,
-      parseBoolean(count_private),
       parseBoolean(include_all_commits),
       parseArray(exclude_repo),
+      showStats.includes("prs_merged") ||
+        showStats.includes("prs_merged_percentage"),
+      showStats.includes("discussions_started"),
+      showStats.includes("discussions_answered"),
     );
 
-    const cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.FOUR_HOURS, 10),
-      CONSTANTS.FOUR_HOURS,
-      CONSTANTS.ONE_DAY,
+    let cacheSeconds = clampValue(
+      parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
+      CONSTANTS.TWELVE_HOURS,
+      CONSTANTS.TWO_DAY,
     );
+    cacheSeconds = process.env.CACHE_SECONDS
+      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
+      : cacheSeconds;
 
-    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${cacheSeconds}, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    );
 
     return res.send(
       renderStatsCard(stats, {
@@ -76,6 +102,7 @@ export default async (req, res) => {
         include_all_commits: parseBoolean(include_all_commits),
         line_height,
         title_color,
+        ring_color,
         icon_color,
         text_color,
         text_bold: parseBoolean(text_bold),
@@ -84,12 +111,28 @@ export default async (req, res) => {
         custom_title,
         border_radius,
         border_color,
+        number_format,
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
+        rank_icon,
+        show: showStats,
       }),
     );
   } catch (err) {
-    res.setHeader("Cache-Control", `no-store`); // Don't cache error responses.
-    return res.send(renderError(err.message, err.secondaryMessage));
+    res.setHeader(
+      "Cache-Control",
+      `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
+        CONSTANTS.ERROR_CACHE_SECONDS
+      }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    ); // Use lower cache period for errors.
+    return res.send(
+      renderError(err.message, err.secondaryMessage, {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
   }
 };

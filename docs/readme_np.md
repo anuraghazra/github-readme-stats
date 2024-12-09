@@ -7,8 +7,11 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
@@ -16,22 +19,19 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
+    </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
     <a href="#demo">डेमो हेर्नुहोस्</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">रिपोर्ट बग</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">रिपोर्ट बग</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">अनुरोध सुविधा</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">अनुरोध सुविधा</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français </a>
@@ -49,21 +49,40 @@
     <a href="/docs/readme_it.md">Italiano</a>
     ·
     <a href="/docs/readme_kr.md">한국어</a>
+    .
+    <a href="/docs/readme_nl.md">Nederlands</a>
     ·
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">परियोजना मनपर्‍यो? तपाईं मद्दत गर्न सक्नुहुन्छ <a href="https://www.paypal.me/anuraghazra">यो परियोजना</a> बढ्न 
 
-# विशेषताहरु
+# विशेषताहरु <!-- omit in toc -->
 
 - [गितहब स्टेट कार्ड](#गितहब-स्टेट-कार्ड)
+    - [लुकाउनु होस् व्यक्तिगत स्टेट](#लुकाउनु-होस्-व्यक्तिगत-स्टेट)
+    - [जोड्नु होस् निजी टोटल  योगदान](#जोड्नु-होस्-निजी-टोटल--योगदान)
+    - [देखाउनु होस् इकोन](#देखाउनु-होस्-इकोन)
+    - [विषयवस्तुहरू](#विषयवस्तुहरू)
+    - [अनुकूलन](#अनुकूलन)
 - [गितहब अतिरिक्त पिन्स](#गितहब-अतिरिक्त-पिन्स)
+    - [प्रयोग](#प्रयोग)
+    - [डेमो](#डेमो)
 - [टोप भाषा कार्ड](#टोप-भाषा-कार्ड)
-- [वाका समय वीक स्तट्स ](#वाका-समय-वीक-स्तट्स )
-- [विषयवस्तुहरू](#विषयवस्तुहरू)
-- [अनुकूलन](#अनुकूलन)
-- [आफैलाई तैनाथ गर्नुहोस्](#देप्लोय-आफ्नै-वेर्चेल-इन्स्तंस )
+    - [प्रयोग](#प्रयोग-1)
+    - [Exclude individual repositories](#exclude-individual-repositories)
+    - [कुनै भाषा चुपौनॆ तरिका](#कुनै-भाषा-चुपौनॆ-तरिका)
+    - [धेरॆ भाषाहरु हेर्नको लागि](#धेरॆ-भाषाहरु-हेर्नको-लागि)
+    - [कम्प्याक्ट भाषा कार्ड ळयोउत](#कम्प्याक्ट-भाषा-कार्ड-ळयोउत)
+    - [डेमो](#डेमो-1)
+- [वाका समय वीक स्तट्स](#वाका-समय-वीक-स्तट्स)
+    - [डेमो](#डेमो-2)
+    - [सबै डेमोहरु](#सबै-डेमोहरु)
+    - [टिप्  (रेपो कार्डलाए अलिग्न गर्ने )](#टिप्--रेपो-कार्डलाए-अलिग्न-गर्ने-)
+  - [देप्लोय  आफ्नै  वेर्चेल  इन्स्तंस](#देप्लोय--आफ्नै--वेर्चेल--इन्स्तंस)
+  - [:sparkling\_heart: सहपोर्ट द प्रोजेक्ट](#sparkling_heart-सहपोर्ट-द-प्रोजेक्ट)
 
 # गितहब स्टेट कार्ड 
 
@@ -138,7 +157,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `bg_color` - Card's background color _(hex color)_ **or** a gradient in the form of _angle,start,end_
 - `hide_border` - Hides the card's border _(boolean)_
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
-- `cache_seconds` - set the cache header manually _(min: 1800, max: 86400)_
+- `cache_seconds` - set the cache header manually _(min: 14400, max: 86400)_
 - `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
 
 ##### Gradient in bg_color
@@ -170,7 +189,7 @@ You can provide multiple comma-separated values in bg_color option to render a g
 
 - `hide` - Hide the languages specified from the card _(Comma-separated values)_
 - `hide_title` - _(boolean)_
-- `layout` - Switch between two available layouts `default` & `compact`
+- `layout` - Switch between five available layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`. Default: `normal`.
 - `card_width` - Set the card's width manually _(number)_
 - `langs_count` - Show more languages on the card, between 1-10, defaults to 5 _(number)_
 - `exclude_repo` - Exclude specified repositories _(Comma-separated values)_
@@ -219,7 +238,7 @@ Use [show_owner](#customization) variable to include the repo's owner username
 
 टोप भाषाकार्डले github परयोग गर्नेहरुको प्रोग्रम्मिंग भाषाहरु देखाऊने गर्दछ |. 
 
-_NOTE: टोप भाषाहरुले आफ्नो सिपलाए संकेत गरेको होईन | योचै Github  Metricबाट धेरै कुन भाषा परयोग भाकोलाए संकेत गरेको हो |
+_NOTE: टोप भाषाहरुले आफ्नो सिपलाए संकेत गरेको होईन | योचै GitHub  Metricबाट धेरै कुन भाषा परयोग भाकोलाए संकेत गरेको हो |
 ### प्रयोग 
 
 कोदलाए  कपी- पेसेत  readme मा गर्नु होला र लिंक परिवतन गर्नु होला |
@@ -272,17 +291,17 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 
 # वाका समय वीक स्तट्स 
 
-Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
+Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 
 ```md
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ###  डेमो
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -332,7 +351,7 @@ Change the `?username=` value to your [Wakatime](https://wakatime.com) username.
 
 - वक समय कार्ड 
 
-[![willianrod's wakatime stats](https://github-readme-stats.vercel.app/api/wakatime?username=willianrod)](https://github.com/anuraghazra/github-readme-stats)
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
 
 ---
 
@@ -389,7 +408,7 @@ NOTE: Since [#58](https://github.com/anuraghazra/github-readme-stats/pull/58) we
 येदि तपाइले यो प्रोजेक्ट चलाउनु बाकोक्ष बने र मलाई अझै प्रसंसा गर्ने हो बने तपाइले थुप्रै तरिका ले गर्नु सक्नु हुने छ :-
 
 - यो प्रोजेक्टमा तपाइले प्रहयोग गर्दा मलाई क्रेडिट दिन सक्नु हुनेक्ष ।
-- तपाइले Github ReadMe Stats स्तार्रेड गर्न सक्नु हुनेक्ष  :rocket:
+- तपाइले GitHub ReadMe Stats स्तार्रेड गर्न सक्नु हुनेक्ष  :rocket:
 - [![paypal.me/anuraghazra](https://ionicabizau.github.io/badges/paypal.svg)](https://www.paypal.me/anuraghazra) - तपाइले पेपाल बाट पनि सहयोग (डक्क्षिन) गर्न सक्नु हुनेक्ष | म  ~~कोफी ~~ चिया . :tea: किन्न सक्क्षु ।
 
 धन्याबाद! :heart:
