@@ -28,6 +28,7 @@ try {
     const require = createRequire(import.meta.url);
     languageColors = require("../common/languageColors.json"); // works
   });
+  // eslint-disable-next-line no-unused-vars
 } catch (err) {
   languageColors = await import("../common/languageColors.json");
 }
