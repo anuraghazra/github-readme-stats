@@ -462,6 +462,12 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  lucia_s: {
+    title_color: "ffffff",
+    text_color: "ffffff",
+    icon_color: "ffffff",
+    bg_color: "0cc0df,fffc00,ffa100",
+  },
 };
 
 export default themes;
