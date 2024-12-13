@@ -679,7 +679,7 @@ const wakatimeCardLocales = {
   "wakatimecard.nocodingactivity": {
     ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
     cn: "本周没有编程活动",
-    "zh-tw": "本周沒有編程活動",
+    "zh-tw": "本周沒有程式撰寫活動",
     cs: "Tento týden žádná aktivita v kódování",
     de: "Keine Aktivitäten in dieser Woche",
     en: "No coding activity this week",
