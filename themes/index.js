@@ -462,6 +462,11 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  mayo_blue: {
+    title_color: '334eac',
+    icon_color: "bad6eb",
+    text_color: "434d58",
+    bg_color: "fff9ef",
 };
 
 export default themes;
