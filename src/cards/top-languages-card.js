@@ -871,6 +871,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
 };
 
 export {
+  renderCompactLayout,
   getLongestLang,
   degreesToRadians,
   radiansToDegrees,
