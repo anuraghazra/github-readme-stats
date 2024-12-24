@@ -21,6 +21,7 @@ export default {
           <head>
             <title>GitHub Readme Stats</title>
             <meta name="description" content="⚡ Dynamically generated stats for your github readmes" />
+            <link rel="canonical" href="https://github-readme-stats.zcy.dev/" />
           </head>
           <body>
             <h1>GitHub Readme Stats</h1>
