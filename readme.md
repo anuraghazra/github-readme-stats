@@ -413,6 +413,7 @@ If we don't support your language, please consider contributing! You can find mo
 | `custom_title` | Sets a custom title for the card. | string | `Most Used Languages` |
 | `disable_animations` | Disables all animations in the card. | boolean | `false` |
 | `hide_progress` | Uses the compact layout option, hides percentages, and removes the bars. | boolean | `false` |
+| `progress_bar_bg_color` | Sets the background color of the progress bar. | string | `#ddd` |
 | `size_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `1` |
 | `count_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `0` |
 
