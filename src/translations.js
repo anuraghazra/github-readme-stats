@@ -18,7 +18,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.title": {
       ar: `${encodedName} إحصائيات غيت هاب`,
       cn: `${encodedName} 的 GitHub 统计数据`,
-      "zh-tw": `${encodedName} 的 GitHub 統計數據`,
+      "zh-tw": `${encodedName} 的 GitHub 統計資料`,
       cs: `GitHub statistiky uživatele ${encodedName}`,
       de: `${encodedName + apostrophe} GitHub-Statistiken`,
       en: `${encodedName}'${apostrophe} GitHub Stats`,
@@ -49,7 +49,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.ranktitle": {
       ar: `${encodedName} إحصائيات غيت هاب`,
       cn: `${encodedName} 的 GitHub 统计数据`,
-      "zh-tw": `${encodedName} 的 GitHub 統計數據`,
+      "zh-tw": `${encodedName} 的 GitHub 統計資料`,
       cs: `GitHub statistiky uživatele ${encodedName}`,
       de: `${encodedName + apostrophe} GitHub-Statistiken`,
       en: `${encodedName}'${apostrophe} GitHub Rank`,
@@ -80,7 +80,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.totalstars": {
       ar: "مجموع النجوم",
       cn: "获标星数（star）",
-      "zh-tw": "獲標星數（star）",
+      "zh-tw": "得標星星數量（Star）",
       cs: "Celkem hvězd",
       de: "Insgesamt erhaltene Sterne",
       en: "Total Stars Earned",
@@ -111,7 +111,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.commits": {
       ar: "مجموع الحفظ",
       cn: "累计提交数（commit）",
-      "zh-tw": "累計提交數（commit）",
+      "zh-tw": "累計提交數量（Commit）",
       cs: "Celkem commitů",
       de: "Anzahl Commits",
       en: "Total Commits",
@@ -142,7 +142,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.prs": {
       ar: "مجموع طلبات السحب",
       cn: "拉取请求数（PR）",
-      "zh-tw": "拉取請求數（PR）",
+      "zh-tw": "拉取請求數量（PR）",
       cs: "Celkem PRs",
       de: "PRs Insgesamt",
       en: "Total PRs",
@@ -173,7 +173,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.issues": {
       ar: "مجموع التحسينات",
       cn: "指出问题数（issue）",
-      "zh-tw": "指出問題數（issue）",
+      "zh-tw": "提出問題數量（Issue）",
       cs: "Celkem problémů",
       de: "Anzahl Issues",
       en: "Total Issues",
@@ -204,7 +204,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.contribs": {
       ar: "ساهم في (العام الماضي)",
       cn: "贡献于（去年）",
-      "zh-tw": "參與項目數 （去年）",
+      "zh-tw": "參與項目數量（去年）",
       cs: "Přispěl k (minulý rok)",
       de: "Beigetragen zu (letztes Jahr)",
       en: "Contributed to (last year)",
@@ -235,7 +235,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.reviews": {
       ar: "تمت مراجعة إجمالي العلاقات العامة",
       cn: "審查的 PR 總數",
-      "zh-tw": "审查的 PR 总数",
+      "zh-tw": "審核的 PR 總計",
       cs: "Celkový počet PR",
       de: "Insgesamt überprüfte PRs",
       en: "Total PRs Reviewed",
@@ -297,7 +297,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.discussions-answered": {
       ar: "مجموع الردود على المناقشات",
       cn: "回复的讨论总数",
-      "zh-tw": "回覆的討論總數",
+      "zh-tw": "回覆討論總計",
       cs: "Celkem zodpovězených diskusí",
       de: "Gesamt beantwortete Diskussionen",
       en: "Total Discussions Answered",
@@ -328,7 +328,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.prs-merged": {
       ar: "مجموع الطلبات المدمجة",
       cn: "合并的 PR 总数",
-      "zh-tw": "合併的 PR 總數",
+      "zh-tw": "合併的 PR 總計",
       cs: "Celkem sloučených PR",
       de: "Insgesamt zusammengeführte PRs",
       en: "Total PRs Merged",
@@ -424,7 +424,7 @@ const repoCardLocales = {
     ar: "محفوظ",
     bn: "আর্কাইভড",
     cn: "已归档",
-    "zh-tw": "已歸檔",
+    "zh-tw": "已封存",
     cs: "Archivováno",
     de: "Archiviert",
     en: "Archived",
@@ -488,7 +488,7 @@ const langCardLocales = {
   "langcard.nodata": {
     ar: "لا توجد بيانات لغات.",
     cn: "沒有語言數據。",
-    "zh-tw": "沒有語言數據。",
+    "zh-tw": "沒有語言資料。",
     cs: "Žádné jazykové údaje.",
     de: "Keine Sprachdaten.",
     bn: "কোন ভাষার ডেটা নেই।",
