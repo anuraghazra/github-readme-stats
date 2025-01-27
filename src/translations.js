@@ -37,7 +37,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       ru: `Статистика GitHub пользователя ${encodedName}`,
       "uk-ua": `Статистика GitHub користувача ${encodedName}`,
       id: `Statistik GitHub ${encodedName}`,
-      ml: `${encodedName}'$ ഗിറ്റ്ഹബ് സ്ഥിതിവിവരക്കണക്കുകൾ`,
+      ml: `${encodedName}'${apostrophe} ഗിറ്റ്ഹബ് സ്ഥിതിവിവരക്കണക്കുകൾ`,
       my: `Statistik GitHub ${encodedName}`,
       sk: `GitHub štatistiky používateľa ${encodedName}`,
       tr: `${encodedName} Hesabının GitHub Yıldızları`,
