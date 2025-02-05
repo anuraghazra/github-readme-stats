@@ -463,64 +463,10 @@ export const themes = {
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
 sunset_gradient: {
-    title_color: "#ff6b6b",
-    text_color: "#fddb92",
-    icon_color: "#f4a261",
+    title_color: "#e3cfdb",
+    text_color: "#e3cfdb",
+    icon_color: "#e3cfdb",
     bg_color: "#ff6b6b,#f7971e,#ffd200"
-  },
-  aqua_gradient: {
-    title_color: "#00d2ff",
-    text_color: "#3a7bd5",
-    icon_color: "#0082c8",
-    bg_color: "#00d2ff,#3a7bd5"
-  },
-  forest_gradient: {
-    title_color: "#2c7744",
-    text_color: "#6ac47e",
-    icon_color: "#14532d",
-    bg_color: "#2c7744,#6ac47e"
-  },
-  candy_gradient: {
-    title_color: "#ff9a9e",
-    text_color: "#fad0c4",
-    icon_color: "#fbc2eb",
-    bg_color: "#ff9a9e,#fad0c4"
-  },
-  deep_space: {
-    title_color: "#6a11cb",
-    text_color: "#2575fc",
-    icon_color: "#1c92d2",
-    bg_color: "#6a11cb,#2575fc"
-  },
-  lava_gradient: {
-    title_color: "#ff512f",
-    text_color: "#dd2476",
-    icon_color: "#ff6e7f",
-    bg_color: "#ff512f,#dd2476"
-  },
-  ocean_wave: {
-    title_color: "#56ccf2",
-    text_color: "#2f80ed",
-    icon_color: "#009ffd",
-    bg_color: "#56ccf2,#2f80ed"
-  },
-  neon_glow: {
-    title_color: "#12c2e9",
-    text_color: "#c471ed",
-    icon_color: "#f64f59",
-    bg_color: "#12c2e9,#c471ed,#f64f59"
-  },
-  twilight_gradient: {
-    title_color: "#0f2027",
-    text_color: "#203a43",
-    icon_color: "#2c5364",
-    bg_color: "#0f2027,#203a43,#2c5364"
-  },
-  midnight_blue: {
-    title_color: "#2c3e50",
-    text_color: "#4ca1af",
-    icon_color: "#0f2027",
-    bg_color: "#2c3e50,#4ca1af"
   }
 };
 export default themes;
