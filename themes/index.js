@@ -522,6 +522,5 @@ export const themes = {
     icon_color: "0f2027",
     bg_color: "2c3e50,4ca1af"
   }
-}
 };
 export default themes;
