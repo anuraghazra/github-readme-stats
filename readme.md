@@ -1,3 +1,4 @@
+<a name="top"></a>
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
@@ -843,3 +844,12 @@ Thanks! :heart:
 Contributions are welcome! <3
 
 Made with :heart: and JavaScript.
+
+
+<div align="right">
+  <a href="#top">
+    <img src="https://files.catbox.moe/fdzvu3.png" alt="Back to top" width="40" height="40">
+  </a>
+  <br>
+  <b>Go Top</b>
+</div>
