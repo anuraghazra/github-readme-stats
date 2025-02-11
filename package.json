@@ -57,7 +57,7 @@
     "lint-staged": "^15.4.3",
     "lodash.snakecase": "^4.1.1",
     "parse-diff": "^0.11.1",
-    "prettier": "^3.3.3",
+    "prettier": "^3.5.0",
     "wrangler": "^3.107.3"
   },
   "dependencies": {
