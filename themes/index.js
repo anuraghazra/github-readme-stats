@@ -462,6 +462,11 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+sunset_gradient: {
+    title_color: "#e3cfdb",
+    text_color: "#e3cfdb",
+    icon_color: "#e3cfdb",
+    bg_color: "#ff6b6b,#f7971e,#ffd200"
+  }
 };
-
 export default themes;
