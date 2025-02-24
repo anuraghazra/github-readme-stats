@@ -462,6 +462,18 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  ocean:: {
+    title_color: "ffffff",
+    text_color: "ffffff", 
+    icon_color: "ffffff",
+    bg_color: "001a33,003366,006699,0099cc"
+},
+  summer:: {
+    title_color: "ff0000",
+    text_color: "ff0000",
+    icon_color: "ff0000", 
+    bg_color: "fff700"
+}
 };
 
 export default themes;
