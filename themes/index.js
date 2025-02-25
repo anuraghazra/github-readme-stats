@@ -18,6 +18,13 @@ export const themes = {
     text_color: "417E87",
     bg_color: "ffffff00",
   },
+  dark_red: {
+    title_color: "DA0000",
+    text_color: "666",
+    icon_color: "AF0000",
+    border_color: "AF0000",
+    bg_color: "ffffff00",
+  },
   shadow_red: {
     title_color: "9A0000",
     text_color: "444",
