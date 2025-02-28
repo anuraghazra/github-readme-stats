@@ -44,6 +44,7 @@ export type TopLangOptions = CommonOptions & {
   langs_count: number;
   disable_animations: boolean;
   hide_progress: boolean;
+  progress_bar_bg_color: string;
 };
 
 export type WakaTimeOptions = CommonOptions & {
