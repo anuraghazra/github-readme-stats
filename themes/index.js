@@ -440,7 +440,7 @@ export const themes = {
     text_color: "FF449F",
     icon_color: "00EAD3",
     border_color: "ffffff",
-    bg_color: "000000",
+    bg_color: "ffffff00",
   },
   blue_navy: {
     title_color: "82AAFF",
