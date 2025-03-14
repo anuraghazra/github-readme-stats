@@ -8,7 +8,6 @@ import {
   getCardColors,
   lowercaseTrim,
 } from "../common/utils.js";
-import { getStyles } from "../getStyles.js";
 import { wakatimeCardLocales } from "../translations.js";
 
 /** Import language colors.
@@ -25,7 +24,10 @@ const languageColors = require("../common/languageColors.json"); // now works
 /**
  * Creates the no coding activity SVG node.
  *
- * @param {{color: string, text: string}} The function prop
+ * @param {object} props The function properties.
+ * @param {string} props.color No coding activity text color.
+ * @param {string} props.text No coding activity translated text.
+ * @returns {string} No coding activity SVG node string.
  */
 const noCodingActivityNode = ({ color, text }) => {
   return `
@@ -34,22 +36,42 @@ const noCodingActivityNode = ({ color, text }) => {
 };
 
 /**
+ * @typedef {import('../fetchers/types').WakaTimeLang} WakaTimeLang
+ */
+
+/**
+ * Format language value.
+ *
+ * @param {Object} args The function arguments.
+ * @param {WakaTimeLang} args.lang The language object.
+ * @param {"time" | "percent"} args.display_format The display format of the language node.
+ * @returns {string} The formatted language value.
+ */
+const formatLanguageValue = ({ display_format, lang }) => {
+  return display_format === "percent"
+    ? `${lang.percent.toFixed(2).toString()} %`
+    : lang.text;
+};
+
+/**
  * Create compact WakaTime layout.
  *
- * @param {Object[]} args The function arguments.
- * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
- * @param {number} totalSize The total size of the languages.
- * @param {number} x The x position of the language node.
- * @param {number} y The y position of the language node.
+ * @param {Object} args The function arguments.
+ * @param {WakaTimeLang} args.lang The languages array.
+ * @param {number} args.x The x position of the language node.
+ * @param {number} args.y The y position of the language node.
+ * @param {"time" | "percent"} args.display_format The display format of the language node.
+ * @returns {string} The compact layout language SVG node.
  */
-const createCompactLangNode = ({ lang, totalSize, x, y }) => {
+const createCompactLangNode = ({ lang, x, y, display_format }) => {
   const color = languageColors[lang.name] || "#858585";
+  const value = formatLanguageValue({ display_format, lang });
 
   return `
     <g transform="translate(${x}, ${y})">
       <circle cx="5" cy="6" r="5" fill="${color}" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        ${lang.name} - ${lang.text}
+        ${lang.name} - ${value}
       </text>
     </g>
   `;
@@ -58,27 +80,27 @@ const createCompactLangNode = ({ lang, totalSize, x, y }) => {
 /**
  * Create WakaTime language text node item.
  *
- * @param {Object[]} args The function arguments.
- * @param {import("../fetchers/types").WakaTimeLang} lang The language object.
- * @param {number} totalSize The total size of the languages.
- * @param {number} x The x position of the language node.
- * @param {number} y The y position of the language node.
+ * @param {Object} args The function arguments.
+ * @param {WakaTimeLang[]} args.langs The language objects.
+ * @param {number} args.y The y position of the language node.
+ * @param {"time" | "percent"} args.display_format The display format of the language node.
+ * @returns {string[]} The language text node items.
  */
-const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
+const createLanguageTextNode = ({ langs, y, display_format }) => {
   return langs.map((lang, index) => {
     if (index % 2 === 0) {
       return createCompactLangNode({
         lang,
         x: 25,
         y: 12.5 * index + y,
-        totalSize,
+        display_format,
       });
     }
     return createCompactLangNode({
       lang,
       x: 230,
       y: 12.5 + 12.5 * index,
-      totalSize,
+      display_format,
     });
   });
 };
@@ -86,14 +108,16 @@ const createLanguageTextNode = ({ langs, totalSize, x, y }) => {
 /**
  * Create WakaTime text item.
  *
- * @param {Object[]} args The function arguments.
- * @param {string} id The id of the text node item.
- * @param {string} label The label of the text node item.
- * @param {string} value The value of the text node item.
- * @param {number} index The index of the text node item.
- * @param {percent} percent Percentage of the text node item.
- * @param {boolean} hideProgress Whether to hide the progress bar.
- * @param {string} progressBarBackgroundColor The color of the progress bar background.
+ * @param {Object} args The function arguments.
+ * @param {string} args.id The id of the text node item.
+ * @param {string} args.label The label of the text node item.
+ * @param {string} args.value The value of the text node item.
+ * @param {number} args.index The index of the text node item.
+ * @param {number} args.percent Percentage of the text node item.
+ * @param {boolean=} args.hideProgress Whether to hide the progress bar.
+ * @param {string} args.progressBarColor The color of the progress bar.
+ * @param {string} args.progressBarBackgroundColor The color of the progress bar background.
+ * @returns {string} The text SVG node.
  */
 const createTextNode = ({
   id,
@@ -118,6 +142,7 @@ const createTextNode = ({
         // @ts-ignore
         name: label,
         progressBarBackgroundColor,
+        delay: staggerDelay + 300,
       });
 
   return `
@@ -137,8 +162,8 @@ const createTextNode = ({
  * Recalculating percentages so that, compact layout's progress bar does not break when
  * hiding languages.
  *
- * @param {import("../fetchers/types").WakaTimeLang[]} languages The languages array.
- * @return {import("../fetchers/types").WakaTimeLang[]} The recalculated languages array.
+ * @param {WakaTimeLang[]} languages The languages array.
+ * @returns {void} The recalculated languages array.
  */
 const recalculatePercentages = (languages) => {
   const totalSum = languages.reduce(
@@ -152,10 +177,45 @@ const recalculatePercentages = (languages) => {
 };
 
 /**
+ * Retrieves CSS styles for a card.
+ *
+ * @param {Object} colors The colors to use for the card.
+ * @param {string} colors.titleColor The title color.
+ * @param {string} colors.textColor The text color.
+ * @returns {string} Card CSS styles.
+ */
+const getStyles = ({
+  // eslint-disable-next-line no-unused-vars
+  titleColor,
+  textColor,
+}) => {
+  return `
+    .stat {
+      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${textColor};
+    }
+    @supports(-moz-appearance: auto) {
+      /* Selector detects Firefox */
+      .stat { font-size:12px; }
+    }
+    .stagger {
+      opacity: 0;
+      animation: fadeInAnimation 0.3s ease-in-out forwards;
+    }
+    .not_bold { font-weight: 400 }
+    .bold { font-weight: 700 }
+  `;
+};
+
+/**
+ * @typedef {import('../fetchers/types').WakaTimeData} WakaTimeData
+ * @typedef {import('./types').WakaTimeOptions} WakaTimeOptions
+ */
+
+/**
  * Renders WakaTime card.
  *
- * @param {Partial<import('../fetchers/types').WakaTimeData>} stats WakaTime stats.
- * @param {Partial<import('./types').WakaTimeOptions>} options Card options.
+ * @param {Partial<WakaTimeData>} stats WakaTime stats.
+ * @param {Partial<WakaTimeOptions>} options Card options.
  * @returns {string} WakaTime card SVG.
  */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
@@ -177,6 +237,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     langs_count = languages.length,
     border_radius,
     border_color,
+    display_format = "time",
+    disable_animations,
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
@@ -199,7 +261,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   const lheight = parseInt(String(line_height), 10);
 
-  const langsCount = clampValue(parseInt(String(langs_count)), 1, langs_count);
+  const langsCount = clampValue(langs_count, 1, langs_count);
 
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, iconColor, bgColor, borderColor } =
@@ -223,7 +285,6 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const cssStyles = getStyles({
     titleColor,
     textColor,
-    iconColor,
   });
 
   let finalLayout = "";
@@ -266,21 +327,33 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       <rect x="25" y="0" width="${width - 50}" height="8" fill="white" rx="5" />
       </mask>
       ${compactProgressBar}
-      ${createLanguageTextNode({
-        x: 0,
-        y: 25,
-        langs: filteredLanguages,
-        totalSize: 100,
-      }).join("")}
+      ${
+        filteredLanguages.length
+          ? createLanguageTextNode({
+              y: 25,
+              langs: filteredLanguages,
+              display_format,
+            }).join("")
+          : noCodingActivityNode({
+              // @ts-ignore
+              color: textColor,
+              text: stats.is_coding_activity_visible
+                ? stats.is_other_usage_visible
+                  ? i18n.t("wakatimecard.nocodingactivity")
+                  : i18n.t("wakatimecard.nocodedetails")
+                : i18n.t("wakatimecard.notpublic"),
+            })
+      }
     `;
   } else {
     finalLayout = flexLayout({
       items: filteredLanguages.length
-        ? filteredLanguages.map((language) => {
+        ? filteredLanguages.map((language, index) => {
             return createTextNode({
               id: language.name,
               label: language.name,
-              value: language.text,
+              value: formatLanguageValue({ display_format, lang: language }),
+              index,
               percent: language.percent,
               // @ts-ignore
               progressBarColor: titleColor,
@@ -293,7 +366,11 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
             noCodingActivityNode({
               // @ts-ignore
               color: textColor,
-              text: i18n.t("wakatimecard.nocodingactivity"),
+              text: stats.is_coding_activity_visible
+                ? stats.is_other_usage_visible
+                  ? i18n.t("wakatimecard.nocodingactivity")
+                  : i18n.t("wakatimecard.nocodedetails")
+                : i18n.t("wakatimecard.notpublic"),
             }),
           ],
       gap: lheight,
@@ -301,9 +378,20 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     }).join("");
   }
 
+  // Get title range text
+  let titleText = i18n.t("wakatimecard.title");
+  switch (stats.range) {
+    case "last_7_days":
+      titleText += ` (${i18n.t("wakatimecard.last7days")})`;
+      break;
+    case "last_year":
+      titleText += ` (${i18n.t("wakatimecard.lastyear")})`;
+      break;
+  }
+
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: i18n.t("wakatimecard.title"),
+    defaultTitle: titleText,
     width: 495,
     height,
     border_radius,
@@ -316,12 +404,38 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     },
   });
 
+  if (disable_animations) {
+    card.disableAnimations();
+  }
+
   card.setHideBorder(hide_border);
   card.setHideTitle(hide_title);
   card.setCSS(
     `
     ${cssStyles}
+    @keyframes slideInAnimation {
+      from {
+        width: 0;
+      }
+      to {
+        width: calc(100%-100px);
+      }
+    }
+    @keyframes growWidthAnimation {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
     .lang-name { font: 400 11px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+    #rect-mask rect{
+      animation: slideInAnimation 1s ease-in-out forwards;
+    }
+    .lang-progress{
+      animation: growWidthAnimation 0.6s ease-in-out forwards;
+    }
     `,
   );
 

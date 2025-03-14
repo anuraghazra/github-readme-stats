@@ -1,3 +1,95 @@
-themes: themes/index.js
-doc-translation: docs/*
-card-i18n: src/translations.js
+themes:
+  - changed-files:
+      - any-glob-to-any-file:
+          - themes/index.js
+
+doc-translation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - docs/*
+
+card-i18n:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/translations.js
+          - src/common/I18n.js
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - readme.md
+          - CONTRIBUTING.md
+          - CODE_OF_CONDUCT.md
+          - SECURITY.md
+
+dependencies:
+  - changed-files:
+      - any-glob-to-any-file:
+          - package.json
+          - package-lock.json
+
+lang-card:
+  - changed-files:
+      - any-glob-to-any-file:
+          - api/top-langs.js
+          - src/cards/top-languages-card.js
+          - src/fetchers/top-languages-fetcher.js
+          - tests/fetchTopLanguages.test.js
+          - tests/renderTopLanguagesCard.test.js
+          - tests/top-langs.test.js
+
+repo-card:
+  - changed-files:
+      - any-glob-to-any-file:
+          - api/pin.js
+          - src/cards/repo-card.js
+          - src/fetchers/repo-fetcher.js
+          - tests/fetchRepo.test.js
+          - tests/renderRepoCard.test.js
+          - tests/pin.test.js
+
+stats-card:
+  - changed-files:
+      - any-glob-to-any-file:
+          - api/index.js
+          - src/cards/stats-card.js
+          - src/fetchers/stats-fetcher.js
+          - tests/fetchStats.test.js
+          - tests/renderStatsCard.test.js
+          - tests/api.test.js
+
+wakatime-card:
+  - changed-files:
+      - any-glob-to-any-file:
+          - api/wakatime.js
+          - src/cards/wakatime-card.js
+          - src/fetchers/wakatime-fetcher.js
+          - tests/fetchWakatime.test.js
+          - tests/renderWakatimeCard.test.js
+          - tests/wakatime.test.js
+
+gist-card:
+  - changed-files:
+      - any-glob-to-any-file:
+          - api/gist.js
+          - src/cards/gist-card.js
+          - src/fetchers/gist-fetcher.js
+          - tests/fetchGist.test.js
+          - tests/renderGistCard.test.js
+          - tests/gist.test.js
+
+ranks:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/calculateRank.js
+
+ci:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .github/workflows/*
+          - scripts/*
+
+infrastructure:
+  - changed-files:
+      - any-glob-to-any-file:
+          - .eslintrc.json
