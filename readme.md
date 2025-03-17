@@ -10,29 +10,26 @@
 
 ---
 
-### 🌟 GitHub Stats (Dark Mode)
-<p align="center">
-  <a href="https://github.com/unrastand/github-readme-stats#responsive-card-theme">
-    <img src="https://github-readme-stats.vercel.app/api?username=unrastand&show_icons=true&theme=dark" alt="GitHub Stats" />
-  </a>
-</p>
-
----
-
-### 📊 Top Languages (Pie Chart)
-<p align="center">
-  <a href="https://github.com/unrastand/github-readme-stats">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=unrastand&layout=pie" alt="Top Languages Pie Chart" />
-  </a>
-</p>
-
----
-
-### 📌 Additional Stats
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=unrastand&rank_icon=github&border_color=2e4058" alt="GitHub Rank Icon">
-</p>
-
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=unrastand" alt="Top Languages">
-</p>
+## 🚀 GitHub Overview
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://github.com/unrastand/github-readme-stats#responsive-card-theme">
+        <img src="https://github-readme-stats.vercel.app/api?username=unrastand&show_icons=true&theme=dark" alt="GitHub Stats" />
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/unrastand/github-readme-stats">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=unrastand&layout=pie" alt="Top Languages Pie Chart" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github-readme-stats.vercel.app/api?username=unrastand&rank_icon=github&border_color=2e4058" alt="GitHub Rank Icon">
+    </td>
+    <td align="center">
+      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=unrastand" alt="Top Languages">
+    </td>
+  </tr>
+</table>
