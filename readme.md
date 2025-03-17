@@ -12,7 +12,7 @@
 
 ## 🚀 About Me  
 👋 Hi, I'm **Israel Oluwasegun Kolawole**  
-🔧 **Mechanical Engineer | Robotics Developer | Full-Stack Web Developer**  
+🔧 **Mechatronis Engineering Student | Robotics and Automation | Full-Stack Web Developer**  
 🎯 Specializing in **Django, AI, Drone Systems, and Automation**  
 
 ---
