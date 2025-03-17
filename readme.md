@@ -1,81 +1,63 @@
-import { Github, Linkedin, Mail, Twitter, Cpu, Zap, Award } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+<p align="center">
+  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
+</p>
 
-export default function DeveloperProfileCard() {
-  return (
-    <div className="flex justify-center items-center min-h-[500px] p-4">
-      <Card className="w-full max-w-lg overflow-hidden border-0 shadow-xl">
-        <div className="h-28 bg-gradient-to-r from-gray-800 to-gray-600 relative">
-          <div className="absolute -bottom-12 left-6">
-            <Avatar className="h-24 w-24 border-4 border-background">
-              <AvatarImage src="/your-profile-image.jpg" alt="Israel Oluwasegun Kolawole" />
-              <AvatarFallback className="text-2xl bg-gray-100">IK</AvatarFallback>
-            </Avatar>
-          </div>
-        </div>
+<h2 align="center">Israel Oluwasegun Kolawole | GitHub Profile</h2>
 
-        <CardHeader className="pt-14 pb-2">
-          <h2 className="text-2xl font-bold">Israel Oluwasegun Kolawole</h2>
-          <p className="text-muted-foreground flex items-center gap-1 text-sm">
-            <Cpu className="h-4 w-4" /> Drone & Robotics Engineer | Full-Stack Developer
-          </p>
-        </CardHeader>
+<p align="center">
+  <img alt="Uptime Badge" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgithub-readme-stats-git-monitoring-github-readme-stats-team.vercel.app%2Fapi%2Fstatus%2Fup%3Ftype%3Dshields">
+</p>
 
-        <CardContent className="space-y-4">
-          <p className="text-sm text-muted-foreground">
-            Building autonomous drone systems, AI-powered applications, and scalable web solutions.
-          </p>
+---
 
-          <div className="space-y-3">
-            <div className="flex justify-between text-sm">
-              <span className="font-medium">Drone Systems</span>
-              <span className="text-muted-foreground">Expert</span>
-            </div>
-            <Progress value={95} className="h-2" />
+## 🚀 About Me  
+👋 Hi, I'm **Israel Oluwasegun Kolawole**  
+🔧 **Mechanical Engineer | Robotics Developer | Full-Stack Web Developer**  
+🎯 Specializing in **Django, AI, Drone Systems, and Automation**  
 
-            <div className="flex justify-between text-sm">
-              <span className="font-medium">Full-Stack Development</span>
-              <span className="text-muted-foreground">Advanced</span>
-            </div>
-            <Progress value={85} className="h-2" />
-          </div>
+---
 
-          <div className="flex flex-wrap gap-2 pt-2">
-            <Badge variant="secondary">Django</Badge>
-            <Badge variant="secondary">Python</Badge>
-            <Badge variant="secondary">ROS</Badge>
-            <Badge variant="secondary">React</Badge>
-            <Badge variant="secondary">Computer Vision</Badge>
-          </div>
+## 🌟 GitHub Stats  
+<table>
+  <tr>
+    <td>
+      <a href="https://github.com/unrastand/github-readme-stats">
+        <img src="https://github-readme-stats.vercel.app/api?username=unrastand&show_icons=true&theme=dark" alt="GitHub Stats" />
+      </a>
+    </td>
+    <td>
+      <a href="https://github.com/unrastand/github-readme-stats">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=unrastand&layout=compact&theme=dark" alt="Top Languages" />
+      </a>
+    </td>
+  </tr>
+</table>
 
-          <div className="flex items-center gap-2 pt-1">
-            <Award className="h-4 w-4 text-amber-500" />
-            <span className="text-sm font-medium">ALX AI & Data Analytics Bootcamp Graduate</span>
-          </div>
-        </CardContent>
+---
 
-        <CardFooter className="flex justify-between border-t pt-4">
-          <div className="flex gap-2">
-            <Button size="icon" variant="ghost">
-              <Github className="h-4 w-4" />
-            </Button>
-            <Button size="icon" variant="ghost">
-              <Linkedin className="h-4 w-4" />
-            </Button>
-            <Button size="icon" variant="ghost">
-              <Twitter className="h-4 w-4" />
-            </Button>
-          </div>
-          <Button className="gap-2">
-            <Mail className="h-4 w-4" />
-            Contact
-          </Button>
-        </CardFooter>
-      </Card>
-    </div>
-  );
-}
+## 📌 Developer Profile  
+<div align="center">
+  <img width="400px" src="https://github-readme-streak-stats.herokuapp.com/?user=unrastand&theme=dark&hide_border=true" alt="GitHub Streak" />
+</div>
+
+---
+
+## 💻 Tech Stack  
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=python,django,react,typescript,cpp,arduino,raspberrypi,git,linux,postgres,mysql" />
+</p>
+
+---
+
+## 📫 Connect with Me  
+<p align="center">
+  <a href="https://github.com/unrastand">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" />
+  </a>
+  <a href="https://www.linkedin.com/in/israel-oluwasegun-kolawole">
+    <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+  </a>
+  <a href="mailto:your-email@example.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" />
+  </a>
+</p>
