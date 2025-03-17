@@ -33,3 +33,17 @@
     </td>
   </tr>
 </table>
+
+---
+
+## 🔥 Contribution Streak
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github-readme-streak-stats.herokuapp.com/?user=unrastand&theme=dark&border=2e4058" alt="GitHub Streak Stats" />
+    </td>
+    <td align="center">
+      <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=unrastand&theme=github_dark" alt="GitHub Contribution Graph" />
+    </td>
+  </tr>
+</table>
