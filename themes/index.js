@@ -321,6 +321,12 @@ export const themes = {
     text_color: "C3D1D9",
     bg_color: "0D1117",
   },
+  github_dark_repocard: {
+    title_color: "4493f8", // title color is different
+    icon_color: "8d96a0", // icon color is different
+    text_color: "8d96a0", // text color is different
+    bg_color: "0c1117",
+  },
   github_dark_dimmed: {
     title_color: "539bf5",
     icon_color: "539bf5",
