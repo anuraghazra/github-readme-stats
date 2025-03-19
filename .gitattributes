@@ -1,1 +1,2 @@
 dist/* linguist-vendored=false
+*.sql linguist-detectable=true
