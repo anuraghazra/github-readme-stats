@@ -463,7 +463,7 @@ export const themes = {
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
   watchdog_gradient: {
-    title_color: "EBD208",
+    title_color: "FC2E97",
     text_color: "B6EBE0",
     icon_color: "EBD208",
     bg_color: "45,021D4A,520806",
