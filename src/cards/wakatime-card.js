@@ -18,6 +18,7 @@ import { wakatimeCardLocales } from "../translations.js";
  * --experimental-json-modules flag.
  */
 import { createRequire } from "module";
+
 const require = createRequire(import.meta.url);
 const languageColors = require("../common/languageColors.json"); // now works
 
@@ -212,14 +213,13 @@ const getStyles = ({
  */
 
 /**
- * Renders WakaTime card.
- *
+ * Renders WakaTime item card.
+ * @param {WakaTimeLang[]} items WakaTime items.
  * @param {Partial<WakaTimeData>} stats WakaTime stats.
  * @param {Partial<WakaTimeOptions>} options Card options.
  * @returns {string} WakaTime card SVG.
  */
-const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  let { languages = [] } = stats;
+function renderItemCard(items = [], stats, options = {}) {
   const {
     hide_title = false,
     hide_border = false,
@@ -234,25 +234,23 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     custom_title,
     locale,
     layout,
-    langs_count = languages.length,
+    langs_count = items.length,
     border_radius,
     border_color,
     display_format = "time",
     disable_animations,
   } = options;
 
-  const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
-  if (shouldHideLangs) {
-    const languagesToHide = new Set(hide.map((lang) => lowercaseTrim(lang)));
-    languages = languages.filter(
-      (lang) => !languagesToHide.has(lowercaseTrim(lang.name)),
-    );
+  const shouldHideItems = Array.isArray(hide) && hide.length > 0;
+  if (shouldHideItems) {
+    const itemsToHide = new Set(hide.map((item) => lowercaseTrim(item)));
+    items = items.filter((item) => !itemsToHide.has(lowercaseTrim(item.name)));
   }
 
   // Since the percentages are sorted in descending order, we can just
   // slice from the beginning without sorting.
-  languages = languages.slice(0, langs_count);
-  recalculatePercentages(languages);
+  items = items.slice(0, langs_count);
+  recalculatePercentages(items);
 
   const i18n = new I18n({
     locale,
@@ -260,7 +258,6 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   });
 
   const lheight = parseInt(String(line_height), 10);
-
   const langsCount = clampValue(langs_count, 1, langs_count);
 
   // returns theme based colors with proper overrides and defaults
@@ -274,13 +271,13 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       theme,
     });
 
-  const filteredLanguages = languages
-    .filter((language) => language.hours || language.minutes)
+  const filteredItems = items
+    .filter((item) => item.hours || item.minutes)
     .slice(0, langsCount);
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  let height = Math.max(45 + (filteredLanguages.length + 1) * lheight, 150);
+  let height = Math.max(45 + (filteredItems.length + 1) * lheight, 150);
 
   const cssStyles = getStyles({
     titleColor,
@@ -294,17 +291,17 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
     width = width + 50;
-    height = 90 + Math.round(filteredLanguages.length / 2) * 25;
+    height = 90 + Math.round(filteredItems.length / 2) * 25;
 
-    // progressOffset holds the previous language's width and used to offset the next language
+    // progressOffset holds the previous item's width and used to offset the next item
     // so that we can stack them one after another, like this: [--][----][---]
     let progressOffset = 0;
-    const compactProgressBar = filteredLanguages
-      .map((language) => {
+    const compactProgressBar = filteredItems
+      .map((item) => {
         // const progress = (width * lang.percent) / 100;
-        const progress = ((width - 25) * language.percent) / 100;
+        const progress = ((width - 25) * item.percent) / 100;
 
-        const languageColor = languageColors[language.name] || "#858585";
+        const itemColor = languageColors[item.name] || "#858585";
 
         const output = `
           <rect
@@ -314,7 +311,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
             y="0"
             width="${progress}"
             height="8"
-            fill="${languageColor}"
+            fill="${itemColor}"
           />
         `;
         progressOffset += progress;
@@ -328,10 +325,10 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       </mask>
       ${compactProgressBar}
       ${
-        filteredLanguages.length
+        filteredItems.length
           ? createLanguageTextNode({
               y: 25,
-              langs: filteredLanguages,
+              langs: filteredItems,
               display_format,
             }).join("")
           : noCodingActivityNode({
@@ -347,14 +344,14 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     `;
   } else {
     finalLayout = flexLayout({
-      items: filteredLanguages.length
-        ? filteredLanguages.map((language, index) => {
+      items: filteredItems.length
+        ? filteredItems.map((item, index) => {
             return createTextNode({
-              id: language.name,
-              label: language.name,
-              value: formatLanguageValue({ display_format, lang: language }),
+              id: item.name,
+              label: item.name,
+              value: formatLanguageValue({ display_format, lang: item }),
               index,
-              percent: language.percent,
+              percent: item.percent,
               // @ts-ignore
               progressBarColor: titleColor,
               // @ts-ignore
@@ -444,6 +441,27 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       ${finalLayout}
     </svg>
   `);
+}
+
+/**
+ * Renders WakaTime card depending on options.graph.
+ *
+ * @param {Partial<WakaTimeData>} stats WakaTime stats.
+ * @param {Partial<WakaTimeOptions>} options Card options.
+ * @returns {string} WakaTime card SVG.
+ */
+const renderWakatimeCard = (stats = {}, options = { hide: [], graph: "" }) => {
+  const { languages, editors, categories, operating_systems } = stats;
+
+  if (options.graph === "editor") {
+    return renderItemCard(editors, stats, options);
+  } else if (options.graph === "category") {
+    return renderItemCard(categories, stats, options);
+  } else if (options.graph === "os") {
+    return renderItemCard(operating_systems, stats, options);
+  } else {
+    return renderItemCard(languages, stats, options);
+  }
 };
 
 export { renderWakatimeCard };
