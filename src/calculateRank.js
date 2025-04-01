@@ -28,10 +28,9 @@ function log_normal_cdf(x) {
  * @param {number} params.prs The number of pull requests.
  * @param {number} params.issues The number of issues.
  * @param {number} params.reviews The number of reviews.
- * @param {number} params.repos Total number of repos.
  * @param {number} params.stars The number of stars.
  * @param {number} params.followers The number of followers.
- * @returns {{level: string, percentile: number}}} The users rank.
+ * @returns {{level: string, percentile: number}} The users rank.
  */
 function calculateRank({
   all_commits,
@@ -39,8 +38,6 @@ function calculateRank({
   prs,
   issues,
   reviews,
-  // eslint-disable-next-line no-unused-vars
-  repos, // unused
   stars,
   followers,
 }) {
@@ -78,7 +75,8 @@ function calculateRank({
       FOLLOWERS_WEIGHT * log_normal_cdf(followers / FOLLOWERS_MEDIAN)) /
       TOTAL_WEIGHT;
 
-  const level = LEVELS[THRESHOLDS.findIndex((t) => rank * 100 <= t)];
+  const levelIndex = THRESHOLDS.findIndex((t) => rank * 100 <= t);
+  const level = levelIndex !== -1 ? LEVELS[levelIndex] : LEVELS[LEVELS.length - 1];
 
   return { level, percentile: rank * 100 };
 }
