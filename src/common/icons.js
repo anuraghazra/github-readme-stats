@@ -20,9 +20,10 @@ const icons = {
  * @param {string} rankIcon - The rank icon type.
  * @param {string} rankLevel - The rank level.
  * @param {number} percentile - The rank percentile.
+ * @param {badge_style} badge_style - The badge style.
  * @returns {string} - The SVG code of the rank icon
  */
-const rankIcon = (rankIcon, rankLevel, percentile) => {
+const rankIcon = (rankIcon, rankLevel, percentile, badge_style) => {
   switch (rankIcon) {
     case "github":
       return `
@@ -40,6 +41,9 @@ const rankIcon = (rankIcon, rankLevel, percentile) => {
         </text>
       `;
     case "default":
+    case "badge":
+      console.log(badge_style);
+      return ``;
     default:
       return `
         <text x="-5" y="3" alignment-baseline="central" dominant-baseline="central" text-anchor="middle" data-testid="level-rank-icon">
