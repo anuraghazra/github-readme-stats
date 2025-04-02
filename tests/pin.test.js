@@ -22,6 +22,23 @@ const data_repo = {
     },
     forkCount: 100,
     isTemplate: false,
+    languagesBreakdown: {
+      HTML: {
+        color: "#0f0",
+        name: "HTML",
+        size: 200,
+      },
+      javascript: {
+        color: "#0ff",
+        name: "javascript",
+        size: 200,
+      },
+      css: {
+        color: "#ff0",
+        name: "css",
+        size: 100,
+      },
+    },
   },
 };
 
@@ -29,6 +46,19 @@ const data_user = {
   data: {
     user: { repository: data_repo.repository },
     organization: null,
+  },
+};
+const data_languages_resp = {
+  data: {
+    repository: {
+      languages: {
+        edges: [
+          { node: { name: "HTML", color: "#0f0" }, size: 200 },
+          { node: { name: "javascript", color: "#0ff" }, size: 200 },
+          { node: { name: "css", color: "#ff0" }, size: 100 },
+        ],
+      },
+    },
   },
 };
 
@@ -50,8 +80,10 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
-
+    mock.onPost("https://api.github.com/graphql").replyOnce(200, data_user);
+    mock
+      .onPost("https://api.github.com/graphql")
+      .replyOnce(200, data_languages_resp);
     await pin(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
@@ -79,7 +111,11 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
+    // To Api calls
+    mock.onPost("https://api.github.com/graphql").replyOnce(200, data_user);
+    mock
+      .onPost("https://api.github.com/graphql")
+      .replyOnce(200, data_languages_resp);
 
     await pin(req, res);
 
@@ -106,9 +142,12 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
+    mock.onPost("https://api.github.com/graphql").replyOnce(200, {
+      data: { user: { repository: null }, organization: null },
+    });
     mock
       .onPost("https://api.github.com/graphql")
-      .reply(200, { data: { user: { repository: null }, organization: null } });
+      .replyOnce(200, data_languages_resp);
 
     await pin(req, res);
 
@@ -127,9 +166,12 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
+    mock.onPost("https://api.github.com/graphql").replyOnce(200, {
+      data: { user: null, organization: { repository: null } },
+    });
     mock
       .onPost("https://api.github.com/graphql")
-      .reply(200, { data: { user: null, organization: { repository: null } } });
+      .replyOnce(200, data_languages_resp);
 
     await pin(req, res);
 
@@ -150,7 +192,10 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
+    mock.onPost("https://api.github.com/graphql").replyOnce(200, data_user);
+    mock
+      .onPost("https://api.github.com/graphql")
+      .replyOnce(200, data_languages_resp);
 
     await pin(req, res);
 
@@ -172,7 +217,10 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
+    mock.onPost("https://api.github.com/graphql").replyOnce(200, data_user);
+    mock
+      .onPost("https://api.github.com/graphql")
+      .replyOnce(200, data_languages_resp);
 
     await pin(req, res);
 
