@@ -12,11 +12,12 @@ const fetchWakatimeStats = async ({ username, api_domain }) => {
     throw new MissingParamError(["username"]);
   }
 
+  const allowedDomains = ["wakatime.com", "another-allowed-domain.com"];
+  const validatedDomain = allowedDomains.includes(api_domain) ? api_domain : "wakatime.com";
+
   try {
     const { data } = await axios.get(
-      `https://${
-        api_domain ? api_domain.replace(/\/$/gi, "") : "wakatime.com"
-      }/api/v1/users/${username}/stats?is_including_today=true`,
+      `https://${validatedDomain}/api/v1/users/${username}/stats?is_including_today=true`,
     );
 
     return data.data;
