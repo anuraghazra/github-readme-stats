@@ -205,9 +205,19 @@ const trimTopLanguages = (topLangs, langs_count, hide) => {
  * @param {string} props.name Name of the programming language.
  * @param {number} props.progress Usage of the programming language in percentage.
  * @param {number} props.index Index of the programming language.
+ * @param {string} props.progressBarBorderColor Border color of the progress bar.
+ * @param {number} props.progressBarBorderThickness Border thickness of the progress bar.
  * @returns {string} Programming language SVG node.
  */
-const createProgressTextNode = ({ width, color, name, progress, index }) => {
+const createProgressTextNode = ({
+  width,
+  color,
+  name,
+  progress,
+  index,
+  progressBarBorderColor,
+  progressBarBorderThickness,
+}) => {
   const staggerDelay = (index + 3) * 150;
   const paddingRight = 95;
   const progressTextX = width - paddingRight + 10;
@@ -224,6 +234,8 @@ const createProgressTextNode = ({ width, color, name, progress, index }) => {
         width: progressWidth,
         progress,
         progressBarBackgroundColor: "#ddd",
+        progressBarBorderColor,
+        progressBarBorderThickness,
         delay: staggerDelay + 300,
       })}
     </g>
@@ -322,9 +334,17 @@ const createDonutLanguagesNode = ({ langs, totalSize }) => {
  * @param {Lang[]} langs Array of programming languages.
  * @param {number} width Card width.
  * @param {number} totalLanguageSize Total size of all languages.
+ * @param {string} progressBarBorderColor Border color of progress bar.
+ * @param {number} progressBarBorderThickness Border thickness of progress bar.
  * @returns {string} Normal layout card SVG object.
  */
-const renderNormalLayout = (langs, width, totalLanguageSize) => {
+const renderNormalLayout = (
+  langs,
+  width,
+  totalLanguageSize,
+  progressBarBorderColor,
+  progressBarBorderThickness,
+) => {
   return flexLayout({
     items: langs.map((lang, index) => {
       return createProgressTextNode({
@@ -335,6 +355,8 @@ const renderNormalLayout = (langs, width, totalLanguageSize) => {
           ((lang.size / totalLanguageSize) * 100).toFixed(2),
         ),
         index,
+        progressBarBorderColor,
+        progressBarBorderThickness,
       });
     }),
     gap: 40,
@@ -348,10 +370,19 @@ const renderNormalLayout = (langs, width, totalLanguageSize) => {
  * @param {Lang[]} langs Array of programming languages.
  * @param {number} width Card width.
  * @param {number} totalLanguageSize Total size of all languages.
+ * @param {number} progressBarBorderThickness Border thickness of the progress bar
+ * @param {string} progressBarBorderColor Border color of the progress bar
  * @param {boolean=} hideProgress Whether to hide progress bar.
  * @returns {string} Compact layout card SVG object.
  */
-const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
+const renderCompactLayout = (
+  langs,
+  width,
+  totalLanguageSize,
+  progressBarBorderThickness,
+  progressBarBorderColor,
+  hideProgress,
+) => {
   const paddingRight = 50;
   const offsetWidth = width - paddingRight;
   // progressOffset holds the previous language's width and used to offset the next language
@@ -386,10 +417,20 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
     hideProgress
       ? ""
       : `
-      <mask id="rect-mask">
+        <mask id="rect-mask">
           <rect x="0" y="0" width="${offsetWidth}" height="8" fill="white" rx="5"/>
         </mask>
         ${compactProgressBar}
+        <rect
+          x="${progressBarBorderThickness / 2}"
+          y="${progressBarBorderThickness / 2}"
+          width="${offsetWidth - progressBarBorderThickness}"
+          height="${8 - progressBarBorderThickness}"
+          stroke="${progressBarBorderColor}"
+          stroke-width="${progressBarBorderThickness}"
+          fill="none"
+          rx="${5 - progressBarBorderThickness}"
+        />
       `
   }
     <g transform="translate(0, ${hideProgress ? "0" : "25"})">
@@ -730,6 +771,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
     bg_color,
     hide,
     hide_progress,
+    progress_bar_border_color,
+    progress_bar_border_thickness = 1,
     theme,
     layout,
     custom_title,
@@ -766,6 +809,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     text_color,
     bg_color,
     border_color,
+    progress_bar_border_color,
     theme,
   });
 
@@ -791,6 +835,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
       langs,
       width,
       totalLanguageSize,
+      progress_bar_border_thickness,
+      colors.progressBarBorderColor,
       hide_progress,
     );
   } else if (layout === "donut") {
@@ -798,7 +844,13 @@ const renderTopLanguages = (topLangs, options = {}) => {
     width = width + 50; // padding
     finalLayout = renderDonutLayout(langs, width, totalLanguageSize);
   } else {
-    finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
+    finalLayout = renderNormalLayout(
+      langs,
+      width,
+      totalLanguageSize,
+      colors.progressBarBorderColor,
+      progress_bar_border_thickness,
+    );
   }
 
   const card = new Card({
