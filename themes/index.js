@@ -462,6 +462,13 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  cyber_gold:{
+    title_color: "ffd600",
+    text_color: "ffd600",
+    icon_color: "ffd600",
+    bg_color: "0d1117",
+
+  }
 };
 
 export default themes;
