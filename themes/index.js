@@ -12,6 +12,13 @@ export const themes = {
     text_color: "434d58",
     bg_color: "fffefe",
   },
+  vinkay: {
+    title_color: "70a5fd",
+    text_color: "bddfff",
+    icon_color: "BB8470",
+    border_color: "417E87",
+    bg_color: "ffffff00",
+  },
   transparent: {
     title_color: "006AFF",
     icon_color: "0579C3",
