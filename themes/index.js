@@ -358,6 +358,12 @@ export const themes = {
     text_color: "0088ff",
     bg_color: "193549",
   },
+  sport_yellow: {
+    title_color: "020202",
+    icon_color: "020202",
+    text_color: "555555",
+    bg_color: "F5D10D",
+   },
   swift: {
     title_color: "000000",
     icon_color: "f05237",
