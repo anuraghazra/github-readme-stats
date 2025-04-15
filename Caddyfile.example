@@ -1,0 +1,4 @@
+readme-stats.example.com {
+    reverse_proxy readme_stats:9000
+}
+
