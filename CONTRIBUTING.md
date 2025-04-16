@@ -2,11 +2,11 @@
 
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
--   Reporting an issue
--   Discussing the current state of the code
--   Submitting a fix
--   Proposing new features
--   Becoming a maintainer
+-   Reporting [an issue](https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&template=bug_report.yml).
+-   [Discussing](https://github.com/anuraghazra/github-readme-stats/discussions) the current state of the code.
+-   Submitting [a fix](https://github.com/anuraghazra/github-readme-stats/compare).
+-   Proposing [new features](https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&template=feature_request.yml).
+-   Becoming a maintainer.
 
 ## All Changes Happen Through Pull Requests
 
@@ -33,25 +33,29 @@ _(make sure you already have a [Vercel](https://vercel.com/) account)_
 1.  Install [Vercel CLI](https://vercel.com/download).
 2.  Fork the repository and clone the code to your local machine.
 3.  Run `npm install` in the repository root.
-4.  Run the command "vercel" in the root and follow the steps there.
-5.  Open `vercel.json` and set the maxDuration to 10.
-6.  Create a `.env` file in the root of the directory.
-7.  In the .env file add a new variable named "PAT_1" with your [GitHub Personal Access Token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token).
-8.  Run the command "vercel dev" to start a development server at <https://localhost:3000>.
+4.  Run the command `vercel` in the root and follow the steps there.
+5.  Run the command `vercel dev` to start a development server at <http://localhost:3000>.
+6.  The cards will then be available from this local endpoint (i.e. `http://localhost:3000/api?username=anuraghazra`).
+
+> [!NOTE]\
+> You can debug the package code in [Vscode](https://code.visualstudio.com/) by using the [Node.js: Attach to process](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_setting-up-an-attach-configuration) debug option. You can also debug any tests using the [VSCode Jest extension](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest). For more information, see https://github.com/jest-community/vscode-jest/issues/912.
 
 ## Themes Contribution
 
-GitHub Readme Stats supports custom theming, and you can also contribute new themes!
+We're currently paused addition of new themes to decrease maintenance efforts. All pull requests related to new themes will be closed.
 
-All you need to do is edit the [themes/index.js](./themes/index.js) file and add your theme at the end of the file.
+> [!NOTE]\
+> If you are considering contributing your theme just because you are using it personally, then instead of adding it to our theme collection, you can use card [customization options](./readme.md#customization).
 
-While creating the Pull request to add a new theme **don't forget to add a screenshot of how your theme looks**, you can also test how it looks using custom URL parameters like `title_color`, `icon_color`, `bg_color`, `text_color`, `border_color`
+## Translations Contribution
 
-> NOTE: If you are contributing your theme just because you are using it personally, then you can [customize the looks](./readme.md#customization) of your card with URL params instead.
+GitHub Readme Stats supports multiple languages, if we are missing your language, you can contribute it! You can check the currently supported languages [here](./readme.md#available-locales).
+
+To contribute your language you need to edit the [src/translations.js](./src/translations.js) file and add new property to each object where the key is the language code in [ISO 639-1 standard](https://www.andiamo.co.uk/resources/iso-language-codes/) and the value is the translated string.
 
 ## Any contributions you make will be under the MIT Software License
 
-In short, when you submit changes, your submissions are understood to be under the same [MIT License](http://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
+In short, when you submit changes, your submissions are understood to be under the same [MIT License](https://choosealicense.com/licenses/mit/) that covers the project. Feel free to contact the maintainers if that's a concern.
 
 ## Report issues/bugs using GitHub's [issues](https://github.com/anuraghazra/github-readme-stats/issues)
 
@@ -104,7 +108,3 @@ People _love_ thorough bug reports. I'm not even kidding.
 -   A quick idea summary
 -   What & why do you want to add the specific feature
 -   Additional context like images, links to resources to implement the feature, etc.
-
-## License
-
-By contributing, you agree that your contributions will be licensed under its [MIT License](./LICENSE).

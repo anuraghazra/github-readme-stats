@@ -7,8 +7,11 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/actions">
       <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />
     </a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/graphs/contributors">
+      <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/anuraghazra/github-readme-stats" />
+    </a>
     <a href="https://codecov.io/gh/anuraghazra/github-readme-stats">
-      <img src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
+      <img alt="Tests Coverage" src="https://codecov.io/gh/anuraghazra/github-readme-stats/branch/master/graph/badge.svg" />
     </a>
     <a href="https://github.com/anuraghazra/github-readme-stats/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/anuraghazra/github-readme-stats?color=0088ff" />
@@ -16,22 +19,19 @@
     <a href="https://github.com/anuraghazra/github-readme-stats/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/anuraghazra/github-readme-stats?color=0088ff" />
     </a>
+    <a href="https://securityscorecards.dev/viewer/?uri=github.com/anuraghazra/github-readme-stats">
+      <img alt="OpenSSF Scorecard" src="https://api.securityscorecards.dev/projects/github.com/anuraghazra/github-readme-stats/badge" />
+    </a>
     <br />
     <br />
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=1227">
-      <img src="https://img.shields.io/badge/Supported%20by-VSCode%20Power%20User%20%E2%86%92-gray.svg?colorA=655BE1&colorB=4F44D6&style=for-the-badge"/>
-    </a>
-    <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
-      <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
-    </a>
   </p>
 
   <p align="center">
     <a href="#demo">View Demo</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml">Report Bug</a>
     ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=enhancement&projects=&template=feature_request.yml">Request Feature</a>
   </p>
   <p align="center">
     <a href="/docs/readme_fr.md">Français</a>
@@ -53,18 +53,32 @@
     <a href="/docs/readme_nl.md">Nederlands</a>
     .
     <a href="/docs/readme_np.md">नेपाली</a>
+    .
+    <a href="/docs/readme_tr.md">Türkçe</a>
   </p>
 </p>
 <p align="center">このプロジェクトを気に入っていただけましたか？<br>もしよろしければ、プロジェクトのさらなる改善のために<a href="https://www.paypal.me/anuraghazra">寄付</a>を検討して頂けると嬉しいです！</p>
 
-# 主な機能
+# 主な機能 <!-- omit in toc -->
 
 - [GitHub Stats Card](#github-stats-card)
+    - [特定の統計情報を隠す](#特定の統計情報を隠す)
+    - [プライベートリポジトリへのコミットをカウントする](#プライベートリポジトリへのコミットをカウントする)
+    - [アイコンを表示する](#アイコンを表示する)
+    - [テーマの変更](#テーマの変更)
+    - [テーマを自分でカスタマイズする](#テーマを自分でカスタマイズする)
 - [GitHub Extra Pins](#github-extra-pins)
+    - [使い方](#使い方)
+    - [デモ](#デモ)
 - [Top Languages Card](#top-languages-card)
-- [Themes](#テーマの変更)
-- [Customization](#テーマを自分でカスタマイズする)
-- [Deploy Yourself](#自分の-Vercel-インスタンスにデプロイする)
+    - [使い方](#使い方-1)
+    - [特定の言語を隠す](#特定の言語を隠す)
+    - [レイアウトをコンパクトにする](#レイアウトをコンパクトにする)
+    - [デモ](#デモ-1)
+    - [全てのデモ](#全てのデモ)
+    - [クイックヒント (カードを並べる)](#クイックヒント-カードを並べる)
+  - [自分の Vercel インスタンスにデプロイする](#自分の-vercel-インスタンスにデプロイする)
+  - [:sparkling\_heart: このプロジェクトを支援する](#sparkling_heart-このプロジェクトを支援する)
 
 # GitHub Stats Card
 
@@ -139,7 +153,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `bg_color` - 背景の色 _(16 進数カラーコード)_ **または** _angle,start,end_ の形式でグラデーションを指定することも可
 - `hide_border` - カードの境界線を非表示にします _(ブール値)_
 - `theme` - [使用可能なテーマ一覧](../themes/README.md) から選んだテーマ名
-- `cache_seconds` - キャッシュ時間の秒数 _(最小値: 1800, 最大値: 86400)_
+- `cache_seconds` - キャッシュ時間の秒数 _(最小値: 14400, 最大値: 86400)_
 - `locale` - カードに言語を設定する _(例えば cn, de, es, 等)_
 
 ##### bg_color の グラデーション指定
@@ -172,7 +186,7 @@ bg_color オプションで複数のカンマ区切りの値を指定してグ�
 
 - `hide` - 特定の言語を隠す _(カンマ区切りで指定)_
 - `hide_title` - _(boolean)_
-- `layout` - `default` か `compact` のいずれかのレイアウトに切り替える
+- `layout` - `normal` & `compact` & `donut` & `donut-vertical` & `pie` のいずれかのレイアウトに切り替える
 - `card_width` - カードの横幅 _(number)_
 - `langs_count` - 表示される言語の数　_(1 ~ 10, 初期値 5)_
 - `exclude_repo` - 指定されたリポジトリを除外する _(カンマ区切りで指定)_

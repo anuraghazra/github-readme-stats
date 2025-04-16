@@ -1,4 +1,3 @@
-import { getAnimations } from "../getStyles.js";
 import { encodeHTML, flexLayout } from "./utils.js";
 
 class Card {
@@ -12,6 +11,12 @@ class Card {
    * @param {string?=} args.customTitle Card custom title.
    * @param {string?=} args.defaultTitle Card default title.
    * @param {string?=} args.titlePrefixIcon Card title prefix icon.
+   * @param {object?=} args.colors Card colors arguments.
+   * @param {string} args.colors.titleColor Card title color.
+   * @param {string} args.colors.textColor Card text color.
+   * @param {string} args.colors.iconColor Card icon color.
+   * @param {string|Array} args.colors.bgColor Card background color.
+   * @param {string} args.colors.borderColor Card border color.
    * @returns {Card} Card instance.
    */
   constructor({
@@ -34,9 +39,9 @@ class Card {
     // returns theme based colors with proper overrides and defaults
     this.colors = colors;
     this.title =
-      customTitle !== undefined
-        ? encodeHTML(customTitle)
-        : encodeHTML(defaultTitle);
+      customTitle === undefined
+        ? encodeHTML(defaultTitle)
+        : encodeHTML(customTitle);
 
     this.css = "";
 
@@ -48,12 +53,18 @@ class Card {
     this.a11yDesc = "";
   }
 
+  /**
+   * @returns {void}
+   */
   disableAnimations() {
     this.animations = false;
   }
 
   /**
-   * @param {{title: string, desc: string}} prop
+   * @param {Object} props The props object.
+   * @param {string} props.title Accessibility title.
+   * @param {string} props.desc Accessibility description.
+   * @returns {void}
    */
   setAccessibilityLabel({ title, desc }) {
     this.a11yTitle = title;
@@ -61,21 +72,24 @@ class Card {
   }
 
   /**
-   * @param {string} value
+   * @param {string} value The CSS to add to the card.
+   * @returns {void}
    */
   setCSS(value) {
     this.css = value;
   }
 
   /**
-   * @param {boolean} value
+   * @param {boolean} value Whether to hide the border or not.
+   * @returns {void}
    */
   setHideBorder(value) {
     this.hideBorder = value;
   }
 
   /**
-   * @param {boolean} value
+   * @param {boolean} value Whether to hide the title or not.
+   * @returns {void}
    */
   setHideTitle(value) {
     this.hideTitle = value;
@@ -85,12 +99,16 @@ class Card {
   }
 
   /**
-   * @param {string} text
+   * @param {string} text The title to set.
+   * @returns {void}
    */
   setTitle(text) {
     this.title = text;
   }
 
+  /**
+   * @returns {string} The rendered card title.
+   */
   renderTitle() {
     const titleText = `
       <text
@@ -127,8 +145,13 @@ class Card {
     `;
   }
 
+  /**
+   * @returns {string} The rendered card gradient.
+   */
   renderGradient() {
-    if (typeof this.colors.bgColor !== "object") return "";
+    if (typeof this.colors.bgColor !== "object") {
+      return "";
+    }
 
     const gradients = this.colors.bgColor.slice(1);
     return typeof this.colors.bgColor === "object"
@@ -150,7 +173,35 @@ class Card {
   }
 
   /**
-   * @param {string} body
+   * Retrieves css animations for a card.
+   *
+   * @returns {string} Animation css.
+   */
+  getAnimations = () => {
+    return `
+      /* Animations */
+      @keyframes scaleInAnimation {
+        from {
+          transform: translate(-5px, 5px) scale(0);
+        }
+        to {
+          transform: translate(-5px, 5px) scale(1);
+        }
+      }
+      @keyframes fadeInAnimation {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    `;
+  };
+
+  /**
+   * @param {string} body The inner body of the card.
+   * @returns {string} The rendered card.
    */
   render(body) {
     return `
@@ -177,7 +228,7 @@ class Card {
           }
           ${this.css}
 
-          ${process.env.NODE_ENV === "test" ? "" : getAnimations()}
+          ${process.env.NODE_ENV === "test" ? "" : this.getAnimations()}
           ${
             this.animations === false
               ? `* { animation-duration: 0s !important; animation-delay: 0s !important; }`

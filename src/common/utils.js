@@ -4,50 +4,109 @@ import toEmoji from "emoji-name-map";
 import wrap from "word-wrap";
 import { themes } from "../../themes/index.js";
 
-// Script parameters.
-const ERROR_CARD_LENGTH = 576.5;
+const TRY_AGAIN_LATER = "Please try again later";
 
-/**
- * Renders error message on the card.
- *
- * @param {string} message Main error message.
- * @param {string} secondaryMessage The secondary error message.
- * @returns {string} The SVG markup.
- */
-const renderError = (message, secondaryMessage = "") => {
-  return `
-    <svg width="${ERROR_CARD_LENGTH}" height="120" viewBox="0 0 ${ERROR_CARD_LENGTH} 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <style>
-    .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2F80ED }
-    .small { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: #252525 }
-    .gray { fill: #858585 }
-    </style>
-    <rect x="0.5" y="0.5" width="${
-      ERROR_CARD_LENGTH - 1
-    }" height="99%" rx="4.5" fill="#FFFEFE" stroke="#E4E2E2"/>
-    <text x="25" y="45" class="text">Something went wrong! file an issue at https://tiny.one/readme-stats</text>
-    <text data-testid="message" x="25" y="55" class="text small">
-      <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
-      <tspan x="25" dy="18" class="gray">${secondaryMessage}</tspan>
-    </text>
-    </svg>
-  `;
+const SECONDARY_ERROR_MESSAGES = {
+  MAX_RETRY:
+    "You can deploy own instance or wait until public will be no longer limited",
+  NO_TOKENS:
+    "Please add an env variable called PAT_1 with your GitHub API token in vercel",
+  USER_NOT_FOUND: "Make sure the provided username is not an organization",
+  GRAPHQL_ERROR: TRY_AGAIN_LATER,
+  GITHUB_REST_API_ERROR: TRY_AGAIN_LATER,
+  WAKATIME_USER_NOT_FOUND: "Make sure you have a public WakaTime profile",
 };
 
 /**
- * Encode string as HTML.
- *
- * @see https://stackoverflow.com/a/48073476/10629172
- *
- * @param {string} str String to encode.
- * @returns {string} Encoded string.
+ * Custom error class to handle custom GRS errors.
  */
-const encodeHTML = (str) => {
-  return str
-    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
-      return "&#" + i.charCodeAt(0) + ";";
-    })
-    .replace(/\u0008/gim, "");
+class CustomError extends Error {
+  /**
+   * @param {string} message Error message.
+   * @param {string} type Error type.
+   */
+  constructor(message, type) {
+    super(message);
+    this.type = type;
+    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || type;
+  }
+
+  static MAX_RETRY = "MAX_RETRY";
+  static NO_TOKENS = "NO_TOKENS";
+  static USER_NOT_FOUND = "USER_NOT_FOUND";
+  static GRAPHQL_ERROR = "GRAPHQL_ERROR";
+  static GITHUB_REST_API_ERROR = "GITHUB_REST_API_ERROR";
+  static WAKATIME_ERROR = "WAKATIME_ERROR";
+}
+
+/**
+ * Auto layout utility, allows us to layout things vertically or horizontally with
+ * proper gaping.
+ *
+ * @param {object} props Function properties.
+ * @param {string[]} props.items Array of items to layout.
+ * @param {number} props.gap Gap between items.
+ * @param {"column" | "row"=} props.direction Direction to layout items.
+ * @param {number[]=} props.sizes Array of sizes for each item.
+ * @returns {string[]} Array of items with proper layout.
+ */
+const flexLayout = ({ items, gap, direction, sizes = [] }) => {
+  let lastSize = 0;
+  // filter() for filtering out empty strings
+  return items.filter(Boolean).map((item, i) => {
+    const size = sizes[i] || 0;
+    let transform = `translate(${lastSize}, 0)`;
+    if (direction === "column") {
+      transform = `translate(0, ${lastSize})`;
+    }
+    lastSize += size + gap;
+    return `<g transform="${transform}">${item}</g>`;
+  });
+};
+
+/**
+ * Creates a node to display the primary programming language of the repository/gist.
+ *
+ * @param {string} langName Language name.
+ * @param {string} langColor Language color.
+ * @returns {string} Language display SVG object.
+ */
+const createLanguageNode = (langName, langColor) => {
+  return `
+    <g data-testid="primary-lang">
+      <circle data-testid="lang-color" cx="0" cy="-5" r="6" fill="${langColor}" />
+      <text data-testid="lang-name" class="gray" x="15">${langName}</text>
+    </g>
+    `;
+};
+
+/**
+ * Creates an icon with label to display repository/gist stats like forks, stars, etc.
+ *
+ * @param {string} icon The icon to display.
+ * @param {number|string} label The label to display.
+ * @param {string} testid The testid to assign to the label.
+ * @param {number} iconSize The size of the icon.
+ * @returns {string} Icon with label SVG object.
+ */
+const iconWithLabel = (icon, label, testid, iconSize) => {
+  if (typeof label === "number" && label <= 0) {
+    return "";
+  }
+  const iconSvg = `
+      <svg
+        class="icon"
+        y="-12"
+        viewBox="0 0 16 16"
+        version="1.1"
+        width="${iconSize}"
+        height="${iconSize}"
+      >
+        ${icon}
+      </svg>
+    `;
+  const text = `<text data-testid="${testid}" class="gray">${label}</text>`;
+  return flexLayout({ items: [iconSvg, text], gap: 20 }).join("");
 };
 
 /**
@@ -81,7 +140,9 @@ const isValidHexColor = (hexColor) => {
  * @returns {boolean | undefined } The parsed value.
  */
 const parseBoolean = (value) => {
-  if (typeof value === "boolean") return value;
+  if (typeof value === "boolean") {
+    return value;
+  }
 
   if (typeof value === "string") {
     if (value.toLowerCase() === "true") {
@@ -100,7 +161,9 @@ const parseBoolean = (value) => {
  * @returns {string[]} The array of strings.
  */
 const parseArray = (str) => {
-  if (!str) return [];
+  if (!str) {
+    return [];
+  }
   return str.split(",");
 };
 
@@ -110,11 +173,13 @@ const parseArray = (str) => {
  * @param {number} number The number to clamp.
  * @param {number} min The minimum value.
  * @param {number} max The maximum value.
- * returns {number} The clamped number.
+ * @returns {number} The clamped number.
  */
 const clampValue = (number, min, max) => {
   // @ts-ignore
-  if (Number.isNaN(parseInt(number))) return min;
+  if (Number.isNaN(parseInt(number, 10))) {
+    return min;
+  }
   return Math.max(min, Math.min(number, max));
 };
 
@@ -125,14 +190,17 @@ const clampValue = (number, min, max) => {
  * @returns {boolean} True if the given string is a valid gradient.
  */
 const isValidGradient = (colors) => {
-  return isValidHexColor(colors[1]) && isValidHexColor(colors[2]);
+  return (
+    colors.length > 2 &&
+    colors.slice(1).every((color) => isValidHexColor(color))
+  );
 };
 
 /**
  * Retrieves a gradient if color has more than one valid hex codes else a single color.
  *
  * @param {string} color The color to parse.
- * @param {string} fallbackColor The fallback color.
+ * @param {string | string[]} fallbackColor The fallback color.
  * @returns {string | string[]} The gradient or color.
  */
 const fallbackColor = (color, fallbackColor) => {
@@ -150,14 +218,18 @@ const fallbackColor = (color, fallbackColor) => {
 };
 
 /**
+ * @typedef {import('axios').AxiosRequestConfig['data']} AxiosRequestConfigData Axios request data.
+ * @typedef {import('axios').AxiosRequestConfig['headers']} AxiosRequestConfigHeaders Axios request headers.
+ */
+
+/**
  * Send GraphQL request to GitHub API.
  *
- * @param {import('axios').AxiosRequestConfig['data']} data Request data.
- * @param {import('axios').AxiosRequestConfig['headers']} headers Request headers.
+ * @param {AxiosRequestConfigData} data Request data.
+ * @param {AxiosRequestConfigHeaders} headers Request headers.
  * @returns {Promise<any>} Request response.
  */
 const request = (data, headers) => {
-  // @ts-ignore
   return axios({
     url: "https://api.github.com/graphql",
     method: "post",
@@ -167,42 +239,30 @@ const request = (data, headers) => {
 };
 
 /**
- * Auto layout utility, allows us to layout things vertically or horizontally with
- * proper gaping.
- *
- * @param {object} props Function properties.
- * @param {string[]} props.items Array of items to layout.
- * @param {number} props.gap Gap between items.
- * @param {number[]?=} props.sizes Array of sizes for each item.
- * @param {"column" | "row"?=} props.direction Direction to layout items.
- * @returns {string[]} Array of items with proper layout.
+ * Object containing card colors.
+ * @typedef {{
+ *  titleColor: string;
+ *  iconColor: string;
+ *  textColor: string;
+ *  bgColor: string | string[];
+ *  borderColor: string;
+ *  ringColor: string;
+ * }} CardColors
  */
-const flexLayout = ({ items, gap, direction, sizes = [] }) => {
-  let lastSize = 0;
-  // filter() for filtering out empty strings
-  return items.filter(Boolean).map((item, i) => {
-    const size = sizes[i] || 0;
-    let transform = `translate(${lastSize}, 0)`;
-    if (direction === "column") {
-      transform = `translate(0, ${lastSize})`;
-    }
-    lastSize += size + gap;
-    return `<g transform="${transform}">${item}</g>`;
-  });
-};
 
 /**
  * Returns theme based colors with proper overrides and defaults.
  *
- * @param {Object[]} args Function arguments.
- * @param {string} args.title_color Card title color.
- * @param {string} args.text_color Card text color.
- * @param {string} args.icon_color Card icon color.
- * @param {string} args.bg_color Card background color.
- * @param {string} args.border_color Card border color.
- * @param {string} args.theme Card theme.
- * @param {string} args.fallbackTheme Fallback theme.
- *
+ * @param {Object} args Function arguments.
+ * @param {string=} args.title_color Card title color.
+ * @param {string=} args.text_color Card text color.
+ * @param {string=} args.icon_color Card icon color.
+ * @param {string=} args.bg_color Card background color.
+ * @param {string=} args.border_color Card border color.
+ * @param {string=} args.ring_color Card ring color.
+ * @param {string=} args.theme Card theme.
+ * @param {string=} args.fallbackTheme Fallback theme.
+ * @returns {CardColors} Card colors.
  */
 const getCardColors = ({
   title_color,
@@ -250,7 +310,94 @@ const getCardColors = ({
     "#" + defaultBorderColor,
   );
 
+  if (
+    typeof titleColor !== "string" ||
+    typeof textColor !== "string" ||
+    typeof ringColor !== "string" ||
+    typeof iconColor !== "string" ||
+    typeof borderColor !== "string"
+  ) {
+    throw new Error(
+      "Unexpected behavior, all colors except background should be string.",
+    );
+  }
+
   return { titleColor, iconColor, textColor, bgColor, borderColor, ringColor };
+};
+
+// Script parameters.
+const ERROR_CARD_LENGTH = 576.5;
+
+/**
+ * Encode string as HTML.
+ *
+ * @see https://stackoverflow.com/a/48073476/10629172
+ *
+ * @param {string} str String to encode.
+ * @returns {string} Encoded string.
+ */
+const encodeHTML = (str) => {
+  return str
+    .replace(/[\u00A0-\u9999<>&](?!#)/gim, (i) => {
+      return "&#" + i.charCodeAt(0) + ";";
+    })
+    .replace(/\u0008/gim, "");
+};
+
+const UPSTREAM_API_ERRORS = [
+  TRY_AGAIN_LATER,
+  SECONDARY_ERROR_MESSAGES.MAX_RETRY,
+];
+
+/**
+ * Renders error message on the card.
+ *
+ * @param {string} message Main error message.
+ * @param {string} secondaryMessage The secondary error message.
+ * @param {object} options Function options.
+ * @returns {string} The SVG markup.
+ */
+const renderError = (message, secondaryMessage = "", options = {}) => {
+  const {
+    title_color,
+    text_color,
+    bg_color,
+    border_color,
+    theme = "default",
+  } = options;
+
+  // returns theme based colors with proper overrides and defaults
+  const { titleColor, textColor, bgColor, borderColor } = getCardColors({
+    title_color,
+    text_color,
+    icon_color: "",
+    bg_color,
+    border_color,
+    ring_color: "",
+    theme,
+  });
+
+  return `
+    <svg width="${ERROR_CARD_LENGTH}"  height="120" viewBox="0 0 ${ERROR_CARD_LENGTH} 120" fill="${bgColor}" xmlns="http://www.w3.org/2000/svg">
+    <style>
+    .text { font: 600 16px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${titleColor} }
+    .small { font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${textColor} }
+    .gray { fill: #858585 }
+    </style>
+    <rect x="0.5" y="0.5" width="${
+      ERROR_CARD_LENGTH - 1
+    }" height="99%" rx="4.5" fill="${bgColor}" stroke="${borderColor}"/>
+    <text x="25" y="45" class="text">Something went wrong!${
+      UPSTREAM_API_ERRORS.includes(secondaryMessage)
+        ? ""
+        : " file an issue at https://tiny.one/readme-stats"
+    }</text>
+    <text data-testid="message" x="25" y="55" class="text small">
+      <tspan x="25" dy="18">${encodeHTML(message)}</tspan>
+      <tspan x="25" dy="18" class="gray">${secondaryMessage}</tspan>
+    </text>
+    </svg>
+  `;
 };
 
 /**
@@ -291,48 +438,53 @@ const wrapTextMultiline = (text, width = 59, maxLines = 3) => {
 const noop = () => {};
 // return console instance based on the environment
 const logger =
-  process.env.NODE_ENV !== "test" ? console : { log: noop, error: noop };
+  process.env.NODE_ENV === "test" ? { log: noop, error: noop } : console;
+
+const ONE_MINUTE = 60;
+const FIVE_MINUTES = 300;
+const TEN_MINUTES = 600;
+const FIFTEEN_MINUTES = 900;
+const THIRTY_MINUTES = 1800;
+const TWO_HOURS = 7200;
+const FOUR_HOURS = 14400;
+const SIX_HOURS = 21600;
+const EIGHT_HOURS = 28800;
+const TWELVE_HOURS = 43200;
+const ONE_DAY = 86400;
+const TWO_DAY = ONE_DAY * 2;
+const SIX_DAY = ONE_DAY * 6;
+const TEN_DAY = ONE_DAY * 10;
 
 const CONSTANTS = {
-  THIRTY_MINUTES: 1800,
-  TWO_HOURS: 7200,
-  FOUR_HOURS: 14400,
-  ONE_DAY: 86400,
+  ONE_MINUTE,
+  FIVE_MINUTES,
+  TEN_MINUTES,
+  FIFTEEN_MINUTES,
+  THIRTY_MINUTES,
+  TWO_HOURS,
+  FOUR_HOURS,
+  SIX_HOURS,
+  EIGHT_HOURS,
+  TWELVE_HOURS,
+  ONE_DAY,
+  TWO_DAY,
+  SIX_DAY,
+  TEN_DAY,
+  CARD_CACHE_SECONDS: ONE_DAY,
+  TOP_LANGS_CACHE_SECONDS: SIX_DAY,
+  PIN_CARD_CACHE_SECONDS: TEN_DAY,
+  ERROR_CACHE_SECONDS: TEN_MINUTES,
 };
-
-const SECONDARY_ERROR_MESSAGES = {
-  MAX_RETRY:
-    "Please add an env variable called PAT_1 with your github token in vercel",
-  USER_NOT_FOUND: "Make sure the provided username is not an organization",
-  GRAPHQL_ERROR: "Please try again later",
-};
-
-/**
- * Custom error class to handle custom GRS errors.
- */
-class CustomError extends Error {
-  /**
-   * @param {string} message Error message.
-   * @param {string} type Error type.
-   */
-  constructor(message, type) {
-    super(message);
-    this.type = type;
-    this.secondaryMessage = SECONDARY_ERROR_MESSAGES[type] || type;
-  }
-
-  static MAX_RETRY = "MAX_RETRY";
-  static USER_NOT_FOUND = "USER_NOT_FOUND";
-  static GRAPHQL_ERROR = "GRAPHQL_ERROR";
-}
 
 /**
  * Missing query parameter class.
  */
 class MissingParamError extends Error {
   /**
-   * @param {string[]} missedParams
-   * @param {string?=} secondaryMessage
+   * Missing query parameter error constructor.
+   *
+   * @param {string[]} missedParams An array of missing parameters names.
+   * @param {string=} secondaryMessage Optional secondary message to display.
    */
   constructor(missedParams, secondaryMessage) {
     const msg = `Missing params ${missedParams
@@ -386,13 +538,18 @@ const measureText = (str, fontSize = 10) => {
   );
 };
 
-/** @param {string} name */
+/**
+ * Lowercase and trim string.
+ *
+ * @param {string} name String to lowercase and trim.
+ * @returns {string} Lowercased and trimmed string.
+ */
 const lowercaseTrim = (name) => name.toLowerCase().trim();
 
 /**
  * Split array of languages in two columns.
  *
- * @template T Langauge object.
+ * @template T Language object.
  * @param {Array<T>} arr Array of languages.
  * @param {number} perChunk Number of languages per column.
  * @returns {Array<T>} Array of languages split in two columns.
@@ -402,9 +559,11 @@ const chunkArray = (arr, perChunk) => {
     const chunkIndex = Math.floor(index / perChunk);
 
     if (!resultArray[chunkIndex]) {
+      // @ts-ignore
       resultArray[chunkIndex] = []; // start a new chunk
     }
 
+    // @ts-ignore
     resultArray[chunkIndex].push(item);
 
     return resultArray;
@@ -418,17 +577,20 @@ const chunkArray = (arr, perChunk) => {
  * @returns {string} String with emoji parsed.
  */
 const parseEmojis = (str) => {
-  if (!str) throw new Error("[parseEmoji]: str argument not provided");
+  if (!str) {
+    throw new Error("[parseEmoji]: str argument not provided");
+  }
   return str.replace(/:\w+:/gm, (emoji) => {
     return toEmoji.get(emoji) || "";
   });
 };
 
 /**
- * Get diff in minutes
- * @param {Date} d1
- * @param {Date} d2
- * @returns {number}
+ * Get diff in minutes between two dates.
+ *
+ * @param {Date} d1 First date.
+ * @param {Date} d2 Second date.
+ * @returns {number} Number of minutes between the two dates.
  */
 const dateDiff = (d1, d2) => {
   const date1 = new Date(d1);
@@ -440,6 +602,8 @@ const dateDiff = (d1, d2) => {
 export {
   ERROR_CARD_LENGTH,
   renderError,
+  createLanguageNode,
+  iconWithLabel,
   encodeHTML,
   kFormatter,
   isValidHexColor,
