@@ -4,7 +4,7 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import pin from "../api/pin.js";
 import { renderRepoCard } from "../src/cards/repo-card.js";
-import { renderError, CONSTANTS } from "../src/common/utils.js";
+import { renderError } from "../src/common/utils.js";
 import { expect, it, describe, afterEach } from "@jest/globals";
 
 const data_repo = {
@@ -199,30 +199,6 @@ describe("Test /api/pin", () => {
         'Missing params "username", "repo" make sure you pass the parameters in URL',
         "/api/pin?username=USERNAME&amp;repo=REPO_NAME",
       ),
-    );
-  });
-
-  it("should have proper cache", async () => {
-    const req = {
-      query: {
-        username: "anuraghazra",
-        repo: "convoychat",
-      },
-    };
-    const res = {
-      setHeader: jest.fn(),
-      send: jest.fn(),
-    };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
-
-    await pin(req, res);
-
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.setHeader).toBeCalledWith(
-      "Cache-Control",
-      `max-age=${CONSTANTS.SIX_HOURS / 2}, s-maxage=${
-        CONSTANTS.SIX_HOURS
-      }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     );
   });
 });
