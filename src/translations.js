@@ -204,7 +204,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.contribs": {
       ar: "ساهم في (العام الماضي)",
       cn: "贡献于（去年）",
-      "zh-tw": "參與項目數 （去年）",
+      "zh-tw": "參與項目數（去年）",
       cs: "Přispěl k (minulý rok)",
       de: "Beigetragen zu (letztes Jahr)",
       en: "Contributed to (last year)",
@@ -234,8 +234,8 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.reviews": {
       ar: "تمت مراجعة إجمالي العلاقات العامة",
-      cn: "審查的 PR 總數",
-      "zh-tw": "审查的 PR 总数",
+      cn: "审查的 PR 总数",
+      "zh-tw": "審查的 PR 總數",
       cs: "Celkový počet PR",
       de: "Insgesamt überprüfte PRs",
       en: "Total PRs Reviewed",
@@ -679,7 +679,7 @@ const wakatimeCardLocales = {
   "wakatimecard.nocodingactivity": {
     ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
     cn: "本周没有编程活动",
-    "zh-tw": "本周沒有編程活動",
+    "zh-tw": "本周沒有程式撰寫活動",
     cs: "Tento týden žádná aktivita v kódování",
     de: "Keine Aktivitäten in dieser Woche",
     en: "No coding activity this week",
