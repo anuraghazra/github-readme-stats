@@ -292,7 +292,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   let width = 440;
 
   // RENDER COMPACT LAYOUT
-  if (layout === "compact") {
+  if (layout === "compact" && languages) {
     width = width + 50;
     height = 90 + Math.round(filteredLanguages.length / 2) * 25;
 
