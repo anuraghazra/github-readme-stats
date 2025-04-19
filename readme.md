@@ -282,6 +282,54 @@ You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-1
 
 </details>
 
+### Rank Icons
+
+With inbuilt icons you can customize the rank display area.
+
+Use `&rank_icon=custom` and specify the icon `&custom_icon={icon_name}`
+
+#### Inbuilt Icons
+Star
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&rank_icon=custom&custom_icon=star)
+```
+Moon
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&rank_icon=custom&custom_icon=moon)
+```
+Computer
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&rank_icon=custom&custom_icon=computer)
+```
+Cube
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&rank_icon=custom&custom_icon=cube)
+```
+React
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&rank_icon=custom&custom_icon=react)
+```
+JavaScript
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&rank_icon=custom&custom_icon=javascript)
+```
+Python
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&rank_icon=custom&custom_icon=python)
+```
+Alien
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&rank_icon=custom&custom_icon=alien)
+```
+Pumpkin
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&rank_icon=custom&custom_icon=pumpkin)
+```
+Diamond
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&rank_icon=custom&custom_icon=diamond)
+```
+
 ### Customization
 
 You can customize the appearance of all your cards however you wish with URL parameters.
@@ -372,7 +420,7 @@ If we don't support your language, please consider contributing! You can find mo
 | `hide_title` | Hides the title of your stats card. | boolean | `false` |
 | `card_width` | Sets the card's width manually. | number | `500px  (approx.)` |
 | `hide_rank` | Hides the rank and automatically resizes the card width. | boolean | `false` |
-| `rank_icon` | Shows alternative rank icon (i.e. `github`, `percentile` or `default`). | enum | `default` |
+| `rank_icon` | Shows alternative rank icon (i.e. `github`, `percentile`, `default`, or `custom`). | enum | `default` |
 | `show_icons` | Shows icons near all stats. | boolean | `false` |
 | `include_all_commits` | Count total commits instead of just the current year commits. | boolean | `false` |
 | `line_height` | Sets the line height between text. | integer | `25` |
