@@ -18,7 +18,7 @@ const STATS_CARD_USER = "e2eninja";
 const GIST_ID = "372cef55fd897b31909fdeb3a7262758";
 
 const STATS_DATA = {
-  name: "E2ENinja",
+  name: "CodeNinja",
   totalPRs: 1,
   totalReviews: 0,
   totalCommits: 3,
