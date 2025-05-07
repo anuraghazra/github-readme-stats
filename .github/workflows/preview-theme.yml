@@ -33,12 +33,12 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
       - name: Setup Node
-        uses: actions/setup-node@cdca7365b2dadb8aad0a33bc7601856ffabcc48e # v4.3.0
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
 
-      - uses: bahmutov/npm-install@6cee6086f1bf4467050e9a51e94bfb71b44cbc39 # v1.10.8
+      - uses: bahmutov/npm-install@6bbff949458c1dd99b20e185cee8c4d6fcf1212a # v1.10.9
         with:
           useLockFile: false
 
