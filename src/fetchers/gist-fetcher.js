@@ -83,7 +83,7 @@ const calculatePrimaryLanguage = (files) => {
 /**
  * Fetch GitHub gist information by given username and ID.
  *
- * @param {string} id Github gist ID.
+ * @param {string} id GitHub gist ID.
  * @returns {Promise<GistData>} Gist data.
  */
 const fetchGist = async (id) => {
