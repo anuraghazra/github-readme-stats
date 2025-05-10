@@ -8,7 +8,36 @@ import {
   renderError,
 } from "../src/common/utils.js";
 import { fetchStats } from "../src/fetchers/stats-fetcher.js";
-import { isLocaleAvailable } from "../src/translations.js";
+import { validateQueryStringParams } from "../src/common/validate.js";
+
+const QUERYSTRING_PARAMS_DATA_TYPE_MAP = new Map([
+  ["username", "string"],
+  ["hide", "enum-array"],
+  ["hide_title", "boolean"],
+  ["hide_border", "boolean"],
+  ["card_width", "number"],
+  ["hide_rank", "boolean"],
+  ["show_icons", "boolean"],
+  ["include_all_commits", "boolean"],
+  ["line_height", "number"],
+  ["title_color", "string"],
+  ["ring_color", "string"],
+  ["icon_color", "string"],
+  ["text_color", "string"],
+  ["text_bold", "boolean"],
+  ["bg_color", "string"],
+  ["theme", "enum"],
+  ["cache_seconds", "number"],
+  ["exclude_repo", "array"],
+  ["custom_title", "string"],
+  ["locale", "enum"],
+  ["disable_animations", "boolean"],
+  ["border_radius", "number"],
+  ["border_color", "string"],
+  ["number_format", "enum"],
+  ["rank_icon", "enum"],
+  ["show", "enum-array"],
+]);
 
 export default async (req, res) => {
   const {
@@ -53,19 +82,9 @@ export default async (req, res) => {
     );
   }
 
-  if (locale && !isLocaleAvailable(locale)) {
-    return res.send(
-      renderError("Something went wrong", "Language not found", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
-    );
-  }
-
   try {
+    validateQueryStringParams(req.query, QUERYSTRING_PARAMS_DATA_TYPE_MAP);
+
     const showStats = parseArray(show);
     const stats = await fetchStats(
       username,
