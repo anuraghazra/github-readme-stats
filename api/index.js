@@ -13,6 +13,7 @@ import { isLocaleAvailable } from "../src/translations.js";
 export default async (req, res) => {
   const {
     username,
+    repo,
     hide,
     hide_title,
     hide_border,
@@ -75,6 +76,12 @@ export default async (req, res) => {
         showStats.includes("prs_merged_percentage"),
       showStats.includes("discussions_started"),
       showStats.includes("discussions_answered"),
+      repo,
+      showStats.includes("prs_authored"),
+      showStats.includes("prs_commented"),
+      showStats.includes("prs_reviewed"),
+      showStats.includes("issues_authored"),
+      showStats.includes("issues_commented"),
     );
 
     let cacheSeconds = clampValue(
@@ -92,31 +99,36 @@ export default async (req, res) => {
     );
 
     return res.send(
-      renderStatsCard(stats, {
-        hide: parseArray(hide),
-        show_icons: parseBoolean(show_icons),
-        hide_title: parseBoolean(hide_title),
-        hide_border: parseBoolean(hide_border),
-        card_width: parseInt(card_width, 10),
-        hide_rank: parseBoolean(hide_rank),
-        include_all_commits: parseBoolean(include_all_commits),
-        line_height,
-        title_color,
-        ring_color,
-        icon_color,
-        text_color,
-        text_bold: parseBoolean(text_bold),
-        bg_color,
-        theme,
-        custom_title,
-        border_radius,
-        border_color,
-        number_format,
-        locale: locale ? locale.toLowerCase() : null,
-        disable_animations: parseBoolean(disable_animations),
-        rank_icon,
-        show: showStats,
-      }),
+      renderStatsCard(
+        stats,
+        {
+          hide: parseArray(hide),
+          show_icons: parseBoolean(show_icons),
+          hide_title: parseBoolean(hide_title),
+          hide_border: parseBoolean(hide_border),
+          card_width: parseInt(card_width, 10),
+          hide_rank: parseBoolean(hide_rank),
+          include_all_commits: parseBoolean(include_all_commits),
+          line_height,
+          title_color,
+          ring_color,
+          icon_color,
+          text_color,
+          text_bold: parseBoolean(text_bold),
+          bg_color,
+          theme,
+          custom_title,
+          border_radius,
+          border_color,
+          number_format,
+          locale: locale ? locale.toLowerCase() : null,
+          disable_animations: parseBoolean(disable_animations),
+          rank_icon,
+          show: showStats,
+        },
+        username,
+        repo,
+      ),
     );
   } catch (err) {
     res.setHeader(

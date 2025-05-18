@@ -89,6 +89,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Hiding individual stats](#hiding-individual-stats)
     - [Showing additional individual stats](#showing-additional-individual-stats)
     - [Showing icons](#showing-icons)
+    - [Filtering by repository](#filtering-by-repository)
     - [Themes](#themes)
     - [Customization](#customization)
 - [GitHub Extra Pins](#github-extra-pins)
@@ -174,6 +175,14 @@ To enable icons, you can pass `&show_icons=true` in the query param, like so:
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
 ```
+
+### Filtering by repository
+
+To exclude specific repositories, you can use the [`&exclude_repo` parameter](#stats-card-exclusive-options).
+
+To compute your stats for only one specific repository, you can pass a query parameter `&repo=<user_or_organization>/<repository>`. This filter is supported by the following items: `prs_authored`, `prs_commented`, `prs_reviewed`, `issues_authored` and `issues_commented`. Note that these items are not displayed by default, but [you can enable them individually](#showing-additional-individual-stats).
+
+(Some of these mentioned items are similar to other items which are included by default, e.g. `issues_authored` is similar to `issues`. The difference is how these values are retrieved - [via GraphQL or via REST API](https://github.com/anuraghazra/github-readme-stats/discussions/1770#number-of-commits-is-incorrect). The default items use GraphQL, but filtering by repository works better via REST API.)
 
 ### Themes
 
@@ -377,12 +386,13 @@ If we don't support your language, please consider contributing! You can find mo
 | `include_all_commits` | Count total commits instead of just the current year commits. | boolean | `false` |
 | `line_height` | Sets the line height between text. | integer | `25` |
 | `exclude_repo` | Excludes specified repositories. | string (comma-separated values) | `null` |
+| `repo` | Count only stats from the specified repository. Affects only the items `prs_authored`, `prs_commented`, `prs_reviewed`, `issues_authored` and `issues_commented`. | string | `null` |
 | `custom_title` | Sets a custom title for the card. | string | `<username> GitHub Stats` |
 | `text_bold` | Uses bold text. | boolean | `true` |
 | `disable_animations` | Disables all animations in the card. | boolean | `false` |
 | `ring_color` | Color of the rank circle. | string (hex color) | `2f80ed` |
 | `number_format` | Switches between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). | enum | `short` |
-| `show` | Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started`, `discussions_answered`, `prs_merged` or `prs_merged_percentage`). | string (comma-separated values) | `null` |
+| `show` | Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started`, `discussions_answered`, `prs_merged` or `prs_merged_percentage`. And/Or the following, which support the `repo` filter: `prs_authored`, `prs_commented`, `prs_reviewed`, `issues_authored` or `issues_commented`). | string (comma-separated values) | `null` |
 
 > [!NOTE]\
 > When hide\_rank=`true`, the minimum card width is 270 px + the title length and padding.
@@ -652,6 +662,10 @@ Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 *   Showing additional stats
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show_icons=true\&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage)
+
+*   Showing stats for a specific repository
+
+![Anurag's GitHub stats for anuraghazra/github-readme-stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&repo=anuraghazra/github-readme-stats\&hide=prs,issues,stars,commits,contribs\&show=prs_authored,prs_commented,prs_reviewed,issues_authored,issues_commented\&hide_rank=true\&custom_title=Anurag%27s%20Stats%20for%20github-readme-stats\&card_width=370)
 
 *   Showing icons
 

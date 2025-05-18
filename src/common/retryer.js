@@ -45,7 +45,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
     // if rate limit is hit increase the RETRIES and recursively call the retryer
     // with username, and current RETRIES
     if (isRateExceeded) {
-      logger.log(`PAT_${retries + 1} Failed`);
+      logger.log(`PAT_${retries + 1} Failed due to rate limiting`);
       retries++;
       // directly return from the function
       return retryer(fetcher, variables, retries);
@@ -62,7 +62,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
       err.response.data.message === "Sorry. Your account was suspended.";
 
     if (isBadCredential || isAccountSuspended) {
-      logger.log(`PAT_${retries + 1} Failed`);
+      logger.log(`PAT_${retries + 1} Failed due to bad credentials`);
       retries++;
       // directly return from the function
       return retryer(fetcher, variables, retries);
