@@ -217,15 +217,17 @@ const fallbackColor = (color, fallbackColor) => {
   );
 };
 
-const buildSearchFilter = (repos=[], orgs=[])=>{
-  let repoFilter = Array.isArray(repos) && repos.length > 0
-    ? repos.map((r) => `repo%3A${encodeURIComponent(r)}`).join("+") + "+"
-    : "";
-  let orgFilter = Array.isArray(orgs) && orgs.length > 0
-    ? orgs.map((o) => `org%3A${encodeURIComponent(org)}`).join("+") + "+"
-    : "";
+const buildSearchFilter = (repos = [], orgs = []) => {
+  let repoFilter =
+    Array.isArray(repos) && repos.length > 0
+      ? repos.map((r) => `repo%3A${encodeURIComponent(r)}`).join("+") + "+"
+      : "";
+  let orgFilter =
+    Array.isArray(orgs) && orgs.length > 0
+      ? orgs.map((o) => `org%3A${encodeURIComponent(o)}`).join("+") + "+"
+      : "";
   return repoFilter + orgFilter;
-}
+};
 
 /**
  * @typedef {import('axios').AxiosRequestConfig['data']} AxiosRequestConfigData Axios request data.
