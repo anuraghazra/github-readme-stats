@@ -5,6 +5,7 @@ import githubUsernameRegex from "github-username-regex";
 import { calculateRank } from "../calculateRank.js";
 import { retryer } from "../common/retryer.js";
 import {
+  buildSearchFilter,
   CustomError,
   logger,
   MissingParamError,
@@ -167,7 +168,7 @@ const statsFetcher = async ({
  * @description Done like this because the GitHub API does not provide a way to fetch all the commits. See
  * #92#issuecomment-661026467 and #211 for more information.
  */
-const totalItemsFetcher = async (username, repo, type, filter) => {
+const totalItemsFetcher = async (username, repos, orgs, type, filter) => {
   if (!githubUsernameRegex.test(username)) {
     logger.log("Invalid username provided.");
     throw new Error("Invalid username provided.");
@@ -181,8 +182,8 @@ const totalItemsFetcher = async (username, repo, type, filter) => {
         `https://api.github.com/search/` +
         type +
         `?per_page=1&q=` +
-        filter +
-        (variables.repo ? `+repo:${variables.repo}` : ``),
+        buildSearchFilter(variables.repos, variables.orgs)+
+        filter,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/vnd.github.cloak-preview",
@@ -193,7 +194,7 @@ const totalItemsFetcher = async (username, repo, type, filter) => {
 
   let res;
   try {
-    res = await retryer(fetchTotalItems, { login: username, repo });
+    res = await retryer(fetchTotalItems, { login: username, repos, orgs });
   } catch (err) {
     logger.log(err);
     throw new Error(err);
@@ -231,7 +232,8 @@ const fetchStats = async (
   include_merged_pull_requests = false,
   include_discussions = false,
   include_discussions_answers = false,
-  repo = null,
+  repos=[],
+  orgs=[],
   include_prs_authored = false,
   include_prs_commented = false,
   include_prs_reviewed = false,
@@ -298,7 +300,8 @@ const fetchStats = async (
   if (include_all_commits) {
     stats.totalCommits = await totalItemsFetcher(
       username,
-      repo,
+      repos,
+      orgs,
       "commits",
       `author:${username}`,
     );
@@ -308,7 +311,8 @@ const fetchStats = async (
   if (include_prs_authored) {
     stats.totalPRsAuthored = await totalItemsFetcher(
       username,
-      repo,
+      repos,
+      orgs,
       "issues",
       `author:${username}+type:pr`,
     );
@@ -316,7 +320,8 @@ const fetchStats = async (
   if (include_prs_commented) {
     stats.totalPRsCommented = await totalItemsFetcher(
       username,
-      repo,
+      repos,
+      orgs,
       "issues",
       `commenter:${username}+-author:${username}+type:pr`,
     );
@@ -324,7 +329,8 @@ const fetchStats = async (
   if (include_prs_reviewed) {
     stats.totalPRsReviewed = await totalItemsFetcher(
       username,
-      repo,
+      repos,
+      orgs,
       "issues",
       `reviewed-by:${username}+-author:${username}+type:pr`,
     );
@@ -332,7 +338,8 @@ const fetchStats = async (
   if (include_issues_authored) {
     stats.totalIssuesAuthored = await totalItemsFetcher(
       username,
-      repo,
+      repos,
+      orgs,
       "issues",
       `author:${username}+type:issue`,
     );
@@ -340,7 +347,8 @@ const fetchStats = async (
   if (include_issues_commented) {
     stats.totalIssuesCommented = await totalItemsFetcher(
       username,
-      repo,
+      repos,
+      orgs,
       "issues",
       `commenter:${username}+-author:${username}+type:issue`,
     );

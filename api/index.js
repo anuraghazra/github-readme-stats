@@ -13,7 +13,8 @@ import { isLocaleAvailable } from "../src/translations.js";
 export default async (req, res) => {
   const {
     username,
-    repo,
+    repos,
+    orgs,
     hide,
     hide_title,
     hide_border,
@@ -68,6 +69,8 @@ export default async (req, res) => {
 
   try {
     const showStats = parseArray(show);
+    const repositories=parseArray(repos);
+    const organizations=parseArray(orgs);
     const stats = await fetchStats(
       username,
       parseBoolean(include_all_commits),
@@ -76,7 +79,8 @@ export default async (req, res) => {
         showStats.includes("prs_merged_percentage"),
       showStats.includes("discussions_started"),
       showStats.includes("discussions_answered"),
-      repo,
+      repositories,
+      organizations,
       showStats.includes("prs_authored"),
       showStats.includes("prs_commented"),
       showStats.includes("prs_reviewed"),
@@ -127,7 +131,8 @@ export default async (req, res) => {
           show: showStats,
         },
         username,
-        repo,
+        repositories,
+        organizations,
       ),
     );
   } catch (err) {

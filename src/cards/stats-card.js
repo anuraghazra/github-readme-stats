@@ -8,7 +8,7 @@ import {
   flexLayout,
   getCardColors,
   kFormatter,
-  measureText,
+  measureText, buildSearchFilter,
 } from "../common/utils.js";
 import { statCardLocales } from "../translations.js";
 
@@ -207,7 +207,7 @@ const getStyles = ({
  * @param {Partial<StatCardOptions>} options The card options.
  * @returns {string} The stats card SVG object.
  */
-const renderStatsCard = (stats, options = {}, username, repo) => {
+const renderStatsCard = (stats, options = {}, username, repos=[], orgs=[]) => {
   const {
     name,
     totalStars,
@@ -351,7 +351,7 @@ const renderStatsCard = (stats, options = {}, username, repo) => {
     };
   }
 
-  let repoFilter = repo ? "repo%3A" + encodeURIComponent(repo) + "+" : "";
+  let repoFilter = buildSearchFilter(repos, orgs);
   if (show.includes("prs_authored")) {
     STATS.prs_authored = {
       icon: icons.prs,
