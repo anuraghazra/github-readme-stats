@@ -22,6 +22,11 @@ export type RepositoryData = {
   };
   forkCount: number;
   starCount: number;
+  totalPRsAuthored: number;
+  totalPRsCommented: number;
+  totalPRsReviewed: number;
+  totalIssuesAuthored: number;
+  totalIssuesCommented: number;
 };
 
 export type StatsData = {

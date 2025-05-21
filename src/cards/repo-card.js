@@ -12,10 +12,11 @@ import {
   wrapTextMultiline,
   iconWithLabel,
   createLanguageNode,
-  clampValue, buildSearchFilter,
+  clampValue,
+  buildSearchFilter,
 } from "../common/utils.js";
 import { repoCardLocales } from "../translations.js";
-import {createTextNode} from "./stats-card.js";
+import { createTextNode } from "./stats-card.js";
 
 const ICON_SIZE = 16;
 const DESCRIPTION_LINE_WIDTH = 59;
@@ -91,6 +92,11 @@ const renderRepoCard = (repo, options = {}) => {
     description_lines_count,
   } = options;
 
+  const i18n = new I18n({
+    locale,
+    translations: repoCardLocales,
+  });
+
   let repoFilter = buildSearchFilter([nameWithOwner], []);
   const STATS = {};
   if (show.includes("prs_authored")) {
@@ -139,23 +145,22 @@ const renderRepoCard = (repo, options = {}) => {
     };
   }
 
-  const statItems = Object.keys(STATS)
-    .map((key, index) =>
-      // create the text nodes, and pass index so that we can calculate the line spacing
-      createTextNode({
-        icon: STATS[key].icon,
-        label: STATS[key].label,
-        value: STATS[key].value,
-        id: STATS[key].id,
-        unitSymbol: STATS[key].unitSymbol,
-        index,
-        showIcons: show_icons,
-        shiftValuePos: 29.01,
-        bold: text_bold,
-        number_format,
-        link: STATS[key].link,
-      }),
-    );
+  const statItems = Object.keys(STATS).map((key, index) =>
+    // create the text nodes, and pass index so that we can calculate the line spacing
+    createTextNode({
+      icon: STATS[key].icon,
+      label: STATS[key].label,
+      value: STATS[key].value,
+      id: STATS[key].id,
+      unitSymbol: STATS[key].unitSymbol,
+      index,
+      showIcons: show_icons,
+      shiftValuePos: 29.01,
+      bold: text_bold,
+      number_format,
+      link: STATS[key].link,
+    }),
+  );
 
   const extraLHeight = parseInt(String(line_height), 10);
   const lineHeight = 10;
@@ -180,16 +185,13 @@ const renderRepoCard = (repo, options = {}) => {
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
 
-  const extraHeight=45 + (statItems.length + 1) * extraLHeight;
+  const extraHeight = Object.keys(STATS).length
+    ? 45 + (statItems.length + 1) * extraLHeight
+    : 0;
   const height =
     (descriptionLinesCount > 1 ? 120 : 110) +
-    descriptionLinesCount * lineHeight
-  + extraHeight;
-
-  const i18n = new I18n({
-    locale,
-    translations: repoCardLocales,
-  });
+    descriptionLinesCount * lineHeight +
+    extraHeight;
 
   // returns theme based colors with proper overrides and defaults
   const colors = getCardColors({
@@ -230,6 +232,16 @@ const renderRepoCard = (repo, options = {}) => {
     gap: 25,
   }).join("");
 
+  const extraItems = `
+  <svg x="0" y="0">
+      ${flexLayout({
+        items: statItems,
+        gap: extraLHeight,
+        direction: "column",
+      }).join("")}
+    </svg>
+    `;
+
   const card = new Card({
     defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
     titlePrefixIcon: icons.contribs,
@@ -268,14 +280,7 @@ const renderRepoCard = (repo, options = {}) => {
     <g transform="translate(30, ${height - 75 - extraHeight})">
       ${starAndForkCount}
     </g>
-
-    <svg x="0" y="0">
-      ${flexLayout({
-        items: statItems,
-        gap: extraLHeight,
-        direction: "column",
-      }).join("")}
-    </svg>
+    ${extraItems}
   `);
 };
 

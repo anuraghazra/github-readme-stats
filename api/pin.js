@@ -2,7 +2,8 @@ import { renderRepoCard } from "../src/cards/repo-card.js";
 import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
-  CONSTANTS, parseArray,
+  CONSTANTS,
+  parseArray,
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
@@ -61,16 +62,20 @@ export default async (req, res) => {
   const safePattern = /^[\w\/.]+$/;
   if (
     (username && !safePattern.test(username)) ||
-    (repos && !safePattern.test(repo))
+    (repo && !safePattern.test(repo))
   ) {
     return res.send(
-      renderError("Something went wrong", "Username or repository contains unsafe characters", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      renderError(
+        "Something went wrong",
+        "Username or repository contains unsafe characters",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+        },
+      ),
     );
   }
 
