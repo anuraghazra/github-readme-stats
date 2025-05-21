@@ -758,6 +758,41 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 # Deploy on your own
 
+## First step: get your Personal Access Token PAT
+
+### Classic token
+
+Steps:
+  - Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic)](https://github.com/settings/tokens).
+  - Click on `Generate new token -> Generate new token (classic)`.
+  - Scopes to selected:
+    - repo
+    - read:user
+  - Click on `Generate token` and copy it.
+  
+That's all.
+
+### Fine-grained token
+
+> [!WARNING]\
+> This limits the number of issues to the number of issues on your repositories only and only takes public commits into account.
+
+
+Steps:
+  - Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Fine-grained tokens](https://github.com/settings/tokens).
+  - Click on `Generate new token -> Generate new token`.
+  - Select on expiration date (nothing do less datas)
+  - Select `All repositories`
+  - Scopes to selected in `Repository permission`:
+    - Commit statuses : read-only
+    - Contents : read-only
+    - Issues : read-only
+    - Metadata : read-only
+    - Pull requests : read-only
+  - Click on `Generate token` and copy it.
+  
+That's all.
+
 ## On Vercel
 
 ### :film\_projector: [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
