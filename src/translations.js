@@ -340,6 +340,21 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.issues-commented": {
       en: "Issues Commented",
     },
+    "repocard.prs-authored": {
+      en: "my Created PRs",
+    },
+    "repocard.prs-commented": {
+      en: "my Commented PRs",
+    },
+    "repocard.prs-reviewed": {
+      en: "my Reviewed PRs",
+    },
+    "repocard.issues-authored": {
+      en: "my Created Issues",
+    },
+    "repocard.issues-commented": {
+      en: "my Commented Issues",
+    },
     "statcard.prs-merged": {
       ar: "مجموع الطلبات المدمجة",
       cn: "合并的 PR 总数",

@@ -12,9 +12,10 @@ import {
   wrapTextMultiline,
   iconWithLabel,
   createLanguageNode,
-  clampValue,
+  clampValue, buildSearchFilter,
 } from "../common/utils.js";
 import { repoCardLocales } from "../translations.js";
+import {createTextNode} from "./stats-card.js";
 
 const ICON_SIZE = 16;
 const DESCRIPTION_LINE_WIDTH = 59;
@@ -64,6 +65,11 @@ const renderRepoCard = (repo, options = {}) => {
     isTemplate,
     starCount,
     forkCount,
+    totalPRsAuthored,
+    totalPRsCommented,
+    totalPRsReviewed,
+    totalIssuesAuthored,
+    totalIssuesCommented,
   } = repo;
   const {
     hide_border = false,
@@ -72,6 +78,12 @@ const renderRepoCard = (repo, options = {}) => {
     text_color,
     bg_color,
     show_owner = false,
+    show = [],
+    show_icons,
+    number_format,
+    text_bold,
+    line_height = 10,
+    username,
     theme = "default_repocard",
     border_radius,
     border_color,
@@ -79,6 +91,73 @@ const renderRepoCard = (repo, options = {}) => {
     description_lines_count,
   } = options;
 
+  let repoFilter = buildSearchFilter([nameWithOwner], []);
+  const STATS = {};
+  if (show.includes("prs_authored")) {
+    STATS.prs_authored = {
+      icon: icons.prs,
+      label: i18n.t("repocard.prs-authored"),
+      value: totalPRsAuthored,
+      id: "prs_authored",
+      link: `https://github.com/search?q=${repoFilter}author%3A${username}&amp;type=pullrequests`,
+    };
+  }
+  if (show.includes("prs_commented")) {
+    STATS.prs_commented = {
+      icon: icons.comments,
+      label: i18n.t("repocard.prs-commented"),
+      value: totalPRsCommented,
+      id: "prs_commented",
+      link: `https://github.com/search?q=${repoFilter}commenter%3A${username}+-author%3A${username}&amp;type=pullrequests`,
+    };
+  }
+  if (show.includes("prs_reviewed")) {
+    STATS.prs_reviewed = {
+      icon: icons.reviews,
+      label: i18n.t("repocard.prs-reviewed"),
+      value: totalPRsReviewed,
+      id: "prs_reviewed",
+      link: `https://github.com/search?q=${repoFilter}reviewed-by%3A${username}+-author%3A${username}&amp;type=pullrequests`,
+    };
+  }
+  if (show.includes("issues_authored")) {
+    STATS.issues_authored = {
+      icon: icons.issues,
+      label: i18n.t("repocard.issues-authored"),
+      value: totalIssuesAuthored,
+      id: "issues_authored",
+      link: `https://github.com/search?q=${repoFilter}author%3A${username}&amp;type=issues`,
+    };
+  }
+  if (show.includes("issues_commented")) {
+    STATS.issues_commented = {
+      icon: icons.discussions_started,
+      label: i18n.t("repocard.issues-commented"),
+      value: totalIssuesCommented,
+      id: "issues_commented",
+      link: `https://github.com/search?q=${repoFilter}commenter%3A${username}+-author%3A${username}&amp;type=issues`,
+    };
+  }
+
+  const statItems = Object.keys(STATS)
+    .map((key, index) =>
+      // create the text nodes, and pass index so that we can calculate the line spacing
+      createTextNode({
+        icon: STATS[key].icon,
+        label: STATS[key].label,
+        value: STATS[key].value,
+        id: STATS[key].id,
+        unitSymbol: STATS[key].unitSymbol,
+        index,
+        showIcons: show_icons,
+        shiftValuePos: 29.01,
+        bold: text_bold,
+        number_format,
+        link: STATS[key].link,
+      }),
+    );
+
+  const extraLHeight = parseInt(String(line_height), 10);
   const lineHeight = 10;
   const header = show_owner ? nameWithOwner : name;
   const langName = (primaryLanguage && primaryLanguage.name) || "Unspecified";
@@ -101,9 +180,11 @@ const renderRepoCard = (repo, options = {}) => {
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
 
+  const extraHeight=45 + (statItems.length + 1) * extraLHeight;
   const height =
     (descriptionLinesCount > 1 ? 120 : 110) +
-    descriptionLinesCount * lineHeight;
+    descriptionLinesCount * lineHeight
+  + extraHeight;
 
   const i18n = new I18n({
     locale,
@@ -184,9 +265,17 @@ const renderRepoCard = (repo, options = {}) => {
       ${descriptionSvg}
     </text>
 
-    <g transform="translate(30, ${height - 75})">
+    <g transform="translate(30, ${height - 75 - extraHeight})">
       ${starAndForkCount}
     </g>
+
+    <svg x="0" y="0">
+      ${flexLayout({
+        items: statItems,
+        gap: extraLHeight,
+        direction: "column",
+      }).join("")}
+    </svg>
   `);
 };
 

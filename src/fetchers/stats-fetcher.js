@@ -168,7 +168,7 @@ const statsFetcher = async ({
  * @description Done like this because the GitHub API does not provide a way to fetch all the commits. See
  * #92#issuecomment-661026467 and #211 for more information.
  */
-const totalItemsFetcher = async (username, repos, orgs, type, filter) => {
+const totalItemsFetcher = async (username, repos, owners, type, filter) => {
   if (!githubUsernameRegex.test(username)) {
     logger.log("Invalid username provided.");
     throw new Error("Invalid username provided.");
@@ -182,7 +182,7 @@ const totalItemsFetcher = async (username, repos, orgs, type, filter) => {
         `https://api.github.com/search/` +
         type +
         `?per_page=1&q=` +
-        buildSearchFilter(variables.repos, variables.orgs)+
+        buildSearchFilter(variables.repos, variables.owners)+
         filter,
       headers: {
         "Content-Type": "application/json",
@@ -194,7 +194,7 @@ const totalItemsFetcher = async (username, repos, orgs, type, filter) => {
 
   let res;
   try {
-    res = await retryer(fetchTotalItems, { login: username, repos, orgs });
+    res = await retryer(fetchTotalItems, { login: username, repos, owners });
   } catch (err) {
     logger.log(err);
     throw new Error(err);
@@ -208,6 +208,65 @@ const totalItemsFetcher = async (username, repos, orgs, type, filter) => {
     );
   }
   return totalCount;
+};
+
+const fetchRepoUserStats = async (
+  username,
+  repos,
+  owners,
+  include_prs_authored,
+  include_prs_commented,
+  include_prs_reviewed,
+  include_issues_authored,
+  include_issues_commented
+) => {
+  let stats = {};
+  if (include_prs_authored) {
+    stats.totalPRsAuthored = await totalItemsFetcher(
+      username,
+      repos,
+      owners,
+      "issues",
+      `author:${username}+type:pr`,
+    );
+  }
+  if (include_prs_commented) {
+    stats.totalPRsCommented = await totalItemsFetcher(
+      username,
+      repos,
+      owners,
+      "issues",
+      `commenter:${username}+-author:${username}+type:pr`,
+    );
+  }
+  if (include_prs_reviewed) {
+    stats.totalPRsReviewed = await totalItemsFetcher(
+      username,
+      repos,
+      owners,
+      "issues",
+      `reviewed-by:${username}+-author:${username}+type:pr`,
+    );
+  }
+  if (include_issues_authored) {
+    stats.totalIssuesAuthored = await totalItemsFetcher(
+      username,
+      repos,
+      owners,
+      "issues",
+      `author:${username}+type:issue`,
+    );
+  }
+  if (include_issues_commented) {
+    stats.totalIssuesCommented = await totalItemsFetcher(
+      username,
+      repos,
+      owners,
+      "issues",
+      `commenter:${username}+-author:${username}+type:issue`,
+    );
+  }
+  return stats;
 };
 
 /**
@@ -233,7 +292,7 @@ const fetchStats = async (
   include_discussions = false,
   include_discussions_answers = false,
   repos=[],
-  orgs=[],
+  owners=[],
   include_prs_authored = false,
   include_prs_commented = false,
   include_prs_reviewed = false,
@@ -301,58 +360,24 @@ const fetchStats = async (
     stats.totalCommits = await totalItemsFetcher(
       username,
       repos,
-      orgs,
+      owners,
       "commits",
       `author:${username}`,
     );
   } else {
     stats.totalCommits = user.contributionsCollection.totalCommitContributions;
   }
-  if (include_prs_authored) {
-    stats.totalPRsAuthored = await totalItemsFetcher(
-      username,
-      repos,
-      orgs,
-      "issues",
-      `author:${username}+type:pr`,
-    );
-  }
-  if (include_prs_commented) {
-    stats.totalPRsCommented = await totalItemsFetcher(
-      username,
-      repos,
-      orgs,
-      "issues",
-      `commenter:${username}+-author:${username}+type:pr`,
-    );
-  }
-  if (include_prs_reviewed) {
-    stats.totalPRsReviewed = await totalItemsFetcher(
-      username,
-      repos,
-      orgs,
-      "issues",
-      `reviewed-by:${username}+-author:${username}+type:pr`,
-    );
-  }
-  if (include_issues_authored) {
-    stats.totalIssuesAuthored = await totalItemsFetcher(
-      username,
-      repos,
-      orgs,
-      "issues",
-      `author:${username}+type:issue`,
-    );
-  }
-  if (include_issues_commented) {
-    stats.totalIssuesCommented = await totalItemsFetcher(
-      username,
-      repos,
-      orgs,
-      "issues",
-      `commenter:${username}+-author:${username}+type:issue`,
-    );
-  }
+  let repoUserStats = await fetchRepoUserStats(
+    username,
+    repos,
+    owners,
+    include_prs_authored,
+    include_prs_commented,
+    include_prs_reviewed,
+    include_issues_authored,
+    include_issues_commented
+  );
+  Object.assign(stats, repoUserStats);
 
   stats.totalPRs = user.pullRequests.totalCount;
   if (include_merged_pull_requests) {
@@ -397,5 +422,5 @@ const fetchStats = async (
   return stats;
 };
 
-export { fetchStats };
+export { fetchStats, fetchRepoUserStats };
 export default fetchStats;

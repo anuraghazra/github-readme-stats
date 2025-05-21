@@ -2,7 +2,7 @@ import { renderRepoCard } from "../src/cards/repo-card.js";
 import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
-  CONSTANTS,
+  CONSTANTS, parseArray,
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
@@ -20,6 +20,11 @@ export default async (req, res) => {
     bg_color,
     theme,
     show_owner,
+    show,
+    show_icons,
+    number_format,
+    text_bold,
+    line_height,
     cache_seconds,
     locale,
     border_radius,
@@ -53,8 +58,33 @@ export default async (req, res) => {
     );
   }
 
+  const safePattern = /^[\w\/.]+$/;
+  if (
+    (username && !safePattern.test(username)) ||
+    (repos && !safePattern.test(repo))
+  ) {
+    return res.send(
+      renderError("Something went wrong", "Username or repository contains unsafe characters", {
+        title_color,
+        text_color,
+        bg_color,
+        border_color,
+        theme,
+      }),
+    );
+  }
+
   try {
-    const repoData = await fetchRepo(username, repo);
+    const showStats = parseArray(show);
+    const repoData = await fetchRepo(
+      username,
+      repo,
+      showStats.includes("prs_authored"),
+      showStats.includes("prs_commented"),
+      showStats.includes("prs_reviewed"),
+      showStats.includes("issues_authored"),
+      showStats.includes("issues_commented"),
+    );
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.PIN_CARD_CACHE_SECONDS, 10),
@@ -81,6 +111,12 @@ export default async (req, res) => {
         border_radius,
         border_color,
         show_owner: parseBoolean(show_owner),
+        show: showStats,
+        show_icons,
+        number_format,
+        text_bold,
+        line_height,
+        username,
         locale: locale ? locale.toLowerCase() : null,
         description_lines_count,
       }),

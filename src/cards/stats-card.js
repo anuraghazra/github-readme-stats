@@ -207,7 +207,7 @@ const getStyles = ({
  * @param {Partial<StatCardOptions>} options The card options.
  * @returns {string} The stats card SVG object.
  */
-const renderStatsCard = (stats, options = {}, username, repos=[], orgs=[]) => {
+const renderStatsCard = (stats, options = {}, username, repos=[], owners=[]) => {
   const {
     name,
     totalStars,
@@ -351,7 +351,7 @@ const renderStatsCard = (stats, options = {}, username, repos=[], orgs=[]) => {
     };
   }
 
-  let repoFilter = buildSearchFilter(repos, orgs);
+  let repoFilter = buildSearchFilter(repos, owners);
   if (show.includes("prs_authored")) {
     STATS.prs_authored = {
       icon: icons.prs,
@@ -605,5 +605,5 @@ const renderStatsCard = (stats, options = {}, username, repos=[], orgs=[]) => {
   `);
 };
 
-export { renderStatsCard };
+export { renderStatsCard, createTextNode };
 export default renderStatsCard;

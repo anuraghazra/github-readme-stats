@@ -1,6 +1,7 @@
 // @ts-check
 import { retryer } from "../common/retryer.js";
 import { MissingParamError, request } from "../common/utils.js";
+import { fetchRepoUserStats } from "./stats-fetcher.js";
 
 /**
  * @typedef {import('axios').AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
@@ -69,7 +70,12 @@ const urlExample = "/api/pin?username=USERNAME&amp;repo=REPO_NAME";
  * @param {string} reponame GitHub repository name.
  * @returns {Promise<RepositoryData>} Repository data.
  */
-const fetchRepo = async (username, reponame) => {
+const fetchRepo = async (username, reponame,  include_prs_authored = false,
+                         include_prs_commented = false,
+                         include_prs_reviewed = false,
+                         include_issues_authored = false,
+                         include_issues_commented = false,
+) => {
   if (!username && !reponame) {
     throw new MissingParamError(["username", "repo"], urlExample);
   }
@@ -95,7 +101,18 @@ const fetchRepo = async (username, reponame) => {
     if (!data.user.repository || data.user.repository.isPrivate) {
       throw new Error("User Repository Not found");
     }
+    let repoUserStats = await fetchRepoUserStats(
+      username,
+      reponame,
+      [],
+      include_prs_authored,
+      include_prs_commented,
+      include_prs_reviewed,
+      include_issues_authored,
+      include_issues_commented,
+    );
     return {
+      ...repoUserStats,
       ...data.user.repository,
       starCount: data.user.repository.stargazers.totalCount,
     };
@@ -108,7 +125,18 @@ const fetchRepo = async (username, reponame) => {
     ) {
       throw new Error("Organization Repository Not found");
     }
+    let repoUserStats = await fetchRepoUserStats(
+      username,
+      reponame,
+      [],
+      include_prs_authored,
+      include_prs_commented,
+      include_prs_reviewed,
+      include_issues_authored,
+      include_issues_commented,
+    );
     return {
+      ...repoUserStats,
       ...data.organization.repository,
       starCount: data.organization.repository.stargazers.totalCount,
     };
