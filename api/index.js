@@ -67,7 +67,7 @@ export default async (req, res) => {
     );
   }
 
-  const safePattern = /^[\w\/.-]+$/;
+  const safePattern = /^[-\w\/.,]+$/;
   if (
     (username && !safePattern.test(username)) ||
     (repos && !safePattern.test(repos)) ||
