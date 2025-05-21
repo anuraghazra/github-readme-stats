@@ -81,7 +81,7 @@ const renderRepoCard = (repo, options = {}) => {
     show_owner = false,
     show = [],
     show_icons,
-    number_format,
+    number_format = "short",
     text_bold,
     line_height = 10,
     username,
