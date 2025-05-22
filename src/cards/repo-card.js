@@ -83,7 +83,7 @@ const renderRepoCard = (repo, options = {}) => {
     show_icons = true,
     number_format = "short",
     text_bold,
-    line_height = 10,
+    line_height = 22,
     username,
     theme = "default_repocard",
     border_radius,
@@ -159,6 +159,7 @@ const renderRepoCard = (repo, options = {}) => {
       bold: text_bold,
       number_format,
       link: STATS[key].link,
+      labelXOffset: 20,
     }),
   );
 

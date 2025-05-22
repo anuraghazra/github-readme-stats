@@ -48,12 +48,13 @@ const createTextNode = ({
   bold,
   number_format,
   link,
+  labelXOffset=25,
 }) => {
   const kValue =
     number_format.toLowerCase() === "long" ? value : kFormatter(value);
   const staggerDelay = (index + 3) * 150;
 
-  const labelOffset = showIcons ? `x="25"` : "";
+  const labelOffset = showIcons ? `x="${labelXOffset}"` : "";
   const iconSvg = showIcons
     ? `
     <svg data-testid="icon" class="icon" viewBox="0 0 16 16" version="1.1" width="16" height="16">
