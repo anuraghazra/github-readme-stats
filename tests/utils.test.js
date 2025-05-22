@@ -71,6 +71,7 @@ describe("Test utils.js", () => {
       icon_color: "00f",
       bg_color: "fff",
       border_color: "fff",
+      progress_bar_border_color: "fff",
       theme: "dark",
     });
     expect(colors).toStrictEqual({
@@ -80,6 +81,7 @@ describe("Test utils.js", () => {
       ringColor: "#0000ff",
       bgColor: "#fff",
       borderColor: "#fff",
+      progressBarBorderColor: "#fff",
     });
   });
 
@@ -90,6 +92,7 @@ describe("Test utils.js", () => {
       icon_color: "00f",
       bg_color: "fff",
       border_color: "invalidColor",
+      progress_bar_border_color: "invalidColor",
       theme: "dark",
     });
     expect(colors).toStrictEqual({
@@ -99,6 +102,7 @@ describe("Test utils.js", () => {
       ringColor: "#2f80ed",
       bgColor: "#fff",
       borderColor: "#e4e2e2",
+      progressBarBorderColor: "none",
     });
   });
 
@@ -113,6 +117,7 @@ describe("Test utils.js", () => {
       iconColor: "#79ff97",
       bgColor: "#151515",
       borderColor: "#e4e2e2",
+      progressBarBorderColor: "none",
     });
   });
 
@@ -123,6 +128,7 @@ describe("Test utils.js", () => {
       icon_color: "00f",
       bg_color: "fff",
       border_color: "fff",
+      progress_bar_border_color: "fff",
       theme: "dark",
     });
     expect(colors).toStrictEqual({
@@ -132,6 +138,28 @@ describe("Test utils.js", () => {
       ringColor: "#f00",
       bgColor: "#fff",
       borderColor: "#fff",
+      progressBarBorderColor: "#fff",
+    });
+  });
+
+  it("getCardColors: should return progress bar border color equal to none if not progress bar border color is defined", () => {
+    let colors = getCardColors({
+      title_color: "f00",
+      text_color: "0f0",
+      ring_color: "0000ff",
+      icon_color: "00f",
+      bg_color: "fff",
+      border_color: "fff",
+      theme: "dark",
+    });
+    expect(colors).toStrictEqual({
+      titleColor: "#f00",
+      textColor: "#0f0",
+      iconColor: "#00f",
+      ringColor: "#0000ff",
+      bgColor: "#fff",
+      borderColor: "#fff",
+      progressBarBorderColor: "none",
     });
   });
 });
