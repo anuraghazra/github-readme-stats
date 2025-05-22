@@ -233,13 +233,13 @@ const renderRepoCard = (repo, options = {}) => {
   }).join("");
 
   const extraItems = `
-  <svg x="0" y="0">
+  <svg x="0" y="0"><g transform="translate(0, ${height - 52 - extraHeight})">
       ${flexLayout({
         items: statItems,
         gap: extraLHeight,
         direction: "column",
       }).join("")}
-    </svg>
+    </g></svg>
     `;
 
   const card = new Card({
