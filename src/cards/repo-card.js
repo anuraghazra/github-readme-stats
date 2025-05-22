@@ -78,6 +78,7 @@ const renderRepoCard = (repo, options = {}) => {
     icon_color,
     text_color,
     bg_color,
+    card_width = 400,
     show_owner = false,
     show = [],
     show_icons = true,
@@ -175,7 +176,7 @@ const renderRepoCard = (repo, options = {}) => {
   const desc = parseEmojis(description || "No description provided");
   const multiLineDescription = wrapTextMultiline(
     desc,
-    DESCRIPTION_LINE_WIDTH,
+    Math.round((card_width - 400) / 5.93 + DESCRIPTION_LINE_WIDTH),
     descriptionMaxLines,
   );
   const descriptionLinesCount = description_lines_count
@@ -246,7 +247,7 @@ const renderRepoCard = (repo, options = {}) => {
   const card = new Card({
     defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
     titlePrefixIcon: icons.contribs,
-    width: 400,
+    width: card_width,
     height,
     border_radius,
     colors,
