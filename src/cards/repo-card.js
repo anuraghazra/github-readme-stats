@@ -80,7 +80,7 @@ const renderRepoCard = (repo, options = {}) => {
     bg_color,
     show_owner = false,
     show = [],
-    show_icons,
+    show_icons = true,
     number_format = "short",
     text_bold,
     line_height = 10,
@@ -260,13 +260,7 @@ const renderRepoCard = (repo, options = {}) => {
     .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
     .badge rect { opacity: 0.2 }
     
-    .stat {
-      font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${colors.textColor};
-    }
-    @supports(-moz-appearance: auto) {
-      /* Selector detects Firefox */
-      .stat { font-size:12px; }
-    }
+    .stat { font: 400 12px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${colors.textColor} }
     .stagger {
       opacity: 0;
       animation: fadeInAnimation 0.3s ease-in-out forwards;
@@ -275,7 +269,7 @@ const renderRepoCard = (repo, options = {}) => {
     .bold { font-weight: 700 }
     .icon {
       fill: ${colors.iconColor};
-      display: ${show_icons ? "block" : "none"};
+      display: block;
     }
   `);
 
