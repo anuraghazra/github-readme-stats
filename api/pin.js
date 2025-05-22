@@ -116,7 +116,7 @@ export default async (req, res) => {
         theme,
         border_radius,
         border_color,
-        card_width: parseInt(card_width, 10),
+        card_width_input: parseInt(card_width, 10),
         show_owner: parseBoolean(show_owner),
         show: showStats,
         show_icons: parseBoolean(show_icons),
