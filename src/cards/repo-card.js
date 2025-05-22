@@ -159,7 +159,7 @@ const renderRepoCard = (repo, options = {}) => {
       bold: text_bold,
       number_format,
       link: STATS[key].link,
-      labelXOffset: 20,
+      labelXOffset: 23,
     }),
   );
 
@@ -234,7 +234,7 @@ const renderRepoCard = (repo, options = {}) => {
   }).join("");
 
   const extraItems = `
-  <svg x="0" y="0"><g transform="translate(0, ${height - 52 - extraHeight})">
+  <svg x="0" y="0"><g transform="translate(-3, ${height - 52 - extraHeight})">
       ${flexLayout({
         items: statItems,
         gap: extraLHeight,
