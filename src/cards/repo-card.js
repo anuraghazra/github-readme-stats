@@ -93,11 +93,9 @@ const renderRepoCard = (repo, options = {}) => {
     description_lines_count,
   } = options;
 
-  const card_width = card_width_input
-    ? isNaN(card_width_input)
-      ? 400
-      : card_width_input
-    : 400;
+  const card_width = card_width_input && !isNaN(card_width_input)
+    ? card_width_input
+    : (show.length >= 2 ? 430 : 400);
 
   const i18n = new I18n({
     locale,
@@ -162,7 +160,7 @@ const renderRepoCard = (repo, options = {}) => {
       unitSymbol: STATS[key].unitSymbol,
       index,
       showIcons: show_icons,
-      shiftValuePos: 29.01,
+      shiftValuePos: 14.01,
       bold: text_bold,
       number_format,
       link: STATS[key].link,
@@ -194,7 +192,7 @@ const renderRepoCard = (repo, options = {}) => {
     .join("");
 
   const extraHeight = Object.keys(STATS).length
-    ? -7 + (statItems.length + 1) * extraLHeight
+    ? -7 + (Math.ceil(statItems.length / 2) + 1) * extraLHeight
     : 0;
   const height =
     (descriptionLinesCount > 1 ? 120 : 110) +
@@ -240,10 +238,20 @@ const renderRepoCard = (repo, options = {}) => {
     gap: 25,
   }).join("");
 
+  let extraRows = [];
+  for (let i = 0; i < statItems; i += 2) {
+    extraRows.push(
+      flexLayout({
+        items: statItems.slice(i, i + 2),
+        gap: 210,
+        direction: "row",
+      }).join("")
+    );
+  }
   const extraItems = `
   <svg x="0" y="0"><g transform="translate(-3, ${height - 52 - extraHeight})">
       ${flexLayout({
-        items: statItems,
+        items: extraRows,
         gap: extraLHeight,
         direction: "column",
       }).join("")}
