@@ -83,7 +83,7 @@ const renderRepoCard = (repo, options = {}) => {
     show = [],
     show_icons = true,
     number_format = "short",
-    text_bold,
+    text_bold = false,
     line_height = 22,
     username,
     theme = "default_repocard",
@@ -93,9 +93,12 @@ const renderRepoCard = (repo, options = {}) => {
     description_lines_count,
   } = options;
 
-  const card_width = card_width_input && !isNaN(card_width_input)
-    ? card_width_input
-    : (show.length >= 2 ? 430 : 400);
+  const card_width =
+    card_width_input && !isNaN(card_width_input)
+      ? card_width_input
+      : show.length >= 2
+        ? 430
+        : 400;
 
   const i18n = new I18n({
     locale,
@@ -239,13 +242,13 @@ const renderRepoCard = (repo, options = {}) => {
   }).join("");
 
   let extraRows = [];
-  for (let i = 0; i < statItems; i += 2) {
+  for (let i = 0; i < statItems.length; i += 2) {
     extraRows.push(
       flexLayout({
         items: statItems.slice(i, i + 2),
         gap: 210,
         direction: "row",
-      }).join("")
+      }).join(""),
     );
   }
   const extraItems = `
@@ -293,10 +296,18 @@ const renderRepoCard = (repo, options = {}) => {
     ${
       isTemplate
         ? // @ts-ignore
-          getBadgeSVG(i18n.t("repocard.template"), colors.textColor, card_width - 400)
+          getBadgeSVG(
+            i18n.t("repocard.template"),
+            colors.textColor,
+            card_width - 400,
+          )
         : isArchived
           ? // @ts-ignore
-            getBadgeSVG(i18n.t("repocard.archived"), colors.textColor, card_width - 400)
+            getBadgeSVG(
+              i18n.t("repocard.archived"),
+              colors.textColor,
+              card_width - 400,
+            )
           : ""
     }
 

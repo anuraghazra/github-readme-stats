@@ -33,6 +33,13 @@ export type StatCardOptions = CommonOptions & {
 export type RepoCardOptions = CommonOptions & {
   show_owner: boolean;
   description_lines_count: number;
+  card_width_input;
+  show: string[];
+  show_icons: boolean;
+  number_format: string;
+  text_bold: boolean;
+  line_height: number | string;
+  username;
 };
 
 export type TopLangOptions = CommonOptions & {
