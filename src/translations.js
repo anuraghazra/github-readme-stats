@@ -467,19 +467,19 @@ const repoCardLocales = {
     se: "Arkiverade",
   },
   "repocard.prs-authored": {
-    en: "my Created PRs",
+    en: "my created PRs",
   },
   "repocard.prs-commented": {
-    en: "my Commented PRs",
+    en: "my commented PRs",
   },
   "repocard.prs-reviewed": {
-    en: "my Reviewed PRs",
+    en: "my reviewed PRs",
   },
   "repocard.issues-authored": {
-    en: "my Created Issues",
+    en: "my created issues",
   },
   "repocard.issues-commented": {
-    en: "my Commented Issues",
+    en: "my commented issues",
   },
 };
 

@@ -186,7 +186,7 @@ const renderRepoCard = (repo, options = {}) => {
     .join("");
 
   const extraHeight = Object.keys(STATS).length
-    ? 45 + (statItems.length + 1) * extraLHeight
+    ? -7 + (statItems.length + 1) * extraLHeight
     : 0;
   const height =
     (descriptionLinesCount > 1 ? 120 : 110) +
