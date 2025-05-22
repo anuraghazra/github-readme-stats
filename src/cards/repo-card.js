@@ -29,8 +29,8 @@ const DESCRIPTION_MAX_LINES = 3;
  * @param {string} textColor The color of the text.
  * @returns {string} Wrapped repo description SVG object.
  */
-const getBadgeSVG = (label, textColor) => `
-  <g data-testid="badge" class="badge" transform="translate(320, -18)">
+const getBadgeSVG = (label, textColor, xOffset = 0) => `
+  <g data-testid="badge" class="badge" transform="translate(${320 + xOffset}, -18)">
     <rect stroke="${textColor}" stroke-width="1" width="70" height="20" x="-12" y="-14" ry="10" rx="10"></rect>
     <text
       x="23" y="-5"
@@ -78,7 +78,7 @@ const renderRepoCard = (repo, options = {}) => {
     icon_color,
     text_color,
     bg_color,
-    card_width = 400,
+    card_width_input,
     show_owner = false,
     show = [],
     show_icons = true,
@@ -92,6 +92,12 @@ const renderRepoCard = (repo, options = {}) => {
     locale,
     description_lines_count,
   } = options;
+
+  const card_width = card_width_input
+    ? isNaN(card_width_input)
+      ? 400
+      : card_width_input
+    : 400;
 
   const i18n = new I18n({
     locale,
@@ -279,10 +285,10 @@ const renderRepoCard = (repo, options = {}) => {
     ${
       isTemplate
         ? // @ts-ignore
-          getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
+          getBadgeSVG(i18n.t("repocard.template"), colors.textColor, card_width - 400)
         : isArchived
           ? // @ts-ignore
-            getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
+            getBadgeSVG(i18n.t("repocard.archived"), colors.textColor, card_width - 400)
           : ""
     }
 
