@@ -182,7 +182,10 @@ const totalItemsFetcher = async (username, repos, owners, type, filter) => {
         `https://api.github.com/search/` +
         type +
         `?per_page=1&q=` +
-        buildSearchFilter(variables.repos, variables.owners)+
+        buildSearchFilter(variables.repos, variables.owners).replaceAll(
+          " ",
+          "+",
+        ) +
         filter,
       headers: {
         "Content-Type": "application/json",
@@ -218,7 +221,7 @@ const fetchRepoUserStats = async (
   include_prs_commented,
   include_prs_reviewed,
   include_issues_authored,
-  include_issues_commented
+  include_issues_commented,
 ) => {
   let stats = {};
   if (include_prs_authored) {
@@ -291,8 +294,8 @@ const fetchStats = async (
   include_merged_pull_requests = false,
   include_discussions = false,
   include_discussions_answers = false,
-  repos=[],
-  owners=[],
+  repos = [],
+  owners = [],
   include_prs_authored = false,
   include_prs_commented = false,
   include_prs_reviewed = false,
@@ -375,7 +378,7 @@ const fetchStats = async (
     include_prs_commented,
     include_prs_reviewed,
     include_issues_authored,
-    include_issues_commented
+    include_issues_commented,
   );
   Object.assign(stats, repoUserStats);
 

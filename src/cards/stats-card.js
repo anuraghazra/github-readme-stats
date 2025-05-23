@@ -8,7 +8,8 @@ import {
   flexLayout,
   getCardColors,
   kFormatter,
-  measureText, buildSearchFilter,
+  measureText,
+  buildSearchFilter,
 } from "../common/utils.js";
 import { statCardLocales } from "../translations.js";
 
@@ -34,6 +35,7 @@ const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
  * @param {boolean} createTextNodeParams.bold Whether to bold the label.
  * @param {string} createTextNodeParams.number_format The format of numbers on card.
  * @param {string} createTextNodeParams.link Url to link to.
+ * @param {number} createTextNodeParams.labelXOffset horizontal offset for label.
  * @returns {string} The stats card text item SVG object.
  */
 const createTextNode = ({
@@ -48,7 +50,7 @@ const createTextNode = ({
   bold,
   number_format,
   link,
-  labelXOffset=25,
+  labelXOffset = 25,
 }) => {
   const kValue =
     number_format.toLowerCase() === "long" ? value : kFormatter(value);
@@ -208,7 +210,13 @@ const getStyles = ({
  * @param {Partial<StatCardOptions>} options The card options.
  * @returns {string} The stats card SVG object.
  */
-const renderStatsCard = (stats, options = {}, username, repos=[], owners=[]) => {
+const renderStatsCard = (
+  stats,
+  options = {},
+  username,
+  repos = [],
+  owners = [],
+) => {
   const {
     name,
     totalStars,
@@ -352,7 +360,7 @@ const renderStatsCard = (stats, options = {}, username, repos=[], owners=[]) => 
     };
   }
 
-  let repoFilter = encodeURIComponent(buildSearchFilter([nameWithOwner], []));
+  let repoFilter = encodeURIComponent(buildSearchFilter(repos, owners));
   if (show.includes("prs_authored")) {
     STATS.prs_authored = {
       icon: icons.prs,
