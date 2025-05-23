@@ -220,11 +220,11 @@ const fallbackColor = (color, fallbackColor) => {
 const buildSearchFilter = (repos = [], owners = []) => {
   let repoFilter =
     Array.isArray(repos) && repos.length > 0
-      ? repos.map((r) => `repo%3A${encodeURIComponent(r)}`).join("+") + "+"
+      ? repos.map((r) => `repo:${r} `).join("")
       : "";
   let orgFilter =
     Array.isArray(owners) && owners.length > 0
-      ? owners.map((o) => `owner%3A${encodeURIComponent(o)}`).join("+") + "+"
+      ? owners.map((o) => `owner:${o} `).join("")
       : "";
   return repoFilter + orgFilter;
 };

@@ -105,7 +105,7 @@ const renderRepoCard = (repo, options = {}) => {
     translations: repoCardLocales,
   });
 
-  let repoFilter = buildSearchFilter([nameWithOwner], []);
+  let repoFilter = encodeURIComponent(buildSearchFilter([nameWithOwner], []));
   const STATS = {};
   if (show.includes("prs_authored")) {
     STATS.prs_authored = {
