@@ -449,6 +449,13 @@ export const themes = {
     border_color: "ffffff",
     bg_color: "000000",
   },
+  cian_blue: {
+    title_color: "00ffc",
+    text_color: "00ffc8",
+    icon_color: "00ffc8",
+    border_color: "00ffc8",
+    bg_color: "0d1117",
+  }, 
   calm_pink: {
     title_color: "e07a5f",
     text_color: "edae49",
