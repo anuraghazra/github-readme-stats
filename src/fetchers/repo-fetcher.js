@@ -76,6 +76,19 @@ const fetchRepo = async (username, reponame,  include_prs_authored = false,
                          include_issues_authored = false,
                          include_issues_commented = false,
 ) => {
+  let owner = username;
+  if (reponame && reponame.includes("/")) {
+    const [parsed_owner, parsed_repo] = reponame.split("/");
+    owner = parsed_owner;
+    reponame = parsed_repo;
+  }
+
+  if (owner && !username) {
+    username = owner;
+  }
+  if (username && !owner) {
+    owner = username;
+  }
   if (!username && !reponame) {
     throw new MissingParamError(["username", "repo"], urlExample);
   }
@@ -86,7 +99,7 @@ const fetchRepo = async (username, reponame,  include_prs_authored = false,
     throw new MissingParamError(["repo"], urlExample);
   }
 
-  let res = await retryer(fetcher, { login: username, repo: reponame });
+  let res = await retryer(fetcher, { login: owner, repo: reponame });
 
   const data = res.data.data;
 
@@ -103,7 +116,7 @@ const fetchRepo = async (username, reponame,  include_prs_authored = false,
     }
     let repoUserStats = await fetchRepoUserStats(
       username,
-      reponame,
+      [owner + "/" + reponame],
       [],
       include_prs_authored,
       include_prs_commented,
@@ -127,7 +140,7 @@ const fetchRepo = async (username, reponame,  include_prs_authored = false,
     }
     let repoUserStats = await fetchRepoUserStats(
       username,
-      reponame,
+      [owner + "/" + reponame],
       [],
       include_prs_authored,
       include_prs_commented,
