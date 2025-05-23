@@ -450,7 +450,7 @@ export const themes = {
     bg_color: "000000",
   },
   cian_blue: {
-    title_color: "00ffc",
+    title_color: "00ffc8",
     text_color: "00ffc8",
     icon_color: "00ffc8",
     border_color: "00ffc8",
