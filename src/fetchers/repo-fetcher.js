@@ -70,11 +70,14 @@ const urlExample = "/api/pin?username=USERNAME&amp;repo=REPO_NAME";
  * @param {string} reponame GitHub repository name.
  * @returns {Promise<RepositoryData>} Repository data.
  */
-const fetchRepo = async (username, reponame,  include_prs_authored = false,
-                         include_prs_commented = false,
-                         include_prs_reviewed = false,
-                         include_issues_authored = false,
-                         include_issues_commented = false,
+const fetchRepo = async (
+  username,
+  reponame,
+  include_prs_authored = false,
+  include_prs_commented = false,
+  include_prs_reviewed = false,
+  include_issues_authored = false,
+  include_issues_commented = false,
 ) => {
   let owner = username;
   if (reponame && reponame.includes("/")) {

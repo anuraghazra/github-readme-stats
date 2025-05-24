@@ -74,20 +74,24 @@ export default async (req, res) => {
     (owners && !safePattern.test(owners))
   ) {
     return res.send(
-      renderError("Something went wrong", "Username, repository or owner contains unsafe characters", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      renderError(
+        "Something went wrong",
+        "Username, repository or owner contains unsafe characters",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+        },
+      ),
     );
   }
 
   try {
     const showStats = parseArray(show);
-    const repositories=parseArray(repos);
-    const organizations=parseArray(owners);
+    const repositories = parseArray(repos);
+    const organizations = parseArray(owners);
     const stats = await fetchStats(
       username,
       parseBoolean(include_all_commits),
