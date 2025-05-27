@@ -48,7 +48,7 @@
     "eslint": "^9.27.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-jsdoc": "^50.6.17",
-    "globals": "^16.1.0",
+    "globals": "^16.2.0",
     "hjson": "^3.2.2",
     "husky": "^9.1.7",
     "jest": "^29.7.0",
