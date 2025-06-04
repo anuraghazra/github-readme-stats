@@ -39,7 +39,7 @@
     "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.1",
     "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.27.0",
+    "@eslint/js": "^9.28.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@uppercod/css-to-object": "^1.1.1",
