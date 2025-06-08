@@ -75,7 +75,7 @@ const createTextNode = ({
       }" ${labelOffset} y="12.5">${label}:</text>
       <text
         class="stat ${bold ? " bold" : "not_bold"}"
-        x="${(showIcons ? 140 : 120) + shiftValuePos}"
+        x="${(showIcons ? 140 : 120) + (bold ? 5 : 0) + shiftValuePos}"
         y="12.5"
         data-testid="${id}"
       >${kValue}${unitSymbol ? ` ${unitSymbol}` : ""}</text>` +

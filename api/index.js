@@ -90,8 +90,12 @@ export default async (req, res) => {
 
   try {
     const showStats = parseArray(show);
-    const repositories = parseArray(repos);
     const organizations = parseArray(owners);
+    let repositories = parseArray(repos);
+    repositories = repositories.map(repo =>
+      repo.includes("/") ? repo : `${username}/${repo}`,
+    );
+
     const stats = await fetchStats(
       username,
       parseBoolean(include_all_commits),

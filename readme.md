@@ -178,8 +178,6 @@ To enable icons, you can pass `&show_icons=true` in the query param, like so:
 
 ### Filtering by repository and owner
 
-To exclude specific repositories, you can use the [`&exclude_repo` parameter](#stats-card-exclusive-options).
-
 To compute your stats for only a specific repository, you can pass a query parameter `&repos=<user_or_organization>/<repository>`. You can also specify a comma-separated list of multiple repositories, e.g. `&repos=userA/repositoryA,organizationB/repositoryB`. And you can select all repositories owned by specific organizations or users by providing a comma-separated list of owners via the `owners` query parameter, e.g. `&owners=userA,organizationB,organizationC`. The `repos` and `owners` filters are supported by the following items: `commits` (when used with `&include_all_commits=true`), `prs_authored`, `prs_commented`, `prs_reviewed`, `issues_authored` and `issues_commented`. Note that most of these items are not displayed by default, but [you can enable them individually](#showing-additional-individual-stats).
 
 (Some of these mentioned items are similar to other items which are included by default, e.g. `issues_authored` is similar to `issues`. The difference is how these values are fetched - [via GraphQL or via REST API](https://github.com/anuraghazra/github-readme-stats/discussions/1770#number-of-commits-is-incorrect). The default items use GraphQL, but filtering by repository works better via REST API.)
@@ -385,14 +383,14 @@ If we don't support your language, please consider contributing! You can find mo
 | `show_icons` | Shows icons near all stats. | boolean | `false` |
 | `include_all_commits` | Count total commits instead of just the current year commits. | boolean | `false` |
 | `line_height` | Sets the line height between text. | integer | `25` |
-| `exclude_repo` | Excludes specified repositories. | string (comma-separated values) | `null` |
+| `exclude_repo` | Excludes specified repositories. Affects only the count for "Total Stars Earned". | string (comma-separated values) | `null` |
 | `repos` | Count only stats from the specified repositories. Affects only [certain items](#filtering-by-repository-and-owner). | string (comma-separated values) | `null` |
 | `owners` | Count only stats from the specified organizations or users. Affects only [certain items](#filtering-by-repository-and-owner). | string (comma-separated values) | `null` |
 | `custom_title` | Sets a custom title for the card. | string | `<username> GitHub Stats` |
 | `text_bold` | Uses bold text. | boolean | `true` |
 | `disable_animations` | Disables all animations in the card. | boolean | `false` |
 | `ring_color` | Color of the rank circle. | string (hex color) | `2f80ed` |
-| `number_format` | Switches between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). | enum | `short` |
+| `number_format` | Switches between two available formats for displaying the card values: `short` (i.e. `6.6k`) and `long` (i.e. `6626`). | enum | `short` |
 | `show` | Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started`, `discussions_answered`, `prs_merged` or `prs_merged_percentage`. And the following, which support the `repos` and `owners` filters: `prs_authored`, `prs_commented`, `prs_reviewed`, `issues_authored` or `issues_commented`). | string (comma-separated values) | `null` |
 
 > [!NOTE]\
@@ -405,10 +403,10 @@ If we don't support your language, please consider contributing! You can find mo
 | `show_owner` | Shows the repo's owner name. | boolean | `false` |
 | `description_lines_count` | Manually set the number of lines for the description. Specified value will be clamped between 1 and 3. If this parameter is not specified, the number of lines will be automatically adjusted according to the actual length of the description. | number | `null` |
 | `card_width` | Sets the card's width manually. | number | `400px  (approx.)` |
-| `show_icons` | Shows icons near all stats. | boolean | `true` |
-| `line_height` | Sets the line height between text. | integer | `22` |
-| `text_bold` | Uses bold text. | boolean | `false` |
-| `number_format` | Switches between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). | enum | `short` |
+| `show_icons` | Shows icons near all stats enabled via `show`. | boolean | `true` |
+| `line_height` | Sets the line height between stats enabled via `show`. | integer | `22` |
+| `text_bold` | Uses bold text for all stats enabled via `show`. | boolean | `false` |
+| `number_format` | Switches between two available formats for displaying the numbers for all stats enabled via `show`: `short` (i.e. `6.6k`) and `long` (i.e. `6626`). | enum | `short` |
 | `show` | Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `prs_authored`, `prs_commented`, `prs_reviewed`, `issues_authored` or `issues_commented`). | string (comma-separated values) | `null` |
 
 #### Gist Card Exclusive Options
@@ -482,6 +480,10 @@ Use [show\_owner](#repo-card-exclusive-options) query option to include the repo
 Use [show](#repo-card-exclusive-options) query option to display the user's contributions to the repository:
 
 ![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=github-readme-stats\&show=prs_authored,prs_commented,prs_reviewed,issues_authored,issues_commented)
+
+You can also specify the `repo` parameter in the form `<user_or_organization>/<repository>` to pin a repository from any user or organization, not just your own. This allows you to showcase repositories you contributed to, regardless of ownership.
+
+![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=statykjs/statyk\&show_owner=true\&show=prs_authored,prs_commented,prs_reviewed,issues_authored,issues_commented)
 
 # GitHub Gist Pins
 
