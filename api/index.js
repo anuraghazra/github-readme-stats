@@ -92,7 +92,7 @@ export default async (req, res) => {
     const showStats = parseArray(show);
     const organizations = parseArray(owners);
     let repositories = parseArray(repos);
-    repositories = repositories.map(repo =>
+    repositories = repositories.map((repo) =>
       repo.includes("/") ? repo : `${username}/${repo}`,
     );
 
