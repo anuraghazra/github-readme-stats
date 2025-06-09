@@ -5,6 +5,7 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm i --omit=dev --ignore-scripts --no-audit
+RUN npm i express
 
 COPY api ./api
 COPY src ./src
