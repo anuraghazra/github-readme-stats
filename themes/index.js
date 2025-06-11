@@ -6,6 +6,13 @@ export const themes = {
     bg_color: "fffefe",
     border_color: "e4e2e2",
   },
+  orange: {
+    title_color: "00000",
+    icon_color: "ff8000",
+    text_color: "000000",
+    bg_color: "fffefe",
+    border_color: "ff8000",
+  },
   default_repocard: {
     title_color: "2f80ed",
     icon_color: "586069", // icon color is different
