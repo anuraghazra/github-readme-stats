@@ -9,6 +9,7 @@ import {
   getCardColors,
   kFormatter,
   measureText,
+  buildSearchFilter,
 } from "../common/utils.js";
 import { statCardLocales } from "../translations.js";
 
@@ -33,6 +34,8 @@ const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
  * @param {number} createTextNodeParams.shiftValuePos Number of pixels the value has to be shifted to the right.
  * @param {boolean} createTextNodeParams.bold Whether to bold the label.
  * @param {string} createTextNodeParams.number_format The format of numbers on card.
+ * @param {string} createTextNodeParams.link Url to link to.
+ * @param {number} createTextNodeParams.labelXOffset horizontal offset for label.
  * @returns {string} The stats card text item SVG object.
  */
 const createTextNode = ({
@@ -46,12 +49,14 @@ const createTextNode = ({
   shiftValuePos,
   bold,
   number_format,
+  link,
+  labelXOffset = 25,
 }) => {
   const kValue =
     number_format.toLowerCase() === "long" ? value : kFormatter(value);
   const staggerDelay = (index + 3) * 150;
 
-  const labelOffset = showIcons ? `x="25"` : "";
+  const labelOffset = showIcons ? `x="${labelXOffset}"` : "";
   const iconSvg = showIcons
     ? `
     <svg data-testid="icon" class="icon" viewBox="0 0 16 16" version="1.1" width="16" height="16">
@@ -59,20 +64,26 @@ const createTextNode = ({
     </svg>
   `
     : "";
-  return `
-    <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
+  return (
+    `
+    <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">` +
+    (link ? `<a href="${link}">` : "") +
+    `
       ${iconSvg}
       <text class="stat ${
         bold ? " bold" : "not_bold"
       }" ${labelOffset} y="12.5">${label}:</text>
       <text
         class="stat ${bold ? " bold" : "not_bold"}"
-        x="${(showIcons ? 140 : 120) + shiftValuePos}"
+        x="${(showIcons ? 140 : 120) + (bold ? 5 : 0) + shiftValuePos}"
         y="12.5"
         data-testid="${id}"
-      >${kValue}${unitSymbol ? ` ${unitSymbol}` : ""}</text>
+      >${kValue}${unitSymbol ? ` ${unitSymbol}` : ""}</text>` +
+    (link ? "</a>" : "") +
+    `
     </g>
-  `;
+  `
+  );
 };
 
 /**
@@ -199,7 +210,13 @@ const getStyles = ({
  * @param {Partial<StatCardOptions>} options The card options.
  * @returns {string} The stats card SVG object.
  */
-const renderStatsCard = (stats, options = {}) => {
+const renderStatsCard = (
+  stats,
+  options = {},
+  username,
+  repos = [],
+  owners = [],
+) => {
   const {
     name,
     totalStars,
@@ -212,6 +229,11 @@ const renderStatsCard = (stats, options = {}) => {
     totalDiscussionsStarted,
     totalDiscussionsAnswered,
     contributedTo,
+    totalPRsAuthored,
+    totalPRsCommented,
+    totalPRsReviewed,
+    totalIssuesAuthored,
+    totalIssuesCommented,
     rank,
   } = stats;
   const {
@@ -338,6 +360,53 @@ const renderStatsCard = (stats, options = {}) => {
     };
   }
 
+  let repoFilter = encodeURIComponent(buildSearchFilter(repos, owners));
+  if (show.includes("prs_authored")) {
+    STATS.prs_authored = {
+      icon: icons.prs,
+      label: i18n.t("statcard.prs-authored"),
+      value: totalPRsAuthored,
+      id: "prs_authored",
+      link: `https://github.com/search?q=${repoFilter}author%3A${username}&amp;type=pullrequests`,
+    };
+  }
+  if (show.includes("prs_commented")) {
+    STATS.prs_commented = {
+      icon: icons.comments,
+      label: i18n.t("statcard.prs-commented"),
+      value: totalPRsCommented,
+      id: "prs_commented",
+      link: `https://github.com/search?q=${repoFilter}commenter%3A${username}+-author%3A${username}&amp;type=pullrequests`,
+    };
+  }
+  if (show.includes("prs_reviewed")) {
+    STATS.prs_reviewed = {
+      icon: icons.reviews,
+      label: i18n.t("statcard.prs-reviewed"),
+      value: totalPRsReviewed,
+      id: "prs_reviewed",
+      link: `https://github.com/search?q=${repoFilter}reviewed-by%3A${username}+-author%3A${username}&amp;type=pullrequests`,
+    };
+  }
+  if (show.includes("issues_authored")) {
+    STATS.issues_authored = {
+      icon: icons.issues,
+      label: i18n.t("statcard.issues-authored"),
+      value: totalIssuesAuthored,
+      id: "issues_authored",
+      link: `https://github.com/search?q=${repoFilter}author%3A${username}&amp;type=issues`,
+    };
+  }
+  if (show.includes("issues_commented")) {
+    STATS.issues_commented = {
+      icon: icons.discussions_started,
+      label: i18n.t("statcard.issues-commented"),
+      value: totalIssuesCommented,
+      id: "issues_commented",
+      link: `https://github.com/search?q=${repoFilter}commenter%3A${username}+-author%3A${username}&amp;type=issues`,
+    };
+  }
+
   STATS.contribs = {
     icon: icons.contribs,
     label: i18n.t("statcard.contribs"),
@@ -363,6 +432,12 @@ const renderStatsCard = (stats, options = {}) => {
   ];
   const isLongLocale = locale ? longLocales.includes(locale) : false;
 
+  // check if all used labels are short
+  const longLabels =
+    Object.keys(STATS)
+      .filter((key) => !hide.includes(key))
+      .filter((key) => STATS[key].label.length > 18).length > 0;
+
   // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
@@ -376,9 +451,10 @@ const renderStatsCard = (stats, options = {}) => {
         unitSymbol: STATS[key].unitSymbol,
         index,
         showIcons: show_icons,
-        shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
+        shiftValuePos: 29.01 + (longLabels ? 50 : 0) + (isLongLocale ? 50 : 0),
         bold: text_bold,
         number_format,
+        link: STATS[key].link,
       }),
     );
 
@@ -441,12 +517,9 @@ const renderStatsCard = (stats, options = {}) => {
         : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
   let width = card_width
     ? isNaN(card_width)
-      ? defaultCardWidth
+      ? Math.max(defaultCardWidth, minCardWidth)
       : card_width
-    : defaultCardWidth;
-  if (width < minCardWidth) {
-    width = minCardWidth;
-  }
+    : Math.max(defaultCardWidth, minCardWidth);
 
   const card = new Card({
     customTitle: custom_title,
@@ -541,5 +614,5 @@ const renderStatsCard = (stats, options = {}) => {
   `);
 };
 
-export { renderStatsCard };
+export { renderStatsCard, createTextNode };
 export default renderStatsCard;
