@@ -144,6 +144,7 @@ Du kannst das Erscheinungsbild deiner `Stats Card` oder `Repo Card`, mithilfe vo
 - `theme` - Name des Erscheinungsbildes/Themes [alle verfügbaren Themes](../themes/README.md)
 - `cache_seconds` - manuelles festlegen der Cachezeiten _(min: 14400, max: 86400)_
 - `locale` - Stellen Sie die Sprache auf der Karte ein _(z.B. cn, de, es, etc.)_
+- `json` - Gibt rohe JSON-Daten aus, anstatt eine Karte zu rendern. Nützlich zum Debuggen oder für die Verwendung der Daten in anderen Anwendungen. _(Boolean)_
 
 ##### Farbverlauf in bg_color
 

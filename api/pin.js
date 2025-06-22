@@ -1,5 +1,3 @@
-import { renderRepoCard } from "../src/cards/repo-card.js";
-import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
   CONSTANTS,
@@ -7,7 +5,9 @@ import {
   renderError,
 } from "../src/common/utils.js";
 import { fetchRepo } from "../src/fetchers/repo-fetcher.js";
+import { renderRepoCard } from "../src/cards/repo-card.js";
 import { isLocaleAvailable } from "../src/translations.js";
+import { blacklist } from "../src/common/blacklist.js";
 
 export default async (req, res) => {
   const {
@@ -25,31 +25,41 @@ export default async (req, res) => {
     border_radius,
     border_color,
     description_lines_count,
+    json,
   } = req.query;
 
-  res.setHeader("Content-Type", "image/svg+xml");
+  const returnJson = parseBoolean(json);
+
+  res.setHeader(
+    "Content-Type",
+    returnJson ? "application/json" : "image/svg+xml",
+  );
 
   if (blacklist.includes(username)) {
     return res.send(
-      renderError("Something went wrong", "This username is blacklisted", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      returnJson
+        ? { error: "This username is blacklisted" }
+        : renderError("Something went wrong", "This username is blacklisted", {
+            title_color,
+            text_color,
+            bg_color,
+            border_color,
+            theme,
+          }),
     );
   }
 
   if (locale && !isLocaleAvailable(locale)) {
     return res.send(
-      renderError("Something went wrong", "Language not found", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      returnJson
+        ? { error: "Language not found" }
+        : renderError("Something went wrong", "Language not found", {
+            title_color,
+            text_color,
+            bg_color,
+            border_color,
+            theme,
+          }),
     );
   }
 
@@ -69,6 +79,10 @@ export default async (req, res) => {
       "Cache-Control",
       `max-age=${cacheSeconds}, s-maxage=${cacheSeconds}`,
     );
+
+    if (returnJson) {
+      return res.send(repoData);
+    }
 
     return res.send(
       renderRepoCard(repoData, {
@@ -93,13 +107,15 @@ export default async (req, res) => {
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     ); // Use lower cache period for errors.
     return res.send(
-      renderError(err.message, err.secondaryMessage, {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      returnJson
+        ? { error: err.message, secondaryMessage: err.secondaryMessage }
+        : renderError(err.message, err.secondaryMessage, {
+            title_color,
+            text_color,
+            bg_color,
+            border_color,
+            theme,
+          }),
     );
   }
 };

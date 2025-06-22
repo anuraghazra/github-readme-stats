@@ -160,6 +160,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `theme` - Temanın rengi [tüm temalar](./themes/README.md)
 - `cache_seconds` - Manuel olarak cache'i belirleyebilirsiniz _(en az: 14400, en fazla: 86400)_
 - `locale` - Karttaki dili seçebilirsiniz _(örneğin; tr, cn, de, es, vb.)_
+- `json` - Ham verileri render etmek yerine ham JSON verileri çıktılar. Hata ayıklama veya diğer uygulamalarda veri kullanımı için yararlıdır. _(boolean)_
 
 ##### bg_color'da Gradient
 

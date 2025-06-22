@@ -141,6 +141,7 @@ Vous pouvez personnaliser l'apparence de votre `Carte des stats` ou `Carte de d�
 - `theme` - Nom du thème, parmis [tous les thèmes disponibles](../themes/README.md)
 - `cache_seconds` - Paramétrer le cache manuellement _(min: 14400, max: 86400)_
 - `locale` - définir la langue de la carte _(par exemple. cn, de, es, etc.)_
+- `json` - Affiche les données JSON brutes au lieu de rendre une carte. Utile pour le débogage ou pour utiliser les données dans d'autres applications. _(booléen)_
 
 ##### Gradient in bg_color
 

@@ -159,6 +159,7 @@ Puedes personalizar el aspecto de tu `Tarjeta de Estadísticas` o `Tarjeta de Re
 - `theme` - Nombre del tema, elige uno de [todos los temas disponible ](../themes/README.md)
 - `cache_seconds` - Cache _(min: 14400, max: 86400)_
 - `locale` - configurar el idioma en la tarjeta _(p.ej. cn, de, es, etc.)_
+- `json` - Muestra datos JSON en bruto en lugar de renderizar una tarjeta. Útil para depuración o para usar datos en otras aplicaciones. _(booleano)_
 
 ##### Gradiente en `bg_color`
 

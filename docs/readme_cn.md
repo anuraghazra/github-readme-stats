@@ -154,6 +154,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `theme` - 主题名称，从[所有可用主题](../themes/README.md)中选择
 - `cache_seconds` - 手动设置缓存头 _（最小值: 14400，最大值: 86400）_
 - `locale` - 在卡片中设置语言 _(例如 cn, de, es, 等等)_
+- `json` - 输出原始 JSON 数据，而不是渲染卡片。适用于调试或在其他应用中使用数据。 _(布尔值)_
 
 ##### bg_color 渐变
 

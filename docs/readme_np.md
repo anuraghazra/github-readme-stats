@@ -159,6 +159,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `theme` - name of the theme, choose from [all available themes](./themes/README.md)
 - `cache_seconds` - set the cache header manually _(min: 14400, max: 86400)_
 - `locale` - set the language in the card _(e.g. cn, de, es, etc.)_
+- `json` - Outputs raw JSON data instead of the card. Useful for debugging or using data in other apps. _(boolean)_
 
 ##### Gradient in bg_color
 
