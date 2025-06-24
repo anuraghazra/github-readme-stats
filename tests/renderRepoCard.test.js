@@ -18,6 +18,23 @@ const data_repo = {
     },
     starCount: 38000,
     forkCount: 100,
+    languagesBreakdown: {
+      HTML: {
+        color: "#0f0",
+        name: "HTML",
+        size: 200,
+      },
+      javascript: {
+        color: "#0ff",
+        name: "javascript",
+        size: 200,
+      },
+      css: {
+        color: "#ff0",
+        name: "css",
+        size: 100,
+      },
+    },
   },
 };
 
