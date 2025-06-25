@@ -462,6 +462,41 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  tropical_twist: {
+  title_color: "ff7f11",      // Vivid orange
+  text_color: "1fab89",       // Teal green
+  icon_color: "00b894",       // Bright green
+  border_color: "ff9f1c",     // Softer orange
+  bg_color: "1b1f22",         // Dark gray-black for contrast
+  },
+  citrus_mint: {
+  title_color: "ffa41b",      // Zesty orange
+  text_color: "70e000",       // Lime green
+  icon_color: "38b000",       // Fresh green
+  border_color: "ffcb47",     // Soft golden-orange
+  bg_color: "2d2d2d",         // Neutral dark background
+  },
+  neon_orangeade: {
+  title_color: "ff6d00",      // Vivid neon orange
+  text_color: "00ff94",       // Neon green
+  icon_color: "00e676",       // Bright mint green
+  border_color: "ffaa00",     // Bright orange
+  bg_color: "1c1c1c",         // Deep charcoal for glow effect
+  },
+  sunset_garden: {
+  title_color: "f77f00",      // Sunset orange
+  text_color: "70e000",       // Grass green
+  icon_color: "40916c",       // Earthy green
+  border_color: "e85d04",     // Burnt orange
+  bg_color: "14213d",         // Dusk blue-black
+  },
+  canyon_leaves: {
+  title_color: "ff914d",      // Canyon orange
+  text_color: "7ae582",       // Soft green
+  icon_color: "57cc99",       // Balanced green
+  border_color: "ff9f1c",     // Muted orange
+  bg_color: "1e2a2b",         // Earthy dark background
+  }
 };
 
 export default themes;
