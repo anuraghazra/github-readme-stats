@@ -38,10 +38,22 @@ jobs:
         id: current-branch
         run: echo "branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
 
+      - name: Get upstream default branch
+        id: upstream-branch
+        run: |
+          # Try to get the default branch from upstream
+          UPSTREAM_BRANCH=$(git ls-remote --symref upstream HEAD | grep ref: | cut -d/ -f3)
+          if [ -z "$UPSTREAM_BRANCH" ]; then
+            # Fallback to master if we can't determine the default branch
+            UPSTREAM_BRANCH="master"
+          fi
+          echo "upstream-branch=$UPSTREAM_BRANCH" >> $GITHUB_OUTPUT
+          echo "Using upstream branch: $UPSTREAM_BRANCH"
+
       - name: Check if there are changes to merge
         id: check-changes
         run: |
-          git log HEAD..upstream/main --oneline > /tmp/upstream-changes.txt
+          git log HEAD..upstream/${{ steps.upstream-branch.outputs.upstream-branch }} --oneline > /tmp/upstream-changes.txt
           if [ -s /tmp/upstream-changes.txt ]; then
             echo "has-changes=true" >> $GITHUB_OUTPUT
             echo "Changes found:"
@@ -54,7 +66,7 @@ jobs:
       - name: Merge upstream changes
         if: steps.check-changes.outputs.has-changes == 'true'
         run: |
-          git merge upstream/main --no-edit
+          git merge upstream/${{ steps.upstream-branch.outputs.upstream-branch }} --no-edit
         continue-on-error: true
 
       - name: Push changes

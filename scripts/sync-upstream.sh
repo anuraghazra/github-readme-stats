@@ -29,16 +29,25 @@ fi
 echo "📥 Fetching latest changes from upstream..."
 git fetch upstream
 
+# Get upstream default branch
+echo "🔍 Determining upstream default branch..."
+UPSTREAM_BRANCH=$(git ls-remote --symref upstream HEAD | grep ref: | cut -d/ -f3)
+if [ -z "$UPSTREAM_BRANCH" ]; then
+    # Fallback to master if we can't determine the default branch
+    UPSTREAM_BRANCH="master"
+fi
+echo "📍 Using upstream branch: $UPSTREAM_BRANCH"
+
 # Check if there are changes to merge
 echo "🔍 Checking for changes to merge..."
-if git log HEAD..upstream/main --oneline | head -5; then
+if git log HEAD..upstream/$UPSTREAM_BRANCH --oneline | head -5; then
     echo ""
     echo "📋 Found changes from upstream:"
-    git log HEAD..upstream/main --oneline
+    git log HEAD..upstream/$UPSTREAM_BRANCH --oneline
     
     echo ""
     echo "🔄 Merging changes from upstream..."
-    if git merge upstream/main --no-edit; then
+    if git merge upstream/$UPSTREAM_BRANCH --no-edit; then
         echo "✅ Successfully merged upstream changes"
         
         echo ""
