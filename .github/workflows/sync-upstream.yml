@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.SYNC_TOKEN }}
 
       - name: Configure Git
         run: |
@@ -81,7 +81,7 @@ jobs:
         if: failure() && steps.check-changes.outputs.has-changes == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.SYNC_TOKEN }}
           commit-message: "chore: sync with upstream"
           title: "🔄 Sync with upstream repository"
           body: |
