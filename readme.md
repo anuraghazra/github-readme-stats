@@ -823,6 +823,47 @@ See [the Vercel documentation](https://vercel.com/docs/concepts/projects/environ
 
 You can keep your fork, and thus your private Vercel instance up to date with the upstream using GitHub's [Sync Fork button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). You can also use the [pull](https://github.com/wei/pull) package created by [@wei](https://github.com/wei) to automate this process.
 
+### Automated Sync with GitHub Actions
+
+This repository includes an automated GitHub Actions workflow that keeps your fork synchronized with the upstream repository. The workflow:
+
+- **Runs daily** at 2 AM UTC to check for updates
+- **Automatically merges** changes from the upstream repository
+- **Creates a pull request** if there are merge conflicts that need manual resolution
+- **Can be triggered manually** using the "workflow_dispatch" event
+
+The workflow file is located at `.github/workflows/sync-upstream.yml`. It will:
+
+1. Fetch the latest changes from the upstream repository
+2. Check if there are any new commits to merge
+3. Attempt to merge changes automatically
+4. If merge conflicts occur, create a pull request for manual review
+
+To enable this workflow:
+1. Ensure the workflow file exists in your fork
+2. The workflow will run automatically on the schedule
+3. You can also trigger it manually from the "Actions" tab in your repository
+
+This ensures your fork stays up-to-date with the latest features, bug fixes, and improvements from the main repository.
+
+### Manual Sync Script
+
+For immediate synchronization, you can also use the provided sync script:
+
+```bash
+# Make the script executable (first time only)
+chmod +x scripts/sync-upstream.sh
+
+# Run the sync script
+./scripts/sync-upstream.sh
+```
+
+This script will:
+- Add the upstream remote if it doesn't exist
+- Fetch the latest changes from upstream
+- Merge changes automatically if possible
+- Handle conflicts gracefully with helpful error messages
+
 # :sparkling\_heart: Support the project
 
 I open-source almost everything I can and try to reply to everyone needing help using these projects. Obviously,

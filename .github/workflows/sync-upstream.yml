@@ -1,0 +1,84 @@
+name: Sync with Upstream
+
+on:
+  schedule:
+    # Run daily at 2 AM UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+    # Allow manual triggering
+
+jobs:
+  sync-upstream:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream remote
+        run: |
+          git remote add upstream https://github.com/anuraghazra/github-readme-stats.git
+          git remote -v
+
+      - name: Fetch upstream changes
+        run: |
+          git fetch upstream
+
+      - name: Get current branch
+        id: current-branch
+        run: echo "branch=$(git branch --show-current)" >> $GITHUB_OUTPUT
+
+      - name: Check if there are changes to merge
+        id: check-changes
+        run: |
+          git log HEAD..upstream/main --oneline > /tmp/upstream-changes.txt
+          if [ -s /tmp/upstream-changes.txt ]; then
+            echo "has-changes=true" >> $GITHUB_OUTPUT
+            echo "Changes found:"
+            cat /tmp/upstream-changes.txt
+          else
+            echo "has-changes=false" >> $GITHUB_OUTPUT
+            echo "No changes to merge"
+          fi
+
+      - name: Merge upstream changes
+        if: steps.check-changes.outputs.has-changes == 'true'
+        run: |
+          git merge upstream/main --no-edit
+        continue-on-error: true
+
+      - name: Push changes
+        if: steps.check-changes.outputs.has-changes == 'true'
+        run: |
+          git push origin ${{ steps.current-branch.outputs.branch }}
+        continue-on-error: true
+
+      - name: Create pull request if merge failed
+        if: failure() && steps.check-changes.outputs.has-changes == 'true'
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: sync with upstream"
+          title: "🔄 Sync with upstream repository"
+          body: |
+            This PR syncs this fork with the upstream repository.
+            
+            Changes from upstream:
+            ```
+            $(cat /tmp/upstream-changes.txt)
+            ```
+            
+            This PR was automatically created by the sync workflow.
+          branch: sync-upstream-${{ github.run_number }}
+          base: ${{ steps.current-branch.outputs.branch }}
+          delete-branch: true
+          labels: |
+            sync
+            automated 
