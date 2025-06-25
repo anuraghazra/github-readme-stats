@@ -3,7 +3,7 @@ name: Sync with Upstream
 on:
   schedule:
     # Run daily at 2 AM UTC
-    - cron: '0 2 * * *'
+    - cron: "0 2 * * *"
   workflow_dispatch:
     # Allow manual triggering
 
@@ -69,16 +69,16 @@ jobs:
           title: "🔄 Sync with upstream repository"
           body: |
             This PR syncs this fork with the upstream repository.
-            
+
             Changes from upstream:
             ```
             $(cat /tmp/upstream-changes.txt)
             ```
-            
+
             This PR was automatically created by the sync workflow.
           branch: sync-upstream-${{ github.run_number }}
           base: ${{ steps.current-branch.outputs.branch }}
           delete-branch: true
           labels: |
             sync
-            automated 
+            automated
