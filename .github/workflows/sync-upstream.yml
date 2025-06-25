@@ -7,6 +7,10 @@ on:
   workflow_dispatch:
     # Allow manual triggering
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   sync-upstream:
     runs-on: ubuntu-latest
@@ -15,7 +19,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Configure Git
         run: |
@@ -24,7 +27,7 @@ jobs:
 
       - name: Add upstream remote
         run: |
-          git remote add upstream https://github.com/anuraghazra/github-readme-stats.git
+          git remote add upstream https://github.com/anuraghazra/github-readme-stats.git || git remote set-url upstream https://github.com/anuraghazra/github-readme-stats.git
           git remote -v
 
       - name: Fetch upstream changes
