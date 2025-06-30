@@ -435,7 +435,7 @@ If we don't support your language, please consider contributing! You can find mo
 | `api_domain` | Sets a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) | string | `wakatime.com` |
 | `display_format` | Sets the WakaTime stats display format. Choose `time` to display time-based stats or `percent` to show percentages. | enum | `time` |
 | `disable_animations` | Disables all animations in the card. | boolean | `false` |
-
+| `graph` | Display different graphs by specifying `editor`, `category` or `os` | enum | `language`
 ***
 
 # GitHub Extra Pins
@@ -710,6 +710,9 @@ Choose from any of the [default themes](#themes)
 *   WakaTime card
 
 ![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)
+![Harlok's WakaTime editor_stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&graph=editor)
+![Harlok's WakaTime category_stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&graph=category)
+![Harlok's WakaTime os_stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs&graph=os)
 
 ***
 
