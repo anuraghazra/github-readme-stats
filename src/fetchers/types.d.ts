@@ -20,6 +20,7 @@ export type RepositoryData = {
     id: string;
     name: string;
   };
+  languagesBreakdown: TopLangData;
   forkCount: number;
   starCount: number;
 };
