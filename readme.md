@@ -1,3 +1,4 @@
+<h1 id="top1">Readme page1</h1>
 <p align="center">
  <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
  <h2 align="center">GitHub Readme Stats</h2>
@@ -85,21 +86,28 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
 
 # Features <!-- omit in toc -->
 
+- [Go to Top](#go-to-top)
 - [GitHub Stats Card](#github-stats-card)
+- [Go to Top](#go-to-top-1)
     - [Hiding individual stats](#hiding-individual-stats)
     - [Showing additional individual stats](#showing-additional-individual-stats)
     - [Showing icons](#showing-icons)
     - [Themes](#themes)
+- [Go to Top](#go-to-top-2)
+- [Go to Top](#go-to-top-3)
     - [Customization](#customization)
+- [Go to Top](#go-to-top-4)
 - [GitHub Extra Pins](#github-extra-pins)
     - [Usage](#usage)
     - [Demo](#demo)
+- [Go to Top](#go-to-top-5)
 - [GitHub Gist Pins](#github-gist-pins)
     - [Usage](#usage-1)
     - [Demo](#demo-1)
 - [Top Languages Card](#top-languages-card)
     - [Usage](#usage-2)
     - [Language stats algorithm](#language-stats-algorithm)
+- [Go to Top](#go-to-top-6)
     - [Exclude individual repositories](#exclude-individual-repositories)
     - [Hide individual languages](#hide-individual-languages)
     - [Show more languages](#show-more-languages)
@@ -108,18 +116,30 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Donut Vertical Chart Language Card Layout](#donut-vertical-chart-language-card-layout)
     - [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
     - [Hide Progress Bars](#hide-progress-bars)
+- [Go to Top](#go-to-top-7)
     - [Demo](#demo-2)
+- [Go to Top](#go-to-top-8)
 - [WakaTime Stats Card](#wakatime-stats-card)
     - [Demo](#demo-3)
+- [Go to Top](#go-to-top-9)
 - [All Demos](#all-demos)
+- [Go to Top](#go-to-top-10)
   - [Quick Tip (Align The Cards)](#quick-tip-align-the-cards)
 - [Deploy on your own](#deploy-on-your-own)
   - [On Vercel](#on-vercel)
     - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
+- [Go to Top](#go-to-top-11)
   - [On other platforms](#on-other-platforms)
   - [Disable rate limit protections](#disable-rate-limit-protections)
   - [Keep your fork up to date](#keep-your-fork-up-to-date)
+- [Go to Top](#go-to-top-12)
 - [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
+- [Go to Top](#go-to-top-13)
+
+
+# [Go to Top](#top1)
+
+<h1 id="top2">Readme page2</h1>
 
 # Important Notices <!-- omit in toc -->
 
@@ -146,6 +166,10 @@ Change the `?username=` value to your GitHub username.
 
 > [!NOTE]\
 > Available ranks are S (top 1%), A+ (12.5%), A (25%), A- (37.5%), B+ (50%), B (62.5%), B- (75%), C+ (87.5%) and C (everyone). This ranking scheme is based on the [Japanese academic grading](https://wikipedia.org/wiki/Academic_grading_in_Japan) system. The global percentile is calculated as a weighted sum of percentiles for each statistic (number of commits, pull requests, reviews, issues, stars, and followers), based on the cumulative distribution function of the [exponential](https://wikipedia.org/wiki/exponential_distribution) and the [log-normal](https://wikipedia.org/wiki/Log-normal_distribution) distributions. The implementation can be investigated at [src/calculateRank.js](https://github.com/anuraghazra/github-readme-stats/blob/master/src/calculateRank.js). The circle around the rank shows 100 minus the global percentile.
+
+# [Go to Top](#top2)
+
+<h1 id="top3">Readme page3</h1>
 
 ### Hiding individual stats
 
@@ -192,6 +216,11 @@ GitHub Readme Stats comes with several built-in themes (e.g. `dark`, `radical`, 
 <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1595174536/grs-themes_l4ynja.png" alt="GitHub Readme Stats Themes" width="600px"/>
 
 You can look at a preview for [all available themes](themes/README.md) or checkout the [theme config file](themes/index.js). Please note that we paused the addition of new themes to decrease maintenance efforts; all pull requests related to new themes will be closed.
+
+
+# [Go to Top](#top3)
+
+<h1 id="top4">Readme page4</h1>
 
 #### Responsive Card Theme
 
@@ -281,6 +310,11 @@ You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-1
 </picture>
 
 </details>
+
+
+# [Go to Top](#top4)
+
+<h1 id="top5">Readme page5</h1>
 
 ### Customization
 
@@ -438,6 +472,11 @@ If we don't support your language, please consider contributing! You can find mo
 
 ***
 
+# [Go to Top](#top5)
+
+<h1 id="top6">Readme page6</h1>
+
+
 # GitHub Extra Pins
 
 GitHub extra pins allow you to pin more than 6 repositories in your profile using a GitHub readme profile.
@@ -461,6 +500,10 @@ Endpoint: `api/pin?username=anuraghazra&repo=github-readme-stats`
 Use [show\_owner](#repo-card-exclusive-options) query option to include the repo's owner username
 
 ![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=github-readme-stats\&show_owner=true)
+
+# [Go to Top](#top6)
+
+<h1 id="top7">Readme page7</h1>
 
 # GitHub Gist Pins
 
@@ -528,6 +571,10 @@ By default, only the byte count is used for determining the languages percentage
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&size_weight=0.5&count_weight=0.5)
 ```
 
+# [Go to Top](#top7)
+
+<h1 id="top8">Readme page8</h1>
+
 ### Exclude individual repositories
 
 You can use the `&exclude_repo=repo1,repo2` parameter to exclude individual repositories.
@@ -591,7 +638,9 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 ```md
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)
 ```
+# [Go to Top](#top8)
 
+<h1 id="top9">Readme page9</h1>
 ### Demo
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)
@@ -616,6 +665,9 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&hide_progress=true)
 
+# [Go to Top](#top9)
+
+<h1 id="top10">Readme page10</h1>
 # WakaTime Stats Card
 
 > [!WARNING]\
@@ -639,6 +691,9 @@ Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 
 ***
 
+# [Go to Top](#top10)
+
+<h1 id="top11">Readme page11</h1>
 # All Demos
 
 *   Default
@@ -713,6 +768,9 @@ Choose from any of the [default themes](#themes)
 
 ***
 
+# [Go to Top](#top11)
+
+<h1 id="top12">Readme page12</h1>
 ## Quick Tip (Align The Cards)
 
 By default, GitHub does not lay out the cards side by side. To do that, you can use this approach:
@@ -794,6 +852,10 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 
 </details>
 
+
+# [Go to Top](#top12)
+
+<h1 id="top13">Readme page13</h1>
 ## On other platforms
 
 > [!WARNING]\
@@ -823,6 +885,9 @@ See [the Vercel documentation](https://vercel.com/docs/concepts/projects/environ
 
 You can keep your fork, and thus your private Vercel instance up to date with the upstream using GitHub's [Sync Fork button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). You can also use the [pull](https://github.com/wei/pull) package created by [@wei](https://github.com/wei) to automate this process.
 
+# [Go to Top](#top13)
+
+<h1 id="top14">Readme page14</h1>
 # :sparkling\_heart: Support the project
 
 I open-source almost everything I can and try to reply to everyone needing help using these projects. Obviously,
@@ -843,3 +908,4 @@ Thanks! :heart:
 Contributions are welcome! <3
 
 Made with :heart: and JavaScript.
+# [Go to Top](#top14)
