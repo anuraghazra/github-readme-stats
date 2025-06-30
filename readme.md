@@ -625,6 +625,12 @@ Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 
 ```md
 [![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)](https://github.com/anuraghazra/github-readme-stats)
+
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&hide_progress=true)](https://github.com/anuraghazra/github-readme-stats)
+
+*   Compact layout
+
+[![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
 ### Demo
