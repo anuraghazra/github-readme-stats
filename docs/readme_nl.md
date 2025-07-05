@@ -161,6 +161,7 @@ Je kan het uiterlijk van je `Statistieken kaart` of `Repo kaart` aanpassen hoe j
 - `theme` - Naam van het thema, kies uit [alle beschikbare thema\'s](../themes/README.md)
 - `cache_seconds` - Stel de cache header handmatig in _(min: 14400, max: 86400)_
 - `locale` - Stel taal van de kaart in _(e.g. cn, de, es, etc.)_
+- `json` - Toont ruwe JSON-gegevens in plaats van een kaart te renderen. Handig voor debuggen of het gebruiken van gegevens in andere apps. _(boolean)_
 
 ##### Kleurenverloop in bg_color (achtergrond kleur):
 
