@@ -42,32 +42,17 @@ export default async (req, res) => {
     const gistData = await fetchGist(id);
 
     let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.SIX_HOURS, 10),
-      CONSTANTS.SIX_HOURS,
-      CONSTANTS.ONE_DAY,
+      parseInt(cache_seconds || CONSTANTS.TWO_DAY, 10),
+      CONSTANTS.TWO_DAY,
+      CONSTANTS.SIX_DAY,
     );
     cacheSeconds = process.env.CACHE_SECONDS
       ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
       : cacheSeconds;
 
-    /*
-      if star count & fork count is over 1k then we are kFormating the text
-      and if both are zero we are not showing the stats
-      so we can just make the cache longer, since there is no need to frequent updates
-    */
-    const stars = gistData.starsCount;
-    const forks = gistData.forksCount;
-    const isBothOver1K = stars > 1000 && forks > 1000;
-    const isBothUnder1 = stars < 1 && forks < 1;
-    if (!cache_seconds && (isBothOver1K || isBothUnder1)) {
-      cacheSeconds = CONSTANTS.SIX_HOURS;
-    }
-
     res.setHeader(
       "Cache-Control",
-      `max-age=${
-        cacheSeconds / 2
-      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      `max-age=${cacheSeconds}, s-maxage=${cacheSeconds}`,
     );
 
     return res.send(

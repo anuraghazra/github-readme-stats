@@ -332,6 +332,9 @@ const parseJSON = (json) => {
       );
     }
   } catch (error) {
+    // Resolve eslint no-unused-vars
+    error;
+
     // Remove trailing commas (if any).
     let parsedJson = json.replace(/(,\s*})/g, "}");
 
