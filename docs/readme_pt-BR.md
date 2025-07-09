@@ -156,6 +156,7 @@ Personalize a aparência do seu `Stats Card` ou `Repo Card` da maneira que desej
 - `theme` - Nome do tema, escolha em [todos os temas disponíveis](../themes/README.md)
 - `cache_seconds` - Defina o cabeçalho do cache manualmente _(min: 14400, max: 86400)_
 - `locale` - defina o idioma no cartão _(por exemplo. cn, de, es, etc.)_
+- `json` - Mostra dados JSON brutos em vez de renderizar o cartão. Útil para depuração ou uso dos dados em outros apps. _(booleano)_
 
 > Nota sobre o cache: Cartões de repositório tem um cache padrão de 30 minutos (1800 segundos), se o número a contagem de forks e contagem de estrelas é menor que 1 mil o padrão é 2 horas (7200 segundos). Note também que o cache é limitado a um mínimo de 30 minutos e um máximo de 24 horas.
 
