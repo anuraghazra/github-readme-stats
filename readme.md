@@ -823,6 +823,168 @@ See [the Vercel documentation](https://vercel.com/docs/concepts/projects/environ
 
 You can keep your fork, and thus your private Vercel instance up to date with the upstream using GitHub's [Sync Fork button](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork). You can also use the [pull](https://github.com/wei/pull) package created by [@wei](https://github.com/wei) to automate this process.
 
+# Using GitHub Actions
+
+Another way to use your own GitHub personal access token to generate the cards to avoid the rate limit is to use GitHub Actions.
+Check out the workflow extension on GitHub Actions [marketplace page](https://github.com/marketplace/actions/github-readme-stats-generator) to see how to use it.
+Currently, it may still need some testing, but it will be the most recommended way to use GitHub Readme Stats in the future.
+
+Utilizing this workflow extension,
+you can set up a simple workflow to generate the cards every hour and push them to a repository,
+and then you can use the raw URL of those pushed files as image sources in your readme.
+Here is a sample workflow that you can use.
+Simply save it as a YAML file in the `.github/workflows` directory of your repository.
+
+```yaml
+name: GitHub Readme Stats
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 * * * *
+  push:
+    branches:
+      - master
+
+jobs:
+  generate-stats:
+    runs-on: ubuntu-latest
+    name: Generate stats cards
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Generate stats
+        uses: UlyssesZh/grs-action@v0
+        id: generate
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&show_icons=true
+          path: grs/stats.svg
+      - name: Upload stats
+        uses: actions/upload-artifact@v4
+        with:
+          name: stats
+          path: grs
+  push:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    name: Push
+    needs: generate-stats
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: stats
+          path: grs
+      - name: Push
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: grs
+          build_dir: grs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+Then, you can use the raw URL of the generated SVG file as an image source in your readme:
+
+```md
+![My GitHub stats](https://github.com/<username>/<repo-with-the-workflow>/raw/grs/stats-dark.svg)
+```
+
+And then you are good to go!
+
+<details><summary><b>Sample workflow for generating multiple cards and multiple themes</b></summary>
+
+You can generate multiple cards and multiple themes in the same workflow.
+Set them up in different jobs so that they can run in parallel.
+Here is a sample workflow that generates the stats card and the top languages card in both light and dark themes.
+
+```yaml
+name: GitHub Readme Stats
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 * * * *
+  push:
+    branches:
+      - master
+
+jobs:
+  generate-stats:
+    strategy:
+      matrix:
+        theme: [light, dark]
+    runs-on: ubuntu-latest
+    name: Generate stats cards
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Generate stats-${{ matrix.theme }}
+        uses: UlyssesZh/grs-action@v0
+        id: generate
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&theme=${{ matrix.theme }}
+          path: grs/stats-${{ matrix.theme }}.svg
+      - name: Upload stats-${{ matrix.theme }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: stats-${{ matrix.theme }}
+          path: grs
+  generate-langs:
+    strategy:
+      matrix:
+        theme: [light, dark]
+    runs-on: ubuntu-latest
+    name: Generate top language cards
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Generate stats-${{ matrix.theme }}
+        uses: UlyssesZh/grs-action@v0
+        id: generate
+        with:
+          options: username=${{ github.repository_owner }}&theme=${{ matrix.theme }}
+          path: grs/langs-${{ matrix.theme }}.svg
+          card: langs
+      - name: Upload langs-${{ matrix.theme }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: langs-${{ matrix.theme }}
+          path: grs
+  push:
+    permissions: write-all
+    runs-on: ubuntu-latest
+    name: Push
+    needs: [generate-stats, generate-langs]
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: stats-dark
+          path: grs
+      - uses: actions/download-artifact@v4
+        with:
+          name: stats-light
+          path: grs
+      - uses: actions/download-artifact@v4
+        with:
+          name: langs-dark
+          path: grs
+      - uses: actions/download-artifact@v4
+        with:
+          name: langs-light
+          path: grs
+      - name: Push
+        uses: crazy-max/ghaction-github-pages@v4
+        with:
+          target_branch: grs
+          build_dir: grs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+You can combine this with GitHub's `prefers-color-scheme` media feature.
+
+</details>
+
 # :sparkling\_heart: Support the project
 
 I open-source almost everything I can and try to reply to everyone needing help using these projects. Obviously,
