@@ -22,6 +22,11 @@ export type RepositoryData = {
   };
   forkCount: number;
   starCount: number;
+  totalPRsAuthored: number;
+  totalPRsCommented: number;
+  totalPRsReviewed: number;
+  totalIssuesAuthored: number;
+  totalIssuesCommented: number;
 };
 
 export type StatsData = {
@@ -36,6 +41,11 @@ export type StatsData = {
   totalDiscussionsStarted: number;
   totalDiscussionsAnswered: number;
   contributedTo: number;
+  totalPRsAuthored: number;
+  totalPRsCommented: number;
+  totalPRsReviewed: number;
+  totalIssuesAuthored: number;
+  totalIssuesCommented: number;
   rank: { level: string; percentile: number };
 };
 
