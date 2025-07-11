@@ -1,0 +1,45 @@
+name: Sync Fork with Upstream
+
+on:
+  schedule:
+    # Run daily at 2:00 UTC
+    - cron: '0 2 * * *'
+  workflow_dispatch: # Allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Fork
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+      
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      
+      - name: Add Upstream Remote
+        run: |
+          git remote add upstream https://github.com/anuraghazra/github-readme-stats.git || true
+          git remote -v
+      
+      - name: Fetch Upstream
+        run: git fetch upstream
+      
+      - name: Checkout Master Branch
+        run: git checkout master
+      
+      - name: Merge Upstream
+        run: |
+          git merge upstream/master --no-edit
+      
+      - name: Push Changes
+        run: git push origin master
+        continue-on-error: true
