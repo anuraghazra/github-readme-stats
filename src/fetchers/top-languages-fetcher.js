@@ -7,6 +7,10 @@ import {
   request,
   wrapTextMultiline,
 } from "../common/utils.js";
+import {
+  getCombinedExcludedRepos,
+  isRepoExcludedByInternalRules,
+} from "../common/excluded-repos.js";
 
 /**
  * @typedef {import("axios").AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
@@ -30,6 +34,9 @@ const fetcher = (variables, token) => {
           repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
             nodes {
               name
+              isArchived
+              isFork
+              isPrivate
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
                 edges {
                   size
@@ -98,20 +105,22 @@ const fetchTopLanguages = async (
   }
 
   let repoNodes = res.data.data.user.repositories.nodes;
-  let repoToHide = {};
-
-  // populate repoToHide map for quick lookup
-  // while filtering out
-  if (exclude_repo) {
-    exclude_repo.forEach((repoName) => {
-      repoToHide[repoName] = true;
-    });
-  }
+  const repoToHide = getCombinedExcludedRepos(exclude_repo);
 
   // filter out repositories to be hidden
   repoNodes = repoNodes
     .sort((a, b) => b.size - a.size)
-    .filter((name) => !repoToHide[name.name]);
+    .filter((repo) => {
+      // Check URL parameter exclusions
+      if (repoToHide.has(repo.name)) {
+        return false;
+      }
+      // Check internal exclusion rules
+      if (isRepoExcludedByInternalRules(repo)) {
+        return false;
+      }
+      return true;
+    });
 
   let repoCount = 0;
 

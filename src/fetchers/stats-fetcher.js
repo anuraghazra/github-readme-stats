@@ -11,6 +11,10 @@ import {
   request,
   wrapTextMultiline,
 } from "../common/utils.js";
+import {
+  getCombinedExcludedRepos,
+  isRepoExcludedByInternalRules,
+} from "../common/excluded-repos.js";
 
 dotenv.config();
 
@@ -20,6 +24,9 @@ const GRAPHQL_REPOS_FIELD = `
     totalCount
     nodes {
       name
+      isArchived
+      isFork
+      isPrivate
       stargazers {
         totalCount
       }
@@ -304,11 +311,19 @@ const fetchStats = async (
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
   // Retrieve stars while filtering out repositories to be hidden.
-  let repoToHide = new Set(exclude_repo);
+  let repoToHide = getCombinedExcludedRepos(exclude_repo);
 
   stats.totalStars = user.repositories.nodes
     .filter((data) => {
-      return !repoToHide.has(data.name);
+      // Check URL parameter exclusions
+      if (repoToHide.has(data.name)) {
+        return false;
+      }
+      // Check internal exclusion rules
+      if (isRepoExcludedByInternalRules(data)) {
+        return false;
+      }
+      return true;
     })
     .reduce((prev, curr) => {
       return prev + curr.stargazers.totalCount;

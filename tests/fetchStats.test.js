@@ -409,4 +409,72 @@ describe("Test fetchStats", () => {
       rank,
     });
   });
+
+  it("should exclude repositories based on internal rules (archived repos)", async () => {
+    // Mock data with archived repository
+    const data_with_archived = {
+      data: {
+        user: {
+          ...data_stats.data.user,
+          repositories: {
+            totalCount: 3,
+            nodes: [
+              { name: "test-repo-1", stargazers: { totalCount: 100 }, isArchived: false, isFork: false, isPrivate: false },
+              { name: "archived-repo", stargazers: { totalCount: 50 }, isArchived: true, isFork: false, isPrivate: false },
+              { name: "test-repo-2", stargazers: { totalCount: 100 }, isArchived: false, isFork: false, isPrivate: false },
+            ],
+            pageInfo: {
+              hasNextPage: false,
+              endCursor: null,
+            },
+          },
+        },
+      },
+    };
+
+    mock.onPost("https://api.github.com/graphql").reply(200, data_with_archived);
+    
+    // Set internal config to exclude archived repos
+    const { INTERNAL_EXCLUDED_REPOS } = await import("../src/common/excluded-repos.js");
+    INTERNAL_EXCLUDED_REPOS.conditions.archived = true;
+
+    const stats = await fetchStats("anuraghazra");
+    
+    // Should exclude archived repo (50 stars), so total should be 200
+    expect(stats.totalStars).toBe(200);
+    
+    // Reset config
+    INTERNAL_EXCLUDED_REPOS.conditions.archived = false;
+  });
+
+  it("should combine URL exclusions with environment variable exclusions", async () => {
+    // Set environment variable
+    process.env.EXCLUDED_REPOS = "test-repo-2";
+    
+    mock.onPost("https://api.github.com/graphql").reply(200, data_stats);
+
+    const stats = await fetchStats("anuraghazra", false, ["test-repo-1"]);
+    
+    // Should exclude both test-repo-1 (URL param) and test-repo-2 (env var)
+    // Only test-repo-3 should be counted: 100 stars
+    expect(stats.totalStars).toBe(100);
+    
+    // Clean up
+    delete process.env.EXCLUDED_REPOS;
+  });
+
+  it("should exclude repositories based on pattern matching", async () => {
+    // Set environment variable with pattern
+    process.env.EXCLUDED_PATTERNS = "^test-repo-.*";
+    
+    mock.onPost("https://api.github.com/graphql").reply(200, data_stats);
+
+    const stats = await fetchStats("anuraghazra");
+    
+    // Should exclude all repos matching pattern (test-repo-1, test-repo-2, test-repo-3)
+    expect(stats.totalStars).toBe(0);
+    
+    // Clean up
+    delete process.env.EXCLUDED_PATTERNS;
+  });
 });
