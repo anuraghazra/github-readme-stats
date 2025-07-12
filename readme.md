@@ -536,6 +536,30 @@ You can use the `&exclude_repo=repo1,repo2` parameter to exclude individual repo
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&exclude_repo=github-readme-stats,anuraghazra.github.io)
 ```
 
+#### Internal Repository Exclusion
+
+In addition to URL parameters, repositories can be excluded internally through environment variables:
+
+- **`EXCLUDED_REPOS`**: Comma-separated list of repository names to exclude
+  ```bash
+  EXCLUDED_REPOS=test-repo,old-project
+  ```
+
+- **`EXCLUDED_PATTERNS`**: Comma-separated list of regex patterns to exclude repositories
+  ```bash
+  EXCLUDED_PATTERNS=^test-.*,.*-backup$
+  ```
+
+You can also configure exclusions in the `src/common/excluded-repos.js` file:
+- **Exact matches**: Add repository names to `INTERNAL_EXCLUDED_REPOS.exact`
+- **Pattern matching**: Add regex patterns to `INTERNAL_EXCLUDED_REPOS.patterns`
+- **Condition-based**: Configure `INTERNAL_EXCLUDED_REPOS.conditions` to exclude:
+  - Archived repositories (`archived: true`)
+  - Fork repositories (`fork: true`)
+  - Private repositories (`private: true`)
+
+All exclusion methods (URL parameters, environment variables, and internal configuration) work together.
+
 ### Hide individual languages
 
 You can use `&hide=language1,language2` parameter to hide individual languages.
