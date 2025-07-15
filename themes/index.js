@@ -462,6 +462,14 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  italia: {
+    title_color: "009246",
+    icon_color: "009246",
+    text_color: "000000",
+    bg_color: "ffffff",
+    border_color: "CE2B37",
+    ring_color: "CE2B37"
+  },
 };
 
 export default themes;
