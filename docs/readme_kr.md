@@ -168,6 +168,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `theme` - 테마의 이름, [사용 가능한 모든 테마](../themes/README.md) 에서 선택
 - `cache_seconds` - 수동으로 캐시 헤더 설정 _(min: 14400, max: 86400)_
 - `locale` - 카드에 표시할 언어 _(e.g. kr, cn, de, es, etc.)_
+- `json` - 카드 대신 원시 JSON 데이터를 출력합니다. 디버깅이나 다른 앱에서 데이터 사용에 유용합니다. _(boolean)_
 
 ##### 배경에 그라데이션 주기
 
