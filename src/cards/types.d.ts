@@ -27,6 +27,7 @@ export type StatCardOptions = CommonOptions & {
   ring_color: string;
   text_bold: boolean;
   rank_icon: RankIcon;
+  custom_icon: null | string;
   show: string[];
 };
 
