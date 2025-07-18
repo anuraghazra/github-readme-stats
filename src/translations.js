@@ -325,6 +325,21 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số Thảo Luận Đã Trả Lời",
       se: "Totalt antal diskussioner besvarade",
     },
+    "statcard.prs-authored": {
+      en: "PRs Created",
+    },
+    "statcard.prs-commented": {
+      en: "PRs Commented",
+    },
+    "statcard.prs-reviewed": {
+      en: "PRs Reviewed",
+    },
+    "statcard.issues-authored": {
+      en: "Issues Created",
+    },
+    "statcard.issues-commented": {
+      en: "Issues Commented",
+    },
     "statcard.prs-merged": {
       ar: "مجموع الطلبات المدمجة",
       cn: "合并的 PR 总数",
@@ -450,6 +465,21 @@ const repoCardLocales = {
     uz: "Arxivlangan",
     vi: "Đã Lưu Trữ",
     se: "Arkiverade",
+  },
+  "repocard.prs-authored": {
+    en: "my created PRs",
+  },
+  "repocard.prs-commented": {
+    en: "my commented PRs",
+  },
+  "repocard.prs-reviewed": {
+    en: "my reviewed PRs",
+  },
+  "repocard.issues-authored": {
+    en: "my created issues",
+  },
+  "repocard.issues-commented": {
+    en: "my commented issues",
   },
 };
 
