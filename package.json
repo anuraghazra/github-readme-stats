@@ -46,7 +46,7 @@
     "axios-mock-adapter": "^2.1.0",
     "color-contrast-checker": "^2.1.0",
     "eslint": "^9.31.0",
-    "eslint-config-prettier": "^10.1.5",
+    "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsdoc": "^50.7.1",
     "globals": "^16.3.0",
     "hjson": "^3.2.2",
