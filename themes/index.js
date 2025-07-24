@@ -462,6 +462,13 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  zen_mist: {
+    title_color: "4A6C6F",     
+    text_color: "A9B8B9",      
+    icon_color: "7A9E9F",
+    border_color: "C3D1D3",   
+    bg_color: "E9F1F3",      
+  },
 };
 
 export default themes;
