@@ -128,6 +128,11 @@ describe("Test fetchStats", () => {
       totalStars: 300,
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
+      totalPRsAuthored: 0,
+      totalPRsCommented: 0,
+      totalPRsReviewed: 0,
+      totalIssuesAuthored: 0,
+      totalIssuesCommented: 0,
       rank,
     });
   });
@@ -164,6 +169,11 @@ describe("Test fetchStats", () => {
       totalStars: 300,
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
+      totalPRsAuthored: 0,
+      totalPRsCommented: 0,
+      totalPRsReviewed: 0,
+      totalIssuesAuthored: 0,
+      totalIssuesCommented: 0,
       rank,
     });
   });
@@ -179,7 +189,9 @@ describe("Test fetchStats", () => {
 
   it("should fetch total commits", async () => {
     mock
-      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .onGet(
+        "https://api.github.com/search/commits?per_page=1&q=author:anuraghazra",
+      )
       .reply(200, { total_count: 1000 });
 
     let stats = await fetchStats("anuraghazra", true);
@@ -206,6 +218,11 @@ describe("Test fetchStats", () => {
       totalStars: 300,
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
+      totalPRsAuthored: 0,
+      totalPRsCommented: 0,
+      totalPRsReviewed: 0,
+      totalIssuesAuthored: 0,
+      totalIssuesCommented: 0,
       rank,
     });
   });
@@ -218,17 +235,21 @@ describe("Test fetchStats", () => {
 
   it("should throw specific error when include_all_commits true and API returns error", async () => {
     mock
-      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .onGet(
+        "https://api.github.com/search/commits?per_page=1&q=author:anuraghazra",
+      )
       .reply(200, { error: "Some test error message" });
 
     expect(fetchStats("anuraghazra", true)).rejects.toThrow(
-      new Error("Could not fetch total commits."),
+      new Error("Could not fetch data from GitHub REST API."),
     );
   });
 
   it("should exclude stars of the `test-repo-1` repository", async () => {
     mock
-      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .onGet(
+        "https://api.github.com/search/commits?per_page=1&q=author:anuraghazra",
+      )
       .reply(200, { total_count: 1000 });
 
     let stats = await fetchStats("anuraghazra", true, ["test-repo-1"]);
@@ -255,6 +276,11 @@ describe("Test fetchStats", () => {
       totalStars: 200,
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
+      totalPRsAuthored: 0,
+      totalPRsCommented: 0,
+      totalPRsReviewed: 0,
+      totalIssuesAuthored: 0,
+      totalIssuesCommented: 0,
       rank,
     });
   });
@@ -286,6 +312,11 @@ describe("Test fetchStats", () => {
       totalStars: 400,
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
+      totalPRsAuthored: 0,
+      totalPRsCommented: 0,
+      totalPRsReviewed: 0,
+      totalIssuesAuthored: 0,
+      totalIssuesCommented: 0,
       rank,
     });
   });
@@ -317,6 +348,11 @@ describe("Test fetchStats", () => {
       totalStars: 300,
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
+      totalPRsAuthored: 0,
+      totalPRsCommented: 0,
+      totalPRsReviewed: 0,
+      totalIssuesAuthored: 0,
+      totalIssuesCommented: 0,
       rank,
     });
   });
@@ -348,6 +384,11 @@ describe("Test fetchStats", () => {
       totalStars: 300,
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
+      totalPRsAuthored: 0,
+      totalPRsCommented: 0,
+      totalPRsReviewed: 0,
+      totalIssuesAuthored: 0,
+      totalIssuesCommented: 0,
       rank,
     });
   });
@@ -377,6 +418,11 @@ describe("Test fetchStats", () => {
       totalStars: 300,
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
+      totalPRsAuthored: 0,
+      totalPRsCommented: 0,
+      totalPRsReviewed: 0,
+      totalIssuesAuthored: 0,
+      totalIssuesCommented: 0,
       rank,
     });
   });
@@ -406,6 +452,11 @@ describe("Test fetchStats", () => {
       totalStars: 300,
       totalDiscussionsStarted: 10,
       totalDiscussionsAnswered: 40,
+      totalPRsAuthored: 0,
+      totalPRsCommented: 0,
+      totalPRsReviewed: 0,
+      totalIssuesAuthored: 0,
+      totalIssuesCommented: 0,
       rank,
     });
   });
