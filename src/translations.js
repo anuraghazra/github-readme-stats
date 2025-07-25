@@ -16,7 +16,7 @@ const statCardLocales = ({ name, apostrophe }) => {
   const encodedName = encodeHTML(name);
   return {
     "statcard.title": {
-      ar: `${encodedName} إحصائيات غيت هاب`,
+      ar: `${encodedName} إحصائيات جيت هاب`,
       cn: `${encodedName} 的 GitHub 统计数据`,
       "zh-tw": `${encodedName} 的 GitHub 統計數據`,
       cs: `GitHub statistiky uživatele ${encodedName}`,
@@ -47,7 +47,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: `GitHubstatistik för ${encodedName}`,
     },
     "statcard.ranktitle": {
-      ar: `${encodedName} إحصائيات غيت هاب`,
+      ar: `${encodedName} إحصائيات جيت هاب`,
       cn: `${encodedName} 的 GitHub 统计数据`,
       "zh-tw": `${encodedName} 的 GitHub 統計數據`,
       cs: `GitHub statistiky uživatele ${encodedName}`,
@@ -109,7 +109,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Antal intjänade stjärnor",
     },
     "statcard.commits": {
-      ar: "مجموع الحفظ",
+      ar: "مجموع المساهمات",
       cn: "累计提交数（commit）",
       "zh-tw": "累計提交數（commit）",
       cs: "Celkem commitů",
@@ -233,7 +233,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Bidragit till (förra året)",
     },
     "statcard.reviews": {
-      ar: "تمت مراجعة إجمالي العلاقات العامة",
+      ar: "طلبات السحب التي تم مراجعتها",
       cn: "審查的 PR 總數",
       "zh-tw": "审查的 PR 总数",
       cs: "Celkový počet PR",
@@ -264,7 +264,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Totalt antal granskade PR",
     },
     "statcard.discussions-started": {
-      ar: "مجموع بدء المناقشات",
+      ar: "مجموع المناقشات التي بدأها",
       cn: "发起的讨论总数",
       "zh-tw": "發起的討論總數",
       cs: "Celkem zahájených diskusí",
@@ -295,7 +295,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Totalt antal diskussioner startade",
     },
     "statcard.discussions-answered": {
-      ar: "مجموع الردود على المناقشات",
+      ar: "مجموع المناقشات المُجابة",
       cn: "回复的讨论总数",
       "zh-tw": "回覆的討論總數",
       cs: "Celkem zodpovězených diskusí",
@@ -326,7 +326,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Totalt antal diskussioner besvarade",
     },
     "statcard.prs-merged": {
-      ar: "مجموع الطلبات المدمجة",
+      ar: "مجموع طلبات السحب المُدمجة",
       cn: "合并的 PR 总数",
       "zh-tw": "合併的 PR 總數",
       cs: "Celkem sloučených PR",
@@ -356,7 +356,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Totalt antal sammanfogade PR",
     },
     "statcard.prs-merged-percentage": {
-      ar: "نسبة الطلبات المدمجة",
+      ar: "نسبة طلبات السحب المُدمجة",
       cn: "合并的 PR 百分比",
       "zh-tw": "合併的 PR 百分比",
       cs: "Sloučené PRs v procentech",
@@ -421,7 +421,7 @@ const repoCardLocales = {
     se: "Mall",
   },
   "repocard.archived": {
-    ar: "محفوظ",
+    ar: "مُؤرشف",
     bn: "আর্কাইভড",
     cn: "已归档",
     "zh-tw": "已歸檔",
@@ -455,7 +455,7 @@ const repoCardLocales = {
 
 const langCardLocales = {
   "langcard.title": {
-    ar: "أكثر اللغات إستخداماً",
+    ar: "أكثر اللغات إستخدامًا",
     cn: "最常用的语言",
     "zh-tw": "最常用的語言",
     cs: "Nejpoužívanější jazyky",
@@ -486,7 +486,7 @@ const langCardLocales = {
     se: "Mest använda språken",
   },
   "langcard.nodata": {
-    ar: "لا توجد بيانات لغات.",
+    ar: "لا توجد بيانات للغات.",
     cn: "沒有語言數據。",
     "zh-tw": "沒有語言數據。",
     cs: "Žádné jazykové údaje.",
@@ -613,7 +613,7 @@ const wakatimeCardLocales = {
     se: "Senaste 7 dagarna",
   },
   "wakatimecard.notpublic": {
-    ar: "ملف المستخدم غير عام",
+    ar: "ملف مستخدم واكا تايم شخصي",
     cn: "WakaTime 用户个人资料未公开",
     "zh-tw": "WakaTime 使用者個人資料未公開",
     cs: "Profil uživatele WakaTime není veřejný",
@@ -644,7 +644,7 @@ const wakatimeCardLocales = {
     se: "WakaTime användarprofil inte offentlig",
   },
   "wakatimecard.nocodedetails": {
-    ar: "المستخدم لا يشارك معلومات تفصيلية عن البرمجة",
+    ar: "المستخدم لا يشارك المعلومات التفصيلية",
     cn: "用户不公开分享详细的代码统计信息",
     "zh-tw": "使用者不公開分享詳細的程式碼統計資訊",
     cs: "Uživatel nesdílí podrobné statistiky kódu",
