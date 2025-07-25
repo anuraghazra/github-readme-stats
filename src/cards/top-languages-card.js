@@ -409,9 +409,10 @@ const renderCompactLayout = (langs, width, totalLanguageSize, hideProgress) => {
  * @param {number} totalLanguageSize Total size of all languages.
  * @returns {string} Compact layout card SVG object.
  */
-const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
+const renderDonutVerticalLayout = (langs, totalLanguageSize, width = 300) => {
   // Donut vertical chart radius and total length
-  const radius = 80;
+  const centerX = width / 2;
+  const radius = Math.max(60, width / 3.5);
   const totalCircleLength = getCircleLength(radius);
 
   // SVG circles
@@ -432,7 +433,7 @@ const renderDonutVerticalLayout = (langs, totalLanguageSize) => {
     circles.push(`
       <g class="stagger" style="animation-delay: ${delay}ms">
         <circle 
-          cx="150"
+          cx="${centerX}"
           cy="100"
           r="${radius}"
           fill="transparent"
@@ -779,10 +780,10 @@ const renderTopLanguages = (topLangs, options = {}) => {
     });
   } else if (layout === "pie") {
     height = calculatePieLayoutHeight(langs.length);
-    finalLayout = renderPieLayout(langs, totalLanguageSize);
+    finalLayout = `<svg width="${width}" height="${height}">${renderPieLayout(langs, totalLanguageSize)}</svg>`;
   } else if (layout === "donut-vertical") {
     height = calculateDonutVerticalLayoutHeight(langs.length);
-    finalLayout = renderDonutVerticalLayout(langs, totalLanguageSize);
+    finalLayout = `<svg width="${width}" height="${height}">${renderDonutVerticalLayout(langs, totalLanguageSize, width)}</svg>`;
   } else if (layout === "compact" || hide_progress == true) {
     height =
       calculateCompactLayoutHeight(langs.length) + (hide_progress ? -25 : 0);
@@ -864,7 +865,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
   }
 
   return card.render(`
-    <svg data-testid="lang-items" x="${CARD_PADDING}">
+    <svg data-testid="lang-items" x="${CARD_PADDING}" width="${width}">
       ${finalLayout}
     </svg>
   `);
