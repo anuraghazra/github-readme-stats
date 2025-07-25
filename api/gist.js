@@ -4,9 +4,9 @@ import {
   renderError,
   parseBoolean,
 } from "../src/common/utils.js";
-import { isLocaleAvailable } from "../src/translations.js";
-import { renderGistCard } from "../src/cards/gist-card.js";
 import { fetchGist } from "../src/fetchers/gist-fetcher.js";
+import { renderGistCard } from "../src/cards/gist-card.js";
+import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
   const {
@@ -22,19 +22,27 @@ export default async (req, res) => {
     border_color,
     show_owner,
     hide_border,
+    json,
   } = req.query;
 
-  res.setHeader("Content-Type", "image/svg+xml");
+  const returnJson = parseBoolean(json);
+
+  res.setHeader(
+    "Content-Type",
+    returnJson ? "application/json" : "image/svg+xml",
+  );
 
   if (locale && !isLocaleAvailable(locale)) {
     return res.send(
-      renderError("Something went wrong", "Language not found", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      returnJson
+        ? { error: "Language not found" }
+        : renderError("Something went wrong", "Language not found", {
+            title_color,
+            text_color,
+            bg_color,
+            border_color,
+            theme,
+          }),
     );
   }
 
@@ -54,6 +62,10 @@ export default async (req, res) => {
       "Cache-Control",
       `max-age=${cacheSeconds}, s-maxage=${cacheSeconds}`,
     );
+
+    if (returnJson) {
+      return res.send(gistData);
+    }
 
     return res.send(
       renderGistCard(gistData, {
@@ -77,13 +89,15 @@ export default async (req, res) => {
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     ); // Use lower cache period for errors.
     return res.send(
-      renderError(err.message, err.secondaryMessage, {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      returnJson
+        ? { error: err.message, secondaryMessage: err.secondaryMessage }
+        : renderError(err.message, err.secondaryMessage, {
+            title_color,
+            text_color,
+            bg_color,
+            border_color,
+            theme,
+          }),
     );
   }
 };

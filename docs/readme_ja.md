@@ -155,6 +155,7 @@ dark, radical, merko, gruvbox, tokyonight, onedark, cobalt, synthwave, highcontr
 - `theme` - [使用可能なテーマ一覧](../themes/README.md) から選んだテーマ名
 - `cache_seconds` - キャッシュ時間の秒数 _(最小値: 14400, 最大値: 86400)_
 - `locale` - カードに言語を設定する _(例えば cn, de, es, 等)_
+- `json` - カードをレンダリングする代わりに生のJSONデータを出力します。デバッグや他のアプリでデータを使用するのに便利です。 _(ブール値)_
 
 ##### bg_color の グラデーション指定
 
