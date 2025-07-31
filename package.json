@@ -52,7 +52,7 @@
     "hjson": "^3.2.2",
     "jest": "^29.7.0",
     "jest-bench": "^29.7.1",
-    "jest-environment-jsdom": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.5",
     "js-yaml": "^4.1.0",
     "lint-staged": "^16.1.2",
     "lodash.snakecase": "^4.1.1",
