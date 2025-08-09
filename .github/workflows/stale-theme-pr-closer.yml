@@ -1,4 +1,4 @@
-name: Close stale theme pull requests that have the 'invalid' label.
+name: Close=open stale theme pull requests that have the 'sistemareal' label.
 on:
   schedule:
     #        ┌───────────── minute (0 - 59)
