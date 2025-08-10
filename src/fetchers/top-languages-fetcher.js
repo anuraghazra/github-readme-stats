@@ -111,51 +111,55 @@ const fetchTopLanguages = async (
   // filter out repositories to be hidden
   repoNodes = repoNodes
     .sort((a, b) => b.size - a.size)
-    .filter((name) => !repoToHide[name.name]);
+    .filter((name) => !repoToHide[name.name])
+    .filter((node) => node.languages.edges.length > 0);
 
-  let repoCount = 0;
+  // New normalized statistics logic: each repository contributes equal weight
+  const normalizedLanguages = {};
+  let totalRepoCount = 0;
 
-  repoNodes = repoNodes
-    .filter((node) => node.languages.edges.length > 0)
-    // flatten the list of language nodes
-    .reduce((acc, curr) => curr.languages.edges.concat(acc), [])
-    .reduce((acc, prev) => {
-      // get the size of the language (bytes)
-      let langSize = prev.size;
+  // Process each repository, normalize its language distribution
+  repoNodes.forEach((repo) => {
+    // Calculate total bytes for this repository
+    const repoTotalSize = repo.languages.edges.reduce((sum, edge) => sum + edge.size, 0);
+    
+    if (repoTotalSize === 0) return; // Skip empty repositories
+    
+    totalRepoCount += 1;
 
-      // if we already have the language in the accumulator
-      // & the current language name is same as previous name
-      // add the size to the language size and increase repoCount.
-      if (acc[prev.node.name] && prev.node.name === acc[prev.node.name].name) {
-        langSize = prev.size + acc[prev.node.name].size;
-        repoCount += 1;
-      } else {
-        // reset repoCount to 1
-        // language must exist in at least one repo to be detected
-        repoCount = 1;
+    // Calculate normalized proportion for each language in this repository
+    repo.languages.edges.forEach((edge) => {
+      const langName = edge.node.name;
+      const langColor = edge.node.color;
+      const normalizedSize = edge.size / repoTotalSize; // Language proportion in current repository
+      
+      if (!normalizedLanguages[langName]) {
+        normalizedLanguages[langName] = {
+          name: langName,
+          color: langColor,
+          size: 0,
+          count: 0,
+        };
       }
-      return {
-        ...acc,
-        [prev.node.name]: {
-          name: prev.node.name,
-          color: prev.node.color,
-          size: langSize,
-          count: repoCount,
-        },
-      };
-    }, {});
-
-  Object.keys(repoNodes).forEach((name) => {
-    // comparison index calculation
-    repoNodes[name].size =
-      Math.pow(repoNodes[name].size, size_weight) *
-      Math.pow(repoNodes[name].count, count_weight);
+      
+      // Accumulate normalized proportions
+      normalizedLanguages[langName].size += normalizedSize;
+      normalizedLanguages[langName].count += 1;
+    });
   });
 
-  const topLangs = Object.keys(repoNodes)
-    .sort((a, b) => repoNodes[b].size - repoNodes[a].size)
+  // Divide accumulated proportions by total repository count to get average proportions
+  Object.keys(normalizedLanguages).forEach((langName) => {
+    const lang = normalizedLanguages[langName];
+    // Average proportion of this language across all repositories, then apply weights
+    const avgProportion = lang.size / totalRepoCount;
+    lang.size = Math.pow(avgProportion, size_weight) * Math.pow(lang.count, count_weight);
+  });
+
+  const topLangs = Object.keys(normalizedLanguages)
+    .sort((a, b) => normalizedLanguages[b].size - normalizedLanguages[a].size)
     .reduce((result, key) => {
-      result[key] = repoNodes[key];
+      result[key] = normalizedLanguages[key];
       return result;
     }, {});
 
