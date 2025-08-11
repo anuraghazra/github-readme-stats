@@ -31,7 +31,7 @@ export default async (req, res) => {
     cache_seconds,
     exclude_repo,
     custom_title,
-    locale,
+    locate,
     disable_animations,
     border_radius,
     number_format,
