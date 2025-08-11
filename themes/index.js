@@ -462,6 +462,12 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  github_gradient: {
+    title_color: "f8e4fa",
+    text_color: "f8e4fa",
+    icon_color: "f8e4fa",
+    bg_color: "35,030637,3C0753,720455",
+  },
 };
 
 export default themes;
