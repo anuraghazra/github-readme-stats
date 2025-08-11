@@ -167,34 +167,160 @@ const statsFetcher = async ({
  * @description Done like this because the GitHub API does not provide a way to fetch all the commits. See
  * #92#issuecomment-661026467 and #211 for more information.
  */
+// Fetch all the commits for all the repositories of a given username.
 const totalCommitsFetcher = async (username) => {
   if (!githubUsernameRegex.test(username)) {
     logger.log("Invalid username provided.");
     throw new Error("Invalid username provided.");
   }
 
-  // https://developer.github.com/v3/search/#search-commits
-  const fetchTotalCommits = (variables, token) => {
-    return axios({
-      method: "get",
-      url: `https://api.github.com/search/commits?q=author:${variables.login}`,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/vnd.github.cloak-preview",
-        Authorization: `token ${token}`,
-      },
-    });
+  const fetchTotalCommits = async (variables, token) => {
+    // REST request (old method)
+    let restRes;
+    try {
+      restRes = await axios({
+        method: "get",
+        url: `https://api.github.com/search/commits?q=author:${variables.login}`,
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/vnd.github.cloak-preview",
+          Authorization: `token ${token}`,
+        },
+      });
+    } catch (err) {
+      logger.error("REST /search/commits failed:", err.message || err);
+      throw new Error(err);
+    }
+
+    if (restRes?.data && restRes.data.error) {
+      throw new Error("Could not fetch total commits.");
+    }
+
+    let baselineTotal = restRes?.data?.total_count;
+
+    try {
+      // First get account created year using GraphQL
+      // Include createdAt so we can set start year.
+      const userQuery = `
+        query($login: String!) {
+          user(login: $login) {
+            createdAt
+          }
+        }
+      `;
+
+      const userRes = await axios({
+        method: "post",
+        url: "https://api.github.com/graphql",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        data: JSON.stringify({
+          query: userQuery,
+          variables: { login: variables.login },
+        }),
+      });
+
+      const createdAt = userRes?.data?.data?.user?.createdAt;
+      const startYear = createdAt ? new Date(createdAt).getFullYear() : null;
+      const currentYear = new Date().getFullYear();
+
+      // otherwise iterate years from startYear..currentYear.
+      const years = startYear
+        ? Array.from(
+            { length: currentYear - startYear + 1 },
+            (_, i) => startYear + i,
+          )
+        : [currentYear];
+
+      // GraphQL per-year query returns totalContributions for that year.
+      const gqlQuery = `
+        query($login: String!, $from: DateTime!, $to: DateTime!) {
+          user(login: $login) {
+            contributionsCollection(from: $from, to: $to) {
+              contributionCalendar {
+                totalContributions
+              }
+            }
+          }
+        }
+      `;
+
+      const yearPromises = years.map(async (y) => {
+        const from = `${y}-01-01T00:00:00Z`;
+        const to = `${y}-12-31T23:59:59Z`;
+        const res = await axios({
+          method: "post",
+          url: "https://api.github.com/graphql",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          data: JSON.stringify({
+            query: gqlQuery,
+            variables: { login: variables.login, from, to },
+          }),
+        });
+
+        return (
+          res?.data?.data?.user?.contributionsCollection?.contributionCalendar
+            ?.totalContributions || 0
+        );
+      });
+
+      const contributionsByYear = await Promise.all(yearPromises);
+      const totalContributions = contributionsByYear.reduce((a, b) => a + b, 0);
+
+      // If GraphQL returned a sensible total, use it by overriding restRes.data.total_count
+      if (
+        typeof totalContributions === "number" &&
+        !isNaN(totalContributions)
+      ) {
+        restRes.data.total_count = totalContributions;
+        return restRes;
+      }
+      // otherwise, fall through to return restRes baseline
+    } catch (err) {
+      logger.error(
+        "GraphQL-based commit aggregation failed, falling back to REST:",
+        err.response?.data || err.message || err,
+      );
+    }
+
+    // If REST baseline exists and is numeric, return the REST response.
+    if (typeof baselineTotal === "number" && !isNaN(baselineTotal)) {
+      return restRes;
+    }
+
+    // Nothing worked
+    throw new CustomError(
+      "Could not fetch total commits.",
+      CustomError.GITHUB_REST_API_ERROR,
+    );
   };
 
   let res;
   try {
     res = await retryer(fetchTotalCommits, { login: username });
   } catch (err) {
+    console.log(err);
     logger.log(err);
-    throw new Error(err);
+    throw new CustomError(
+      "Could not fetch total commits.",
+      CustomError.GITHUB_REST_API_ERROR,
+    );
   }
 
-  const totalCount = res.data.total_count;
+  if (!res || !res.data) {
+    throw new CustomError(
+      "Could not fetch total commits.",
+      CustomError.GITHUB_REST_API_ERROR,
+    );
+  }
+
+  const totalCount = res.data?.total_count;
+
   if (!totalCount || isNaN(totalCount)) {
     throw new CustomError(
       "Could not fetch total commits.",
