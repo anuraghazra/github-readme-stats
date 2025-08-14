@@ -5,6 +5,7 @@ import githubUsernameRegex from "github-username-regex";
 import { calculateRank } from "../calculateRank.js";
 import { retryer } from "../common/retryer.js";
 import {
+  buildSearchFilter,
   CustomError,
   logger,
   MissingParamError,
@@ -167,17 +168,25 @@ const statsFetcher = async ({
  * @description Done like this because the GitHub API does not provide a way to fetch all the commits. See
  * #92#issuecomment-661026467 and #211 for more information.
  */
-const totalCommitsFetcher = async (username) => {
+const totalItemsFetcher = async (username, repos, owners, type, filter) => {
   if (!githubUsernameRegex.test(username)) {
     logger.log("Invalid username provided.");
     throw new Error("Invalid username provided.");
   }
 
   // https://developer.github.com/v3/search/#search-commits
-  const fetchTotalCommits = (variables, token) => {
+  const fetchTotalItems = (variables, token) => {
     return axios({
       method: "get",
-      url: `https://api.github.com/search/commits?q=author:${variables.login}`,
+      url:
+        `https://api.github.com/search/` +
+        type +
+        `?per_page=1&q=` +
+        buildSearchFilter(variables.repos, variables.owners).replaceAll(
+          " ",
+          "+",
+        ) +
+        filter,
       headers: {
         "Content-Type": "application/json",
         Accept: "application/vnd.github.cloak-preview",
@@ -188,20 +197,79 @@ const totalCommitsFetcher = async (username) => {
 
   let res;
   try {
-    res = await retryer(fetchTotalCommits, { login: username });
+    res = await retryer(fetchTotalItems, { login: username, repos, owners });
   } catch (err) {
     logger.log(err);
     throw new Error(err);
   }
 
   const totalCount = res.data.total_count;
-  if (!totalCount || isNaN(totalCount)) {
+  if (isNaN(totalCount)) {
     throw new CustomError(
-      "Could not fetch total commits.",
+      "Could not fetch data from GitHub REST API.",
       CustomError.GITHUB_REST_API_ERROR,
     );
   }
   return totalCount;
+};
+
+const fetchRepoUserStats = async (
+  username,
+  repos,
+  owners,
+  include_prs_authored,
+  include_prs_commented,
+  include_prs_reviewed,
+  include_issues_authored,
+  include_issues_commented,
+) => {
+  let stats = {};
+  if (include_prs_authored) {
+    stats.totalPRsAuthored = await totalItemsFetcher(
+      username,
+      repos,
+      owners,
+      "issues",
+      `author:${username}+type:pr`,
+    );
+  }
+  if (include_prs_commented) {
+    stats.totalPRsCommented = await totalItemsFetcher(
+      username,
+      repos,
+      owners,
+      "issues",
+      `commenter:${username}+-author:${username}+type:pr`,
+    );
+  }
+  if (include_prs_reviewed) {
+    stats.totalPRsReviewed = await totalItemsFetcher(
+      username,
+      repos,
+      owners,
+      "issues",
+      `reviewed-by:${username}+-author:${username}+type:pr`,
+    );
+  }
+  if (include_issues_authored) {
+    stats.totalIssuesAuthored = await totalItemsFetcher(
+      username,
+      repos,
+      owners,
+      "issues",
+      `author:${username}+type:issue`,
+    );
+  }
+  if (include_issues_commented) {
+    stats.totalIssuesCommented = await totalItemsFetcher(
+      username,
+      repos,
+      owners,
+      "issues",
+      `commenter:${username}+-author:${username}+type:issue`,
+    );
+  }
+  return stats;
 };
 
 /**
@@ -226,6 +294,13 @@ const fetchStats = async (
   include_merged_pull_requests = false,
   include_discussions = false,
   include_discussions_answers = false,
+  repos = [],
+  owners = [],
+  include_prs_authored = false,
+  include_prs_commented = false,
+  include_prs_reviewed = false,
+  include_issues_authored = false,
+  include_issues_commented = false,
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -243,6 +318,11 @@ const fetchStats = async (
     totalDiscussionsStarted: 0,
     totalDiscussionsAnswered: 0,
     contributedTo: 0,
+    totalPRsAuthored: 0,
+    totalPRsCommented: 0,
+    totalPRsReviewed: 0,
+    totalIssuesAuthored: 0,
+    totalIssuesCommented: 0,
     rank: { level: "C", percentile: 100 },
   };
 
@@ -280,10 +360,27 @@ const fetchStats = async (
 
   // if include_all_commits, fetch all commits using the REST API.
   if (include_all_commits) {
-    stats.totalCommits = await totalCommitsFetcher(username);
+    stats.totalCommits = await totalItemsFetcher(
+      username,
+      repos,
+      owners,
+      "commits",
+      `author:${username}`,
+    );
   } else {
     stats.totalCommits = user.contributionsCollection.totalCommitContributions;
   }
+  let repoUserStats = await fetchRepoUserStats(
+    username,
+    repos,
+    owners,
+    include_prs_authored,
+    include_prs_commented,
+    include_prs_reviewed,
+    include_issues_authored,
+    include_issues_commented,
+  );
+  Object.assign(stats, repoUserStats);
 
   stats.totalPRs = user.pullRequests.totalCount;
   if (include_merged_pull_requests) {
@@ -328,5 +425,5 @@ const fetchStats = async (
   return stats;
 };
 
-export { fetchStats };
+export { fetchStats, fetchRepoUserStats };
 export default fetchStats;

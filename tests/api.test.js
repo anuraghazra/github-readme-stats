@@ -242,7 +242,9 @@ describe("Test /api/", () => {
 
   it("should render error card when include_all_commits true and upstream API fails", async () => {
     mock
-      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .onGet(
+        "https://api.github.com/search/commits?per_page=1&q=author:anuraghazra",
+      )
       .reply(200, { error: "Some test error message" });
 
     const { req, res } = faker(
@@ -254,7 +256,10 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Could not fetch total commits.", "Please try again later"),
+      renderError(
+        "Could not fetch data from GitHub REST API.",
+        "Please try again later",
+      ),
     );
     // Received SVG output should not contain string "https://tiny.one/readme-stats"
     expect(res.send.mock.calls[0][0]).not.toContain(
