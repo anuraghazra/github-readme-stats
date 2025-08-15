@@ -328,6 +328,7 @@ Here is a list of all available locales:
 | `bn` | Bengali |
 | `es` | Spanish |
 | `fr` | French |
+| `hi` | Hindi |
 | `hu` | Hungarian |
 
 </td><td>
