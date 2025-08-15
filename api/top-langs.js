@@ -1,5 +1,3 @@
-import { renderTopLanguages } from "../src/cards/top-languages-card.js";
-import { blacklist } from "../src/common/blacklist.js";
 import {
   CONSTANTS,
   parseArray,
@@ -7,7 +5,9 @@ import {
   renderError,
 } from "../src/common/utils.js";
 import { fetchTopLanguages } from "../src/fetchers/top-languages-fetcher.js";
+import { renderTopLanguages } from "../src/cards/top-languages-card.js";
 import { isLocaleAvailable } from "../src/translations.js";
+import { blacklist } from "../src/common/blacklist.js";
 
 export default async (req, res) => {
   const {
@@ -32,23 +32,36 @@ export default async (req, res) => {
     border_color,
     disable_animations,
     hide_progress,
+    json,
   } = req.query;
-  res.setHeader("Content-Type", "image/svg+xml");
+
+  const returnJson = parseBoolean(json);
+
+  res.setHeader(
+    "Content-Type",
+    returnJson ? "application/json" : "image/svg+xml",
+  );
 
   if (blacklist.includes(username)) {
     return res.send(
-      renderError("Something went wrong", "This username is blacklisted", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      returnJson
+        ? { error: "This username is blacklisted" }
+        : renderError("Something went wrong", "This username is blacklisted", {
+            title_color,
+            text_color,
+            bg_color,
+            border_color,
+            theme,
+          }),
     );
   }
 
   if (locale && !isLocaleAvailable(locale)) {
-    return res.send(renderError("Something went wrong", "Locale not found"));
+    return res.send(
+      returnJson
+        ? { error: "Locale not found" }
+        : renderError("Something went wrong", "Locale not found"),
+    );
   }
 
   if (
@@ -57,7 +70,9 @@ export default async (req, res) => {
       !["compact", "normal", "donut", "donut-vertical", "pie"].includes(layout))
   ) {
     return res.send(
-      renderError("Something went wrong", "Incorrect layout input"),
+      returnJson
+        ? { error: "Incorrect layout input" }
+        : renderError("Something went wrong", "Incorrect layout input"),
     );
   }
 
@@ -81,6 +96,10 @@ export default async (req, res) => {
       "Cache-Control",
       `max-age=${cacheSeconds / 2}, s-maxage=${cacheSeconds}`,
     );
+
+    if (returnJson) {
+      return res.send(topLangs);
+    }
 
     return res.send(
       renderTopLanguages(topLangs, {
@@ -110,13 +129,15 @@ export default async (req, res) => {
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     ); // Use lower cache period for errors.
     return res.send(
-      renderError(err.message, err.secondaryMessage, {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      returnJson
+        ? { error: err.message, secondaryMessage: err.secondaryMessage }
+        : renderError(err.message, err.secondaryMessage, {
+            title_color,
+            text_color,
+            bg_color,
+            border_color,
+            theme,
+          }),
     );
   }
 };

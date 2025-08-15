@@ -155,6 +155,7 @@ Puoi personalizzare l'aspetto delle tue `Stats Card` o delle `Repo Card` in qual
 - `theme` - Nome del tema, dai un'occhiata a [tutti i temi disponibili](../themes/README.md)
 - `cache_seconds` - Specifica manualmente il valore di cache, in secondi _(min: 14400, max: 86400)_
 - `locale` - Impostare la lingua nella scheda _(per esempio. cn, de, es, eccetera.)_
+- `json` - Mostra i dati JSON grezzi invece di rendere una scheda. Utile per il debug o per utilizzare i dati in altre applicazioni. _(booleano)_
 
 ##### Gradiente nello sfondo
 
