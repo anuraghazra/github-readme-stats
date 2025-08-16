@@ -182,7 +182,38 @@ describe("Test fetchStats", () => {
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", true);
+    mock.onPost("https://api.github.com/graphql").reply(() => {
+      const response = {
+        data: {
+          user: {
+            name: "Anurag Hazra",
+            repositories: {
+              nodes: [
+                { name: "repo-1", stargazers: { totalCount: 150 } },
+                { name: "repo-2", stargazers: { totalCount: 150 } },
+              ],
+              pageInfo: { hasNextPage: false, endCursor: null },
+            },
+            contributionsCollection: {
+              totalPullRequestReviewContributions: 50,
+              contributionCalendar: { totalContributions: 1000 },
+            },
+            pullRequests: { totalCount: 300 },
+            mergedPullRequests: { totalCount: 0 },
+            openIssues: { totalCount: 200 },
+            closedIssues: { totalCount: 0 },
+            repositoryDiscussions: { totalCount: 0 },
+            repositoriesContributedTo: { totalCount: 61 },
+            followers: { totalCount: 100 },
+          },
+        },
+      };
+
+      return [200, response];
+    });
+
+    const stats = await fetchStats("anuraghazra", true);
+
     const rank = calculateRank({
       all_commits: true,
       commits: 1000,
@@ -231,7 +262,36 @@ describe("Test fetchStats", () => {
       .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", true, ["test-repo-1"]);
+    // Mock GitHub GraphQL API for repos and contributions
+    mock.onPost("https://api.github.com/graphql").reply(200, {
+      data: {
+        user: {
+          name: "Anurag Hazra",
+          repositories: {
+            nodes: [
+              { name: "test-repo-1", stargazers: { totalCount: 100 } }, // to exclude
+              { name: "repo-2", stargazers: { totalCount: 50 } },
+              { name: "repo-3", stargazers: { totalCount: 50 } },
+            ],
+            pageInfo: { hasNextPage: false, endCursor: null },
+          },
+          contributionsCollection: {
+            totalPullRequestReviewContributions: 50,
+            contributionCalendar: { totalContributions: 1000 },
+          },
+          pullRequests: { totalCount: 300 },
+          mergedPullRequests: { totalCount: 0 },
+          openIssues: { totalCount: 200 },
+          closedIssues: { totalCount: 0 },
+          repositoryDiscussions: { totalCount: 0 },
+          repositoriesContributedTo: { totalCount: 61 },
+          followers: { totalCount: 100 },
+        },
+      },
+    });
+
+    const stats = await fetchStats("anuraghazra", true, ["test-repo-1"]);
+
     const rank = calculateRank({
       all_commits: true,
       commits: 1000,
@@ -239,7 +299,7 @@ describe("Test fetchStats", () => {
       reviews: 50,
       issues: 200,
       repos: 5,
-      stars: 200,
+      stars: 100, // 50 + 50 excluding 100 from test-repo-1
       followers: 100,
     });
 
@@ -252,7 +312,7 @@ describe("Test fetchStats", () => {
       totalPRsMerged: 0,
       mergedPRsPercentage: 0,
       totalReviews: 50,
-      totalStars: 200,
+      totalStars: 100,
       totalDiscussionsStarted: 0,
       totalDiscussionsAnswered: 0,
       rank,
