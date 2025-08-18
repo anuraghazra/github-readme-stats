@@ -108,6 +108,7 @@ Please visit [this link](https://give.do/fundraisers/stand-beside-the-victims-of
     - [Donut Vertical Chart Language Card Layout](#donut-vertical-chart-language-card-layout)
     - [Pie Chart Language Card Layout](#pie-chart-language-card-layout)
     - [Hide Progress Bars](#hide-progress-bars)
+    - [Change format of language's stats](#change-format-of-languages-stats)
     - [Demo](#demo-2)
 - [WakaTime Stats Card](#wakatime-stats-card)
     - [Demo](#demo-3)
@@ -415,6 +416,7 @@ If we don't support your language, please consider contributing! You can find mo
 | `hide_progress` | Uses the compact layout option, hides percentages, and removes the bars. | boolean | `false` |
 | `size_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `1` |
 | `count_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `0` |
+| `stats_format` | Switches between two available formats for language's stats `percentages` and `bytes`. | enum | `percentages` |
 
 > [!WARNING]\
 > Language names should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding)
@@ -592,6 +594,15 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&hide_progress=true)
 ```
 
+### Change format of language's stats
+
+Yout can use the `&stats_format=bytes` option to display the stats in bytes instead of percentage.
+
+```md
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&stats_format=bytes)
+```
+
+
 ### Demo
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)
@@ -615,6 +626,11 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 *   Hidden progress bars
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&hide_progress=true)
+
+
+*  Display bytes instead of percentage
+
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&stats_format=bytes)
 
 # WakaTime Stats Card
 
