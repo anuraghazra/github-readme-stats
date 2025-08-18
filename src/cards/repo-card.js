@@ -15,11 +15,16 @@ import {
   clampValue,
 } from "../common/utils.js";
 import { repoCardLocales } from "../translations.js";
+import {
+  renderCompactLayout,
+  trimTopLanguages,
+  getDefaultLanguagesCountByLayout,
+} from "./top-languages-card.js";
 
 const ICON_SIZE = 16;
 const DESCRIPTION_LINE_WIDTH = 59;
 const DESCRIPTION_MAX_LINES = 3;
-
+const CARD_PADDING = 25;
 /**
  * Retrieves the repository description and wraps it to fit the card width.
  *
@@ -43,6 +48,18 @@ const getBadgeSVG = (label, textColor) => `
 `;
 
 /**
+ * Calculates extra height needed for the languages bar.
+ *
+ * @param {number} totalLangs Total number of languages.
+ * @param {boolean} hideProgress Flag to hide progress bar.
+ * @returns {number} Card height.
+ */
+const calculateExtraLangHeigth = (totalLangs, hideProgress) => {
+  const baseHeight = Math.ceil(totalLangs / 2) * 25;
+  return hideProgress ? baseHeight - 30 : baseHeight;
+};
+
+/**
  * @typedef {import("../fetchers/types").RepositoryData} RepositoryData Repository data.
  * @typedef {import("./types").RepoCardOptions} RepoCardOptions Repo card options.
  */
@@ -64,6 +81,7 @@ const renderRepoCard = (repo, options = {}) => {
     isTemplate,
     starCount,
     forkCount,
+    languagesBreakdown,
   } = repo;
   const {
     hide_border = false,
@@ -77,7 +95,18 @@ const renderRepoCard = (repo, options = {}) => {
     border_color,
     locale,
     description_lines_count,
+    show_lang_bar = false,
+    hide_progress = false,
+    layout = "compact", // add more layouts in the future
+    langs_count = getDefaultLanguagesCountByLayout({ layout, hide_progress }),
+    hide,
   } = options;
+
+  const { langs, totalLanguageSize } = trimTopLanguages(
+    languagesBreakdown,
+    langs_count,
+    hide,
+  );
 
   const lineHeight = 10;
   const header = show_owner ? nameWithOwner : name;
@@ -149,11 +178,22 @@ const renderRepoCard = (repo, options = {}) => {
     gap: 25,
   }).join("");
 
+  const languageBar = renderCompactLayout(
+    langs,
+    400,
+    totalLanguageSize,
+    hide_progress,
+  );
+
   const card = new Card({
     defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
     titlePrefixIcon: icons.contribs,
     width: 400,
-    height,
+    height:
+      height +
+      (show_lang_bar
+        ? calculateExtraLangHeigth(langs.length, hide_progress)
+        : 0),
     border_radius,
     colors,
   });
@@ -167,7 +207,31 @@ const renderRepoCard = (repo, options = {}) => {
     .icon { fill: ${colors.iconColor} }
     .badge { font: 600 11px 'Segoe UI', Ubuntu, Sans-Serif; }
     .badge rect { opacity: 0.2 }
+    .lang-name { font: 400 11px "Segoe UI", Ubuntu, Sans-Serif; fill: ${colors.textColor} }
   `);
+
+  if (show_lang_bar) {
+    return card.render(`
+      ${
+        isTemplate
+          ? // @ts-ignore
+            getBadgeSVG(i18n.t("repocard.template"), colors.textColor)
+          : isArchived
+            ? // @ts-ignore
+              getBadgeSVG(i18n.t("repocard.archived"), colors.textColor)
+            : ""
+      }
+
+      <text class="description" x="25" y="-5">
+        ${descriptionSvg}
+      </text>
+      <g transform="translate(0, ${height - 90})">
+        <svg data-testid="lang-items" x="${CARD_PADDING}">
+          ${languageBar}
+        </svg>
+      </g>
+    `);
+  }
 
   return card.render(`
     ${
@@ -187,6 +251,7 @@ const renderRepoCard = (repo, options = {}) => {
     <g transform="translate(30, ${height - 75})">
       ${starAndForkCount}
     </g>
+
   `);
 };
 

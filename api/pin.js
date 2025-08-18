@@ -5,6 +5,7 @@ import {
   CONSTANTS,
   parseBoolean,
   renderError,
+  parseArray,
 } from "../src/common/utils.js";
 import { fetchRepo } from "../src/fetchers/repo-fetcher.js";
 import { isLocaleAvailable } from "../src/translations.js";
@@ -25,6 +26,10 @@ export default async (req, res) => {
     border_radius,
     border_color,
     description_lines_count,
+    show_lang_bar,
+    hide,
+    langs_count,
+    hide_progress,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -83,6 +88,10 @@ export default async (req, res) => {
         show_owner: parseBoolean(show_owner),
         locale: locale ? locale.toLowerCase() : null,
         description_lines_count,
+        show_lang_bar: parseBoolean(show_lang_bar),
+        hide: parseArray(hide),
+        langs_count,
+        hide_progress: parseBoolean(hide_progress),
       }),
     );
   } catch (err) {
