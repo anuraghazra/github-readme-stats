@@ -117,6 +117,8 @@ const createLanguageTextNode = ({ langs, y, display_format }) => {
  * @param {boolean=} args.hideProgress Whether to hide the progress bar.
  * @param {string} args.progressBarColor The color of the progress bar.
  * @param {string} args.progressBarBackgroundColor The color of the progress bar background.
+ * @param {string} args.progressBarBorderColor The color of the progress bar border.
+ * @param {number} args.progressBarBorderThickness The thickness of the progress bar border.
  * @returns {string} The text SVG node.
  */
 const createTextNode = ({
@@ -128,6 +130,8 @@ const createTextNode = ({
   hideProgress,
   progressBarColor,
   progressBarBackgroundColor,
+  progressBarBorderColor,
+  progressBarBorderThickness,
 }) => {
   const staggerDelay = (index + 3) * 150;
 
@@ -142,6 +146,8 @@ const createTextNode = ({
         // @ts-ignore
         name: label,
         progressBarBackgroundColor,
+        progressBarBorderColor,
+        progressBarBorderThickness,
         delay: staggerDelay + 300,
       });
 
@@ -231,6 +237,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     bg_color,
     theme = "default",
     hide_progress,
+    progress_bar_border_color,
+    progress_bar_border_thickness = 1,
     custom_title,
     locale,
     layout,
@@ -264,15 +272,22 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const langsCount = clampValue(langs_count, 1, langs_count);
 
   // returns theme based colors with proper overrides and defaults
-  const { titleColor, textColor, iconColor, bgColor, borderColor } =
-    getCardColors({
-      title_color,
-      icon_color,
-      text_color,
-      bg_color,
-      border_color,
-      theme,
-    });
+  const {
+    titleColor,
+    textColor,
+    iconColor,
+    bgColor,
+    borderColor,
+    progressBarBorderColor,
+  } = getCardColors({
+    title_color,
+    icon_color,
+    text_color,
+    bg_color,
+    border_color,
+    progress_bar_border_color,
+    theme,
+  });
 
   const filteredLanguages = languages
     .filter((language) => language.hours || language.minutes)
@@ -322,6 +337,23 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       })
       .join("");
 
+    const hasProgressBarBorder = progressBarBorderColor !== "none";
+    const progressBarBorder = hasProgressBarBorder
+      ? `
+      <rect
+        data-testid="lang-progress-border"
+        x="${25 - progress_bar_border_thickness / 2}"
+        y="${progress_bar_border_thickness / 2}"
+        width="${width - 50}"
+        height="${8 - progress_bar_border_thickness}"
+        stroke="${progressBarBorderColor}"
+        stroke-width="${progress_bar_border_thickness}"
+        fill="none"
+        rx="${5 - progress_bar_border_thickness}"
+      />
+    `
+      : "";
+
     finalLayout = `
       <mask id="rect-mask">
       <rect x="25" y="0" width="${width - 50}" height="8" fill="white" rx="5" />
@@ -343,7 +375,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
                   : i18n.t("wakatimecard.nocodedetails")
                 : i18n.t("wakatimecard.notpublic"),
             })
-      }
+      }${progressBarBorder}
     `;
   } else {
     finalLayout = flexLayout({
@@ -359,6 +391,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               progressBarColor: titleColor,
               // @ts-ignore
               progressBarBackgroundColor: textColor,
+              progressBarBorderColor,
+              progressBarBorderThickness: progress_bar_border_thickness,
               hideProgress: hide_progress,
             });
           })

@@ -413,6 +413,8 @@ If we don't support your language, please consider contributing! You can find mo
 | `custom_title` | Sets a custom title for the card. | string | `Most Used Languages` |
 | `disable_animations` | Disables all animations in the card. | boolean | `false` |
 | `hide_progress` | Uses the compact layout option, hides percentages, and removes the bars. | boolean | `false` |
+| `progress_bar_border_color` | Sets the border color for the progress bar. | string (hex color or none for no border) | `none` |
+| `progress_bar_border_thickness` | Sets the border thickness for the progress bar. Does not apply when `progress_bar_border_color` is `none`. | number | `1` |
 | `size_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `1` |
 | `count_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `0` |
 
@@ -429,6 +431,8 @@ If we don't support your language, please consider contributing! You can find mo
 | `hide_title` | Hides the title of your card. | boolean | `false` |
 | `line_height` | Sets the line height between text. | integer | `25` |
 | `hide_progress` | Hides the progress bar and percentage. | boolean | `false` |
+| `progress_bar_border_color` | Sets the border color for the progress bar. | string (hex color or none for no border) | `none` |
+| `progress_bar_border_thickness` | Sets the border thickness for the progress bar. Does not apply when `progress_bar_border_color` is `none`. | number | `1` |
 | `custom_title` | Sets a custom title for the card. | string | `WakaTime Stats` |
 | `layout` | Switches between two available layouts `default` & `compact`. | enum | `default` |
 | `langs_count` | Limits the number of languages on the card, defaults to all reported languages. | integer | `null` |

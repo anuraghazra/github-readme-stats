@@ -12,6 +12,8 @@ import { clampValue } from "./utils.js";
  * @param {string} createProgressNodeParams.color Progress color.
  * @param {number} createProgressNodeParams.progress Progress value.
  * @param {string} createProgressNodeParams.progressBarBackgroundColor Progress bar bg color.
+ * @param {string} createProgressNodeParams.progressBarBorderColor Progress bar border color.
+ * @param {number} createProgressNodeParams.progressBarBorderThickness Progress bar border thickness.
  * @param {number} createProgressNodeParams.delay Delay before animation starts.
  * @returns {string} Progress node.
  */
@@ -22,6 +24,8 @@ const createProgressNode = ({
   color,
   progress,
   progressBarBackgroundColor,
+  progressBarBorderColor,
+  progressBarBorderThickness,
   delay,
 }) => {
   const progressPercentage = clampValue(progress, 2, 100);
@@ -38,6 +42,18 @@ const createProgressNode = ({
             style="animation-delay: ${delay}ms;"
         />
       </svg>
+      <script>console.log("${progressBarBorderColor}", ${progressBarBorderThickness});</script>
+      <rect
+        data-testid="lang-progress-border"
+        x="${progressBarBorderThickness / 2}"
+        y="${progressBarBorderThickness / 2}"
+        width="${width - progressBarBorderThickness}"
+        height="${8 - progressBarBorderThickness}"
+        stroke="${progressBarBorderColor}"
+        stroke-width="${progressBarBorderThickness}"
+        fill="none"
+        rx="${5 - progressBarBorderThickness}"
+      />
     </svg>
   `;
 };
