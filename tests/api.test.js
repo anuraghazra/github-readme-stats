@@ -6,6 +6,7 @@ import { calculateRank } from "../src/calculateRank.js";
 import { renderStatsCard } from "../src/cards/stats-card.js";
 import { CONSTANTS, renderError } from "../src/common/utils.js";
 import { expect, it, describe, afterEach } from "@jest/globals";
+import { availableLocales } from "../src/translations.js";
 
 const stats = {
   name: "Anurag Hazra",
@@ -140,8 +141,8 @@ describe("Test /api/", () => {
       {
         username: "anuraghazra",
         hide: "issues,prs,contribs",
-        show_icons: true,
-        hide_border: true,
+        show_icons: "true",
+        hide_border: "true",
         line_height: 100,
         title_color: "fff",
         icon_color: "fff",
@@ -188,8 +189,8 @@ describe("Test /api/", () => {
       {
         username: "anuraghazra",
         hide: "issues,prs,contribs",
-        show_icons: true,
-        hide_border: true,
+        show_icons: "true",
+        hide_border: "true",
         line_height: 100,
         title_color: "fff",
         ring_color: "0000ff",
@@ -236,7 +237,10 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Something went wrong", "Language not found"),
+      renderError(
+        "Invalid query string param `locale` value: asdf",
+        `Expected: ${availableLocales.join(", ")}`,
+      ),
     );
   });
 
@@ -246,7 +250,7 @@ describe("Test /api/", () => {
       .reply(200, { error: "Some test error message" });
 
     const { req, res } = faker(
-      { username: "anuraghazra", include_all_commits: true },
+      { username: "anuraghazra", include_all_commits: "true" },
       data_stats,
     );
 
