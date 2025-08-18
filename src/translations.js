@@ -235,7 +235,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.reviews": {
       ar: "تمت مراجعة إجمالي العلاقات العامة",
       cn: "審查的 PR 總數",
-      "zh-tw": "审查的 PR 总数",
+      "zh-tw": "審查的 PR 總數",
       cs: "Celkový počet PR",
       de: "Insgesamt überprüfte PRs",
       en: "Total PRs Reviewed",
@@ -424,7 +424,7 @@ const repoCardLocales = {
     ar: "محفوظ",
     bn: "আর্কাইভড",
     cn: "已归档",
-    "zh-tw": "已歸檔",
+    "zh-tw": "已封存",
     cs: "Archivováno",
     de: "Archiviert",
     en: "Archived",
@@ -522,7 +522,7 @@ const wakatimeCardLocales = {
   "wakatimecard.title": {
     ar: "إحصائيات واكا تايم",
     cn: "WakaTime 周统计",
-    "zh-tw": "WakaTime 周統計",
+    "zh-tw": "WakaTime 統計",
     cs: "Statistiky WakaTime",
     de: "WakaTime Status",
     en: "WakaTime Stats",
