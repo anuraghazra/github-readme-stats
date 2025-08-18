@@ -217,6 +217,18 @@ const fallbackColor = (color, fallbackColor) => {
   );
 };
 
+const buildSearchFilter = (repos = [], owners = []) => {
+  let repoFilter =
+    Array.isArray(repos) && repos.length > 0
+      ? repos.map((r) => `repo:${r} `).join("")
+      : "";
+  let orgFilter =
+    Array.isArray(owners) && owners.length > 0
+      ? owners.map((o) => `owner:${o} `).join("")
+      : "";
+  return repoFilter + orgFilter;
+};
+
 /**
  * @typedef {import('axios').AxiosRequestConfig['data']} AxiosRequestConfigData Axios request data.
  * @typedef {import('axios').AxiosRequestConfig['headers']} AxiosRequestConfigHeaders Axios request headers.
@@ -612,6 +624,7 @@ export {
   clampValue,
   isValidGradient,
   fallbackColor,
+  buildSearchFilter,
   request,
   flexLayout,
   getCardColors,
