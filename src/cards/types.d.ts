@@ -56,6 +56,7 @@ export type WakaTimeOptions = CommonOptions & {
   langs_count: number;
   display_format: "time" | "percent";
   disable_animations: boolean;
+  graph: "editor" | "category" | "os" | "";
 };
 
 export type GistCardOptions = CommonOptions & {
