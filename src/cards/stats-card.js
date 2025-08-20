@@ -220,6 +220,7 @@ const renderStatsCard = (stats, options = {}) => {
     hide_title = false,
     hide_border = false,
     card_width,
+    card_height,
     hide_rank = false,
     include_all_commits = false,
     line_height = 25,
@@ -395,6 +396,11 @@ const renderStatsCard = (stats, options = {}) => {
     45 + (statItems.length + 1) * lheight,
     hide_rank ? 0 : statItems.length ? 150 : 180,
   );
+
+  // Override height if card_height is provided
+  if (card_height && !isNaN(card_height)) {
+    height = Math.max(card_height, height);
+  }
 
   // the lower the user's percentile the better
   const progress = 100 - rank.percentile;

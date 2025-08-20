@@ -725,6 +725,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     hide_title = false,
     hide_border = false,
     card_width,
+    card_height,
     title_color,
     text_color,
     bg_color,
@@ -759,6 +760,11 @@ const renderTopLanguages = (topLangs, options = {}) => {
         : card_width
     : DEFAULT_CARD_WIDTH;
   let height = calculateNormalLayoutHeight(langs.length);
+
+  // Override height if card_height is provided
+  if (card_height && !isNaN(card_height)) {
+    height = Math.max(card_height, height);
+  }
 
   // returns theme based colors with proper overrides and defaults
   const colors = getCardColors({
