@@ -77,7 +77,7 @@ const renderRepoCard = (repo, options = {}) => {
     border_color,
     locale,
     description_lines_count,
-    card_height,
+    height,
   } = options;
 
   const lineHeight = 10;
@@ -102,13 +102,13 @@ const renderRepoCard = (repo, options = {}) => {
     .map((line) => `<tspan dy="1.2em" x="25">${encodeHTML(line)}</tspan>`)
     .join("");
 
-  let height =
+  let cardHeight =
     (descriptionLinesCount > 1 ? 120 : 110) +
     descriptionLinesCount * lineHeight;
 
-  // Override height if card_height is provided
-  if (card_height && !isNaN(card_height)) {
-    height = Math.max(card_height, height);
+  // Override height if height is provided
+  if (height && !isNaN(height)) {
+    cardHeight = Math.max(height, cardHeight);
   }
 
   const i18n = new I18n({
@@ -159,7 +159,7 @@ const renderRepoCard = (repo, options = {}) => {
     defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
     titlePrefixIcon: icons.contribs,
     width: 400,
-    height,
+    height: cardHeight,
     border_radius,
     colors,
   });
@@ -190,7 +190,7 @@ const renderRepoCard = (repo, options = {}) => {
       ${descriptionSvg}
     </text>
 
-    <g transform="translate(30, ${height - 75})">
+    <g transform="translate(30, ${cardHeight - 75})">
       ${starAndForkCount}
     </g>
   `);

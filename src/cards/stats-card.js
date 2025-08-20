@@ -219,8 +219,8 @@ const renderStatsCard = (stats, options = {}) => {
     show_icons = false,
     hide_title = false,
     hide_border = false,
-    card_width,
-    card_height,
+    width,
+    height,
     hide_rank = false,
     include_all_commits = false,
     line_height = 25,
@@ -392,14 +392,14 @@ const renderStatsCard = (stats, options = {}) => {
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  let height = Math.max(
+  let cardHeight = Math.max(
     45 + (statItems.length + 1) * lheight,
     hide_rank ? 0 : statItems.length ? 150 : 180,
   );
 
-  // Override height if card_height is provided
-  if (card_height && !isNaN(card_height)) {
-    height = Math.max(card_height, height);
+  // Override height if height is provided
+  if (height && !isNaN(height)) {
+    cardHeight = Math.max(height, cardHeight);
   }
 
   // the lower the user's percentile the better
@@ -445,13 +445,13 @@ const renderStatsCard = (stats, options = {}) => {
       : statItems.length
         ? RANK_CARD_DEFAULT_WIDTH
         : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
-  let width = card_width
-    ? isNaN(card_width)
+  let cardWidth = width
+    ? isNaN(width)
       ? defaultCardWidth
-      : card_width
+      : width
     : defaultCardWidth;
-  if (width < minCardWidth) {
-    width = minCardWidth;
+  if (cardWidth < minCardWidth) {
+    cardWidth = minCardWidth;
   }
 
   const card = new Card({
@@ -459,8 +459,8 @@ const renderStatsCard = (stats, options = {}) => {
     defaultTitle: statItems.length
       ? i18n.t("statcard.title")
       : i18n.t("statcard.ranktitle"),
-    width,
-    height,
+    width: cardWidth,
+    height: cardHeight,
     border_radius,
     colors: {
       titleColor,
@@ -492,14 +492,14 @@ const renderStatsCard = (stats, options = {}) => {
   const calculateRankXTranslation = () => {
     if (statItems.length) {
       const minXTranslation = RANK_CARD_MIN_WIDTH + iconWidth - 70;
-      if (width > RANK_CARD_DEFAULT_WIDTH) {
+      if (cardWidth > RANK_CARD_DEFAULT_WIDTH) {
         const xMaxExpansion = minXTranslation + (450 - minCardWidth) / 2;
-        return xMaxExpansion + width - RANK_CARD_DEFAULT_WIDTH;
+        return xMaxExpansion + cardWidth - RANK_CARD_DEFAULT_WIDTH;
       } else {
-        return minXTranslation + (width - minCardWidth) / 2;
+        return minXTranslation + (cardWidth - minCardWidth) / 2;
       }
     } else {
-      return width / 2 + 20 - 10;
+      return cardWidth / 2 + 20 - 10;
     }
   };
 
@@ -508,7 +508,7 @@ const renderStatsCard = (stats, options = {}) => {
     ? ""
     : `<g data-testid="rank-circle"
           transform="translate(${calculateRankXTranslation()}, ${
-            height / 2 - 50
+            cardHeight / 2 - 50
           })">
         <circle class="rank-circle-rim" cx="-10" cy="8" r="40" />
         <circle class="rank-circle" cx="-10" cy="8" r="40" />

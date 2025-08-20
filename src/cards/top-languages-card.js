@@ -724,8 +724,8 @@ const renderTopLanguages = (topLangs, options = {}) => {
   const {
     hide_title = false,
     hide_border = false,
-    card_width,
-    card_height,
+    width,
+    height,
     title_color,
     text_color,
     bg_color,
@@ -752,18 +752,18 @@ const renderTopLanguages = (topLangs, options = {}) => {
     hide,
   );
 
-  let width = card_width
-    ? isNaN(card_width)
+  let cardWidth = width
+    ? isNaN(width)
       ? DEFAULT_CARD_WIDTH
-      : card_width < MIN_CARD_WIDTH
+      : width < MIN_CARD_WIDTH
         ? MIN_CARD_WIDTH
-        : card_width
+        : width
     : DEFAULT_CARD_WIDTH;
-  let height = calculateNormalLayoutHeight(langs.length);
+  let cardHeight = calculateNormalLayoutHeight(langs.length);
 
-  // Override height if card_height is provided
-  if (card_height && !isNaN(card_height)) {
-    height = Math.max(card_height, height);
+  // Override height if height is provided
+  if (height && !isNaN(height)) {
+    cardHeight = Math.max(height, cardHeight);
   }
 
   // returns theme based colors with proper overrides and defaults
@@ -777,41 +777,41 @@ const renderTopLanguages = (topLangs, options = {}) => {
 
   let finalLayout = "";
   if (langs.length === 0) {
-    height = COMPACT_LAYOUT_BASE_HEIGHT;
+    cardHeight = COMPACT_LAYOUT_BASE_HEIGHT;
     finalLayout = noLanguagesDataNode({
       color: colors.textColor,
       text: i18n.t("langcard.nodata"),
       layout,
     });
   } else if (layout === "pie") {
-    height = calculatePieLayoutHeight(langs.length);
+    cardHeight = calculatePieLayoutHeight(langs.length);
     finalLayout = renderPieLayout(langs, totalLanguageSize);
   } else if (layout === "donut-vertical") {
-    height = calculateDonutVerticalLayoutHeight(langs.length);
+    cardHeight = calculateDonutVerticalLayoutHeight(langs.length);
     finalLayout = renderDonutVerticalLayout(langs, totalLanguageSize);
   } else if (layout === "compact" || hide_progress == true) {
-    height =
+    cardHeight =
       calculateCompactLayoutHeight(langs.length) + (hide_progress ? -25 : 0);
 
     finalLayout = renderCompactLayout(
       langs,
-      width,
+      cardWidth,
       totalLanguageSize,
       hide_progress,
     );
   } else if (layout === "donut") {
-    height = calculateDonutLayoutHeight(langs.length);
-    width = width + 50; // padding
-    finalLayout = renderDonutLayout(langs, width, totalLanguageSize);
+    cardHeight = calculateDonutLayoutHeight(langs.length);
+    cardWidth = cardWidth + 50; // padding
+    finalLayout = renderDonutLayout(langs, cardWidth, totalLanguageSize);
   } else {
-    finalLayout = renderNormalLayout(langs, width, totalLanguageSize);
+    finalLayout = renderNormalLayout(langs, cardWidth, totalLanguageSize);
   }
 
   const card = new Card({
     customTitle: custom_title,
     defaultTitle: i18n.t("langcard.title"),
-    width,
-    height,
+    width: cardWidth,
+    height: cardHeight,
     border_radius,
     colors,
   });

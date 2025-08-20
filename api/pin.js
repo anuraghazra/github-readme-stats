@@ -25,7 +25,7 @@ export default async (req, res) => {
     border_radius,
     border_color,
     description_lines_count,
-    card_height,
+    height,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -84,7 +84,7 @@ export default async (req, res) => {
         show_owner: parseBoolean(show_owner),
         locale: locale ? locale.toLowerCase() : null,
         description_lines_count,
-        card_height: parseInt(card_height, 10),
+        height: parseInt(height, 10),
       }),
     );
   } catch (err) {

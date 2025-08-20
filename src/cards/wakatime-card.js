@@ -239,7 +239,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     border_color,
     display_format = "time",
     disable_animations,
-    card_height,
+    height,
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
@@ -281,11 +281,11 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  let height = Math.max(45 + (filteredLanguages.length + 1) * lheight, 150);
+  let cardHeight = Math.max(45 + (filteredLanguages.length + 1) * lheight, 150);
 
-  // Override height if card_height is provided
-  if (card_height && !isNaN(card_height)) {
-    height = Math.max(card_height, height);
+  // Override height if height is provided
+  if (height && !isNaN(height)) {
+    cardHeight = Math.max(height, cardHeight);
   }
 
   const cssStyles = getStyles({
@@ -300,7 +300,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
     width = width + 50;
-    height = 90 + Math.round(filteredLanguages.length / 2) * 25;
+    cardHeight = 90 + Math.round(filteredLanguages.length / 2) * 25;
 
     // progressOffset holds the previous language's width and used to offset the next language
     // so that we can stack them one after another, like this: [--][----][---]
@@ -399,7 +399,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     customTitle: custom_title,
     defaultTitle: titleText,
     width: 495,
-    height,
+    height: cardHeight,
     border_radius,
     colors: {
       titleColor,

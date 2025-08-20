@@ -32,7 +32,7 @@ export default async (req, res) => {
     border_color,
     display_format,
     disable_animations,
-    card_height,
+    height,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -88,7 +88,7 @@ export default async (req, res) => {
         langs_count,
         display_format,
         disable_animations: parseBoolean(disable_animations),
-        card_height: parseInt(card_height, 10),
+        height: parseInt(height, 10),
       }),
     );
   } catch (err) {
