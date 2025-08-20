@@ -254,6 +254,43 @@ const renderStatsCard = (stats, options = {}) => {
       theme,
     });
 
+  // Logic for our new animated 'aurora' theme
+  const isAuroraTheme = theme.toLowerCase() === "aurora";
+  
+  // Define the animation SVG block only if the theme is 'aurora' AND animations are not disabled.
+  let animationStyle = "";
+  let finalBgColor = bgColor;
+  
+  if (isAuroraTheme) {
+    // For aurora theme, we need to set a base background color that matches the gradient
+    finalBgColor = "#282a36";
+    
+    if (!disable_animations) {
+      animationStyle = `
+        <defs>
+          <linearGradient id="auroraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#282a36" stop-opacity="1" />
+            <stop offset="25%" stop-color="#44475a" stop-opacity="1" />
+            <stop offset="50%" stop-color="#bd93f9" stop-opacity="1" />
+            <stop offset="75%" stop-color="#ff79c6" stop-opacity="1" />
+            <stop offset="100%" stop-color="#ff5555" stop-opacity="1" />
+            
+            <animateTransform 
+              attributeName="gradientTransform"
+              type="rotate"
+              from="0 0.5 0.5"
+              to="360 0.5 0.5"
+              dur="15s"
+              repeatCount="indefinite"
+            />
+          </linearGradient>
+          <rect id="auroraRect" width="100%" height="100%" fill="url(#auroraGradient)" />
+        </defs>
+        <use href="#auroraRect" />
+      `;
+    }
+  }
+
   const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
     ? ""
     : "s";
@@ -460,7 +497,7 @@ const renderStatsCard = (stats, options = {}) => {
       titleColor,
       textColor,
       iconColor,
-      bgColor,
+      bgColor: finalBgColor, // Use our new variable here
       borderColor,
     },
   });
@@ -529,7 +566,7 @@ const renderStatsCard = (stats, options = {}) => {
     desc: labels,
   });
 
-  return card.render(`
+  const content = `
     ${rankCircle}
     <svg x="0" y="0">
       ${flexLayout({
@@ -538,7 +575,20 @@ const renderStatsCard = (stats, options = {}) => {
         direction: "column",
       }).join("")}
     </svg>
-  `);
+  `;
+  
+  if (isAuroraTheme && !disable_animations) {
+    return `
+      <svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
+        ${animationStyle}
+        <g transform="translate(0, 0)">
+          ${content}
+        </g>
+      </svg>
+    `;
+  }
+  
+  return card.render(content);
 };
 
 export { renderStatsCard };
