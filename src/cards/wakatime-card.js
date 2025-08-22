@@ -240,6 +240,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     display_format = "time",
     disable_animations,
     height,
+    width,
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
@@ -295,11 +296,19 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   let finalLayout = "";
 
-  let width = 440;
+  // For calculations (progress bars, etc.)
+  let internalWidth = 440;
+
+  // For Card constructor - maintain backward compatibility
+  const cardDefaultWidth = 495;
+  let cardWidth =
+    width && !isNaN(width)
+      ? Math.max(width, cardDefaultWidth)
+      : cardDefaultWidth;
 
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
-    width = width + 50;
+    internalWidth = internalWidth + 50; // 490 for calculations
     cardHeight = 90 + Math.round(filteredLanguages.length / 2) * 25;
 
     // progressOffset holds the previous language's width and used to offset the next language
@@ -307,8 +316,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     let progressOffset = 0;
     const compactProgressBar = filteredLanguages
       .map((language) => {
-        // const progress = (width * lang.percent) / 100;
-        const progress = ((width - 25) * language.percent) / 100;
+        // const progress = (internalWidth * lang.percent) / 100;
+        const progress = ((internalWidth - 25) * language.percent) / 100;
 
         const languageColor = languageColors[language.name] || "#858585";
 
@@ -330,7 +339,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
     finalLayout = `
       <mask id="rect-mask">
-      <rect x="25" y="0" width="${width - 50}" height="8" fill="white" rx="5" />
+      <rect x="25" y="0" width="${internalWidth - 50}" height="8" fill="white" rx="5" />
       </mask>
       ${compactProgressBar}
       ${
@@ -398,7 +407,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const card = new Card({
     customTitle: custom_title,
     defaultTitle: titleText,
-    width: 495,
+    width: cardWidth,
     height: cardHeight,
     border_radius,
     colors: {

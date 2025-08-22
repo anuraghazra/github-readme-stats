@@ -78,6 +78,7 @@ const renderRepoCard = (repo, options = {}) => {
     locale,
     description_lines_count,
     height,
+    width,
   } = options;
 
   const lineHeight = 10;
@@ -109,6 +110,13 @@ const renderRepoCard = (repo, options = {}) => {
   // Override height if height is provided
   if (height && !isNaN(height)) {
     cardHeight = Math.max(height, cardHeight);
+  }
+
+  const cardDefaultWidth = 400;
+  let cardWidth = cardDefaultWidth;
+  // Override width if width is provided
+  if (width && !isNaN(width)) {
+    cardWidth = Math.max(width, cardDefaultWidth);
   }
 
   const i18n = new I18n({
@@ -158,7 +166,7 @@ const renderRepoCard = (repo, options = {}) => {
   const card = new Card({
     defaultTitle: header.length > 35 ? `${header.slice(0, 35)}...` : header,
     titlePrefixIcon: icons.contribs,
-    width: 400,
+    width: cardWidth,
     height: cardHeight,
     border_radius,
     colors,
