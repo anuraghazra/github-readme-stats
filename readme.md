@@ -297,7 +297,7 @@ You can customize the appearance of all your cards however you wish with URL par
 | `bg_color` | Card's background color. | string (hex color or a gradient in the form of *angle,start,end*) | `fffefe` |
 | `hide_border` | Hides the card's border. | boolean | `false` |
 | `theme` | Name of the theme, choose from [all available themes](themes/README.md). | enum | `default` |
-| `cache_seconds` | Sets the cache header manually (min: 21600, max: 86400). | integer | `21600` |
+| `cache_seconds` | Sets the cache header manually (min: 21600, max: 86400). | integer | `86400` |
 | `locale` | Sets the language in the card, you can check full list of available locales [here](#available-locales). | enum | `en` |
 | `border_radius` | Corner rounding on the card. | number | `4.5` |
 
@@ -373,7 +373,7 @@ If we don't support your language, please consider contributing! You can find mo
 | --- | --- | --- | --- |
 | `hide` | Hides the [specified items](#hiding-individual-stats) from stats. | string (comma-separated values) | `null` |
 | `hide_title` | Hides the title of your stats card. | boolean | `false` |
-| `width` | Sets the card's width manually. | number | `500px  (approx.)` |
+| `width` | Sets the card's width manually. | number | `287px` (basic), `450px` (with rank), `290px` (rank only) |
 | `height` | Sets the card's height manually. | number | `Auto-calculated` |
 | `hide_rank` | Hides the rank and automatically resizes the card width. | boolean | `false` |
 | `rank_icon` | Shows alternative rank icon (i.e. `github`, `percentile` or `default`). | enum | `default` |
@@ -404,6 +404,7 @@ If we don't support your language, please consider contributing! You can find mo
 | Name | Description | Type | Default value |
 | --- | --- | --- | --- |
 | `show_owner` | Shows the gist's owner name. | boolean | `false` |
+| `width` | Sets the card's width manually. | number | `400px` |
 | `height` | Sets the card's height manually. | number | `Auto-calculated` |
 
 #### Language Card Exclusive Options
@@ -442,6 +443,7 @@ If we don't support your language, please consider contributing! You can find mo
 | `api_domain` | Sets a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) | string | `wakatime.com` |
 | `display_format` | Sets the WakaTime stats display format. Choose `time` to display time-based stats or `percent` to show percentages. | enum | `time` |
 | `disable_animations` | Disables all animations in the card. | boolean | `false` |
+| `width` | Sets the card's width manually. | number | `440px` (default), `490px` (compact layout) |
 | `height` | Sets the card's height manually. | number | `Auto-calculated` |
 
 ***
