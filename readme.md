@@ -397,6 +397,7 @@ If we don't support your language, please consider contributing! You can find mo
 | --- | --- | --- | --- |
 | `show_owner` | Shows the repo's owner name. | boolean | `false` |
 | `description_lines_count` | Manually set the number of lines for the description. Specified value will be clamped between 1 and 3. If this parameter is not specified, the number of lines will be automatically adjusted according to the actual length of the description. | number | `null` |
+| `width` | Sets the card's width manually. | number | `400px` |
 | `height` | Sets the card's height manually. | number | `Auto-calculated` |
 
 #### Gist Card Exclusive Options
