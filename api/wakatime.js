@@ -32,6 +32,7 @@ export default async (req, res) => {
     border_color,
     display_format,
     disable_animations,
+    width,
     height,
   } = req.query;
 
@@ -88,6 +89,7 @@ export default async (req, res) => {
         langs_count,
         display_format,
         disable_animations: parseBoolean(disable_animations),
+        width: parseInt(width, 10),
         height: parseInt(height, 10),
       }),
     );
