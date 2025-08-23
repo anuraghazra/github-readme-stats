@@ -1,4 +1,4 @@
-import { renderRepoCard } from "../src/cards/repo-card.js";
+import { renderRepoCard } from "../src/cards/repo.js";
 import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,

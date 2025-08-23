@@ -1,4 +1,4 @@
-import { renderWakatimeCard } from "../src/cards/wakatime-card.js";
+import { renderWakatimeCard } from "../src/cards/wakatime.js";
 import {
   clampValue,
   CONSTANTS,
