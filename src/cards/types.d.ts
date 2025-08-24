@@ -46,7 +46,7 @@ export type TopLangOptions = CommonOptions & {
   hide_progress: boolean;
 };
 
-type WakaTimeOptions = CommonOptions & {
+export type WakaTimeOptions = CommonOptions & {
   hide_title: boolean;
   hide: string[];
   line_height: string;
