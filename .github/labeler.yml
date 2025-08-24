@@ -3,11 +3,6 @@ themes:
       - any-glob-to-any-file:
           - themes/index.js
 
-doc-translation:
-  - changed-files:
-      - any-glob-to-any-file:
-          - docs/*
-
 card-i18n:
   - changed-files:
       - any-glob-to-any-file:
