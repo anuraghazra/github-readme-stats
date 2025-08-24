@@ -6,7 +6,7 @@ import { themes } from "../themes/index.js";
 import "@testing-library/jest-dom";
 
 /**
- * @type {import("../src/fetchers/gist-fetcher").GistData}
+ * @type {import("../src/fetchers/gist").GistData}
  */
 const data = {
   name: "test",

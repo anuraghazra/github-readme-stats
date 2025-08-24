@@ -38,7 +38,7 @@ const LANGS_DATA = {
     size: 1721,
   },
   CSS: {
-    color: "#563d7c",
+    color: "#663399",
     name: "CSS",
     size: 930,
   },
@@ -54,7 +54,7 @@ const WAKATIME_DATA = {
   is_already_updating: false,
   is_coding_activity_visible: true,
   is_including_today: false,
-  is_other_usage_visible: true,
+  is_other_usage_visible: false,
   is_stuck: false,
   is_up_to_date: false,
   is_up_to_date_pending_future: false,
