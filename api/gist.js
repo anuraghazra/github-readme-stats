@@ -5,7 +5,7 @@ import {
   parseBoolean,
 } from "../src/common/utils.js";
 import { isLocaleAvailable } from "../src/translations.js";
-import { renderGistCard } from "../src/cards/gist-card.js";
+import { renderGistCard } from "../src/cards/gist.js";
 import { fetchGist } from "../src/fetchers/gist.js";
 
 export default async (req, res) => {

@@ -1,4 +1,4 @@
-import { renderTopLanguages } from "../src/cards/top-languages-card.js";
+import { renderTopLanguages } from "../src/cards/top-languages.js";
 import { blacklist } from "../src/common/blacklist.js";
 import {
   CONSTANTS,
