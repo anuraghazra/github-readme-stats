@@ -1,4 +1,4 @@
-import { renderTopLanguages } from "../src/cards/top-languages-card.js";
+import { renderTopLanguages } from "../src/cards/top-languages.js";
 import { blacklist } from "../src/common/blacklist.js";
 import {
   CONSTANTS,
@@ -6,7 +6,7 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { fetchTopLanguages } from "../src/fetchers/top-languages-fetcher.js";
+import { fetchTopLanguages } from "../src/fetchers/top-languages.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
