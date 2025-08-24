@@ -6,7 +6,7 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { fetchRepo } from "../src/fetchers/repo-fetcher.js";
+import { fetchRepo } from "../src/fetchers/repo.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
