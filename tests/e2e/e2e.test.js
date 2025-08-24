@@ -5,11 +5,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import axios from "axios";
-import { renderRepoCard } from "../../src/cards/repo-card.js";
-import { renderStatsCard } from "../../src/cards/stats-card.js";
-import { renderTopLanguages } from "../../src/cards/top-languages-card.js";
-import { renderWakatimeCard } from "../../src/cards/wakatime-card.js";
-import { renderGistCard } from "../../src/cards/gist-card.js";
+import { renderRepoCard } from "../../src/cards/repo.js";
+import { renderStatsCard } from "../../src/cards/stats.js";
+import { renderTopLanguages } from "../../src/cards/top-languages.js";
+import { renderWakatimeCard } from "../../src/cards/wakatime.js";
+import { renderGistCard } from "../../src/cards/gist.js";
 import { expect, describe, beforeAll, test } from "@jest/globals";
 
 const REPO = "curly-fiesta";

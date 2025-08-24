@@ -1,4 +1,4 @@
-import { renderGistCard } from "../src/cards/gist-card";
+import { renderGistCard } from "../src/cards/gist.js";
 import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
 import { cssToObject } from "@uppercod/css-to-object";
