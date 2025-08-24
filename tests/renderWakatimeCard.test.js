@@ -1,14 +1,13 @@
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import { renderWakatimeCard } from "../src/cards/wakatime.js";
-import { getCardColors } from "../src/common/utils.js";
 import { wakaTimeData } from "./fetchWakatime.test.js";
 import { expect, it, describe } from "@jest/globals";
 
 describe("Test Render WakaTime Card", () => {
   it("should render correctly", () => {
-    // const card = renderWakatimeCard(wakaTimeData.data);
-    expect(getCardColors).toMatchSnapshot();
+    const card = renderWakatimeCard(wakaTimeData.data);
+    expect(card).toMatchSnapshot();
   });
 
   it("should render correctly with compact layout", () => {
