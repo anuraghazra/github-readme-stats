@@ -20,6 +20,9 @@ export const getRepoInfo = (ctx) => {
       repo: ctx.repo.repo,
     };
   } catch (error) {
+    // Resolve eslint no-unused-vars
+    error;
+
     return {
       owner: OWNER,
       repo: REPO,
