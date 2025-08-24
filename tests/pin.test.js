@@ -3,8 +3,8 @@ import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import pin from "../api/pin.js";
-import { renderRepoCard } from "../src/cards/repo-card.js";
-import { renderError, CONSTANTS } from "../src/common/utils.js";
+import { renderRepoCard } from "../src/cards/repo.js";
+import { CONSTANTS, renderError } from "../src/common/utils.js";
 import { expect, it, describe, afterEach } from "@jest/globals";
 
 const data_repo = {
@@ -220,9 +220,9 @@ describe("Test /api/pin", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.setHeader).toBeCalledWith(
       "Cache-Control",
-      `max-age=${CONSTANTS.SIX_HOURS / 2}, s-maxage=${
-        CONSTANTS.SIX_HOURS
-      }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      `max-age=${CONSTANTS.PIN_CARD_CACHE_SECONDS}, s-maxage=${
+        CONSTANTS.PIN_CARD_CACHE_SECONDS
+      }`,
     );
   });
 });
