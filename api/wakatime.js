@@ -1,4 +1,4 @@
-import { renderWakatimeCard } from "../src/cards/wakatime-card.js";
+import { renderWakatimeCard } from "../src/cards/wakatime.js";
 import {
   clampValue,
   CONSTANTS,
@@ -6,7 +6,7 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { fetchWakatimeStats } from "../src/fetchers/wakatime-fetcher.js";
+import { fetchWakatimeStats } from "../src/fetchers/wakatime.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
