@@ -272,9 +272,12 @@ You can customize the appearance of all your cards however you wish with URL par
 | `bg_color` | Card's background color. | string (hex color or a gradient in the form of *angle,start,end*) | `fffefe` |
 | `hide_border` | Hides the card's border. | boolean | `false` |
 | `theme` | Name of the theme, choose from [all available themes](themes/README.md). | enum | `default` |
-| `cache_seconds` | Sets the cache header manually (min: 21600, max: 86400). | integer | `21600` |
+| `cache_seconds` | Sets the cache header manually (min: 21600, max: 86400). | integer | `86400` |
 | `locale` | Sets the language in the card, you can check full list of available locales [here](#available-locales). | enum | `en` |
 | `border_radius` | Corner rounding on the card. | number | `4.5` |
+
+> [!NOTE]\
+> **Card Dimensions**: You can customize both the width and height of your cards using `width` and `height` parameters. The `height` parameter allows you to set a minimum height for the card, which is useful for maintaining consistent spacing in your README layout. If the calculated content height is greater than your specified height, the card will expand to accommodate the content.
 
 > [!WARNING]\
 > We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have the following default cache hours: stats card - 24 hours, top languages card - 144 hours (6 days), pin card - 240 hours (10 days), gist card - 48 hours (2 days). If you want the data on your statistics card to be updated more often you can [deploy your own instance](#deploy-on-your-own) and set [environment variable](#disable-rate-limit-protections) `CACHE_SECONDS` to a value of your choosing.
@@ -345,7 +348,8 @@ If we don't support your language, please consider contributing! You can find mo
 | --- | --- | --- | --- |
 | `hide` | Hides the [specified items](#hiding-individual-stats) from stats. | string (comma-separated values) | `null` |
 | `hide_title` | Hides the title of your stats card. | boolean | `false` |
-| `card_width` | Sets the card's width manually. | number | `500px  (approx.)` |
+| `width` | Sets the card's width manually. | number | `287px` (basic), `450px` (with rank), `290px` (rank only) |
+| `height` | Sets the card's height manually. | number | `Auto-calculated` |
 | `hide_rank` | Hides the rank and automatically resizes the card width. | boolean | `false` |
 | `rank_icon` | Shows alternative rank icon (i.e. `github`, `percentile` or `default`). | enum | `default` |
 | `show_icons` | Shows icons near all stats. | boolean | `false` |
@@ -368,12 +372,16 @@ If we don't support your language, please consider contributing! You can find mo
 | --- | --- | --- | --- |
 | `show_owner` | Shows the repo's owner name. | boolean | `false` |
 | `description_lines_count` | Manually set the number of lines for the description. Specified value will be clamped between 1 and 3. If this parameter is not specified, the number of lines will be automatically adjusted according to the actual length of the description. | number | `null` |
+| `width` | Sets the card's width manually. | number | `400px` |
+| `height` | Sets the card's height manually. | number | `Auto-calculated` |
 
 #### Gist Card Exclusive Options
 
 | Name | Description | Type | Default value |
 | --- | --- | --- | --- |
 | `show_owner` | Shows the gist's owner name. | boolean | `false` |
+| `width` | Sets the card's width manually. | number | `400px` |
+| `height` | Sets the card's height manually. | number | `Auto-calculated` |
 
 #### Language Card Exclusive Options
 
@@ -382,7 +390,8 @@ If we don't support your language, please consider contributing! You can find mo
 | `hide` | Hides the [specified languages](#hide-individual-languages) from card. | string (comma-separated values) | `null` |
 | `hide_title` | Hides the title of your card. | boolean | `false` |
 | `layout` | Switches between five available layouts `normal` & `compact` & `donut` & `donut-vertical` & `pie`. | enum | `normal` |
-| `card_width` | Sets the card's width manually. | number | `300` |
+| `width` | Sets the card's width manually. | number | `300` |
+| `height` | Sets the card's height manually. | number | `Auto-calculated` |
 | `langs_count` | Shows more languages on the card, between 1-20. | integer | `5` for `normal` and `donut`, `6` for other layouts |
 | `exclude_repo` | Excludes specified repositories. | string (comma-separated values) | `null` |
 | `custom_title` | Sets a custom title for the card. | string | `Most Used Languages` |
@@ -410,6 +419,8 @@ If we don't support your language, please consider contributing! You can find mo
 | `api_domain` | Sets a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) | string | `wakatime.com` |
 | `display_format` | Sets the WakaTime stats display format. Choose `time` to display time-based stats or `percent` to show percentages. | enum | `time` |
 | `disable_animations` | Disables all animations in the card. | boolean | `false` |
+| `width` | Sets the card's width manually. | number | `440px` (default), `490px` (compact layout) |
+| `height` | Sets the card's height manually. | number | `Auto-calculated` |
 
 ***
 
@@ -662,6 +673,10 @@ Choose from any of the [default themes](#themes)
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra\&show_icons=true\&title_color=fff\&icon_color=79ff97\&text_color=9f9f9f\&bg_color=151515)
 
+*   Customizing card dimensions
+
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra\&width=600\&height=200)
+
 *   Setting card locale
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra\&locale=es)
@@ -670,9 +685,17 @@ Choose from any of the [default themes](#themes)
 
 ![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra\&repo=github-readme-stats\&title_color=fff\&icon_color=f9f9f9\&text_color=9f9f9f\&bg_color=151515)
 
+*   Repo card with custom dimensions
+
+![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra\&repo=github-readme-stats\&width=500\&height=180)
+
 *   Gist card
 
 ![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
+
+*   Gist card with custom dimensions
+
+![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d\&width=450\&height=200)
 
 *   Customizing gist card
 
@@ -682,11 +705,47 @@ Choose from any of the [default themes](#themes)
 
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)
 
+*   Top languages with custom dimensions
+
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&width=400\&height=250)
+
 *   WakaTime card
 
 ![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)
 
+*   WakaTime card with custom dimensions
+
+![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&width=550\&height=300)
+
 ***
+
+## Card Dimensions
+
+You can now control both the width and height of your cards using the `width` and `height` parameters. This is particularly useful for:
+
+- **Consistent Layout**: Set uniform dimensions across multiple cards for a cleaner appearance
+- **Better Spacing**: Control the vertical spacing between cards in your README
+- **Responsive Design**: Ensure cards maintain proper proportions on different screen sizes
+
+### Examples
+
+**Stats Card with Custom Dimensions:**
+```md
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&width=600&height=200)
+```
+
+**Top Languages with Custom Dimensions:**
+```md
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&width=400&height=250)
+```
+
+**Repo Card with Custom Dimensions:**
+```md
+![Repo Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&width=500&height=180)
+```
+
+> [!NOTE]\
+> The `height` parameter sets a minimum height. If the content requires more space, the card will expand to accommodate it.
 
 ## Quick Tip (Align The Cards)
 
@@ -697,7 +756,7 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
   <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=anuraghazra" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8&card_width=320" />
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8&width=320" />
 </a>
 ```
 
@@ -717,7 +776,7 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
   <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=anuraghazra" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8&card_width=320" />
+  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8&width=320" />
 </a>
 
 ***

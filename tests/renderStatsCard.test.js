@@ -133,17 +133,17 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard(stats);
     expect(document.querySelector("svg")).toHaveAttribute("width", "450");
 
-    document.body.innerHTML = renderStatsCard(stats, { card_width: 500 });
+    document.body.innerHTML = renderStatsCard(stats, { width: 500 });
     expect(document.querySelector("svg")).toHaveAttribute("width", "500");
   });
 
   it("should render with custom width set and limit minimum width", () => {
-    document.body.innerHTML = renderStatsCard(stats, { card_width: 1 });
+    document.body.innerHTML = renderStatsCard(stats, { width: 1 });
     expect(document.querySelector("svg")).toHaveAttribute("width", "420");
 
     // Test default minimum card width without rank circle.
     document.body.innerHTML = renderStatsCard(stats, {
-      card_width: 1,
+      width: 1,
       hide_rank: true,
     });
     expect(document.querySelector("svg")).toHaveAttribute(
@@ -153,7 +153,7 @@ describe("Test renderStatsCard", () => {
 
     // Test minimum card width with rank and icons.
     document.body.innerHTML = renderStatsCard(stats, {
-      card_width: 1,
+      width: 1,
       hide_rank: true,
       show_icons: true,
     });
@@ -164,7 +164,7 @@ describe("Test renderStatsCard", () => {
 
     // Test minimum card width with icons but without rank.
     document.body.innerHTML = renderStatsCard(stats, {
-      card_width: 1,
+      width: 1,
       hide_rank: false,
       show_icons: true,
     });
@@ -172,7 +172,7 @@ describe("Test renderStatsCard", () => {
 
     // Test minimum card width without icons or rank.
     document.body.innerHTML = renderStatsCard(stats, {
-      card_width: 1,
+      width: 1,
       hide_rank: false,
       show_icons: false,
     });

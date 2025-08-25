@@ -239,6 +239,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     border_color,
     display_format = "time",
     disable_animations,
+    height,
+    width,
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
@@ -280,7 +282,12 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  let height = Math.max(45 + (filteredLanguages.length + 1) * lheight, 150);
+  let cardHeight = Math.max(45 + (filteredLanguages.length + 1) * lheight, 150);
+
+  // Override height if height is provided
+  if (height && !isNaN(height)) {
+    cardHeight = Math.max(height, cardHeight);
+  }
 
   const cssStyles = getStyles({
     titleColor,
@@ -289,20 +296,28 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   let finalLayout = "";
 
-  let width = 440;
+  // For calculations (progress bars, etc.)
+  let internalWidth = 440;
+
+  // For Card constructor - maintain backward compatibility
+  const cardDefaultWidth = 495;
+  let cardWidth =
+    width && !isNaN(width)
+      ? Math.max(width, cardDefaultWidth)
+      : cardDefaultWidth;
 
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
-    width = width + 50;
-    height = 90 + Math.round(filteredLanguages.length / 2) * 25;
+    internalWidth = internalWidth + 50; // 490 for calculations
+    cardHeight = 90 + Math.round(filteredLanguages.length / 2) * 25;
 
     // progressOffset holds the previous language's width and used to offset the next language
     // so that we can stack them one after another, like this: [--][----][---]
     let progressOffset = 0;
     const compactProgressBar = filteredLanguages
       .map((language) => {
-        // const progress = (width * lang.percent) / 100;
-        const progress = ((width - 25) * language.percent) / 100;
+        // const progress = (internalWidth * lang.percent) / 100;
+        const progress = ((internalWidth - 25) * language.percent) / 100;
 
         const languageColor = languageColors[language.name] || "#858585";
 
@@ -324,7 +339,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
     finalLayout = `
       <mask id="rect-mask">
-      <rect x="25" y="0" width="${width - 50}" height="8" fill="white" rx="5" />
+      <rect x="25" y="0" width="${internalWidth - 50}" height="8" fill="white" rx="5" />
       </mask>
       ${compactProgressBar}
       ${
@@ -392,8 +407,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const card = new Card({
     customTitle: custom_title,
     defaultTitle: titleText,
-    width: 495,
-    height,
+    width: cardWidth,
+    height: cardHeight,
     border_radius,
     colors: {
       titleColor,

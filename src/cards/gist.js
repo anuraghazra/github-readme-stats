@@ -54,6 +54,8 @@ const renderGistCard = (gistData, options = {}) => {
     border_color,
     show_owner = false,
     hide_border = false,
+    height,
+    width,
   } = options;
 
   // returns theme based colors with proper overrides and defaults
@@ -77,8 +79,19 @@ const renderGistCard = (gistData, options = {}) => {
     .join("");
 
   const lineHeight = descriptionLines > 3 ? 12 : 10;
-  const height =
+  let cardHeight =
     (descriptionLines > 1 ? 120 : 110) + descriptionLines * lineHeight;
+
+  // Override height if height is provided
+  if (height && !isNaN(height)) {
+    cardHeight = Math.max(height, cardHeight);
+  }
+
+  let cardWidth = CARD_DEFAULT_WIDTH;
+  // Override width if width is provided
+  if (width && !isNaN(width)) {
+    cardWidth = Math.max(width, CARD_DEFAULT_WIDTH);
+  }
 
   const totalStars = kFormatter(starsCount);
   const totalForks = kFormatter(forksCount);
@@ -118,8 +131,8 @@ const renderGistCard = (gistData, options = {}) => {
         ? `${header.slice(0, HEADER_MAX_LENGTH)}...`
         : header,
     titlePrefixIcon: icons.gist,
-    width: CARD_DEFAULT_WIDTH,
-    height,
+    width: cardWidth,
+    height: cardHeight,
     border_radius,
     colors: {
       titleColor,
@@ -142,7 +155,7 @@ const renderGistCard = (gistData, options = {}) => {
         ${descriptionSvg}
     </text>
 
-    <g transform="translate(30, ${height - 75})">
+    <g transform="translate(30, ${cardHeight - 75})">
         ${starAndForkCount}
     </g>
   `);

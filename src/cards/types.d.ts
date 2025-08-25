@@ -11,13 +11,14 @@ export type CommonOptions = {
   border_color: string;
   locale: string;
   hide_border: boolean;
+  height?: number;
+  width?: number;
 };
 
 export type StatCardOptions = CommonOptions & {
   hide: string[];
   show_icons: boolean;
   hide_title: boolean;
-  card_width: number;
   hide_rank: boolean;
   include_all_commits: boolean;
   line_height: number | string;
@@ -37,7 +38,7 @@ export type RepoCardOptions = CommonOptions & {
 
 export type TopLangOptions = CommonOptions & {
   hide_title: boolean;
-  card_width: number;
+  width: number;
   hide: string[];
   layout: "compact" | "normal" | "donut" | "donut-vertical" | "pie";
   custom_title: string;

@@ -430,19 +430,19 @@ describe("Test renderTopLanguages", () => {
 
     expect(document.querySelector("svg")).toHaveAttribute("width", "300");
 
-    document.body.innerHTML = renderTopLanguages(langs, { card_width: 400 });
+    document.body.innerHTML = renderTopLanguages(langs, { width: 400 });
     expect(document.querySelector("svg")).toHaveAttribute("width", "400");
   });
 
   it("should render with min width", () => {
-    document.body.innerHTML = renderTopLanguages(langs, { card_width: 190 });
+    document.body.innerHTML = renderTopLanguages(langs, { width: 190 });
 
     expect(document.querySelector("svg")).toHaveAttribute(
       "width",
       MIN_CARD_WIDTH.toString(),
     );
 
-    document.body.innerHTML = renderTopLanguages(langs, { card_width: 100 });
+    document.body.innerHTML = renderTopLanguages(langs, { width: 100 });
     expect(document.querySelector("svg")).toHaveAttribute(
       "width",
       MIN_CARD_WIDTH.toString(),
