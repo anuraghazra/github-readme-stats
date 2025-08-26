@@ -45,7 +45,7 @@
     "@uppercod/css-to-object": "^1.1.1",
     "axios-mock-adapter": "^2.1.0",
     "color-contrast-checker": "^2.1.0",
-    "eslint": "^9.33.0",
+    "eslint": "^9.34.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-jsdoc": "^54.1.0",
     "globals": "^16.3.0",
