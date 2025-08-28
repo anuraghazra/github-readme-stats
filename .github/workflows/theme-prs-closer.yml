@@ -39,3 +39,5 @@ jobs:
           for pr_number in $(gh pr list -l "themes" -q is:open --json number -q ".[].number"); do
             gh pr close $pr_number -c "$comment_message"
           done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
