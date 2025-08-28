@@ -11,7 +11,7 @@ jobs:
     name: Deploy
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v5.0.0
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3

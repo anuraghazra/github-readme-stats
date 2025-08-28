@@ -14,7 +14,7 @@ jobs:
         node-version: [22.x]
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v5.0.0
 
       - name: Setup Node
         uses: actions/setup-node@v4
