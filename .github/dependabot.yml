@@ -9,8 +9,6 @@ updates:
     commit-message:
       prefix: "build(deps)"
       prefix-development: "build(deps-dev)"
-    reviewers:
-      - "qwerty541"
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: github-actions
@@ -21,5 +19,3 @@ updates:
     commit-message:
       prefix: "ci(deps)"
       prefix-development: "ci(deps-dev)"
-    reviewers:
-      - "qwerty541"
