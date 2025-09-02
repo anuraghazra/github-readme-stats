@@ -1,4 +1,4 @@
-name: prs cache clean
+name: Cleanup closed pull requests cache
 on:
   pull_request:
     types:
