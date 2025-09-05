@@ -5,6 +5,7 @@ on:
       - master
     paths:
       - "themes/index.js"
+  workflow_dispatch:
 
 permissions:
   actions: read
