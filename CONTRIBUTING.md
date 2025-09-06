@@ -33,9 +33,10 @@ _(make sure you already have a [Vercel](https://vercel.com/) account)_
 1.  Install [Vercel CLI](https://vercel.com/download).
 2.  Fork the repository and clone the code to your local machine.
 3.  Run `npm install` in the repository root.
-4.  Run the command `vercel` in the root and follow the steps there.
-5.  Run the command `vercel dev` to start a development server at <http://localhost:3000>.
-6.  The cards will then be available from this local endpoint (i.e. `http://localhost:3000/api?username=anuraghazra`).
+4.  Create `.env` file in the root folder and your Github token: `PAT_1="GITHUB_TOKEN"`
+5.  Run the command `vercel` in the root and follow the steps there.
+6.  Run the command `vercel dev` to start a development server at <http://localhost:3000>.
+7.  The cards will then be available from this local endpoint (i.e. `http://localhost:3000/api?username=anuraghazra`).
 
 > [!NOTE]\
 > You can debug the package code in [Vscode](https://code.visualstudio.com/) by using the [Node.js: Attach to process](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_setting-up-an-attach-configuration) debug option. You can also debug any tests using the [VSCode Jest extension](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest). For more information, see https://github.com/jest-community/vscode-jest/issues/912.
