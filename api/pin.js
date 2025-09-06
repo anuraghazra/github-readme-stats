@@ -1,13 +1,13 @@
+import { renderRepoCard } from "../src/cards/repo.js";
+import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
   CONSTANTS,
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { fetchRepo } from "../src/fetchers/repo-fetcher.js";
-import { renderRepoCard } from "../src/cards/repo-card.js";
+import { fetchRepo } from "../src/fetchers/repo.js";
 import { isLocaleAvailable } from "../src/translations.js";
-import { blacklist } from "../src/common/blacklist.js";
 
 export default async (req, res) => {
   const {

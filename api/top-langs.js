@@ -1,13 +1,13 @@
+import { renderTopLanguages } from "../src/cards/top-languages.js";
+import { blacklist } from "../src/common/blacklist.js";
 import {
   CONSTANTS,
   parseArray,
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { fetchTopLanguages } from "../src/fetchers/top-languages-fetcher.js";
-import { renderTopLanguages } from "../src/cards/top-languages-card.js";
+import { fetchTopLanguages } from "../src/fetchers/top-languages.js";
 import { isLocaleAvailable } from "../src/translations.js";
-import { blacklist } from "../src/common/blacklist.js";
 
 export default async (req, res) => {
   const {
