@@ -1,6 +1,7 @@
 import { renderTopLanguages } from "../src/cards/top-languages.js";
 import { blacklist } from "../src/common/blacklist.js";
 import {
+  clampValue,
   CONSTANTS,
   parseArray,
   parseBoolean,
@@ -69,9 +70,10 @@ export default async (req, res) => {
       count_weight,
     );
 
-    let cacheSeconds = parseInt(
-      cache_seconds || CONSTANTS.TOP_LANGS_CACHE_SECONDS,
-      10,
+    let cacheSeconds = clampValue(
+      parseInt(cache_seconds || CONSTANTS.TOP_LANGS_CACHE_SECONDS, 10),
+      CONSTANTS.TWO_DAY,
+      CONSTANTS.TEN_DAY,
     );
     cacheSeconds = process.env.CACHE_SECONDS
       ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
