@@ -3,8 +3,8 @@ import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { expect, it, describe, afterEach } from "@jest/globals";
-import { renderGistCard } from "../src/cards/gist-card.js";
-import { renderError, CONSTANTS } from "../src/common/utils.js";
+import { renderGistCard } from "../src/cards/gist.js";
+import { CONSTANTS, renderError } from "../src/common/utils.js";
 import gist from "../api/gist.js";
 
 const gist_data = {
@@ -188,9 +188,7 @@ describe("Test /api/gist", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.setHeader).toBeCalledWith(
       "Cache-Control",
-      `max-age=${CONSTANTS.SIX_HOURS / 2}, s-maxage=${
-        CONSTANTS.SIX_HOURS
-      }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      `max-age=${CONSTANTS.TWO_DAY}, s-maxage=${CONSTANTS.TWO_DAY}`,
     );
   });
 });
