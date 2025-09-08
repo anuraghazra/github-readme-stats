@@ -12,7 +12,7 @@ Use `?theme=THEME_NAME` parameter like so:
 
 ## Stats
 
-> These themes works with all five our cards: Stats Card, Repo Card, Gist Card, Top languages Card and WakaTime Card.
+> These themes work with all five of our cards: Stats Card, Repo Card, Gist Card, Top Languages Card, and WakaTime Card.
 
 | | | |
 | :--: | :--: | :--: |
@@ -40,11 +40,11 @@ Use `?theme=THEME_NAME` parameter like so:
 | `rose_pine` ![rose_pine][rose_pine] | `catppuccin_latte` ![catppuccin_latte][catppuccin_latte] | `catppuccin_mocha` ![catppuccin_mocha][catppuccin_mocha] |
 | `date_night` ![date_night][date_night] | `one_dark_pro` ![one_dark_pro][one_dark_pro] | `rose` ![rose][rose] |
 | `holi` ![holi][holi] | `neon` ![neon][neon] | `blue_navy` ![blue_navy][blue_navy] |
-| `calm_pink` ![calm_pink][calm_pink] | `ambient_gradient` ![ambient_gradient][ambient_gradient] | [Add your theme][add-theme] |
+| `calm_pink` ![calm_pink][calm_pink] | `ambient_gradient` ![ambient_gradient][ambient_gradient] |  |
 
 ## Repo Card
 
-> These themes works with all five our cards: Stats Card, Repo Card, Gist Card, Top languages Card and WakaTime Card.
+> These themes work with all five of our cards: Stats Card, Repo Card, Gist Card, Top Languages Card, and WakaTime Card.
 
 | | | |
 | :--: | :--: | :--: |
@@ -72,7 +72,7 @@ Use `?theme=THEME_NAME` parameter like so:
 | `rose_pine` ![rose_pine][rose_pine_repo] | `catppuccin_latte` ![catppuccin_latte][catppuccin_latte_repo] | `catppuccin_mocha` ![catppuccin_mocha][catppuccin_mocha_repo] |
 | `date_night` ![date_night][date_night_repo] | `one_dark_pro` ![one_dark_pro][one_dark_pro_repo] | `rose` ![rose][rose_repo] |
 | `holi` ![holi][holi_repo] | `neon` ![neon][neon_repo] | `blue_navy` ![blue_navy][blue_navy_repo] |
-| `calm_pink` ![calm_pink][calm_pink_repo] | `ambient_gradient` ![ambient_gradient][ambient_gradient_repo] | [Add your theme][add-theme] |
+| `calm_pink` ![calm_pink][calm_pink_repo] | `ambient_gradient` ![ambient_gradient][ambient_gradient_repo] |  |
 
 [default]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
 [transparent]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=transparent
@@ -149,6 +149,84 @@ Use `?theme=THEME_NAME` parameter like so:
 [calm_pink]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=calm_pink
 [ambient_gradient]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=ambient_gradient
 
+[default]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default
+[default_repocard]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=default_repocard
+[transparent]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=transparent
+[shadow_red]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=shadow_red
+[shadow_green]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=shadow_green
+[shadow_blue]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=shadow_blue
+[dark]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=dark
+[radical]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=radical
+[merko]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=merko
+[gruvbox]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gruvbox
+[gruvbox_light]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gruvbox_light
+[tokyonight]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=tokyonight
+[onedark]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=onedark
+[cobalt]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=cobalt
+[synthwave]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=synthwave
+[highcontrast]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=highcontrast
+[dracula]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=dracula
+[prussian]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=prussian
+[monokai]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=monokai
+[vue]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=vue
+[vue-dark]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=vue-dark
+[shades-of-purple]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=shades-of-purple
+[nightowl]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=nightowl
+[buefy]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=buefy
+[blue-green]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=blue-green
+[algolia]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=algolia
+[great-gatsby]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=great-gatsby
+[darcula]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=darcula
+[bear]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=bear
+[solarized-dark]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=solarized-dark
+[solarized-light]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=solarized-light
+[chartreuse-dark]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=chartreuse-dark
+[nord]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=nord
+[gotham]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=gotham
+[material-palenight]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=material-palenight
+[graywhite]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=graywhite
+[vision-friendly-dark]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=vision-friendly-dark
+[ayu-mirage]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=ayu-mirage
+[midnight-purple]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=midnight-purple
+[calm]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=calm
+[flag-india]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=flag-india
+[omni]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=omni
+[react]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=react
+[jolly]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=jolly
+[maroongold]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=maroongold
+[yeblu]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=yeblu
+[blueberry]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=blueberry
+[slateorange]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=slateorange
+[kacho_ga]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=kacho_ga
+[outrun]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=outrun
+[ocean_dark]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=ocean_dark
+[city_lights]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=city_lights
+[github_dark]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=github_dark
+[github_dark_dimmed]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=github_dark_dimmed
+[discord_old_blurple]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=discord_old_blurple
+[aura_dark]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=aura_dark
+[panda]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=panda
+[noctis_minimus]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=noctis_minimus
+[cobalt2]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=cobalt2
+[swift]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=swift
+[aura]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=aura
+[apprentice]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=apprentice
+[moltack]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=moltack
+[codeSTACKr]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=codeSTACKr
+[rose_pine]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=rose_pine
+[catppuccin_latte]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=catppuccin_latte
+[catppuccin_mocha]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=catppuccin_mocha
+[date_night]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=date_night
+[one_dark_pro]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=one_dark_pro
+[rose]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=rose
+[holi]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=holi
+[neon]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=neon
+[blue_navy]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=blue_navy
+[calm_pink]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=calm_pink
+[ambient_gradient]: https://github-readme-stats.zcy.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=ambient_gradient
+
+
+[default_repo]: https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default
 [default_repocard_repo]: https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=default_repocard
 [transparent_repo]: https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=transparent
 [shadow_red_repo]: https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=shadow_red
@@ -223,7 +301,3 @@ Use `?theme=THEME_NAME` parameter like so:
 [blue_navy_repo]: https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=blue_navy
 [calm_pink_repo]: https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=calm_pink
 [ambient_gradient_repo]: https://github-readme-stats.zcy.dev/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=ambient_gradient
-
-[add-theme]: https://github.com/anuraghazra/github-readme-stats/edit/master/themes/index.js
-
-Want to add a new theme? Consider reading the [contribution guidelines](../CONTRIBUTING.md#themes-contribution) :D
