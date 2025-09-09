@@ -3,8 +3,8 @@ import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { expect, it, describe, afterEach } from "@jest/globals";
-import { renderGistCard } from "../src/cards/gist-card.js";
-import { renderError } from "../src/common/utils.js";
+import { renderGistCard } from "../src/cards/gist.js";
+import { CONSTANTS, renderError } from "../src/common/utils.js";
 import gist from "../api/gist.js";
 
 const gist_data = {
@@ -168,6 +168,27 @@ describe("Test /api/gist", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
       renderError("Something went wrong", "Language not found"),
+    );
+  });
+
+  it("should have proper cache", async () => {
+    const req = {
+      query: {
+        id: "bbfce31e0217a3689c8d961a356cb10d",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock.onPost("https://api.github.com/graphql").reply(200, gist_data);
+
+    await gist(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.setHeader).toBeCalledWith(
+      "Cache-Control",
+      `max-age=${CONSTANTS.TWO_DAY}, s-maxage=${CONSTANTS.TWO_DAY}`,
     );
   });
 });
