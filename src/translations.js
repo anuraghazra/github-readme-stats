@@ -49,7 +49,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.ranktitle": {
       ar: `${encodedName} إحصائيات غيت هاب`,
-      az: `${encodedName}'${apostrophe} Hesabının Github Statistikası`,
+      az: `${encodedName}'${apostrophe} Hesabının GitHub Statistikası`,
       cn: `${encodedName} 的 GitHub 统计数据`,
       "zh-tw": `${encodedName} 的 GitHub 統計數據`,
       cs: `GitHub statistiky uživatele ${encodedName}`,
