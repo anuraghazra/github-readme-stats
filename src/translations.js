@@ -16,7 +16,7 @@ const statCardLocales = ({ name, apostrophe }) => {
   const encodedName = encodeHTML(name);
   return {
     "statcard.title": {
-      ar: `${encodedName} إحصائيات غيت هاب`,
+      ar: `${encodedName} إحصائيات جيت هاب`,
       az: `${encodedName}'${apostrophe} Hesabının GitHub Statistikası`,
       cn: `${encodedName} 的 GitHub 统计数据`,
       "zh-tw": `${encodedName} 的 GitHub 統計數據`,
@@ -48,7 +48,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: `GitHubstatistik för ${encodedName}`,
     },
     "statcard.ranktitle": {
-      ar: `${encodedName} إحصائيات غيت هاب`,
+      ar: `${encodedName} إحصائيات جيت هاب`,
       az: `${encodedName}'${apostrophe} Hesabının GitHub Statistikası`,
       cn: `${encodedName} 的 GitHub 统计数据`,
       "zh-tw": `${encodedName} 的 GitHub 統計數據`,
@@ -112,7 +112,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Antal intjänade stjärnor",
     },
     "statcard.commits": {
-      ar: "مجموع الحفظ",
+      ar: "مجموع المساهمات",
       az: "Ümumi Commit",
       cn: "累计提交数（commit）",
       "zh-tw": "累計提交數（commit）",
@@ -240,7 +240,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Bidragit till (förra året)",
     },
     "statcard.reviews": {
-      ar: "تمت مراجعة إجمالي العلاقات العامة",
+      ar: "طلبات السحب التي تم مراجعتها",
       az: "Nəzərdən Keçirilən Ümumi PR",
       cn: "審查的 PR 總數",
       "zh-tw": "审查的 PR 总数",
@@ -272,7 +272,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Totalt antal granskade PR",
     },
     "statcard.discussions-started": {
-      ar: "مجموع بدء المناقشات",
+      ar: "مجموع المناقشات التي بدأها",
       az: "Başladılan Ümumi Müzakirə",
       cn: "发起的讨论总数",
       "zh-tw": "發起的討論總數",
@@ -304,7 +304,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Totalt antal diskussioner startade",
     },
     "statcard.discussions-answered": {
-      ar: "مجموع الردود على المناقشات",
+      ar: "مجموع المناقشات المُجابة",
       az: "Cavablandırılan Ümumi Müzakirə",
       cn: "回复的讨论总数",
       "zh-tw": "回覆的討論總數",
@@ -336,7 +336,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Totalt antal diskussioner besvarade",
     },
     "statcard.prs-merged": {
-      ar: "مجموع الطلبات المدمجة",
+      ar: "مجموع طلبات السحب المُدمجة",
       az: "Birləşdirilmiş Ümumi PR",
       cn: "合并的 PR 总数",
       "zh-tw": "合併的 PR 總數",
@@ -367,7 +367,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Totalt antal sammanfogade PR",
     },
     "statcard.prs-merged-percentage": {
-      ar: "نسبة الطلبات المدمجة",
+      ar: "نسبة طلبات السحب المُدمجة",
       az: "Birləşdirilmiş PR-ların Faizi",
       cn: "合并的 PR 百分比",
       "zh-tw": "合併的 PR 百分比",
@@ -434,7 +434,7 @@ const repoCardLocales = {
     se: "Mall",
   },
   "repocard.archived": {
-    ar: "محفوظ",
+    ar: "مُؤرشف",
     az: "Arxiv",
     bn: "আর্কাইভড",
     cn: "已归档",
@@ -469,7 +469,7 @@ const repoCardLocales = {
 
 const langCardLocales = {
   "langcard.title": {
-    ar: "أكثر اللغات إستخداماً",
+    ar: "أكثر اللغات استخدامًا",
     az: "Ən Çox İstifadə Olunan Dillər",
     cn: "最常用的语言",
     "zh-tw": "最常用的語言",
@@ -501,7 +501,7 @@ const langCardLocales = {
     se: "Mest använda språken",
   },
   "langcard.nodata": {
-    ar: "لا توجد بيانات لغات.",
+    ar: "لا توجد بيانات للغات.",
     az: "Dil məlumatı yoxdur.",
     cn: "沒有語言數據。",
     "zh-tw": "沒有語言數據。",
@@ -632,7 +632,7 @@ const wakatimeCardLocales = {
     se: "Senaste 7 dagarna",
   },
   "wakatimecard.notpublic": {
-    ar: "ملف المستخدم غير عام",
+    ar: "ملف مستخدم واكا تايم شخصي",
     az: "WakaTime istifadəçi profili ictimai deyil",
     cn: "WakaTime 用户个人资料未公开",
     "zh-tw": "WakaTime 使用者個人資料未公開",
@@ -664,7 +664,7 @@ const wakatimeCardLocales = {
     se: "WakaTime användarprofil inte offentlig",
   },
   "wakatimecard.nocodedetails": {
-    ar: "المستخدم لا يشارك معلومات تفصيلية عن البرمجة",
+    ar: "المستخدم لا يشارك المعلومات التفصيلية",
     az: "İstifadəçi kod statistikalarını ictimai şəkildə paylaşmır",
     cn: "用户不公开分享详细的代码统计信息",
     "zh-tw": "使用者不公開分享詳細的程式碼統計資訊",
