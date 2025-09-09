@@ -1,4 +1,4 @@
-import { renderStatsCard } from "../src/cards/stats-card.js";
+import { renderStatsCard } from "../src/cards/stats.js";
 import { blacklist } from "../src/common/blacklist.js";
 import {
   clampValue,
@@ -7,7 +7,7 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { fetchStats } from "../src/fetchers/stats-fetcher.js";
+import { fetchStats } from "../src/fetchers/stats.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
