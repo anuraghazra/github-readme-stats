@@ -328,6 +328,7 @@ Here is a list of all available locales:
 | `uz` | Uzbek |
 | `vi` | Vietnamese |
 | `se` | Swedish |
+| `az` | Azerbaijani |
 
 </td></tr>
 </table>
