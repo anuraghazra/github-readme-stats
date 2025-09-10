@@ -71,7 +71,7 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard({ ...stats, name: "Felix" });
 
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Felix' GitHub Stats",
+      "Felix's GitHub Stats",
     );
   });
 
