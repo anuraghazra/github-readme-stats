@@ -1,14 +1,13 @@
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
-import { renderWakatimeCard } from "../src/cards/wakatime-card.js";
-import { getCardColors } from "../src/common/utils.js";
+import { renderWakatimeCard } from "../src/cards/wakatime.js";
 import { wakaTimeData } from "./fetchWakatime.test.js";
 import { expect, it, describe } from "@jest/globals";
 
 describe("Test Render WakaTime Card", () => {
   it("should render correctly", () => {
-    // const card = renderWakatimeCard(wakaTimeData.data);
-    expect(getCardColors).toMatchSnapshot();
+    const card = renderWakatimeCard(wakaTimeData.data);
+    expect(card).toMatchSnapshot();
   });
 
   it("should render correctly with compact layout", () => {
@@ -82,5 +81,12 @@ describe("Test Render WakaTime Card", () => {
     expect(document.querySelector(".stat").textContent).toBe(
       "No coding activity this week",
     );
+  });
+
+  it("should render correctly with percent display format", () => {
+    const card = renderWakatimeCard(wakaTimeData.data, {
+      display_format: "percent",
+    });
+    expect(card).toMatchSnapshot();
   });
 });

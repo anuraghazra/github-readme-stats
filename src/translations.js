@@ -16,7 +16,8 @@ const statCardLocales = ({ name, apostrophe }) => {
   const encodedName = encodeHTML(name);
   return {
     "statcard.title": {
-      ar: `${encodedName} إحصائيات غيت هاب`,
+      ar: `${encodedName} إحصائيات جيت هاب`,
+      az: `${encodedName}'${apostrophe} Hesabının GitHub Statistikası`,
       cn: `${encodedName} 的 GitHub 统计数据`,
       "zh-tw": `${encodedName} 的 GitHub 統計數據`,
       cs: `GitHub statistiky uživatele ${encodedName}`,
@@ -40,14 +41,15 @@ const statCardLocales = ({ name, apostrophe }) => {
       ml: `${encodedName}'${apostrophe} ഗിറ്റ്ഹബ് സ്ഥിതിവിവരക്കണക്കുകൾ`,
       my: `Statistik GitHub ${encodedName}`,
       sk: `GitHub štatistiky používateľa ${encodedName}`,
-      tr: `${encodedName} Hesabının GitHub Yıldızları`,
+      tr: `${encodedName} Hesabının GitHub İstatistikleri`,
       pl: `Statystyki GitHub użytkownika ${encodedName}`,
       uz: `${encodedName}ning GitHub'dagi statistikasi`,
       vi: `Thống Kê GitHub ${encodedName}`,
       se: `GitHubstatistik för ${encodedName}`,
     },
     "statcard.ranktitle": {
-      ar: `${encodedName} إحصائيات غيت هاب`,
+      ar: `${encodedName} إحصائيات جيت هاب`,
+      az: `${encodedName}'${apostrophe} Hesabının GitHub Statistikası`,
       cn: `${encodedName} 的 GitHub 统计数据`,
       "zh-tw": `${encodedName} 的 GitHub 統計數據`,
       cs: `GitHub statistiky uživatele ${encodedName}`,
@@ -79,6 +81,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.totalstars": {
       ar: "مجموع النجوم",
+      az: "Ümumi Ulduz",
       cn: "获标星数（star）",
       "zh-tw": "獲標星數（star）",
       cs: "Celkem hvězd",
@@ -109,7 +112,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Antal intjänade stjärnor",
     },
     "statcard.commits": {
-      ar: "مجموع الحفظ",
+      ar: "مجموع المساهمات",
+      az: "Ümumi Commit",
       cn: "累计提交数（commit）",
       "zh-tw": "累計提交數（commit）",
       cs: "Celkem commitů",
@@ -141,6 +145,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.prs": {
       ar: "مجموع طلبات السحب",
+      az: "Ümumi PR",
       cn: "拉取请求数（PR）",
       "zh-tw": "拉取請求數（PR）",
       cs: "Celkem PRs",
@@ -172,6 +177,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.issues": {
       ar: "مجموع التحسينات",
+      az: "Ümumi Problem",
       cn: "指出问题数（issue）",
       "zh-tw": "指出問題數（issue）",
       cs: "Celkem problémů",
@@ -203,6 +209,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     },
     "statcard.contribs": {
       ar: "ساهم في (العام الماضي)",
+      az: "Töhfə verdi (ötən il)",
       cn: "贡献于（去年）",
       "zh-tw": "參與項目數 （去年）",
       cs: "Přispěl k (minulý rok)",
@@ -233,7 +240,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Bidragit till (förra året)",
     },
     "statcard.reviews": {
-      ar: "تمت مراجعة إجمالي العلاقات العامة",
+      ar: "طلبات السحب التي تم مراجعتها",
+      az: "Nəzərdən Keçirilən Ümumi PR",
       cn: "審查的 PR 總數",
       "zh-tw": "审查的 PR 总数",
       cs: "Celkový počet PR",
@@ -264,7 +272,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Totalt antal granskade PR",
     },
     "statcard.discussions-started": {
-      ar: "مجموع بدء المناقشات",
+      ar: "مجموع المناقشات التي بدأها",
+      az: "Başladılan Ümumi Müzakirə",
       cn: "发起的讨论总数",
       "zh-tw": "發起的討論總數",
       cs: "Celkem zahájených diskusí",
@@ -295,7 +304,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Totalt antal diskussioner startade",
     },
     "statcard.discussions-answered": {
-      ar: "مجموع الردود على المناقشات",
+      ar: "مجموع المناقشات المُجابة",
+      az: "Cavablandırılan Ümumi Müzakirə",
       cn: "回复的讨论总数",
       "zh-tw": "回覆的討論總數",
       cs: "Celkem zodpovězených diskusí",
@@ -326,7 +336,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Totalt antal diskussioner besvarade",
     },
     "statcard.prs-merged": {
-      ar: "مجموع الطلبات المدمجة",
+      ar: "مجموع طلبات السحب المُدمجة",
+      az: "Birləşdirilmiş Ümumi PR",
       cn: "合并的 PR 总数",
       "zh-tw": "合併的 PR 總數",
       cs: "Celkem sloučených PR",
@@ -356,7 +367,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       se: "Totalt antal sammanfogade PR",
     },
     "statcard.prs-merged-percentage": {
-      ar: "نسبة الطلبات المدمجة",
+      ar: "نسبة طلبات السحب المُدمجة",
+      az: "Birləşdirilmiş PR-ların Faizi",
       cn: "合并的 PR 百分比",
       "zh-tw": "合併的 PR 百分比",
       cs: "Sloučené PRs v procentech",
@@ -391,6 +403,7 @@ const statCardLocales = ({ name, apostrophe }) => {
 const repoCardLocales = {
   "repocard.template": {
     ar: "قالب",
+    az: "Şablon",
     bn: "টেমপ্লেট",
     cn: "模板",
     "zh-tw": "模板",
@@ -421,7 +434,8 @@ const repoCardLocales = {
     se: "Mall",
   },
   "repocard.archived": {
-    ar: "محفوظ",
+    ar: "مُؤرشف",
+    az: "Arxiv",
     bn: "আর্কাইভড",
     cn: "已归档",
     "zh-tw": "已歸檔",
@@ -455,7 +469,8 @@ const repoCardLocales = {
 
 const langCardLocales = {
   "langcard.title": {
-    ar: "أكثر اللغات إستخداماً",
+    ar: "أكثر اللغات استخدامًا",
+    az: "Ən Çox İstifadə Olunan Dillər",
     cn: "最常用的语言",
     "zh-tw": "最常用的語言",
     cs: "Nejpoužívanější jazyky",
@@ -469,7 +484,7 @@ const langCardLocales = {
     ja: "最もよく使っている言語",
     kr: "가장 많이 사용된 언어",
     nl: "Meest gebruikte talen",
-    "pt-pt": "Idiomas mais usados",
+    "pt-pt": "Linguagens mais usadas",
     "pt-br": "Linguagens mais usadas",
     np: "अधिक प्रयोग गरिएको भाषाहरू",
     el: "Οι περισσότερο χρησιμοποιούμενες γλώσσες",
@@ -486,7 +501,8 @@ const langCardLocales = {
     se: "Mest använda språken",
   },
   "langcard.nodata": {
-    ar: "لا توجد بيانات لغات.",
+    ar: "لا توجد بيانات للغات.",
+    az: "Dil məlumatı yoxdur.",
     cn: "沒有語言數據。",
     "zh-tw": "沒有語言數據。",
     cs: "Žádné jazykové údaje.",
@@ -500,8 +516,8 @@ const langCardLocales = {
     ja: "言語データがありません。",
     kr: "언어 데이터가 없습니다.",
     nl: "Ingen sprogdata.",
-    "pt-pt": "Sem dados de idiomas.",
-    "pt-br": "Sem dados de idiomas.",
+    "pt-pt": "Sem dados de linguagens.",
+    "pt-br": "Sem dados de linguagens.",
     np: "कुनै भाषा डाटा छैन।",
     el: "Δεν υπάρχουν δεδομένα γλωσσών.",
     ru: "Нет данных о языках.",
@@ -521,6 +537,7 @@ const langCardLocales = {
 const wakatimeCardLocales = {
   "wakatimecard.title": {
     ar: "إحصائيات واكا تايم",
+    az: "WakaTime Statistikası",
     cn: "WakaTime 周统计",
     "zh-tw": "WakaTime 周統計",
     cs: "Statistiky WakaTime",
@@ -552,6 +569,7 @@ const wakatimeCardLocales = {
   },
   "wakatimecard.lastyear": {
     ar: "العام الماضي",
+    az: "Ötən il",
     cn: "去年",
     "zh-tw": "去年",
     cs: "Minulý rok",
@@ -583,6 +601,7 @@ const wakatimeCardLocales = {
   },
   "wakatimecard.last7days": {
     ar: "آخر 7 أيام",
+    az: "Son 7 gün",
     cn: "最近 7 天",
     "zh-tw": "最近 7 天",
     cs: "Posledních 7 dní",
@@ -613,7 +632,8 @@ const wakatimeCardLocales = {
     se: "Senaste 7 dagarna",
   },
   "wakatimecard.notpublic": {
-    ar: "ملف المستخدم غير عام",
+    ar: "ملف مستخدم واكا تايم شخصي",
+    az: "WakaTime istifadəçi profili ictimai deyil",
     cn: "WakaTime 用户个人资料未公开",
     "zh-tw": "WakaTime 使用者個人資料未公開",
     cs: "Profil uživatele WakaTime není veřejný",
@@ -627,7 +647,7 @@ const wakatimeCardLocales = {
     ja: "WakaTime ユーザープロファイルは公開されていません",
     kr: "WakaTime 사용자 프로필이 공개되지 않았습니다",
     nl: "WakaTime gebruikersprofiel niet openbaar",
-    "pt-pt": "Perfil de usuário WakaTime não público",
+    "pt-pt": "Perfil de utilizador WakaTime não público",
     "pt-br": "Perfil de usuário WakaTime não público",
     np: "WakaTime प्रयोगकर्ता प्रोफाइल सार्वजनिक छैन",
     el: "Το προφίλ χρήστη WakaTime δεν είναι δημόσιο",
@@ -644,7 +664,8 @@ const wakatimeCardLocales = {
     se: "WakaTime användarprofil inte offentlig",
   },
   "wakatimecard.nocodedetails": {
-    ar: "المستخدم لا يشارك معلومات تفصيلية عن البرمجة",
+    ar: "المستخدم لا يشارك المعلومات التفصيلية",
+    az: "İstifadəçi kod statistikalarını ictimai şəkildə paylaşmır",
     cn: "用户不公开分享详细的代码统计信息",
     "zh-tw": "使用者不公開分享詳細的程式碼統計資訊",
     cs: "Uživatel nesdílí podrobné statistiky kódu",
@@ -678,6 +699,7 @@ const wakatimeCardLocales = {
   },
   "wakatimecard.nocodingactivity": {
     ar: "لا يوجد نشاط برمجي لهذا الأسبوع",
+    az: "Bu həftə heç bir kodlaşdırma fəaliyyəti olmayıb",
     cn: "本周没有编程活动",
     "zh-tw": "本周沒有編程活動",
     cs: "Tento týden žádná aktivita v kódování",
