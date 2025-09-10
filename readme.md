@@ -270,6 +270,7 @@ You can customize the appearance of all your cards however you wish with URL par
 | `cache_seconds` | Sets the cache header manually (min: 21600, max: 86400). | integer | `21600` |
 | `locale` | Sets the language in the card, you can check full list of available locales [here](#available-locales). | enum | `en` |
 | `border_radius` | Corner rounding on the card. | number | `4.5` |
+| `json` | Outputs raw JSON data instead of rendering a card. Useful for debugging or data use in other apps. | boolean | `false` |
 
 > [!WARNING]\
 > We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have the following default cache hours: stats card - 24 hours, top languages card - 144 hours (6 days), pin card - 240 hours (10 days), gist card - 48 hours (2 days). If you want the data on your statistics card to be updated more often you can [deploy your own instance](#deploy-on-your-own) and set [environment variable](#disable-rate-limit-protections) `CACHE_SECONDS` to a value of your choosing.

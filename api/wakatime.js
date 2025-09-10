@@ -1,4 +1,3 @@
-import { renderWakatimeCard } from "../src/cards/wakatime.js";
 import {
   clampValue,
   CONSTANTS,
@@ -7,6 +6,7 @@ import {
   renderError,
 } from "../src/common/utils.js";
 import { fetchWakatimeStats } from "../src/fetchers/wakatime.js";
+import { renderWakatimeCard } from "../src/cards/wakatime.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
@@ -32,19 +32,27 @@ export default async (req, res) => {
     border_color,
     display_format,
     disable_animations,
+    json,
   } = req.query;
 
-  res.setHeader("Content-Type", "image/svg+xml");
+  const returnJson = parseBoolean(json);
+
+  res.setHeader(
+    "Content-Type",
+    returnJson ? "application/json" : "image/svg+xml",
+  );
 
   if (locale && !isLocaleAvailable(locale)) {
     return res.send(
-      renderError("Something went wrong", "Language not found", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      returnJson
+        ? { error: "Language not found" }
+        : renderError("Something went wrong", "Language not found", {
+            title_color,
+            text_color,
+            bg_color,
+            border_color,
+            theme,
+          }),
     );
   }
 
@@ -66,6 +74,10 @@ export default async (req, res) => {
         cacheSeconds / 2
       }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     );
+
+    if (returnJson) {
+      return res.send(stats);
+    }
 
     return res.send(
       renderWakatimeCard(stats, {
@@ -97,13 +109,15 @@ export default async (req, res) => {
       }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     ); // Use lower cache period for errors.
     return res.send(
-      renderError(err.message, err.secondaryMessage, {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      returnJson
+        ? { error: err.message, secondaryMessage: err.secondaryMessage }
+        : renderError(err.message, err.secondaryMessage, {
+            title_color,
+            text_color,
+            bg_color,
+            border_color,
+            theme,
+          }),
     );
   }
 };
