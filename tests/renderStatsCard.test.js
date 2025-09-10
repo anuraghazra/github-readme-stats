@@ -4,7 +4,7 @@ import {
   queryByTestId,
 } from "@testing-library/dom";
 import { cssToObject } from "@uppercod/css-to-object";
-import { renderStatsCard } from "../src/cards/stats-card.js";
+import { renderStatsCard } from "../src/cards/stats.js";
 import { expect, it, describe } from "@jest/globals";
 import { CustomError } from "../src/common/utils.js";
 
@@ -71,7 +71,7 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard({ ...stats, name: "Felix" });
 
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Felix' GitHub Stats",
+      "Felix's GitHub Stats",
     );
   });
 
