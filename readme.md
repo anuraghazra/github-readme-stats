@@ -636,7 +636,7 @@ You can customize the appearance and behavior of the WakaTime stats card using t
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&hide=issues\&show_icons=true)
 
-*   Shows Github logo instead rank level
+*   Shows GitHub logo instead rank level
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&rank_icon=github)
 
@@ -799,7 +799,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 
 ## Disable rate limit protections
 
-Github Readme Stats contains several Vercel environment variables that can be used to remove the rate limit protections:
+GitHub Readme Stats contains several Vercel environment variables that can be used to remove the rate limit protections:
 
 *   `CACHE_SECONDS`: This environment variable takes precedence over our cache minimum and maximum values and can circumvent these values for self-hosted Vercel instances.
 
