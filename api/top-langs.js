@@ -33,6 +33,7 @@ export default async (req, res) => {
     border_color,
     disable_animations,
     hide_progress,
+    lang,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -63,12 +64,37 @@ export default async (req, res) => {
   }
 
   try {
-    const topLangs = await fetchTopLanguages(
-      username,
-      parseArray(exclude_repo),
-      size_weight,
-      count_weight,
-    );
+    // Check if `lang` parameter is provided
+    let topLangs;
+    if (lang) {
+      // If lang is provided, split the string into an array
+      const customLangs = lang.split(",");
+      // Map custom languages to a format similar to the fetched language data
+      topLangs = customLangs.reduce((acc, curr) => {
+        acc[curr] = {
+          name: curr,
+          color: "#000000", // Assign a default color (you can customize this later)
+          size: 1, // Default size
+          count: 1, // Default count
+        };
+        return acc;
+      }, {});
+    } else {
+      // Fetch the actual top languages if no custom languages are provided
+      topLangs = await fetchTopLanguages(
+        username,
+        parseArray(exclude_repo),
+        size_weight,
+        count_weight,
+      );
+    }
+
+    // const topLangs = await fetchTopLanguages(
+    //   username,
+    //   parseArray(exclude_repo),
+    //   size_weight,
+    //   count_weight,
+    // );
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.TOP_LANGS_CACHE_SECONDS, 10),

@@ -514,6 +514,13 @@ You can use the `&langs_count=` option to increase or decrease the number of lan
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&langs_count=8)
 ```
 
+### Show Custom Languages
+You can now specify custom languages to be displayed using the `&lang=` query parameter. The custom languages will override the automatically fetched top languages. The value should be a comma-separated list of language names. Note that the languages provided in the list will be shown with default settings for color, size, and count.
+
+```md
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&lang=python,java,react,javascript,nextjs)
+```
+
 ### Compact Language Card Layout
 
 You can use the `&layout=compact` option to change the card design.
