@@ -51,6 +51,8 @@ export default async (req, res) => {
   if (locale && !isLocaleAvailable(locale)) {
     return res.send(renderError("Something went wrong", "Locale not found"));
   }
+  
+  theme = theme.replace(/-/g, "_")
 
   if (
     layout !== undefined &&
