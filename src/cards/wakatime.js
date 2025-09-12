@@ -223,6 +223,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const {
     hide_title = false,
     hide_border = false,
+    card_width,
     hide,
     line_height = 25,
     title_color,
@@ -289,11 +290,9 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   let finalLayout = "";
 
-  let width = 440;
-
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
-    width = width + 50;
+    let width = (card_width || 495) - 5;
     height = 90 + Math.round(filteredLanguages.length / 2) * 25;
 
     // progressOffset holds the previous language's width and used to offset the next language
@@ -392,7 +391,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const card = new Card({
     customTitle: custom_title,
     defaultTitle: titleText,
-    width: 495,
+    width: card_width || 495,
     height,
     border_radius,
     colors: {
