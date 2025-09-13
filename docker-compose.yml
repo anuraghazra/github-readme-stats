@@ -1,0 +1,13 @@
+services:
+
+  github-stats:
+    build: .
+    image: github-stats:latest
+    container_name: github-stats
+    restart: always
+    ports:
+      - "$port:$port"
+    env_file:
+      - .env
+    expose:
+      - $port

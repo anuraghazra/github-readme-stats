@@ -744,6 +744,18 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 # Deploy on your own
 
+## First step: get your Personal Access Token PAT
+
+Steps:
+  - Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic)](https://github.com/settings/tokens).
+  - Click on `Generate new token -> Generate new token classic`.
+  - Scopes to selected:
+    - repo
+    - read:user
+  - Click on `Generate token` and copy it.
+  
+That's all.
+
 ## On Vercel
 
 ### :film\_projector: [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
@@ -796,6 +808,19 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
     <https://github.com/anuraghazra/github-readme-stats/blob/ba7c2f8b55eac8452e479c8bd38b044d204d0424/package.json#L11>
 5.  You're done 🎉
     </details>
+
+## On docker platform
+
+<details>
+  <summary><b>:hammer_and_wrench: Step-by-step guide for deploying on docker</b></summary>
+
+  1.  Fork or clone this repo as per your needs.
+  2.  Copy `.env.example` in `.env`.
+  3.  Modify the `.env` with your PAT.
+  4.  Run `docker compose up -d` to start the container.
+  5.  You're done 🎉
+  6.  Now the base URL was `http://localhost:9000/<pin|top-langs|wakatime|gist>?username=...`
+</details>
 
 ## Disable rate limit protections
 
