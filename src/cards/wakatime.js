@@ -223,10 +223,10 @@ const getStyles = ({
  */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   let { languages = [] } = stats;
-  const {
+  let {
     hide_title = false,
     hide_border = false,
-    card_width = 495,
+    card_width,
     hide,
     line_height = 25,
     title_color,
@@ -244,6 +244,10 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     display_format = "time",
     disable_animations,
   } = options;
+
+  if (isNaN(card_width)) {
+    card_width = 495;
+  }
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
   if (shouldHideLangs) {
@@ -335,7 +339,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               y: 25,
               langs: filteredLanguages,
               display_format,
-              card_width: card_width,
+              card_width,
             }).join("")
           : noCodingActivityNode({
               // @ts-ignore
