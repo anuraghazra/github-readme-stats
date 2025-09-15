@@ -4,6 +4,7 @@ import {
   renderError,
   parseBoolean,
 } from "../src/common/utils.js";
+import { gistWhitelist } from "../src/common/whitelist.js";
 import { isLocaleAvailable } from "../src/translations.js";
 import { renderGistCard } from "../src/cards/gist.js";
 import { fetchGist } from "../src/fetchers/gist.js";
@@ -25,6 +26,23 @@ export default async (req, res) => {
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
+
+  if (gistWhitelist && !gistWhitelist.includes(id)) {
+    return res.send(
+      renderError(
+        "This gist ID is not whitelisted",
+        "Please deploy your own instance",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+          show_repo_link: false,
+        },
+      ),
+    );
+  }
 
   if (locale && !isLocaleAvailable(locale)) {
     return res.send(
