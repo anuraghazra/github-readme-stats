@@ -1,4 +1,4 @@
-import { renderWakatimeCard } from "../src/cards/wakatime-card.js";
+import { renderWakatimeCard } from "../src/cards/wakatime.js";
 import {
   clampValue,
   CONSTANTS,
@@ -7,7 +7,7 @@ import {
   renderError,
 } from "../src/common/utils.js";
 import { whitelist } from "../src/common/whitelist.js";
-import { fetchWakatimeStats } from "../src/fetchers/wakatime-fetcher.js";
+import { fetchWakatimeStats } from "../src/fetchers/wakatime.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
@@ -68,7 +68,7 @@ export default async (req, res) => {
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
       CONSTANTS.SIX_HOURS,
-      CONSTANTS.ONE_DAY,
+      CONSTANTS.TWO_DAY,
     );
     cacheSeconds = process.env.CACHE_SECONDS
       ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds

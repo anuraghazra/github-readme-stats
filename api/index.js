@@ -1,4 +1,4 @@
-import { renderStatsCard } from "../src/cards/stats-card.js";
+import { renderStatsCard } from "../src/cards/stats.js";
 import { blacklist } from "../src/common/blacklist.js";
 import { whitelist } from "../src/common/whitelist.js";
 import {
@@ -8,7 +8,7 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { fetchStats } from "../src/fetchers/stats-fetcher.js";
+import { fetchStats } from "../src/fetchers/stats.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
@@ -93,8 +93,8 @@ export default async (req, res) => {
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
-      CONSTANTS.SIX_HOURS,
-      CONSTANTS.ONE_DAY,
+      CONSTANTS.TWELVE_HOURS,
+      CONSTANTS.TWO_DAY,
     );
     cacheSeconds = process.env.CACHE_SECONDS
       ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
@@ -102,9 +102,7 @@ export default async (req, res) => {
 
     res.setHeader(
       "Cache-Control",
-      `max-age=${
-        cacheSeconds / 2
-      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      `max-age=${cacheSeconds}, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     );
 
     return res.send(
