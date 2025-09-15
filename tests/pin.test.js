@@ -156,7 +156,11 @@ describe("Test /api/pin", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Something went wrong", "This username is blacklisted"),
+      renderError(
+        "This username is blacklisted",
+        "Please deploy your own instance",
+        { show_repo_link: false },
+      ),
     );
   });
 
