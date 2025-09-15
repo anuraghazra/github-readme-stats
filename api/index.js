@@ -1,5 +1,6 @@
-import { renderStatsCard } from "../src/cards/stats-card.js";
+import { renderStatsCard } from "../src/cards/stats.js";
 import { blacklist } from "../src/common/blacklist.js";
+import { whitelist } from "../src/common/whitelist.js";
 import {
   clampValue,
   CONSTANTS,
@@ -7,7 +8,7 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { fetchStats } from "../src/fetchers/stats-fetcher.js";
+import { fetchStats } from "../src/fetchers/stats.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
@@ -41,15 +42,37 @@ export default async (req, res) => {
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (blacklist.includes(username)) {
+  if (whitelist && !whitelist.includes(username)) {
     return res.send(
-      renderError("Something went wrong", "This username is blacklisted", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      renderError(
+        "This username is not whitelisted",
+        "Please deploy your own instance",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+          show_repo_link: false,
+        },
+      ),
+    );
+  }
+
+  if (whitelist === undefined && blacklist.includes(username)) {
+    return res.send(
+      renderError(
+        "This username is blacklisted",
+        "Please deploy your own instance",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+          show_repo_link: false,
+        },
+      ),
     );
   }
 
@@ -79,8 +102,8 @@ export default async (req, res) => {
 
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
-      CONSTANTS.SIX_HOURS,
-      CONSTANTS.ONE_DAY,
+      CONSTANTS.TWELVE_HOURS,
+      CONSTANTS.TWO_DAY,
     );
     cacheSeconds = process.env.CACHE_SECONDS
       ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
@@ -88,9 +111,7 @@ export default async (req, res) => {
 
     res.setHeader(
       "Cache-Control",
-      `max-age=${
-        cacheSeconds / 2
-      }, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      `max-age=${cacheSeconds}, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     );
 
     return res.send(
