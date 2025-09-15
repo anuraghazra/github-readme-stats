@@ -82,7 +82,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.totalstars": {
       ar: "مجموع النجوم",
       az: "Ümumi Ulduz",
-      cn: "获标星数（star）",
+      cn: "获标星数",
       "zh-tw": "得標星星數量（Star）",
       cs: "Celkem hvězd",
       de: "Insgesamt erhaltene Sterne",
@@ -114,7 +114,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.commits": {
       ar: "مجموع المساهمات",
       az: "Ümumi Commit",
-      cn: "累计提交数（commit）",
+      cn: "累计提交总数",
       "zh-tw": "累計提交數量（Commit）",
       cs: "Celkem commitů",
       de: "Anzahl Commits",
@@ -146,7 +146,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.prs": {
       ar: "مجموع طلبات السحب",
       az: "Ümumi PR",
-      cn: "拉取请求数（PR）",
+      cn: "发起的 PR 总数",
       "zh-tw": "拉取請求數量（PR）",
       cs: "Celkem PRs",
       de: "PRs Insgesamt",
@@ -178,7 +178,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.issues": {
       ar: "مجموع التحسينات",
       az: "Ümumi Problem",
-      cn: "指出问题数（issue）",
+      cn: "提出的 issue 总数",
       "zh-tw": "提出問題數量（Issue）",
       cs: "Celkem problémů",
       de: "Anzahl Issues",
@@ -210,7 +210,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.contribs": {
       ar: "ساهم في (العام الماضي)",
       az: "Töhfə verdi (ötən il)",
-      cn: "贡献于（去年）",
+      cn: "贡献的项目数（去年）",
       "zh-tw": "參與項目數量（去年）",
       cs: "Přispěl k (minulý rok)",
       de: "Beigetragen zu (letztes Jahr)",
@@ -242,7 +242,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.reviews": {
       ar: "طلبات السحب التي تم مراجعتها",
       az: "Nəzərdən Keçirilən Ümumi PR",
-      cn: "審查的 PR 總數",
+      cn: "审查的 PR 总数",
       "zh-tw": "審核的 PR 總計",
       cs: "Celkový počet PR",
       de: "Insgesamt überprüfte PRs",
@@ -369,7 +369,7 @@ const statCardLocales = ({ name, apostrophe }) => {
     "statcard.prs-merged-percentage": {
       ar: "نسبة طلبات السحب المُدمجة",
       az: "Birləşdirilmiş PR-ların Faizi",
-      cn: "合并的 PR 百分比",
+      cn: "被合并的 PR 占比",
       "zh-tw": "合併的 PR 百分比",
       cs: "Sloučené PRs v procentech",
       de: "Zusammengeführte PRs in Prozent",
@@ -503,7 +503,7 @@ const langCardLocales = {
   "langcard.nodata": {
     ar: "لا توجد بيانات للغات.",
     az: "Dil məlumatı yoxdur.",
-    cn: "沒有語言數據。",
+    cn: "没有语言数据。",
     "zh-tw": "沒有語言資料。",
     cs: "Žádné jazykové údaje.",
     de: "Keine Sprachdaten.",
