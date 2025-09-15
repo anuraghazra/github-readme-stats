@@ -622,7 +622,7 @@ const wakatimeCardLocales = {
     "pt-br": "Ano passado",
     np: "गत वर्ष",
     el: "Πέρυσι",
-    ro: "anul trecut",
+    ro: "Anul trecut",
     ru: "За прошлый год",
     "uk-ua": "За минулий рік",
     id: "Tahun lalu",
