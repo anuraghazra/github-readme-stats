@@ -70,7 +70,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-br": `Estatísticas do GitHub de ${encodedName}`,
       np: `${encodedName}'${apostrophe} गिटहब तथ्याङ्क`,
       el: `Στατιστικά GitHub του ${encodedName}`,
-      ro: `Rankul Github al lui ${encodedName}`,
+      ro: `Rankul GitHub al lui ${encodedName}`,
       ru: `Рейтинг GitHub пользователя ${encodedName}`,
       "uk-ua": `Статистика GitHub користувача ${encodedName}`,
       id: `Statistik GitHub ${encodedName}`,
