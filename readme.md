@@ -299,6 +299,7 @@ Here is a list of all available locales:
 | `es` | Spanish |
 | `fr` | French |
 | `hu` | Hungarian |
+| `fi` | Finnish |
 
 </td><td>
 
