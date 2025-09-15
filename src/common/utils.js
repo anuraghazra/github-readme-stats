@@ -355,6 +355,12 @@ const UPSTREAM_API_ERRORS = [
  * @param {string} message Main error message.
  * @param {string} secondaryMessage The secondary error message.
  * @param {object} options Function options.
+ * @param {string=} options.title_color Card title color.
+ * @param {string=} options.text_color Card text color.
+ * @param {string=} options.bg_color Card background color.
+ * @param {string=} options.border_color Card border color.
+ * @param {string=} options.theme Card theme.
+ * @param {boolean=} options.show_repo_link Whether to show repo link or not.
  * @returns {string} The SVG markup.
  */
 const renderError = (message, secondaryMessage = "", options = {}) => {
@@ -364,6 +370,7 @@ const renderError = (message, secondaryMessage = "", options = {}) => {
     bg_color,
     border_color,
     theme = "default",
+    show_repo_link = true,
   } = options;
 
   // returns theme based colors with proper overrides and defaults
@@ -388,7 +395,7 @@ const renderError = (message, secondaryMessage = "", options = {}) => {
       ERROR_CARD_LENGTH - 1
     }" height="99%" rx="4.5" fill="${bgColor}" stroke="${borderColor}"/>
     <text x="25" y="45" class="text">Something went wrong!${
-      UPSTREAM_API_ERRORS.includes(secondaryMessage)
+      UPSTREAM_API_ERRORS.includes(secondaryMessage) || !show_repo_link
         ? ""
         : " file an issue at https://tiny.one/readme-stats"
     }</text>

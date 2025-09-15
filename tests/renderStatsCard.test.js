@@ -382,29 +382,27 @@ describe("Test renderStatsCard", () => {
       document.querySelector(
         'g[transform="translate(0, 0)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"获标星数（star）:"`);
+    ).toMatchInlineSnapshot(`"获标星数:"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(
-      `"累计提交数（commit） (${new Date().getFullYear()}):"`,
-    );
+    ).toMatchInlineSnapshot(`"累计提交总数 (${new Date().getFullYear()}):"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"拉取请求数（PR）:"`);
+    ).toMatchInlineSnapshot(`"发起的 PR 总数:"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 75)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"指出问题数（issue）:"`);
+    ).toMatchInlineSnapshot(`"提出的 issue 总数:"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"贡献于（去年）:"`);
+    ).toMatchInlineSnapshot(`"贡献的项目数（去年）:"`);
   });
 
   it("should render without rounding", () => {

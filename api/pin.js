@@ -1,5 +1,6 @@
 import { renderRepoCard } from "../src/cards/repo.js";
 import { blacklist } from "../src/common/blacklist.js";
+import { whitelist } from "../src/common/whitelist.js";
 import {
   clampValue,
   CONSTANTS,
@@ -29,15 +30,37 @@ export default async (req, res) => {
 
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (blacklist.includes(username)) {
+  if (whitelist && !whitelist.includes(username)) {
     return res.send(
-      renderError("Something went wrong", "This username is blacklisted", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      renderError(
+        "This username is not whitelisted",
+        "Please deploy your own instance",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+          show_repo_link: false,
+        },
+      ),
+    );
+  }
+
+  if (whitelist === undefined && blacklist.includes(username)) {
+    return res.send(
+      renderError(
+        "This username is blacklisted",
+        "Please deploy your own instance",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+          show_repo_link: false,
+        },
+      ),
     );
   }
 
