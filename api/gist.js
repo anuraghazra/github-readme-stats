@@ -29,14 +29,18 @@ export default async (req, res) => {
 
   if (gistWhitelist && !gistWhitelist.includes(id)) {
     return res.send(
-      renderError("This gist id is not whitelisted", "", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-        show_repo_link: false,
-      }),
+      renderError(
+        "This gist ID is not whitelisted",
+        "Please deploy your own instance",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+          show_repo_link: false,
+        },
+      ),
     );
   }
 

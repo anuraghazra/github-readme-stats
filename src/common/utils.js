@@ -355,6 +355,12 @@ const UPSTREAM_API_ERRORS = [
  * @param {string} message Main error message.
  * @param {string} secondaryMessage The secondary error message.
  * @param {object} options Function options.
+ * @param {string=} options.title_color Card title color.
+ * @param {string=} options.text_color Card text color.
+ * @param {string=} options.bg_color Card background color.
+ * @param {string=} options.border_color Card border color.
+ * @param {string=} options.theme Card theme.
+ * @param {boolean=} options.show_repo_link Whether to show repo link or not.
  * @returns {string} The SVG markup.
  */
 const renderError = (message, secondaryMessage = "", options = {}) => {

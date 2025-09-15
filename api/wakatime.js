@@ -39,14 +39,18 @@ export default async (req, res) => {
 
   if (whitelist && !whitelist.includes(username)) {
     return res.send(
-      renderError("This username is not whitelisted", "", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-        show_repo_link: false,
-      }),
+      renderError(
+        "This username is not whitelisted",
+        "Please deploy your own instance",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+          show_repo_link: false,
+        },
+      ),
     );
   }
 
