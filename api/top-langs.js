@@ -54,7 +54,7 @@ export default async (req, res) => {
     );
   }
 
-  if (!whitelist && blacklist.includes(username)) {
+  if (whitelist === undefined && blacklist.includes(username)) {
     return res.send(
       renderError(
         "This username is blacklisted",
