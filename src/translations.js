@@ -656,7 +656,7 @@ const wakatimeCardLocales = {
     "pt-br": "Últimos 7 dias",
     np: "गत ७ दिन",
     el: "Τελευταίες 7 ημέρες",
-    ro: "ultimele 7 zile",
+    ro: "Ultimele 7 zile",
     ru: "Последние 7 дней",
     "uk-ua": "Останні 7 днів",
     id: "7 hari terakhir",
