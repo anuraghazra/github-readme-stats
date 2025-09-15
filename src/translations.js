@@ -104,7 +104,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "pt-br": "Total de estrelas",
       np: "कुल ताराहरू",
       el: "Σύνολο Αστεριών",
-      ro: "Total De Stele Câștigate",
+      ro: "Total de stele câștigate",
       ru: "Всего звёзд",
       "uk-ua": "Всього зірок",
       id: "Total Bintang",
