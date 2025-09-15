@@ -315,6 +315,7 @@ Here is a list of all available locales:
 | `el` | Greek |
 | `ru` | Russian |
 | `uk-ua` | Ukrainian |
+| `ro` | Romanian |
 
 </td><td>
 
