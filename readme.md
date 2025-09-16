@@ -334,6 +334,7 @@ Here is a list of all available locales:
 | `vi` | Vietnamese |
 | `se` | Swedish |
 | `az` | Azerbaijani |
+| `no` | Norwegian |
 
 </td></tr>
 </table>
