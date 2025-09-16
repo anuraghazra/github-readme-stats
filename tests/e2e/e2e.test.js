@@ -5,11 +5,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import axios from "axios";
-import { renderRepoCard } from "../../src/cards/repo-card.js";
-import { renderStatsCard } from "../../src/cards/stats-card.js";
-import { renderTopLanguages } from "../../src/cards/top-languages-card.js";
-import { renderWakatimeCard } from "../../src/cards/wakatime-card.js";
-import { renderGistCard } from "../../src/cards/gist-card.js";
+import { renderRepoCard } from "../../src/cards/repo.js";
+import { renderStatsCard } from "../../src/cards/stats.js";
+import { renderTopLanguages } from "../../src/cards/top-languages.js";
+import { renderWakatimeCard } from "../../src/cards/wakatime.js";
+import { renderGistCard } from "../../src/cards/gist.js";
 import { expect, describe, beforeAll, test } from "@jest/globals";
 
 const REPO = "curly-fiesta";
@@ -18,7 +18,7 @@ const STATS_CARD_USER = "e2eninja";
 const GIST_ID = "372cef55fd897b31909fdeb3a7262758";
 
 const STATS_DATA = {
-  name: "E2ENinja",
+  name: "CodeNinja",
   totalPRs: 1,
   totalReviews: 0,
   totalCommits: 3,
@@ -38,7 +38,7 @@ const LANGS_DATA = {
     size: 1721,
   },
   CSS: {
-    color: "#563d7c",
+    color: "#663399",
     name: "CSS",
     size: 930,
   },
@@ -54,7 +54,7 @@ const WAKATIME_DATA = {
   is_already_updating: false,
   is_coding_activity_visible: true,
   is_including_today: false,
-  is_other_usage_visible: true,
+  is_other_usage_visible: false,
   is_stuck: false,
   is_up_to_date: false,
   is_up_to_date_pending_future: false,

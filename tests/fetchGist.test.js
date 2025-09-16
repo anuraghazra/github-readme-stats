@@ -2,7 +2,7 @@ import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { expect, it, describe, afterEach } from "@jest/globals";
-import { fetchGist } from "../src/fetchers/gist-fetcher.js";
+import { fetchGist } from "../src/fetchers/gist.js";
 
 const gist_data = {
   data: {

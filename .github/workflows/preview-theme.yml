@@ -1,11 +1,12 @@
 name: Theme preview
 on:
-  pull_request_target:
-    types: [opened, edited, reopened, synchronize]
-    branches:
-      - master
-    paths:
-      - "themes/index.js"
+  # pull_request_target:
+  #   types: [opened, edited, reopened, synchronize]
+  #   branches:
+  #     - master
+  #   paths:
+  #     - "themes/index.js"
+  workflow_dispatch:
 
 permissions:
   actions: read
@@ -27,18 +28,18 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x]
 
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
       - name: Setup Node
-        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
 
-      - uses: bahmutov/npm-install@5653d39101a041a30cc58572d6bd566b90a6de20 # v1.8.38
+      - uses: bahmutov/npm-install@3714964fb879ebbbc108e167f0f3a0c81ec075c9 # v1.10.10
         with:
           useLockFile: false
 

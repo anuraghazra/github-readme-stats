@@ -1,4 +1,4 @@
-import { renderWakatimeCard } from "../src/cards/wakatime-card.js";
+import { renderWakatimeCard } from "../src/cards/wakatime.js";
 import {
   clampValue,
   CONSTANTS,
@@ -6,7 +6,8 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { fetchWakatimeStats } from "../src/fetchers/wakatime-fetcher.js";
+import { whitelist } from "../src/common/whitelist.js";
+import { fetchWakatimeStats } from "../src/fetchers/wakatime.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
@@ -36,6 +37,23 @@ export default async (req, res) => {
 
   res.setHeader("Content-Type", "image/svg+xml");
 
+  if (whitelist && !whitelist.includes(username)) {
+    return res.send(
+      renderError(
+        "This username is not whitelisted",
+        "Please deploy your own instance",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+          show_repo_link: false,
+        },
+      ),
+    );
+  }
+
   if (locale && !isLocaleAvailable(locale)) {
     return res.send(
       renderError("Something went wrong", "Language not found", {
@@ -54,7 +72,7 @@ export default async (req, res) => {
     let cacheSeconds = clampValue(
       parseInt(cache_seconds || CONSTANTS.CARD_CACHE_SECONDS, 10),
       CONSTANTS.SIX_HOURS,
-      CONSTANTS.ONE_DAY,
+      CONSTANTS.TWO_DAY,
     );
     cacheSeconds = process.env.CACHE_SECONDS
       ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
