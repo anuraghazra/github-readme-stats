@@ -603,6 +603,7 @@ const dateDiff = (d1, d2) => {
  *
  * @param {number} bytes The number of bytes to convert.
  * @returns {string} The human-readable representation of bytes.
+ * @throws {Error} If bytes is negative or too large.
  */
 const formatBytes = (bytes) => {
   if (bytes < 0) {
