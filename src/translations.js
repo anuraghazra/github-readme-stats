@@ -668,7 +668,7 @@ const wakatimeCardLocales = {
     uz: "O'tgan yil",
     vi: "Năm ngoái",
     se: "Förra året",
-    sr: "претходна година",
+    sr: "Претходна година",
     no: "I fjor",
   },
   "wakatimecard.last7days": {
