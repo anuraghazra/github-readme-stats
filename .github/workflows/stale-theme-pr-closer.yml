@@ -1,0 +1,55 @@
+name: Close stale theme pull requests that have the 'invalid' label.
+on:
+  # schedule:
+  #   #        ┌───────────── minute (0 - 59)
+  #   #        │ ┌───────────── hour (0 - 23)
+  #   #        │ │  ┌───────────── day of the month (1 - 31)
+  #   #        │ │  │  ┌───────────── month (1 - 12 or JAN-DEC)
+  #   #        │ │  │  │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+  #   #        │ │  │  │ │
+  #   #        │ │  │  │ │
+  #   #        │ │  │  │ │
+  #   #        * *  *  * *
+  #   - cron: "0 0 */7 * *"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  deployments: read
+  issues: read
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
+
+jobs:
+  closeOldThemePrs:
+    if: github.repository == 'anuraghazra/github-readme-stats'
+    name: Close stale 'invalid' theme PRs
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Setup Node
+        uses: actions/setup-node@a0853c24544627f65ddf259abe73b1d18a591444 # v5.0.0
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - uses: bahmutov/npm-install@3714964fb879ebbbc108e167f0f3a0c81ec075c9 # v1.10.10
+        with:
+          useLockFile: false
+
+      - run: npm run close-stale-theme-prs
+        env:
+          STALE_DAYS: 20
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

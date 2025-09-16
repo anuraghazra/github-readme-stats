@@ -254,9 +254,7 @@ const renderStatsCard = (stats, options = {}) => {
       theme,
     });
 
-  const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
-    ? ""
-    : "s";
+  const apostrophe = /s$/i.test(name.trim()) ? "" : "s";
   const i18n = new I18n({
     locale,
     translations: statCardLocales({ name, apostrophe }),
@@ -518,7 +516,7 @@ const renderStatsCard = (stats, options = {}) => {
       if (key === "commits") {
         return `${i18n.t("statcard.commits")} ${
           include_all_commits ? "" : `in ${new Date().getFullYear()}`
-        } : ${totalStars}`;
+        } : ${STATS[key].value}`;
       }
       return `${STATS[key].label}: ${STATS[key].value}`;
     })
