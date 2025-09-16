@@ -48,6 +48,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: `${encodedName}ning GitHub'dagi statistikasi`,
       vi: `Thống Kê GitHub ${encodedName}`,
       se: `GitHubstatistik för ${encodedName}`,
+      sr: `GitHub статистика корисника ${encodedName}`,
       no: `GitHub-statistikk for ${encodedName}`,
     },
     "statcard.ranktitle": {
@@ -83,6 +84,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: `${encodedName}ning GitHub'dagi statistikasi`,
       vi: `Thống Kê GitHub ${encodedName}`,
       se: `GitHubstatistik för ${encodedName}`,
+      sr: `Ранк корисника ${encodedName}`,
       no: `GitHub-statistikk for ${encodedName}`,
     },
     "statcard.totalstars": {
@@ -118,6 +120,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Yulduzchalar",
       vi: "Tổng Số Sao",
       se: "Antal intjänade stjärnor",
+      sr: "Број освојених звездица",
       no: "Totalt antall stjerner",
     },
     "statcard.commits": {
@@ -153,6 +156,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "'Commit'lar",
       vi: "Tổng Số Cam Kết",
       se: "Totalt antal commits",
+      sr: "Укупан број коммитова",
       no: "Totalt antall commits",
     },
     "statcard.prs": {
@@ -188,6 +192,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "'Pull Request'lar",
       vi: "Tổng Số PR",
       se: "Totalt antal PR",
+      sr: "Укупно PRова",
       no: "Totalt antall PR",
     },
     "statcard.issues": {
@@ -223,6 +228,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "'Issue'lar",
       vi: "Tổng Số Vấn Đề",
       se: "Total antal issues",
+      sr: "Укупно пријављених проблема",
       no: "Totalt antall issues",
     },
     "statcard.contribs": {
@@ -258,6 +264,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Hissa qoʻshgan (o'tgan yili)",
       vi: "Đã Đóng Góp (năm ngoái)",
       se: "Bidragit till (förra året)",
+      sr: "Контрибуирано (прошле године)",
       no: "Bidro til (i fjor)",
     },
     "statcard.reviews": {
@@ -293,6 +300,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Koʻrib chiqilgan PR-lar soni",
       vi: "Tổng Số PR Đã Xem Xét",
       se: "Totalt antal granskade PR",
+      sr: "Укупно прегледаних PRова",
       no: "Totalt antall vurderte PR",
     },
     "statcard.discussions-started": {
@@ -328,6 +336,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Boshlangan muzokaralar soni",
       vi: "Tổng Số Thảo Luận Bắt Đầu",
       se: "Totalt antal diskussioner startade",
+      sr: "Укупно покренутих дискусија",
       no: "Totalt antall startede diskusjoner",
     },
     "statcard.discussions-answered": {
@@ -363,6 +372,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Javob berilgan muzokaralar soni",
       vi: "Tổng Số Thảo Luận Đã Trả Lời",
       se: "Totalt antal diskussioner besvarade",
+      sr: "Укупно одговорених дискусија",
       no: "Totalt antall besvarte diskusjoner",
     },
     "statcard.prs-merged": {
@@ -397,6 +407,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Birlangan PR-lar soni",
       vi: "Tổng Số PR Đã Hợp Nhất",
       se: "Totalt antal sammanfogade PR",
+      sr: "Укупно обједињених PRова",
       no: "Totalt antall sammenslåtte PR",
     },
     "statcard.prs-merged-percentage": {
@@ -431,6 +442,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       uz: "Birlangan PR-lar foizi",
       vi: "Tỷ Lệ PR Đã Hợp Nhất",
       se: "Procent av sammanfogade PR",
+      sr: "Проценат обједињених PRова",
       no: "Prosentandel sammenslåtte PR",
     },
   };
@@ -470,6 +482,7 @@ const repoCardLocales = {
     uz: "Shablon",
     vi: "Mẫu",
     se: "Mall",
+    sr: "Шаблон",
     no: "Mal",
   },
   "repocard.archived": {
@@ -505,6 +518,7 @@ const repoCardLocales = {
     uz: "Arxivlangan",
     vi: "Đã Lưu Trữ",
     se: "Arkiverade",
+    sr: "Архивирано",
     no: "Arkivert",
   },
 };
@@ -543,6 +557,7 @@ const langCardLocales = {
     uz: "Eng koʻp ishlatiladigan tillar",
     vi: "Ngôn Ngữ Thường Sử Dụng",
     se: "Mest använda språken",
+    sr: "Најкоришћенији језици",
     no: "Mest brukte språk",
   },
   "langcard.nodata": {
@@ -578,6 +593,7 @@ const langCardLocales = {
     uz: "Til haqida ma'lumot yo'q.",
     vi: "Không có dữ liệu ngôn ngữ.",
     se: "Inga språkdata.",
+    sr: "Нема података о језицима.",
     no: "Ingen språkdata.",
   },
 };
@@ -616,6 +632,7 @@ const wakatimeCardLocales = {
     uz: "WakaTime statistikasi",
     vi: "Thống Kê WakaTime",
     se: "WakaTime statistik",
+    sr: "WakaTime статистика",
     no: "WakaTime-statistikk",
   },
   "wakatimecard.lastyear": {
@@ -651,6 +668,7 @@ const wakatimeCardLocales = {
     uz: "O'tgan yil",
     vi: "Năm ngoái",
     se: "Förra året",
+    sr: "Претходна година",
     no: "I fjor",
   },
   "wakatimecard.last7days": {
@@ -686,6 +704,7 @@ const wakatimeCardLocales = {
     uz: "O'tgan 7 kun",
     vi: "7 ngày qua",
     se: "Senaste 7 dagarna",
+    sr: "Претходних 7 дана",
     no: "Siste 7 dager",
   },
   "wakatimecard.notpublic": {
@@ -721,6 +740,7 @@ const wakatimeCardLocales = {
     uz: "WakaTime foydalanuvchi profili ochiq emas",
     vi: "Hồ sơ người dùng WakaTime không công khai",
     se: "WakaTime användarprofil inte offentlig",
+    sr: "WakaTime профил корисника није јаван",
     no: "WakaTime brukerprofil ikke offentlig",
   },
   "wakatimecard.nocodedetails": {
@@ -758,6 +778,7 @@ const wakatimeCardLocales = {
     uz: "Foydalanuvchi umumiy ko`d statistikasini ochiq ravishda almashmaydi",
     vi: "Người dùng không chia sẻ thống kê mã chi tiết công khai",
     se: "Användaren delar inte offentligt detaljerad kodstatistik",
+    sr: "Корисник не дели јавно детаљну статистику кода",
     no: "Brukeren deler ikke detaljert kodestatistikk offentlig",
   },
   "wakatimecard.nocodingactivity": {
@@ -793,6 +814,7 @@ const wakatimeCardLocales = {
     uz: "Bu hafta faol bo'lmadi",
     vi: "Không Có Hoạt Động Trong Tuần Này",
     se: "Ingen aktivitet denna vecka",
+    sr: "Током ове недеље није било никаквих активности",
     no: "Ingen kodeaktivitet denne uken",
   },
 };
