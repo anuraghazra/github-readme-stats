@@ -560,7 +560,7 @@ You can use the `&hide_progress=true` option to hide the percentages and the pro
 
 ### Change format of language's stats
 
-Yout can use the `&stats_format=bytes` option to display the stats in bytes instead of percentage.
+You can use the `&stats_format=bytes` option to display the stats in bytes instead of percentage.
 
 ```md
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&stats_format=bytes)
