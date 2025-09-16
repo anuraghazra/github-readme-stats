@@ -355,6 +355,12 @@ const UPSTREAM_API_ERRORS = [
  * @param {string} message Main error message.
  * @param {string} secondaryMessage The secondary error message.
  * @param {object} options Function options.
+ * @param {string=} options.title_color Card title color.
+ * @param {string=} options.text_color Card text color.
+ * @param {string=} options.bg_color Card background color.
+ * @param {string=} options.border_color Card border color.
+ * @param {string=} options.theme Card theme.
+ * @param {boolean=} options.show_repo_link Whether to show repo link or not.
  * @returns {string} The SVG markup.
  */
 const renderError = (message, secondaryMessage = "", options = {}) => {
@@ -364,6 +370,7 @@ const renderError = (message, secondaryMessage = "", options = {}) => {
     bg_color,
     border_color,
     theme = "default",
+    show_repo_link = true,
   } = options;
 
   // returns theme based colors with proper overrides and defaults
@@ -388,7 +395,7 @@ const renderError = (message, secondaryMessage = "", options = {}) => {
       ERROR_CARD_LENGTH - 1
     }" height="99%" rx="4.5" fill="${bgColor}" stroke="${borderColor}"/>
     <text x="25" y="45" class="text">Something went wrong!${
-      UPSTREAM_API_ERRORS.includes(secondaryMessage)
+      UPSTREAM_API_ERRORS.includes(secondaryMessage) || !show_repo_link
         ? ""
         : " file an issue at https://tiny.one/readme-stats"
     }</text>
@@ -591,6 +598,33 @@ const dateDiff = (d1, d2) => {
   return Math.round(diff / (1000 * 60));
 };
 
+/**
+ * Convert bytes to a human-readable string representation.
+ *
+ * @param {number} bytes The number of bytes to convert.
+ * @returns {string} The human-readable representation of bytes.
+ * @throws {Error} If bytes is negative or too large.
+ */
+const formatBytes = (bytes) => {
+  if (bytes < 0) {
+    throw new Error("Bytes must be a non-negative number");
+  }
+
+  if (bytes === 0) {
+    return "0 B";
+  }
+
+  const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB"];
+  const base = 1024;
+  const i = Math.floor(Math.log(bytes) / Math.log(base));
+
+  if (i >= sizes.length) {
+    throw new Error("Bytes is too large to convert to a human-readable string");
+  }
+
+  return `${(bytes / Math.pow(base, i)).toFixed(1)} ${sizes[i]}`;
+};
+
 export {
   ERROR_CARD_LENGTH,
   renderError,
@@ -617,4 +651,5 @@ export {
   chunkArray,
   parseEmojis,
   dateDiff,
+  formatBytes,
 };
