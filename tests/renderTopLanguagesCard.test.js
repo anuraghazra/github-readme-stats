@@ -849,4 +849,40 @@ describe("Test renderTopLanguages", () => {
       "No languages data.",
     );
   });
+
+  it("should show proper stats format", () => {
+    document.body.innerHTML = renderTopLanguages(langs, {
+      layout: "compact",
+      stats_format: "percentages",
+    });
+
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
+      "HTML 40.00%",
+    );
+
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
+      "javascript 40.00%",
+    );
+
+    expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
+      "css 20.00%",
+    );
+
+    document.body.innerHTML = renderTopLanguages(langs, {
+      layout: "compact",
+      stats_format: "bytes",
+    });
+
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
+      "HTML 200.0 B",
+    );
+
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
+      "javascript 200.0 B",
+    );
+
+    expect(queryAllByTestId(document.body, "lang-name")[2]).toHaveTextContent(
+      "css 100.0 B",
+    );
+  });
 });

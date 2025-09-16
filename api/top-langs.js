@@ -34,6 +34,7 @@ export default async (req, res) => {
     border_color,
     disable_animations,
     hide_progress,
+    stats_format,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -85,6 +86,16 @@ export default async (req, res) => {
     );
   }
 
+  if (
+    stats_format !== undefined &&
+    (typeof stats_format !== "string" ||
+      !["bytes", "percentages"].includes(stats_format))
+  ) {
+    return res.send(
+      renderError("Something went wrong", "Incorrect stats_format input"),
+    );
+  }
+
   try {
     const topLangs = await fetchTopLanguages(
       username,
@@ -125,6 +136,7 @@ export default async (req, res) => {
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
         hide_progress: parseBoolean(hide_progress),
+        stats_format,
       }),
     );
   } catch (err) {
