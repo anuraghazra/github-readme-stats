@@ -24,8 +24,10 @@ const data_stats = {
     user: {
       name: stats.name,
       repositoriesContributedTo: { totalCount: stats.contributedTo },
-      contributionsCollection: {
+      commits: {
         totalCommitContributions: stats.totalCommits,
+      },
+      reviews: {
         totalPullRequestReviewContributions: stats.totalReviews,
       },
       pullRequests: { totalCount: stats.totalPRs },
