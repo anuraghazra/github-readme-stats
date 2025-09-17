@@ -22,17 +22,17 @@ const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
 /**
  * Create a stats card text item.
  *
- * @param {object} createTextNodeParams Object that contains the createTextNode parameters.
- * @param {string} createTextNodeParams.icon The icon to display.
- * @param {string} createTextNodeParams.label The label to display.
- * @param {number} createTextNodeParams.value The value to display.
- * @param {string} createTextNodeParams.id The id of the stat.
- * @param {string=} createTextNodeParams.unitSymbol The unit symbol of the stat.
- * @param {number} createTextNodeParams.index The index of the stat.
- * @param {boolean} createTextNodeParams.showIcons Whether to show icons.
- * @param {number} createTextNodeParams.shiftValuePos Number of pixels the value has to be shifted to the right.
- * @param {boolean} createTextNodeParams.bold Whether to bold the label.
- * @param {string} createTextNodeParams.number_format The format of numbers on card.
+ * @param {object} params Object that contains the createTextNode parameters.
+ * @param {string} params.icon The icon to display.
+ * @param {string} params.label The label to display.
+ * @param {number} params.value The value to display.
+ * @param {string} params.id The id of the stat.
+ * @param {string=} params.unitSymbol The unit symbol of the stat.
+ * @param {number} params.index The index of the stat.
+ * @param {boolean} params.showIcons Whether to show icons.
+ * @param {number} params.shiftValuePos Number of pixels the value has to be shifted to the right.
+ * @param {boolean} params.bold Whether to bold the label.
+ * @param {string} params.number_format The format of numbers on card.
  * @returns {string} The stats card text item SVG object.
  */
 const createTextNode = ({
