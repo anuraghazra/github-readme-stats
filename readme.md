@@ -792,11 +792,11 @@ Steps:
   - Select an expiration date
   - Select `All repositories`
   - Scopes to select in `Repository permission`:
-    - Commit statuses : read-only
-    - Contents : read-only
-    - Issues : read-only
-    - Metadata : read-only
-    - Pull requests : read-only
+    - Commit statuses: read-only
+    - Contents: read-only
+    - Issues: read-only
+    - Metadata: read-only
+    - Pull requests: read-only
   - Click on `Generate token` and copy it.
 
 ## On Vercel
