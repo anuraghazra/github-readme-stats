@@ -40,12 +40,14 @@ const GRAPHQL_REPOS_QUERY = `
 `;
 
 const GRAPHQL_STATS_QUERY = `
-  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!) {
+  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!, $startTime: DateTime = null) {
     user(login: $login) {
       name
       login
-      contributionsCollection {
+      commits: contributionsCollection (from: $startTime) {
         totalCommitContributions,
+      }
+      reviews: contributionsCollection {
         totalPullRequestReviewContributions
       }
       repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
@@ -109,6 +111,7 @@ const fetcher = (variables, token) => {
  * @param {boolean} variables.includeMergedPullRequests Include merged pull requests.
  * @param {boolean} variables.includeDiscussions Include discussions.
  * @param {boolean} variables.includeDiscussionsAnswers Include discussions answers.
+ * @param {string|undefined} variables.startTime Time to start the count of total commits.
  * @returns {Promise<AxiosResponse>} Axios response.
  *
  * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
@@ -118,6 +121,7 @@ const statsFetcher = async ({
   includeMergedPullRequests,
   includeDiscussions,
   includeDiscussionsAnswers,
+  startTime,
 }) => {
   let stats;
   let hasNextPage = true;
@@ -130,6 +134,7 @@ const statsFetcher = async ({
       includeMergedPullRequests,
       includeDiscussions,
       includeDiscussionsAnswers,
+      startTime,
     };
     let res = await retryer(fetcher, variables);
     if (res.data.errors) {
@@ -217,6 +222,7 @@ const totalCommitsFetcher = async (username) => {
  * @param {boolean} include_merged_pull_requests Include merged pull requests.
  * @param {boolean} include_discussions Include discussions.
  * @param {boolean} include_discussions_answers Include discussions answers.
+ * @param {number|undefined} commits_year Year to count total commits
  * @returns {Promise<StatsData>} Stats data.
  */
 const fetchStats = async (
@@ -226,6 +232,7 @@ const fetchStats = async (
   include_merged_pull_requests = false,
   include_discussions = false,
   include_discussions_answers = false,
+  commits_year,
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -251,6 +258,7 @@ const fetchStats = async (
     includeMergedPullRequests: include_merged_pull_requests,
     includeDiscussions: include_discussions,
     includeDiscussionsAnswers: include_discussions_answers,
+    startTime: commits_year ? `${commits_year}-01-01T00:00:00Z` : undefined,
   });
 
   // Catch GraphQL errors.
@@ -282,7 +290,7 @@ const fetchStats = async (
   if (include_all_commits) {
     stats.totalCommits = await totalCommitsFetcher(username);
   } else {
-    stats.totalCommits = user.contributionsCollection.totalCommitContributions;
+    stats.totalCommits = user.commits.totalCommitContributions;
   }
 
   stats.totalPRs = user.pullRequests.totalCount;
@@ -291,8 +299,7 @@ const fetchStats = async (
     stats.mergedPRsPercentage =
       (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) * 100;
   }
-  stats.totalReviews =
-    user.contributionsCollection.totalPullRequestReviewContributions;
+  stats.totalReviews = user.reviews.totalPullRequestReviewContributions;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
   if (include_discussions) {
     stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;

@@ -21,6 +21,7 @@ export default async (req, res) => {
     hide_rank,
     show_icons,
     include_all_commits,
+    commits_year,
     line_height,
     title_color,
     ring_color,
@@ -98,6 +99,7 @@ export default async (req, res) => {
         showStats.includes("prs_merged_percentage"),
       showStats.includes("discussions_started"),
       showStats.includes("discussions_answered"),
+      parseInt(commits_year, 10),
     );
 
     let cacheSeconds = clampValue(
@@ -123,6 +125,7 @@ export default async (req, res) => {
         card_width: parseInt(card_width, 10),
         hide_rank: parseBoolean(hide_rank),
         include_all_commits: parseBoolean(include_all_commits),
+        commits_year: parseInt(commits_year, 10),
         line_height,
         title_color,
         ring_color,
