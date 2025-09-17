@@ -52,6 +52,7 @@
     - [Hiding individual stats](#hiding-individual-stats)
     - [Showing additional individual stats](#showing-additional-individual-stats)
     - [Showing icons](#showing-icons)
+    - [Showing commits count for specified year](#showing-commits-count-for-specified-year)
     - [Themes](#themes)
     - [Customization](#customization)
 - [GitHub Extra Pins](#github-extra-pins)
@@ -141,20 +142,20 @@ You can pass a query parameter `&show=` to show any specific additional stats wi
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage)
 ```
 
-### Showing commits count for specified year
-
-You can specify a year and fetch only the commits that were made in that year by passing `&commits_year=YYYY` to the parameter.
-
-```md
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&commits_year=2020)
-```
-
 ### Showing icons
 
 To enable icons, you can pass `&show_icons=true` in the query param, like so:
 
 ```md
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true)
+```
+
+### Showing commits count for specified year
+
+You can specify a year and fetch only the commits that were made in that year by passing `&commits_year=YYYY` to the parameter.
+
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&commits_year=2020)
 ```
 
 ### Themes
