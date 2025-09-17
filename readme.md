@@ -84,6 +84,9 @@
     - [Stats and top languages cards](#stats-and-top-languages-cards)
     - [Pinning repositories](#pinning-repositories)
 - [Deploy on your own](#deploy-on-your-own)
+  - [First step: get your Personal Access Token (PAT)](#first-step-get-your-personal-access-token-pat)
+    - [Classic token](#classic-token)
+    - [Fine-grained token](#fine-grained-token)
   - [On Vercel](#on-vercel)
     - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
   - [On other platforms](#on-other-platforms)
@@ -764,6 +767,38 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 # Deploy on your own
 
+## First step: get your Personal Access Token (PAT)
+
+Selecting the right scopes for your token is important in case you want to display private contributions on your stats card. 
+
+### Classic token
+
+Steps:
+  - Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic)](https://github.com/settings/tokens).
+  - Click on `Generate new token -> Generate new token (classic)`.
+  - Scopes to select:
+    - repo
+    - read:user
+  - Click on `Generate token` and copy it.
+
+### Fine-grained token
+
+> [!WARNING]\
+> This limits the number of issues to the number of issues on your repositories only and only takes public commits into account.
+
+Steps:
+  - Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Fine-grained tokens](https://github.com/settings/tokens).
+  - Click on `Generate new token -> Generate new token`.
+  - Select an expiration date
+  - Select `All repositories`
+  - Scopes to select in `Repository permission`:
+    - Commit statuses: read-only
+    - Contents: read-only
+    - Issues: read-only
+    - Metadata: read-only
+    - Pull requests: read-only
+  - Click on `Generate token` and copy it.
+
 ## On Vercel
 
 ### :film\_projector: [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
@@ -793,7 +828,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
     ![](https://files.catbox.moe/3n76fh.png)
 8.  Click the `Continue with GitHub` button, search for the required Git Repository and import it by clicking the `Import` button. Alternatively, you can import a Third-Party Git Repository using the `Import Third-Party Git Repository ->` link at the bottom of the page.
     ![](https://files.catbox.moe/mg5p04.png)
-9.  Create a personal access token (PAT) [here](https://github.com/settings/tokens/new) and enable the `repo` and `user` permissions (this allows access to see private repo and user stats).
+9.  Create a Personal Access Token (PAT) as described in the [previous section](#first-step-get-your-personal-access-token-pat).
 10. Add the PAT as an environment variable named `PAT_1` (as shown).
     ![](https://files.catbox.moe/0yclio.png)
 11. Click deploy, and you're good to go. See your domains to use the API!
