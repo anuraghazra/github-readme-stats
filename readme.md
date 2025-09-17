@@ -330,6 +330,7 @@ Here is a list of all available locales:
 | `ru` | Russian |
 | `uk-ua` | Ukrainian |
 | `ro` | Romanian |
+| `fa` | Persian (Farsi) |
 
 </td><td>
 
