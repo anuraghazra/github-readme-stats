@@ -431,7 +431,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       en: "Merged PRs Percentage",
       bn: "PR একত্রীকরণের শতাংশ",
       es: "Porcentaje de PR fusionados",
-      fa: "درصد درخواست‌های پول ادغام‌شده",
+      fa: "درصد درخواست‌های ادغام‌شده",
       fi: "Yhdistettyjen PR:ien prosentti",
       fr: "Pourcentage de PR fusionnés",
       hu: "Egyesített PR-k százaléka",
