@@ -395,7 +395,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       en: "Total PRs Merged",
       bn: "সর্বমোট PR একত্রীকৃত",
       es: "PR totales fusionados",
-      fa: "مجموع درخواست‌های پول ادغام‌شده",
+      fa: "مجموع درخواست‌های ادغام شده",
       fi: "Yhteensä yhdistetyt PR:t",
       fr: "Nombre total de PR fusionnés",
       hu: "Összes egyesített PR",
