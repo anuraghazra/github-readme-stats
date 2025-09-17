@@ -776,7 +776,7 @@ Selecting the right scopes for your token is important in case you want to displ
 Steps:
   - Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic)](https://github.com/settings/tokens).
   - Click on `Generate new token -> Generate new token (classic)`.
-  - Scopes to selected:
+  - Scopes to select:
     - repo
     - read:user
   - Click on `Generate token` and copy it.
@@ -789,9 +789,9 @@ Steps:
 Steps:
   - Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Fine-grained tokens](https://github.com/settings/tokens).
   - Click on `Generate new token -> Generate new token`.
-  - Select on expiration date (nothing do less datas)
+  - Select an expiration date
   - Select `All repositories`
-  - Scopes to selected in `Repository permission`:
+  - Scopes to select in `Repository permission`:
     - Commit statuses : read-only
     - Contents : read-only
     - Issues : read-only
