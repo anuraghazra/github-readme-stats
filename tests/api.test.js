@@ -3,7 +3,7 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import api from "../api/index.js";
 import { calculateRank } from "../src/calculateRank.js";
-import { renderStatsCard } from "../src/cards/stats-card.js";
+import { renderStatsCard } from "../src/cards/stats.js";
 import { CONSTANTS, renderError } from "../src/common/utils.js";
 import { expect, it, describe, afterEach } from "@jest/globals";
 
@@ -179,15 +179,15 @@ describe("Test /api/", () => {
       ["Content-Type", "image/svg+xml"],
       [
         "Cache-Control",
-        `max-age=${CONSTANTS.SIX_HOURS / 2}, s-maxage=${
-          CONSTANTS.SIX_HOURS
+        `max-age=${CONSTANTS.CARD_CACHE_SECONDS}, s-maxage=${
+          CONSTANTS.CARD_CACHE_SECONDS
         }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
       ],
     ]);
   });
 
   it("should set proper cache", async () => {
-    const cache_seconds = 35000;
+    const cache_seconds = CONSTANTS.TWELVE_HOURS;
     const { req, res } = faker({ cache_seconds }, data_stats);
     await api(req, res);
 
@@ -196,7 +196,7 @@ describe("Test /api/", () => {
       [
         "Cache-Control",
         `max-age=${
-          cache_seconds / 2
+          cache_seconds
         }, s-maxage=${cache_seconds}, stale-while-revalidate=${
           CONSTANTS.ONE_DAY
         }`,
@@ -228,8 +228,8 @@ describe("Test /api/", () => {
         ["Content-Type", "image/svg+xml"],
         [
           "Cache-Control",
-          `max-age=${CONSTANTS.ONE_DAY / 2}, s-maxage=${
-            CONSTANTS.ONE_DAY
+          `max-age=${CONSTANTS.TWO_DAY}, s-maxage=${
+            CONSTANTS.TWO_DAY
           }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
         ],
       ]);
@@ -244,8 +244,8 @@ describe("Test /api/", () => {
         ["Content-Type", "image/svg+xml"],
         [
           "Cache-Control",
-          `max-age=${CONSTANTS.SIX_HOURS / 2}, s-maxage=${
-            CONSTANTS.SIX_HOURS
+          `max-age=${CONSTANTS.ONE_DAY}, s-maxage=${
+            CONSTANTS.ONE_DAY
           }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
         ],
       ]);
@@ -259,8 +259,8 @@ describe("Test /api/", () => {
         ["Content-Type", "image/svg+xml"],
         [
           "Cache-Control",
-          `max-age=${CONSTANTS.SIX_HOURS / 2}, s-maxage=${
-            CONSTANTS.SIX_HOURS
+          `max-age=${CONSTANTS.TWELVE_HOURS}, s-maxage=${
+            CONSTANTS.TWELVE_HOURS
           }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
         ],
       ]);
@@ -309,7 +309,11 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Something went wrong", "This username is blacklisted"),
+      renderError(
+        "This username is blacklisted",
+        "Please deploy your own instance",
+        { show_repo_link: false },
+      ),
     );
   });
 
