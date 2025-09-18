@@ -223,7 +223,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       fa: "مجموع مسائل",
       fi: "Yhteensä ongelmat",
       fr: "Nombre total d'incidents",
-      hi: `कुल मुद्दे`,
+      hi: "कुल मुद्दे",
       hu: "Összes hibajegy",
       it: "Segnalazioni totali",
       ja: "合計 issue",
