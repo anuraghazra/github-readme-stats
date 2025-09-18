@@ -343,6 +343,7 @@ Here is a list of all available locales:
 | `my` | Burmese |
 | `sk` | Slovak |
 | `tr` | Turkish |
+| `th` | Thai |
 | `pl` | Polish |
 | `uz` | Uzbek |
 | `vi` | Vietnamese |
