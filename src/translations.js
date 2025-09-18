@@ -418,7 +418,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       fa: "مجموع درخواست‌های ادغام شده",
       fi: "Yhteensä yhdistetyt PR:t",
       fr: "Nombre total de PR fusionnés",
-      hi: `कुल PR का विलय`,
+      hi: "कुल PR का विलय",
       hu: "Összes egyesített PR",
       it: "PR totali uniti",
       ja: "マージされた PR の総数",
