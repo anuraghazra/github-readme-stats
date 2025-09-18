@@ -25,6 +25,27 @@ const fetcherFailOnSecondTry = jest.fn((_vars, _token, retries) => {
   });
 });
 
+const fetcherFailWithMessageBasedRateLimitErr = jest.fn(
+  (_vars, _token, retries) => {
+    return new Promise((res) => {
+      // faking rate limit
+      if (retries < 1) {
+        return res({
+          data: {
+            errors: [
+              {
+                type: "ASDF",
+                message: "API rate limit already exceeded for user ID 11111111",
+              },
+            ],
+          },
+        });
+      }
+      return res({ data: "ok" });
+    });
+  },
+);
+
 describe("Test Retryer", () => {
   it("retryer should return value and have zero retries on first try", async () => {
     let res = await retryer(fetcher, {});
@@ -37,6 +58,13 @@ describe("Test Retryer", () => {
     let res = await retryer(fetcherFailOnSecondTry, {});
 
     expect(fetcherFailOnSecondTry).toBeCalledTimes(2);
+    expect(res).toStrictEqual({ data: "ok" });
+  });
+
+  it("retryer should return value and have 2 retries with message based rate limit error", async () => {
+    let res = await retryer(fetcherFailWithMessageBasedRateLimitErr, {});
+
+    expect(fetcherFailWithMessageBasedRateLimitErr).toBeCalledTimes(2);
     expect(res).toStrictEqual({ data: "ok" });
   });
 
