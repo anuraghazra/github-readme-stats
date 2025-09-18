@@ -498,7 +498,7 @@ const repoCardLocales = {
     fa: "الگو",
     fi: "Malli",
     fr: "Modèle",
-    hi: `खाका`,
+    hi: "खाका",
     hu: "Sablon",
     it: "Template",
     ja: "テンプレート",
