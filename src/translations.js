@@ -340,7 +340,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       fa: "مجموع بحث‌های آغازشده",
       fi: "Aloitetut keskustelut yhteensä",
       fr: "Nombre total de discussions lancées",
-      hi: `कुल चर्चा शुरू हुई`,
+      hi: "कुल चर्चा शुरू हुई",
       hu: "Összes megkezdett megbeszélés",
       it: "Discussioni totali avviate",
       ja: "開始されたディスカッションの総数",
