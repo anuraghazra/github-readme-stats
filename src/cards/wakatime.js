@@ -87,21 +87,24 @@ const createCompactLangNode = ({ lang, x, y, display_format }) => {
  * @returns {string[]} The language text node items.
  */
 const createLanguageTextNode = ({ langs, y, display_format }) => {
+  const halfLength = Math.ceil(langs.length / 2);
+
   return langs.map((lang, index) => {
-    if (index % 2 === 0) {
+    if (index < halfLength) {
       return createCompactLangNode({
         lang,
         x: 25,
         y: 12.5 * index + y,
         display_format,
       });
+    } else {
+      return createCompactLangNode({
+        lang,
+        x: 230,
+        y: 12.5 * (index - halfLength) + y,
+        display_format,
+      });
     }
-    return createCompactLangNode({
-      lang,
-      x: 230,
-      y: 12.5 + 12.5 * index,
-      display_format,
-    });
   });
 };
 
