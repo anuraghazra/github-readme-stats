@@ -67,7 +67,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       fa: `رتبه گیت‌هاب ${encodedName}`,
       fi: `${encodedName}:n GitHub-sijoitus`,
       fr: `Statistiques GitHub de ${encodedName}`,
-      hi: `${encodedName} का GitHub स्थान`, 
+      hi: `${encodedName} का GitHub स्थान`,
       hu: `${encodedName} GitHub statisztika`,
       it: `Statistiche GitHub di ${encodedName}`,
       ja: `${encodedName} の GitHub ランク`,
