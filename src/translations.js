@@ -106,7 +106,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       fa: "مجموع ستاره‌های دریافت‌شده",
       fi: "Ansaitut tähdet yhteensä",
       fr: "Total d'étoiles",
-      hi: `कुल अर्जित सितारे`,
+      hi: "कुल अर्जित सितारे",
       hu: "Csillagok",
       it: "Stelle totali",
       ja: "スターされた数",
