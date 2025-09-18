@@ -379,7 +379,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       fa: "مجموع بحث‌های پاسخ‌داده‌شده",
       fi: "Vastatut keskustelut yhteensä",
       fr: "Nombre total de discussions répondues",
-      hi: `कुल चर्चाओं का उत्तर दिया गया`,
+      hi: "कुल चर्चाओं का उत्तर दिया गया",
       hu: "Összes megválaszolt megbeszélés",
       it: "Discussioni totali risposte",
       ja: "回答されたディスカッションの総数",
