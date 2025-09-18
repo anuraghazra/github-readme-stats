@@ -145,7 +145,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       fa: "مجموع کامیت‌ها",
       fi: "Yhteensä committeja",
       fr: "Total des Commits",
-      hi: `कुल commits`,
+      hi: "कुल commits",
       hu: "Összes commit",
       it: "Commit totali",
       ja: "合計コミット数",
