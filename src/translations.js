@@ -301,7 +301,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       fa: "مجموع درخواست‌های ادغام بررسی‌شده",
       fi: "Yhteensä tarkastettuja PR:itä",
       fr: "Nombre total de PR examinés",
-      hi: `कुल PRs की समीक्षा की गई`,
+      hi: "कुल PRs की समीक्षा की गई",
       hu: "Összes ellenőrzött PR",
       it: "PR totali esaminati",
       ja: "レビューされた PR の総数",
