@@ -909,7 +909,7 @@ const create3DBar = ({
 const render3DLayout = (langs, width, totalLanguageSize, statsFormat) => {
   const maxHeight = 80;
   const depth = 15; // 3D depth offset
-  const rightPadding = 20; // Add right padding to prevent overflow
+  const rightPadding = 40; // Increased padding to account for 3D depth and text labels
   const leftPadding = 20;
 
   // Calculate available width considering 3D depth and padding
@@ -936,16 +936,6 @@ const render3DLayout = (langs, width, totalLanguageSize, statsFormat) => {
     <g transform="translate(0, 0)">
       <!-- 3D bars -->
       ${bars}
-      
-      <!-- Base plane for 3D effect -->
-      <path d="M ${leftPadding} 150 L ${width - rightPadding} 150 L ${width - rightPadding - depth} 140 L ${leftPadding + depth} 140 Z" 
-            fill="#f0f0f0" 
-            stroke="#ddd" 
-            stroke-width="1"/>
-      
-      <!-- Grid lines for depth -->
-      <line x1="${leftPadding}" y1="150" x2="${leftPadding + depth}" y2="140" stroke="#ddd" stroke-width="1"/>
-      <line x1="${width - rightPadding}" y1="150" x2="${width - rightPadding - depth}" y2="140" stroke="#ddd" stroke-width="1"/>
     </g>
   `;
 };
