@@ -908,8 +908,14 @@ const create3DBar = ({
  */
 const render3DLayout = (langs, width, totalLanguageSize, statsFormat) => {
   const maxHeight = 80;
-  const barWidth = Math.max(20, (width - 40) / langs.length - 5);
-  const startX = 20;
+  const depth = 15; // 3D depth offset
+  const rightPadding = 20; // Add right padding to prevent overflow
+  const leftPadding = 20;
+
+  // Calculate available width considering 3D depth and padding
+  const availableWidth = width - leftPadding - rightPadding - depth;
+  const barWidth = Math.max(20, availableWidth / langs.length - 5);
+  const startX = leftPadding;
 
   const bars = langs
     .map((lang, index) => {
@@ -932,14 +938,14 @@ const render3DLayout = (langs, width, totalLanguageSize, statsFormat) => {
       ${bars}
       
       <!-- Base plane for 3D effect -->
-      <path d="M 15 150 L ${width - 15} 150 L ${width - 5} 140 L 5 140 Z" 
+      <path d="M ${leftPadding} 150 L ${width - rightPadding} 150 L ${width - rightPadding - depth} 140 L ${leftPadding + depth} 140 Z" 
             fill="#f0f0f0" 
             stroke="#ddd" 
             stroke-width="1"/>
       
       <!-- Grid lines for depth -->
-      <line x1="15" y1="150" x2="5" y2="140" stroke="#ddd" stroke-width="1"/>
-      <line x1="${width - 15}" y1="150" x2="${width - 5}" y2="140" stroke="#ddd" stroke-width="1"/>
+      <line x1="${leftPadding}" y1="150" x2="${leftPadding + depth}" y2="140" stroke="#ddd" stroke-width="1"/>
+      <line x1="${width - rightPadding}" y1="150" x2="${width - rightPadding - depth}" y2="140" stroke="#ddd" stroke-width="1"/>
     </g>
   `;
 };
@@ -1071,6 +1077,7 @@ const renderTopLanguages = (topLangs, options = {}) => {
     );
   } else if (layout === "3d") {
     height = calculate3DLayoutHeight(langs.length);
+    width = width + 30; // Add padding for 3D depth
     finalLayout = render3DLayout(langs, width, totalLanguageSize, stats_format);
   } else if (layout === "compact" || hide_progress == true) {
     height =
