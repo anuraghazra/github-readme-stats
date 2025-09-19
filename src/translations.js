@@ -51,7 +51,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: `Thống Kê GitHub ${encodedName}`,
       se: `GitHubstatistik för ${encodedName}`,
       th: `สถิติ GitHub ของ ${encodedName}`,
-      sr: `GitHub статистика корисника ${encodedName}`,
+      "sr-Cyrl": `GitHub статистика корисника ${encodedName}`,
+      "sr-Latn": `GitHub statistika korisnika ${encodedName}`,
       no: `GitHub-statistikk for ${encodedName}`,
     },
     "statcard.ranktitle": {
@@ -90,7 +91,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: `Thống Kê GitHub ${encodedName}`,
       se: `GitHubstatistik för ${encodedName}`,
       th: `อันดับ GitHub ของ ${encodedName}`,
-      sr: `Ранк корисника ${encodedName}`,
+      "sr-Cyrl": `Ранк корисника ${encodedName}`,
+      "sr-Latn": `Rank korisnika ${encodedName}`,
       no: `GitHub-statistikk for ${encodedName}`,
     },
     "statcard.totalstars": {
@@ -129,7 +131,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số Sao",
       se: "Antal intjänade stjärnor",
       th: "ดาวทั้งหมดที่ได้รับ",
-      sr: "Број освојених звездица",
+      "sr-Cyrl": "Број освојених звездица",
+      "sr-Latn": "Broj osvojenih zvezdica",
       no: "Totalt antall stjerner",
     },
     "statcard.commits": {
@@ -168,7 +171,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số Cam Kết",
       se: "Totalt antal commits",
       th: "Commit ทั้งหมด",
-      sr: "Укупно commit-ова",
+      "sr-Cyrl": "Укупно commit-ова",
+      "sr-Latn": "Ukupno commit-ova",
       no: "Totalt antall commits",
     },
     "statcard.prs": {
@@ -207,7 +211,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số PR",
       se: "Totalt antal PR",
       th: "PR ทั้งหมด",
-      sr: "Укупно PR-ова",
+      "sr-Cyrl": "Укупно PR-ова",
+      "sr-Latn": "Ukupno PR-ova",
       no: "Totalt antall PR",
     },
     "statcard.issues": {
@@ -246,7 +251,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số Vấn Đề",
       se: "Total antal issues",
       th: "Issue ทั้งหมด",
-      sr: "Укупно пријављених проблема",
+      "sr-Cyrl": "Укупно пријављених проблема",
+      "sr-Latn": "Ukupno prijavljenih problema",
       no: "Totalt antall issues",
     },
     "statcard.contribs": {
@@ -285,7 +291,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Đã Đóng Góp (năm ngoái)",
       se: "Bidragit till (förra året)",
       th: "มีส่วนร่วมใน (ปีที่แล้ว)",
-      sr: "Доприноси (прошла година)",
+      "sr-Cyrl": "Доприноси (прошла година)",
+      "sr-Latn": "Doprinosi (prošla godina)",
       no: "Bidro til (i fjor)",
     },
     "statcard.reviews": {
@@ -324,7 +331,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số PR Đã Xem Xét",
       se: "Totalt antal granskade PR",
       th: "รีวิว PR แล้วทั้งหมด",
-      sr: "Укупно прегледаних PR-ова",
+      "sr-Cyrl": "Укупно прегледаних PR-ова",
+      "sr-Latn": "Ukupno pregledanih PR-ova",
       no: "Totalt antall vurderte PR",
     },
     "statcard.discussions-started": {
@@ -363,7 +371,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số Thảo Luận Bắt Đầu",
       se: "Totalt antal diskussioner startade",
       th: "เริ่มหัวข้อสนทนาทั้งหมด",
-      sr: "Укупно покренутих дискусија",
+      "sr-Cyrl": "Укупно покренутих дискусија",
+      "sr-Latn": "Ukupno pokrenutih diskusija",
       no: "Totalt antall startede diskusjoner",
     },
     "statcard.discussions-answered": {
@@ -402,7 +411,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số Thảo Luận Đã Trả Lời",
       se: "Totalt antal diskussioner besvarade",
       th: "ตอบกลับหัวข้อสนทนาทั้งหมด",
-      sr: "Укупно одговорених дискусија",
+      "sr-Cyrl": "Укупно одговорених дискусија",
+      "sr-Latn": "Ukupno odgovorenih diskusija",
       no: "Totalt antall besvarte diskusjoner",
     },
     "statcard.prs-merged": {
@@ -440,7 +450,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số PR Đã Hợp Nhất",
       se: "Totalt antal sammanfogade PR",
       th: "PR ที่ถูก Merged แล้วทั้งหมด",
-      sr: "Укупно спојених PR-ова",
+      "sr-Cyrl": "Укупно спојених PR-ова",
+      "sr-Latn": "Ukupno spojenih PR-ova",
       no: "Totalt antall sammenslåtte PR",
     },
     "statcard.prs-merged-percentage": {
@@ -478,7 +489,8 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tỷ Lệ PR Đã Hợp Nhất",
       se: "Procent av sammanfogade PR",
       th: "เปอร์เซ็นต์ PR ที่ถูก Merged แล้วทั้งหมด",
-      sr: "Проценат спојених PR-ова",
+      "sr-Cyrl": "Проценат спојених PR-ова",
+      "sr-Latn": "Procenat spojenih PR-ova",
       no: "Prosentandel sammenslåtte PR",
     },
   };
@@ -521,7 +533,8 @@ const repoCardLocales = {
     vi: "Mẫu",
     se: "Mall",
     th: "เทมเพลต",
-    sr: "Шаблон",
+    "sr-Cyrl": "Шаблон",
+    "sr-Latn": "Šablon",
     no: "Mal",
   },
   "repocard.archived": {
@@ -560,7 +573,8 @@ const repoCardLocales = {
     vi: "Đã Lưu Trữ",
     se: "Arkiverade",
     th: "เก็บถาวร",
-    sr: "Архивирано",
+    "sr-Cyrl": "Архивирано",
+    "sr-Latn": "Arhivirano",
     no: "Arkivert",
   },
 };
@@ -602,7 +616,8 @@ const langCardLocales = {
     vi: "Ngôn Ngữ Thường Sử Dụng",
     se: "Mest använda språken",
     th: "ภาษาที่ใช้บ่อยที่สุด",
-    sr: "Најкоришћенији језици",
+    "sr-Cyrl": "Најкоришћенији језици",
+    "sr-Latn": "Najkorišćeniji jezici",
     no: "Mest brukte språk",
   },
   "langcard.nodata": {
@@ -641,7 +656,8 @@ const langCardLocales = {
     vi: "Không có dữ liệu ngôn ngữ.",
     se: "Inga språkdata.",
     th: "ไม่มีข้อมูลภาษา",
-    sr: "Нема података о језицима.",
+    "sr-Cyrl": "Нема података о језицима.",
+    "sr-Latn": "Nema podataka o jezicima.",
     no: "Ingen språkdata.",
   },
 };
@@ -683,7 +699,8 @@ const wakatimeCardLocales = {
     vi: "Thống Kê WakaTime",
     se: "WakaTime statistik",
     th: "สถิติ WakaTime",
-    sr: "WakaTime статистика",
+    "sr-Cyrl": "WakaTime статистика",
+    "sr-Latn": "WakaTime statistika",
     no: "WakaTime-statistikk",
   },
   "wakatimecard.lastyear": {
@@ -722,7 +739,8 @@ const wakatimeCardLocales = {
     vi: "Năm ngoái",
     se: "Förra året",
     th: "ปีที่แล้ว",
-    sr: "Прошла год.",
+    "sr-Cyrl": "Прошла год.",
+    "sr-Latn": "Prošla god.",
     no: "I fjor",
   },
   "wakatimecard.last7days": {
@@ -761,7 +779,8 @@ const wakatimeCardLocales = {
     vi: "7 ngày qua",
     se: "Senaste 7 dagarna",
     th: "7 วันที่ผ่านมา",
-    sr: "Претходних 7 дана",
+    "sr-Cyrl": "Претходних 7 дана",
+    "sr-Latn": "Prethodnih 7 dana",
     no: "Siste 7 dager",
   },
   "wakatimecard.notpublic": {
@@ -800,7 +819,8 @@ const wakatimeCardLocales = {
     vi: "Hồ sơ người dùng WakaTime không công khai",
     se: "WakaTime användarprofil inte offentlig",
     th: "โปรไฟล์ผู้ใช้ WakaTime ไม่ได้เป็นสาธารณะ",
-    sr: "WakaTime профил корисника није јаван",
+    "sr-Cyrl": "WakaTime профил корисника није јаван",
+    "sr-Latn": "WakaTime profil korisnika nije javan",
     no: "WakaTime brukerprofil ikke offentlig",
   },
   "wakatimecard.nocodedetails": {
@@ -841,7 +861,8 @@ const wakatimeCardLocales = {
     vi: "Người dùng không chia sẻ thống kê mã chi tiết công khai",
     se: "Användaren delar inte offentligt detaljerad kodstatistik",
     th: "ผู้ใช้ไม่ได้แชร์สถิติโค้ดแบบสาธารณะ",
-    sr: "Корисник не дели јавно детаљну статистику кода",
+    "sr-Cyrl": "Корисник не дели јавно детаљну статистику кода",
+    "sr-Latn": "Korisnik ne deli javno detaljnu statistiku koda",
     no: "Brukeren deler ikke detaljert kodestatistikk offentlig",
   },
   "wakatimecard.nocodingactivity": {
@@ -880,7 +901,8 @@ const wakatimeCardLocales = {
     vi: "Không Có Hoạt Động Trong Tuần Này",
     se: "Ingen aktivitet denna vecka",
     th: "ไม่มีกิจกรรมการเขียนโค้ดในสัปดาห์นี้",
-    sr: "Током ове недеље није било никаквих активности",
+    "sr-Cyrl": "Током ове недеље није било никаквих активности",
+    "sr-Latn": "Tokom ove nedelje nije bilo nikakvih aktivnosti",
     no: "Ingen kodeaktivitet denne uken",
   },
 };
