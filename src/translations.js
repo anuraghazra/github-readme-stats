@@ -168,7 +168,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số Cam Kết",
       se: "Totalt antal commits",
       th: "Commit ทั้งหมด",
-      sr: "Укупан број коммитова",
+      sr: "Укупно commit-ова",
       no: "Totalt antall commits",
     },
     "statcard.prs": {
@@ -207,7 +207,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số PR",
       se: "Totalt antal PR",
       th: "PR ทั้งหมด",
-      sr: "Укупно PRова",
+      sr: "Укупно PR-ова",
       no: "Totalt antall PR",
     },
     "statcard.issues": {
@@ -285,7 +285,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Đã Đóng Góp (năm ngoái)",
       se: "Bidragit till (förra året)",
       th: "มีส่วนร่วมใน (ปีที่แล้ว)",
-      sr: "Контрибуирано (прошле године)",
+      sr: "Доприноси (прошла година)",
       no: "Bidro til (i fjor)",
     },
     "statcard.reviews": {
@@ -324,7 +324,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số PR Đã Xem Xét",
       se: "Totalt antal granskade PR",
       th: "รีวิว PR แล้วทั้งหมด",
-      sr: "Укупно прегледаних PRова",
+      sr: "Укупно прегледаних PR-ова",
       no: "Totalt antall vurderte PR",
     },
     "statcard.discussions-started": {
@@ -440,7 +440,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tổng Số PR Đã Hợp Nhất",
       se: "Totalt antal sammanfogade PR",
       th: "PR ที่ถูก Merged แล้วทั้งหมด",
-      sr: "Укупно обједињених PRова",
+      sr: "Укупно спојених PR-ова",
       no: "Totalt antall sammenslåtte PR",
     },
     "statcard.prs-merged-percentage": {
@@ -478,7 +478,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       vi: "Tỷ Lệ PR Đã Hợp Nhất",
       se: "Procent av sammanfogade PR",
       th: "เปอร์เซ็นต์ PR ที่ถูก Merged แล้วทั้งหมด",
-      sr: "Проценат обједињених PRова",
+      sr: "Проценат спојених PR-ова",
       no: "Prosentandel sammenslåtte PR",
     },
   };
@@ -722,7 +722,7 @@ const wakatimeCardLocales = {
     vi: "Năm ngoái",
     se: "Förra året",
     th: "ปีที่แล้ว",
-    sr: "Претходна година",
+    sr: "Прошла год.",
     no: "I fjor",
   },
   "wakatimecard.last7days": {
