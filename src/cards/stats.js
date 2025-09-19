@@ -365,7 +365,6 @@ const renderStatsCard = (stats, options = {}) => {
   };
 
   const longLocales = [
-    "cn",
     "es",
     "fr",
     "pt-br",
