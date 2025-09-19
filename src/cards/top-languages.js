@@ -765,9 +765,8 @@ const create3DBar = ({
   const staggerDelay = (index + 3) * 150;
 
   // Calculate 3D points for isometric projection
-  const frontTopLeft = { x: x, y: 150 - barHeight };
+  const frontTopLeft = { x, y: 150 - barHeight };
   const frontTopRight = { x: x + barWidth, y: 150 - barHeight };
-  const frontBottomLeft = { x: x, y: 150 };
   const frontBottomRight = { x: x + barWidth, y: 150 };
 
   // Back face (offset by depth)
