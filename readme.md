@@ -314,12 +314,12 @@ Here is a list of all available locales:
 | `fi` | Finnish |
 | `fr` | French |
 | `de` | German |
+| `el` | Greek |
 
 </td><td>
 
 | Code | Locale |
 | --- | --- |
-| `el` | Greek |
 | `hi` | Hindi |
 | `hu` | Hungarian |
 | `id` | Indonesian |
