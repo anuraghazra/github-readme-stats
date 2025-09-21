@@ -297,7 +297,9 @@ const fetchStats = async (
   if (include_merged_pull_requests) {
     stats.totalPRsMerged = user.mergedPullRequests.totalCount;
     stats.mergedPRsPercentage =
-      (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) * 100;
+    user.pullRequests.totalCount > 0
+      ? (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) * 100
+      : 0;
   }
   stats.totalReviews = user.reviews.totalPullRequestReviewContributions;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
