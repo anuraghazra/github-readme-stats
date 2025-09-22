@@ -340,7 +340,7 @@ Here is a list of all available locales:
 | --- | --- |
 | `ro` | Romanian |
 | `ru` | Russian |
-| `sr-Cyrl` | Serbian (Cyrillic) |
+| `sr` | Serbian (Cyrillic) |
 | `sr-Latn` | Serbian (Latin) |
 | `sk` | Slovak |
 | `es` | Spanish |

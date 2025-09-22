@@ -375,7 +375,7 @@ const renderStatsCard = (stats, options = {}) => {
     "pl",
     "pt-br",
     "ru",
-    "sr-Cyrl",
+    "sr",
     "sr-Latn",
     "uk-ua",
     "uz",
