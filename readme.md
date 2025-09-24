@@ -96,6 +96,9 @@
 - [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
 </details>
 
+> [!NOTE]\
+> This fork keeps its Vercel deployment settings documented in `docs/vercel-configuration.md`.
+
 # Important Notices <!-- omit in toc -->
 
 > [!IMPORTANT]\
@@ -867,11 +870,14 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 
 ## Available environment variables
 
-GitHub Readme Stats provides several environment variables that can be used to customize the behavior of your self-hosted instance. These include:
+GitHub Readme Stats provides several environment variables that can be used to customize the behavior of your self-hosted instance. For a step-by-step walkthrough on tuning your existing Vercel deployment, see [Configure Your Vercel Deployment](docs/vercel-configuration.md).
+
+The most common variables include:
 
 *   `CACHE_SECONDS`: This takes precedence over our cache minimum and maximum values and can circumvent these values for self-hosted instances.
 *   `WHITELIST`: A comma-separated list of GitHub usernames that are allowed to access your instance. If this variable is not set, all usernames are allowed.
 *   `GIST_WHITELIST`: A comma-separated list of GitHub gist IDs that are allowed to be accessed on your instance. If this variable is not set, all gist IDs are allowed.
+*   `FETCH_MULTI_PAGE_STARS`: Set to `true` to fetch all starred repositories across multiple GitHub API pages. Leave unset to use the default single-page behavior.
 
 See [the Vercel documentation](https://vercel.com/docs/concepts/projects/environment-variables) on adding these environment variables to your Vercel instance.
 
