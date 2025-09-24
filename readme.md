@@ -341,7 +341,7 @@ Here is a list of all available locales:
 | `ro` | Romanian |
 | `ru` | Russian |
 | `sr` | Serbian (Cyrillic) |
-| `sr-Latn` | Serbian (Latin) |
+| `sr-latn` | Serbian (Latin) |
 | `sk` | Slovak |
 | `es` | Spanish |
 | `se` | Swedish |
