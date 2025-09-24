@@ -12,10 +12,14 @@ This guide covers the most common tweaks you can apply after deploying your fork
 | --- | --- | --- |
 | `PAT_1` | GitHub Personal Access Token with `repo` and `user` scopes | Required to unlock higher rate limits and include private stats. Use the [classic token instructions](../readme.md#classic-token).
 | `PAT_2`, `PAT_3`, ... | Additional PATs with the same scopes | Optional: rotate through multiple tokens to minimize hitting rate limits. GRS automatically discovers `PAT_*` variables.
-| `CACHE_SECONDS` | `1800` for 30 minutes, or any integer >= `0` | Overrides the default cache duration so your cards refresh faster on a self-hosted instance.
+| `DEFAULT_USERNAME` | `g8rdier` | Sets the username used when no `?username=` query is provided. Required to make URLs shorter in your README.
+| `DEFAULT_INCLUDE_ALL_COMMITS` | `true` | Ensures lifetime commits are counted without adding `&include_all_commits=true` to every URL.
+| `DEFAULT_COUNT_PRIVATE` | `true` | Forces private contributions to be included by default (requires PAT with `repo` scope).
+| `DEFAULT_REPO_AFFILIATIONS` | `OWNER,COLLABORATOR,ORGANIZATION_MEMBER` | Pulls stats and languages from every repository you have access to, not just the ones you own.
+| `CACHE_SECONDS` | `1` | Sets the global cache override to 1 second (the lowest practical value) for near real-time refreshes.
 | `WHITELIST` | Comma-separated list of GitHub usernames | Restricts who can call your instance. Leave unset to allow everyone.
 | `GIST_WHITELIST` | Comma-separated list of gist IDs | Restricts gist requests to the provided IDs.
-| `FETCH_MULTI_PAGE_STARS` | `true` | (Optional) Enables fetching starred repositories beyond the first page. Helpful for accounts with many stars; slightly slower.
+| `FETCH_MULTI_PAGE_STARS` | `true` | Enables fetching starred repositories beyond the first page; helpful for accounts with many stars.
 
 > **Security tip:** Treat PATs like passwords. Store them in Vercel environment variables only; never commit them to the repository.
 

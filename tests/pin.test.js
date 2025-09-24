@@ -200,10 +200,41 @@ describe("Test /api/pin", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
       renderError(
-        'Missing params "username", "repo" make sure you pass the parameters in URL',
-        "/api/pin?username=USERNAME&amp;repo=REPO_NAME",
+        "Missing username",
+        "Provide ?username= or set DEFAULT_USERNAME",
       ),
     );
+  });
+
+  it("should fall back to DEFAULT_USERNAME when username is omitted", async () => {
+    const originalDefault = process.env.DEFAULT_USERNAME;
+    process.env.DEFAULT_USERNAME = "anuraghazra";
+
+    try {
+      const req = {
+        query: {
+          repo: "convoychat",
+        },
+      };
+      const res = {
+        setHeader: jest.fn(),
+        send: jest.fn(),
+      };
+
+      mock.onPost("https://api.github.com/graphql").reply(200, data_user);
+
+      await pin(req, res);
+
+      expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+      expect(res.send).toBeCalledWith(
+        renderRepoCard({
+          ...data_repo.repository,
+          starCount: data_repo.repository.stargazers.totalCount,
+        }),
+      );
+    } finally {
+      process.env.DEFAULT_USERNAME = originalDefault;
+    }
   });
 
   it("should have proper cache", async () => {

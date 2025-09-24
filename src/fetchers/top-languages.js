@@ -6,6 +6,7 @@ import {
   MissingParamError,
   request,
   wrapTextMultiline,
+  getDefaultOwnerAffiliations,
 } from "../common/utils.js";
 
 /**
@@ -24,10 +25,10 @@ const fetcher = (variables, token) => {
   return request(
     {
       query: `
-      query userInfo($login: String!) {
+      query userInfo($login: String!, $ownerAffiliations: [RepositoryAffiliation!]!) {
         user(login: $login) {
           # fetch only owner repos & not forks
-          repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
+          repositories(ownerAffiliations: $ownerAffiliations, isFork: false, first: 100) {
             nodes {
               name
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
@@ -75,7 +76,10 @@ const fetchTopLanguages = async (
     throw new MissingParamError(["username"]);
   }
 
-  const res = await retryer(fetcher, { login: username });
+  const res = await retryer(fetcher, {
+    login: username,
+    ownerAffiliations: getDefaultOwnerAffiliations(),
+  });
 
   if (res.data.errors) {
     logger.error(res.data.errors);

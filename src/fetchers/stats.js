@@ -10,13 +10,16 @@ import {
   MissingParamError,
   request,
   wrapTextMultiline,
+  getDefaultOwnerAffiliations,
 } from "../common/utils.js";
 
 dotenv.config();
 
+const OWNER_AFFILIATIONS = getDefaultOwnerAffiliations();
+
 // GraphQL queries.
 const GRAPHQL_REPOS_FIELD = `
-  repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
+  repositories(first: 100, ownerAffiliations: $ownerAffiliations, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
     totalCount
     nodes {
       name
@@ -32,7 +35,7 @@ const GRAPHQL_REPOS_FIELD = `
 `;
 
 const GRAPHQL_REPOS_QUERY = `
-  query userInfo($login: String!, $after: String) {
+  query userInfo($login: String!, $after: String, $ownerAffiliations: [RepositoryAffiliation!]!) {
     user(login: $login) {
       ${GRAPHQL_REPOS_FIELD}
     }
@@ -40,14 +43,14 @@ const GRAPHQL_REPOS_QUERY = `
 `;
 
 const GRAPHQL_STATS_QUERY = `
-  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!, $startTime: DateTime = null) {
+  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!, $startTime: DateTime = null, $includePrivate: Boolean!, $ownerAffiliations: [RepositoryAffiliation!]!) {
     user(login: $login) {
       name
       login
-      commits: contributionsCollection (from: $startTime) {
+      commits: contributionsCollection (from: $startTime, includePrivateContributions: $includePrivate) {
         totalCommitContributions,
       }
-      reviews: contributionsCollection {
+      reviews: contributionsCollection (includePrivateContributions: $includePrivate) {
         totalPullRequestReviewContributions
       }
       repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
@@ -122,6 +125,7 @@ const statsFetcher = async ({
   includeDiscussions,
   includeDiscussionsAnswers,
   startTime,
+  includePrivateContributions,
 }) => {
   let stats;
   let hasNextPage = true;
@@ -135,6 +139,8 @@ const statsFetcher = async ({
       includeDiscussions,
       includeDiscussionsAnswers,
       startTime,
+      includePrivate: includePrivateContributions,
+      ownerAffiliations: OWNER_AFFILIATIONS,
     };
     let res = await retryer(fetcher, variables);
     if (res.data.errors) {
@@ -233,6 +239,7 @@ const fetchStats = async (
   include_discussions = false,
   include_discussions_answers = false,
   commits_year,
+  count_private = false,
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -259,6 +266,7 @@ const fetchStats = async (
     includeDiscussions: include_discussions,
     includeDiscussionsAnswers: include_discussions_answers,
     startTime: commits_year ? `${commits_year}-01-01T00:00:00Z` : undefined,
+    includePrivateContributions: count_private,
   });
 
   // Catch GraphQL errors.

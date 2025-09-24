@@ -1,4 +1,12 @@
 {
+  "env": {
+    "DEFAULT_USERNAME": "g8rdier",
+    "DEFAULT_INCLUDE_ALL_COMMITS": "true",
+    "DEFAULT_COUNT_PRIVATE": "true",
+    "DEFAULT_REPO_AFFILIATIONS": "OWNER,COLLABORATOR,ORGANIZATION_MEMBER",
+    "CACHE_SECONDS": "1",
+    "FETCH_MULTI_PAGE_STARS": "true"
+  },
   "functions": {
     "api/*.js": {
       "memory": 128,

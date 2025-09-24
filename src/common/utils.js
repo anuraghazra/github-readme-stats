@@ -625,6 +625,23 @@ const formatBytes = (bytes) => {
   return `${(bytes / Math.pow(base, i)).toFixed(1)} ${sizes[i]}`;
 };
 
+/**
+ * Determine the default repository affiliations to request from GitHub.
+ *
+ * @returns {string[]} Array of affiliation values understood by the GitHub API.
+ */
+const getDefaultOwnerAffiliations = () => {
+  if (!process.env.DEFAULT_REPO_AFFILIATIONS) {
+    return ["OWNER"];
+  }
+
+  const affiliations = process.env.DEFAULT_REPO_AFFILIATIONS.split(",")
+    .map((item) => item.trim().toUpperCase())
+    .filter(Boolean);
+
+  return affiliations.length > 0 ? affiliations : ["OWNER"];
+};
+
 export {
   ERROR_CARD_LENGTH,
   renderError,
@@ -652,4 +669,5 @@ export {
   parseEmojis,
   dateDiff,
   formatBytes,
+  getDefaultOwnerAffiliations,
 };

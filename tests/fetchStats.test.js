@@ -461,4 +461,33 @@ describe("Test fetchStats", () => {
       rank,
     });
   });
+
+  it("should request private contributions when count_private is true", async () => {
+    mock.reset();
+    let includePrivateFlag;
+
+    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+      const body = JSON.parse(cfg.data);
+      includePrivateFlag = body.variables.includePrivate;
+
+      if (body.query.includes("totalCommitContributions")) {
+        return [200, data_stats];
+      }
+
+      return [200, data_repo];
+    });
+
+    await fetchStats(
+      "anuraghazra",
+      false,
+      [],
+      false,
+      false,
+      false,
+      undefined,
+      true,
+    );
+
+    expect(includePrivateFlag).toBe(true);
+  });
 });

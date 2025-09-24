@@ -874,7 +874,11 @@ GitHub Readme Stats provides several environment variables that can be used to c
 
 The most common variables include:
 
-*   `CACHE_SECONDS`: This takes precedence over our cache minimum and maximum values and can circumvent these values for self-hosted instances.
+*   `DEFAULT_USERNAME`: Provide a fallback username for all cards (`g8rdier` on this instance).
+*   `DEFAULT_INCLUDE_ALL_COMMITS`: Set to `true` to always include lifetime commits when no explicit query parameter is provided.
+*   `DEFAULT_COUNT_PRIVATE`: Set to `true` to always include private contributions; requires a PAT with `repo` scope.
+*   `DEFAULT_REPO_AFFILIATIONS`: Comma-separated list of repository affiliations to consider. Use `OWNER,COLLABORATOR,ORGANIZATION_MEMBER` to include everything you can access.
+*   `CACHE_SECONDS`: This takes precedence over our cache minimum and maximum values and can circumvent these values for self-hosted instances. Setting it to `1` yields the lowest sensible cache.
 *   `WHITELIST`: A comma-separated list of GitHub usernames that are allowed to access your instance. If this variable is not set, all usernames are allowed.
 *   `GIST_WHITELIST`: A comma-separated list of GitHub gist IDs that are allowed to be accessed on your instance. If this variable is not set, all gist IDs are allowed.
 *   `FETCH_MULTI_PAGE_STARS`: Set to `true` to fetch all starred repositories across multiple GitHub API pages. Leave unset to use the default single-page behavior.

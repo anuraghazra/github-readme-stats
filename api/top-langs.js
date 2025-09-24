@@ -38,7 +38,25 @@ export default async (req, res) => {
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (whitelist && !whitelist.includes(username)) {
+  const targetUsername = username || process.env.DEFAULT_USERNAME;
+
+  if (!targetUsername) {
+    return res.send(
+      renderError(
+        "Missing username",
+        "Provide ?username= or set DEFAULT_USERNAME",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+        },
+      ),
+    );
+  }
+
+  if (whitelist && !whitelist.includes(targetUsername)) {
     return res.send(
       renderError(
         "This username is not whitelisted",
@@ -55,7 +73,7 @@ export default async (req, res) => {
     );
   }
 
-  if (whitelist === undefined && blacklist.includes(username)) {
+  if (whitelist === undefined && blacklist.includes(targetUsername)) {
     return res.send(
       renderError(
         "This username is blacklisted",
@@ -98,7 +116,7 @@ export default async (req, res) => {
 
   try {
     const topLangs = await fetchTopLanguages(
-      username,
+      targetUsername,
       parseArray(exclude_repo),
       size_weight,
       count_weight,

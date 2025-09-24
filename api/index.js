@@ -21,6 +21,7 @@ export default async (req, res) => {
     hide_rank,
     show_icons,
     include_all_commits,
+    count_private,
     commits_year,
     line_height,
     title_color,
@@ -43,7 +44,25 @@ export default async (req, res) => {
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (whitelist && !whitelist.includes(username)) {
+  const targetUsername = username || process.env.DEFAULT_USERNAME;
+
+  if (!targetUsername) {
+    return res.send(
+      renderError(
+        "Missing username",
+        "Provide ?username= or set DEFAULT_USERNAME",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+        },
+      ),
+    );
+  }
+
+  if (whitelist && !whitelist.includes(targetUsername)) {
     return res.send(
       renderError(
         "This username is not whitelisted",
@@ -60,7 +79,7 @@ export default async (req, res) => {
     );
   }
 
-  if (whitelist === undefined && blacklist.includes(username)) {
+  if (whitelist === undefined && blacklist.includes(targetUsername)) {
     return res.send(
       renderError(
         "This username is blacklisted",
@@ -91,15 +110,23 @@ export default async (req, res) => {
 
   try {
     const showStats = parseArray(show);
+    const includeAllCommitsInput =
+      include_all_commits ?? process.env.DEFAULT_INCLUDE_ALL_COMMITS;
+    const includeAllCommits =
+      parseBoolean(includeAllCommitsInput) ?? false;
+    const countPrivateInput =
+      count_private ?? process.env.DEFAULT_COUNT_PRIVATE;
+    const shouldCountPrivate = parseBoolean(countPrivateInput) ?? false;
     const stats = await fetchStats(
-      username,
-      parseBoolean(include_all_commits),
+      targetUsername,
+      includeAllCommits,
       parseArray(exclude_repo),
       showStats.includes("prs_merged") ||
         showStats.includes("prs_merged_percentage"),
       showStats.includes("discussions_started"),
       showStats.includes("discussions_answered"),
       parseInt(commits_year, 10),
+      shouldCountPrivate,
     );
 
     let cacheSeconds = clampValue(
@@ -124,7 +151,8 @@ export default async (req, res) => {
         hide_border: parseBoolean(hide_border),
         card_width: parseInt(card_width, 10),
         hide_rank: parseBoolean(hide_rank),
-        include_all_commits: parseBoolean(include_all_commits),
+        include_all_commits: includeAllCommits,
+        count_private: shouldCountPrivate,
         commits_year: parseInt(commits_year, 10),
         line_height,
         title_color,
