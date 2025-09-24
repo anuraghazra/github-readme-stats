@@ -1,9 +1,7 @@
 name: Theme Pull Requests Closer
 
 on:
-  pull_request:
-    types:
-      - labeled
+  - pull_request_target
 
 permissions:
   actions: read
