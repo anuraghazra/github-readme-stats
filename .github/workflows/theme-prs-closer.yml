@@ -21,8 +21,8 @@ permissions:
 
 jobs:
   close-prs:
+    if: github.repository == 'anuraghazra/github-readme-stats'
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out the code
         uses: actions/checkout@ff7abcd0c3c05ccf6adc123a8cd1fd4fb30fb493 # v4.1.1
