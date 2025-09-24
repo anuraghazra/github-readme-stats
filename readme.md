@@ -302,53 +302,53 @@ Here is a list of all available locales:
 
 | Code | Locale |
 | --- | --- |
+| `ar` | Arabic |
+| `az` | Azerbaijani |
+| `bn` | Bengali |
+| `my` | Burmese |
 | `cn` | Chinese |
 | `zh-tw` | Chinese (Taiwan) |
-| `ar` | Arabic |
 | `cs` | Czech |
-| `de` | German |
+| `nl` | Dutch |
 | `en` | English |
-| `bn` | Bengali |
-| `es` | Spanish |
-| `fr` | French |
-| `hu` | Hungarian |
 | `fi` | Finnish |
-| `sr` | Serbian |
-| `hi` | Hindi |
+| `fr` | French |
+| `de` | German |
+| `el` | Greek |
 
 </td><td>
 
 | Code | Locale |
 | --- | --- |
+| `hi` | Hindi |
+| `hu` | Hungarian |
+| `id` | Indonesian |
 | `it` | Italian |
 | `ja` | Japanese |
 | `kr` | Korean |
-| `nl` | Dutch |
-| `pt-pt` | Portuguese (Portugal) |
-| `pt-br` | Portuguese (Brazil) |
+| `ml` | Malayalam |
 | `np` | Nepali |
-| `el` | Greek |
-| `ru` | Russian |
-| `uk-ua` | Ukrainian |
-| `ro` | Romanian |
+| `no` | Norwegian |
 | `fa` | Persian (Farsi) |
+| `pl` | Polish |
+| `pt-br` | Portuguese (Brazil) |
 
 </td><td>
 
 | Code | Locale |
 | --- | --- |
-| `id` | Indonesian |
-| `ml` | Malayalam |
-| `my` | Burmese |
+| `pt-pt` | Portuguese (Portugal) |
+| `ro` | Romanian |
+| `ru` | Russian |
+| `sr` | Serbian |
 | `sk` | Slovak |
-| `tr` | Turkish |
+| `es` | Spanish |
+| `se` | Swedish |
 | `th` | Thai |
-| `pl` | Polish |
+| `tr` | Turkish |
+| `uk-ua` | Ukrainian |
 | `uz` | Uzbek |
 | `vi` | Vietnamese |
-| `se` | Swedish |
-| `az` | Azerbaijani |
-| `no` | Norwegian |
 
 </td></tr>
 </table>
