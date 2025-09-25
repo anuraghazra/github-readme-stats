@@ -446,6 +446,7 @@ describe("Test fetchStats", () => {
 
   it("should get commits of provided year", async () => {
     let stats = await fetchStats(
+      process.env,
       "anuraghazra",
       false,
       [],
@@ -487,7 +488,7 @@ describe("Test fetchStats", () => {
     mock
       .onPost("https://api.github.com/graphql")
       .reply(200, data_without_pull_requests);
-    const stats = await fetchStats("anuraghazra", false, [], true);
+    const stats = await fetchStats(process.env, "anuraghazra", false, [], true);
     const rank = calculateRank({
       all_commits: false,
       commits: 100,
