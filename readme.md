@@ -332,15 +332,16 @@ Here is a list of all available locales:
 | `fa` | Persian (Farsi) |
 | `pl` | Polish |
 | `pt-br` | Portuguese (Brazil) |
+| `pt-pt` | Portuguese (Portugal) |
 
 </td><td>
 
 | Code | Locale |
 | --- | --- |
-| `pt-pt` | Portuguese (Portugal) |
 | `ro` | Romanian |
 | `ru` | Russian |
-| `sr` | Serbian |
+| `sr` | Serbian (Cyrillic) |
+| `sr-latn` | Serbian (Latin) |
 | `sk` | Slovak |
 | `es` | Spanish |
 | `se` | Swedish |
