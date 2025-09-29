@@ -469,7 +469,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       en: "Merged PRs Percentage",
       ar: "نسبة طلبات السحب المُدمجة",
       az: "Birləşdirilmiş PR-ların Faizi",
-      ca: "Percentatje de PRs fusionats",
+      ca: "Percentatge de PRs fusionats",
       cn: "被合并的 PR 占比",
       "zh-tw": "合併的 PR 百分比",
       cs: "Sloučené PRs v procentech",
