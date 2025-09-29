@@ -306,6 +306,7 @@ Here is a list of all available locales:
 | `az` | Azerbaijani |
 | `bn` | Bengali |
 | `my` | Burmese |
+| `ca` | Catalan |
 | `cn` | Chinese |
 | `zh-tw` | Chinese (Taiwan) |
 | `cs` | Czech |
@@ -314,12 +315,12 @@ Here is a list of all available locales:
 | `fi` | Finnish |
 | `fr` | French |
 | `de` | German |
-| `el` | Greek |
 
 </td><td>
 
 | Code | Locale |
 | --- | --- |
+| `el` | Greek |
 | `hi` | Hindi |
 | `hu` | Hungarian |
 | `id` | Indonesian |
@@ -332,12 +333,12 @@ Here is a list of all available locales:
 | `fa` | Persian (Farsi) |
 | `pl` | Polish |
 | `pt-br` | Portuguese (Brazil) |
-| `pt-pt` | Portuguese (Portugal) |
 
 </td><td>
 
 | Code | Locale |
 | --- | --- |
+| `pt-pt` | Portuguese (Portugal) |
 | `ro` | Romanian |
 | `ru` | Russian |
 | `sr` | Serbian (Cyrillic) |
