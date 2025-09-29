@@ -15,8 +15,12 @@ import {
 dotenv.config();
 
 // GraphQL queries.
-const GRAPHQL_REPOS_FIELD = `
-  repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
+const getReposField = (includeTransferred = false) => {
+  const ownerAffiliations = includeTransferred
+    ? "[OWNER, COLLABORATOR]"
+    : "OWNER";
+  return `
+  repositories(first: 100, ownerAffiliations: ${ownerAffiliations}, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
     totalCount
     nodes {
       name
@@ -30,16 +34,17 @@ const GRAPHQL_REPOS_FIELD = `
     }
   }
 `;
+};
 
-const GRAPHQL_REPOS_QUERY = `
+const getReposQuery = (includeTransferred = false) => `
   query userInfo($login: String!, $after: String) {
     user(login: $login) {
-      ${GRAPHQL_REPOS_FIELD}
+      ${getReposField(includeTransferred)}
     }
   }
 `;
 
-const GRAPHQL_STATS_QUERY = `
+const getStatsQuery = (includeTransferred = false) => `
   query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!, $startTime: DateTime = null) {
     user(login: $login) {
       name
@@ -74,7 +79,7 @@ const GRAPHQL_STATS_QUERY = `
       repositoryDiscussionComments(onlyAnswers: true) @include(if: $includeDiscussionsAnswers) {
         totalCount
       }
-      ${GRAPHQL_REPOS_FIELD}
+      ${getReposField(includeTransferred)}
     }
   }
 `;
@@ -91,7 +96,10 @@ const GRAPHQL_STATS_QUERY = `
  * @returns {Promise<AxiosResponse>} Axios response.
  */
 const fetcher = (variables, token) => {
-  const query = variables.after ? GRAPHQL_REPOS_QUERY : GRAPHQL_STATS_QUERY;
+  const includeTransferred = variables.includeTransferred || false;
+  const query = variables.after
+    ? getReposQuery(includeTransferred)
+    : getStatsQuery(includeTransferred);
   return request(
     {
       query,
@@ -122,6 +130,7 @@ const statsFetcher = async ({
   includeDiscussions,
   includeDiscussionsAnswers,
   startTime,
+  includeTransferred,
 }) => {
   let stats;
   let hasNextPage = true;
@@ -135,6 +144,7 @@ const statsFetcher = async ({
       includeDiscussions,
       includeDiscussionsAnswers,
       startTime,
+      includeTransferred,
     };
     let res = await retryer(fetcher, variables);
     if (res.data.errors) {
@@ -233,6 +243,7 @@ const fetchStats = async (
   include_discussions = false,
   include_discussions_answers = false,
   commits_year,
+  include_transferred_repos = false,
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -259,6 +270,7 @@ const fetchStats = async (
     includeDiscussions: include_discussions,
     includeDiscussionsAnswers: include_discussions_answers,
     startTime: commits_year ? `${commits_year}-01-01T00:00:00Z` : undefined,
+    includeTransferred: include_transferred_repos,
   });
 
   // Catch GraphQL errors.

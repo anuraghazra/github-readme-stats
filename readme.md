@@ -158,6 +158,14 @@ You can specify a year and fetch only the commits that were made in that year by
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&commits_year=2020)
 ```
 
+### Including transferred repositories
+
+If you have transferred repositories to organizations, you can include their stars in your stats by using the `&include_transferred_repos=true` parameter. This helps maintain accurate star counts for repositories that were originally created by you but have since been transferred to an organization.
+
+```md
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&include_transferred_repos=true)
+```
+
 ### Themes
 
 With inbuilt themes, you can customize the look of the card without doing any [manual customization](#customization).
@@ -375,7 +383,8 @@ If we don't support your language, please consider contributing! You can find mo
 | `ring_color` | Color of the rank circle. | string (hex color) | `2f80ed` |
 | `number_format` | Switches between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). | enum | `short` |
 | `show` | Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started`, `discussions_answered`, `prs_merged` or `prs_merged_percentage`). | string (comma-separated values) | `null` |
-| `commits_year` | Filters and counts only commits made in the specified year | integer _(YYYY)_ | `<current year> (one year to date)`.
+| `commits_year` | Filters and counts only commits made in the specified year | integer _(YYYY)_ | `<current year> (one year to date)` |
+| `include_transferred_repos` | Includes repositories that were transferred to organizations in star count. This helps maintain star counts for repositories that were originally created by the user but have since been transferred to an organization. | boolean | `false` |
 
 > [!NOTE]\
 > When hide\_rank=`true`, the minimum card width is 270 px + the title length and padding.
