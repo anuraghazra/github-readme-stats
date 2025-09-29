@@ -788,7 +788,6 @@ Selecting the right scopes for your token is important in case you want to displ
 
 ### Classic token
 
-Steps:
   - Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic)](https://github.com/settings/tokens).
   - Click on `Generate new token -> Generate new token (classic)`.
   - Scopes to select:
@@ -801,7 +800,6 @@ Steps:
 > [!WARNING]\
 > This limits the number of issues to the number of issues on your repositories only and only takes public commits into account.
 
-Steps:
   - Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Fine-grained tokens](https://github.com/settings/tokens).
   - Click on `Generate new token -> Generate new token`.
   - Select an expiration date
