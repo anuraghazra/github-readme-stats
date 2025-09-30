@@ -621,6 +621,9 @@ You can use the `&stats_format=bytes` option to display the stats in bytes inste
 > [!WARNING]\
 > Please be aware that we currently only show data from WakaTime profiles that are public. You therefore have to make sure that **BOTH** `Display code time publicly` and `Display languages, editors, os, categories publicly` are enabled.
 
+> [!WARNING]\
+> In case you just created a new WakaTime account, then it might take up to 24 hours until your stats will become visible on the WakaTime stats card.
+
 Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 
 ```md
