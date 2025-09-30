@@ -45,6 +45,10 @@
 
 <p align="center">Love the project? Please consider <a href="https://www.paypal.me/anuraghazra">donating</a> to help it improve!</p>
 
+<p align="center">
+language:<a href="README_zh-CN.md">Chinese</a>|<a href="readme.md">English</a>
+</p>
+
 <details>
 <summary>Table of contents (Click to show)</summary>
 
