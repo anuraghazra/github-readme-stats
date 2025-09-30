@@ -322,6 +322,7 @@ Here is a list of all available locales:
 | Code | Locale |
 | --- | --- |
 | `el` | Greek |
+| `he` | Hebrew |
 | `hi` | Hindi |
 | `hu` | Hungarian |
 | `id` | Indonesian |
