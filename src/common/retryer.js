@@ -25,12 +25,14 @@ const retryer = async (fetcher, variables, retries = 0) => {
   if (!RETRIES) {
     throw new CustomError("No GitHub API tokens found", CustomError.NO_TOKENS);
   }
+
   if (retries > RETRIES) {
     throw new CustomError(
       "Downtime due to GitHub API rate limiting",
       CustomError.MAX_RETRY,
     );
   }
+
   try {
     // try to fetch with the first token since RETRIES is 0 index i'm adding +1
     let response = await fetcher(
@@ -39,12 +41,16 @@ const retryer = async (fetcher, variables, retries = 0) => {
       retries,
     );
 
-    // prettier-ignore
-    const isRateExceeded = response.data.errors && response.data.errors[0].type === "RATE_LIMITED";
+    // react on both type and message-based rate-limit signals.
+    const errors = response?.data?.errors;
+    const errorType = errors?.[0]?.type;
+    const errorMsg = errors?.[0]?.message || "";
+    const isRateLimited =
+      (errors && errorType === "RATE_LIMITED") || /rate limit/i.test(errorMsg);
 
     // if rate limit is hit increase the RETRIES and recursively call the retryer
     // with username, and current RETRIES
-    if (isRateExceeded) {
+    if (isRateLimited) {
       logger.log(`PAT_${retries + 1} Failed`);
       retries++;
       // directly return from the function
