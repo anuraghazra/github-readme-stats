@@ -644,7 +644,7 @@ const langCardLocales = {
     uz: "Eng koʻp ishlatiladigan tillar",
     vi: "Ngôn Ngữ Thường Sử Dụng",
     se: "Mest använda språken",
-    fil: "Mga Pinakamadalas na Ginagamit na lenggwahe",
+    fil: "Mga Pinakamadalas na Ginagamit na Wika",
     th: "ภาษาที่ใช้บ่อยที่สุด",
     sr: "Најкоришћенији језици",
     "sr-latn": "Najkorišćeniji jezici",
