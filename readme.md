@@ -786,7 +786,7 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 For deploying your own instance of GitHub Readme Stats, you will need to create a GitHub Personal Access Token (PAT). Below are the steps to create one and the scopes you need to select for both classic and fine-grained tokens.
 
-Selecting the right scopes for your token is important in case you want to display private contributions on your stats card. 
+Selecting the right scopes for your token is important in case you want to display private contributions on your cards.
 
 ### Classic token
 
