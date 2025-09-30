@@ -964,7 +964,7 @@ const wakatimeCardLocales = {
     uz: "Bu hafta faol bo'lmadi",
     vi: "Không Có Hoạt Động Trong Tuần Này",
     se: "Ingen aktivitet denna vecka",
-    he: "אין פעולות תכנותית השבוע",
+    he: "אין פעילות תכנותית השבוע",
     fil: "Walang aktibidad sa pag-code ngayong linggo",
     th: "ไม่มีกิจกรรมการเขียนโค้ดในสัปดาห์นี้",
     sr: "Током ове недеље није било никаквих активности",
