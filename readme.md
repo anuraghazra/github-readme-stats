@@ -308,6 +308,7 @@ Here is a list of all available locales:
 | `ar` | Arabic |
 | `az` | Azerbaijani |
 | `bn` | Bengali |
+| `bg` | Bulgarian |
 | `my` | Burmese |
 | `ca` | Catalan |
 | `cn` | Chinese |
