@@ -7,6 +7,7 @@ import {
   parseBoolean,
   renderError,
   wrapTextMultiline,
+  formatBytes,
 } from "../src/common/utils.js";
 import { expect, it, describe } from "@jest/globals";
 
@@ -133,6 +134,20 @@ describe("Test utils.js", () => {
       bgColor: "#fff",
       borderColor: "#fff",
     });
+  });
+
+  it("formatBytes: should return expected values", () => {
+    expect(formatBytes(0)).toBe("0 B");
+    expect(formatBytes(100)).toBe("100.0 B");
+    expect(formatBytes(1024)).toBe("1.0 KB");
+    expect(formatBytes(1024 * 1024)).toBe("1.0 MB");
+    expect(formatBytes(1024 * 1024 * 1024)).toBe("1.0 GB");
+    expect(formatBytes(1024 * 1024 * 1024 * 1024)).toBe("1.0 TB");
+    expect(formatBytes(1024 * 1024 * 1024 * 1024 * 1024)).toBe("1.0 PB");
+    expect(formatBytes(1024 * 1024 * 1024 * 1024 * 1024 * 1024)).toBe("1.0 EB");
+
+    expect(formatBytes(1234 * 1024)).toBe("1.2 MB");
+    expect(formatBytes(123.4 * 1024)).toBe("123.4 KB");
   });
 });
 

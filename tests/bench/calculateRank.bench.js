@@ -1,8 +1,9 @@
-import { benchmarkSuite } from "jest-bench";
 import { calculateRank } from "../../src/calculateRank.js";
+import { it } from "@jest/globals";
+import { runAndLogStats } from "./utils.js";
 
-benchmarkSuite("calculateRank", {
-  ["calculateRank"]: () => {
+it("calculateRank", async () => {
+  await runAndLogStats("calculateRank", () => {
     calculateRank({
       all_commits: false,
       commits: 1300,
@@ -13,5 +14,5 @@ benchmarkSuite("calculateRank", {
       stars: 600000,
       followers: 50000,
     });
-  },
+  });
 });
