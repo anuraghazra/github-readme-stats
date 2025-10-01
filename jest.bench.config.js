@@ -7,7 +7,7 @@ export default {
   modulePathIgnorePatterns: ["<rootDir>/node_modules/", "<rootDir>/tests/e2e/"],
   coveragePathIgnorePatterns: [
     "<rootDir>/node_modules/",
-    "<rootDir>/tests/E2E/",
+    "<rootDir>/tests/e2e/",
   ],
   testRegex: "(\\.bench)\\.(ts|tsx|js)$",
 };

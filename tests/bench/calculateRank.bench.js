@@ -2,8 +2,8 @@ import { calculateRank } from "../../src/calculateRank.js";
 import { it } from "@jest/globals";
 import { runAndLogStats } from "./utils.js";
 
-it("calculateRank", () => {
-  runAndLogStats("calculateRank", () => {
+it("calculateRank", async () => {
+  await runAndLogStats("calculateRank", async () => {
     calculateRank({
       all_commits: false,
       commits: 1300,

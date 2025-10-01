@@ -33,7 +33,7 @@ const mock = new MockAdapter(axios);
 mock.onPost("https://api.github.com/graphql").reply(200, data_user);
 
 it("test /api/pin", async () => {
-  runAndLogStats("test /api/pin", async () => {
+  await runAndLogStats("test /api/pin", async () => {
     const req = {
       query: {
         username: "anuraghazra",
