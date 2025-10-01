@@ -939,7 +939,7 @@ const wakatimeCardLocales = {
     fa: "کاربر آمار کد تفصیلی را به‌صورت عمومی به اشتراک نمی‌گذارد",
     fi: "Käyttäjä ei jaa julkisesti tarkkoja kooditilastoja",
     fr: "L'utilisateur ne partage pas publiquement de statistiques de code détaillées",
-    hi: "उपयोगकर्ता विस्तृत कोड आँकड़े सार्वजनिक रूप से साझा नहीं करता है!",
+    hi: "उपयोगकर्ता विस्तृत कोड आँकड़े सार्वजनिक रूप से साझा नहीं करता है",
     hu: "A felhasználó nem osztja meg nyilvánosan a részletes kódstatisztikákat",
     it: "L'utente non condivide pubblicamente statistiche dettagliate sul codice",
     ja: "ユーザーは詳細なコード統計を公開しません",
