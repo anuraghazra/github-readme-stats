@@ -1,5 +1,6 @@
-import { renderStatsCard } from "../src/cards/stats-card.js";
+import { renderStatsCard } from "../src/cards/stats.js";
 import { blacklist } from "../src/common/blacklist.js";
+import { whitelist } from "../src/common/whitelist.js";
 import {
   clampValue,
   CONSTANTS,
@@ -7,7 +8,7 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { fetchStats } from "../src/fetchers/stats-fetcher.js";
+import { fetchStats } from "../src/fetchers/stats.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
 export default async (req, res) => {
@@ -20,6 +21,7 @@ export default async (req, res) => {
     hide_rank,
     show_icons,
     include_all_commits,
+    commits_year,
     line_height,
     title_color,
     ring_color,
@@ -41,15 +43,37 @@ export default async (req, res) => {
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (blacklist.includes(username)) {
+  if (whitelist && !whitelist.includes(username)) {
     return res.send(
-      renderError("Something went wrong", "This username is blacklisted", {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
-      }),
+      renderError(
+        "This username is not whitelisted",
+        "Please deploy your own instance",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+          show_repo_link: false,
+        },
+      ),
+    );
+  }
+
+  if (whitelist === undefined && blacklist.includes(username)) {
+    return res.send(
+      renderError(
+        "This username is blacklisted",
+        "Please deploy your own instance",
+        {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+          show_repo_link: false,
+        },
+      ),
     );
   }
 
@@ -75,6 +99,7 @@ export default async (req, res) => {
         showStats.includes("prs_merged_percentage"),
       showStats.includes("discussions_started"),
       showStats.includes("discussions_answered"),
+      parseInt(commits_year, 10),
     );
 
     let cacheSeconds = clampValue(
@@ -100,6 +125,7 @@ export default async (req, res) => {
         card_width: parseInt(card_width, 10),
         hide_rank: parseBoolean(hide_rank),
         include_all_commits: parseBoolean(include_all_commits),
+        commits_year: parseInt(commits_year, 10),
         line_height,
         title_color,
         ring_color,

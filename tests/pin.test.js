@@ -3,8 +3,8 @@ import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import pin from "../api/pin.js";
-import { renderRepoCard } from "../src/cards/repo-card.js";
-import { renderError } from "../src/common/utils.js";
+import { renderRepoCard } from "../src/cards/repo.js";
+import { CONSTANTS, renderError } from "../src/common/utils.js";
 import { expect, it, describe, afterEach } from "@jest/globals";
 
 const data_repo = {
@@ -156,7 +156,11 @@ describe("Test /api/pin", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Something went wrong", "This username is blacklisted"),
+      renderError(
+        "This username is blacklisted",
+        "Please deploy your own instance",
+        { show_repo_link: false },
+      ),
     );
   });
 
@@ -199,6 +203,30 @@ describe("Test /api/pin", () => {
         'Missing params "username", "repo" make sure you pass the parameters in URL',
         "/api/pin?username=USERNAME&amp;repo=REPO_NAME",
       ),
+    );
+  });
+
+  it("should have proper cache", async () => {
+    const req = {
+      query: {
+        username: "anuraghazra",
+        repo: "convoychat",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
+
+    await pin(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.setHeader).toBeCalledWith(
+      "Cache-Control",
+      `max-age=${CONSTANTS.PIN_CARD_CACHE_SECONDS}, s-maxage=${
+        CONSTANTS.PIN_CARD_CACHE_SECONDS
+      }`,
     );
   });
 });
