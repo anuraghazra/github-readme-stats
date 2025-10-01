@@ -354,6 +354,7 @@ Here is a list of all available locales:
 | `th` | Thai |
 | `tr` | Turkish |
 | `uk-ua` | Ukrainian |
+| `ur` | Urdu |
 | `uz` | Uzbek |
 | `vi` | Vietnamese |
 
