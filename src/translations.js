@@ -804,7 +804,7 @@ const wakatimeCardLocales = {
     fa: "سال گذشته",
     fi: "Viime vuosi",
     fr: "L'année dernière",
-    hi: "पिछले ",
+    hi: "पिछले साल",
     hu: "Tavaly",
     it: "L'anno scorso",
     ja: "昨年",
