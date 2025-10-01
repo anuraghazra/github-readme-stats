@@ -894,7 +894,7 @@ const wakatimeCardLocales = {
     fa: "پروفایل کاربری WakaTime عمومی نیست",
     fi: "WakaTime-käyttäjäprofiili ei ole julkinen",
     fr: "Profil utilisateur WakaTime non public",
-    hi: "वाकाटाइम उपयोगकर्ता प्रोफ़ाइल सार्वजनिक नहीं है",
+    hi: "WakaTime उपयोगकर्ता प्रोफ़ाइल सार्वजनिक नहीं है",
     hu: "A WakaTime felhasználói profilja nem nyilvános",
     it: "Profilo utente WakaTime non pubblico",
     ja: "WakaTime ユーザープロファイルは公開されていません",
