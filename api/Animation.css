@@ -1,0 +1,21 @@
+.gist-card {
+  transition: all 0.3s ease;
+}
+
+.gist-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(208, 196, 196, 0.1);
+}
+
+.stat-animation {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
