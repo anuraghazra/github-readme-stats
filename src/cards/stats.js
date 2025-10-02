@@ -235,6 +235,7 @@ const renderStatsCard = (stats, options = {}) => {
     hide_title = false,
     hide_border = false,
     card_width,
+    card_height,
     hide_rank = false,
     include_all_commits = false,
     commits_year,
@@ -414,10 +415,21 @@ const renderStatsCard = (stats, options = {}) => {
 
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
-  let height = Math.max(
-    45 + (statItems.length + 1) * lheight,
-    hide_rank ? 0 : statItems.length ? 150 : 180,
-  );
+  // Allow custom height to override automatic calculation
+  let height = card_height
+    ? isNaN(card_height)
+      ? Math.max(
+          45 + (statItems.length + 1) * lheight,
+          hide_rank ? 0 : statItems.length ? 150 : 180,
+        )
+      : Math.max(
+          card_height,
+          hide_rank ? 45 + (statItems.length + 1) * lheight : 150,
+        )
+    : Math.max(
+        45 + (statItems.length + 1) * lheight,
+        hide_rank ? 0 : statItems.length ? 150 : 180,
+      );
 
   // the lower the user's percentile the better
   const progress = 100 - rank.percentile;
