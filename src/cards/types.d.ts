@@ -18,6 +18,7 @@ export type StatCardOptions = CommonOptions & {
   show_icons: boolean;
   hide_title: boolean;
   card_width: number;
+  card_height: number;
   hide_rank: boolean;
   include_all_commits: boolean;
   commits_year: number;
