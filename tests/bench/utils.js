@@ -3,6 +3,7 @@ const DEFAULT_WARMUPS = 50;
 
 /**
  * Formats a duration in nanoseconds to a compact human-readable string.
+ *
  * @param {bigint} ns Duration in nanoseconds.
  * @returns {string} Formatted time string.
  */
@@ -21,6 +22,7 @@ const formatTime = (ns) => {
 
 /**
  * Measures synchronous or async function execution time.
+ *
  * @param {Function} fn Function to measure.
  * @returns {Promise<bigint>} elapsed nanoseconds
  */
@@ -36,6 +38,7 @@ const measurePerformance = async (fn) => {
 
 /**
  * Computes basic & extended statistics.
+ *
  * @param {bigint[]} samples Array of samples in nanoseconds.
  * @returns {object} Stats
  */
@@ -75,6 +78,7 @@ const computeStats = (samples) => {
 
 /**
  * Benchmark a function.
+ *
  * @param {string} fnName Name of the function (for logging).
  * @param {Function} fn Function to benchmark.
  * @param {object} [opts] Options.
