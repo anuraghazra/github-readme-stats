@@ -352,6 +352,7 @@ Here is a list of all available locales:
 | `sk` | Slovak |
 | `es` | Spanish |
 | `se` | Swedish |
+| `ta` | Tamil |
 | `th` | Thai |
 | `tr` | Turkish |
 | `uk-ua` | Ukrainian |
