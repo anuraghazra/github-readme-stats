@@ -1,5 +1,8 @@
 # Contributing to [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
 
+> [!IMPORTANT]\
+> Please note that we are NOT participating in Hacktoberfest this year. Unfortunately, the only person with sufficient access rights to remove the repository label is currently unreachable, so we are notifying you here. As a small team, we cannot handle the increased volume of PRs and issues that the event brings. We appreciate your understanding.
+
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
 -   Reporting [an issue](https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&template=bug_report.yml).
