@@ -76,4 +76,49 @@ describe("Test Retryer", () => {
       expect(err.message).toBe("Downtime due to GitHub API rate limiting");
     }
   });
+
+  it("retryer should handle network errors without err.response gracefully", async () => {
+    const fetcherNetworkError = jest.fn(() => {
+      const error = new Error("ECONNREFUSED");
+      // Simulate network error without response object
+      return Promise.reject(error);
+    });
+
+    const res = await retryer(fetcherNetworkError, {});
+
+    expect(fetcherNetworkError).toBeCalledTimes(1);
+    expect(res).toBeUndefined(); // err.response is undefined for network errors
+  });
+
+  it("retryer should retry on bad credentials error", async () => {
+    const fetcherBadCreds = jest.fn((_vars, _token, retries) => {
+      if (retries < 1) {
+        const error = new Error("Bad credentials");
+        error.response = { data: { message: "Bad credentials" } };
+        return Promise.reject(error);
+      }
+      return Promise.resolve({ data: "ok" });
+    });
+
+    const res = await retryer(fetcherBadCreds, {});
+
+    expect(fetcherBadCreds).toBeCalledTimes(2);
+    expect(res).toStrictEqual({ data: "ok" });
+  });
+
+  it("retryer should retry on account suspended error", async () => {
+    const fetcherSuspended = jest.fn((_vars, _token, retries) => {
+      if (retries < 1) {
+        const error = new Error("Account suspended");
+        error.response = { data: { message: "Sorry. Your account was suspended." } };
+        return Promise.reject(error);
+      }
+      return Promise.resolve({ data: "ok" });
+    });
+
+    const res = await retryer(fetcherSuspended, {});
+
+    expect(fetcherSuspended).toBeCalledTimes(2);
+    expect(res).toStrictEqual({ data: "ok" });
+  });
 });
