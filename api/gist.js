@@ -23,6 +23,7 @@ export default async (req, res) => {
     border_color,
     show_owner,
     hide_border,
+    card_width,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -82,6 +83,7 @@ export default async (req, res) => {
         theme,
         border_radius,
         border_color,
+        card_width: card_width ? parseInt(card_width, 10) : undefined, // <-- new line
         locale: locale ? locale.toLowerCase() : null,
         show_owner: parseBoolean(show_owner),
         hide_border: parseBoolean(hide_border),
