@@ -1,3 +1,5 @@
+// @ts-check
+
 const DEFAULT_RUNS = 1000;
 const DEFAULT_WARMUPS = 50;
 
