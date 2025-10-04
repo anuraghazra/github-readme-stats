@@ -1,0 +1,41 @@
+name: Theme Pull Requests Closer
+
+on:
+  - pull_request_target
+
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  deployments: read
+  issues: read
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: write
+  repository-projects: read
+  security-events: read
+  statuses: read
+
+jobs:
+  close-prs:
+    if: github.repository == 'anuraghazra/github-readme-stats'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Close Pull Requests
+        run: |
+          comment_message="We are currently pausing addition of new themes. If this theme is exclusively for your personal use, then instead of adding it to our theme collection, you can use card [customization options](https://github.com/anuraghazra/github-readme-stats?tab=readme-ov-file#customization)."
+
+          for pr_number in $(gh pr list -l "themes" -q is:open --json number -q ".[].number"); do
+            gh pr close $pr_number -c "$comment_message"
+          done
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
