@@ -320,12 +320,12 @@ Here is a list of all available locales:
 | `fi` | Finnish |
 | `fr` | French |
 | `de` | German |
+| `el` | Greek |
 
 </td><td>
 
 | Code | Locale |
 | --- | --- |
-| `el` | Greek |
 | `he` | Hebrew |
 | `hi` | Hindi |
 | `hu` | Hungarian |
@@ -340,13 +340,14 @@ Here is a list of all available locales:
 | `pl` | Polish |
 | `pt-br` | Portuguese (Brazil) |
 | `pt-pt` | Portuguese (Portugal) |
+| `ro` | Romanian |
 
 </td><td>
 
 | Code | Locale |
 | --- | --- |
-| `ro` | Romanian |
 | `ru` | Russian |
+| `sa` | Sanskrit |
 | `sr` | Serbian (Cyrillic) |
 | `sr-latn` | Serbian (Latin) |
 | `sk` | Slovak |
