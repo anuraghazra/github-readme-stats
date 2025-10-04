@@ -353,6 +353,7 @@ Here is a list of all available locales:
 | `es` | Spanish |
 | `sw` | Swahili |
 | `se` | Swedish |
+| `ta` | Tamil |
 | `th` | Thai |
 | `tr` | Turkish |
 | `uk-ua` | Ukrainian |
