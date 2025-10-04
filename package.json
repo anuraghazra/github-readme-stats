@@ -65,7 +65,6 @@
     "dotenv": "^17.2.2",
     "emoji-name-map": "^2.0.3",
     "github-username-regex": "^1.0.0",
-    "upgrade": "^1.1.0",
     "word-wrap": "^1.2.5"
   },
   "lint-staged": {
