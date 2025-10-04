@@ -462,6 +462,20 @@ export const themes = {
     icon_color: "ffffff",
     bg_color: "35,4158d0,c850c0,ffcc70",
   },
+  soft_blue: {
+    title_color: "0969da",
+    icon_color: "218bff",
+    text_color: "57606a",
+    bg_color: "f6f8fa",
+    border_color: "d0d7de",
+  },
+  lavender: {
+    title_color: "9b59b6",
+    icon_color: "c39bd3",
+    text_color: "6c5b7b",
+    bg_color: "f4f1f9",
+    border_color: "d7c9e8",
+  },
 };
 
 export default themes;
