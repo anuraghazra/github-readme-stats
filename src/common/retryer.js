@@ -42,6 +42,7 @@ const retryer = async (fetcher, variables, retries = 0) => {
     );
 
     // react on both type and message-based rate-limit signals.
+    // https://github.com/anuraghazra/github-readme-stats/issues/4425
     const errors = response?.data?.errors;
     const errorType = errors?.[0]?.type;
     const errorMsg = errors?.[0]?.message || "";
