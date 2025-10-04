@@ -84,24 +84,33 @@ const createCompactLangNode = ({ lang, x, y, display_format }) => {
  * @param {WakaTimeLang[]} args.langs The language objects.
  * @param {number} args.y The y position of the language node.
  * @param {"time" | "percent"} args.display_format The display format of the language node.
+ * @param {number} args.lineHeight The line height for spacing.
  * @returns {string[]} The language text node items.
  */
-const createLanguageTextNode = ({ langs, y, display_format }) => {
+const createLanguageTextNode = ({
+  langs,
+  y,
+  display_format,
+  lineHeight = 25,
+}) => {
+  const halfLength = Math.ceil(langs.length / 2);
+
   return langs.map((lang, index) => {
-    if (index % 2 === 0) {
+    if (index < halfLength) {
       return createCompactLangNode({
         lang,
         x: 25,
-        y: 12.5 * index + y,
+        y: lineHeight * index + y,
+        display_format,
+      });
+    } else {
+      return createCompactLangNode({
+        lang,
+        x: 230,
+        y: lineHeight * (index - halfLength) + y,
         display_format,
       });
     }
-    return createCompactLangNode({
-      lang,
-      x: 230,
-      y: 12.5 + 12.5 * index,
-      display_format,
-    });
   });
 };
 
@@ -294,7 +303,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
     width = width + 50;
-    height = 90 + Math.round(filteredLanguages.length / 2) * 25;
+    height = 90 + Math.round(filteredLanguages.length / 2) * lheight;
 
     // progressOffset holds the previous language's width and used to offset the next language
     // so that we can stack them one after another, like this: [--][----][---]
@@ -333,6 +342,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               y: 25,
               langs: filteredLanguages,
               display_format,
+              lineHeight: lheight,
             }).join("")
           : noCodingActivityNode({
               // @ts-ignore
