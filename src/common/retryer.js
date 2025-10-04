@@ -63,10 +63,9 @@ const retryer = async (fetcher, variables, retries = 0) => {
   } catch (err) {
     // prettier-ignore
     // also checking for bad credentials if any tokens gets invalidated
-    const isBadCredential = err.response.data && err.response.data.message === "Bad credentials";
+    const isBadCredential = err.response?.data?.message === "Bad credentials";
     const isAccountSuspended =
-      err.response.data &&
-      err.response.data.message === "Sorry. Your account was suspended.";
+      err.response?.data?.message === "Sorry. Your account was suspended.";
 
     if (isBadCredential || isAccountSuspended) {
       logger.log(`PAT_${retries + 1} Failed`);
