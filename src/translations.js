@@ -70,7 +70,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "zh-tw": `${encodedName} 的 GitHub 統計資料`,
       cs: `GitHub statistiky uživatele ${encodedName}`,
       de: `${encodedName + apostrophe} GitHub-Statistiken`,
-      sw: `Github Rank ya ${encodedName}`,
+      sw: `GitHub Rank ya ${encodedName}`,
       ur: `${encodedName} کی گٹ ہب رینک`,
       bg: `GitHub ранг на ${encodedName}`,
       bn: `${encodedName} এর GitHub পরিসংখ্যান`,
