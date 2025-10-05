@@ -116,8 +116,9 @@ const iconWithLabel = (icon, label, testid, iconSize) => {
  * @returns {string|number} The formatted number.
  */
 const kFormatter = (num) => {
-  return Math.abs(num) > 999
+  return Math.abs(num) > 9999
     ? Math.sign(num) * parseFloat((Math.abs(num) / 1000).toFixed(1)) + "k"
+    : Math.abs(num) > 999 ? Math.sign(num) * parseFloat((Math.abs(num) / 1000).toFixed(2)) + "k"
     : Math.sign(num) * Math.abs(num);
 };
 
