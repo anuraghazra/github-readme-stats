@@ -888,6 +888,7 @@ GitHub Readme Stats provides several environment variables that can be used to c
 *   `CACHE_SECONDS`: This takes precedence over our cache minimum and maximum values and can circumvent these values for self-hosted instances.
 *   `WHITELIST`: A comma-separated list of GitHub usernames that are allowed to access your instance. If this variable is not set, all usernames are allowed.
 *   `GIST_WHITELIST`: A comma-separated list of GitHub gist IDs that are allowed to be accessed on your instance. If this variable is not set, all gist IDs are allowed.
+*   `EXCLUDE_REPO`: A comma-separated list of repositories that will be excluded from stats and top languages cards on your instance. This allows repository exclusion without exposing repository names in public URLs. This enhances privacy for self-hosted instances that include private repositories in stats cards.
 
 See [the Vercel documentation](https://vercel.com/docs/concepts/projects/environment-variables) on adding these environment variables to your Vercel instance.
 

@@ -1,4 +1,5 @@
 // @ts-check
+
 import axios from "axios";
 import * as dotenv from "dotenv";
 import githubUsernameRegex from "github-username-regex";
@@ -11,6 +12,7 @@ import {
   request,
   wrapTextMultiline,
 } from "../common/utils.js";
+import excludeRepositories from "../common/excludeRepo.js";
 
 dotenv.config();
 
@@ -312,7 +314,8 @@ const fetchStats = async (
   stats.contributedTo = user.repositoriesContributedTo.totalCount;
 
   // Retrieve stars while filtering out repositories to be hidden.
-  let repoToHide = new Set(exclude_repo);
+  const allExcludedRepos = [...exclude_repo, ...excludeRepositories];
+  let repoToHide = new Set(allExcludedRepos);
 
   stats.totalStars = user.repositories.nodes
     .filter((data) => {
