@@ -85,28 +85,40 @@ const createCompactLangNode = ({ lang, x, y, display_format }) => {
  * @param {number} args.y The y position of the language node.
  * @param {"time" | "percent"} args.display_format The display format of the language node.
  * @param {number} args.lineHeight The line height for spacing.
+ * @param {"horizontal" | "vertical"} args.ordering The ordering of the languages.
  * @returns {string[]} The language text node items.
  */
-const createLanguageTextNode = ({ langs, y, display_format, lineHeight = 25 }) => {
-  const halfLength = Math.ceil(langs.length / 2);
+const createLanguageTextNode = ({ langs = [], y, display_format, lineHeight = 25, ordering = "horizontal" }) => {
+  if (ordering === "horizontal") {
+    return langs.map((lang, index) => {
+      const row = Math.floor(index / 2);
+      const col = index % 2;
+      return createCompactLangNode({
+        lang,
+        x: col === 0 ? 25 : 230,
+        y: y + lineHeight * row,
+        display_format,
+      });
+    });
+  }
 
-  return langs.map((lang, index) => {
-    if (index < halfLength) {
+  else if (ordering === "vertical") {
+    const halfLength = Math.ceil(langs.length / 2);
+
+    return langs.map((lang, index) => {
+      const inLeft = index < halfLength;
+      const col = inLeft ? 0 : 1;
+      const row = inLeft ? index : index - halfLength;
       return createCompactLangNode({
         lang,
-        x: 25,
-        y: lineHeight * index + y,
+        x: col === 0 ? 25 : 230,
+        y: y + lineHeight * row,
         display_format,
       });
-    } else {
-      return createCompactLangNode({
-        lang,
-        x: 230,
-        y: lineHeight * (index - halfLength) + y,
-        display_format,
-      });
-    }
-  });
+    });
+  }
+
+  return [];
 };
 
 /**
@@ -243,6 +255,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     border_color,
     display_format = "time",
     disable_animations,
+    ordering = "horizontal",
   } = options;
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
@@ -338,6 +351,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               langs: filteredLanguages,
               display_format,
               lineHeight: lheight,
+              ordering,
             }).join("")
           : noCodingActivityNode({
               // @ts-ignore
