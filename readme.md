@@ -648,6 +648,7 @@ You can customize the appearance and behavior of the WakaTime stats card using t
 | --- | --- | --- | --- |
 | `hide` | Hides the languages specified from the card. | string (comma-separated values) | `null` |
 | `hide_title` | Hides the title of your card. | boolean | `false` |
+| `card_width` | Sets the card's width manually. | number | `495` |
 | `line_height` | Sets the line height between text. | integer | `25` |
 | `hide_progress` | Hides the progress bar and percentage. | boolean | `false` |
 | `custom_title` | Sets a custom title for the card. | string | `WakaTime Stats` |
