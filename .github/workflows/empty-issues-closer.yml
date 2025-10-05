@@ -1,0 +1,47 @@
+name: Close empty issues and templates
+on:
+  issues:
+    types:
+      - reopened
+      - opened
+      - edited
+
+permissions:
+  actions: read
+  checks: read
+  contents: read
+  deployments: read
+  issues: write
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: read
+  repository-projects: read
+  security-events: read
+  statuses: read
+
+jobs:
+  closeEmptyIssuesAndTemplates:
+    if: github.repository == 'anuraghazra/github-readme-stats'
+    name: Close empty issues
+    runs-on: ubuntu-latest
+    steps:
+      # NOTE: Retrieve issue templates.
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Run empty issues closer action
+        uses: rickstaa/empty-issues-closer-action@e96914613221511279ca25f50fd4acc85e331d99 # v1.1.74
+        env:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          close_comment:
+            Closing this issue because it appears to be empty. Please update the
+            issue for it to be reopened.
+          open_comment:
+            Reopening this issue because the author provided more information.
+          check_templates: true
+          template_close_comment:
+            Closing this issue since the issue template was not filled in.
+            Please provide us with more information to have this issue reopened.
+          template_open_comment:
+            Reopening this issue because the author provided more information.
