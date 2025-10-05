@@ -1,4 +1,5 @@
 // @ts-check
+
 import { Card } from "../common/Card.js";
 import { createProgressNode } from "../common/createProgressNode.js";
 import { I18n } from "../common/I18n.js";
@@ -20,6 +21,9 @@ import { wakatimeCardLocales } from "../translations.js";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const languageColors = require("../common/languageColors.json"); // now works
+
+const DEFAULT_CARD_WIDTH = 495;
+const MIN_CARD_WIDTH = 250;
 
 /**
  * Creates the no coding activity SVG node.
@@ -99,7 +103,7 @@ const createLanguageTextNode = ({ langs, y, display_format, card_width }) => {
     }
     return createCompactLangNode({
       lang,
-      x: 230 + (card_width - 495) / 2,
+      x: 230 + (card_width - DEFAULT_CARD_WIDTH) / 2,
       y: 12.5 + 12.5 * index,
       display_format,
     });
@@ -210,6 +214,19 @@ const getStyles = ({
 };
 
 /**
+ * Normalize incoming width (string or number) and clamp to minimum.
+ *
+ * @param {number|undefined} value The incoming width value.
+ * @returns {number} The normalized width value.
+ */
+const normalizeCardWidth = (value) => {
+  if (value === undefined || value === null || isNaN(value)) {
+    return DEFAULT_CARD_WIDTH;
+  }
+  return Math.max(MIN_CARD_WIDTH, value);
+};
+
+/**
  * @typedef {import('../fetchers/types').WakaTimeData} WakaTimeData
  * @typedef {import('./types').WakaTimeOptions} WakaTimeOptions
  */
@@ -223,7 +240,7 @@ const getStyles = ({
  */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   let { languages = [] } = stats;
-  let {
+  const {
     hide_title = false,
     hide_border = false,
     card_width,
@@ -245,9 +262,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     disable_animations,
   } = options;
 
-  if (isNaN(card_width)) {
-    card_width = 495;
-  }
+  const normalizedWidth = normalizeCardWidth(card_width);
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
   if (shouldHideLangs) {
@@ -299,7 +314,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
-    let width = card_width - 5;
+    let width = normalizedWidth - 5;
     height = 90 + Math.round(filteredLanguages.length / 2) * 25;
 
     // progressOffset holds the previous language's width and used to offset the next language
@@ -339,7 +354,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               y: 25,
               langs: filteredLanguages,
               display_format,
-              card_width,
+              card_width: normalizedWidth,
             }).join("")
           : noCodingActivityNode({
               // @ts-ignore
@@ -367,7 +382,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               // @ts-ignore
               progressBarBackgroundColor: textColor,
               hideProgress: hide_progress,
-              progressBarWidth: card_width - 275,
+              progressBarWidth: normalizedWidth - 275,
             });
           })
         : [
@@ -400,7 +415,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const card = new Card({
     customTitle: custom_title,
     defaultTitle: titleText,
-    width: card_width,
+    width: normalizedWidth,
     height,
     border_radius,
     colors: {
