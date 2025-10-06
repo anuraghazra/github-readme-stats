@@ -1,15 +1,11 @@
 // @ts-check
 
-import {
-  clampValue,
-  CONSTANTS,
-  renderError,
-  parseBoolean,
-} from "../src/common/utils.js";
+import { CONSTANTS, renderError, parseBoolean } from "../src/common/utils.js";
 import { gistWhitelist } from "../src/common/envs.js";
 import { isLocaleAvailable } from "../src/translations.js";
 import { renderGistCard } from "../src/cards/gist.js";
 import { fetchGist } from "../src/fetchers/gist.js";
+import { resolveCacheSeconds } from "../src/common/cache.js";
 
 export default async (req, res) => {
   const {
@@ -60,15 +56,12 @@ export default async (req, res) => {
 
   try {
     const gistData = await fetchGist(id);
-
-    let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.TWO_DAY, 10),
-      CONSTANTS.TWO_DAY,
-      CONSTANTS.SIX_DAY,
-    );
-    cacheSeconds = process.env.CACHE_SECONDS
-      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
-      : cacheSeconds;
+    const cacheSeconds = resolveCacheSeconds({
+      requested: cache_seconds,
+      def: CONSTANTS.TWO_DAY,
+      min: CONSTANTS.TWO_DAY,
+      max: CONSTANTS.SIX_DAY,
+    });
 
     res.setHeader(
       "Cache-Control",
