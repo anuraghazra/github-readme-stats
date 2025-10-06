@@ -1,6 +1,8 @@
+// @ts-check
+
 import { renderStatsCard } from "../src/cards/stats.js";
 import { blacklist } from "../src/common/blacklist.js";
-import { whitelist } from "../src/common/whitelist.js";
+import { whitelist } from "../src/common/envs.js";
 import {
   clampValue,
   CONSTANTS,

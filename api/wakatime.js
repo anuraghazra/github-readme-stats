@@ -1,3 +1,5 @@
+// @ts-check
+
 import { renderWakatimeCard } from "../src/cards/wakatime.js";
 import {
   clampValue,
@@ -6,7 +8,7 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { whitelist } from "../src/common/whitelist.js";
+import { whitelist } from "../src/common/envs.js";
 import { fetchWakatimeStats } from "../src/fetchers/wakatime.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
@@ -16,6 +18,7 @@ export default async (req, res) => {
     title_color,
     icon_color,
     hide_border,
+    card_width,
     line_height,
     text_color,
     bg_color,
@@ -90,6 +93,7 @@ export default async (req, res) => {
         custom_title,
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
+        card_width: parseInt(card_width, 10),
         hide: parseArray(hide),
         line_height,
         title_color,
