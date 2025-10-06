@@ -179,9 +179,9 @@ describe("Test /api/", () => {
       ["Content-Type", "image/svg+xml"],
       [
         "Cache-Control",
-        `max-age=${CONSTANTS.CARD_CACHE_SECONDS}, s-maxage=${
-          CONSTANTS.CARD_CACHE_SECONDS
-        }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+        `max-age=${CONSTANTS.CARD_CACHE_SECONDS}, ` +
+          `s-maxage=${CONSTANTS.CARD_CACHE_SECONDS}, ` +
+          `stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
       ],
     ]);
   });
@@ -195,11 +195,9 @@ describe("Test /api/", () => {
       ["Content-Type", "image/svg+xml"],
       [
         "Cache-Control",
-        `max-age=${
-          cache_seconds
-        }, s-maxage=${cache_seconds}, stale-while-revalidate=${
-          CONSTANTS.ONE_DAY
-        }`,
+        `max-age=${cache_seconds}, ` +
+          `s-maxage=${cache_seconds}, ` +
+          `stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
       ],
     ]);
   });
@@ -212,25 +210,25 @@ describe("Test /api/", () => {
       ["Content-Type", "image/svg+xml"],
       [
         "Cache-Control",
-        `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
-          CONSTANTS.ERROR_CACHE_SECONDS
-        }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+        `max-age=${CONSTANTS.ERROR_CACHE_SECONDS}, ` +
+          `s-maxage=${CONSTANTS.ERROR_CACHE_SECONDS}, ` +
+          `stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
       ],
     ]);
   });
 
   it("should set proper cache with clamped values", async () => {
     {
-      let { req, res } = faker({ cache_seconds: 200000 }, data_stats);
+      let { req, res } = faker({ cache_seconds: 200_000 }, data_stats);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
         [
           "Cache-Control",
-          `max-age=${CONSTANTS.TWO_DAY}, s-maxage=${
-            CONSTANTS.TWO_DAY
-          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+          `max-age=${CONSTANTS.TWO_DAY}, ` +
+            `s-maxage=${CONSTANTS.TWO_DAY}, ` +
+            `stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
         ],
       ]);
     }
@@ -244,24 +242,24 @@ describe("Test /api/", () => {
         ["Content-Type", "image/svg+xml"],
         [
           "Cache-Control",
-          `max-age=${CONSTANTS.ONE_DAY}, s-maxage=${
-            CONSTANTS.ONE_DAY
-          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+          `max-age=${CONSTANTS.TWELVE_HOURS}, ` +
+            `s-maxage=${CONSTANTS.TWELVE_HOURS}, ` +
+            `stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
         ],
       ]);
     }
 
     {
-      let { req, res } = faker({ cache_seconds: -10000 }, data_stats);
+      let { req, res } = faker({ cache_seconds: -10_000 }, data_stats);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
         [
           "Cache-Control",
-          `max-age=${CONSTANTS.TWELVE_HOURS}, s-maxage=${
-            CONSTANTS.TWELVE_HOURS
-          }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+          `max-age=${CONSTANTS.TWELVE_HOURS}, ` +
+            `s-maxage=${CONSTANTS.TWELVE_HOURS}, ` +
+            `stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
         ],
       ]);
     }
