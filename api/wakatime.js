@@ -76,7 +76,7 @@ export default async (req, res) => {
   try {
     const stats = await fetchWakatimeStats({ username, api_domain });
     const cacheSeconds = resolveCacheSeconds({
-      requested: cache_seconds,
+      requested: parseInt(cache_seconds, 10),
       def: CONSTANTS.CARD_CACHE_SECONDS,
       min: CONSTANTS.SIX_HOURS,
       max: CONSTANTS.TWO_DAY,

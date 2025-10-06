@@ -110,7 +110,7 @@ export default async (req, res) => {
       count_weight,
     );
     const cacheSeconds = resolveCacheSeconds({
-      requested: cache_seconds,
+      requested: parseInt(cache_seconds, 10),
       def: CONSTANTS.TOP_LANGS_CACHE_SECONDS,
       min: CONSTANTS.TWO_DAY,
       max: CONSTANTS.TEN_DAY,

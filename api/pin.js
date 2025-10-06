@@ -81,7 +81,7 @@ export default async (req, res) => {
   try {
     const repoData = await fetchRepo(username, repo);
     const cacheSeconds = resolveCacheSeconds({
-      requested: cache_seconds,
+      requested: parseInt(cache_seconds, 10),
       def: CONSTANTS.PIN_CARD_CACHE_SECONDS,
       min: CONSTANTS.ONE_DAY,
       max: CONSTANTS.TEN_DAY,

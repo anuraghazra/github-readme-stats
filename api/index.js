@@ -108,7 +108,7 @@ export default async (req, res) => {
       parseInt(commits_year, 10),
     );
     const cacheSeconds = resolveCacheSeconds({
-      requested: cache_seconds,
+      requested: parseInt(cache_seconds, 10),
       def: CONSTANTS.CARD_CACHE_SECONDS,
       min: CONSTANTS.TWELVE_HOURS,
       max: CONSTANTS.TWO_DAY,

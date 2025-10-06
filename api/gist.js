@@ -61,7 +61,7 @@ export default async (req, res) => {
   try {
     const gistData = await fetchGist(id);
     const cacheSeconds = resolveCacheSeconds({
-      requested: cache_seconds,
+      requested: parseInt(cache_seconds, 10),
       def: CONSTANTS.TWO_DAY,
       min: CONSTANTS.TWO_DAY,
       max: CONSTANTS.SIX_DAY,

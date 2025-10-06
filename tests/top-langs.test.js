@@ -230,9 +230,9 @@ describe("Test /api/top-langs", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.setHeader).toBeCalledWith(
       "Cache-Control",
-      `max-age=${CONSTANTS.TOP_LANGS_CACHE_SECONDS / 2}, s-maxage=${
-        CONSTANTS.TOP_LANGS_CACHE_SECONDS
-      }`,
+      `max-age=${CONSTANTS.TOP_LANGS_CACHE_SECONDS}, ` +
+        `s-maxage=${CONSTANTS.TOP_LANGS_CACHE_SECONDS}, ` +
+        `stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
     );
   });
 });
