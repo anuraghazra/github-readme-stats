@@ -1,3 +1,5 @@
+// @ts-check
+
 import { renderWakatimeCard } from "../src/cards/wakatime.js";
 import {
   clampValue,
@@ -6,7 +8,7 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { whitelist } from "../src/common/whitelist.js";
+import { whitelist } from "../src/common/envs.js";
 import { fetchWakatimeStats } from "../src/fetchers/wakatime.js";
 import { isLocaleAvailable } from "../src/translations.js";
 

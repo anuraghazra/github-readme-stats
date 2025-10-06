@@ -12,7 +12,7 @@ import {
   request,
   wrapTextMultiline,
 } from "../common/utils.js";
-import excludeRepositories from "../common/excludeRepo.js";
+import { excludeRepositories } from "../common/envs.js";
 
 dotenv.config();
 

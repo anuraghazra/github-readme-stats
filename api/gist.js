@@ -1,10 +1,12 @@
+// @ts-check
+
 import {
   clampValue,
   CONSTANTS,
   renderError,
   parseBoolean,
 } from "../src/common/utils.js";
-import { gistWhitelist } from "../src/common/whitelist.js";
+import { gistWhitelist } from "../src/common/envs.js";
 import { isLocaleAvailable } from "../src/translations.js";
 import { renderGistCard } from "../src/cards/gist.js";
 import { fetchGist } from "../src/fetchers/gist.js";
