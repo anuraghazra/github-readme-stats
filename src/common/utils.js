@@ -110,7 +110,7 @@ const iconWithLabel = (icon, label, testid, iconSize) => {
 };
 
 /**
- * Retrieves num with suffix k(thousands) precise to 2 decimal if greater than 999 and 1 decimal if greater than 9999.
+ * Retrieves num with suffix k(thousands) precise to 2 decimals if between 1000-9999, and 1 decimal if greater than 9999.
  *
  * @param {number} num The number to format.
  * @returns {string|number} The formatted number.
