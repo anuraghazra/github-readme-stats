@@ -99,7 +99,10 @@
 # Important Notices <!-- omit in toc -->
 
 > [!IMPORTANT]\
-> Since the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)). We use caching to prevent this from happening (see https://github.com/anuraghazra/github-readme-stats#common-options). You can turn off these rate limit protections by deploying [your own Vercel instance](#disable-rate-limit-protections).
+> Please note that we are NOT participating in Hacktoberfest this year. As a small team, we cannot handle the increased volume of PRs and issues that the event brings. We appreciate your understanding.
+
+> [!IMPORTANT]\
+> Since the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)). We use caching to prevent this from happening (see https://github.com/anuraghazra/github-readme-stats#common-options). You can turn off these rate limit protections by [deploying your own Vercel instance](#deploy-on-your-own).
 
 <img alt="Uptime Badge" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgithub-readme-stats-git-monitoring-github-readme-stats-team.vercel.app%2Fapi%2Fstatus%2Fup%3Ftype%3Dshields">
 
@@ -285,7 +288,7 @@ You can customize the appearance of all your cards however you wish with URL par
 | `border_radius` | Corner rounding on the card. | number | `4.5` |
 
 > [!WARNING]\
-> We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have the following default cache hours: stats card - 24 hours, top languages card - 144 hours (6 days), pin card - 240 hours (10 days), gist card - 48 hours (2 days). If you want the data on your statistics card to be updated more often you can [deploy your own instance](#deploy-on-your-own) and set [environment variable](#disable-rate-limit-protections) `CACHE_SECONDS` to a value of your choosing.
+> We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have the following default cache hours: stats card - 24 hours, top languages card - 144 hours (6 days), pin card - 240 hours (10 days), gist card - 48 hours (2 days). If you want the data on your statistics card to be updated more often you can [deploy your own instance](#deploy-on-your-own) and set [environment variable](#available-environment-variables) `CACHE_SECONDS` to a value of your choosing.
 
 ##### Gradient in bg\_color
 
@@ -302,51 +305,62 @@ Here is a list of all available locales:
 
 | Code | Locale |
 | --- | --- |
+| `ar` | Arabic |
+| `az` | Azerbaijani |
+| `bn` | Bengali |
+| `bg` | Bulgarian |
+| `my` | Burmese |
+| `ca` | Catalan |
 | `cn` | Chinese |
 | `zh-tw` | Chinese (Taiwan) |
-| `ar` | Arabic |
 | `cs` | Czech |
-| `de` | German |
+| `nl` | Dutch |
 | `en` | English |
-| `bn` | Bengali |
-| `es` | Spanish |
-| `fr` | French |
-| `hu` | Hungarian |
+| `fil` | Filipino |
 | `fi` | Finnish |
-| `sr` | Serbian |
+| `fr` | French |
+| `de` | German |
+| `el` | Greek |
 
 </td><td>
 
 | Code | Locale |
 | --- | --- |
+| `he` | Hebrew |
+| `hi` | Hindi |
+| `hu` | Hungarian |
+| `id` | Indonesian |
 | `it` | Italian |
 | `ja` | Japanese |
 | `kr` | Korean |
-| `nl` | Dutch |
-| `pt-pt` | Portuguese (Portugal) |
-| `pt-br` | Portuguese (Brazil) |
+| `ml` | Malayalam |
 | `np` | Nepali |
-| `el` | Greek |
-| `ru` | Russian |
-| `uk-ua` | Ukrainian |
-| `ro` | Romanian |
+| `no` | Norwegian |
 | `fa` | Persian (Farsi) |
+| `pl` | Polish |
+| `pt-br` | Portuguese (Brazil) |
+| `pt-pt` | Portuguese (Portugal) |
+| `ro` | Romanian |
 
 </td><td>
 
 | Code | Locale |
 | --- | --- |
-| `id` | Indonesian |
-| `ml` | Malayalam |
-| `my` | Burmese |
+| `ru` | Russian |
+| `sa` | Sanskrit |
+| `sr` | Serbian (Cyrillic) |
+| `sr-latn` | Serbian (Latin) |
 | `sk` | Slovak |
+| `es` | Spanish |
+| `sw` | Swahili |
+| `se` | Swedish |
+| `ta` | Tamil |
+| `th` | Thai |
 | `tr` | Turkish |
-| `pl` | Polish |
+| `uk-ua` | Ukrainian |
+| `ur` | Urdu |
 | `uz` | Uzbek |
 | `vi` | Vietnamese |
-| `se` | Swedish |
-| `az` | Azerbaijani |
-| `no` | Norwegian |
 
 </td></tr>
 </table>
@@ -372,7 +386,7 @@ If we don't support your language, please consider contributing! You can find mo
 | `ring_color` | Color of the rank circle. | string (hex color) | `2f80ed` |
 | `number_format` | Switches between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). | enum | `short` |
 | `show` | Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started`, `discussions_answered`, `prs_merged` or `prs_merged_percentage`). | string (comma-separated values) | `null` |
-| `commits_year` | Filters and counts only commits made in the specified year | integer _(YYYY)_ | `<current year> (one year to date)`.
+| `commits_year` | Filters and counts only commits made in the specified year. | integer _(YYYY)_ | `<current year> (one year to date)` |
 
 > [!NOTE]\
 > When hide\_rank=`true`, the minimum card width is 270 px + the title length and padding.
@@ -617,6 +631,9 @@ You can use the `&stats_format=bytes` option to display the stats in bytes inste
 > [!WARNING]\
 > Please be aware that we currently only show data from WakaTime profiles that are public. You therefore have to make sure that **BOTH** `Display code time publicly` and `Display languages, editors, os, categories publicly` are enabled.
 
+> [!WARNING]\
+> In case you just created a new WakaTime account, then it might take up to 24 hours until your stats will become visible on the WakaTime stats card.
+
 Change the `?username=` value to your [WakaTime](https://wakatime.com) username.
 
 ```md
@@ -631,6 +648,7 @@ You can customize the appearance and behavior of the WakaTime stats card using t
 | --- | --- | --- | --- |
 | `hide` | Hides the languages specified from the card. | string (comma-separated values) | `null` |
 | `hide_title` | Hides the title of your card. | boolean | `false` |
+| `card_width` | Sets the card's width manually. | number | `495` |
 | `line_height` | Sets the line height between text. | integer | `25` |
 | `hide_progress` | Hides the progress bar and percentage. | boolean | `false` |
 | `custom_title` | Sets a custom title for the card. | string | `WakaTime Stats` |
@@ -781,11 +799,12 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 ## First step: get your Personal Access Token (PAT)
 
-Selecting the right scopes for your token is important in case you want to display private contributions on your stats card. 
+For deploying your own instance of GitHub Readme Stats, you will need to create a GitHub Personal Access Token (PAT). Below are the steps to create one and the scopes you need to select for both classic and fine-grained tokens.
+
+Selecting the right scopes for your token is important in case you want to display private contributions on your cards.
 
 ### Classic token
 
-Steps:
   - Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic)](https://github.com/settings/tokens).
   - Click on `Generate new token -> Generate new token (classic)`.
   - Scopes to select:
@@ -798,7 +817,6 @@ Steps:
 > [!WARNING]\
 > This limits the number of issues to the number of issues on your repositories only and only takes public commits into account.
 
-Steps:
   - Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Fine-grained tokens](https://github.com/settings/tokens).
   - Click on `Generate new token -> Generate new token`.
   - Select an expiration date
@@ -856,7 +874,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 <summary><b>:hammer_and_wrench: Step-by-step guide for deploying on other platforms</b></summary>
 
 1.  Fork or clone this repo as per your needs
-2.  Add `express` to the dependencies section of `package.json`
+2.  Move `express` from the devDependencies to the dependencies section of `package.json`
     <https://github.com/anuraghazra/github-readme-stats/blob/ba7c2f8b55eac8452e479c8bd38b044d204d0424/package.json#L54-L61>
 3.  Run `npm i` if needed (initial setup)
 4.  Run `node express.js` to start the server, or set the entry point to `express.js` in `package.json` if you're deploying on a managed service
@@ -871,6 +889,7 @@ GitHub Readme Stats provides several environment variables that can be used to c
 *   `CACHE_SECONDS`: This takes precedence over our cache minimum and maximum values and can circumvent these values for self-hosted instances.
 *   `WHITELIST`: A comma-separated list of GitHub usernames that are allowed to access your instance. If this variable is not set, all usernames are allowed.
 *   `GIST_WHITELIST`: A comma-separated list of GitHub gist IDs that are allowed to be accessed on your instance. If this variable is not set, all gist IDs are allowed.
+*   `EXCLUDE_REPO`: A comma-separated list of repositories that will be excluded from stats and top languages cards on your instance. This allows repository exclusion without exposing repository names in public URLs. This enhances privacy for self-hosted instances that include private repositories in stats cards.
 
 See [the Vercel documentation](https://vercel.com/docs/concepts/projects/environment-variables) on adding these environment variables to your Vercel instance.
 

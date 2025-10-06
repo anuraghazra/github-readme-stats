@@ -96,7 +96,7 @@ const GIST_DATA = {
   name: "link.txt",
   nameWithOwner: "qwerty541/link.txt",
   description:
-    "Trying to access this path on Windown 10 ver. 1803+ will breaks NTFS",
+    "Trying to access this path on Windows 10 ver. 1803+ will breaks NTFS",
   language: "Text",
   starsCount: 1,
   forksCount: 0,

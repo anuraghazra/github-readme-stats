@@ -365,21 +365,25 @@ const renderStatsCard = (stats, options = {}) => {
   };
 
   const longLocales = [
-    "cn",
+    "bg",
+    "de",
     "es",
+    "fil",
     "fr",
-    "pt-br",
-    "ru",
-    "uk-ua",
     "id",
     "ml",
     "my",
-    "pl",
-    "de",
     "nl",
-    "zh-tw",
-    "uz",
+    "pl",
+    "pt-br",
+    "pt-pt",
+    "ru",
     "sr",
+    "sr-latn",
+    "ta",
+    "uk-ua",
+    "uz",
+    "zh-tw",
   ];
   const isLongLocale = locale ? longLocales.includes(locale) : false;
 
