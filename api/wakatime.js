@@ -7,7 +7,6 @@ import {
   parseBoolean,
   renderError,
 } from "../src/common/utils.js";
-import { whitelist } from "../src/common/envs.js";
 import { fetchWakatimeStats } from "../src/fetchers/wakatime.js";
 import { isLocaleAvailable } from "../src/translations.js";
 import {
@@ -15,6 +14,7 @@ import {
   setCacheHeaders,
   setErrorCacheHeaders,
 } from "../src/common/cache.js";
+import { guardAccess } from "../src/common/access.js";
 
 export default async (req, res) => {
   const {
@@ -44,21 +44,20 @@ export default async (req, res) => {
 
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (whitelist && !whitelist.includes(username)) {
-    return res.send(
-      renderError(
-        "This username is not whitelisted",
-        "Please deploy your own instance",
-        {
-          title_color,
-          text_color,
-          bg_color,
-          border_color,
-          theme,
-          show_repo_link: false,
-        },
-      ),
-    );
+  const access = guardAccess({
+    res,
+    id: username,
+    type: "wakatime",
+    colors: {
+      title_color,
+      text_color,
+      bg_color,
+      border_color,
+      theme,
+    },
+  });
+  if (!access.isPassed) {
+    return access.result;
   }
 
   if (locale && !isLocaleAvailable(locale)) {
