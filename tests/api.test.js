@@ -1,6 +1,6 @@
 // @ts-check
 
-import { jest } from "@jest/globals";
+import { beforeEach, jest } from "@jest/globals";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import api from "../api/index.js";
@@ -98,6 +98,10 @@ const faker = (query, data) => {
 
   return { req, res };
 };
+
+beforeEach(() => {
+  process.env.CACHE_SECONDS = undefined;
+});
 
 afterEach(() => {
   mock.reset();
@@ -221,6 +225,38 @@ describe("Test /api/", () => {
           `s-maxage=${CONSTANTS.ERROR_CACHE_SECONDS}, ` +
           `stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
       ],
+    ]);
+  });
+
+  it("should properly set cache using CACHE_SECONDS env variable", async () => {
+    process.env.CACHE_SECONDS = "10000";
+
+    const { req, res } = faker({}, data_stats);
+    await api(req, res);
+
+    expect(res.setHeader.mock.calls).toEqual([
+      ["Content-Type", "image/svg+xml"],
+      [
+        "Cache-Control",
+        `max-age=10000, s-maxage=10000, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      ],
+    ]);
+  });
+
+  it("should disable cache when CACHE_SECONDS is set to 0", async () => {
+    process.env.CACHE_SECONDS = "0";
+
+    const { req, res } = faker({}, data_stats);
+    await api(req, res);
+
+    expect(res.setHeader.mock.calls).toEqual([
+      ["Content-Type", "image/svg+xml"],
+      [
+        "Cache-Control",
+        "no-cache, no-store, must-revalidate, max-age=0, s-maxage=0",
+      ],
+      ["Pragma", "no-cache"],
+      ["Expires", "0"],
     ]);
   });
 
