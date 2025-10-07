@@ -10,7 +10,7 @@ import { CONSTANTS, renderError } from "../src/common/utils.js";
 import { expect, it, describe, afterEach } from "@jest/globals";
 
 /**
- * @type {import("../src/fetchers/stats").StatsData}}
+ * @type {import("../src/fetchers/stats").StatsData}
  */
 const stats = {
   name: "Anurag Hazra",
