@@ -1,12 +1,12 @@
 // @ts-check
 
+import { afterEach, describe, expect, it, jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import pin from "../api/pin.js";
 import { renderRepoCard } from "../src/cards/repo.js";
 import { CONSTANTS, renderError } from "../src/common/utils.js";
-import { expect, it, describe, afterEach, jest } from "@jest/globals";
 
 const data_repo = {
   repository: {

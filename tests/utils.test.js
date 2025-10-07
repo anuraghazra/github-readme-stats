@@ -1,15 +1,15 @@
+import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import {
   encodeHTML,
+  formatBytes,
   getCardColors,
   kFormatter,
   parseBoolean,
   renderError,
   wrapTextMultiline,
-  formatBytes,
 } from "../src/common/utils.js";
-import { expect, it, describe } from "@jest/globals";
 
 describe("Test utils.js", () => {
   it("should test kFormatter", () => {
