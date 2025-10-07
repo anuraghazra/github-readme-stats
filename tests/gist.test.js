@@ -1,3 +1,5 @@
+// @ts-check
+
 import { jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 import axios from "axios";
@@ -124,10 +126,10 @@ describe("Test /api/gist", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError(
-        'Missing params "id" make sure you pass the parameters in URL',
-        "/api/gist?id=GIST_ID",
-      ),
+      renderError({
+        message: 'Missing params "id" make sure you pass the parameters in URL',
+        secondaryMessage: "/api/gist?id=GIST_ID",
+      }),
     );
   });
 
@@ -148,7 +150,7 @@ describe("Test /api/gist", () => {
     await gist(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(renderError("Gist not found"));
+    expect(res.send).toBeCalledWith(renderError({ message: "Gist not found" }));
   });
 
   it("should render error if wrong locale is provided", async () => {
@@ -167,7 +169,10 @@ describe("Test /api/gist", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Something went wrong", "Language not found"),
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Language not found",
+      }),
     );
   });
 

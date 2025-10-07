@@ -1,3 +1,5 @@
+// @ts-check
+
 import { jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 import axios from "axios";
@@ -140,10 +142,11 @@ describe("Test /api/top-langs", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError(
-        error.errors[0].message,
-        "Make sure the provided username is not an organization",
-      ),
+      renderError({
+        message: error.errors[0].message,
+        secondaryMessage:
+          "Make sure the provided username is not an organization",
+      }),
     );
   });
 
@@ -164,7 +167,10 @@ describe("Test /api/top-langs", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Something went wrong", "Incorrect layout input"),
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Incorrect layout input",
+      }),
     );
   });
 
@@ -184,11 +190,11 @@ describe("Test /api/top-langs", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError(
-        "This username is blacklisted",
-        "Please deploy your own instance",
-        { show_repo_link: false },
-      ),
+      renderError({
+        message: "This username is blacklisted",
+        secondaryMessage: "Please deploy your own instance",
+        renderOptions: { show_repo_link: false },
+      }),
     );
   });
 
@@ -209,7 +215,10 @@ describe("Test /api/top-langs", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Something went wrong", "Locale not found"),
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Locale not found",
+      }),
     );
   });
 

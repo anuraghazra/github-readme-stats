@@ -352,18 +352,23 @@ const UPSTREAM_API_ERRORS = [
 /**
  * Renders error message on the card.
  *
- * @param {string} message Main error message.
- * @param {string} secondaryMessage The secondary error message.
- * @param {object} options Function options.
- * @param {string=} options.title_color Card title color.
- * @param {string=} options.text_color Card text color.
- * @param {string=} options.bg_color Card background color.
- * @param {string=} options.border_color Card border color.
- * @param {string=} options.theme Card theme.
- * @param {boolean=} options.show_repo_link Whether to show repo link or not.
+ * @param {object} args Function arguments.
+ * @param {string} args.message Main error message.
+ * @param {string} [args.secondaryMessage=""] The secondary error message.
+ * @param {object} [args.renderOptions={}] Render options.
+ * @param {string=} args.renderOptions.title_color Card title color.
+ * @param {string=} args.renderOptions.text_color Card text color.
+ * @param {string=} args.renderOptions.bg_color Card background color.
+ * @param {string=} args.renderOptions.border_color Card border color.
+ * @param {string=} args.renderOptions.theme Card theme.
+ * @param {boolean=} args.renderOptions.show_repo_link Whether to show repo link or not.
  * @returns {string} The SVG markup.
  */
-const renderError = (message, secondaryMessage = "", options = {}) => {
+const renderError = ({
+  message,
+  secondaryMessage = "",
+  renderOptions = {},
+}) => {
   const {
     title_color,
     text_color,
@@ -371,7 +376,7 @@ const renderError = (message, secondaryMessage = "", options = {}) => {
     border_color,
     theme = "default",
     show_repo_link = true,
-  } = options;
+  } = renderOptions;
 
   // returns theme based colors with proper overrides and defaults
   const { titleColor, textColor, bgColor, borderColor } = getCardColors({

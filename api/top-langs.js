@@ -60,7 +60,12 @@ export default async (req, res) => {
   }
 
   if (locale && !isLocaleAvailable(locale)) {
-    return res.send(renderError("Something went wrong", "Locale not found"));
+    return res.send(
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Locale not found",
+      }),
+    );
   }
 
   if (
@@ -69,7 +74,10 @@ export default async (req, res) => {
       !["compact", "normal", "donut", "donut-vertical", "pie"].includes(layout))
   ) {
     return res.send(
-      renderError("Something went wrong", "Incorrect layout input"),
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Incorrect layout input",
+      }),
     );
   }
 
@@ -79,7 +87,10 @@ export default async (req, res) => {
       !["bytes", "percentages"].includes(stats_format))
   ) {
     return res.send(
-      renderError("Something went wrong", "Incorrect stats_format input"),
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Incorrect stats_format input",
+      }),
     );
   }
 
@@ -123,12 +134,16 @@ export default async (req, res) => {
   } catch (err) {
     setErrorCacheHeaders(res);
     return res.send(
-      renderError(err.message, err.secondaryMessage, {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
+      renderError({
+        message: err.message,
+        secondaryMessage: err.secondaryMessage,
+        renderOptions: {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+        },
       }),
     );
   }
