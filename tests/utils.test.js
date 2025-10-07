@@ -46,7 +46,7 @@ describe("Test utils.js", () => {
   });
 
   it("should test renderError", () => {
-    document.body.innerHTML = renderError("Something went wrong");
+    document.body.innerHTML = renderError({ message: "Something went wrong" });
     expect(
       queryByTestId(document.body, "message").children[0],
     ).toHaveTextContent(/Something went wrong/gim);
@@ -55,10 +55,10 @@ describe("Test utils.js", () => {
     ).toBeEmptyDOMElement(2);
 
     // Secondary message
-    document.body.innerHTML = renderError(
-      "Something went wrong",
-      "Secondary Message",
-    );
+    document.body.innerHTML = renderError({
+      message: "Something went wrong",
+      secondaryMessage: "Secondary Message",
+    });
     expect(
       queryByTestId(document.body, "message").children[1],
     ).toHaveTextContent(/Secondary Message/gim);

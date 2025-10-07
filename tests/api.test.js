@@ -1,3 +1,5 @@
+// @ts-check
+
 import { jest } from "@jest/globals";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
@@ -7,6 +9,9 @@ import { renderStatsCard } from "../src/cards/stats.js";
 import { CONSTANTS, renderError } from "../src/common/utils.js";
 import { expect, it, describe, afterEach } from "@jest/globals";
 
+/**
+ * @type {import("../src/fetchers/stats").StatsData}
+ */
 const stats = {
   name: "Anurag Hazra",
   totalStars: 100,
@@ -19,7 +24,7 @@ const stats = {
   totalDiscussionsStarted: 10,
   totalDiscussionsAnswered: 40,
   contributedTo: 50,
-  rank: null,
+  rank: { level: "DEV", percentile: 0 },
 };
 
 stats.rank = calculateRank({
@@ -115,10 +120,11 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError(
-        error.errors[0].message,
-        "Make sure the provided username is not an organization",
-      ),
+      renderError({
+        message: error.errors[0].message,
+        secondaryMessage:
+          "Make sure the provided username is not an organization",
+      }),
     );
   });
 
@@ -129,11 +135,12 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError(
-        error.errors[0].message,
-        "Make sure the provided username is not an organization",
-        { theme: "merko" },
-      ),
+      renderError({
+        message: error.errors[0].message,
+        secondaryMessage:
+          "Make sure the provided username is not an organization",
+        renderOptions: { theme: "merko" },
+      }),
     );
   });
 
@@ -307,11 +314,11 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError(
-        "This username is blacklisted",
-        "Please deploy your own instance",
-        { show_repo_link: false },
-      ),
+      renderError({
+        message: "This username is blacklisted",
+        secondaryMessage: "Please deploy your own instance",
+        renderOptions: { show_repo_link: false },
+      }),
     );
   });
 
@@ -322,7 +329,10 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Something went wrong", "Language not found"),
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Language not found",
+      }),
     );
   });
 
@@ -340,7 +350,10 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Could not fetch total commits.", "Please try again later"),
+      renderError({
+        message: "Could not fetch total commits.",
+        secondaryMessage: "Please try again later",
+      }),
     );
     // Received SVG output should not contain string "https://tiny.one/readme-stats"
     expect(res.send.mock.calls[0][0]).not.toContain(

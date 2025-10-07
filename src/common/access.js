@@ -33,9 +33,13 @@ const guardAccess = ({ res, id, type, colors }) => {
 
   if (Array.isArray(currentWhitelist) && !currentWhitelist.includes(id)) {
     const result = res.send(
-      renderError(notWhitelistedMsg, "Please deploy your own instance", {
-        ...colors,
-        show_repo_link: false,
+      renderError({
+        message: notWhitelistedMsg,
+        secondaryMessage: "Please deploy your own instance",
+        renderOptions: {
+          ...colors,
+          show_repo_link: false,
+        },
       }),
     );
     return { isPassed: false, result };
@@ -47,9 +51,13 @@ const guardAccess = ({ res, id, type, colors }) => {
     blacklist.includes(id)
   ) {
     const result = res.send(
-      renderError(BLACKLISTED_MESSAGE, "Please deploy your own instance", {
-        ...colors,
-        show_repo_link: false,
+      renderError({
+        message: BLACKLISTED_MESSAGE,
+        secondaryMessage: "Please deploy your own instance",
+        renderOptions: {
+          ...colors,
+          show_repo_link: false,
+        },
       }),
     );
     return { isPassed: false, result };
