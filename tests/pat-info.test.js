@@ -4,11 +4,17 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { jest } from "@jest/globals";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import patInfo, { RATE_LIMIT_SECONDS } from "../api/status/pat-info.js";
-import { expect, it, describe, afterEach, beforeAll } from "@jest/globals";
+import {
+  expect,
+  it,
+  describe,
+  afterEach,
+  beforeAll,
+  jest,
+} from "@jest/globals";
 
 const mock = new MockAdapter(axios);
 

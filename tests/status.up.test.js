@@ -1,11 +1,11 @@
 /**
  * @file Tests for the status/up cloud function.
  */
-import { jest } from "@jest/globals";
+
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import up, { RATE_LIMIT_SECONDS } from "../api/status/up.js";
-import { expect, it, describe, afterEach } from "@jest/globals";
+import { expect, it, describe, afterEach, jest } from "@jest/globals";
 
 const mock = new MockAdapter(axios);
 
