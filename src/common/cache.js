@@ -31,7 +31,9 @@ const resolveCacheSeconds = ({ requested, def, min, max }) => {
 const setCacheHeaders = (res, cacheSeconds) => {
   res.setHeader(
     "Cache-Control",
-    `max-age=${cacheSeconds}, s-maxage=${cacheSeconds}, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+    `max-age=${cacheSeconds}, ` +
+      `s-maxage=${cacheSeconds}, ` +
+      `stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
   );
 };
 
