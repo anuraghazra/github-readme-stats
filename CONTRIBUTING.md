@@ -38,7 +38,7 @@ _(make sure you already have a [Vercel](https://vercel.com/) account)_
 3.  Run `npm install` in the repository root.
 4.  Run the command `vercel` in the root and follow the steps there.
 5.  Run the command `vercel dev` to start a development server at <http://localhost:3000>.
-6.  Create a `.env` file in the root and add there the following line `NODE_ENV=development`, this will disable caching for local development.
+6.  Create a `.env` file in the root and add the following line `NODE_ENV=development`, this will disable caching for local development.
 7.  The cards will then be available from this local endpoint (i.e. `http://localhost:3000/api?username=anuraghazra`).
 
 > [!NOTE]\
