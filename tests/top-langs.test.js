@@ -6,7 +6,8 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import topLangs from "../api/top-langs.js";
 import { renderTopLanguages } from "../src/cards/top-languages.js";
-import { CONSTANTS, renderError } from "../src/common/utils.js";
+import { renderError } from "../src/common/utils.js";
+import { CACHE_TTL, DURATIONS } from "../src/common/cache.js";
 
 const data_langs = {
   data: {
@@ -238,9 +239,9 @@ describe("Test /api/top-langs", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.setHeader).toBeCalledWith(
       "Cache-Control",
-      `max-age=${CONSTANTS.TOP_LANGS_CACHE_SECONDS}, ` +
-        `s-maxage=${CONSTANTS.TOP_LANGS_CACHE_SECONDS}, ` +
-        `stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      `max-age=${CACHE_TTL.TOP_LANGS_CARD.DEFAULT}, ` +
+        `s-maxage=${CACHE_TTL.TOP_LANGS_CARD.DEFAULT}, ` +
+        `stale-while-revalidate=${DURATIONS.ONE_DAY}`,
     );
   });
 });

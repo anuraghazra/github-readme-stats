@@ -3,16 +3,12 @@
 import { renderStatsCard } from "../src/cards/stats.js";
 import { guardAccess } from "../src/common/access.js";
 import {
+  CACHE_TTL,
   resolveCacheSeconds,
   setCacheHeaders,
   setErrorCacheHeaders,
 } from "../src/common/cache.js";
-import {
-  CONSTANTS,
-  parseArray,
-  parseBoolean,
-  renderError,
-} from "../src/common/utils.js";
+import { parseArray, parseBoolean, renderError } from "../src/common/utils.js";
 import { fetchStats } from "../src/fetchers/stats.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
@@ -94,9 +90,9 @@ export default async (req, res) => {
     );
     const cacheSeconds = resolveCacheSeconds({
       requested: parseInt(cache_seconds, 10),
-      def: CONSTANTS.CARD_CACHE_SECONDS,
-      min: CONSTANTS.TWELVE_HOURS,
-      max: CONSTANTS.TWO_DAY,
+      def: CACHE_TTL.STATS_CARD.DEFAULT,
+      min: CACHE_TTL.STATS_CARD.MIN,
+      max: CACHE_TTL.STATS_CARD.MAX,
     });
 
     setCacheHeaders(res, cacheSeconds);

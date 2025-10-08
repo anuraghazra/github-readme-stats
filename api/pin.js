@@ -3,11 +3,12 @@
 import { renderRepoCard } from "../src/cards/repo.js";
 import { guardAccess } from "../src/common/access.js";
 import {
+  CACHE_TTL,
   resolveCacheSeconds,
   setCacheHeaders,
   setErrorCacheHeaders,
 } from "../src/common/cache.js";
-import { CONSTANTS, parseBoolean, renderError } from "../src/common/utils.js";
+import { parseBoolean, renderError } from "../src/common/utils.js";
 import { fetchRepo } from "../src/fetchers/repo.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
@@ -67,9 +68,9 @@ export default async (req, res) => {
     const repoData = await fetchRepo(username, repo);
     const cacheSeconds = resolveCacheSeconds({
       requested: parseInt(cache_seconds, 10),
-      def: CONSTANTS.PIN_CARD_CACHE_SECONDS,
-      min: CONSTANTS.ONE_DAY,
-      max: CONSTANTS.TEN_DAY,
+      def: CACHE_TTL.PIN_CARD.DEFAULT,
+      min: CACHE_TTL.PIN_CARD.MIN,
+      max: CACHE_TTL.PIN_CARD.MAX,
     });
 
     setCacheHeaders(res, cacheSeconds);

@@ -3,16 +3,12 @@
 import { renderTopLanguages } from "../src/cards/top-languages.js";
 import { guardAccess } from "../src/common/access.js";
 import {
+  CACHE_TTL,
   resolveCacheSeconds,
   setCacheHeaders,
   setErrorCacheHeaders,
 } from "../src/common/cache.js";
-import {
-  CONSTANTS,
-  parseArray,
-  parseBoolean,
-  renderError,
-} from "../src/common/utils.js";
+import { parseArray, parseBoolean, renderError } from "../src/common/utils.js";
 import { fetchTopLanguages } from "../src/fetchers/top-languages.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
@@ -124,9 +120,9 @@ export default async (req, res) => {
     );
     const cacheSeconds = resolveCacheSeconds({
       requested: parseInt(cache_seconds, 10),
-      def: CONSTANTS.TOP_LANGS_CACHE_SECONDS,
-      min: CONSTANTS.TWO_DAY,
-      max: CONSTANTS.TEN_DAY,
+      def: CACHE_TTL.TOP_LANGS_CARD.DEFAULT,
+      min: CACHE_TTL.TOP_LANGS_CARD.MIN,
+      max: CACHE_TTL.TOP_LANGS_CARD.MAX,
     });
 
     setCacheHeaders(res, cacheSeconds);
