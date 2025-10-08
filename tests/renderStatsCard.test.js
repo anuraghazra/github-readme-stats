@@ -177,6 +177,27 @@ describe("Test renderStatsCard", () => {
     expect(document.querySelector("svg")).toHaveAttribute("width", "420");
   });
 
+  it("should render with custom height set", () => {
+    document.body.innerHTML = renderStatsCard(stats);
+    expect(document.querySelector("svg")).toHaveAttribute("height", "195");
+
+    document.body.innerHTML = renderStatsCard(stats, { card_height: 250 });
+    expect(document.querySelector("svg")).toHaveAttribute("height", "250");
+  });
+
+  it("should render with custom height set and respect minimum height", () => {
+    // Test that very small heights are clamped to minimum
+    document.body.innerHTML = renderStatsCard(stats, { card_height: 50 });
+    expect(document.querySelector("svg")).toHaveAttribute("height", "150");
+
+    // Test minimum height when rank is hidden
+    document.body.innerHTML = renderStatsCard(stats, {
+      card_height: 50,
+      hide_rank: true,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute("height", "195"); // Should use calculated minimum for content
+  });
+
   it("should render default colors properly", () => {
     document.body.innerHTML = renderStatsCard(stats);
 
