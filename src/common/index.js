@@ -22,8 +22,6 @@ export {
   getCardColors,
   wrapTextMultiline,
   logger,
-  CustomError,
-  MissingParamError,
   measureText,
   lowercaseTrim,
   chunkArray,
