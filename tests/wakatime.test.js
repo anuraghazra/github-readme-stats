@@ -121,7 +121,7 @@ describe("Test /api/wakatime", () => {
     expect(res.send).toBeCalledWith(renderWakatimeCard(wakaTimeData.data, {}));
   });
 
-  it("shold have proper cache", async () => {
+  it("should have proper cache", async () => {
     const username = "anuraghazra";
     const req = { query: { username } };
     const res = { setHeader: jest.fn(), send: jest.fn() };
