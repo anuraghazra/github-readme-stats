@@ -808,29 +808,29 @@ Selecting the right scopes for your token is important in case you want to displ
 
 ### Classic token
 
-  - Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic)](https://github.com/settings/tokens).
-  - Click on `Generate new token -> Generate new token (classic)`.
-  - Scopes to select:
-    - repo
-    - read:user
-  - Click on `Generate token` and copy it.
+* Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic)](https://github.com/settings/tokens).
+* Click on `Generate new token -> Generate new token (classic)`.
+* Scopes to select:
+  * repo
+  * read:user
+* Click on `Generate token` and copy it.
 
 ### Fine-grained token
 
 > [!WARNING]\
 > This limits the number of issues to the number of issues on your repositories only and only takes public commits into account.
 
-  - Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Fine-grained tokens](https://github.com/settings/tokens).
-  - Click on `Generate new token -> Generate new token`.
-  - Select an expiration date
-  - Select `All repositories`
-  - Scopes to select in `Repository permission`:
-    - Commit statuses: read-only
-    - Contents: read-only
-    - Issues: read-only
-    - Metadata: read-only
-    - Pull requests: read-only
-  - Click on `Generate token` and copy it.
+* Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Fine-grained tokens](https://github.com/settings/tokens).
+* Click on `Generate new token -> Generate new token`.
+* Select an expiration date
+* Select `All repositories`
+* Scopes to select in `Repository permission`:
+  * Commit statuses: read-only
+  * Contents: read-only
+  * Issues: read-only
+  * Metadata: read-only
+  * Pull requests: read-only
+* Click on `Generate token` and copy it.
 
 ## On Vercel
 
