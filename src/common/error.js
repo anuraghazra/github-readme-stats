@@ -1,5 +1,11 @@
+/**
+ * @type {string} A general message to ask user to try again later.
+ */
 const TRY_AGAIN_LATER = "Please try again later";
 
+/**
+ * @type {Object<string, string>} A map of error types to secondary error messages.
+ */
 const SECONDARY_ERROR_MESSAGES = {
   MAX_RETRY:
     "You can deploy own instance or wait until public will be no longer limited",
