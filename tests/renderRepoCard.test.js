@@ -1,21 +1,21 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("css-to-object");
-const renderRepoCard = require("../src/cards/repo-card");
-
-const { queryByTestId } = require("@testing-library/dom");
-const themes = require("../themes");
+import { describe, expect, it } from "@jest/globals";
+import { queryByTestId } from "@testing-library/dom";
+import "@testing-library/jest-dom";
+import { cssToObject } from "@uppercod/css-to-object";
+import { renderRepoCard } from "../src/cards/repo.js";
+import { themes } from "../themes/index.js";
 
 const data_repo = {
   repository: {
     nameWithOwner: "anuraghazra/convoychat",
     name: "convoychat",
-    stargazers: { totalCount: 38000 },
     description: "Help us take over the world! React + TS + GraphQL Chat App",
     primaryLanguage: {
       color: "#2b7489",
       id: "MDg6TGFuZ3VhZ2UyODc=",
       name: "TypeScript",
     },
+    starCount: 38000,
     forkCount: 100,
   },
 };
@@ -48,6 +48,17 @@ describe("Test renderRepoCard", () => {
     });
     expect(document.getElementsByClassName("header")[0]).toHaveTextContent(
       "anuraghazra/convoychat",
+    );
+  });
+
+  it("should trim header", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      name: "some-really-long-repo-name-for-test-purposes",
+    });
+
+    expect(document.getElementsByClassName("header")[0].textContent).toBe(
+      "some-really-long-repo-name-for-test...",
     );
   });
 
@@ -89,36 +100,6 @@ describe("Test renderRepoCard", () => {
     );
   });
 
-  it("should shift the text position depending on language length", () => {
-    document.body.innerHTML = renderRepoCard({
-      ...data_repo.repository,
-      primaryLanguage: {
-        ...data_repo.repository.primaryLanguage,
-        name: "Jupyter Notebook",
-      },
-    });
-
-    expect(queryByTestId(document.body, "primary-lang")).toBeInTheDocument();
-    expect(queryByTestId(document.body, "star-fork-group")).toHaveAttribute(
-      "transform",
-      "translate(155, 0)",
-    );
-
-    // Small lang
-    document.body.innerHTML = renderRepoCard({
-      ...data_repo.repository,
-      primaryLanguage: {
-        ...data_repo.repository.primaryLanguage,
-        name: "Ruby",
-      },
-    });
-
-    expect(queryByTestId(document.body, "star-fork-group")).toHaveAttribute(
-      "transform",
-      "translate(125, 0)",
-    );
-  });
-
   it("should hide language if primaryLanguage is null & fallback to correct values", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
@@ -149,13 +130,13 @@ describe("Test renderRepoCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[".header"];
-    const descClassStyles = stylesObject[".description"];
-    const iconClassStyles = stylesObject[".icon"];
+    const headerClassStyles = stylesObject[":host"][".header "];
+    const descClassStyles = stylesObject[":host"][".description "];
+    const iconClassStyles = stylesObject[":host"][".icon "];
 
-    expect(headerClassStyles.fill).toBe("#2f80ed");
-    expect(descClassStyles.fill).toBe("#333");
-    expect(iconClassStyles.fill).toBe("#586069");
+    expect(headerClassStyles.fill.trim()).toBe("#2f80ed");
+    expect(descClassStyles.fill.trim()).toBe("#434d58");
+    expect(iconClassStyles.fill.trim()).toBe("#586069");
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#fffefe",
@@ -177,13 +158,13 @@ describe("Test renderRepoCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[".header"];
-    const descClassStyles = stylesObject[".description"];
-    const iconClassStyles = stylesObject[".icon"];
+    const headerClassStyles = stylesObject[":host"][".header "];
+    const descClassStyles = stylesObject[":host"][".description "];
+    const iconClassStyles = stylesObject[":host"][".icon "];
 
-    expect(headerClassStyles.fill).toBe(`#${customColors.title_color}`);
-    expect(descClassStyles.fill).toBe(`#${customColors.text_color}`);
-    expect(iconClassStyles.fill).toBe(`#${customColors.icon_color}`);
+    expect(headerClassStyles.fill.trim()).toBe(`#${customColors.title_color}`);
+    expect(descClassStyles.fill.trim()).toBe(`#${customColors.text_color}`);
+    expect(iconClassStyles.fill.trim()).toBe(`#${customColors.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       "#252525",
@@ -199,16 +180,19 @@ describe("Test renderRepoCard", () => {
       const styleTag = document.querySelector("style");
       const stylesObject = cssToObject(styleTag.innerHTML);
 
-      const headerClassStyles = stylesObject[".header"];
-      const descClassStyles = stylesObject[".description"];
-      const iconClassStyles = stylesObject[".icon"];
+      const headerClassStyles = stylesObject[":host"][".header "];
+      const descClassStyles = stylesObject[":host"][".description "];
+      const iconClassStyles = stylesObject[":host"][".icon "];
 
-      expect(headerClassStyles.fill).toBe(`#${themes[name].title_color}`);
-      expect(descClassStyles.fill).toBe(`#${themes[name].text_color}`);
-      expect(iconClassStyles.fill).toBe(`#${themes[name].icon_color}`);
-      expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-        "fill",
-        `#${themes[name].bg_color}`,
+      expect(headerClassStyles.fill.trim()).toBe(
+        `#${themes[name].title_color}`,
+      );
+      expect(descClassStyles.fill.trim()).toBe(`#${themes[name].text_color}`);
+      expect(iconClassStyles.fill.trim()).toBe(`#${themes[name].icon_color}`);
+      const backgroundElement = queryByTestId(document.body, "card-bg");
+      const backgroundElementFill = backgroundElement.getAttribute("fill");
+      expect([`#${themes[name].bg_color}`, "url(#gradient)"]).toContain(
+        backgroundElementFill,
       );
     });
   });
@@ -222,13 +206,13 @@ describe("Test renderRepoCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[".header"];
-    const descClassStyles = stylesObject[".description"];
-    const iconClassStyles = stylesObject[".icon"];
+    const headerClassStyles = stylesObject[":host"][".header "];
+    const descClassStyles = stylesObject[":host"][".description "];
+    const iconClassStyles = stylesObject[":host"][".icon "];
 
-    expect(headerClassStyles.fill).toBe("#5a0");
-    expect(descClassStyles.fill).toBe(`#${themes.radical.text_color}`);
-    expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
+    expect(headerClassStyles.fill.trim()).toBe("#5a0");
+    expect(descClassStyles.fill.trim()).toBe(`#${themes.radical.text_color}`);
+    expect(iconClassStyles.fill.trim()).toBe(`#${themes.radical.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       `#${themes.radical.bg_color}`,
@@ -245,13 +229,15 @@ describe("Test renderRepoCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[".header"];
-    const descClassStyles = stylesObject[".description"];
-    const iconClassStyles = stylesObject[".icon"];
+    const headerClassStyles = stylesObject[":host"][".header "];
+    const descClassStyles = stylesObject[":host"][".description "];
+    const iconClassStyles = stylesObject[":host"][".icon "];
 
-    expect(headerClassStyles.fill).toBe(`#${themes.default.title_color}`);
-    expect(descClassStyles.fill).toBe(`#${themes.default.text_color}`);
-    expect(iconClassStyles.fill).toBe(`#${themes.radical.icon_color}`);
+    expect(headerClassStyles.fill.trim()).toBe(
+      `#${themes.default.title_color}`,
+    );
+    expect(descClassStyles.fill.trim()).toBe(`#${themes.default.text_color}`);
+    expect(iconClassStyles.fill.trim()).toBe(`#${themes.radical.icon_color}`);
     expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
       "fill",
       `#${themes.radical.bg_color}`,
@@ -261,7 +247,7 @@ describe("Test renderRepoCard", () => {
   it("should not render star count or fork count if either of the are zero", () => {
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
-      stargazers: { totalCount: 0 },
+      starCount: 0,
     });
 
     expect(queryByTestId(document.body, "stargazers")).toBeNull();
@@ -269,7 +255,7 @@ describe("Test renderRepoCard", () => {
 
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
-      stargazers: { totalCount: 1 },
+      starCount: 1,
       forkCount: 0,
     });
 
@@ -278,7 +264,7 @@ describe("Test renderRepoCard", () => {
 
     document.body.innerHTML = renderRepoCard({
       ...data_repo.repository,
-      stargazers: { totalCount: 0 },
+      starCount: 0,
       forkCount: 0,
     });
 
@@ -332,11 +318,54 @@ describe("Test renderRepoCard", () => {
     );
     expect(queryByTestId(document.body, "badge")).toHaveTextContent("模板");
   });
-  
+
   it("should render without rounding", () => {
-    document.body.innerHTML = renderRepoCard(data_repo.repository, { border_radius: "0" });
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      border_radius: "0",
+    });
     expect(document.querySelector("rect")).toHaveAttribute("rx", "0");
-    document.body.innerHTML = renderRepoCard(data_repo.repository, { });
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {});
     expect(document.querySelector("rect")).toHaveAttribute("rx", "4.5");
+  });
+
+  it("should fallback to default description", () => {
+    document.body.innerHTML = renderRepoCard({
+      ...data_repo.repository,
+      description: undefined,
+      isArchived: true,
+    });
+    expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
+      "No description provided",
+    );
+  });
+
+  it("should have correct height with specified `description_lines_count` parameter", () => {
+    // Testing short description
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      description_lines_count: 1,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute("height", "120");
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      description_lines_count: 3,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute("height", "150");
+
+    // Testing long description
+    const longDescription =
+      "A tool that will make a lot of iPhone/iPad developers' life easier. It shares your app over-the-air in a WiFi network. Bonjour is used and no configuration is needed.";
+    document.body.innerHTML = renderRepoCard(
+      { ...data_repo.repository, description: longDescription },
+      {
+        description_lines_count: 3,
+      },
+    );
+    expect(document.querySelector("svg")).toHaveAttribute("height", "150");
+    document.body.innerHTML = renderRepoCard(
+      { ...data_repo.repository, description: longDescription },
+      {
+        description_lines_count: 1,
+      },
+    );
+    expect(document.querySelector("svg")).toHaveAttribute("height", "120");
   });
 });

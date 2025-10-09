@@ -1,65 +1,101 @@
-require("dotenv").config();
-const {
-  renderError,
-  parseBoolean,
-  parseArray,
-  clampValue,
-  CONSTANTS,
-} = require("../src/common/utils");
-const fetchStats = require("../src/fetchers/stats-fetcher");
-const renderStatsCard = require("../src/cards/stats-card");
-const blacklist = require("../src/common/blacklist");
-const { isLocaleAvailable } = require("../src/translations");
+// @ts-check
 
-module.exports = async (req, res) => {
+import { renderStatsCard } from "../src/cards/stats.js";
+import { guardAccess } from "../src/common/access.js";
+import {
+  CACHE_TTL,
+  resolveCacheSeconds,
+  setCacheHeaders,
+  setErrorCacheHeaders,
+} from "../src/common/cache.js";
+import { parseArray, parseBoolean, renderError } from "../src/common/utils.js";
+import { fetchStats } from "../src/fetchers/stats.js";
+import { isLocaleAvailable } from "../src/translations.js";
+
+export default async (req, res) => {
   const {
     username,
     hide,
     hide_title,
     hide_border,
+    card_width,
     hide_rank,
     show_icons,
-    count_private,
     include_all_commits,
+    commits_year,
     line_height,
     title_color,
+    ring_color,
     icon_color,
     text_color,
+    text_bold,
     bg_color,
     theme,
     cache_seconds,
+    exclude_repo,
     custom_title,
     locale,
     disable_animations,
     border_radius,
+    number_format,
     border_color,
+    rank_icon,
+    show,
   } = req.query;
-  let stats;
-
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (blacklist.includes(username)) {
-    return res.send(renderError("Something went wrong"));
+  const access = guardAccess({
+    res,
+    id: username,
+    type: "username",
+    colors: {
+      title_color,
+      text_color,
+      bg_color,
+      border_color,
+      theme,
+    },
+  });
+  if (!access.isPassed) {
+    return access.result;
   }
 
   if (locale && !isLocaleAvailable(locale)) {
-    return res.send(renderError("Something went wrong", "Language not found"));
+    return res.send(
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Language not found",
+        renderOptions: {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+        },
+      }),
+    );
   }
 
   try {
-    stats = await fetchStats(
+    const showStats = parseArray(show);
+    const stats = await fetchStats(
       username,
-      parseBoolean(count_private),
       parseBoolean(include_all_commits),
+      parseArray(exclude_repo),
+      showStats.includes("prs_merged") ||
+        showStats.includes("prs_merged_percentage"),
+      showStats.includes("discussions_started"),
+      showStats.includes("discussions_answered"),
+      parseInt(commits_year, 10),
     );
+    const cacheSeconds = resolveCacheSeconds({
+      requested: parseInt(cache_seconds, 10),
+      def: CACHE_TTL.STATS_CARD.DEFAULT,
+      min: CACHE_TTL.STATS_CARD.MIN,
+      max: CACHE_TTL.STATS_CARD.MAX,
+    });
 
-    const cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.TWO_HOURS, 10),
-      CONSTANTS.TWO_HOURS,
-      CONSTANTS.ONE_DAY,
-    );
-
-    res.setHeader("Cache-Control", `public, max-age=${cacheSeconds}`);
+    setCacheHeaders(res, cacheSeconds);
 
     return res.send(
       renderStatsCard(stats, {
@@ -67,22 +103,42 @@ module.exports = async (req, res) => {
         show_icons: parseBoolean(show_icons),
         hide_title: parseBoolean(hide_title),
         hide_border: parseBoolean(hide_border),
+        card_width: parseInt(card_width, 10),
         hide_rank: parseBoolean(hide_rank),
         include_all_commits: parseBoolean(include_all_commits),
+        commits_year: parseInt(commits_year, 10),
         line_height,
         title_color,
+        ring_color,
         icon_color,
         text_color,
+        text_bold: parseBoolean(text_bold),
         bg_color,
         theme,
         custom_title,
         border_radius,
         border_color,
+        number_format,
         locale: locale ? locale.toLowerCase() : null,
         disable_animations: parseBoolean(disable_animations),
+        rank_icon,
+        show: showStats,
       }),
     );
   } catch (err) {
-    return res.send(renderError(err.message, err.secondaryMessage));
+    setErrorCacheHeaders(res);
+    return res.send(
+      renderError({
+        message: err.message,
+        secondaryMessage: err.secondaryMessage,
+        renderOptions: {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+        },
+      }),
+    );
   }
 };

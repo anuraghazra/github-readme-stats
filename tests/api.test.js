@@ -1,45 +1,77 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const api = require("../api/index");
-const renderStatsCard = require("../src/cards/stats-card");
-const { renderError, CONSTANTS } = require("../src/common/utils");
-const calculateRank = require("../src/calculateRank");
+// @ts-check
 
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  jest,
+} from "@jest/globals";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import api from "../api/index.js";
+import { calculateRank } from "../src/calculateRank.js";
+import { renderStatsCard } from "../src/cards/stats.js";
+import { renderError } from "../src/common/utils.js";
+import { CACHE_TTL, DURATIONS } from "../src/common/cache.js";
+
+/**
+ * @type {import("../src/fetchers/stats").StatsData}
+ */
 const stats = {
   name: "Anurag Hazra",
   totalStars: 100,
   totalCommits: 200,
   totalIssues: 300,
   totalPRs: 400,
-  contributedTo: 500,
-  rank: null,
+  totalPRsMerged: 320,
+  mergedPRsPercentage: 80,
+  totalReviews: 50,
+  totalDiscussionsStarted: 10,
+  totalDiscussionsAnswered: 40,
+  contributedTo: 50,
+  rank: { level: "DEV", percentile: 0 },
 };
+
 stats.rank = calculateRank({
-  totalCommits: stats.totalCommits,
-  totalRepos: 1,
-  followers: 0,
-  contributions: stats.contributedTo,
-  stargazers: stats.totalStars,
+  all_commits: false,
+  commits: stats.totalCommits,
   prs: stats.totalPRs,
+  reviews: stats.totalReviews,
   issues: stats.totalIssues,
+  repos: 1,
+  stars: stats.totalStars,
+  followers: 0,
 });
 
-const data = {
+const data_stats = {
   data: {
     user: {
       name: stats.name,
       repositoriesContributedTo: { totalCount: stats.contributedTo },
-      contributionsCollection: {
+      commits: {
         totalCommitContributions: stats.totalCommits,
-        restrictedContributionsCount: 100,
+      },
+      reviews: {
+        totalPullRequestReviewContributions: stats.totalReviews,
       },
       pullRequests: { totalCount: stats.totalPRs },
-      issues: { totalCount: stats.totalIssues },
+      mergedPullRequests: { totalCount: stats.totalPRsMerged },
+      openIssues: { totalCount: stats.totalIssues },
+      closedIssues: { totalCount: 0 },
       followers: { totalCount: 0 },
+      repositoryDiscussions: { totalCount: stats.totalDiscussionsStarted },
+      repositoryDiscussionComments: {
+        totalCount: stats.totalDiscussionsAnswered,
+      },
       repositories: {
         totalCount: 1,
         nodes: [{ stargazers: { totalCount: 100 } }],
+        pageInfo: {
+          hasNextPage: false,
+          endCursor: "cursor",
+        },
       },
     },
   },
@@ -69,10 +101,14 @@ const faker = (query, data) => {
     setHeader: jest.fn(),
     send: jest.fn(),
   };
-  mock.onPost("https://api.github.com/graphql").reply(200, data);
+  mock.onPost("https://api.github.com/graphql").replyOnce(200, data);
 
   return { req, res };
 };
+
+beforeEach(() => {
+  process.env.CACHE_SECONDS = undefined;
+});
 
 afterEach(() => {
   mock.reset();
@@ -80,7 +116,7 @@ afterEach(() => {
 
 describe("Test /api/", () => {
   it("should test the request", async () => {
-    const { req, res } = faker({}, data);
+    const { req, res } = faker({}, data_stats);
 
     await api(req, res);
 
@@ -95,10 +131,27 @@ describe("Test /api/", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError(
-        error.errors[0].message,
-        "Make sure the provided username is not an organization",
-      ),
+      renderError({
+        message: error.errors[0].message,
+        secondaryMessage:
+          "Make sure the provided username is not an organization",
+      }),
+    );
+  });
+
+  it("should render error card in same theme as requested card", async () => {
+    const { req, res } = faker({ theme: "merko" }, error);
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError({
+        message: error.errors[0].message,
+        secondaryMessage:
+          "Make sure the provided username is not an organization",
+        renderOptions: { theme: "merko" },
+      }),
     );
   });
 
@@ -115,7 +168,7 @@ describe("Test /api/", () => {
         text_color: "fff",
         bg_color: "fff",
       },
-      data,
+      data_stats,
     );
 
     await api(req, res);
@@ -136,89 +189,221 @@ describe("Test /api/", () => {
   });
 
   it("should have proper cache", async () => {
-    const { req, res } = faker({}, data);
-    mock.onPost("https://api.github.com/graphql").reply(200, data);
+    const { req, res } = faker({}, data_stats);
 
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
+      [
+        "Cache-Control",
+        `max-age=${CACHE_TTL.STATS_CARD.DEFAULT}, ` +
+          `s-maxage=${CACHE_TTL.STATS_CARD.DEFAULT}, ` +
+          `stale-while-revalidate=${DURATIONS.ONE_DAY}`,
+      ],
     ]);
   });
 
   it("should set proper cache", async () => {
-    const { req, res } = faker({ cache_seconds: 8000 }, data);
+    const cache_seconds = DURATIONS.TWELVE_HOURS;
+    const { req, res } = faker({ cache_seconds }, data_stats);
     await api(req, res);
 
     expect(res.setHeader.mock.calls).toEqual([
       ["Content-Type", "image/svg+xml"],
-      ["Cache-Control", `public, max-age=${8000}`],
+      [
+        "Cache-Control",
+        `max-age=${cache_seconds}, ` +
+          `s-maxage=${cache_seconds}, ` +
+          `stale-while-revalidate=${DURATIONS.ONE_DAY}`,
+      ],
+    ]);
+  });
+
+  it("should set shorter cache when error", async () => {
+    const { req, res } = faker({}, error);
+    await api(req, res);
+
+    expect(res.setHeader.mock.calls).toEqual([
+      ["Content-Type", "image/svg+xml"],
+      [
+        "Cache-Control",
+        `max-age=${CACHE_TTL.ERROR}, ` +
+          `s-maxage=${CACHE_TTL.ERROR}, ` +
+          `stale-while-revalidate=${DURATIONS.ONE_DAY}`,
+      ],
+    ]);
+  });
+
+  it("should properly set cache using CACHE_SECONDS env variable", async () => {
+    const cacheSeconds = "10000";
+    process.env.CACHE_SECONDS = cacheSeconds;
+
+    const { req, res } = faker({}, data_stats);
+    await api(req, res);
+
+    expect(res.setHeader.mock.calls).toEqual([
+      ["Content-Type", "image/svg+xml"],
+      [
+        "Cache-Control",
+        `max-age=${cacheSeconds}, ` +
+          `s-maxage=${cacheSeconds}, ` +
+          `stale-while-revalidate=${DURATIONS.ONE_DAY}`,
+      ],
+    ]);
+  });
+
+  it("should disable cache when CACHE_SECONDS is set to 0", async () => {
+    process.env.CACHE_SECONDS = "0";
+
+    const { req, res } = faker({}, data_stats);
+    await api(req, res);
+
+    expect(res.setHeader.mock.calls).toEqual([
+      ["Content-Type", "image/svg+xml"],
+      [
+        "Cache-Control",
+        "no-cache, no-store, must-revalidate, max-age=0, s-maxage=0",
+      ],
+      ["Pragma", "no-cache"],
+      ["Expires", "0"],
     ]);
   });
 
   it("should set proper cache with clamped values", async () => {
     {
-      let { req, res } = faker({ cache_seconds: 200000 }, data);
+      let { req, res } = faker({ cache_seconds: 200_000 }, data_stats);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.ONE_DAY}`],
+        [
+          "Cache-Control",
+          `max-age=${CACHE_TTL.STATS_CARD.MAX}, ` +
+            `s-maxage=${CACHE_TTL.STATS_CARD.MAX}, ` +
+            `stale-while-revalidate=${DURATIONS.ONE_DAY}`,
+        ],
       ]);
     }
 
     // note i'm using block scoped vars
     {
-      let { req, res } = faker({ cache_seconds: 0 }, data);
+      let { req, res } = faker({ cache_seconds: 0 }, data_stats);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
+        [
+          "Cache-Control",
+          `max-age=${CACHE_TTL.STATS_CARD.MIN}, ` +
+            `s-maxage=${CACHE_TTL.STATS_CARD.MIN}, ` +
+            `stale-while-revalidate=${DURATIONS.ONE_DAY}`,
+        ],
       ]);
     }
 
     {
-      let { req, res } = faker({ cache_seconds: -10000 }, data);
+      let { req, res } = faker({ cache_seconds: -10_000 }, data_stats);
       await api(req, res);
 
       expect(res.setHeader.mock.calls).toEqual([
         ["Content-Type", "image/svg+xml"],
-        ["Cache-Control", `public, max-age=${CONSTANTS.TWO_HOURS}`],
+        [
+          "Cache-Control",
+          `max-age=${CACHE_TTL.STATS_CARD.MIN}, ` +
+            `s-maxage=${CACHE_TTL.STATS_CARD.MIN}, ` +
+            `stale-while-revalidate=${DURATIONS.ONE_DAY}`,
+        ],
       ]);
     }
   });
 
-  it("should add private contributions", async () => {
+  it("should allow changing ring_color", async () => {
     const { req, res } = faker(
       {
         username: "anuraghazra",
-        count_private: true,
+        hide: "issues,prs,contribs",
+        show_icons: true,
+        hide_border: true,
+        line_height: 100,
+        title_color: "fff",
+        ring_color: "0000ff",
+        icon_color: "fff",
+        text_color: "fff",
+        bg_color: "fff",
       },
-      data,
+      data_stats,
     );
 
     await api(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderStatsCard(
-        {
-          ...stats,
-          totalCommits: stats.totalCommits + 100,
-          rank: calculateRank({
-            totalCommits: stats.totalCommits + 100,
-            totalRepos: 1,
-            followers: 0,
-            contributions: stats.contributedTo,
-            stargazers: stats.totalStars,
-            prs: stats.totalPRs,
-            issues: stats.totalIssues,
-          }),
-        },
-        {},
-      ),
+      renderStatsCard(stats, {
+        hide: ["issues", "prs", "contribs"],
+        show_icons: true,
+        hide_border: true,
+        line_height: 100,
+        title_color: "fff",
+        ring_color: "0000ff",
+        icon_color: "fff",
+        text_color: "fff",
+        bg_color: "fff",
+      }),
+    );
+  });
+
+  it("should render error card if username in blacklist", async () => {
+    const { req, res } = faker({ username: "renovate-bot" }, data_stats);
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError({
+        message: "This username is blacklisted",
+        secondaryMessage: "Please deploy your own instance",
+        renderOptions: { show_repo_link: false },
+      }),
+    );
+  });
+
+  it("should render error card when wrong locale is provided", async () => {
+    const { req, res } = faker({ locale: "asdf" }, data_stats);
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Language not found",
+      }),
+    );
+  });
+
+  it("should render error card when include_all_commits true and upstream API fails", async () => {
+    mock
+      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .reply(200, { error: "Some test error message" });
+
+    const { req, res } = faker(
+      { username: "anuraghazra", include_all_commits: true },
+      data_stats,
+    );
+
+    await api(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toBeCalledWith(
+      renderError({
+        message: "Could not fetch total commits.",
+        secondaryMessage: "Please try again later",
+      }),
+    );
+    // Received SVG output should not contain string "https://tiny.one/readme-stats"
+    expect(res.send.mock.calls[0][0]).not.toContain(
+      "https://tiny.one/readme-stats",
     );
   });
 });
