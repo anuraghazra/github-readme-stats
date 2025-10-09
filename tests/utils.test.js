@@ -16,9 +16,14 @@ describe("Test utils.js", () => {
     expect(kFormatter(1)).toBe(1);
     expect(kFormatter(-1)).toBe(-1);
     expect(kFormatter(500)).toBe(500);
+    expect(kFormatter(999)).toBe(999);
     expect(kFormatter(1000)).toBe("1k");
+    expect(kFormatter(1200)).toBe("1.2k");
+    expect(kFormatter(1250)).toBe("1.25k");
+    expect(kFormatter(9990)).toBe("9.99k");
     expect(kFormatter(10000)).toBe("10k");
     expect(kFormatter(12345)).toBe("12.3k");
+    expect(kFormatter(99900)).toBe("99.9k");
     expect(kFormatter(9900000)).toBe("9900k");
   });
 

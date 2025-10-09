@@ -77,15 +77,22 @@ const iconWithLabel = (icon, label, testid, iconSize) => {
 };
 
 /**
- * Retrieves num with suffix k(thousands) precise to 1 decimal if greater than 999.
+ * Retrieves num with suffix k(thousands) precise to 2 decimals if between 1000-9999, and 1 decimal if greater than 9999.
  *
  * @param {number} num The number to format.
  * @returns {string|number} The formatted number.
  */
 const kFormatter = (num) => {
-  return Math.abs(num) > 999
-    ? Math.sign(num) * parseFloat((Math.abs(num) / 1000).toFixed(1)) + "k"
-    : Math.sign(num) * Math.abs(num);
+  const abs = Math.abs(num);
+  const sign = Math.sign(num);
+
+  if (abs > 9999) {
+    return sign * parseFloat((abs / 1000).toFixed(1)) + "k";
+  } else if (abs > 999) {
+    return sign * parseFloat((abs / 1000).toFixed(2)) + "k";
+  } else {
+    return sign * abs;
+  }
 };
 
 /**
