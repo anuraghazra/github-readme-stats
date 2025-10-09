@@ -22,7 +22,7 @@ import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const languageColors = require("../common/languageColors.json"); // now works
 
-const DEFAULT_CARD_WIDTH = 495;
+const DEFAULT_CARD_WIDTH = 420;
 const MIN_CARD_WIDTH = 250;
 const COMPACT_LAYOUT_MIN_WIDTH = 400;
 
@@ -76,7 +76,7 @@ const createCompactLangNode = ({ lang, x, y, display_format }) => {
     <g transform="translate(${x}, ${y})">
       <circle cx="5" cy="6" r="5" fill="${color}" />
       <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        ${lang.name} - ${value}
+        ${lang.name} - ${lang.text.split(" ").slice(0, 2).join(" ")} (${lang.percent}%)
       </text>
     </g>
   `;
@@ -243,7 +243,15 @@ const normalizeCardWidth = ({ value, layout }) => {
  * @returns {string} WakaTime card SVG.
  */
 const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
-  let { languages = [] } = stats;
+  let { languages } = stats;
+  languages = languages
+    .filter(
+      (language) =>
+        language.name !== "Text" &&
+        language.name !== "Other" &&
+        language.name !== "Markdown",
+    )
+    .slice(0, 8);
   const {
     hide_title = false,
     hide_border = false,

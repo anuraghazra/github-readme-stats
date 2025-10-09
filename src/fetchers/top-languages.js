@@ -28,8 +28,8 @@ const fetcher = (variables, token) => {
       query: `
       query userInfo($login: String!) {
         user(login: $login) {
-          # fetch only owner repos & not forks
-          repositories(ownerAffiliations: OWNER, isFork: false, first: 100) {
+          # fetch all repos including collaborator repos and forks
+          repositories(first: 100) {
             nodes {
               name
               languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {

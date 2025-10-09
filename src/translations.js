@@ -304,7 +304,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       no: "Totalt antall issues",
     },
     "statcard.contribs": {
-      en: "Contributed to (last year)",
+      en: "Contributed to",
       ar: "ساهم في (العام الماضي)",
       az: "Töhfə verdi (ötən il)",
       ca: "Contribucions (l'any passat)",

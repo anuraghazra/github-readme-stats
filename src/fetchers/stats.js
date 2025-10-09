@@ -18,7 +18,7 @@ dotenv.config();
 
 // GraphQL queries.
 const GRAPHQL_REPOS_FIELD = `
-  repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
+  repositories(first: 100, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
     totalCount
     nodes {
       name
@@ -47,12 +47,13 @@ const GRAPHQL_STATS_QUERY = `
       name
       login
       commits: contributionsCollection (from: $startTime) {
-        totalCommitContributions,
+        totalCommitContributions
+        restrictedContributionsCount
       }
       reviews: contributionsCollection {
         totalPullRequestReviewContributions
       }
-      repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
+      repositoriesContributedTo(first: 100, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY, PULL_REQUEST_REVIEW], includeUserRepositories: true) {
         totalCount
       }
       pullRequests(first: 1) {
@@ -61,10 +62,10 @@ const GRAPHQL_STATS_QUERY = `
       mergedPullRequests: pullRequests(states: MERGED) @include(if: $includeMergedPullRequests) {
         totalCount
       }
-      openIssues: issues(states: OPEN) {
+      openIssues: issues(first: 100, states: OPEN) {
         totalCount
       }
-      closedIssues: issues(states: CLOSED) {
+      closedIssues: issues(first: 100, states: CLOSED) {
         totalCount
       }
       followers {
@@ -291,6 +292,8 @@ const fetchStats = async (
   // if include_all_commits, fetch all commits using the REST API.
   if (include_all_commits) {
     stats.totalCommits = await totalCommitsFetcher(username);
+    // Add private contributions that the search API might have missed
+    stats.totalCommits += user.commits.restrictedContributionsCount;
   } else {
     stats.totalCommits = user.commits.totalCommitContributions;
   }

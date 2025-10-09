@@ -14,8 +14,9 @@ import { statCardLocales, wakatimeCardLocales } from "../translations.js";
 
 const CARD_MIN_WIDTH = 287;
 const CARD_DEFAULT_WIDTH = 287;
+const CARD_MAX_WIDTH = 420;
 const RANK_CARD_MIN_WIDTH = 420;
-const RANK_CARD_DEFAULT_WIDTH = 450;
+const RANK_CARD_DEFAULT_WIDTH = 420;
 const RANK_ONLY_CARD_MIN_WIDTH = 290;
 const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
 
@@ -282,12 +283,6 @@ const renderStatsCard = (stats, options = {}) => {
   // Meta data for creating text nodes with createTextNode function
   const STATS = {};
 
-  STATS.stars = {
-    icon: icons.star,
-    label: i18n.t("statcard.totalstars"),
-    value: totalStars,
-    id: "stars",
-  };
   STATS.commits = {
     icon: icons.commits,
     label: `${i18n.t("statcard.commits")}${getTotalCommitsYearLabel(
@@ -333,13 +328,6 @@ const renderStatsCard = (stats, options = {}) => {
     };
   }
 
-  STATS.issues = {
-    icon: icons.issues,
-    label: i18n.t("statcard.issues"),
-    value: totalIssues,
-    id: "issues",
-  };
-
   if (show.includes("discussions_started")) {
     STATS.discussions_started = {
       icon: icons.discussions_started,
@@ -362,6 +350,20 @@ const renderStatsCard = (stats, options = {}) => {
     label: i18n.t("statcard.contribs"),
     value: contributedTo,
     id: "contribs",
+  };
+
+  STATS.issues = {
+    icon: icons.issues,
+    label: i18n.t("statcard.issues"),
+    value: totalIssues,
+    id: "issues",
+  };
+
+  STATS.stars = {
+    icon: icons.star,
+    label: i18n.t("statcard.totalstars"),
+    value: totalStars,
+    id: "stars",
   };
 
   const longLocales = [
@@ -401,7 +403,7 @@ const renderStatsCard = (stats, options = {}) => {
         unitSymbol: STATS[key].unitSymbol,
         index,
         showIcons: show_icons,
-        shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
+        shiftValuePos: 50 + (isLongLocale ? 50 : 0),
         bold: text_bold,
         number_format,
       }),
@@ -471,6 +473,10 @@ const renderStatsCard = (stats, options = {}) => {
     : defaultCardWidth;
   if (width < minCardWidth) {
     width = minCardWidth;
+  }
+  // Enforce maximum width of 420px
+  if (width > CARD_MAX_WIDTH) {
+    width = CARD_MAX_WIDTH;
   }
 
   const card = new Card({
