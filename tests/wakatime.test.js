@@ -4,6 +4,7 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import wakatime from "../api/wakatime.js";
 import { renderWakatimeCard } from "../src/cards/wakatime.js";
+import { CACHE_TTL, DURATIONS } from "../src/common/cache.js";
 
 const wakaTimeData = {
   data: {
@@ -118,5 +119,26 @@ describe("Test /api/wakatime", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(renderWakatimeCard(wakaTimeData.data, {}));
+  });
+
+  it("should have proper cache", async () => {
+    const username = "anuraghazra";
+    const req = { query: { username } };
+    const res = { setHeader: jest.fn(), send: jest.fn() };
+    mock
+      .onGet(
+        `https://wakatime.com/api/v1/users/${username}/stats?is_including_today=true`,
+      )
+      .reply(200, wakaTimeData);
+
+    await wakatime(req, res);
+
+    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
+    expect(res.setHeader).toBeCalledWith(
+      "Cache-Control",
+      `max-age=${CACHE_TTL.WAKATIME_CARD.DEFAULT}, ` +
+        `s-maxage=${CACHE_TTL.WAKATIME_CARD.DEFAULT}, ` +
+        `stale-while-revalidate=${DURATIONS.ONE_DAY}`,
+    );
   });
 });

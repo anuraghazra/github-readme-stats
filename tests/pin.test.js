@@ -6,7 +6,8 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import pin from "../api/pin.js";
 import { renderRepoCard } from "../src/cards/repo.js";
-import { CONSTANTS, renderError } from "../src/common/utils.js";
+import { renderError } from "../src/common/utils.js";
+import { CACHE_TTL, DURATIONS } from "../src/common/cache.js";
 
 const data_repo = {
   repository: {
@@ -233,9 +234,9 @@ describe("Test /api/pin", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.setHeader).toBeCalledWith(
       "Cache-Control",
-      `max-age=${CONSTANTS.PIN_CARD_CACHE_SECONDS}, ` +
-        `s-maxage=${CONSTANTS.PIN_CARD_CACHE_SECONDS}, ` +
-        `stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
+      `max-age=${CACHE_TTL.PIN_CARD.DEFAULT}, ` +
+        `s-maxage=${CACHE_TTL.PIN_CARD.DEFAULT}, ` +
+        `stale-while-revalidate=${DURATIONS.ONE_DAY}`,
     );
   });
 });

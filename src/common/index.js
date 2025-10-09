@@ -1,3 +1,5 @@
+// @ts-check
+
 export { blacklist } from "./blacklist.js";
 export { Card } from "./Card.js";
 export { createProgressNode } from "./createProgressNode.js";
@@ -20,7 +22,6 @@ export {
   getCardColors,
   wrapTextMultiline,
   logger,
-  CONSTANTS,
   CustomError,
   MissingParamError,
   measureText,
