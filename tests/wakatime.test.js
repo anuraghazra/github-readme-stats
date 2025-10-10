@@ -117,8 +117,10 @@ describe("Test /api/wakatime", () => {
 
     await wakatime(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(renderWakatimeCard(wakaTimeData.data, {}));
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
+      renderWakatimeCard(wakaTimeData.data, {}),
+    );
   });
 
   it("should have proper cache", async () => {
@@ -133,8 +135,8 @@ describe("Test /api/wakatime", () => {
 
     await wakatime(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.setHeader).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.setHeader).toHaveBeenCalledWith(
       "Cache-Control",
       `max-age=${CACHE_TTL.WAKATIME_CARD.DEFAULT}, ` +
         `s-maxage=${CACHE_TTL.WAKATIME_CARD.DEFAULT}, ` +

@@ -56,8 +56,8 @@ describe("Test /api/pin", () => {
 
     await pin(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       // @ts-ignore
       renderRepoCard({
         ...data_repo.repository,
@@ -86,8 +86,8 @@ describe("Test /api/pin", () => {
 
     await pin(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderRepoCard(
         // @ts-ignore
         {
@@ -116,8 +116,8 @@ describe("Test /api/pin", () => {
 
     await pin(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderError({ message: "User Repository Not found" }),
     );
   });
@@ -139,8 +139,8 @@ describe("Test /api/pin", () => {
 
     await pin(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderError({ message: "Organization Repository Not found" }),
     );
   });
@@ -160,8 +160,8 @@ describe("Test /api/pin", () => {
 
     await pin(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderError({
         message: "This username is blacklisted",
         secondaryMessage: "Please deploy your own instance",
@@ -186,8 +186,8 @@ describe("Test /api/pin", () => {
 
     await pin(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderError({
         message: "Something went wrong",
         secondaryMessage: "Language not found",
@@ -206,8 +206,8 @@ describe("Test /api/pin", () => {
 
     await pin(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderError({
         message:
           'Missing params "username", "repo" make sure you pass the parameters in URL',
@@ -231,8 +231,8 @@ describe("Test /api/pin", () => {
 
     await pin(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.setHeader).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.setHeader).toHaveBeenCalledWith(
       "Cache-Control",
       `max-age=${CACHE_TTL.PIN_CARD.DEFAULT}, ` +
         `s-maxage=${CACHE_TTL.PIN_CARD.DEFAULT}, ` +
