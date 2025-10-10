@@ -4,13 +4,13 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+import { beforeAll, describe, expect, test } from "@jest/globals";
 import axios from "axios";
+import { renderGistCard } from "../../src/cards/gist.js";
 import { renderRepoCard } from "../../src/cards/repo.js";
 import { renderStatsCard } from "../../src/cards/stats.js";
 import { renderTopLanguages } from "../../src/cards/top-languages.js";
 import { renderWakatimeCard } from "../../src/cards/wakatime.js";
-import { renderGistCard } from "../../src/cards/gist.js";
-import { expect, describe, beforeAll, test } from "@jest/globals";
 
 const REPO = "curly-fiesta";
 const USER = "catelinemnemosyne";

@@ -1,16 +1,13 @@
+import { describe, expect, it } from "@jest/globals";
 import {
   getByTestId,
   queryAllByTestId,
   queryByTestId,
 } from "@testing-library/dom";
+import "@testing-library/jest-dom";
 import { cssToObject } from "@uppercod/css-to-object";
 import { renderStatsCard } from "../src/cards/stats.js";
-import { expect, it, describe } from "@jest/globals";
-import { CustomError } from "../src/common/utils.js";
-
-// adds special assertions like toHaveTextContent
-import "@testing-library/jest-dom";
-
+import { CustomError } from "../src/common/error.js";
 import { themes } from "../themes/index.js";
 
 const stats = {

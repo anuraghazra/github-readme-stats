@@ -1,27 +1,25 @@
+import { describe, expect, it } from "@jest/globals";
 import { queryAllByTestId, queryByTestId } from "@testing-library/dom";
+import "@testing-library/jest-dom";
 import { cssToObject } from "@uppercod/css-to-object";
 import {
-  getLongestLang,
-  degreesToRadians,
-  radiansToDegrees,
-  polarToCartesian,
-  cartesianToPolar,
-  getCircleLength,
+  MIN_CARD_WIDTH,
   calculateCompactLayoutHeight,
-  calculateNormalLayoutHeight,
   calculateDonutLayoutHeight,
   calculateDonutVerticalLayoutHeight,
+  calculateNormalLayoutHeight,
   calculatePieLayoutHeight,
+  cartesianToPolar,
+  degreesToRadians,
   donutCenterTranslation,
-  trimTopLanguages,
-  renderTopLanguages,
-  MIN_CARD_WIDTH,
+  getCircleLength,
   getDefaultLanguagesCountByLayout,
+  getLongestLang,
+  polarToCartesian,
+  radiansToDegrees,
+  renderTopLanguages,
+  trimTopLanguages,
 } from "../src/cards/top-languages.js";
-import { expect, it, describe } from "@jest/globals";
-
-// adds special assertions like toHaveTextContent
-import "@testing-library/jest-dom";
 
 import { themes } from "../themes/index.js";
 

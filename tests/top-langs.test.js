@@ -1,11 +1,13 @@
-import { jest } from "@jest/globals";
+// @ts-check
+
+import { afterEach, describe, expect, it, jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import topLangs from "../api/top-langs.js";
 import { renderTopLanguages } from "../src/cards/top-languages.js";
-import { CONSTANTS, renderError } from "../src/common/utils.js";
-import { expect, it, describe, afterEach } from "@jest/globals";
+import { renderError } from "../src/common/utils.js";
+import { CACHE_TTL, DURATIONS } from "../src/common/cache.js";
 
 const data_langs = {
   data: {
@@ -140,10 +142,11 @@ describe("Test /api/top-langs", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError(
-        error.errors[0].message,
-        "Make sure the provided username is not an organization",
-      ),
+      renderError({
+        message: error.errors[0].message,
+        secondaryMessage:
+          "Make sure the provided username is not an organization",
+      }),
     );
   });
 
@@ -164,7 +167,10 @@ describe("Test /api/top-langs", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Something went wrong", "Incorrect layout input"),
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Incorrect layout input",
+      }),
     );
   });
 
@@ -184,11 +190,11 @@ describe("Test /api/top-langs", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError(
-        "This username is blacklisted",
-        "Please deploy your own instance",
-        { show_repo_link: false },
-      ),
+      renderError({
+        message: "This username is blacklisted",
+        secondaryMessage: "Please deploy your own instance",
+        renderOptions: { show_repo_link: false },
+      }),
     );
   });
 
@@ -209,7 +215,10 @@ describe("Test /api/top-langs", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Something went wrong", "Locale not found"),
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Locale not found",
+      }),
     );
   });
 
@@ -230,9 +239,9 @@ describe("Test /api/top-langs", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.setHeader).toBeCalledWith(
       "Cache-Control",
-      `max-age=${CONSTANTS.TOP_LANGS_CACHE_SECONDS / 2}, s-maxage=${
-        CONSTANTS.TOP_LANGS_CACHE_SECONDS
-      }`,
+      `max-age=${CACHE_TTL.TOP_LANGS_CARD.DEFAULT}, ` +
+        `s-maxage=${CACHE_TTL.TOP_LANGS_CARD.DEFAULT}, ` +
+        `stale-while-revalidate=${DURATIONS.ONE_DAY}`,
     );
   });
 });
