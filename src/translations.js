@@ -168,7 +168,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       "zh-tw": "累計提交數量（Commit）",
       cs: "Celkem commitů",
       de: "Anzahl Commits",
-      sw: "Matendo(Commits) yako yote",
+      sw: "Matendo yako yote",
       ur: "کل کمٹ",
       bg: "Общо ангажименти",
       bn: "সর্বমোট Commit",

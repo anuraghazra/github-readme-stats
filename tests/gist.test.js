@@ -1,11 +1,13 @@
-import { jest } from "@jest/globals";
+// @ts-check
+
+import { afterEach, describe, expect, it, jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { expect, it, describe, afterEach } from "@jest/globals";
-import { renderGistCard } from "../src/cards/gist.js";
-import { CONSTANTS, renderError } from "../src/common/utils.js";
 import gist from "../api/gist.js";
+import { renderGistCard } from "../src/cards/gist.js";
+import { renderError } from "../src/common/utils.js";
+import { CACHE_TTL, DURATIONS } from "../src/common/cache.js";
 
 const gist_data = {
   data: {
@@ -124,10 +126,10 @@ describe("Test /api/gist", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError(
-        'Missing params "id" make sure you pass the parameters in URL',
-        "/api/gist?id=GIST_ID",
-      ),
+      renderError({
+        message: 'Missing params "id" make sure you pass the parameters in URL',
+        secondaryMessage: "/api/gist?id=GIST_ID",
+      }),
     );
   });
 
@@ -148,7 +150,7 @@ describe("Test /api/gist", () => {
     await gist(req, res);
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(renderError("Gist not found"));
+    expect(res.send).toBeCalledWith(renderError({ message: "Gist not found" }));
   });
 
   it("should render error if wrong locale is provided", async () => {
@@ -167,7 +169,10 @@ describe("Test /api/gist", () => {
 
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toBeCalledWith(
-      renderError("Something went wrong", "Language not found"),
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Language not found",
+      }),
     );
   });
 
@@ -188,7 +193,9 @@ describe("Test /api/gist", () => {
     expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
     expect(res.setHeader).toBeCalledWith(
       "Cache-Control",
-      `max-age=${CONSTANTS.TWO_DAY}, s-maxage=${CONSTANTS.TWO_DAY}`,
+      `max-age=${CACHE_TTL.GIST_CARD.DEFAULT}, ` +
+        `s-maxage=${CACHE_TTL.GIST_CARD.DEFAULT}, ` +
+        `stale-while-revalidate=${DURATIONS.ONE_DAY}`,
     );
   });
 });
