@@ -51,6 +51,7 @@ export type TopLangOptions = CommonOptions & {
 export type WakaTimeOptions = CommonOptions & {
   hide_title: boolean;
   hide: string[];
+  card_width: number;
   line_height: string;
   hide_progress: boolean;
   custom_title: string;
