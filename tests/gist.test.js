@@ -65,8 +65,8 @@ describe("Test /api/gist", () => {
 
     await gist(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderGistCard({
         name: gist_data.data.viewer.gist.files[0].name,
         nameWithOwner: `${gist_data.data.viewer.gist.owner.login}/${gist_data.data.viewer.gist.files[0].name}`,
@@ -97,8 +97,8 @@ describe("Test /api/gist", () => {
 
     await gist(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderGistCard(
         {
           name: gist_data.data.viewer.gist.files[0].name,
@@ -124,8 +124,8 @@ describe("Test /api/gist", () => {
 
     await gist(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderError({
         message: 'Missing params "id" make sure you pass the parameters in URL',
         secondaryMessage: "/api/gist?id=GIST_ID",
@@ -149,8 +149,10 @@ describe("Test /api/gist", () => {
 
     await gist(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(renderError({ message: "Gist not found" }));
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
+      renderError({ message: "Gist not found" }),
+    );
   });
 
   it("should render error if wrong locale is provided", async () => {
@@ -167,8 +169,8 @@ describe("Test /api/gist", () => {
 
     await gist(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderError({
         message: "Something went wrong",
         secondaryMessage: "Language not found",
@@ -190,8 +192,8 @@ describe("Test /api/gist", () => {
 
     await gist(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.setHeader).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.setHeader).toHaveBeenCalledWith(
       "Cache-Control",
       `max-age=${CACHE_TTL.GIST_CARD.DEFAULT}, ` +
         `s-maxage=${CACHE_TTL.GIST_CARD.DEFAULT}, ` +

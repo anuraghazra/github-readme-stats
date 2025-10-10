@@ -49,21 +49,21 @@ describe("Test Retryer", () => {
   it("retryer should return value and have zero retries on first try", async () => {
     let res = await retryer(fetcher, {});
 
-    expect(fetcher).toBeCalledTimes(1);
+    expect(fetcher).toHaveBeenCalledTimes(1);
     expect(res).toStrictEqual({ data: "ok" });
   });
 
   it("retryer should return value and have 2 retries", async () => {
     let res = await retryer(fetcherFailOnSecondTry, {});
 
-    expect(fetcherFailOnSecondTry).toBeCalledTimes(2);
+    expect(fetcherFailOnSecondTry).toHaveBeenCalledTimes(2);
     expect(res).toStrictEqual({ data: "ok" });
   });
 
   it("retryer should return value and have 2 retries with message based rate limit error", async () => {
     let res = await retryer(fetcherFailWithMessageBasedRateLimitErr, {});
 
-    expect(fetcherFailWithMessageBasedRateLimitErr).toBeCalledTimes(2);
+    expect(fetcherFailWithMessageBasedRateLimitErr).toHaveBeenCalledTimes(2);
     expect(res).toStrictEqual({ data: "ok" });
   });
 
@@ -71,7 +71,7 @@ describe("Test Retryer", () => {
     try {
       await retryer(fetcherFail, {});
     } catch (err) {
-      expect(fetcherFail).toBeCalledTimes(RETRIES + 1);
+      expect(fetcherFail).toHaveBeenCalledTimes(RETRIES + 1);
       expect(err.message).toBe("Downtime due to GitHub API rate limiting");
     }
   });

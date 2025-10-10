@@ -90,6 +90,7 @@ const error = {
 
 const mock = new MockAdapter(axios);
 
+// @ts-ignore
 const faker = (query, data) => {
   const req = {
     query: {
@@ -120,8 +121,10 @@ describe("Test /api/", () => {
 
     await api(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(renderStatsCard(stats, { ...req.query }));
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
+      renderStatsCard(stats, { ...req.query }),
+    );
   });
 
   it("should render error card on error", async () => {
@@ -129,8 +132,8 @@ describe("Test /api/", () => {
 
     await api(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderError({
         message: error.errors[0].message,
         secondaryMessage:
@@ -144,8 +147,8 @@ describe("Test /api/", () => {
 
     await api(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderError({
         message: error.errors[0].message,
         secondaryMessage:
@@ -173,8 +176,8 @@ describe("Test /api/", () => {
 
     await api(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderStatsCard(stats, {
         hide: ["issues", "prs", "contribs"],
         show_icons: true,
@@ -337,8 +340,8 @@ describe("Test /api/", () => {
 
     await api(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderStatsCard(stats, {
         hide: ["issues", "prs", "contribs"],
         show_icons: true,
@@ -358,8 +361,8 @@ describe("Test /api/", () => {
 
     await api(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderError({
         message: "This username is blacklisted",
         secondaryMessage: "Please deploy your own instance",
@@ -373,8 +376,8 @@ describe("Test /api/", () => {
 
     await api(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderError({
         message: "Something went wrong",
         secondaryMessage: "Language not found",
@@ -394,8 +397,8 @@ describe("Test /api/", () => {
 
     await api(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderError({
         message: "Could not fetch total commits.",
         secondaryMessage: "Please try again later",

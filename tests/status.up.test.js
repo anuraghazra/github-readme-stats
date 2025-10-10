@@ -65,8 +65,11 @@ describe("Test /api/status/up", () => {
     const { req, res } = faker({}, {});
     await up(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith(true);
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith(true);
   });
 
   it("should return `false` if all PATs are rate limited", async () => {
@@ -75,8 +78,11 @@ describe("Test /api/status/up", () => {
     const { req, res } = faker({}, {});
     await up(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith(false);
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith(false);
   });
 
   it("should return JSON `true` if request was successful and type='json'", async () => {
@@ -85,8 +91,11 @@ describe("Test /api/status/up", () => {
     const { req, res } = faker({ type: "json" }, {});
     await up(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith({ up: true });
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith({ up: true });
   });
 
   it("should return JSON `false` if all PATs are rate limited and type='json'", async () => {
@@ -95,8 +104,11 @@ describe("Test /api/status/up", () => {
     const { req, res } = faker({ type: "json" }, {});
     await up(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith({ up: false });
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith({ up: false });
   });
 
   it("should return UP shields.io config if request was successful and type='shields'", async () => {
@@ -105,8 +117,11 @@ describe("Test /api/status/up", () => {
     const { req, res } = faker({ type: "shields" }, {});
     await up(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith(shields_up);
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith(shields_up);
   });
 
   it("should return DOWN shields.io config if all PATs are rate limited and type='shields'", async () => {
@@ -115,8 +130,11 @@ describe("Test /api/status/up", () => {
     const { req, res } = faker({ type: "shields" }, {});
     await up(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith(shields_down);
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith(shields_down);
   });
 
   it("should return `true` if the first PAT is rate limited but the second PATs works", async () => {
@@ -129,8 +147,11 @@ describe("Test /api/status/up", () => {
     const { req, res } = faker({}, {});
     await up(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith(true);
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith(true);
   });
 
   it("should return `true` if the first PAT has 'Bad credentials' but the second PAT works", async () => {
@@ -143,8 +164,11 @@ describe("Test /api/status/up", () => {
     const { req, res } = faker({}, {});
     await up(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith(true);
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith(true);
   });
 
   it("should return `false` if all pats have 'Bad credentials'", async () => {
@@ -155,8 +179,11 @@ describe("Test /api/status/up", () => {
     const { req, res } = faker({}, {});
     await up(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith(false);
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith(false);
   });
 
   it("should throw an error if the request fails", async () => {
@@ -165,8 +192,11 @@ describe("Test /api/status/up", () => {
     const { req, res } = faker({}, {});
     await up(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith(false);
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith(false);
   });
 
   it("should have proper cache when no error is thrown", async () => {
