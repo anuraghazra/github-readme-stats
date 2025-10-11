@@ -227,8 +227,8 @@ const request = (data, headers) => {
  * @param {string=} args.bg_color Card background color.
  * @param {string=} args.border_color Card border color.
  * @param {string=} args.ring_color Card ring color.
- * @param {string=} args.theme Card theme.
- * @param {string=} args.fallbackTheme Fallback theme.
+ * @param {keyof themes=} args.theme Card theme.
+ * @param {keyof themes=} args.fallbackTheme Fallback theme.
  * @returns {CardColors} Card colors.
  */
 const getCardColors = ({
@@ -242,9 +242,13 @@ const getCardColors = ({
   fallbackTheme = "default",
 }) => {
   const defaultTheme = themes[fallbackTheme];
-  const selectedTheme = themes[theme] || defaultTheme;
+  const isThemeProvided = theme !== null && theme !== undefined;
+  const selectedTheme = isThemeProvided ? themes[theme] : defaultTheme;
   const defaultBorderColor =
-    selectedTheme.border_color || defaultTheme.border_color;
+    "border_color" in selectedTheme
+      ? selectedTheme.border_color
+      : // @ts-ignore
+        defaultTheme.border_color;
 
   // get the color provided by the user else the theme color
   // finally if both colors are invalid fallback to default theme
@@ -256,6 +260,7 @@ const getCardColors = ({
   // get the color provided by the user else the theme color
   // finally if both colors are invalid we use the titleColor
   const ringColor = fallbackColor(
+    // @ts-ignore
     ring_color || selectedTheme.ring_color,
     titleColor,
   );
@@ -327,7 +332,7 @@ const UPSTREAM_API_ERRORS = [
  * @param {string=} args.renderOptions.text_color Card text color.
  * @param {string=} args.renderOptions.bg_color Card background color.
  * @param {string=} args.renderOptions.border_color Card border color.
- * @param {string=} args.renderOptions.theme Card theme.
+ * @param {keyof themes=} args.renderOptions.theme Card theme.
  * @param {boolean=} args.renderOptions.show_repo_link Whether to show repo link or not.
  * @returns {string} The SVG markup.
  */
