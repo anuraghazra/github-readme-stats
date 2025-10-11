@@ -11,7 +11,9 @@ import {
   setErrorCacheHeaders,
 } from "../src/common/cache.js";
 import { guardAccess } from "../src/common/access.js";
+import { retrieveSecondaryMessage } from "../src/common/error.js";
 
+// @ts-ignore
 export default async (req, res) => {
   const {
     id,
@@ -89,10 +91,24 @@ export default async (req, res) => {
     );
   } catch (err) {
     setErrorCacheHeaders(res);
+    if (err instanceof Error) {
+      return res.send(
+        renderError({
+          message: err.message,
+          secondaryMessage: retrieveSecondaryMessage(err),
+          renderOptions: {
+            title_color,
+            text_color,
+            bg_color,
+            border_color,
+            theme,
+          },
+        }),
+      );
+    }
     return res.send(
       renderError({
-        message: err.message,
-        secondaryMessage: err.secondaryMessage,
+        message: "An unknown error occurred",
         renderOptions: {
           title_color,
           text_color,
