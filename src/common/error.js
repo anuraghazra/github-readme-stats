@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * @type {string} A general message to ask user to try again later.
  */
@@ -61,9 +63,22 @@ class MissingParamError extends Error {
   }
 }
 
+/**
+ * Retrieve secondary message from an error object.
+ *
+ * @param {Error} err The error object.
+ * @returns {string|undefined} The secondary message if available, otherwise undefined.
+ */
+const retrieveSecondaryMessage = (err) => {
+  return "secondaryMessage" in err && typeof err.secondaryMessage === "string"
+    ? err.secondaryMessage
+    : undefined;
+};
+
 export {
   CustomError,
   MissingParamError,
   SECONDARY_ERROR_MESSAGES,
   TRY_AGAIN_LATER,
+  retrieveSecondaryMessage,
 };
