@@ -4,12 +4,12 @@ import "@testing-library/jest-dom";
 import {
   encodeHTML,
   formatBytes,
-  getCardColors,
   kFormatter,
   parseBoolean,
   renderError,
   wrapTextMultiline,
 } from "../src/common/utils.js";
+import { getCardColors } from "../src/common/color.js";
 
 describe("Test utils.js", () => {
   it("should test kFormatter", () => {

@@ -1,7 +1,6 @@
 // @ts-check
 
 import {
-  getCardColors,
   parseEmojis,
   wrapTextMultiline,
   encodeHTML,
@@ -12,6 +11,7 @@ import {
   createLanguageNode,
 } from "../common/utils.js";
 import Card from "../common/Card.js";
+import { getCardColors } from "../common/color.js";
 import { icons } from "../common/icons.js";
 
 /** Import language colors.

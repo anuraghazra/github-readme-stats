@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import { cssToObject } from "@uppercod/css-to-object";
 import { Card } from "../src/common/Card.js";
 import { icons } from "../src/common/icons.js";
-import { getCardColors } from "../src/common/utils.js";
+import { getCardColors } from "../src/common/color.js";
 
 describe("Card", () => {
   it("should hide border", () => {
