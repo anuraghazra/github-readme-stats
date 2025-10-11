@@ -86,7 +86,7 @@ const resolveCacheSeconds = ({ requested, def, min, max }) => {
 /**
  * Disables caching by setting appropriate headers on the response object.
  *
- * @param {Object} res The response object.
+ * @param {any} res The response object.
  */
 const disableCaching = (res) => {
   // Disable caching for browsers, shared caches/CDNs, and GitHub Camo.
@@ -101,7 +101,7 @@ const disableCaching = (res) => {
 /**
  * Sets the Cache-Control headers on the response object.
  *
- * @param {Object} res The response object.
+ * @param {any} res The response object.
  * @param {number} cacheSeconds The cache seconds to set in the headers.
  */
 const setCacheHeaders = (res, cacheSeconds) => {
@@ -121,7 +121,7 @@ const setCacheHeaders = (res, cacheSeconds) => {
 /**
  * Sets the Cache-Control headers for error responses on the response object.
  *
- * @param {Object} res The response object.
+ * @param {any} res The response object.
  */
 const setErrorCacheHeaders = (res) => {
   const envCacheSeconds = process.env.CACHE_SECONDS
