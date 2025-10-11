@@ -392,21 +392,24 @@ const renderStatsCard = (stats, options = {}) => {
   // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
-    .map((key, index) =>
+    .map((key, index) => {
+      // @ts-ignore
+      const stats = STATS[key];
+
       // create the text nodes, and pass index so that we can calculate the line spacing
-      createTextNode({
-        icon: STATS[key].icon,
-        label: STATS[key].label,
-        value: STATS[key].value,
-        id: STATS[key].id,
-        unitSymbol: STATS[key].unitSymbol,
+      return createTextNode({
+        icon: stats.icon,
+        label: stats.label,
+        value: stats.value,
+        id: stats.id,
+        unitSymbol: stats.unitSymbol,
         index,
         showIcons: show_icons,
         shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
         bold: text_bold,
         number_format,
-      }),
-    );
+      });
+    });
 
   if (statItems.length === 0 && hide_rank) {
     throw new CustomError(
@@ -541,14 +544,16 @@ const renderStatsCard = (stats, options = {}) => {
   const labels = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
     .map((key) => {
+      // @ts-ignore
+      const stats = STATS[key];
       if (key === "commits") {
         return `${i18n.t("statcard.commits")} ${getTotalCommitsYearLabel(
           include_all_commits,
           commits_year,
           i18n,
-        )} : ${STATS[key].value}`;
+        )} : ${stats.value}`;
       }
-      return `${STATS[key].label}: ${STATS[key].value}`;
+      return `${stats.label}: ${stats.value}`;
     })
     .join(", ");
 

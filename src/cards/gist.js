@@ -96,6 +96,7 @@ const renderGistCard = (gistData, options = {}) => {
   );
 
   const languageName = language || "Unspecified";
+  // @ts-ignore
   const languageColor = languageColors[languageName] || "#858585";
 
   const svgLanguage = createLanguageNode(languageName, languageColor);

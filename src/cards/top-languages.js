@@ -1,4 +1,5 @@
 // @ts-check
+
 import { Card } from "../common/Card.js";
 import { getCardColors } from "../common/color.js";
 import { createProgressNode } from "../common/createProgressNode.js";
@@ -180,6 +181,7 @@ const trimTopLanguages = (topLangs, langs_count, hide) => {
   // while filtering out
   if (hide) {
     hide.forEach((langName) => {
+      // @ts-ignore
       langsToHide[lowercaseTrim(langName)] = true;
     });
   }
@@ -188,6 +190,7 @@ const trimTopLanguages = (topLangs, langs_count, hide) => {
   langs = langs
     .sort((a, b) => b.size - a.size)
     .filter((lang) => {
+      // @ts-ignore
       return !langsToHide[lowercaseTrim(lang.name)];
     })
     .slice(0, langsCount);
