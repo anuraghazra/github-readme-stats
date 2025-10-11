@@ -1,4 +1,5 @@
 // @ts-check
+
 import { Card } from "../common/Card.js";
 import { getCardColors } from "../common/color.js";
 import { I18n } from "../common/I18n.js";

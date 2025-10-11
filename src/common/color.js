@@ -68,8 +68,8 @@ const fallbackColor = (color, fallbackColor) => {
  * @param {string=} args.bg_color Card background color.
  * @param {string=} args.border_color Card border color.
  * @param {string=} args.ring_color Card ring color.
- * @param {keyof themes=} args.theme Card theme.
- * @param {keyof themes=} args.fallbackTheme Fallback theme.
+ * @param {string=} args.theme Card theme.
+ * @param {string=} args.fallbackTheme Fallback theme.
  * @returns {CardColors} Card colors.
  */
 const getCardColors = ({
