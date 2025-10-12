@@ -129,6 +129,7 @@ describe("Test /api/gist", () => {
       renderError({
         message: 'Missing params "id" make sure you pass the parameters in URL',
         secondaryMessage: "/api/gist?id=GIST_ID",
+        renderOptions: { show_repo_link: false },
       }),
     );
   });
