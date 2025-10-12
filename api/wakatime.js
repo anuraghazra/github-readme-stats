@@ -11,7 +11,10 @@ import {
   setErrorCacheHeaders,
 } from "../src/common/cache.js";
 import { guardAccess } from "../src/common/access.js";
-import { retrieveSecondaryMessage } from "../src/common/error.js";
+import {
+  MissingParamError,
+  retrieveSecondaryMessage,
+} from "../src/common/error.js";
 
 // @ts-ignore
 export default async (req, res) => {
@@ -121,6 +124,7 @@ export default async (req, res) => {
             bg_color,
             border_color,
             theme,
+            show_repo_link: !(err instanceof MissingParamError),
           },
         }),
       );
