@@ -1,14 +1,10 @@
 // @ts-check
 
 import { Card } from "../common/Card.js";
+import { getCardColors } from "../common/color.js";
 import { createProgressNode } from "../common/createProgressNode.js";
 import { I18n } from "../common/I18n.js";
-import {
-  clampValue,
-  flexLayout,
-  getCardColors,
-  lowercaseTrim,
-} from "../common/utils.js";
+import { clampValue, flexLayout, lowercaseTrim } from "../common/utils.js";
 import { wakatimeCardLocales } from "../translations.js";
 
 /** Import language colors.
@@ -69,6 +65,7 @@ const formatLanguageValue = ({ display_format, lang }) => {
  * @returns {string} The compact layout language SVG node.
  */
 const createCompactLangNode = ({ lang, x, y, display_format }) => {
+  // @ts-ignore
   const color = languageColors[lang.name] || "#858585";
   const value = formatLanguageValue({ display_format, lang });
 
@@ -329,6 +326,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
         // const progress = (width * lang.percent) / 100;
         const progress = ((width - 25) * language.percent) / 100;
 
+        // @ts-ignore
         const languageColor = languageColors[language.name] || "#858585";
 
         const output = `
