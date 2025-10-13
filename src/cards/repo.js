@@ -2,12 +2,12 @@
 
 import { Card } from "../common/Card.js";
 import { getCardColors } from "../common/color.js";
+import { kFormatter } from "../common/fmt.js";
 import { I18n } from "../common/I18n.js";
 import { icons } from "../common/icons.js";
 import {
   encodeHTML,
   flexLayout,
-  kFormatter,
   measureText,
   parseEmojis,
   wrapTextMultiline,
