@@ -22,6 +22,10 @@ const DEFAULT_CARD_WIDTH = 495;
 const MIN_CARD_WIDTH = 250;
 const COMPACT_LAYOUT_MIN_WIDTH = 400;
 const DEFAULT_LINE_HEIGHT = 25;
+const PROGRESSBAR_PADDING = 130;
+const HIDDEN_PROGRESSBAR_PADDING = 170;
+const COMPACT_LAYOUT_PROGRESSBAR_PADDING = 25;
+const TOTAL_TEXT_WIDTH = 275;
 
 /**
  * Creates the no coding activity SVG node.
@@ -133,10 +137,7 @@ const createTextNode = ({
   progressBarBackgroundColor,
   progressBarWidth,
 }) => {
-  const PROGRESSBAR_PADDING = 130;
-  const HIDDEN_PROGRESSBAR_PADDING = 170;
   const staggerDelay = (index + 3) * 150;
-
   const cardProgress = hideProgress
     ? null
     : createProgressNode({
@@ -318,16 +319,18 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
-    const PROGRESSBAR_PADDING = 25;
-    height = 90 + Math.round(filteredLanguages.length / 2) * DEFAULT_LINE_HEIGHT;
+    const width = normalizedWidth - 5;
+    height =
+      90 + Math.round(filteredLanguages.length / 2) * DEFAULT_LINE_HEIGHT;
 
     // progressOffset holds the previous language's width and used to offset the next language
     // so that we can stack them one after another, like this: [--][----][---]
     let progressOffset = 0;
     const compactProgressBar = filteredLanguages
       .map((language) => {
-        // const progress = (width * lang.percent) / 100;
-        const progress = ((normalizedWidth - PROGRESSBAR_PADDING) * language.percent) / 100;
+        const progress =
+          ((width - COMPACT_LAYOUT_PROGRESSBAR_PADDING) * language.percent) /
+          100;
 
         // @ts-ignore
         const languageColor = languageColors[language.name] || "#858585";
@@ -350,7 +353,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
     finalLayout = `
       <mask id="rect-mask">
-      <rect x="${PROGRESSBAR_PADDING}" y="0" width="${normalizedWidth - 2 * PROGRESSBAR_PADDING}" height="8" fill="white" rx="5" />
+      <rect x="${COMPACT_LAYOUT_PROGRESSBAR_PADDING}" y="0" width="${width - 2 * COMPACT_LAYOUT_PROGRESSBAR_PADDING}" height="8" fill="white" rx="5" />
       </mask>
       ${compactProgressBar}
       ${
@@ -373,7 +376,6 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
       }
     `;
   } else {
-    const TOTAL_TEXT_WIDTH = 275;
     finalLayout = flexLayout({
       items: filteredLanguages.length
         ? filteredLanguages.map((language, index) => {
