@@ -26,6 +26,35 @@ const stats = {
 };
 
 describe("Test renderStatsCard", () => {
+  /**
+   * Helper function to test colors
+   * @param {object} stylesObject - The CSS object
+   * @param {string} headerColor - The header color
+   * @param {string} statColor - The stat color
+   * @param {string} iconColor - The icon color
+   * @param {string} cardColor - The card color
+   * @returns {void}
+   */
+  function expectColors(
+    stylesObject,
+    headerColor,
+    statColor,
+    iconColor,
+    cardColor,
+  ) {
+    const headerClassStyles = stylesObject[":host"][".header "];
+    const statClassStyles = stylesObject[":host"][".stat "];
+    const iconClassStyles = stylesObject[":host"][".icon "];
+
+    expect(headerClassStyles.fill.trim()).toBe(headerColor);
+    expect(statClassStyles.fill.trim()).toBe(statColor);
+    expect(iconClassStyles.fill.trim()).toBe(iconColor);
+    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
+      "fill",
+      cardColor,
+    );
+  }
+
   it("should render correctly", () => {
     document.body.innerHTML = renderStatsCard(stats);
 
@@ -182,17 +211,7 @@ describe("Test renderStatsCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.textContent);
 
-    const headerClassStyles = stylesObject[":host"][".header "];
-    const statClassStyles = stylesObject[":host"][".stat "];
-    const iconClassStyles = stylesObject[":host"][".icon "];
-
-    expect(headerClassStyles.fill.trim()).toBe("#2f80ed");
-    expect(statClassStyles.fill.trim()).toBe("#434d58");
-    expect(iconClassStyles.fill.trim()).toBe("#4c71f2");
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "fill",
-      "#fffefe",
-    );
+    expectColors(stylesObject, "#2f80ed", "#434d58", "#4c71f2", "#fffefe");
   });
 
   it("should render custom colors properly", () => {
@@ -208,15 +227,11 @@ describe("Test renderStatsCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[":host"][".header "];
-    const statClassStyles = stylesObject[":host"][".stat "];
-    const iconClassStyles = stylesObject[":host"][".icon "];
-
-    expect(headerClassStyles.fill.trim()).toBe(`#${customColors.title_color}`);
-    expect(statClassStyles.fill.trim()).toBe(`#${customColors.text_color}`);
-    expect(iconClassStyles.fill.trim()).toBe(`#${customColors.icon_color}`);
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "fill",
+    expectColors(
+      stylesObject,
+      `#${customColors.title_color}`,
+      `#${customColors.text_color}`,
+      `#${customColors.icon_color}`,
       "#252525",
     );
   });
@@ -230,15 +245,11 @@ describe("Test renderStatsCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[":host"][".header "];
-    const statClassStyles = stylesObject[":host"][".stat "];
-    const iconClassStyles = stylesObject[":host"][".icon "];
-
-    expect(headerClassStyles.fill.trim()).toBe("#5a0");
-    expect(statClassStyles.fill.trim()).toBe(`#${themes.radical.text_color}`);
-    expect(iconClassStyles.fill.trim()).toBe(`#${themes.radical.icon_color}`);
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "fill",
+    expectColors(
+      stylesObject,
+      "#5a0",
+      `#${themes.radical.text_color}`,
+      `#${themes.radical.icon_color}`,
       `#${themes.radical.bg_color}`,
     );
   });
@@ -279,17 +290,11 @@ describe("Test renderStatsCard", () => {
     const styleTag = document.querySelector("style");
     const stylesObject = cssToObject(styleTag.innerHTML);
 
-    const headerClassStyles = stylesObject[":host"][".header "];
-    const statClassStyles = stylesObject[":host"][".stat "];
-    const iconClassStyles = stylesObject[":host"][".icon "];
-
-    expect(headerClassStyles.fill.trim()).toBe(
+    expectColors(
+      stylesObject,
       `#${themes.default.title_color}`,
-    );
-    expect(statClassStyles.fill.trim()).toBe(`#${themes.default.text_color}`);
-    expect(iconClassStyles.fill.trim()).toBe(`#${themes.radical.icon_color}`);
-    expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-      "fill",
+      `#${themes.default.text_color}`,
+      `#${themes.radical.icon_color}`,
       `#${themes.radical.bg_color}`,
     );
   });
