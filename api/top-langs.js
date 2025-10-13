@@ -115,6 +115,8 @@ export default async (req, res) => {
       }),
     );
   }
+  
+  theme = theme.replace(/-/g, "_")
 
   try {
     const topLangs = await fetchTopLanguages(
