@@ -1,10 +1,10 @@
+import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import { cssToObject } from "@uppercod/css-to-object";
 import { Card } from "../src/common/Card.js";
 import { icons } from "../src/common/icons.js";
-import { getCardColors } from "../src/common/utils.js";
-import { expect, it, describe } from "@jest/globals";
+import { getCardColors } from "../src/common/color.js";
 
 describe("Card", () => {
   it("should hide border", () => {
