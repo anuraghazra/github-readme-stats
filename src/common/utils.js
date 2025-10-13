@@ -87,7 +87,7 @@ const kFormatter = (num, precision) => {
   const abs = Math.abs(num);
   const sign = Math.sign(num);
 
-  if (typeof precision === "number") {
+  if (typeof precision === "number" && !isNaN(precision)) {
     return (sign * (abs / 1000)).toFixed(precision) + "k";
   }
 
