@@ -3,6 +3,7 @@
 import { Card } from "../common/Card.js";
 import { getCardColors } from "../common/color.js";
 import { createProgressNode } from "../common/createProgressNode.js";
+import { formatBytes } from "../common/fmt.js";
 import { I18n } from "../common/I18n.js";
 import {
   chunkArray,
@@ -10,7 +11,6 @@ import {
   flexLayout,
   lowercaseTrim,
   measureText,
-  formatBytes,
 } from "../common/utils.js";
 import { langCardLocales } from "../translations.js";
 

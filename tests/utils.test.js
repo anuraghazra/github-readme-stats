@@ -1,14 +1,15 @@
+// @ts-check
+
 import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import {
   encodeHTML,
-  formatBytes,
-  kFormatter,
   parseBoolean,
   renderError,
   wrapTextMultiline,
 } from "../src/common/utils.js";
+import { formatBytes, kFormatter } from "../src/common/fmt.js";
 
 describe("Test utils.js", () => {
   it("should test kFormatter default behavior", () => {
