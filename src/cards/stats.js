@@ -33,7 +33,8 @@ const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
  * @param {boolean} params.showIcons Whether to show icons.
  * @param {number} params.shiftValuePos Number of pixels the value has to be shifted to the right.
  * @param {boolean} params.bold Whether to bold the label.
- * @param {string} params.number_format The format of numbers on card.
+ * @param {string} params.numberFormat The format of numbers on card.
+ * @param {number=} params.numberPrecision The precision of numbers on card.
  * @returns {string} The stats card text item SVG object.
  */
 const createTextNode = ({
@@ -46,10 +47,17 @@ const createTextNode = ({
   showIcons,
   shiftValuePos,
   bold,
-  number_format,
+  numberFormat,
+  numberPrecision,
 }) => {
+  const precision =
+    typeof numberPrecision === "number" && !isNaN(numberPrecision)
+      ? clampValue(numberPrecision, 0, 2)
+      : undefined;
   const kValue =
-    number_format.toLowerCase() === "long" ? value : kFormatter(value);
+    numberFormat.toLowerCase() === "long" || id === "prs_merged_percentage"
+      ? value
+      : kFormatter(value, precision);
   const staggerDelay = (index + 3) * 150;
 
   const labelOffset = showIcons ? `x="25"` : "";
@@ -251,6 +259,7 @@ const renderStatsCard = (stats, options = {}) => {
     border_radius,
     border_color,
     number_format = "short",
+    number_precision,
     locale,
     disable_animations = false,
     rank_icon = "default",
@@ -319,7 +328,11 @@ const renderStatsCard = (stats, options = {}) => {
     STATS.prs_merged_percentage = {
       icon: icons.prs_merged_percentage,
       label: i18n.t("statcard.prs-merged-percentage"),
-      value: mergedPRsPercentage.toFixed(2),
+      value: mergedPRsPercentage.toFixed(
+        typeof number_precision === "number" && !isNaN(number_precision)
+          ? clampValue(number_precision, 0, 2)
+          : 2,
+      ),
       id: "prs_merged_percentage",
       unitSymbol: "%",
     };
@@ -408,7 +421,8 @@ const renderStatsCard = (stats, options = {}) => {
         showIcons: show_icons,
         shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
         bold: text_bold,
-        number_format,
+        numberFormat: number_format,
+        numberPrecision: number_precision,
       });
     });
 
