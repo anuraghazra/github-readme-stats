@@ -7,7 +7,6 @@
 function exponential_cdf(x) {
   return 1 - 2 ** -x;
 }
-
 /**
  * Calculates the log normal cdf.
  *
@@ -18,7 +17,6 @@ function log_normal_cdf(x) {
   // approximation
   return x / (1 + x);
 }
-
 /**
  * Calculates the users rank.
  *
@@ -56,7 +54,6 @@ function calculateRank({
     STARS_WEIGHT = 4;
   const FOLLOWERS_MEDIAN = 10,
     FOLLOWERS_WEIGHT = 1;
-
   const TOTAL_WEIGHT =
     COMMITS_WEIGHT +
     PRS_WEIGHT +
@@ -64,10 +61,8 @@ function calculateRank({
     REVIEWS_WEIGHT +
     STARS_WEIGHT +
     FOLLOWERS_WEIGHT;
-
-  const THRESHOLDS = [1, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
-  const LEVELS = ["S", "A+", "A", "A-", "B+", "B", "B-", "C+", "C"];
-
+  const THRESHOLDS = [0.5, 1, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
+  const LEVELS = ["A++", "S", "A+", "A", "A-", "B+", "B", "B-", "C+", "C"];
   const rank =
     1 -
     (COMMITS_WEIGHT * exponential_cdf(commits / COMMITS_MEDIAN) +
@@ -77,11 +72,8 @@ function calculateRank({
       STARS_WEIGHT * log_normal_cdf(stars / STARS_MEDIAN) +
       FOLLOWERS_WEIGHT * log_normal_cdf(followers / FOLLOWERS_MEDIAN)) /
       TOTAL_WEIGHT;
-
   const level = LEVELS[THRESHOLDS.findIndex((t) => rank * 100 <= t)];
-
   return { level, percentile: rank * 100 };
 }
-
 export { calculateRank };
 export default calculateRank;
