@@ -5,9 +5,10 @@ import * as dotenv from "dotenv";
 import githubUsernameRegex from "github-username-regex";
 import { calculateRank } from "../calculateRank.js";
 import { retryer } from "../common/retryer.js";
-import { logger, request, wrapTextMultiline } from "../common/utils.js";
+import { logger, request } from "../common/utils.js";
 import { excludeRepositories } from "../common/envs.js";
 import { CustomError, MissingParamError } from "../common/error.js";
+import { wrapTextMultiline } from "../common/fmt.js";
 
 dotenv.config();
 

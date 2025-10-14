@@ -1,9 +1,10 @@
 // @ts-check
 
 import { retryer } from "../common/retryer.js";
-import { logger, request, wrapTextMultiline } from "../common/utils.js";
+import { logger, request } from "../common/utils.js";
 import { excludeRepositories } from "../common/envs.js";
 import { CustomError, MissingParamError } from "../common/error.js";
+import { wrapTextMultiline } from "../common/fmt.js";
 
 /**
  * @typedef {import("axios").AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
