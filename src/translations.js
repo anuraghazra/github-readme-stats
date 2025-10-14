@@ -725,7 +725,7 @@ const langCardLocales = {
     "uk-ua": "Найбільш використовувані мови",
     id: "Bahasa Yang Paling Banyak Digunakan",
     ml: "കൂടുതൽ ഉപയോഗിച്ച ഭാഷകൾ",
-    my: "အများဆုံးအသုံးပြုသောLanguageများ",
+    my: "အများဆုံးအသုံးပြုသောဘာသာစကားများ",
     ta: `அதிகம் பயன்படுத்தப்படும் மொழிகள்`,
     sk: "Najviac používané jazyky",
     tr: "En Çok Kullanılan Diller",
