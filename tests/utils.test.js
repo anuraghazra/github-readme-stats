@@ -4,7 +4,6 @@ import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import { encodeHTML, parseBoolean, renderError } from "../src/common/utils.js";
-import { wrapTextMultiline } from "../src/common/fmt.js";
 
 describe("Test utils.js", () => {
   it("should test parseBoolean", () => {
