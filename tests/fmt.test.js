@@ -6,7 +6,7 @@ import {
 } from "../src/common/fmt.js";
 
 describe("Test fmt.js", () => {
-  it("should test kFormatter default behavior", () => {
+  it("kFormatter: should format numbers correctly by default", () => {
     expect(kFormatter(1)).toBe(1);
     expect(kFormatter(-1)).toBe(-1);
     expect(kFormatter(500)).toBe(500);
@@ -18,7 +18,7 @@ describe("Test fmt.js", () => {
     expect(kFormatter(9900000)).toBe("9900k");
   });
 
-  it("should test kFormatter with 0 decimal precision", () => {
+  it("kFormatter: should format numbers correctly with 0 decimal precision", () => {
     expect(kFormatter(1, 0)).toBe("0k");
     expect(kFormatter(-1, 0)).toBe("-0k");
     expect(kFormatter(500, 0)).toBe("1k");
@@ -31,7 +31,7 @@ describe("Test fmt.js", () => {
     expect(kFormatter(9900000, 0)).toBe("9900k");
   });
 
-  it("should test kFormatter with 1 decimal precision", () => {
+  it("kFormatter: should format numbers correctly with 1 decimal precision", () => {
     expect(kFormatter(1, 1)).toBe("0.0k");
     expect(kFormatter(-1, 1)).toBe("-0.0k");
     expect(kFormatter(500, 1)).toBe("0.5k");
@@ -43,7 +43,7 @@ describe("Test fmt.js", () => {
     expect(kFormatter(9900000, 1)).toBe("9900.0k");
   });
 
-  it("should test kFormatter with 2 decimal precision", () => {
+  it("kFormatter: should format numbers correctly with 2 decimal precision", () => {
     expect(kFormatter(1, 2)).toBe("0.00k");
     expect(kFormatter(-1, 2)).toBe("-0.00k");
     expect(kFormatter(500, 2)).toBe("0.50k");
