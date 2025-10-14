@@ -77,18 +77,6 @@ const iconWithLabel = (icon, label, testid, iconSize) => {
 };
 
 /**
- * Retrieves num with suffix k(thousands) precise to 1 decimal if greater than 999.
- *
- * @param {number} num The number to format.
- * @returns {string|number} The formatted number.
- */
-const kFormatter = (num) => {
-  return Math.abs(num) > 999
-    ? Math.sign(num) * parseFloat((Math.abs(num) / 1000).toFixed(1)) + "k"
-    : Math.sign(num) * Math.abs(num);
-};
-
-/**
  * Returns boolean if value is either "true" or "false" else the value as it is.
  *
  * @param {string | boolean} value The value to parse.
@@ -389,40 +377,12 @@ const dateDiff = (d1, d2) => {
   return Math.round(diff / (1000 * 60));
 };
 
-/**
- * Convert bytes to a human-readable string representation.
- *
- * @param {number} bytes The number of bytes to convert.
- * @returns {string} The human-readable representation of bytes.
- * @throws {Error} If bytes is negative or too large.
- */
-const formatBytes = (bytes) => {
-  if (bytes < 0) {
-    throw new Error("Bytes must be a non-negative number");
-  }
-
-  if (bytes === 0) {
-    return "0 B";
-  }
-
-  const sizes = ["B", "KB", "MB", "GB", "TB", "PB", "EB"];
-  const base = 1024;
-  const i = Math.floor(Math.log(bytes) / Math.log(base));
-
-  if (i >= sizes.length) {
-    throw new Error("Bytes is too large to convert to a human-readable string");
-  }
-
-  return `${(bytes / Math.pow(base, i)).toFixed(1)} ${sizes[i]}`;
-};
-
 export {
   ERROR_CARD_LENGTH,
   renderError,
   createLanguageNode,
   iconWithLabel,
   encodeHTML,
-  kFormatter,
   parseBoolean,
   parseArray,
   clampValue,
@@ -435,5 +395,4 @@ export {
   chunkArray,
   parseEmojis,
   dateDiff,
-  formatBytes,
 };

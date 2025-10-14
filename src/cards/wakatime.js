@@ -21,6 +21,11 @@ const languageColors = require("../common/languageColors.json"); // now works
 const DEFAULT_CARD_WIDTH = 495;
 const MIN_CARD_WIDTH = 250;
 const COMPACT_LAYOUT_MIN_WIDTH = 400;
+const DEFAULT_LINE_HEIGHT = 25;
+const PROGRESSBAR_PADDING = 130;
+const HIDDEN_PROGRESSBAR_PADDING = 170;
+const COMPACT_LAYOUT_PROGRESSBAR_PADDING = 25;
+const TOTAL_TEXT_WIDTH = 275;
 
 /**
  * Creates the no coding activity SVG node.
@@ -100,7 +105,7 @@ const createLanguageTextNode = ({ langs, y, display_format, card_width }) => {
     return createCompactLangNode({
       lang,
       x: isLeft ? LEFT_X : RIGHT_X,
-      y: isLeft ? 12.5 * index + y : 12.5 + 12.5 * index,
+      y: y + DEFAULT_LINE_HEIGHT * Math.floor(index / 2),
       display_format,
     });
   });
@@ -133,7 +138,6 @@ const createTextNode = ({
   progressBarWidth,
 }) => {
   const staggerDelay = (index + 3) * 150;
-
   const cardProgress = hideProgress
     ? null
     : createProgressNode({
@@ -153,7 +157,7 @@ const createTextNode = ({
       <text class="stat bold" y="12.5" data-testid="${id}">${label}:</text>
       <text
         class="stat"
-        x="${hideProgress ? 170 : 130 + progressBarWidth}"
+        x="${hideProgress ? HIDDEN_PROGRESSBAR_PADDING : PROGRESSBAR_PADDING + progressBarWidth}"
         y="12.5"
       >${value}</text>
       ${cardProgress}
@@ -246,7 +250,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     hide_border = false,
     card_width,
     hide,
-    line_height = 25,
+    line_height = DEFAULT_LINE_HEIGHT,
     title_color,
     icon_color,
     text_color,
@@ -315,16 +319,18 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
-    let width = normalizedWidth - 5;
-    height = 90 + Math.round(filteredLanguages.length / 2) * 25;
+    const width = normalizedWidth - 5;
+    height =
+      90 + Math.round(filteredLanguages.length / 2) * DEFAULT_LINE_HEIGHT;
 
     // progressOffset holds the previous language's width and used to offset the next language
     // so that we can stack them one after another, like this: [--][----][---]
     let progressOffset = 0;
     const compactProgressBar = filteredLanguages
       .map((language) => {
-        // const progress = (width * lang.percent) / 100;
-        const progress = ((width - 25) * language.percent) / 100;
+        const progress =
+          ((width - COMPACT_LAYOUT_PROGRESSBAR_PADDING) * language.percent) /
+          100;
 
         // @ts-ignore
         const languageColor = languageColors[language.name] || "#858585";
@@ -347,7 +353,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
     finalLayout = `
       <mask id="rect-mask">
-      <rect x="25" y="0" width="${width - 50}" height="8" fill="white" rx="5" />
+      <rect x="${COMPACT_LAYOUT_PROGRESSBAR_PADDING}" y="0" width="${width - 2 * COMPACT_LAYOUT_PROGRESSBAR_PADDING}" height="8" fill="white" rx="5" />
       </mask>
       ${compactProgressBar}
       ${
@@ -384,7 +390,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               // @ts-ignore
               progressBarBackgroundColor: textColor,
               hideProgress: hide_progress,
-              progressBarWidth: normalizedWidth - 275,
+              progressBarWidth: normalizedWidth - TOTAL_TEXT_WIDTH,
             });
           })
         : [

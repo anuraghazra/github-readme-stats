@@ -10,7 +10,6 @@ export {
   ERROR_CARD_LENGTH,
   renderError,
   encodeHTML,
-  kFormatter,
   parseBoolean,
   parseArray,
   clampValue,

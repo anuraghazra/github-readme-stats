@@ -416,6 +416,13 @@ describe("Test renderStatsCard", () => {
     expect(getByTestId(document.body, "commits").textContent).toBe("2k");
     document.body.innerHTML = renderStatsCard(stats, { number_format: "long" });
     expect(getByTestId(document.body, "commits").textContent).toBe("1999");
+    document.body.innerHTML = renderStatsCard(stats, { number_precision: 2 });
+    expect(getByTestId(document.body, "commits").textContent).toBe("2.00k");
+    document.body.innerHTML = renderStatsCard(stats, {
+      number_format: "long",
+      number_precision: 2,
+    });
+    expect(getByTestId(document.body, "commits").textContent).toBe("1999");
   });
 
   it("should render default rank icon with level A+", () => {
