@@ -15,7 +15,6 @@ export {
   clampValue,
   request,
   flexLayout,
-  wrapTextMultiline,
   logger,
   measureText,
   lowercaseTrim,

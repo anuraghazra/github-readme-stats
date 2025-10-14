@@ -1,3 +1,8 @@
+// @ts-check
+
+import wrap from "word-wrap";
+import { encodeHTML } from "./utils.js";
+
 /**
  * Retrieves num with suffix k(thousands) precise to given decimal places.
  *
@@ -47,4 +52,39 @@ const formatBytes = (bytes) => {
   return `${(bytes / Math.pow(base, i)).toFixed(1)} ${sizes[i]}`;
 };
 
-export { kFormatter, formatBytes };
+/**
+ * Split text over multiple lines based on the card width.
+ *
+ * @param {string} text Text to split.
+ * @param {number} width Line width in number of characters.
+ * @param {number} maxLines Maximum number of lines.
+ * @returns {string[]} Array of lines.
+ */
+const wrapTextMultiline = (text, width = 59, maxLines = 3) => {
+  const fullWidthComma = "，";
+  const encoded = encodeHTML(text);
+  const isChinese = encoded.includes(fullWidthComma);
+
+  let wrapped = [];
+
+  if (isChinese) {
+    wrapped = encoded.split(fullWidthComma); // Chinese full punctuation
+  } else {
+    wrapped = wrap(encoded, {
+      width,
+    }).split("\n"); // Split wrapped lines to get an array of lines
+  }
+
+  const lines = wrapped.map((line) => line.trim()).slice(0, maxLines); // Only consider maxLines lines
+
+  // Add "..." to the last line if the text exceeds maxLines
+  if (wrapped.length > maxLines) {
+    lines[maxLines - 1] += "...";
+  }
+
+  // Remove empty lines if text fits in less than maxLines lines
+  const multiLineText = lines.filter(Boolean);
+  return multiLineText;
+};
+
+export { kFormatter, formatBytes, wrapTextMultiline };
