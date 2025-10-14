@@ -1,27 +1,16 @@
+// @ts-check
+
+import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import {
   encodeHTML,
-  getCardColors,
-  kFormatter,
   parseBoolean,
   renderError,
   wrapTextMultiline,
-  formatBytes,
 } from "../src/common/utils.js";
-import { expect, it, describe } from "@jest/globals";
 
 describe("Test utils.js", () => {
-  it("should test kFormatter", () => {
-    expect(kFormatter(1)).toBe(1);
-    expect(kFormatter(-1)).toBe(-1);
-    expect(kFormatter(500)).toBe(500);
-    expect(kFormatter(1000)).toBe("1k");
-    expect(kFormatter(10000)).toBe("10k");
-    expect(kFormatter(12345)).toBe("12.3k");
-    expect(kFormatter(9900000)).toBe("9900k");
-  });
-
   it("should test parseBoolean", () => {
     expect(parseBoolean(true)).toBe(true);
     expect(parseBoolean(false)).toBe(false);
@@ -46,7 +35,7 @@ describe("Test utils.js", () => {
   });
 
   it("should test renderError", () => {
-    document.body.innerHTML = renderError("Something went wrong");
+    document.body.innerHTML = renderError({ message: "Something went wrong" });
     expect(
       queryByTestId(document.body, "message").children[0],
     ).toHaveTextContent(/Something went wrong/gim);
@@ -55,99 +44,13 @@ describe("Test utils.js", () => {
     ).toBeEmptyDOMElement(2);
 
     // Secondary message
-    document.body.innerHTML = renderError(
-      "Something went wrong",
-      "Secondary Message",
-    );
+    document.body.innerHTML = renderError({
+      message: "Something went wrong",
+      secondaryMessage: "Secondary Message",
+    });
     expect(
       queryByTestId(document.body, "message").children[1],
     ).toHaveTextContent(/Secondary Message/gim);
-  });
-
-  it("getCardColors: should return expected values", () => {
-    let colors = getCardColors({
-      title_color: "f00",
-      text_color: "0f0",
-      ring_color: "0000ff",
-      icon_color: "00f",
-      bg_color: "fff",
-      border_color: "fff",
-      theme: "dark",
-    });
-    expect(colors).toStrictEqual({
-      titleColor: "#f00",
-      textColor: "#0f0",
-      iconColor: "#00f",
-      ringColor: "#0000ff",
-      bgColor: "#fff",
-      borderColor: "#fff",
-    });
-  });
-
-  it("getCardColors: should fallback to default colors if color is invalid", () => {
-    let colors = getCardColors({
-      title_color: "invalidcolor",
-      text_color: "0f0",
-      icon_color: "00f",
-      bg_color: "fff",
-      border_color: "invalidColor",
-      theme: "dark",
-    });
-    expect(colors).toStrictEqual({
-      titleColor: "#2f80ed",
-      textColor: "#0f0",
-      iconColor: "#00f",
-      ringColor: "#2f80ed",
-      bgColor: "#fff",
-      borderColor: "#e4e2e2",
-    });
-  });
-
-  it("getCardColors: should fallback to specified theme colors if is not defined", () => {
-    let colors = getCardColors({
-      theme: "dark",
-    });
-    expect(colors).toStrictEqual({
-      titleColor: "#fff",
-      textColor: "#9f9f9f",
-      ringColor: "#fff",
-      iconColor: "#79ff97",
-      bgColor: "#151515",
-      borderColor: "#e4e2e2",
-    });
-  });
-
-  it("getCardColors: should return ring color equal to title color if not ring color is defined", () => {
-    let colors = getCardColors({
-      title_color: "f00",
-      text_color: "0f0",
-      icon_color: "00f",
-      bg_color: "fff",
-      border_color: "fff",
-      theme: "dark",
-    });
-    expect(colors).toStrictEqual({
-      titleColor: "#f00",
-      textColor: "#0f0",
-      iconColor: "#00f",
-      ringColor: "#f00",
-      bgColor: "#fff",
-      borderColor: "#fff",
-    });
-  });
-
-  it("formatBytes: should return expected values", () => {
-    expect(formatBytes(0)).toBe("0 B");
-    expect(formatBytes(100)).toBe("100.0 B");
-    expect(formatBytes(1024)).toBe("1.0 KB");
-    expect(formatBytes(1024 * 1024)).toBe("1.0 MB");
-    expect(formatBytes(1024 * 1024 * 1024)).toBe("1.0 GB");
-    expect(formatBytes(1024 * 1024 * 1024 * 1024)).toBe("1.0 TB");
-    expect(formatBytes(1024 * 1024 * 1024 * 1024 * 1024)).toBe("1.0 PB");
-    expect(formatBytes(1024 * 1024 * 1024 * 1024 * 1024 * 1024)).toBe("1.0 EB");
-
-    expect(formatBytes(1234 * 1024)).toBe("1.2 MB");
-    expect(formatBytes(123.4 * 1024)).toBe("123.4 KB");
   });
 });
 
