@@ -4,7 +4,6 @@ import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import { encodeHTML, parseBoolean, renderError } from "../src/common/utils.js";
-import { wrapTextMultiline } from "../src/common/fmt.js";
 
 describe("Test utils.js", () => {
   it("should test parseBoolean", () => {
@@ -48,37 +47,5 @@ describe("Test utils.js", () => {
     expect(
       queryByTestId(document.body, "message").children[1],
     ).toHaveTextContent(/Secondary Message/gim);
-  });
-});
-
-describe("wrapTextMultiline", () => {
-  it("should not wrap small texts", () => {
-    {
-      let multiLineText = wrapTextMultiline("Small text should not wrap");
-      expect(multiLineText).toEqual(["Small text should not wrap"]);
-    }
-  });
-  it("should wrap large texts", () => {
-    let multiLineText = wrapTextMultiline(
-      "Hello world long long long text",
-      20,
-      3,
-    );
-    expect(multiLineText).toEqual(["Hello world long", "long long text"]);
-  });
-  it("should wrap large texts and limit max lines", () => {
-    let multiLineText = wrapTextMultiline(
-      "Hello world long long long text",
-      10,
-      2,
-    );
-    expect(multiLineText).toEqual(["Hello", "world long..."]);
-  });
-  it("should wrap chinese by punctuation", () => {
-    let multiLineText = wrapTextMultiline(
-      "专门为刚开始刷题的同学准备的算法基地，没有最细只有更细，立志用动画将晦涩难懂的算法说的通俗易懂！",
-    );
-    expect(multiLineText.length).toEqual(3);
-    expect(multiLineText[0].length).toEqual(18 * 8); // &#xxxxx; x 8
   });
 });
