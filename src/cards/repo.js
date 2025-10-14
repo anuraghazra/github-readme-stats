@@ -2,7 +2,7 @@
 
 import { Card } from "../common/Card.js";
 import { getCardColors } from "../common/color.js";
-import { kFormatter } from "../common/fmt.js";
+import { kFormatter, wrapTextMultiline } from "../common/fmt.js";
 import { I18n } from "../common/I18n.js";
 import { icons } from "../common/icons.js";
 import {
@@ -10,7 +10,6 @@ import {
   flexLayout,
   measureText,
   parseEmojis,
-  wrapTextMultiline,
   iconWithLabel,
   createLanguageNode,
   clampValue,

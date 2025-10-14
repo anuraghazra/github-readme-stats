@@ -3,12 +3,8 @@
 import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
-import {
-  encodeHTML,
-  parseBoolean,
-  renderError,
-  wrapTextMultiline,
-} from "../src/common/utils.js";
+import { encodeHTML, parseBoolean, renderError } from "../src/common/utils.js";
+import { wrapTextMultiline } from "../src/common/fmt.js";
 
 describe("Test utils.js", () => {
   it("should test parseBoolean", () => {
@@ -25,6 +21,7 @@ describe("Test utils.js", () => {
     expect(parseBoolean("1")).toBe(undefined);
     expect(parseBoolean("0")).toBe(undefined);
     expect(parseBoolean("")).toBe(undefined);
+    // @ts-ignore
     expect(parseBoolean(undefined)).toBe(undefined);
   });
 
