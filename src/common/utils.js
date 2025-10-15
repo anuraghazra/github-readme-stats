@@ -1,6 +1,5 @@
 // @ts-check
 
-import axios from "axios";
 import toEmoji from "emoji-name-map";
 import { SECONDARY_ERROR_MESSAGES, TRY_AGAIN_LATER } from "./error.js";
 import { getCardColors } from "./color.js";
@@ -123,27 +122,6 @@ const clampValue = (number, min, max) => {
     return min;
   }
   return Math.max(min, Math.min(number, max));
-};
-
-/**
- * @typedef {import('axios').AxiosRequestConfig['data']} AxiosRequestConfigData Axios request data.
- * @typedef {import('axios').AxiosRequestConfig['headers']} AxiosRequestConfigHeaders Axios request headers.
- */
-
-/**
- * Send GraphQL request to GitHub API.
- *
- * @param {AxiosRequestConfigData} data Request data.
- * @param {AxiosRequestConfigHeaders} headers Request headers.
- * @returns {Promise<any>} Request response.
- */
-const request = (data, headers) => {
-  return axios({
-    url: "https://api.github.com/graphql",
-    method: "post",
-    headers,
-    data,
-  });
 };
 
 // Script parameters.
@@ -350,7 +328,6 @@ export {
   parseBoolean,
   parseArray,
   clampValue,
-  request,
   flexLayout,
   logger,
   measureText,

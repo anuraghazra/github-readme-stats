@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * @file Contains a simple cloud function that can be used to check if the PATs are still
  * functional.
@@ -5,8 +7,9 @@
  * @description This function is currently rate limited to 1 request per 5 minutes.
  */
 
+import { request } from "../../src/common/http.js";
 import retryer from "../../src/common/retryer.js";
-import { logger, request } from "../../src/common/utils.js";
+import { logger } from "../../src/common/utils.js";
 
 export const RATE_LIMIT_SECONDS = 60 * 5; // 1 request per 5 minutes
 

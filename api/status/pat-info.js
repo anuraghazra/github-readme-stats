@@ -1,3 +1,5 @@
+// @ts-check
+
 /**
  * @file Contains a simple cloud function that can be used to check which PATs are no
  * longer working. It returns a list of valid PATs, expired PATs and PATs with errors.
@@ -5,7 +7,9 @@
  * @description This function is currently rate limited to 1 request per 5 minutes.
  */
 
-import { logger, request, dateDiff } from "../../src/common/utils.js";
+import { request } from "../../src/common/http.js";
+import { logger, dateDiff } from "../../src/common/utils.js";
+
 export const RATE_LIMIT_SECONDS = 60 * 5; // 1 request per 5 minutes
 
 /**
