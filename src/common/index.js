@@ -13,7 +13,6 @@ export {
   parseBoolean,
   parseArray,
   clampValue,
-  request,
   flexLayout,
   logger,
   measureText,
