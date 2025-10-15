@@ -10,12 +10,6 @@ export {
   ERROR_CARD_LENGTH,
   renderError,
   encodeHTML,
-  parseBoolean,
-  parseArray,
-  clampValue,
   flexLayout,
   measureText,
-  lowercaseTrim,
-  chunkArray,
-  parseEmojis,
 } from "./utils.js";

@@ -3,7 +3,8 @@
 import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
-import { encodeHTML, parseBoolean, renderError } from "../src/common/utils.js";
+import { encodeHTML, renderError } from "../src/common/utils.js";
+import { parseBoolean } from "../src/common/ops.js";
 
 describe("Test utils.js", () => {
   it("should test parseBoolean", () => {

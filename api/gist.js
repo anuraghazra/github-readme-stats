@@ -1,6 +1,6 @@
 // @ts-check
 
-import { renderError, parseBoolean } from "../src/common/utils.js";
+import { renderError } from "../src/common/utils.js";
 import { isLocaleAvailable } from "../src/translations.js";
 import { renderGistCard } from "../src/cards/gist.js";
 import { fetchGist } from "../src/fetchers/gist.js";
@@ -15,6 +15,7 @@ import {
   MissingParamError,
   retrieveSecondaryMessage,
 } from "../src/common/error.js";
+import { parseBoolean } from "../src/common/ops.js";
 
 // @ts-ignore
 export default async (req, res) => {
