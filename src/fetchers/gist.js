@@ -4,11 +4,6 @@ import { retryer } from "../common/retryer.js";
 import { MissingParamError } from "../common/error.js";
 import { request } from "../common/http.js";
 
-/**
- * @typedef {import('axios').AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
- * @typedef {import('axios').AxiosResponse} AxiosResponse Axios response.
- */
-
 const QUERY = `
 query gistInfo($gistName: String!) {
     viewer {
@@ -36,9 +31,9 @@ query gistInfo($gistName: String!) {
 /**
  * Gist data fetcher.
  *
- * @param {AxiosRequestHeaders} variables Fetcher variables.
+ * @param {object} variables Fetcher variables.
  * @param {string} token GitHub token.
- * @returns {Promise<AxiosResponse>} The response.
+ * @returns {Promise<import('axios').AxiosResponse>} The response.
  */
 const fetcher = async (variables, token) => {
   return await request(
@@ -58,7 +53,9 @@ const fetcher = async (variables, token) => {
  * @returns {string} Primary language.
  */
 const calculatePrimaryLanguage = (files) => {
+  /** @type {Record<string, number>} */
   const languages = {};
+
   for (const file of files) {
     if (file.language) {
       if (languages[file.language.name]) {
@@ -68,12 +65,14 @@ const calculatePrimaryLanguage = (files) => {
       }
     }
   }
+
   let primaryLanguage = Object.keys(languages)[0];
   for (const language in languages) {
     if (languages[language] > languages[primaryLanguage]) {
       primaryLanguage = language;
     }
   }
+
   return primaryLanguage;
 };
 

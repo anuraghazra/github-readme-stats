@@ -13,14 +13,14 @@ const RETRIES = process.env.NODE_ENV === "test" ? 7 : PATs;
 
 /**
  * @typedef {import("axios").AxiosResponse} AxiosResponse Axios response.
- * @typedef {(variables: object, token: string, retriesForTests?: number) => Promise<AxiosResponse>} FetcherFunction Fetcher function.
+ * @typedef {(variables: any, token: string, retriesForTests?: number) => Promise<AxiosResponse>} FetcherFunction Fetcher function.
  */
 
 /**
  * Try to execute the fetcher function until it succeeds or the max number of retries is reached.
  *
  * @param {FetcherFunction} fetcher The fetcher function.
- * @param {object} variables Object with arguments to pass to the fetcher function.
+ * @param {any} variables Object with arguments to pass to the fetcher function.
  * @param {number} retries How many times to retry.
  * @returns {Promise<any>} The response from the fetcher function.
  */
