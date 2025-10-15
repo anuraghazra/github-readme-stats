@@ -1,18 +1,17 @@
 // @ts-check
+
 import { Card } from "../common/Card.js";
+import { getCardColors } from "../common/color.js";
+import { kFormatter, wrapTextMultiline } from "../common/fmt.js";
 import { I18n } from "../common/I18n.js";
 import { icons } from "../common/icons.js";
+import { clampValue, parseEmojis } from "../common/ops.js";
 import {
   encodeHTML,
   flexLayout,
-  getCardColors,
-  kFormatter,
   measureText,
-  parseEmojis,
-  wrapTextMultiline,
   iconWithLabel,
   createLanguageNode,
-  clampValue,
 } from "../common/utils.js";
 import { repoCardLocales } from "../translations.js";
 

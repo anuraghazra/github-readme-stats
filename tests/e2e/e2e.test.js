@@ -4,13 +4,13 @@
 import dotenv from "dotenv";
 dotenv.config();
 
+import { beforeAll, describe, expect, test } from "@jest/globals";
 import axios from "axios";
-import { renderRepoCard } from "../../src/cards/repo-card.js";
-import { renderStatsCard } from "../../src/cards/stats-card.js";
-import { renderTopLanguages } from "../../src/cards/top-languages-card.js";
-import { renderWakatimeCard } from "../../src/cards/wakatime-card.js";
-import { renderGistCard } from "../../src/cards/gist-card.js";
-import { expect, describe, beforeAll, test } from "@jest/globals";
+import { renderGistCard } from "../../src/cards/gist.js";
+import { renderRepoCard } from "../../src/cards/repo.js";
+import { renderStatsCard } from "../../src/cards/stats.js";
+import { renderTopLanguages } from "../../src/cards/top-languages.js";
+import { renderWakatimeCard } from "../../src/cards/wakatime.js";
 
 const REPO = "curly-fiesta";
 const USER = "catelinemnemosyne";
@@ -38,7 +38,7 @@ const LANGS_DATA = {
     size: 1721,
   },
   CSS: {
-    color: "#563d7c",
+    color: "#663399",
     name: "CSS",
     size: 930,
   },
@@ -54,7 +54,7 @@ const WAKATIME_DATA = {
   is_already_updating: false,
   is_coding_activity_visible: true,
   is_including_today: false,
-  is_other_usage_visible: true,
+  is_other_usage_visible: false,
   is_stuck: false,
   is_up_to_date: false,
   is_up_to_date_pending_future: false,
@@ -96,7 +96,7 @@ const GIST_DATA = {
   name: "link.txt",
   nameWithOwner: "qwerty541/link.txt",
   description:
-    "Trying to access this path on Windown 10 ver. 1803+ will breaks NTFS",
+    "Trying to access this path on Windows 10 ver. 1803+ will breaks NTFS",
   language: "Text",
   starsCount: 1,
   forksCount: 0,

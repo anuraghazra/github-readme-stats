@@ -24,6 +24,8 @@ permissions:
 
 jobs:
   CodeQL-Build:
+    if: github.repository == 'anuraghazra/github-readme-stats'
+
     # CodeQL runs on ubuntu-latest, windows-latest, and macos-latest
     runs-on: ubuntu-latest
 
