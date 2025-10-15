@@ -1,7 +1,7 @@
 // @ts-check
 
 import { CustomError } from "./error.js";
-import { logger } from "./utils.js";
+import { logger } from "./log.js";
 
 // Script variables.
 

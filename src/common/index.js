@@ -14,7 +14,6 @@ export {
   parseArray,
   clampValue,
   flexLayout,
-  logger,
   measureText,
   lowercaseTrim,
   chunkArray,
