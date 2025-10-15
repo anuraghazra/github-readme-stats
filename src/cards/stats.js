@@ -29,6 +29,7 @@ const LONG_LOCALES = [
   "de",
   "es",
   "fil",
+  "fi",
   "fr",
   "id",
   "ml",
