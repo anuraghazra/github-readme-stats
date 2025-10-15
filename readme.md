@@ -1,8 +1,10 @@
-<p align="center">
- <img width="100px" src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" align="center" alt="GitHub Readme Stats" />
- <h2 align="center">GitHub Readme Stats</h2>
- <p align="center">Get dynamically generated GitHub stats on your READMEs!</p>
-</p>
+<div align="center">
+  <img src="https://res.cloudinary.com/anuraghazra/image/upload/v1594908242/logo_ccswme.svg" width="90" alt="GitHub Readme Stats" style="margin-bottom: 10px;">
+  <h1 style="font-size: 28px; margin: 10px 0;">GitHub Readme Stats</h1>
+  <p style="font-size: 16px; color: #666;">Dynamically generated GitHub stats for your profile</p>
+</div>
+
+
 
 <p align="center">
   <a href="https://github.com/anuraghazra/github-readme-stats/actions">
