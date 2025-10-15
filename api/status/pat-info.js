@@ -8,7 +8,7 @@
  */
 
 import { request } from "../../src/common/http.js";
-import logger from "../../src/common/log.js";
+import { logger } from "../../src/common/log.js";
 import { dateDiff } from "../../src/common/utils.js";
 
 export const RATE_LIMIT_SECONDS = 60 * 5; // 1 request per 5 minutes
