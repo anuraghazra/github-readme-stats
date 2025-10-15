@@ -79,15 +79,11 @@ const GRAPHQL_STATS_QUERY = `
 `;
 
 /**
- * @typedef {import('axios').AxiosResponse} AxiosResponse Axios response.
- */
-
-/**
  * Stats fetcher object.
  *
- * @param {object} variables Fetcher variables.
+ * @param {object & { after: string | null }} variables Fetcher variables.
  * @param {string} token GitHub token.
- * @returns {Promise<AxiosResponse>} Axios response.
+ * @returns {Promise<import('axios').AxiosResponse>} Axios response.
  */
 const fetcher = (variables, token) => {
   const query = variables.after ? GRAPHQL_REPOS_QUERY : GRAPHQL_STATS_QUERY;
@@ -111,7 +107,7 @@ const fetcher = (variables, token) => {
  * @param {boolean} variables.includeDiscussions Include discussions.
  * @param {boolean} variables.includeDiscussionsAnswers Include discussions answers.
  * @param {string|undefined} variables.startTime Time to start the count of total commits.
- * @returns {Promise<AxiosResponse>} Axios response.
+ * @returns {Promise<import('axios').AxiosResponse>} Axios response.
  *
  * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
  */
@@ -163,6 +159,27 @@ const statsFetcher = async ({
 };
 
 /**
+ * Fetch total commits using the REST API.
+ *
+ * @param {object} variables Fetcher variables.
+ * @param {string} token GitHub token.
+ * @returns {Promise<import('axios').AxiosResponse>} Axios response.
+ *
+ * @see https://developer.github.com/v3/search/#search-commits
+ */
+const fetchTotalCommits = (variables, token) => {
+  return axios({
+    method: "get",
+    url: `https://api.github.com/search/commits?q=author:${variables.login}`,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/vnd.github.cloak-preview",
+      Authorization: `token ${token}`,
+    },
+  });
+};
+
+/**
  * Fetch all the commits for all the repositories of a given username.
  *
  * @param {string} username GitHub username.
@@ -176,19 +193,6 @@ const totalCommitsFetcher = async (username) => {
     logger.log("Invalid username provided.");
     throw new Error("Invalid username provided.");
   }
-
-  // https://developer.github.com/v3/search/#search-commits
-  const fetchTotalCommits = (variables, token) => {
-    return axios({
-      method: "get",
-      url: `https://api.github.com/search/commits?q=author:${variables.login}`,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/vnd.github.cloak-preview",
-        Authorization: `token ${token}`,
-      },
-    });
-  };
 
   let res;
   try {
@@ -209,10 +213,6 @@ const totalCommitsFetcher = async (username) => {
 };
 
 /**
- * @typedef {import("./types").StatsData} StatsData Stats data.
- */
-
-/**
  * Fetch stats for a given username.
  *
  * @param {string} username GitHub username.
@@ -222,7 +222,7 @@ const totalCommitsFetcher = async (username) => {
  * @param {boolean} include_discussions Include discussions.
  * @param {boolean} include_discussions_answers Include discussions answers.
  * @param {number|undefined} commits_year Year to count total commits
- * @returns {Promise<StatsData>} Stats data.
+ * @returns {Promise<import("./types").StatsData>} Stats data.
  */
 const fetchStats = async (
   username,

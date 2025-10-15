@@ -8,16 +8,11 @@ import { wrapTextMultiline } from "../common/fmt.js";
 import { request } from "../common/http.js";
 
 /**
- * @typedef {import("axios").AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
- * @typedef {import("axios").AxiosResponse} AxiosResponse Axios response.
- */
-
-/**
  * Top languages fetcher object.
  *
- * @param {AxiosRequestHeaders} variables Fetcher variables.
+ * @param {any} variables Fetcher variables.
  * @param {string} token GitHub token.
- * @returns {Promise<AxiosResponse>} Languages fetcher response.
+ * @returns {Promise<import("axios").AxiosResponse>} Languages fetcher response.
  */
 const fetcher = (variables, token) => {
   return request(
@@ -97,6 +92,7 @@ const fetchTopLanguages = async (
   }
 
   let repoNodes = res.data.data.user.repositories.nodes;
+  /** @type {Record<string, boolean>} */
   let repoToHide = {};
   const allExcludedRepos = [...exclude_repo, ...excludeRepositories];
 
