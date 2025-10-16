@@ -4,27 +4,8 @@ import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom/jest-globals";
 import { encodeHTML, renderError } from "../src/common/utils.js";
-import { parseBoolean } from "../src/common/ops.js";
 
 describe("Test utils.js", () => {
-  it("should test parseBoolean", () => {
-    expect(parseBoolean(true)).toBe(true);
-    expect(parseBoolean(false)).toBe(false);
-
-    expect(parseBoolean("true")).toBe(true);
-    expect(parseBoolean("false")).toBe(false);
-    expect(parseBoolean("True")).toBe(true);
-    expect(parseBoolean("False")).toBe(false);
-    expect(parseBoolean("TRUE")).toBe(true);
-    expect(parseBoolean("FALSE")).toBe(false);
-
-    expect(parseBoolean("1")).toBe(undefined);
-    expect(parseBoolean("0")).toBe(undefined);
-    expect(parseBoolean("")).toBe(undefined);
-    // @ts-ignore
-    expect(parseBoolean(undefined)).toBe(undefined);
-  });
-
   it("should test encodeHTML", () => {
     expect(encodeHTML(`<html>hello world<,.#4^&^@%!))`)).toBe(
       "&#60;html&#62;hello world&#60;,.#4^&#38;^@%!))",
