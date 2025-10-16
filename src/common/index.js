@@ -12,4 +12,4 @@ export {
   encodeHTML,
   flexLayout,
   measureText,
-} from "./utils.js";
+} from "./render.js";

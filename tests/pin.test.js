@@ -6,7 +6,7 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import pin from "../api/pin.js";
 import { renderRepoCard } from "../src/cards/repo.js";
-import { renderError } from "../src/common/utils.js";
+import { renderError } from "../src/common/render.js";
 import { CACHE_TTL, DURATIONS } from "../src/common/cache.js";
 
 const data_repo = {

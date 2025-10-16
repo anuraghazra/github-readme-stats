@@ -1,7 +1,7 @@
 // @ts-check
 
 import { renderWakatimeCard } from "../src/cards/wakatime.js";
-import { renderError } from "../src/common/utils.js";
+import { renderError } from "../src/common/render.js";
 import { fetchWakatimeStats } from "../src/fetchers/wakatime.js";
 import { isLocaleAvailable } from "../src/translations.js";
 import {

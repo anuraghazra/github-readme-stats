@@ -13,7 +13,7 @@ import {
   retrieveSecondaryMessage,
 } from "../src/common/error.js";
 import { parseBoolean } from "../src/common/ops.js";
-import { renderError } from "../src/common/utils.js";
+import { renderError } from "../src/common/render.js";
 import { fetchRepo } from "../src/fetchers/repo.js";
 import { isLocaleAvailable } from "../src/translations.js";
 

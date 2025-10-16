@@ -7,7 +7,7 @@ import { kFormatter } from "../common/fmt.js";
 import { I18n } from "../common/I18n.js";
 import { icons, rankIcon } from "../common/icons.js";
 import { clampValue } from "../common/ops.js";
-import { flexLayout, measureText } from "../common/utils.js";
+import { flexLayout, measureText } from "../common/render.js";
 import { statCardLocales, wakatimeCardLocales } from "../translations.js";
 
 const CARD_MIN_WIDTH = 287;

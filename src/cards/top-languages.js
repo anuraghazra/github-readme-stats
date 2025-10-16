@@ -6,7 +6,7 @@ import { createProgressNode } from "../common/createProgressNode.js";
 import { formatBytes } from "../common/fmt.js";
 import { I18n } from "../common/I18n.js";
 import { chunkArray, clampValue, lowercaseTrim } from "../common/ops.js";
-import { flexLayout, measureText } from "../common/utils.js";
+import { flexLayout, measureText } from "../common/render.js";
 import { langCardLocales } from "../translations.js";
 
 const DEFAULT_CARD_WIDTH = 300;
