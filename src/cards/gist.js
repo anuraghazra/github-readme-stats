@@ -1,7 +1,6 @@
 // @ts-check
 
 import {
-  parseEmojis,
   encodeHTML,
   measureText,
   flexLayout,
@@ -12,6 +11,7 @@ import Card from "../common/Card.js";
 import { getCardColors } from "../common/color.js";
 import { kFormatter, wrapTextMultiline } from "../common/fmt.js";
 import { icons } from "../common/icons.js";
+import { parseEmojis } from "../common/ops.js";
 
 /** Import language colors.
  *

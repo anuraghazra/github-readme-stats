@@ -12,7 +12,8 @@ import {
   MissingParamError,
   retrieveSecondaryMessage,
 } from "../src/common/error.js";
-import { parseBoolean, renderError } from "../src/common/utils.js";
+import { parseBoolean } from "../src/common/ops.js";
+import { renderError } from "../src/common/utils.js";
 import { fetchRepo } from "../src/fetchers/repo.js";
 import { isLocaleAvailable } from "../src/translations.js";
 

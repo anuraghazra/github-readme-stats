@@ -1,6 +1,6 @@
 // @ts-check
 
-import { clampValue } from "./utils.js";
+import { clampValue } from "./ops.js";
 
 const MIN = 60;
 const HOUR = 60 * MIN;
