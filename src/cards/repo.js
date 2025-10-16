@@ -12,7 +12,7 @@ import {
   measureText,
   iconWithLabel,
   createLanguageNode,
-} from "../common/utils.js";
+} from "../common/render.js";
 import { repoCardLocales } from "../translations.js";
 
 const ICON_SIZE = 16;

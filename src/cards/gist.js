@@ -6,7 +6,7 @@ import {
   flexLayout,
   iconWithLabel,
   createLanguageNode,
-} from "../common/utils.js";
+} from "../common/render.js";
 import Card from "../common/Card.js";
 import { getCardColors } from "../common/color.js";
 import { kFormatter, wrapTextMultiline } from "../common/fmt.js";

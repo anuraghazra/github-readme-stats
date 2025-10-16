@@ -1,6 +1,6 @@
 // @ts-check
 
-import { renderError } from "./utils.js";
+import { renderError } from "./render.js";
 import { blacklist } from "./blacklist.js";
 import { whitelist, gistWhitelist } from "./envs.js";
 

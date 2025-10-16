@@ -1,7 +1,7 @@
 // @ts-check
 
 import wrap from "word-wrap";
-import { encodeHTML } from "./utils.js";
+import { encodeHTML } from "./render.js";
 
 /**
  * Retrieves num with suffix k(thousands) precise to given decimal places.

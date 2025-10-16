@@ -1,6 +1,6 @@
 // @ts-check
 
-import { renderError } from "../src/common/utils.js";
+import { renderError } from "../src/common/render.js";
 import { isLocaleAvailable } from "../src/translations.js";
 import { renderGistCard } from "../src/cards/gist.js";
 import { fetchGist } from "../src/fetchers/gist.js";
