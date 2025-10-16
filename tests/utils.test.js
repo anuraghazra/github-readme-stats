@@ -2,7 +2,7 @@
 
 import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
-import "@testing-library/jest-dom";
+import "@testing-library/jest-dom/jest-globals";
 import { encodeHTML, renderError } from "../src/common/utils.js";
 import { parseBoolean } from "../src/common/ops.js";
 
@@ -34,11 +34,11 @@ describe("Test utils.js", () => {
   it("should test renderError", () => {
     document.body.innerHTML = renderError({ message: "Something went wrong" });
     expect(
-      queryByTestId(document.body, "message").children[0],
+      queryByTestId(document.body, "message")?.children[0],
     ).toHaveTextContent(/Something went wrong/gim);
     expect(
-      queryByTestId(document.body, "message").children[1],
-    ).toBeEmptyDOMElement(2);
+      queryByTestId(document.body, "message")?.children[1],
+    ).toBeEmptyDOMElement();
 
     // Secondary message
     document.body.innerHTML = renderError({
@@ -46,7 +46,7 @@ describe("Test utils.js", () => {
       secondaryMessage: "Secondary Message",
     });
     expect(
-      queryByTestId(document.body, "message").children[1],
+      queryByTestId(document.body, "message")?.children[1],
     ).toHaveTextContent(/Secondary Message/gim);
   });
 });
