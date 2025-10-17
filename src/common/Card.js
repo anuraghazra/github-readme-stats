@@ -1,4 +1,4 @@
-import { encodeHTML, flexLayout } from "./utils.js";
+import { encodeHTML, flexLayout } from "./render.js";
 
 class Card {
   /**

@@ -13,7 +13,7 @@ import MockAdapter from "axios-mock-adapter";
 import api from "../api/index.js";
 import { calculateRank } from "../src/calculateRank.js";
 import { renderStatsCard } from "../src/cards/stats.js";
-import { renderError } from "../src/common/utils.js";
+import { renderError } from "../src/common/render.js";
 import { CACHE_TTL, DURATIONS } from "../src/common/cache.js";
 
 /**

@@ -10,16 +10,6 @@ export {
   ERROR_CARD_LENGTH,
   renderError,
   encodeHTML,
-  kFormatter,
-  parseBoolean,
-  parseArray,
-  clampValue,
-  request,
   flexLayout,
-  wrapTextMultiline,
-  logger,
   measureText,
-  lowercaseTrim,
-  chunkArray,
-  parseEmojis,
-} from "./utils.js";
+} from "./render.js";
