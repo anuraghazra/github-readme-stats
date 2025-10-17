@@ -1,4 +1,7 @@
-import { encodeHTML, flexLayout } from "./render.js";
+// @ts-check
+
+import { encodeHTML } from "./html.js";
+import { flexLayout } from "./render.js";
 
 class Card {
   /**

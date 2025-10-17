@@ -1,6 +1,6 @@
 // @ts-check
 
-import { encodeHTML } from "./common/render.js";
+import { encodeHTML } from "./common/html.js";
 
 /**
  * Retrieves stat card labels in the available locales.

@@ -3,11 +3,11 @@
 import { Card } from "../common/Card.js";
 import { getCardColors } from "../common/color.js";
 import { kFormatter, wrapTextMultiline } from "../common/fmt.js";
+import { encodeHTML } from "../common/html.js";
 import { I18n } from "../common/I18n.js";
 import { icons } from "../common/icons.js";
 import { clampValue, parseEmojis } from "../common/ops.js";
 import {
-  encodeHTML,
   flexLayout,
   measureText,
   iconWithLabel,
