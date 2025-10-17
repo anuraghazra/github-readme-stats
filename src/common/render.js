@@ -3,6 +3,7 @@
 import { SECONDARY_ERROR_MESSAGES, TRY_AGAIN_LATER } from "./error.js";
 import { getCardColors } from "./color.js";
 import { encodeHTML } from "./html.js";
+import { clampValue } from "./ops.js";
 
 /**
  * Auto layout utility, allows us to layout things vertically or horizontally with
@@ -43,6 +44,46 @@ const createLanguageNode = (langName, langColor) => {
       <text data-testid="lang-name" class="gray" x="15">${langName}</text>
     </g>
     `;
+};
+
+/**
+ * Create a node to indicate progress in percentage along a horizontal line.
+ *
+ * @param {Object} params Object that contains the createProgressNode parameters.
+ * @param {number} params.x X-axis position.
+ * @param {number} params.y Y-axis position.
+ * @param {number} params.width Width of progress bar.
+ * @param {string} params.color Progress color.
+ * @param {number} params.progress Progress value.
+ * @param {string} params.progressBarBackgroundColor Progress bar bg color.
+ * @param {number} params.delay Delay before animation starts.
+ * @returns {string} Progress node.
+ */
+const createProgressNode = ({
+  x,
+  y,
+  width,
+  color,
+  progress,
+  progressBarBackgroundColor,
+  delay,
+}) => {
+  const progressPercentage = clampValue(progress, 2, 100);
+
+  return `
+    <svg width="${width}" x="${x}" y="${y}">
+      <rect rx="5" ry="5" x="0" y="0" width="${width}" height="8" fill="${progressBarBackgroundColor}"></rect>
+      <svg data-testid="lang-progress" width="${progressPercentage}%">
+        <rect
+            height="8"
+            fill="${color}"
+            rx="5" ry="5" x="0" y="0"
+            class="lang-progress"
+            style="animation-delay: ${delay}ms;"
+        />
+      </svg>
+    </svg>
+  `;
 };
 
 /**
@@ -191,6 +232,7 @@ export {
   ERROR_CARD_LENGTH,
   renderError,
   createLanguageNode,
+  createProgressNode,
   iconWithLabel,
   flexLayout,
   measureText,
