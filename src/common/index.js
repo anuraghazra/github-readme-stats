@@ -9,7 +9,6 @@ export { retryer } from "./retryer.js";
 export {
   ERROR_CARD_LENGTH,
   renderError,
-  encodeHTML,
   flexLayout,
   measureText,
 } from "./render.js";

@@ -3,7 +3,8 @@
 import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom/jest-globals";
-import { encodeHTML, renderError } from "../src/common/render.js";
+import { renderError } from "../src/common/render.js";
+import { encodeHTML } from "../src/common/html.js";
 
 describe("Test render.js", () => {
   it("should test encodeHTML", () => {
