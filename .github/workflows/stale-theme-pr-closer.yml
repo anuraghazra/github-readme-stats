@@ -1,5 +1,7 @@
 name: Close stale theme pull requests that have the 'invalid' label.
 on:
+  # Temporary disabled due to paused themes addition.
+  # See: https://github.com/anuraghazra/github-readme-stats/issues/3404
   # schedule:
   #   #        ┌───────────── minute (0 - 59)
   #   #        │ ┌───────────── hour (0 - 23)
