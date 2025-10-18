@@ -1,5 +1,7 @@
 name: Theme preview
 on:
+  # Temporary disabled due to paused themes addition.
+  # See: https://github.com/anuraghazra/github-readme-stats/issues/3404
   # pull_request_target:
   #   types: [opened, edited, reopened, synchronize]
   #   branches:
