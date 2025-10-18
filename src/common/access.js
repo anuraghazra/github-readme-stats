@@ -12,7 +12,7 @@ const BLACKLISTED_MESSAGE = "This username is blacklisted";
  * Guards access using whitelist/blacklist.
  *
  * @param {Object} args The parameters object.
- * @param {Object} args.res The response object.
+ * @param {any} args.res The response object.
  * @param {string} args.id Resource identifier (username or gist id).
  * @param {"username"|"gist"|"wakatime"} args.type The type of identifier.
  * @param {{ title_color?: string, text_color?: string, bg_color?: string, border_color?: string, theme?: string }} args.colors Color options for the error card.
