@@ -1,3 +1,5 @@
+// @ts-check
+
 import { themes } from "../../themes/index.js";
 
 /**
@@ -69,7 +71,6 @@ const fallbackColor = (color, fallbackColor) => {
  * @param {string=} args.border_color Card border color.
  * @param {string=} args.ring_color Card ring color.
  * @param {string=} args.theme Card theme.
- * @param {string=} args.fallbackTheme Fallback theme.
  * @returns {CardColors} Card colors.
  */
 const getCardColors = ({
@@ -80,11 +81,13 @@ const getCardColors = ({
   border_color,
   ring_color,
   theme,
-  fallbackTheme = "default",
 }) => {
-  const defaultTheme = themes[fallbackTheme];
+  const defaultTheme = themes["default"];
   const isThemeProvided = theme !== null && theme !== undefined;
+
+  // @ts-ignore
   const selectedTheme = isThemeProvided ? themes[theme] : defaultTheme;
+
   const defaultBorderColor =
     "border_color" in selectedTheme
       ? selectedTheme.border_color
