@@ -907,17 +907,17 @@ GitHub Readme Stats provides several environment variables that can be used to c
     <tr>
       <td><code>WHITELIST</code></td>
       <td>A comma-separated list of GitHub usernames that are allowed to access your instance. If this variable is not set, all usernames are allowed.</td>
-      <td>Comma-separated GitHub usernames <br/> (i.e. <code>anuraghazra,rickstaa,qwerty541</code>)</td>
+      <td>Comma-separated GitHub usernames</td>
     </tr>
     <tr>
       <td><code>GIST_WHITELIST</code></td>
       <td>A comma-separated list of GitHub gist IDs that are allowed to be accessed on your instance. If this variable is not set, all gist IDs are allowed.</td>
-      <td>Comma-separated GitHub gist IDs <br/> (i.e. <code>898eae8a35c60ff9332e10f63ec86889,cfb527bef46cf23aae746c7bcb8c3693</code>)</td>
+      <td>Comma-separated GitHub gist IDs</td>
     </tr>
     <tr>
       <td><code>EXCLUDE_REPO</code></td>
       <td>A comma-separated list of repositories that will be excluded from stats and top languages cards on your instance. This allows repository exclusion without exposing repository names in public URLs. This enhances privacy for self-hosted instances that include private repositories in stats cards.</td>
-      <td>Comma-separated repository names <br/> (i.e. <code>github-readme-stats,convoychat</code>)</td>
+      <td>Comma-separated repository names</td>
     </tr>
     <tr>
       <td><code>FETCH_MULTI_PAGE_STARS</code></td>
