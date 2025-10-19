@@ -1,3 +1,5 @@
+// @ts-check
+
 const whitelist = process.env.WHITELIST
   ? process.env.WHITELIST.split(",")
   : undefined;
