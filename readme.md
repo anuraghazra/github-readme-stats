@@ -893,9 +893,9 @@ GitHub Readme Stats provides several environment variables that can be used to c
 <table>
   <thead>
     <tr>
-      <th style="width: 20%;">Name</th>
-      <th style="width: 60%;">Description</th>
-      <th style="width: 20%;">Supported values</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Supported values</th>
     </tr>
   </thead>
   <tbody>
