@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 
 # Instala apenas deps de produção com cache eficiente
 COPY --chown=node:node package*.json ./
+RUN npm pkg set scripts.prepare=" "
 RUN npm ci
 
 # Copia o resto do projeto
