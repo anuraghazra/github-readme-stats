@@ -891,6 +891,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 GitHub Readme Stats provides several environment variables that can be used to customize the behavior of your self-hosted instance. These include:
 
 <table>
+  <caption>Environment variables for self-hosted instances</caption>
   <thead>
     <tr>
       <th>Name</th>
