@@ -1,18 +1,18 @@
-FROM node:22-alpine3.20 As development
+# syntax=docker/dockerfile:1
 
+FROM node:22-alpine AS base
+ENV NODE_ENV=production
 WORKDIR /usr/src/app
 
-COPY --chown=node:node package.json ./
-COPY --chown=node:node package-lock.json ./
+# Instala apenas deps de produção com cache eficiente
+COPY --chown=node:node package*.json ./
+RUN npm ci --omit=dev
 
-RUN npm ci
-
+# Copia o resto do projeto
 COPY --chown=node:node . .
 
 USER node
-
-ENV NODE_ENV production
-
 EXPOSE 9000
 
-CMD [ "node", ".express.js"]
+# Inicia a app
+CMD ["node", "express.js"]
