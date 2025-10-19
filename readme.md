@@ -911,8 +911,8 @@ GitHub Readme Stats provides several environment variables that can be used to c
     </tr>
     <tr>
       <td><code>GIST_WHITELIST</code></td>
-      <td>A comma-separated list of GitHub gist IDs that are allowed to be accessed on your instance. If this variable is not set, all gist IDs are allowed.</td>
-      <td>Comma-separated GitHub gist IDs</td>
+      <td>A comma-separated list of GitHub Gist IDs that are allowed to be accessed on your instance. If this variable is not set, all Gist IDs are allowed.</td>
+      <td>Comma-separated GitHub Gist IDs</td>
     </tr>
     <tr>
       <td><code>EXCLUDE_REPO</code></td>
