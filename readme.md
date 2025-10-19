@@ -902,22 +902,22 @@ GitHub Readme Stats provides several environment variables that can be used to c
     <tr>
       <td><code>CACHE_SECONDS</code></td>
       <td>Sets the cache duration in seconds for the generated cards. This variable takes precedence over the default cache timings for the public instance. If this variable is not set, the default cache duration is 24 hours (86,400 seconds).</td>
-      <td>Any positive integer or `0` to disable caching</td>
+      <td>Any positive integer or <code>0</code> to disable caching</td>
     </tr>
     <tr>
       <td><code>WHITELIST</code></td>
       <td>A comma-separated list of GitHub usernames that are allowed to access your instance. If this variable is not set, all usernames are allowed.</td>
-      <td>Comma-separated GitHub usernames (i.e. <code>anuraghazra,rickstaa,qwerty541</code>)</td>
+      <td>Comma-separated GitHub usernames <br/> (i.e. <code>anuraghazra,rickstaa,qwerty541</code>)</td>
     </tr>
     <tr>
       <td><code>GIST_WHITELIST</code></td>
       <td>A comma-separated list of GitHub gist IDs that are allowed to be accessed on your instance. If this variable is not set, all gist IDs are allowed.</td>
-      <td>Comma-separated GitHub gist IDs (i.e. <code>898eae8a35c60ff9332e10f63ec86889,cfb527bef46cf23aae746c7bcb8c3693</code>)</td>
+      <td>Comma-separated GitHub gist IDs <br/> (i.e. <code>898eae8a35c60ff9332e10f63ec86889,cfb527bef46cf23aae746c7bcb8c3693</code>)</td>
     </tr>
     <tr>
       <td><code>EXCLUDE_REPO</code></td>
       <td>A comma-separated list of repositories that will be excluded from stats and top languages cards on your instance. This allows repository exclusion without exposing repository names in public URLs. This enhances privacy for self-hosted instances that include private repositories in stats cards.</td>
-      <td>Comma-separated repository names (i.e. <code>github-readme-stats,convoychat</code>)</td>
+      <td>Comma-separated repository names <br/> (i.e. <code>github-readme-stats,convoychat</code>)</td>
     </tr>
     <tr>
       <td><code>FETCH_MULTI_PAGE_STARS</code></td>
