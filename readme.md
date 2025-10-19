@@ -891,10 +891,17 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 GitHub Readme Stats provides several environment variables that can be used to customize the behavior of your self-hosted instance. These include:
 
 <table>
+  <colgroup>
+    <col style="width: 20%;">
+    <col style="width: 60%;">
+    <col style="width: 20%;">
+  </colgroup>
   <thead>
-    <th>Name</th>
-    <th width="300px">Description</th>
-    <th>Supported values</th>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Supported values</th>
+    </tr>
   </thead>
   <tbody>
     <tr>
