@@ -95,7 +95,7 @@ const createCompactLangNode = ({ lang, x, y, display_format }) => {
  * @param {"horizontal" | "vertical"} args.ordering The ordering of the languages.
  * @returns {string[]} The language text node items.
  */
-const createLanguageTextNode = ({ langs = [], y, display_format, card_width = 495, lineHeight = 25, ordering = "horizontal" }) => {
+const createLanguageTextNode = ({ langs = [], y, display_format, card_width = DEFAULT_CARD_WIDTH, lineHeight = DEFAULT_LINE_HEIGHT, ordering = "horizontal" }) => {
   const LEFT_X = 25;
   const RIGHT_X_BASE = 230;
   const rightOffset = (card_width - DEFAULT_CARD_WIDTH) / 2;
