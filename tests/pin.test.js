@@ -174,7 +174,7 @@ describe("Test /api/pin", () => {
     expect(res.send).toHaveBeenCalledWith(expectedSvg);
   });
 
-  it("should render error card if repo not found", async () => {
+  it("should render error card if user repo not found", async () => {
     const req = {
       query: {
         username: "anuraghazra",
@@ -185,15 +185,38 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
-    mock.onPost("https://api.github.com/graphql").reply(200, {
-      data: { user: null, organization: null },
-    });
+    mock
+      .onPost("https://api.github.com/graphql")
+      .reply(200, { data: { user: { repository: null }, organization: null } });
 
     await pin(req, res);
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({ message: "Not found" }),
+      renderError({ message: "User Repository Not found" }),
+    );
+  });
+
+  it("should render error card if org repo not found", async () => {
+    const req = {
+      query: {
+        username: "anuraghazra",
+        repo: "convoychat",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock
+      .onPost("https://api.github.com/graphql")
+      .reply(200, { data: { user: null, organization: { repository: null } } });
+
+    await pin(req, res);
+
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
+      renderError({ message: "Organization Repository Not found" }),
     );
   });
 
