@@ -21,34 +21,25 @@ const fetcher = (variables, token) => {
         isPrivate
         isArchived
         isTemplate
-        stargazers {
-          totalCount
-        }
+        createdAt
+        pushedAt
+        stargazers { totalCount }
+        issues(states: OPEN) { totalCount }
+        pullRequests(states: OPEN) { totalCount }
         description
-        primaryLanguage {
-          color
-          id
-          name
-        }
+        primaryLanguage { color id name }
         forkCount
       }
-      query getRepo($login: String!, $repo: String!) {
-        user(login: $login) {
-          repository(name: $repo) {
-            ...RepoInfo
-          }
-        }
-        organization(login: $login) {
-          repository(name: $repo) {
-            ...RepoInfo
-          }
+      query getRepo($owner: String!, $repo: String!) {
+        repository(owner: $owner, name: $repo) {
+          ...RepoInfo
         }
       }
     `,
       variables,
     },
     {
-      Authorization: `token ${token}`,
+      Authorization: `bearer ${token}`,
     },
   );
 };
@@ -77,41 +68,35 @@ const fetchRepo = async (username, reponame) => {
     throw new MissingParamError(["repo"], urlExample);
   }
 
-  let res = await retryer(fetcher, { login: username, repo: reponame });
+  let res = await retryer(fetcher, { owner: username, repo: reponame });
 
-  const data = res.data.data;
+  const data = res && res.data ? res.data.data : null;
+  const errors = (res && res.data && res.data.errors) || [];
 
-  if (!data.user && !data.organization) {
-    throw new Error("Not found");
+  if (errors.length) {
+    throw new Error(errors[0].message || "GitHub GraphQL error");
   }
 
-  const isUser = data.organization === null && data.user;
-  const isOrg = data.user === null && data.organization;
-
-  if (isUser) {
-    if (!data.user.repository || data.user.repository.isPrivate) {
-      throw new Error("User Repository Not found");
-    }
-    return {
-      ...data.user.repository,
-      starCount: data.user.repository.stargazers.totalCount,
-    };
+  if (!data) {
+    throw new Error("Invalid response from GitHub API");
   }
 
-  if (isOrg) {
-    if (
-      !data.organization.repository ||
-      data.organization.repository.isPrivate
-    ) {
-      throw new Error("Organization Repository Not found");
-    }
-    return {
-      ...data.organization.repository,
-      starCount: data.organization.repository.stargazers.totalCount,
-    };
+  const repo = data.repository;
+  if (!repo || repo.isPrivate) {
+    throw new Error("Repository Not found");
   }
 
-  throw new Error("Unexpected behavior");
+  return {
+    ...repo,
+    starCount: repo.stargazers.totalCount,
+    ...(repo.issues ? { openIssuesCount: repo.issues.totalCount } : {}),
+    ...(repo.pullRequests
+      ? { openPrsCount: repo.pullRequests.totalCount }
+      : {}),
+    ...(repo.createdAt ? { createdAt: repo.createdAt } : {}),
+    ...(repo.pushedAt ? { pushedAt: repo.pushedAt } : {}),
+    firstCommitDate: repo.createdAt || null,
+  };
 };
 
 export { fetchRepo };

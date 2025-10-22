@@ -13,6 +13,8 @@ export type RepositoryData = {
   isPrivate: boolean;
   isArchived: boolean;
   isTemplate: boolean;
+  createdAt?: string;
+  pushedAt?: string;
   stargazers: { totalCount: number };
   description: string;
   primaryLanguage: {
@@ -22,6 +24,9 @@ export type RepositoryData = {
   };
   forkCount: number;
   starCount: number;
+  openIssuesCount?: number;
+  openPrsCount?: number;
+  firstCommitDate: string | null;
 };
 
 export type StatsData = {
