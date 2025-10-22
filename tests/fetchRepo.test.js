@@ -30,9 +30,17 @@ const data_repo = {
   },
 };
 
-const data_repository = {
+const data_user = {
   data: {
-    repository: data_repo.repository,
+    user: { repository: data_repo.repository },
+    organization: null,
+  },
+};
+
+const data_org = {
+  data: {
+    user: null,
+    organization: { repository: data_repo.repository },
   },
 };
 
@@ -43,8 +51,24 @@ afterEach(() => {
 });
 
 describe("Test fetchRepo", () => {
-  it("should fetch repository by owner/name", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, data_repository);
+  it("should fetch repository for user owner", async () => {
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
+
+    let repo = await fetchRepo("anuraghazra", "convoychat");
+
+    expect(repo).toStrictEqual({
+      ...data_repo.repository,
+      starCount: data_repo.repository.stargazers.totalCount,
+      openIssuesCount: data_repo.repository.issues.totalCount,
+      openPrsCount: data_repo.repository.pullRequests.totalCount,
+      createdAt: data_repo.repository.createdAt,
+      pushedAt: data_repo.repository.pushedAt,
+      firstCommitDate: data_repo.repository.createdAt,
+    });
+  });
+
+  it("should fetch repository for organization owner", async () => {
+    mock.onPost("https://api.github.com/graphql").reply(200, data_org);
 
     let repo = await fetchRepo("anuraghazra", "convoychat");
 
@@ -60,42 +84,47 @@ describe("Test fetchRepo", () => {
   });
 
   it("should throw error if user is found but repo is null", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, {
-      data: { repository: null },
-    });
+    mock
+      .onPost("https://api.github.com/graphql")
+      .reply(200, { data: { user: { repository: null }, organization: null } });
 
     await expect(fetchRepo("anuraghazra", "convoychat")).rejects.toThrow(
-      "Repository Not found",
+      "User Repository Not found",
     );
   });
 
   it("should throw error if repo is null", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, {
-      data: { repository: null },
-    });
+    mock
+      .onPost("https://api.github.com/graphql")
+      .reply(200, { data: { user: null, organization: { repository: null } } });
 
     await expect(fetchRepo("anuraghazra", "convoychat")).rejects.toThrow(
-      "Repository Not found",
+      "Organization Repository Not found",
     );
   });
 
   it("should throw error if both user & org data not found", async () => {
-    mock.onPost("https://api.github.com/graphql").reply(200, {
-      data: { repository: null },
-    });
+    mock
+      .onPost("https://api.github.com/graphql")
+      .reply(200, { data: { user: null, organization: null } });
 
     await expect(fetchRepo("anuraghazra", "convoychat")).rejects.toThrow(
-      "Repository Not found",
+      "Not found",
     );
   });
 
   it("should throw error if repository is private", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, {
-      data: { repository: { ...data_repo.repository, isPrivate: true } },
+      data: {
+        user: {
+          repository: { ...data_repo.repository, isPrivate: true },
+        },
+        organization: null,
+      },
     });
 
     await expect(fetchRepo("anuraghazra", "convoychat")).rejects.toThrow(
-      "Repository Not found",
+      "User Repository Not found",
     );
   });
 });

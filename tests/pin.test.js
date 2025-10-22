@@ -30,9 +30,10 @@ const data_repo = {
   },
 };
 
-const data_repository = {
+const data_user = {
   data: {
-    repository: data_repo.repository,
+    user: { repository: data_repo.repository },
+    organization: null,
   },
 };
 
@@ -54,7 +55,7 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_repository);
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
 
     await pin(req, res);
 
@@ -86,7 +87,7 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_repository);
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
 
     await pin(req, res);
 
@@ -117,7 +118,7 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_repository);
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
 
     await pin(req, res);
 
@@ -166,7 +167,7 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_repository);
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
 
     await pin(req, res);
 
@@ -212,14 +213,14 @@ describe("Test /api/pin", () => {
       send: jest.fn(),
     };
     mock.onPost("https://api.github.com/graphql").reply(200, {
-      data: { repository: null },
+      data: { user: null, organization: null },
     });
 
     await pin(req, res);
 
     expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
     expect(res.send).toHaveBeenCalledWith(
-      renderError({ message: "Repository Not found" }),
+      renderError({ message: "Not found" }),
     );
   });
 
@@ -234,7 +235,7 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_repository);
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
 
     await pin(req, res);
 
@@ -260,7 +261,7 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_repository);
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
 
     await pin(req, res);
 
@@ -306,7 +307,7 @@ describe("Test /api/pin", () => {
       setHeader: jest.fn(),
       send: jest.fn(),
     };
-    mock.onPost("https://api.github.com/graphql").reply(200, data_repository);
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
 
     await pin(req, res);
 
