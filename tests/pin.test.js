@@ -11,7 +11,7 @@ import { CACHE_TTL, DURATIONS } from "../src/common/cache.js";
 
 const data_repo = {
   repository: {
-    nameWithOwner: "anuraghazra",
+    username: "anuraghazra",
     name: "convoychat",
     stargazers: {
       totalCount: 38000,
