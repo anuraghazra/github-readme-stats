@@ -101,19 +101,25 @@ const fetchRepo = async (username, reponame) => {
     if (!repository || repository.isPrivate) {
       throw new Error("User Repository Not found");
     }
-    return {
+    const result = {
       ...repository,
       starCount: repository.stargazers.totalCount,
-      ...(repository.issues
-        ? { openIssuesCount: repository.issues.totalCount }
-        : {}),
-      ...(repository.pullRequests
-        ? { openPrsCount: repository.pullRequests.totalCount }
-        : {}),
-      ...(repository.createdAt ? { createdAt: repository.createdAt } : {}),
-      ...(repository.pushedAt ? { pushedAt: repository.pushedAt } : {}),
       firstCommitDate: repository.createdAt || null,
     };
+    if (repository.issues) {
+      // `issues` can be omitted entirely when disabled, so only expose the count when available.
+      result.openIssuesCount = repository.issues.totalCount;
+    }
+    if (repository.pullRequests) {
+      result.openPrsCount = repository.pullRequests.totalCount;
+    }
+    if (repository.createdAt) {
+      result.createdAt = repository.createdAt;
+    }
+    if (repository.pushedAt) {
+      result.pushedAt = repository.pushedAt;
+    }
+    return result;
   }
 
   if (isOrg) {
@@ -121,19 +127,25 @@ const fetchRepo = async (username, reponame) => {
     if (!repository || repository.isPrivate) {
       throw new Error("Organization Repository Not found");
     }
-    return {
+    const result = {
       ...repository,
       starCount: repository.stargazers.totalCount,
-      ...(repository.issues
-        ? { openIssuesCount: repository.issues.totalCount }
-        : {}),
-      ...(repository.pullRequests
-        ? { openPrsCount: repository.pullRequests.totalCount }
-        : {}),
-      ...(repository.createdAt ? { createdAt: repository.createdAt } : {}),
-      ...(repository.pushedAt ? { pushedAt: repository.pushedAt } : {}),
       firstCommitDate: repository.createdAt || null,
     };
+    if (repository.issues) {
+      // `issues` can be omitted entirely when disabled, so only expose the count when available.
+      result.openIssuesCount = repository.issues.totalCount;
+    }
+    if (repository.pullRequests) {
+      result.openPrsCount = repository.pullRequests.totalCount;
+    }
+    if (repository.createdAt) {
+      result.createdAt = repository.createdAt;
+    }
+    if (repository.pushedAt) {
+      result.pushedAt = repository.pushedAt;
+    }
+    return result;
   }
 
   throw new Error("Unexpected behavior");
