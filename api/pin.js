@@ -95,12 +95,14 @@ export default async (req, res) => {
     const finalShowIssues = allStats ? true : parseBoolean(show_issues);
     const finalShowPrs = allStats ? true : parseBoolean(show_prs);
     const finalShowAge = allStats ? true : parseBoolean(show_age);
+    const finalHideTitle = statsOnly ? true : parseBoolean(hide_title);
+    const finalHideText = statsOnly ? true : parseBoolean(hide_text);
 
     return res.send(
       renderRepoCard(repoData, {
         hide_border: parseBoolean(hide_border),
-        hide_title: statsOnly ? true : parseBoolean(hide_title),
-        hide_text: statsOnly ? true : parseBoolean(hide_text),
+        hide_title: finalHideTitle,
+        hide_text: finalHideText,
         stats_only: statsOnly,
         title_color,
         icon_color,
