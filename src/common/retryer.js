@@ -66,21 +66,30 @@ const retryer = async (fetcher, variables, retries = 0) => {
     // finally return the response
     return response;
   } catch (err) {
+    /** @type {any} */
+    const e = err;
+
+    // network/unexpected error → let caller treat as failure
+    if (!e?.response) {
+      throw e;
+    }
+
     // prettier-ignore
     // also checking for bad credentials if any tokens gets invalidated
-    const isBadCredential = err.response.data && err.response.data.message === "Bad credentials";
+    const isBadCredential =
+      e?.response?.data?.message === "Bad credentials";
     const isAccountSuspended =
-      err.response.data &&
-      err.response.data.message === "Sorry. Your account was suspended.";
+      e?.response?.data?.message === "Sorry. Your account was suspended.";
 
     if (isBadCredential || isAccountSuspended) {
       logger.log(`PAT_${retries + 1} Failed`);
       retries++;
       // directly return from the function
       return retryer(fetcher, variables, retries);
-    } else {
-      return err.response;
     }
+
+    // HTTP error with a response → return it for caller-side handling
+    return e.response;
   }
 };
 
