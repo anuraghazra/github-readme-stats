@@ -3,11 +3,9 @@
 import toEmoji from "emoji-name-map";
 
 /**
- * Parses a boolean-like value from query params.
- * Accepts booleans, "true"/"false" (case-insensitive), and "1"/"0".
- * Returns undefined for unrecognized values.
+ * Returns boolean if value is either "true" or "false" else the value as it is.
  *
- * @param {string | boolean | number | undefined} value The value to parse.
+ * @param {string | boolean} value The value to parse.
  * @returns {boolean | undefined } The parsed value.
  */
 const parseBoolean = (value) => {
@@ -15,22 +13,10 @@ const parseBoolean = (value) => {
     return value;
   }
 
-  if (typeof value === "number") {
-    if (value === 1) {
-      return true;
-    }
-    if (value === 0) {
-      return false;
-    }
-    return undefined;
-  }
-
   if (typeof value === "string") {
-    const normalized = value.toLowerCase().trim();
-    if (normalized === "true" || normalized === "1") {
+    if (value.toLowerCase() === "true") {
       return true;
-    }
-    if (normalized === "false" || normalized === "0") {
+    } else if (value.toLowerCase() === "false") {
       return false;
     }
   }
