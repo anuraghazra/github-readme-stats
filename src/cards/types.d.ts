@@ -42,7 +42,7 @@ export type RepoCardOptions = CommonOptions & {
   show_issues?: boolean;
   show_prs?: boolean;
   show_age?: boolean;
-  age_metric?: "created" | "pushed" | "first";
+  age_metric: "created" | "pushed" | "first";
 };
 
 export type TopLangOptions = CommonOptions & {

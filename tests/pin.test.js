@@ -174,6 +174,37 @@ describe("Test /api/pin", () => {
     expect(res.send).toHaveBeenCalledWith(expectedSvg);
   });
 
+  it("should default age_metric to first when invalid", async () => {
+    const req = {
+      query: {
+        username: "anuraghazra",
+        repo: "convoychat",
+        show_age: "true",
+        age_metric: "unknown-value",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
+
+    await pin(req, res);
+
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    const expectedSvg = renderRepoCard(
+      {
+        ...data_repo.repository,
+        starCount: data_repo.repository.stargazers.totalCount,
+      },
+      {
+        show_age: true,
+        age_metric: "first",
+      },
+    );
+    expect(res.send).toHaveBeenCalledWith(expectedSvg);
+  });
+
   it("should render error card if user repo not found", async () => {
     const req = {
       query: {
