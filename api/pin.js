@@ -17,16 +17,6 @@ import { renderError } from "../src/common/render.js";
 import { fetchRepo } from "../src/fetchers/repo.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
-const normalizeAgeMetric = (value) => {
-  if (typeof value !== "string") {
-    return "first";
-  }
-  const lowered = value.toLowerCase();
-  return lowered === "created" || lowered === "pushed" || lowered === "first"
-    ? lowered
-    : "first";
-};
-
 // @ts-ignore
 export default async (req, res) => {
   const {
@@ -51,7 +41,6 @@ export default async (req, res) => {
     show_issues,
     show_prs,
     show_age,
-    age_metric,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -107,7 +96,6 @@ export default async (req, res) => {
     const finalShowAge = allStats ? true : parseBoolean(show_age);
     const finalHideTitle = statsOnly ? true : parseBoolean(hide_title);
     const finalHideText = statsOnly ? true : parseBoolean(hide_text);
-    const finalAgeMetric = normalizeAgeMetric(age_metric);
 
     return res.send(
       renderRepoCard(repoData, {
@@ -128,7 +116,6 @@ export default async (req, res) => {
         show_issues: finalShowIssues,
         show_prs: finalShowPrs,
         show_age: finalShowAge,
-        age_metric: finalAgeMetric,
       }),
     );
   } catch (err) {

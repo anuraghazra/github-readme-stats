@@ -428,8 +428,7 @@ The following data points are also exposed via query params, however they have n
 | --- | --- | --- | --- |
 | `show_issues` | Shows the number of open issues that the repo has. | boolean | `false` |
 | `show_prs` | Shows the number of open PRs that the repo has. | boolean | `false` |
-| `show_age` | Shows the age of the repo (per the `age_metric`). | boolean | `false` |
-| `age_metric` | The metric by which to measure the repository's age. Options: (i) `first`: first committerdate; (ii) `pushed`: date first pushed to GitHub; (iii) `created`: creation date | enum | `first` |
+| `show_age` | Shows the age of the repo (based on when the repository was created on GitHub). | boolean | `false` |
 | `all_stats` | Shows all the metrics listed above; shorthand for `?shows_issues=true&show_prs=true&show_age=true` | boolean | `false` |
 | `stats_only` | Hides the title and the description. | boolean | `false` |
 <!-- NOTE: Maybe should omit `stats_only` - more strictly layout-related. --->
