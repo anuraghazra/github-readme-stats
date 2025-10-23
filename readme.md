@@ -422,6 +422,18 @@ You can customize the appearance and behavior of the pinned repository card usin
 | `show_owner` | Shows the repo's owner name. | boolean | `false` |
 | `description_lines_count` | Manually set the number of lines for the description. Specified value will be clamped between 1 and 3. If this parameter is not specified, the number of lines will be automatically adjusted according to the actual length of the description. | number | `null` |
 
+The following data points are also exposed via query params, however they have not been incorporated visually into any of the repo's themes as of yet:
+
+| Name | Description | Type | Default value |
+| --- | --- | --- | --- |
+| `show_issues` | Shows the number of open issues that the repo has. | boolean | `false` |
+| `show_prs` | Shows the number of open PRs that the repo has. | boolean | `false` |
+| `show_age` | Shows the age of the repo (per the `age_metric`). | boolean | `false` |
+| `age_metric` | The metric by which to measure the repository's age. Options: (i) `first`: first committerdate; (ii) `pushed`: date first pushed to GitHub; (iii) `created`: creation date | enum | `first` |
+| `all_stats` | Shows all the metrics listed above; shorthand for `?shows_issues=true&show_prs=true&show_age=true` | boolean | `false` |
+| `stats_only` | Hides the title and the description. | boolean | `false` |
+<!-- NOTE: Maybe should omit stats_only - purely layout-related. --->
+
 ### Demo
 
 ![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=github-readme-stats)
