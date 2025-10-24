@@ -80,7 +80,9 @@ export default async (req, res) => {
   if (
     layout !== undefined &&
     (typeof layout !== "string" ||
-      !["compact", "normal", "donut", "donut-vertical", "pie"].includes(layout))
+      !["compact", "normal", "donut", "donut-vertical", "pie", "3d"].includes(
+        layout,
+      ))
   ) {
     return res.send(
       renderError({
