@@ -23,6 +23,10 @@ export default async (req, res) => {
     username,
     repo,
     hide_border,
+    hide_title,
+    hide_text,
+    stats_only,
+    all_stats,
     title_color,
     icon_color,
     text_color,
@@ -34,6 +38,9 @@ export default async (req, res) => {
     border_radius,
     border_color,
     description_lines_count,
+    show_issues,
+    show_prs,
+    show_age,
   } = req.query;
 
   res.setHeader("Content-Type", "image/svg+xml");
@@ -81,9 +88,21 @@ export default async (req, res) => {
 
     setCacheHeaders(res, cacheSeconds);
 
+    const statsOnly = parseBoolean(stats_only) === true;
+    const allStats = parseBoolean(all_stats) === true;
+
+    const finalShowIssues = allStats ? true : parseBoolean(show_issues);
+    const finalShowPrs = allStats ? true : parseBoolean(show_prs);
+    const finalShowAge = allStats ? true : parseBoolean(show_age);
+    const finalHideTitle = statsOnly ? true : parseBoolean(hide_title);
+    const finalHideText = statsOnly ? true : parseBoolean(hide_text);
+
     return res.send(
       renderRepoCard(repoData, {
         hide_border: parseBoolean(hide_border),
+        hide_title: finalHideTitle,
+        hide_text: finalHideText,
+        stats_only: statsOnly,
         title_color,
         icon_color,
         text_color,
@@ -94,6 +113,9 @@ export default async (req, res) => {
         show_owner: parseBoolean(show_owner),
         locale: locale ? locale.toLowerCase() : null,
         description_lines_count,
+        show_issues: finalShowIssues,
+        show_prs: finalShowPrs,
+        show_age: finalShowAge,
       }),
     );
   } catch (err) {
