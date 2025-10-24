@@ -13,9 +13,28 @@ import { request } from "../common/http.js";
 
 dotenv.config();
 
+/**
+ * Parse the role parameter and return appropriate ownerAffiliations array.
+ * 
+ * @param {string} role - Comma-separated list of roles (OWNER, ORGANIZATION_MEMBER, COLLABORATOR)
+ * @returns {string[]} Array of valid RepositoryAffiliation values
+ */
+const parseRoleParameter = (role) => {
+  if (!role) return ["OWNER"];
+  
+  const validRoles = ["OWNER", "ORGANIZATION_MEMBER", "COLLABORATOR"];
+  const roles = role.toUpperCase().split(",").map(r => r.trim());
+  
+  // Filter to only valid roles
+  const filteredRoles = roles.filter(r => validRoles.includes(r));
+  
+  // Default to OWNER if no valid roles provided
+  return filteredRoles.length > 0 ? filteredRoles : ["OWNER"];
+};
+
 // GraphQL queries.
 const GRAPHQL_REPOS_FIELD = `
-  repositories(first: 100, ownerAffiliations: OWNER, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
+  repositories(first: 100, ownerAffiliations: $ownerAffiliations, orderBy: {direction: DESC, field: STARGAZERS}, after: $after) {
     totalCount
     nodes {
       name
@@ -31,7 +50,7 @@ const GRAPHQL_REPOS_FIELD = `
 `;
 
 const GRAPHQL_REPOS_QUERY = `
-  query userInfo($login: String!, $after: String) {
+  query userInfo($login: String!, $after: String, $ownerAffiliations: [RepositoryAffiliation]) {
     user(login: $login) {
       ${GRAPHQL_REPOS_FIELD}
     }
@@ -39,7 +58,7 @@ const GRAPHQL_REPOS_QUERY = `
 `;
 
 const GRAPHQL_STATS_QUERY = `
-  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!, $startTime: DateTime = null) {
+  query userInfo($login: String!, $after: String, $ownerAffiliations: [RepositoryAffiliation], $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!, $startTime: DateTime = null) {
     user(login: $login) {
       name
       login
@@ -107,6 +126,7 @@ const fetcher = (variables, token) => {
  * @param {boolean} variables.includeDiscussions Include discussions.
  * @param {boolean} variables.includeDiscussionsAnswers Include discussions answers.
  * @param {string|undefined} variables.startTime Time to start the count of total commits.
+ * @param {string[]} variables.ownerAffiliations Repository affiliations to include.
  * @returns {Promise<import('axios').AxiosResponse>} Axios response.
  *
  * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
@@ -117,6 +137,7 @@ const statsFetcher = async ({
   includeDiscussions,
   includeDiscussionsAnswers,
   startTime,
+  ownerAffiliations,
 }) => {
   let stats;
   let hasNextPage = true;
@@ -130,6 +151,7 @@ const statsFetcher = async ({
       includeDiscussions,
       includeDiscussionsAnswers,
       startTime,
+      ownerAffiliations,
     };
     let res = await retryer(fetcher, variables);
     if (res.data.errors) {
@@ -222,6 +244,7 @@ const totalCommitsFetcher = async (username) => {
  * @param {boolean} include_discussions Include discussions.
  * @param {boolean} include_discussions_answers Include discussions answers.
  * @param {number|undefined} commits_year Year to count total commits
+ * @param {string} role Comma-separated list of repository affiliations (OWNER, ORGANIZATION_MEMBER, COLLABORATOR)
  * @returns {Promise<import("./types").StatsData>} Stats data.
  */
 const fetchStats = async (
@@ -232,6 +255,7 @@ const fetchStats = async (
   include_discussions = false,
   include_discussions_answers = false,
   commits_year,
+  role = "OWNER",
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -258,6 +282,7 @@ const fetchStats = async (
     includeDiscussions: include_discussions,
     includeDiscussionsAnswers: include_discussions_answers,
     startTime: commits_year ? `${commits_year}-01-01T00:00:00Z` : undefined,
+    ownerAffiliations: parseRoleParameter(role),
   });
 
   // Catch GraphQL errors.
