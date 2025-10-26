@@ -1,16 +1,15 @@
 // @ts-check
+
 import { Card } from "../common/Card.js";
-import { createProgressNode } from "../common/createProgressNode.js";
+import { getCardColors } from "../common/color.js";
+import { formatBytes } from "../common/fmt.js";
 import { I18n } from "../common/I18n.js";
+import { chunkArray, clampValue, lowercaseTrim } from "../common/ops.js";
 import {
-  chunkArray,
-  clampValue,
+  createProgressNode,
   flexLayout,
-  getCardColors,
-  lowercaseTrim,
   measureText,
-  formatBytes,
-} from "../common/utils.js";
+} from "../common/render.js";
 import { langCardLocales } from "../translations.js";
 
 const DEFAULT_CARD_WIDTH = 300;
@@ -180,6 +179,7 @@ const trimTopLanguages = (topLangs, langs_count, hide) => {
   // while filtering out
   if (hide) {
     hide.forEach((langName) => {
+      // @ts-ignore
       langsToHide[lowercaseTrim(langName)] = true;
     });
   }
@@ -188,6 +188,7 @@ const trimTopLanguages = (topLangs, langs_count, hide) => {
   langs = langs
     .sort((a, b) => b.size - a.size)
     .filter((lang) => {
+      // @ts-ignore
       return !langsToHide[lowercaseTrim(lang.name)];
     })
     .slice(0, langsCount);

@@ -1,15 +1,13 @@
 // @ts-check
+
 import { Card } from "../common/Card.js";
+import { getCardColors } from "../common/color.js";
+import { CustomError } from "../common/error.js";
+import { kFormatter } from "../common/fmt.js";
 import { I18n } from "../common/I18n.js";
 import { icons, rankIcon } from "../common/icons.js";
-import {
-  CustomError,
-  clampValue,
-  flexLayout,
-  getCardColors,
-  kFormatter,
-  measureText,
-} from "../common/utils.js";
+import { clampValue } from "../common/ops.js";
+import { flexLayout, measureText } from "../common/render.js";
 import { statCardLocales, wakatimeCardLocales } from "../translations.js";
 
 const CARD_MIN_WIDTH = 287;
@@ -18,6 +16,40 @@ const RANK_CARD_MIN_WIDTH = 420;
 const RANK_CARD_DEFAULT_WIDTH = 450;
 const RANK_ONLY_CARD_MIN_WIDTH = 290;
 const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
+
+/**
+ * Long locales that need more space for text. Keep sorted alphabetically.
+ *
+ * @type {(keyof typeof wakatimeCardLocales["wakatimecard.title"])[]}
+ */
+const LONG_LOCALES = [
+  "az",
+  "bg",
+  "cs",
+  "de",
+  "el",
+  "es",
+  "fil",
+  "fi",
+  "fr",
+  "hu",
+  "id",
+  "ja",
+  "ml",
+  "my",
+  "nl",
+  "pl",
+  "pt-br",
+  "pt-pt",
+  "ru",
+  "sr",
+  "sr-latn",
+  "sw",
+  "ta",
+  "uk-ua",
+  "uz",
+  "zh-tw",
+];
 
 /**
  * Create a stats card text item.
@@ -32,7 +64,8 @@ const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
  * @param {boolean} params.showIcons Whether to show icons.
  * @param {number} params.shiftValuePos Number of pixels the value has to be shifted to the right.
  * @param {boolean} params.bold Whether to bold the label.
- * @param {string} params.number_format The format of numbers on card.
+ * @param {string} params.numberFormat The format of numbers on card.
+ * @param {number=} params.numberPrecision The precision of numbers on card.
  * @returns {string} The stats card text item SVG object.
  */
 const createTextNode = ({
@@ -45,10 +78,17 @@ const createTextNode = ({
   showIcons,
   shiftValuePos,
   bold,
-  number_format,
+  numberFormat,
+  numberPrecision,
 }) => {
+  const precision =
+    typeof numberPrecision === "number" && !isNaN(numberPrecision)
+      ? clampValue(numberPrecision, 0, 2)
+      : undefined;
   const kValue =
-    number_format.toLowerCase() === "long" ? value : kFormatter(value);
+    numberFormat.toLowerCase() === "long" || id === "prs_merged_percentage"
+      ? value
+      : kFormatter(value, precision);
   const staggerDelay = (index + 3) * 150;
 
   const labelOffset = showIcons ? `x="25"` : "";
@@ -250,6 +290,7 @@ const renderStatsCard = (stats, options = {}) => {
     border_radius,
     border_color,
     number_format = "short",
+    number_precision,
     locale,
     disable_animations = false,
     rank_icon = "default",
@@ -318,7 +359,11 @@ const renderStatsCard = (stats, options = {}) => {
     STATS.prs_merged_percentage = {
       icon: icons.prs_merged_percentage,
       label: i18n.t("statcard.prs-merged-percentage"),
-      value: mergedPRsPercentage.toFixed(2),
+      value: mergedPRsPercentage.toFixed(
+        typeof number_precision === "number" && !isNaN(number_precision)
+          ? clampValue(number_precision, 0, 2)
+          : 2,
+      ),
       id: "prs_merged_percentage",
       unitSymbol: "%",
     };
@@ -364,44 +409,31 @@ const renderStatsCard = (stats, options = {}) => {
     id: "contribs",
   };
 
-  const longLocales = [
-    "de",
-    "es",
-    "fr",
-    "id",
-    "ml",
-    "my",
-    "nl",
-    "pl",
-    "pt-br",
-    "pt-pt",
-    "ru",
-    "sr",
-    "sr-latn",
-    "uk-ua",
-    "uz",
-    "zh-tw",
-  ];
-  const isLongLocale = locale ? longLocales.includes(locale) : false;
+  // @ts-ignore
+  const isLongLocale = locale ? LONG_LOCALES.includes(locale) : false;
 
   // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
-    .map((key, index) =>
+    .map((key, index) => {
+      // @ts-ignore
+      const stats = STATS[key];
+
       // create the text nodes, and pass index so that we can calculate the line spacing
-      createTextNode({
-        icon: STATS[key].icon,
-        label: STATS[key].label,
-        value: STATS[key].value,
-        id: STATS[key].id,
-        unitSymbol: STATS[key].unitSymbol,
+      return createTextNode({
+        icon: stats.icon,
+        label: stats.label,
+        value: stats.value,
+        id: stats.id,
+        unitSymbol: stats.unitSymbol,
         index,
         showIcons: show_icons,
         shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
         bold: text_bold,
-        number_format,
-      }),
-    );
+        numberFormat: number_format,
+        numberPrecision: number_precision,
+      });
+    });
 
   if (statItems.length === 0 && hide_rank) {
     throw new CustomError(
@@ -536,14 +568,16 @@ const renderStatsCard = (stats, options = {}) => {
   const labels = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
     .map((key) => {
+      // @ts-ignore
+      const stats = STATS[key];
       if (key === "commits") {
         return `${i18n.t("statcard.commits")} ${getTotalCommitsYearLabel(
           include_all_commits,
           commits_year,
           i18n,
-        )} : ${STATS[key].value}`;
+        )} : ${stats.value}`;
       }
-      return `${STATS[key].label}: ${STATS[key].value}`;
+      return `${stats.label}: ${stats.value}`;
     })
     .join(", ");
 

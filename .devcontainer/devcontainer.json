@@ -22,7 +22,8 @@
             "extensions": [
                 "yzhang.markdown-all-in-one",
                 "esbenp.prettier-vscode",
-                "dbaeumer.vscode-eslint"
+                "dbaeumer.vscode-eslint",
+                "github.vscode-github-actions"
             ]
         }
     },

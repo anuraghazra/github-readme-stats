@@ -25,6 +25,7 @@ export type StatCardOptions = CommonOptions & {
   custom_title: string;
   disable_animations: boolean;
   number_format: string;
+  number_precision: number;
   ring_color: string;
   text_bold: boolean;
   rank_icon: RankIcon;
@@ -51,6 +52,7 @@ export type TopLangOptions = CommonOptions & {
 export type WakaTimeOptions = CommonOptions & {
   hide_title: boolean;
   hide: string[];
+  card_width: number;
   line_height: string;
   hide_progress: boolean;
   custom_title: string;

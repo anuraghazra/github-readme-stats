@@ -1,16 +1,23 @@
+// @ts-check
+
 import { renderTopLanguages } from "../src/cards/top-languages.js";
-import { blacklist } from "../src/common/blacklist.js";
-import { whitelist } from "../src/common/whitelist.js";
+import { guardAccess } from "../src/common/access.js";
 import {
-  clampValue,
-  CONSTANTS,
-  parseArray,
-  parseBoolean,
-  renderError,
-} from "../src/common/utils.js";
+  CACHE_TTL,
+  resolveCacheSeconds,
+  setCacheHeaders,
+  setErrorCacheHeaders,
+} from "../src/common/cache.js";
+import {
+  MissingParamError,
+  retrieveSecondaryMessage,
+} from "../src/common/error.js";
+import { parseArray, parseBoolean } from "../src/common/ops.js";
+import { renderError } from "../src/common/render.js";
 import { fetchTopLanguages } from "../src/fetchers/top-languages.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
+// @ts-ignore
 export default async (req, res) => {
   const {
     username,
@@ -38,42 +45,36 @@ export default async (req, res) => {
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
-  if (whitelist && !whitelist.includes(username)) {
-    return res.send(
-      renderError(
-        "This username is not whitelisted",
-        "Please deploy your own instance",
-        {
-          title_color,
-          text_color,
-          bg_color,
-          border_color,
-          theme,
-          show_repo_link: false,
-        },
-      ),
-    );
-  }
-
-  if (whitelist === undefined && blacklist.includes(username)) {
-    return res.send(
-      renderError(
-        "This username is blacklisted",
-        "Please deploy your own instance",
-        {
-          title_color,
-          text_color,
-          bg_color,
-          border_color,
-          theme,
-          show_repo_link: false,
-        },
-      ),
-    );
+  const access = guardAccess({
+    res,
+    id: username,
+    type: "username",
+    colors: {
+      title_color,
+      text_color,
+      bg_color,
+      border_color,
+      theme,
+    },
+  });
+  if (!access.isPassed) {
+    return access.result;
   }
 
   if (locale && !isLocaleAvailable(locale)) {
-    return res.send(renderError("Something went wrong", "Locale not found"));
+    return res.send(
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Locale not found",
+        renderOptions: {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+        },
+      }),
+    );
   }
 
   if (
@@ -82,7 +83,17 @@ export default async (req, res) => {
       !["compact", "normal", "donut", "donut-vertical", "pie"].includes(layout))
   ) {
     return res.send(
-      renderError("Something went wrong", "Incorrect layout input"),
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Incorrect layout input",
+        renderOptions: {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+        },
+      }),
     );
   }
 
@@ -92,7 +103,17 @@ export default async (req, res) => {
       !["bytes", "percentages"].includes(stats_format))
   ) {
     return res.send(
-      renderError("Something went wrong", "Incorrect stats_format input"),
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Incorrect stats_format input",
+        renderOptions: {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+        },
+      }),
     );
   }
 
@@ -103,20 +124,14 @@ export default async (req, res) => {
       size_weight,
       count_weight,
     );
+    const cacheSeconds = resolveCacheSeconds({
+      requested: parseInt(cache_seconds, 10),
+      def: CACHE_TTL.TOP_LANGS_CARD.DEFAULT,
+      min: CACHE_TTL.TOP_LANGS_CARD.MIN,
+      max: CACHE_TTL.TOP_LANGS_CARD.MAX,
+    });
 
-    let cacheSeconds = clampValue(
-      parseInt(cache_seconds || CONSTANTS.TOP_LANGS_CACHE_SECONDS, 10),
-      CONSTANTS.TWO_DAY,
-      CONSTANTS.TEN_DAY,
-    );
-    cacheSeconds = process.env.CACHE_SECONDS
-      ? parseInt(process.env.CACHE_SECONDS, 10) || cacheSeconds
-      : cacheSeconds;
-
-    res.setHeader(
-      "Cache-Control",
-      `max-age=${cacheSeconds / 2}, s-maxage=${cacheSeconds}`,
-    );
+    setCacheHeaders(res, cacheSeconds);
 
     return res.send(
       renderTopLanguages(topLangs, {
@@ -140,19 +155,33 @@ export default async (req, res) => {
       }),
     );
   } catch (err) {
-    res.setHeader(
-      "Cache-Control",
-      `max-age=${CONSTANTS.ERROR_CACHE_SECONDS / 2}, s-maxage=${
-        CONSTANTS.ERROR_CACHE_SECONDS
-      }, stale-while-revalidate=${CONSTANTS.ONE_DAY}`,
-    ); // Use lower cache period for errors.
+    setErrorCacheHeaders(res);
+    if (err instanceof Error) {
+      return res.send(
+        renderError({
+          message: err.message,
+          secondaryMessage: retrieveSecondaryMessage(err),
+          renderOptions: {
+            title_color,
+            text_color,
+            bg_color,
+            border_color,
+            theme,
+            show_repo_link: !(err instanceof MissingParamError),
+          },
+        }),
+      );
+    }
     return res.send(
-      renderError(err.message, err.secondaryMessage, {
-        title_color,
-        text_color,
-        bg_color,
-        border_color,
-        theme,
+      renderError({
+        message: "An unknown error occurred",
+        renderOptions: {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+        },
       }),
     );
   }
