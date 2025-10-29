@@ -1,9 +1,9 @@
-require("@testing-library/jest-dom");
-const cssToObject = require("@uppercod/css-to-object").cssToObject;
-const renderRepoCard = require("../src/cards/repo-card");
-
-const { queryByTestId } = require("@testing-library/dom");
-const themes = require("../themes");
+import { describe, expect, it } from "@jest/globals";
+import { queryByTestId } from "@testing-library/dom";
+import "@testing-library/jest-dom";
+import { cssToObject } from "@uppercod/css-to-object";
+import { renderRepoCard } from "../src/cards/repo.js";
+import { themes } from "../themes/index.js";
 
 const data_repo = {
   repository: {
@@ -189,9 +189,10 @@ describe("Test renderRepoCard", () => {
       );
       expect(descClassStyles.fill.trim()).toBe(`#${themes[name].text_color}`);
       expect(iconClassStyles.fill.trim()).toBe(`#${themes[name].icon_color}`);
-      expect(queryByTestId(document.body, "card-bg")).toHaveAttribute(
-        "fill",
-        `#${themes[name].bg_color}`,
+      const backgroundElement = queryByTestId(document.body, "card-bg");
+      const backgroundElementFill = backgroundElement.getAttribute("fill");
+      expect([`#${themes[name].bg_color}`, "url(#gradient)"]).toContain(
+        backgroundElementFill,
       );
     });
   });
@@ -336,5 +337,35 @@ describe("Test renderRepoCard", () => {
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
       "No description provided",
     );
+  });
+
+  it("should have correct height with specified `description_lines_count` parameter", () => {
+    // Testing short description
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      description_lines_count: 1,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute("height", "120");
+    document.body.innerHTML = renderRepoCard(data_repo.repository, {
+      description_lines_count: 3,
+    });
+    expect(document.querySelector("svg")).toHaveAttribute("height", "150");
+
+    // Testing long description
+    const longDescription =
+      "A tool that will make a lot of iPhone/iPad developers' life easier. It shares your app over-the-air in a WiFi network. Bonjour is used and no configuration is needed.";
+    document.body.innerHTML = renderRepoCard(
+      { ...data_repo.repository, description: longDescription },
+      {
+        description_lines_count: 3,
+      },
+    );
+    expect(document.querySelector("svg")).toHaveAttribute("height", "150");
+    document.body.innerHTML = renderRepoCard(
+      { ...data_repo.repository, description: longDescription },
+      {
+        description_lines_count: 1,
+      },
+    );
+    expect(document.querySelector("svg")).toHaveAttribute("height", "120");
   });
 });

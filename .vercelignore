@@ -1,3 +1,15 @@
-.env
-package-lock.json
+.devcontainer
+.github
+.husky
+.vscode
+benchmarks
 coverage
+scripts
+tests
+.env
+**/*.md
+**/*.svg
+.eslintrc.json
+.prettierignore
+.pretterrc.json
+codecov.yml

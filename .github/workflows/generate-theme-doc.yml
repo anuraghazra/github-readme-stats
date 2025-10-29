@@ -1,32 +1,56 @@
 name: Generate Theme Readme
-
 on:
   push:
     branches:
       - master
     paths:
       - "themes/index.js"
+  workflow_dispatch:
+
+permissions:
+  actions: read
+  checks: read
+  contents: write
+  deployments: read
+  issues: read
+  discussions: read
+  packages: read
+  pages: read
+  pull-requests: read
+  repository-projects: read
+  security-events: read
+  statuses: read
 
 jobs:
-  build:
+  generateThemeDoc:
     runs-on: ubuntu-latest
+    name: Generate theme doc
+    strategy:
+      matrix:
+        node-version: [22.x]
 
     steps:
-      - uses: actions/checkout@v1
-      - name: setup node
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Setup Node
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
-          node-version: "12.x"
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      # Fix the unsafe repo error which was introduced by the CVE-2022-24765 git patches.
+      - name: Fix unsafe repo error
+        run: git config --global --add safe.directory ${{ github.workspace }}
 
       - name: npm install, generate readme
         run: |
-          npm install
+          npm ci
           npm run theme-readme-gen
         env:
           CI: true
 
       - name: Run Script
-        uses: skx/github-action-tester@master
+        uses: skx/github-action-tester@e29768ff4ff67be9d1fdbccd8836ab83233bebb1 # v0.10.0
         with:
           script: ./scripts/push-theme-readme.sh
         env:

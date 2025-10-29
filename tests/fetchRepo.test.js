@@ -1,7 +1,8 @@
-require("@testing-library/jest-dom");
-const axios = require("axios");
-const MockAdapter = require("axios-mock-adapter");
-const fetchRepo = require("../src/fetchers/repo-fetcher");
+import { afterEach, describe, expect, it } from "@jest/globals";
+import "@testing-library/jest-dom";
+import axios from "axios";
+import MockAdapter from "axios-mock-adapter";
+import { fetchRepo } from "../src/fetchers/repo.js";
 
 const data_repo = {
   repository: {
@@ -23,6 +24,7 @@ const data_user = {
     organization: null,
   },
 };
+
 const data_org = {
   data: {
     user: null,

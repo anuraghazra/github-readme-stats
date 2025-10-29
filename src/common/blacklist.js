@@ -1,3 +1,10 @@
-const blacklist = ["renovate-bot", "technote-space", "sw-yx"];
+const blacklist = [
+  "renovate-bot",
+  "technote-space",
+  "sw-yx",
+  "YourUsername",
+  "[YourUsername]",
+];
 
-module.exports = blacklist;
+export { blacklist };
+export default blacklist;

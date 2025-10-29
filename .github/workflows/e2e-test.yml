@@ -1,0 +1,36 @@
+name: Test Deployment
+on:
+  deployment_status:
+
+permissions: read-all
+
+jobs:
+  e2eTests:
+    if:
+      github.repository == 'anuraghazra/github-readme-stats' &&
+      github.event_name == 'deployment_status' &&
+      github.event.deployment_status.state == 'success'
+    name: Perform 2e2 tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
+
+    steps:
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Setup Node
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          CI: true
+
+      - name: Run end-to-end tests.
+        run: npm run test:e2e
+        env:
+          VERCEL_PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
