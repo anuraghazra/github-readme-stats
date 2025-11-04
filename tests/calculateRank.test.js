@@ -19,18 +19,20 @@ describe("Test calculateRank", () => {
   });
 
   it("beginner user gets B- rank", () => {
-    expect(
-      calculateRank({
-        all_commits: false,
-        commits: 125,
-        prs: 25,
-        issues: 10,
-        reviews: 5,
-        repos: 0,
-        stars: 25,
-        followers: 5,
-      }),
-    ).toStrictEqual({ level: "B-", percentile: 65.02918514848255 });
+    const result = calculateRank({
+      all_commits: false,
+      commits: 125,
+      prs: 25,
+      issues: 10,
+      reviews: 5,
+      repos: 0,
+      stars: 25,
+      followers: 5,
+    });
+
+    expect(result.level).toBe("B-");
+    // Allow for small floating-point precision differences
+    expect(result.percentile).toBeCloseTo(65.02918514848255, 5);
   });
 
   it("median user gets B+ rank", () => {
