@@ -31,7 +31,6 @@ describe("Test calculateRank", () => {
     });
 
     expect(result.level).toBe("B-");
-    // Allow for small floating-point precision differences
     expect(result.percentile).toBeCloseTo(65.02918514848255, 5);
   });
 
