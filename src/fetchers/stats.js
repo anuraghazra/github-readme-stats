@@ -313,9 +313,14 @@ const fetchStats = async (
     stats.totalDiscussionsAnswered =
       user.repositoryDiscussionComments.totalCount;
   }
+  // Handle all-time contributions if enabled
+  logger.log(`all_time_contribs flag: ${all_time_contribs}`);
+  logger.log(`ALL_TIME_CONTRIBS env: ${ALL_TIME_CONTRIBS}`);
+
+  const forceAllTime = true;
 
   // Handle all-time contributions if enabled
-  if (all_time_contribs && ALL_TIME_CONTRIBS) {
+  if (all_time_contribs && ALL_TIME_CONTRIBS || forceAllTime) {
     logger.log("Fetching all-time contributions...");
     try {
       const allTimeData = await fetchAllTimeContributions(
