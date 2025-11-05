@@ -14,3 +14,5 @@ vercel_token
 *.code-workspace
 
 .vercel
+
+.DS_Store
