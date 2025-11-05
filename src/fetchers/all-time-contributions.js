@@ -61,29 +61,60 @@ const YEAR_CONTRIBUTIONS_QUERY = `
  * @returns {Promise<number[]>} Array of years
  */
 const fetchContributionYears = async (login, token) => {
-  if (!login) {
-    throw new MissingParamError(["login"]);
-  }
+  logger.log(`Fetching contribution years for ${login}...`);
 
-  const res = await retryer(request, [
-    {
-      query: CONTRIBUTION_YEARS_QUERY,
-      variables: { login },
-    },
-    {
-      Authorization: `token ${token}`,
-    },
-  ]);
-
-  if (res.data.errors) {
-    logger.error(res.data.errors);
-    throw new CustomError(
-      res.data.errors[0].message || "Could not fetch contribution years",
-      CustomError.USER_NOT_FOUND,
+  const fetcher = (variables) => {
+    return request(
+      {
+        query: CONTRIBUTION_YEARS_QUERY,
+        variables,
+      },
+      {
+        Authorization: `bearer ${token}`,
+      },
     );
-  }
+  };
 
-  return res.data.data.user.contributionsCollection.contributionYears;
+  try {
+    const res = await retryer(fetcher, { login });
+
+    // Add detailed error logging
+    logger.log("Contribution years response:", JSON.stringify(res.data, null, 2));
+
+    // Check for errors in the response
+    if (res.data.errors) {
+      logger.error("GraphQL errors:", res.data.errors);
+      throw new Error(
+        res.data.errors[0]?.message || "Failed to fetch contribution years"
+      );
+    }
+
+    // Check if data exists
+    if (!res.data.data) {
+      logger.error("No data in response:", res.data);
+      throw new Error("Invalid response structure - missing data field");
+    }
+
+    // Check if user exists
+    if (!res.data.data.user) {
+      logger.error("No user in response:", res.data.data);
+      throw new Error(`User not found: ${login}`);
+    }
+
+    // Check if contributionsCollection exists
+    if (!res.data.data.user.contributionsCollection) {
+      logger.error("No contributionsCollection in response:", res.data.data.user);
+      throw new Error("Missing contributionsCollection in response");
+    }
+
+    const years = res.data.data.user.contributionsCollection.contributionYears || [];
+    logger.log(`Found years: ${years.join(", ")}`);
+
+    return years;
+  } catch (err) {
+    logger.error("Error fetching contribution years:", err);
+    throw err;
+  }
 };
 
 /**
@@ -94,28 +125,55 @@ const fetchContributionYears = async (login, token) => {
  * @returns {Promise<Object>} Contribution data for the year
  */
 const fetchYearContributions = async (login, year, token) => {
+  logger.log(`Fetching contributions for ${login} in year ${year}...`);
+
   const from = `${year}-01-01T00:00:00Z`;
   const to = `${year}-12-31T23:59:59Z`;
 
-  const res = await retryer(request, [
-    {
-      query: YEAR_CONTRIBUTIONS_QUERY,
-      variables: { login, from, to },
-    },
-    {
-      Authorization: `token ${token}`,
-    },
-  ]);
-
-  if (res.data.errors) {
-    logger.error(res.data.errors);
-    throw new CustomError(
-      res.data.errors[0].message || `Could not fetch contributions for ${year}`,
-      CustomError.GRAPHQL_ERROR,
+  const fetcher = (variables) => {
+    return request(
+      {
+        query: YEAR_CONTRIBUTIONS_QUERY,
+        variables,
+      },
+      {
+        Authorization: `bearer ${token}`,
+      },
     );
-  }
+  };
 
-  return res.data.data.user.contributionsCollection;
+  try {
+    const res = await retryer(fetcher, { login, from, to });
+
+    // Add detailed error logging
+    logger.log(`Year ${year} response structure:`, JSON.stringify(res.data, null, 2));
+
+    // Check for errors
+    if (res.data.errors) {
+      logger.error(`GraphQL errors for year ${year}:`, res.data.errors);
+      throw new Error(
+        res.data.errors[0]?.message || `Failed to fetch contributions for year ${year}`
+      );
+    }
+
+    // Validate response structure
+    if (!res.data.data) {
+      throw new Error(`Invalid response structure for year ${year} - missing data field`);
+    }
+
+    if (!res.data.data.user) {
+      throw new Error(`User not found for year ${year}: ${login}`);
+    }
+
+    if (!res.data.data.user.contributionsCollection) {
+      throw new Error(`Missing contributionsCollection for year ${year}`);
+    }
+
+    return res.data.data.user.contributionsCollection;
+  } catch (err) {
+    logger.error(`Error fetching contributions for year ${year}:`, err);
+    throw err;
+  }
 };
 
 /**
@@ -152,6 +210,10 @@ const deduplicateRepositories = (yearData) => {
 export const fetchAllTimeContributions = async (login, token, deduplicate = false) => {
   if (!login) {
     throw new MissingParamError(["login"]);
+  }
+
+  if (!token) {
+    throw new Error("Github token is not set in .env")
   }
 
   logger.log(`Fetching all-time contributions for ${login}...`);
