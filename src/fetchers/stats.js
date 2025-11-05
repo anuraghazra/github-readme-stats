@@ -6,10 +6,11 @@ import githubUsernameRegex from "github-username-regex";
 import { calculateRank } from "../calculateRank.js";
 import { retryer } from "../common/retryer.js";
 import { logger } from "../common/log.js";
-import { excludeRepositories } from "../common/envs.js";
+import { excludeRepositories, ALL_TIME_CONTRIBS } from "../common/envs.js";
 import { CustomError, MissingParamError } from "../common/error.js";
 import { wrapTextMultiline } from "../common/fmt.js";
 import { request } from "../common/http.js";
+import { fetchAllTimeContributions } from "./all-time-contributions.js";
 
 dotenv.config();
 
@@ -217,6 +218,8 @@ const totalCommitsFetcher = async (username) => {
  *
  * @param {string} username GitHub username.
  * @param {boolean} include_all_commits Include all commits.
+ * @param {boolean} all_time_contribs Include all-time contributions.
+ * @param {boolean} deduplicate_contribs Deduplicate repositories across contribution types.
  * @param {string[]} exclude_repo Repositories to exclude.
  * @param {boolean} include_merged_pull_requests Include merged pull requests.
  * @param {boolean} include_discussions Include discussions.
@@ -227,6 +230,8 @@ const totalCommitsFetcher = async (username) => {
 const fetchStats = async (
   username,
   include_all_commits = false,
+  all_time_contribs = false,
+  deduplicate_contribs = false,
   exclude_repo = [],
   include_merged_pull_requests = false,
   include_discussions = false,
@@ -308,7 +313,26 @@ const fetchStats = async (
     stats.totalDiscussionsAnswered =
       user.repositoryDiscussionComments.totalCount;
   }
-  stats.contributedTo = user.repositoriesContributedTo.totalCount;
+
+  // Handle all-time contributions if enabled
+  if (all_time_contribs && ALL_TIME_CONTRIBS) {
+    logger.log("Fetching all-time contributions...");
+    try {
+      const allTimeData = await fetchAllTimeContributions(
+        username,
+        process.env.PAT_1,
+        deduplicate_contribs,
+      );
+      stats.contributedTo = allTimeData.totalRepositoriesContributedTo;
+      logger.log(`All-time contributions: ${stats.contributedTo}`);
+    } catch (err) {
+      logger.error("Failed to fetch all-time contributions:", err);
+      // Fallback to standard contributedTo
+      stats.contributedTo = user.repositoriesContributedTo.totalCount;
+    }
+  } else {
+    stats.contributedTo = user.repositoriesContributedTo.totalCount;
+  }
 
   // Retrieve stars while filtering out repositories to be hidden.
   const allExcludedRepos = [...exclude_repo, ...excludeRepositories];

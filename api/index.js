@@ -48,6 +48,8 @@ export default async (req, res) => {
     border_color,
     rank_icon,
     show,
+    all_time_contribs,
+    deduplicate_contribs,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -88,6 +90,8 @@ export default async (req, res) => {
     const stats = await fetchStats(
       username,
       parseBoolean(include_all_commits),
+      parseBoolean(all_time_contribs),
+      parseBoolean(deduplicate_contribs),
       parseArray(exclude_repo),
       showStats.includes("prs_merged") ||
         showStats.includes("prs_merged_percentage"),
@@ -113,6 +117,7 @@ export default async (req, res) => {
         card_width: parseInt(card_width, 10),
         hide_rank: parseBoolean(hide_rank),
         include_all_commits: parseBoolean(include_all_commits),
+        all_time_contribs: parseBoolean(all_time_contribs),
         commits_year: parseInt(commits_year, 10),
         line_height,
         title_color,
