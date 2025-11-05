@@ -311,7 +311,7 @@ const fetchStats = async (
       user.repositoryDiscussionComments.totalCount;
   }
   // TEMPORARY: Force enable all-time contribs for testing
-  const forceAllTime = true;
+  const forceAllTime = false;
 
   if ((all_time_contribs && ALL_TIME_CONTRIBS) || forceAllTime) {
     try {
