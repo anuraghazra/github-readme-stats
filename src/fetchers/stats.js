@@ -317,25 +317,35 @@ const fetchStats = async (
   logger.log(`all_time_contribs flag: ${all_time_contribs}`);
   logger.log(`ALL_TIME_CONTRIBS env: ${ALL_TIME_CONTRIBS}`);
 
+  // TEMPORARY: Force enable all-time contribs for testing (REMOVE AFTER TESTING)
   const forceAllTime = true;
 
-  // Handle all-time contributions if enabled
-  if (all_time_contribs && ALL_TIME_CONTRIBS || forceAllTime) {
+  if ((all_time_contribs && ALL_TIME_CONTRIBS) || forceAllTime) {
     logger.log("Fetching all-time contributions...");
     try {
-      const allTimeData = await fetchAllTimeContributions(
+      // Add timeout protection (9 seconds max to stay under Vercel's 10s limit)
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Timeout: All-time contributions took too long')), 9000)
+      );
+      
+      const allTimePromise = fetchAllTimeContributions(
         username,
         process.env.PAT_1,
         deduplicate_contribs,
       );
+      
+      const allTimeData = await Promise.race([allTimePromise, timeoutPromise]);
+      
       stats.contributedTo = allTimeData.totalRepositoriesContributedTo;
       logger.log(`All-time contributions: ${stats.contributedTo}`);
     } catch (err) {
-      logger.error("Failed to fetch all-time contributions:", err);
+      logger.error("Failed to fetch all-time contributions:", err.message);
+      logger.log("Falling back to standard contributedTo (last year only)");
       // Fallback to standard contributedTo
       stats.contributedTo = user.repositoriesContributedTo.totalCount;
     }
   } else {
+    logger.log(`Using standard contributedTo: ${user.repositoriesContributedTo.totalCount}`);
     stats.contributedTo = user.repositoriesContributedTo.totalCount;
   }
 

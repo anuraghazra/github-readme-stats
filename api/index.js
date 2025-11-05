@@ -12,7 +12,7 @@ import {
   MissingParamError,
   retrieveSecondaryMessage,
 } from "../src/common/error.js";
-import { parseArray, parseBoolean } from "../src/common/ops.js";
+import { clampValue, parseArray, parseBoolean } from "../src/common/ops.js";
 import { renderError } from "../src/common/render.js";
 import { fetchStats } from "../src/fetchers/stats.js";
 import { isLocaleAvailable } from "../src/translations.js";
@@ -97,14 +97,25 @@ export default async (req, res) => {
         showStats.includes("prs_merged_percentage"),
       showStats.includes("discussions_started"),
       showStats.includes("discussions_answered"),
-      parseInt(commits_year, 10),
+      commits_year ? parseInt(commits_year, 10) : undefined,
     );
-    const cacheSeconds = resolveCacheSeconds({
-      requested: parseInt(cache_seconds, 10),
-      def: CACHE_TTL.STATS_CARD.DEFAULT,
-      min: CACHE_TTL.STATS_CARD.MIN,
-      max: CACHE_TTL.STATS_CARD.MAX,
-    });
+    //longer cache for all-time contributions
+    const FOUR_HOURS = 60 * 60 * 4;
+    const SIX_HOURS = 60 * 60 * 6;
+    const ONE_DAY = 60 * 60 * 24;
+    const cacheSeconds = parseBoolean(all_time_contribs)
+    ? clampValue(
+        parseInt(cache_seconds || SIX_HOURS, 10),
+        SIX_HOURS,
+        ONE_DAY
+    )
+    : clampValue(
+      parseInt(cache_seconds || FOUR_HOURS, 10),
+      FOUR_HOURS,
+      ONE_DAY,
+    );
+  
+  res.setHeader(res, cacheSeconds);
 
     setCacheHeaders(res, cacheSeconds);
 

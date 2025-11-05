@@ -208,12 +208,13 @@ const deduplicateRepositories = (yearData) => {
  * @returns {Promise<Object>} All-time contribution stats
  */
 export const fetchAllTimeContributions = async (login, token, deduplicate = false) => {
+
   if (!login) {
     throw new MissingParamError(["login"]);
   }
 
   if (!token) {
-    throw new Error("Github token is not set in .env")
+    throw new Error("GitHub token (PAT_1) is not set in environment variables");
   }
 
   logger.log(`Fetching all-time contributions for ${login}...`);
@@ -223,12 +224,15 @@ export const fetchAllTimeContributions = async (login, token, deduplicate = fals
   logger.log(`Found contribution years: ${years.join(", ")}`);
 
   if (deduplicate) {
-    // Deduplicated mode - count unique repositories
+    // Deduplicated mode - count unique repositories across ALL years
     const allRepos = new Set();
 
-    for (const year of years) {
-      logger.log(`Fetching contributions for year ${year}...`);
-      const yearData = await fetchYearContributions(login, year, token);
+    // Fetch all years in PARALLEL instead of sequentially
+    const yearDataPromises = years.map(year => fetchYearContributions(login, year, token));
+    const yearDataResults = await Promise.all(yearDataPromises);
+
+    yearDataResults.forEach((yearData, index) => {
+      logger.log(`Processing year ${years[index]}...`);
       
       const addRepos = (contributions) => {
         contributions?.forEach((contrib) => {
@@ -242,9 +246,9 @@ export const fetchAllTimeContributions = async (login, token, deduplicate = fals
       addRepos(yearData.issueContributionsByRepository);
       addRepos(yearData.pullRequestContributionsByRepository);
       addRepos(yearData.pullRequestReviewContributionsByRepository);
-    }
+    });
 
-    logger.log(`Total unique repositories: ${allRepos.size}`);
+    logger.log(`Total unique repositories (deduplicated): ${allRepos.size}`);
 
     return {
       totalRepositoriesContributedTo: allRepos.size,
@@ -252,25 +256,29 @@ export const fetchAllTimeContributions = async (login, token, deduplicate = fals
       yearsAnalyzed: years.length,
     };
   } else {
-    // Summed mode - sum all totals
+    // Non-deduplicated mode - sum yearly totals
     let totalCommits = 0;
     let totalIssues = 0;
     let totalPRs = 0;
     let totalReviews = 0;
 
-    for (const year of years) {
-      logger.log(`Fetching contributions for year ${year}...`);
-      const yearData = await fetchYearContributions(login, year, token);
+    // Fetch all years in PARALLEL instead of sequentially
+    const yearDataPromises = years.map(year => fetchYearContributions(login, year, token));
+    const yearDataResults = await Promise.all(yearDataPromises);
 
+    yearDataResults.forEach((yearData, index) => {
+      logger.log(`Processing year ${years[index]}...`);
+      
       totalCommits += yearData.totalRepositoriesWithContributedCommits || 0;
       totalIssues += yearData.totalRepositoriesWithContributedIssues || 0;
       totalPRs += yearData.totalRepositoriesWithContributedPullRequests || 0;
       totalReviews += yearData.totalRepositoriesWithContributedPullRequestReviews || 0;
-    }
+    });
 
     const total = totalCommits + totalIssues + totalPRs + totalReviews;
 
-    logger.log(`Total contributions: ${total} (Commits: ${totalCommits}, Issues: ${totalIssues}, PRs: ${totalPRs}, Reviews: ${totalReviews})`);
+    logger.log(`Total contributions (summed): ${total}`);
+    logger.log(`  Commits: ${totalCommits}, Issues: ${totalIssues}, PRs: ${totalPRs}, Reviews: ${totalReviews}`);
 
     return {
       totalRepositoriesContributedTo: total,
