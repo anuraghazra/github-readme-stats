@@ -29,9 +29,21 @@ const fetcher = (variables, token) => {
                   size
                   node {
                     color
-                    name
                   }
                 }
+              }
+            }
+          }
+          # fetch user gists (public only) - NEW: Include gists in language calculation
+          gists(first: 100, privacy: PUBLIC, orderBy: {field: CREATED_AT, direction: DESC}) {
+            nodes {
+              files(first: 10) {
+                name
+                language {
+                  name
+                  color
+                }
+                size
               }
             }
           }
@@ -92,6 +104,7 @@ const fetchTopLanguages = async (
   }
 
   let repoNodes = res.data.data.user.repositories.nodes;
+  const gistNodes = res.data.data.user.gists.nodes; // NEW: Extract gist nodes from GraphQL response
   /** @type {Record<string, boolean>} */
   let repoToHide = {};
   const allExcludedRepos = [...exclude_repo, ...excludeRepositories];
@@ -141,17 +154,75 @@ const fetchTopLanguages = async (
       };
     }, {});
 
-  Object.keys(repoNodes).forEach((name) => {
-    // comparison index calculation
-    repoNodes[name].size =
-      Math.pow(repoNodes[name].size, size_weight) *
-      Math.pow(repoNodes[name].count, count_weight);
+  // Process gists - NEW: Aggregate languages from user's public gists
+  // Unlike repositories which have pre-aggregated language stats, gists have individual files
+  // that need to be processed to calculate language usage
+  const gistLanguages = gistNodes
+    .filter((node) => node.files && node.files.length > 0) // Only gists with files
+    .reduce((acc, gist) => {
+      // Group files by language within this gist
+      const gistLangs = gist.files
+        .filter((file) => file.language) // only files with detected languages
+        .reduce((gistAcc, file) => {
+          const langName = file.language.name;
+          if (gistAcc[langName]) {
+            gistAcc[langName].size += file.size;
+          } else {
+            gistAcc[langName] = {
+              name: langName,
+              color: file.language.color,
+              size: file.size,
+            };
+          }
+          return gistAcc;
+        }, {});
+
+      // For each language in this gist, add to the global accumulator
+      Object.keys(gistLangs).forEach((langName) => {
+        if (acc[langName]) {
+          // Language already exists - add size and increment count
+          acc[langName].size += gistLangs[langName].size;
+          acc[langName].count += 1; // Count represents number of gists containing this language
+        } else {
+          // First time seeing this language
+          acc[langName] = {
+            name: langName,
+            color: gistLangs[langName].color,
+            size: gistLangs[langName].size,
+            count: 1, // Count represents number of gists containing this language
+          };
+        }
+      });
+
+      return acc;
+    }, {});
+
+  // Merge repo and gist languages - NEW: Combine language data from both sources
+  // This ensures that languages used in both repositories and gists are properly aggregated
+  // Languages only in gists will be added, and languages in both will have their stats combined
+  const allLanguages = { ...repoNodes };
+  Object.keys(gistLanguages).forEach((langName) => {
+    if (allLanguages[langName]) {
+      // Language exists in both repos and gists - combine the stats
+      allLanguages[langName].size += gistLanguages[langName].size;
+      allLanguages[langName].count += gistLanguages[langName].count;
+    } else {
+      // Language only in gists - add it to the combined results
+      allLanguages[langName] = gistLanguages[langName];
+    }
   });
 
-  const topLangs = Object.keys(repoNodes)
-    .sort((a, b) => repoNodes[b].size - repoNodes[a].size)
+  Object.keys(allLanguages).forEach((name) => {
+    // comparison index calculation
+    allLanguages[name].size =
+      Math.pow(allLanguages[name].size, size_weight) *
+      Math.pow(allLanguages[name].count, count_weight);
+  });
+
+  const topLangs = Object.keys(allLanguages)
+    .sort((a, b) => allLanguages[b].size - allLanguages[a].size)
     .reduce((result, key) => {
-      result[key] = repoNodes[key];
+      result[key] = allLanguages[key];
       return result;
     }, {});
 

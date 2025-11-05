@@ -45,6 +45,21 @@ const data_langs = {
           },
         ],
       },
+      gists: {
+        nodes: [
+          {
+            files: [
+              { name: "test.py", language: { name: "Python", color: "#3572A5" }, size: 50 },
+              { name: "notebook.ipynb", language: { name: "Jupyter Notebook", color: "#DA5B0B" }, size: 75 },
+            ],
+          },
+          {
+            files: [
+              { name: "script.py", language: { name: "Python", color: "#3572A5" }, size: 25 },
+            ],
+          },
+        ],
+      },
     },
   },
 };
@@ -78,6 +93,18 @@ describe("FetchTopLanguages", () => {
         name: "javascript",
         size: 20.000000000000004,
       },
+      Python: {
+        color: "#3572A5",
+        count: 2,
+        name: "Python",
+        size: 12.247448713915892,
+      },
+      "Jupyter Notebook": {
+        color: "#DA5B0B",
+        count: 1,
+        name: "Jupyter Notebook",
+        size: 8.660254037844387,
+      },
     });
   });
 
@@ -86,17 +113,29 @@ describe("FetchTopLanguages", () => {
 
     let repo = await fetchTopLanguages("anuraghazra", ["test-repo-1"]);
     expect(repo).toStrictEqual({
+      javascript: {
+        color: "#0ff",
+        count: 2,
+        name: "javascript",
+        size: 200,
+      },
+      Python: {
+        color: "#3572A5",
+        count: 2,
+        name: "Python",
+        size: 75,
+      },
       HTML: {
         color: "#0f0",
         count: 1,
         name: "HTML",
         size: 100,
       },
-      javascript: {
-        color: "#0ff",
-        count: 2,
-        name: "javascript",
-        size: 200,
+      "Jupyter Notebook": {
+        color: "#DA5B0B",
+        count: 1,
+        name: "Jupyter Notebook",
+        size: 75,
       },
     });
   });
@@ -118,6 +157,18 @@ describe("FetchTopLanguages", () => {
         name: "javascript",
         size: 200,
       },
+      Python: {
+        color: "#3572A5",
+        count: 2,
+        name: "Python",
+        size: 75,
+      },
+      "Jupyter Notebook": {
+        color: "#DA5B0B",
+        count: 1,
+        name: "Jupyter Notebook",
+        size: 75,
+      },
     });
   });
 
@@ -137,6 +188,18 @@ describe("FetchTopLanguages", () => {
         count: 2,
         name: "javascript",
         size: 2,
+      },
+      Python: {
+        color: "#3572A5",
+        count: 2,
+        name: "Python",
+        size: 2,
+      },
+      "Jupyter Notebook": {
+        color: "#DA5B0B",
+        count: 1,
+        name: "Jupyter Notebook",
+        size: 1,
       },
     });
   });
