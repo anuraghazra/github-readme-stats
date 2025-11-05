@@ -265,7 +265,6 @@ const fetchStats = async (
 
   // Catch GraphQL errors.
   if (res.data.errors) {
-    logger.error(res.data.errors);
     if (res.data.errors[0].type === "NOT_FOUND") {
       throw new CustomError(
         res.data.errors[0].message || "Could not fetch user.",

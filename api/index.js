@@ -151,33 +151,29 @@ export default async (req, res) => {
     );
   } catch (err) {
     setErrorCacheHeaders(res);
+
+    let errorMessage = "an unknown error occured";
+    let secondaryMessage = "";
+    let showRepoLink = true;
+
     if (err instanceof Error) {
+      errorMessage = err.message;
+      secondaryMessage = retrieveSecondaryMessage(err);
+      showRepoLink = !(err instanceof MissingParamError);
+    }
       return res.send(
         renderError({
-          message: err.message,
-          secondaryMessage: retrieveSecondaryMessage(err),
+          message: errorMessage,
+          secondaryMessage: secondaryMessage,
           renderOptions: {
             title_color,
             text_color,
             bg_color,
             border_color,
             theme,
-            show_repo_link: !(err instanceof MissingParamError),
+            show_repo_link: showRepoLink,
           },
         }),
       );
     }
-    return res.send(
-      renderError({
-        message: "An unknown error occurred",
-        renderOptions: {
-          title_color,
-          text_color,
-          bg_color,
-          border_color,
-          theme,
-        },
-      }),
-    );
-  }
-};
+  };
