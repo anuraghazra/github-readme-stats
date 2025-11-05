@@ -80,7 +80,6 @@ const fetchContributionYears = async (login, token) => {
 
     // Check for errors in the response
     if (res.data.errors) {
-      logger.error("GraphQL errors:", res.data.errors);
       throw new Error(
         res.data.errors[0]?.message || "Failed to fetch contribution years"
       );
@@ -88,19 +87,16 @@ const fetchContributionYears = async (login, token) => {
 
     // Check if data exists
     if (!res.data.data) {
-      logger.error("No data in response:", res.data);
       throw new Error("Invalid response structure - missing data field");
     }
 
     // Check if user exists
     if (!res.data.data.user) {
-      logger.error("No user in response:", res.data.data);
       throw new Error(`User not found: ${login}`);
     }
 
     // Check if contributionsCollection exists
     if (!res.data.data.user.contributionsCollection) {
-      logger.error("No contributionsCollection in response:", res.data.data.user);
       throw new Error("Missing contributionsCollection in response");
     }
 
@@ -108,7 +104,6 @@ const fetchContributionYears = async (login, token) => {
 
     return years;
   } catch (err) {
-    logger.error("Error fetching contribution years:", err);
     throw err;
   }
 };
@@ -140,7 +135,6 @@ const fetchYearContributions = async (login, year, token) => {
     const res = await retryer(fetcher, { login, from, to });
     // Check for errors
     if (res.data.errors) {
-      logger.error(`GraphQL errors for year ${year}:`, res.data.errors);
       throw new Error(
         res.data.errors[0]?.message || `Failed to fetch contributions for year ${year}`
       );
@@ -161,7 +155,6 @@ const fetchYearContributions = async (login, year, token) => {
 
     return res.data.data.user.contributionsCollection;
   } catch (err) {
-    logger.error(`Error fetching contributions for year ${year}:`, err);
     throw err;
   }
 };
@@ -233,8 +226,6 @@ export const fetchAllTimeContributions = async (login, token, deduplicate = fals
       addRepos(yearData.pullRequestContributionsByRepository);
       addRepos(yearData.pullRequestReviewContributionsByRepository);
     });
-
-    logger.log(`Total unique repositories (deduplicated): ${allRepos.size}`);
 
     return {
       totalRepositoriesContributedTo: allRepos.size,

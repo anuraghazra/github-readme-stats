@@ -198,7 +198,6 @@ const totalCommitsFetcher = async (username) => {
   try {
     res = await retryer(fetchTotalCommits, { login: username });
   } catch (err) {
-    logger.log(err);
     throw new Error(err);
   }
 
@@ -316,7 +315,6 @@ const fetchStats = async (
   const forceAllTime = true;
 
   if ((all_time_contribs && ALL_TIME_CONTRIBS) || forceAllTime) {
-    logger.log("Fetching all-time contributions...");
     try {
       // Add timeout protection (9 seconds max to stay under Vercel's 10s limit)
       const timeoutPromise = new Promise((_, reject) => 
@@ -334,7 +332,6 @@ const fetchStats = async (
       stats.contributedTo = allTimeData.totalRepositoriesContributedTo;
       logger.log(`All-time contributions: ${stats.contributedTo}`);
     } catch (err) {
-      logger.error("Failed to fetch all-time contributions:", err.message);
       // Fallback to standard contributedTo
       stats.contributedTo = user.repositoriesContributedTo.totalCount;
     }
