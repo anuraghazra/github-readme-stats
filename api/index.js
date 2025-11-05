@@ -51,6 +51,7 @@ export default async (req, res) => {
     all_time_contribs,
     deduplicate_contribs,
   } = req.query;
+  
   res.setHeader("Content-Type", "image/svg+xml");
 
   const access = guardAccess({
@@ -65,6 +66,7 @@ export default async (req, res) => {
       theme,
     },
   });
+  
   if (!access.isPassed) {
     return access.result;
   }
@@ -99,81 +101,91 @@ export default async (req, res) => {
       showStats.includes("discussions_answered"),
       commits_year ? parseInt(commits_year, 10) : undefined,
     );
-    //longer cache for all-time contributions
+
+    // Use longer cache for all-time contributions since they change slowly
     const FOUR_HOURS = 60 * 60 * 4;
     const SIX_HOURS = 60 * 60 * 6;
     const ONE_DAY = 60 * 60 * 24;
-    const cacheSeconds = parseBoolean(all_time_contribs)
-    ? clampValue(
-        parseInt(cache_seconds || SIX_HOURS, 10),
-        SIX_HOURS,
-        ONE_DAY
-    )
-    : clampValue(
-      parseInt(cache_seconds || FOUR_HOURS, 10),
-      FOUR_HOURS,
-      ONE_DAY,
-    );
-  
-  res.setHeader(res, cacheSeconds);
 
+    const cacheSeconds = parseBoolean(all_time_contribs)
+      ? clampValue(
+          parseInt(cache_seconds || SIX_HOURS, 10),
+          SIX_HOURS,
+          ONE_DAY,
+        )
+      : clampValue(
+          parseInt(cache_seconds || FOUR_HOURS, 10),
+          FOUR_HOURS,
+          ONE_DAY,
+        );
+
+    // Set cache headers BEFORE sending response
     setCacheHeaders(res, cacheSeconds);
 
-    return res.send(
-      renderStatsCard(stats, {
-        hide: parseArray(hide),
-        show_icons: parseBoolean(show_icons),
-        hide_title: parseBoolean(hide_title),
-        hide_border: parseBoolean(hide_border),
-        card_width: parseInt(card_width, 10),
-        hide_rank: parseBoolean(hide_rank),
-        include_all_commits: parseBoolean(include_all_commits),
-        all_time_contribs: parseBoolean(all_time_contribs),
-        commits_year: parseInt(commits_year, 10),
-        line_height,
-        title_color,
-        ring_color,
-        icon_color,
-        text_color,
-        text_bold: parseBoolean(text_bold),
-        bg_color,
-        theme,
-        custom_title,
-        border_radius,
-        border_color,
-        number_format,
-        number_precision: parseInt(number_precision, 10),
-        locale: locale ? locale.toLowerCase() : null,
-        disable_animations: parseBoolean(disable_animations),
-        rank_icon,
-        show: showStats,
-      }),
-    );
+    // Render and send the card
+    const renderedCard = renderStatsCard(stats, {
+      hide: parseArray(hide),
+      show_icons: parseBoolean(show_icons),
+      hide_title: parseBoolean(hide_title),
+      hide_border: parseBoolean(hide_border),
+      card_width: parseInt(card_width, 10),
+      hide_rank: parseBoolean(hide_rank),
+      include_all_commits: parseBoolean(include_all_commits),
+      all_time_contribs: parseBoolean(all_time_contribs),
+      commits_year: parseInt(commits_year, 10),
+      line_height,
+      title_color,
+      ring_color,
+      icon_color,
+      text_color,
+      text_bold: parseBoolean(text_bold),
+      bg_color,
+      theme,
+      custom_title,
+      border_radius,
+      border_color,
+      number_format,
+      number_precision: parseInt(number_precision, 10),
+      locale: locale ? locale.toLowerCase() : null,
+      disable_animations: parseBoolean(disable_animations),
+      rank_icon,
+      show: showStats,
+    });
+
+    return res.send(renderedCard);
+    
   } catch (err) {
+    // Set error cache headers BEFORE sending error response
     setErrorCacheHeaders(res);
-
-    let errorMessage = "an unknown error occured";
-    let secondaryMessage = "";
-    let showRepoLink = true;
-
+    
     if (err instanceof Error) {
-      errorMessage = err.message;
-      secondaryMessage = retrieveSecondaryMessage(err);
-      showRepoLink = !(err instanceof MissingParamError);
-    }
       return res.send(
         renderError({
-          message: errorMessage,
-          secondaryMessage: secondaryMessage,
+          message: err.message,
+          secondaryMessage: retrieveSecondaryMessage(err),
           renderOptions: {
             title_color,
             text_color,
             bg_color,
             border_color,
             theme,
-            show_repo_link: showRepoLink,
+            show_repo_link: !(err instanceof MissingParamError),
           },
         }),
       );
     }
-  };
+    
+    return res.send(
+      renderError({
+        message: "An unknown error occurred",
+        renderOptions: {
+          title_color,
+          text_color,
+          bg_color,
+          border_color,
+          theme,
+        },
+      }),
+    );
+  }
+};
