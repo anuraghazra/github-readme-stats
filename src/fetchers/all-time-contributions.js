@@ -61,8 +61,6 @@ const YEAR_CONTRIBUTIONS_QUERY = `
  * @returns {Promise<number[]>} Array of years
  */
 const fetchContributionYears = async (login, token) => {
-  logger.log(`Fetching contribution years for ${login}...`);
-
   const fetcher = (variables) => {
     return request(
       {
@@ -75,37 +73,19 @@ const fetchContributionYears = async (login, token) => {
     );
   };
 
-  try {
-    const res = await retryer(fetcher, { login });
+  const res = await retryer(fetcher, { login });
 
-    // Check for errors in the response
-    if (res.data.errors) {
-      throw new Error(
-        res.data.errors[0]?.message || "Failed to fetch contribution years"
-      );
-    }
-
-    // Check if data exists
-    if (!res.data.data) {
-      throw new Error("Invalid response structure - missing data field");
-    }
-
-    // Check if user exists
-    if (!res.data.data.user) {
-      throw new Error(`User not found: ${login}`);
-    }
-
-    // Check if contributionsCollection exists
-    if (!res.data.data.user.contributionsCollection) {
-      throw new Error("Missing contributionsCollection in response");
-    }
-
-    const years = res.data.data.user.contributionsCollection.contributionYears || [];
-
-    return years;
-  } catch (err) {
-    throw err;
+  // Check for errors - ONLY log simple strings
+  if (res.data.errors) {
+    throw new Error("Failed to fetch contribution years");
   }
+
+  if (!res.data.data?.user?.contributionsCollection) {
+    throw new Error("Invalid response structure");
+  }
+
+  const years = res.data.data.user.contributionsCollection.contributionYears || [];
+  return years;
 };
 
 /**
@@ -131,56 +111,18 @@ const fetchYearContributions = async (login, year, token) => {
     );
   };
 
-  try {
-    const res = await retryer(fetcher, { login, from, to });
-    // Check for errors
-    if (res.data.errors) {
-      throw new Error(
-        res.data.errors[0]?.message || `Failed to fetch contributions for year ${year}`
-      );
-    }
+  const res = await retryer(fetcher, { login, from, to });
 
-    // Validate response structure
-    if (!res.data.data) {
-      throw new Error(`Invalid response structure for year ${year} - missing data field`);
-    }
-
-    if (!res.data.data.user) {
-      throw new Error(`User not found for year ${year}: ${login}`);
-    }
-
-    if (!res.data.data.user.contributionsCollection) {
-      throw new Error(`Missing contributionsCollection for year ${year}`);
-    }
-
-    return res.data.data.user.contributionsCollection;
-  } catch (err) {
-    throw err;
+  // Check for errors - ONLY log simple strings
+  if (res.data.errors) {
+    throw new Error(`Failed to fetch year ${year}`);
   }
-};
 
-/**
- * Deduplicates repositories across all contribution types
- * @param {Object} yearData - Contribution data for a year
- * @returns {number} Count of unique repositories
- */
-const deduplicateRepositories = (yearData) => {
-  const uniqueRepos = new Set();
+  if (!res.data.data?.user?.contributionsCollection) {
+    throw new Error(`Invalid response for year ${year}`);
+  }
 
-  const addRepos = (contributions) => {
-    contributions?.forEach((contrib) => {
-      if (contrib.repository?.nameWithOwner) {
-        uniqueRepos.add(contrib.repository.nameWithOwner);
-      }
-    });
-  };
-
-  addRepos(yearData.commitContributionsByRepository);
-  addRepos(yearData.issueContributionsByRepository);
-  addRepos(yearData.pullRequestContributionsByRepository);
-  addRepos(yearData.pullRequestReviewContributionsByRepository);
-
-  return uniqueRepos.size;
+  return res.data.data.user.contributionsCollection;
 };
 
 /**
@@ -191,13 +133,12 @@ const deduplicateRepositories = (yearData) => {
  * @returns {Promise<Object>} All-time contribution stats
  */
 export const fetchAllTimeContributions = async (login, token, deduplicate = false) => {
-
   if (!login) {
     throw new MissingParamError(["login"]);
   }
 
   if (!token) {
-    throw new Error("GitHub token (PAT_1) is not set in environment variables");
+    throw new Error("GitHub token not set");
   }
 
   // Fetch all contribution years
@@ -207,12 +148,11 @@ export const fetchAllTimeContributions = async (login, token, deduplicate = fals
     // Deduplicated mode - count unique repositories across ALL years
     const allRepos = new Set();
 
-    // Fetch all years in PARALLEL instead of sequentially
+    // Fetch all years in PARALLEL
     const yearDataPromises = years.map(year => fetchYearContributions(login, year, token));
     const yearDataResults = await Promise.all(yearDataPromises);
 
-    yearDataResults.forEach((yearData, index) => {
-      
+    yearDataResults.forEach((yearData) => {
       const addRepos = (contributions) => {
         contributions?.forEach((contrib) => {
           if (contrib.repository?.nameWithOwner) {
@@ -239,12 +179,11 @@ export const fetchAllTimeContributions = async (login, token, deduplicate = fals
     let totalPRs = 0;
     let totalReviews = 0;
 
-    // Fetch all years in PARALLEL instead of sequentially
+    // Fetch all years in PARALLEL
     const yearDataPromises = years.map(year => fetchYearContributions(login, year, token));
     const yearDataResults = await Promise.all(yearDataPromises);
 
-    yearDataResults.forEach((yearData, index) => {
-      
+    yearDataResults.forEach((yearData) => {
       totalCommits += yearData.totalRepositoriesWithContributedCommits || 0;
       totalIssues += yearData.totalRepositoriesWithContributedIssues || 0;
       totalPRs += yearData.totalRepositoriesWithContributedPullRequests || 0;
@@ -252,9 +191,6 @@ export const fetchAllTimeContributions = async (login, token, deduplicate = fals
     });
 
     const total = totalCommits + totalIssues + totalPRs + totalReviews;
-
-    logger.log(`Total contributions (summed): ${total}`);
-    logger.log(`  Commits: ${totalCommits}, Issues: ${totalIssues}, PRs: ${totalPRs}, Reviews: ${totalReviews}`);
 
     return {
       totalRepositoriesContributedTo: total,

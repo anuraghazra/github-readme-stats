@@ -311,14 +311,14 @@ const fetchStats = async (
     stats.totalDiscussionsAnswered =
       user.repositoryDiscussionComments.totalCount;
   }
-  // TEMPORARY: Force enable all-time contribs for testing (REMOVE AFTER TESTING)
+  // TEMPORARY: Force enable all-time contribs for testing
   const forceAllTime = true;
 
   if ((all_time_contribs && ALL_TIME_CONTRIBS) || forceAllTime) {
     try {
-      // Add timeout protection (9 seconds max to stay under Vercel's 10s limit)
+      // Add timeout protection (9 seconds)
       const timeoutPromise = new Promise((_, reject) => 
-        setTimeout(() => reject(new Error('Timeout: All-time contributions took too long')), 9000)
+        setTimeout(() => reject(new Error('Timeout')), 9000)
       );
       
       const allTimePromise = fetchAllTimeContributions(
@@ -328,11 +328,9 @@ const fetchStats = async (
       );
       
       const allTimeData = await Promise.race([allTimePromise, timeoutPromise]);
-      
       stats.contributedTo = allTimeData.totalRepositoriesContributedTo;
-      logger.log(`All-time contributions: ${stats.contributedTo}`);
     } catch (err) {
-      // Fallback to standard contributedTo
+      // Silent fallback - no logging
       stats.contributedTo = user.repositoriesContributedTo.totalCount;
     }
   } else {
