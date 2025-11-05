@@ -191,7 +191,6 @@ const fetchTotalCommits = (variables, token) => {
  */
 const totalCommitsFetcher = async (username) => {
   if (!githubUsernameRegex.test(username)) {
-    logger.log("Invalid username provided.");
     throw new Error("Invalid username provided.");
   }
 
@@ -313,10 +312,6 @@ const fetchStats = async (
     stats.totalDiscussionsAnswered =
       user.repositoryDiscussionComments.totalCount;
   }
-  // Handle all-time contributions if enabled
-  logger.log(`all_time_contribs flag: ${all_time_contribs}`);
-  logger.log(`ALL_TIME_CONTRIBS env: ${ALL_TIME_CONTRIBS}`);
-
   // TEMPORARY: Force enable all-time contribs for testing (REMOVE AFTER TESTING)
   const forceAllTime = true;
 
@@ -340,12 +335,10 @@ const fetchStats = async (
       logger.log(`All-time contributions: ${stats.contributedTo}`);
     } catch (err) {
       logger.error("Failed to fetch all-time contributions:", err.message);
-      logger.log("Falling back to standard contributedTo (last year only)");
       // Fallback to standard contributedTo
       stats.contributedTo = user.repositoriesContributedTo.totalCount;
     }
   } else {
-    logger.log(`Using standard contributedTo: ${user.repositoriesContributedTo.totalCount}`);
     stats.contributedTo = user.repositoriesContributedTo.totalCount;
   }
 

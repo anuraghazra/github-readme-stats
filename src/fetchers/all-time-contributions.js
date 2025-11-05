@@ -78,9 +78,6 @@ const fetchContributionYears = async (login, token) => {
   try {
     const res = await retryer(fetcher, { login });
 
-    // Add detailed error logging
-    logger.log("Contribution years response:", JSON.stringify(res.data, null, 2));
-
     // Check for errors in the response
     if (res.data.errors) {
       logger.error("GraphQL errors:", res.data.errors);
@@ -108,7 +105,6 @@ const fetchContributionYears = async (login, token) => {
     }
 
     const years = res.data.data.user.contributionsCollection.contributionYears || [];
-    logger.log(`Found years: ${years.join(", ")}`);
 
     return years;
   } catch (err) {
@@ -125,8 +121,6 @@ const fetchContributionYears = async (login, token) => {
  * @returns {Promise<Object>} Contribution data for the year
  */
 const fetchYearContributions = async (login, year, token) => {
-  logger.log(`Fetching contributions for ${login} in year ${year}...`);
-
   const from = `${year}-01-01T00:00:00Z`;
   const to = `${year}-12-31T23:59:59Z`;
 
@@ -144,10 +138,6 @@ const fetchYearContributions = async (login, year, token) => {
 
   try {
     const res = await retryer(fetcher, { login, from, to });
-
-    // Add detailed error logging
-    logger.log(`Year ${year} response structure:`, JSON.stringify(res.data, null, 2));
-
     // Check for errors
     if (res.data.errors) {
       logger.error(`GraphQL errors for year ${year}:`, res.data.errors);
@@ -217,11 +207,8 @@ export const fetchAllTimeContributions = async (login, token, deduplicate = fals
     throw new Error("GitHub token (PAT_1) is not set in environment variables");
   }
 
-  logger.log(`Fetching all-time contributions for ${login}...`);
-
   // Fetch all contribution years
   const years = await fetchContributionYears(login, token);
-  logger.log(`Found contribution years: ${years.join(", ")}`);
 
   if (deduplicate) {
     // Deduplicated mode - count unique repositories across ALL years
@@ -232,7 +219,6 @@ export const fetchAllTimeContributions = async (login, token, deduplicate = fals
     const yearDataResults = await Promise.all(yearDataPromises);
 
     yearDataResults.forEach((yearData, index) => {
-      logger.log(`Processing year ${years[index]}...`);
       
       const addRepos = (contributions) => {
         contributions?.forEach((contrib) => {
@@ -267,7 +253,6 @@ export const fetchAllTimeContributions = async (login, token, deduplicate = fals
     const yearDataResults = await Promise.all(yearDataPromises);
 
     yearDataResults.forEach((yearData, index) => {
-      logger.log(`Processing year ${years[index]}...`);
       
       totalCommits += yearData.totalRepositoriesWithContributedCommits || 0;
       totalIssues += yearData.totalRepositoriesWithContributedIssues || 0;
