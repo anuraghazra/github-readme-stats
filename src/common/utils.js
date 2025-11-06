@@ -274,8 +274,10 @@ const getCardColors = ({
   theme,
   fallbackTheme = "default",
 }) => {
-  const defaultTheme = themes[fallbackTheme];
-  const selectedTheme = themes[theme] || defaultTheme;
+  // Ensure defaultTheme always exists, fallback to "default" if needed
+  const defaultTheme = themes[fallbackTheme] || themes["default"];
+  // Ensure selectedTheme always exists, fallback to defaultTheme if theme is invalid
+  const selectedTheme = theme && themes[theme] ? themes[theme] : defaultTheme;
   const defaultBorderColor =
     selectedTheme.border_color || defaultTheme.border_color;
 

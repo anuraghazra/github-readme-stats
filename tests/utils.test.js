@@ -134,6 +134,30 @@ describe("Test utils.js", () => {
       borderColor: "#fff",
     });
   });
+
+  it("getCardColors: should fallback to default theme if invalid theme is provided", () => {
+    let colors = getCardColors({
+      theme: "foobar", // Invalid theme name
+    });
+    // Should use default theme colors
+    expect(colors).toStrictEqual({
+      titleColor: "#2f80ed",
+      textColor: "#434d58",
+      ringColor: "#2f80ed",
+      iconColor: "#4c71f2",
+      bgColor: "#fffefe",
+      borderColor: "#e4e2e2",
+    });
+  });
+
+  it("getCardColors: should handle null/undefined theme gracefully", () => {
+    let colors = getCardColors({
+      theme: null,
+    });
+    // Should use default theme colors
+    expect(colors.titleColor).toBe("#2f80ed");
+    expect(colors.textColor).toBe("#434d58");
+  });
 });
 
 describe("wrapTextMultiline", () => {
