@@ -24,6 +24,9 @@ const data_repo = {
     },
     forkCount: 100,
     isTemplate: false,
+    isPrivate: false,
+    isArchived: false,
+    firstCommitDate: "2018-10-01T00:00:00Z",
   },
 };
 
@@ -76,6 +79,8 @@ describe("Test /api/pin", () => {
         text_color: "fff",
         bg_color: "fff",
         full_name: "1",
+        hide_title: true,
+        hide_text: true,
       },
     };
     const res = {
@@ -97,6 +102,74 @@ describe("Test /api/pin", () => {
         { ...req.query },
       ),
     );
+  });
+
+  it("should make stats_only take precedence over hide flags", async () => {
+    const req = {
+      query: {
+        username: "anuraghazra",
+        repo: "convoychat",
+        hide_title: "false",
+        hide_text: "false",
+        stats_only: "true",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
+
+    await pin(req, res);
+
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    const expectedSvg = renderRepoCard(
+      {
+        ...data_repo.repository,
+        starCount: data_repo.repository.stargazers.totalCount,
+      },
+      {
+        stats_only: true,
+        hide_title: true,
+        hide_text: true,
+      },
+    );
+    expect(res.send).toHaveBeenCalledWith(expectedSvg);
+  });
+
+  it("should make all_stats enable issues, PRs, and age", async () => {
+    const req = {
+      query: {
+        username: "anuraghazra",
+        repo: "convoychat",
+        show_issues: "false",
+        show_prs: "false",
+        show_age: "false",
+        all_stats: "true",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock.onPost("https://api.github.com/graphql").reply(200, data_user);
+
+    await pin(req, res);
+
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    const expectedSvg = renderRepoCard(
+      {
+        ...data_repo.repository,
+        starCount: data_repo.repository.stargazers.totalCount,
+      },
+      {
+        show_issues: true,
+        show_prs: true,
+        show_age: true,
+        all_stats: true,
+      },
+    );
+    expect(res.send).toHaveBeenCalledWith(expectedSvg);
   });
 
   it("should render error card if user repo not found", async () => {
