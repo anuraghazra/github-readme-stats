@@ -92,7 +92,6 @@ export default async (req, res) => {
       username,
       parseBoolean(include_all_commits),
       parseBoolean(all_time_contribs),
-      parseBoolean(deduplicate_contribs),
       parseArray(exclude_repo),
       showStats.includes("prs_merged") ||
         showStats.includes("prs_merged_percentage"),
