@@ -277,6 +277,7 @@ const renderStatsCard = (stats, options = {}) => {
     card_width,
     hide_rank = false,
     include_all_commits = false,
+    all_time_contribs = false,
     commits_year,
     line_height = 25,
     title_color,
@@ -404,7 +405,9 @@ const renderStatsCard = (stats, options = {}) => {
 
   STATS.contribs = {
     icon: icons.contribs,
-    label: i18n.t("statcard.contribs"),
+    label: all_time_contribs
+    ? i18n.t("statcard.contribs-alltime")
+    : i18n.t("statcard.contribs"),
     value: contributedTo,
     id: "contribs",
   };
