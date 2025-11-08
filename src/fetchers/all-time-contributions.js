@@ -25,10 +25,6 @@ const YEAR_CONTRIBUTIONS_QUERY = `
   query yearContributions($login: String!, $from: DateTime!, $to: DateTime!) {
     user(login: $login) {
       contributionsCollection(from: $from, to: $to) {
-        totalRepositoriesWithContributedCommits
-        totalRepositoriesWithContributedIssues
-        totalRepositoriesWithContributedPullRequests
-        totalRepositoriesWithContributedPullRequestReviews
         commitContributionsByRepository(maxRepositories: 100) {
           repository {
             nameWithOwner
@@ -75,7 +71,6 @@ const fetchContributionYears = async (login, token) => {
 
   const res = await retryer(fetcher, { login });
 
-  // Check for errors - ONLY log simple strings
   if (res.data.errors) {
     throw new Error("Failed to fetch contribution years");
   }
@@ -113,7 +108,6 @@ const fetchYearContributions = async (login, year, token) => {
 
   const res = await retryer(fetcher, { login, from, to });
 
-  // Check for errors - ONLY log simple strings
   if (res.data.errors) {
     throw new Error(`Failed to fetch year ${year}`);
   }
@@ -126,13 +120,12 @@ const fetchYearContributions = async (login, year, token) => {
 };
 
 /**
- * Fetches all-time contribution statistics
+ * Fetches all-time contribution statistics (deduplicated by default)
  * @param {string} login - GitHub username
  * @param {string} token - GitHub PAT
- * @param {boolean} deduplicate - Whether to deduplicate repositories
- * @returns {Promise<Object>} All-time contribution stats
+ * @returns {Promise<Object>} All-time contribution stats with unique repository count
  */
-export const fetchAllTimeContributions = async (login, token, deduplicate = false) => {
+export const fetchAllTimeContributions = async (login, token) => {
   if (!login) {
     throw new MissingParamError(["login"]);
   }
@@ -144,62 +137,30 @@ export const fetchAllTimeContributions = async (login, token, deduplicate = fals
   // Fetch all contribution years
   const years = await fetchContributionYears(login, token);
 
-  if (deduplicate) {
-    // Deduplicated mode - count unique repositories across ALL years
-    const allRepos = new Set();
+  // Count unique repositories across ALL years
+  const allRepos = new Set();
 
-    // Fetch all years in PARALLEL
-    const yearDataPromises = years.map(year => fetchYearContributions(login, year, token));
-    const yearDataResults = await Promise.all(yearDataPromises);
+  // Fetch all years in PARALLEL for speed
+  const yearDataPromises = years.map(year => fetchYearContributions(login, year, token));
+  const yearDataResults = await Promise.all(yearDataPromises);
 
-    yearDataResults.forEach((yearData) => {
-      const addRepos = (contributions) => {
-        contributions?.forEach((contrib) => {
-          if (contrib.repository?.nameWithOwner) {
-            allRepos.add(contrib.repository.nameWithOwner);
-          }
-        });
-      };
-
-      addRepos(yearData.commitContributionsByRepository);
-      addRepos(yearData.issueContributionsByRepository);
-      addRepos(yearData.pullRequestContributionsByRepository);
-      addRepos(yearData.pullRequestReviewContributionsByRepository);
-    });
-
-    return {
-      totalRepositoriesContributedTo: allRepos.size,
-      deduplicated: true,
-      yearsAnalyzed: years.length,
+  yearDataResults.forEach((yearData) => {
+    const addRepos = (contributions) => {
+      contributions?.forEach((contrib) => {
+        if (contrib.repository?.nameWithOwner) {
+          allRepos.add(contrib.repository.nameWithOwner);
+        }
+      });
     };
-  } else {
-    // Non-deduplicated mode - sum yearly totals
-    let totalCommits = 0;
-    let totalIssues = 0;
-    let totalPRs = 0;
-    let totalReviews = 0;
 
-    // Fetch all years in PARALLEL
-    const yearDataPromises = years.map(year => fetchYearContributions(login, year, token));
-    const yearDataResults = await Promise.all(yearDataPromises);
+    addRepos(yearData.commitContributionsByRepository);
+    addRepos(yearData.issueContributionsByRepository);
+    addRepos(yearData.pullRequestContributionsByRepository);
+    addRepos(yearData.pullRequestReviewContributionsByRepository);
+  });
 
-    yearDataResults.forEach((yearData) => {
-      totalCommits += yearData.totalRepositoriesWithContributedCommits || 0;
-      totalIssues += yearData.totalRepositoriesWithContributedIssues || 0;
-      totalPRs += yearData.totalRepositoriesWithContributedPullRequests || 0;
-      totalReviews += yearData.totalRepositoriesWithContributedPullRequestReviews || 0;
-    });
-
-    const total = totalCommits + totalIssues + totalPRs + totalReviews;
-
-    return {
-      totalRepositoriesContributedTo: total,
-      totalRepositoriesWithContributedCommits: totalCommits,
-      totalRepositoriesWithContributedIssues: totalIssues,
-      totalRepositoriesWithContributedPullRequests: totalPRs,
-      totalRepositoriesWithContributedPullRequestReviews: totalReviews,
-      deduplicated: false,
-      yearsAnalyzed: years.length,
-    };
-  }
+  return {
+    totalRepositoriesContributedTo: allRepos.size,
+    yearsAnalyzed: years.length,
+  };
 };

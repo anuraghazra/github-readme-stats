@@ -216,8 +216,7 @@ const totalCommitsFetcher = async (username) => {
  *
  * @param {string} username GitHub username.
  * @param {boolean} include_all_commits Include all commits.
- * @param {boolean} all_time_contribs Include all-time contributions.
- * @param {boolean} deduplicate_contribs Deduplicate repositories across contribution types.
+ * @param {boolean} all_time_contribs Include all-time contributions (deduplicated).
  * @param {string[]} exclude_repo Repositories to exclude.
  * @param {boolean} include_merged_pull_requests Include merged pull requests.
  * @param {boolean} include_discussions Include discussions.
@@ -229,7 +228,6 @@ const fetchStats = async (
   username,
   include_all_commits = false,
   all_time_contribs = false,
-  deduplicate_contribs = false,
   exclude_repo = [],
   include_merged_pull_requests = false,
   include_discussions = false,
@@ -310,10 +308,9 @@ const fetchStats = async (
     stats.totalDiscussionsAnswered =
       user.repositoryDiscussionComments.totalCount;
   }
-  // TEMPORARY: Force enable all-time contribs for testing
-  const forceAllTime = true;
 
-  if ((all_time_contribs && ALL_TIME_CONTRIBS) || forceAllTime) {
+  // Handle all-time contributions if enabled (always deduplicated)
+  if (all_time_contribs && ALL_TIME_CONTRIBS) {
     try {
       // Add timeout protection (9 seconds)
       const timeoutPromise = new Promise((_, reject) => 
@@ -323,16 +320,16 @@ const fetchStats = async (
       const allTimePromise = fetchAllTimeContributions(
         username,
         process.env.PAT_1,
-        deduplicate_contribs,
       );
       
       const allTimeData = await Promise.race([allTimePromise, timeoutPromise]);
       stats.contributedTo = allTimeData.totalRepositoriesContributedTo;
     } catch (err) {
-      // Silent fallback - no logging
+      // Silent fallback to last year's count
       stats.contributedTo = user.repositoriesContributedTo.totalCount;
     }
   } else {
+    // Default: last year's contributions
     stats.contributedTo = user.repositoriesContributedTo.totalCount;
   }
 

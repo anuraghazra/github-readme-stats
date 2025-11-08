@@ -49,7 +49,6 @@ export default async (req, res) => {
     rank_icon,
     show,
     all_time_contribs,
-    deduplicate_contribs,
   } = req.query;
   
   res.setHeader("Content-Type", "image/svg+xml");
