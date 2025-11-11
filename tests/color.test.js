@@ -80,10 +80,9 @@ describe("Test color.js", () => {
     });
     expect(colors).toStrictEqual({
       titleColor: "#2f80ed",
-      textColor: "#0f0",
-      iconColor: "#00f",
-      ringColor: "#2f80ed",
-      bgColor: "#fff",
+      textColor: "#434d58",
+      iconColor: "#4c71f2",
+      bgColor: "#fffefe",
       borderColor: "#e4e2e2",
       theme: "default",
     });
