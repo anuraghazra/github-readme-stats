@@ -83,7 +83,7 @@ const getCardColors = ({
   theme,
 }) => {
   const defaultTheme = themes["default"];
-  const isThemeProvided = theme !== null && theme !== undefined;
+  const isThemeProvided = theme !== null && theme !== undefined && themes.hasOwnProperty(theme);
 
   // @ts-ignore
   const selectedTheme = isThemeProvided ? themes[theme] : defaultTheme;
@@ -92,7 +92,7 @@ const getCardColors = ({
     "border_color" in selectedTheme
       ? selectedTheme.border_color
       : // @ts-ignore
-        defaultTheme.border_color;
+      defaultTheme.border_color;
 
   // get the color provided by the user else the theme color
   // finally if both colors are invalid fallback to default theme
