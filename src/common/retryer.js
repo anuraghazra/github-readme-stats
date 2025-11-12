@@ -54,28 +54,32 @@ const retryer = async (fetcher, variables, retries = 0) => {
     const isRateLimited =
       (errors && errorType === "RATE_LIMITED") || /rate limit/i.test(errorMsg);
 
-    // if rate limit is hit increase the RETRIES and recursively call the retryer
-    // with username, and current RETRIES
     if (isRateLimited) {
       logger.log(`PAT_${retries + 1} Failed`);
       retries++;
-      // directly return from the function
       return retryer(fetcher, variables, retries);
     }
 
-    // finally return the response
     return response;
   } catch (err) {
     /** @type {any} */
     const e = err;
 
-    // network/unexpected error → let caller treat as failure
+    // Safe logging for debugging without crashing
+    if (e?.response) {
+      const status = e.response?.status || "Unknown Status";
+      const message = e.response?.data?.message || "No message";
+      logger.error(`GitHub API Error: ${status} - ${message}`);
+    } else {
+      logger.error(`Network error: ${e?.message || "Unknown error"}`);
+    }
+
+    // If there's no response, rethrow to let the caller handle it
     if (!e?.response) {
       throw e;
     }
 
-    // prettier-ignore
-    // also checking for bad credentials if any tokens gets invalidated
+    // Also checking for bad credentials if any tokens get invalidated
     const isBadCredential =
       e?.response?.data?.message === "Bad credentials";
     const isAccountSuspended =
@@ -84,7 +88,6 @@ const retryer = async (fetcher, variables, retries = 0) => {
     if (isBadCredential || isAccountSuspended) {
       logger.log(`PAT_${retries + 1} Failed`);
       retries++;
-      // directly return from the function
       return retryer(fetcher, variables, retries);
     }
 
