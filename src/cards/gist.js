@@ -11,7 +11,7 @@ import { getCardColors } from "../common/color.js";
 import { kFormatter, wrapTextMultiline } from "../common/fmt.js";
 import { encodeHTML } from "../common/html.js";
 import { icons } from "../common/icons.js";
-import { parseEmojis } from "../common/ops.js";
+import { parseEmoji, clampValues } from "../common/ops.js";
 
 /** Import language colors.
  *
@@ -27,6 +27,7 @@ const languageColors = require("../common/languageColors.json"); // now works
 const ICON_SIZE = 16;
 const CARD_DEFAULT_WIDTH = 400;
 const HEADER_MAX_LENGTH = 35;
+const DESCRIPTION_MAX_LINES = 10;
 
 /**
  * @typedef {import('./types').GistCardOptions} GistCardOptions Gist card options.
@@ -53,6 +54,7 @@ const renderGistCard = (gistData, options = {}) => {
     border_color,
     show_owner = false,
     hide_border = false,
+        description_lines_count,
   } = options;
 
   // returns theme based colors with proper overrides and defaults
@@ -67,7 +69,9 @@ const renderGistCard = (gistData, options = {}) => {
     });
 
   const lineWidth = 59;
-  const linesLimit = 10;
+  const linesLimit = description_lines_count
+    ? clampValue(description_lines_count, 1, DESCRIPTION_MAX_LINES)
+    : DESCRIPTION_MAX_LINES;
   const desc = parseEmojis(description || "No description provided");
   const multiLineDescription = wrapTextMultiline(desc, lineWidth, linesLimit);
   const descriptionLines = multiLineDescription.length;
