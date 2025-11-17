@@ -34,7 +34,7 @@ class Card {
     titlePrefixIcon,
   }) {
     //// inject({ mode: "production" });
-    
+
     this.width = width;
     this.height = height;
 
@@ -221,12 +221,10 @@ class Card {
         role="img"
         aria-labelledby="descId"
       >
-        <!----
         <foreignObject>
           <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
           <script defer="defer" src="/_vercel/insights/script.js"></script>
         </foreignObject>
-        ---->
         <Analytics/>
         <title id="titleId">${this.a11yTitle}</title>
         <desc id="descId">${this.a11yDesc}</desc>
