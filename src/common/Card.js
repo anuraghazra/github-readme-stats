@@ -1,6 +1,7 @@
 // @ts-check
-//// import { inject } from "@vercel/analytics";
-import { Analytics } from "@vercel/analytics/nuxt"
+import { inject } from "@vercel/analytics";
+//// import { Analytics } from "@vercel/analytics/nuxt"
+//// import { Analytics } from "@vercel/analytics/next"
 
 
 import { encodeHTML } from "./html.js";
@@ -33,7 +34,7 @@ class Card {
     defaultTitle = "",
     titlePrefixIcon,
   }) {
-    //// inject({ mode: "production" });
+    inject({ mode: "production" });
 
     this.width = width;
     this.height = height;
@@ -222,12 +223,12 @@ class Card {
         aria-labelledby="descId"
       >
         <!----
-        <foreignObject>
-          <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
-          <script defer="defer" src="/_vercel/insights/script.js"></script>
-        </foreignObject>
+          <foreignObject>
+            <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+            <script defer="defer" src="/_vercel/insights/script.js"></script>
+          </foreignObject>
+          <Analytics/>
         ---->
-        <Analytics/>
         <title id="titleId">${this.a11yTitle}</title>
         <desc id="descId">${this.a11yDesc}</desc>
         <style>
