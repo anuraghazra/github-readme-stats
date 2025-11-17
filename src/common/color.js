@@ -83,7 +83,7 @@ const getCardColors = ({
   theme,
 }) => {
   const defaultTheme = themes["default"];
-  const isThemeProvided = theme !== null && theme !== undefined && themes.hasOwnProperty(theme);
+  const isThemeProvided = theme !== null && theme !== undefined && theme in themes;
 
   // @ts-ignore
   const selectedTheme = isThemeProvided ? themes[theme] : defaultTheme;
