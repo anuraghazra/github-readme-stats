@@ -3,7 +3,6 @@ import { inject } from "@vercel/analytics";
 //// import { Analytics } from "@vercel/analytics/nuxt"
 //// import { Analytics } from "@vercel/analytics/next"
 
-
 import { encodeHTML } from "./html.js";
 import { flexLayout } from "./render.js";
 
@@ -222,13 +221,7 @@ class Card {
         role="img"
         aria-labelledby="descId"
       >
-        <foreignObject>
-          <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
-          <script defer="defer" src="/_vercel/insights/script.js"></script>
-        </foreignObject>
-        <!--
-          <Analytics/>
-        -->
+        <foreignObject><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer="defer" src="/_vercel/insights/script.js"></script></foreignObject>
         <title id="titleId">${this.a11yTitle}</title>
         <desc id="descId">${this.a11yDesc}</desc>
         <style>

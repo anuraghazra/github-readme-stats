@@ -472,6 +472,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   return card.render(`
     <svg x="0" y="0" width="100%">
+      <foreignObject><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer="defer" src="/_vercel/insights/script.js"></script></foreignObject>
       ${finalLayout}
     </svg>
   `);

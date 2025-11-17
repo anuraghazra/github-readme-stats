@@ -11,6 +11,7 @@ exports[`Test Render WakaTime Card should render correctly 1`] = `
         role="img"
         aria-labelledby="descId"
       >
+        <foreignObject><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer="defer" src="/_vercel/insights/script.js"></script></foreignObject>
         <title id="titleId"></title>
         <desc id="descId"></desc>
         <style>
@@ -104,6 +105,7 @@ exports[`Test Render WakaTime Card should render correctly 1`] = `
         >
           
     <svg x="0" y="0" width="100%">
+      <foreignObject><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer="defer" src="/_vercel/insights/script.js"></script></foreignObject>
       <g transform="translate(0, 0)">
     <g class="stagger" style="animation-delay: 450ms" transform="translate(25, 0)">
       <text class="stat bold" y="12.5" data-testid="Other">Other:</text>
@@ -169,6 +171,7 @@ exports[`Test Render WakaTime Card should render correctly with compact layout 1
         role="img"
         aria-labelledby="descId"
       >
+        <foreignObject><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer="defer" src="/_vercel/insights/script.js"></script></foreignObject>
         <title id="titleId"></title>
         <desc id="descId"></desc>
         <style>
@@ -262,6 +265,7 @@ exports[`Test Render WakaTime Card should render correctly with compact layout 1
         >
           
     <svg x="0" y="0" width="100%">
+      <foreignObject><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer="defer" src="/_vercel/insights/script.js"></script></foreignObject>
       
       <mask id="rect-mask">
       <rect x="25" y="0" width="440" height="8" fill="white" rx="5" />
@@ -321,6 +325,7 @@ exports[`Test Render WakaTime Card should render correctly with compact layout w
         role="img"
         aria-labelledby="descId"
       >
+        <foreignObject><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer="defer" src="/_vercel/insights/script.js"></script></foreignObject>
         <title id="titleId"></title>
         <desc id="descId"></desc>
         <style>
@@ -414,6 +419,7 @@ exports[`Test Render WakaTime Card should render correctly with compact layout w
         >
           
     <svg x="0" y="0" width="100%">
+      <foreignObject><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer="defer" src="/_vercel/insights/script.js"></script></foreignObject>
       
       <mask id="rect-mask">
       <rect x="25" y="0" width="440" height="8" fill="white" rx="5" />
@@ -473,6 +479,7 @@ exports[`Test Render WakaTime Card should render correctly with percent display 
         role="img"
         aria-labelledby="descId"
       >
+        <foreignObject><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer="defer" src="/_vercel/insights/script.js"></script></foreignObject>
         <title id="titleId"></title>
         <desc id="descId"></desc>
         <style>
@@ -566,6 +573,7 @@ exports[`Test Render WakaTime Card should render correctly with percent display 
         >
           
     <svg x="0" y="0" width="100%">
+      <foreignObject><script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script><script defer="defer" src="/_vercel/insights/script.js"></script></foreignObject>
       <g transform="translate(0, 0)">
     <g class="stagger" style="animation-delay: 450ms" transform="translate(25, 0)">
       <text class="stat bold" y="12.5" data-testid="Other">Other:</text>
