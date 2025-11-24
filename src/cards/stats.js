@@ -1,16 +1,14 @@
 // @ts-check
+
 import { Card } from "../common/Card.js";
+import { getCardColors } from "../common/color.js";
+import { CustomError } from "../common/error.js";
+import { kFormatter } from "../common/fmt.js";
 import { I18n } from "../common/I18n.js";
 import { icons, rankIcon } from "../common/icons.js";
-import {
-  CustomError,
-  clampValue,
-  flexLayout,
-  getCardColors,
-  kFormatter,
-  measureText,
-} from "../common/utils.js";
-import { statCardLocales } from "../translations.js";
+import { clampValue } from "../common/ops.js";
+import { flexLayout, measureText } from "../common/render.js";
+import { statCardLocales, wakatimeCardLocales } from "../translations.js";
 
 const CARD_MIN_WIDTH = 287;
 const CARD_DEFAULT_WIDTH = 287;
@@ -20,19 +18,54 @@ const RANK_ONLY_CARD_MIN_WIDTH = 290;
 const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
 
 /**
+ * Long locales that need more space for text. Keep sorted alphabetically.
+ *
+ * @type {(keyof typeof wakatimeCardLocales["wakatimecard.title"])[]}
+ */
+const LONG_LOCALES = [
+  "az",
+  "bg",
+  "cs",
+  "de",
+  "el",
+  "es",
+  "fil",
+  "fi",
+  "fr",
+  "hu",
+  "id",
+  "ja",
+  "ml",
+  "my",
+  "nl",
+  "pl",
+  "pt-br",
+  "pt-pt",
+  "ru",
+  "sr",
+  "sr-latn",
+  "sw",
+  "ta",
+  "uk-ua",
+  "uz",
+  "zh-tw",
+];
+
+/**
  * Create a stats card text item.
  *
- * @param {object} createTextNodeParams Object that contains the createTextNode parameters.
- * @param {string} createTextNodeParams.icon The icon to display.
- * @param {string} createTextNodeParams.label The label to display.
- * @param {number} createTextNodeParams.value The value to display.
- * @param {string} createTextNodeParams.id The id of the stat.
- * @param {string=} createTextNodeParams.unitSymbol The unit symbol of the stat.
- * @param {number} createTextNodeParams.index The index of the stat.
- * @param {boolean} createTextNodeParams.showIcons Whether to show icons.
- * @param {number} createTextNodeParams.shiftValuePos Number of pixels the value has to be shifted to the right.
- * @param {boolean} createTextNodeParams.bold Whether to bold the label.
- * @param {string} createTextNodeParams.number_format The format of numbers on card.
+ * @param {object} params Object that contains the createTextNode parameters.
+ * @param {string} params.icon The icon to display.
+ * @param {string} params.label The label to display.
+ * @param {number} params.value The value to display.
+ * @param {string} params.id The id of the stat.
+ * @param {string=} params.unitSymbol The unit symbol of the stat.
+ * @param {number} params.index The index of the stat.
+ * @param {boolean} params.showIcons Whether to show icons.
+ * @param {number} params.shiftValuePos Number of pixels the value has to be shifted to the right.
+ * @param {boolean} params.bold Whether to bold the label.
+ * @param {string} params.numberFormat The format of numbers on card.
+ * @param {number=} params.numberPrecision The precision of numbers on card.
  * @returns {string} The stats card text item SVG object.
  */
 const createTextNode = ({
@@ -45,10 +78,17 @@ const createTextNode = ({
   showIcons,
   shiftValuePos,
   bold,
-  number_format,
+  numberFormat,
+  numberPrecision,
 }) => {
+  const precision =
+    typeof numberPrecision === "number" && !isNaN(numberPrecision)
+      ? clampValue(numberPrecision, 0, 2)
+      : undefined;
   const kValue =
-    number_format.toLowerCase() === "long" ? value : kFormatter(value);
+    numberFormat.toLowerCase() === "long" || id === "prs_merged_percentage"
+      ? value
+      : kFormatter(value, precision);
   const staggerDelay = (index + 3) * 150;
 
   const labelOffset = showIcons ? `x="25"` : "";
@@ -188,6 +228,21 @@ const getStyles = ({
 };
 
 /**
+ * Return the label for commits according to the selected options
+ *
+ * @param {boolean} include_all_commits Option to include all years
+ * @param {number|undefined} commits_year Option to include only selected year
+ * @param {I18n} i18n The I18n instance.
+ * @returns {string} The label corresponding to the options.
+ */
+const getTotalCommitsYearLabel = (include_all_commits, commits_year, i18n) =>
+  include_all_commits
+    ? ""
+    : commits_year
+      ? ` (${commits_year})`
+      : ` (${i18n.t("wakatimecard.lastyear")})`;
+
+/**
  * @typedef {import('../fetchers/types').StatsData} StatsData
  * @typedef {import('./types').StatCardOptions} StatCardOptions
  */
@@ -222,6 +277,7 @@ const renderStatsCard = (stats, options = {}) => {
     card_width,
     hide_rank = false,
     include_all_commits = false,
+    commits_year,
     line_height = 25,
     title_color,
     ring_color,
@@ -234,6 +290,7 @@ const renderStatsCard = (stats, options = {}) => {
     border_radius,
     border_color,
     number_format = "short",
+    number_precision,
     locale,
     disable_animations = false,
     rank_icon = "default",
@@ -254,12 +311,13 @@ const renderStatsCard = (stats, options = {}) => {
       theme,
     });
 
-  const apostrophe = ["x", "s"].includes(name.slice(-1).toLocaleLowerCase())
-    ? ""
-    : "s";
+  const apostrophe = /s$/i.test(name.trim()) ? "" : "s";
   const i18n = new I18n({
     locale,
-    translations: statCardLocales({ name, apostrophe }),
+    translations: {
+      ...statCardLocales({ name, apostrophe }),
+      ...wakatimeCardLocales,
+    },
   });
 
   // Meta data for creating text nodes with createTextNode function
@@ -273,9 +331,11 @@ const renderStatsCard = (stats, options = {}) => {
   };
   STATS.commits = {
     icon: icons.commits,
-    label: `${i18n.t("statcard.commits")}${
-      include_all_commits ? "" : ` (${new Date().getFullYear()})`
-    }`,
+    label: `${i18n.t("statcard.commits")}${getTotalCommitsYearLabel(
+      include_all_commits,
+      commits_year,
+      i18n,
+    )}`,
     value: totalCommits,
     id: "commits",
   };
@@ -299,7 +359,11 @@ const renderStatsCard = (stats, options = {}) => {
     STATS.prs_merged_percentage = {
       icon: icons.prs_merged_percentage,
       label: i18n.t("statcard.prs-merged-percentage"),
-      value: mergedPRsPercentage.toFixed(2),
+      value: mergedPRsPercentage.toFixed(
+        typeof number_precision === "number" && !isNaN(number_precision)
+          ? clampValue(number_precision, 0, 2)
+          : 2,
+      ),
       id: "prs_merged_percentage",
       unitSymbol: "%",
     };
@@ -345,42 +409,31 @@ const renderStatsCard = (stats, options = {}) => {
     id: "contribs",
   };
 
-  const longLocales = [
-    "cn",
-    "es",
-    "fr",
-    "pt-br",
-    "ru",
-    "uk-ua",
-    "id",
-    "ml",
-    "my",
-    "pl",
-    "de",
-    "nl",
-    "zh-tw",
-    "uz",
-  ];
-  const isLongLocale = locale ? longLocales.includes(locale) : false;
+  // @ts-ignore
+  const isLongLocale = locale ? LONG_LOCALES.includes(locale) : false;
 
   // filter out hidden stats defined by user & create the text nodes
   const statItems = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
-    .map((key, index) =>
+    .map((key, index) => {
+      // @ts-ignore
+      const stats = STATS[key];
+
       // create the text nodes, and pass index so that we can calculate the line spacing
-      createTextNode({
-        icon: STATS[key].icon,
-        label: STATS[key].label,
-        value: STATS[key].value,
-        id: STATS[key].id,
-        unitSymbol: STATS[key].unitSymbol,
+      return createTextNode({
+        icon: stats.icon,
+        label: stats.label,
+        value: stats.value,
+        id: stats.id,
+        unitSymbol: stats.unitSymbol,
         index,
         showIcons: show_icons,
         shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
         bold: text_bold,
-        number_format,
-      }),
-    );
+        numberFormat: number_format,
+        numberPrecision: number_precision,
+      });
+    });
 
   if (statItems.length === 0 && hide_rank) {
     throw new CustomError(
@@ -515,12 +568,16 @@ const renderStatsCard = (stats, options = {}) => {
   const labels = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
     .map((key) => {
+      // @ts-ignore
+      const stats = STATS[key];
       if (key === "commits") {
-        return `${i18n.t("statcard.commits")} ${
-          include_all_commits ? "" : `in ${new Date().getFullYear()}`
-        } : ${STATS[key].value}`;
+        return `${i18n.t("statcard.commits")} ${getTotalCommitsYearLabel(
+          include_all_commits,
+          commits_year,
+          i18n,
+        )} : ${stats.value}`;
       }
-      return `${STATS[key].label}: ${STATS[key].value}`;
+      return `${stats.label}: ${stats.value}`;
     })
     .join(", ");
 

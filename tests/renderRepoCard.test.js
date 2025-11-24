@@ -1,9 +1,8 @@
+import { describe, expect, it } from "@jest/globals";
 import { queryByTestId } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import { cssToObject } from "@uppercod/css-to-object";
-import { renderRepoCard } from "../src/cards/repo-card.js";
-import { expect, it, describe } from "@jest/globals";
-
+import { renderRepoCard } from "../src/cards/repo.js";
 import { themes } from "../themes/index.js";
 
 const data_repo = {

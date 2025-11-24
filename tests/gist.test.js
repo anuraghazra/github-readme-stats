@@ -1,11 +1,13 @@
-import { jest } from "@jest/globals";
+// @ts-check
+
+import { afterEach, describe, expect, it, jest } from "@jest/globals";
 import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { expect, it, describe, afterEach } from "@jest/globals";
-import { renderGistCard } from "../src/cards/gist-card.js";
-import { renderError } from "../src/common/utils.js";
 import gist from "../api/gist.js";
+import { renderGistCard } from "../src/cards/gist.js";
+import { renderError } from "../src/common/render.js";
+import { CACHE_TTL, DURATIONS } from "../src/common/cache.js";
 
 const gist_data = {
   data: {
@@ -63,8 +65,8 @@ describe("Test /api/gist", () => {
 
     await gist(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderGistCard({
         name: gist_data.data.viewer.gist.files[0].name,
         nameWithOwner: `${gist_data.data.viewer.gist.owner.login}/${gist_data.data.viewer.gist.files[0].name}`,
@@ -95,8 +97,8 @@ describe("Test /api/gist", () => {
 
     await gist(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
       renderGistCard(
         {
           name: gist_data.data.viewer.gist.files[0].name,
@@ -122,12 +124,13 @@ describe("Test /api/gist", () => {
 
     await gist(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
-      renderError(
-        'Missing params "id" make sure you pass the parameters in URL',
-        "/api/gist?id=GIST_ID",
-      ),
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
+      renderError({
+        message: 'Missing params "id" make sure you pass the parameters in URL',
+        secondaryMessage: "/api/gist?id=GIST_ID",
+        renderOptions: { show_repo_link: false },
+      }),
     );
   });
 
@@ -147,8 +150,10 @@ describe("Test /api/gist", () => {
 
     await gist(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(renderError("Gist not found"));
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
+      renderError({ message: "Gist not found" }),
+    );
   });
 
   it("should render error if wrong locale is provided", async () => {
@@ -165,9 +170,35 @@ describe("Test /api/gist", () => {
 
     await gist(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "image/svg+xml");
-    expect(res.send).toBeCalledWith(
-      renderError("Something went wrong", "Language not found"),
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
+      renderError({
+        message: "Something went wrong",
+        secondaryMessage: "Language not found",
+      }),
+    );
+  });
+
+  it("should have proper cache", async () => {
+    const req = {
+      query: {
+        id: "bbfce31e0217a3689c8d961a356cb10d",
+      },
+    };
+    const res = {
+      setHeader: jest.fn(),
+      send: jest.fn(),
+    };
+    mock.onPost("https://api.github.com/graphql").reply(200, gist_data);
+
+    await gist(req, res);
+
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Cache-Control",
+      `max-age=${CACHE_TTL.GIST_CARD.DEFAULT}, ` +
+        `s-maxage=${CACHE_TTL.GIST_CARD.DEFAULT}, ` +
+        `stale-while-revalidate=${DURATIONS.ONE_DAY}`,
     );
   });
 });

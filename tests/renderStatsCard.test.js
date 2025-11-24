@@ -1,16 +1,13 @@
+import { describe, expect, it } from "@jest/globals";
 import {
   getByTestId,
   queryAllByTestId,
   queryByTestId,
 } from "@testing-library/dom";
-import { cssToObject } from "@uppercod/css-to-object";
-import { renderStatsCard } from "../src/cards/stats-card.js";
-import { expect, it, describe } from "@jest/globals";
-import { CustomError } from "../src/common/utils.js";
-
-// adds special assertions like toHaveTextContent
 import "@testing-library/jest-dom";
-
+import { cssToObject } from "@uppercod/css-to-object";
+import { renderStatsCard } from "../src/cards/stats.js";
+import { CustomError } from "../src/common/error.js";
 import { themes } from "../themes/index.js";
 
 const stats = {
@@ -71,7 +68,7 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard({ ...stats, name: "Felix" });
 
     expect(document.getElementsByClassName("header")[0].textContent).toBe(
-      "Felix' GitHub Stats",
+      "Felix's GitHub Stats",
     );
   });
 
@@ -382,29 +379,27 @@ describe("Test renderStatsCard", () => {
       document.querySelector(
         'g[transform="translate(0, 0)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"获标星数（star）:"`);
+    ).toMatchInlineSnapshot(`"获标星数:"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 25)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(
-      `"累计提交数（commit） (${new Date().getFullYear()}):"`,
-    );
+    ).toMatchInlineSnapshot(`"累计提交总数 (去年):"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 50)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"拉取请求数（PR）:"`);
+    ).toMatchInlineSnapshot(`"发起的 PR 总数:"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 75)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"指出问题数（issue）:"`);
+    ).toMatchInlineSnapshot(`"提出的 issue 总数:"`);
     expect(
       document.querySelector(
         'g[transform="translate(0, 100)"]>.stagger>.stat.bold',
       ).textContent,
-    ).toMatchInlineSnapshot(`"贡献于（去年）:"`);
+    ).toMatchInlineSnapshot(`"贡献的项目数（去年）:"`);
   });
 
   it("should render without rounding", () => {
@@ -420,6 +415,13 @@ describe("Test renderStatsCard", () => {
     document.body.innerHTML = renderStatsCard(stats);
     expect(getByTestId(document.body, "commits").textContent).toBe("2k");
     document.body.innerHTML = renderStatsCard(stats, { number_format: "long" });
+    expect(getByTestId(document.body, "commits").textContent).toBe("1999");
+    document.body.innerHTML = renderStatsCard(stats, { number_precision: 2 });
+    expect(getByTestId(document.body, "commits").textContent).toBe("2.00k");
+    document.body.innerHTML = renderStatsCard(stats, {
+      number_format: "long",
+      number_precision: 2,
+    });
     expect(getByTestId(document.body, "commits").textContent).toBe("1999");
   });
 

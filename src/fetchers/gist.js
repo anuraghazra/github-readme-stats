@@ -1,12 +1,8 @@
 // @ts-check
 
-import { request, MissingParamError } from "../common/utils.js";
 import { retryer } from "../common/retryer.js";
-
-/**
- * @typedef {import('axios').AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
- * @typedef {import('axios').AxiosResponse} AxiosResponse Axios response.
- */
+import { MissingParamError } from "../common/error.js";
+import { request } from "../common/http.js";
 
 const QUERY = `
 query gistInfo($gistName: String!) {
@@ -35,9 +31,9 @@ query gistInfo($gistName: String!) {
 /**
  * Gist data fetcher.
  *
- * @param {AxiosRequestHeaders} variables Fetcher variables.
+ * @param {object} variables Fetcher variables.
  * @param {string} token GitHub token.
- * @returns {Promise<AxiosResponse>} The response.
+ * @returns {Promise<import('axios').AxiosResponse>} The response.
  */
 const fetcher = async (variables, token) => {
   return await request(
@@ -57,7 +53,9 @@ const fetcher = async (variables, token) => {
  * @returns {string} Primary language.
  */
 const calculatePrimaryLanguage = (files) => {
+  /** @type {Record<string, number>} */
   const languages = {};
+
   for (const file of files) {
     if (file.language) {
       if (languages[file.language.name]) {
@@ -67,12 +65,14 @@ const calculatePrimaryLanguage = (files) => {
       }
     }
   }
+
   let primaryLanguage = Object.keys(languages)[0];
   for (const language in languages) {
     if (languages[language] > languages[primaryLanguage]) {
       primaryLanguage = language;
     }
   }
+
   return primaryLanguage;
 };
 
@@ -83,7 +83,7 @@ const calculatePrimaryLanguage = (files) => {
 /**
  * Fetch GitHub gist information by given username and ID.
  *
- * @param {string} id Github gist ID.
+ * @param {string} id GitHub gist ID.
  * @returns {Promise<GistData>} Gist data.
  */
 const fetchGist = async (id) => {

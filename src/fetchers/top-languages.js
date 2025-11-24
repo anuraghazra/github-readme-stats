@@ -1,24 +1,18 @@
 // @ts-check
-import { retryer } from "../common/retryer.js";
-import {
-  CustomError,
-  logger,
-  MissingParamError,
-  request,
-  wrapTextMultiline,
-} from "../common/utils.js";
 
-/**
- * @typedef {import("axios").AxiosRequestHeaders} AxiosRequestHeaders Axios request headers.
- * @typedef {import("axios").AxiosResponse} AxiosResponse Axios response.
- */
+import { retryer } from "../common/retryer.js";
+import { logger } from "../common/log.js";
+import { excludeRepositories } from "../common/envs.js";
+import { CustomError, MissingParamError } from "../common/error.js";
+import { wrapTextMultiline } from "../common/fmt.js";
+import { request } from "../common/http.js";
 
 /**
  * Top languages fetcher object.
  *
- * @param {AxiosRequestHeaders} variables Fetcher variables.
+ * @param {any} variables Fetcher variables.
  * @param {string} token GitHub token.
- * @returns {Promise<AxiosResponse>} Languages fetcher response.
+ * @returns {Promise<import("axios").AxiosResponse>} Languages fetcher response.
  */
 const fetcher = (variables, token) => {
   return request(
@@ -98,12 +92,14 @@ const fetchTopLanguages = async (
   }
 
   let repoNodes = res.data.data.user.repositories.nodes;
+  /** @type {Record<string, boolean>} */
   let repoToHide = {};
+  const allExcludedRepos = [...exclude_repo, ...excludeRepositories];
 
   // populate repoToHide map for quick lookup
   // while filtering out
-  if (exclude_repo) {
-    exclude_repo.forEach((repoName) => {
+  if (allExcludedRepos) {
+    allExcludedRepos.forEach((repoName) => {
       repoToHide[repoName] = true;
     });
   }

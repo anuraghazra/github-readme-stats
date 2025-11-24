@@ -1,5 +1,8 @@
 # Contributing to [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
 
+> [!IMPORTANT]
+> Please note that we are NOT participating in Hacktoberfest this year. As a small team, we cannot handle the increased volume of PRs and issues that the event brings. We appreciate your understanding.
+
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
 -   Reporting [an issue](https://github.com/anuraghazra/github-readme-stats/issues/new?assignees=&labels=bug&template=bug_report.yml).
@@ -35,16 +38,17 @@ _(make sure you already have a [Vercel](https://vercel.com/) account)_
 3.  Run `npm install` in the repository root.
 4.  Run the command `vercel` in the root and follow the steps there.
 5.  Run the command `vercel dev` to start a development server at <http://localhost:3000>.
-6.  The cards will then be available from this local endpoint (i.e. `http://localhost:3000/api?username=anuraghazra`).
+6.  Create a `.env` file in the root and add the following line `NODE_ENV=development`, this will disable caching for local development.
+7.  The cards will then be available from this local endpoint (i.e. `http://localhost:3000/api?username=anuraghazra`).
 
-> [!NOTE]\
+> [!NOTE]
 > You can debug the package code in [Vscode](https://code.visualstudio.com/) by using the [Node.js: Attach to process](https://code.visualstudio.com/docs/nodejs/nodejs-debugging#_setting-up-an-attach-configuration) debug option. You can also debug any tests using the [VSCode Jest extension](https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest). For more information, see https://github.com/jest-community/vscode-jest/issues/912.
 
 ## Themes Contribution
 
 We're currently paused addition of new themes to decrease maintenance efforts. All pull requests related to new themes will be closed.
 
-> [!NOTE]\
+> [!NOTE]
 > If you are considering contributing your theme just because you are using it personally, then instead of adding it to our theme collection, you can use card [customization options](./readme.md#customization).
 
 ## Translations Contribution
