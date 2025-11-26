@@ -65,7 +65,10 @@
     "dotenv": "^17.2.3",
     "emoji-name-map": "^2.0.3",
     "github-username-regex": "^1.0.0",
-    "word-wrap": "^1.2.5"
+    "word-wrap": "^1.2.5",
+    "next": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "lint-staged": {
     "*.{js,css,md}": "prettier --write"
