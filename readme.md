@@ -819,7 +819,7 @@ Selecting the right scopes for your token is important in case you want to displ
 ### Fine-grained token
 
 > [!WARNING]\
-> This limits the number of issues to the number of issues on your repositories only and only takes public commits into account.
+> This limits the scope to issues in your repositories and includes only public commits.
 
 * Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Fine-grained tokens](https://github.com/settings/tokens).
 * Click on `Generate new token -> Generate new token`.
