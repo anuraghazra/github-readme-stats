@@ -4,6 +4,17 @@
   <p>Get dynamically generated GitHub stats on your READMEs!</p>
 </div>
 
+> Quick start (Podman self-host)
+>
+> 1. Build: `podman build -t github-readme-stats .`
+> 2. Put your GitHub PAT in `.env` (e.g., `PAT_1=ghp_xxx`). See [how to create a Personal Access Token](#first-step-get-your-personal-access-token-pat).
+> 3. Run: `podman run -p 9000:9000 --env-file .env github-readme-stats`
+> 4. Test: `http://localhost:9000/api?username=<your-github-username>`
+
+> Kubernetes deploy
+>
+> See `k8s/github-readme-stats.yaml` (includes namespace, Deployment, Service). Create the namespace first: `kubectl create namespace github-readme-stats`, then `kubectl apply -f k8s/github-readme-stats.yaml`.
+
 <p align="center">
   <a href="https://github.com/anuraghazra/github-readme-stats/actions">
     <img alt="Tests Passing" src="https://github.com/anuraghazra/github-readme-stats/workflows/Test/badge.svg" />

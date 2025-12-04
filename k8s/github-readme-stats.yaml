@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: github-readme-stats
+  namespace: github-readme-stats
+  labels:
+    app: github-readme-stats
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: github-readme-stats
+  template:
+    metadata:
+      labels:
+        app: github-readme-stats
+    spec:
+      containers:
+        - name: github-readme-stats
+          image: ghcr.io/lemolatoon/github-readme-stats:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9000
+          env:
+            # Required GitHub token (store in a Secret named github-readme-stats-secrets)
+            - name: PAT_1
+              valueFrom:
+                secretKeyRef:
+                  name: github-readme-stats-secrets
+                  key: PAT_1
+            # Optional overrides (uncomment as needed)
+            # - name: CACHE_SECONDS
+            #   value: "86400"
+            # - name: WHITELIST
+            #   value: "user1,user2"
+            # - name: GIST_WHITELIST
+            #   value: "gistid1,gistid2"
+            # - name: EXCLUDE_REPO
+            #   value: "private-repo1,private-repo2"
+            # - name: FETCH_MULTI_PAGE_STARS
+            #   value: "true"
+            # - name: PORT
+            #   value: "9000"
+          readinessProbe:
+            httpGet:
+              path: /api
+              port: 9000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /api
+              port: 9000
+            initialDelaySeconds: 15
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: github-readme-stats
+  namespace: github-readme-stats
+  labels:
+    app: github-readme-stats
+spec:
+  type: ClusterIP
+  selector:
+    app: github-readme-stats
+  ports:
+    - port: 80
+      targetPort: 9000
+      protocol: TCP
