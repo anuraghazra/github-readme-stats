@@ -60,6 +60,18 @@ const formatLanguageValue = ({ display_format, lang }) => {
 };
 
 /**
+ * Truncate text if it exceeds max length and add ellipsis.
+ *
+ * @param {string} text The text to truncate.
+ * @param {number} maxLength Maximum length before truncation.
+ * @returns {string} The truncated text.
+ */
+const truncateText = (text, maxLength = 18) => {
+  if (text.length <= maxLength) return text;
+  return text.substring(0, maxLength - 3) + "...";
+};
+
+/**
  * Create compact WakaTime layout.
  *
  * @param {Object} args The function arguments.
@@ -73,13 +85,13 @@ const createCompactLangNode = ({ lang, x, y, display_format }) => {
   // @ts-ignore
   const color = languageColors[lang.name] || "#858585";
   const value = formatLanguageValue({ display_format, lang });
+  const truncatedName = truncateText(lang.name, 18);
 
   return `
     <g transform="translate(${x}, ${y})">
       <circle cx="5" cy="6" r="5" fill="${color}" />
-      <text data-testid="lang-name" x="15" y="10" class='lang-name'>
-        ${lang.name} - ${value}
-      </text>
+      <text data-testid="lang-name" x="15" y="10" class='lang-name'> title="${lang.name}"
+${truncatedName} - ${value}      </text>
     </g>
   `;
 };
