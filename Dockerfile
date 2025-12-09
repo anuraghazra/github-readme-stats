@@ -22,9 +22,12 @@ COPY --from=builder /app /app
 RUN npm install -g dotenv-cli
 RUN apk --no-cache add curl
 
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:$port/api || exit 1
+ARG PORT=9000
+ENV PORT=${PORT}
 
-EXPOSE $port
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD curl -f "http://localhost:${PORT:-9000}/api" || exit 1
+
+EXPOSE ${PORT}
 
 CMD ["dotenv", "--", "node", "express.js"]
