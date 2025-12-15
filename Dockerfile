@@ -19,6 +19,8 @@ WORKDIR /app
 
 COPY --from=builder /app /app
 
+RUN mkdir -p /app/cache && chmod 777 /app/cache
+
 RUN npm install -g dotenv-cli
 RUN apk --no-cache add curl
 

@@ -2,6 +2,8 @@
 
 import axios from "axios";
 import { CustomError, MissingParamError } from "../common/error.js";
+import { getCachedData, setCachedData } from "../common/fileCache.js";
+import { logger } from "../common/log.js";
 
 /**
  * WakaTime data fetcher.
@@ -14,12 +16,23 @@ const fetchWakatimeStats = async ({ username, api_domain }) => {
     throw new MissingParamError(["username"]);
   }
 
+  // Check cache first
+  const cacheParams = { username, api_domain };
+  const cachedStats = getCachedData("wakatime", cacheParams);
+  if (cachedStats) {
+    logger.log(`Returning cached wakatime stats for ${username}`);
+    return cachedStats;
+  }
+
   try {
     const { data } = await axios.get(
       `https://${
         api_domain ? api_domain.replace(/\/$/gi, "") : "wakatime.com"
       }/api/v1/users/${username}/stats?is_including_today=true`,
     );
+
+    // Save to cache
+    setCachedData("wakatime", cacheParams, data.data);
 
     return data.data;
   } catch (err) {

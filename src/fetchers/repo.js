@@ -3,6 +3,8 @@
 import { MissingParamError } from "../common/error.js";
 import { request } from "../common/http.js";
 import { retryer } from "../common/retryer.js";
+import { getCachedData, setCachedData } from "../common/fileCache.js";
+import { logger } from "../common/log.js";
 
 /**
  * Repo data fetcher.
@@ -77,6 +79,14 @@ const fetchRepo = async (username, reponame) => {
     throw new MissingParamError(["repo"], urlExample);
   }
 
+  // Check cache first
+  const cacheParams = { username, reponame };
+  const cachedRepo = getCachedData("repo", cacheParams);
+  if (cachedRepo) {
+    logger.log(`Returning cached repo data for ${username}/${reponame}`);
+    return cachedRepo;
+  }
+
   let res = await retryer(fetcher, { login: username, repo: reponame });
 
   const data = res.data.data;
@@ -92,10 +102,13 @@ const fetchRepo = async (username, reponame) => {
     if (!data.user.repository || data.user.repository.isPrivate) {
       throw new Error("User Repository Not found");
     }
-    return {
+    const repoData = {
       ...data.user.repository,
       starCount: data.user.repository.stargazers.totalCount,
     };
+    // Save to cache
+    setCachedData("repo", cacheParams, repoData);
+    return repoData;
   }
 
   if (isOrg) {
@@ -105,10 +118,13 @@ const fetchRepo = async (username, reponame) => {
     ) {
       throw new Error("Organization Repository Not found");
     }
-    return {
+    const repoData = {
       ...data.organization.repository,
       starCount: data.organization.repository.stargazers.totalCount,
     };
+    // Save to cache
+    setCachedData("repo", cacheParams, repoData);
+    return repoData;
   }
 
   throw new Error("Unexpected behavior");
