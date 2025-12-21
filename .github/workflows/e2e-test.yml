@@ -10,7 +10,7 @@ jobs:
       github.repository == 'anuraghazra/github-readme-stats' &&
       github.event_name == 'deployment_status' &&
       github.event.deployment_status.state == 'success'
-    name: Perform 2e2 tests
+    name: Perform e2e tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
