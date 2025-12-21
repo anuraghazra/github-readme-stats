@@ -1,15 +1,20 @@
 name: Test Deployment
 on:
-  deployment_status:
+  # Temporarily disabled automatic triggers; manual-only for now.
+  workflow_dispatch:
+  # Original trigger (restore to re-enable):
+  # deployment_status:
 
 permissions: read-all
 
 jobs:
   e2eTests:
-    if:
-      github.repository == 'anuraghazra/github-readme-stats' &&
-      github.event_name == 'deployment_status' &&
-      github.event.deployment_status.state == 'success'
+    # Temporarily disabled; set to the original condition to re-enable.
+    # if:
+    #   github.repository == 'anuraghazra/github-readme-stats' &&
+    #   github.event_name == 'deployment_status' &&
+    #   github.event.deployment_status.state == 'success'
+    if: false
     name: Perform e2e tests
     runs-on: ubuntu-latest
     strategy:
@@ -32,5 +37,5 @@ jobs:
 
       - name: Run end-to-end tests.
         run: npm run test:e2e
-        env:
-          VERCEL_PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
+        # env:
+        #   VERCEL_PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
