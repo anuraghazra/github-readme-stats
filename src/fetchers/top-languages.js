@@ -6,6 +6,7 @@ import { excludeRepositories } from "../common/envs.js";
 import { CustomError, MissingParamError } from "../common/error.js";
 import { wrapTextMultiline } from "../common/fmt.js";
 import { request } from "../common/http.js";
+import { getCachedData, setCachedData } from "../common/fileCache.js";
 
 /**
  * Top languages fetcher object.
@@ -67,6 +68,19 @@ const fetchTopLanguages = async (
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
+  }
+
+  // Check cache first
+  const cacheParams = {
+    username,
+    exclude_repo: exclude_repo.sort().join(","),
+    size_weight,
+    count_weight,
+  };
+  const cachedLangs = getCachedData("top-langs", cacheParams);
+  if (cachedLangs) {
+    logger.log(`Returning cached top languages for ${username}`);
+    return cachedLangs;
   }
 
   const res = await retryer(fetcher, { login: username });
@@ -154,6 +168,9 @@ const fetchTopLanguages = async (
       result[key] = repoNodes[key];
       return result;
     }, {});
+
+  // Save to cache
+  setCachedData("top-langs", cacheParams, topLangs);
 
   return topLangs;
 };

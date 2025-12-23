@@ -3,6 +3,8 @@
 import { retryer } from "../common/retryer.js";
 import { MissingParamError } from "../common/error.js";
 import { request } from "../common/http.js";
+import { getCachedData, setCachedData } from "../common/fileCache.js";
+import { logger } from "../common/log.js";
 
 const QUERY = `
 query gistInfo($gistName: String!) {
@@ -90,6 +92,15 @@ const fetchGist = async (id) => {
   if (!id) {
     throw new MissingParamError(["id"], "/api/gist?id=GIST_ID");
   }
+
+  // Check cache first
+  const cacheParams = { id };
+  const cachedGist = getCachedData("gist", cacheParams);
+  if (cachedGist) {
+    logger.log(`Returning cached gist data for ${id}`);
+    return cachedGist;
+  }
+
   const res = await retryer(fetcher, { gistName: id });
   if (res.data.errors) {
     throw new Error(res.data.errors[0].message);
@@ -98,7 +109,7 @@ const fetchGist = async (id) => {
     throw new Error("Gist not found");
   }
   const data = res.data.data.viewer.gist;
-  return {
+  const gistData = {
     name: data.files[Object.keys(data.files)[0]].name,
     nameWithOwner: `${data.owner.login}/${
       data.files[Object.keys(data.files)[0]].name
@@ -108,6 +119,11 @@ const fetchGist = async (id) => {
     starsCount: data.stargazerCount,
     forksCount: data.forks.totalCount,
   };
+
+  // Save to cache
+  setCachedData("gist", cacheParams, gistData);
+
+  return gistData;
 };
 
 export { fetchGist };
