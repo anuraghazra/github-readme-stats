@@ -18,6 +18,14 @@ router.get("/gist", gistCard);
 app.use("/api", router);
 
 const port = process.env.PORT || process.env.port || 9000;
-app.listen(port, "0.0.0.0", () => {
+const server = app.listen(port, "0.0.0.0", () => {
   console.log(`Server running on port ${port}`);
+});
+
+/* stop gracefully when requested */
+process.on("SIGTERM", () => {
+    console.log("stopping, received SIGTERM signal");
+    server.close(() => {
+        process.exit();
+    });
 });
