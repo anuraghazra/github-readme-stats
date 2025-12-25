@@ -100,22 +100,17 @@ export default async (req, res) => {
       commits_year ? parseInt(commits_year, 10) : undefined,
     );
 
-    // Use longer cache for all-time contributions since they change slowly
-    const FOUR_HOURS = 60 * 60 * 4;
-    const SIX_HOURS = 60 * 60 * 6;
-    const ONE_DAY = 60 * 60 * 24;
+    // Use appropriate cache TTL config based on whether all-time contribs is enabled
+    const cacheTTL = parseBoolean(all_time_contribs)
+      ? CACHE_TTL.ALL_TIME_STATS_CARD
+      : CACHE_TTL.STATS_CARD;
 
-    const cacheSeconds = parseBoolean(all_time_contribs)
-      ? clampValue(
-          parseInt(cache_seconds || SIX_HOURS, 10),
-          SIX_HOURS,
-          ONE_DAY,
-        )
-      : clampValue(
-          parseInt(cache_seconds || FOUR_HOURS, 10),
-          FOUR_HOURS,
-          ONE_DAY,
-        );
+    const cacheSeconds = resolveCacheSeconds({
+      requested: parseInt(cache_seconds, 10),
+      def: cacheTTL.DEFAULT,
+      min: cacheTTL.MIN,
+      max: cacheTTL.MAX,
+    });
 
     // Set cache headers BEFORE sending response
     setCacheHeaders(res, cacheSeconds);

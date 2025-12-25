@@ -51,32 +51,71 @@ const YEAR_CONTRIBUTIONS_QUERY = `
 `;
 
 /**
+ * Fetcher for contribution years query (compatible with retryer)
+ * @param {Object} variables - Query variables
+ * @param {string} token - GitHub PAT (provided by retryer)
+ * @returns {Promise<import('axios').AxiosResponse>}
+ */
+const contributionYearsFetcher = (variables, token) => {
+  return request(
+    {
+      query: CONTRIBUTION_YEARS_QUERY,
+      variables,
+    },
+    {
+      Authorization: `bearer ${token}`,
+    },
+  );
+};
+
+/**
+ * Fetcher for year contributions query (compatible with retryer)
+ * @param {Object} variables - Query variables
+ * @param {string} token - GitHub PAT (provided by retryer)
+ * @returns {Promise<import('axios').AxiosResponse>}
+ */
+const yearContributionsFetcher = (variables, token) => {
+  return request(
+    {
+      query: YEAR_CONTRIBUTIONS_QUERY,
+      variables,
+    },
+    {
+      Authorization: `bearer ${token}`,
+    },
+  );
+};
+
+/**
  * Fetches all contribution years for a user
  * @param {string} login - GitHub username
- * @param {string} token - GitHub PAT
  * @returns {Promise<number[]>} Array of years
  */
-const fetchContributionYears = async (login, token) => {
-  const fetcher = (variables) => {
-    return request(
-      {
-        query: CONTRIBUTION_YEARS_QUERY,
-        variables,
-      },
-      {
-        Authorization: `bearer ${token}`,
-      },
-    );
-  };
-
-  const res = await retryer(fetcher, { login });
+const fetchContributionYears = async (login) => {
+  const res = await retryer(contributionYearsFetcher, { login });
 
   if (res.data.errors) {
-    throw new Error("Failed to fetch contribution years");
+    const errorDetails = Array.isArray(res.data.errors)
+      ? res.data.errors
+        .map((e) => e && e.message ? e.message : JSON.stringify(e))
+        .join("; ")
+        : JSON.stringify(res.data.errors);
+
+    logger.error(
+      `Failed to fetch contribution years for login '${login}': ${errorDetails}`,
+    );
+
+    throw new CustomError(
+      `Failed to fetch contribution years: ${errorDetails}`,
+      CustomError.GRAPHQL_ERROR,
+    );
   }
 
   if (!res.data.data?.user?.contributionsCollection) {
-    throw new Error("Invalid response structure");
+    throw new CustomError(
+      "Invalid response structure",
+      CustomError.GRAPHQL_ERROR,
+    );
   }
 
   const years = res.data.data.user.contributionsCollection.contributionYears || [];
@@ -87,33 +126,26 @@ const fetchContributionYears = async (login, token) => {
  * Fetches contributions for a specific year
  * @param {string} login - GitHub username
  * @param {number} year - Year to fetch
- * @param {string} token - GitHub PAT
  * @returns {Promise<Object>} Contribution data for the year
  */
-const fetchYearContributions = async (login, year, token) => {
+const fetchYearContributions = async (login, year) => {
   const from = `${year}-01-01T00:00:00Z`;
-  const to = `${year}-12-31T23:59:59Z`;
+  const to = `${year + 1}-01-01T00:00:00Z`;
 
-  const fetcher = (variables) => {
-    return request(
-      {
-        query: YEAR_CONTRIBUTIONS_QUERY,
-        variables,
-      },
-      {
-        Authorization: `bearer ${token}`,
-      },
-    );
-  };
-
-  const res = await retryer(fetcher, { login, from, to });
+  const res = await retryer(yearContributionsFetcher, { login, from, to });
 
   if (res.data.errors) {
-    throw new Error(`Failed to fetch year ${year}`);
+    throw new CustomError(
+      `Failed to fetch year ${year}`,
+      CustomError.GRAPHQL_ERROR,
+    );
   }
 
   if (!res.data.data?.user?.contributionsCollection) {
-    throw new Error(`Invalid response for year ${year}`);
+    throw new CustomError(
+      `Invalid response for year ${year}`,
+      CustomError.GRAPHQL_ERROR,
+    );
   }
 
   return res.data.data.user.contributionsCollection;
@@ -122,26 +154,21 @@ const fetchYearContributions = async (login, year, token) => {
 /**
  * Fetches all-time contribution statistics (deduplicated by default)
  * @param {string} login - GitHub username
- * @param {string} token - GitHub PAT
  * @returns {Promise<Object>} All-time contribution stats with unique repository count
  */
-export const fetchAllTimeContributions = async (login, token) => {
+export const fetchAllTimeContributions = async (login) => {
   if (!login) {
     throw new MissingParamError(["login"]);
   }
 
-  if (!token) {
-    throw new Error("GitHub token not set");
-  }
-
-  // Fetch all contribution years
-  const years = await fetchContributionYears(login, token);
+  // Fetch all contribution years (uses retryer with token rotation)
+  const years = await fetchContributionYears(login);
 
   // Count unique repositories across ALL years
   const allRepos = new Set();
 
-  // Fetch all years in PARALLEL for speed
-  const yearDataPromises = years.map(year => fetchYearContributions(login, year, token));
+  // Fetch all years in PARALLEL for speed (each uses retryer with token rotation)
+  const yearDataPromises = years.map(year => fetchYearContributions(login, year));
   const yearDataResults = await Promise.all(yearDataPromises);
 
   yearDataResults.forEach((yearData) => {

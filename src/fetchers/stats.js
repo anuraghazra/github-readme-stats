@@ -317,15 +317,12 @@ const fetchStats = async (
         setTimeout(() => reject(new Error('Timeout')), 9000)
       );
       
-      const allTimePromise = fetchAllTimeContributions(
-        username,
-        process.env.PAT_1,
-      );
-      
+      const allTimePromise = fetchAllTimeContributions(username);
       const allTimeData = await Promise.race([allTimePromise, timeoutPromise]);
       stats.contributedTo = allTimeData.totalRepositoriesContributedTo;
     } catch (err) {
       // Silent fallback to last year's count
+      logger.log(`All-time contributions fetch failed: ${err.message}`);
       stats.contributedTo = user.repositoriesContributedTo.totalCount;
     }
   } else {
