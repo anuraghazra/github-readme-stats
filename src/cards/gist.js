@@ -20,9 +20,10 @@ import { parseEmojis } from "../common/ops.js";
  * since vercel is using v16.14.0 which does not yet support json imports without the
  * --experimental-json-modules flag.
  */
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-const languageColors = require("../common/languageColors.json"); // now works
+// import { createRequire } from "module";
+// const require = createRequire(import.meta.url);
+// const languageColors = require("../common/languageColors.json"); // now works
+import languageColors from "../common/languageColors.json";
 
 const ICON_SIZE = 16;
 const CARD_DEFAULT_WIDTH = 400;
