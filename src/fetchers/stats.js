@@ -6,7 +6,7 @@ import githubUsernameRegex from "github-username-regex";
 import { calculateRank } from "../calculateRank.js";
 import { retryer } from "../common/retryer.js";
 import { logger } from "../common/log.js";
-import { excludeRepositories, ALL_TIME_CONTRIBS } from "../common/envs.js";
+import { excludeRepositories, ALL_TIME_CONTRIBS, ALL_TIME_CONTRIBS_TIMEOUT_MS } from "../common/envs.js";
 import { CustomError, MissingParamError } from "../common/error.js";
 import { wrapTextMultiline } from "../common/fmt.js";
 import { request } from "../common/http.js";
@@ -310,19 +310,38 @@ const fetchStats = async (
   }
 
   // Handle all-time contributions if enabled (always deduplicated)
+  // Feature requires ALL_TIME_CONTRIBS env var to not be "false" (defaults to enabled)
   if (all_time_contribs && ALL_TIME_CONTRIBS) {
+    let timeoutId;
     try {
-      // Add timeout protection (9 seconds)
-      const timeoutPromise = new Promise((_, reject) => 
-        setTimeout(() => reject(new Error('Timeout')), 9000)
-      );
-      
+      // Add timeout protection to stay within Vercel's execution limits
+      const timeoutPromise = new Promise((_, reject) => {
+        timeoutId = setTimeout(
+          () => reject(new Error("All-time contributions fetch timed out")),
+          ALL_TIME_CONTRIBS_TIMEOUT_MS,
+        );
+      });
+
       const allTimePromise = fetchAllTimeContributions(username);
       const allTimeData = await Promise.race([allTimePromise, timeoutPromise]);
+
+      // Clear timeout to prevent memory leak
+      clearTimeout(timeoutId);
+
       stats.contributedTo = allTimeData.totalRepositoriesContributedTo;
+      logger.log(
+        `All-time contributions for ${username}: ${allTimeData.totalRepositoriesContributedTo} repos across ${allTimeData.yearsAnalyzed} years`,
+      );
     } catch (err) {
-      // Silent fallback to last year's count
-      logger.log(`All-time contributions fetch failed: ${err.message}`);
+      // Clear timeout on error as well
+      clearTimeout(timeoutId);
+
+      // Log the error for debugging/monitoring purposes
+      logger.error(
+        `All-time contributions fetch failed for ${username}: ${err.message}. Falling back to last year's count.`,
+      );
+
+      // Graceful fallback to last year's count
       stats.contributedTo = user.repositoriesContributedTo.totalCount;
     }
   } else {
