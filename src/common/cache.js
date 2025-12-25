@@ -37,11 +37,10 @@ const CACHE_TTL = {
     MIN: DURATIONS.TWELVE_HOURS,
     MAX: DURATIONS.TWO_DAY,
   },
-  // All-time contributions change very slowly, so use longer cache durations
   ALL_TIME_STATS_CARD: {
-    DEFAULT: DURATIONS.TWO_DAY,
-    MIN: DURATIONS.ONE_DAY,
-    MAX: DURATIONS.SIX_DAY,
+    DEFAULT: DURATIONS.ONE_DAY,
+    MIN: DURATIONS.TWELVE_HOURS,
+    MAX: DURATIONS.TWO_DAY,
   },
   TOP_LANGS_CARD: {
     DEFAULT: DURATIONS.SIX_DAY,
