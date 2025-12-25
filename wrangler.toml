@@ -1,0 +1,8 @@
+name = "github-readme-stats"
+main = "src/worker.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Add your PATs here or via `wrangler secret put`
+# PAT_1 = "..."
