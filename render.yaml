@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: github-readme-stats
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node express.js
+    healthCheckPath: /api?username=octocat
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
+      - key: PAT_1
+        sync: false
