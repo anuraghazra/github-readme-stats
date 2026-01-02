@@ -1,7 +1,7 @@
 services:
   - type: web
     name: github-readme-stats
-    env: node
+    runtime: node
     plan: free
     buildCommand: npm install
     startCommand: node express.js
