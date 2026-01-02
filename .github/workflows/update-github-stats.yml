@@ -1,0 +1,36 @@
+name: Update GitHub Stats
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # Every day at 2 AM UTC
+  workflow_dispatch:
+
+jobs:
+  generate-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install github-readme-stats
+
+      - name: Generate GitHub Stats SVG
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          npx github-readme-stats --username picoders1 --output ./github-stats.svg --show-icons --include-all-commits
+          npx github-readme-stats --username picoders1 --output ./top-langs.svg --top-langs --layout compact
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add github-stats.svg top-langs.svg
+          git commit -m "Update GitHub stats [skip ci]" || echo "No changes"
+          git push
