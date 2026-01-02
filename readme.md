@@ -91,6 +91,7 @@
   - [On Vercel](#on-vercel)
     - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
   - [On other platforms](#on-other-platforms)
+    - [Render (one-click)](#render-one-click)
   - [Available environment variables](#available-environment-variables)
   - [Keep your fork up to date](#keep-your-fork-up-to-date)
 - [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
@@ -870,6 +871,12 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 
 > [!WARNING]
 > This way of using GRS is not officially supported and was added to cater to some particular use cases where Vercel could not be used (e.g. [#2341](https://github.com/anuraghazra/github-readme-stats/discussions/2341)). The support for this method, therefore, is limited.
+
+### Render (one-click)
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/anuraghazra/github-readme-stats)
+
+This uses `render.yaml` to run `node express.js` on a Render Web Service. During setup, provide `PAT_1`.
 
 <details>
 <summary><b>:hammer_and_wrench: Step-by-step guide for deploying on other platforms</b></summary>
