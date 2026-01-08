@@ -90,6 +90,7 @@
     - [Fine-grained token](#fine-grained-token)
   - [On Vercel](#on-vercel)
     - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
+  - [On Docker](#on-docker)
   - [On other platforms](#on-other-platforms)
   - [Available environment variables](#available-environment-variables)
   - [Keep your fork up to date](#keep-your-fork-up-to-date)
@@ -864,6 +865,28 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
     ![](https://files.catbox.moe/0yclio.png)
 11. Click deploy, and you're good to go. See your domains to use the API!
 
+</details>
+
+## On Docker
+
+> [!WARNING]\
+> This way of using GRS is not officially supported. The support for this method, therefore, is limited.
+
+> [!WARNING]\
+> This method needs to have the service exposed through Your WAN IP or Domain.
+
+> [!NOTE]\
+> It is recommended to have a domain to expose the API for it to be used on a Github Profile.
+
+<details>
+<summary><b>:hammer_and_wrench: Step-by-step guide for deploying on docker</b></summary>
+
+1.  Install Docker ([docker official setup](https://docs.docker.com/engine/install/))
+2.  Clone this repo
+3.  Run `docker build -t github-readme-stats .` to build the image
+4.  Create a personal access token (PAT) [here](https://github.com/settings/tokens/new) and enable the `repo` and `user` permissions (this allows access to see private repo and user stats).
+5.  Run `docker run --name github-readme-stats -p 9000:9000 -e PAT_1=<YOUR_PERSONAL_ACCESS_TOKEN> github-readme-stats`
+6.  And is Done, now You can access the API via the docker machine address and the port 9000 (e.g. 192.168.1.100:9000)
 </details>
 
 ## On other platforms
