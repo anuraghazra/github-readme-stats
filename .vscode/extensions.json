@@ -2,6 +2,8 @@
     "recommendations": [
         "yzhang.markdown-all-in-one",
         "esbenp.prettier-vscode",
-        "dbaeumer.vscode-eslint"
+        "dbaeumer.vscode-eslint",
+        "ms-azuretools.vscode-containers",
+        "github.vscode-github-actions"
     ]
 }

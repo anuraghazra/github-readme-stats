@@ -1,8 +1,8 @@
-import { benchmarkSuite } from "jest-bench";
 import pin from "../../api/pin.js";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { jest } from "@jest/globals";
+import { it, jest } from "@jest/globals";
+import { runAndLogStats } from "./utils.js";
 
 const data_repo = {
   repository: {
@@ -32,8 +32,8 @@ const data_user = {
 const mock = new MockAdapter(axios);
 mock.onPost("https://api.github.com/graphql").reply(200, data_user);
 
-benchmarkSuite("test /api/pin", {
-  ["simple request"]: async () => {
+it("test /api/pin", async () => {
+  await runAndLogStats("test /api/pin", async () => {
     const req = {
       query: {
         username: "anuraghazra",
@@ -46,5 +46,5 @@ benchmarkSuite("test /api/pin", {
     };
 
     await pin(req, res);
-  },
+  });
 });

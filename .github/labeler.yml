@@ -3,11 +3,6 @@ themes:
       - any-glob-to-any-file:
           - themes/index.js
 
-doc-translation:
-  - changed-files:
-      - any-glob-to-any-file:
-          - docs/*
-
 card-i18n:
   - changed-files:
       - any-glob-to-any-file:
@@ -32,8 +27,8 @@ lang-card:
   - changed-files:
       - any-glob-to-any-file:
           - api/top-langs.js
-          - src/cards/top-languages-card.js
-          - src/fetchers/top-languages-fetcher.js
+          - src/cards/top-languages.js
+          - src/fetchers/top-languages.js
           - tests/fetchTopLanguages.test.js
           - tests/renderTopLanguagesCard.test.js
           - tests/top-langs.test.js
@@ -42,8 +37,8 @@ repo-card:
   - changed-files:
       - any-glob-to-any-file:
           - api/pin.js
-          - src/cards/repo-card.js
-          - src/fetchers/repo-fetcher.js
+          - src/cards/repo.js
+          - src/fetchers/repo.js
           - tests/fetchRepo.test.js
           - tests/renderRepoCard.test.js
           - tests/pin.test.js
@@ -52,8 +47,8 @@ stats-card:
   - changed-files:
       - any-glob-to-any-file:
           - api/index.js
-          - src/cards/stats-card.js
-          - src/fetchers/stats-fetcher.js
+          - src/cards/stats.js
+          - src/fetchers/stats.js
           - tests/fetchStats.test.js
           - tests/renderStatsCard.test.js
           - tests/api.test.js
@@ -62,8 +57,8 @@ wakatime-card:
   - changed-files:
       - any-glob-to-any-file:
           - api/wakatime.js
-          - src/cards/wakatime-card.js
-          - src/fetchers/wakatime-fetcher.js
+          - src/cards/wakatime.js
+          - src/fetchers/wakatime.js
           - tests/fetchWakatime.test.js
           - tests/renderWakatimeCard.test.js
           - tests/wakatime.test.js
@@ -72,8 +67,8 @@ gist-card:
   - changed-files:
       - any-glob-to-any-file:
           - api/gist.js
-          - src/cards/gist-card.js
-          - src/fetchers/gist-fetcher.js
+          - src/cards/gist.js
+          - src/fetchers/gist.js
           - tests/fetchGist.test.js
           - tests/renderGistCard.test.js
           - tests/gist.test.js

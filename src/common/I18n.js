@@ -1,3 +1,5 @@
+// @ts-check
+
 const FALLBACK_LOCALE = "en";
 
 /**
@@ -9,7 +11,7 @@ class I18n {
    *
    * @param {Object} options Options.
    * @param {string=} options.locale Locale.
-   * @param {Object} options.translations Translations.
+   * @param {any} options.translations Translations.
    */
   constructor({ locale, translations }) {
     this.locale = locale || FALLBACK_LOCALE;

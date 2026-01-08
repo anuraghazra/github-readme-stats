@@ -7,8 +7,20 @@ import gistCard from "./api/gist.js";
 import express from "express";
 
 const app = express();
-const server = app.listen(process.env.port || 9000);
-console.log("started, awaiting requests");
+const router = express.Router();
+
+router.get("/", statsCard);
+router.get("/pin", repoCard);
+router.get("/top-langs", langCard);
+router.get("/wakatime", wakatimeCard);
+router.get("/gist", gistCard);
+
+app.use("/api", router);
+
+const port = process.env.PORT || process.env.port || 9000;
+const server = app.listen(port, "0.0.0.0", () => {
+  console.log(`Server running on port ${port}`);
+});
 
 /* stop gracefully when requested */
 process.on("SIGTERM", () => {
@@ -17,9 +29,3 @@ process.on("SIGTERM", () => {
         process.exit();
     });
 });
-
-app.get("/", statsCard);
-app.get("/pin", repoCard);
-app.get("/top-langs", langCard);
-app.get("/wakatime", wakatimeCard);
-app.get("/gist", gistCard);

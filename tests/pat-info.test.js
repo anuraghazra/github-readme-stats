@@ -1,14 +1,21 @@
 /**
  * @file Tests for the status/pat-info cloud function.
  */
+
 import dotenv from "dotenv";
 dotenv.config();
 
-import { jest } from "@jest/globals";
+import {
+  afterEach,
+  beforeAll,
+  describe,
+  expect,
+  it,
+  jest,
+} from "@jest/globals";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import patInfo, { RATE_LIMIT_SECONDS } from "../api/status/pat-info.js";
-import { expect, it, describe, afterEach, beforeAll } from "@jest/globals";
 
 const mock = new MockAdapter(axios);
 
@@ -83,8 +90,11 @@ describe("Test /api/status/pat-info", () => {
     const { req, res } = faker({}, {});
     await patInfo(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith(
       JSON.stringify(
         {
           validPATs: ["PAT_2", "PAT_3", "PAT_4"],
@@ -128,8 +138,11 @@ describe("Test /api/status/pat-info", () => {
     const { req, res } = faker({}, {});
     await patInfo(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith(
       JSON.stringify(
         {
           validPATs: ["PAT_2", "PAT_3", "PAT_4"],
@@ -175,8 +188,11 @@ describe("Test /api/status/pat-info", () => {
     const { req, res } = faker({}, {});
     await patInfo(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith(
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith(
       JSON.stringify(
         {
           validPATs: ["PAT_2", "PAT_3", "PAT_4"],
@@ -214,8 +230,13 @@ describe("Test /api/status/pat-info", () => {
     const { req, res } = faker({}, {});
     await patInfo(req, res);
 
-    expect(res.setHeader).toBeCalledWith("Content-Type", "application/json");
-    expect(res.send).toBeCalledWith("Something went wrong: Network Error");
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Content-Type",
+      "application/json",
+    );
+    expect(res.send).toHaveBeenCalledWith(
+      "Something went wrong: Network Error",
+    );
   });
 
   it("should have proper cache when no error is thrown", async () => {

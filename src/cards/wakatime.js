@@ -1,13 +1,10 @@
 // @ts-check
+
 import { Card } from "../common/Card.js";
-import { createProgressNode } from "../common/createProgressNode.js";
+import { getCardColors } from "../common/color.js";
 import { I18n } from "../common/I18n.js";
-import {
-  clampValue,
-  flexLayout,
-  getCardColors,
-  lowercaseTrim,
-} from "../common/utils.js";
+import { clampValue, lowercaseTrim } from "../common/ops.js";
+import { createProgressNode, flexLayout } from "../common/render.js";
 import { wakatimeCardLocales } from "../translations.js";
 
 /** Import language colors.
@@ -20,6 +17,15 @@ import { wakatimeCardLocales } from "../translations.js";
 import { createRequire } from "module";
 const require = createRequire(import.meta.url);
 const languageColors = require("../common/languageColors.json"); // now works
+
+const DEFAULT_CARD_WIDTH = 495;
+const MIN_CARD_WIDTH = 250;
+const COMPACT_LAYOUT_MIN_WIDTH = 400;
+const DEFAULT_LINE_HEIGHT = 25;
+const PROGRESSBAR_PADDING = 130;
+const HIDDEN_PROGRESSBAR_PADDING = 170;
+const COMPACT_LAYOUT_PROGRESSBAR_PADDING = 25;
+const TOTAL_TEXT_WIDTH = 275;
 
 /**
  * Creates the no coding activity SVG node.
@@ -64,6 +70,7 @@ const formatLanguageValue = ({ display_format, lang }) => {
  * @returns {string} The compact layout language SVG node.
  */
 const createCompactLangNode = ({ lang, x, y, display_format }) => {
+  // @ts-ignore
   const color = languageColors[lang.name] || "#858585";
   const value = formatLanguageValue({ display_format, lang });
 
@@ -84,22 +91,21 @@ const createCompactLangNode = ({ lang, x, y, display_format }) => {
  * @param {WakaTimeLang[]} args.langs The language objects.
  * @param {number} args.y The y position of the language node.
  * @param {"time" | "percent"} args.display_format The display format of the language node.
+ * @param {number} args.card_width Width in px of the card.
  * @returns {string[]} The language text node items.
  */
-const createLanguageTextNode = ({ langs, y, display_format }) => {
+const createLanguageTextNode = ({ langs, y, display_format, card_width }) => {
+  const LEFT_X = 25;
+  const RIGHT_X_BASE = 230;
+  const rightOffset = (card_width - DEFAULT_CARD_WIDTH) / 2;
+  const RIGHT_X = RIGHT_X_BASE + rightOffset;
+
   return langs.map((lang, index) => {
-    if (index % 2 === 0) {
-      return createCompactLangNode({
-        lang,
-        x: 25,
-        y: 12.5 * index + y,
-        display_format,
-      });
-    }
+    const isLeft = index % 2 === 0;
     return createCompactLangNode({
       lang,
-      x: 230,
-      y: 12.5 + 12.5 * index,
+      x: isLeft ? LEFT_X : RIGHT_X,
+      y: y + DEFAULT_LINE_HEIGHT * Math.floor(index / 2),
       display_format,
     });
   });
@@ -117,6 +123,7 @@ const createLanguageTextNode = ({ langs, y, display_format }) => {
  * @param {boolean=} args.hideProgress Whether to hide the progress bar.
  * @param {string} args.progressBarColor The color of the progress bar.
  * @param {string} args.progressBarBackgroundColor The color of the progress bar background.
+ * @param {number} args.progressBarWidth The width of the progress bar.
  * @returns {string} The text SVG node.
  */
 const createTextNode = ({
@@ -128,9 +135,9 @@ const createTextNode = ({
   hideProgress,
   progressBarColor,
   progressBarBackgroundColor,
+  progressBarWidth,
 }) => {
   const staggerDelay = (index + 3) * 150;
-
   const cardProgress = hideProgress
     ? null
     : createProgressNode({
@@ -138,7 +145,7 @@ const createTextNode = ({
         y: 4,
         progress: percent,
         color: progressBarColor,
-        width: 220,
+        width: progressBarWidth,
         // @ts-ignore
         name: label,
         progressBarBackgroundColor,
@@ -150,7 +157,7 @@ const createTextNode = ({
       <text class="stat bold" y="12.5" data-testid="${id}">${label}:</text>
       <text
         class="stat"
-        x="${hideProgress ? 170 : 350}"
+        x="${hideProgress ? HIDDEN_PROGRESSBAR_PADDING : PROGRESSBAR_PADDING + progressBarWidth}"
         y="12.5"
       >${value}</text>
       ${cardProgress}
@@ -207,6 +214,24 @@ const getStyles = ({
 };
 
 /**
+ * Normalize incoming width (string or number) and clamp to minimum.
+ *
+ * @param {Object} args The function arguments.
+ * @param {WakaTimeOptions["layout"] | undefined} args.layout The incoming layout value.
+ * @param {number|undefined} args.value The incoming width value.
+ * @returns {number} The normalized width value.
+ */
+const normalizeCardWidth = ({ value, layout }) => {
+  if (value === undefined || value === null || isNaN(value)) {
+    return DEFAULT_CARD_WIDTH;
+  }
+  return Math.max(
+    layout === "compact" ? COMPACT_LAYOUT_MIN_WIDTH : MIN_CARD_WIDTH,
+    value,
+  );
+};
+
+/**
  * @typedef {import('../fetchers/types').WakaTimeData} WakaTimeData
  * @typedef {import('./types').WakaTimeOptions} WakaTimeOptions
  */
@@ -223,8 +248,9 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const {
     hide_title = false,
     hide_border = false,
+    card_width,
     hide,
-    line_height = 25,
+    line_height = DEFAULT_LINE_HEIGHT,
     title_color,
     icon_color,
     text_color,
@@ -240,6 +266,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     display_format = "time",
     disable_animations,
   } = options;
+
+  const normalizedWidth = normalizeCardWidth({ value: card_width, layout });
 
   const shouldHideLangs = Array.isArray(hide) && hide.length > 0;
   if (shouldHideLangs) {
@@ -289,21 +317,22 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
   let finalLayout = "";
 
-  let width = 440;
-
   // RENDER COMPACT LAYOUT
   if (layout === "compact") {
-    width = width + 50;
-    height = 90 + Math.round(filteredLanguages.length / 2) * 25;
+    const width = normalizedWidth - 5;
+    height =
+      90 + Math.round(filteredLanguages.length / 2) * DEFAULT_LINE_HEIGHT;
 
     // progressOffset holds the previous language's width and used to offset the next language
     // so that we can stack them one after another, like this: [--][----][---]
     let progressOffset = 0;
     const compactProgressBar = filteredLanguages
       .map((language) => {
-        // const progress = (width * lang.percent) / 100;
-        const progress = ((width - 25) * language.percent) / 100;
+        const progress =
+          ((width - COMPACT_LAYOUT_PROGRESSBAR_PADDING) * language.percent) /
+          100;
 
+        // @ts-ignore
         const languageColor = languageColors[language.name] || "#858585";
 
         const output = `
@@ -324,7 +353,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
 
     finalLayout = `
       <mask id="rect-mask">
-      <rect x="25" y="0" width="${width - 50}" height="8" fill="white" rx="5" />
+      <rect x="${COMPACT_LAYOUT_PROGRESSBAR_PADDING}" y="0" width="${width - 2 * COMPACT_LAYOUT_PROGRESSBAR_PADDING}" height="8" fill="white" rx="5" />
       </mask>
       ${compactProgressBar}
       ${
@@ -333,6 +362,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               y: 25,
               langs: filteredLanguages,
               display_format,
+              card_width: normalizedWidth,
             }).join("")
           : noCodingActivityNode({
               // @ts-ignore
@@ -360,6 +390,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               // @ts-ignore
               progressBarBackgroundColor: textColor,
               hideProgress: hide_progress,
+              progressBarWidth: normalizedWidth - TOTAL_TEXT_WIDTH,
             });
           })
         : [
@@ -392,7 +423,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   const card = new Card({
     customTitle: custom_title,
     defaultTitle: titleText,
-    width: 495,
+    width: normalizedWidth,
     height,
     border_radius,
     colors: {

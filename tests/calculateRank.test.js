@@ -1,6 +1,6 @@
+import { describe, expect, it } from "@jest/globals";
 import "@testing-library/jest-dom";
 import { calculateRank } from "../src/calculateRank.js";
-import { expect, it, describe } from "@jest/globals";
 
 describe("Test calculateRank", () => {
   it("new user gets C rank", () => {
