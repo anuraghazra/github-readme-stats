@@ -86,18 +86,22 @@ const getCardColors = ({
   const isThemeProvided = theme !== null && theme !== undefined;
 
   // @ts-ignore
-  const selectedTheme = isThemeProvided ? themes[theme] : defaultTheme;
+  // Ensure selectedTheme is always valid, fallback to defaultTheme if theme doesn't exist
+  const selectedTheme = (isThemeProvided && themes[theme]) ? themes[theme] : defaultTheme;
+
+  // Ensure selectedTheme is an object, fallback to defaultTheme if it's not
+  const safeSelectedTheme = selectedTheme && typeof selectedTheme === 'object' ? selectedTheme : defaultTheme;
 
   const defaultBorderColor =
-    "border_color" in selectedTheme
-      ? selectedTheme.border_color
+    "border_color" in safeSelectedTheme
+      ? safeSelectedTheme.border_color
       : // @ts-ignore
         defaultTheme.border_color;
 
   // get the color provided by the user else the theme color
   // finally if both colors are invalid fallback to default theme
   const titleColor = fallbackColor(
-    title_color || selectedTheme.title_color,
+    title_color || safeSelectedTheme.title_color,
     "#" + defaultTheme.title_color,
   );
 
@@ -105,19 +109,19 @@ const getCardColors = ({
   // finally if both colors are invalid we use the titleColor
   const ringColor = fallbackColor(
     // @ts-ignore
-    ring_color || selectedTheme.ring_color,
+    ring_color || safeSelectedTheme.ring_color,
     titleColor,
   );
   const iconColor = fallbackColor(
-    icon_color || selectedTheme.icon_color,
+    icon_color || safeSelectedTheme.icon_color,
     "#" + defaultTheme.icon_color,
   );
   const textColor = fallbackColor(
-    text_color || selectedTheme.text_color,
+    text_color || safeSelectedTheme.text_color,
     "#" + defaultTheme.text_color,
   );
   const bgColor = fallbackColor(
-    bg_color || selectedTheme.bg_color,
+    bg_color || safeSelectedTheme.bg_color,
     "#" + defaultTheme.bg_color,
   );
 
