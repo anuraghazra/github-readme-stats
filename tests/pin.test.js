@@ -11,7 +11,7 @@ import { CACHE_TTL, DURATIONS } from "../src/common/cache.js";
 
 const data_repo = {
   repository: {
-    username: "anuraghazra",
+    username: "lonestill",
     name: "convoychat",
     stargazers: {
       totalCount: 38000,
@@ -44,7 +44,7 @@ describe("Test /api/pin", () => {
   it("should test the request", async () => {
     const req = {
       query: {
-        username: "anuraghazra",
+        username: "lonestill",
         repo: "convoychat",
       },
     };
@@ -69,7 +69,7 @@ describe("Test /api/pin", () => {
   it("should get the query options", async () => {
     const req = {
       query: {
-        username: "anuraghazra",
+        username: "lonestill",
         repo: "convoychat",
         title_color: "fff",
         icon_color: "fff",
@@ -102,7 +102,7 @@ describe("Test /api/pin", () => {
   it("should render error card if user repo not found", async () => {
     const req = {
       query: {
-        username: "anuraghazra",
+        username: "lonestill",
         repo: "convoychat",
       },
     };
@@ -125,7 +125,7 @@ describe("Test /api/pin", () => {
   it("should render error card if org repo not found", async () => {
     const req = {
       query: {
-        username: "anuraghazra",
+        username: "lonestill",
         repo: "convoychat",
       },
     };
@@ -173,7 +173,7 @@ describe("Test /api/pin", () => {
   it("should render error card if wrong locale provided", async () => {
     const req = {
       query: {
-        username: "anuraghazra",
+        username: "lonestill",
         repo: "convoychat",
         locale: "asdf",
       },
@@ -220,7 +220,7 @@ describe("Test /api/pin", () => {
   it("should have proper cache", async () => {
     const req = {
       query: {
-        username: "anuraghazra",
+        username: "lonestill",
         repo: "convoychat",
       },
     };

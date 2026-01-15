@@ -23,20 +23,20 @@ const THEME_PR_FAIL_TEXT = ":x: Theme PR does not adhere to our guidelines.";
 const THEME_PR_SUCCESS_TEXT =
   ":heavy_check_mark: Theme PR does adhere to our guidelines.";
 const FAIL_TEXT = `
-  \rUnfortunately, your theme PR contains an error or does not adhere to our [theme guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution). Please fix the issues below, and we will review your\
+  \rUnfortunately, your theme PR contains an error or does not adhere to our [theme guidelines](https://github.com/lonestill/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution). Please fix the issues below, and we will review your\
   \r PR again. This pull request will **automatically close in 20 days** if no changes are made. After this time, you must re-open the PR for it to be reviewed.
 `;
 const THEME_CONTRIB_GUIDELINES = `
-  \rHi, thanks for the theme contribution. Please read our theme [contribution guidelines](https://github.com/anuraghazra/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).
+  \rHi, thanks for the theme contribution. Please read our theme [contribution guidelines](https://github.com/lonestill/github-readme-stats/blob/master/CONTRIBUTING.md#themes-contribution).
 
   \r> [!WARNING]\
-  \r> Keep in mind that we already have a vast collection of different themes. To keep their number manageable, we began to add only themes supported by the community. Your pull request with theme addition will be merged once we get enough positive feedback from the community in the form of thumbs up :+1: emojis (see [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935#top-themes-prs)). We expect to see at least 10-15 thumbs up before making a decision to merge your pull request into the master branch. Remember that you can also support themes of other contributors that you liked to speed up their merge.
+  \r> Keep in mind that we already have a vast collection of different themes. To keep their number manageable, we began to add only themes supported by the community. Your pull request with theme addition will be merged once we get enough positive feedback from the community in the form of thumbs up :+1: emojis (see [#1935](https://github.com/lonestill/github-readme-stats/issues/1935#top-themes-prs)). We expect to see at least 10-15 thumbs up before making a decision to merge your pull request into the master branch. Remember that you can also support themes of other contributors that you liked to speed up their merge.
 
   \r> [!WARNING]\
   \r> Please do not submit a pull request with a batch of themes, since it will be hard to judge how the community will react to each of them. We will only merge one theme per pull request. If you have several themes, please submit a separate pull request for each of them. Situations when you have several versions of the same theme (e.g. light and dark) are an exception to this rule.
 
   \r> [!NOTE]\
-  \r> Also, note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection, you can use card [customization options](https://github.com/anuraghazra/github-readme-stats#customization).
+  \r> Also, note that if this theme is exclusively for your personal use, then instead of adding it to our theme collection, you can use card [customization options](https://github.com/lonestill/github-readme-stats#customization).
 `;
 const COLOR_PROPS = {
   title_color: 6,
@@ -305,7 +305,7 @@ const getWebAimLink = (color1, color2) => {
  * @returns {string} GRS theme url.
  */
 const getGRSLink = (colors) => {
-  const url = `https://github-readme-stats.vercel.app/api?username=anuraghazra`;
+  const url = `https://github-readme-stats.vercel.app/api?username=lonestill`;
   const colorString = Object.keys(colors)
     .map((colorKey) => `${colorKey}=${colors[colorKey]}`)
     .join("&");

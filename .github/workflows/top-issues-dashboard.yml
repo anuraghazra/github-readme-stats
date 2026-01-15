@@ -29,7 +29,7 @@ permissions:
 
 jobs:
   showAndLabelTopIssues:
-    if: github.repository == 'anuraghazra/github-readme-stats'
+    if: github.repository == 'lonestill/github-readme-stats'
     name: Update top issues Dashboard.
     runs-on: ubuntu-latest
     steps:

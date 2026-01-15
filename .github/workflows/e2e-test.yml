@@ -11,7 +11,7 @@ jobs:
   e2eTests:
     # Temporarily disabled; set to the original condition to re-enable.
     # if:
-    #   github.repository == 'anuraghazra/github-readme-stats' &&
+    #   github.repository == 'lonestill/github-readme-stats' &&
     #   github.event_name == 'deployment_status' &&
     #   github.event.deployment_status.state == 'success'
     if: false

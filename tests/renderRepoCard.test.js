@@ -7,7 +7,7 @@ import { themes } from "../themes/index.js";
 
 const data_repo = {
   repository: {
-    nameWithOwner: "anuraghazra/convoychat",
+    nameWithOwner: "lonestill/convoychat",
     name: "convoychat",
     description: "Help us take over the world! React + TS + GraphQL Chat App",
     primaryLanguage: {
@@ -27,7 +27,7 @@ describe("Test renderRepoCard", () => {
     const [header] = document.getElementsByClassName("header");
 
     expect(header).toHaveTextContent("convoychat");
-    expect(header).not.toHaveTextContent("anuraghazra");
+    expect(header).not.toHaveTextContent("lonestill");
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
       "Help us take over the world! React + TS + GraphQL Chat App",
     );
@@ -47,7 +47,7 @@ describe("Test renderRepoCard", () => {
       show_owner: true,
     });
     expect(document.getElementsByClassName("header")[0]).toHaveTextContent(
-      "anuraghazra/convoychat",
+      "lonestill/convoychat",
     );
   });
 

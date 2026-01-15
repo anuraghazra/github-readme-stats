@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   triage:
-    if: github.repository == 'anuraghazra/github-readme-stats'
+    if: github.repository == 'lonestill/github-readme-stats'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/labeler@634933edcd8ababfe52f92936142cc22ac488b1b # v6.0.1
