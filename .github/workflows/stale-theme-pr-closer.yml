@@ -1,7 +1,7 @@
 name: Close stale theme pull requests that have the 'invalid' label.
 on:
   # Temporary disabled due to paused themes addition.
-  # See: https://github.com/anuraghazra/github-readme-stats/issues/3404
+  # See: https://github.com/lonestill/github-readme-stats/issues/3404
   # schedule:
   #   #        ┌───────────── minute (0 - 59)
   #   #        │ ┌───────────── hour (0 - 23)
@@ -31,7 +31,7 @@ permissions:
 
 jobs:
   closeOldThemePrs:
-    if: github.repository == 'anuraghazra/github-readme-stats'
+    if: github.repository == 'lonestill/github-readme-stats'
     name: Close stale 'invalid' theme PRs
     runs-on: ubuntu-latest
     strategy:

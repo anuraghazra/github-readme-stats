@@ -10,7 +10,7 @@ import { themes } from "../themes/index.js";
  */
 const data = {
   name: "test",
-  nameWithOwner: "anuraghazra/test",
+  nameWithOwner: "lonestill/test",
   description: "Small test repository with different Python programs.",
   language: "Python",
   starsCount: 163,
@@ -24,7 +24,7 @@ describe("test renderGistCard", () => {
     const [header] = document.getElementsByClassName("header");
 
     expect(header).toHaveTextContent("test");
-    expect(header).not.toHaveTextContent("anuraghazra");
+    expect(header).not.toHaveTextContent("lonestill");
     expect(document.getElementsByClassName("description")[0]).toHaveTextContent(
       "Small test repository with different Python programs.",
     );
@@ -42,7 +42,7 @@ describe("test renderGistCard", () => {
   it("should display username in title if show_owner is true", () => {
     document.body.innerHTML = renderGistCard(data, { show_owner: true });
     const [header] = document.getElementsByClassName("header");
-    expect(header).toHaveTextContent("anuraghazra/test");
+    expect(header).toHaveTextContent("lonestill/test");
   });
 
   it("should trim header if name is too long", () => {

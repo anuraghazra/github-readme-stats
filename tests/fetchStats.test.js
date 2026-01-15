@@ -128,7 +128,7 @@ afterEach(() => {
 
 describe("Test fetchStats", () => {
   it("should fetch correct stats", async () => {
-    let stats = await fetchStats("anuraghazra");
+    let stats = await fetchStats("lonestill");
     const rank = calculateRank({
       all_commits: false,
       commits: 100,
@@ -164,7 +164,7 @@ describe("Test fetchStats", () => {
       .onPost("https://api.github.com/graphql")
       .replyOnce(200, data_repo_zero_stars);
 
-    let stats = await fetchStats("anuraghazra");
+    let stats = await fetchStats("lonestill");
     const rank = calculateRank({
       all_commits: false,
       commits: 100,
@@ -196,17 +196,17 @@ describe("Test fetchStats", () => {
     mock.reset();
     mock.onPost("https://api.github.com/graphql").reply(200, error);
 
-    await expect(fetchStats("anuraghazra")).rejects.toThrow(
+    await expect(fetchStats("lonestill")).rejects.toThrow(
       "Could not resolve to a User with the login of 'noname'.",
     );
   });
 
   it("should fetch total commits", async () => {
     mock
-      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .onGet("https://api.github.com/search/commits?q=author:lonestill")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", true);
+    let stats = await fetchStats("lonestill", true);
     const rank = calculateRank({
       all_commits: true,
       commits: 1000,
@@ -242,20 +242,20 @@ describe("Test fetchStats", () => {
 
   it("should throw specific error when include_all_commits true and API returns error", async () => {
     mock
-      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .onGet("https://api.github.com/search/commits?q=author:lonestill")
       .reply(200, { error: "Some test error message" });
 
-    expect(fetchStats("anuraghazra", true)).rejects.toThrow(
+    expect(fetchStats("lonestill", true)).rejects.toThrow(
       new Error("Could not fetch total commits."),
     );
   });
 
   it("should exclude stars of the `test-repo-1` repository", async () => {
     mock
-      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .onGet("https://api.github.com/search/commits?q=author:lonestill")
       .reply(200, { total_count: 1000 });
 
-    let stats = await fetchStats("anuraghazra", true, ["test-repo-1"]);
+    let stats = await fetchStats("lonestill", true, ["test-repo-1"]);
     const rank = calculateRank({
       all_commits: true,
       commits: 1000,
@@ -286,7 +286,7 @@ describe("Test fetchStats", () => {
   it("should fetch two pages of stars if 'FETCH_MULTI_PAGE_STARS' env variable is set to `true`", async () => {
     process.env.FETCH_MULTI_PAGE_STARS = true;
 
-    let stats = await fetchStats("anuraghazra");
+    let stats = await fetchStats("lonestill");
     const rank = calculateRank({
       all_commits: false,
       commits: 100,
@@ -317,7 +317,7 @@ describe("Test fetchStats", () => {
   it("should fetch one page of stars if 'FETCH_MULTI_PAGE_STARS' env variable is set to `false`", async () => {
     process.env.FETCH_MULTI_PAGE_STARS = "false";
 
-    let stats = await fetchStats("anuraghazra");
+    let stats = await fetchStats("lonestill");
     const rank = calculateRank({
       all_commits: false,
       commits: 100,
@@ -348,7 +348,7 @@ describe("Test fetchStats", () => {
   it("should fetch one page of stars if 'FETCH_MULTI_PAGE_STARS' env variable is not set", async () => {
     process.env.FETCH_MULTI_PAGE_STARS = undefined;
 
-    let stats = await fetchStats("anuraghazra");
+    let stats = await fetchStats("lonestill");
     const rank = calculateRank({
       all_commits: false,
       commits: 100,
@@ -377,7 +377,7 @@ describe("Test fetchStats", () => {
   });
 
   it("should not fetch additional stats data when it not requested", async () => {
-    let stats = await fetchStats("anuraghazra");
+    let stats = await fetchStats("lonestill");
     const rank = calculateRank({
       all_commits: false,
       commits: 100,
@@ -406,7 +406,7 @@ describe("Test fetchStats", () => {
   });
 
   it("should fetch additional stats when it requested", async () => {
-    let stats = await fetchStats("anuraghazra", false, [], true, true, true);
+    let stats = await fetchStats("lonestill", false, [], true, true, true);
     const rank = calculateRank({
       all_commits: false,
       commits: 100,
@@ -436,7 +436,7 @@ describe("Test fetchStats", () => {
 
   it("should get commits of provided year", async () => {
     let stats = await fetchStats(
-      "anuraghazra",
+      "lonestill",
       false,
       [],
       false,
@@ -477,7 +477,7 @@ describe("Test fetchStats", () => {
     mock
       .onPost("https://api.github.com/graphql")
       .reply(200, data_without_pull_requests);
-    const stats = await fetchStats("anuraghazra", false, [], true);
+    const stats = await fetchStats("lonestill", false, [], true);
     const rank = calculateRank({
       all_commits: false,
       commits: 100,

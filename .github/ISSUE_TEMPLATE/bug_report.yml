@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        :warning: PLEASE FIRST READ THE FAQ [(#1770)](https://github.com/anuraghazra/github-readme-stats/discussions/1770) AND COMMON ERROR CODES [(#1772)](https://github.com/anuraghazra/github-readme-stats/issues/1772)!!!
+        :warning: PLEASE FIRST READ THE FAQ [(#1770)](https://github.com/lonestill/github-readme-stats/discussions/1770) AND COMMON ERROR CODES [(#1772)](https://github.com/lonestill/github-readme-stats/issues/1772)!!!
   - type: textarea
     attributes:
       label: Describe the bug
@@ -33,11 +33,11 @@ body:
         ---
         ### FAQ (Snippet)
 
-        Below are some questions that are found in the FAQ. The full FAQ can be found in [#1770](https://github.com/anuraghazra/github-readme-stats/discussions/1770).
+        Below are some questions that are found in the FAQ. The full FAQ can be found in [#1770](https://github.com/lonestill/github-readme-stats/discussions/1770).
 
         #### Q: My card displays an error
 
-        **Ans:** First, check the common error codes (i.e. https://github.com/anuraghazra/github-readme-stats/issues/1772) and existing issues before creating a new one. 
+        **Ans:** First, check the common error codes (i.e. https://github.com/lonestill/github-readme-stats/issues/1772) and existing issues before creating a new one. 
 
         #### Q: How to hide jupyter Notebook?
 
@@ -46,14 +46,14 @@ body:
         #### Q: I could not figure out how to deploy on my own vercel instance
 
         **Ans:** Please check:
-          - Docs: https://github.com/anuraghazra/github-readme-stats/#deploy-on-your-own-vercel-instance
+          - Docs: https://github.com/lonestill/github-readme-stats/#deploy-on-your-own-vercel-instance
           - YT tutorial by codeSTACKr: https://www.youtube.com/watch?v=n6d4KHSKqGk&feature=youtu.be&t=107
 
         #### Q: Language Card is incorrect
 
         **Ans:** Please read these issues/comments before opening any issues regarding language card stats:
-          - https://github.com/anuraghazra/github-readme-stats/issues/136#issuecomment-665164174
-          - https://github.com/anuraghazra/github-readme-stats/issues/136#issuecomment-665172181
+          - https://github.com/lonestill/github-readme-stats/issues/136#issuecomment-665164174
+          - https://github.com/lonestill/github-readme-stats/issues/136#issuecomment-665172181
 
         #### Q: How to count private stats?
 

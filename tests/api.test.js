@@ -94,7 +94,7 @@ const mock = new MockAdapter(axios);
 const faker = (query, data) => {
   const req = {
     query: {
-      username: "anuraghazra",
+      username: "lonestill",
       ...query,
     },
   };
@@ -161,7 +161,7 @@ describe("Test /api/", () => {
   it("should get the query options", async () => {
     const { req, res } = faker(
       {
-        username: "anuraghazra",
+        username: "lonestill",
         hide: "issues,prs,contribs",
         show_icons: true,
         hide_border: true,
@@ -324,7 +324,7 @@ describe("Test /api/", () => {
   it("should allow changing ring_color", async () => {
     const { req, res } = faker(
       {
-        username: "anuraghazra",
+        username: "lonestill",
         hide: "issues,prs,contribs",
         show_icons: true,
         hide_border: true,
@@ -387,11 +387,11 @@ describe("Test /api/", () => {
 
   it("should render error card when include_all_commits true and upstream API fails", async () => {
     mock
-      .onGet("https://api.github.com/search/commits?q=author:anuraghazra")
+      .onGet("https://api.github.com/search/commits?q=author:lonestill")
       .reply(200, { error: "Some test error message" });
 
     const { req, res } = faker(
-      { username: "anuraghazra", include_all_commits: true },
+      { username: "lonestill", include_all_commits: true },
       data_stats,
     );
 
