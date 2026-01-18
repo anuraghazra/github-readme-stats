@@ -16,7 +16,7 @@ inputs:
     default: 'stats.svg'
   token:
     description: 'GitHub token for API requests'
-    required: true
+    required: false
     default: ${{ github.token }}
   commit_message:
     description: 'Commit message for updating the stats card'

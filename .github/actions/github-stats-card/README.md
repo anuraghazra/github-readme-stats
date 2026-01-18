@@ -39,6 +39,7 @@ jobs:
 ```
 
 This uses the local action and generates `github-stats/stats.svg` by default.
+You do not need to pass a token manually if you use the default GitHub token.
 
 ### Stats Card
 
@@ -149,7 +150,7 @@ Use `card_type` to specify which card to generate:
 |-------|-------------|----------|---------|
 | `username` | GitHub username | Yes | - |
 | `card_type` | Card type: `stats`, `repo`, or `langs` | No | `stats` |
-| `token` | GitHub token | Yes | `${{ github.token }}` |
+| `token` | GitHub token | No (defaults to GitHub token) | `${{ github.token }}` |
 | `filename` | Output filename | No | `stats.svg` (or `langs.svg`, `repo.svg`) |
 | `commit_message` | Commit message | No | `Update stats card` |
 | `branch` | Target branch | No | Current branch |
