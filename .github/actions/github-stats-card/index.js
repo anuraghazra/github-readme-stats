@@ -353,6 +353,11 @@ async function main() {
     process.exit(1);
   }
 
+  if (!options.branch) {
+    console.error("Error: branch is required (set branch input or GITHUB_REF_NAME)");
+    process.exit(1);
+  }
+
   // Set token for API requests
   process.env.PAT_1 = options.token;
 
