@@ -364,7 +364,7 @@ async function main() {
     // Ensure output directory exists
     const repoRoot = process.env.GITHUB_WORKSPACE
       ? path.resolve(process.env.GITHUB_WORKSPACE)
-      : path.resolve(__dirname, "../../../..");
+      : path.resolve(__dirname, "../../..");
     const { outputDirPath, outputPath, outputRelative } = resolveOutputPaths(
       repoRoot,
       options.outputDir,

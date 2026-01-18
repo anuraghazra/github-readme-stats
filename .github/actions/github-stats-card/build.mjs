@@ -3,7 +3,7 @@ import { fileURLToPath } from "url";
 import { build } from "esbuild";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(__dirname, "../../../..");
+const repoRoot = path.resolve(__dirname, "../../..");
 
 await build({
   entryPoints: [path.join(__dirname, "index.js")],
