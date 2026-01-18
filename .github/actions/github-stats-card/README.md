@@ -12,6 +12,34 @@ Generate GitHub stats cards (stats, repo-pins, top-languages) as static SVG file
 
 ## Quick Start
 
+### Minimal Local Workflow
+
+Create `.github/workflows/stats-card.yml`:
+
+```yaml
+name: Update Stats Card
+
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/github-stats-card
+        with:
+          username: ${{ github.repository_owner }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+```
+
+This uses the local action and generates `github-stats/stats.svg` by default.
+
 ### Stats Card
 
 Create `.github/workflows/stats-card.yml`:
@@ -32,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: anuraghazra/github-readme-stats/.github/actions/github-stats-card@master
+      - uses: ./.github/actions/github-stats-card
         with:
           username: ${{ github.repository_owner }}
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -58,7 +86,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: anuraghazra/github-readme-stats/.github/actions/github-stats-card@master
+      - uses: ./.github/actions/github-stats-card
         with:
           username: ${{ github.repository_owner }}
           card_type: langs
@@ -85,7 +113,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: anuraghazra/github-readme-stats/.github/actions/github-stats-card@master
+      - uses: ./.github/actions/github-stats-card
         with:
           username: ${{ github.repository_owner }}
           card_type: repo
@@ -213,27 +241,29 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Stats Card
-        uses: anuraghazra/github-readme-stats/.github/actions/github-stats-card@master
+        uses: ./.github/actions/github-stats-card
         with:
           username: ${{ github.repository_owner }}
           card_type: stats
           filename: stats.svg
 
       - name: Languages Card
-        uses: anuraghazra/github-readme-stats/.github/actions/github-stats-card@master
+        uses: ./.github/actions/github-stats-card
         with:
           username: ${{ github.repository_owner }}
           card_type: langs
           filename: langs.svg
 
       - name: Repo Card
-        uses: anuraghazra/github-readme-stats/.github/actions/github-stats-card@master
+        uses: ./.github/actions/github-stats-card
         with:
           username: ${{ github.repository_owner }}
           card_type: repo
           repo: ${{ github.repository }}
           filename: repo.svg
 ```
+
+Note: each step commits and pushes. To avoid push conflicts, run all cards in a single workflow/job (as above), or use separate workflows with `concurrency` to serialize runs.
 
 ## Available Themes
 
