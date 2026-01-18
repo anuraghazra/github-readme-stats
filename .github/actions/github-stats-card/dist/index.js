@@ -10988,7 +10988,7 @@ var require_main = __commonJS({
     function _getRandomTip() {
       return TIPS[Math.floor(Math.random() * TIPS.length)];
     }
-    function parseBoolean2(value) {
+    function parseBoolean(value) {
       if (typeof value === "string") {
         return !["false", "0", "no", "off", ""].includes(value.toLowerCase());
       }
@@ -11122,8 +11122,8 @@ var require_main = __commonJS({
       return envPath[0] === "~" ? path2.join(os.homedir(), envPath.slice(1)) : envPath;
     }
     function _configVault(options) {
-      const debug = parseBoolean2(process.env.DOTENV_CONFIG_DEBUG || options && options.debug);
-      const quiet = parseBoolean2(process.env.DOTENV_CONFIG_QUIET || options && options.quiet);
+      const debug = parseBoolean(process.env.DOTENV_CONFIG_DEBUG || options && options.debug);
+      const quiet = parseBoolean(process.env.DOTENV_CONFIG_QUIET || options && options.quiet);
       if (debug || !quiet) {
         _log("Loading env from encrypted .env.vault");
       }
@@ -11142,8 +11142,8 @@ var require_main = __commonJS({
       if (options && options.processEnv != null) {
         processEnv = options.processEnv;
       }
-      let debug = parseBoolean2(processEnv.DOTENV_CONFIG_DEBUG || options && options.debug);
-      let quiet = parseBoolean2(processEnv.DOTENV_CONFIG_QUIET || options && options.quiet);
+      let debug = parseBoolean(processEnv.DOTENV_CONFIG_DEBUG || options && options.debug);
+      let quiet = parseBoolean(processEnv.DOTENV_CONFIG_QUIET || options && options.quiet);
       if (options && options.encoding) {
         encoding = options.encoding;
       } else {
@@ -11176,8 +11176,8 @@ var require_main = __commonJS({
         }
       }
       const populated = DotenvModule.populate(processEnv, parsedAll, options);
-      debug = parseBoolean2(processEnv.DOTENV_CONFIG_DEBUG || debug);
-      quiet = parseBoolean2(processEnv.DOTENV_CONFIG_QUIET || quiet);
+      debug = parseBoolean(processEnv.DOTENV_CONFIG_DEBUG || debug);
+      quiet = parseBoolean(processEnv.DOTENV_CONFIG_QUIET || quiet);
       if (debug || !quiet) {
         const keysCount = Object.keys(populated).length;
         const shortPaths = [];
@@ -11362,7 +11362,7 @@ var require_lib = __commonJS({
 import { promises as fs } from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
-import { exec } from "child_process";
+import { execFile } from "child_process";
 import { promisify } from "util";
 
 // node_modules/axios/lib/helpers/bind.js
@@ -18835,7 +18835,7 @@ var renderTopLanguages = (topLangs, options = {}) => {
 };
 
 // index.js
-var execAsync = promisify(exec);
+var execFileAsync = promisify(execFile);
 var __dirname = path.dirname(fileURLToPath(import.meta.url));
 function getOptions() {
   const {
@@ -19014,30 +19014,43 @@ async function generateCard(options) {
       return await generateStatsCard(options);
   }
 }
-async function commitAndPush(outputDir, filename, commitMessage, branch, repoRoot) {
+async function commitAndPush(outputRelative, commitMessage, branch, repoRoot) {
   try {
-    const { stdout } = await execAsync(
-      `git status --porcelain ${path.join(outputDir, filename)}`,
+    const { stdout } = await execFileAsync(
+      "git",
+      ["status", "--porcelain", "--", outputRelative],
       { cwd: repoRoot }
     );
     if (stdout.trim()) {
       console.log("Committing changes...");
-      await execAsync(`git config user.name "github-actions[bot]"`, {
+      await execFileAsync(
+        "git",
+        ["config", "user.name", "github-actions[bot]"],
+        {
+          cwd: repoRoot
+        }
+      );
+      await execFileAsync(
+        "git",
+        [
+          "config",
+          "user.email",
+          "github-actions[bot]@users.noreply.github.com"
+        ],
+        { cwd: repoRoot }
+      );
+      await execFileAsync("git", ["add", "--", outputRelative], {
         cwd: repoRoot
       });
-      await execAsync(
-        `git config user.email "github-actions[bot]@users.noreply.github.com"`,
-        { cwd: repoRoot }
-      );
-      await execAsync(
-        `git add ${path.join(outputDir, filename)}`,
-        { cwd: repoRoot }
-      );
-      await execAsync(
-        `git commit -m "${commitMessage}"`,
-        { cwd: repoRoot }
-      );
-      await execAsync(`git push origin ${branch}`, { cwd: repoRoot });
+      await execFileAsync("git", ["commit", "-m", commitMessage], {
+        cwd: repoRoot
+      });
+      await execFileAsync("git", ["check-ref-format", "--branch", branch], {
+        cwd: repoRoot
+      });
+      await execFileAsync("git", ["push", "origin", "--", branch], {
+        cwd: repoRoot
+      });
       console.log("Changes committed and pushed!");
       return true;
     } else {
@@ -19048,6 +19061,28 @@ async function commitAndPush(outputDir, filename, commitMessage, branch, repoRoo
     console.error("Error committing changes:", error.message);
     return false;
   }
+}
+function isSubPath(root, target) {
+  const relative = path.relative(root, target);
+  return !relative.startsWith("..") && !path.isAbsolute(relative);
+}
+function resolveOutputPaths(repoRoot, outputDir, filename) {
+  if (outputDir !== "github-stats") {
+    throw new Error('Output directory must be "github-stats".');
+  }
+  if (path.isAbsolute(outputDir) || path.isAbsolute(filename)) {
+    throw new Error("Output path must be relative to the repository root.");
+  }
+  const outputDirPath = path.resolve(repoRoot, outputDir);
+  const outputPath = path.resolve(outputDirPath, filename);
+  if (!isSubPath(repoRoot, outputDirPath) || !isSubPath(repoRoot, outputPath)) {
+    throw new Error("Output path must stay within the repository.");
+  }
+  const outputRelative = path.relative(repoRoot, outputPath);
+  if (!outputRelative || outputRelative.startsWith("..") || path.isAbsolute(outputRelative)) {
+    throw new Error("Output path must stay within the repository.");
+  }
+  return { outputDirPath, outputPath, outputRelative };
 }
 async function main() {
   const options = getOptions();
@@ -19063,23 +19098,32 @@ async function main() {
   try {
     const svg = await generateCard(options);
     const repoRoot = process.env.GITHUB_WORKSPACE ? path.resolve(process.env.GITHUB_WORKSPACE) : path.resolve(__dirname, "../../../..");
-    const outputDirPath = path.join(repoRoot, options.outputDir);
+    const { outputDirPath, outputPath, outputRelative } = resolveOutputPaths(
+      repoRoot,
+      options.outputDir,
+      options.filename
+    );
     await fs.mkdir(outputDirPath, { recursive: true });
-    const outputPath = path.join(outputDirPath, options.filename);
     await fs.writeFile(outputPath, svg, "utf8");
     console.log(`Card generated: ${outputPath}`);
     await commitAndPush(
-      options.outputDir,
-      options.filename,
+      outputRelative,
       options.commitMessage,
       options.branch,
       repoRoot
     );
     console.log("Done!");
-    const outputFile = path.join(options.outputDir, options.filename);
-    console.log(`::set-output name=card_type::${options.cardType}`);
-    console.log(`::set-output name=path::${outputFile}`);
-    console.log(`::set-output name=url::https://github.com/${options.repoFullName}/blob/${options.branch}/${outputFile}`);
+    const outputFile = outputRelative.split(path.sep).join("/");
+    const outputLines = [
+      `card_type=${options.cardType}`,
+      `path=${outputFile}`,
+      `url=https://github.com/${options.repoFullName}/blob/${options.branch}/${outputFile}`
+    ].join("\n") + "\n";
+    if (process.env.GITHUB_OUTPUT) {
+      await fs.appendFile(process.env.GITHUB_OUTPUT, outputLines, "utf8");
+    } else {
+      console.log(outputLines);
+    }
   } catch (error) {
     console.error("Error generating card:", error.message);
     console.error(error.stack);

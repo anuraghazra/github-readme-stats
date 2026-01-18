@@ -381,13 +381,19 @@ async function main() {
 
     console.log("Done!");
 
-    // Set outputs
+    // Set outputs using environment files (set-output is deprecated)
     const outputFile = outputRelative.split(path.sep).join("/");
-    console.log(`::set-output name=card_type::${options.cardType}`);
-    console.log(`::set-output name=path::${outputFile}`);
-    console.log(
-      `::set-output name=url::https://github.com/${options.repoFullName}/blob/${options.branch}/${outputFile}`,
-    );
+    const outputLines = [
+      `card_type=${options.cardType}`,
+      `path=${outputFile}`,
+      `url=https://github.com/${options.repoFullName}/blob/${options.branch}/${outputFile}`,
+    ].join("\n") + "\n";
+
+    if (process.env.GITHUB_OUTPUT) {
+      await fs.appendFile(process.env.GITHUB_OUTPUT, outputLines, "utf8");
+    } else {
+      console.log(outputLines);
+    }
   } catch (error) {
     console.error("Error generating card:", error.message);
     console.error(error.stack);
