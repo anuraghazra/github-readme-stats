@@ -30,7 +30,6 @@ function getOptions() {
   const {
     INPUT_USERNAME,
     INPUT_CARD_TYPE,
-    INPUT_OUTPUT,
     INPUT_FILENAME,
     INPUT_TOKEN,
     INPUT_COMMIT_MESSAGE,
@@ -71,7 +70,7 @@ function getOptions() {
   return {
     username: INPUT_USERNAME,
     cardType,
-    outputDir: INPUT_OUTPUT || "github-stats",
+    outputDir: "github-stats",
     filename: INPUT_FILENAME || getDefaultFilename(cardType),
     token: INPUT_TOKEN,
     commitMessage: INPUT_COMMIT_MESSAGE || "Update stats card",

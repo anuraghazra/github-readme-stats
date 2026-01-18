@@ -10,10 +10,6 @@ inputs:
     description: 'Type of card to generate: stats, repo, or langs'
     required: false
     default: 'stats'
-  output:
-    description: 'Output directory for generated SVG (relative to repo root)'
-    required: false
-    default: 'github-stats'
   filename:
     description: 'Output filename for the SVG'
     required: false

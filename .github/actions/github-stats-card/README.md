@@ -122,7 +122,6 @@ Use `card_type` to specify which card to generate:
 | `username` | GitHub username | Yes | - |
 | `card_type` | Card type: `stats`, `repo`, or `langs` | No | `stats` |
 | `token` | GitHub token | Yes | `${{ github.token }}` |
-| `output` | Output directory | No | `github-stats` |
 | `filename` | Output filename | No | `stats.svg` (or `langs.svg`, `repo.svg`) |
 | `commit_message` | Commit message | No | `Update stats card` |
 | `branch` | Target branch | No | Current branch |
