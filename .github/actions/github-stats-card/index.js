@@ -97,16 +97,23 @@ function getOptions() {
     // Repo card options
     repo: INPUT_REPO,
     showOwner: INPUT_SHOW_OWNER === "true",
-    descriptionLinesCount: INPUT_DESCRIPTION_LINES_COUNT
-      ? parseInt(INPUT_DESCRIPTION_LINES_COUNT, 10)
-      : undefined,
+    descriptionLinesCount: parseOptionalInt(INPUT_DESCRIPTION_LINES_COUNT),
     // Langs card options
-    langsCount: INPUT_LANGS_COUNT ? parseInt(INPUT_LANGS_COUNT, 10) : undefined,
+    langsCount: parseOptionalInt(INPUT_LANGS_COUNT),
     hideProgress: INPUT_HIDE_PROGRESS === "true",
     layout: INPUT_LAYOUT,
     statsFormat: INPUT_STATS_FORMAT,
     repoFullName: GITHUB_REPOSITORY,
   };
+}
+
+function parseOptionalInt(value) {
+  if (!value) {
+    return undefined;
+  }
+
+  const parsed = parseInt(value, 10);
+  return Number.isFinite(parsed) ? parsed : undefined;
 }
 
 /**
