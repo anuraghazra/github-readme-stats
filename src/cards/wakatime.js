@@ -1,5 +1,4 @@
 // @ts-check
-
 import { Card } from "../common/Card.js";
 import { getCardColors } from "../common/color.js";
 import { I18n } from "../common/I18n.js";
@@ -92,23 +91,46 @@ const createCompactLangNode = ({ lang, x, y, display_format }) => {
  * @param {number} args.y The y position of the language node.
  * @param {"time" | "percent"} args.display_format The display format of the language node.
  * @param {number} args.card_width Width in px of the card.
+ * @param {number} args.lineHeight The line height for spacing.
+ * @param {"horizontal" | "vertical"} args.ordering The ordering of the languages.
  * @returns {string[]} The language text node items.
  */
-const createLanguageTextNode = ({ langs, y, display_format, card_width }) => {
+const createLanguageTextNode = ({ langs = [], y, display_format, card_width = DEFAULT_CARD_WIDTH, lineHeight = DEFAULT_LINE_HEIGHT, ordering = "horizontal" }) => {
   const LEFT_X = 25;
   const RIGHT_X_BASE = 230;
   const rightOffset = (card_width - DEFAULT_CARD_WIDTH) / 2;
   const RIGHT_X = RIGHT_X_BASE + rightOffset;
 
-  return langs.map((lang, index) => {
-    const isLeft = index % 2 === 0;
-    return createCompactLangNode({
-      lang,
-      x: isLeft ? LEFT_X : RIGHT_X,
-      y: y + DEFAULT_LINE_HEIGHT * Math.floor(index / 2),
-      display_format,
+  if (ordering === "horizontal") {
+    return langs.map((lang, index) => {
+      const row = Math.floor(index / 2);
+      const col = index % 2;
+      return createCompactLangNode({
+        lang,
+        x: col === 0 ? LEFT_X : RIGHT_X,
+        y: y + lineHeight * row,
+        display_format,
+      });
     });
-  });
+  }
+
+  else if (ordering === "vertical") {
+    const halfLength = Math.ceil(langs.length / 2);
+
+    return langs.map((lang, index) => {
+      const inLeft = index < halfLength;
+      const col = inLeft ? 0 : 1;
+      const row = inLeft ? index : index - halfLength;
+      return createCompactLangNode({
+        lang,
+        x: col === 0 ? LEFT_X : RIGHT_X,
+        y: y + lineHeight * row,
+        display_format,
+      });
+    });
+  }
+
+  return [];
 };
 
 /**
@@ -265,6 +287,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
     border_color,
     display_format = "time",
     disable_animations,
+    ordering = "horizontal",
   } = options;
 
   const normalizedWidth = normalizeCardWidth({ value: card_width, layout });
@@ -321,7 +344,7 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
   if (layout === "compact") {
     const width = normalizedWidth - 5;
     height =
-      90 + Math.round(filteredLanguages.length / 2) * DEFAULT_LINE_HEIGHT;
+      90 + Math.round(filteredLanguages.length / 2) * lheight;
 
     // progressOffset holds the previous language's width and used to offset the next language
     // so that we can stack them one after another, like this: [--][----][---]
@@ -363,6 +386,8 @@ const renderWakatimeCard = (stats = {}, options = { hide: [] }) => {
               langs: filteredLanguages,
               display_format,
               card_width: normalizedWidth,
+              lineHeight: lheight,
+              ordering,
             }).join("")
           : noCodingActivityNode({
               // @ts-ignore

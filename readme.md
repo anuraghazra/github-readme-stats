@@ -656,6 +656,7 @@ You can customize the appearance and behavior of the WakaTime stats card using t
 | `api_domain` | Sets a custom API domain for the card, e.g. to use services like [Hakatime](https://github.com/mujx/hakatime) or [Wakapi](https://github.com/muety/wakapi) | string | `wakatime.com` |
 | `display_format` | Sets the WakaTime stats display format. Choose `time` to display time-based stats or `percent` to show percentages. | enum | `time` |
 | `disable_animations` | Disables all animations in the card. | boolean | `false` |
+| `ordering` | Only effective when `layout=compact`. Sets the ordering algorithm for the languages in a two-column layout. `horizontal` alternates items left and right (zig-zag pattern), while `vertical` fills the left column first, then the right column. | enum | `horizontal` |
 
 > [!WARNING]
 > Custom title should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) (i.e: `WakaTime Stats` should become `WakaTime%20Stats`). You can use [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
