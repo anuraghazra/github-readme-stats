@@ -388,11 +388,12 @@ async function main() {
 
     // Set outputs using environment files (set-output is deprecated)
     const outputFile = outputRelative.split(path.sep).join("/");
-    const outputLines = [
-      `card_type=${options.cardType}`,
-      `path=${outputFile}`,
-      `url=https://github.com/${options.repoFullName}/blob/${options.branch}/${outputFile}`,
-    ].join("\n") + "\n";
+    const outputLines =
+      [
+        `card_type=${options.cardType}`,
+        `path=${outputFile}`,
+        `url=https://github.com/${options.repoFullName}/blob/${options.branch}/${outputFile}`,
+      ].join("\n") + "\n";
 
     if (process.env.GITHUB_OUTPUT) {
       await fs.appendFile(process.env.GITHUB_OUTPUT, outputLines, "utf8");
