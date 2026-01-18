@@ -301,8 +301,7 @@ async function commitAndPush(outputRelative, commitMessage, branch, repoRoot) {
     }
   } catch (error) {
     console.error("Error committing changes:", error.message);
-    // Don't fail the action if commit fails
-    return false;
+    throw error;
   }
 }
 

@@ -19066,7 +19066,7 @@ async function commitAndPush(outputRelative, commitMessage, branch, repoRoot) {
     }
   } catch (error) {
     console.error("Error committing changes:", error.message);
-    return false;
+    throw error;
   }
 }
 function isSubPath(root, target) {
