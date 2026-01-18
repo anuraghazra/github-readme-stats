@@ -237,7 +237,7 @@ jobs:
 
 ## Available Themes
 
-See [THEMES.md](../../docs/themes.md) for all available themes.
+See [themes/README.md](../../../themes/README.md) for all available themes.
 
 Common themes: `default`, `dark`, `dracula`, `tokyonight`, `monokai`, `vue`, `nord`, `radical`
 
