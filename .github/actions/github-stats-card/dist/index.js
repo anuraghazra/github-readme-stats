@@ -18841,7 +18841,6 @@ function getOptions() {
   const {
     INPUT_USERNAME,
     INPUT_CARD_TYPE,
-    INPUT_OUTPUT,
     INPUT_FILENAME,
     INPUT_TOKEN,
     INPUT_COMMIT_MESSAGE,
@@ -18880,7 +18879,7 @@ function getOptions() {
   return {
     username: INPUT_USERNAME,
     cardType,
-    outputDir: INPUT_OUTPUT || "github-stats",
+    outputDir: "github-stats",
     filename: INPUT_FILENAME || getDefaultFilename(cardType),
     token: INPUT_TOKEN,
     commitMessage: INPUT_COMMIT_MESSAGE || "Update stats card",
@@ -19104,7 +19103,7 @@ async function main() {
   process.env.PAT_1 = options.token;
   try {
     const svg = await generateCard(options);
-    const repoRoot = process.env.GITHUB_WORKSPACE ? path.resolve(process.env.GITHUB_WORKSPACE) : path.resolve(__dirname, "../../../..");
+    const repoRoot = process.env.GITHUB_WORKSPACE ? path.resolve(process.env.GITHUB_WORKSPACE) : path.resolve(__dirname, "../../..");
     const { outputDirPath, outputPath, outputRelative } = resolveOutputPaths(
       repoRoot,
       options.outputDir,
