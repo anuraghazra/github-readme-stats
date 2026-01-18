@@ -1,0 +1,70 @@
+# Example workflow for using the GitHub Stats Card Action
+# Copy this file to your own repository's .github/workflows/ directory
+
+name: Update GitHub Stats Cards
+
+on:
+  # Run automatically every 6 hours
+  schedule:
+    - cron: '0 */6 * * *'
+  # Allow manual trigger from Actions tab
+  workflow_dispatch:
+
+# Required for committing the generated SVG
+permissions:
+  contents: write
+
+jobs:
+  # Generate all cards in a single job to avoid concurrent commits.
+  cards:
+    runs-on: ubuntu-latest
+    name: Generate All Cards
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate stats card
+        uses: ./.github/actions/github-stats-card
+        with:
+          username: ${{ github.repository_owner }}
+          card_type: stats
+          filename: stats.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+          # Optional customization
+          # theme: dracula
+          # show_icons: true
+          # hide_rank: true
+          # hide: issues,contribs
+
+      - name: Generate languages card
+        uses: ./.github/actions/github-stats-card
+        with:
+          username: ${{ github.repository_owner }}
+          card_type: langs
+          filename: langs.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+          # Optional customization
+          # layout: donut
+          # langs_count: 8
+          # hide_progress: false
+
+      - name: Generate repo card
+        uses: ./.github/actions/github-stats-card
+        with:
+          username: ${{ github.repository_owner }}
+          card_type: repo
+          repo: ${{ github.repository }}
+          filename: repo.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+          # Optional customization
+          # show_owner: true
+          # description_lines_count: 2
+
+      - name: Verify output
+        run: |
+          echo "Cards generated in github-stats/:"
+          ls -la github-stats/
