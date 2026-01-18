@@ -1,0 +1,119 @@
+name: 'GitHub Stats Card Generator'
+description: 'Generate GitHub stats cards (stats, repo-pins, top-languages) as SVG and commit to repository'
+author: 'anuraghazra'
+
+inputs:
+  username:
+    description: 'GitHub username to generate stats for'
+    required: true
+  card_type:
+    description: 'Type of card to generate: stats, repo, or langs'
+    required: false
+    default: 'stats'
+  output:
+    description: 'Output directory for generated SVG (relative to repo root)'
+    required: false
+    default: 'github-stats'
+  filename:
+    description: 'Output filename for the SVG'
+    required: false
+    default: 'stats.svg'
+  token:
+    description: 'GitHub token for API requests'
+    required: true
+    default: ${{ github.token }}
+  commit_message:
+    description: 'Commit message for updating the stats card'
+    required: false
+    default: 'Update stats card'
+  branch:
+    description: 'Branch to commit changes to'
+    required: false
+    default: ${{ github.ref_name }}
+
+  # Common options
+  theme:
+    description: 'Card theme'
+    required: false
+  hide_border:
+    description: 'Hide card border'
+    required: false
+  hide_title:
+    description: 'Hide card title'
+    required: false
+  custom_title:
+    description: 'Custom card title'
+    required: false
+  bg_color:
+    description: 'Background color'
+    required: false
+  title_color:
+    description: 'Title color'
+    required: false
+  text_color:
+    description: 'Text color'
+    required: false
+  icon_color:
+    description: 'Icon color'
+    required: false
+  border_color:
+    description: 'Border color'
+    required: false
+  border_radius:
+    description: 'Card border radius'
+    required: false
+  locale:
+    description: 'Locale for the card'
+    required: false
+  disable_animations:
+    description: 'Disable card animations'
+    required: false
+
+  # Stats card options
+  show_icons:
+    description: '[stats] Show icons'
+    required: false
+  hide_rank:
+    description: '[stats] Hide rank level'
+    required: false
+  include_all_commits:
+    description: '[stats] Include all commits'
+    required: false
+  exclude_repo:
+    description: '[stats/langs] Comma-separated list of repositories to exclude'
+    required: false
+  hide:
+    description: '[stats/langs] Comma-separated list of items to hide'
+    required: false
+  show:
+    description: '[stats] Comma-separated list of stats to show'
+    required: false
+
+  # Repo card options
+  repo:
+    description: '[repo] Repository name (e.g., "owner/repo" or just "repo-name")'
+    required: false
+  show_owner:
+    description: '[repo] Show owner in repo card title'
+    required: false
+  description_lines_count:
+    description: '[repo] Number of description lines to show (1-3)'
+    required: false
+
+  # Top languages card options
+  langs_count:
+    description: '[langs] Number of languages to show (1-20)'
+    required: false
+  hide_progress:
+    description: '[langs] Hide language progress bar'
+    required: false
+  layout:
+    description: '[langs] Layout: normal, compact, donut, donut-vertical, or pie'
+    required: false
+  stats_format:
+    description: '[langs] Stats format: percentages or bytes'
+    required: false
+
+runs:
+  using: 'node20'
+  main: 'dist/index.js'
