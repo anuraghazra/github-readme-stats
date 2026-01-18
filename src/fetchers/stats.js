@@ -10,6 +10,7 @@ import { excludeRepositories } from "../common/envs.js";
 import { CustomError, MissingParamError } from "../common/error.js";
 import { wrapTextMultiline } from "../common/fmt.js";
 import { request } from "../common/http.js";
+import { getCachedData, setCachedData } from "../common/fileCache.js";
 
 dotenv.config();
 
@@ -237,6 +238,22 @@ const fetchStats = async (
     throw new MissingParamError(["username"]);
   }
 
+  // Check cache first
+  const cacheParams = {
+    username,
+    include_all_commits,
+    exclude_repo: exclude_repo.sort().join(","),
+    include_merged_pull_requests,
+    include_discussions,
+    include_discussions_answers,
+    commits_year,
+  };
+  const cachedStats = getCachedData("stats", cacheParams);
+  if (cachedStats) {
+    logger.log(`Returning cached stats for ${username}`);
+    return cachedStats;
+  }
+
   const stats = {
     name: "",
     totalPRs: 0,
@@ -332,6 +349,9 @@ const fetchStats = async (
     stars: stats.totalStars,
     followers: user.followers.totalCount,
   });
+
+  // Save to cache
+  setCachedData("stats", cacheParams, stats);
 
   return stats;
 };
