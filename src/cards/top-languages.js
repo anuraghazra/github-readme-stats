@@ -154,6 +154,16 @@ const calculatePieLayoutHeight = (totalLangs) => {
 };
 
 /**
+ * Calculates height for the 3D layout.
+ *
+ * @param {number} totalLangs Total number of languages.
+ * @returns {number} Card height.
+ */
+const calculate3DLayoutHeight = (totalLangs) => {
+  return 200 + Math.max(totalLangs - 3, 0) * 30;
+};
+
+/**
  * Calculates the center translation needed to keep the donut chart centred.
  * @param {number} totalLangs Total number of languages.
  * @returns {number} Donut center translation.
@@ -725,6 +735,213 @@ const renderDonutLayout = (langs, width, totalLanguageSize, statsFormat) => {
 };
 
 /**
+ * Creates a 3D bar for a programming language.
+ *
+ * @param {object} props Function properties.
+ * @param {Lang} props.lang Programming language object.
+ * @param {number} props.totalSize Total size of all languages.
+ * @param {number} props.index Index of the programming language.
+ * @param {number} props.maxHeight Maximum height for bars.
+ * @param {number} props.barWidth Width of each bar.
+ * @param {number} props.x X position of the bar.
+ * @param {string} props.statsFormat Stats format.
+ * @returns {string} 3D bar SVG node.
+ */
+const create3DBar = ({
+  lang,
+  totalSize,
+  index,
+  maxHeight,
+  barWidth,
+  x,
+  statsFormat,
+}) => {
+  const percentage = (lang.size / totalSize) * 100;
+  const displayValue = getDisplayValue(lang.size, percentage, statsFormat);
+  const barHeight = (percentage / 100) * maxHeight;
+  const color = lang.color || DEFAULT_LANG_COLOR;
+
+  // 3D effect parameters
+  const depth = 15; // Depth of the 3D effect
+  const staggerDelay = (index + 3) * 150;
+
+  // Calculate 3D points for isometric projection
+  const frontTopLeft = { x, y: 150 - barHeight };
+  const frontTopRight = { x: x + barWidth, y: 150 - barHeight };
+  const frontBottomRight = { x: x + barWidth, y: 150 };
+
+  // Back face (offset by depth)
+  const backTopLeft = { x: x + depth, y: 150 - barHeight - depth };
+  const backTopRight = { x: x + barWidth + depth, y: 150 - barHeight - depth };
+  const backBottomLeft = { x: x + depth, y: 150 - depth };
+  const backBottomRight = { x: x + barWidth + depth, y: 150 - depth };
+
+  /**
+   * Lightens a color by a percentage.
+   *
+   * @param {string} color Hex color string.
+   * @param {number} percent Percentage to lighten (0-100).
+   * @returns {string} Lightened hex color.
+   */
+  const lightenColor = (color, percent) => {
+    const num = parseInt(color.replace("#", ""), 16);
+    const amt = Math.round(2.55 * percent);
+    const R = (num >> 16) + amt;
+    const G = ((num >> 8) & 0x00ff) + amt;
+    const B = (num & 0x0000ff) + amt;
+    return (
+      "#" +
+      (
+        0x1000000 +
+        (R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
+        (G < 255 ? (G < 1 ? 0 : G) : 255) * 0x100 +
+        (B < 255 ? (B < 1 ? 0 : B) : 255)
+      )
+        .toString(16)
+        .slice(1)
+    );
+  };
+
+  /**
+   * Darkens a color by a percentage.
+   *
+   * @param {string} color Hex color string.
+   * @param {number} percent Percentage to darken (0-100).
+   * @returns {string} Darkened hex color.
+   */
+  const darkenColor = (color, percent) => {
+    const num = parseInt(color.replace("#", ""), 16);
+    const amt = Math.round(2.55 * percent);
+    const R = (num >> 16) - amt;
+    const G = ((num >> 8) & 0x00ff) - amt;
+    const B = (num & 0x0000ff) - amt;
+    return (
+      "#" +
+      (
+        0x1000000 +
+        (R > 255 ? 255 : R < 0 ? 0 : R) * 0x10000 +
+        (G > 255 ? 255 : G < 0 ? 0 : G) * 0x100 +
+        (B > 255 ? 255 : B < 0 ? 0 : B)
+      )
+        .toString(16)
+        .slice(1)
+    );
+  };
+
+  // Create gradient for 3D effect
+  const gradientId = `gradient-${index}`;
+  const lightColor = lightenColor(color, 20);
+  const darkColor = darkenColor(color, 20);
+
+  return `
+    <defs>
+      <linearGradient id="${gradientId}" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:${lightColor};stop-opacity:1" />
+        <stop offset="50%" style="stop-color:${color};stop-opacity:1" />
+        <stop offset="100%" style="stop-color:${darkColor};stop-opacity:1" />
+      </linearGradient>
+    </defs>
+    
+    <g class="stagger" style="animation-delay: ${staggerDelay}ms">
+      <!-- Back face (darker) -->
+      <path d="M ${backTopLeft.x} ${backTopLeft.y} 
+               L ${backTopRight.x} ${backTopRight.y} 
+               L ${backBottomRight.x} ${backBottomRight.y} 
+               L ${backBottomLeft.x} ${backBottomLeft.y} Z" 
+            fill="${darkColor}" 
+            stroke="${darkenColor(color, 30)}" 
+            stroke-width="0.5"/>
+      
+      <!-- Right face (medium) -->
+      <path d="M ${frontTopRight.x} ${frontTopRight.y} 
+               L ${backTopRight.x} ${backTopRight.y} 
+               L ${backBottomRight.x} ${backBottomRight.y} 
+               L ${frontBottomRight.x} ${frontBottomRight.y} Z" 
+            fill="${darkenColor(color, 10)}" 
+            stroke="${darkenColor(color, 30)}" 
+            stroke-width="0.5"/>
+      
+      <!-- Top face (lighter) -->
+      <path d="M ${frontTopLeft.x} ${frontTopLeft.y} 
+               L ${frontTopRight.x} ${frontTopRight.y} 
+               L ${backTopRight.x} ${backTopRight.y} 
+               L ${backTopLeft.x} ${backTopLeft.y} Z" 
+            fill="${lightColor}" 
+            stroke="${darkenColor(color, 30)}" 
+            stroke-width="0.5"/>
+      
+      <!-- Front face (main color) -->
+      <rect x="${x}" 
+            y="${150 - barHeight}" 
+            width="${barWidth}" 
+            height="${barHeight}" 
+            fill="url(#${gradientId})" 
+            stroke="${darkenColor(color, 30)}" 
+            stroke-width="0.5"/>
+      
+      <!-- Language name and percentage -->
+      <text x="${x + barWidth / 2}" 
+            y="${150 + 15}" 
+            text-anchor="middle" 
+            class="lang-name" 
+            font-size="10">
+        ${lang.name}
+      </text>
+      <text x="${x + barWidth / 2}" 
+            y="${150 + 28}" 
+            text-anchor="middle" 
+            class="lang-name" 
+            font-size="9">
+        ${displayValue}
+      </text>
+    </g>
+  `;
+};
+
+/**
+ * Renders the 3D language card layout.
+ *
+ * @param {Lang[]} langs Array of programming languages.
+ * @param {number} width Card width.
+ * @param {number} totalLanguageSize Total size of all languages.
+ * @param {string} statsFormat Stats format.
+ * @returns {string} 3D layout card SVG object.
+ */
+const render3DLayout = (langs, width, totalLanguageSize, statsFormat) => {
+  const maxHeight = 80;
+  const depth = 15; // 3D depth offset
+  const rightPadding = 40; // Increased padding to account for 3D depth and text labels
+  const leftPadding = 20;
+
+  // Calculate available width considering 3D depth and padding
+  const availableWidth = width - leftPadding - rightPadding - depth;
+  const barWidth = Math.max(20, availableWidth / langs.length - 5);
+  const startX = leftPadding;
+
+  const bars = langs
+    .map((lang, index) => {
+      const x = startX + index * (barWidth + 5);
+      return create3DBar({
+        lang,
+        totalSize: totalLanguageSize,
+        index,
+        maxHeight,
+        barWidth,
+        x,
+        statsFormat,
+      });
+    })
+    .join("");
+
+  return `
+    <g transform="translate(0, 0)">
+      <!-- 3D bars -->
+      ${bars}
+    </g>
+  `;
+};
+
+/**
  * @typedef {import("./types").TopLangOptions} TopLangOptions
  * @typedef {TopLangOptions["layout"]} Layout
  */
@@ -763,6 +980,8 @@ const getDefaultLanguagesCountByLayout = ({ layout, hide_progress }) => {
     return DONUT_VERTICAL_LAYOUT_DEFAULT_LANGS_COUNT;
   } else if (layout === "pie") {
     return PIE_LAYOUT_DEFAULT_LANGS_COUNT;
+  } else if (layout === "3d") {
+    return 6; // 3D layout default count
   } else {
     return NORMAL_LAYOUT_DEFAULT_LANGS_COUNT;
   }
@@ -847,6 +1066,10 @@ const renderTopLanguages = (topLangs, options = {}) => {
       totalLanguageSize,
       stats_format,
     );
+  } else if (layout === "3d") {
+    height = calculate3DLayoutHeight(langs.length);
+    width = width + 30; // Add padding for 3D depth
+    finalLayout = render3DLayout(langs, width, totalLanguageSize, stats_format);
   } else if (layout === "compact" || hide_progress == true) {
     height =
       calculateCompactLayoutHeight(langs.length) + (hide_progress ? -25 : 0);
@@ -957,6 +1180,7 @@ export {
   calculateDonutLayoutHeight,
   calculateDonutVerticalLayoutHeight,
   calculatePieLayoutHeight,
+  calculate3DLayoutHeight, // Add this export
   donutCenterTranslation,
   trimTopLanguages,
   renderTopLanguages,
