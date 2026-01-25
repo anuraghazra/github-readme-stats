@@ -1,0 +1,25 @@
+diff --git a/node_modules/proxy-from-env/index.js b/node_modules/proxy-from-env/index.js
+index df75004..6791b72 100644
+--- a/node_modules/proxy-from-env/index.js
++++ b/node_modules/proxy-from-env/index.js
+@@ -1,6 +1,19 @@
+ 'use strict';
+ 
+-var parseUrl = require('url').parse;
++// Use WHATWG URL API instead of deprecated url.parse()
++function parseUrl(urlString) {
++  try {
++    var url = new URL(urlString);
++    return {
++      protocol: url.protocol,
++      host: url.host,
++      hostname: url.hostname,
++      port: url.port,
++    };
++  } catch (e) {
++    return {};
++  }
++}
+ 
+ var DEFAULT_PORTS = {
+   ftp: 21,
