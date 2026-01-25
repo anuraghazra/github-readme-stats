@@ -1,6 +1,5 @@
 // @ts-check
 
-import wrap from "word-wrap";
 import { encodeHTML } from "./html.js";
 
 /**
@@ -61,30 +60,72 @@ const formatBytes = (bytes) => {
  * @returns {string[]} Array of lines.
  */
 const wrapTextMultiline = (text, width = 59, maxLines = 3) => {
-  const fullWidthComma = "，";
-  const encoded = encodeHTML(text);
-  const isChinese = encoded.includes(fullWidthComma);
+  const wrapped = [];
+  let currentLine = "";
+  let currentWidth = 0;
 
-  let wrapped = [];
+  // Normalize newlines
+  const chars = text.replace(/\r\n/g, "\n").split("");
 
-  if (isChinese) {
-    wrapped = encoded.split(fullWidthComma); // Chinese full punctuation
-  } else {
-    wrapped = wrap(encoded, {
-      width,
-    }).split("\n"); // Split wrapped lines to get an array of lines
+  for (let i = 0; i < chars.length; i++) {
+    const char = chars[i];
+
+    if (char === "\n") {
+      if (currentLine) wrapped.push(currentLine);
+      currentLine = "";
+      currentWidth = 0;
+      continue;
+    }
+
+    const charWidth = char.charCodeAt(0) > 255 ? 2 : 1;
+
+    if (currentWidth + charWidth > width) {
+      if (char === " ") {
+        wrapped.push(currentLine);
+        currentLine = "";
+        currentWidth = 0;
+        continue;
+      }
+
+      const lastSpaceIndex = currentLine.lastIndexOf(" ");
+
+      if (lastSpaceIndex > -1) {
+        const lineContent = currentLine.substring(0, lastSpaceIndex);
+        const nextLineStart = currentLine.substring(lastSpaceIndex + 1);
+
+        wrapped.push(lineContent);
+        currentLine = nextLineStart + char;
+        
+        // Recalculate width for the new line
+        currentWidth = 0;
+        for (let j = 0; j < currentLine.length; j++) {
+           currentWidth += currentLine.charCodeAt(j) > 255 ? 2 : 1;
+        }
+      } else {
+        wrapped.push(currentLine);
+        currentLine = char;
+        currentWidth = charWidth;
+      }
+    } else {
+      currentLine += char;
+      currentWidth += charWidth;
+    }
   }
 
-  const lines = wrapped.map((line) => line.trim()).slice(0, maxLines); // Only consider maxLines lines
+  if (currentLine) {
+    wrapped.push(currentLine);
+  }
 
-  // Add "..." to the last line if the text exceeds maxLines
-  if (wrapped.length > maxLines) {
+  let lines = wrapped.map((line) => line.trim());
+  if (lines.length > maxLines) {
+    lines = lines.slice(0, maxLines);
     lines[maxLines - 1] += "...";
   }
 
   // Remove empty lines if text fits in less than maxLines lines
   const multiLineText = lines.filter(Boolean);
-  return multiLineText;
+  
+  return multiLineText.map((line) => encodeHTML(line));
 };
 
 export { kFormatter, formatBytes, wrapTextMultiline };

@@ -75,7 +75,7 @@ describe("Test renderRepoCard", () => {
 
     expect(
       document.getElementsByClassName("description")[0].children[1].textContent,
-    ).toBe("English-language pangram—a sentence that contains all");
+    ).toBe("English-language pangram—a sentence that contains all of");
 
     // Should not trim
     document.body.innerHTML = renderRepoCard({
