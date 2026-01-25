@@ -85,13 +85,13 @@
     - [Stats and top languages cards](#stats-and-top-languages-cards)
     - [Pinning repositories](#pinning-repositories)
 - [Deploy on your own](#deploy-on-your-own)
-  - [First step: get your Personal Access Token (PAT)](#first-step-get-your-personal-access-token-pat)
-    - [Classic token](#classic-token)
-    - [Fine-grained token](#fine-grained-token)
-  - [On Vercel](#on-vercel)
+  - [GitHub Actions (Recommended)](#github-actions-recommended)
+  - [Self-hosted (Vercel/Other) (Recommended)](#self-hosted-vercelother-recommended)
+    - [First step: get your Personal Access Token (PAT)](#first-step-get-your-personal-access-token-pat)
+    - [On Vercel](#on-vercel)
     - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
-  - [On other platforms](#on-other-platforms)
-  - [Available environment variables](#available-environment-variables)
+    - [On other platforms](#on-other-platforms)
+    - [Available environment variables](#available-environment-variables)
   - [Keep your fork up to date](#keep-your-fork-up-to-date)
 - [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
 </details>
@@ -99,7 +99,7 @@
 # Important Notices <!-- omit in toc -->
 
 > [!IMPORTANT]
-> Since the GitHub API only [allows 5k requests per hour per user account](https://docs.github.com/en/graphql/overview/resource-limitations), the public Vercel instance hosted on `https://github-readme-stats.vercel.app/api` could possibly hit the rate limiter (see [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)). We use caching to prevent this from happening (see https://github.com/anuraghazra/github-readme-stats#common-options). You can turn off these rate limit protections by [deploying your own Vercel instance](#deploy-on-your-own).
+> The public Vercel instance at `https://github-readme-stats.vercel.app/api` is best-effort and can be unreliable due to rate limits and traffic spikes (see [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)). We use caching to improve stability (see [common options](#common-options)), but for reliable cards we recommend [self-hosting](#deploy-on-your-own) (Vercel or other) or using the [GitHub Actions workflow](#github-actions-recommended) to generate cards in your [profile repository](https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme).
 
 <img alt="Uptime Badge" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgithub-readme-stats-git-monitoring-github-readme-stats-team.vercel.app%2Fapi%2Fstatus%2Fup%3Ftype%3Dshields">
 
@@ -796,15 +796,66 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 
 </details>
 
-# Deploy on your own
+# Deploy on your own (recommended)
 
-## First step: get your Personal Access Token (PAT)
+Because the public endpoint is [not reliable](#Important-Notices), we recommend self-deployment via GitHub Actions or your own hosted instance. GitHub Actions is the simplest setup with static SVGs stored in your repo but less frequent updates, while self-hosting takes more work and can serve fresher stats (with caching).
+
+## GitHub Actions
+
+GitHub Actions generates static SVGs and avoids per-request API calls. By default it uses `GITHUB_TOKEN` (public stats only), for private stats, set a [PAT](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) as a secret and pass it to the action instead.
+
+Create `/.github/workflows/grs.yml` in your profile repo (`USERNAME/USERNAME`):
+
+```yaml
+name: Update README cards
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate stats card
+        uses: readme-tools/github-readme-stats-action@v1
+        with:
+          card: stats
+          options: username=${{ github.repository_owner }}&show_icons=true
+          path: profile/stats.svg
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit cards
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          git add profile/*.svg
+          git commit -m "Update README cards" || exit 0
+          git push
+```
+
+Then embed from your profile README:
+
+```md
+![Stats](./profile/stats.svg)
+```
+
+See more options and examples in the [GitHub Readme Stats Action README](https://github.com/readme-tools/github-readme-stats-action#readme).
+
+## Self-hosted (Vercel/Other)
+
+Running your own instance avoids public rate limits and gives you full control over caching, tokens, and private stats.
+
+### First step: get your Personal Access Token (PAT)
 
 For deploying your own instance of GitHub Readme Stats, you will need to create a GitHub Personal Access Token (PAT). Below are the steps to create one and the scopes you need to select for both classic and fine-grained tokens.
 
 Selecting the right scopes for your token is important in case you want to display private contributions on your cards.
 
-### Classic token
+#### Classic token
 
 * Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic)](https://github.com/settings/tokens).
 * Click on `Generate new token -> Generate new token (classic)`.
@@ -813,7 +864,7 @@ Selecting the right scopes for your token is important in case you want to displ
   * read:user
 * Click on `Generate token` and copy it.
 
-### Fine-grained token
+#### Fine-grained token
 
 > [!WARNING]\
 > This limits the scope to issues in your repositories and includes only public commits.
@@ -830,7 +881,7 @@ Selecting the right scopes for your token is important in case you want to displ
   * Pull requests: read-only
 * Click on `Generate token` and copy it.
 
-## On Vercel
+### On Vercel
 
 ### :film\_projector: [Check Out Step By Step Video Tutorial By @codeSTACKr](https://youtu.be/n6d4KHSKqGk?t=107)
 
@@ -866,7 +917,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 
 </details>
 
-## On other platforms
+### On other platforms
 
 > [!WARNING]
 > This way of using GRS is not officially supported and was added to cater to some particular use cases where Vercel could not be used (e.g. [#2341](https://github.com/anuraghazra/github-readme-stats/discussions/2341)). The support for this method, therefore, is limited.
@@ -883,7 +934,7 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 5.  You're done 🎉
     </details>
 
-## Available environment variables
+### Available environment variables
 
 GitHub Readme Stats provides several environment variables that can be used to customize the behavior of your self-hosted instance. These include:
 
