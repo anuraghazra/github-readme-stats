@@ -375,6 +375,7 @@ If we don't support your language, please consider contributing! You can find mo
 | `rank_icon` | Shows alternative rank icon (i.e. `github`, `percentile` or `default`). | enum | `default` |
 | `show_icons` | Shows icons near all stats. | boolean | `false` |
 | `include_all_commits` | Count total commits instead of just the current year commits. | boolean | `false` |
+| `all_time_contribs` | Count contributions to all repositories across your entire GitHub history (deduplicated). | boolean | `false` |
 | `line_height` | Sets the line height between text. | integer | `25` |
 | `exclude_repo` | Excludes specified repositories. | string (comma-separated values) | `null` |
 | `custom_title` | Sets a custom title for the card. | string | `<username> GitHub Stats` |
@@ -705,6 +706,14 @@ You can customize the appearance and behavior of the WakaTime stats card using t
 *   Include All Commits
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&include_all_commits=true)
+
+* All Time Contributions
+
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&all_time_contribs=true)
+
+> **Note:** This feature deduplicates repositories across all years, so if you contributed to the same repository in multiple years, it only counts once. The feature may take longer to load for users with many years of activity.
+
+> **Note:** Due to GitHub API limitations, each contribution type (commits, issues, PRs, reviews) is limited to 100 repositories per year. For extremely active users, counts may be slightly underreported.
 
 *   Themes
 

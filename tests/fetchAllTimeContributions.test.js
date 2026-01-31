@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it} from "@jest/globals";
+import { afterEach, describe, expect, it } from "@jest/globals";
 import "@testing-library/jest-dom";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
@@ -188,7 +188,9 @@ describe("fetchAllTimeContributions", () => {
     });
 
     it("should handle user with no contribution years", async () => {
-      mock.onPost("https://api.github.com/graphql").reply(200, data_contribution_years_empty);
+      mock
+        .onPost("https://api.github.com/graphql")
+        .reply(200, data_contribution_years_empty);
 
       const result = await fetchAllTimeContributions("newuser");
 
@@ -281,7 +283,9 @@ describe("fetchAllTimeContributions", () => {
     });
 
     it("should throw error when contribution years query fails", async () => {
-      mock.onPost("https://api.github.com/graphql").reply(200, error_user_not_found);
+      mock
+        .onPost("https://api.github.com/graphql")
+        .reply(200, error_user_not_found);
 
       await expect(fetchAllTimeContributions("noname")).rejects.toThrow(
         "Failed to fetch contribution years",

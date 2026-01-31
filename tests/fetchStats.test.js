@@ -538,13 +538,24 @@ describe("Test fetchStats with all_time_contribs", () => {
     },
   };
 
-  beforeEach(() => {
-    // Enable ALL_TIME_CONTRIBS feature
+  let fetchStats;
+
+  beforeEach(async () => {
+    // Reset modules to pick up fresh env values
+    jest.resetModules();
+
+    // Enable ALL_TIME_CONTRIBS feature by default for these tests
     process.env.ALL_TIME_CONTRIBS = "true";
+
+    // Re-import fetchStats after resetting modules
+    const statsModule = await import("../src/fetchers/stats.js");
+    fetchStats = statsModule.fetchStats;
   });
 
   afterEach(() => {
     delete process.env.ALL_TIME_CONTRIBS;
+    delete process.env.ALL_TIME_CONTRIBS_TIMEOUT_MS;
+    mock.reset();
   });
 
   it("should fetch all-time contributions when all_time_contribs is true", async () => {
@@ -568,11 +579,10 @@ describe("Test fetchStats with all_time_contribs", () => {
       return [200, data_repo];
     });
 
-    // all_time_contribs is the 3rd parameter (after include_all_commits)
     let stats = await fetchStats(
       "anuraghazra",
       false, // include_all_commits
-      true,  // all_time_contribs
+      true, // all_time_contribs
     );
 
     // Should have deduplicated count: repo-a, repo-b, repo-c = 3 unique per year
@@ -601,7 +611,12 @@ describe("Test fetchStats with all_time_contribs", () => {
   });
 
   it("should fallback to last year's count when ALL_TIME_CONTRIBS env is false", async () => {
+    // Reset modules and set env BEFORE importing
+    jest.resetModules();
     process.env.ALL_TIME_CONTRIBS = "false";
+
+    const statsModule = await import("../src/fetchers/stats.js");
+    const fetchStatsDisabled = statsModule.fetchStats;
 
     mock.reset();
     mock.onPost("https://api.github.com/graphql").reply((cfg) => {
@@ -612,10 +627,10 @@ describe("Test fetchStats with all_time_contribs", () => {
       return [200, data_repo];
     });
 
-    let stats = await fetchStats(
+    let stats = await fetchStatsDisabled(
       "anuraghazra",
       false, // include_all_commits
-      true,  // all_time_contribs - requested but env disabled
+      true, // all_time_contribs - requested but env disabled
     );
 
     // Should fallback to last year's count since env is disabled
@@ -639,7 +654,7 @@ describe("Test fetchStats with all_time_contribs", () => {
     let stats = await fetchStats(
       "anuraghazra",
       false, // include_all_commits
-      true,  // all_time_contribs
+      true, // all_time_contribs
     );
 
     // Should fallback to last year's count
@@ -647,9 +662,13 @@ describe("Test fetchStats with all_time_contribs", () => {
   });
 
   it("should fallback when all-time contributions fetch times out", async () => {
-    // Set a very short timeout for testing
-    const originalTimeout = process.env.ALL_TIME_CONTRIBS_TIMEOUT_MS;
+    // Reset modules and set short timeout BEFORE importing
+    jest.resetModules();
+    process.env.ALL_TIME_CONTRIBS = "true";
     process.env.ALL_TIME_CONTRIBS_TIMEOUT_MS = "1"; // 1ms timeout
+
+    const statsModule = await import("../src/fetchers/stats.js");
+    const fetchStatsWithTimeout = statsModule.fetchStats;
 
     mock.reset();
     mock.onPost("https://api.github.com/graphql").reply((cfg) => {
@@ -668,20 +687,13 @@ describe("Test fetchStats with all_time_contribs", () => {
       return [200, data_repo];
     });
 
-    let stats = await fetchStats(
+    let stats = await fetchStatsWithTimeout(
       "anuraghazra",
       false, // include_all_commits
-      true,  // all_time_contribs
+      true, // all_time_contribs
     );
 
     // Should fallback to last year's count due to timeout
     expect(stats.contributedTo).toBe(61);
-
-    // Restore original timeout
-    if (originalTimeout) {
-      process.env.ALL_TIME_CONTRIBS_TIMEOUT_MS = originalTimeout;
-    } else {
-      delete process.env.ALL_TIME_CONTRIBS_TIMEOUT_MS;
-    }
   });
 });

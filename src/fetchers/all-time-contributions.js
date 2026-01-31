@@ -4,7 +4,7 @@ import { retryer } from "../common/retryer.js";
 import { MissingParamError, CustomError } from "../common/error.js";
 import { request } from "../common/http.js";
 import { logger } from "../common/log.js";
-import { ALL_TIME_CONTRIBS_CONCURRENCY } from "../common/envs.js";
+import { getAllTimeContribsConcurrency } from "../common/envs.js";
 
 /**
  * GraphQL query to fetch contribution years for a user
@@ -116,7 +116,10 @@ const fetchContributionYears = async (login) => {
   }
 
   if (!res.data.data?.user?.contributionsCollection) {
-    throw new CustomError("Invalid response structure", CustomError.GRAPHQL_ERROR);
+    throw new CustomError(
+      "Invalid response structure",
+      CustomError.GRAPHQL_ERROR,
+    );
   }
 
   const years =
@@ -202,7 +205,7 @@ export const fetchAllTimeContributions = async (login) => {
 
   // Fetch years in batches to avoid rate limiting
   // Default concurrency is 3 to balance speed and API limits
-  const concurrency = ALL_TIME_CONTRIBS_CONCURRENCY || 3;
+  const concurrency = getAllTimeContribsConcurrency();
 
   logger.log(
     `Fetching all-time contributions for ${login}: ${years.length} years with concurrency ${concurrency}`,

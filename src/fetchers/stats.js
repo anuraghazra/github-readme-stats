@@ -6,7 +6,11 @@ import githubUsernameRegex from "github-username-regex";
 import { calculateRank } from "../calculateRank.js";
 import { retryer } from "../common/retryer.js";
 import { logger } from "../common/log.js";
-import { excludeRepositories, ALL_TIME_CONTRIBS, ALL_TIME_CONTRIBS_TIMEOUT_MS } from "../common/envs.js";
+import {
+  excludeRepositories,
+  isAllTimeContribsEnabled,
+  getAllTimeContribsTimeoutMs,
+} from "../common/envs.js";
 import { CustomError, MissingParamError } from "../common/error.js";
 import { wrapTextMultiline } from "../common/fmt.js";
 import { request } from "../common/http.js";
@@ -311,14 +315,15 @@ const fetchStats = async (
 
   // Handle all-time contributions if enabled (always deduplicated)
   // Feature requires ALL_TIME_CONTRIBS env var to not be "false" (defaults to enabled)
-  if (all_time_contribs && ALL_TIME_CONTRIBS) {
+  if (all_time_contribs && isAllTimeContribsEnabled()) {
     let timeoutId = null;
     try {
       // Add timeout protection to stay within Vercel's execution limits
+      const timeoutMs = getAllTimeContribsTimeoutMs();
       const timeoutPromise = new Promise((_, reject) => {
         timeoutId = setTimeout(
           () => reject(new Error("All-time contributions fetch timed out")),
-          ALL_TIME_CONTRIBS_TIMEOUT_MS,
+          timeoutMs,
         );
       });
 
