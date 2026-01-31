@@ -375,6 +375,7 @@ If we don't support your language, please consider contributing! You can find mo
 | `rank_icon` | Shows alternative rank icon (i.e. `github`, `percentile` or `default`). | enum | `default` |
 | `show_icons` | Shows icons near all stats. | boolean | `false` |
 | `include_all_commits` | Count total commits instead of just the current year commits. | boolean | `false` |
+| `all_time_contribs` | Shows total unique repositories contributed to across your entire GitHub history. | boolean | `false` |
 | `line_height` | Sets the line height between text. | integer | `25` |
 | `exclude_repo` | Excludes specified repositories. | string (comma-separated values) | `null` |
 | `custom_title` | Sets a custom title for the card. | string | `<username> GitHub Stats` |
@@ -706,6 +707,14 @@ You can customize the appearance and behavior of the WakaTime stats card using t
 
 ![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&include_all_commits=true)
 
+* All Time Contributions
+
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&all_time_contribs=true)
+
+> **Note:** This feature shows the total unique repositories you've contributed to across your entire GitHub history (deduplicated). If you contributed to the same repository in multiple years, it only counts once. The feature may take longer to load for users with many years of activity.
+
+> **Note:** Due to GitHub API limitations, each contribution type (commits, issues, PRs, reviews) is limited to 100 repositories per year. For extremely active users, counts may be slightly underreported.
+
 *   Themes
 
 Choose from any of the [default themes](#themes)
@@ -971,6 +980,21 @@ GitHub Readme Stats provides several environment variables that can be used to c
       <td><code>FETCH_MULTI_PAGE_STARS</code></td>
       <td>Enables fetching all starred repositories for accurate star counts, especially for users with more than 100 repositories. This may increase response times and API points usage, so it is disabled on the public instance.</td>
       <td><code>true</code> or <code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>ALL_TIME_CONTRIBS</code></td>
+      <td>Enables or disables the all-time contributions feature globally. When set to <code>false</code>, the <code>all_time_contribs</code> query parameter will be ignored and fallback to last year's count. Defaults to enabled.</td>
+      <td><code>true</code> or <code>false</code></td>
+    </tr>
+    <tr>
+      <td><code>ALL_TIME_CONTRIBS_TIMEOUT_MS</code></td>
+      <td>Sets the timeout in milliseconds for fetching all-time contributions. If the fetch takes longer than this, it falls back to last year's count. Useful for staying within serverless function time limits.</td>
+      <td>Any positive integer (default: <code>9000</code>)</td>
+    </tr>
+    <tr>
+      <td><code>ALL_TIME_CONTRIBS_CONCURRENCY</code></td>
+      <td>Sets the maximum number of concurrent API requests when fetching contribution data for multiple years. Lower values reduce rate limiting risk but increase response time.</td>
+      <td>Any positive integer (default: <code>3</code>)</td>
     </tr>
   </tbody>
 </table>

@@ -6,10 +6,15 @@ import githubUsernameRegex from "github-username-regex";
 import { calculateRank } from "../calculateRank.js";
 import { retryer } from "../common/retryer.js";
 import { logger } from "../common/log.js";
-import { excludeRepositories } from "../common/envs.js";
+import {
+  excludeRepositories,
+  isAllTimeContribsEnabled,
+  getAllTimeContribsTimeoutMs,
+} from "../common/envs.js";
 import { CustomError, MissingParamError } from "../common/error.js";
 import { wrapTextMultiline } from "../common/fmt.js";
 import { request } from "../common/http.js";
+import { fetchAllTimeContributions } from "./all-time-contributions.js";
 
 dotenv.config();
 
@@ -190,7 +195,6 @@ const fetchTotalCommits = (variables, token) => {
  */
 const totalCommitsFetcher = async (username) => {
   if (!githubUsernameRegex.test(username)) {
-    logger.log("Invalid username provided.");
     throw new Error("Invalid username provided.");
   }
 
@@ -198,7 +202,6 @@ const totalCommitsFetcher = async (username) => {
   try {
     res = await retryer(fetchTotalCommits, { login: username });
   } catch (err) {
-    logger.log(err);
     throw new Error(err);
   }
 
@@ -217,6 +220,7 @@ const totalCommitsFetcher = async (username) => {
  *
  * @param {string} username GitHub username.
  * @param {boolean} include_all_commits Include all commits.
+ * @param {boolean} all_time_contribs Include all-time contributions (deduplicated).
  * @param {string[]} exclude_repo Repositories to exclude.
  * @param {boolean} include_merged_pull_requests Include merged pull requests.
  * @param {boolean} include_discussions Include discussions.
@@ -227,6 +231,7 @@ const totalCommitsFetcher = async (username) => {
 const fetchStats = async (
   username,
   include_all_commits = false,
+  all_time_contribs = false,
   exclude_repo = [],
   include_merged_pull_requests = false,
   include_discussions = false,
@@ -262,7 +267,6 @@ const fetchStats = async (
 
   // Catch GraphQL errors.
   if (res.data.errors) {
-    logger.error(res.data.errors);
     if (res.data.errors[0].type === "NOT_FOUND") {
       throw new CustomError(
         res.data.errors[0].message || "Could not fetch user.",
@@ -308,7 +312,51 @@ const fetchStats = async (
     stats.totalDiscussionsAnswered =
       user.repositoryDiscussionComments.totalCount;
   }
-  stats.contributedTo = user.repositoriesContributedTo.totalCount;
+
+  // Handle all-time contributions if enabled (always deduplicated)
+  // Feature requires ALL_TIME_CONTRIBS env var to not be "false" (defaults to enabled)
+  if (all_time_contribs && isAllTimeContribsEnabled()) {
+    let timeoutId = null;
+    try {
+      // Add timeout protection to stay within Vercel's execution limits
+      const timeoutMs = getAllTimeContribsTimeoutMs();
+      const timeoutPromise = new Promise((_, reject) => {
+        timeoutId = setTimeout(
+          () => reject(new Error("All-time contributions fetch timed out")),
+          timeoutMs,
+        );
+      });
+
+      const allTimePromise = fetchAllTimeContributions(username);
+      const allTimeData = await Promise.race([allTimePromise, timeoutPromise]);
+
+      // Clear timeout to prevent memory leak
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+      }
+
+      stats.contributedTo = allTimeData.totalRepositoriesContributedTo;
+      logger.log(
+        `All-time contributions for ${username}: ${allTimeData.totalRepositoriesContributedTo} repos across ${allTimeData.yearsAnalyzed} years`,
+      );
+    } catch (err) {
+      // Clear timeout on error as well (if it was set)
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+      }
+
+      // Log the error for debugging/monitoring purposes
+      logger.error(
+        `All-time contributions fetch failed for ${username}: ${err.message}. Falling back to last year's count.`,
+      );
+
+      // Graceful fallback to last year's count
+      stats.contributedTo = user.repositoriesContributedTo.totalCount;
+    }
+  } else {
+    // Default: last year's contributions
+    stats.contributedTo = user.repositoriesContributedTo.totalCount;
+  }
 
   // Retrieve stars while filtering out repositories to be hidden.
   const allExcludedRepos = [...exclude_repo, ...excludeRepositories];

@@ -505,3 +505,195 @@ describe("Test fetchStats", () => {
     });
   });
 });
+
+describe("Test fetchStats with all_time_contribs", () => {
+  // Mock data for all-time contributions
+  const data_contribution_years = {
+    data: {
+      user: {
+        contributionsCollection: {
+          contributionYears: [2023, 2022],
+        },
+      },
+    },
+  };
+
+  const data_year_contributions = {
+    data: {
+      user: {
+        contributionsCollection: {
+          commitContributionsByRepository: [
+            { repository: { nameWithOwner: "user/repo-a" } },
+            { repository: { nameWithOwner: "user/repo-b" } },
+          ],
+          issueContributionsByRepository: [
+            { repository: { nameWithOwner: "user/repo-c" } },
+          ],
+          pullRequestContributionsByRepository: [
+            { repository: { nameWithOwner: "user/repo-a" } }, // duplicate
+          ],
+          pullRequestReviewContributionsByRepository: [],
+        },
+      },
+    },
+  };
+
+  let fetchStats;
+
+  beforeEach(async () => {
+    // Reset modules to pick up fresh env values
+    jest.resetModules();
+
+    // Enable ALL_TIME_CONTRIBS feature by default for these tests
+    process.env.ALL_TIME_CONTRIBS = "true";
+
+    // Re-import fetchStats after resetting modules
+    const statsModule = await import("../src/fetchers/stats.js");
+    fetchStats = statsModule.fetchStats;
+  });
+
+  afterEach(() => {
+    delete process.env.ALL_TIME_CONTRIBS;
+    delete process.env.ALL_TIME_CONTRIBS_TIMEOUT_MS;
+    mock.reset();
+  });
+
+  it("should fetch all-time contributions when all_time_contribs is true", async () => {
+    mock.reset();
+    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+      const req = JSON.parse(cfg.data);
+      const query = req.query;
+
+      // Main stats query
+      if (query.includes("totalCommitContributions")) {
+        return [200, data_stats];
+      }
+      // Contribution years query
+      if (query.includes("contributionYears")) {
+        return [200, data_contribution_years];
+      }
+      // Year contributions query
+      if (query.includes("commitContributionsByRepository")) {
+        return [200, data_year_contributions];
+      }
+      return [200, data_repo];
+    });
+
+    let stats = await fetchStats(
+      "anuraghazra",
+      false, // include_all_commits
+      true, // all_time_contribs
+    );
+
+    // Should have deduplicated count: repo-a, repo-b, repo-c = 3 unique per year
+    // But same repos in both years, so still 3 unique total
+    expect(stats.contributedTo).toBe(3);
+  });
+
+  it("should use last year's count when all_time_contribs is false", async () => {
+    mock.reset();
+    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+      const req = JSON.parse(cfg.data);
+      if (req.query.includes("totalCommitContributions")) {
+        return [200, data_stats];
+      }
+      return [200, data_repo];
+    });
+
+    let stats = await fetchStats(
+      "anuraghazra",
+      false, // include_all_commits
+      false, // all_time_contribs
+    );
+
+    // Should use repositoriesContributedTo.totalCount from main stats query
+    expect(stats.contributedTo).toBe(61);
+  });
+
+  it("should fallback to last year's count when ALL_TIME_CONTRIBS env is false", async () => {
+    // Reset modules and set env BEFORE importing
+    jest.resetModules();
+    process.env.ALL_TIME_CONTRIBS = "false";
+
+    const statsModule = await import("../src/fetchers/stats.js");
+    const fetchStatsDisabled = statsModule.fetchStats;
+
+    mock.reset();
+    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+      const req = JSON.parse(cfg.data);
+      if (req.query.includes("totalCommitContributions")) {
+        return [200, data_stats];
+      }
+      return [200, data_repo];
+    });
+
+    let stats = await fetchStatsDisabled(
+      "anuraghazra",
+      false, // include_all_commits
+      true, // all_time_contribs - requested but env disabled
+    );
+
+    // Should fallback to last year's count since env is disabled
+    expect(stats.contributedTo).toBe(61);
+  });
+
+  it("should fallback gracefully when all-time contributions fetch fails", async () => {
+    mock.reset();
+    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+      const req = JSON.parse(cfg.data);
+      if (req.query.includes("totalCommitContributions")) {
+        return [200, data_stats];
+      }
+      if (req.query.includes("contributionYears")) {
+        // Return an error for the all-time contributions query
+        return [200, { errors: [{ message: "Rate limited" }] }];
+      }
+      return [200, data_repo];
+    });
+
+    let stats = await fetchStats(
+      "anuraghazra",
+      false, // include_all_commits
+      true, // all_time_contribs
+    );
+
+    // Should fallback to last year's count
+    expect(stats.contributedTo).toBe(61);
+  });
+
+  it("should fallback when all-time contributions fetch times out", async () => {
+    // Reset modules and set short timeout BEFORE importing
+    jest.resetModules();
+    process.env.ALL_TIME_CONTRIBS = "true";
+    process.env.ALL_TIME_CONTRIBS_TIMEOUT_MS = "1"; // 1ms timeout
+
+    const statsModule = await import("../src/fetchers/stats.js");
+    const fetchStatsWithTimeout = statsModule.fetchStats;
+
+    mock.reset();
+    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+      const req = JSON.parse(cfg.data);
+      if (req.query.includes("totalCommitContributions")) {
+        return [200, data_stats];
+      }
+      if (req.query.includes("contributionYears")) {
+        // Simulate slow response by returning after a delay
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve([200, data_contribution_years]);
+          }, 100); // 100ms delay, longer than 1ms timeout
+        });
+      }
+      return [200, data_repo];
+    });
+
+    let stats = await fetchStatsWithTimeout(
+      "anuraghazra",
+      false, // include_all_commits
+      true, // all_time_contribs
+    );
+
+    // Should fallback to last year's count due to timeout
+    expect(stats.contributedTo).toBe(61);
+  });
+});
