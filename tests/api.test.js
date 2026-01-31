@@ -409,4 +409,101 @@ describe("Test /api/", () => {
       "https://tiny.one/readme-stats",
     );
   });
+
+  it("should pass all_time_contribs parameter to renderStatsCard", async () => {
+    const { req, res } = faker(
+      {
+        username: "anuraghazra",
+        all_time_contribs: "true",
+      },
+      data_stats,
+    );
+
+    await api(req, res);
+
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
+      renderStatsCard(stats, {
+        ...req.query,
+        all_time_contribs: true,
+      }),
+    );
+  });
+
+  it("should use ALL_TIME_STATS_CARD cache TTL when all_time_contribs is enabled", async () => {
+    const { req, res } = faker(
+      {
+        username: "anuraghazra",
+        all_time_contribs: "true",
+      },
+      data_stats,
+    );
+
+    await api(req, res);
+
+    // Should use ALL_TIME_STATS_CARD cache settings (longer cache)
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Cache-Control",
+      expect.stringContaining(`max-age=${CACHE_TTL.ALL_TIME_STATS_CARD.DEFAULT}`),
+    );
+  });
+
+  it("should use STATS_CARD cache TTL when all_time_contribs is disabled", async () => {
+    const { req, res } = faker(
+      {
+        username: "anuraghazra",
+        all_time_contribs: "false",
+      },
+      data_stats,
+    );
+
+    await api(req, res);
+
+    // Should use standard STATS_CARD cache settings
+    expect(res.setHeader).toHaveBeenCalledWith(
+      "Cache-Control",
+      expect.stringContaining(`max-age=${CACHE_TTL.STATS_CARD.DEFAULT}`),
+    );
+  });
+
+  it("should handle commits_year parameter correctly when undefined", async () => {
+    const { req, res } = faker(
+      {
+        username: "anuraghazra",
+        // commits_year is not provided
+      },
+      data_stats,
+    );
+
+    await api(req, res);
+
+    // Should not throw error and render successfully
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
+      renderStatsCard(stats, {
+        ...req.query,
+        commits_year: undefined, // Should be undefined, not NaN
+      }),
+    );
+  });
+
+  it("should parse commits_year parameter correctly when provided", async () => {
+    const { req, res } = faker(
+      {
+        username: "anuraghazra",
+        commits_year: "2023",
+      },
+      data_stats,
+    );
+
+    await api(req, res);
+
+    expect(res.setHeader).toHaveBeenCalledWith("Content-Type", "image/svg+xml");
+    expect(res.send).toHaveBeenCalledWith(
+      renderStatsCard(stats, {
+        ...req.query,
+        commits_year: 2023,
+      }),
+    );
+  });
 });

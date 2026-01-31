@@ -312,7 +312,7 @@ const fetchStats = async (
   // Handle all-time contributions if enabled (always deduplicated)
   // Feature requires ALL_TIME_CONTRIBS env var to not be "false" (defaults to enabled)
   if (all_time_contribs && ALL_TIME_CONTRIBS) {
-    let timeoutId;
+    let timeoutId = null;
     try {
       // Add timeout protection to stay within Vercel's execution limits
       const timeoutPromise = new Promise((_, reject) => {
@@ -326,15 +326,19 @@ const fetchStats = async (
       const allTimeData = await Promise.race([allTimePromise, timeoutPromise]);
 
       // Clear timeout to prevent memory leak
-      clearTimeout(timeoutId);
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+      }
 
       stats.contributedTo = allTimeData.totalRepositoriesContributedTo;
       logger.log(
         `All-time contributions for ${username}: ${allTimeData.totalRepositoriesContributedTo} repos across ${allTimeData.yearsAnalyzed} years`,
       );
     } catch (err) {
-      // Clear timeout on error as well
-      clearTimeout(timeoutId);
+      // Clear timeout on error as well (if it was set)
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+      }
 
       // Log the error for debugging/monitoring purposes
       logger.error(

@@ -352,7 +352,7 @@ const statCardLocales = ({ name, apostrophe }) => {
       no: "Bidro til (i fjor)",
     },
     "statcard.contribs-alltime": {
-      en: "Contributed to (all time)",
+      en: "Contributed to",
       ar: "ساهم في (كل الوقت)",
       az: "Töhfə verdi (bütün vaxtlar)",
       ca: "Contribucions (tots els temps)",

@@ -505,3 +505,183 @@ describe("Test fetchStats", () => {
     });
   });
 });
+
+describe("Test fetchStats with all_time_contribs", () => {
+  // Mock data for all-time contributions
+  const data_contribution_years = {
+    data: {
+      user: {
+        contributionsCollection: {
+          contributionYears: [2023, 2022],
+        },
+      },
+    },
+  };
+
+  const data_year_contributions = {
+    data: {
+      user: {
+        contributionsCollection: {
+          commitContributionsByRepository: [
+            { repository: { nameWithOwner: "user/repo-a" } },
+            { repository: { nameWithOwner: "user/repo-b" } },
+          ],
+          issueContributionsByRepository: [
+            { repository: { nameWithOwner: "user/repo-c" } },
+          ],
+          pullRequestContributionsByRepository: [
+            { repository: { nameWithOwner: "user/repo-a" } }, // duplicate
+          ],
+          pullRequestReviewContributionsByRepository: [],
+        },
+      },
+    },
+  };
+
+  beforeEach(() => {
+    // Enable ALL_TIME_CONTRIBS feature
+    process.env.ALL_TIME_CONTRIBS = "true";
+  });
+
+  afterEach(() => {
+    delete process.env.ALL_TIME_CONTRIBS;
+  });
+
+  it("should fetch all-time contributions when all_time_contribs is true", async () => {
+    mock.reset();
+    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+      const req = JSON.parse(cfg.data);
+      const query = req.query;
+
+      // Main stats query
+      if (query.includes("totalCommitContributions")) {
+        return [200, data_stats];
+      }
+      // Contribution years query
+      if (query.includes("contributionYears")) {
+        return [200, data_contribution_years];
+      }
+      // Year contributions query
+      if (query.includes("commitContributionsByRepository")) {
+        return [200, data_year_contributions];
+      }
+      return [200, data_repo];
+    });
+
+    // all_time_contribs is the 3rd parameter (after include_all_commits)
+    let stats = await fetchStats(
+      "anuraghazra",
+      false, // include_all_commits
+      true,  // all_time_contribs
+    );
+
+    // Should have deduplicated count: repo-a, repo-b, repo-c = 3 unique per year
+    // But same repos in both years, so still 3 unique total
+    expect(stats.contributedTo).toBe(3);
+  });
+
+  it("should use last year's count when all_time_contribs is false", async () => {
+    mock.reset();
+    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+      const req = JSON.parse(cfg.data);
+      if (req.query.includes("totalCommitContributions")) {
+        return [200, data_stats];
+      }
+      return [200, data_repo];
+    });
+
+    let stats = await fetchStats(
+      "anuraghazra",
+      false, // include_all_commits
+      false, // all_time_contribs
+    );
+
+    // Should use repositoriesContributedTo.totalCount from main stats query
+    expect(stats.contributedTo).toBe(61);
+  });
+
+  it("should fallback to last year's count when ALL_TIME_CONTRIBS env is false", async () => {
+    process.env.ALL_TIME_CONTRIBS = "false";
+
+    mock.reset();
+    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+      const req = JSON.parse(cfg.data);
+      if (req.query.includes("totalCommitContributions")) {
+        return [200, data_stats];
+      }
+      return [200, data_repo];
+    });
+
+    let stats = await fetchStats(
+      "anuraghazra",
+      false, // include_all_commits
+      true,  // all_time_contribs - requested but env disabled
+    );
+
+    // Should fallback to last year's count since env is disabled
+    expect(stats.contributedTo).toBe(61);
+  });
+
+  it("should fallback gracefully when all-time contributions fetch fails", async () => {
+    mock.reset();
+    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+      const req = JSON.parse(cfg.data);
+      if (req.query.includes("totalCommitContributions")) {
+        return [200, data_stats];
+      }
+      if (req.query.includes("contributionYears")) {
+        // Return an error for the all-time contributions query
+        return [200, { errors: [{ message: "Rate limited" }] }];
+      }
+      return [200, data_repo];
+    });
+
+    let stats = await fetchStats(
+      "anuraghazra",
+      false, // include_all_commits
+      true,  // all_time_contribs
+    );
+
+    // Should fallback to last year's count
+    expect(stats.contributedTo).toBe(61);
+  });
+
+  it("should fallback when all-time contributions fetch times out", async () => {
+    // Set a very short timeout for testing
+    const originalTimeout = process.env.ALL_TIME_CONTRIBS_TIMEOUT_MS;
+    process.env.ALL_TIME_CONTRIBS_TIMEOUT_MS = "1"; // 1ms timeout
+
+    mock.reset();
+    mock.onPost("https://api.github.com/graphql").reply((cfg) => {
+      const req = JSON.parse(cfg.data);
+      if (req.query.includes("totalCommitContributions")) {
+        return [200, data_stats];
+      }
+      if (req.query.includes("contributionYears")) {
+        // Simulate slow response by returning after a delay
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve([200, data_contribution_years]);
+          }, 100); // 100ms delay, longer than 1ms timeout
+        });
+      }
+      return [200, data_repo];
+    });
+
+    let stats = await fetchStats(
+      "anuraghazra",
+      false, // include_all_commits
+      true,  // all_time_contribs
+    );
+
+    // Should fallback to last year's count due to timeout
+    expect(stats.contributedTo).toBe(61);
+
+    // Restore original timeout
+    if (originalTimeout) {
+      process.env.ALL_TIME_CONTRIBS_TIMEOUT_MS = originalTimeout;
+    } else {
+      delete process.env.ALL_TIME_CONTRIBS_TIMEOUT_MS;
+    }
+  });
+});
