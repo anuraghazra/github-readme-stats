@@ -400,24 +400,28 @@ export const themes = {
     icon_color: "8839ef",
     text_color: "4c4f69",
     bg_color: "eff1f5",
+    border_color: "9ca0b0",
   },
   catppuccin_frappe: {
     title_color: "81c8be",
     icon_color: "ca9ee6",
     text_color: "c6d0f5",
     bg_color: "303446",
+    border_color: "737994",
   },
   catppuccin_macchiato: {
     title_color: "8bd5ca",
     icon_color: "c6a0f6",
     text_color: "cad3f5",
     bg_color: "24273a",
+    border_color: "6e738d",
   },
   catppuccin_mocha: {
     title_color: "94e2d5",
     icon_color: "cba6f7",
     text_color: "cdd6f4",
     bg_color: "1e1e2e",
+    border_color: "6c7086",
   },
   date_night: {
     title_color: "DA7885",
