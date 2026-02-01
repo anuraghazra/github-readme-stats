@@ -401,6 +401,18 @@ export const themes = {
     text_color: "4c4f69",
     bg_color: "eff1f5",
   },
+  catppuccin_frappe: {
+    title_color: "81c8be",
+    icon_color: "ca9ee6",
+    text_color: "c6d0f5",
+    bg_color: "303446",
+  },
+  catppuccin_macchiato: {
+    title_color: "8bd5ca",
+    icon_color: "c6a0f6",
+    text_color: "cad3f5",
+    bg_color: "24273a",
+  },
   catppuccin_mocha: {
     title_color: "94e2d5",
     icon_color: "cba6f7",
