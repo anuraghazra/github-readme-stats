@@ -1,0 +1,37 @@
+name: Update GitHub Stats
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Runs every day at midnight UTC
+  workflow_dispatch:     # Allows manual run
+
+jobs:
+  generate-stats:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: |
+          npm install -g github-readme-stats
+
+      - name: Generate GitHub Stats
+        run: |
+          mkdir -p stats
+          github-readme-stats --username Yeasin84 --theme radical --show-icons true --hide-border true --output ./stats/stats.svg
+          github-readme-stats --username Yeasin84 --theme radical --hide-border true --layout compact --top-langs true --output ./stats/top-langs.svg
+
+      - name: Commit and Push
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git add stats/
+          git commit -m "Update GitHub Stats [skip ci]" || echo "No changes to commit"
+          git push
