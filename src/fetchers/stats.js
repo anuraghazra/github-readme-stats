@@ -137,7 +137,7 @@ const statsFetcher = async ({
     }
 
     // Store stats data.
-    const repoNodes = res.data.data.user.repositories.nodes;
+    const repoNodes = res.data?.data?.user?.repositories?.nodes || [];
     if (stats) {
       stats.data.data.user.repositories.nodes.push(...repoNodes);
     } else {
@@ -152,7 +152,7 @@ const statsFetcher = async ({
       process.env.FETCH_MULTI_PAGE_STARS === "true" &&
       repoNodes.length === repoNodesWithStars.length &&
       res.data.data.user.repositories.pageInfo.hasNextPage;
-    endCursor = res.data.data.user.repositories.pageInfo.endCursor;
+    endCursor = res.data?.data?.user?.repositories?.pageInfo?.endCursor || null;
   }
 
   return stats;
