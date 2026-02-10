@@ -16,6 +16,12 @@ import { isValidHexColor, isValidGradient } from "../src/common/color.js";
 import { themes } from "../themes/index.js";
 import { getGithubToken, getRepoInfo } from "./helpers.js";
 
+const getColorPairs = (colors) => ({
+  title_color: [colors.title_color, colors.bg_color],
+  icon_color: [colors.icon_color, colors.bg_color],
+  text_color: [colors.text_color, colors.bg_color],
+});
+
 const COMMENTER = "github-actions[bot]";
 
 const COMMENT_TITLE = "Automated Theme Preview";
@@ -541,11 +547,9 @@ export const run = async () => {
       const bgColor = colors.bg_color;
       const borderColor = colors.border_color;
       const url = getGRSLink(colors);
-      const colorPairs = {
-        title_color: [titleColor, bgColor],
-        icon_color: [iconColor, bgColor],
-        text_color: [textColor, bgColor],
-      };
+
+      const colorPairs = getColorPairs(colors);
+
       Object.keys(colorPairs).forEach((item) => {
         let color1 = colorPairs[item][0];
         let color2 = colorPairs[item][1];
