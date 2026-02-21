@@ -136,6 +136,11 @@ const statsFetcher = async ({
       return res;
     }
 
+    // Bail out early if user is null (e.g. private/non-existent user without a GraphQL error).
+    if (!res.data.data?.user) {
+      return res;
+    }
+
     // Store stats data.
     const repoNodes = res.data.data.user.repositories.nodes;
     if (stats) {
@@ -281,7 +286,11 @@ const fetchStats = async (
     );
   }
 
-  const user = res.data.data.user;
+  const user = res.data.data?.user;
+
+  if (!user) {
+    throw new CustomError("Could not fetch user.", CustomError.USER_NOT_FOUND);
+  }
 
   stats.name = user.name || user.login;
 

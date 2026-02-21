@@ -91,6 +91,10 @@ const fetchTopLanguages = async (
     );
   }
 
+  if (!res.data.data?.user) {
+    throw new CustomError("Could not fetch user.", CustomError.USER_NOT_FOUND);
+  }
+
   let repoNodes = res.data.data.user.repositories.nodes;
   /** @type {Record<string, boolean>} */
   let repoToHide = {};
