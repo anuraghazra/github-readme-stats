@@ -98,8 +98,8 @@
 
 # Important Notices <!-- omit in toc -->
 
-> [!IMPORTANT]
-> The public Vercel instance at `https://github-readme-stats.vercel.app/api` is best-effort and can be unreliable due to rate limits and traffic spikes (see [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)). We use caching to improve stability (see [common options](#common-options)), but for reliable cards we recommend [self-hosting](#deploy-on-your-own) (Vercel or other) or using the [GitHub Actions workflow](#github-actions-recommended) to generate cards in your [profile repository](https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme).
+> [!WARNING]
+> The public Vercel instance at `https://github-readme-stats.vercel.app` is currently **paused** and returns a `503 DEPLOYMENT_PAUSED` error (see [#3851](https://github.com/anuraghazra/github-readme-stats/issues/3851) and [#4737](https://github.com/anuraghazra/github-readme-stats/issues/4737)). All READMEs relying on the default hosted endpoint will show broken images. Please [self-host your own instance](#deploy-on-your-own) (Vercel or other) or use the [GitHub Actions workflow](#github-actions-recommended) to generate cards in your [profile repository](https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme).
 
 <img alt="Uptime Badge" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgithub-readme-stats-git-monitoring-github-readme-stats-team.vercel.app%2Fapi%2Fstatus%2Fup%3Ftype%3Dshields">
 
