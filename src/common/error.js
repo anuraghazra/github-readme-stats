@@ -10,7 +10,7 @@ const TRY_AGAIN_LATER = "Please try again later";
  */
 const SECONDARY_ERROR_MESSAGES = {
   MAX_RETRY:
-    "You can deploy own instance or wait until public will be no longer limited",
+    "Please use github-readme-stats-action or deploy your own instance",
   NO_TOKENS:
     "Please add an env variable called PAT_1 with your GitHub API token in vercel",
   USER_NOT_FOUND: "Make sure the provided username is not an organization",
