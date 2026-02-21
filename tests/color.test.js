@@ -55,6 +55,20 @@ describe("Test color.js", () => {
     });
   });
 
+  it("getCardColors: should fallback to default theme if an invalid theme is provided", () => {
+    let colors = getCardColors({
+      theme: "non_existent_theme",
+    });
+    expect(colors).toStrictEqual({
+      titleColor: "#2f80ed",
+      textColor: "#434d58",
+      ringColor: "#2f80ed",
+      iconColor: "#4c71f2",
+      bgColor: "#fffefe",
+      borderColor: "#e4e2e2",
+    });
+  });
+
   it("getCardColors: should return ring color equal to title color if not ring color is defined", () => {
     let colors = getCardColors({
       title_color: "f00",

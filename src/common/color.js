@@ -86,7 +86,8 @@ const getCardColors = ({
   const isThemeProvided = theme !== null && theme !== undefined;
 
   // @ts-ignore
-  const selectedTheme = isThemeProvided ? themes[theme] : defaultTheme;
+  const selectedTheme =
+    (isThemeProvided ? themes[theme] : defaultTheme) ?? defaultTheme;
 
   const defaultBorderColor =
     "border_color" in selectedTheme
