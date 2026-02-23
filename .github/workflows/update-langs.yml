@@ -1,6 +1,5 @@
 name: Update supported languages
 on:
-  workflow_dispatch:
   schedule:
     #        ┌───────────── minute (0 - 59)
     #        │ ┌───────────── hour (0 - 23)
@@ -29,9 +28,7 @@ permissions:
 
 jobs:
   updateLanguages:
-    if:
-      github.repository == 'anuraghazra/github-readme-stats' ||
-      github.repository == 'stats-organization/github-readme-stats'
+    if: github.repository == 'anuraghazra/github-readme-stats'
     name: Update supported languages
     runs-on: ubuntu-latest
     strategy:

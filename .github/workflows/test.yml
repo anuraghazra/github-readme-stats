@@ -1,14 +1,11 @@
 name: Test
 on:
-  workflow_dispatch:
   push:
     branches:
       - master
-      - next
   pull_request:
     branches:
       - master
-      - next
 
 permissions: read-all
 

@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - next
     paths:
       - "themes/index.js"
   workflow_dispatch:
