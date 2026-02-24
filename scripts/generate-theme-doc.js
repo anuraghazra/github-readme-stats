@@ -42,10 +42,10 @@ ${REPO_CARD_LINKS_FLAG}
 `;
 
 const createRepoMdLink = (theme) => {
-  return `\n[${theme}_repo]: https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=${theme}`;
+  return `\n[${theme}_repo]: https://grs.rickstaa.dev/api/pin/?username=anuraghazra&repo=github-readme-stats&cache_seconds=86400&theme=${theme}`;
 };
 const createStatMdLink = (theme) => {
-  return `\n[${theme}]: https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=${theme}`;
+  return `\n[${theme}]: https://grs.rickstaa.dev/api?username=anuraghazra&show_icons=true&hide=contribs,prs&cache_seconds=86400&theme=${theme}`;
 };
 
 const generateLinks = (fn) => {

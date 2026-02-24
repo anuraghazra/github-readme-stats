@@ -114,7 +114,7 @@ exports[`Test Render WakaTime Card should render correctly 1`] = `
       >19 mins</text>
       
     <svg width="220" x="110" y="4">
-      <rect rx="5" ry="5" x="0" y="0" width="220" height="8" fill="#434d58"></rect>
+      <rect data-testid="progress-background" rx="5" ry="5" x="0" y="0" width="220" height="8" fill="#434d58"></rect>
       <svg data-testid="lang-progress" width="89.38%">
         <rect
             height="8"
@@ -137,7 +137,7 @@ exports[`Test Render WakaTime Card should render correctly 1`] = `
       >1 min</text>
       
     <svg width="220" x="110" y="4">
-      <rect rx="5" ry="5" x="0" y="0" width="220" height="8" fill="#434d58"></rect>
+      <rect data-testid="progress-background" rx="5" ry="5" x="0" y="0" width="220" height="8" fill="#434d58"></rect>
       <svg data-testid="lang-progress" width="6.25%">
         <rect
             height="8"
@@ -576,7 +576,7 @@ exports[`Test Render WakaTime Card should render correctly with percent display 
       >47.39 %</text>
       
     <svg width="220" x="110" y="4">
-      <rect rx="5" ry="5" x="0" y="0" width="220" height="8" fill="#434d58"></rect>
+      <rect data-testid="progress-background" rx="5" ry="5" x="0" y="0" width="220" height="8" fill="#434d58"></rect>
       <svg data-testid="lang-progress" width="47.39%">
         <rect
             height="8"
@@ -599,7 +599,7 @@ exports[`Test Render WakaTime Card should render correctly with percent display 
       >50.48 %</text>
       
     <svg width="220" x="110" y="4">
-      <rect rx="5" ry="5" x="0" y="0" width="220" height="8" fill="#434d58"></rect>
+      <rect data-testid="progress-background" rx="5" ry="5" x="0" y="0" width="220" height="8" fill="#434d58"></rect>
       <svg data-testid="lang-progress" width="50.48%">
         <rect
             height="8"

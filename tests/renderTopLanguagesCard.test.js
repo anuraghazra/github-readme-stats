@@ -470,6 +470,7 @@ describe("Test renderTopLanguages", () => {
       icon_color: "1b998b",
       text_color: "9991",
       bg_color: "252525",
+      prog_bar_bg_color: "444",
     };
 
     document.body.innerHTML = renderTopLanguages(langs, { ...customColors });
@@ -486,6 +487,15 @@ describe("Test renderTopLanguages", () => {
       "fill",
       "#252525",
     );
+
+    const progressBackgroundNodes = queryAllByTestId(
+      document.body,
+      "progress-background",
+    );
+    expect(progressBackgroundNodes.length).toBeGreaterThan(0);
+    progressBackgroundNodes.forEach((el) => {
+      expect(el).toHaveAttribute("fill", "#444");
+    });
   });
 
   it("should render custom colors with themes", () => {

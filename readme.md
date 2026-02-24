@@ -84,9 +84,9 @@
   - [Quick Tip (Align The Cards)](#quick-tip-align-the-cards)
     - [Stats and top languages cards](#stats-and-top-languages-cards)
     - [Pinning repositories](#pinning-repositories)
-- [Deploy on your own](#deploy-on-your-own)
-  - [GitHub Actions (Recommended)](#github-actions-recommended)
-  - [Self-hosted (Vercel/Other) (Recommended)](#self-hosted-vercelother-recommended)
+- [Deploy on your own (recommended)](#deploy-on-your-own-recommended)
+  - [GitHub Actions](#github-actions)
+  - [Self-hosted (Vercel/Other)](#self-hosted-vercelother)
     - [First step: get your Personal Access Token (PAT)](#first-step-get-your-personal-access-token-pat)
     - [On Vercel](#on-vercel)
     - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
@@ -96,10 +96,10 @@
 - [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
 </details>
 
-# Important Notices <!-- omit in toc -->
+# Important Notices<!-- omit in toc -->
 
 > [!IMPORTANT]
-> The public Vercel instance at `https://github-readme-stats.vercel.app/api` is best-effort and can be unreliable due to rate limits and traffic spikes (see [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)). We use caching to improve stability (see [common options](#common-options)), but for reliable cards we recommend [self-hosting](#deploy-on-your-own) (Vercel or other) or using the [GitHub Actions workflow](#github-actions-recommended) to generate cards in your [profile repository](https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme).
+> The public Vercel instance at `https://github-readme-stats.vercel.app/api` is best-effort and can be unreliable due to rate limits and traffic spikes (see [#1471](https://github.com/anuraghazra/github-readme-stats/issues/1471)). We use caching to improve stability (see [common options](#common-options)), but for reliable cards we recommend [self-hosting](#deploy-on-your-own-recommended) (Vercel or other) or using the [GitHub Actions workflow](#github-actions) to generate cards in your [profile repository](https://docs.github.com/en/account-and-profile/how-tos/profile-customization/managing-your-profile-readme).
 
 <img alt="Uptime Badge" src="https://img.shields.io/endpoint?url=https%3A%2F%2Fgithub-readme-stats-git-monitoring-github-readme-stats-team.vercel.app%2Fapi%2Fstatus%2Fup%3Ftype%3Dshields">
 
@@ -117,7 +117,7 @@ Change the `?username=` value to your GitHub username.
 ```
 
 > [!WARNING]
-> By default, the stats card only shows statistics like stars, commits, and pull requests from public repositories. To show private statistics on the stats card, you should [deploy your own instance](#deploy-on-your-own) using your own GitHub API token.
+> By default, the stats card only shows statistics like stars, commits, and pull requests from public repositories. To show private statistics on the stats card, you should [deploy your own instance](#deploy-on-your-own-recommended) using your own GitHub API token.
 
 > [!NOTE]
 > Available ranks are S (top 1%), A+ (12.5%), A (25%), A- (37.5%), B+ (50%), B (62.5%), B- (75%), C+ (87.5%) and C (everyone). This ranking scheme is based on the [Japanese academic grading](https://wikipedia.org/wiki/Academic_grading_in_Japan) system. The global percentile is calculated as a weighted sum of percentiles for each statistic (number of commits, pull requests, reviews, issues, stars, and followers), based on the cumulative distribution function of the [exponential](https://wikipedia.org/wiki/exponential_distribution) and the [log-normal](https://wikipedia.org/wiki/Log-normal_distribution) distributions. The implementation can be investigated at [src/calculateRank.js](https://github.com/anuraghazra/github-readme-stats/blob/master/src/calculateRank.js). The circle around the rank shows 100 minus the global percentile.
@@ -178,8 +178,8 @@ You can look at a preview for [all available themes](themes/README.md) or checko
 
 #### Responsive Card Theme
 
-[![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show_icons=true\&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#responsive-card-theme#gh-dark-mode-only)
-[![Anurag's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show_icons=true\&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#responsive-card-theme#gh-light-mode-only)
+[![Anurag's GitHub stats-Dark](https://grs.rickstaa.dev/api?username=anuraghazra&show_icons=true\&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#responsive-card-theme#gh-dark-mode-only)
+[![Anurag's GitHub stats-Light](https://grs.rickstaa.dev/api?username=anuraghazra&show_icons=true\&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#responsive-card-theme#gh-light-mode-only)
 
 Since GitHub will re-upload the cards and serve them from their [CDN](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-anonymized-urls), we can not infer the browser/GitHub theme on the server side. There are, however, four methods you can use to create dynamics themes on the client side.
 
@@ -194,7 +194,7 @@ We have included a `transparent` theme that has a transparent background. This t
 <details>
 <summary>:eyes: Show example</summary>
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show_icons=true\&theme=transparent)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api?username=anuraghazra&show_icons=true\&theme=transparent)
 
 </details>
 
@@ -209,7 +209,7 @@ You can use the `bg_color` parameter to make any of [the available themes](theme
 <details>
 <summary>:eyes: Show example</summary>
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show_icons=true\&bg_color=00000000)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api?username=anuraghazra&show_icons=true\&bg_color=00000000)
 
 </details>
 
@@ -225,8 +225,8 @@ You can use [GitHub's theme context](https://github.blog/changelog/2021-11-24-sp
 <details>
 <summary>:eyes: Show example</summary>
 
-[![Anurag's GitHub stats-Dark](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show_icons=true\&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
-[![Anurag's GitHub stats-Light](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show_icons=true\&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
+[![Anurag's GitHub stats-Dark](https://grs.rickstaa.dev/api?username=anuraghazra&show_icons=true\&theme=dark#gh-dark-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-dark-mode-only)
+[![Anurag's GitHub stats-Light](https://grs.rickstaa.dev/api?username=anuraghazra&show_icons=true\&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
 
 </details>
 
@@ -253,14 +253,14 @@ You can use [GitHub's new media feature](https://github.blog/changelog/2022-05-1
 
 <picture>
   <source
-    srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true&theme=dark"
+    srcset="https://grs.rickstaa.dev/api?username=anuraghazra&show_icons=true&theme=dark"
     media="(prefers-color-scheme: dark)"
   />
   <source
-    srcset="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true"
+    srcset="https://grs.rickstaa.dev/api?username=anuraghazra&show_icons=true"
     media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
   />
-  <img src="https://github-readme-stats.vercel.app/api?username=anuraghazra&show_icons=true" />
+  <img src="https://grs.rickstaa.dev/api?username=anuraghazra&show_icons=true" />
 </picture>
 
 </details>
@@ -285,7 +285,7 @@ You can customize the appearance of all your cards however you wish with URL par
 | `border_radius` | Corner rounding on the card. | number | `4.5` |
 
 > [!WARNING]
-> We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have the following default cache hours: stats card - 24 hours, top languages card - 144 hours (6 days), pin card - 240 hours (10 days), gist card - 48 hours (2 days), and wakatime card - 24 hours. If you want the data on your cards to be updated more often you can [deploy your own instance](#deploy-on-your-own) and set [environment variable](#available-environment-variables) `CACHE_SECONDS` to a value of your choosing.
+> We use caching to decrease the load on our servers (see <https://github.com/anuraghazra/github-readme-stats/issues/1471#issuecomment-1271551425>). Our cards have the following default cache hours: stats card - 24 hours, top languages card - 144 hours (6 days), pin card - 240 hours (10 days), gist card - 48 hours (2 days), and wakatime card - 24 hours. If you want the data on your cards to be updated more often you can [deploy your own instance](#deploy-on-your-own-recommended) and set [environment variable](#available-environment-variables) `CACHE_SECONDS` to a value of your choosing.
 
 ##### Gradient in bg\_color
 
@@ -421,11 +421,11 @@ You can customize the appearance and behavior of the pinned repository card usin
 
 ### Demo
 
-![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=github-readme-stats)
+![Readme Card](https://grs.rickstaa.dev/api/pin/?username=anuraghazra&repo=github-readme-stats)
 
 Use `show_owner` query option to include the repo's owner username
 
-![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra\&repo=github-readme-stats\&show_owner=true)
+![Readme Card](https://grs.rickstaa.dev/api/pin/?username=anuraghazra&repo=github-readme-stats\&show_owner=true)
 
 # GitHub Gist Pins
 
@@ -451,18 +451,18 @@ You can customize the appearance and behavior of the gist card using the [common
 
 ### Demo
 
-![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
+![Gist Card](https://grs.rickstaa.dev/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
 
 Use `show_owner` query option to include the gist's owner username
 
-![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d\&show_owner=true)
+![Gist Card](https://grs.rickstaa.dev/api/gist?id=bbfce31e0217a3689c8d961a356cb10d\&show_owner=true)
 
 # Top Languages Card
 
 The top languages card shows a GitHub user's most frequently used languages.
 
 > [!WARNING]
-> By default, the language card shows language results only from public repositories. To include languages used in private repositories, you should [deploy your own instance](#deploy-on-your-own) using your own GitHub API token.
+> By default, the language card shows language results only from public repositories. To include languages used in private repositories, you should [deploy your own instance](#deploy-on-your-own-recommended) using your own GitHub API token.
 
 > [!NOTE]
 > Top Languages does not indicate the user's skill level or anything like that; it's a GitHub metric to determine which languages have the most code on GitHub. It is a new feature of github-readme-stats.
@@ -598,32 +598,32 @@ You can use the `&stats_format=bytes` option to display the stats in bytes inste
 
 ### Demo
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)
+![Top Langs](https://grs.rickstaa.dev/api/top-langs/?username=anuraghazra)
 
 *   Compact layout
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&layout=compact)
+![Top Langs](https://grs.rickstaa.dev/api/top-langs/?username=anuraghazra&layout=compact)
 
 *   Donut Chart layout
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&layout=donut)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://grs.rickstaa.dev/api/top-langs/?username=anuraghazra&layout=donut)](https://github.com/anuraghazra/github-readme-stats)
 
 *   Donut Vertical Chart layout
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&layout=donut-vertical)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://grs.rickstaa.dev/api/top-langs/?username=anuraghazra&layout=donut-vertical)](https://github.com/anuraghazra/github-readme-stats)
 
 *   Pie Chart layout
 
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&layout=pie)](https://github.com/anuraghazra/github-readme-stats)
+[![Top Langs](https://grs.rickstaa.dev/api/top-langs/?username=anuraghazra&layout=pie)](https://github.com/anuraghazra/github-readme-stats)
 
 *   Hidden progress bars
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&hide_progress=true)
+![Top Langs](https://grs.rickstaa.dev/api/top-langs/?username=anuraghazra&hide_progress=true)
 
 
 *  Display bytes instead of percentage
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra\&stats_format=bytes)
+![Top Langs](https://grs.rickstaa.dev/api/top-langs/?username=anuraghazra&stats_format=bytes)
 
 # WakaTime Stats Card
 
@@ -662,13 +662,13 @@ You can customize the appearance and behavior of the WakaTime stats card using t
 
 ### Demo
 
-![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)
+![Harlok's WakaTime stats](https://grs.rickstaa.dev/api/wakatime?username=ffflabs)
 
-![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&hide_progress=true)
+![Harlok's WakaTime stats](https://grs.rickstaa.dev/api/wakatime?username=ffflabs\&hide_progress=true)
 
 *   Compact layout
 
-![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs\&layout=compact)
+![Harlok's WakaTime stats](https://grs.rickstaa.dev/api/wakatime?username=ffflabs\&layout=compact)
 
 ***
 
@@ -676,73 +676,73 @@ You can customize the appearance and behavior of the WakaTime stats card using t
 
 *   Default
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api?username=anuraghazra)
 
 *   Hiding specific stats
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&hide=contribs,issues)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api?username=anuraghazra&hide=contribs,issues)
 
 *   Showing additional stats
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show_icons=true\&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api?username=anuraghazra&show_icons=true\&show=reviews,discussions_started,discussions_answered,prs_merged,prs_merged_percentage)
 
 *   Showing icons
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&hide=issues\&show_icons=true)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api?username=anuraghazra&hide=issues\&show_icons=true)
 
 *   Shows GitHub logo instead rank level
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&rank_icon=github)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api?username=anuraghazra&rank_icon=github)
 
 *   Shows user rank percentile instead of rank level
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&rank_icon=percentile)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api?username=anuraghazra&rank_icon=percentile)
 
 *   Customize Border Color
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&border_color=2e4058)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api?username=anuraghazra&border_color=2e4058)
 
 *   Include All Commits
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&include_all_commits=true)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api?username=anuraghazra&include_all_commits=true)
 
 *   Themes
 
 Choose from any of the [default themes](#themes)
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&show_icons=true\&theme=radical)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api?username=anuraghazra&show_icons=true\&theme=radical)
 
 *   Gradient
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra\&bg_color=30,e96443,904e95\&title_color=fff\&text_color=fff)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api?username=anuraghazra&bg_color=30,e96443,904e95\&title_color=fff\&text_color=fff)
 
 *   Customizing stats card
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra\&show_icons=true\&title_color=fff\&icon_color=79ff97\&text_color=9f9f9f\&bg_color=151515)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api/?username=anuraghazra&show_icons=true\&title_color=fff\&icon_color=79ff97\&text_color=9f9f9f\&bg_color=151515)
 
 *   Setting card locale
 
-![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api/?username=anuraghazra\&locale=es)
+![Anurag's GitHub stats](https://grs.rickstaa.dev/api/?username=anuraghazra&locale=es)
 
 *   Customizing repo card
 
-![Customized Card](https://github-readme-stats.vercel.app/api/pin?username=anuraghazra\&repo=github-readme-stats\&title_color=fff\&icon_color=f9f9f9\&text_color=9f9f9f\&bg_color=151515)
+![Customized Card](https://grs.rickstaa.dev/api/pin?username=anuraghazra&repo=github-readme-stats\&title_color=fff\&icon_color=f9f9f9\&text_color=9f9f9f\&bg_color=151515)
 
 *   Gist card
 
-![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
+![Gist Card](https://grs.rickstaa.dev/api/gist?id=bbfce31e0217a3689c8d961a356cb10d)
 
 *   Customizing gist card
 
-![Gist Card](https://github-readme-stats.vercel.app/api/gist?id=bbfce31e0217a3689c8d961a356cb10d&theme=calm)
+![Gist Card](https://grs.rickstaa.dev/api/gist?id=bbfce31e0217a3689c8d961a356cb10d&theme=calm)
 
 *   Top languages
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra)
+![Top Langs](https://grs.rickstaa.dev/api/top-langs/?username=anuraghazra)
 
 *   WakaTime card
 
-![Harlok's WakaTime stats](https://github-readme-stats.vercel.app/api/wakatime?username=ffflabs)
+![Harlok's WakaTime stats](https://grs.rickstaa.dev/api/wakatime?username=ffflabs)
 
 ***
 
@@ -765,10 +765,10 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 <summary>:eyes: Show example</summary>
 
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api?username=anuraghazra" />
+  <img height=200 align="center" src="https://grs.rickstaa.dev/api?username=anuraghazra" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img height=200 align="center" src="https://github-readme-stats.vercel.app/api/top-langs?username=anuraghazra&layout=compact&langs_count=8&card_width=320" />
+  <img height=200 align="center" src="https://grs.rickstaa.dev/api/top-langs?username=anuraghazra&layout=compact&langs_count=8&card_width=320" />
 </a>
 
 </details>
@@ -788,17 +788,17 @@ By default, GitHub does not lay out the cards side by side. To do that, you can 
 <summary>:eyes: Show example</summary>
 
 <a href="https://github.com/anuraghazra/github-readme-stats">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=github-readme-stats" />
+  <img align="center" src="https://grs.rickstaa.dev/api/pin/?username=anuraghazra&repo=github-readme-stats" />
 </a>
 <a href="https://github.com/anuraghazra/convoychat">
-  <img align="center" src="https://github-readme-stats.vercel.app/api/pin/?username=anuraghazra&repo=convoychat" />
+  <img align="center" src="https://grs.rickstaa.dev/api/pin/?username=anuraghazra&repo=convoychat" />
 </a>
 
 </details>
 
 # Deploy on your own (recommended)
 
-Because the public endpoint is [not reliable](#Important-Notices), we recommend self-deployment via GitHub Actions or your own hosted instance. GitHub Actions is the simplest setup with static SVGs stored in your repo but less frequent updates, while self-hosting takes more work and can serve fresher stats (with caching).
+Because the public endpoint is [not reliable](#important-notices), we recommend self-deployment via GitHub Actions or your own hosted instance. GitHub Actions is the simplest setup with static SVGs stored in your repo but less frequent updates, while self-hosting takes more work and can serve fresher stats (with caching).
 
 ## GitHub Actions
 
@@ -811,14 +811,18 @@ name: Update README cards
 
 on:
   schedule:
-    - cron: "0 3 * * *"
+    - cron: "0 0 * * *" # Runs once daily at midnight
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Generate stats card
         uses: readme-tools/github-readme-stats-action@v1
@@ -830,8 +834,8 @@ jobs:
 
       - name: Commit cards
         run: |
-          git config user.name "github-actions"
-          git config user.email "github-actions@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add profile/*.svg
           git commit -m "Update README cards" || exit 0
           git push
@@ -911,9 +915,16 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
 8.  Click the `Continue with GitHub` button, search for the required Git Repository and import it by clicking the `Import` button. Alternatively, you can import a Third-Party Git Repository using the `Import Third-Party Git Repository ->` link at the bottom of the page.
     ![](https://files.catbox.moe/mg5p04.png)
 9.  Create a Personal Access Token (PAT) as described in the [previous section](#first-step-get-your-personal-access-token-pat).
-10. Add the PAT as an environment variable named `PAT_1` (as shown).
-    ![](https://files.catbox.moe/0yclio.png)
-11. Click deploy, and you're good to go. See your domains to use the API!
+10. Add the PAT as an environment variable named `PAT_1` (as shown).  
+    ![](https://files.catbox.moe/0yclio.png)  
+    Note: For enhanced security, you can add a variable as a sensitive variable. To do this:  
+    a. Go to `Environment Variables` in `Project Settings`, then choose `Add Environment Variable`.  
+    ![](https://files.catbox.moe/heprjw.jpg)  
+    b. Uncheck `Deployment` from `Environments`  
+    ![](https://files.catbox.moe/tiqgd0.jpg)  
+    c. Now you can make the variable `Sensitive` by checking the checkbox.  
+    ![](https://files.catbox.moe/mla5no.jpg)
+12. Click deploy, and you're good to go. See your domains to use the API!
 
 </details>
 

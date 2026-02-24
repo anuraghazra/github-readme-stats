@@ -83,7 +83,8 @@ const getCardColors = ({
   theme,
 }) => {
   const defaultTheme = themes["default"];
-  const isThemeProvided = theme !== null && theme !== undefined;
+  const isThemeProvided =
+    theme !== null && theme !== undefined && theme in themes;
 
   // @ts-ignore
   const selectedTheme = isThemeProvided ? themes[theme] : defaultTheme;
@@ -141,4 +142,4 @@ const getCardColors = ({
   return { titleColor, iconColor, textColor, bgColor, borderColor, ringColor };
 };
 
-export { isValidHexColor, isValidGradient, getCardColors };
+export { isValidHexColor, isValidGradient, getCardColors, fallbackColor };
