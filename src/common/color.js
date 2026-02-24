@@ -142,4 +142,4 @@ const getCardColors = ({
   return { titleColor, iconColor, textColor, bgColor, borderColor, ringColor };
 };
 
-export { isValidHexColor, isValidGradient, getCardColors };
+export { isValidHexColor, isValidGradient, getCardColors, fallbackColor };
