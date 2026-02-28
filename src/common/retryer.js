@@ -46,6 +46,29 @@ const retryer = async (fetcher, variables, retries = 0) => {
       retries,
     );
 
+    // normalize non-GraphQL payloads into GraphQL-like errors
+    // e.g. { message: "Bad credentials" } or API gateway messages.
+    if (
+      response?.data &&
+      !response.data.errors &&
+      !response.data.data &&
+      typeof response.data.message === "string"
+    ) {
+      response = {
+        ...response,
+        data: {
+          errors: [
+            {
+              type: String(
+                response.statusText || response.status || "HTTP_ERROR",
+              ),
+              message: response.data.message,
+            },
+          ],
+        },
+      };
+    }
+
     // react on both type and message-based rate-limit signals.
     // https://github.com/anuraghazra/github-readme-stats/issues/4425
     const errors = response?.data?.errors;
@@ -88,7 +111,23 @@ const retryer = async (fetcher, variables, retries = 0) => {
       return retryer(fetcher, variables, retries);
     }
 
-    // HTTP error with a response → return it for caller-side handling
+    // HTTP error with a response → normalize shape for caller-side handling
+    if (typeof e?.response?.data?.message === "string") {
+      return {
+        ...e.response,
+        data: {
+          errors: [
+            {
+              type: String(
+                e?.response?.statusText || e?.response?.status || "HTTP_ERROR",
+              ),
+              message: e.response.data.message,
+            },
+          ],
+        },
+      };
+    }
+
     return e.response;
   }
 };

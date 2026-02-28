@@ -1,10 +1,34 @@
 // @ts-check
 import { workerAdapter } from "./common/adapter.js";
-import api from "../api/index.js";
-import pin from "../api/pin.js";
-import topLangs from "../api/top-langs.js";
-import wakatime from "../api/wakatime.js";
-import gist from "../api/gist.js";
+
+/** @type {Promise<Record<string, Function>> | null} */
+let routesPromise = null;
+
+/**
+ * Lazily loads route handlers after env variables are injected.
+ *
+ * @returns {Promise<Record<string, Function>>} Route handler map.
+ */
+const loadRoutes = async () => {
+  if (!routesPromise) {
+    routesPromise = Promise.all([
+      import("../api/index.js"),
+      import("../api/pin.js"),
+      import("../api/top-langs.js"),
+      import("../api/wakatime.js"),
+      import("../api/gist.js"),
+    ]).then(([api, pin, topLangs, wakatime, gist]) => ({
+      "/api": api.default,
+      "/api/index": api.default,
+      "/api/pin": pin.default,
+      "/api/top-langs": topLangs.default,
+      "/api/wakatime": wakatime.default,
+      "/api/gist": gist.default,
+    }));
+  }
+
+  return routesPromise;
+};
 
 export default {
   /**
@@ -19,25 +43,16 @@ export default {
   async fetch(request, env, ctx) {
     // Polyfill process.env for existing code accessing env vars
     globalThis.process = globalThis.process || {};
-    globalThis.process.env = { ...globalThis.process.env, ...env };
+    globalThis.process.env = { ...(globalThis.process.env || {}), ...env };
 
     const url = new URL(request.url);
     const path = url.pathname;
+    const routes = await loadRoutes();
 
-    switch (path) {
-      case "/api":
-      case "/api/index":
-        return workerAdapter(request, api);
-      case "/api/pin":
-        return workerAdapter(request, pin);
-      case "/api/top-langs":
-        return workerAdapter(request, topLangs);
-      case "/api/wakatime":
-        return workerAdapter(request, wakatime);
-      case "/api/gist":
-        return workerAdapter(request, gist);
-      default:
-        return new Response("Not Found", { status: 404 });
+    if (!routes[path]) {
+      return new Response("Not Found", { status: 404 });
     }
+
+    return workerAdapter(request, routes[path]);
   },
 };

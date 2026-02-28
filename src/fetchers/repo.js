@@ -3,6 +3,9 @@
 import { MissingParamError } from "../common/error.js";
 import { request } from "../common/http.js";
 import { retryer } from "../common/retryer.js";
+import { logger } from "../common/log.js";
+import { CustomError } from "../common/error.js";
+import { wrapTextMultiline } from "../common/fmt.js";
 
 /**
  * Repo data fetcher.
@@ -78,6 +81,20 @@ const fetchRepo = async (username, reponame) => {
   }
 
   let res = await retryer(fetcher, { login: username, repo: reponame });
+
+  if (res.data.errors) {
+    logger.error(res.data.errors);
+    if (res.data.errors[0].message) {
+      throw new CustomError(
+        wrapTextMultiline(res.data.errors[0].message, 90, 1)[0],
+        res.statusText,
+      );
+    }
+    throw new CustomError(
+      "Something went wrong while trying to retrieve the repo data using the GraphQL API.",
+      CustomError.GRAPHQL_ERROR,
+    );
+  }
 
   const data = res.data.data;
 

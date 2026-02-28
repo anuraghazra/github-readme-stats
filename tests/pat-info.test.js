@@ -73,7 +73,8 @@ afterEach(() => {
 describe("Test /api/status/pat-info", () => {
   beforeAll(() => {
     // reset patenv first so that dotenv doesn't populate them with local envs
-    process.env = {};
+    // preserve NODE_ENV so http.js continues to use axios (not fetch) in tests
+    process.env = { NODE_ENV: "test" };
     process.env.PAT_1 = "testPAT1";
     process.env.PAT_2 = "testPAT2";
     process.env.PAT_3 = "testPAT3";
