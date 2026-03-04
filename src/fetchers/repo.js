@@ -87,7 +87,7 @@ const fetchRepo = async (username, reponame) => {
     if (res.data.errors[0].message) {
       throw new CustomError(
         wrapTextMultiline(res.data.errors[0].message, 90, 1)[0],
-        res.statusText,
+        res.data.errors[0].type || CustomError.GRAPHQL_ERROR,
       );
     }
     throw new CustomError(

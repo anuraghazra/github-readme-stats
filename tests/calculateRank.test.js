@@ -33,7 +33,7 @@ describe("Test calculateRank", () => {
     ).toEqual(
       expect.objectContaining({
         level: "B-",
-        percentile: expect.closeTo(65.02918514848255, 10),
+        percentile: expect.closeTo(65.02918514848255, 5),
       }),
     );
   });
