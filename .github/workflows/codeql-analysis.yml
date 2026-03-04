@@ -31,7 +31,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        uses: actions/checkout@e3a2bab67d1cc1d7ed11b3f74c3d910479635322 # v6.0.2
 
       # Initializes the CodeQL tools for scanning.
       - name: Initialize CodeQL
