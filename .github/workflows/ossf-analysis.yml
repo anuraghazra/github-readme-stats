@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: "Checkout code"
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        uses: actions/checkout@b564d1be2f0e1c2a5cf0b4e5b5e3b4e5c4d5e6f7 # v6.0.2
         with:
           persist-credentials: false
 
@@ -36,7 +36,7 @@ jobs:
       # Upload the results as artifacts (optional). Commenting out will disable uploads of run results in SARIF
       # format to the repository Actions tab.
       - name: "Upload artifact"
-        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        uses: actions/upload-artifact@6d8f5b1cb8c8b1c2e8d6b7c8e9f0a1b2c3d4e5f6 # v7.0.0
         with:
           name: SARIF file
           path: results.sarif
