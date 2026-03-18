@@ -4,6 +4,44 @@ import axios from "axios";
 import { CustomError, MissingParamError } from "../common/error.js";
 
 /**
+ * Normalize and validate the WakaTime API hostname.
+ *
+ * Only allows the default host "wakatime.com" or its subdomains.
+ *
+ * @param {string | undefined} api_domain
+ * @returns {string}
+ */
+const normalizeWakatimeHost = (api_domain) => {
+  if (!api_domain) {
+    return "wakatime.com";
+  }
+
+  // Remove trailing slashes and surrounding whitespace.
+  const trimmed = String(api_domain).trim().replace(/\/+$/g, "");
+
+  // Disallow obvious dangerous characters (paths, ports, schemes).
+  if (/[\/:]/.test(trimmed)) {
+    throw new CustomError(
+      "Invalid WakaTime API domain.",
+      "WAKATIME_INVALID_API_DOMAIN",
+    );
+  }
+
+  // Only allow wakatime.com or its subdomains.
+  if (
+    trimmed !== "wakatime.com" &&
+    !/^[a-zA-Z0-9.-]+\.wakatime\.com$/.test(trimmed)
+  ) {
+    throw new CustomError(
+      "Invalid WakaTime API domain.",
+      "WAKATIME_INVALID_API_DOMAIN",
+    );
+  }
+
+  return trimmed;
+};
+
+/**
  * WakaTime data fetcher.
  *
  * @param {{username: string, api_domain: string }} props Fetcher props.
@@ -14,11 +52,12 @@ const fetchWakatimeStats = async ({ username, api_domain }) => {
     throw new MissingParamError(["username"]);
   }
 
+  const apiHost = normalizeWakatimeHost(api_domain);
+  const encodedUsername = encodeURIComponent(username);
+
   try {
     const { data } = await axios.get(
-      `https://${
-        api_domain ? api_domain.replace(/\/$/gi, "") : "wakatime.com"
-      }/api/v1/users/${username}/stats?is_including_today=true`,
+      `https://${apiHost}/api/v1/users/${encodedUsername}/stats?is_including_today=true`,
     );
 
     return data.data;
