@@ -18,6 +18,13 @@ export const themes = {
     text_color: "417E87",
     bg_color: "ffffff00",
   },
+  liquid_glass: {
+    title_color: "5e9de6",
+    icon_color: "5bc8c8",
+    text_color: "c8d8e8",
+    bg_color: "ffffff14",
+    border_color: "ffffff40",
+  },
   shadow_red: {
     title_color: "9A0000",
     text_color: "444",
