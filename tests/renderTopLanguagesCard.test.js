@@ -883,4 +883,65 @@ describe("Test renderTopLanguages", () => {
       "css 100.0 B",
     );
   });
+
+  it("should hide stats values when hide_stats is true (compact layout)", () => {
+    document.body.innerHTML = renderTopLanguages(langs, {
+      layout: "compact",
+      hide_stats: true,
+    });
+
+    expect(queryAllByTestId(document.body, "lang-name")[0]).toHaveTextContent(
+      "HTML",
+    );
+    expect(
+      queryAllByTestId(document.body, "lang-name")[0].textContent.trim(),
+    ).toBe("HTML");
+
+    expect(queryAllByTestId(document.body, "lang-name")[1]).toHaveTextContent(
+      "javascript",
+    );
+    expect(
+      queryAllByTestId(document.body, "lang-name")[1].textContent.trim(),
+    ).toBe("javascript");
+  });
+
+  it("should hide stats values when hide_stats is true (normal layout)", () => {
+    document.body.innerHTML = renderTopLanguages(langs, {
+      hide_stats: true,
+    });
+
+    // In normal layout, lang-name at index 0 is the language name text
+    // Stats value text node should not be present
+    const langNames = queryAllByTestId(document.body, "lang-name");
+    expect(langNames[0]).toHaveTextContent("HTML");
+
+    // The stats text element should not be rendered
+    const svg = document.body.querySelector("svg");
+    const textElements = svg.querySelectorAll("text.lang-name");
+    // In normal layout, each language has name text + stats text (2 per lang) when not hidden
+    // When hidden, only the name text should be present (1 per lang)
+    const langCount = 3; // HTML, javascript, css
+    // We should only have name texts, not stats texts
+    const nameTexts = Array.from(textElements).filter(
+      (el) => el.getAttribute("data-testid") === "lang-name",
+    );
+    expect(nameTexts.length).toBe(langCount);
+  });
+
+  it("should hide stats values when hide_stats is true (donut layout)", () => {
+    document.body.innerHTML = renderTopLanguages(langs, {
+      layout: "donut",
+      hide_stats: true,
+    });
+
+    expect(
+      queryAllByTestId(document.body, "lang-name")[0].textContent.trim(),
+    ).toBe("HTML");
+    expect(
+      queryAllByTestId(document.body, "lang-name")[1].textContent.trim(),
+    ).toBe("javascript");
+    expect(
+      queryAllByTestId(document.body, "lang-name")[2].textContent.trim(),
+    ).toBe("css");
+  });
 });

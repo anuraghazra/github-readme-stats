@@ -498,6 +498,7 @@ You can customize the appearance and behavior of the top languages card using th
 | `custom_title` | Sets a custom title for the card. | string | `Most Used Languages` |
 | `disable_animations` | Disables all animations in the card. | boolean | `false` |
 | `hide_progress` | Uses the compact layout option, hides percentages, and removes the bars. | boolean | `false` |
+| `hide_stats` | Hides the stats values (percentages or bytes) while keeping the progress bars and chart. | boolean | `false` |
 | `size_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `1` |
 | `count_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `0` |
 | `stats_format` | Switches between two available formats for language's stats `percentages` and `bytes`. | enum | `percentages` |
