@@ -199,7 +199,7 @@ const totalCommitsFetcher = async (username) => {
     res = await retryer(fetchTotalCommits, { login: username });
   } catch (err) {
     logger.log(err);
-    throw new Error(err);
+    throw err;
   }
 
   const totalCount = res.data.total_count;
