@@ -2,7 +2,7 @@
  * @file Contains helper functions used in the scripts.
  */
 
-import { getInput } from "@actions/core";
+import { getInput, setSecret } from "@actions/core";
 
 const OWNER = "anuraghazra";
 const REPO = "github-readme-stats";
@@ -40,5 +40,12 @@ export const getGithubToken = () => {
   if (!token) {
     throw Error("Could not find github token");
   }
+  // Validate token format to prevent use of malformed or injected values.
+  // GitHub tokens follow known prefixes (classic: ghp_/ghs_/gho_/ghu_, fine-grained: github_pat_).
+  if (!/^(gh[pousr]_|github_pat_)[A-Za-z0-9_]+$/.test(token)) {
+    throw Error("Invalid github token format");
+  }
+  // Mask the token in all GitHub Actions log output to prevent accidental exposure.
+  setSecret(token);
   return token;
 };
