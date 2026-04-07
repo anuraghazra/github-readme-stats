@@ -16,7 +16,8 @@ import {
 import { repoCardLocales } from "../translations.js";
 
 const ICON_SIZE = 16;
-const DESCRIPTION_LINE_WIDTH = 59;
+const DESCRIPTION_LINE_WIDTH = 360; // px — card width (400) - x offset (25) - right margin (15)
+const DESCRIPTION_FONT_SIZE = 13; // px — must match the .description font-size
 const DESCRIPTION_MAX_LINES = 3;
 
 /**
@@ -91,6 +92,7 @@ const renderRepoCard = (repo, options = {}) => {
     desc,
     DESCRIPTION_LINE_WIDTH,
     descriptionMaxLines,
+    DESCRIPTION_FONT_SIZE,
   );
   const descriptionLinesCount = description_lines_count
     ? clampValue(description_lines_count, 1, DESCRIPTION_MAX_LINES)

@@ -2,6 +2,7 @@
 
 import wrap from "word-wrap";
 import { encodeHTML } from "./html.js";
+import { measureText } from "./render.js";
 
 /**
  * Retrieves num with suffix k(thousands) precise to given decimal places.
@@ -55,12 +56,17 @@ const formatBytes = (bytes) => {
 /**
  * Split text over multiple lines based on the card width.
  *
+ * When `fontSize` is provided, `width` is treated as a pixel budget and lines
+ * are broken using {@link measureText} for font-proportional accuracy.
+ * Otherwise `width` is a character count and the `word-wrap` library is used.
+ *
  * @param {string} text Text to split.
- * @param {number} width Line width in number of characters.
+ * @param {number} width Line width — pixels when `fontSize` is set, characters otherwise.
  * @param {number} maxLines Maximum number of lines.
+ * @param {number} [fontSize] Font size in px.  Enables pixel-width wrapping.
  * @returns {string[]} Array of lines.
  */
-const wrapTextMultiline = (text, width = 59, maxLines = 3) => {
+const wrapTextMultiline = (text, width = 59, maxLines = 3, fontSize) => {
   const fullWidthComma = "，";
   const encoded = encodeHTML(text);
   const isChinese = encoded.includes(fullWidthComma);
@@ -69,6 +75,24 @@ const wrapTextMultiline = (text, width = 59, maxLines = 3) => {
 
   if (isChinese) {
     wrapped = encoded.split(fullWidthComma); // Chinese full punctuation
+  } else if (fontSize) {
+    // Pixel-width wrapping: measure raw text so HTML entities (e.g. &#8212;
+    // for —) are counted as single rendered glyphs, not multiple characters.
+    const words = text.split(/\s+/).filter(Boolean);
+    let currentLine = "";
+
+    for (const word of words) {
+      const testLine = currentLine ? `${currentLine} ${word}` : word;
+      if (measureText(testLine, fontSize) > width && currentLine) {
+        wrapped.push(encodeHTML(currentLine));
+        currentLine = word;
+      } else {
+        currentLine = testLine;
+      }
+    }
+    if (currentLine) {
+      wrapped.push(encodeHTML(currentLine));
+    }
   } else {
     wrapped = wrap(encoded, {
       width,
