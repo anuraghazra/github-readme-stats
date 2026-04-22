@@ -93,6 +93,51 @@ describe("Test calculateRank", () => {
     ).toStrictEqual({ level: "A+", percentile: 5.575988339442828 });
   });
 
+  it("rising user gets A- rank", () => {
+    expect(
+      calculateRank({
+        all_commits: false,
+        commits: 350,
+        prs: 75,
+        issues: 35,
+        reviews: 15,
+        repos: 0,
+        stars: 100,
+        followers: 25,
+      }),
+    ).toStrictEqual({ level: "A-", percentile: 31.850162395318826 });
+  });
+
+  it("casual user gets B rank", () => {
+    expect(
+      calculateRank({
+        all_commits: false,
+        commits: 150,
+        prs: 30,
+        issues: 15,
+        reviews: 8,
+        repos: 0,
+        stars: 40,
+        followers: 7,
+      }),
+    ).toStrictEqual({ level: "B", percentile: 56.92901040548792 });
+  });
+
+  it("occasional user gets C+ rank", () => {
+    expect(
+      calculateRank({
+        all_commits: false,
+        commits: 50,
+        prs: 10,
+        issues: 5,
+        reviews: 2,
+        repos: 0,
+        stars: 8,
+        followers: 2,
+      }),
+    ).toStrictEqual({ level: "C+", percentile: 83.37427145982537 });
+  });
+
   it("sindresorhus gets S rank", () => {
     expect(
       calculateRank({
