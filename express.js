@@ -9,6 +9,21 @@ import express from "express";
 const app = express();
 const router = express.Router();
 
+// Simple in-memory rate limiter: max 30 requests per minute per IP
+const _rlMap = new Map();
+const rateLimiter = (req, res, next) => {
+  const ip = req.ip || req.socket.remoteAddress;
+  const now = Date.now();
+  const rec = _rlMap.get(ip) || { count: 0, reset: now + 60_000 };
+  if (now > rec.reset) { rec.count = 0; rec.reset = now + 60_000; }
+  if (++rec.count > 30) {
+    return res.status(429).json({ error: "Too many requests, please try again later." });
+  }
+  _rlMap.set(ip, rec);
+  next();
+};
+router.use(rateLimiter);
+
 router.get("/", statsCard);
 router.get("/pin", repoCard);
 router.get("/top-langs", langCard);
