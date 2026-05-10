@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["nodejs_22"]
+
+[phases.install]
+cmds = ["npm ci --ignore-scripts"]
+
+[start]
+cmd = "node express.js"

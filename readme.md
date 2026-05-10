@@ -91,6 +91,7 @@
     - [On Vercel](#on-vercel)
     - [:film\_projector: Check Out Step By Step Video Tutorial By @codeSTACKr](#film_projector-check-out-step-by-step-video-tutorial-by-codestackr)
     - [On other platforms](#on-other-platforms)
+    - [On Coolify via Nixpacks](#on-coolify-via-nixpacks)
     - [Available environment variables](#available-environment-variables)
   - [Keep your fork up to date](#keep-your-fork-up-to-date)
 - [:sparkling\_heart: Support the project](#sparkling_heart-support-the-project)
@@ -933,6 +934,22 @@ Since the GitHub API only allows 5k requests per hour, my `https://github-readme
     <https://github.com/anuraghazra/github-readme-stats/blob/ba7c2f8b55eac8452e479c8bd38b044d204d0424/package.json#L11>
 5.  You're done 🎉
     </details>
+
+### On Coolify via Nixpacks
+
+> [!TIP]
+> [Coolify](https://coolify.io) is a self-hosted Heroku/Netlify alternative. It supports [Nixpacks](https://nixpacks.com) out of the box, so you can deploy this project on your own server without writing a Dockerfile or forking the repo.
+
+This repo ships a [`nixpacks.toml`](./nixpacks.toml) that pins Node.js 22 and starts the Express server, so Coolify deployments work out of the box.
+
+<details>
+<summary><b>:hammer_and_wrench: Step-by-step guide for deploying on Coolify</b></summary>
+
+1. In Coolify, create a new application and pick **Public Git Repository** as the source.
+2. Paste `https://github.com/anuraghazra/github-readme-stats` as the repository URL (no fork or GitHub App needed). Coolify will auto-detect `nixpacks.toml` and select the Nixpacks build pack with Node.js 22.
+3. Under the application's **Environment Variables** tab, add your GitHub Personal Access Token as `PAT_1` (see [available environment variables](#available-environment-variables)).
+4. Deploy. Your stats will be available at `http://your-server:<port>/api?username=YOUR_USERNAME`.
+   </details>
 
 ### Available environment variables
 
