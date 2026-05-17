@@ -67,6 +67,7 @@
     - [Usage](#usage-2)
     - [Options](#options-2)
     - [Language stats algorithm](#language-stats-algorithm)
+    - [Personal contribution languages](#personal-contribution-languages)
     - [Exclude individual repositories](#exclude-individual-repositories)
     - [Hide individual languages](#hide-individual-languages)
     - [Show more languages](#show-more-languages)
@@ -504,6 +505,10 @@ You can customize the appearance and behavior of the top languages card using th
 | `size_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `1` |
 | `count_weight` | Configures language stats algorithm (see [Language stats algorithm](#language-stats-algorithm)). | integer | `0` |
 | `stats_format` | Switches between two available formats for language's stats `percentages` and `bytes`. | enum | `percentages` |
+| `personal_contributions` | Calculates languages from authored commit additions instead of repository language totals. | boolean | `false` |
+| `orgs` | Limits personal contribution language stats to specified organizations. | string (comma-separated values) | `null` |
+| `personal_pages` | Number of commit search pages to scan for personal contribution language stats, between 1-10. | integer | `2` |
+| `personal_limit` | Number of matching commits to inspect for personal contribution language stats, between 1-200. | integer | `40` |
 
 > [!WARNING]
 > Language names and custom title should be URI-escaped, as specified in [Percent Encoding](https://en.wikipedia.org/wiki/Percent-encoding) (i.e: `c++` should become `c%2B%2B`, `jupyter notebook` should become `jupyter%20notebook`, `Most Used Languages` should become `Most%20Used%20Languages`, etc.) You can use [urlencoder.org](https://www.urlencoder.org/) to help you do this automatically.
@@ -525,6 +530,27 @@ By default, only the byte count is used for determining the languages percentage
 ```md
 ![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&size_weight=0.5&count_weight=0.5)
 ```
+
+### Personal contribution languages
+
+By default, the top languages card uses the language totals from repositories owned by the requested user. You can use `&personal_contributions=true` to calculate languages from additions in commits authored by the user instead.
+
+This is useful when most of your work happens in organization repositories that you do not own.
+
+```md
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&personal_contributions=true&orgs=my-org&layout=compact)
+```
+
+For private repositories, this option requires a self-hosted instance with a GitHub token that can read the target repositories. If the organization uses SAML/SSO, the token must be authorized for that organization.
+
+Use `&orgs=org1,org2` to restrict the scan to specific organizations. Use `&personal_pages=` and `&personal_limit=` to control how much commit history is scanned:
+
+```md
+![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=anuraghazra&personal_contributions=true&orgs=my-org&personal_pages=2&personal_limit=40)
+```
+
+> [!NOTE]
+> This mode counts additions in commits authored by the user. It does not use `git blame`, so it does not verify whether those lines still exist in the repository today.
 
 ### Exclude individual repositories
 
