@@ -1,26 +1,31 @@
 name: Test Deployment
 on:
-  deployment_status:
+  # Temporarily disabled automatic triggers; manual-only for now.
+  workflow_dispatch:
+  # Original trigger (restore to re-enable):
+  # deployment_status:
 
 permissions: read-all
 
 jobs:
   e2eTests:
-    if:
-      github.repository == 'anuraghazra/github-readme-stats' &&
-      github.event_name == 'deployment_status' &&
-      github.event.deployment_status.state == 'success'
-    name: Perform 2e2 tests
+    # Temporarily disabled; set to the original condition to re-enable.
+    # if:
+    #   github.repository == 'anuraghazra/github-readme-stats' &&
+    #   github.event_name == 'deployment_status' &&
+    #   github.event.deployment_status.state == 'success'
+    if: false
+    name: Perform e2e tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [22.x]
 
     steps:
-      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
 
       - name: Setup Node
-        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
         with:
           node-version: ${{ matrix.node-version }}
           cache: npm
@@ -32,5 +37,5 @@ jobs:
 
       - name: Run end-to-end tests.
         run: npm run test:e2e
-        env:
-          VERCEL_PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
+        # env:
+        #   VERCEL_PREVIEW_URL: ${{ github.event.deployment_status.target_url }}
