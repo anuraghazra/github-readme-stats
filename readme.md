@@ -833,6 +833,9 @@ For deploying your own instance of GitHub Readme Stats, you will need to create 
 
 Selecting the right scopes for your token is important in case you want to display private contributions on your cards.
 
+> [!NOTE]
+> If you want to use `personal_contributions=true` with private organization repositories, the token must be able to read those repositories. For classic tokens, select `repo` and `read:org`. If the organization uses SAML/SSO, authorize the token for that organization before adding it to your deployment.
+
 ### Classic token
 
 * Go to [Account -> Settings -> Developer Settings -> Personal access tokens -> Tokens (classic)](https://github.com/settings/tokens).
