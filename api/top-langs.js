@@ -14,6 +14,7 @@ import {
 } from "../src/common/error.js";
 import { parseArray, parseBoolean } from "../src/common/ops.js";
 import { renderError } from "../src/common/render.js";
+import { fetchPersonalContributionLanguages } from "../src/fetchers/personal-contribution-languages.js";
 import { fetchTopLanguages } from "../src/fetchers/top-languages.js";
 import { isLocaleAvailable } from "../src/translations.js";
 
@@ -42,6 +43,9 @@ export default async (req, res) => {
     disable_animations,
     hide_progress,
     stats_format,
+    personal_contributions,
+    orgs,
+    personal_pages,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -118,12 +122,19 @@ export default async (req, res) => {
   }
 
   try {
-    const topLangs = await fetchTopLanguages(
-      username,
-      parseArray(exclude_repo),
-      size_weight,
-      count_weight,
-    );
+    const usePersonalContributions = parseBoolean(personal_contributions);
+    const topLangs = usePersonalContributions
+      ? await fetchPersonalContributionLanguages(
+          username,
+          parseArray(orgs),
+          personal_pages,
+        )
+      : await fetchTopLanguages(
+          username,
+          parseArray(exclude_repo),
+          size_weight,
+          count_weight,
+        );
     const cacheSeconds = resolveCacheSeconds({
       requested: parseInt(cache_seconds, 10),
       def: CACHE_TTL.TOP_LANGS_CARD.DEFAULT,
