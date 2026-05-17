@@ -5,6 +5,7 @@ import MockAdapter from "axios-mock-adapter";
 import {
   detectLanguage,
   fetchPersonalContributionLanguages,
+  normalizeLimit,
   normalizePages,
   shouldIgnoreFile,
 } from "../src/fetchers/personal-contribution-languages.js";
@@ -32,6 +33,12 @@ describe("FetchPersonalContributionLanguages", () => {
     expect(normalizePages("0")).toBe(2);
     expect(normalizePages("50")).toBe(10);
     expect(normalizePages("3")).toBe(3);
+  });
+
+  it("should clamp commit limit", () => {
+    expect(normalizeLimit("0")).toBe(40);
+    expect(normalizeLimit("500")).toBe(200);
+    expect(normalizeLimit("30")).toBe(30);
   });
 
   it("should fetch and aggregate additions from authored commits", async () => {
@@ -79,6 +86,7 @@ describe("FetchPersonalContributionLanguages", () => {
       "andre",
       ["acme"],
       1,
+      40,
     );
 
     expect(languages).toStrictEqual({

@@ -10,7 +10,10 @@ const languageColors = require("../common/languageColors.json");
 
 const GITHUB_API_URL = "https://api.github.com";
 const DEFAULT_PAGES = 2;
+const DEFAULT_LIMIT = 40;
 const MAX_PAGES = 10;
+const MAX_LIMIT = 200;
+const COMMIT_FETCH_CONCURRENCY = 10;
 
 const SPECIAL_FILENAMES = {
   "dockerfile": "Dockerfile",
@@ -123,6 +126,20 @@ const normalizePages = (pages) => {
 };
 
 /**
+ * @param {number | string | undefined} limit Requested number of commits to scan.
+ * @returns {number} A bounded commit count.
+ */
+const normalizeLimit = (limit) => {
+  const parsedLimit = parseInt(String(limit || DEFAULT_LIMIT), 10);
+
+  if (Number.isNaN(parsedLimit) || parsedLimit < 1) {
+    return DEFAULT_LIMIT;
+  }
+
+  return Math.min(parsedLimit, MAX_LIMIT);
+};
+
+/**
  * @param {string} filename File path returned by the GitHub commit API.
  * @returns {string | null} Lowercase file extension, or null when absent.
  */
@@ -225,14 +242,30 @@ const fetchCommitFiles = async (token, owner, repo, sha) => {
 };
 
 /**
- * @param {{ username: string, orgs: string[], pages: number }} variables Fetcher variables.
+ * @param {any[]} commits Commit search result items.
+ * @param {number} size Batch size.
+ * @returns {any[][]} Commit batches.
+ */
+const chunkCommits = (commits, size) => {
+  const chunks = [];
+
+  for (let index = 0; index < commits.length; index += size) {
+    chunks.push(commits.slice(index, index + size));
+  }
+
+  return chunks;
+};
+
+/**
+ * @param {{ username: string, orgs: string[], pages: number, limit: number }} variables Fetcher variables.
  * @param {string} token GitHub token used for private repository access.
  * @returns {Promise<{ data: Record<string, { name: string, color: string, size: number, count: number }> }>} Aggregated language data.
  */
-const fetcher = async ({ username, orgs, pages }, token) => {
+const fetcher = async ({ username, orgs, pages, limit }, token) => {
   const languageStats = {};
   const seenCommits = new Set();
   const searchScopes = orgs.length > 0 ? orgs.map((org) => `org:${org}`) : [""];
+  const commitsToFetch = [];
 
   for (const scope of searchScopes) {
     const query = ["author:" + username, scope]
@@ -250,47 +283,79 @@ const fetcher = async ({ username, orgs, pages }, token) => {
       for (const commit of commits) {
         const repository = commit.repository;
         const sha = commit.sha;
+        const fullName = repository?.full_name;
 
-        if (!repository?.full_name || !sha || seenCommits.has(sha)) {
+        if (!fullName || !sha) {
           continue;
         }
 
-        seenCommits.add(sha);
+        const commitKey = `${fullName}@${sha}`;
 
-        const [owner, repo] = repository.full_name.split("/");
-        const files = await fetchCommitFiles(token, owner, repo, sha);
-        const languagesInCommit = new Set();
-
-        for (const file of files) {
-          if (!file.filename || shouldIgnoreFile(file.filename)) {
-            continue;
-          }
-
-          const language = detectLanguage(file.filename);
-          const additions = Number(file.additions || 0);
-
-          if (!language || additions <= 0) {
-            continue;
-          }
-
-          if (!languageStats[language]) {
-            languageStats[language] = {
-              name: language,
-              color: languageColors[language] || "#858585",
-              size: 0,
-              count: 0,
-            };
-          }
-
-          languageStats[language].size += additions;
-          languagesInCommit.add(language);
+        if (seenCommits.has(commitKey)) {
+          continue;
         }
 
-        languagesInCommit.forEach((language) => {
-          languageStats[language].count += 1;
-        });
+        seenCommits.add(commitKey);
+        commitsToFetch.push(commit);
+
+        if (commitsToFetch.length >= limit) {
+          break;
+        }
+      }
+
+      if (commits.length < 100 || commitsToFetch.length >= limit) {
+        break;
       }
     }
+
+    if (commitsToFetch.length >= limit) {
+      break;
+    }
+  }
+
+  for (const commitBatch of chunkCommits(
+    commitsToFetch,
+    COMMIT_FETCH_CONCURRENCY,
+  )) {
+    const commitFiles = await Promise.all(
+      commitBatch.map(async (commit) => {
+        const [owner, repo] = commit.repository.full_name.split("/");
+        return fetchCommitFiles(token, owner, repo, commit.sha);
+      }),
+    );
+
+    commitFiles.forEach((files) => {
+      const languagesInCommit = new Set();
+
+      for (const file of files) {
+        if (!file.filename || shouldIgnoreFile(file.filename)) {
+          continue;
+        }
+
+        const language = detectLanguage(file.filename);
+        const additions = Number(file.additions || 0);
+
+        if (!language || additions <= 0) {
+          continue;
+        }
+
+        if (!languageStats[language]) {
+          languageStats[language] = {
+            name: language,
+            color: languageColors[language] || "#858585",
+            size: 0,
+            count: 0,
+          };
+        }
+
+        languageStats[language].size += additions;
+        languagesInCommit.add(language);
+      }
+
+      languagesInCommit.forEach((language) => {
+        languageStats[language].count += 1;
+      });
+    });
   }
 
   return { data: languageStats };
@@ -302,12 +367,14 @@ const fetcher = async ({ username, orgs, pages }, token) => {
  * @param {string} username GitHub username.
  * @param {string[]} orgs Organization logins to include. Empty means all accessible commits.
  * @param {number | string | undefined} pages Search pages to scan, 100 commits per page.
+ * @param {number | string | undefined} limit Commits to inspect after search.
  * @returns {Promise<import("./types").TopLangData>} Top languages data.
  */
 const fetchPersonalContributionLanguages = async (
   username,
   orgs = [],
   pages = DEFAULT_PAGES,
+  limit = DEFAULT_LIMIT,
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -317,6 +384,7 @@ const fetchPersonalContributionLanguages = async (
     username,
     orgs,
     pages: normalizePages(pages),
+    limit: normalizeLimit(limit),
   });
 
   if (res.status && res.status >= 400) {
@@ -344,6 +412,7 @@ const fetchPersonalContributionLanguages = async (
 export {
   detectLanguage,
   fetchPersonalContributionLanguages,
+  normalizeLimit,
   normalizePages,
   shouldIgnoreFile,
 };

@@ -46,6 +46,7 @@ export default async (req, res) => {
     personal_contributions,
     orgs,
     personal_pages,
+    personal_limit,
   } = req.query;
   res.setHeader("Content-Type", "image/svg+xml");
 
@@ -128,6 +129,7 @@ export default async (req, res) => {
           username,
           parseArray(orgs),
           personal_pages,
+          personal_limit,
         )
       : await fetchTopLanguages(
           username,
