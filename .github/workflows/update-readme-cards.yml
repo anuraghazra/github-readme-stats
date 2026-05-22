@@ -2,7 +2,7 @@ name: Update README cards
 
 on:
   schedule:
-    - cron: "0 3 * * *" # 매일 03:00 UTC
+    - cron: "0 3 * * *" 
   workflow_dispatch:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Generate stats card
-        uses: stats-organization/github-readme-stats-action@v2
+        uses: readme-tools/github-readme-stats-action@v1
         with:
           card: stats
           options: username=${{ github.repository_owner }}&show_icons=true&hide_border=true&include_all_commits=true
@@ -22,7 +22,7 @@ jobs:
           token: ${{ secrets.READ_KEY }}
 
       - name: Generate pin - spring-osca
-        uses: stats-organization/github-readme-stats-action@v2
+        uses: readme-tools/github-readme-stats-action@v1
         with:
           card: pin
           options: username=team-osca2&repo=spring-osca
@@ -30,7 +30,7 @@ jobs:
           token: ${{ secrets.READ_KEY }}
 
       - name: Generate pin - BodeumMe
-        uses: stats-organization/github-readme-stats-action@v2
+        uses: readme-tools/github-readme-stats-action@v1
         with:
           card: pin
           options: username=O-O-A-A&repo=BodeumMe
@@ -38,7 +38,7 @@ jobs:
           token: ${{ secrets.READ_KEY }}
 
       - name: Generate pin - hs-major
-        uses: stats-organization/github-readme-stats-action@v2
+        uses: readme-tools/github-readme-stats-action@v1
         with:
           card: pin
           options: username=UHeeJoon&repo=hs-major
@@ -46,7 +46,7 @@ jobs:
           token: ${{ secrets.READ_KEY }}
 
       - name: Generate pin - hanghae99
-        uses: stats-organization/github-readme-stats-action@v2
+        uses: readme-tools/github-readme-stats-action@v1
         with:
           card: pin
           options: username=UHeeJoon&repo=hanghae99
