@@ -39,7 +39,7 @@ const GRAPHQL_REPOS_QUERY = `
 `;
 
 const GRAPHQL_STATS_QUERY = `
-  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!, $startTime: DateTime = null) {
+  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!, $reviewedPullRequestsQuery: String!, $startTime: DateTime = null) {
     user(login: $login) {
       name
       login
@@ -48,6 +48,9 @@ const GRAPHQL_STATS_QUERY = `
       }
       reviews: contributionsCollection {
         totalPullRequestReviewContributions
+      }
+      reviewedPullRequests: search(query: $reviewedPullRequestsQuery, type: ISSUE) {
+        issueCount
       }
       repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
         totalCount
@@ -129,6 +132,7 @@ const statsFetcher = async ({
       includeMergedPullRequests,
       includeDiscussions,
       includeDiscussionsAnswers,
+      reviewedPullRequestsQuery: `type:pr reviewed-by:${username}`,
       startTime,
     };
     let res = await retryer(fetcher, variables);
@@ -299,7 +303,7 @@ const fetchStats = async (
       (user.mergedPullRequests.totalCount / user.pullRequests.totalCount) *
         100 || 0;
   }
-  stats.totalReviews = user.reviews.totalPullRequestReviewContributions;
+  stats.totalReviews = user.reviewedPullRequests.issueCount;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
   if (include_discussions) {
     stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;
