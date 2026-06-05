@@ -7,9 +7,7 @@ import { clampValue, lowercaseTrim } from "../common/ops.js";
 import { createProgressNode, flexLayout } from "../common/render.js";
 import { wakatimeCardLocales } from "../translations.js";
 
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-const languageColors = require("../common/languageColors.json");
+import languageColors from "../common/languageColors.json" with { type: "json" };
 
 const DEFAULT_CARD_WIDTH = 495;
 const MIN_CARD_WIDTH = 250;
