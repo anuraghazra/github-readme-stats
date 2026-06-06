@@ -106,6 +106,8 @@
 > [!IMPORTANT]
 > We're a small team, and to prioritize, we rely on upvotes :+1:. We use the Top Issues dashboard for tracking community demand (see [#1935](https://github.com/anuraghazra/github-readme-stats/issues/1935)). Do not hesitate to upvote the issues and pull requests you are interested in. We will work on the most upvoted first.
 
+#endpoint : "https://github-readme-stats-ten-lake-15.vercel.app/api?username=anuraghazra&hide=contribs,prs" by amalbijukurian
+
 # GitHub Stats Card
 
 Copy and paste this into your markdown, and that's it. Simple!
