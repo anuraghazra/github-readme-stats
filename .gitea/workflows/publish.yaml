@@ -1,0 +1,37 @@
+name: Sync GitHub
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config --global user.name "Andrew Sync"
+          git config --global user.email "sync@digitaladapt.com"
+
+      - name: Add GitHub Remote
+        env:
+          SYNC_TOKEN: ${{ secrets.SYNC_GITHUB_TOKEN }}
+          SYNC_TARGET: ${{ vars.SYNC_GITHUB_TARGET }}
+        run: |
+          git remote add github "https://digitaladapt:${SYNC_TOKEN}@github.com/$SYNC_TARGET"
+
+      - name: Push Current Branch
+        run: |
+          git push github HEAD:${GITHUB_REF_NAME}
+
+      - name: Push Tags
+        run: |
+          git push github --tags
+
