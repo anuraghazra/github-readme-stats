@@ -3,7 +3,7 @@ name: Push Docker
 on:
   push:
     tags:
-      - '[0-9.]+-[0-9]+-[0-9]+'
+      - '*-*-*'
       # for this project, we do "YYYY-MM-DD" for version numbers, due to unversioned upstream
 
 jobs:
@@ -28,8 +28,9 @@ jobs:
         with:
           context: .
           file: docker/Dockerfile
+          # for this project, we keep docker in its own folder, to keep it isolated from upstream
           push: true
-          platforms: linux/amd64
+          platforms: linux/amd64,linux/arm64
           tags: |
             ${{ vars.DOCKERHUB_TARGET }}:latest
             ${{ vars.DOCKERHUB_TARGET }}:${{ github.ref_name }}
