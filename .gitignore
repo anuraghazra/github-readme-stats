@@ -1,5 +1,5 @@
 .vercel
-host.env
+.env
 node_modules
 *.lock
 .idea/

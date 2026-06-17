@@ -2,14 +2,16 @@ Get dynamically generated GitHub stats on your READMEs, with the ease of docker!
 
 Fork of [https://github.com/anuraghazra/github-readme-stats](https://github.com/anuraghazra/github-readme-stats), gently wrapped in docker.
 
+Now as an image on Docker Hub.
+
 **Steps to setup:**
-* clone this repo into a folder.
-* copy docker-compose.yml.example to docker-compose.yml.
-* copy env.example to .env and update.
-* copy Caddyfile.example to Caddyfile and update.
+* add the readme_stats service to your existing docker-compose.yml.
+* configure your .env to have `PAT_1=<YOUR_GITHUB_TOKEN>`.
+* optionally configure `port`, and `github_username`
+* update your existing Caddyfile.
 * and start with `docker compose up -d`.
 
-docker-compose.yml.example has a very simple Caddy reverse proxy, for automatic https.
+docker-compose.yml.example, Caddyfile.example, and env.example have a very simple working example using Caddy reverse proxy.
 
 Files have example in their name, so that when you update, your local settings won't be overridden.
 
@@ -27,9 +29,4 @@ vim Caddyfile
 
 docker compose up -d
 ```
-
-You might ask, why should I trust your docker image?
-
-The answer is, you don't have to, there isn't an image,
-just a few commands in the Dockerfile, which you can and should look at.
 

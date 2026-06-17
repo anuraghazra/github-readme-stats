@@ -1,0 +1,28 @@
+services:
+  readme_stats:
+    container_name: readme_stats
+    env_file:
+      - .env
+    expose:
+      - $port
+    init: true
+    image: digitaladapt/github-readme-stats:latest
+    restart: unless-stopped
+
+  caddy:
+    ## optional, make caddy wait until the service is ready
+    #depends_on:
+    #  readme_stats:
+    #    condition: service_healthy
+    ## optional, make variables in .env file available to use in your Caddyfile
+    #env_file:
+    #  - .env
+    image: caddy:lates
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+

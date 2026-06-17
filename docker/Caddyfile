@@ -1,0 +1,6 @@
+readme-stats.example.com {
+	## optional, force all requests to return your github stats
+	#uri query username ${github_username:anuraghazra}
+	reverse_proxy readme_stats:${port:9000}
+}
+
