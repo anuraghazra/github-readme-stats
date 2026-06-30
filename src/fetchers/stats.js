@@ -45,6 +45,7 @@ const GRAPHQL_STATS_QUERY = `
       login
       commits: contributionsCollection (from: $startTime) {
         totalCommitContributions,
+        restrictedContributionsCount,
       }
       reviews: contributionsCollection {
         totalPullRequestReviewContributions
@@ -232,6 +233,7 @@ const fetchStats = async (
   include_discussions = false,
   include_discussions_answers = false,
   commits_year,
+  count_private = false,
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -290,6 +292,9 @@ const fetchStats = async (
     stats.totalCommits = await totalCommitsFetcher(username);
   } else {
     stats.totalCommits = user.commits.totalCommitContributions;
+    if (count_private) {
+      stats.totalCommits += user.commits.restrictedContributionsCount;
+    }
   }
 
   stats.totalPRs = user.pullRequests.totalCount;

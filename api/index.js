@@ -28,6 +28,7 @@ export default async (req, res) => {
     hide_rank,
     show_icons,
     include_all_commits,
+    count_private,
     commits_year,
     line_height,
     title_color,
@@ -94,6 +95,7 @@ export default async (req, res) => {
       showStats.includes("discussions_started"),
       showStats.includes("discussions_answered"),
       parseInt(commits_year, 10),
+      parseBoolean(count_private),
     );
     const cacheSeconds = resolveCacheSeconds({
       requested: parseInt(cache_seconds, 10),
