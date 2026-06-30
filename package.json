@@ -8,7 +8,7 @@
     "cards",
     "card-generator"
   ],
-  "main": "src/index.js",
+  "main": "express.js",
   "type": "module",
   "homepage": "https://github.com/anuraghazra/github-readme-stats",
   "bugs": {
