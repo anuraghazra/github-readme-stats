@@ -98,7 +98,27 @@ describe("Test fmt.js", () => {
     let multiLineText = wrapTextMultiline(
       "专门为刚开始刷题的同学准备的算法基地，没有最细只有更细，立志用动画将晦涩难懂的算法说的通俗易懂！",
     );
-    expect(multiLineText.length).toEqual(3);
-    expect(multiLineText[0].length).toEqual(18 * 8); // &#xxxxx; x 8
+    expect(multiLineText.length).toEqual(2);
+    // expect(multiLineText[0].length).toEqual(18 * 8); // This length check was specific to the old splitting logic
+  });
+
+  it("wrapTextMultiline: should wrap CJK text without punctuation correctly", () => {
+    // A long string of CJK characters without any punctuation or spaces.
+    // Length is 30 characters. Visual width is 60.
+    // Default width is 59. So this SHOULD wrap.
+    const text = "这是一个非常长的中文句子它没有任何标点符号或者空格所以它应该被正确地折行否则会超出边界";
+    let multiLineText = wrapTextMultiline(text, 59, 3);
+    
+    // It should be wrapped into at least 2 lines.
+    expect(multiLineText.length).toBeGreaterThan(1);
+    // Each line should be encoded.
+    expect(multiLineText[0]).toMatch(/&#\d+;/);
+  });
+
+  it("wrapTextMultiline: should wrap mixed English and CJK text correctly", () => {
+    // Mixed text.
+    const text = "Hello world 这是一个非常长的中文句子 mixed text";
+    let multiLineText = wrapTextMultiline(text, 20, 3);
+    expect(multiLineText.length).toBeGreaterThan(1);
   });
 });

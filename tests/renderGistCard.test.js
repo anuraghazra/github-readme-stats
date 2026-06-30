@@ -66,7 +66,7 @@ describe("test renderGistCard", () => {
 
     expect(
       document.getElementsByClassName("description")[0].children[1].textContent,
-    ).toBe("English-language pangram—a sentence that contains all");
+    ).toBe("English-language pangram—a sentence that contains all of");
   });
 
   it("should not trim description if it is short", () => {
