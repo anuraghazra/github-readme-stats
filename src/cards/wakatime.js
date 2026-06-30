@@ -14,9 +14,10 @@ import { wakatimeCardLocales } from "../translations.js";
  * since vercel is using v16.14.0 which does not yet support json imports without the
  * --experimental-json-modules flag.
  */
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-const languageColors = require("../common/languageColors.json"); // now works
+// import { createRequire } from "module";
+// const require = createRequire(import.meta.url);
+// const languageColors = require("../common/languageColors.json"); // now works
+import languageColors from "../common/languageColors.json";
 
 const DEFAULT_CARD_WIDTH = 495;
 const MIN_CARD_WIDTH = 250;
