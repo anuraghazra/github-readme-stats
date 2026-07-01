@@ -41,7 +41,7 @@ export type TopLangOptions = CommonOptions & {
   hide_title: boolean;
   card_width: number;
   hide: string[];
-  layout: "compact" | "normal" | "donut" | "donut-vertical" | "pie";
+  layout: "compact" | "normal" | "donut" | "donut-vertical" | "pie" | "3d";
   custom_title: string;
   langs_count: number;
   disable_animations: boolean;

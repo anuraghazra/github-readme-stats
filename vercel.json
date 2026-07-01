@@ -4,11 +4,5 @@
       "memory": 128,
       "maxDuration": 10
     }
-  },
-  "redirects": [
-    {
-      "source": "/",
-      "destination": "https://github.com/anuraghazra/github-readme-stats"
-    }
-  ]
+  }
 }
