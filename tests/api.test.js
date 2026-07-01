@@ -56,6 +56,9 @@ const data_stats = {
       reviews: {
         totalPullRequestReviewContributions: stats.totalReviews,
       },
+      reviewedPullRequests: {
+        issueCount: stats.totalReviews,
+      },
       pullRequests: { totalCount: stats.totalPRs },
       mergedPullRequests: { totalCount: stats.totalPRsMerged },
       openIssues: { totalCount: stats.totalIssues },

@@ -17,6 +17,9 @@ const data_stats = {
       reviews: {
         totalPullRequestReviewContributions: 50,
       },
+      reviewedPullRequests: {
+        issueCount: 50,
+      },
       pullRequests: { totalCount: 300 },
       mergedPullRequests: { totalCount: 240 },
       openIssues: { totalCount: 100 },
@@ -42,6 +45,10 @@ const data_stats = {
 
 const data_year2003 = JSON.parse(JSON.stringify(data_stats));
 data_year2003.data.user.commits.totalCommitContributions = 428;
+
+const data_all_time_reviews = JSON.parse(JSON.stringify(data_stats));
+data_all_time_reviews.data.user.reviews.totalPullRequestReviewContributions = 2;
+data_all_time_reviews.data.user.reviewedPullRequests.issueCount = 22;
 
 const data_without_pull_requests = {
   data: {
@@ -154,6 +161,17 @@ describe("Test fetchStats", () => {
       totalDiscussionsAnswered: 0,
       rank,
     });
+  });
+
+  it("should use the all-time reviewed pull request count", async () => {
+    mock.reset();
+    mock
+      .onPost("https://api.github.com/graphql")
+      .reply(200, data_all_time_reviews);
+
+    let stats = await fetchStats("Andrej123456789");
+
+    expect(stats.totalReviews).toBe(22);
   });
 
   it("should stop fetching when there are repos with zero stars", async () => {
