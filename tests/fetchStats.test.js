@@ -115,6 +115,30 @@ beforeEach(() => {
     ) {
       return [200, data_year2003];
     }
+
+    if (
+      req.variables.commits_api === "advanced" ||
+      cfg.data.includes("year_")
+    ) {
+      const advancedData = JSON.parse(JSON.stringify(data_stats));
+      delete advancedData.data.user.commits;
+
+      advancedData.data.user.year_2025 = {
+        totalCommitContributions: 100,
+        restrictedContributionsCount: 50,
+      };
+      advancedData.data.user.year_2026 = {
+        totalCommitContributions: 200,
+        restrictedContributionsCount: 25,
+      };
+
+      return [200, advancedData];
+    }
+
+    if (cfg.data.includes("userCreation")) {
+      return [200, { data: { user: { createdAt: "2025-01-01T00:00:00Z" } } }];
+    }
+
     return [
       200,
       req.query.includes("totalCommitContributions") ? data_stats : data_repo,
@@ -503,5 +527,180 @@ describe("Test fetchStats", () => {
       totalDiscussionsAnswered: 0,
       rank,
     });
+  });
+});
+
+describe("FetchStats Advanced API Core Logic", () => {
+  it("should correctly fetch and sum public and private commits for a valid year range", async () => {
+    const stats = await fetchStats(
+      "anuraghazra",
+      true,
+      [],
+      false,
+      false,
+      false,
+      2025,
+      2026,
+      "advanced",
+    );
+
+    expect(stats.totalCommits).toBe(375);
+  });
+
+  it("should correctly fetch and sum commits for complete all-time using userCreation fallback", async () => {
+    const stats = await fetchStats(
+      "anuraghazra",
+      true,
+      [],
+      false,
+      false,
+      false,
+      undefined,
+      undefined,
+      "advanced",
+    );
+
+    expect(stats.totalCommits).toBe(375);
+  });
+
+  it("should return empty object from resolver if advanced api is on but range and include_all_commits are false", async () => {
+    const stats = await fetchStats(
+      "anuraghazra",
+      false,
+      [],
+      false,
+      false,
+      false,
+      undefined,
+      undefined,
+      "advanced",
+    );
+
+    expect(stats.totalCommits).toBe(100);
+  });
+
+  it("should resolve query for a single year when include_all_commits is true", async () => {
+    const localMock = new MockAdapter(axios);
+
+    const advancedData = JSON.parse(JSON.stringify(data_stats));
+    delete advancedData.data.user.commits;
+
+    advancedData.data.user.year_2025 = {
+      totalCommitContributions: 150,
+      restrictedContributionsCount: 50,
+    };
+
+    localMock.onPost(new RegExp("/graphql")).reply(200, advancedData);
+
+    try {
+      const stats = await fetchStats(
+        "anuraghazra",
+        true,
+        [],
+        false,
+        false,
+        false,
+        2025,
+        undefined,
+        "advanced",
+      );
+
+      expect(stats.totalCommits).toBe(200);
+    } finally {
+      localMock.restore();
+    }
+  });
+});
+
+describe("FetchStats Advanced API Error Handling Logic", () => {
+  it("should correctly handle and throw CustomError for NOT_FOUND GraphQL errors", async () => {
+    const localMock = new MockAdapter(axios);
+
+    localMock.onPost(new RegExp("/graphql")).reply(200, {
+      errors: [
+        {
+          type: "NOT_FOUND",
+          message: "Could not resolve to a User with the login of 'noname'.",
+        },
+      ],
+    });
+
+    try {
+      await expect(
+        fetchStats(
+          "noname",
+          true,
+          [],
+          false,
+          false,
+          false,
+          undefined,
+          undefined,
+          "advanced",
+        ),
+      ).rejects.toThrow(
+        "Could not resolve to a User with the login of 'noname'.",
+      );
+    } finally {
+      localMock.restore();
+    }
+  });
+
+  it("should correctly handle and throw generic GraphQL errors with a message", async () => {
+    const localMock = new MockAdapter(axios);
+
+    localMock.onPost(new RegExp("/graphql")).reply(200, {
+      errors: [
+        {
+          message: "Some internal GitHub schema error occurred.",
+        },
+      ],
+    });
+
+    try {
+      await expect(
+        fetchStats(
+          "anuraghazra",
+          true,
+          [],
+          false,
+          false,
+          false,
+          undefined,
+          undefined,
+          "advanced",
+        ),
+      ).rejects.toThrow("Some internal GitHub schema error occurred.");
+    } finally {
+      localMock.restore();
+    }
+  });
+
+  it("should throw generic GraphQL error if error object has no type or message", async () => {
+    const localMock = new MockAdapter(axios);
+
+    localMock.onPost(new RegExp("/graphql")).reply(200, {
+      errors: [{}],
+    });
+
+    try {
+      await expect(
+        fetchStats(
+          "anuraghazra",
+          true,
+          [],
+          false,
+          false,
+          false,
+          undefined,
+          undefined,
+          "advanced",
+        ),
+      ).rejects.toThrow(
+        "Something went wrong while trying to retrieve the stats data using the GraphQL API.",
+      );
+    } finally {
+      localMock.restore();
+    }
   });
 });

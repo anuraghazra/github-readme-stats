@@ -38,55 +38,113 @@ const GRAPHQL_REPOS_QUERY = `
   }
 `;
 
-const GRAPHQL_STATS_QUERY = `
-  query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!, $startTime: DateTime = null) {
+const GRAPHQL_SHARED_STATS_FIELDS = `
+  name
+  login
+  reviews: contributionsCollection {
+    totalPullRequestReviewContributions
+  }
+  repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
+    totalCount
+  }
+  pullRequests(first: 1) {
+    totalCount
+  }
+  mergedPullRequests: pullRequests(states: MERGED) @include(if: $includeMergedPullRequests) {
+    totalCount
+  }
+  openIssues: issues(states: OPEN) {
+    totalCount
+  }
+  closedIssues: issues(states: CLOSED) {
+    totalCount
+  }
+  followers {
+    totalCount
+  }
+  repositoryDiscussions @include(if: $includeDiscussions) {
+    totalCount
+  }
+  repositoryDiscussionComments(onlyAnswers: true) @include(if: $includeDiscussionsAnswers) {
+    totalCount
+  }
+  ${GRAPHQL_REPOS_FIELD}
+`;
+
+/**
+ * Helper function for wrapping fields in the basic GraphQL userInfo query.
+ * Prevents duplication of the root structure and query parameters.
+ *
+ * @param {string} innerFields Internal GraphQL fields to query on the user object.
+ * @param {boolean} [hasStartTime=false] Flag to dynamically add the $startTime argument to the header.
+ * @returns {string} Full text of the GraphQL query.
+ */
+const wrapInUserInfoQuery = (innerFields, hasStartTime = false) => {
+  const startTimeArg = hasStartTime ? ", $startTime: DateTime = null" : "";
+  return `
+    query userInfo($login: String!, $after: String, $includeMergedPullRequests: Boolean!, $includeDiscussions: Boolean!, $includeDiscussionsAnswers: Boolean!${startTimeArg}) {
+      user(login: $login) {
+        ${innerFields}
+      }
+    }
+  `;
+};
+
+const GRAPHQL_STATS_QUERY = wrapInUserInfoQuery(
+  `
+  commits: contributionsCollection (from: $startTime) {
+    totalCommitContributions,
+  }
+  ${GRAPHQL_SHARED_STATS_FIELDS}
+`,
+  true,
+);
+
+const GRAPHQL_CREATION_QUERY = `
+  query userCreation($login: String!) {
     user(login: $login) {
-      name
-      login
-      commits: contributionsCollection (from: $startTime) {
-        totalCommitContributions,
-      }
-      reviews: contributionsCollection {
-        totalPullRequestReviewContributions
-      }
-      repositoriesContributedTo(first: 1, contributionTypes: [COMMIT, ISSUE, PULL_REQUEST, REPOSITORY]) {
-        totalCount
-      }
-      pullRequests(first: 1) {
-        totalCount
-      }
-      mergedPullRequests: pullRequests(states: MERGED) @include(if: $includeMergedPullRequests) {
-        totalCount
-      }
-      openIssues: issues(states: OPEN) {
-        totalCount
-      }
-      closedIssues: issues(states: CLOSED) {
-        totalCount
-      }
-      followers {
-        totalCount
-      }
-      repositoryDiscussions @include(if: $includeDiscussions) {
-        totalCount
-      }
-      repositoryDiscussionComments(onlyAnswers: true) @include(if: $includeDiscussionsAnswers) {
-        totalCount
-      }
-      ${GRAPHQL_REPOS_FIELD}
+      createdAt
     }
   }
 `;
 
 /**
+ * Dynamic generation of ONE packed GraphQL query for a range of years.
+ *
+ * @param {number} startYear Starting year of the range.
+ * @param {number} endYear End year of the range.
+ * @param {boolean} includeAllCommits Flag for including private commits in the query.
+ * @returns {string} GraphQL query text.
+ */
+const generateAdvancedStatsQuery = (startYear, endYear, includeAllCommits) => {
+  let yearlyCommitsFields = "";
+  const privateField = includeAllCommits ? "restrictedContributionsCount" : "";
+  for (let year = startYear; year <= endYear; year++) {
+    yearlyCommitsFields += `
+      year_${year}: contributionsCollection(from: "${year}-01-01T00:00:00Z", to: "${year}-12-31T23:59:59Z") {
+        totalCommitContributions
+        ${privateField}
+      }
+    `;
+  }
+
+  return wrapInUserInfoQuery(`
+    ${yearlyCommitsFields}
+    ${GRAPHQL_SHARED_STATS_FIELDS}
+  `);
+};
+
+/**
  * Stats fetcher object.
  *
- * @param {object & { after: string | null }} variables Fetcher variables.
+ * @param {object & { after: string | null, query?: string }} variables Fetcher variables.
  * @param {string} token GitHub token.
  * @returns {Promise<import('axios').AxiosResponse>} Axios response.
  */
 const fetcher = (variables, token) => {
-  const query = variables.after ? GRAPHQL_REPOS_QUERY : GRAPHQL_STATS_QUERY;
+  const query =
+    variables.query ||
+    (variables.after ? GRAPHQL_REPOS_QUERY : GRAPHQL_STATS_QUERY);
   return request(
     {
       query,
@@ -107,6 +165,7 @@ const fetcher = (variables, token) => {
  * @param {boolean} variables.includeDiscussions Include discussions.
  * @param {boolean} variables.includeDiscussionsAnswers Include discussions answers.
  * @param {string|undefined} variables.startTime Time to start the count of total commits.
+ * @param {string} [variables.query] An external GraphQL query that is forced into the fetcher (e.g. for an advanced API).
  * @returns {Promise<import('axios').AxiosResponse>} Axios response.
  *
  * @description This function supports multi-page fetching if the 'FETCH_MULTI_PAGE_STARS' environment variable is set to true.
@@ -117,6 +176,7 @@ const statsFetcher = async ({
   includeDiscussions,
   includeDiscussionsAnswers,
   startTime,
+  query,
 }) => {
   let stats;
   let hasNextPage = true;
@@ -130,6 +190,7 @@ const statsFetcher = async ({
       includeDiscussions,
       includeDiscussionsAnswers,
       startTime,
+      query,
     };
     let res = await retryer(fetcher, variables);
     if (res.data.errors) {
@@ -213,6 +274,127 @@ const totalCommitsFetcher = async (username) => {
 };
 
 /**
+ * Check GraphQL response for errors, log them, and throw corresponding CustomError.
+ *
+ * @param {import('axios').AxiosResponse} res The Axios/Fetch response object.
+ * @throws {CustomError} If the response contains GraphQL errors.
+ */
+const handleGraphQLErrors = (res) => {
+  if (!res.data.errors) {
+    return;
+  }
+
+  logger.error(res.data.errors);
+  const firstError = res.data.errors[0];
+
+  if (firstError.type === "NOT_FOUND") {
+    throw new CustomError(
+      firstError.message || "Could not fetch user.",
+      CustomError.USER_NOT_FOUND,
+    );
+  }
+  if (firstError.message) {
+    throw new CustomError(
+      wrapTextMultiline(firstError.message, 90, 1)[0],
+      res.statusText,
+    );
+  }
+  throw new CustomError(
+    "Something went wrong while trying to retrieve the stats data using the GraphQL API.",
+    CustomError.GRAPHQL_ERROR,
+  );
+};
+
+/**
+ * Determines whether the advanced commit count API should be used
+ * and dynamically generates the corresponding GraphQL query.
+ *
+ * @param {string} username GitHub username.
+ * @param {boolean} include_all_commits Flag for counting commits over time (including private ones).
+ * @param {number|undefined} commits_year Start year of the range or a specific year.
+ * @param {number|undefined} commits_end_year The end year of the range of years.
+ * @returns {Promise<{ query?: string, startYear?: number, endYear?: number }>} An object containing the generated query and resolved year boundaries if conditions are met; an empty object otherwise.
+ */
+const resolveAdvancedStatsQuery = async (
+  username,
+  include_all_commits,
+  commits_year,
+  commits_end_year,
+) => {
+  const useYearRange =
+    commits_year !== undefined &&
+    commits_end_year !== undefined &&
+    !isNaN(commits_year) &&
+    !isNaN(commits_end_year) &&
+    commits_end_year >= commits_year;
+
+  if (useYearRange) {
+    return {
+      query: generateAdvancedStatsQuery(
+        commits_year,
+        commits_end_year,
+        include_all_commits,
+      ),
+      startYear: commits_year,
+      endYear: commits_end_year,
+    };
+  }
+
+  if (!include_all_commits) {
+    return {};
+  }
+
+  if (commits_year) {
+    return {
+      query: generateAdvancedStatsQuery(
+        commits_year,
+        commits_year,
+        include_all_commits,
+      ),
+      startYear: commits_year,
+      endYear: commits_year,
+    };
+  }
+
+  const res = await retryer(fetcher, {
+    login: username,
+    query: GRAPHQL_CREATION_QUERY,
+  });
+
+  // Catch GraphQL errors.
+  handleGraphQLErrors(res);
+
+  const startYear = new Date(res.data.data.user.createdAt).getFullYear();
+  const endYear = new Date().getFullYear();
+
+  return {
+    query: generateAdvancedStatsQuery(startYear, endYear, include_all_commits),
+    startYear,
+    endYear,
+  };
+};
+
+const commitsApiValue = {
+  advanced: "advanced",
+  default: "default",
+};
+
+/**
+ * Returns the validated value for the Commits API.
+ *
+ * @param {string|undefined} value commits api value.
+ * @returns {string} validated commits api value.
+ */
+const getValidatedCommitsApiValue = (value) => {
+  switch (value) {
+    case commitsApiValue.advanced:
+      return value;
+    default:
+      return commitsApiValue.default;
+  }
+};
+
+/**
  * Fetch stats for a given username.
  *
  * @param {string} username GitHub username.
@@ -222,6 +404,8 @@ const totalCommitsFetcher = async (username) => {
  * @param {boolean} include_discussions Include discussions.
  * @param {boolean} include_discussions_answers Include discussions answers.
  * @param {number|undefined} commits_year Year to count total commits
+ * @param {number|undefined} [commits_end_year] End year of the range
+ * @param {string} [commits_api] API execution mode for the statistics card (e.g., "advanced").
  * @returns {Promise<import("./types").StatsData>} Stats data.
  */
 const fetchStats = async (
@@ -232,6 +416,8 @@ const fetchStats = async (
   include_discussions = false,
   include_discussions_answers = false,
   commits_year,
+  commits_end_year,
+  commits_api,
 ) => {
   if (!username) {
     throw new MissingParamError(["username"]);
@@ -252,41 +438,53 @@ const fetchStats = async (
     rank: { level: "C", percentile: 100 },
   };
 
-  let res = await statsFetcher({
+  const commitsApi = getValidatedCommitsApiValue(commits_api);
+  const isAdvancedDisabled = process.env.DISABLE_ADVANCED_COMMITS === "true";
+
+  const advancedStatsQueryInfo =
+    commitsApi === commitsApiValue.advanced && !isAdvancedDisabled
+      ? await resolveAdvancedStatsQuery(
+          username,
+          include_all_commits,
+          commits_year,
+          commits_end_year,
+        )
+      : {};
+
+  const res = await statsFetcher({
     username,
     includeMergedPullRequests: include_merged_pull_requests,
     includeDiscussions: include_discussions,
     includeDiscussionsAnswers: include_discussions_answers,
     startTime: commits_year ? `${commits_year}-01-01T00:00:00Z` : undefined,
+    query: advancedStatsQueryInfo.query,
   });
 
   // Catch GraphQL errors.
-  if (res.data.errors) {
-    logger.error(res.data.errors);
-    if (res.data.errors[0].type === "NOT_FOUND") {
-      throw new CustomError(
-        res.data.errors[0].message || "Could not fetch user.",
-        CustomError.USER_NOT_FOUND,
-      );
-    }
-    if (res.data.errors[0].message) {
-      throw new CustomError(
-        wrapTextMultiline(res.data.errors[0].message, 90, 1)[0],
-        res.statusText,
-      );
-    }
-    throw new CustomError(
-      "Something went wrong while trying to retrieve the stats data using the GraphQL API.",
-      CustomError.GRAPHQL_ERROR,
-    );
-  }
+  handleGraphQLErrors(res);
 
   const user = res.data.data.user;
 
   stats.name = user.name || user.login;
 
-  // if include_all_commits, fetch all commits using the REST API.
-  if (include_all_commits) {
+  if (advancedStatsQueryInfo.query) {
+    const startYear = advancedStatsQueryInfo.startYear || 0;
+    const endYear = advancedStatsQueryInfo.endYear || -1;
+
+    let totalCommits = 0;
+
+    for (let year = startYear; year <= endYear; year++) {
+      const yearBlock = user[`year_${year}`];
+      if (yearBlock) {
+        totalCommits +=
+          (yearBlock.totalCommitContributions || 0) +
+          (yearBlock.restrictedContributionsCount || 0);
+      }
+    }
+
+    stats.totalCommits = totalCommits;
+  } else if (include_all_commits) {
+    // if include_all_commits, fetch all commits using the REST API.
     stats.totalCommits = await totalCommitsFetcher(username);
   } else {
     stats.totalCommits = user.commits.totalCommitContributions;

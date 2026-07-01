@@ -29,6 +29,8 @@ export default async (req, res) => {
     show_icons,
     include_all_commits,
     commits_year,
+    commits_end_year,
+    commits_api,
     line_height,
     title_color,
     ring_color,
@@ -94,6 +96,8 @@ export default async (req, res) => {
       showStats.includes("discussions_started"),
       showStats.includes("discussions_answered"),
       parseInt(commits_year, 10),
+      parseInt(commits_end_year, 10),
+      commits_api,
     );
     const cacheSeconds = resolveCacheSeconds({
       requested: parseInt(cache_seconds, 10),

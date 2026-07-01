@@ -395,7 +395,8 @@ If we don't support your language, please consider contributing! You can find mo
 | `hide_rank` | Hides the rank and automatically resizes the card width. | boolean | `false` |
 | `rank_icon` | Shows alternative rank icon (i.e. `github`, `percentile` or `default`). | enum | `default` |
 | `show_icons` | Shows icons near all stats. | boolean | `false` |
-| `include_all_commits` | Count total commits instead of just the current year commits. | boolean | `false` |
+| `commits_api` | API execution mode for the statistics card.<br /><br />Values:<br /> • `default` - default behavior (fetches data for the past year or for the specified year).<br /> • `advanced` - uses GraphQL API to fetch all-time public commits by default. Can be extended to include private repositories via `include_all_commits`, or filtered by specific years via `commits_year` and `commits_end_year`.<br /><br />_Note: The value is case-sensitive. If an invalid or unknown value is provided, it will safely fallback to the `default` behavior._ | enum | `default` |
+| `include_all_commits` | Count total commits instead of just the current year commits.<br /><br />If `commits_api` is set to `advanced`, setting `include_all_commits` to `true` will include private commits in the total count as well. | boolean | `false` |
 | `line_height` | Sets the line height between text. | integer | `25` |
 | `exclude_repo` | Excludes specified repositories. | string (comma-separated values) | `null` |
 | `custom_title` | Sets a custom title for the card. | string | `<username> GitHub Stats` |
@@ -405,7 +406,8 @@ If we don't support your language, please consider contributing! You can find mo
 | `number_format` | Switches between two available formats for displaying the card values `short` (i.e. `6.6k`) and `long` (i.e. `6626`). | enum | `short` |
 | `number_precision` | Enforce the number of digits after the decimal point for `short` number format. Must be an integer between 0 and 2. Will be ignored for `long` number format. | integer (0, 1 or 2) | `null` |
 | `show` | Shows [additional items](#showing-additional-individual-stats) on stats card (i.e. `reviews`, `discussions_started`, `discussions_answered`, `prs_merged` or `prs_merged_percentage`). | string (comma-separated values) | `null` |
-| `commits_year` | Filters and counts only commits made in the specified year. | integer _(YYYY)_ | `<current year> (one year to date)` |
+| `commits_year` | Filters and counts only commits made in the specified year.<br /><br />If `commits_api` is set to `advanced`, this parameter filters commits for the specified year, or serves as the start year when paired with `commits_end_year`. | integer _(YYYY)_ | `<current year> (one year to date)` |
+| `commits_end_year` | End year of the commits range.<br /><br />Works only in conjunction with `commits_year` and when `commits_api` is set to `advanced`. | integer _(YYYY)_ | `undefined` |
 
 <table><tr><td>
 ⚠️<b>Warning</b>
@@ -418,6 +420,9 @@ Custom title should be URI-escaped, as specified in [Percent Encoding](https://e
 
 When hide\_rank=`true`, the minimum card width is 270 px + the title length and padding.
 </td></tr></table>
+
+> [!NOTE]
+> Set the `DISABLE_ADVANCED_COMMITS` environment variable to `true` to disable the `advanced` commits API mode globally. Although the advanced mode is highly optimized and fetches all data in a **single GraphQL request**, this toggle is provided as a safeguard to disable the feature if high-traffic instances hit strict GitHub API rate limits. When disabled, it safely falls back to the default behavior.
 
 ***
 
