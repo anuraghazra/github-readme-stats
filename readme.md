@@ -91,7 +91,7 @@
   - [Quick Tip (Align The Cards)](#quick-tip-align-the-cards)
     - [Stats and top languages cards](#stats-and-top-languages-cards)
     - [Pinning repositories](#pinning-repositories)
-- [Deploy on your own](#deploy-on-your-own)
+- [Deploy on your own](#deploy-on-your-own-recommended)
   - [GitHub Actions (Recommended)](#github-actions-recommended)
   - [Self-hosted (Vercel/Other) (Recommended)](#self-hosted-vercelother-recommended)
     - [First step: get your Personal Access Token (PAT)](#first-step-get-your-personal-access-token-pat)
