@@ -46,6 +46,7 @@ export type TopLangOptions = CommonOptions & {
   langs_count: number;
   disable_animations: boolean;
   hide_progress: boolean;
+  hide_stats: boolean;
   stats_format: "percentages" | "bytes";
 };
 
