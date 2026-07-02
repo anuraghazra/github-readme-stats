@@ -67,6 +67,9 @@ const GRAPHQL_STATS_QUERY = `
       followers {
         totalCount
       }
+      repositories {
+        totalCount
+      }
       repositoryDiscussions @include(if: $includeDiscussions) {
         totalCount
       }
@@ -249,6 +252,8 @@ const fetchStats = async (
     totalDiscussionsStarted: 0,
     totalDiscussionsAnswered: 0,
     contributedTo: 0,
+    followers: 0,
+    totalRepos: 0,
     rank: { level: "C", percentile: 100 },
   };
 
@@ -301,6 +306,8 @@ const fetchStats = async (
   }
   stats.totalReviews = user.reviews.totalPullRequestReviewContributions;
   stats.totalIssues = user.openIssues.totalCount + user.closedIssues.totalCount;
+  stats.followers = user.followers.totalCount;
+  stats.totalRepos = user.repositories.totalCount;
   if (include_discussions) {
     stats.totalDiscussionsStarted = user.repositoryDiscussions.totalCount;
   }
