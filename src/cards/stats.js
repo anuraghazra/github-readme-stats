@@ -267,6 +267,8 @@ const renderStatsCard = (stats, options = {}) => {
     totalDiscussionsStarted,
     totalDiscussionsAnswered,
     contributedTo,
+    followers,
+    totalRepos,
     rank,
   } = stats;
   const {
@@ -408,6 +410,24 @@ const renderStatsCard = (stats, options = {}) => {
     value: contributedTo,
     id: "contribs",
   };
+
+  if (show.includes("followers")) {
+    STATS.followers = {
+      icon: icons.followers,
+      label: i18n.t("statcard.followers"),
+      value: followers,
+      id: "followers",
+    };
+  }
+
+  if (show.includes("repos")) {
+    STATS.repos = {
+      icon: icons.repos,
+      label: i18n.t("statcard.repos"),
+      value: totalRepos,
+      id: "repos",
+    };
+  }
 
   // @ts-ignore
   const isLongLocale = locale ? LONG_LOCALES.includes(locale) : false;
