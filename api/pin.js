@@ -69,6 +69,8 @@ export default async (req, res) => {
       }),
     );
   }
+  
+  theme = theme.replace(/-/g, "_")
 
   try {
     const repoData = await fetchRepo(username, repo);
