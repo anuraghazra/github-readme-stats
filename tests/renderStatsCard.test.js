@@ -8,6 +8,7 @@ import "@testing-library/jest-dom";
 import { cssToObject } from "@uppercod/css-to-object";
 import { renderStatsCard } from "../src/cards/stats.js";
 import { CustomError } from "../src/common/error.js";
+import { measureText } from "../src/common/render.js";
 import { themes } from "../themes/index.js";
 
 const stats = {
@@ -23,6 +24,12 @@ const stats = {
   totalDiscussionsAnswered: 50,
   contributedTo: 500,
   rank: { level: "A+", percentile: 40 },
+};
+
+const getTranslateX = (element) => {
+  const transform = element.getAttribute("transform") || "";
+  const match = transform.match(/translate\(([-\d.]+)/);
+  return match ? Number(match[1]) : 0;
 };
 
 describe("Test renderStatsCard", () => {
@@ -165,7 +172,9 @@ describe("Test renderStatsCard", () => {
       hide_rank: false,
       show_icons: true,
     });
-    expect(document.querySelector("svg")).toHaveAttribute("width", "437");
+    expect(
+      Number(document.querySelector("svg").getAttribute("width")),
+    ).toBeCloseTo(438.37812499999995);
 
     // Test minimum card width without icons or rank.
     document.body.innerHTML = renderStatsCard(stats, {
@@ -339,6 +348,27 @@ describe("Test renderStatsCard", () => {
     ).toHaveAttribute("x", "25");
   });
 
+  it("should keep a safe gap between long labels and values", () => {
+    document.body.innerHTML = renderStatsCard(stats, {
+      hide_rank: true,
+      show_icons: true,
+    });
+
+    const commitsValue = getByTestId(document.body, "commits");
+    const commitsLabel = commitsValue.previousElementSibling;
+    const row = commitsValue.closest("g.stagger");
+    const rowX = getTranslateX(row);
+    const labelX = rowX + Number(commitsLabel.getAttribute("x") || 0);
+    const valueRightX = rowX + Number(commitsValue.getAttribute("x"));
+    const labelWidth = measureText(commitsLabel.textContent, 14);
+    const valueWidth = measureText(commitsValue.textContent, 14);
+    const valueLeftX = valueRightX - valueWidth;
+
+    expect(commitsValue).toHaveAttribute("text-anchor", "end");
+    expect(valueRightX).toBeGreaterThan(244);
+    expect(valueLeftX - (labelX + labelWidth)).toBeGreaterThanOrEqual(20);
+  });
+
   it("should not have icons if show_icons is false", () => {
     document.body.innerHTML = renderStatsCard(stats, { show_icons: false });
 
@@ -366,8 +396,10 @@ describe("Test renderStatsCard", () => {
     });
 
     expect(
-      document.body.getElementsByTagName("svg")[0].getAttribute("width"),
-    ).toBe("287");
+      Number(
+        document.body.getElementsByTagName("svg")[0].getAttribute("width"),
+      ),
+    ).toBeCloseTo(293.37812499999995);
   });
 
   it("should render translations", () => {

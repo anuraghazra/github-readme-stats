@@ -16,68 +16,30 @@ const RANK_CARD_MIN_WIDTH = 420;
 const RANK_CARD_DEFAULT_WIDTH = 450;
 const RANK_ONLY_CARD_MIN_WIDTH = 290;
 const RANK_ONLY_CARD_DEFAULT_WIDTH = 290;
+const STAT_ROW_X = 25;
+const STAT_LABEL_X = 25;
+const STAT_FONT_SIZE = 14;
+const STAT_LABEL_VALUE_GAP = 28;
+const STAT_LABEL_WIDTH_BUFFER = 20;
+const STAT_VALUE_WIDTH_BUFFER = 12;
+const HIDE_RANK_VALUE_RIGHT_PADDING = 25;
+const RANK_CARD_VALUE_RIGHT_RESERVED_WIDTH = 145;
 
 /**
- * Long locales that need more space for text. Keep sorted alphabetically.
+ * Formats a stats card value the same way it is rendered in the SVG.
  *
- * @type {(keyof typeof wakatimeCardLocales["wakatimecard.title"])[]}
- */
-const LONG_LOCALES = [
-  "az",
-  "bg",
-  "cs",
-  "de",
-  "el",
-  "es",
-  "fil",
-  "fi",
-  "fr",
-  "hu",
-  "id",
-  "ja",
-  "ml",
-  "my",
-  "nl",
-  "pl",
-  "pt-br",
-  "pt-pt",
-  "ru",
-  "sr",
-  "sr-latn",
-  "sw",
-  "ta",
-  "uk-ua",
-  "uz",
-  "zh-tw",
-];
-
-/**
- * Create a stats card text item.
- *
- * @param {object} params Object that contains the createTextNode parameters.
- * @param {string} params.icon The icon to display.
- * @param {string} params.label The label to display.
- * @param {number} params.value The value to display.
- * @param {string} params.id The id of the stat.
+ * @param {object} params Object that contains the value formatting parameters.
+ * @param {number|string} params.value The value to display.
+ * @param {string} params.id The stat identifier.
  * @param {string=} params.unitSymbol The unit symbol of the stat.
- * @param {number} params.index The index of the stat.
- * @param {boolean} params.showIcons Whether to show icons.
- * @param {number} params.shiftValuePos Number of pixels the value has to be shifted to the right.
- * @param {boolean} params.bold Whether to bold the label.
  * @param {string} params.numberFormat The format of numbers on card.
  * @param {number=} params.numberPrecision The precision of numbers on card.
- * @returns {string} The stats card text item SVG object.
+ * @returns {string} The formatted value.
  */
-const createTextNode = ({
-  icon,
-  label,
+const formatStatValue = ({
   value,
   id,
   unitSymbol,
-  index,
-  showIcons,
-  shiftValuePos,
-  bold,
   numberFormat,
   numberPrecision,
 }) => {
@@ -85,13 +47,41 @@ const createTextNode = ({
     typeof numberPrecision === "number" && !isNaN(numberPrecision)
       ? clampValue(numberPrecision, 0, 2)
       : undefined;
-  const kValue =
+  const formattedValue =
     numberFormat.toLowerCase() === "long" || id === "prs_merged_percentage"
       ? value
       : kFormatter(value, precision);
+
+  return `${formattedValue}${unitSymbol ? ` ${unitSymbol}` : ""}`;
+};
+
+/**
+ * Create a stats card text item.
+ *
+ * @param {object} params Object that contains the createTextNode parameters.
+ * @param {string} params.icon The icon to display.
+ * @param {string} params.label The label to display.
+ * @param {string} params.id The id of the stat.
+ * @param {number} params.index The index of the stat.
+ * @param {boolean} params.showIcons Whether to show icons.
+ * @param {number} params.valueX Relative X position for the value column.
+ * @param {boolean} params.bold Whether to bold the label.
+ * @param {string} params.formattedValue The formatted value to display.
+ * @returns {string} The stats card text item SVG object.
+ */
+const createTextNode = ({
+  icon,
+  label,
+  id,
+  index,
+  showIcons,
+  valueX,
+  bold,
+  formattedValue,
+}) => {
   const staggerDelay = (index + 3) * 150;
 
-  const labelOffset = showIcons ? `x="25"` : "";
+  const labelOffset = showIcons ? `x="${STAT_LABEL_X}"` : "";
   const iconSvg = showIcons
     ? `
     <svg data-testid="icon" class="icon" viewBox="0 0 16 16" version="1.1" width="16" height="16">
@@ -100,17 +90,18 @@ const createTextNode = ({
   `
     : "";
   return `
-    <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(25, 0)">
+    <g class="stagger" style="animation-delay: ${staggerDelay}ms" transform="translate(${STAT_ROW_X}, 0)">
       ${iconSvg}
       <text class="stat ${
         bold ? " bold" : "not_bold"
       }" ${labelOffset} y="12.5">${label}:</text>
       <text
         class="stat ${bold ? " bold" : "not_bold"}"
-        x="${(showIcons ? 140 : 120) + shiftValuePos}"
+        x="${valueX}"
         y="12.5"
+        text-anchor="end"
         data-testid="${id}"
-      >${kValue}${unitSymbol ? ` ${unitSymbol}` : ""}</text>
+      >${formattedValue}</text>
     </g>
   `;
 };
@@ -409,33 +400,55 @@ const renderStatsCard = (stats, options = {}) => {
     id: "contribs",
   };
 
-  // @ts-ignore
-  const isLongLocale = locale ? LONG_LOCALES.includes(locale) : false;
-
-  // filter out hidden stats defined by user & create the text nodes
-  const statItems = Object.keys(STATS)
+  const visibleStats = Object.keys(STATS)
     .filter((key) => !hide.includes(key))
     .map((key, index) => {
       // @ts-ignore
       const stats = STATS[key];
 
-      // create the text nodes, and pass index so that we can calculate the line spacing
-      return createTextNode({
-        icon: stats.icon,
-        label: stats.label,
-        value: stats.value,
-        id: stats.id,
-        unitSymbol: stats.unitSymbol,
+      return {
+        ...stats,
         index,
-        showIcons: show_icons,
-        shiftValuePos: 79.01 + (isLongLocale ? 50 : 0),
-        bold: text_bold,
-        numberFormat: number_format,
-        numberPrecision: number_precision,
-      });
+        formattedValue: formatStatValue({
+          value: stats.value,
+          id: stats.id,
+          unitSymbol: stats.unitSymbol,
+          numberFormat: number_format,
+          numberPrecision: number_precision,
+        }),
+      };
     });
 
-  if (statItems.length === 0 && hide_rank) {
+  const labelStartX = STAT_ROW_X + (show_icons ? STAT_LABEL_X : 0);
+  const longestLabelWidth = visibleStats.length
+    ? Math.max(
+        ...visibleStats.map(
+          (stat) =>
+            measureText(`${stat.label}:`, STAT_FONT_SIZE) +
+            STAT_LABEL_WIDTH_BUFFER,
+        ),
+      )
+    : 0;
+  const longestValueWidth = visibleStats.length
+    ? Math.max(
+        ...visibleStats.map(
+          (stat) =>
+            measureText(stat.formattedValue, STAT_FONT_SIZE) +
+            STAT_VALUE_WIDTH_BUFFER,
+        ),
+      )
+    : 0;
+  const valueRightPadding = hide_rank
+    ? HIDE_RANK_VALUE_RIGHT_PADDING
+    : RANK_CARD_VALUE_RIGHT_RESERVED_WIDTH;
+  const statContentMinWidth =
+    labelStartX +
+    longestLabelWidth +
+    STAT_LABEL_VALUE_GAP +
+    longestValueWidth +
+    valueRightPadding;
+
+  if (visibleStats.length === 0 && hide_rank) {
     throw new CustomError(
       "Could not render stats card.",
       "Either stats or rank are required.",
@@ -445,8 +458,8 @@ const renderStatsCard = (stats, options = {}) => {
   // Calculate the card height depending on how many items there are
   // but if rank circle is visible clamp the minimum height to `150`
   let height = Math.max(
-    45 + (statItems.length + 1) * lheight,
-    hide_rank ? 0 : statItems.length ? 150 : 180,
+    45 + (visibleStats.length + 1) * lheight,
+    hide_rank ? 0 : visibleStats.length ? 150 : 180,
   );
 
   // the lower the user's percentile the better
@@ -464,7 +477,7 @@ const renderStatsCard = (stats, options = {}) => {
     return measureText(
       custom_title
         ? custom_title
-        : statItems.length
+        : visibleStats.length
           ? i18n.t("statcard.title")
           : i18n.t("statcard.ranktitle"),
     );
@@ -475,23 +488,25 @@ const renderStatsCard = (stats, options = {}) => {
     When hide_rank=false, the minimum card_width is 340 px + the icon width (if show_icons=true).
     Numbers are picked by looking at existing dimensions on production.
   */
-  const iconWidth = show_icons && statItems.length ? 16 + /* padding */ 1 : 0;
-  const minCardWidth =
+  const iconWidth =
+    show_icons && visibleStats.length ? 16 + /* padding */ 1 : 0;
+  const baseMinCardWidth =
     (hide_rank
       ? clampValue(
           50 /* padding */ + calculateTextWidth() * 2,
           CARD_MIN_WIDTH,
           Infinity,
         )
-      : statItems.length
+      : visibleStats.length
         ? RANK_CARD_MIN_WIDTH
         : RANK_ONLY_CARD_MIN_WIDTH) + iconWidth;
   const defaultCardWidth =
     (hide_rank
       ? CARD_DEFAULT_WIDTH
-      : statItems.length
+      : visibleStats.length
         ? RANK_CARD_DEFAULT_WIDTH
         : RANK_ONLY_CARD_DEFAULT_WIDTH) + iconWidth;
+  const minCardWidth = Math.max(baseMinCardWidth, statContentMinWidth);
   let width = card_width
     ? isNaN(card_width)
       ? defaultCardWidth
@@ -500,10 +515,26 @@ const renderStatsCard = (stats, options = {}) => {
   if (width < minCardWidth) {
     width = minCardWidth;
   }
+  const valueColumnX = width - valueRightPadding;
+
+  // The previous layout used a fixed X position for values, so long labels could run into it.
+  // Keep the values pinned to a dedicated right-aligned column and grow the card when label/value width requires it.
+  const statItems = visibleStats.map((stats) =>
+    createTextNode({
+      icon: stats.icon,
+      label: stats.label,
+      id: stats.id,
+      index: stats.index,
+      showIcons: show_icons,
+      valueX: valueColumnX - STAT_ROW_X,
+      bold: text_bold,
+      formattedValue: stats.formattedValue,
+    }),
+  );
 
   const card = new Card({
     customTitle: custom_title,
-    defaultTitle: statItems.length
+    defaultTitle: visibleStats.length
       ? i18n.t("statcard.title")
       : i18n.t("statcard.ranktitle"),
     width,
