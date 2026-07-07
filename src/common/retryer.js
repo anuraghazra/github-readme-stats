@@ -86,6 +86,12 @@ const retryer = async (fetcher, variables, retries = 0) => {
       retries++;
       // directly return from the function
       return retryer(fetcher, variables, retries);
+    } else {
+      // Throw a standardized error for non-recoverable cases
+      throw new CustomError(
+        err.response?.data?.message || err.message || "Unknown error occurred",
+        err.response?.status || "UNKNOWN_ERROR",
+      );
     }
 
     // HTTP error with a response → return it for caller-side handling
