@@ -22,7 +22,7 @@ export default [
         ...globals.browser,
       },
 
-      ecmaVersion: 2022,
+      ecmaVersion: 2025,
       sourceType: "module",
     },
     plugins: {
