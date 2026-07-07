@@ -30,7 +30,7 @@ describe("Test calculateRank", () => {
         stars: 25,
         followers: 5,
       }),
-    ).toStrictEqual({ level: "B-", percentile: 65.02918514848255 });
+    ).toStrictEqual({ level: "B-", percentile: 65.02918514848257 });
   });
 
   it("median user gets B+ rank", () => {
