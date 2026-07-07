@@ -1,23 +1,25 @@
-import { encodeHTML, flexLayout } from "./utils.js";
+// @ts-check
+
+import { encodeHTML } from "./html.js";
+import { flexLayout } from "./render.js";
 
 class Card {
   /**
    * Creates a new card instance.
    *
    * @param {object} args Card arguments.
-   * @param {number?=} args.width Card width.
-   * @param {number?=} args.height Card height.
-   * @param {number?=} args.border_radius Card border radius.
-   * @param {string?=} args.customTitle Card custom title.
-   * @param {string?=} args.defaultTitle Card default title.
-   * @param {string?=} args.titlePrefixIcon Card title prefix icon.
-   * @param {object?=} args.colors Card colors arguments.
-   * @param {string} args.colors.titleColor Card title color.
-   * @param {string} args.colors.textColor Card text color.
-   * @param {string} args.colors.iconColor Card icon color.
-   * @param {string|Array} args.colors.bgColor Card background color.
-   * @param {string} args.colors.borderColor Card border color.
-   * @returns {Card} Card instance.
+   * @param {number=} args.width Card width.
+   * @param {number=} args.height Card height.
+   * @param {number=} args.border_radius Card border radius.
+   * @param {string=} args.customTitle Card custom title.
+   * @param {string=} args.defaultTitle Card default title.
+   * @param {string=} args.titlePrefixIcon Card title prefix icon.
+   * @param {object} [args.colors={}] Card colors arguments.
+   * @param {string=} args.colors.titleColor Card title color.
+   * @param {string=} args.colors.textColor Card text color.
+   * @param {string=} args.colors.iconColor Card icon color.
+   * @param {string|string[]=} args.colors.bgColor Card background color.
+   * @param {string=} args.colors.borderColor Card border color.
    */
   constructor({
     width = 100,
@@ -138,7 +140,7 @@ class Card {
         transform="translate(${this.paddingX}, ${this.paddingY})"
       >
         ${flexLayout({
-          items: [this.titlePrefixIcon && prefixIcon, titleText],
+          items: [this.titlePrefixIcon ? prefixIcon : "", titleText],
           gap: 25,
         }).join("")}
       </g>

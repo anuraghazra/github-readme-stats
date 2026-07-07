@@ -1,11 +1,13 @@
+// @ts-check
+
 import axios from "axios";
-import { CustomError, MissingParamError } from "../common/utils.js";
+import { CustomError, MissingParamError } from "../common/error.js";
 
 /**
  * WakaTime data fetcher.
  *
  * @param {{username: string, api_domain: string }} props Fetcher props.
- * @returns {Promise<WakaTimeData>} WakaTime data response.
+ * @returns {Promise<import("./types").WakaTimeData>} WakaTime data response.
  */
 const fetchWakatimeStats = async ({ username, api_domain }) => {
   if (!username) {

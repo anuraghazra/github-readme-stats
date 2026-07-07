@@ -1,8 +1,8 @@
-import { benchmarkSuite } from "jest-bench";
 import api from "../../api/index.js";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { jest } from "@jest/globals";
+import { it, jest } from "@jest/globals";
+import { runAndLogStats } from "./utils.js";
 
 const stats = {
   name: "Anurag Hazra",
@@ -24,8 +24,10 @@ const data_stats = {
     user: {
       name: stats.name,
       repositoriesContributedTo: { totalCount: stats.contributedTo },
-      contributionsCollection: {
+      commits: {
         totalCommitContributions: stats.totalCommits,
+      },
+      reviews: {
         totalPullRequestReviewContributions: stats.totalReviews,
       },
       pullRequests: { totalCount: stats.totalPRs },
@@ -67,10 +69,10 @@ const faker = (query, data) => {
   return { req, res };
 };
 
-benchmarkSuite("test /api", {
-  ["simple request"]: async () => {
+it("test /api", async () => {
+  await runAndLogStats("test /api", async () => {
     const { req, res } = faker({}, data_stats);
 
     await api(req, res);
-  },
+  });
 });
