@@ -1,5 +1,4 @@
 .vercel
-.env
 node_modules
 *.lock
 .idea/
@@ -13,4 +12,9 @@ vercel_token
 !.vscode/settings.json
 *.code-workspace
 
-.vercel
+.next
+.env
+.env.local
+.env.production
+.vercel/cache
+dist

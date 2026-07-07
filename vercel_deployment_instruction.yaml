@@ -1,0 +1,78 @@
+# GitHub Readme Stats – Vercel Deployment
+
+![Vercel](https://img.shields.io/badge/deployed%20on-vercel-black?logo=vercel)
+![GitHub last commit](https://img.shields.io/github/last-commit/stewie-pixel/github-vercel-deployment)
+![License](https://img.shields.io/github/license/stewie-pixel/github-vercel-deployment)
+
+A fork of **GitHub Readme Stats** deployed on **Vercel**.  
+This setup allows anyone to deploy their own version using a **personal GitHub token**.
+
+🔗 **Original repository:** [Stewie-pixel/github-vercel-deployment](https://github.com/Stewie-pixel/github-vercel-deployment)
+
+---
+
+## 🚀 Features
+
+- Deploy your own GitHub Readme Stats on Vercel
+- Uses your **personal GitHub token** securely
+- No extra setup required
+- Maintains the original functionality
+
+---
+
+## 🔐 Environment Variables
+
+Before deploying, you need to provide:
+
+| Variable       | Description                               |
+|----------------|-------------------------------------------|
+| `GITHUB_TOKEN` | Your personal GitHub token for API access |
+| `USERNAME`     | GitHub username to fetch stats for        |
+
+> ⚠️ **Important:** Never commit your real token. Use **Vercel Environment Variables** to keep it safe.
+
+---
+
+## 📦 Deployment Instructions
+
+### 1. Fork this Repository
+
+1. Go to the original repo: [Stewie-pixel/github-vercel-deployment](https://github.com/Stewie-pixel/github-vercel-deployment)  
+2. Click **Fork** → creates a copy under your GitHub account
+
+---
+
+### 2. Import Your Fork into Vercel
+
+1. Go to [Vercel](https://vercel.com/)  
+2. Click **New Project → Import Git Repository**  
+3. Select your forked repository
+
+---
+
+### 3. Add Environment Variables in Vercel
+
+1. Go to **Settings → Environment Variables**  
+2. Add your variables:
+
+| Name           | Value                  |
+|----------------|-----------------------|
+| `GITHUB_TOKEN` | (your personal token)  |
+| `USERNAME`     | (your GitHub username) |
+
+3. Set **Environment** to `Production` (and optionally `Preview`)
+
+---
+
+### 4. Deploy
+
+1. Click **Deploy** in Vercel  
+2. Wait for the build to finish  
+3. Your live app will be available at: https://<your-project-name>.vercel.app
+
+📜 Attribution
+
+This project is forked from:
+https://github.com/Stewie-pixel/github-vercel-deployment
+
+All credit goes to the original authors.
