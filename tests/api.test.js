@@ -50,10 +50,8 @@ const data_stats = {
     user: {
       name: stats.name,
       repositoriesContributedTo: { totalCount: stats.contributedTo },
-      commits: {
+      contributions: {
         totalCommitContributions: stats.totalCommits,
-      },
-      reviews: {
         totalPullRequestReviewContributions: stats.totalReviews,
       },
       pullRequests: { totalCount: stats.totalPRs },
@@ -102,7 +100,7 @@ const faker = (query, data) => {
     setHeader: jest.fn(),
     send: jest.fn(),
   };
-  mock.onPost("https://api.github.com/graphql").replyOnce(200, data);
+  mock.onPost("https://api.github.com/graphql").reply(200, data);
 
   return { req, res };
 };
