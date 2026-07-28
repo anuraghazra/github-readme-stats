@@ -72,9 +72,7 @@ const REPOSITORY_DATA = {
   isPrivate: false,
   isArchived: false,
   isTemplate: false,
-  stargazers: {
-    totalCount: 1,
-  },
+  stargazerCount: 1,
   description: "Simple cra test repo.",
   primaryLanguage: {
     color: "#f1e05a",
