@@ -67,7 +67,7 @@ const data_stats = {
       },
       repositories: {
         totalCount: 1,
-        nodes: [{ stargazers: { totalCount: 100 } }],
+        nodes: [{ stargazerCount: 100 }],
         pageInfo: {
           hasNextPage: false,
           endCursor: "cursor",

@@ -7,7 +7,7 @@ import { fetchRepo } from "../src/fetchers/repo.js";
 const data_repo = {
   repository: {
     name: "convoychat",
-    stargazers: { totalCount: 38000 },
+    stargazerCount: 38000,
     description: "Help us take over the world! React + TS + GraphQL Chat App",
     primaryLanguage: {
       color: "#2b7489",
@@ -46,7 +46,7 @@ describe("Test fetchRepo", () => {
 
     expect(repo).toStrictEqual({
       ...data_repo.repository,
-      starCount: data_repo.repository.stargazers.totalCount,
+      starCount: data_repo.repository.stargazerCount,
     });
   });
 
@@ -56,7 +56,7 @@ describe("Test fetchRepo", () => {
     let repo = await fetchRepo("anuraghazra", "convoychat");
     expect(repo).toStrictEqual({
       ...data_repo.repository,
-      starCount: data_repo.repository.stargazers.totalCount,
+      starCount: data_repo.repository.stargazerCount,
     });
   });
 

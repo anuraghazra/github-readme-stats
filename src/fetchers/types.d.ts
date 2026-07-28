@@ -13,7 +13,7 @@ export type RepositoryData = {
   isPrivate: boolean;
   isArchived: boolean;
   isTemplate: boolean;
-  stargazers: { totalCount: number };
+  stargazerCount: number;
   description: string;
   primaryLanguage: {
     color: string;
