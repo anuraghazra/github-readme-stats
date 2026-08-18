@@ -27,9 +27,9 @@ const data_stats = {
       repositories: {
         totalCount: 5,
         nodes: [
-          { name: "test-repo-1", stargazers: { totalCount: 100 } },
-          { name: "test-repo-2", stargazers: { totalCount: 100 } },
-          { name: "test-repo-3", stargazers: { totalCount: 100 } },
+          { name: "test-repo-1", stargazerCount: 100 },
+          { name: "test-repo-2", stargazerCount: 100 },
+          { name: "test-repo-3", stargazerCount: 100 },
         ],
         pageInfo: {
           hasNextPage: true,
@@ -58,8 +58,8 @@ const data_repo = {
     user: {
       repositories: {
         nodes: [
-          { name: "test-repo-4", stargazers: { totalCount: 50 } },
-          { name: "test-repo-5", stargazers: { totalCount: 50 } },
+          { name: "test-repo-4", stargazerCount: 50 },
+          { name: "test-repo-5", stargazerCount: 50 },
         ],
         pageInfo: {
           hasNextPage: false,
@@ -75,11 +75,11 @@ const data_repo_zero_stars = {
     user: {
       repositories: {
         nodes: [
-          { name: "test-repo-1", stargazers: { totalCount: 100 } },
-          { name: "test-repo-2", stargazers: { totalCount: 100 } },
-          { name: "test-repo-3", stargazers: { totalCount: 100 } },
-          { name: "test-repo-4", stargazers: { totalCount: 0 } },
-          { name: "test-repo-5", stargazers: { totalCount: 0 } },
+          { name: "test-repo-1", stargazerCount: 100 },
+          { name: "test-repo-2", stargazerCount: 100 },
+          { name: "test-repo-3", stargazerCount: 100 },
+          { name: "test-repo-4", stargazerCount: 0 },
+          { name: "test-repo-5", stargazerCount: 0 },
         ],
         pageInfo: {
           hasNextPage: true,
