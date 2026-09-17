@@ -52,7 +52,7 @@ for (const [theme, suffix] of THEMES) {
     langs_count: 10,
     hide_title: true,
     hide_border: true,
-    hide: ["html", "css", "shell"],
+    hide: ["html", "css", "shell", "makefile"],
     disable_animations: true,
   });
   const langsPath = path.join(outDir, `top-langs-${suffix}.svg`);
