@@ -28,7 +28,7 @@ jobs:
 
     # CodeQL runs on ubuntu-latest, windows-latest, and macos-latest
     runs-on: ubuntu-latest
-
+ubuntu is the operating system based on linux, just like how macOS is the operating system for apple 
     steps:
       - name: Checkout repository
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
