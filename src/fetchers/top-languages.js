@@ -109,8 +109,6 @@ const fetchTopLanguages = async (
     .sort((a, b) => b.size - a.size)
     .filter((name) => !repoToHide[name.name]);
 
-  let repoCount = 0;
-
   repoNodes = repoNodes
     .filter((node) => node.languages.edges.length > 0)
     // flatten the list of language nodes
@@ -118,17 +116,14 @@ const fetchTopLanguages = async (
     .reduce((acc, prev) => {
       // get the size of the language (bytes)
       let langSize = prev.size;
+      let repoCount = 1;
 
       // if we already have the language in the accumulator
       // & the current language name is same as previous name
       // add the size to the language size and increase repoCount.
       if (acc[prev.node.name] && prev.node.name === acc[prev.node.name].name) {
         langSize = prev.size + acc[prev.node.name].size;
-        repoCount += 1;
-      } else {
-        // reset repoCount to 1
-        // language must exist in at least one repo to be detected
-        repoCount = 1;
+        repoCount = acc[prev.node.name].count + 1;
       }
       return {
         ...acc,

@@ -61,6 +61,46 @@ const error = {
 };
 
 describe("FetchTopLanguages", () => {
+  it("should count repositories separately for interleaved languages", async () => {
+    const nodes = [
+      {
+        name: "mixed-repo",
+        languages: {
+          edges: [
+            { size: 100, node: { color: "#00ADD8", name: "Go" } },
+            { size: 200, node: { color: "#3572A5", name: "Python" } },
+          ],
+        },
+      },
+      {
+        name: "go-repo",
+        languages: {
+          edges: [{ size: 50, node: { color: "#00ADD8", name: "Go" } }],
+        },
+      },
+      {
+        name: "python-css-repo",
+        languages: {
+          edges: [
+            { size: 100, node: { color: "#3572A5", name: "Python" } },
+            { size: 10, node: { color: "#563d7c", name: "CSS" } },
+          ],
+        },
+      },
+    ];
+    mock.onPost("https://api.github.com/graphql").reply(200, {
+      data: { user: { repositories: { nodes } } },
+    });
+
+    const languages = await fetchTopLanguages("anuraghazra", [], 1, 1);
+
+    expect(languages).toStrictEqual({
+      Python: { color: "#3572A5", count: 2, name: "Python", size: 600 },
+      Go: { color: "#00ADD8", count: 2, name: "Go", size: 300 },
+      CSS: { color: "#563d7c", count: 1, name: "CSS", size: 10 },
+    });
+  });
+
   it("should fetch correct language data while using the new calculation", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
