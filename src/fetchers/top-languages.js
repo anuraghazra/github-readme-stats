@@ -92,22 +92,12 @@ const fetchTopLanguages = async (
   }
 
   let repoNodes = res.data.data.user.repositories.nodes;
-  /** @type {Record<string, boolean>} */
-  let repoToHide = {};
-  const allExcludedRepos = [...exclude_repo, ...excludeRepositories];
-
-  // populate repoToHide map for quick lookup
-  // while filtering out
-  if (allExcludedRepos) {
-    allExcludedRepos.forEach((repoName) => {
-      repoToHide[repoName] = true;
-    });
-  }
+  const repoToHide = new Set([...exclude_repo, ...excludeRepositories]);
 
   // filter out repositories to be hidden
   repoNodes = repoNodes
     .sort((a, b) => b.size - a.size)
-    .filter((name) => !repoToHide[name.name]);
+    .filter((repo) => !repoToHide.has(repo.name));
 
   let repoCount = 0;
 

@@ -61,6 +61,35 @@ const error = {
 };
 
 describe("FetchTopLanguages", () => {
+  it.each(["constructor", "toString", "hasOwnProperty", "__proto__"])(
+    "should include a repository named %s unless explicitly excluded",
+    async (repoName) => {
+      const repositories = data_langs.data.user.repositories.nodes;
+      const data = {
+        data: {
+          user: {
+            repositories: {
+              nodes: [{ ...repositories[0], name: repoName }, repositories[2]],
+            },
+          },
+        },
+      };
+      mock.onPost("https://api.github.com/graphql").reply(200, data);
+
+      const languages = await fetchTopLanguages("anuraghazra");
+      expect(languages.HTML).toStrictEqual({
+        color: "#0f0",
+        count: 1,
+        name: "HTML",
+        size: 100,
+      });
+      expect(languages.javascript.size).toBe(100);
+
+      const filtered = await fetchTopLanguages("anuraghazra", [repoName]);
+      expect(filtered).not.toHaveProperty("HTML");
+      expect(filtered.javascript.size).toBe(100);
+    },
+  );
   it("should fetch correct language data while using the new calculation", async () => {
     mock.onPost("https://api.github.com/graphql").reply(200, data_langs);
 
