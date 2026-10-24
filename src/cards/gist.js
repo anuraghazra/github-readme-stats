@@ -115,7 +115,7 @@ const renderGistCard = (gistData, options = {}) => {
   const card = new Card({
     defaultTitle:
       header.length > HEADER_MAX_LENGTH
-        ? `${header.slice(0, HEADER_MAX_LENGTH)}...`
+        ? `${header.slice(0, HEADER_MAX_LENGTH).replace(/[\uD800-\uDBFF]$/u, "")}...`
         : header,
     titlePrefixIcon: icons.gist,
     width: CARD_DEFAULT_WIDTH,
