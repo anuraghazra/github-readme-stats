@@ -237,3 +237,30 @@ describe("test renderGistCard", () => {
     );
   });
 });
+
+describe("Unicode gist title truncation", () => {
+  it.each([
+    ["filename", { name: "a".repeat(34) + "😀file.txt" }, {}],
+    [
+      "owner and filename",
+      { nameWithOwner: "a".repeat(33) + "/😀file.txt" },
+      { show_owner: true },
+    ],
+  ])("keeps %s valid Unicode at the title limit", (_, gist, options) => {
+    const svg = renderGistCard({ ...data, ...gist }, options);
+    expect(svg.isWellFormed()).toBe(true);
+    const document = new DOMParser().parseFromString(svg, "image/svg+xml");
+    expect(document.querySelector("parsererror")).toBeNull();
+  });
+
+  it("preserves an emoji that fits completely before the title limit", () => {
+    const svg = renderGistCard({
+      ...data,
+      name: "a".repeat(33) + "😀file.txt",
+    });
+    const document = new DOMParser().parseFromString(svg, "image/svg+xml");
+    expect(document.querySelector(".header").textContent).toBe(
+      "a".repeat(33) + "😀...",
+    );
+  });
+});
