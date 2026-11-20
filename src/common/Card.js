@@ -47,7 +47,7 @@ class Card {
 
     this.css = "";
 
-    this.paddingX = 25;
+    this.paddingX = 10;
     this.paddingY = 35;
     this.titlePrefixIcon = titlePrefixIcon;
     this.animations = true;
